@@ -4,7 +4,7 @@ import random
 from typing import Any, Optional
 
 from code_n.challenge import Challenge, ChallengeInfo
-from code_n.counter import ComplexityClass
+from code_n.counter import ComplexityClass, get_counter
 from code_n.grid import Grid, CellType
 from code_n.tracked import TrackedList, TrackedGrid, TrackedQueue, TrackedStack
 
@@ -120,7 +120,10 @@ class BFSGridChallenge(Challenge):
             description=(
                 "Find the shortest path from START to GOAL in a 2D grid.\n"
                 "0 = walkable, 1 = wall. Move in 4 directions (up/down/left/right).\n"
-                "Return the path length (number of steps), or -1 if no path.\n"
+                "The generated maze always has a route, but dense walls make guessing impossible.\n"
+                "Use Python row/column indexing: grid[row][column].\n"
+                "Rows go down the screen; columns go left to right.\n"
+                "Return the shortest path length in steps.\n"
                 "Requirement: O(n²) where n = grid side length."
             ),
             category="searching",
@@ -131,33 +134,12 @@ class BFSGridChallenge(Challenge):
 
     def setup(self, n: int, seed: Optional[int] = None) -> dict[str, Any]:
         rng = random.Random(seed)
-        size = max(5, int(n ** 0.5) + 2)
+        size = max(5, n)
         self._n = size
-
-        # Generate a grid with some walls (30% wall density)
-        self._grid_data = [
-            [1 if rng.random() < 0.3 else 0 for _ in range(size)]
-            for _ in range(size)
-        ]
-
-        # Ensure start and goal are open
         self._start = (0, 0)
         self._goal = (size - 1, size - 1)
-        self._grid_data[0][0] = 0
-        self._grid_data[size - 1][size - 1] = 0
 
-        # Ensure a path exists by carving one
-        x, y = 0, 0
-        while x < size - 1 or y < size - 1:
-            self._grid_data[y][x] = 0
-            if x < size - 1 and (y >= size - 1 or rng.random() < 0.5):
-                x += 1
-            else:
-                y += 1
-        self._grid_data[size - 1][size - 1] = 0
-
-        # Calculate expected shortest path with BFS
-        self._expected_length = self._bfs_solve(size)
+        self._grid_data, self._expected_length = self._generate_difficult_maze(size, rng)
 
         # Visual grid
         self.grid = Grid(size, size)
@@ -182,23 +164,134 @@ class BFSGridChallenge(Challenge):
             "size": size,
         }
 
-    def _bfs_solve(self, size: int) -> int:
-        from collections import deque
-        q = deque([(0, 0, 0)])
+    def _generate_difficult_maze(self, size: int, rng: random.Random) -> tuple[list[list[int]], int]:
+        minimum_length = self._minimum_maze_length(size)
+        attempts = 32 if size <= 150 else 12
+        best_grid: list[list[int]] = []
+        best_length = -1
+
+        for _ in range(attempts):
+            attempt_rng = random.Random(rng.randrange(2**63))
+            grid_data = self._generate_maze_grid(size, attempt_rng)
+            path_length = self._shortest_path_length(grid_data, size)
+            if path_length > best_length:
+                best_grid = grid_data
+                best_length = path_length
+            if path_length >= minimum_length:
+                return grid_data, path_length
+
+        return best_grid, best_length
+
+    def _minimum_maze_length(self, size: int) -> int:
+        if size < 15:
+            return 0
+        direct_corner_distance = (size - 1) * 2
+        return max(direct_corner_distance * 5, size * 8)
+
+    def _generate_maze_grid(self, size: int, rng: random.Random) -> list[list[int]]:
+        grid_data = [[1 for _ in range(size)] for _ in range(size)]
+        cell_rows = (size + 1) // 2
+        cell_columns = (size + 1) // 2
+        stack = [(0, 0)]
         visited = {(0, 0)}
+        grid_data[0][0] = 0
+
+        while stack:
+            row_cell, column_cell = stack[-1]
+            directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+            rng.shuffle(directions)
+
+            for row_step, column_step in directions:
+                next_row_cell = row_cell + row_step
+                next_column_cell = column_cell + column_step
+                next_cell = (next_row_cell, next_column_cell)
+                if not (0 <= next_row_cell < cell_rows and 0 <= next_column_cell < cell_columns):
+                    continue
+                if next_cell in visited:
+                    continue
+
+                grid_data[row_cell * 2 + row_step][column_cell * 2 + column_step] = 0
+                grid_data[next_row_cell * 2][next_column_cell * 2] = 0
+                visited.add(next_cell)
+                stack.append(next_cell)
+                break
+            else:
+                stack.pop()
+
+        self._connect_goal_to_maze(grid_data, size, cell_rows, cell_columns)
+        self._add_maze_cycles(grid_data, size, rng)
+        return grid_data
+
+    def _connect_goal_to_maze(
+        self,
+        grid_data: list[list[int]],
+        size: int,
+        cell_rows: int,
+        cell_columns: int,
+    ) -> None:
+        goal_row, goal_column = self._goal
+        anchor_row = (cell_rows - 1) * 2
+        anchor_column = (cell_columns - 1) * 2
+
+        for row in range(anchor_row, goal_row + 1):
+            grid_data[row][anchor_column] = 0
+        for column in range(anchor_column, goal_column + 1):
+            grid_data[goal_row][column] = 0
+
+    def _add_maze_cycles(self, grid_data: list[list[int]], size: int, rng: random.Random) -> None:
+        candidates: list[tuple[int, int]] = []
+        for row in range(1, size - 1):
+            for column in range(1, size - 1):
+                if grid_data[row][column] != 1:
+                    continue
+                vertical_join = (
+                    grid_data[row - 1][column] == 0
+                    and grid_data[row + 1][column] == 0
+                    and grid_data[row][column - 1] == 1
+                    and grid_data[row][column + 1] == 1
+                )
+                horizontal_join = (
+                    grid_data[row][column - 1] == 0
+                    and grid_data[row][column + 1] == 0
+                    and grid_data[row - 1][column] == 1
+                    and grid_data[row + 1][column] == 1
+                )
+                if vertical_join or horizontal_join:
+                    candidates.append((row, column))
+
+        rng.shuffle(candidates)
+        cycle_count = min(len(candidates), max(1, size // 25, int(len(candidates) * 0.003)))
+        for row, column in candidates[:cycle_count]:
+            grid_data[row][column] = 0
+
+    def _shortest_path_length(self, grid_data: list[list[int]], size: int) -> int:
+        from collections import deque
+
+        q = deque([(self._start[0], self._start[1], 0)])
+        visited = {self._start}
         while q:
-            x, y, dist = q.popleft()
-            if (x, y) == self._goal:
-                return dist
-            for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
-                nx, ny = x + dx, y + dy
-                if 0 <= nx < size and 0 <= ny < size and (nx, ny) not in visited and self._grid_data[ny][nx] == 0:
-                    visited.add((nx, ny))
-                    q.append((nx, ny, dist + 1))
+            row, column, distance = q.popleft()
+            if (row, column) == self._goal:
+                return distance
+            for row_step, column_step in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+                next_row = row + row_step
+                next_column = column + column_step
+                next_position = (next_row, next_column)
+                if (
+                    0 <= next_row < size
+                    and 0 <= next_column < size
+                    and next_position not in visited
+                    and grid_data[next_row][next_column] == 0
+                ):
+                    visited.add(next_position)
+                    q.append((next_row, next_column, distance + 1))
         return -1
 
+    def _bfs_solve(self, size: int) -> int:
+        return self._shortest_path_length(self._grid_data, size)
+
     def verify(self, result: Any) -> bool:
-        return result == self._expected_length
+        return result == self._expected_length and get_counter().stats.reads > 0
 
 
 class DFSGridChallenge(Challenge):
@@ -217,6 +310,8 @@ class DFSGridChallenge(Challenge):
             description=(
                 "Count all reachable cells from the top-left corner.\n"
                 "0 = walkable, 1 = wall. Move in 4 directions.\n"
+                "Use Python row/column indexing: grid[row][column].\n"
+                "Rows go down the screen; columns go left to right.\n"
                 "Return the total number of reachable cells (including start).\n"
                 "Requirement: O(n²) where n = grid side length."
             ),
@@ -228,7 +323,7 @@ class DFSGridChallenge(Challenge):
 
     def setup(self, n: int, seed: Optional[int] = None) -> dict[str, Any]:
         rng = random.Random(seed)
-        size = max(5, int(n ** 0.5) + 2)
+        size = max(5, n)
         self._n = size
 
         self._grid_data = [
@@ -271,4 +366,4 @@ class DFSGridChallenge(Challenge):
         return len(visited)
 
     def verify(self, result: Any) -> bool:
-        return result == self._expected_count
+        return result == self._expected_count and get_counter().stats.reads > 0

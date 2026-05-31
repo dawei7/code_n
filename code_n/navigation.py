@@ -19,27 +19,29 @@ from .branding import (
     MAX_PLAYER_NAME_LENGTH,
     normalize_player_name,
 )
-from .progress import load_progress, save_progress
+from .progress import PROGRESS_FILE, load_progress, save_progress
+from .samples import sample_lines
 from .solutions import PROJECT_ROOT, create_solution_file as create_saved_solution_file, default_solution_path, ensure_solutions_dir
 from .tree import ChallengeTree, TreeNode
 from .grid import CellType, Grid
 from .tracked import TrackedGrid, TrackedList
+from .window import is_resize_event, open_maximized_window, sync_window_size
 
 
 @dataclass
 class NavItem:
     node: TreeNode
-    unlocked: bool
-    completed: bool
+    status: str
+    difficulty: int
     implemented: bool
 
     @property
-    def status(self) -> str:
-        if self.completed:
+    def status_label(self) -> str:
+        if self.status == "done":
             return "DONE"
-        if self.unlocked:
-            return "OPEN"
-        return "LOCKED"
+        if self.status == "failed":
+            return "FAILED"
+        return "OPEN"
 
 
 class ChallengeNavigator:
@@ -54,7 +56,6 @@ class ChallengeNavigator:
     MUTED = (150, 160, 174)
     ACCENT = (86, 179, 129)
     WARNING = (238, 186, 83)
-    LOCKED = (96, 104, 116)
     ERROR = (231, 91, 91)
 
     CELL_COLORS = {
@@ -90,16 +91,17 @@ class ChallengeNavigator:
         self.progress = load_progress()
         self.selected_index = 0
         self.scroll_y = 0
-        self.message = "Click selects. E explores. Enter/R runs with graphics. O opens the solution script."
+        self.message = "Click selects. E explores. Enter/R runs. O opens script. Reset clears run statuses."
         self.items = self._build_items()
+        self._progress_mtime = self._progress_file_mtime()
 
     def run(self):
         import pygame
 
         ensure_solutions_dir()
         pygame.init()
-        screen = pygame.display.set_mode((self.width, self.height))
-        pygame.display.set_caption(f"{GAME_TITLE} - Challenge Navigator")
+        screen = open_maximized_window(pygame, self.width, self.height, f"{GAME_TITLE} - Challenge Navigator")
+        sync_window_size(self, screen)
         clock = pygame.time.Clock()
         fonts = {
             "title": pygame.font.SysFont("consolas", 30, bold=True),
@@ -118,6 +120,9 @@ class ChallengeNavigator:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                elif is_resize_event(pygame, event):
+                    screen = pygame.display.get_surface() or screen
+                    sync_window_size(self, screen)
                 elif event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_ESCAPE, pygame.K_q):
                         running = False
@@ -153,11 +158,16 @@ class ChallengeNavigator:
                         if action == "open":
                             self.open_selected_script()
                             continue
+                        if action == "reset":
+                            self.reset_progress_statuses()
+                            continue
 
                         clicked = self._item_at(event.pos)
                         if clicked is not None:
                             self.selected_index = clicked
                             self._ensure_selected_visible()
+
+            self.refresh_if_progress_changed()
 
             self._draw(screen, fonts)
             pygame.display.flip()
@@ -169,7 +179,29 @@ class ChallengeNavigator:
         self.progress = load_progress()
         self.items = self._build_items()
         self.selected_index = min(self.selected_index, max(0, len(self.items) - 1))
+        self._progress_mtime = self._progress_file_mtime()
         self.message = "Progress refreshed."
+
+    def refresh_if_progress_changed(self):
+        current_mtime = self._progress_file_mtime()
+        if current_mtime != self._progress_mtime:
+            self.progress = load_progress()
+            self.items = self._build_items()
+            self.selected_index = min(self.selected_index, max(0, len(self.items) - 1))
+            self._progress_mtime = current_mtime
+
+    def reset_progress_statuses(self):
+        self.progress.reset_statuses()
+        save_progress(self.progress)
+        self.items = self._build_items()
+        self._progress_mtime = self._progress_file_mtime()
+        self.message = "Run statuses reset. All challenges are open."
+
+    def _progress_file_mtime(self) -> float:
+        try:
+            return os.path.getmtime(PROGRESS_FILE)
+        except OSError:
+            return 0.0
 
     def player_name(self) -> str:
         return normalize_player_name(self.progress.player_name)
@@ -177,10 +209,6 @@ class ChallengeNavigator:
     def open_selected_script(self):
         item = self.current_item()
         if not item:
-            return
-        if not item.unlocked:
-            prereqs = ", ".join(parent.challenge_id for parent in self.tree.get_parents(item.node.challenge_id))
-            self.message = f"{item.node.challenge_id} is locked. Complete: {prereqs}"
             return
 
         path = create_solution_file(item.node.challenge_id)
@@ -198,9 +226,6 @@ class ChallengeNavigator:
     def run_selected_challenge(self):
         item = self.current_item()
         if not item:
-            return
-        if not item.unlocked:
-            self.message = f"{item.node.challenge_id} is locked."
             return
 
         path = default_solution_path(item.node.challenge_id)
@@ -225,9 +250,6 @@ class ChallengeNavigator:
         item = self.current_item()
         if not item:
             return
-        if not item.unlocked:
-            self.message = f"{item.node.challenge_id} is locked."
-            return
 
         challenge = get_challenge(item.node.challenge_id)
         if not challenge:
@@ -236,7 +258,7 @@ class ChallengeNavigator:
 
         setup_data: dict[str, Any] = {}
         try:
-            setup_data = challenge.setup(8, seed=7)
+            setup_data = challenge.setup(100, seed=7)
         except Exception:
             setup_data = {}
 
@@ -245,6 +267,9 @@ class ChallengeNavigator:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     return
+                if is_resize_event(pygame, event):
+                    screen = pygame.display.get_surface() or screen
+                    sync_window_size(self, screen)
                 if event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_ESCAPE, pygame.K_b):
                         return
@@ -266,6 +291,7 @@ class ChallengeNavigator:
                                 self.open_selected_script()
                                 return
 
+            buttons = self._explore_buttons()
             self._draw_explore(screen, fonts, challenge, setup_data, buttons)
             pygame.display.flip()
             clock.tick(60)
@@ -280,11 +306,12 @@ class ChallengeNavigator:
         for category in self.CATEGORIES:
             for node in self.tree.get_category_nodes(category):
                 challenge = get_challenge(node.challenge_id)
+                difficulty = challenge.info.difficulty if challenge else 0
                 items.append(
                     NavItem(
                         node=node,
-                        unlocked=self.tree.is_unlocked(node.challenge_id, self.progress.completed),
-                        completed=node.challenge_id in self.progress.completed,
+                        status=self.progress.status_for(node.challenge_id),
+                        difficulty=difficulty,
                         implemented=challenge is not None,
                     )
                 )
@@ -299,20 +326,31 @@ class ChallengeNavigator:
     def _draw(self, screen, fonts):
         import pygame
 
+        sync_window_size(self, screen)
         screen.fill(self.BACKGROUND)
         self._text(screen, fonts["title"], GAME_TITLE, 30, 24, self.TEXT)
         subtitle = f"{self.player_name()} - {GAME_SUBTITLE}"
         self._text(screen, fonts["body"], subtitle, 30, 62, self.MUTED)
 
-        left = pygame.Rect(30, 105, 700, 590)
-        right = pygame.Rect(755, 105, 395, 590)
+        margin = 30
+        gap = 24
+        top = 105
+        bottom_h = 32
+        bottom_y = max(top + 420, self.height - bottom_h - 20)
+        content_h = max(360, bottom_y - top - 13)
+        right_w = min(460, max(360, int(self.width * 0.34)))
+        left_w = max(520, self.width - margin * 2 - gap - right_w)
+        if left_w + right_w + gap > self.width - margin * 2:
+            right_w = max(330, self.width - margin * 2 - gap - left_w)
+        left = pygame.Rect(margin, top, left_w, content_h)
+        right = pygame.Rect(left.right + gap, top, right_w, content_h)
         pygame.draw.rect(screen, self.SURFACE, left, border_radius=8)
         pygame.draw.rect(screen, self.SURFACE, right, border_radius=8)
 
         self._draw_list(screen, fonts, left)
         self._draw_details(screen, fonts, right)
 
-        bottom = pygame.Rect(30, 708, 1120, 32)
+        bottom = pygame.Rect(margin, bottom_y, self.width - margin * 2, bottom_h)
         pygame.draw.rect(screen, self.SURFACE_ALT, bottom, border_radius=6)
         self._text(screen, fonts["small"], self.message, bottom.x + 12, bottom.y + 8, self.TEXT)
 
@@ -343,11 +381,18 @@ class ChallengeNavigator:
                 else:
                     pygame.draw.rect(screen, self.SURFACE_ALT, rect, border_radius=6)
 
-                status_color = self.ACCENT if item.completed or item.unlocked else self.LOCKED
-                if item.unlocked and not item.implemented:
+                status_color = self.MUTED
+                if item.status == "done":
+                    status_color = self.ACCENT
+                elif item.status == "failed":
+                    status_color = self.ERROR
+                if not item.implemented:
                     status_color = self.WARNING
-                self._text(screen, fonts["small"], item.status, rect.x + 12, rect.y + 10, status_color)
-                self._text(screen, fonts["body"], f"{item.node.challenge_id}  {item.node.name}", rect.x + 92, rect.y + 8, self.TEXT if item.unlocked else self.MUTED)
+                self._text(screen, fonts["small"], item.status_label, rect.x + 12, rect.y + 10, status_color)
+                self._text(screen, fonts["body"], f"{item.node.challenge_id}  {item.node.name}", rect.x + 92, rect.y + 8, self.TEXT)
+                difficulty_text = f"D {item.difficulty}/10" if item.difficulty else "D --"
+                difficulty_width = fonts["small"].size(difficulty_text)[0]
+                self._text(screen, fonts["small"], difficulty_text, rect.right - difficulty_width - 14, rect.y + 10, self.MUTED)
             y += row_h
 
         screen.set_clip(clip)
@@ -371,8 +416,12 @@ class ChallengeNavigator:
         self._text(screen, fonts["body"], item.node.challenge_id, area.x + 18, area.y + 52, self.MUTED)
 
         y = area.y + 94
-        status_color = self.ACCENT if item.unlocked else self.ERROR
-        self._text(screen, fonts["body"], f"Status: {item.status}", content_x, y, status_color)
+        status_color = self.MUTED
+        if item.status == "done":
+            status_color = self.ACCENT
+        elif item.status == "failed":
+            status_color = self.ERROR
+        self._text(screen, fonts["body"], f"Status: {item.status_label}", content_x, y, status_color)
         y += 28
         self._text(screen, fonts["small"], f"Script: solutions/{item.node.challenge_id}.py", content_x, y, self.TEXT)
         y += 24
@@ -410,7 +459,7 @@ class ChallengeNavigator:
         y = controls_y
         self._text(screen, fonts["body"], "Controls", content_x, y, self.TEXT)
         y += 28
-        for line in ["Click: select | E: explore", "Enter/R: run | O: open script", "N: student name | F5: refresh | Esc: quit"]:
+        for line in ["Click: select | E: explore", "Enter/R: run | O: open script", "Reset button clears statuses", "N: student name | F5: refresh | Esc: quit"]:
             self._text(screen, fonts["small"], line, content_x, y, self.MUTED)
             y += 20
 
@@ -418,21 +467,25 @@ class ChallengeNavigator:
         import pygame
 
         gap = 8
-        width = (area.width - 36 - gap * 2) // 3
+        width = (area.width - 36 - gap * 3) // 4
         explore_rect = pygame.Rect(area.x + 18, y, width, 44)
         run_rect = pygame.Rect(explore_rect.right + gap, y, width, 44)
         open_rect = pygame.Rect(run_rect.right + gap, y, width, 44)
-        self._button_rects = [("explore", explore_rect), ("run", run_rect), ("open", open_rect)]
+        reset_rect = pygame.Rect(open_rect.right + gap, y, width, 44)
+        self._button_rects = [("explore", explore_rect), ("run", run_rect), ("open", open_rect), ("reset", reset_rect)]
 
         pygame.draw.rect(screen, self.SELECTED, explore_rect, border_radius=7)
         pygame.draw.rect(screen, self.ACCENT, run_rect, border_radius=7)
         pygame.draw.rect(screen, self.SURFACE_ALT, open_rect, border_radius=7)
+        pygame.draw.rect(screen, self.WARNING, reset_rect, border_radius=7)
         pygame.draw.rect(screen, self.GRID_LINE, explore_rect, width=1, border_radius=7)
         pygame.draw.rect(screen, self.GRID_LINE, run_rect, width=1, border_radius=7)
         pygame.draw.rect(screen, self.GRID_LINE, open_rect, width=1, border_radius=7)
+        pygame.draw.rect(screen, self.GRID_LINE, reset_rect, width=1, border_radius=7)
         self._center_text(screen, fonts["body"], "Explore", explore_rect, self.TEXT)
         self._center_text(screen, fonts["body"], "Run", run_rect, self.TEXT)
-        self._center_text(screen, fonts["body"], "Open Script", open_rect, self.TEXT)
+        self._center_text(screen, fonts["body"], "Open", open_rect, self.TEXT)
+        self._center_text(screen, fonts["body"], "Reset", reset_rect, self.TEXT)
 
     def _explore_buttons(self):
         import pygame
@@ -447,6 +500,7 @@ class ChallengeNavigator:
     def _draw_explore(self, screen, fonts, challenge, setup_data: dict[str, Any], buttons):
         import pygame
 
+        sync_window_size(self, screen)
         screen.fill(self.BACKGROUND)
         info = challenge.info
         self._text(screen, fonts["title"], f"Explore: {info.name}", 36, 26, self.TEXT)
@@ -460,12 +514,16 @@ class ChallengeNavigator:
             self._text(screen, fonts["small"], line, desc_rect.x + 16, desc_y, self.MUTED)
             desc_y += 20
 
-        sample_rect = pygame.Rect(36, 228, 520, 410)
-        solution_rect = pygame.Rect(584, 228, 560, 410)
+        panel_gap = 28
+        panel_top = 228
+        panel_height = max(300, self.height - panel_top - 122)
+        panel_width = max(360, (self.width - 72 - panel_gap) // 2)
+        sample_rect = pygame.Rect(36, panel_top, panel_width, panel_height)
+        solution_rect = pygame.Rect(sample_rect.right + panel_gap, panel_top, self.width - sample_rect.right - panel_gap - 36, panel_height)
         pygame.draw.rect(screen, self.SURFACE, sample_rect, border_radius=8)
         pygame.draw.rect(screen, self.SURFACE, solution_rect, border_radius=8)
         self._text(screen, fonts["body"], "Sample input", sample_rect.x + 16, sample_rect.y + 14, self.TEXT)
-        self._text(screen, fonts["body"], "Example solution pattern", solution_rect.x + 16, solution_rect.y + 14, self.TEXT)
+        self._text(screen, fonts["body"], "Input / Output samples", solution_rect.x + 16, solution_rect.y + 14, self.TEXT)
         self._draw_sample_grid(screen, fonts, challenge.grid, sample_rect.inflate(-32, -72).move(0, 42))
         self._draw_setup_summary(screen, fonts, setup_data, sample_rect.x + 16, sample_rect.bottom - 92, sample_rect.width - 32)
         self._draw_example_solution(screen, fonts, info.id, solution_rect)
@@ -540,6 +598,9 @@ class ChallengeNavigator:
         screen.set_clip(previous_clip)
 
     def _example_solution_lines(self, challenge_id: str) -> list[str]:
+        lines = sample_lines(challenge_id)
+        if lines:
+            return lines
         examples: dict[str, list[str]] = {
             "intro_01": [
                 "def solve(data):",
@@ -554,8 +615,8 @@ class ChallengeNavigator:
                 "def solve(data, n):",
                 "    for end in range(n - 1, 0, -1):",
                 "        for index in range(end):",
-                "            if data.compare(index, index + 1) > 0:",
-                "                data.swap(index, index + 1)",
+                "            if data[index] > data[index + 1]:",
+                "                data[index], data[index + 1] = data[index + 1], data[index]",
                 "    return data",
             ],
             "search_01": [
@@ -570,9 +631,9 @@ class ChallengeNavigator:
                 "    left, right = 0, n - 1",
                 "    while left <= right:",
                 "        mid = (left + right) // 2",
-                "        comparison = data.compare_value(mid, target)",
-                "        if comparison == 0: return mid",
-                "        if comparison < 0: left = mid + 1",
+                "        value = data[mid]",
+                "        if value == target: return mid",
+                "        if value < target: left = mid + 1",
                 "        else: right = mid - 1",
                 "    return -1",
             ],
@@ -671,6 +732,9 @@ class ChallengeNavigator:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     return False
+                if is_resize_event(pygame, event):
+                    screen = pygame.display.get_surface() or screen
+                    sync_window_size(self, screen)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         return editing

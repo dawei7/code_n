@@ -6,15 +6,28 @@ from typing import Any, Optional
 from code_n.challenge import Challenge, ChallengeInfo
 from code_n.counter import ComplexityClass
 from code_n.grid import Grid, CellType
-from code_n.tracked import TrackedList
+from code_n.tracked import TrackedList, unwrap_tracked
+
+
+def _is_sorted_result(result: Any, expected_data: list[int], working_data: TrackedList | None = None) -> bool:
+    expected = sorted(expected_data)
+    if result is None and working_data is not None:
+        return working_data.raw == expected
+    if isinstance(result, TrackedList):
+        return result.raw == expected
+    if isinstance(result, (list, tuple)):
+        values = [unwrap_tracked(value) for value in result]
+        return values == expected
+    return False
 
 
 class BubbleSortChallenge(Challenge):
-    """Sort the array - but you can only use compare() and swap() on adjacent elements."""
+    """Sort the array with normal Python indexing and assignment."""
 
     def __init__(self):
         super().__init__()
         self._data: list[int] = []
+        self._working_data: TrackedList | None = None
 
     @property
     def info(self) -> ChallengeInfo:
@@ -22,14 +35,13 @@ class BubbleSortChallenge(Challenge):
             id="sort_01",
             name="Bubble Sort",
             description=(
-                "Sort the array using only adjacent comparisons and swaps.\n"
-                "You may only call data.compare(i, i+1) and data.swap(i, i+1).\n"
+                "Sort the array using normal Python indexing and assignment.\n"
                 "Requirement: O(n²) - just get it sorted correctly!"
             ),
             category="sorting",
             difficulty=2,
             required_complexity=ComplexityClass.O_N2,
-            hint="Compare adjacent elements and swap if out of order. Repeat until sorted.",
+            hint="Move larger values toward the end of the list, one pass at a time.",
         )
 
     def setup(self, n: int, seed: Optional[int] = None) -> dict[str, Any]:
@@ -39,12 +51,11 @@ class BubbleSortChallenge(Challenge):
         self.grid = Grid(n, 3)
         self.grid.fill_row(0, self._data, CellType.UNSORTED)
 
-        return {"data": TrackedList(self._data), "n": n}
+        self._working_data = TrackedList(self._data)
+        return {"data": self._working_data, "n": n}
 
     def verify(self, result: Any) -> bool:
-        if not isinstance(result, TrackedList):
-            return False
-        return result.is_sorted()
+        return _is_sorted_result(result, self._data, self._working_data)
 
 
 class SelectionSortChallenge(Challenge):
@@ -53,6 +64,7 @@ class SelectionSortChallenge(Challenge):
     def __init__(self):
         super().__init__()
         self._data: list[int] = []
+        self._working_data: TrackedList | None = None
 
     @property
     def info(self) -> ChallengeInfo:
@@ -77,12 +89,11 @@ class SelectionSortChallenge(Challenge):
         self.grid = Grid(n, 3)
         self.grid.fill_row(0, self._data, CellType.UNSORTED)
 
-        return {"data": TrackedList(self._data), "n": n}
+        self._working_data = TrackedList(self._data)
+        return {"data": self._working_data, "n": n}
 
     def verify(self, result: Any) -> bool:
-        if not isinstance(result, TrackedList):
-            return False
-        return result.is_sorted()
+        return _is_sorted_result(result, self._data, self._working_data)
 
 
 class InsertionSortChallenge(Challenge):
@@ -91,6 +102,7 @@ class InsertionSortChallenge(Challenge):
     def __init__(self):
         super().__init__()
         self._data: list[int] = []
+        self._working_data: TrackedList | None = None
 
     @property
     def info(self) -> ChallengeInfo:
@@ -114,12 +126,11 @@ class InsertionSortChallenge(Challenge):
         self.grid = Grid(n, 3)
         self.grid.fill_row(0, self._data, CellType.UNSORTED)
 
-        return {"data": TrackedList(self._data), "n": n}
+        self._working_data = TrackedList(self._data)
+        return {"data": self._working_data, "n": n}
 
     def verify(self, result: Any) -> bool:
-        if not isinstance(result, TrackedList):
-            return False
-        return result.is_sorted()
+        return _is_sorted_result(result, self._data, self._working_data)
 
 
 class MergeSortChallenge(Challenge):
@@ -128,6 +139,7 @@ class MergeSortChallenge(Challenge):
     def __init__(self):
         super().__init__()
         self._data: list[int] = []
+        self._working_data: TrackedList | None = None
 
     @property
     def info(self) -> ChallengeInfo:
@@ -152,12 +164,11 @@ class MergeSortChallenge(Challenge):
         self.grid = Grid(n, 5)
         self.grid.fill_row(0, self._data, CellType.UNSORTED)
 
-        return {"data": TrackedList(self._data), "n": n}
+        self._working_data = TrackedList(self._data)
+        return {"data": self._working_data, "n": n}
 
     def verify(self, result: Any) -> bool:
-        if not isinstance(result, TrackedList):
-            return False
-        return result.is_sorted()
+        return _is_sorted_result(result, self._data, self._working_data)
 
 
 class QuickSortChallenge(Challenge):
@@ -166,6 +177,7 @@ class QuickSortChallenge(Challenge):
     def __init__(self):
         super().__init__()
         self._data: list[int] = []
+        self._working_data: TrackedList | None = None
 
     @property
     def info(self) -> ChallengeInfo:
@@ -190,9 +202,8 @@ class QuickSortChallenge(Challenge):
         self.grid = Grid(n, 5)
         self.grid.fill_row(0, self._data, CellType.UNSORTED)
 
-        return {"data": TrackedList(self._data), "n": n}
+        self._working_data = TrackedList(self._data)
+        return {"data": self._working_data, "n": n}
 
     def verify(self, result: Any) -> bool:
-        if not isinstance(result, TrackedList):
-            return False
-        return result.is_sorted()
+        return _is_sorted_result(result, self._data, self._working_data)

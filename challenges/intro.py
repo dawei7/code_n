@@ -26,7 +26,7 @@ class IntroHelloGrid(Challenge):
             description=(
                 f"Welcome to {GAME_TITLE}!\n"
                 "Your task: Find the maximum value in the grid's first row.\n"
-                "Use the TrackedList to access elements - every read counts!\n"
+                "Use normal Python indexing and comparisons - every read and compare counts.\n"
                 "Requirement: Solve it in O(n) operations."
             ),
             category="intro",

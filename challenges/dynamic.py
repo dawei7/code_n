@@ -4,7 +4,7 @@ import random
 from typing import Any, Optional
 
 from code_n.challenge import Challenge, ChallengeInfo
-from code_n.counter import ComplexityClass, get_counter
+from code_n.counter import ComplexityClass
 from code_n.grid import Grid, CellType
 from code_n.tracked import TrackedList, TrackedGrid
 

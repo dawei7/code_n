@@ -11,7 +11,6 @@ If no script path is supplied, cOde(n) loads solutions/<challenge_id>.py.
 from challenges.registry import get_challenge
 from code_n.counter import ComplexityClass, OpStats, reset_counter
 from code_n.grid import CellType, Grid
-from code_n.tree import ChallengeTree
 from code_n.progress import load_progress, save_progress
 from code_n.solutions import create_solution_file, resolve_solution_path
 import sys
@@ -82,7 +81,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run a cOde(n) challenge")
     parser.add_argument("challenge_id", help="The challenge ID (e.g., intro_01)")
     parser.add_argument("script", nargs="?", help="Path to your solution script (default: solutions/<challenge_id>.py)")
-    parser.add_argument("--n", type=int, default=16, help="Input size (default: 16)")
+    parser.add_argument("--n", type=int, default=100, help="Input size (default: 100)")
     parser.add_argument("--seed", type=int, default=None, help="Random seed for reproducibility")
     parser.add_argument("--no-animate", action="store_true", help="Skip animation")
     parser.add_argument("--pygame", action="store_true", help="Show an animated Pygame visualization")
@@ -94,22 +93,12 @@ def main():
 
     args = parser.parse_args()
 
-    # Check challenge exists and is unlocked
+    # Check challenge exists.
     progress = load_progress()
-    tree = ChallengeTree()
 
     challenge = get_challenge(args.challenge_id)
     if not challenge:
         print(f"\033[91mUnknown challenge: {args.challenge_id}\033[0m")
-        sys.exit(1)
-
-    if not tree.is_unlocked(args.challenge_id, progress.completed):
-        print(f"\033[91mChallenge '{args.challenge_id}' is locked!\033[0m")
-        print("Complete its prerequisites first.")
-        parents = tree.get_parents(args.challenge_id)
-        for p in parents:
-            status = "OK" if p.challenge_id in progress.completed else "--"
-            print(f"  {status} {p.challenge_id}: {p.name}")
         sys.exit(1)
 
     # Load player script
@@ -130,6 +119,8 @@ def main():
         player = load_player_script(solution.path)
     except PlayerScriptError as exc:
         message = str(exc)
+        progress.fail(args.challenge_id)
+        save_progress(progress)
         if args.pygame:
             show_pygame_error(challenge, args.n, args.seed, args.speed, message)
         else:
@@ -144,31 +135,35 @@ def main():
     print(f"\n\033[1;96m Running: {challenge.info.name} (n={args.n})\033[0m\n")
     print(f"\033[90mSolution: {os.path.relpath(solution.path, os.path.dirname(os.path.abspath(__file__)))}\033[0m")
 
-    result = challenge.run(
-        solve_fn=player.solve,
-        n=args.n,
-        seed=args.seed,
-        animate=(not args.no_animate and not args.pygame),
-        pygame=args.pygame,
-        pygame_speed=args.speed,
-    )
+    try:
+        result = challenge.run(
+            solve_fn=player.solve,
+            n=args.n,
+            seed=args.seed,
+            animate=(not args.no_animate and not args.pygame),
+            pygame=args.pygame,
+            pygame_speed=args.speed,
+        )
+    except Exception:
+        progress.fail(args.challenge_id)
+        save_progress(progress)
+        raise
 
-    # Update progress if passed
+    # Store the latest run status. DONE only means the latest run passed.
     if result.passed:
         progress.complete(
             args.challenge_id,
             result.stats.total,
             result.actual_complexity.value,
         )
-        save_progress(progress)
-
-        # Show what's unlocked
-        newly_available = tree.get_available(progress.completed)
-        if newly_available:
-            print("\n\033[1;92mNewly unlocked:\033[0m")
-            for node in newly_available:
-                print(f"  -> {node.challenge_id}: {node.name}")
     else:
+        progress.fail(args.challenge_id)
+
+    save_progress(progress)
+
+    if not result.passed:
+        if result.message:
+            print(f"\n\033[91m{result.message}\033[0m")
         print(f"\n\033[93mTry again! Use: python main.py info {args.challenge_id}\033[0m")
 
     sys.exit(0 if result.passed else 1)

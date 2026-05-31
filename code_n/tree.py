@@ -1,8 +1,8 @@
-"""Challenge tree - defines progression paths and unlocking logic.
+"""Challenge tree - defines learning paths and category grouping.
 
 The tree is a DAG (Directed Acyclic Graph) where nodes are challenges
-and edges represent prerequisites. Multiple paths through different
-algorithm families.
+and edges describe suggested learning flow. Challenges remain open so
+learners can choose the order that fits their needs.
 """
 
 import json
@@ -62,7 +62,7 @@ CHALLENGE_TREE = {
 
 
 class ChallengeTree:
-    """Manages the challenge tree and unlocking logic."""
+    """Manages the challenge tree and suggested learning flow."""
 
     def __init__(self):
         self.nodes = CHALLENGE_TREE
@@ -86,17 +86,12 @@ class ChallengeTree:
             return []
         return [self.nodes[pid] for pid in node.parents if pid in self.nodes]
 
-    def is_unlocked(self, challenge_id: str, completed: set[str]) -> bool:
-        """Check if a challenge is unlocked (all parents completed)."""
-        node = self.nodes.get(challenge_id)
-        if not node:
-            return False
-        if not node.parents:
-            return True  # Root nodes are always unlocked
-        return all(pid in completed for pid in node.parents)
+    def is_unlocked(self, challenge_id: str, completed: set[str] | None = None) -> bool:
+        """Check if a challenge is open to the learner."""
+        return challenge_id in self.nodes
 
     def get_available(self, completed: set[str]) -> list[TreeNode]:
-        """Get all challenges that are unlocked but not yet completed."""
+        """Get all challenges that are open but not currently done."""
         available = []
         for cid, node in self.nodes.items():
             if cid not in completed and self.is_unlocked(cid, completed):
@@ -106,8 +101,10 @@ class ChallengeTree:
     def get_category_nodes(self, category: str) -> list[TreeNode]:
         return [n for n in self.nodes.values() if n.category == category]
 
-    def render_tree(self, completed: set[str]) -> str:
+    def render_tree(self, progress) -> str:
         """Render the tree as a text-based visual."""
+        completed = progress.completed if hasattr(progress, "completed") else set(progress)
+        status_for = progress.status_for if hasattr(progress, "status_for") else None
         lines = []
         lines.append(f"\033[1m=== {GAME_TITLE} Challenge Tree ===\033[0m\n")
 
@@ -127,12 +124,13 @@ class ChallengeTree:
             lines.append(f"\033[1m{category_names.get(cat, cat)}\033[0m")
 
             for node in nodes:
-                if node.challenge_id in completed:
+                status_value = status_for(node.challenge_id) if status_for else ("done" if node.challenge_id in completed else "open")
+                if status_value == "done":
                     status = "\033[92mOK\033[0m"
-                elif self.is_unlocked(node.challenge_id, completed):
-                    status = "\033[93mOPEN\033[0m"
+                elif status_value == "failed":
+                    status = "\033[91mFAIL\033[0m"
                 else:
-                    status = "\033[90mLOCK\033[0m"
+                    status = "\033[93mOPEN\033[0m"
 
                 indent = "  "
                 deps = ""

@@ -7,7 +7,6 @@ from typing import Optional
 
 from .branding import normalize_player_name
 from .solutions import PROJECT_ROOT
-from .tree import ChallengeTree
 
 PROGRESS_FILE = os.path.join(PROJECT_ROOT, "progress.json")
 
@@ -25,9 +24,11 @@ class PlayerProgress:
     player_name: str = ""
     completed: set[str] = field(default_factory=set)
     records: dict[str, LevelRecord] = field(default_factory=dict)
+    last_status: dict[str, str] = field(default_factory=dict)
 
     def complete(self, challenge_id: str, ops: int, complexity: str):
         self.completed.add(challenge_id)
+        self.last_status[challenge_id] = "done"
         existing = self.records.get(challenge_id)
         if existing:
             existing.attempts += 1
@@ -42,10 +43,28 @@ class PlayerProgress:
                 attempts=1
             )
 
+    def fail(self, challenge_id: str):
+        self.completed.discard(challenge_id)
+        self.last_status[challenge_id] = "failed"
+
+    def reset_statuses(self):
+        self.completed.clear()
+        self.records.clear()
+        self.last_status.clear()
+
+    def status_for(self, challenge_id: str) -> str:
+        status = self.last_status.get(challenge_id)
+        if status:
+            return status
+        if challenge_id in self.completed:
+            return "done"
+        return "open"
+
     def to_dict(self) -> dict:
         return {
             "player_name": normalize_player_name(self.player_name) if self.player_name else "",
             "completed": list(self.completed),
+            "last_status": self.last_status,
             "records": {
                 k: {
                     "challenge_id": v.challenge_id,
@@ -61,9 +80,13 @@ class PlayerProgress:
     def from_dict(cls, data: dict) -> "PlayerProgress":
         progress = cls()
         progress.player_name = normalize_player_name(data.get("player_name", "")) if data.get("player_name") else ""
-        progress.completed = set(data.get("completed", []))
+        progress.last_status = dict(data.get("last_status", {}))
+        old_completed = set(data.get("completed", []))
         for k, v in data.get("records", {}).items():
             progress.records[k] = LevelRecord(**v)
+        for challenge_id in old_completed:
+            progress.last_status.setdefault(challenge_id, "done")
+        progress.completed = {challenge_id for challenge_id, status in progress.last_status.items() if status == "done"}
         return progress
 
 

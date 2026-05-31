@@ -71,7 +71,7 @@ Smoke-test rebuilt exe:
 
 ## Current Implemented Features
 
-- Challenge tree with locked/unlocked progression.
+- Challenge tree with suggested progression; challenges remain open for learner choice.
 - Player-chosen protagonist name stored in `progress.json` as `player_name`.
 - Grounded Computer Science BSc Algorithms and Data Structures backstory in `code_n/branding.py`, README, CLI, and navigator.
 - Root `solutions/` folder where player scripts are created and loaded.

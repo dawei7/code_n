@@ -6,6 +6,7 @@ Run this to see the challenge tree, check progress, and get instructions.
 from challenges.registry import get_challenge, list_challenges
 from code_n.branding import BACKSTORY_SHORT, GAME_SUBTITLE, GAME_TITLE, normalize_player_name
 from code_n.progress import load_progress, save_progress
+from code_n.samples import sample_lines
 from code_n.solutions import SOLUTIONS_DIR, ensure_solutions_dir
 from code_n.tree import ChallengeTree
 import sys
@@ -33,7 +34,8 @@ def print_help():
     4. Run it: python run_challenge.py <challenge_id>
 
 \033[1mRules:\033[0m
-    - Use the TrackedList/TrackedGrid/etc. data structures provided.
+    - Write normal Python indexing, comparisons, loops, and assignments.
+    - The game records operations through list-like and grid-like wrappers.
     - Every read, write, compare, and swap is counted.
     - Your solution must be CORRECT and within the COMPLEXITY THRESHOLD.
     - The threshold is based on operation count, not wall-clock time.
@@ -69,6 +71,11 @@ def show_challenge_info(challenge_id: str):
     print(f"\n\033[1mDescription:\033[0m")
     for line in info.description.split("\n"):
         print(f"  {line}")
+    samples = sample_lines(info.id)
+    if samples:
+        print(f"\n\033[1mSamples:\033[0m")
+        for line in samples:
+            print(f"  {line}" if line else "")
     if info.hint:
         print(f"\n\033[1;90mHint: {info.hint}\033[0m")
     print()
@@ -112,12 +119,12 @@ def main():
     else:
         print("\033[1mStudent:\033[0m Choose a name with: python main.py name <name>")
     print()
-    print(tree.render_tree(progress.completed))
+    print(tree.render_tree(progress))
 
-    # Show available challenges
+    # Show open challenges
     available = tree.get_available(progress.completed)
     if available:
-        print("\n\033[1;92mAvailable challenges:\033[0m")
+        print("\n\033[1;92mOpen challenges:\033[0m")
         for node in available:
             print(f"  -> {node.challenge_id}: {node.name}")
         print(f"\n\033[1mSave scripts in:\033[0m {os.path.relpath(SOLUTIONS_DIR, os.path.dirname(os.path.abspath(__file__)))}")

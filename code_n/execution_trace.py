@@ -9,7 +9,7 @@ from __future__ import annotations
 import os
 import sys
 from dataclasses import dataclass, field
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 from .counter import OperationCounter
 
@@ -39,16 +39,43 @@ class ExecutionTrace:
         return latest
 
 
-def run_with_trace(func: Callable, kwargs: dict[str, Any], counter: OperationCounter) -> tuple[Any, ExecutionTrace]:
+class ExecutionStepLimitExceeded(RuntimeError):
+    """Raised when player code runs too many Python steps without finishing."""
+
+    def __init__(self, steps: int, limit: int):
+        self.steps = steps
+        self.limit = limit
+        super().__init__(
+            f"Stopped: ran {steps} Python steps without finishing. Check for an accidental infinite loop or an algorithm that is far too slow."
+        )
+
+
+def run_with_trace(func: Callable, kwargs: dict[str, Any], counter: OperationCounter,
+                   count_lines: bool = False,
+                   step_limit: Optional[int] = None,
+                   step_callback: Optional[Callable[[int], None]] = None,
+                   step_interval: int = 1000) -> tuple[Any, ExecutionTrace]:
     """Run a player's function and capture local variables from their script file."""
     trace = ExecutionTrace()
     target_file = os.path.normcase(os.path.abspath(func.__code__.co_filename))
     breakpoint_lines = _load_inline_breakpoints(target_file)
     previous_tracer = sys.gettrace()
+    step_count = 0
+    last_step_update = 0
 
     def tracer(frame, event, arg):
+        nonlocal step_count, last_step_update
         frame_file = os.path.normcase(os.path.abspath(frame.f_code.co_filename))
         if frame_file == target_file and event in {"line", "return"}:
+            if count_lines and event == "line":
+                counter.call(f"line {frame.f_lineno}")
+            if event == "line":
+                step_count += 1
+                if step_callback and step_count - last_step_update >= max(1, step_interval):
+                    last_step_update = step_count
+                    step_callback(step_count)
+                if step_limit is not None and step_count > step_limit:
+                    raise ExecutionStepLimitExceeded(step_count, step_limit)
             return_value = _safe_repr(arg) if event == "return" else ""
             trace.frames.append(
                 TraceFrame(

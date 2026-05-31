@@ -13,8 +13,8 @@ The story stays grounded and pure. There is no fantasy violence, romance, or sho
 ## How It Works
 
 1. You see a challenge with data displayed on a 2D grid
-2. You write a `solve()` function using tracked data structures
-3. Every operation (read, write, compare, swap) is counted
+2. You write a `solve()` function with normal Python indexing, comparisons, loops, and assignments
+3. The game records reads, writes, comparisons, and list changes behind the scenes
 4. Your solution must be **correct** AND within the **complexity threshold**
 5. The threshold is based on operation count — not speed — so the actual O() class matters
 
@@ -50,7 +50,7 @@ python run_challenge.py search_02 my_solution.py --n 256
 
 ## Explore Before Running
 
-The Pygame navigator has three actions for each unlocked challenge:
+The Pygame navigator has actions for each challenge. All challenges are open, so learners can choose the order that fits their needs:
 
 | Button        | Purpose                                                                        |
 | ------------- | ------------------------------------------------------------------------------ |
@@ -79,7 +79,7 @@ The side panel also has clickable controls for Play/Pause, Next, Replay, Manual/
 
 The speed chooser includes `step`, `crawl`, `very-slow`, `slow`, `normal`, `fast`, `turbo`, and `instant`. In `step` mode, every `Space`, `Enter`, or `Right Arrow` press executes exactly one recorded operation.
 
-The side panel shows operation counts, complexity, the current operation, local variable values from your `solve()` function, and the final return value. List operations such as `swap`, indexed assignment, `append`, `insert`, and `pop` update the visible array while the replay runs.
+The side panel shows operation counts, complexity, the current operation, local variable values from your `solve()` function, and the final return value. List operations such as indexed assignment, tuple swaps, `append`, `insert`, and `pop` update the visible array while the replay runs.
 
 Click a visible cell to add a watchpoint. Replay pauses when a read, write, compare, or swap touches that cell. This is useful when you want to follow one list index or grid coordinate through an algorithm.
 
@@ -117,7 +117,7 @@ That creates `.venv`, installs `requirements.txt`, and starts the Pygame navigat
 
 ## Challenge Tree
 
-Challenges are organized in a tree with 4 paths. You unlock the next level only after completing its prerequisites.
+Challenges are organized in a tree with 4 suggested paths. Nothing is locked; the arrows show a recommended learning order.
 
 ```
                     ┌─── Sorting ──────────────────────────────────┐
@@ -135,24 +135,25 @@ Challenges are organized in a tree with 4 paths. You unlock the next level only 
 
 ## Writing Solutions
 
-Your script must import tracked structures from `code_n.api` and define a `solve` function. The arguments depend on the challenge:
+Your script defines a `solve` function. Challenge inputs behave like normal Python values where possible; list inputs support ordinary indexing, comparison, iteration, assignment, tuple swaps, slices, `append`, `insert`, and `pop` while the engine records operations for scoring and visualization.
+
+Each challenge template includes three input/output samples. Samples show the expected result without giving away the algorithm.
 
 ```python
-from code_n.api import TrackedGrid, TrackedList
-
 # Sorting challenges
-def solve(data: TrackedList, n: int) -> TrackedList:
-    # sort data in-place using data.compare(i, j) and data.swap(i, j)
+def solve(data, n):
+    # sort data in-place with normal Python list syntax
     return data
 
 # Searching challenges
-def solve(data: TrackedList, target: int, n: int) -> int:
+def solve(data, target, n):
     # return the index of target, or -1
     return index
 
 # Grid challenges
-def solve(grid: TrackedGrid, start: tuple, goal: tuple, size: int) -> int:
+def solve(grid, start, goal, size):
     # return shortest path length
+    # read cells with grid[y][x] or grid[x, y]
     return distance
 
 # DP challenges
@@ -163,15 +164,17 @@ def solve(n: int) -> int:
 
 ## Tracked Data Structures
 
-Use these instead of raw Python lists — every operation is counted:
+The engine passes wrappers so normal-looking Python can be counted and visualized:
 
-| Structure      | Operations                                                                       |
-| -------------- | -------------------------------------------------------------------------------- |
-| `TrackedList`  | `data[i]` (read), `data[i] = x` (write), `data.compare(i, j)`, `data.swap(i, j)` |
-| `TrackedGrid`  | `grid.get(x, y)`, `grid.set(x, y, val)`, `grid.compare(...)`, `grid.swap(...)`   |
-| `TrackedQueue` | `enqueue()`, `dequeue()`, `peek()`                                               |
-| `TrackedStack` | `push()`, `pop()`, `peek()`                                                      |
-| `TrackedSet`   | `add()`, `contains()`, `remove()`                                                |
+| Structure      | Standard-facing operations                                                    |
+| -------------- | ----------------------------------------------------------------------------- |
+| `TrackedList`  | `data[i]`, `data[i] = x`, `data[i] > data[j]`, tuple swaps, slices, iteration |
+| `TrackedGrid`  | `grid[y][x]`, `grid[y][x] = value`, `grid[x, y]`, `grid[x, y] = value`        |
+| `TrackedQueue` | `enqueue()`, `dequeue()`, `peek()`                                            |
+| `TrackedStack` | `push()`, `pop()`, `peek()`                                                   |
+| `TrackedSet`   | `add()`, `contains()`, `remove()`, `value in tracked_set`                     |
+
+For sorting challenges, you may sort `data` in place, return `data`, or return a sorted copy. Common slice copies such as `other = data[:]` stay tracked so the visualizer can still count and replay the work.
 
 ## Complexity Thresholds
 
@@ -181,9 +184,9 @@ Each challenge has a maximum allowed complexity class. Your operation count must
 | ---------- | ---------------------------- |
 | O(1)       | ≤ 10                         |
 | O(log n)   | ≤ 3·log₂(n) + 10             |
-| O(n)       | ≤ 3n + 10                    |
-| O(n log n) | ≤ 2n·log₂(n) + 10            |
-| O(n²)      | ≤ 2n² + 10                   |
+| O(n)       | ≤ 4n + 10                    |
+| O(n log n) | ≤ 6n·log₂(n) + 10            |
+| O(n²)      | ≤ 8n² + 10                   |
 
 ## Project Structure
 
@@ -197,7 +200,7 @@ code_n/
 │   ├── counter.py           # Operation counter & complexity classifier
 │   ├── tracked.py           # Tracked data structures (TrackedList, etc.)
 │   ├── challenge.py         # Challenge base class
-│   ├── tree.py              # Challenge tree & unlock logic
+│   ├── tree.py              # Challenge tree & suggested learning flow
 │   ├── progress.py          # Save/load player progress
 │   └── api.py               # Public API for player scripts
 ├── challenges/              # Challenge implementations

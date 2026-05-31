@@ -3,12 +3,10 @@
 This should FAIL the complexity check (O(n) instead of required O(log n)).
 """
 
-from code_n.api import TrackedList
 
-
-def solve(data: TrackedList, target: int, n: int) -> int:
+def solve(data, target: int, n: int) -> int:
     """Linear search - O(n) - will FAIL the O(log n) requirement!"""
-    for i in range(n):
-        if data.compare_value(i, target) == 0:
-            return i
+    for index in range(n):
+        if data[index] == target:
+            return index
     return -1

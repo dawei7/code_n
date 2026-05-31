@@ -16,11 +16,11 @@ from typing import Any, Callable, Optional
 from .grid import Grid, CellType
 from .counter import (
     OperationCounter, get_counter, reset_counter,
-    ComplexityClass, OpStats
+    ComplexityClass, OpStats, OperationLimitExceeded
 )
 from .renderer import Renderer
 from .tracked import TrackedList, TrackedGrid, TrackedQueue, TrackedStack, TrackedSet
-from .execution_trace import ExecutionTrace, run_with_trace
+from .execution_trace import ExecutionStepLimitExceeded, ExecutionTrace, run_with_trace
 
 
 @dataclass
@@ -98,8 +98,22 @@ class Challenge(ABC):
         self._n = n
         self._seed = seed
 
-        # Setup
         reset_counter()
+        counter = get_counter()
+        operation_limit = counter.limit_for(n, self.info.required_complexity)
+        progress_window = None
+        if pygame:
+            from .pygame_renderer import ComputationProgressWindow
+
+            progress_window = ComputationProgressWindow(
+                self.info.name,
+                self.info.description,
+                operation_limit,
+            )
+
+        # Setup
+        if progress_window:
+            progress_window.update("Preparing challenge", 0, operation_limit, force=True)
         setup_data = self.setup(n, seed)
 
         # Show initial state
@@ -108,26 +122,67 @@ class Challenge(ABC):
             input("\nPress Enter to run your solution...")
 
         # Run player's solution
-        counter = get_counter()
         trace = ExecutionTrace()
         error_message = ""
         result = None
+        step_limit = max(10_000, operation_limit * 25)
+        counter.set_operation_limit(operation_limit, self.info.required_complexity)
+        if progress_window:
+            progress_interval = max(1, operation_limit // 250)
+            progress_window.update("Running your solution", 0, operation_limit, force=True)
+            counter.set_progress_callback(
+                lambda total, limit: progress_window.update("Running your solution", total, limit),
+                interval=progress_interval,
+            )
         try:
+            count_lines = not _has_tracked_inputs(setup_data)
             if pygame:
-                result, trace = run_with_trace(solve_fn, setup_data, counter)
+                result, trace = run_with_trace(
+                    solve_fn,
+                    setup_data,
+                    counter,
+                    count_lines=count_lines,
+                    step_limit=step_limit,
+                    step_callback=(
+                        lambda steps: progress_window.update(
+                            f"Running your solution ({steps} Python steps)",
+                            counter.total_ops,
+                            operation_limit,
+                        )
+                        if progress_window
+                        else None
+                    ),
+                    step_interval=max(500, step_limit // 250),
+                )
+            elif count_lines:
+                result, trace = run_with_trace(solve_fn, setup_data, counter, count_lines=True)
             else:
                 result = solve_fn(**setup_data)
+        except OperationLimitExceeded as exc:
+            error_message = str(exc)
+            trace.return_value = error_message
+        except ExecutionStepLimitExceeded as exc:
+            error_message = str(exc)
+            trace.return_value = error_message
         except Exception as exc:
             if not pygame:
                 raise
             error_message = f"Your solution crashed: {type(exc).__name__}: {exc}"
             trace.return_value = "\n".join(traceback.format_exception_only(type(exc), exc)).strip()
+        finally:
+            counter.clear_operation_limit()
+            counter.clear_progress_callback()
+            if progress_window:
+                progress_window.update("Preparing replay", counter.total_ops, operation_limit, force=True)
+                progress_window.close()
 
         # Verify correctness
         if error_message:
             correct = False
         else:
             try:
+                was_counting = counter.enabled
+                counter.enabled = False
                 correct = self.verify(result)
             except Exception as exc:
                 if not pygame:
@@ -135,6 +190,8 @@ class Challenge(ABC):
                 correct = False
                 error_message = f"Could not verify your result: {type(exc).__name__}: {exc}"
                 trace.return_value = repr(result)
+            finally:
+                counter.enabled = was_counting
         stats = counter.stats
         actual_complexity = counter.classify(n)
         within_threshold = counter.meets_threshold(n, self.info.required_complexity)
@@ -196,3 +253,8 @@ class Challenge(ABC):
             n=n,
             message=message
         )
+
+
+def _has_tracked_inputs(setup_data: dict[str, Any]) -> bool:
+    tracked_types = (TrackedList, TrackedGrid, TrackedQueue, TrackedStack, TrackedSet)
+    return any(isinstance(value, tracked_types) for value in setup_data.values())

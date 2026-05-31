@@ -11,6 +11,7 @@ from .counter import ComplexityClass, OpRecord, OpStats, OpType
 from .branding import GAME_TITLE
 from .execution_trace import TraceFrame
 from .grid import CellType, Grid
+from .window import is_resize_event, open_maximized_window, sync_window_size
 
 
 @dataclass
@@ -44,6 +45,121 @@ class ControlButton:
     active: bool = False
 
 
+@dataclass(frozen=True)
+class DisplayCell:
+    value: Any
+    source_coord: Optional[tuple[int, int]] = None
+    ellipsis: bool = False
+
+
+class ComputationCancelled(RuntimeError):
+    """Raised when the user closes the computation progress window."""
+
+
+class ComputationProgressWindow:
+    """Small Pygame window shown while a player's solution is executing."""
+
+    BACKGROUND = (18, 21, 26)
+    PANEL = (29, 34, 43)
+    GRID_LINE = (64, 73, 89)
+    TEXT = (232, 236, 243)
+    MUTED = (157, 166, 178)
+    ACCENT = (103, 165, 255)
+
+    def __init__(self, title: str, description: str, limit: Optional[int], width: int = 900, height: int = 520):
+        import pygame
+
+        pygame.init()
+        self.title = title
+        self.description = description
+        self.limit = limit
+        self.width = width
+        self.height = height
+        self.screen = open_maximized_window(pygame, width, height, f"{GAME_TITLE} - Running {title}")
+        sync_window_size(self, self.screen)
+        self.clock = pygame.time.Clock()
+        self.fonts = {
+            "title": pygame.font.SysFont("consolas", 28, bold=True),
+            "body": pygame.font.SysFont("consolas", 19),
+            "small": pygame.font.SysFont("consolas", 15),
+        }
+        self._last_draw = 0.0
+        self.update("Preparing challenge", 0, limit, force=True)
+
+    def update(self, stage: str, operations: int, limit: Optional[int] = None, force: bool = False):
+        import pygame
+
+        self.limit = limit
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                raise ComputationCancelled("Stopped: the run window was closed before the solution finished.")
+            if is_resize_event(pygame, event):
+                self.screen = pygame.display.get_surface() or self.screen
+                sync_window_size(self, self.screen)
+
+        now = time.time()
+        if not force and now - self._last_draw < 0.05:
+            return
+        self._last_draw = now
+        self._draw(stage, operations)
+        pygame.display.flip()
+        self.clock.tick(60)
+
+    def close(self):
+        import pygame
+
+        if pygame.display.get_init():
+            pygame.display.quit()
+
+    def _draw(self, stage: str, operations: int):
+        import pygame
+
+        self.screen.fill(self.BACKGROUND)
+        margin = 34
+        panel = pygame.Rect(margin, margin, self.width - margin * 2, self.height - margin * 2)
+        pygame.draw.rect(self.screen, self.PANEL, panel, border_radius=8)
+        pygame.draw.rect(self.screen, self.GRID_LINE, panel, width=1, border_radius=8)
+
+        self._draw_text("title", self.title, panel.x + 26, panel.y + 26, self.TEXT)
+        self._draw_text("body", stage, panel.x + 26, panel.y + 70, self.MUTED)
+
+        y = panel.y + 118
+        for line in self._wrap(self.description.replace("\n", " "), 74)[:4]:
+            self._draw_text("small", line, panel.x + 26, y, self.MUTED)
+            y += 20
+
+        bar_x = panel.x + 26
+        bar_y = y + 34
+        bar_w = panel.width - 52
+        pygame.draw.rect(self.screen, (48, 55, 67), (bar_x, bar_y, bar_w, 18), border_radius=9)
+        if self.limit:
+            progress = min(1.0, operations / self.limit)
+            pygame.draw.rect(self.screen, self.ACCENT, (bar_x, bar_y, int(bar_w * progress), 18), border_radius=9)
+
+        budget = f"{operations} / {self.limit}" if self.limit else str(operations)
+        self._draw_text("body", f"Operations: {budget}", bar_x, bar_y + 34, self.TEXT)
+        self._draw_text("small", "The replay will open as soon as the solution finishes.", bar_x, bar_y + 66, self.MUTED)
+        self._draw_text("small", "Close this window to cancel the run.", bar_x, bar_y + 88, self.MUTED)
+
+    def _draw_text(self, font_name: str, text: str, x: int, y: int, color: tuple[int, int, int]):
+        self.screen.blit(self.fonts[font_name].render(text, True, color), (x, y))
+
+    def _wrap(self, text: str, width: int) -> list[str]:
+        words = text.split()
+        lines: list[str] = []
+        current = ""
+        for word in words:
+            if len(current) + len(word) + 1 > width:
+                if current:
+                    lines.append(current)
+                current = word
+            else:
+                current = f"{current} {word}".strip()
+        if current:
+            lines.append(current)
+        return lines or [""]
+
+
 SPEED_PRESETS = [
     SpeedPreset("step", "Step", 0.0, 1, manual_step=True),
     SpeedPreset("crawl", "Crawl", 1.50, 60),
@@ -55,6 +171,7 @@ SPEED_PRESETS = [
     SpeedPreset("instant", "Instant", 0.0, 1),
 ]
 DEFAULT_SPEED_INDEX = 4
+MAX_VISIBLE_ROW_ITEMS = 21
 
 
 class PygameRenderer:
@@ -104,6 +221,7 @@ class PygameRenderer:
         self._speed_was_supplied = speed is not None
         if speed:
             self.apply_speed(speed)
+        self._current_description = ""
 
     def apply_speed(self, speed: str):
         preset = self._find_speed(speed)
@@ -118,8 +236,8 @@ class PygameRenderer:
         import pygame
 
         pygame.init()
-        screen = pygame.display.set_mode((self.width, self.height))
-        pygame.display.set_caption(f"{GAME_TITLE} - {title}")
+        screen = open_maximized_window(pygame, self.width, self.height, f"{GAME_TITLE} - {title}")
+        sync_window_size(self, screen)
         clock = pygame.time.Clock()
         fonts = {
             "title": pygame.font.SysFont("consolas", 26, bold=True),
@@ -132,6 +250,7 @@ class PygameRenderer:
             pygame.quit()
             return
 
+        self._current_description = result.description
         initial_values = self._values_from_grid(grid)
         visual_values = self._copy_values(initial_values)
         ops = list(operations)
@@ -230,6 +349,9 @@ class PygameRenderer:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                elif is_resize_event(pygame, event):
+                    screen = pygame.display.get_surface() or screen
+                    sync_window_size(self, screen)
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     action = self._control_action_at_pos(event.pos, paused, stopped, op_index, len(ops))
                     if action:
@@ -277,7 +399,7 @@ class PygameRenderer:
                 last_step = now
 
             if op_index > 0 and op_index <= len(ops):
-                overlays = self._overlays_for_op(ops[op_index - 1])
+                overlays = self._overlays_for_op(ops[op_index - 1], visual_values)
             else:
                 overlays = {}
 
@@ -291,32 +413,50 @@ class PygameRenderer:
     def _draw(self, screen, fonts, grid, values, overlays, title, result, op_index, total_ops, detail, paused, moving=None, trace_frame=None, stopped=False, watchpoints=None):
         import pygame
 
+        sync_window_size(self, screen)
         screen.fill(self.BACKGROUND)
         grid_rect, cell_size, display_width, display_height = self._grid_rect(grid, values)
+        display_rows = self._display_rows(values)
+        show_row_labels = len(display_rows) > 1
 
         title_surface = fonts["title"].render(title, True, self.TEXT)
         screen.blit(title_surface, (self.margin, 18))
+        self._draw_main_description(screen, fonts, result.description)
+        self._draw_grid_headers(screen, fonts, grid_rect, cell_size, display_rows)
 
-        for y in range(display_height):
-            for x in range(display_width):
+        for y, row in enumerate(display_rows):
+            if show_row_labels:
+                label_rect = pygame.Rect(
+                    grid_rect.x - self._row_label_width(display_rows),
+                    grid_rect.y + y * cell_size,
+                    self._row_label_width(display_rows) - 8,
+                    cell_size - 2,
+                )
+                self._draw_centered_text(screen, fonts["small"], self._row_header_label(row, y), label_rect, self.MUTED)
+
+            for x, display_cell in enumerate(row):
                 rect = pygame.Rect(
                     grid_rect.x + x * cell_size,
                     grid_rect.y + y * cell_size,
                     cell_size - 2,
                     cell_size - 2,
                 )
-                cell = grid.get(x, y) if grid.in_bounds(x, y) else None
-                base_color = self.CELL_COLORS.get(cell.cell_type, self.CELL_COLORS[CellType.EMPTY]) if cell else self.CELL_COLORS[CellType.EMPTY]
-                color = overlays.get((x, y), base_color)
+                source_coord = display_cell.source_coord
+                cell = grid.get(*source_coord) if source_coord and grid.in_bounds(*source_coord) else None
+                if display_cell.ellipsis:
+                    base_color = self.PANEL
+                else:
+                    base_color = self.CELL_COLORS.get(cell.cell_type, self.CELL_COLORS[CellType.EMPTY]) if cell else self.CELL_COLORS[CellType.EMPTY]
+                color = overlays.get((x, y), base_color) if not display_cell.ellipsis else base_color
                 pygame.draw.rect(screen, color, rect, border_radius=4)
                 pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=4)
-                if watchpoints and (x, y) in watchpoints:
+                if watchpoints and source_coord in watchpoints:
                     pygame.draw.rect(screen, self.FAIL, rect.inflate(-5, -5), width=3, border_radius=4)
 
-                text_value = values[y][x] if y < len(values) and x < len(values[y]) else (cell.value if cell else None)
+                text_value = display_cell.value if display_cell.value != "" else (cell.value if cell else None)
                 label = str(text_value) if text_value is not None else (cell.label if cell else "")
-                if label:
-                    self._draw_centered_text(screen, fonts["cell"], label, rect, self.TEXT)
+                text_color = self.MUTED if display_cell.ellipsis else self.TEXT
+                self._draw_cell_contents(screen, fonts, rect, label, self._cell_index_label(display_cell, show_row_labels), text_color)
 
         if moving:
             for value, start, end, t, color in moving:
@@ -355,14 +495,6 @@ class PygameRenderer:
             self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.TEXT)
             text_y += 22
 
-        if result.description:
-            text_y += 4
-            self._draw_text(screen, fonts["body"], "Description", x + 18, text_y, self.TEXT)
-            text_y += 22
-            for line in self._wrap(result.description.replace("\n", " "), 33)[:2]:
-                self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.MUTED)
-                text_y += 18
-
         bar_x = x + 18
         bar_y = text_y + 12
         bar_w = self.panel_width - 36
@@ -387,31 +519,33 @@ class PygameRenderer:
         for line in self._wrap(detail, 33)[:2]:
             self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.MUTED)
             text_y += 20
+        text_y += 12
 
         return_text = result.return_value or "<not returned>"
         return_lines = self._wrap(return_text, 34)[:2]
         return_height = 24 + len(return_lines) * 18
-        return_start_limit = max(text_y + 10, content_bottom - return_height)
+        return_start = max(text_y, content_bottom - return_height)
+        variables_bottom = max(text_y, return_start - 12)
 
-        if trace_frame and text_y + 34 < return_start_limit:
-            text_y += 10
+        if trace_frame and text_y + 34 < variables_bottom:
             prefix = "Breakpoint line" if trace_frame.breakpoint else "Line"
             self._draw_text(screen, fonts["body"], f"{prefix} {trace_frame.line_no} variables", x + 18, text_y, self.TEXT)
             text_y += 24
             truncated = False
             for name, value in list(trace_frame.locals.items())[:9]:
                 for line in self._wrap(f"{name} = {value}", 34)[:2]:
-                    if text_y + 18 > return_start_limit:
+                    if text_y + 18 > variables_bottom:
                         truncated = True
                         break
                     self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.MUTED)
                     text_y += 18
                 if truncated:
-                    if text_y + 18 <= return_start_limit:
+                    if text_y + 18 <= variables_bottom:
                         self._draw_text(screen, fonts["small"], "...", x + 18, text_y, self.MUTED)
                     break
+            text_y += 12
 
-        text_y = min(max(text_y + 10, return_start_limit), content_bottom - return_height)
+        text_y = max(text_y, content_bottom - return_height)
         self._draw_text(screen, fonts["body"], "Return value", x + 18, text_y, self.TEXT)
         text_y += 24
         for line in return_lines:
@@ -540,11 +674,15 @@ class PygameRenderer:
 
     def _animate_swap(self, screen, clock, fonts, grid, values, first, second, title, result, op_index, total_ops, detail):
         grid_rect, cell_size, _, _ = self._grid_rect(grid, values)
-        a_rect = self._cell_rect(grid_rect, cell_size, first)
-        b_rect = self._cell_rect(grid_rect, cell_size, second)
+        first_display = self._display_coord_for_source(values, first)
+        second_display = self._display_coord_for_source(values, second)
+        if first_display is None or second_display is None:
+            return
+        a_rect = self._cell_rect(grid_rect, cell_size, first_display)
+        b_rect = self._cell_rect(grid_rect, cell_size, second_display)
         a_value = self._value_at(values, first)
         b_value = self._value_at(values, second)
-        hidden = {first: self.SWAP, second: self.SWAP}
+        hidden = {first_display: self.SWAP, second_display: self.SWAP}
 
         for frame in range(self.swap_frames + 1):
             t = frame / self.swap_frames
@@ -566,6 +704,9 @@ class PygameRenderer:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     return False
+                if is_resize_event(pygame, event):
+                    screen = pygame.display.get_surface() or screen
+                    sync_window_size(self, screen)
                 if event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_ESCAPE, pygame.K_q):
                         return False
@@ -630,17 +771,56 @@ class PygameRenderer:
         import pygame
 
         available_width = self.width - self.panel_width - self.margin * 3
-        available_height = self.height - self.margin * 3 - 36
-        value_width = max((len(row) for row in values), default=0) if values else 0
-        value_height = len(values) if values else 0
-        display_width = max(grid.width, value_width, 1)
-        display_height = max(grid.height, value_height, 1)
+        grid_top = self._grid_top()
+        available_height = self.height - grid_top - self.margin
+        display_rows = self._display_rows(values) if values is not None else []
+        label_width = self._row_label_width(display_rows)
+        available_width -= label_width
+        value_width = max((len(row) for row in display_rows), default=0)
+        value_height = len(display_rows)
+        display_width = max(value_width, 1)
+        display_height = max(value_height, 1)
         cell_size = max(22, min(64, available_width // display_width, available_height // display_height))
         grid_width = cell_size * display_width
         grid_height = cell_size * display_height
-        x = self.margin
-        y = 70 + max(0, (available_height - grid_height) // 2)
+        x = self.margin + label_width
+        y = grid_top + max(0, (available_height - grid_height) // 2)
         return pygame.Rect(x, y, grid_width, grid_height), cell_size, display_width, display_height
+
+    def _main_area_width(self) -> int:
+        return max(240, self.width - self.panel_width - self.margin * 3)
+
+    def _description_lines(self, description: str) -> list[str]:
+        if not description:
+            return []
+        width_chars = max(36, self._main_area_width() // 9)
+        return self._wrap(description.replace("\n", " "), width_chars)[:3]
+
+    def _description_height(self, description: str | None = None) -> int:
+        description = self._current_description if description is None else description
+        lines = self._description_lines(description)
+        if not lines:
+            return 0
+        return 30 + len(lines) * 18 + 18
+
+    def _grid_top(self) -> int:
+        return 70 + self._description_height()
+
+    def _draw_main_description(self, screen, fonts, description: str):
+        if not description:
+            return
+        x = self.margin
+        y = 56
+        width = self._main_area_width()
+        self._draw_text(screen, fonts["body"], "Description", x, y, self.TEXT)
+        y += 24
+        previous_clip = screen.get_clip()
+        import pygame
+        screen.set_clip(pygame.Rect(x, y, width, self._description_height(description) - 24))
+        for line in self._description_lines(description):
+            self._draw_text(screen, fonts["small"], line, x, y, self.MUTED)
+            y += 18
+        screen.set_clip(previous_clip)
 
     def _cell_rect(self, grid_rect, cell_size, coord):
         import pygame
@@ -652,17 +832,15 @@ class PygameRenderer:
         grid_rect, cell_size, display_width, display_height = self._grid_rect(grid, values)
         x = (pos[0] - grid_rect.x) // cell_size
         y = (pos[1] - grid_rect.y) // cell_size
-        if 0 <= x < display_width and 0 <= y < display_height:
-            return int(x), int(y)
+        display_rows = self._display_rows(values)
+        if 0 <= y < len(display_rows) and 0 <= x < len(display_rows[int(y)]):
+            return display_rows[int(y)][int(x)].source_coord
         return None
 
     def _op_touches_watchpoint(self, op: OpRecord, watchpoints: set[tuple[int, int]]) -> bool:
         if not watchpoints:
             return False
         touched = set(self._extract_coords(op.detail))
-        append_match = re.search(r"list\.append", op.detail)
-        if append_match:
-            touched.add((0, 0))
         insert_match = re.search(r"list\.insert\((-?\d+),", op.detail)
         if insert_match:
             touched.add((max(0, int(insert_match.group(1))), 0))
@@ -684,14 +862,142 @@ class PygameRenderer:
         surface = font.render(text[:8], True, color)
         screen.blit(surface, surface.get_rect(center=rect.center))
 
+    def _draw_grid_headers(self, screen, fonts, grid_rect, cell_size: int, display_rows: list[list[DisplayCell]]):
+        import pygame
+
+        if not display_rows or not display_rows[0]:
+            return
+        axis_y = max(0, grid_rect.y - 24)
+        for x, display_cell in enumerate(display_rows[0]):
+            label = self._column_header_label(display_cell)
+            if not label:
+                continue
+            label_rect = pygame.Rect(
+                grid_rect.x + x * cell_size,
+                axis_y,
+                cell_size - 2,
+                18,
+            )
+            self._draw_centered_text(screen, fonts["small"], label, label_rect, self.MUTED)
+
+    def _draw_cell_contents(self, screen, fonts, rect, value_label: str, index_label: str, value_color):
+        if index_label:
+            index_surface = fonts["small"].render(index_label[:8], True, self.TEXT)
+            screen.blit(index_surface, (rect.x + 4, rect.y + 2))
+        if not value_label:
+            return
+        value_font = fonts["cell"] if rect.height >= 34 else fonts["small"]
+        value_surface = value_font.render(value_label[:8], True, value_color)
+        target = rect.copy()
+        if index_label and rect.height >= 34:
+            target.y += 8
+            target.height = max(12, target.height - 8)
+        screen.blit(value_surface, value_surface.get_rect(center=target.center))
+
+    def _cell_index_label(self, display_cell: DisplayCell, show_row_labels: bool) -> str:
+        if display_cell.ellipsis:
+            return ""
+        if display_cell.source_coord is None:
+            return ""
+        return ""
+
+    def _column_header_label(self, display_cell: DisplayCell) -> str:
+        if display_cell.ellipsis:
+            return "..."
+        if display_cell.source_coord is None:
+            return ""
+        column, _ = display_cell.source_coord
+        return f"{column}:"
+
+    def _row_header_label(self, row: list[DisplayCell], display_y: int) -> str:
+        for display_cell in row:
+            if display_cell.ellipsis:
+                continue
+            if display_cell.source_coord is not None:
+                return f"{display_cell.source_coord[1]}:"
+        return "..."
+
     def _draw_text(self, screen, font, text, x, y, color):
         screen.blit(font.render(text, True, color), (x, y))
 
     def _values_from_grid(self, grid: Grid) -> list[list[Any]]:
-        return [[grid.get(x, y).value if grid.get(x, y).value is not None else grid.get(x, y).label for x in range(grid.width)] for y in range(grid.height)]
+        rows: list[list[Any]] = []
+        last_content_row = -1
+        for y in range(grid.height):
+            row: list[Any] = []
+            row_has_content = False
+            for x in range(grid.width):
+                cell = grid.get(x, y)
+                value = cell.value if cell.value is not None else cell.label
+                row.append(value)
+                if value not in (None, "") or cell.cell_type != CellType.EMPTY:
+                    row_has_content = True
+            rows.append(row)
+            if row_has_content:
+                last_content_row = y
+        return rows[: last_content_row + 1] if last_content_row >= 0 else [[]]
 
     def _copy_values(self, values: list[list[Any]]) -> list[list[Any]]:
         return [row[:] for row in values]
+
+    def _display_rows(self, values: Optional[list[list[Any]]]) -> list[list[DisplayCell]]:
+        if not values:
+            return [[]]
+        rows: list[list[DisplayCell]] = []
+        if len(values) <= MAX_VISIBLE_ROW_ITEMS:
+            for y, row in enumerate(values):
+                rows.append(self._display_row(row, y))
+            return rows or [[]]
+
+        for y in range(MAX_VISIBLE_ROW_ITEMS):
+            rows.append(self._display_row(values[y], y))
+        rows.append(self._ellipsis_row(rows[0] if rows else []))
+        rows.append(self._display_row(values[-1], len(values) - 1))
+        return rows or [[]]
+
+    def _display_row(self, row: list[Any], y: int) -> list[DisplayCell]:
+        if len(row) <= MAX_VISIBLE_ROW_ITEMS:
+            return [DisplayCell(value=value, source_coord=(x, y)) for x, value in enumerate(row)]
+        visible = [DisplayCell(value=row[x], source_coord=(x, y)) for x in range(MAX_VISIBLE_ROW_ITEMS)]
+        visible.append(DisplayCell(value="...", ellipsis=True))
+        visible.append(DisplayCell(value=row[-1], source_coord=(len(row) - 1, y)))
+        return visible
+
+    def _ellipsis_row(self, reference_row: list[DisplayCell]) -> list[DisplayCell]:
+        width = max(1, len(reference_row))
+        return [DisplayCell(value="...", ellipsis=True) for _ in range(width)]
+
+    def _row_label_width(self, display_rows: list[list[DisplayCell]]) -> int:
+        if len(display_rows) <= 1:
+            return 0
+        return 44
+
+    def _display_coord_for_source(self, values: list[list[Any]], source_coord: tuple[int, int]) -> Optional[tuple[int, int]]:
+        source_x, source_y = source_coord
+        if source_y < 0 or source_y >= len(values):
+            return None
+        display_y = self._display_y_for_source(values, source_y)
+        if display_y is None:
+            return None
+        row = values[source_y]
+        if source_x < 0 or source_x >= len(row):
+            return None
+        if len(row) <= MAX_VISIBLE_ROW_ITEMS:
+            return source_x, display_y
+        if source_x < MAX_VISIBLE_ROW_ITEMS:
+            return source_x, display_y
+        if source_x == len(row) - 1:
+            return MAX_VISIBLE_ROW_ITEMS + 1, display_y
+        return None
+
+    def _display_y_for_source(self, values: list[list[Any]], source_y: int) -> Optional[int]:
+        if len(values) <= MAX_VISIBLE_ROW_ITEMS:
+            return source_y
+        if source_y < MAX_VISIBLE_ROW_ITEMS:
+            return source_y
+        if source_y == len(values) - 1:
+            return MAX_VISIBLE_ROW_ITEMS + 1
+        return None
 
     def _ensure_value_cell(self, values: list[list[Any]], x: int, y: int):
         while len(values) <= y:
@@ -708,25 +1014,34 @@ class PygameRenderer:
                 break
         return latest
 
-    def _overlays_for_op(self, op: OpRecord) -> dict[tuple[int, int], tuple[int, int, int]]:
+    def _overlays_for_op(self, op: OpRecord, values: list[list[Any]]) -> dict[tuple[int, int], tuple[int, int, int]]:
         coords = self._extract_coords(op.detail)
         if op.op_type == OpType.COMPARE and len(coords) >= 2:
-            return {coords[0]: self.COMPARE_A, coords[1]: self.COMPARE_B}
+            first = self._display_coord_for_source(values, coords[0])
+            second = self._display_coord_for_source(values, coords[1])
+            if first is not None and second is not None:
+                return {first: self.COMPARE_A, second: self.COMPARE_B}
+            return {}
         if op.op_type == OpType.SWAP and len(coords) >= 2:
-            return {coords[0]: self.SWAP, coords[1]: self.SWAP}
+            first = self._display_coord_for_source(values, coords[0])
+            second = self._display_coord_for_source(values, coords[1])
+            if first is not None and second is not None:
+                return {first: self.SWAP, second: self.SWAP}
+            return {}
         if op.op_type == OpType.READ and coords:
-            return {coords[0]: self.READ}
+            coord = self._display_coord_for_source(values, coords[0])
+            return {coord: self.READ} if coord is not None else {}
         if op.op_type == OpType.WRITE and coords:
-            return {coords[0]: self.WRITE}
-        append_match = re.search(r"list\.append", op.detail)
-        if append_match:
-            return {(0, 0): self.WRITE}
+            coord = self._display_coord_for_source(values, coords[0])
+            return {coord: self.WRITE} if coord is not None else {}
         insert_match = re.search(r"list\.insert\((-?\d+),", op.detail)
         if insert_match:
-            return {(max(0, int(insert_match.group(1))), 0): self.WRITE}
+            coord = self._display_coord_for_source(values, (max(0, int(insert_match.group(1))), 0))
+            return {coord: self.WRITE} if coord is not None else {}
         pop_match = re.search(r"list\.pop\((-?\d+)\)", op.detail)
         if pop_match:
-            return {(max(0, int(pop_match.group(1))), 0): self.FAIL}
+            coord = self._display_coord_for_source(values, (max(0, int(pop_match.group(1))), 0))
+            return {coord: self.FAIL} if coord is not None else {}
         return {}
 
     def _extract_coords(self, detail: str) -> list[tuple[int, int]]:

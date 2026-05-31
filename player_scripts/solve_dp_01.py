@@ -6,19 +6,14 @@ Run with:
     python run_challenge.py dp_01 player_scripts/solve_dp_01.py
 """
 
-from code_n.api import get_counter
-
 
 def solve(n: int) -> int:
     """Bottom-up DP Fibonacci - O(n) solution."""
-    counter = get_counter()
-
     if n <= 1:
         return n
 
-    a, b = 0, 1
-    for i in range(2, n + 1):
-        counter.write(f"dp[{i}]")  # Count the computation
-        a, b = b, a + b
+    previous_value, current_value = 0, 1
+    for _ in range(2, n + 1):
+        previous_value, current_value = current_value, previous_value + current_value
 
-    return b
+    return current_value

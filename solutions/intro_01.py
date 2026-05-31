@@ -1,9 +1,7 @@
 """Saved solution for intro_01: Hello Grid."""
 
-from code_n.api import TrackedList
 
-
-def solve(data: TrackedList) -> int:
+def solve(data):
     max_value = data[0]
     for index in range(1, len(data)):
         value = data[index]

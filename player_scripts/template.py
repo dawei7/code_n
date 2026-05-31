@@ -1,7 +1,7 @@
 """Player solution template.
 
 Copy this file into the solutions folder and implement the `solve` function for your challenge.
-The function receives tracked data structures - every operation is counted!
+The function receives normal-looking Python inputs. The game records operations behind the scenes.
 
 Run with:
     python run_challenge.py <challenge_id>
@@ -13,8 +13,6 @@ Run with graphics:
     python run_challenge.py <challenge_id> --pygame
 """
 
-from code_n.api import TrackedList, TrackedGrid, TrackedQueue, TrackedStack
-
 
 def solve(**kwargs):
     """Your solution goes here.
@@ -23,9 +21,9 @@ def solve(**kwargs):
         python main.py info <challenge_id>
 
     Common patterns:
-        - Sorting:   def solve(data: TrackedList, n: int) -> TrackedList
-        - Searching: def solve(data: TrackedList, target: int) -> int
-        - Grid:      def solve(grid: TrackedGrid, start, goal, size) -> int
+        - Sorting:   def solve(data, n)
+        - Searching: def solve(data, target)
+        - Grid:      def solve(grid, start, goal, size)
         - DP:        def solve(n: int) -> int
 
     Return the expected result for the challenge.

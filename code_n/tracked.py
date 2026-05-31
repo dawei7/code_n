@@ -5,7 +5,163 @@ access, and swap is counted toward their complexity score.
 """
 
 from typing import Any, Iterator
-from .counter import get_counter, OpType
+from .counter import get_counter
+
+
+class TrackedValue:
+    """A value proxy that records normal Python comparisons."""
+
+    def __init__(self, value: Any, label: str):
+        self._value = value
+        self._label = label
+
+    @property
+    def raw(self) -> Any:
+        return self._value
+
+    @property
+    def label(self) -> str:
+        return self._label
+
+    def _other_value(self, other: Any) -> Any:
+        if isinstance(other, TrackedValue):
+            return other.raw
+        return other
+
+    def _other_label(self, other: Any) -> str:
+        if isinstance(other, TrackedValue):
+            return f"{other.label}={other.raw}"
+        return repr(other)
+
+    def _compare(self, other: Any, operator: str, result: bool) -> bool:
+        get_counter().compare(f"{self._label}={self._value} {operator} {self._other_label(other)}")
+        return result
+
+    def __lt__(self, other: Any) -> bool:
+        other_value = self._other_value(other)
+        return self._compare(other, "<", self._value < other_value)
+
+    def __le__(self, other: Any) -> bool:
+        other_value = self._other_value(other)
+        return self._compare(other, "<=", self._value <= other_value)
+
+    def __eq__(self, other: Any) -> bool:
+        other_value = self._other_value(other)
+        return self._compare(other, "==", self._value == other_value)
+
+    def __ne__(self, other: Any) -> bool:
+        other_value = self._other_value(other)
+        return self._compare(other, "!=", self._value != other_value)
+
+    def __gt__(self, other: Any) -> bool:
+        other_value = self._other_value(other)
+        return self._compare(other, ">", self._value > other_value)
+
+    def __ge__(self, other: Any) -> bool:
+        other_value = self._other_value(other)
+        return self._compare(other, ">=", self._value >= other_value)
+
+    def __hash__(self) -> int:
+        return hash(self._value)
+
+    def __bool__(self) -> bool:
+        return bool(self._value)
+
+    def __int__(self) -> int:
+        return int(self._value)
+
+    def __float__(self) -> float:
+        return float(self._value)
+
+    def __index__(self) -> int:
+        return self._value.__index__()
+
+    def __iter__(self):
+        return iter(self._value)
+
+    def __len__(self) -> int:
+        return len(self._value)
+
+    def __getitem__(self, key: Any) -> Any:
+        return self._value[key]
+
+    def __contains__(self, item: Any) -> bool:
+        return item in self._value
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._value, name)
+
+    def __repr__(self) -> str:
+        return repr(self._value)
+
+    def __str__(self) -> str:
+        return str(self._value)
+
+    def __format__(self, format_spec: str) -> str:
+        return format(self._value, format_spec)
+
+    def _binary(self, other: Any, operation):
+        return operation(self._value, self._other_value(other))
+
+    def _reverse_binary(self, other: Any, operation):
+        return operation(self._other_value(other), self._value)
+
+    def __add__(self, other: Any):
+        return self._binary(other, lambda left, right: left + right)
+
+    def __radd__(self, other: Any):
+        return self._reverse_binary(other, lambda left, right: left + right)
+
+    def __sub__(self, other: Any):
+        return self._binary(other, lambda left, right: left - right)
+
+    def __rsub__(self, other: Any):
+        return self._reverse_binary(other, lambda left, right: left - right)
+
+    def __mul__(self, other: Any):
+        return self._binary(other, lambda left, right: left * right)
+
+    def __rmul__(self, other: Any):
+        return self._reverse_binary(other, lambda left, right: left * right)
+
+    def __truediv__(self, other: Any):
+        return self._binary(other, lambda left, right: left / right)
+
+    def __rtruediv__(self, other: Any):
+        return self._reverse_binary(other, lambda left, right: left / right)
+
+    def __floordiv__(self, other: Any):
+        return self._binary(other, lambda left, right: left // right)
+
+    def __rfloordiv__(self, other: Any):
+        return self._reverse_binary(other, lambda left, right: left // right)
+
+    def __mod__(self, other: Any):
+        return self._binary(other, lambda left, right: left % right)
+
+    def __rmod__(self, other: Any):
+        return self._reverse_binary(other, lambda left, right: left % right)
+
+    def __pow__(self, other: Any):
+        return self._binary(other, lambda left, right: left ** right)
+
+    def __rpow__(self, other: Any):
+        return self._reverse_binary(other, lambda left, right: left ** right)
+
+    def __neg__(self):
+        return -self._value
+
+    def __pos__(self):
+        return +self._value
+
+    def __abs__(self):
+        return abs(self._value)
+
+
+def unwrap_tracked(value: Any) -> Any:
+    if isinstance(value, TrackedValue):
+        return value.raw
+    return value
 
 
 class TrackedList:
@@ -18,17 +174,31 @@ class TrackedList:
         return len(self._data)
 
     def __getitem__(self, index: int) -> Any:
+        if isinstance(index, slice):
+            indices = range(*index.indices(len(self._data)))
+            values = []
+            for item_index in indices:
+                get_counter().read(f"list[{item_index}]")
+                values.append(self._data[item_index])
+            return TrackedList(values)
         get_counter().read(f"list[{index}]")
-        return self._data[index]
+        return TrackedValue(self._data[index], f"list[{index}]")
 
     def __setitem__(self, index: int, value: Any):
+        value = unwrap_tracked(value)
+        if isinstance(index, slice):
+            values = [unwrap_tracked(item) for item in value]
+            start, stop, step = index.indices(len(self._data))
+            for item_index in range(start, stop, step):
+                get_counter().write(f"list[{item_index}] = <slice>")
+            self._data[index] = values
+            return
         get_counter().write(f"list[{index}] = {value}")
         self._data[index] = value
 
     def __iter__(self) -> Iterator:
-        for i, item in enumerate(self._data):
-            get_counter().read(f"iter list[{i}]")
-            yield item
+        for index in range(len(self._data)):
+            yield self[index]
 
     def __repr__(self) -> str:
         return f"TrackedList({self._data})"
@@ -45,6 +215,7 @@ class TrackedList:
 
     def compare_value(self, i: int, value: Any) -> int:
         """Compare element at index i with a value. Returns -1, 0, or 1."""
+        value = unwrap_tracked(value)
         get_counter().compare(f"list[{i}]={self._data[i]} vs {value}")
         a = self._data[i]
         if a < value:
@@ -59,6 +230,7 @@ class TrackedList:
         self._data[i], self._data[j] = self._data[j], self._data[i]
 
     def append(self, value: Any):
+        value = unwrap_tracked(value)
         get_counter().write(f"list.append({value})")
         self._data.append(value)
 
@@ -69,6 +241,7 @@ class TrackedList:
         return self._data.pop(index)
 
     def insert(self, index: int, value: Any):
+        value = unwrap_tracked(value)
         get_counter().write(f"list.insert({index}, {value})")
         self._data.insert(index, value)
 
@@ -83,18 +256,31 @@ class TrackedList:
 
 
 class TrackedGrid:
-    """A 2D array wrapper that counts operations."""
+    """A 2D grid wrapper that counts row/column access."""
 
     def __init__(self, width: int, height: int, default: Any = 0):
         self._data = [[default] * width for _ in range(height)]
         self.width = width
         self.height = height
 
+    def __getitem__(self, key: Any) -> Any:
+        if isinstance(key, tuple):
+            x_coord, y_coord = key
+            return self.get(x_coord, y_coord)
+        return TrackedGridRow(self, key)
+
+    def __setitem__(self, key: Any, value: Any):
+        if not isinstance(key, tuple):
+            raise TypeError("Assign grid cells with grid[y][x] = value or grid[x, y] = value")
+        x_coord, y_coord = key
+        self.set(x_coord, y_coord, value)
+
     def get(self, x: int, y: int) -> Any:
         get_counter().read(f"grid[{x},{y}]")
-        return self._data[y][x]
+        return TrackedValue(self._data[y][x], f"grid[{x},{y}]")
 
     def set(self, x: int, y: int, value: Any):
+        value = unwrap_tracked(value)
         get_counter().write(f"grid[{x},{y}] = {value}")
         self._data[y][x] = value
 
@@ -120,6 +306,27 @@ class TrackedGrid:
 
     def in_bounds(self, x: int, y: int) -> bool:
         return 0 <= x < self.width and 0 <= y < self.height
+
+
+class TrackedGridRow:
+    """A row proxy that lets players write grid[row][column]."""
+
+    def __init__(self, grid: TrackedGrid, y_coord: int):
+        self._grid = grid
+        self._y_coord = y_coord
+
+    def __getitem__(self, x_coord: int) -> Any:
+        return self._grid.get(x_coord, self._y_coord)
+
+    def __setitem__(self, x_coord: int, value: Any):
+        self._grid.set(x_coord, self._y_coord, value)
+
+    def __iter__(self) -> Iterator:
+        for x_coord in range(self._grid.width):
+            yield self[x_coord]
+
+    def __len__(self) -> int:
+        return self._grid.width
 
 
 class TrackedQueue:

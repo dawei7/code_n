@@ -7,6 +7,8 @@ import sys
 from dataclasses import dataclass
 from typing import Optional
 
+from .samples import sample_doc
+
 
 def _app_root() -> str:
     if getattr(sys, "frozen", False):
@@ -50,45 +52,93 @@ def solution_hint(challenge_id: str) -> str:
 
 def _solution_template(challenge_id: str, heading: str, description: str) -> str:
     safe_description = description.replace('"""', "'''")
+    samples = sample_doc(challenge_id)
+    sample_section = f"\n{samples}" if samples else ""
     if challenge_id == "sort_01":
         return (
             f'"""Solution for {heading}.\n\n'
             f'{safe_description}\n\n'
             'Inputs passed to solve():\n'
-            '    data: TrackedList containing n random integers.\n'
+            '    data: list-like object containing n random integers.\n'
             '    n: number of items in data.\n\n'
             'Goal:\n'
             '    Sort data in ascending order, in place.\n\n'
-            'Allowed operations for this challenge:\n'
-            '    data.compare(i, i + 1)  # compare adjacent items\n'
-            '    data.swap(i, i + 1)     # swap adjacent items\n\n'
+            f'{samples}'
             'Return:\n'
-            '    The same TrackedList object after it is sorted.\n'
+            '    The same data object after it is sorted.\n'
             '"""\n\n'
-            'from code_n.api import TrackedList\n\n\n'
-            'def solve(data: TrackedList, n: int) -> TrackedList:\n'
-            '    """Sort the received TrackedList and return it.\n\n'
-            '    data.compare(i, j) returns:\n'
-            '        -1 if data[i] < data[j]\n'
-            '         0 if data[i] == data[j]\n'
-            '         1 if data[i] > data[j]\n\n'
-            '    For Bubble Sort, only compare and swap neighboring indices:\n'
-            '        i and i + 1\n'
-            '    """\n'
-            '    raise NotImplementedError("Write your bubble sort here")\n'
+            'def solve(data, n):\n'
+            '    # Write your code here.\n'
+            '    return data\n'
+        )
+
+    if challenge_id == "search_03":
+        return (
+            f'"""Solution for {heading}.\n\n'
+            f'{safe_description}\n\n'
+            'Inputs passed to solve():\n'
+            '    grid: 2D list-like object. Read a cell with grid[row][column].\n'
+            '          0 means walkable, 1 means wall.\n'
+            '    start: (row, column) start position.\n'
+            '    goal: (row, column) goal position.\n'
+            '    size: width and height of the square grid.\n\n'
+            'Index meaning:\n'
+            '    The first number is the row. Rows go down the screen.\n'
+            '    The second number is the column. Columns go left to right.\n'
+            '    So [0][2] means row 0, column 2.\n\n'
+            'Cell access:\n'
+            '    row, column = start\n'
+            '    value = grid[row][column]\n'
+            '    # value == 0 means walkable; value == 1 means wall.\n\n'
+            'Neighbor check:\n'
+            '    if 0 <= next_row < size and 0 <= next_column < size and grid[next_row][next_column] == 0:\n'
+            '        # [next_row][next_column] is inside the grid and walkable.\n\n'
+            f'{samples}'
+            'Return:\n'
+            '    The shortest path length in steps. The generated challenge always has a path.\n'
+            '"""\n\n'
+            'def solve(grid, start, goal, size):\n'
+            '    # Write your code here.\n'
+            '    return None\n'
+        )
+
+    if challenge_id == "search_04":
+        return (
+            f'"""Solution for {heading}.\n\n'
+            f'{safe_description}\n\n'
+            'Inputs passed to solve():\n'
+            '    grid: 2D list-like object. Read a cell with grid[row][column].\n'
+            '          0 means walkable, 1 means wall.\n'
+            '    start: (row, column) start position.\n'
+            '    size: width and height of the square grid.\n\n'
+            'Index meaning:\n'
+            '    The first number is the row. Rows go down the screen.\n'
+            '    The second number is the column. Columns go left to right.\n'
+            '    So [0][2] means row 0, column 2.\n\n'
+            'Cell access:\n'
+            '    row, column = start\n'
+            '    value = grid[row][column]\n'
+            '    # value == 0 means walkable; value == 1 means wall.\n\n'
+            'Neighbor check:\n'
+            '    if 0 <= next_row < size and 0 <= next_column < size and grid[next_row][next_column] == 0:\n'
+            '        # [next_row][next_column] is inside the grid and walkable.\n\n'
+            f'{samples}'
+            'Return:\n'
+            '    The number of reachable walkable cells, including the start cell.\n'
+            '"""\n\n'
+            'def solve(grid, start, size):\n'
+            '    # Write your code here.\n'
+            '    return None\n'
         )
 
     return (
         f'"""Solution for {heading}.\n\n'
         f'{safe_description}\n'
+        f'{sample_section}'
         f'"""\n\n'
-        'from code_n.api import TrackedList, TrackedGrid, TrackedQueue, TrackedStack, TrackedSet, get_counter\n\n\n'
         'def solve(**kwargs):\n'
-        '    """Implement your algorithm here.\n\n'
-        '    Run challenge info with:\n'
-        f'        python main.py info {challenge_id}\n'
-        '    """\n'
-        '    raise NotImplementedError("Write your solution here")\n'
+        '    # Write your code here.\n'
+        '    return None\n'
     )
 
 
