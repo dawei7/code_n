@@ -130,11 +130,17 @@ class PanStateTests(unittest.TestCase):
     stay under the cursor. The same convention applies vertically.
     scroll_by clamps to the grid bounds, so dragging past the edge
     stops at the boundary instead of scrolling into the void.
+
+    The panning uses a float accumulator (_pan_accum_x/_pan_accum_y)
+    so sub-pixel drags accumulate smoothly into whole-cell scrolls
+    instead of snapping at integer boundaries.
     """
 
-    def test_pan_starts_off(self):
+    def test_pan_starts_off_with_zero_accumulator(self):
         r = _make_renderer()
         self.assertFalse(r._right_panning)
+        self.assertEqual(r._pan_accum_x, 0.0)
+        self.assertEqual(r._pan_accum_y, 0.0)
 
     def test_drag_right_decreases_scroll(self):
         """Dragging the mouse right -> scroll_x decreases."""
@@ -196,6 +202,72 @@ class PanStateTests(unittest.TestCase):
         self.assertEqual(r.scroll_x, max_x)
         self.assertGreater(r.scroll_x, 0)
         self.assertLess(r.scroll_x, 50)
+
+    def test_pan_accumulator_math(self):
+        """Drag pixels that don't cross a PAN_PIXELS_PER_CELL boundary
+        should accumulate, not snap to a scroll step. Drag pixels that
+        do cross a boundary should trigger exactly that many scrolls."""
+        from code_n.pygame_renderer import PAN_PIXELS_PER_CELL
+        r = _make_renderer()
+        r._right_panning = True
+        r.scroll_x = 5
+
+        # Simulate play()'s accumulator logic on a 5px drag.
+        # PAN_PIXELS_PER_CELL is 16, so 5px is sub-cell and should not
+        # change scroll_x.
+        accum = 0.0
+        rel = 5
+        accum += rel
+        dx = -int(accum // PAN_PIXELS_PER_CELL)
+        accum += dx * PAN_PIXELS_PER_CELL
+        self.assertEqual(dx, 0)
+        self.assertEqual(accum, 5.0)
+        self.assertEqual(r.scroll_x, 5)
+
+        # Now add another 12px (total 17px). That crosses one boundary
+        # and leaves 1px in the accumulator.
+        accum += 12
+        dx = -int(accum // PAN_PIXELS_PER_CELL)
+        accum += dx * PAN_PIXELS_PER_CELL
+        self.assertEqual(dx, -1)
+        self.assertEqual(accum, 1.0)
+        # Apply the scroll: scroll_x decreases by 1.
+        r.scroll_by(dx, 0, grid=None, values=[[0] * 50])
+        self.assertEqual(r.scroll_x, 4)
+
+    def test_pan_sensitivity_is_higher_than_cell_size(self):
+        """The old panning required dragging a full cell_size pixels to
+        advance one cell. The new sensitivity is PAN_PIXELS_PER_CELL,
+        which is < cell_size, so the user gets more responsiveness per
+        pixel of drag."""
+        from code_n.pygame_renderer import PAN_PIXELS_PER_CELL
+        r = _make_renderer()
+        r.cell_size = 30
+        # 1 cell per 16px is much more sensitive than 1 cell per 30px
+        # (the old behavior).
+        self.assertLess(PAN_PIXELS_PER_CELL, r.cell_size)
+        # 30px of drag = ~1.875 cells under the new sensitivity.
+        # Old behavior: exactly 1 cell.
+        self.assertGreater(30 / PAN_PIXELS_PER_CELL, 1.5)
+
+
+class ContinuousScrollTests(unittest.TestCase):
+    """The continuous-scroll constants set the cadence for held arrow
+    keys. The values are tuned so holding a key feels smooth (multiple
+    scrolls per second) but not so fast that a single tap scrolls
+    noticeably more than one cell."""
+
+    def test_scroll_interval_is_fast_enough_to_feel_continuous(self):
+        from code_n.pygame_renderer import CONTINUOUS_SCROLL_INTERVAL
+        # At 60 FPS, the main loop runs every ~16ms. An interval of
+        # 40ms means a held key scrolls every 2-3 frames, which feels
+        # smooth on a 60Hz display.
+        self.assertLessEqual(CONTINUOUS_SCROLL_INTERVAL, 0.05)
+        self.assertGreaterEqual(CONTINUOUS_SCROLL_INTERVAL, 0.01)
+
+    def test_page_jump_is_bigger_than_one_cell(self):
+        from code_n.pygame_renderer import PAGE_JUMP_SIZE
+        self.assertGreaterEqual(PAGE_JUMP_SIZE, 5)
 
 
 class ScrollByTests(unittest.TestCase):

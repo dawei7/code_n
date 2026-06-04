@@ -204,6 +204,20 @@ ZOOM_MAX = 50
 ZOOM_STEP = 2  # pixels per wheel notch
 DEFAULT_CELL_SIZE = 30
 
+# Pixels of right-drag the user has to move to advance the view by
+# one cell. Smaller = more sensitive. The float accumulator carries
+# sub-cell motion between events, so very small drags feel smooth
+# rather than snapping to whole cells.
+PAN_PIXELS_PER_CELL = 16
+
+# Time-based throttle for continuous arrow-key scrolling while a key
+# is held down. At 60 FPS this gives ~25 scroll steps per second.
+CONTINUOUS_SCROLL_INTERVAL = 0.04  # seconds between scroll steps
+
+# Page Up / Page Down jump size (cells per press). Bigger = faster
+# big-jumps when the user wants to fly across a 50-cell row.
+PAGE_JUMP_SIZE = 10
+
 
 class PygameRenderer:
     """Draws grid state and replays recorded operations in a Pygame window."""
@@ -263,6 +277,13 @@ class PygameRenderer:
         self.scroll_y: int = 0
         # True while the right mouse button is held down for panning.
         self._right_panning: bool = False
+        # Sub-cell panning accumulator. Right-drag moves in pixels; we
+        # accumulate the fractional pixel delta here and only commit
+        # whole cells to scroll_by when the running total crosses a
+        # PAN_PIXELS_PER_CELL boundary. Reset to 0 on every right
+        # mouse-down/up so a stale fraction can't cause a jump.
+        self._pan_accum_x: float = 0.0
+        self._pan_accum_y: float = 0.0
 
     def apply_speed(self, speed: str):
         preset = self._find_speed(speed)
@@ -375,7 +396,8 @@ class PygameRenderer:
         stopped = False
         op_index = 0
         last_step = 0.0
-        current_detail = "Step mode: press Space, Enter, or Right Arrow." if self.manual_step else current_detail
+        last_key_scroll = 0.0
+        current_detail = "Step mode: press Space or Enter." if self.manual_step else current_detail
 
         def apply_next_operation() -> str:
             nonlocal op_index, paused, stopped
@@ -496,14 +518,21 @@ class PygameRenderer:
                     # button is released, every mouse motion event pans
                     # the grid. The pan is bounded so dragging past the
                     # edge stops at the grid boundary; you can't scroll
-                    # into the void.
+                    # into the void. Reset the sub-cell accumulator on
+                    # down so a stale fraction from a prior drag can't
+                    # cause a sudden jump when the user starts panning
+                    # again.
                     self._right_panning = True
+                    self._pan_accum_x = 0.0
+                    self._pan_accum_y = 0.0
                     try:
                         pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
                     except (AttributeError, pygame.error):
                         pass
                 elif event.type == pygame.MOUSEBUTTONUP and event.button == 3:
                     self._right_panning = False
+                    self._pan_accum_x = 0.0
+                    self._pan_accum_y = 0.0
                     try:
                         pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
                     except (AttributeError, pygame.error):
@@ -514,13 +543,21 @@ class PygameRenderer:
                     # panning: dragging right pulls the world to the
                     # right (scroll_x decreases), so the cells the
                     # finger lands on stay under the cursor. Same for
-                    # the vertical axis. scroll_by clamps to the grid
-                    # bounds, so dragging past the edge stops at the
-                    # boundary - no scrolling into the void.
+                    # the vertical axis.
+                    #
+                    # A float accumulator carries the sub-pixel motion
+                    # between events so small drags still produce smooth
+                    # movement instead of snapping to whole cells every
+                    # PAN_PIXELS_PER_CELL pixels. scroll_by clamps to
+                    # the grid bounds.
                     rel_x, rel_y = event.rel
-                    dx_cells = -rel_x // self.cell_size
-                    dy_cells = -rel_y // self.cell_size
+                    self._pan_accum_x += rel_x
+                    self._pan_accum_y += rel_y
+                    dx_cells = -int(self._pan_accum_x // PAN_PIXELS_PER_CELL)
+                    dy_cells = -int(self._pan_accum_y // PAN_PIXELS_PER_CELL)
                     if dx_cells or dy_cells:
+                        self._pan_accum_x += dx_cells * PAN_PIXELS_PER_CELL
+                        self._pan_accum_y += dy_cells * PAN_PIXELS_PER_CELL
                         self.scroll_by(dx_cells, dy_cells, grid, visual_values)
                 elif mousewheel_event is not None and event.type == mousewheel_event:
                     # Mouse wheel zooms (only). Wheel up = bigger cells,
@@ -535,7 +572,10 @@ class PygameRenderer:
                 elif event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_ESCAPE, pygame.K_q):
                         running = False
-                    elif self.manual_step and event.key in (pygame.K_SPACE, pygame.K_RIGHT, pygame.K_RETURN):
+                    # Arrow keys are now reserved for scrolling in all
+                    # four directions. "Next operation" stays on
+                    # Space and Enter; Right is no longer overloaded.
+                    elif self.manual_step and event.key in (pygame.K_SPACE, pygame.K_RETURN):
                         current_detail = apply_next_operation()
                         paused = True
                     elif event.key in (pygame.K_SPACE, pygame.K_p):
@@ -546,17 +586,14 @@ class PygameRenderer:
                         current_detail = stop_replay()
                     elif event.key == pygame.K_r:
                         current_detail = reset_replay()
-                    elif event.key in (pygame.K_RIGHT, pygame.K_RETURN):
-                        current_detail = apply_next_operation()
-                        paused = True
                     elif event.key in (pygame.K_PLUS, pygame.K_EQUALS):
                         current_detail = change_speed(True)
                     elif event.key == pygame.K_MINUS:
                         current_detail = change_speed(False)
                     elif event.key in (pygame.K_PAGEUP,):
-                        self.scroll_by(0, -5, grid, visual_values)
+                        self.scroll_by(0, -PAGE_JUMP_SIZE, grid, visual_values)
                     elif event.key in (pygame.K_PAGEDOWN,):
-                        self.scroll_by(0, 5, grid, visual_values)
+                        self.scroll_by(0, PAGE_JUMP_SIZE, grid, visual_values)
                     elif event.key == pygame.K_HOME:
                         self.scroll_x = 0
                         self.scroll_y = 0
@@ -564,16 +601,51 @@ class PygameRenderer:
                         _, _, max_x, max_y = self._visible_viewport(grid, visual_values)
                         self.scroll_x = max_x
                         self.scroll_y = max_y
-                    # Up/Down pan the grid. The Left/Right arrows are
-                    # already used for "step one operation" in step mode,
-                    # so we don't bind them here to avoid the conflict —
-                    # right-drag is the canonical way to pan.
+                    # Single-step arrow scroll. Holding the key for
+                    # continuous scroll is handled separately below by
+                    # polling pygame.key.get_pressed() each frame; this
+                    # branch covers the initial key press so the user
+                    # sees a scroll right away without a perceptible
+                    # delay.
                     elif event.key in (pygame.K_UP, pygame.K_w):
                         self.scroll_by(0, -1, grid, visual_values)
                     elif event.key == pygame.K_DOWN:
                         self.scroll_by(0, 1, grid, visual_values)
+                    elif event.key == pygame.K_LEFT:
+                        self.scroll_by(-1, 0, grid, visual_values)
+                    elif event.key == pygame.K_RIGHT:
+                        self.scroll_by(1, 0, grid, visual_values)
 
+            # Continuous arrow-key scroll. Pygame's KEYDOWN auto-repeat
+            # is OS-dependent and feels choppy, so we poll
+            # pygame.key.get_pressed() each frame and scroll on a
+            # fixed time interval. This makes the scroll smooth and
+            # predictable, and works on every platform the same way.
             now = time.time()
+            if now - last_key_scroll >= CONTINUOUS_SCROLL_INTERVAL:
+                held = pygame.key.get_pressed()
+                scrolled = False
+                if held[pygame.K_UP] or held[pygame.K_w]:
+                    self.scroll_by(0, -1, grid, visual_values)
+                    scrolled = True
+                if held[pygame.K_DOWN]:
+                    self.scroll_by(0, 1, grid, visual_values)
+                    scrolled = True
+                if held[pygame.K_LEFT]:
+                    self.scroll_by(-1, 0, grid, visual_values)
+                    scrolled = True
+                if held[pygame.K_RIGHT]:
+                    self.scroll_by(1, 0, grid, visual_values)
+                    scrolled = True
+                if held[pygame.K_PAGEUP]:
+                    self.scroll_by(0, -PAGE_JUMP_SIZE, grid, visual_values)
+                    scrolled = True
+                if held[pygame.K_PAGEDOWN]:
+                    self.scroll_by(0, PAGE_JUMP_SIZE, grid, visual_values)
+                    scrolled = True
+                if scrolled:
+                    last_key_scroll = now
+
             if not self.manual_step and not paused and not stopped and op_index < len(ops):
                 trace_frame = self._trace_for_op(result.trace_frames, op_index)
                 if self._source_breakpoint_hit(trace_frame, source_breakpoints_hit):
@@ -731,7 +803,7 @@ class PygameRenderer:
         # the buttons so the user can find panning without reading docs.
         self._draw_text(
             screen, fonts["small"],
-            "Right-drag: pan  |  Wheel: zoom  |  +/-: speed",
+            "Right-drag/Arrows: pan  |  Wheel: zoom  |  +/-: speed",
             x + 18, text_y, self.MUTED,
         )
         text_y = max((button.rect.bottom for button in buttons), default=text_y) + 32
