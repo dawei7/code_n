@@ -42,6 +42,11 @@ class BubbleSortChallenge(Challenge):
             difficulty=2,
             required_complexity=ComplexityClass.O_N2,
             hint="Move larger values toward the end of the list, one pass at a time.",
+            # No algorithm fingerprint here: the standard Python
+            # tuple-swap idiom (data[i], data[j] = data[j], data[i])
+            # fires __setitem__ twice, not the swap op, so a
+            # '<->'-based fingerprint cannot detect bubble sort.
+            # The complexity check (O(n^2) budget) is the gate.
         )
 
     def setup(self, n: int, seed: Optional[int] = None) -> dict[str, Any]:
@@ -117,6 +122,9 @@ class InsertionSortChallenge(Challenge):
             difficulty=3,
             required_complexity=ComplexityClass.O_N2,
             hint="For each element, shift larger elements right to make room.",
+            # No algorithm fingerprint here: selection sort is also
+            # swap-free, so a 'no <-> ops' rule cannot tell selection
+            # from insertion. The complexity check is the gate.
         )
 
     def setup(self, n: int, seed: Optional[int] = None) -> dict[str, Any]:

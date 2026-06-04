@@ -3,7 +3,13 @@
 import random
 from typing import Any, Optional
 
-from code_n.challenge import Challenge, ChallengeInfo
+from code_n.challenge import (
+    Challenge,
+    ChallengeInfo,
+    OperationConstraint,
+    OP_AT_LEAST,
+    OP_AT_MOST,
+)
 from code_n.counter import ComplexityClass, get_counter
 from code_n.grid import Grid, CellType
 from code_n.tracked import TrackedList, TrackedGrid, TrackedQueue, TrackedStack
@@ -136,6 +142,15 @@ class BFSGridChallenge(Challenge):
             difficulty=5,
             required_complexity=ComplexityClass.O_N2,
             hint="Use a queue. Start from START, explore all neighbors level by level.",
+            # BFS uses a queue. If the player's op log has no
+            # queue ops, they probably used DFS or recursion, which
+            # would still pass the complexity check (both are O(V+E))
+            # but isn't BFS. The hint nudges them toward the right
+            # algorithm.
+            expected_operations=[
+                OperationConstraint("queue.enqueue", OP_AT_LEAST, 1),
+                OperationConstraint("queue.dequeue", OP_AT_LEAST, 1),
+            ],
         )
 
     def setup(self, n: int, seed: Optional[int] = None) -> dict[str, Any]:
@@ -330,6 +345,18 @@ class DFSGridChallenge(Challenge):
             difficulty=4,
             required_complexity=ComplexityClass.O_N2,
             hint="Use a stack (or recursion). Mark cells as visited and explore neighbors.",
+            # DFS uses a stack (or recursion via Python lists). It must
+            # NOT use a queue - that would be BFS. If the player
+            # used TrackedStack, we'll see stack.push/stack.pop; if
+            # they used a raw Python list as a stack, neither
+            # signature will fire and the hint will say "expected at
+            # least 1 'stack.push' op" - the player can then either
+            # switch to TrackedStack or ignore the hint.
+            expected_operations=[
+                OperationConstraint("queue.enqueue", OP_AT_MOST, 0),
+                OperationConstraint("queue.dequeue", OP_AT_MOST, 0),
+                OperationConstraint("stack.push", OP_AT_LEAST, 1),
+            ],
         )
 
     def setup(self, n: int, seed: Optional[int] = None) -> dict[str, Any]:

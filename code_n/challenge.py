@@ -5,6 +5,9 @@ Each challenge defines:
 - Input data generation
 - A complexity threshold (max allowed O-class)
 - A verification function (did the player solve it correctly?)
+- Optionally, an "algorithm fingerprint" that nudges the player
+  toward using a specific technique (e.g. BFS, bubble sort) when
+  several algorithms of the same complexity could solve the problem.
 """
 
 import random
@@ -15,7 +18,7 @@ from typing import Any, Callable, Optional
 
 from .grid import Grid, CellType
 from .counter import (
-    OperationCounter, get_counter, reset_counter,
+    OperationCounter, OpRecord, get_counter, reset_counter,
     ComplexityClass, OpStats, OperationLimitExceeded
 )
 from .renderer import Renderer
@@ -23,11 +26,85 @@ from .tracked import TrackedList, TrackedGrid, TrackedQueue, TrackedStack, Track
 from .execution_trace import ExecutionStepLimitExceeded, ExecutionTrace, run_with_trace
 
 
+# Relation keywords for OperationConstraint.
+OP_AT_LEAST = "at_least"
+OP_AT_MOST = "at_most"
+OP_EXACTLY = "exactly"
+
+
+@dataclass(frozen=True)
+class OperationConstraint:
+    """One rule for the algorithm fingerprint.
+
+    Each op recorded by the engine has a human-readable detail string
+    (e.g. ``"list[3] = 42"``, ``"queue.enqueue(7)"``, ``"list[3]<->list[7]"``).
+    The constraint counts ops whose detail contains ``needle`` and
+    asserts that the count satisfies ``relation`` against ``count``:
+
+    * ``OP_AT_LEAST`` — the count must be ``>= count``
+    * ``OP_AT_MOST``  — the count must be ``<= count``
+    * ``OP_EXACTLY``  — the count must be ``== count``
+
+    Common needles:
+      * ``"<->"`` — any swap (list or grid)
+      * ``"queue.enqueue"`` / ``"queue.dequeue"`` — BFS queue ops
+      * ``"stack.push"`` / ``"stack.pop"`` — DFS stack ops
+      * ``"list.append("`` — list append
+      * ``"line "`` — Python source-line CALL entries (recursion)
+    """
+
+    needle: str
+    relation: str
+    count: int
+
+
+def check_fingerprint(
+    ops_log: list[OpRecord],
+    constraints: list[OperationConstraint],
+) -> tuple[bool, str]:
+    """Return ``(matched, reason)`` for a list of constraints.
+
+    ``matched`` is True iff every constraint holds. ``reason`` is a
+    human-readable summary of which constraints failed and why; it
+    is empty when ``matched`` is True.
+
+    This is an *advisory* check: the player's solution can still pass
+    (correct + within the complexity budget) even if the fingerprint
+    fails. The point is to surface a teaching hint, not to punish.
+    """
+    if not constraints:
+        return True, ""
+    # Count each op against the FIRST constraint whose needle it
+    # matches. This avoids one op double-counting for two overlapping
+    # needles (e.g. "<->" + "list[") both matching a swap op).
+    counts: dict[OperationConstraint, int] = {c: 0 for c in constraints}
+    for op in ops_log:
+        detail = op.detail or ""
+        for c in constraints:
+            if c.needle in detail:
+                counts[c] += 1
+                break
+    failures: list[str] = []
+    for c in constraints:
+        actual = counts[c]
+        if c.relation == OP_AT_LEAST and actual < c.count:
+            failures.append(f"expected at least {c.count} '{c.needle}' ops, saw {actual}")
+        elif c.relation == OP_AT_MOST and actual > c.count:
+            failures.append(f"expected at most {c.count} '{c.needle}' ops, saw {actual}")
+        elif c.relation == OP_EXACTLY and actual != c.count:
+            failures.append(f"expected exactly {c.count} '{c.needle}' ops, saw {actual}")
+    if failures:
+        return False, "; ".join(failures)
+    return True, ""
+
+
 @dataclass
 class ChallengeResult:
     passed: bool
     correct: bool
     within_threshold: bool
+    algorithm_match: bool
+    algorithm_reason: str
     stats: OpStats
     actual_complexity: ComplexityClass
     required_complexity: ComplexityClass
@@ -44,6 +121,10 @@ class ChallengeInfo:
     difficulty: int  # 1-10
     required_complexity: ComplexityClass
     hint: str = ""
+    # Optional list of rules that the player's op log must satisfy
+    # for the "algorithm hint" to come back clean. See
+    # OperationConstraint above for the supported needles.
+    expected_operations: list[OperationConstraint] = field(default_factory=list)
 
 
 class Challenge(ABC):
@@ -214,6 +295,15 @@ class Challenge(ABC):
 
         passed = correct and within_threshold
 
+        # Algorithm fingerprint check. The fingerprint is advisory:
+        # it never affects `passed`, only `algorithm_match` and a hint
+        # appended to the result message. The point is to teach the
+        # player which specific algorithm they used when several
+        # algorithms of the same O-class could solve the problem.
+        algorithm_match, algorithm_reason = check_fingerprint(
+            counter.ops_log, self.info.expected_operations,
+        )
+
         # Build message
         if error_message:
             message = error_message
@@ -230,6 +320,8 @@ class Challenge(ABC):
                 f"Passed! {stats.total} ops "
                 f"(complexity: {actual_complexity.value})"
             )
+            if not algorithm_match and algorithm_reason:
+                message += f"\nAlgorithm hint: {algorithm_reason}"
 
         # Show result
         if animate:
@@ -263,6 +355,8 @@ class Challenge(ABC):
             passed=passed,
             correct=correct,
             within_threshold=within_threshold,
+            algorithm_match=algorithm_match,
+            algorithm_reason=algorithm_reason,
             stats=stats,
             actual_complexity=actual_complexity,
             required_complexity=self.info.required_complexity,
