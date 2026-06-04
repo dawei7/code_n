@@ -11,7 +11,7 @@ from .counter import ComplexityClass, OpRecord, OpStats, OpType
 from .branding import GAME_TITLE
 from .execution_trace import TraceFrame
 from .grid import CellType, Grid
-from .window import is_resize_event, open_maximized_window, sync_window_size
+from .window import is_resize_event, mono_font, open_maximized_window, sync_window_size
 
 
 @dataclass
@@ -47,9 +47,13 @@ class ControlButton:
 
 @dataclass(frozen=True)
 class DisplayCell:
+    """A cell shown in the grid display, with its source grid coordinate.
+
+    Without the legacy ellipsis truncation, source_coord is just (x, y)
+    in the full grid; scroll and zoom are applied at draw time, not here.
+    """
     value: Any
     source_coord: Optional[tuple[int, int]] = None
-    ellipsis: bool = False
 
 
 class ComputationCancelled(RuntimeError):
@@ -79,9 +83,9 @@ class ComputationProgressWindow:
         sync_window_size(self, self.screen)
         self.clock = pygame.time.Clock()
         self.fonts = {
-            "title": pygame.font.SysFont("consolas", 28, bold=True),
-            "body": pygame.font.SysFont("consolas", 19),
-            "small": pygame.font.SysFont("consolas", 15),
+            "title": mono_font(pygame, 28, bold=True),
+            "body": mono_font(pygame, 19),
+            "small": mono_font(pygame, 15),
         }
         self._last_draw = 0.0
         self.update("Preparing challenge", 0, limit, force=True)
@@ -110,6 +114,24 @@ class ComputationProgressWindow:
 
         if pygame.display.get_init():
             pygame.display.quit()
+
+    def _draw_text(self, font_name: str, text: str, x: int, y: int, color: tuple[int, int, int]):
+        self.screen.blit(self.fonts[font_name].render(text, True, color), (x, y))
+
+    def _wrap(self, text: str, width: int) -> list[str]:
+        words = text.split()
+        lines: list[str] = []
+        current = ""
+        for word in words:
+            if len(current) + len(word) + 1 > width:
+                if current:
+                    lines.append(current)
+                current = word
+            else:
+                current = f"{current} {word}".strip()
+        if current:
+            lines.append(current)
+        return lines or [""]
 
     def _draw(self, stage: str, operations: int):
         import pygame
@@ -171,7 +193,16 @@ SPEED_PRESETS = [
     SpeedPreset("instant", "Instant", 0.0, 1),
 ]
 DEFAULT_SPEED_INDEX = 4
-MAX_VISIBLE_ROW_ITEMS = 21
+
+# Continuous zoom range. The cell size is an int in [ZOOM_MIN, ZOOM_MAX]
+# and the user changes it with the mouse wheel only — no buttons, no
+# keyboard shortcuts. 22px is small enough to fit the whole 50-cell
+# 1D array in one screen; 50px is large enough that 3-digit values
+# still fit comfortably.
+ZOOM_MIN = 22
+ZOOM_MAX = 50
+ZOOM_STEP = 2  # pixels per wheel notch
+DEFAULT_CELL_SIZE = 30
 
 
 class PygameRenderer:
@@ -222,6 +253,16 @@ class PygameRenderer:
         if speed:
             self.apply_speed(speed)
         self._current_description = ""
+        # Continuous zoom between ZOOM_MIN and ZOOM_MAX, controlled by
+        # the mouse wheel only. The default of 30px is small enough to
+        # fit ~25 cells across the viewport; the user can wheel up to
+        # 50px to make individual cells more readable.
+        self.cell_size: int = DEFAULT_CELL_SIZE
+        # Scroll position, in source-grid cells. (0, 0) is the top-left.
+        self.scroll_x: int = 0
+        self.scroll_y: int = 0
+        # True while the right mouse button is held down for panning.
+        self._right_panning: bool = False
 
     def apply_speed(self, speed: str):
         preset = self._find_speed(speed)
@@ -232,6 +273,77 @@ class PygameRenderer:
         self.speed_label = preset.label
         self.manual_step = preset.manual_step
 
+    # ---- zoom and scroll ------------------------------------------------
+
+    def zoom_by(self, delta: int) -> str:
+        """Change the cell size by `delta` pixels, clamped to [ZOOM_MIN, ZOOM_MAX].
+
+        Called exclusively by the mouse-wheel handler; there is no
+        button or key shortcut for zoom. Positive delta zooms in
+        (bigger cells), negative zooms out.
+        """
+        new_size = max(ZOOM_MIN, min(ZOOM_MAX, self.cell_size + delta))
+        if new_size == self.cell_size:
+            cap = "max" if delta > 0 else "min"
+            return f"Zoom: {self.zoom_label()} ({cap})"
+        self.cell_size = new_size
+        return f"Zoom: {self.zoom_label()}"
+
+    def zoom_label(self) -> str:
+        return f"{self.cell_size}px"
+
+    def _effective_cell_size(self, grid: Grid, values: Optional[list[list[Any]]]) -> int:
+        return self.cell_size
+
+    def _wrap_rows(self, values: list[list[Any]]) -> list[list[DisplayCell]]:
+        return [[DisplayCell(value=v, source_coord=(x, y)) for x, v in enumerate(row)] for y, row in enumerate(values)]
+
+    def _visible_viewport(self, grid: Grid, values: Optional[list[list[Any]]]) -> tuple[int, int, int, int]:
+        """Return (visible_cols, visible_rows, max_scroll_x, max_scroll_y)."""
+        if values is None or not values:
+            return 0, 0, 0, 0
+        cols = max((len(row) for row in values), default=0)
+        rows = len(values)
+        cell_size = self.cell_size
+        label_width = self._row_label_width(self._wrap_rows(values))
+        available_w = self._main_area_width() - label_width
+        available_h = self.height - self._grid_top() - self.margin
+        visible_cols = max(1, available_w // max(cell_size, 1))
+        visible_rows = max(1, available_h // max(cell_size, 1))
+        max_scroll_x = max(0, cols - visible_cols)
+        max_scroll_y = max(0, rows - visible_rows)
+        return visible_cols, visible_rows, max_scroll_x, max_scroll_y
+
+    def _visible_range_text(self, grid: Grid, values: Optional[list[list[Any]]]) -> str:
+        """One-line description of what's on screen, e.g. '0-22 of 50'."""
+        if not values:
+            return ""
+        cols = max((len(row) for row in values), default=0)
+        rows = len(values)
+        visible_cols, visible_rows, _, _ = self._visible_viewport(grid, values)
+        x_end = min(cols, self.scroll_x + visible_cols) - 1
+        y_end = min(rows, self.scroll_y + visible_rows) - 1
+        if cols == 0 and rows == 0:
+            return ""
+        if rows == 1:
+            return f"View: {self.scroll_x}-{x_end} of {cols - 1}"
+        return f"View: ({self.scroll_x},{self.scroll_y})-({x_end},{y_end}) of {cols - 1}x{rows - 1}"
+
+    def scroll_by(self, dx_cells: int, dy_cells: int, grid: Grid, values: Optional[list[list[Any]]]) -> bool:
+        """Pan the viewport by (dx, dy) cells, clamped to the grid bounds.
+
+        Pan inputs are intentionally signed the way the *user's hand*
+        moves (right-drag right = positive dx, drag down = positive dy).
+        The mapping from hand motion to world scroll is up to the caller
+        — see play()'s MOUSEMOTION handler for the current "inverted /
+        grab the world" convention.
+        """
+        _, _, max_x, max_y = self._visible_viewport(grid, values)
+        old_x, old_y = self.scroll_x, self.scroll_y
+        self.scroll_x = max(0, min(self.scroll_x + dx_cells, max_x))
+        self.scroll_y = max(0, min(self.scroll_y + dy_cells, max_y))
+        return (self.scroll_x, self.scroll_y) != (old_x, old_y)
+
     def play(self, grid: Grid, operations: Iterable[OpRecord], title: str, result: VisualRunResult):
         import pygame
 
@@ -240,10 +352,10 @@ class PygameRenderer:
         sync_window_size(self, screen)
         clock = pygame.time.Clock()
         fonts = {
-            "title": pygame.font.SysFont("consolas", 26, bold=True),
-            "body": pygame.font.SysFont("consolas", 18),
-            "small": pygame.font.SysFont("consolas", 15),
-            "cell": pygame.font.SysFont("consolas", 18, bold=True),
+            "title": mono_font(pygame, 26, bold=True),
+            "body": mono_font(pygame, 18),
+            "small": mono_font(pygame, 15),
+            "cell": mono_font(pygame, 18, bold=True),
         }
 
         if not self._speed_was_supplied and not self._choose_speed(screen, clock, fonts, title):
@@ -290,6 +402,11 @@ class PygameRenderer:
             stopped = False
             overlays = {}
             source_breakpoints_hit = set()
+            # Each fresh replay starts at the default zoom (30px per cell)
+            # and the top-left of the grid.
+            self.cell_size = 44
+            self.scroll_x = 0
+            self.scroll_y = 0
             return "Step mode: press Space, Enter, or Right Arrow." if self.manual_step else "Replay started"
 
         def toggle_pause() -> str:
@@ -345,6 +462,15 @@ class PygameRenderer:
                 return change_speed(True)
             return current_detail
 
+        # Listen for MOUSEWHEEL across pygame versions. Pygame 2.x has
+        # pygame.MOUSEWHEEL; older versions split horizontal/vertical.
+        mousewheel_event = getattr(pygame, "MOUSEWHEEL", None)
+        old_mousewheel = (
+            getattr(pygame, "MOUSEBUTTONDOWN", None)
+            if mousewheel_event is None
+            else None
+        )
+
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -358,13 +484,54 @@ class PygameRenderer:
                         current_detail = handle_control_action(action)
                     else:
                         coord = self._coord_at_pos(event.pos, grid, visual_values)
-                    if not action and coord:
-                        if coord in watchpoints:
-                            watchpoints.remove(coord)
-                            current_detail = f"Removed watchpoint {coord}"
-                        else:
-                            watchpoints.add(coord)
-                            current_detail = f"Watching {coord}; replay pauses when an operation touches it."
+                        if coord:
+                            if coord in watchpoints:
+                                watchpoints.remove(coord)
+                                current_detail = f"Removed watchpoint {coord}"
+                            else:
+                                watchpoints.add(coord)
+                                current_detail = f"Watching {coord}; replay pauses when an operation touches it."
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
+                    # Right-click enters "pan" mode. From now until the
+                    # button is released, every mouse motion event pans
+                    # the grid. The pan is bounded so dragging past the
+                    # edge stops at the grid boundary; you can't scroll
+                    # into the void.
+                    self._right_panning = True
+                    try:
+                        pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
+                    except (AttributeError, pygame.error):
+                        pass
+                elif event.type == pygame.MOUSEBUTTONUP and event.button == 3:
+                    self._right_panning = False
+                    try:
+                        pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
+                    except (AttributeError, pygame.error):
+                        pass
+                elif event.type == pygame.MOUSEMOTION and self._right_panning:
+                    # event.rel is (dx, dy) in pixels since the last
+                    # motion event. The user wants "inverted" / natural
+                    # panning: dragging right pulls the world to the
+                    # right (scroll_x decreases), so the cells the
+                    # finger lands on stay under the cursor. Same for
+                    # the vertical axis. scroll_by clamps to the grid
+                    # bounds, so dragging past the edge stops at the
+                    # boundary - no scrolling into the void.
+                    rel_x, rel_y = event.rel
+                    dx_cells = -rel_x // self.cell_size
+                    dy_cells = -rel_y // self.cell_size
+                    if dx_cells or dy_cells:
+                        self.scroll_by(dx_cells, dy_cells, grid, visual_values)
+                elif mousewheel_event is not None and event.type == mousewheel_event:
+                    # Mouse wheel zooms (only). Wheel up = bigger cells,
+                    # wheel down = smaller. Modifiers (Shift, Ctrl) are
+                    # ignored: the only way to pan is right-drag.
+                    wheel_y = getattr(event, "y", 0) or 0
+                    if wheel_y:
+                        current_detail = self.zoom_by(wheel_y * ZOOM_STEP)
+                elif old_mousewheel is not None and event.type == pygame.MOUSEBUTTONDOWN and event.button in (4, 5):
+                    # Fallback for pygame 1.x: button 4 = wheel up, 5 = wheel down.
+                    current_detail = self.zoom_by(ZOOM_STEP if event.button == 4 else -ZOOM_STEP)
                 elif event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_ESCAPE, pygame.K_q):
                         running = False
@@ -386,6 +553,25 @@ class PygameRenderer:
                         current_detail = change_speed(True)
                     elif event.key == pygame.K_MINUS:
                         current_detail = change_speed(False)
+                    elif event.key in (pygame.K_PAGEUP,):
+                        self.scroll_by(0, -5, grid, visual_values)
+                    elif event.key in (pygame.K_PAGEDOWN,):
+                        self.scroll_by(0, 5, grid, visual_values)
+                    elif event.key == pygame.K_HOME:
+                        self.scroll_x = 0
+                        self.scroll_y = 0
+                    elif event.key == pygame.K_END:
+                        _, _, max_x, max_y = self._visible_viewport(grid, visual_values)
+                        self.scroll_x = max_x
+                        self.scroll_y = max_y
+                    # Up/Down pan the grid. The Left/Right arrows are
+                    # already used for "step one operation" in step mode,
+                    # so we don't bind them here to avoid the conflict —
+                    # right-drag is the canonical way to pan.
+                    elif event.key in (pygame.K_UP, pygame.K_w):
+                        self.scroll_by(0, -1, grid, visual_values)
+                    elif event.key == pygame.K_DOWN:
+                        self.scroll_by(0, 1, grid, visual_values)
 
             now = time.time()
             if not self.manual_step and not paused and not stopped and op_index < len(ops):
@@ -415,39 +601,54 @@ class PygameRenderer:
 
         sync_window_size(self, screen)
         screen.fill(self.BACKGROUND)
-        grid_rect, cell_size, display_width, display_height = self._grid_rect(grid, values)
+        grid_rect, cell_size, full_cols, full_rows = self._grid_rect(grid, values)
         display_rows = self._display_rows(values)
-        show_row_labels = len(display_rows) > 1
+        show_row_labels = full_rows > 1
 
         title_surface = fonts["title"].render(title, True, self.TEXT)
         screen.blit(title_surface, (self.margin, 18))
         self._draw_main_description(screen, fonts, result.description)
-        self._draw_grid_headers(screen, fonts, grid_rect, cell_size, display_rows)
+        self._draw_grid_headers(screen, fonts, grid_rect, cell_size, display_rows, full_cols)
 
-        for y, row in enumerate(display_rows):
+        # Iterate over every cell but draw only those that land inside
+        # the viewport rect (cheap early-out). The screen position of a
+        # cell is offset by (scroll_x, scroll_y) so panning is just
+        # changing those two numbers.
+        previous_clip = screen.get_clip()
+        screen.set_clip(grid_rect)
+        for sy, row in enumerate(display_rows):
+            if not row:
+                continue
             if show_row_labels:
                 label_rect = pygame.Rect(
                     grid_rect.x - self._row_label_width(display_rows),
-                    grid_rect.y + y * cell_size,
+                    grid_rect.y + (sy - self.scroll_y) * cell_size,
                     self._row_label_width(display_rows) - 8,
                     cell_size - 2,
                 )
-                self._draw_centered_text(screen, fonts["small"], self._row_header_label(row, y), label_rect, self.MUTED)
-
-            for x, display_cell in enumerate(row):
-                rect = pygame.Rect(
-                    grid_rect.x + x * cell_size,
-                    grid_rect.y + y * cell_size,
-                    cell_size - 2,
-                    cell_size - 2,
+                self._draw_centered_text(screen, fonts["small"], self._row_header_label(row, sy), label_rect, self.MUTED)
+                # Fine tick from the row label across to the cell it labels.
+                cell_mid_y = grid_rect.y + (sy - self.scroll_y) * cell_size + cell_size // 2
+                pygame.draw.line(
+                    screen, self.GRID_LINE,
+                    (label_rect.right + 1, cell_mid_y),
+                    (grid_rect.x - 1, cell_mid_y),
+                    1,
                 )
+
+            for sx, display_cell in enumerate(row):
+                screen_x = grid_rect.x + (sx - self.scroll_x) * cell_size
+                screen_y = grid_rect.y + (sy - self.scroll_y) * cell_size
+                # Skip cells that fall outside the viewport.
+                if screen_x + cell_size <= grid_rect.x or screen_x >= grid_rect.right:
+                    continue
+                if screen_y + cell_size <= grid_rect.y or screen_y >= grid_rect.bottom:
+                    continue
+                rect = pygame.Rect(screen_x, screen_y, cell_size - 2, cell_size - 2)
                 source_coord = display_cell.source_coord
                 cell = grid.get(*source_coord) if source_coord and grid.in_bounds(*source_coord) else None
-                if display_cell.ellipsis:
-                    base_color = self.PANEL
-                else:
-                    base_color = self.CELL_COLORS.get(cell.cell_type, self.CELL_COLORS[CellType.EMPTY]) if cell else self.CELL_COLORS[CellType.EMPTY]
-                color = overlays.get((x, y), base_color) if not display_cell.ellipsis else base_color
+                base_color = self.CELL_COLORS.get(cell.cell_type, self.CELL_COLORS[CellType.EMPTY]) if cell else self.CELL_COLORS[CellType.EMPTY]
+                color = overlays.get(source_coord, base_color) if source_coord else base_color
                 pygame.draw.rect(screen, color, rect, border_radius=4)
                 pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=4)
                 if watchpoints and source_coord in watchpoints:
@@ -455,8 +656,8 @@ class PygameRenderer:
 
                 text_value = display_cell.value if display_cell.value != "" else (cell.value if cell else None)
                 label = str(text_value) if text_value is not None else (cell.label if cell else "")
-                text_color = self.MUTED if display_cell.ellipsis else self.TEXT
-                self._draw_cell_contents(screen, fonts, rect, label, self._cell_index_label(display_cell, show_row_labels), text_color)
+                self._draw_cell_contents(screen, fonts, rect, label, self._cell_index_label(display_cell, show_row_labels), self.TEXT)
+        screen.set_clip(previous_clip)
 
         if moving:
             for value, start, end, t, color in moving:
@@ -467,9 +668,13 @@ class PygameRenderer:
                 pygame.draw.rect(screen, self.TEXT, rect, width=2, border_radius=4)
                 self._draw_centered_text(screen, fonts["cell"], str(value), rect, self.TEXT)
 
-        self._draw_panel(screen, fonts, result, op_index, total_ops, detail, paused, trace_frame, stopped, len(watchpoints or ()))
+        self._draw_panel(
+            screen, fonts, result, op_index, total_ops, detail, paused,
+            trace_frame, stopped, len(watchpoints or ()),
+            view_text=self._visible_range_text(grid, values),
+        )
 
-    def _draw_panel(self, screen, fonts, result, op_index, total_ops, detail, paused, trace_frame=None, stopped=False, watchpoint_count=0):
+    def _draw_panel(self, screen, fonts, result, op_index, total_ops, detail, paused, trace_frame=None, stopped=False, watchpoint_count=0, view_text=""):
         import pygame
 
         x = self.width - self.panel_width - self.margin
@@ -488,8 +693,11 @@ class PygameRenderer:
             f"Complexity: {result.actual_complexity.value}",
             f"Required: {result.required_complexity.value}",
             f"n: {result.n}  Speed: {self.speed_label}",
-            f"Watchpoints: {watchpoint_count}",
+            f"Zoom: {self.zoom_label()}",
         ]
+        if view_text:
+            lines.append(view_text)
+        lines.append(f"Watchpoints: {watchpoint_count}")
         text_y = y + 68
         for line in lines:
             self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.TEXT)
@@ -508,21 +716,30 @@ class PygameRenderer:
         self._draw_text(screen, fonts["body"], f"{state}: {op_index}/{total_ops}", x + 18, text_y, self.TEXT)
         buttons = self._control_buttons(paused, stopped, op_index, total_ops)
         self._draw_controls(screen, fonts, buttons)
-        text_y = max((button.rect.bottom for button in buttons), default=text_y) + 24
+        text_y = max((button.rect.bottom for button in buttons), default=text_y) + 12
+        # A short reminder of the scroll/zoom shortcuts sits right under
+        # the buttons so the user can find panning without reading docs.
+        self._draw_text(
+            screen, fonts["small"],
+            "Right-drag: pan  |  Wheel: zoom  |  +/-: speed",
+            x + 18, text_y, self.MUTED,
+        )
+        text_y = max((button.rect.bottom for button in buttons), default=text_y) + 32
         footer_top = rect.bottom - 96
         content_bottom = footer_top - 14
         previous_clip = screen.get_clip()
         screen.set_clip(pygame.Rect(x, text_y, self.panel_width, max(0, content_bottom - text_y)))
 
+        wrap_w = self._wrap_width(fonts)
         self._draw_text(screen, fonts["body"], "Current op", x + 18, text_y, self.TEXT)
         text_y += 24
-        for line in self._wrap(detail, 33)[:2]:
+        for line in self._wrap(detail, wrap_w)[:2]:
             self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.MUTED)
             text_y += 20
         text_y += 12
 
         return_text = result.return_value or "<not returned>"
-        return_lines = self._wrap(return_text, 34)[:2]
+        return_lines = self._wrap(return_text, wrap_w)[:2]
         return_height = 24 + len(return_lines) * 18
         return_start = max(text_y, content_bottom - return_height)
         variables_bottom = max(text_y, return_start - 12)
@@ -533,7 +750,7 @@ class PygameRenderer:
             text_y += 24
             truncated = False
             for name, value in list(trace_frame.locals.items())[:9]:
-                for line in self._wrap(f"{name} = {value}", 34)[:2]:
+                for line in self._wrap(f"{name} = {value}", wrap_w)[:2]:
                     if text_y + 18 > variables_bottom:
                         truncated = True
                         break
@@ -555,7 +772,7 @@ class PygameRenderer:
             text_y += 18
         screen.set_clip(previous_clip)
 
-        message_lines = self._wrap(result.message, 33)[:4]
+        message_lines = self._wrap(result.message, wrap_w)[:4]
         for index, line in enumerate(message_lines):
             self._draw_text(screen, fonts["small"], line, x + 18, footer_top + index * 20, status_color)
 
@@ -597,6 +814,8 @@ class PygameRenderer:
             button_x = inner_x + index * (secondary_width + gap)
             rect = pygame.Rect(button_x, second_y, secondary_width, row_height)
             buttons.append(ControlButton(action, label, rect, enabled, active))
+
+        # No third row. Zoom is mouse-wheel only.
 
         return buttons
 
@@ -674,27 +893,41 @@ class PygameRenderer:
 
     def _animate_swap(self, screen, clock, fonts, grid, values, first, second, title, result, op_index, total_ops, detail):
         grid_rect, cell_size, _, _ = self._grid_rect(grid, values)
-        first_display = self._display_coord_for_source(values, first)
-        second_display = self._display_coord_for_source(values, second)
-        if first_display is None or second_display is None:
+        # Animate from the current screen positions of the two cells so
+        # the swap is visible even when the user has scrolled or zoomed.
+        a_screen = self._screen_rect_for_source(grid_rect, cell_size, first)
+        b_screen = self._screen_rect_for_source(grid_rect, cell_size, second)
+        if a_screen is None or b_screen is None:
             return
-        a_rect = self._cell_rect(grid_rect, cell_size, first_display)
-        b_rect = self._cell_rect(grid_rect, cell_size, second_display)
         a_value = self._value_at(values, first)
         b_value = self._value_at(values, second)
-        hidden = {first_display: self.SWAP, second_display: self.SWAP}
+        # Hide the cells in their original positions while the floating
+        # copies travel between them.
+        hidden = {first: self.SWAP, second: self.SWAP}
 
         for frame in range(self.swap_frames + 1):
             t = frame / self.swap_frames
             moving = [
-                (a_value, a_rect.topleft, b_rect.topleft, t, self.SWAP),
-                (b_value, b_rect.topleft, a_rect.topleft, t, self.SWAP),
+                (a_value, a_screen.topleft, b_screen.topleft, t, self.SWAP),
+                (b_value, b_screen.topleft, a_screen.topleft, t, self.SWAP),
             ]
             trace_frame = self._trace_for_op(result.trace_frames, op_index)
             self._draw(screen, fonts, grid, values, hidden, title, result, op_index, total_ops, f"swap: {detail}", False, moving, trace_frame=trace_frame)
             import pygame
             pygame.display.flip()
             clock.tick(self.fps)
+
+    def _screen_rect_for_source(self, grid_rect, cell_size, source_coord):
+        """Compute the on-screen rect for a source-grid cell, honoring
+        the current scroll. Returns None if the cell is outside the
+        viewport (the animation just won't show for that cell)."""
+        import pygame
+        sx, sy = source_coord
+        screen_x = grid_rect.x + (sx - self.scroll_x) * cell_size
+        screen_y = grid_rect.y + (sy - self.scroll_y) * cell_size
+        if not (grid_rect.x <= screen_x < grid_rect.right and grid_rect.y <= screen_y < grid_rect.bottom):
+            return None
+        return pygame.Rect(screen_x, screen_y, cell_size - 2, cell_size - 2)
 
     def _choose_speed(self, screen, clock, fonts, title: str) -> bool:
         import pygame
@@ -768,24 +1001,35 @@ class PygameRenderer:
             clock.tick(self.fps)
 
     def _grid_rect(self, grid, values=None):
+        """Return (viewport_rect, cell_size, full_cols, full_rows).
+
+        The viewport rect describes the slice of the screen that the grid
+        currently occupies, not the full grid. Cells outside the viewport
+        are not drawn (the draw step uses the viewport as a clip). The
+        (full_cols, full_rows) pair lets the draw function know how big
+        the source grid is when computing scroll math.
+        """
         import pygame
 
-        available_width = self.width - self.panel_width - self.margin * 3
-        grid_top = self._grid_top()
-        available_height = self.height - grid_top - self.margin
-        display_rows = self._display_rows(values) if values is not None else []
+        if values is None:
+            values = self._values_from_grid(grid)
+        display_rows = self._display_rows(values) if values else [[]]
         label_width = self._row_label_width(display_rows)
-        available_width -= label_width
-        value_width = max((len(row) for row in display_rows), default=0)
-        value_height = len(display_rows)
-        display_width = max(value_width, 1)
-        display_height = max(value_height, 1)
-        cell_size = max(22, min(64, available_width // display_width, available_height // display_height))
-        grid_width = cell_size * display_width
-        grid_height = cell_size * display_height
+        full_cols = max((len(row) for row in display_rows), default=0)
+        full_rows = len(display_rows)
+        cell_size = self._effective_cell_size(grid, values)
+
+        # The viewport occupies the area to the left of the side panel,
+        # with the title/description bands above it. There is no need to
+        # center the viewport vertically when the grid is taller than
+        # the available space; the user can scroll instead.
         x = self.margin + label_width
-        y = grid_top + max(0, (available_height - grid_height) // 2)
-        return pygame.Rect(x, y, grid_width, grid_height), cell_size, display_width, display_height
+        grid_top = self._grid_top()
+        available_w = max(0, self._main_area_width() - label_width)
+        available_h = max(0, self.height - grid_top - self.margin)
+        viewport_w = min(available_w, cell_size * max(full_cols, 1))
+        viewport_h = min(available_h, cell_size * max(full_rows, 1))
+        return pygame.Rect(x, grid_top, viewport_w, viewport_h), cell_size, full_cols, full_rows
 
     def _main_area_width(self) -> int:
         return max(240, self.width - self.panel_width - self.margin * 3)
@@ -829,13 +1073,24 @@ class PygameRenderer:
         return pygame.Rect(grid_rect.x + x * cell_size, grid_rect.y + y * cell_size, cell_size - 2, cell_size - 2)
 
     def _coord_at_pos(self, pos, grid, values) -> Optional[tuple[int, int]]:
-        grid_rect, cell_size, display_width, display_height = self._grid_rect(grid, values)
-        x = (pos[0] - grid_rect.x) // cell_size
-        y = (pos[1] - grid_rect.y) // cell_size
-        display_rows = self._display_rows(values)
-        if 0 <= y < len(display_rows) and 0 <= x < len(display_rows[int(y)]):
-            return display_rows[int(y)][int(x)].source_coord
-        return None
+        """Translate a screen pixel position to a source-grid coordinate.
+
+        The translation uses the current scroll offset: clicking the
+        top-left visible cell yields (scroll_x, scroll_y).
+        """
+        grid_rect, cell_size, _, _ = self._grid_rect(grid, values)
+        if cell_size <= 0 or not grid_rect.collidepoint(pos):
+            return None
+        rel_x = (pos[0] - grid_rect.x) // cell_size
+        rel_y = (pos[1] - grid_rect.y) // cell_size
+        src_x = self.scroll_x + int(rel_x)
+        src_y = self.scroll_y + int(rel_y)
+        if values is None or src_y < 0 or src_y >= len(values):
+            return None
+        row = values[src_y]
+        if src_x < 0 or src_x >= len(row):
+            return None
+        return src_x, src_y
 
     def _op_touches_watchpoint(self, op: OpRecord, watchpoints: set[tuple[int, int]]) -> bool:
         if not watchpoints:
@@ -862,23 +1117,35 @@ class PygameRenderer:
         surface = font.render(text[:8], True, color)
         screen.blit(surface, surface.get_rect(center=rect.center))
 
-    def _draw_grid_headers(self, screen, fonts, grid_rect, cell_size: int, display_rows: list[list[DisplayCell]]):
+    def _draw_grid_headers(self, screen, fonts, grid_rect, cell_size: int, display_rows: list[list[DisplayCell]], full_cols: int = 0):
         import pygame
 
         if not display_rows or not display_rows[0]:
             return
         axis_y = max(0, grid_rect.y - 24)
+        label_height = 18
+        label_bottom = axis_y + label_height
+        # Headers track the scroll so the column above a cell always shows
+        # that cell's source column number. A thin tick line connects the
+        # label to the top of its cell so the player never has to guess
+        # which number goes with which cell.
         for x, display_cell in enumerate(display_rows[0]):
             label = self._column_header_label(display_cell)
             if not label:
                 continue
-            label_rect = pygame.Rect(
-                grid_rect.x + x * cell_size,
-                axis_y,
-                cell_size - 2,
-                18,
-            )
+            screen_x = grid_rect.x + (x - self.scroll_x) * cell_size
+            if screen_x + cell_size <= grid_rect.x or screen_x >= grid_rect.right:
+                continue
+            cell_center_x = screen_x + cell_size // 2
+            label_rect = pygame.Rect(screen_x, axis_y, cell_size - 2, label_height)
             self._draw_centered_text(screen, fonts["small"], label, label_rect, self.MUTED)
+            # Fine tick from the label down to the top edge of the cell.
+            pygame.draw.line(
+                screen, self.GRID_LINE,
+                (cell_center_x, label_bottom + 1),
+                (cell_center_x, grid_rect.y - 1),
+                1,
+            )
 
     def _draw_cell_contents(self, screen, fonts, rect, value_label: str, index_label: str, value_color):
         if index_label:
@@ -895,27 +1162,21 @@ class PygameRenderer:
         screen.blit(value_surface, value_surface.get_rect(center=target.center))
 
     def _cell_index_label(self, display_cell: DisplayCell, show_row_labels: bool) -> str:
-        if display_cell.ellipsis:
-            return ""
         if display_cell.source_coord is None:
             return ""
         return ""
 
     def _column_header_label(self, display_cell: DisplayCell) -> str:
-        if display_cell.ellipsis:
-            return "..."
         if display_cell.source_coord is None:
             return ""
         column, _ = display_cell.source_coord
-        return f"{column}:"
+        return f"{column}"
 
     def _row_header_label(self, row: list[DisplayCell], display_y: int) -> str:
         for display_cell in row:
-            if display_cell.ellipsis:
-                continue
             if display_cell.source_coord is not None:
-                return f"{display_cell.source_coord[1]}:"
-        return "..."
+                return f"{display_cell.source_coord[1]}"
+        return ""
 
     def _draw_text(self, screen, font, text, x, y, color):
         screen.blit(font.render(text, True, color), (x, y))
@@ -941,63 +1202,29 @@ class PygameRenderer:
         return [row[:] for row in values]
 
     def _display_rows(self, values: Optional[list[list[Any]]]) -> list[list[DisplayCell]]:
+        """Return the full grid wrapped in DisplayCell objects, with no
+        truncation. The draw step uses scroll and zoom to decide which of
+        these are actually visible."""
         if not values:
             return [[]]
-        rows: list[list[DisplayCell]] = []
-        if len(values) <= MAX_VISIBLE_ROW_ITEMS:
-            for y, row in enumerate(values):
-                rows.append(self._display_row(row, y))
-            return rows or [[]]
-
-        for y in range(MAX_VISIBLE_ROW_ITEMS):
-            rows.append(self._display_row(values[y], y))
-        rows.append(self._ellipsis_row(rows[0] if rows else []))
-        rows.append(self._display_row(values[-1], len(values) - 1))
-        return rows or [[]]
+        return [[DisplayCell(value=v, source_coord=(x, y)) for x, v in enumerate(row)] for y, row in enumerate(values)] or [[]]
 
     def _display_row(self, row: list[Any], y: int) -> list[DisplayCell]:
-        if len(row) <= MAX_VISIBLE_ROW_ITEMS:
-            return [DisplayCell(value=value, source_coord=(x, y)) for x, value in enumerate(row)]
-        visible = [DisplayCell(value=row[x], source_coord=(x, y)) for x in range(MAX_VISIBLE_ROW_ITEMS)]
-        visible.append(DisplayCell(value="...", ellipsis=True))
-        visible.append(DisplayCell(value=row[-1], source_coord=(len(row) - 1, y)))
-        return visible
-
-    def _ellipsis_row(self, reference_row: list[DisplayCell]) -> list[DisplayCell]:
-        width = max(1, len(reference_row))
-        return [DisplayCell(value="...", ellipsis=True) for _ in range(width)]
+        return [DisplayCell(value=v, source_coord=(x, y)) for x, v in enumerate(row)]
 
     def _row_label_width(self, display_rows: list[list[DisplayCell]]) -> int:
+        """Pixel width reserved for row index labels.
+
+        Adapts to the number of digits in the largest row index: 1-digit
+        indices need ~24px, 2-digit need ~36px, 3-digit need ~48px. The
+        same convention is used for the column header strip above the
+        grid (each cell is its own label), so the heights stay in sync.
+        """
         if len(display_rows) <= 1:
             return 0
-        return 44
-
-    def _display_coord_for_source(self, values: list[list[Any]], source_coord: tuple[int, int]) -> Optional[tuple[int, int]]:
-        source_x, source_y = source_coord
-        if source_y < 0 or source_y >= len(values):
-            return None
-        display_y = self._display_y_for_source(values, source_y)
-        if display_y is None:
-            return None
-        row = values[source_y]
-        if source_x < 0 or source_x >= len(row):
-            return None
-        if len(row) <= MAX_VISIBLE_ROW_ITEMS:
-            return source_x, display_y
-        if source_x < MAX_VISIBLE_ROW_ITEMS:
-            return source_x, display_y
-        if source_x == len(row) - 1:
-            return MAX_VISIBLE_ROW_ITEMS + 1, display_y
-        return None
-
-    def _display_y_for_source(self, values: list[list[Any]], source_y: int) -> Optional[int]:
-        if len(values) <= MAX_VISIBLE_ROW_ITEMS:
-            return source_y
-        if source_y < MAX_VISIBLE_ROW_ITEMS:
-            return source_y
-        if source_y == len(values) - 1:
-            return MAX_VISIBLE_ROW_ITEMS + 1
-        return None
+        max_index = len(display_rows) - 1
+        digits = max(1, len(str(max_index)))
+        return 16 + digits * 10
 
     def _ensure_value_cell(self, values: list[list[Any]], x: int, y: int):
         while len(values) <= y:
@@ -1015,33 +1242,27 @@ class PygameRenderer:
         return latest
 
     def _overlays_for_op(self, op: OpRecord, values: list[list[Any]]) -> dict[tuple[int, int], tuple[int, int, int]]:
+        """Return a dict of source_coord -> overlay color for an op.
+
+        Keys are source-grid coordinates; the draw step translates them
+        to screen pixels with the current scroll. Off-screen overlays are
+        simply not drawn.
+        """
         coords = self._extract_coords(op.detail)
         if op.op_type == OpType.COMPARE and len(coords) >= 2:
-            first = self._display_coord_for_source(values, coords[0])
-            second = self._display_coord_for_source(values, coords[1])
-            if first is not None and second is not None:
-                return {first: self.COMPARE_A, second: self.COMPARE_B}
-            return {}
+            return {coords[0]: self.COMPARE_A, coords[1]: self.COMPARE_B}
         if op.op_type == OpType.SWAP and len(coords) >= 2:
-            first = self._display_coord_for_source(values, coords[0])
-            second = self._display_coord_for_source(values, coords[1])
-            if first is not None and second is not None:
-                return {first: self.SWAP, second: self.SWAP}
-            return {}
+            return {coords[0]: self.SWAP, coords[1]: self.SWAP}
         if op.op_type == OpType.READ and coords:
-            coord = self._display_coord_for_source(values, coords[0])
-            return {coord: self.READ} if coord is not None else {}
+            return {coords[0]: self.READ}
         if op.op_type == OpType.WRITE and coords:
-            coord = self._display_coord_for_source(values, coords[0])
-            return {coord: self.WRITE} if coord is not None else {}
+            return {coords[0]: self.WRITE}
         insert_match = re.search(r"list\.insert\((-?\d+),", op.detail)
         if insert_match:
-            coord = self._display_coord_for_source(values, (max(0, int(insert_match.group(1))), 0))
-            return {coord: self.WRITE} if coord is not None else {}
+            return {(max(0, int(insert_match.group(1))), 0): self.WRITE}
         pop_match = re.search(r"list\.pop\((-?\d+)\)", op.detail)
         if pop_match:
-            coord = self._display_coord_for_source(values, (max(0, int(pop_match.group(1))), 0))
-            return {coord: self.FAIL} if coord is not None else {}
+            return {(max(0, int(pop_match.group(1))), 0): self.FAIL}
         return {}
 
     def _extract_coords(self, detail: str) -> list[tuple[int, int]]:
@@ -1072,19 +1293,53 @@ class PygameRenderer:
         return ""
 
     def _wrap(self, text: str, width: int) -> list[str]:
+        """Word-wrap `text` to fit `width` characters per line.
+
+        Words that are themselves longer than `width` are broken into
+        `width`-sized chunks (with an ellipsis on the first chunk of
+        each word) so they can never overflow the panel. This is the
+        only way a long list/dict value (e.g. ``data = [66, 64, 55, ...]``)
+        stays inside the side panel.
+        """
+        if width <= 0:
+            return [text]
+        ellipsis = "..."
+        # chunk_size leaves room for the ellipsis on the first chunk of
+        # a long word, but stays positive even for very narrow widths.
+        chunk_size = max(1, width - len(ellipsis))
         words = text.split()
         lines: list[str] = []
         current = ""
         for word in words:
-            if len(current) + len(word) + 1 > width:
+            # If the word is wider than the column, emit it in pieces:
+            # the first piece gets an ellipsis, subsequent pieces do
+            # not (they're continuations, not a sentence ending).
+            while len(word) > width:
                 if current:
                     lines.append(current)
+                    current = ""
+                head = word[:chunk_size] + ellipsis
+                lines.append(head)
+                word = word[chunk_size:]
+            if current and len(current) + 1 + len(word) > width:
+                lines.append(current)
                 current = word
             else:
                 current = f"{current} {word}".strip()
         if current:
             lines.append(current)
         return lines or [""]
+
+    def _wrap_width(self, fonts: dict) -> int:
+        """Max char count that fits inside the side panel's content area.
+
+        Measured from the actual font rather than guessed from the font
+        size, so a wider/narrower glyph doesn't cause overflow. The
+        result is a safe integer that leaves a small margin.
+        """
+        available_px = self.panel_width - 36  # 18px padding on each side
+        char_px = max(1, fonts["small"].size("M")[0])
+        return max(8, available_px // char_px - 2)
 
     def _find_speed(self, speed: str) -> Optional[SpeedPreset]:
         normalized = speed.strip().lower().replace("_", "-")

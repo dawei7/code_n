@@ -49,11 +49,27 @@ class ChallengeInfo:
 class Challenge(ABC):
     """Base class for all challenges."""
 
+    # Default maximum input size. The runner clamps --n to this and the
+    # engine sizes the visualizer around it. 1D challenges use this;
+    # 2D challenges (BFS/DFS grids) override to MAX_2D_N below because
+    # a 50x50 grid is too dense to be useful even at the smallest zoom.
+    MAX_N = 50
+    MAX_2D_N = 35
+
     def __init__(self):
         self.grid: Optional[Grid] = None
         self.renderer = Renderer()
         self._n: int = 0
         self._seed: Optional[int] = None
+
+    @property
+    def max_n(self) -> int:
+        """Maximum n this challenge accepts.
+
+        Defaults to MAX_N (1D / single-array). 2D grid challenges
+        override to MAX_2D_N so the visualization stays viewable.
+        """
+        return self.MAX_N
 
     @property
     @abstractmethod

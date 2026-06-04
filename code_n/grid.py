@@ -7,7 +7,6 @@ Players interact with the grid through the API to solve algorithm challenges.
 from dataclasses import dataclass, field
 from enum import IntEnum
 from typing import Any, Optional
-from copy import deepcopy
 
 
 class CellType(IntEnum):
@@ -69,7 +68,6 @@ class Grid:
         self._cells: list[list[Cell]] = [
             [Cell() for _ in range(width)] for _ in range(height)
         ]
-        self._history: list[list[list[Cell]]] = []
 
     def get(self, x: int, y: int) -> Cell:
         if not self.in_bounds(x, y):
@@ -110,18 +108,6 @@ class Grid:
 
     def get_col_values(self, x: int) -> list[Any]:
         return [self._cells[y][x].value for y in range(self.height)]
-
-    def snapshot(self):
-        """Save current state to history (for replay/animation)."""
-        self._history.append(deepcopy(self._cells))
-
-    @property
-    def history(self) -> list[list[list[Cell]]]:
-        return self._history
-
-    @property
-    def frame_count(self) -> int:
-        return len(self._history)
 
     def swap_cells(self, x1: int, y1: int, x2: int, y2: int):
         self._cells[y1][x1], self._cells[y2][x2] = (

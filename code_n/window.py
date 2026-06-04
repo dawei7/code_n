@@ -4,7 +4,22 @@ from __future__ import annotations
 
 import ctypes
 import os
-from typing import Any
+from typing import Any, Optional
+
+
+# Cross-platform monospace font fallback list. Pygame silently substitutes
+# when a font name is missing, so we want to try several candidates before
+# falling back to Pygame's default.
+_MONO_FONT_CANDIDATES = (
+    "consolas",         # Windows
+    "menlo",            # macOS
+    "monaco",           # macOS (older)
+    "dejavusansmono",   # Linux
+    "liberationmono",   # Linux
+    "ubuntumono",       # Linux
+    "couriernew",       # Windows / fallback
+    "courier",          # POSIX fallback
+)
 
 
 def open_maximized_window(pygame: Any, width: int, height: int, caption: str):
@@ -27,6 +42,33 @@ def is_resize_event(pygame: Any, event: Any) -> bool:
 
 def sync_window_size(owner: Any, screen: Any) -> None:
     owner.width, owner.height = screen.get_size()
+
+
+def find_mono_font_name(pygame: Any) -> Optional[str]:
+    """Return the first installed monospace font from a cross-platform list,
+    or None if Pygame's default should be used.
+
+    Pygame's SysFont accepts a comma-separated name list and tries each in
+    order, so we hand the full list back to it when nothing matches by
+    name. That gives the best chance of finding something monospace on
+    whatever the player is running.
+    """
+    available = {name.lower() for name in pygame.font.get_fonts()}
+    # Pygame.font.get_fonts() returns basenames without spaces; also try
+    # the SysFont-name form in case the user has a fuller font registry.
+    for candidate in _MONO_FONT_CANDIDATES:
+        if candidate in available:
+            return candidate
+    return None
+
+
+def mono_font(pygame: Any, size: int, bold: bool = False):
+    """Return a Pygame font that is monospace on the current platform.
+
+    Pass the result to the rest of the UI as a normal `pygame.font.Font`.
+    """
+    name = find_mono_font_name(pygame) or "monospace"
+    return pygame.font.SysFont(name, size, bold=bold)
 
 
 def _maximize_windows_window(pygame: Any) -> None:

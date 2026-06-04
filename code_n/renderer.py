@@ -1,16 +1,15 @@
 """Terminal-based 2D renderer with ANSI colors.
 
-Renders the grid state to the terminal with color-coded cells,
-supports animation/replay of grid history, and displays stats.
+Renders the grid state to the terminal with color-coded cells
+and displays stats after a run.
 """
 
 import os
 import sys
-import time
 from typing import Optional
 
 from .grid import Grid, Cell, CellType, CELL_COLORS, RESET
-from .counter import OperationCounter, OpStats, ComplexityClass
+from .counter import OperationCounter, OpStats, ComplexityClass, limit_for
 
 
 def clear_screen():
@@ -93,9 +92,13 @@ class Renderer:
             f"  Complexity:       {complexity.value}",
         ]
         if threshold:
-            passed = stats.total <= _threshold_limit(n, threshold)
+            # Use the same limit table as the engine so the on-screen
+            # PASS/FAIL matches the actual pass/fail result.
+            budget = limit_for(n, threshold)
+            passed = stats.total <= budget
             status = "\033[92mPASS\033[0m" if passed else "\033[91mFAIL\033[0m"
             lines.append(f"  Required:         {threshold.value}  [{status}]")
+            lines.append(f"  Budget:           {budget} ops")
         return "\n".join(lines)
 
     def render_frame(self, grid: Grid, title: str = "",
@@ -110,23 +113,6 @@ class Renderer:
             output += self.render_stats(stats, n, complexity, threshold)
         print(output)
 
-    def play_history(self, grid: Grid, title: str = ""):
-        """Animate the grid history."""
-        clear_screen()
-        for i, frame_cells in enumerate(grid.history):
-            # Temporarily set grid cells to this frame
-            original = grid._cells
-            grid._cells = frame_cells
-            frame_title = f"{title} [Frame {i + 1}/{grid.frame_count}]"
-            move_cursor_home()
-            print(self.render_grid(grid, frame_title))
-            grid._cells = original
-            time.sleep(self._frame_delay)
-
-        # Show final state
-        move_cursor_home()
-        print(self.render_grid(grid, f"{title} [Final]"))
-
     def display(self, grid: Grid, title: str = "",
                 counter: Optional[OperationCounter] = None,
                 n: int = 0,
@@ -139,17 +125,3 @@ class Renderer:
             complexity = counter.classify(n)
             output += self.render_stats(stats, n, complexity, threshold)
         print(output)
-
-
-def _threshold_limit(n: int, max_class: ComplexityClass) -> int:
-    import math
-    limits = {
-        ComplexityClass.O_1: 10,
-        ComplexityClass.O_LOG_N: int(math.log2(max(n, 2)) * 3) + 10,
-        ComplexityClass.O_N: n * 3 + 10,
-        ComplexityClass.O_N_LOG_N: int(n * math.log2(max(n, 2)) * 2) + 10,
-        ComplexityClass.O_N2: n * n * 2 + 10,
-        ComplexityClass.O_N3: n * n * n * 2 + 10,
-        ComplexityClass.O_2N: 2 ** min(n, 25) + 10,
-    }
-    return limits.get(max_class, 999999)

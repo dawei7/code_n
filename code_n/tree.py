@@ -103,8 +103,6 @@ class ChallengeTree:
 
     def render_tree(self, progress) -> str:
         """Render the tree as a text-based visual."""
-        completed = progress.completed if hasattr(progress, "completed") else set(progress)
-        status_for = progress.status_for if hasattr(progress, "status_for") else None
         lines = []
         lines.append(f"\033[1m=== {GAME_TITLE} Challenge Tree ===\033[0m\n")
 
@@ -124,7 +122,7 @@ class ChallengeTree:
             lines.append(f"\033[1m{category_names.get(cat, cat)}\033[0m")
 
             for node in nodes:
-                status_value = status_for(node.challenge_id) if status_for else ("done" if node.challenge_id in completed else "open")
+                status_value = progress.status_for(node.challenge_id)
                 if status_value == "done":
                     status = "\033[92mOK\033[0m"
                 elif status_value == "failed":

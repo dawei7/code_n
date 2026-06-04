@@ -69,10 +69,12 @@ class OperationCounter:
         self._progress_callback: Optional[Callable[[int, Optional[int]], None]] = None
         self._progress_interval = 250
         self._last_progress_count = 0
+        self._stats_cache: Optional[OpStats] = None
 
     def reset(self):
         self._ops.clear()
         self._snapshots.clear()
+        self._stats_cache = None
         self.clear_operation_limit()
         self.clear_progress_callback()
 
@@ -87,6 +89,8 @@ class OperationCounter:
     def record(self, op_type: OpType, detail: str = ""):
         if self._enabled:
             self._ops.append(OpRecord(op_type, detail))
+            # Invalidate cached stats; rebuilt lazily on next .stats access.
+            self._stats_cache = None
             total = len(self._ops)
             self._notify_progress(total)
             if self._operation_limit is not None and total > self._operation_limit:
@@ -140,6 +144,8 @@ class OperationCounter:
 
     @property
     def stats(self) -> OpStats:
+        if self._stats_cache is not None:
+            return self._stats_cache
         s = OpStats()
         for op in self._ops:
             if op.op_type == OpType.COMPARE:
@@ -153,6 +159,7 @@ class OperationCounter:
             elif op.op_type == OpType.CALL:
                 s.calls += 1
         s.total = len(self._ops)
+        self._stats_cache = s
         return s
 
     @property
@@ -220,3 +227,8 @@ def get_counter() -> OperationCounter:
 
 def reset_counter():
     _global_counter.reset()
+
+
+def limit_for(n: int, max_class: ComplexityClass) -> int:
+    """Return the operation budget for a required complexity class."""
+    return OperationCounter.limit_for(n, max_class)

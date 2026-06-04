@@ -25,7 +25,7 @@ from .solutions import PROJECT_ROOT, create_solution_file as create_saved_soluti
 from .tree import ChallengeTree, TreeNode
 from .grid import CellType, Grid
 from .tracked import TrackedGrid, TrackedList
-from .window import is_resize_event, open_maximized_window, sync_window_size
+from .window import is_resize_event, mono_font, open_maximized_window, sync_window_size
 
 
 @dataclass
@@ -104,10 +104,10 @@ class ChallengeNavigator:
         sync_window_size(self, screen)
         clock = pygame.time.Clock()
         fonts = {
-            "title": pygame.font.SysFont("consolas", 30, bold=True),
-            "heading": pygame.font.SysFont("consolas", 22, bold=True),
-            "body": pygame.font.SysFont("consolas", 18),
-            "small": pygame.font.SysFont("consolas", 15),
+            "title": mono_font(pygame, 30, bold=True),
+            "heading": mono_font(pygame, 22, bold=True),
+            "body": mono_font(pygame, 18),
+            "small": mono_font(pygame, 15),
         }
 
         if not self.progress.player_name:
@@ -315,7 +315,10 @@ class ChallengeNavigator:
                         implemented=challenge is not None,
                     )
                 )
-        return items
+        # Only show challenges that have an implementation. The rest still
+        # live in the tree (visible from the CLI tree view) but cluttering
+        # the navigator with "not implemented" warnings breaks the flow.
+        return [item for item in items if item.implemented]
 
     def _move_selection(self, delta: int):
         if not self.items:

@@ -105,6 +105,12 @@ class BinarySearchChallenge(Challenge):
 class BFSGridChallenge(Challenge):
     """Find shortest path in a 2D grid using BFS."""
 
+    @property
+    def max_n(self) -> int:
+        # 2D grids are constrained to 35x35; the visualizer cannot show
+        # a 50x50 maze usefully even at the smallest zoom.
+        return self.MAX_2D_N
+
     def __init__(self):
         super().__init__()
         self._grid_data: list[list[int]] = []
@@ -296,6 +302,11 @@ class BFSGridChallenge(Challenge):
 
 class DFSGridChallenge(Challenge):
     """Explore all reachable cells in a grid using DFS."""
+
+    @property
+    def max_n(self) -> int:
+        # See BFSGridChallenge for the rationale.
+        return self.MAX_2D_N
 
     def __init__(self):
         super().__init__()

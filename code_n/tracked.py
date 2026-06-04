@@ -9,7 +9,26 @@ from .counter import get_counter
 
 
 class TrackedValue:
-    """A value proxy that records normal Python comparisons."""
+    """A value proxy that records normal Python comparisons.
+
+    Comparison operators (==, !=, <, <=, >, >=) all record a `compare`
+    operation, because that's the only way to teach the player the cost
+    of an O(n log n) or O(n^2) search.
+
+    Conversions (``int(...)``, ``float(...)``, ``__index__``, ``bool(...)``)
+    and arithmetic (``+ - * / // % **``) are intentionally NOT counted.
+    A player using ``int(data[i])`` to do integer arithmetic should not
+    be punished for the conversion — only the read that produced
+    ``data[i]`` and the comparison that drove the branch cost ops.
+
+    Iteration (``for x in tv``) delegates to the underlying value, also
+    without counting; iterators are not really "reads" in the algorithmic
+    sense, and counting them would distort the complexity picture.
+
+    If you need to bypass a tracked value entirely, use ``.raw`` (the
+    bare value) or call ``unwrap_tracked(value)`` (works for either
+    TrackedValue or anything else).
+    """
 
     def __init__(self, value: Any, label: str):
         self._value = value
@@ -17,6 +36,7 @@ class TrackedValue:
 
     @property
     def raw(self) -> Any:
+        """Return the underlying value, bypassing all tracking."""
         return self._value
 
     @property
@@ -63,6 +83,8 @@ class TrackedValue:
 
     def __hash__(self) -> int:
         return hash(self._value)
+
+    # --- conversions: deliberate "do not count" choices. See class docstring. ---
 
     def __bool__(self) -> bool:
         return bool(self._value)

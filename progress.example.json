@@ -1,0 +1,7 @@
+{
+  "_comment": "Example progress.json. cOde(n) auto-generates a real progress.json on first run; you only need this file as a reference. The player_name is editable from the navigator or via `python main.py name <name>`.",
+  "player_name": "",
+  "completed": [],
+  "last_status": {},
+  "records": {}
+}
