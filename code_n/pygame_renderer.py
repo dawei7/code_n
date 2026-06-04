@@ -313,6 +313,17 @@ class PygameRenderer:
     def zoom_label(self) -> str:
         return f"{self.cell_size}px"
 
+    def _speed_display(self) -> str:
+        """Human-readable current speed for the side panel.
+
+        Shows the label (preset name or "Custom") plus the per-op delay
+        so the user can see the effect of + / - even when the replay
+        is paused. ``0.000s`` means instant (no delay between ops).
+        """
+        if self.speed_label and self.speed_label != "Custom":
+            return f"{self.speed_label} ({self.step_delay:.3f}s)"
+        return f"{self.step_delay:.3f}s/op"
+
     def _effective_cell_size(self, grid: Grid, values: Optional[list[list[Any]]]) -> int:
         return self.cell_size
 
@@ -586,9 +597,22 @@ class PygameRenderer:
                         current_detail = stop_replay()
                     elif event.key == pygame.K_r:
                         current_detail = reset_replay()
-                    elif event.key in (pygame.K_PLUS, pygame.K_EQUALS):
+                    # Speed control via +/-. The key code varies across
+                    # layouts: US keyboards send K_EQUALS for shift+= (the
+                    # main-row +), numpads send K_KP_PLUS, and some
+                    # non-US layouts use different scancodes. We check
+                    # both key codes and fall back to the unicode
+                    # character so the binding works on every layout
+                    # the player might have.
+                    elif (
+                        event.key in (pygame.K_PLUS, pygame.K_EQUALS, pygame.K_KP_PLUS)
+                        or event.unicode == "+"
+                    ):
                         current_detail = change_speed(True)
-                    elif event.key == pygame.K_MINUS:
+                    elif (
+                        event.key in (pygame.K_MINUS, pygame.K_KP_MINUS)
+                        or event.unicode == "-"
+                    ):
                         current_detail = change_speed(False)
                     elif event.key in (pygame.K_PAGEUP,):
                         self.scroll_by(0, -PAGE_JUMP_SIZE, grid, visual_values)
@@ -774,7 +798,7 @@ class PygameRenderer:
             f"Read/Write: {result.stats.reads}/{result.stats.writes}",
             f"Complexity: {result.actual_complexity.value}",
             f"Required: {result.required_complexity.value}",
-            f"n: {result.n}  Speed: {self.speed_label}",
+            f"n: {result.n}  Speed: {self._speed_display()}",
             f"Zoom: {self.zoom_label()}",
         ]
         if view_text:
@@ -798,15 +822,20 @@ class PygameRenderer:
         self._draw_text(screen, fonts["body"], f"{state}: {op_index}/{total_ops}", x + 18, text_y, self.TEXT)
         buttons = self._control_buttons(paused, stopped, op_index, total_ops)
         self._draw_controls(screen, fonts, buttons)
+        # A short reminder of the scroll/zoom/speed shortcuts sits right
+        # under the buttons so the user can find them without reading
+        # docs. Wrap to the actual panel width (the 264px content area
+        # is too narrow for the whole hint in one line, so we split
+        # across two lines that fit).
         text_y = max((button.rect.bottom for button in buttons), default=text_y) + 12
-        # A short reminder of the scroll/zoom shortcuts sits right under
-        # the buttons so the user can find panning without reading docs.
-        self._draw_text(
-            screen, fonts["small"],
-            "Right-drag/Arrows: pan  |  Wheel: zoom  |  +/-: speed",
-            x + 18, text_y, self.MUTED,
-        )
-        text_y = max((button.rect.bottom for button in buttons), default=text_y) + 32
+        hint_w = self._wrap_width(fonts)
+        for line in self._wrap("Right-drag/Arrows: pan | Wheel: zoom | +/-: speed", hint_w):
+            self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.MUTED)
+            text_y += 18
+        # Skip past the hint block before laying out the rest. The
+        # bottom-of-buttons reference is no longer correct because the
+        # hint can wrap to a second line on narrow fonts.
+        text_y += 12
         footer_top = rect.bottom - 96
         content_bottom = footer_top - 14
         previous_clip = screen.get_clip()

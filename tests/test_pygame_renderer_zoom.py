@@ -270,6 +270,34 @@ class ContinuousScrollTests(unittest.TestCase):
         self.assertGreaterEqual(PAGE_JUMP_SIZE, 5)
 
 
+class SpeedDisplayTests(unittest.TestCase):
+    """The side-panel speed line must always show the per-op delay
+    value, even after a custom +/- speed change (where the label is
+    'Custom'). Otherwise the user has no visible feedback that the
+    key did anything when the replay is paused."""
+
+    def test_preset_speed_shows_label_and_delay(self):
+        r = _make_renderer()
+        r.speed_label = "Normal"
+        r.step_delay = 0.12
+        self.assertEqual(r._speed_display(), "Normal (0.120s)")
+
+    def test_custom_speed_shows_only_delay(self):
+        """When the user has pressed +/- and the label is 'Custom',
+        the delay alone is enough information — we drop the label so
+        the line stays short enough to fit the side panel."""
+        r = _make_renderer()
+        r.speed_label = "Custom"
+        r.step_delay = 0.08
+        self.assertEqual(r._speed_display(), "0.080s/op")
+
+    def test_instant_speed_renders_cleanly(self):
+        r = _make_renderer()
+        r.speed_label = "Instant"
+        r.step_delay = 0.0
+        self.assertEqual(r._speed_display(), "Instant (0.000s)")
+
+
 class ScrollByTests(unittest.TestCase):
     def test_scroll_clamped_at_min(self):
         """Calling scroll_by with a large negative delta should clamp
