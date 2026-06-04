@@ -615,7 +615,17 @@ class PygameRenderer:
         # cell is offset by (scroll_x, scroll_y) so panning is just
         # changing those two numbers.
         previous_clip = screen.get_clip()
-        screen.set_clip(grid_rect)
+        # The row labels sit to the LEFT of the grid, so the clip has to
+        # include that column. Without this, set_clip(grid_rect) would
+        # silently discard every row label and tick line.
+        label_width = self._row_label_width(display_rows) if show_row_labels else 0
+        cell_clip = pygame.Rect(
+            grid_rect.x - label_width,
+            grid_rect.y,
+            grid_rect.width + label_width,
+            grid_rect.height,
+        )
+        screen.set_clip(cell_clip)
         for sy, row in enumerate(display_rows):
             if not row:
                 continue

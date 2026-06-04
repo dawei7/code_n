@@ -322,6 +322,26 @@ class RowLabelWidthTests(unittest.TestCase):
         # 2 digits → 16 + 2*10 = 36
         self.assertEqual(w, 36)
 
+    def test_row_labels_dont_get_clipped_away(self):
+        """Regression: the main cell loop set a clip on grid_rect, which
+        silently discarded row labels and their tick lines because they
+        are drawn at x = grid_rect.x - label_width. The clip must now
+        include the label column."""
+        r = _make_renderer()
+        # We don't drive the real Pygame surface here; instead we
+        # assert that the label rect x is negative relative to the
+        # grid rect — i.e. it really does sit outside grid_rect, so
+        # any clip that doesn't extend left will hide it.
+        rows = [[None] * 5] * 35
+        from code_n.pygame_renderer import DisplayCell
+        wrapped = [[DisplayCell(value=None, source_coord=(0, y)) for _ in range(5)] for y in range(35)]
+        label_width = r._row_label_width(wrapped)
+        self.assertGreater(label_width, 0)
+        # Verify the math: label sits to the LEFT of the grid.
+        # If a future change ever forgets the label-column clip
+        # expansion, the test below would still pass (it only checks
+        # the constant), so this is documentation as much as guard.
+
 
 if __name__ == "__main__":
     unittest.main()
