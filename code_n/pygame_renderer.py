@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 import os
 import time
+import types
 from dataclasses import dataclass, field
 from typing import Any, Iterable, Optional
 
@@ -1419,8 +1420,18 @@ class PygameRenderer:
         # _vars_scroll_y -> walk again, skipping rows outside the
         # visible window.
         items: list[tuple[str, str, Any, int]] = []
-        between_vars = 18
+        between_vars = 26  # generous gap so cells don't feel cramped
         for name, value in trace_frame.locals.items():
+            # Skip class / function / module objects in the locals
+            # list. These are almost always function-level imports
+            # the player wrote (``from code_n.tracked import
+            # TrackedQueue`` makes ``TrackedQueue`` a local binding
+            # for the class itself, not an instance). Drawing them
+            # as scalars produced the ``<class '...'>`` text the
+            # user saw in the BFS screenshot, which is just noise
+            # — the class is implicit in the variables that USE it.
+            if isinstance(value, (type, types.FunctionType, types.ModuleType)):
+                continue
             kind, payload, h = self._classify_variable(
                 value, content_w, cell_size,
             )
@@ -1454,6 +1465,13 @@ class PygameRenderer:
 
         # Second pass: walk the items, skipping rows that fall
         # outside the visible window after the scroll offset.
+        # No horizontal separator lines between variables - they
+        # were drawn at ``cur_y - between_vars // 2`` and ended
+        # up touching the cells of the previous variable when
+        # that variable was short (a single-cell scalar left the
+        # line overlapping the cell border). The generous
+        # ``between_vars`` gap alone separates the variables
+        # visually.
         cur_y = content_top - self._vars_scroll_y
         for index, (name, kind, payload, total_h) in enumerate(items):
             # Skip rows that are entirely above the visible area.
@@ -1463,15 +1481,6 @@ class PygameRenderer:
             # Stop once the bottom of the panel is reached.
             if cur_y >= content_bottom:
                 break
-
-            # Separator between variables (skip above the first).
-            if index > 0:
-                pygame.draw.line(
-                    screen, self.GRID_LINE,
-                    (content_x, cur_y - between_vars // 2),
-                    (content_x + content_w, cur_y - between_vars // 2),
-                    1,
-                )
 
             # Variable name on its own line.
             self._draw_text(
@@ -1543,25 +1552,26 @@ class PygameRenderer:
             height = len(raw) * (grid_cell + 1) + 4
             return "grid", (raw, grid_cell), height
 
-        # Queue / Stack — render as labeled strips.
+        # Queue / Stack — render as a vertical list of rows
+        # (one element per row). Each element is either a
+        # single scalar cell or, if the element is a tuple, a
+        # row of cells (one per sub-value). The whole list
+        # grows downward; the variables panel scrolls if it
+        # doesn't fit.
         if TrackedQueue is not None and isinstance(value, TrackedQueue):
             items = list(value.raw)
             grid_cell = cell_size
-            # Cap at a reasonable width; if the queue is huge,
-            # the user can scroll the variables panel to see it.
-            cols = max(1, (content_w) // (grid_cell + 1))
-            rows = (len(items) + cols - 1) // max(1, cols) if items else 1
-            height = max(grid_cell, rows * (grid_cell + 1)) + 6
+            # Total height = label row (20px) + one row per
+            # element. Each row is cell_size + 4 (gap). The
+            # scroll handles overflow.
+            per_row_h = grid_cell + 4
+            height = 20 + (len(items) * per_row_h if items else grid_cell) + 2
             return "queue", (items, grid_cell), height
         if TrackedStack is not None and isinstance(value, TrackedStack):
             items = list(value.raw)
-            # Stack: top of stack at the top of the column.
-            # Vertical strip, but allow it to wrap horizontally
-            # if the stack is huge.
             grid_cell = cell_size
-            cols = max(1, (content_w) // (grid_cell + 1))
-            rows = (len(items) + cols - 1) // max(1, cols) if items else 1
-            height = max(grid_cell, rows * (grid_cell + 1)) + 6
+            per_row_h = grid_cell + 4
+            height = 20 + (len(items) * per_row_h if items else grid_cell) + 2
             return "stack", (items, grid_cell), height
 
         # Unwrap TrackedList and TrackedSet to plain list/set so
@@ -1759,33 +1769,48 @@ class PygameRenderer:
         label: str = "front→",
         var_name: Optional[str] = None,
     ) -> None:
-        """Draw a queue / stack as a strip of cells with a small
-        arrow label indicating the operational end (the end that
-        the next dequeue / pop reads from). The first cell
-        (front of the queue / top of the stack) is on the left;
-        new items go to the right.
+        """Draw a queue / stack as a *vertical* list of rows. Each
+        element gets one row. If the element is a tuple, its
+        sub-values each get their own cell in the row (so a
+        BFS ``frontier`` of ``(row, col, distance)`` triples
+        shows as 3 cells per row, all clearly readable). The
+        label sits at the top indicating which end is the
+        operational one ("front" for queue, "top" for stack -
+        the next dequeue / pop is the first element).
+
+        Layout: one element per row, growing downward. With the
+        scrollable variables panel this lets the user see the
+        whole queue without anything getting truncated.
         """
         import pygame
         if not items:
             self._draw_text(screen, fonts["small"], "(empty)", x, y + cell_size // 2 - 8, self.MUTED)
             return
         cell_gap = 1
-        # Arrow label sits to the right of the first cell so
-        # the user can see "this end is the front/top".
+        # Label at the very top of the strip pointing AT the
+        # first element (which is the front of the queue or
+        # the top of the stack). For "front→" (queue) the
+        # first element is the next to be dequeued, so the
+        # arrow points down at it. Same for "top→" (stack).
+        self._draw_text(screen, fonts["small"], f"{label} ↓", x, y, self.MUTED)
+        row_y = y + 20
         for index, item in enumerate(items):
-            cx = x + index * (cell_size + cell_gap)
-            self._draw_one_cell(screen, fonts, cx, y, cell_size, item,
-                                touched_key=(var_name, None) if var_name else None)
-        # Label arrow at the end of the strip showing the
-        # direction. For "front→" (queue) the front is the LEFT
-        # so the arrow points left; for "top→" (stack) the top
-        # is the LEFT as well (LIFO - the next pop is at the
-        # end of the list, but for visualization we want the top
-        # of the stack prominent on the left). We use "←" for
-        # both to keep the visual simple.
-        arrow = "←" if label.startswith("front") or label.startswith("top") else "→"
-        arrow_x = x + len(items) * (cell_size + cell_gap) + 4
-        self._draw_text(screen, fonts["small"], f"{label} {arrow}", arrow_x, y + 4, self.MUTED)
+            if isinstance(item, (tuple, list)):
+                # Tuple / list element: each sub-value gets its
+                # own cell, drawn left to right.
+                for j, sub in enumerate(item):
+                    cx = x + j * (cell_size + cell_gap)
+                    self._draw_one_cell(
+                        screen, fonts, cx, row_y, cell_size, sub,
+                        touched_key=(var_name, index) if var_name else None,
+                    )
+            else:
+                # Scalar element: single cell.
+                self._draw_one_cell(
+                    screen, fonts, x, row_y, cell_size, item,
+                    touched_key=(var_name, index) if var_name else None,
+                )
+            row_y += cell_size + cell_gap + 4  # small gap between rows
 
     def _draw_flat_strip(
         self,
