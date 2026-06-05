@@ -27,7 +27,32 @@ from typing import Any, Optional
 
 from challenges.spec import AlgorithmSpec, Sample
 from code_n.counter import ComplexityClass
+from code_n.grid import CellType, Grid
 from code_n.tracked import TrackedList
+
+
+# --- Visualisation helper. The Pygame renderer needs a Grid to
+# draw on, and the user has asked that every data structure get a
+# representative visual. This helper builds a Grid from a list of
+# rows (one per "field") of equal length and fills each cell with
+# the corresponding value. ---
+
+
+def _make_data_grid(rows: list[list], cell_type: CellType = CellType.VALUE) -> Grid:
+    """Build a Grid that visualises ``rows`` (a list of equal-length lists).
+
+    Each row in the input becomes a row in the grid; columns are
+    aligned so cell (column, row_index) shows the i-th element of
+    rows[row_index]. The grid is sized to fit, with empty cells if
+    any row is shorter than the longest.
+    """
+    n_cols = max((len(r) for r in rows), default=0)
+    n_rows = max(len(rows), 1)
+    grid = Grid(n_cols, n_rows)
+    for row_index, row in enumerate(rows):
+        for col_index, value in enumerate(row):
+            grid.set(col_index, row_index, cell_type, value)
+    return grid
 
 
 # --- Activity Selection ---
@@ -44,6 +69,7 @@ def _setup_activity(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
     challenge._start = [s for s, _ in activities]
     challenge._finish = [f for _, f in activities]
     challenge._expected = _activity_count(challenge._start, challenge._finish, challenge._n)
+    challenge.grid = _make_data_grid([challenge._start, challenge._finish])
     return {"start": list(challenge._start), "finish": list(challenge._finish), "n": challenge._n}
 
 
@@ -99,6 +125,7 @@ def _setup_fractional_knapsack(challenge, n: int, seed: Optional[int]) -> dict[s
     challenge._expected = _fractional_knapsack(
         challenge._values, challenge._weights, challenge._capacity,
     )
+    challenge.grid = _make_data_grid([challenge._values, challenge._weights])
     return {
         "values": TrackedList(challenge._values),
         "weights": TrackedList(challenge._weights),
@@ -165,6 +192,9 @@ def _setup_huffman(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
     challenge._chars = [chr(ord("a") + i) for i in range(challenge._n)]
     challenge._freq = [rng.randint(1, 50) for _ in range(challenge._n)]
     challenge._expected = _huffman_total_bits(challenge._freq)
+    # Visualise frequencies; the chars label would not fit in a
+    # 1-cell-wide row, so we only show the numbers.
+    challenge.grid = _make_data_grid([challenge._freq])
     return {
         "chars": list(challenge._chars),
         "freq": list(challenge._freq),
@@ -239,6 +269,9 @@ def _setup_job_sequencing(challenge, n: int, seed: Optional[int]) -> dict[str, A
         profit = rng.randint(1, 100)
         challenge._jobs.append((i, deadline, profit))
     challenge._expected = _job_sequencing(challenge._jobs, challenge._n)
+    challenge.grid = _make_data_grid(
+        [[d for _, d, _ in challenge._jobs], [p for _, _, p in challenge._jobs]],
+    )
     return {
         "deadline": [d for _, d, _ in challenge._jobs],
         "profit": [p for _, _, p in challenge._jobs],
@@ -304,6 +337,7 @@ def _setup_optimal_merge(challenge, n: int, seed: Optional[int]) -> dict[str, An
     challenge._n = min(n, 8)
     challenge._sizes = [rng.randint(1, 100) for _ in range(challenge._n)]
     challenge._expected = _optimal_merge_cost(challenge._sizes)
+    challenge.grid = _make_data_grid([challenge._sizes])
     return {"sizes": list(challenge._sizes), "n": challenge._n}
 
 
@@ -373,6 +407,7 @@ def _setup_gas_station(challenge, n: int, seed: Optional[int]) -> dict[str, Any]
     challenge._gas = gas
     challenge._cost = cost
     challenge._expected = start
+    challenge.grid = _make_data_grid([gas, cost])
     return {"gas": list(gas), "cost": list(cost), "n": challenge._n}
 
 
@@ -435,6 +470,7 @@ def _setup_jump_game(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
             arr[0] = challenge._n - 1
     challenge._arr = arr
     challenge._expected = _min_jumps(arr, challenge._n)
+    challenge.grid = _make_data_grid([arr])
     return {"arr": list(arr), "n": challenge._n}
 
 
@@ -493,6 +529,7 @@ def _setup_candy(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
     challenge._n = min(max(n, 3), 30)
     challenge._ratings = [rng.randint(1, 10) for _ in range(challenge._n)]
     challenge._expected = _candy_count(challenge._ratings)
+    challenge.grid = _make_data_grid([challenge._ratings])
     return {"ratings": list(challenge._ratings), "n": challenge._n}
 
 
@@ -557,6 +594,7 @@ def _setup_lemonade(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
     rng.shuffle(bills)
     challenge._bills = bills
     challenge._expected = _lemonade_change(bills)
+    challenge.grid = _make_data_grid([bills])
     return {"bills": list(bills), "n": challenge._n}
 
 
@@ -628,6 +666,12 @@ def _setup_min_coins(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
     challenge._coins = [1, 5, 10, 25]
     challenge._amount = rng.randint(1, max(2, n) * 20)
     challenge._expected = _min_coins(challenge._coins, challenge._amount)
+    # Two rows: coin denominations on top, target amount on the
+    # bottom (the amount is constant across the row, but the row
+    # makes the visual obvious).
+    challenge.grid = _make_data_grid(
+        [challenge._coins, [challenge._amount] * len(challenge._coins)],
+    )
     return {
         "coins": list(challenge._coins),
         "amount": challenge._amount,
