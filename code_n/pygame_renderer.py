@@ -859,19 +859,23 @@ class PygameRenderer:
             prefix = "Breakpoint line" if trace_frame.breakpoint else "Line"
             self._draw_text(screen, fonts["body"], f"{prefix} {trace_frame.line_no} variables", x + 18, text_y, self.TEXT)
             text_y += 24
-            truncated = False
-            for name, value in list(trace_frame.locals.items())[:9]:
-                for line in self._wrap(f"{name} = {value}", wrap_w)[:2]:
-                    if text_y + 18 > variables_bottom:
-                        truncated = True
-                        break
-                    self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.MUTED)
-                    text_y += 18
-                if truncated:
-                    if text_y + 18 <= variables_bottom:
-                        self._draw_text(screen, fonts["small"], "...", x + 18, text_y, self.MUTED)
+            panel_inner_w = self.panel_width - 36
+            # Cap to the first 6 variables so the panel doesn't
+            # get dominated by a single huge list. Visuals are
+            # bigger per variable than text was.
+            for name, value in list(trace_frame.locals.items())[:6]:
+                text_y = self._draw_variable_visual(
+                    screen, fonts,
+                    x=x + 18,
+                    y=text_y,
+                    max_width=panel_inner_w,
+                    max_y=variables_bottom,
+                    name=name,
+                    value=value,
+                )
+                if text_y + 4 >= variables_bottom:
                     break
-            text_y += 12
+            text_y += 8
 
         text_y = max(text_y, content_bottom - return_height)
         self._draw_text(screen, fonts["body"], "Return value", x + 18, text_y, self.TEXT)
@@ -1291,6 +1295,151 @@ class PygameRenderer:
 
     def _draw_text(self, screen, font, text, x, y, color):
         screen.blit(font.render(text, True, color), (x, y))
+
+    # --- Variable visual rendering. The side panel used to dump
+    # truncated text for every local variable, which is hard to scan
+    # and hides the actual structure. The new path renders each
+    # variable as a small grid of cells, one per element, with the
+    # variable name as a label above. ---
+
+    def _draw_variable_visual(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        max_width: int,
+        max_y: int,
+        name: str,
+        value,
+    ) -> int:
+        """Draw a labeled visual representation of (name, value).
+
+        Lists/tuples/TrackedList get a row of small cells, one per
+        element. Dicts get a 2-row "key / value" mini-grid. Scalars
+        (int, str, bool, float, None) get a single cell. Nested or
+        unknown types fall back to truncated text. Returns the new
+        ``y`` after drawing.
+        """
+        import pygame
+
+        cell_size = 18
+        cell_gap = 1
+        label_h = 16
+        cell_h = cell_size
+
+        # Stop early if the label alone doesn't fit.
+        if y + label_h > max_y:
+            return y
+
+        self._draw_text(screen, fonts["body"], f"{name}:", x, y, self.TEXT)
+        y += label_h
+
+        def _draw_one_cell(px: int, py: int, val) -> None:
+            """Draw a single cell with the string-coerced value."""
+            label = repr(val)
+            if len(label) > 6:
+                label = label[:5] + "…"
+            cell_rect = pygame.Rect(px, py, cell_size, cell_h)
+            # Cell background: slightly lighter than PANEL so the
+            # visual reads as a stack of cells against the panel.
+            cell_bg = (52, 60, 74)
+            pygame.draw.rect(
+                screen,
+                cell_bg,
+                cell_rect,
+                border_radius=3,
+            )
+            pygame.draw.rect(
+                screen,
+                self.GRID_LINE,
+                cell_rect,
+                width=1,
+                border_radius=3,
+            )
+            cell_font = fonts["small"] if cell_size < 24 else fonts["body"]
+            text_surface = cell_font.render(label, True, self.TEXT)
+            screen.blit(
+                text_surface,
+                text_surface.get_rect(center=cell_rect.center),
+            )
+
+        def _row_y_offset(row_index: int, total_rows: int) -> int:
+            return y + row_index * (cell_h + 2)
+
+        # Unwrap TrackedList (and friends) so we can iterate.
+        raw = value
+        try:
+            from code_n.tracked import TrackedList as _TL
+            if isinstance(raw, _TL):
+                raw = list(raw)
+        except ImportError:
+            pass
+
+        # list / tuple: 1+ rows of cells.
+        if isinstance(raw, (list, tuple)) and raw:
+            items = list(raw)
+            cols_per_row = max(1, (max_width + cell_gap) // (cell_size + cell_gap))
+            # Truncate if huge so we don't dominate the panel.
+            MAX_CELLS = 80
+            truncated_count = 0
+            if len(items) > MAX_CELLS:
+                truncated_count = len(items) - MAX_CELLS
+                items = items[:MAX_CELLS]
+            rows_needed = (len(items) + cols_per_row - 1) // cols_per_row
+            if y + rows_needed * (cell_h + 2) > max_y:
+                # Not enough room to show anything.
+                return y - label_h
+            for index, item in enumerate(items):
+                row = index // cols_per_row
+                col = index % cols_per_row
+                cx = x + col * (cell_size + cell_gap)
+                cy = _row_y_offset(row, rows_needed)
+                _draw_one_cell(cx, cy, item)
+            y += rows_needed * (cell_h + 2)
+            if truncated_count:
+                self._draw_text(
+                    screen, fonts["small"],
+                    f"... +{truncated_count} more",
+                    x, y, self.MUTED,
+                )
+                y += 18
+            return y + 4
+
+        # dict: 2 rows (keys, values).
+        if isinstance(raw, dict) and raw:
+            items = list(raw.items())
+            cols_per_row = max(1, (max_width + cell_gap) // (cell_size + cell_gap))
+            MAX_PAIRS = 30
+            truncated_count = 0
+            if len(items) > MAX_PAIRS:
+                truncated_count = len(items) - MAX_PAIRS
+                items = items[:MAX_PAIRS]
+            rows_needed = 2
+            if y + rows_needed * (cell_h + 2) > max_y:
+                return y - label_h
+            for index, (k, v) in enumerate(items):
+                col = index
+                if col >= cols_per_row:
+                    break
+                cx = x + col * (cell_size + cell_gap)
+                _draw_one_cell(cx, _row_y_offset(0, rows_needed), k)
+                _draw_one_cell(cx, _row_y_offset(1, rows_needed), v)
+            y += rows_needed * (cell_h + 2) + 4
+            if truncated_count:
+                self._draw_text(
+                    screen, fonts["small"],
+                    f"... +{truncated_count} more",
+                    x, y, self.MUTED,
+                )
+                y += 18
+            return y + 4
+
+        # Scalar: 1 cell.
+        if y + cell_h > max_y:
+            return y - label_h
+        _draw_one_cell(x, y, raw)
+        return y + cell_h + 8
 
     def _values_from_grid(self, grid: Grid) -> list[list[Any]]:
         rows: list[list[Any]] = []
