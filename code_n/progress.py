@@ -90,12 +90,18 @@ class PlayerProgress:
         return progress
 
 
-def save_progress(progress: PlayerProgress, path: str = PROGRESS_FILE):
+def save_progress(progress: PlayerProgress, path: str | None = None):
+    # Resolve the path at call time (not import time) so tests
+    # can patch PROGRESS_FILE before invoking this function.
+    if path is None:
+        path = PROGRESS_FILE
     with open(path, "w", encoding="utf-8") as f:
         json.dump(progress.to_dict(), f, indent=2)
 
 
-def load_progress(path: str = PROGRESS_FILE) -> PlayerProgress:
+def load_progress(path: str | None = None) -> PlayerProgress:
+    if path is None:
+        path = PROGRESS_FILE
     if not os.path.exists(path):
         return PlayerProgress()
     with open(path, "r", encoding="utf-8") as f:

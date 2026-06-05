@@ -158,6 +158,9 @@ class ChallengeNavigator:
                         if action == "open":
                             self.open_selected_script()
                             continue
+                        if action == "solve":
+                            self.solve_selected_challenge()
+                            continue
                         if action == "reset":
                             self.reset_progress_statuses()
                             continue
@@ -222,6 +225,93 @@ class ChallengeNavigator:
 
     def start_selected(self):
         self.open_selected_script()
+
+    def solve_selected_challenge(self):
+        """Copy the canonical optimal solution to the player's
+        solutions/<id>.py, run it to capture the actual op count,
+        and mark the challenge as done in progress.
+
+        This is a pedagogical "give up and see the answer" action.
+        The player can read the file in their editor, memorize the
+        pattern, then click Reset to clear the completion and try
+        again themselves.
+        """
+        item = self.current_item()
+        if not item:
+            return
+
+        challenge_id = item.node.challenge_id
+        optimal_path = os.path.join(
+            PROJECT_ROOT, "optimal_solutions", f"{challenge_id}.py",
+        )
+        if not os.path.exists(optimal_path):
+            self.message = (
+                f"No optimal solution available for {challenge_id}."
+            )
+            return
+
+        target_path = default_solution_path(challenge_id)
+        rel_target = os.path.relpath(target_path, PROJECT_ROOT)
+        try:
+            shutil.copy2(optimal_path, target_path)
+        except OSError as exc:
+            self.message = f"Could not write {rel_target}: {exc}"
+            return
+
+        # Run the optimal solution to capture the real op count and
+        # mark the challenge as done. We import the file via the
+        # same loader the runner uses, so the solve() function is
+        # available under the same module semantics.
+        try:
+            import importlib.util
+            spec = importlib.util.spec_from_file_location(
+                "_optimal_player", target_path,
+            )
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)  # type: ignore[union-attr]
+            challenge = get_challenge(challenge_id)
+            if challenge is None:
+                self.message = (
+                    f"Optimal saved to {rel_target} but no challenge is registered."
+                )
+                return
+            result = challenge.run(
+                solve_fn=module.solve,
+                n=challenge.max_n,
+                seed=1,
+                animate=False,
+                pygame=False,
+            )
+        except Exception as exc:  # noqa: BLE001
+            self.message = (
+                f"Optimal saved to {rel_target} but failed to run: "
+                f"{type(exc).__name__}: {exc}"
+            )
+            return
+
+        if not result.passed:
+            self.message = (
+                f"Optimal saved to {rel_target} but the verifier "
+                f"rejected it: {result.message}"
+            )
+            return
+
+        # Mark the challenge as completed with the optimal's stats.
+        # Future runs by the player (if they edit and re-run) will
+        # overwrite this with their own numbers via the runner's
+        # existing progress.complete call.
+        self.progress.complete(
+            challenge_id,
+            result.stats.total,
+            result.actual_complexity.value,
+        )
+        save_progress(self.progress)
+        self.items = self._build_items()
+        self.message = (
+            f"Optimal saved to {rel_target} and marked as done "
+            f"({result.stats.total} ops, {result.actual_complexity.value}). "
+            f"Open the file to study it, or press Reset to clear and try again."
+        )
 
     def run_selected_challenge(self):
         item = self.current_item()
@@ -469,25 +559,38 @@ class ChallengeNavigator:
     def _draw_action_buttons(self, screen, fonts, area, y: int):
         import pygame
 
-        gap = 8
-        width = (area.width - 36 - gap * 3) // 4
+        # Five buttons in one row. gap=6 leaves enough room for the
+        # 5-character "Solve" label at 18px font inside the 40-ish
+        # pixel-wide button.
+        gap = 6
+        width = (area.width - 36 - gap * 4) // 5
         explore_rect = pygame.Rect(area.x + 18, y, width, 44)
         run_rect = pygame.Rect(explore_rect.right + gap, y, width, 44)
         open_rect = pygame.Rect(run_rect.right + gap, y, width, 44)
-        reset_rect = pygame.Rect(open_rect.right + gap, y, width, 44)
-        self._button_rects = [("explore", explore_rect), ("run", run_rect), ("open", open_rect), ("reset", reset_rect)]
+        solve_rect = pygame.Rect(open_rect.right + gap, y, width, 44)
+        reset_rect = pygame.Rect(solve_rect.right + gap, y, width, 44)
+        self._button_rects = [
+            ("explore", explore_rect),
+            ("run", run_rect),
+            ("open", open_rect),
+            ("solve", solve_rect),
+            ("reset", reset_rect),
+        ]
 
         pygame.draw.rect(screen, self.SELECTED, explore_rect, border_radius=7)
         pygame.draw.rect(screen, self.ACCENT, run_rect, border_radius=7)
         pygame.draw.rect(screen, self.SURFACE_ALT, open_rect, border_radius=7)
+        # Solve is "give up and see the answer". Warning color marks
+        # it as a non-ideal action from a learning perspective.
+        pygame.draw.rect(screen, self.WARNING, solve_rect, border_radius=7)
         pygame.draw.rect(screen, self.WARNING, reset_rect, border_radius=7)
-        pygame.draw.rect(screen, self.GRID_LINE, explore_rect, width=1, border_radius=7)
-        pygame.draw.rect(screen, self.GRID_LINE, run_rect, width=1, border_radius=7)
-        pygame.draw.rect(screen, self.GRID_LINE, open_rect, width=1, border_radius=7)
-        pygame.draw.rect(screen, self.GRID_LINE, reset_rect, width=1, border_radius=7)
+        for rect in self._button_rects:
+            _, r = rect
+            pygame.draw.rect(screen, self.GRID_LINE, r, width=1, border_radius=7)
         self._center_text(screen, fonts["body"], "Explore", explore_rect, self.TEXT)
         self._center_text(screen, fonts["body"], "Run", run_rect, self.TEXT)
         self._center_text(screen, fonts["body"], "Open", open_rect, self.TEXT)
+        self._center_text(screen, fonts["body"], "Solve", solve_rect, self.TEXT)
         self._center_text(screen, fonts["body"], "Reset", reset_rect, self.TEXT)
 
     def _explore_buttons(self):

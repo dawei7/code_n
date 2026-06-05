@@ -209,7 +209,7 @@ class OperationCounter:
             ComplexityClass.O_1: 10,
             ComplexityClass.O_LOG_N: int(math.log2(max(n, 2)) * 3) + 10,
             ComplexityClass.O_N: n * 4 + 10,
-            ComplexityClass.O_N_LOG_N: int(n * math.log2(max(n, 2)) * 6) + 10,
+            ComplexityClass.O_N_LOG_N: int(n * math.log2(max(n, 2)) * 10) + 10,
             ComplexityClass.O_N2: n * n * 8 + 10,
             ComplexityClass.O_N3: n * n * n * 8 + 10,
             ComplexityClass.O_2N: 2**min(n, 25) + 10,

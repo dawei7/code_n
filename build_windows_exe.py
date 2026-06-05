@@ -45,7 +45,7 @@ def ensure_pyinstaller():
 
 def copy_player_files():
     DIST_DIR.mkdir(parents=True, exist_ok=True)
-    for folder_name in ["solutions", "player_scripts"]:
+    for folder_name in ["solutions", "player_scripts", "optimal_solutions"]:
         src = ROOT / folder_name
         dst = DIST_DIR / folder_name
         if dst.exists():
