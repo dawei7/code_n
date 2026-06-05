@@ -126,10 +126,19 @@ def _serialize_locals(locals_map: dict[str, Any]) -> dict[str, Any]:
             continue
         # Unwrap TrackedValue so the renderer gets a plain object.
         # (TrackedList stays as-is so we can render it like a list.)
+        # The TrackedValue proxy exposes the underlying value via
+        # ``.raw`` (not ``.value`` - that attribute doesn't
+        # exist and accessing it routes through ``__getattr__``
+        # to the wrapped int/str/etc., which raises
+        # AttributeError: 'int' object has no attribute 'value'.
+        # The bug only triggered for solutions that put a
+        # TrackedValue in their locals (e.g. quicksort's
+        # ``pivot = items[high]``); the previous sorts only
+        # worked with TrackedList, which is not a TrackedValue.
         try:
             from code_n.tracked import TrackedValue as _TV
             if isinstance(value, _TV):
-                value = value.value
+                value = value.raw
         except ImportError:
             pass
         result[key] = value

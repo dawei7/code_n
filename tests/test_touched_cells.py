@@ -337,5 +337,73 @@ class ExtractTouchedCellsTests(unittest.TestCase):
         self.assertEqual(touched.get(("data", 5)), "WRITE")
 
 
+class SerializeLocalsTests(unittest.TestCase):
+    """``_serialize_locals`` runs on every Python line event
+    inside the player's ``solve`` function. It unwraps
+    TrackedValue proxies so the renderer gets the underlying
+    int/str/etc. (TrackedList is left alone so the variables
+    panel can render it like a list.)
+
+    The bug the user hit: the unwrap did ``value = value.value``,
+    but TrackedValue's public attribute is ``.raw`` - ``.value``
+    doesn't exist, and accessing it routes through
+    ``TrackedValue.__getattr__`` to the wrapped object. For an
+    underlying int that becomes ``getattr(int_instance, 'value')``
+    which raises ``AttributeError: 'int' object has no attribute
+    'value'``. The error fired on quicksort's first line
+    (``pivot = items[high]``) because that line is the first one
+    across the whole catalog to put a TrackedValue into the
+    local variables. Earlier sorts only had TrackedList as a
+    local, which is not a TrackedValue so the buggy branch was
+    skipped.
+    """
+
+    def test_tracked_value_is_unwrapped_to_underlying_int(self):
+        from code_n.execution_trace import _serialize_locals
+        from code_n.tracked import TrackedValue
+        tv = TrackedValue(42, "list[5]")
+        result = _serialize_locals({"pivot": tv, "n": 20})
+        self.assertEqual(result["pivot"], 42)
+        self.assertNotIsInstance(result["pivot"], TrackedValue)
+        self.assertEqual(result["n"], 20)
+
+    def test_tracked_value_with_string_underlying(self):
+        from code_n.execution_trace import _serialize_locals
+        from code_n.tracked import TrackedValue
+        tv = TrackedValue("hello", "x")
+        result = _serialize_locals({"name": tv})
+        self.assertEqual(result["name"], "hello")
+
+    def test_tracked_list_is_left_alone(self):
+        from code_n.execution_trace import _serialize_locals
+        from code_n.tracked import TrackedList
+        tl = TrackedList([1, 2, 3])
+        result = _serialize_locals({"data": tl})
+        # TrackedList is not a TrackedValue, so it should pass
+        # through unchanged (the variables panel unwraps it
+        # itself).
+        self.assertIs(result["data"], tl)
+
+    def test_mixed_locals_with_tracked_value_and_list(self):
+        """Quicksort's partition_3way has pivot (TrackedValue)
+        and items (TrackedList) and several int locals. All of
+        them must serialize without raising."""
+        from code_n.execution_trace import _serialize_locals
+        from code_n.tracked import TrackedList, TrackedValue
+        result = _serialize_locals({
+            "items": TrackedList([3, 1, 4, 1, 5, 9, 2, 6]),
+            "pivot": TrackedValue(9, "list[5]"),
+            "low": 0,
+            "high": 7,
+            "lt": 0,
+            "i": 0,
+            "gt": 7,
+        })
+        self.assertEqual(result["pivot"], 9)
+        self.assertEqual(result["high"], 7)
+        # The TrackedList reference is preserved (not copied).
+        self.assertIsInstance(result["items"], TrackedList)
+
+
 if __name__ == "__main__":
     unittest.main()
