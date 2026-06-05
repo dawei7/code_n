@@ -1392,12 +1392,16 @@ class PygameRenderer:
             # Cells. The strip pulls touched-cell info from
             # self._touched_cells (indexed by index alone, since
             # the engine's op.detail hardcodes the variable
-            # name as "list").
+            # name as "list"). We pass ``name`` so the strip can
+            # build a (var_name, index) key for the touched-cell
+            # tracker - this prevents ``ratings[i]`` from
+            # accidentally flashing ``candies[i]`` too.
             self._draw_variable_strip(
                 screen, fonts,
                 strip_x, y,
                 cell_size, cell_gap, cols_per_row,
                 raw,
+                var_name=name,
             )
             y += needed_h - 22 - idx_label_h + 6
             shown += 1
@@ -1434,6 +1438,7 @@ class PygameRenderer:
         cell_gap: int,
         cols_per_row: int,
         raw,
+        var_name: Optional[str] = None,
     ) -> None:
         """Render a list / dict / scalar as a row (or two rows for
         dicts) of cells. Uses ``str()`` (not ``repr()``) for each
@@ -1441,20 +1446,21 @@ class PygameRenderer:
         numbers appear as plain numbers.
 
         If ``var_name`` is given, cells whose **index** was
-        touched by the most recent operation flash in the
-        op-type color (read=blue, write=yellow, compare=red,
-        swap=orange) for ~0.4s, then fade back to the default
-        cell color. We match by index because the engine's
-        op.detail hardcodes the variable name as ``list`` in
-        every detail string regardless of what the player
-        actually called their variable; matching by index is
-        robust to that quirk and false-positives are rare in
-        practice (most challenges manipulate one main list).
+        touched by the most recent operation stay colored in
+        the op-type color (read=blue, write=yellow, compare=red,
+        swap=orange) for as long as the current op is on
+        screen. The cells are keyed by ``(var_name, index)`` so
+        a line that only touches ``ratings[i]`` only flashes the
+        ``ratings`` strip, not ``candies`` at the same index.
+
+        When the player is paused / in step mode, the dict is
+        not replaced, so the touched cells stay colored until
+        the player advances - exactly the 'leave it colored if
+        paused' behavior the user asked for.
         """
-        import pygame, time as _time
+        import pygame
 
         cell_bg = (52, 60, 74)
-        flash_window_seconds = 0.4
         op_colors = {
             "READ": self.READ,
             "WRITE": self.WRITE,
@@ -1471,29 +1477,26 @@ class PygameRenderer:
             except Exception:
                 return "?"
 
-        def _color_for(index: int) -> tuple:
-            """Return the cell background color for ``index``,
-            taking into account the recent touched-cell flash.
-            Returns the default cell_bg if the cell isn't touched
-            or the flash has expired.
+        def _color_for(var_key) -> tuple:
+            """Return the cell background color for ``var_key``,
+            which is the (var_name, index) tuple the renderer
+            is currently drawing. Returns the default cell_bg if
+            the cell isn't in the touched-cells dict.
             """
             if not self._touched_cells:
                 return cell_bg
-            entry = self._touched_cells.get(index)
+            entry = self._touched_cells.get(var_key)
             if entry is None:
                 return cell_bg
-            ts, op_type = entry
-            if (_time.time() - ts) > flash_window_seconds:
-                return cell_bg
-            return op_colors.get(op_type, cell_bg)
+            return op_colors.get(entry, cell_bg)
 
-        def _cell(px: int, py: int, val, touched_index=None) -> None:
+        def _cell(px: int, py: int, val, touched_key=None) -> None:
             label = _format(val)
             if len(label) > 6:
                 label = label[:5] + "…"
             rect = pygame.Rect(px, py, cell_size, cell_size)
             pygame.draw.rect(
-                screen, _color_for(touched_index), rect, border_radius=3,
+                screen, _color_for(touched_key), rect, border_radius=3,
             )
             pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=3)
             cell_font = fonts["cell"] if cell_size >= 28 else fonts["small"]
@@ -1508,7 +1511,7 @@ class PygameRenderer:
                 _cell(
                     x + col * (cell_size + cell_gap),
                     y + row * (cell_size + 2),
-                    item, touched_index=index,
+                    item, touched_key=(var_name, index),
                 )
             return
         if isinstance(raw, dict) and raw:
@@ -1566,8 +1569,8 @@ class PygameRenderer:
         self,
         op: OpRecord,
         trace_frame,
-    ) -> dict[int, tuple[float, str]]:
-        """Extract touched-cell indices for a ``CALL`` op.
+    ) -> dict[tuple[str, int], str]:
+        """Extract touched (var_name, index) pairs for a ``CALL`` op.
 
         For line-based tracing, the engine records one CALL op
         per source line. The detail is just ``line N`` and the
@@ -1576,31 +1579,35 @@ class PygameRenderer:
         ``trace_frame.source_file`` at ``trace_frame.line_no`` and
         walk its AST for Subscript references. The corresponding
         list indices are evaluated against the live locals.
+
+        Returns a dict keyed by ``(var_name, index)`` so the
+        renderer can match against the actual variable being
+        drawn. Index-only matching would flash ``ratings[i]`` and
+        ``candies[i]`` together even though only ``ratings`` was
+        touched.
         """
-        import time as _time, ast as _ast
-        touched: dict[int, tuple[float, str]] = {}
+        import ast as _ast
+        touched: dict[tuple[str, int], str] = {}
         if not trace_frame:
-            return {}
+            return touched
         source_file = getattr(trace_frame, "source_file", None)
         line_no = trace_frame.line_no
         if not source_file or not line_no or line_no <= 0:
-            return {}
+            return touched
         try:
             with open(source_file, "r", encoding="utf-8", errors="replace") as f:
                 lines = f.readlines()
         except OSError:
-            return {}
+            return touched
         idx = line_no - 1
         if idx < 0 or idx >= len(lines):
-            return {}
+            return touched
         text = lines[idx].rstrip().lstrip()
 
         op_kind = self._infer_call_kind(text) or "READ"
         safe_builtins = self._safe_builtins()
         locals_dict = trace_frame.locals or {}
 
-        # if / while lines don't parse standalone (need a body)
-        # - pull the test out so we can walk the subscripts inside.
         stripped = text.lstrip()
         try:
             tree = _ast.parse(text, mode="exec")
@@ -1611,16 +1618,19 @@ class PygameRenderer:
                     try:
                         tree = _ast.parse(test_str, mode="eval")
                     except SyntaxError:
-                        return {}
+                        return touched
                     break
             else:
                 try:
                     tree = _ast.parse(text, mode="eval")
                 except SyntaxError:
-                    return {}
+                    return touched
 
         for node in _ast.walk(tree):
             if isinstance(node, _ast.Subscript) and isinstance(node.ctx, _ast.Load):
+                # The variable being subscripted: only flash
+                # THIS list, not every list at the same index.
+                var_src = _ast.unparse(node.value)
                 index_src = _ast.unparse(node.slice)
                 try:
                     sub_tree = _ast.parse(index_src, mode="eval")
@@ -1635,7 +1645,7 @@ class PygameRenderer:
                 except Exception:
                     continue
                 if isinstance(index, int):
-                    touched[index] = (_time.time(), op_kind)
+                    touched[(var_src, index)] = op_kind
         return touched
 
     @staticmethod
@@ -1689,38 +1699,43 @@ class PygameRenderer:
         self,
         op: OpRecord,
         trace_frame,
-    ) -> dict[int, tuple[float, str]]:
-        """Return ``index -> (timestamp, op_type)`` for the cells
+    ) -> dict[tuple[str, int], str]:
+        """Return ``(var_name, index) -> op_type`` for the cells
         this op touches.
 
         For ``READ`` / ``WRITE`` / ``COMPARE`` / ``SWAP`` ops, the
         engine's op.detail hardcodes the variable name as
-        ``list`` (e.g. ``list[5] = 3``, ``list[5] < list[6]``,
-        ``list[5]<->list[6]``) and we pull the indices out of
-        that.
+        ``list`` (e.g. ``list[5] = 3``). We treat ``list`` as a
+        wildcard: every variable in scope with the right index
+        is touched. (False positives are possible but rare since
+        most challenges have one main list.)
 
         For ``CALL`` ops (line-based tracing, where the engine
         records one op per source line), the detail is just
-        ``line N``. We don't know which cells the line touched
-        from the op alone, so we read the actual source line
-        from the trace_frame's source_file and parse it for
-        ``name[expr]`` subscripts. This way every line that
-        touches ``list[i]`` / ``candies[i-1]`` / etc. actually
-        flashes those cells, not just the op-recorded ones.
+        ``line N``. We read the actual source line from
+        ``trace_frame.source_file`` and parse it for
+        ``name[expr]`` subscripts - this gives us the real
+        variable name (``ratings``, ``candies``, etc.) and
+        avoids the wildcard-false-positive issue.
         """
-        import re, time as _time, ast as _ast
+        import re, ast as _ast
         detail = getattr(op, "detail", "") or ""
         op_type_name = getattr(op.op_type, "name", None) or str(op.op_type)
         if op_type_name == "CALL":
             return self._touched_from_call(op, trace_frame)
         locals_dict = trace_frame.locals if trace_frame else {}
-        touched: dict[int, tuple[float, str]] = {}
+        touched: dict[tuple[str, int], str] = {}
         safe_builtins = {
             k: getattr(__builtins__, k) if hasattr(__builtins__, k) else __builtins__[k]
             for k in ("int", "float", "len", "True", "False", "None")
             if (hasattr(__builtins__, k) or
                 (isinstance(__builtins__, dict) and k in __builtins__))
         }
+        # Engine's detail says e.g. ``list[5] = 3`` or
+        # ``list[5] < list[6]``. We use the wildcard name
+        # ``list`` so every variable in the locals dict at the
+        # matching index flashes. The rendering then checks
+        # against the actual variable name being drawn.
         for match in re.finditer(r'\w+\[([^\]]+)\]', detail):
             index_expr = match.group(1)
             try:
@@ -1736,7 +1751,10 @@ class PygameRenderer:
             except Exception:
                 continue
             if isinstance(index, int):
-                touched[index] = (_time.time(), op_type_name)
+                # Wildcard: match every list/tuple in scope.
+                for name, value in locals_dict.items():
+                    if isinstance(value, (list, tuple)) and index < len(value):
+                        touched[(name, index)] = op_type_name
         return touched
 
     def _format_source_line(self, trace_frame: Optional[TraceFrame]) -> tuple[str, str]:
@@ -1997,9 +2015,6 @@ class PygameRenderer:
                 value = _eval_expr(rhs_substituted)
                 if value is None:
                     return f"Validated: {lhs_str} = ?"
-                hint = _key_var_hint(text, locals_dict)
-                if hint:
-                    return f"{hint} -> Validated: {lhs_str} = {rhs_substituted} = {value}"
                 return f"Validated: {lhs_str} = {rhs_substituted} = {value}"
             if isinstance(stmt, _ast.AugAssign):
                 try:
@@ -2053,9 +2068,6 @@ class PygameRenderer:
                 result = _eval_expr(test_str)
                 if result is None:
                     return ""
-                hint = _key_var_hint(test_str, locals_dict)
-                if hint:
-                    return f"{hint} -> Validated: {kw.rstrip()}: {substituted} = {result}"
                 return f"Validated: {kw.rstrip()}: {substituted} = {result}"
 
         # Fall back: just substitute Names in the text.
