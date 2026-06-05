@@ -743,17 +743,18 @@ class PygameRenderer:
         screen.blit(title_surface, (self.margin, 18))
         self._draw_main_description(screen, fonts, result.description)
 
-        # Variables panel: live in the main area, below the grid, so
-        # the player can see the data structures evolve alongside the
-        # algorithm. Layout: stacked horizontally, each row is one
-        # variable (name + cell grid). Cells match the grid's cell
-        # size and carry index labels so each element is identifiable,
-        # like the algorithm grid above.
+        # The algorithm grid is no longer drawn in the main area -
+        # the variables panel generalizes it (lists, dicts, scalars,
+        # 2D mazes, all show as cells with the same touched-cell
+        # coloring). This frees the full main area for the
+        # variables + code + validated visualization.
         if trace_frame and trace_frame.locals:
             main_x = self.margin
             main_w = self._main_area_width()
-            grid_bottom = grid_rect.bottom
-            avail_top = grid_bottom + 24
+            desc_bottom = self.margin + 70 + self._description_height(
+                result.description,
+            )
+            avail_top = desc_bottom + 24
             avail_bottom = self.height - self.margin
             if avail_bottom - avail_top >= 60:
                 self._draw_main_variables(
@@ -766,77 +767,6 @@ class PygameRenderer:
                     cell_size=cell_size,
                     current_detail=detail,
                 )
-        self._draw_grid_headers(screen, fonts, grid_rect, cell_size, display_rows, full_cols)
-
-        # Iterate over every cell but draw only those that land inside
-
-        # Iterate over every cell but draw only those that land inside
-        # the viewport rect (cheap early-out). The screen position of a
-        # cell is offset by (scroll_x, scroll_y) so panning is just
-        # changing those two numbers.
-        previous_clip = screen.get_clip()
-        # The row labels sit to the LEFT of the grid, so the clip has to
-        # include that column. Without this, set_clip(grid_rect) would
-        # silently discard every row label and tick line.
-        label_width = self._row_label_width(display_rows) if show_row_labels else 0
-        cell_clip = pygame.Rect(
-            grid_rect.x - label_width,
-            grid_rect.y,
-            grid_rect.width + label_width,
-            grid_rect.height,
-        )
-        screen.set_clip(cell_clip)
-        for sy, row in enumerate(display_rows):
-            if not row:
-                continue
-            if show_row_labels:
-                label_rect = pygame.Rect(
-                    grid_rect.x - self._row_label_width(display_rows),
-                    grid_rect.y + (sy - self.scroll_y) * cell_size,
-                    self._row_label_width(display_rows) - 8,
-                    cell_size - 2,
-                )
-                self._draw_centered_text(screen, fonts["small"], self._row_header_label(row, sy), label_rect, self.MUTED)
-                # Fine tick from the row label across to the cell it labels.
-                cell_mid_y = grid_rect.y + (sy - self.scroll_y) * cell_size + cell_size // 2
-                pygame.draw.line(
-                    screen, self.GRID_LINE,
-                    (label_rect.right + 1, cell_mid_y),
-                    (grid_rect.x - 1, cell_mid_y),
-                    1,
-                )
-
-            for sx, display_cell in enumerate(row):
-                screen_x = grid_rect.x + (sx - self.scroll_x) * cell_size
-                screen_y = grid_rect.y + (sy - self.scroll_y) * cell_size
-                # Skip cells that fall outside the viewport.
-                if screen_x + cell_size <= grid_rect.x or screen_x >= grid_rect.right:
-                    continue
-                if screen_y + cell_size <= grid_rect.y or screen_y >= grid_rect.bottom:
-                    continue
-                rect = pygame.Rect(screen_x, screen_y, cell_size - 2, cell_size - 2)
-                source_coord = display_cell.source_coord
-                cell = grid.get(*source_coord) if source_coord and grid.in_bounds(*source_coord) else None
-                base_color = self.CELL_COLORS.get(cell.cell_type, self.CELL_COLORS[CellType.EMPTY]) if cell else self.CELL_COLORS[CellType.EMPTY]
-                color = overlays.get(source_coord, base_color) if source_coord else base_color
-                pygame.draw.rect(screen, color, rect, border_radius=4)
-                pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=4)
-                if watchpoints and source_coord in watchpoints:
-                    pygame.draw.rect(screen, self.FAIL, rect.inflate(-5, -5), width=3, border_radius=4)
-
-                text_value = display_cell.value if display_cell.value != "" else (cell.value if cell else None)
-                label = str(text_value) if text_value is not None else (cell.label if cell else "")
-                self._draw_cell_contents(screen, fonts, rect, label, self._cell_index_label(display_cell, show_row_labels), self.TEXT)
-        screen.set_clip(previous_clip)
-
-        if moving:
-            for value, start, end, t, color in moving:
-                x = start[0] + (end[0] - start[0]) * t
-                y = start[1] + (end[1] - start[1]) * t
-                rect = pygame.Rect(x, y, cell_size - 2, cell_size - 2)
-                pygame.draw.rect(screen, color, rect, border_radius=4)
-                pygame.draw.rect(screen, self.TEXT, rect, width=2, border_radius=4)
-                self._draw_centered_text(screen, fonts["cell"], str(value), rect, self.TEXT)
 
         self._draw_panel(
             screen, fonts, result, op_index, total_ops, detail, paused,
@@ -907,60 +837,19 @@ class PygameRenderer:
         screen.set_clip(pygame.Rect(x, text_y, self.panel_width, max(0, content_bottom - text_y)))
 
         wrap_w = self._wrap_width(fonts)
-        self._draw_text(screen, fonts["body"], "Current op", x + 18, text_y, self.TEXT)
-        text_y += 24
-        # Prefer the most recent op detail (e.g. ``set candies[15] =
-        # max(candies[15], candies[16] + 1)``) over the transient
-        # play/pause state. ``detail`` is just the user-action
-        # message ("Paused", "Replay started", ...) once the user
-        # clicks anything, so it stops telling the player what the
-        # engine is actually doing to the data.
-        op_text = last_op_detail or detail
-        if not op_text:
-            op_text = "<no operation yet>"
-        op_lines = self._wrap(op_text, wrap_w)[:2]
-        for line in op_lines:
-            self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.ACCENT_COLOR)
-            text_y += 20
-        # Show the player's source line for the most recent trace
-        # frame so the op maps to the actual Python statement
-        # (``candies[i] = max(candies[i], candies[i+1] + 1)``).
-        # _format_source_line returns ``(code_line, validated_line)``
-        # but the user only wants the Validated line here - the
-        # code line is redundant (it's already in the main window).
-        _, validated_line = self._format_source_line(trace_frame)
-        if validated_line:
-            text_y += 4
-            for line in self._wrap(validated_line, wrap_w)[:2]:
-                self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.ACCENT_COLOR)
-                text_y += 18
-        text_y += 12
+        # The "Current op", source/validated line, and variables
+        # panel have all moved to the main window (which now
+        # shows them with the same visuals). The side panel
+        # focuses on status, controls, return value, and the
+        # final Passed/Complexity messages - the data
+        # visualizations live in the main window now.
 
         return_text = result.return_value or "<not returned>"
         return_lines = self._wrap(return_text, wrap_w)[:2]
         return_height = 24 + len(return_lines) * 18
         return_start = max(text_y, content_bottom - return_height)
-        variables_bottom = max(text_y, return_start - 12)
 
-        if trace_frame and text_y + 34 < variables_bottom:
-            prefix = "Breakpoint line" if trace_frame.breakpoint else "Line"
-            self._draw_text(screen, fonts["body"], f"{prefix} {trace_frame.line_no} variables", x + 18, text_y, self.TEXT)
-            text_y += 24
-            truncated = False
-            for name, value in list(trace_frame.locals.items())[:9]:
-                for line in self._wrap(f"{name} = {value}", wrap_w)[:2]:
-                    if text_y + 18 > variables_bottom:
-                        truncated = True
-                        break
-                    self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.MUTED)
-                    text_y += 18
-                if truncated:
-                    if text_y + 18 <= variables_bottom:
-                        self._draw_text(screen, fonts["small"], "...", x + 18, text_y, self.MUTED)
-                    break
-            text_y += 12
-
-        text_y = max(text_y, content_bottom - return_height)
+        text_y = return_start
         self._draw_text(screen, fonts["body"], "Return value", x + 18, text_y, self.TEXT)
         text_y += 24
         for line in return_lines:
@@ -1314,20 +1203,21 @@ class PygameRenderer:
         )
         y += 24
 
-        # Current op strip: shows the latest operation that the
-        # engine recorded on this trace frame. Drawn on its own
-        # line so it's visible without scrolling past every
-        # variable.
-        if current_detail and current_detail != "Ready":
-            op_text = f"Current op: {current_detail}"
-            self._draw_text(screen, fonts["small"], op_text, x, y, self.ACCENT_COLOR)
+        # Code line: the original Python statement the engine
+        # just executed (e.g. ``if ratings[i] > ratings[i + 1]:``).
+        # Drawn on its own line, prefixed with "Code:" so the
+        # player can see what statement is being analysed below.
+        code_line, _ = self._format_source_line(trace_frame)
+        if code_line:
+            self._draw_text(
+                screen, fonts["small"],
+                f"Code: {code_line}", x, y, self.MUTED,
+            )
             y += 18
-        # Source line strip: just the "Validated:" line, which
-        # substitutes every Name / Subscript reference with its
-        # current value and shows the result. The user only
-        # wants this line in the main window; the code itself
-        # is in the description above (or in the side panel's
-        # Validated section) so we don't repeat it.
+        # Validated line: same source line, but with every Name
+        # and Subscript reference substituted by its current
+        # value, and the result of the statement at the end.
+        # E.g. ``Validated: if: ratings[16] > ratings[16 - 1] = True``.
         _, validated_line = self._format_source_line(trace_frame)
         if validated_line:
             self._draw_text(
@@ -1370,14 +1260,30 @@ class PygameRenderer:
             else:
                 needed_rows = 1
             idx_label_h = 14 if isinstance(raw, (list, tuple)) and raw else 0
+            # Extra bottom space between variables (the "bigger
+            # space" the user asked for). Includes room for a
+            # horizontal separator line.
+            between_vars = 24
             needed_h = idx_label_h + needed_rows * (cell_size + 2) + 22
-            if y + needed_h + 6 > max_y:
+            if y + needed_h + between_vars + 6 > max_y:
                 self._draw_text(
                     screen, fonts["small"],
                     "...",
                     x, y, self.MUTED,
                 )
                 break
+
+            # Horizontal separator above each variable (except
+            # the first one) so the player can see at a glance
+            # where one variable ends and the next begins. The
+            # line spans the full panel width.
+            if shown > 0:
+                pygame.draw.line(
+                    screen, self.GRID_LINE,
+                    (x, y - between_vars // 2),
+                    (x + max_width, y - between_vars // 2),
+                    1,
+                )
 
             # Name on its own line.
             self._draw_text(screen, fonts["body"], f"{name}:", x, y, self.TEXT)
@@ -1403,7 +1309,7 @@ class PygameRenderer:
                 raw,
                 var_name=name,
             )
-            y += needed_h - 22 - idx_label_h + 6
+            y += needed_h - 22 - idx_label_h + between_vars
             shown += 1
 
     def _draw_index_labels(
