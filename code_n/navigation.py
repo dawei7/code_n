@@ -501,8 +501,11 @@ class ChallengeNavigator:
         padding = 18
         content_x = area.x + padding
         content_width = area.width - padding * 2
-        controls_y = area.bottom - 102
-        buttons_y = controls_y - 62
+        # Two button rows (Explore/Run/Open on top, Solve/Reset below)
+        # take 44 + 8 + 44 = 96 px. Push the controls section down to make
+        # room.
+        controls_y = area.bottom - 132
+        buttons_y = controls_y - 96
         description_bottom = buttons_y - 14
 
         self._text(screen, fonts["heading"], item.node.name, area.x + 18, area.y + 18, self.TEXT)
@@ -559,16 +562,25 @@ class ChallengeNavigator:
     def _draw_action_buttons(self, screen, fonts, area, y: int):
         import pygame
 
-        # Five buttons in one row. gap=6 leaves enough room for the
-        # 5-character "Solve" label at 18px font inside the 40-ish
-        # pixel-wide button.
-        gap = 6
-        width = (area.width - 36 - gap * 4) // 5
-        explore_rect = pygame.Rect(area.x + 18, y, width, 44)
-        run_rect = pygame.Rect(explore_rect.right + gap, y, width, 44)
-        open_rect = pygame.Rect(run_rect.right + gap, y, width, 44)
-        solve_rect = pygame.Rect(open_rect.right + gap, y, width, 44)
-        reset_rect = pygame.Rect(solve_rect.right + gap, y, width, 44)
+        # Two rows: regular actions on top, "give up / start over" below.
+        # Row 1: Explore | Run | Open. Three buttons in one row.
+        # Row 2: Solve (red, "see the answer") | Reset (warning, "start over").
+        gap = 8
+        row_h = 44
+        inner_w = area.width - 36
+
+        # Row 1: three equal-width buttons
+        top_width = (inner_w - gap * 2) // 3
+        explore_rect = pygame.Rect(area.x + 18, y, top_width, row_h)
+        run_rect = pygame.Rect(explore_rect.right + gap, y, top_width, row_h)
+        open_rect = pygame.Rect(run_rect.right + gap, y, top_width, row_h)
+
+        # Row 2: two equal-width buttons
+        second_y = y + row_h + 8
+        bottom_width = (inner_w - gap) // 2
+        solve_rect = pygame.Rect(area.x + 18, second_y, bottom_width, row_h)
+        reset_rect = pygame.Rect(solve_rect.right + gap, second_y, bottom_width, row_h)
+
         self._button_rects = [
             ("explore", explore_rect),
             ("run", run_rect),
@@ -577,15 +589,16 @@ class ChallengeNavigator:
             ("reset", reset_rect),
         ]
 
+        # Fill colors. Solve is RED: it's "give up and see the
+        # answer", a destructive-from-learning-perspective action.
+        # Reset is WARNING (yellow/orange) - "start over" is also
+        # non-ideal but reversible.
         pygame.draw.rect(screen, self.SELECTED, explore_rect, border_radius=7)
         pygame.draw.rect(screen, self.ACCENT, run_rect, border_radius=7)
         pygame.draw.rect(screen, self.SURFACE_ALT, open_rect, border_radius=7)
-        # Solve is "give up and see the answer". Warning color marks
-        # it as a non-ideal action from a learning perspective.
-        pygame.draw.rect(screen, self.WARNING, solve_rect, border_radius=7)
+        pygame.draw.rect(screen, self.ERROR, solve_rect, border_radius=7)
         pygame.draw.rect(screen, self.WARNING, reset_rect, border_radius=7)
-        for rect in self._button_rects:
-            _, r = rect
+        for _, r in self._button_rects:
             pygame.draw.rect(screen, self.GRID_LINE, r, width=1, border_radius=7)
         self._center_text(screen, fonts["body"], "Explore", explore_rect, self.TEXT)
         self._center_text(screen, fonts["body"], "Run", run_rect, self.TEXT)
