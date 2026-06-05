@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import os
 import time
 from dataclasses import dataclass, field
 from typing import Any, Iterable, Optional
@@ -268,6 +269,12 @@ class PygameRenderer:
         if speed:
             self.apply_speed(speed)
         self._current_description = ""
+        # Cache of player source files keyed by absolute path. Each
+        # value is the list of source lines (1-indexed access via
+        # ``lines[line_no - 1]``). Populated lazily by
+        # ``_format_source_line`` so the "Current op" panel can show
+        # the actual Python statement the engine just executed.
+        self._source_cache: dict[str, list[str]] = {}
         # Continuous zoom between ZOOM_MIN and ZOOM_MAX, controlled by
         # the mouse wheel only. The default of 30px is small enough to
         # fit ~25 cells across the viewport; the user can wheel up to
@@ -400,6 +407,15 @@ class PygameRenderer:
         visual_values = self._copy_values(initial_values)
         ops = list(operations)
         current_detail = "Ready"
+        # Tracks the most recent operation that was actually applied
+        # to the data (e.g. ``set candies[15] = max(candies[15],
+        # candies[16] + 1)``). Kept separate from ``current_detail``
+        # so toggling pause/step/replay doesn't blow away the
+        # operation the player was just looking at - the "Current
+        # op" panel keeps showing what the engine *did*, while
+        # ``current_detail`` carries the transient user-action
+        # message ("Paused", "Speed changed", ...).
+        last_op_detail = ""
         overlays: dict[tuple[int, int], tuple[int, int, int]] = {}
         watchpoints: set[tuple[int, int]] = set()
         source_breakpoints_hit: set[tuple[int, int]] = set()
@@ -412,11 +428,12 @@ class PygameRenderer:
         current_detail = "Step mode: press Space or Enter." if self.manual_step else current_detail
 
         def apply_next_operation() -> str:
-            nonlocal op_index, paused, stopped
+            nonlocal op_index, paused, stopped, last_op_detail
             if op_index >= len(ops):
                 return "Replay complete. Press Replay to run again."
 
             detail = self._apply_operation(screen, clock, fonts, grid, visual_values, ops[op_index], op_index, len(ops), title, result)
+            last_op_detail = detail
             if self._op_touches_watchpoint(ops[op_index], watchpoints):
                 paused = True
                 detail = f"Watchpoint hit: {detail}"
@@ -429,13 +446,14 @@ class PygameRenderer:
             return detail
 
         def reset_replay() -> str:
-            nonlocal visual_values, op_index, paused, stopped, overlays, source_breakpoints_hit
+            nonlocal visual_values, op_index, paused, stopped, overlays, source_breakpoints_hit, last_op_detail
             visual_values = self._copy_values(initial_values)
             op_index = 0
             paused = self.manual_step
             stopped = False
             overlays = {}
             source_breakpoints_hit = set()
+            last_op_detail = ""
             # Each fresh replay starts at the default zoom (30px per cell)
             # and the top-left of the grid.
             self.cell_size = 44
@@ -687,13 +705,13 @@ class PygameRenderer:
                 overlays = {}
 
             trace_frame = self._trace_for_op(result.trace_frames, op_index)
-            self._draw(screen, fonts, grid, visual_values, overlays, title, result, op_index, len(ops), current_detail, paused, trace_frame=trace_frame, stopped=stopped, watchpoints=watchpoints)
+            self._draw(screen, fonts, grid, visual_values, overlays, title, result, op_index, len(ops), current_detail, paused, trace_frame=trace_frame, stopped=stopped, watchpoints=watchpoints, last_op_detail=last_op_detail)
             pygame.display.flip()
             clock.tick(self.fps)
 
         pygame.quit()
 
-    def _draw(self, screen, fonts, grid, values, overlays, title, result, op_index, total_ops, detail, paused, moving=None, trace_frame=None, stopped=False, watchpoints=None):
+    def _draw(self, screen, fonts, grid, values, overlays, title, result, op_index, total_ops, detail, paused, moving=None, trace_frame=None, stopped=False, watchpoints=None, last_op_detail=""):
         import pygame
 
         sync_window_size(self, screen)
@@ -805,9 +823,10 @@ class PygameRenderer:
             screen, fonts, result, op_index, total_ops, detail, paused,
             trace_frame, stopped, len(watchpoints or ()),
             view_text=self._visible_range_text(grid, values),
+            last_op_detail=last_op_detail,
         )
 
-    def _draw_panel(self, screen, fonts, result, op_index, total_ops, detail, paused, trace_frame=None, stopped=False, watchpoint_count=0, view_text=""):
+    def _draw_panel(self, screen, fonts, result, op_index, total_ops, detail, paused, trace_frame=None, stopped=False, watchpoint_count=0, view_text="", last_op_detail=""):
         import pygame
 
         x = self.width - self.panel_width - self.margin
@@ -871,9 +890,28 @@ class PygameRenderer:
         wrap_w = self._wrap_width(fonts)
         self._draw_text(screen, fonts["body"], "Current op", x + 18, text_y, self.TEXT)
         text_y += 24
-        for line in self._wrap(detail, wrap_w)[:2]:
-            self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.MUTED)
+        # Prefer the most recent op detail (e.g. ``set candies[15] =
+        # max(candies[15], candies[16] + 1)``) over the transient
+        # play/pause state. ``detail`` is just the user-action
+        # message ("Paused", "Replay started", ...) once the user
+        # clicks anything, so it stops telling the player what the
+        # engine is actually doing to the data.
+        op_text = last_op_detail or detail
+        if not op_text:
+            op_text = "<no operation yet>"
+        op_lines = self._wrap(op_text, wrap_w)[:2]
+        for line in op_lines:
+            self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.ACCENT_COLOR)
             text_y += 20
+        # Show the player's source line for the most recent trace
+        # frame so the op maps to the actual Python statement
+        # (``candies[i] = max(candies[i], candies[i+1] + 1)``).
+        source_text = self._format_source_line(trace_frame)
+        if source_text:
+            text_y += 4
+            for line in self._wrap(source_text, wrap_w)[:1]:
+                self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.MUTED)
+                text_y += 18
         text_y += 12
 
         return_text = result.return_value or "<not returned>"
@@ -1262,6 +1300,12 @@ class PygameRenderer:
             op_text = f"Current op: {current_detail}"
             self._draw_text(screen, fonts["small"], op_text, x, y, self.ACCENT_COLOR)
             y += 18
+        source_text = self._format_source_line(trace_frame)
+        if source_text:
+            self._draw_text(
+                screen, fonts["small"], f"Source: {source_text}", x, y, self.MUTED,
+            )
+            y += 18
 
         cell_gap = 1
         strip_x = x
@@ -1452,6 +1496,129 @@ class PygameRenderer:
             return False
         seen.add(key)
         return True
+
+    def _format_source_line(self, trace_frame: Optional[TraceFrame]) -> str:
+        """Return ``"L<n>  <code>  (<name=value, ...>)"`` for the player's source line.
+
+        Reads the file lazily and caches the lines list so repeated
+        draws (the panel redraws at 60fps) don't hit the disk.
+
+        The leading whitespace from the source is stripped (so an
+        indented ``if`` line shows as ``if ratings[i] > ...``
+        rather than ``    if ratings[i] > ...``). After the code
+        itself, the values of every ``Name`` and ``Subscript``
+        reference in the line are appended so the player can see
+        exactly what the comparison / assignment is using. For
+        example::
+
+          L17  if ratings[i] > ratings[i + 1]:  (i=14, ratings[i]=6, ratings[i+1]=8)
+
+        Evaluation is sandboxed (no builtins) and any failure
+        silently drops that reference; the line still renders.
+
+        Returns an empty string when the frame/file/line isn't
+        available (e.g. before any op runs, or when tracing wasn't
+        possible).
+        """
+        if not trace_frame or not trace_frame.source_file or trace_frame.line_no <= 0:
+            return ""
+        path = os.path.normcase(os.path.abspath(trace_frame.source_file))
+        lines = self._source_cache.get(path)
+        if lines is None:
+            try:
+                with open(trace_frame.source_file, "r", encoding="utf-8", errors="replace") as f:
+                    lines = f.readlines()
+            except OSError:
+                lines = []
+            self._source_cache[path] = lines
+        if not lines:
+            return ""
+        idx = trace_frame.line_no - 1
+        if idx < 0 or idx >= len(lines):
+            return ""
+        # Strip the leading whitespace the source file has - the
+        # user wants to see the code, not its indentation.
+        text = lines[idx].rstrip().lstrip()
+
+        # Walk the line's AST to find Name and Subscript references
+        # in document order. For each, look up the value in the
+        # frame's locals and append a short "name=value" to the
+        # display line so the player can validate the comparison /
+        # assignment at a glance.
+        values_suffix = ""
+        if trace_frame.locals:
+            import ast as _ast
+            # The line may be a compound statement that doesn't
+            # parse standalone (e.g. ``if x > y:`` requires a
+            # body). Try a few strategies to get a parseable tree:
+            # (a) parse as-is, (b) extract the test from an If /
+            #     While, (c) parse the RHS of ``return`` /
+            #     assignment, (d) parse as a single expression.
+            tree = None
+            try:
+                tree = _ast.parse(text, mode="exec")
+            except SyntaxError:
+                if text.lstrip().startswith(("if ", "elif ", "while ")):
+                    # Pull the test out so we can walk the
+                    # comparison / subscripts inside it.
+                    head = text.lstrip()
+                    for kw in ("if ", "elif ", "while "):
+                        if head.startswith(kw):
+                            head = head[len(kw):]
+                            break
+                    head = head.rstrip().rstrip(":").rstrip()
+                    try:
+                        tree = _ast.parse(head, mode="eval")
+                    except SyntaxError:
+                        tree = None
+            if tree is not None:
+                seen: set[str] = set()
+                parts: list[str] = []
+
+                def _short(value) -> str:
+                    try:
+                        text_repr = repr(value)
+                    except Exception:
+                        return "?"
+                    if len(text_repr) > 24:
+                        if isinstance(value, (list, tuple, dict)):
+                            return f"{type(value).__name__}({len(value)})"
+                        return text_repr[:23] + "…"
+                    return text_repr
+
+                def _safe_eval(node) -> object | None:
+                    try:
+                        return eval(
+                            compile(_ast.Expression(node), "<ast>", "eval"),
+                            {"__builtins__": {}},
+                            trace_frame.locals,
+                        )
+                    except Exception:
+                        return None
+
+                def _collect(node) -> None:
+                    if isinstance(node, _ast.Name) and isinstance(node.ctx, _ast.Load):
+                        if node.id not in seen:
+                            seen.add(node.id)
+                            value = trace_frame.locals.get(node.id, "<undef>")
+                            parts.append(f"{node.id}={_short(value)}")
+                        return
+                    if isinstance(node, _ast.Subscript) and isinstance(node.ctx, _ast.Load):
+                        src = _ast.unparse(node)
+                        if src not in seen:
+                            seen.add(src)
+                            value = _safe_eval(node)
+                            if value is not None:
+                                parts.append(f"{src}={_short(value)}")
+                        return
+                    for child in _ast.iter_child_nodes(node):
+                        _collect(child)
+
+                _collect(tree)
+                if parts:
+                    values_suffix = "  (" + ", ".join(parts) + ")"
+
+        return f"L{trace_frame.line_no}  {text}{values_suffix}"
 
     def _draw_centered_text(self, screen, font, text, rect, color):
         surface = font.render(text[:8], True, color)
