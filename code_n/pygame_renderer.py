@@ -1498,7 +1498,7 @@ class PygameRenderer:
                 return cell_bg
             return op_colors.get(entry, cell_bg)
 
-        def _cell(px: int, py: int, val, touched_key=None) -> None:
+        def _cell(px: int, py: int, val, touched_key=None, cell_index=None) -> None:
             label = _format(val)
             if len(label) > 6:
                 label = label[:5] + "…"
@@ -1507,9 +1507,30 @@ class PygameRenderer:
                 screen, _color_for(touched_key), rect, border_radius=3,
             )
             pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=3)
+            # Per-cell index label in the top-left corner. This is
+            # how the wrapped rows (cells past the first
+            # ``cols_per_row``) keep their indices visible - the
+            # standalone _draw_index_labels helper only covers the
+            # first row, so without this, indices 43-49 in a 50-
+            # element list had no label at all. Skipped for tiny
+            # cells where the index text would crowd the value.
+            if cell_index is not None and cell_size >= 18:
+                idx_font = fonts["small"]
+                idx_surface = idx_font.render(str(cell_index), True, self.MUTED)
+                screen.blit(idx_surface, (px + 2, py + 1))
             cell_font = fonts["cell"] if cell_size >= 28 else fonts["small"]
             text_surface = cell_font.render(label, True, self.TEXT)
-            screen.blit(text_surface, text_surface.get_rect(center=rect.center))
+            # If we drew an index label, nudge the value down a few
+            # pixels so the two don't overlap. With cell_size < 18
+            # we never draw an index label so the value stays
+            # centered.
+            if cell_index is not None and cell_size >= 18:
+                value_rect = text_surface.get_rect(
+                    center=(rect.centerx, rect.centery + 5),
+                )
+                screen.blit(text_surface, value_rect)
+            else:
+                screen.blit(text_surface, text_surface.get_rect(center=rect.center))
 
         # list / tuple - 1+ rows of cells with index labels.
         if isinstance(raw, (list, tuple)) and raw:
@@ -1521,6 +1542,7 @@ class PygameRenderer:
                     x + col * (cell_size + cell_gap),
                     y + row * (cell_size + 2),
                     item, touched_key=(var_name, index),
+                    cell_index=index,
                 )
             return
 
@@ -1679,6 +1701,26 @@ class PygameRenderer:
         op_kind = self._infer_call_kind(text) or "READ"
         safe_builtins = self._safe_builtins()
         locals_dict = trace_frame.locals or {}
+
+        # Unwrap the engine's TrackedList to a plain list. The
+        # Subscript walker only matches ``isinstance(container,
+        # (list, tuple))``; without this step, every line that
+        # reads or writes a TrackedList element (e.g. ``data[i]``
+        # in bubble sort) produces no touched cells, so the
+        # variables panel never colored anything for challenges
+        # that use the engine's tracked inputs. The renderer's
+        # _draw_variables_section does the same unwrap, so the
+        # keys we put in touched_cells match the keys the
+        # renderer uses when looking up the cell to color.
+        try:
+            from code_n.tracked import TrackedList as _TL
+        except ImportError:
+            _TL = None
+        if _TL is not None:
+            locals_dict = {
+                _name: (list(_value) if isinstance(_value, _TL) else _value)
+                for _name, _value in locals_dict.items()
+            }
 
         stripped = text.lstrip()
         try:

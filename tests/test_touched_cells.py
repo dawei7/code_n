@@ -242,6 +242,38 @@ class TouchedFromCallTests(unittest.TestCase):
         self.assertEqual(touched.get(("arr", 3)), "WRITE")
         self.assertNotIn(("other", 3), touched)
 
+    def test_tracked_list_is_unwrapped_to_plain_list(self):
+        """The engine passes TrackedList (not a real list) as the
+        challenge input. The renderer's variables panel unwraps
+        it to a plain list for drawing, so the touched-cells dict
+        has to use the same key shape - integer index into a
+        list. Without the TrackedList unwrap, the Subscript
+        walker's ``isinstance(container, (list, tuple))`` check
+        was False, so ``data[i]`` produced no touched cell and
+        nothing ever colored. The user noticed this with bubble
+        sort (``if data[i] > data[i + 1]:``) where every data
+        cell stayed gray no matter the op.
+        """
+        from code_n.tracked import TrackedList
+        tracked = TrackedList([10, 20, 30, 40, 50])
+        frame = _with_source(
+            "if data[i] > data[i + 1]:\n",
+            locals_dict={"data": tracked, "i": 2},
+            line_no=1,
+        )
+        touched = self.r._touched_from_call(self.op, frame)
+        # The unwrap happens inside the function, so the
+        # touched_cells dict should now contain the integer-index
+        # entries the renderer's _draw_variable_strip looks up.
+        self.assertEqual(touched.get(("data", 2)), "COMPARE")
+        self.assertEqual(touched.get(("data", 3)), "COMPARE")
+        # The Name walker should still pick up the scalar ``i``.
+        self.assertEqual(touched.get(("i", None)), "COMPARE")
+        # The TrackedList itself must not appear as a scalar
+        # touched entry (that was the buggy behavior: ``data``
+        # got a ``(data, None)`` entry the renderer can't color).
+        self.assertNotIn(("data", None), touched)
+
 
 if __name__ == "__main__":
     unittest.main()
