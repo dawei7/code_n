@@ -120,15 +120,11 @@ class SolveButtonTests(unittest.TestCase):
         progress = load_progress(path=self.progress_path)
         self.assertEqual(progress.completed, set())
 
-    def test_all_16_optimal_solutions_exist(self):
-        """Every implemented challenge has a corresponding optimal
+    def test_all_registered_optimal_solutions_exist(self):
+        """Every registered challenge has a corresponding optimal
         solution file the Solve button can copy."""
-        for cid in [
-            "intro_01", "sort_01", "sort_02", "sort_03", "sort_04", "sort_05",
-            "search_01", "search_02", "search_03", "search_04",
-            "graph_01", "graph_04",
-            "dp_01", "dp_02", "dp_03", "dp_04",
-        ]:
+        from challenges.registry import CHALLENGE_REGISTRY
+        for cid in CHALLENGE_REGISTRY:
             optimal = Path(PROJECT_ROOT) / "optimal_solutions" / f"{cid}.py"
             self.assertTrue(optimal.exists(), msg=f"missing: {optimal}")
             # Every optimal file must define `solve`.
