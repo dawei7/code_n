@@ -275,6 +275,13 @@ class PygameRenderer:
         # ``_format_source_line`` so the "Current op" panel can show
         # the actual Python statement the engine just executed.
         self._source_cache: dict[str, list[str]] = {}
+        # (var_name, index) -> (timestamp, op_type). Populated by
+        # the play() loop on each operation and consumed by
+        # ``_draw_variable_strip`` to flash the touched cells in
+        # the op-type color (read=blue, write=yellow, etc.). Old
+        # entries are pruned at draw time so the flash naturally
+        # fades out.
+        self._touched_cells: dict[tuple[str, int], tuple[float, str]] = {}
         # Continuous zoom between ZOOM_MIN and ZOOM_MAX, controlled by
         # the mouse wheel only. The default of 30px is small enough to
         # fit ~25 cells across the viewport; the user can wheel up to
@@ -432,13 +439,23 @@ class PygameRenderer:
             if op_index >= len(ops):
                 return "Replay complete. Press Replay to run again."
 
-            detail = self._apply_operation(screen, clock, fonts, grid, visual_values, ops[op_index], op_index, len(ops), title, result)
+            current_op = ops[op_index]
+            detail = self._apply_operation(screen, clock, fonts, grid, visual_values, current_op, op_index, len(ops), title, result)
             last_op_detail = detail
-            if self._op_touches_watchpoint(ops[op_index], watchpoints):
+            if self._op_touches_watchpoint(current_op, watchpoints):
                 paused = True
                 detail = f"Watchpoint hit: {detail}"
             op_index += 1
             trace_frame = self._trace_for_op(result.trace_frames, op_index)
+            # Update the touched-cells tracker so the variables
+            # panel can flash the cells this op touched in the
+            # op-type color. The flash is the same "this is the
+            # one I just read / wrote / compared" effect that the
+            # main grid already does.
+            if trace_frame and trace_frame.locals:
+                self._touched_cells = self._extract_touched_cells(
+                    current_op, trace_frame.locals,
+                )
             if self._source_breakpoint_hit(trace_frame, source_breakpoints_hit):
                 paused = True
                 detail = f"Source breakpoint line {trace_frame.line_no}: {detail}"
@@ -1300,10 +1317,18 @@ class PygameRenderer:
             op_text = f"Current op: {current_detail}"
             self._draw_text(screen, fonts["small"], op_text, x, y, self.ACCENT_COLOR)
             y += 18
-        source_text = self._format_source_line(trace_frame)
-        if source_text:
+        # Source line strip: the code itself on one line, then a
+        # "Validated:" line that substitutes every Name / Subscript
+        # reference with its current value and shows the result.
+        # The line number is already in the "Line N variables"
+        # title above, so we don't repeat it.
+        code_line, validated_line = self._format_source_line(trace_frame)
+        if code_line:
+            self._draw_text(screen, fonts["small"], code_line, x, y, self.MUTED)
+            y += 18
+        if validated_line:
             self._draw_text(
-                screen, fonts["small"], f"Source: {source_text}", x, y, self.MUTED,
+                screen, fonts["small"], validated_line, x, y, self.ACCENT_COLOR,
             )
             y += 18
 
@@ -1361,7 +1386,10 @@ class PygameRenderer:
                     cell_size, cell_gap, cols_per_row, len(items),
                 )
                 y += idx_label_h
-            # Cells.
+            # Cells. The strip pulls touched-cell info from
+            # self._touched_cells (indexed by index alone, since
+            # the engine's op.detail hardcodes the variable
+            # name as "list").
             self._draw_variable_strip(
                 screen, fonts,
                 strip_x, y,
@@ -1408,10 +1436,29 @@ class PygameRenderer:
         dicts) of cells. Uses ``str()`` (not ``repr()``) for each
         value so strings appear without surrounding quotes and
         numbers appear as plain numbers.
+
+        If ``var_name`` is given, cells whose **index** was
+        touched by the most recent operation flash in the
+        op-type color (read=blue, write=yellow, compare=red,
+        swap=orange) for ~0.4s, then fade back to the default
+        cell color. We match by index because the engine's
+        op.detail hardcodes the variable name as ``list`` in
+        every detail string regardless of what the player
+        actually called their variable; matching by index is
+        robust to that quirk and false-positives are rare in
+        practice (most challenges manipulate one main list).
         """
-        import pygame
+        import pygame, time as _time
 
         cell_bg = (52, 60, 74)
+        flash_window_seconds = 0.4
+        op_colors = {
+            "READ": self.READ,
+            "WRITE": self.WRITE,
+            "COMPARE_A": self.COMPARE_A,
+            "COMPARE_B": self.COMPARE_B,
+            "SWAP": self.SWAP,
+        }
 
         def _format(val) -> str:
             try:
@@ -1421,14 +1468,31 @@ class PygameRenderer:
             except Exception:
                 return "?"
 
-        def _cell(px: int, py: int, val) -> None:
+        def _color_for(index: int) -> tuple:
+            """Return the cell background color for ``index``,
+            taking into account the recent touched-cell flash.
+            Returns the default cell_bg if the cell isn't touched
+            or the flash has expired.
+            """
+            if not self._touched_cells:
+                return cell_bg
+            entry = self._touched_cells.get(index)
+            if entry is None:
+                return cell_bg
+            ts, op_type = entry
+            if (_time.time() - ts) > flash_window_seconds:
+                return cell_bg
+            return op_colors.get(op_type, cell_bg)
+
+        def _cell(px: int, py: int, val, touched_index=None) -> None:
             label = _format(val)
             if len(label) > 6:
                 label = label[:5] + "…"
             rect = pygame.Rect(px, py, cell_size, cell_size)
-            pygame.draw.rect(screen, cell_bg, rect, border_radius=3)
+            pygame.draw.rect(
+                screen, _color_for(touched_index), rect, border_radius=3,
+            )
             pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=3)
-            # Use a small font for narrow cells (matches the grid).
             cell_font = fonts["cell"] if cell_size >= 28 else fonts["small"]
             text_surface = cell_font.render(label, True, self.TEXT)
             screen.blit(text_surface, text_surface.get_rect(center=rect.center))
@@ -1438,13 +1502,20 @@ class PygameRenderer:
             for index, item in enumerate(items):
                 row = index // cols_per_row
                 col = index % cols_per_row
-                _cell(x + col * (cell_size + cell_gap), y + row * (cell_size + 2), item)
+                _cell(
+                    x + col * (cell_size + cell_gap),
+                    y + row * (cell_size + 2),
+                    item, touched_index=index,
+                )
             return
         if isinstance(raw, dict) and raw:
             items = list(raw.items())
             for index, (k, v) in enumerate(items):
                 if index >= cols_per_row:
                     break
+                # Dict strips don't have meaningful indices for
+                # the touched-cell tracker (the engine's detail
+                # only mentions the whole ``dict[k]`` access).
                 _cell(x + index * (cell_size + cell_gap), y, k)
                 _cell(x + index * (cell_size + cell_gap), y + cell_size + 2, v)
             return
@@ -1497,31 +1568,86 @@ class PygameRenderer:
         seen.add(key)
         return True
 
-    def _format_source_line(self, trace_frame: Optional[TraceFrame]) -> str:
-        """Return ``"L<n>  <code>  (<name=value, ...>)"`` for the player's source line.
+    def _extract_touched_cells(
+        self,
+        op: OpRecord,
+        locals_dict: dict,
+    ) -> dict[int, tuple[float, str]]:
+        """Return ``index -> (timestamp, op_type)`` for the cells
+        this op touches.
 
-        Reads the file lazily and caches the lines list so repeated
-        draws (the panel redraws at 60fps) don't hit the disk.
+        The op's ``detail`` field is the engine's human-readable
+        description of the operation (e.g. ``list[5] = 3``,
+        ``list[5] < list[6]``, ``list[5]<->list[6]``). The
+        engine hardcodes the variable name as ``list`` in this
+        string regardless of what the player called it, so we
+        match cells by their **index** alone. False positives
+        (flashing two variables at the same index) are
+        acceptable for a learning game and rare in practice
+        since most challenges have one main list.
 
-        The leading whitespace from the source is stripped (so an
-        indented ``if`` line shows as ``if ratings[i] > ...``
-        rather than ``    if ratings[i] > ...``). After the code
-        itself, the values of every ``Name`` and ``Subscript``
-        reference in the line are appended so the player can see
-        exactly what the comparison / assignment is using. For
-        example::
+        The timestamp is ``time.time()`` so the renderer can
+        prune stale entries and only flash cells touched within
+        the last ~0.4s.
+        """
+        import re, time as _time, ast as _ast
+        detail = getattr(op, "detail", "") or ""
+        op_type_name = getattr(op.op_type, "name", None) or str(op.op_type)
+        if op_type_name == "CALL":
+            return {}
+        touched: dict[int, tuple[float, str]] = {}
+        safe_builtins = {
+            k: getattr(__builtins__, k) if hasattr(__builtins__, k) else __builtins__[k]
+            for k in ("int", "float", "len", "True", "False", "None")
+            if (hasattr(__builtins__, k) or
+                (isinstance(__builtins__, dict) and k in __builtins__))
+        }
+        for match in re.finditer(r'\w+\[([^\]]+)\]', detail):
+            index_expr = match.group(1)
+            try:
+                tree = _ast.parse(index_expr, mode="eval")
+                for node in _ast.walk(tree):
+                    if isinstance(node, (_ast.Call, _ast.Attribute)):
+                        raise ValueError("no calls / attribute access")
+                index = eval(
+                    compile(tree, "<ast>", "eval"),
+                    {"__builtins__": safe_builtins},
+                    locals_dict,
+                )
+            except Exception:
+                continue
+            if isinstance(index, int):
+                touched[index] = (_time.time(), op_type_name)
+        return touched
 
-          L17  if ratings[i] > ratings[i + 1]:  (i=14, ratings[i]=6, ratings[i+1]=8)
+    def _format_source_line(self, trace_frame: Optional[TraceFrame]) -> tuple[str, str]:
+        """Return ``(code_line, validated_line)`` for the player's source.
 
-        Evaluation is sandboxed (no builtins) and any failure
-        silently drops that reference; the line still renders.
+        The first element is the code itself, with the source's
+        leading indentation stripped (so an indented ``if`` shows
+        as ``if ratings[i] > ...`` rather than
+        ``    if ratings[i] > ...``).
 
-        Returns an empty string when the frame/file/line isn't
-        available (e.g. before any op runs, or when tracing wasn't
-        possible).
+        The second element is a ``Validated:`` line that
+        substitutes every Name and Subscript reference with its
+        current value and shows the result of executing the
+        statement. Examples::
+
+          if ratings[i] > ratings[i - 1]:
+          Validated: 6 > 2 = True
+
+          candies[i] = candies[i - 1] + 1
+          Validated: candies[16] = candies[15] + 1 = 3
+
+        The line number is intentionally NOT shown here - the
+        caller already rendered it as part of the "Line N
+        variables" title, so repeating it would be redundant.
+
+        Returns ``("", "")`` when the frame/file/line isn't
+        available.
         """
         if not trace_frame or not trace_frame.source_file or trace_frame.line_no <= 0:
-            return ""
+            return "", ""
         path = os.path.normcase(os.path.abspath(trace_frame.source_file))
         lines = self._source_cache.get(path)
         if lines is None:
@@ -1532,93 +1658,289 @@ class PygameRenderer:
                 lines = []
             self._source_cache[path] = lines
         if not lines:
-            return ""
+            return "", ""
         idx = trace_frame.line_no - 1
         if idx < 0 or idx >= len(lines):
-            return ""
+            return "", ""
         # Strip the leading whitespace the source file has - the
         # user wants to see the code, not its indentation.
         text = lines[idx].rstrip().lstrip()
 
-        # Walk the line's AST to find Name and Subscript references
-        # in document order. For each, look up the value in the
-        # frame's locals and append a short "name=value" to the
-        # display line so the player can validate the comparison /
-        # assignment at a glance.
-        values_suffix = ""
-        if trace_frame.locals:
-            import ast as _ast
-            # The line may be a compound statement that doesn't
-            # parse standalone (e.g. ``if x > y:`` requires a
-            # body). Try a few strategies to get a parseable tree:
-            # (a) parse as-is, (b) extract the test from an If /
-            #     While, (c) parse the RHS of ``return`` /
-            #     assignment, (d) parse as a single expression.
-            tree = None
+        validated = self._format_validated_line(text, trace_frame.locals or {})
+        return text, validated
+
+    def _format_validated_line(self, text: str, locals_dict: dict) -> str:
+        """Return the ``Validated: <substituted> = <result>`` line.
+
+        Substitutes every Name and Subscript reference in the
+        line with its current value (sandboxed eval) and shows
+        the result of executing the line. Returns "" if the line
+        can't be evaluated safely.
+
+        Examples::
+
+          "candies[i] = candies[i - 1] + 1"  -> "Validated: candies[16] = candies[15] + 1 = 3"
+          "if ratings[i] > ratings[i - 1]:" -> "Validated: 6 > 2 = True"
+          "i = 1"                             -> "Validated: i = 1"
+        """
+        import ast as _ast
+
+        if not locals_dict or not text.strip():
+            return ""
+
+        # Helper: substitute Names in a string (preserving the rest
+        # of the syntax). Used for plain expression lines and for
+        # the condition of an if/while.
+        def _substitute(src: str) -> str:
             try:
-                tree = _ast.parse(text, mode="exec")
+                tree = _ast.parse(src, mode="eval")
             except SyntaxError:
-                if text.lstrip().startswith(("if ", "elif ", "while ")):
-                    # Pull the test out so we can walk the
-                    # comparison / subscripts inside it.
-                    head = text.lstrip()
-                    for kw in ("if ", "elif ", "while "):
-                        if head.startswith(kw):
-                            head = head[len(kw):]
-                            break
-                    head = head.rstrip().rstrip(":").rstrip()
-                    try:
-                        tree = _ast.parse(head, mode="eval")
-                    except SyntaxError:
-                        tree = None
-            if tree is not None:
-                seen: set[str] = set()
-                parts: list[str] = []
+                return src
+            try:
+                # Walk the tree and replace Name nodes with their
+                # values. For Subscript nodes, only the slice (the
+                # index) gets substituted - the value (the list)
+                # stays as a Name so the unparse reads as
+                # ``candies[16-1]`` rather than ``[2,1,3,...][16-1]``.
+                class _Subst(_ast.NodeTransformer):
+                    def visit_Name(self, node):
+                        if (isinstance(node.ctx, _ast.Load)
+                                and node.id in locals_dict):
+                            value = locals_dict[node.id]
+                            return _ast.Constant(value=value)
+                        return node
 
-                def _short(value) -> str:
-                    try:
-                        text_repr = repr(value)
-                    except Exception:
-                        return "?"
-                    if len(text_repr) > 24:
-                        if isinstance(value, (list, tuple, dict)):
-                            return f"{type(value).__name__}({len(value)})"
-                        return text_repr[:23] + "…"
-                    return text_repr
+                    def visit_Subscript(self, node):
+                        if node.slice is not None:
+                            node.slice = self.visit(node.slice)
+                        return node
+                new_tree = _Subst().visit(tree)
+                return _ast.unparse(new_tree)
+            except Exception:
+                return src
 
-                def _safe_eval(node) -> object | None:
-                    try:
-                        return eval(
-                            compile(_ast.Expression(node), "<ast>", "eval"),
-                            {"__builtins__": {}},
-                            trace_frame.locals,
-                        )
-                    except Exception:
-                        return None
+        # Helper: build a short "name=value, ..." hint for the
+        # Names that appear as subscripts / bare references in the
+        # line. Used as the leading "i=16 -> " part of the
+        # Validated line. Abbreviates long values (lists, dicts).
+        # ``safe_builtins`` is set up later (after the helpers it
+        # needs are defined) so resolve it via a closure lookup.
+        def _key_var_hint(src: str, scope: dict) -> str:
+            try:
+                tree = _ast.parse(src, mode="exec")
+            except SyntaxError:
+                try:
+                    tree = _ast.parse(src, mode="eval")
+                except SyntaxError:
+                    return ""
+            seen: set[str] = set()
+            parts: list[str] = []
 
-                def _collect(node) -> None:
-                    if isinstance(node, _ast.Name) and isinstance(node.ctx, _ast.Load):
-                        if node.id not in seen:
-                            seen.add(node.id)
-                            value = trace_frame.locals.get(node.id, "<undef>")
-                            parts.append(f"{node.id}={_short(value)}")
-                        return
-                    if isinstance(node, _ast.Subscript) and isinstance(node.ctx, _ast.Load):
+            def _short(value) -> str:
+                try:
+                    text_repr = repr(value)
+                except Exception:
+                    return "?"
+                if len(text_repr) > 24:
+                    if isinstance(value, (list, tuple, dict)):
+                        return f"{type(value).__name__}({len(value)})"
+                    return text_repr[:23] + "…"
+                return text_repr
+
+            class _Hint(_ast.NodeVisitor):
+                def visit_Name(self, node):
+                    if (isinstance(node.ctx, _ast.Load)
+                            and node.id in scope
+                            and node.id not in seen):
+                        seen.add(node.id)
+                        parts.append(f"{node.id}={_short(scope[node.id])}")
+                    self.generic_visit(node)
+                def visit_Subscript(self, node):
+                    if isinstance(node.ctx, _ast.Load):
                         src = _ast.unparse(node)
                         if src not in seen:
-                            seen.add(src)
-                            value = _safe_eval(node)
-                            if value is not None:
+                            try:
+                                value = eval(
+                                    compile(_ast.Expression(node), "<ast>", "eval"),
+                                    {"__builtins__": safe_builtins},
+                                    scope,
+                                )
+                                seen.add(src)
                                 parts.append(f"{src}={_short(value)}")
-                        return
-                    for child in _ast.iter_child_nodes(node):
-                        _collect(child)
+                            except Exception:
+                                pass
+                    self.generic_visit(node)
+            _Hint().visit(tree)
+            return ", ".join(parts)
 
-                _collect(tree)
-                if parts:
-                    values_suffix = "  (" + ", ".join(parts) + ")"
+        # Helper: evaluate a string as an expression and return
+        # ``str(value)`` or None on failure. The player's code
+        # already had full Python builtins available when it ran,
+        # so re-evaluating a single expression in the same context
+        # is no less safe - we just block __import__/open/exec/etc.
+        safe_builtins = {
+            k: getattr(__builtins__, k) if hasattr(__builtins__, k) else __builtins__[k]
+            for k in (
+                "abs", "all", "any", "bool", "dict", "enumerate",
+                "filter", "float", "int", "len", "list", "map",
+                "max", "min", "print", "range", "repr", "reversed",
+                "round", "set", "sorted", "str", "sum", "tuple",
+                "zip", "True", "False", "None",
+            )
+            if (hasattr(__builtins__, k) or
+                (isinstance(__builtins__, dict) and k in __builtins__))
+        }
 
-        return f"L{trace_frame.line_no}  {text}{values_suffix}"
+        def _eval_expr(src: str):
+            try:
+                return eval(
+                    compile(_ast.parse(src, mode="eval"), "<ast>", "eval"),
+                    {"__builtins__": safe_builtins},
+                    locals_dict,
+                )
+            except Exception:
+                return None
+
+        # Single expression (no statement keywords).
+        try:
+            tree = _ast.parse(text, mode="eval")
+            result = eval(
+                compile(tree, "<ast>", "eval"),
+                {"__builtins__": {}},
+                locals_dict,
+            )
+            substituted = _ast.unparse(tree)
+            return f"Validated: {substituted} = {result}"
+        except Exception:
+            pass
+
+        # Try as a statement. Handle Assign / AugAssign / If / While.
+        try:
+            tree = _ast.parse(text, mode="exec")
+        except SyntaxError:
+            tree = None
+
+        if tree is not None and tree.body:
+            stmt = tree.body[0]
+            if isinstance(stmt, _ast.Assign) and stmt.targets:
+                target = stmt.targets[0]
+                # Build the LHS: substitute Names in subscript
+                # slices but keep the variable name itself.
+                try:
+                    import copy as _copy
+                    new_target = _copy.deepcopy(target)
+                    if isinstance(new_target, _ast.Subscript):
+
+                        class _SliceSubst(_ast.NodeTransformer):
+                            def visit_Name(self, node):
+                                if (isinstance(node.ctx, _ast.Load)
+                                        and node.id in locals_dict):
+                                    return _ast.Constant(
+                                        value=locals_dict[node.id])
+                                return node
+                        new_target.slice = _SliceSubst().visit(new_target.slice)
+                    lhs_str = _ast.unparse(new_target)
+                except Exception:
+                    lhs_str = _ast.unparse(target)
+                # Substitute Names in the RHS too so builtins like
+                # max() see the current value of i, etc. (Without
+                # this, max(candies[i], candies[i+1]+1) fails because
+                # i isn't bound in the eval namespace.) Only the
+                # slice part of each Subscript gets its Names
+                # substituted - the value (the list itself) stays
+                # as a Name so the unparse still reads naturally
+                # (``candies[16-1]`` rather than ``[2, 1, ...][16-1]``).
+                rhs_text = _ast.unparse(stmt.value)
+                try:
+                    rhs_tree = _ast.parse(rhs_text, mode='eval')
+
+                    class _RhsSubst(_ast.NodeTransformer):
+                        def visit_Name(self, node):
+                            if (isinstance(node.ctx, _ast.Load)
+                                    and node.id in locals_dict):
+                                return _ast.Constant(
+                                    value=locals_dict[node.id])
+                            return node
+
+                        def visit_Subscript(self, node):
+                            # Only substitute the index (slice), not
+                            # the value (the list/dict). Otherwise
+                            # the unparse reads as ``[1, 2, 3][i-1]``
+                            # instead of the much friendlier
+                            # ``candies[i-1]``.
+                            if node.slice is not None:
+                                node.slice = self.visit(node.slice)
+                            return node
+                    rhs_tree = _RhsSubst().visit(rhs_tree)
+                    rhs_substituted = _ast.unparse(rhs_tree)
+                except Exception:
+                    rhs_substituted = rhs_text
+                value = _eval_expr(rhs_substituted)
+                if value is None:
+                    return f"Validated: {lhs_str} = ?"
+                hint = _key_var_hint(text, locals_dict)
+                if hint:
+                    return f"{hint} -> Validated: {lhs_str} = {rhs_substituted} = {value}"
+                return f"Validated: {lhs_str} = {rhs_substituted} = {value}"
+            if isinstance(stmt, _ast.AugAssign):
+                try:
+                    import copy as _copy
+                    new_target = _copy.deepcopy(stmt.target)
+                    if isinstance(new_target, _ast.Subscript):
+
+                        class _SliceSubst(_ast.NodeTransformer):
+                            def visit_Name(self, node):
+                                if (isinstance(node.ctx, _ast.Load)
+                                        and node.id in locals_dict):
+                                    return _ast.Constant(
+                                        value=locals_dict[node.id])
+                                return node
+                        new_target.slice = _SliceSubst().visit(new_target.slice)
+                    lhs_str = _ast.unparse(new_target)
+                except Exception:
+                    lhs_str = _ast.unparse(stmt.target)
+                # Evaluate the original target value to compute the new one.
+                old_value = _eval_expr(_ast.unparse(stmt.target))
+                rhs_value = _eval_expr(_ast.unparse(stmt.value))
+                if old_value is None or rhs_value is None:
+                    return f"Validated: {lhs_str} {stmt.op.__class__.__name__}= ?"
+                op_name = {  # map AST operator -> symbol
+                    _ast.Add: "+", _ast.Sub: "-", _ast.Mult: "*",
+                    _ast.Div: "/", _ast.Mod: "%", _ast.BitOr: "|",
+                    _ast.BitAnd: "&", _ast.BitXor: "^",
+                    _ast.LShift: "<<", _ast.RShift: ">>",
+                }.get(type(stmt.op), "?")
+                try:
+                    new_value = eval(
+                        f"old_value {op_name} rhs_value",
+                        {"__builtins__": {}},
+                        {"old_value": old_value, "rhs_value": rhs_value},
+                    )
+                except Exception:
+                    new_value = "?"
+                return f"Validated: {lhs_str} = {old_value} {op_name} {rhs_value} = {new_value}"
+            if isinstance(stmt, _ast.Return):
+                if stmt.value is None:
+                    return ""
+                value = _eval_expr(_ast.unparse(stmt.value))
+                return f"Validated: return {value}" if value is not None else ""
+
+        # Compound statement that didn't parse as exec (if X:, while X:).
+        stripped = text.lstrip()
+        for kw in ("if ", "elif ", "while "):
+            if stripped.startswith(kw):
+                test_str = stripped[len(kw):].rstrip().rstrip(":").rstrip()
+                substituted = _substitute(test_str)
+                result = _eval_expr(test_str)
+                if result is None:
+                    return ""
+                hint = _key_var_hint(test_str, locals_dict)
+                if hint:
+                    return f"{hint} -> Validated: {kw.rstrip()}: {substituted} = {result}"
+                return f"Validated: {kw.rstrip()}: {substituted} = {result}"
+
+        # Fall back: just substitute Names in the text.
+        return f"Validated: {_substitute(text)}"
 
     def _draw_centered_text(self, screen, font, text, rect, color):
         surface = font.render(text[:8], True, color)
