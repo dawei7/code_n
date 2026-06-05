@@ -704,7 +704,30 @@ class PygameRenderer:
         title_surface = fonts["title"].render(title, True, self.TEXT)
         screen.blit(title_surface, (self.margin, 18))
         self._draw_main_description(screen, fonts, result.description)
+
+        # Variables panel: live in the main area, below the grid, so
+        # the player can see the data structures evolve alongside the
+        # algorithm. Layout: stacked horizontally, each row is one
+        # variable (name + cell grid). Wraps inside the available
+        # width.
+        if trace_frame and trace_frame.locals:
+            main_x = self.margin
+            main_w = self._main_area_width()
+            grid_bottom = grid_rect.bottom
+            avail_top = grid_bottom + 24
+            avail_bottom = self.height - self.margin
+            if avail_bottom - avail_top >= 60:
+                self._draw_main_variables(
+                    screen, fonts,
+                    x=main_x,
+                    y=avail_top,
+                    max_width=main_w,
+                    max_y=avail_bottom,
+                    trace_frame=trace_frame,
+                )
         self._draw_grid_headers(screen, fonts, grid_rect, cell_size, display_rows, full_cols)
+
+        # Iterate over every cell but draw only those that land inside
 
         # Iterate over every cell but draw only those that land inside
         # the viewport rect (cheap early-out). The screen position of a
@@ -859,23 +882,19 @@ class PygameRenderer:
             prefix = "Breakpoint line" if trace_frame.breakpoint else "Line"
             self._draw_text(screen, fonts["body"], f"{prefix} {trace_frame.line_no} variables", x + 18, text_y, self.TEXT)
             text_y += 24
-            panel_inner_w = self.panel_width - 36
-            # Cap to the first 6 variables so the panel doesn't
-            # get dominated by a single huge list. Visuals are
-            # bigger per variable than text was.
-            for name, value in list(trace_frame.locals.items())[:6]:
-                text_y = self._draw_variable_visual(
-                    screen, fonts,
-                    x=x + 18,
-                    y=text_y,
-                    max_width=panel_inner_w,
-                    max_y=variables_bottom,
-                    name=name,
-                    value=value,
-                )
-                if text_y + 4 >= variables_bottom:
+            truncated = False
+            for name, value in list(trace_frame.locals.items())[:9]:
+                for line in self._wrap(f"{name} = {value}", wrap_w)[:2]:
+                    if text_y + 18 > variables_bottom:
+                        truncated = True
+                        break
+                    self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.MUTED)
+                    text_y += 18
+                if truncated:
+                    if text_y + 18 <= variables_bottom:
+                        self._draw_text(screen, fonts["small"], "...", x + 18, text_y, self.MUTED)
                     break
-            text_y += 8
+            text_y += 12
 
         text_y = max(text_y, content_bottom - return_height)
         self._draw_text(screen, fonts["body"], "Return value", x + 18, text_y, self.TEXT)
@@ -1180,6 +1199,150 @@ class PygameRenderer:
             self._draw_text(screen, fonts["small"], line, x, y, self.MUTED)
             y += 18
         screen.set_clip(previous_clip)
+
+    def _draw_main_variables(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        max_width: int,
+        max_y: int,
+        trace_frame,
+    ) -> None:
+        """Render the player's local variables as a grid of labeled
+        cell strips in the main area (below the grid, not in the
+        side panel).
+
+        Each variable gets one row: a bold ``name:`` label on the
+        left and a row of small cells, one per element, wrapping to
+        additional rows as needed. The label is wide enough for
+        ~10-character names; longer names get truncated. Up to 8
+        variables are shown before '+N more' truncation.
+        """
+        import pygame
+
+        # Title strip.
+        if y + 24 > max_y:
+            return
+        prefix = "Breakpoint line" if trace_frame.breakpoint else "Line"
+        self._draw_text(
+            screen,
+            fonts["body"],
+            f"{prefix} {trace_frame.line_no} variables",
+            x,
+            y,
+            self.TEXT,
+        )
+        y += 24
+
+        label_w = 110
+        cell_size = 18
+        cell_gap = 1
+        strip_x = x + label_w
+        strip_w = max(40, max_width - label_w)
+        cols_per_row = max(1, (strip_w + cell_gap) // (cell_size + cell_gap))
+
+        shown = 0
+        for name, value in trace_frame.locals.items():
+            if shown >= 8:
+                self._draw_text(
+                    screen, fonts["small"],
+                    f"+{len(trace_frame.locals) - shown} more...",
+                    x, y, self.MUTED,
+                )
+                break
+
+            # Unwrap TrackedList so we can iterate.
+            raw = value
+            try:
+                from code_n.tracked import TrackedList as _TL
+                if isinstance(raw, _TL):
+                    raw = list(raw)
+            except ImportError:
+                pass
+
+            # Estimate the height this variable needs.
+            if isinstance(raw, (list, tuple)) and raw:
+                items = list(raw)
+                needed_rows = (len(items) + cols_per_row - 1) // cols_per_row
+            elif isinstance(raw, dict) and raw:
+                needed_rows = 2
+            else:
+                needed_rows = 1
+            needed_h = needed_rows * (cell_size + 2)
+            if y + needed_h + 8 > max_y:
+                self._draw_text(
+                    screen, fonts["small"],
+                    "...",
+                    x, y, self.MUTED,
+                )
+                break
+
+            # Label.
+            label = name if len(name) <= 14 else name[:13] + "…"
+            self._draw_text(screen, fonts["small"], f"{label}:", x, y, self.TEXT)
+            # Cells.
+            self._draw_variable_strip(
+                screen, fonts,
+                strip_x, y,
+                cell_size, cell_gap, cols_per_row,
+                raw,
+            )
+            y += needed_h + 6
+            shown += 1
+
+    def _draw_variable_strip(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        cell_size: int,
+        cell_gap: int,
+        cols_per_row: int,
+        raw,
+    ) -> None:
+        """Render a list/dict/scalar as a row (or two rows for dicts)
+        of small cells. Internal helper for ``_draw_main_variables``.
+        """
+        import pygame
+
+        cell_bg = (52, 60, 74)
+
+        def _cell(px: int, py: int, val) -> None:
+            label = repr(val)
+            if len(label) > 6:
+                label = label[:5] + "…"
+            rect = pygame.Rect(px, py, cell_size, cell_size)
+            pygame.draw.rect(screen, cell_bg, rect, border_radius=3)
+            pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=3)
+            cell_font = fonts["small"] if cell_size < 24 else fonts["body"]
+            text_surface = cell_font.render(label, True, self.TEXT)
+            screen.blit(text_surface, text_surface.get_rect(center=rect.center))
+
+        if isinstance(raw, (list, tuple)) and raw:
+            items = list(raw)
+            MAX = 80
+            if len(items) > MAX:
+                items = items[:MAX]
+            for index, item in enumerate(items):
+                row = index // cols_per_row
+                col = index % cols_per_row
+                _cell(x + col * (cell_size + cell_gap), y + row * (cell_size + 2), item)
+            return
+        if isinstance(raw, dict) and raw:
+            items = list(raw.items())
+            MAX = 30
+            if len(items) > MAX:
+                items = items[:MAX]
+            for index, (k, v) in enumerate(items):
+                if index >= cols_per_row:
+                    break
+                _cell(x + index * (cell_size + cell_gap), y, k)
+                _cell(x + index * (cell_size + cell_gap), y + cell_size + 2, v)
+            return
+        _cell(x, y, raw)
 
     def _cell_rect(self, grid_rect, cell_size, coord):
         import pygame
