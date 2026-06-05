@@ -451,10 +451,12 @@ class PygameRenderer:
             # panel can flash the cells this op touched in the
             # op-type color. The flash is the same "this is the
             # one I just read / wrote / compared" effect that the
-            # main grid already does.
+            # main grid already does. We pass the trace_frame so
+            # the CALL branch can read the source line directly
+            # (op.detail is just 'line N' for line-based tracing).
             if trace_frame and trace_frame.locals:
                 self._touched_cells = self._extract_touched_cells(
-                    current_op, trace_frame.locals,
+                    current_op, trace_frame,
                 )
             if self._source_breakpoint_hit(trace_frame, source_breakpoints_hit):
                 paused = True
@@ -923,15 +925,12 @@ class PygameRenderer:
         # Show the player's source line for the most recent trace
         # frame so the op maps to the actual Python statement
         # (``candies[i] = max(candies[i], candies[i+1] + 1)``).
-        # _format_source_line now returns ``(code_line,
-        # validated_line)`` so the side panel can render the
-        # two stacked lines the way the main-window panel does.
-        code_line, validated_line = self._format_source_line(trace_frame)
-        if code_line:
-            text_y += 4
-            self._draw_text(screen, fonts["small"], code_line, x + 18, text_y, self.MUTED)
-            text_y += 18
+        # _format_source_line returns ``(code_line, validated_line)``
+        # but the user only wants the Validated line here - the
+        # code line is redundant (it's already in the main window).
+        _, validated_line = self._format_source_line(trace_frame)
         if validated_line:
+            text_y += 4
             for line in self._wrap(validated_line, wrap_w)[:2]:
                 self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.ACCENT_COLOR)
                 text_y += 18
@@ -1323,15 +1322,13 @@ class PygameRenderer:
             op_text = f"Current op: {current_detail}"
             self._draw_text(screen, fonts["small"], op_text, x, y, self.ACCENT_COLOR)
             y += 18
-        # Source line strip: the code itself on one line, then a
-        # "Validated:" line that substitutes every Name / Subscript
-        # reference with its current value and shows the result.
-        # The line number is already in the "Line N variables"
-        # title above, so we don't repeat it.
-        code_line, validated_line = self._format_source_line(trace_frame)
-        if code_line:
-            self._draw_text(screen, fonts["small"], code_line, x, y, self.MUTED)
-            y += 18
+        # Source line strip: just the "Validated:" line, which
+        # substitutes every Name / Subscript reference with its
+        # current value and shows the result. The user only
+        # wants this line in the main window; the code itself
+        # is in the description above (or in the side panel's
+        # Validated section) so we don't repeat it.
+        _, validated_line = self._format_source_line(trace_frame)
         if validated_line:
             self._draw_text(
                 screen, fonts["small"], validated_line, x, y, self.ACCENT_COLOR,
@@ -1565,6 +1562,120 @@ class PygameRenderer:
             touched.add((max(0, int(pop_match.group(1))), 0))
         return bool(touched & watchpoints)
 
+    def _touched_from_call(
+        self,
+        op: OpRecord,
+        trace_frame,
+    ) -> dict[int, tuple[float, str]]:
+        """Extract touched-cell indices for a ``CALL`` op.
+
+        For line-based tracing, the engine records one CALL op
+        per source line. The detail is just ``line N`` and the
+        actual cells the line touched are encoded in the
+        player's source code, so we read the source line from
+        ``trace_frame.source_file`` at ``trace_frame.line_no`` and
+        walk its AST for Subscript references. The corresponding
+        list indices are evaluated against the live locals.
+        """
+        import time as _time, ast as _ast
+        touched: dict[int, tuple[float, str]] = {}
+        if not trace_frame:
+            return {}
+        source_file = getattr(trace_frame, "source_file", None)
+        line_no = trace_frame.line_no
+        if not source_file or not line_no or line_no <= 0:
+            return {}
+        try:
+            with open(source_file, "r", encoding="utf-8", errors="replace") as f:
+                lines = f.readlines()
+        except OSError:
+            return {}
+        idx = line_no - 1
+        if idx < 0 or idx >= len(lines):
+            return {}
+        text = lines[idx].rstrip().lstrip()
+
+        op_kind = self._infer_call_kind(text) or "READ"
+        safe_builtins = self._safe_builtins()
+        locals_dict = trace_frame.locals or {}
+
+        # if / while lines don't parse standalone (need a body)
+        # - pull the test out so we can walk the subscripts inside.
+        stripped = text.lstrip()
+        try:
+            tree = _ast.parse(text, mode="exec")
+        except SyntaxError:
+            for kw in ("if ", "elif ", "while "):
+                if stripped.startswith(kw):
+                    test_str = stripped[len(kw):].rstrip().rstrip(":").rstrip()
+                    try:
+                        tree = _ast.parse(test_str, mode="eval")
+                    except SyntaxError:
+                        return {}
+                    break
+            else:
+                try:
+                    tree = _ast.parse(text, mode="eval")
+                except SyntaxError:
+                    return {}
+
+        for node in _ast.walk(tree):
+            if isinstance(node, _ast.Subscript) and isinstance(node.ctx, _ast.Load):
+                index_src = _ast.unparse(node.slice)
+                try:
+                    sub_tree = _ast.parse(index_src, mode="eval")
+                    for sub in _ast.walk(sub_tree):
+                        if isinstance(sub, (_ast.Call, _ast.Attribute)):
+                            raise ValueError("no calls / attrs")
+                    index = eval(
+                        compile(sub_tree, "<ast>", "eval"),
+                        {"__builtins__": safe_builtins},
+                        locals_dict,
+                    )
+                except Exception:
+                    continue
+                if isinstance(index, int):
+                    touched[index] = (_time.time(), op_kind)
+        return touched
+
+    @staticmethod
+    def _safe_builtins() -> dict:
+        """Build a dict of safe Python builtins for sandboxed eval."""
+        return {
+            k: getattr(__builtins__, k) if hasattr(__builtins__, k) else __builtins__[k]
+            for k in (
+                "abs", "all", "any", "bool", "dict", "enumerate",
+                "filter", "float", "int", "len", "list", "map",
+                "max", "min", "print", "range", "repr", "reversed",
+                "round", "set", "sorted", "str", "sum", "tuple",
+                "zip", "True", "False", "None",
+            )
+            if (hasattr(__builtins__, k) or
+                (isinstance(__builtins__, dict) and k in __builtins__))
+        }
+
+    @staticmethod
+    def _infer_call_kind(text: str) -> str | None:
+        """Guess the op type (READ / WRITE / COMPARE / SWAP) from
+        a source line. Used by ``_touched_from_call`` when the
+        op is a CALL (line-based tracing) and the engine hasn't
+        recorded the specific op type.
+        """
+        import ast as _ast
+        try:
+            tree = _ast.parse(text, mode="exec")
+        except SyntaxError:
+            try:
+                tree = _ast.parse(text, mode="eval")
+            except SyntaxError:
+                return None
+        for stmt in getattr(tree, "body", []):
+            if isinstance(stmt, (_ast.Assign, _ast.AugAssign)):
+                return "WRITE"
+            if isinstance(stmt, (_ast.If, _ast.While)):
+                return "COMPARE"
+        return "READ"
+
     def _source_breakpoint_hit(self, trace_frame: Optional[TraceFrame], seen: set[tuple[int, int]]) -> bool:
         if not trace_frame or not trace_frame.breakpoint:
             return False
@@ -1577,30 +1688,32 @@ class PygameRenderer:
     def _extract_touched_cells(
         self,
         op: OpRecord,
-        locals_dict: dict,
+        trace_frame,
     ) -> dict[int, tuple[float, str]]:
         """Return ``index -> (timestamp, op_type)`` for the cells
         this op touches.
 
-        The op's ``detail`` field is the engine's human-readable
-        description of the operation (e.g. ``list[5] = 3``,
-        ``list[5] < list[6]``, ``list[5]<->list[6]``). The
-        engine hardcodes the variable name as ``list`` in this
-        string regardless of what the player called it, so we
-        match cells by their **index** alone. False positives
-        (flashing two variables at the same index) are
-        acceptable for a learning game and rare in practice
-        since most challenges have one main list.
+        For ``READ`` / ``WRITE`` / ``COMPARE`` / ``SWAP`` ops, the
+        engine's op.detail hardcodes the variable name as
+        ``list`` (e.g. ``list[5] = 3``, ``list[5] < list[6]``,
+        ``list[5]<->list[6]``) and we pull the indices out of
+        that.
 
-        The timestamp is ``time.time()`` so the renderer can
-        prune stale entries and only flash cells touched within
-        the last ~0.4s.
+        For ``CALL`` ops (line-based tracing, where the engine
+        records one op per source line), the detail is just
+        ``line N``. We don't know which cells the line touched
+        from the op alone, so we read the actual source line
+        from the trace_frame's source_file and parse it for
+        ``name[expr]`` subscripts. This way every line that
+        touches ``list[i]`` / ``candies[i-1]`` / etc. actually
+        flashes those cells, not just the op-recorded ones.
         """
         import re, time as _time, ast as _ast
         detail = getattr(op, "detail", "") or ""
         op_type_name = getattr(op.op_type, "name", None) or str(op.op_type)
         if op_type_name == "CALL":
-            return {}
+            return self._touched_from_call(op, trace_frame)
+        locals_dict = trace_frame.locals if trace_frame else {}
         touched: dict[int, tuple[float, str]] = {}
         safe_builtins = {
             k: getattr(__builtins__, k) if hasattr(__builtins__, k) else __builtins__[k]
