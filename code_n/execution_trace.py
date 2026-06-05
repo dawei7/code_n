@@ -19,7 +19,11 @@ class TraceFrame:
     op_index: int
     line_no: int
     event: str
-    locals: dict[str, str] = field(default_factory=dict)
+    # The actual Python locals from the player's frame, NOT
+    # their repr. Storing the objects lets the renderer build a
+    # fully-fleshed visual (one cell per list element, one row
+    # per dict pair) rather than dumping a truncated string.
+    locals: dict[str, Any] = field(default_factory=dict)
     return_value: str = ""
     breakpoint: bool = False
 
@@ -101,12 +105,27 @@ def run_with_trace(func: Callable, kwargs: dict[str, Any], counter: OperationCou
         sys.settrace(previous_tracer)
 
 
-def _serialize_locals(locals_map: dict[str, Any]) -> dict[str, str]:
-    result: dict[str, str] = {}
+def _serialize_locals(locals_map: dict[str, Any]) -> dict[str, Any]:
+    """Return the locals as actual Python objects (not repr strings).
+
+    The renderer can then build a fully-fleshed visual for each
+    one: one cell per list element, one row per dict pair, etc.
+    Previously the locals were pre-rendered to ``repr()`` strings
+    which forced the renderer to dump truncated text.
+    """
+    result: dict[str, Any] = {}
     for key, value in locals_map.items():
         if key.startswith("__"):
             continue
-        result[key] = _safe_repr(value)
+        # Unwrap TrackedValue so the renderer gets a plain object.
+        # (TrackedList stays as-is so we can render it like a list.)
+        try:
+            from code_n.tracked import TrackedValue as _TV
+            if isinstance(value, _TV):
+                value = value.value
+        except ImportError:
+            pass
+        result[key] = value
     return result
 
 

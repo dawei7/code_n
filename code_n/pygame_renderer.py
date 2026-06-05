@@ -1210,15 +1210,19 @@ class PygameRenderer:
         max_y: int,
         trace_frame,
     ) -> None:
-        """Render the player's local variables as a grid of labeled
-        cell strips in the main area (below the grid, not in the
-        side panel).
+        """Render the player's local variables as a fully-fledged
+        visual in the main area, below the grid.
 
-        Each variable gets one row: a bold ``name:`` label on the
-        left and a row of small cells, one per element, wrapping to
-        additional rows as needed. The label is wide enough for
-        ~10-character names; longer names get truncated. Up to 8
-        variables are shown before '+N more' truncation.
+        Layout: each variable is two lines - a bold ``name:`` label
+        on the first line, then the full representation on the next
+        line (or lines, for long lists). Lists / tuples / TrackedList
+        become a row of small cells, one per element, wrapping as
+        needed. Dicts become a 2-row "key / value" strip. Scalars
+        become a single cell. Up to 8 variables are shown before
+        '+N more' truncation.
+
+        No truncation of the list itself - the player sees the full
+        representation, like the algorithm grid at the top.
         """
         import pygame
 
@@ -1236,11 +1240,10 @@ class PygameRenderer:
         )
         y += 24
 
-        label_w = 110
         cell_size = 18
         cell_gap = 1
-        strip_x = x + label_w
-        strip_w = max(40, max_width - label_w)
+        strip_x = x
+        strip_w = max(40, max_width)
         cols_per_row = max(1, (strip_w + cell_gap) // (cell_size + cell_gap))
 
         shown = 0
@@ -1253,7 +1256,6 @@ class PygameRenderer:
                 )
                 break
 
-            # Unwrap TrackedList so we can iterate.
             raw = value
             try:
                 from code_n.tracked import TrackedList as _TL
@@ -1270,8 +1272,8 @@ class PygameRenderer:
                 needed_rows = 2
             else:
                 needed_rows = 1
-            needed_h = needed_rows * (cell_size + 2)
-            if y + needed_h + 8 > max_y:
+            needed_h = needed_rows * (cell_size + 2) + 22  # +22 for the name line
+            if y + needed_h + 6 > max_y:
                 self._draw_text(
                     screen, fonts["small"],
                     "...",
@@ -1279,17 +1281,17 @@ class PygameRenderer:
                 )
                 break
 
-            # Label.
-            label = name if len(name) <= 14 else name[:13] + "…"
-            self._draw_text(screen, fonts["small"], f"{label}:", x, y, self.TEXT)
-            # Cells.
+            # Name on its own line.
+            self._draw_text(screen, fonts["body"], f"{name}:", x, y, self.TEXT)
+            y += 22
+            # Representation (cells).
             self._draw_variable_strip(
                 screen, fonts,
                 strip_x, y,
                 cell_size, cell_gap, cols_per_row,
                 raw,
             )
-            y += needed_h + 6
+            y += needed_h - 22 + 8
             shown += 1
 
     def _draw_variable_strip(
@@ -1303,15 +1305,30 @@ class PygameRenderer:
         cols_per_row: int,
         raw,
     ) -> None:
-        """Render a list/dict/scalar as a row (or two rows for dicts)
-        of small cells. Internal helper for ``_draw_main_variables``.
+        """Render a list / dict / scalar as a row (or two rows for
+        dicts) of small cells. Uses ``str()`` (not ``repr()``) for
+        each value, so strings appear without surrounding quotes and
+        numbers appear as plain numbers.
         """
         import pygame
 
         cell_bg = (52, 60, 74)
 
+        def _format(val) -> str:
+            # For the player-facing visual we want plain text, not
+            # Python repr. Convert the value to a string and strip
+            # the surrounding quotes that str() would add for a
+            # string literal - the user shouldn't see 'hello' for a
+            # cell holding the value "hello".
+            try:
+                if isinstance(val, str):
+                    return val
+                return str(val)
+            except Exception:
+                return "?"
+
         def _cell(px: int, py: int, val) -> None:
-            label = repr(val)
+            label = _format(val)
             if len(label) > 6:
                 label = label[:5] + "…"
             rect = pygame.Rect(px, py, cell_size, cell_size)
@@ -1323,9 +1340,9 @@ class PygameRenderer:
 
         if isinstance(raw, (list, tuple)) and raw:
             items = list(raw)
-            MAX = 80
-            if len(items) > MAX:
-                items = items[:MAX]
+            # Show the FULL list, no truncation. Long lists wrap
+            # to multiple rows (the columns_per_row calculation
+            # above handles this).
             for index, item in enumerate(items):
                 row = index // cols_per_row
                 col = index % cols_per_row
@@ -1333,9 +1350,6 @@ class PygameRenderer:
             return
         if isinstance(raw, dict) and raw:
             items = list(raw.items())
-            MAX = 30
-            if len(items) > MAX:
-                items = items[:MAX]
             for index, (k, v) in enumerate(items):
                 if index >= cols_per_row:
                     break
