@@ -923,11 +923,17 @@ class PygameRenderer:
         # Show the player's source line for the most recent trace
         # frame so the op maps to the actual Python statement
         # (``candies[i] = max(candies[i], candies[i+1] + 1)``).
-        source_text = self._format_source_line(trace_frame)
-        if source_text:
+        # _format_source_line now returns ``(code_line,
+        # validated_line)`` so the side panel can render the
+        # two stacked lines the way the main-window panel does.
+        code_line, validated_line = self._format_source_line(trace_frame)
+        if code_line:
             text_y += 4
-            for line in self._wrap(source_text, wrap_w)[:1]:
-                self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.MUTED)
+            self._draw_text(screen, fonts["small"], code_line, x + 18, text_y, self.MUTED)
+            text_y += 18
+        if validated_line:
+            for line in self._wrap(validated_line, wrap_w)[:2]:
+                self._draw_text(screen, fonts["small"], line, x + 18, text_y, self.ACCENT_COLOR)
                 text_y += 18
         text_y += 12
 
