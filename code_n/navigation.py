@@ -419,15 +419,13 @@ class ChallengeNavigator:
 
         sync_window_size(self, screen)
         screen.fill(self.BACKGROUND)
-        # Short title: the student's name plus the course name. We
-        # do not render the long "cOde(n) - Algorithms..." subtitle
-        # anymore; the user found it too verbose.
-        title = f"{self.player_name()} - Data Structures and Algorithms (DSA)"
-        self._text(screen, fonts["title"], title, 30, 24, self.TEXT)
+        self._text(screen, fonts["title"], GAME_TITLE, 30, 24, self.TEXT)
+        subtitle = f"{self.player_name()} - Data Structures and Algorithms (DSA)"
+        self._text(screen, fonts["body"], subtitle, 30, 62, self.MUTED)
 
         margin = 30
         gap = 24
-        top = 80
+        top = 105
         bottom_h = 32
         bottom_y = max(top + 420, self.height - bottom_h - 20)
         content_h = max(360, bottom_y - top - 13)
@@ -554,7 +552,11 @@ class ChallengeNavigator:
         y = controls_y
         self._text(screen, fonts["body"], "Controls", content_x, y, self.TEXT)
         y += 28
-        for line in ["Click: select | E: explore", "Enter/R: run | O: open script", "Reset button clears statuses", "N: student name | F5: refresh | Esc: quit"]:
+        # Keep the Controls section minimal: only the truly
+        # global shortcuts (name, refresh, quit). Click/Explore/Run/Open
+        # shortcuts are already embedded in the button labels
+        # above, so repeating them here would be noise.
+        for line in ["N: student name | F5: refresh | Esc: quit"]:
             self._text(screen, fonts["small"], line, content_x, y, self.MUTED)
             y += 20
 
@@ -599,9 +601,15 @@ class ChallengeNavigator:
         pygame.draw.rect(screen, self.WARNING, reset_rect, border_radius=7)
         for _, r in self._button_rects:
             pygame.draw.rect(screen, self.GRID_LINE, r, width=1, border_radius=7)
-        self._center_text(screen, fonts["body"], "Explore", explore_rect, self.TEXT)
-        self._center_text(screen, fonts["body"], "Run", run_rect, self.TEXT)
-        self._center_text(screen, fonts["body"], "Open", open_rect, self.TEXT)
+        # Each label embeds the keyboard shortcut in (parentheses)
+        # so the player can learn the bindings just by looking at
+        # the button row. Solve and Reset deliberately have no
+        # shortcut: both are destructive-from-learning-perspective
+        # actions, and we don't want an accidental keypress to wipe
+        # the player's progress or spoil a challenge.
+        self._center_text(screen, fonts["body"], "Explore (E)", explore_rect, self.TEXT)
+        self._center_text(screen, fonts["body"], "Run (R)", run_rect, self.TEXT)
+        self._center_text(screen, fonts["body"], "Open (O)", open_rect, self.TEXT)
         self._center_text(screen, fonts["body"], "Solve", solve_rect, self.TEXT)
         self._center_text(screen, fonts["body"], "Reset", reset_rect, self.TEXT)
 
