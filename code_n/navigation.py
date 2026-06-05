@@ -636,6 +636,7 @@ class ChallengeNavigator:
         self._text(screen, fonts["title"], f"Explore: {info.name}", 36, 26, self.TEXT)
         self._text(screen, fonts["body"], f"Student: {self.player_name()}    Required: {info.required_complexity.value}", 36, 66, self.MUTED)
 
+        # Description rect: full-width band at the top.
         desc_rect = pygame.Rect(36, 104, self.width - 72, 104)
         pygame.draw.rect(screen, self.SURFACE, desc_rect, border_radius=8)
         self._text(screen, fonts["body"], "Description", desc_rect.x + 16, desc_rect.y + 12, self.TEXT)
@@ -644,19 +645,24 @@ class ChallengeNavigator:
             self._text(screen, fonts["small"], line, desc_rect.x + 16, desc_y, self.MUTED)
             desc_y += 20
 
+        # Two columns below the description: the function signature
+        # (with explicit input / return annotation) on the left, the
+        # input/output samples on the right. The previous layout had
+        # a "Sample input" grid display in the left column that
+        # duplicated what the samples already showed; it was removed
+        # so the player sees the contract clearly instead.
         panel_gap = 28
-        panel_top = 228
-        panel_height = max(300, self.height - panel_top - 122)
+        panel_top = desc_rect.bottom + 28
+        panel_height = max(220, self.height - panel_top - 100)
         panel_width = max(360, (self.width - 72 - panel_gap) // 2)
-        sample_rect = pygame.Rect(36, panel_top, panel_width, panel_height)
-        solution_rect = pygame.Rect(sample_rect.right + panel_gap, panel_top, self.width - sample_rect.right - panel_gap - 36, panel_height)
-        pygame.draw.rect(screen, self.SURFACE, sample_rect, border_radius=8)
-        pygame.draw.rect(screen, self.SURFACE, solution_rect, border_radius=8)
-        self._text(screen, fonts["body"], "Sample input", sample_rect.x + 16, sample_rect.y + 14, self.TEXT)
-        self._text(screen, fonts["body"], "Input / Output samples", solution_rect.x + 16, solution_rect.y + 14, self.TEXT)
-        self._draw_sample_grid(screen, fonts, challenge.grid, sample_rect.inflate(-32, -72).move(0, 42))
-        self._draw_setup_summary(screen, fonts, setup_data, sample_rect.x + 16, sample_rect.bottom - 92, sample_rect.width - 32)
-        self._draw_example_solution(screen, fonts, info.id, solution_rect)
+        sig_rect = pygame.Rect(36, panel_top, panel_width, panel_height)
+        samples_rect = pygame.Rect(sig_rect.right + panel_gap, panel_top, self.width - sig_rect.right - panel_gap - 36, panel_height)
+        pygame.draw.rect(screen, self.SURFACE, sig_rect, border_radius=8)
+        pygame.draw.rect(screen, self.SURFACE, samples_rect, border_radius=8)
+        self._text(screen, fonts["body"], "Function signature", sig_rect.x + 16, sig_rect.y + 14, self.TEXT)
+        self._text(screen, fonts["body"], "Input / Output samples", samples_rect.x + 16, samples_rect.y + 14, self.TEXT)
+        self._draw_function_signature(screen, fonts, challenge, setup_data, sig_rect)
+        self._draw_sample_lines(screen, fonts, info.id, samples_rect)
 
         for action, rect in buttons:
             fill = self.SURFACE_ALT
@@ -670,6 +676,151 @@ class ChallengeNavigator:
             self._center_text(screen, fonts["body"], label, rect, self.TEXT)
 
         self._text(screen, fonts["small"], "Esc/B: back   Enter/R: run   O: open script", 540, self.height - 58, self.MUTED)
+
+    def _draw_function_signature(self, screen, fonts, challenge, setup_data, area):
+        """Render the function signature, input descriptions, and return
+        description inside ``area`` (a panel rect with 16 px padding)."""
+        import pygame
+
+        sig_y = area.y + 50
+        # Build the call signature: def solve(arg1, arg2, ...):
+        args = ", ".join(setup_data.keys()) if setup_data else ""
+        sig_text = f"def solve({args}):"
+        self._text(screen, fonts["body"], sig_text, area.x + 16, sig_y, self.TEXT)
+        sig_y += 28
+
+        # Per-argument hint: for each input, show the name and a
+        # short description taken from the challenge's ChallengeInfo.
+        arg_hints = self._arg_hints_for(challenge)
+        if arg_hints:
+            for arg_name, hint_text in arg_hints.items():
+                if arg_name not in setup_data:
+                    continue
+                self._text(screen, fonts["small"], f"  {arg_name}:", area.x + 16, sig_y, self.MUTED)
+                sig_y += 18
+                for line in self._wrap(hint_text, 50):
+                    self._text(screen, fonts["small"], f"    {line}", area.x + 16, sig_y, self.MUTED)
+                    sig_y += 18
+                sig_y += 4
+
+        # Return description - prefer an explicit hint from the
+        # challenge, else say "see the sample I/O on the right".
+        return_text = self._return_hint_for(challenge)
+        self._text(screen, fonts["small"], "returns:", area.x + 16, sig_y, self.MUTED)
+        sig_y += 18
+        for line in self._wrap(return_text, 50):
+            self._text(screen, fonts["small"], f"  {line}", area.x + 16, sig_y, self.MUTED)
+            sig_y += 18
+
+    def _draw_sample_lines(self, screen, fonts, challenge_id, area):
+        """Render the input/output sample lines inside ``area``."""
+        sample_y = area.y + 50
+        for line in sample_lines(challenge_id):
+            if sample_y + 18 > area.bottom - 16:
+                # Truncate with an ellipsis if we run out of room.
+                self._text(screen, fonts["small"], "...", area.x + 16, area.bottom - 22, self.MUTED)
+                break
+            self._text(screen, fonts["small"], line, area.x + 16, sample_y, self.MUTED)
+            sample_y += 20
+
+    def _arg_hints_for(self, challenge) -> dict[str, str]:
+        """Per-challenge map of input-name -> human-readable description.
+
+        Lives next to the explore view so the player knows what each
+        argument means before they write their solution.
+        """
+        cid = type(challenge).__name__
+        return {
+            "IntroHelloGrid": {
+                "data": "list-like of n integers. Read it with data[i].",
+            },
+            "BubbleSortChallenge": {
+                "data": "list-like of n random integers. Mutate in place.",
+                "n": "length of data.",
+            },
+            "SelectionSortChallenge": {
+                "data": "list-like of n random integers. Mutate in place.",
+                "n": "length of data.",
+            },
+            "InsertionSortChallenge": {
+                "data": "list-like of n random integers. Mutate in place.",
+                "n": "length of data.",
+            },
+            "MergeSortChallenge": {
+                "data": "list-like of n random integers. Mutate in place.",
+                "n": "length of data.",
+            },
+            "QuickSortChallenge": {
+                "data": "list-like of n random integers. Mutate in place.",
+                "n": "length of data.",
+            },
+            "LinearSearchChallenge": {
+                "data": "list-like of n random integers.",
+                "target": "value to find in data.",
+            },
+            "BinarySearchChallenge": {
+                "data": "sorted list-like of n random integers.",
+                "target": "value to find in data.",
+                "n": "length of data.",
+            },
+            "BFSGridChallenge": {
+                "grid": "2D list-like. 0 = walkable, 1 = wall. Read with grid[row][column].",
+                "start": "(row, column) start position.",
+                "goal": "(row, column) goal position.",
+                "size": "width and height of the square grid.",
+            },
+            "DFSGridChallenge": {
+                "grid": "2D list-like. 0 = walkable, 1 = wall. Read with grid[row][column].",
+                "start": "(row, column) start position.",
+                "size": "width and height of the square grid.",
+            },
+            "GraphRepresentationChallenge": {
+                "num_nodes": "number of nodes in the graph.",
+                "edges": "list-like of (u, v) tuples representing undirected edges.",
+            },
+            "DijkstraChallenge": {
+                "num_nodes": "number of nodes in the graph.",
+                "edges": "list-like of (u, v, weight) tuples for directed edges.",
+                "start": "source node.",
+            },
+            "FibonacciChallenge": {
+                "n": "index of the Fibonacci number to compute.",
+            },
+            "ClimbingStairsChallenge": {
+                "n": "number of stairs.",
+            },
+            "KnapsackChallenge": {
+                "weights": "list-like of item weights (length n).",
+                "values": "list-like of item values (length n).",
+                "capacity": "knapsack capacity.",
+                "n": "number of items.",
+            },
+            "LCSChallenge": {
+                "seq_a": "first string (or list-like of characters).",
+                "seq_b": "second string (or list-like of characters).",
+            },
+        }.get(cid, {})
+
+    def _return_hint_for(self, challenge) -> str:
+        cid = type(challenge).__name__
+        return {
+            "IntroHelloGrid": "the maximum value in data.",
+            "BubbleSortChallenge": "the same data object, sorted in place (in ascending order).",
+            "SelectionSortChallenge": "the same data object, sorted in place (in ascending order).",
+            "InsertionSortChallenge": "the same data object, sorted in place (in ascending order).",
+            "MergeSortChallenge": "the same data object, sorted in place (in ascending order).",
+            "QuickSortChallenge": "the same data object, sorted in place (in ascending order).",
+            "LinearSearchChallenge": "the index of target in data, or -1 if not found.",
+            "BinarySearchChallenge": "the index of target in data, or -1 if not found.",
+            "BFSGridChallenge": "the length of the shortest path from start to goal in steps. The challenge always has a path.",
+            "DFSGridChallenge": "the number of walkable cells reachable from start (including start).",
+            "GraphRepresentationChallenge": "a dict mapping each node to a sorted list of its neighbors.",
+            "DijkstraChallenge": "a dict mapping each node to its shortest distance from start. Unreachable nodes get -1.",
+            "FibonacciChallenge": "the n-th Fibonacci number (fib(0)=0, fib(1)=1).",
+            "ClimbingStairsChallenge": "the number of distinct ways to climb n stairs (1 or 2 steps at a time).",
+            "KnapsackChallenge": "the maximum total value of items that fit in the knapsack.",
+            "LCSChallenge": "the length of the longest common subsequence of seq_a and seq_b.",
+        }.get(cid, "see the sample I/O on the right.")
 
     def _draw_sample_grid(self, screen, fonts, grid: Optional[Grid], area):
         import pygame
