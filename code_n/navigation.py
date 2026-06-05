@@ -636,32 +636,52 @@ class ChallengeNavigator:
         self._text(screen, fonts["title"], f"Explore: {info.name}", 36, 26, self.TEXT)
         self._text(screen, fonts["body"], f"Student: {self.player_name()}    Required: {info.required_complexity.value}", 36, 66, self.MUTED)
 
-        # Description rect: full-width band at the top.
-        desc_rect = pygame.Rect(36, 104, self.width - 72, 104)
+        # Two columns below the title strip. The left pane is the
+        # Description (kept wide on purpose so it can grow long in
+        # the future without overflowing the right column). The
+        # right pane is split vertically: Function signature on
+        # top, Input / Output samples below it.
+        panel_gap = 28
+        panel_top = 100
+        panel_bottom_pad = 100
+        panel_height = max(220, self.height - panel_top - panel_bottom_pad)
+        left_width = max(420, int((self.width - 72 - panel_gap) * 0.55))
+        right_width = self.width - 72 - panel_gap - left_width
+
+        desc_rect = pygame.Rect(36, panel_top, left_width, panel_height)
+        right_rect = pygame.Rect(desc_rect.right + panel_gap, panel_top, right_width, panel_height)
+
+        right_inner_gap = 20
+        sig_height = (right_rect.height - right_inner_gap) // 2
+        sig_rect = pygame.Rect(right_rect.x, right_rect.y, right_rect.width, sig_height)
+        samples_rect = pygame.Rect(
+            right_rect.x,
+            sig_rect.bottom + right_inner_gap,
+            right_rect.width,
+            right_rect.height - sig_height - right_inner_gap,
+        )
+
         pygame.draw.rect(screen, self.SURFACE, desc_rect, border_radius=8)
-        self._text(screen, fonts["body"], "Description", desc_rect.x + 16, desc_rect.y + 12, self.TEXT)
-        desc_y = desc_rect.y + 40
-        for line in self._wrap(info.description.replace("\n", " "), 112)[:3]:
+        pygame.draw.rect(screen, self.SURFACE, sig_rect, border_radius=8)
+        pygame.draw.rect(screen, self.SURFACE, samples_rect, border_radius=8)
+
+        # Description fills the entire left panel. Wrap to a width
+        # that fits the panel and stop drawing when we run out of
+        # room - description text is short in practice, so truncation
+        # only happens for unusually long ones.
+        self._text(screen, fonts["body"], "Description", desc_rect.x + 16, desc_rect.y + 14, self.TEXT)
+        desc_y = desc_rect.y + 42
+        desc_wrap = self._chars_for_width(fonts["small"], desc_rect.width - 32)
+        for line in self._wrap(info.description.replace("\n", " "), desc_wrap):
+            if desc_y + 20 > desc_rect.bottom - 16:
+                break
             self._text(screen, fonts["small"], line, desc_rect.x + 16, desc_y, self.MUTED)
             desc_y += 20
 
-        # Two columns below the description: the function signature
-        # (with explicit input / return annotation) on the left, the
-        # input/output samples on the right. The previous layout had
-        # a "Sample input" grid display in the left column that
-        # duplicated what the samples already showed; it was removed
-        # so the player sees the contract clearly instead.
-        panel_gap = 28
-        panel_top = desc_rect.bottom + 28
-        panel_height = max(220, self.height - panel_top - 100)
-        panel_width = max(360, (self.width - 72 - panel_gap) // 2)
-        sig_rect = pygame.Rect(36, panel_top, panel_width, panel_height)
-        samples_rect = pygame.Rect(sig_rect.right + panel_gap, panel_top, self.width - sig_rect.right - panel_gap - 36, panel_height)
-        pygame.draw.rect(screen, self.SURFACE, sig_rect, border_radius=8)
-        pygame.draw.rect(screen, self.SURFACE, samples_rect, border_radius=8)
+        # Right column: Function signature (top), Input / Output samples (bottom).
         self._text(screen, fonts["body"], "Function signature", sig_rect.x + 16, sig_rect.y + 14, self.TEXT)
-        self._text(screen, fonts["body"], "Input / Output samples", samples_rect.x + 16, samples_rect.y + 14, self.TEXT)
         self._draw_function_signature(screen, fonts, challenge, setup_data, sig_rect)
+        self._text(screen, fonts["body"], "Input / Output samples", samples_rect.x + 16, samples_rect.y + 14, self.TEXT)
         self._draw_sample_lines(screen, fonts, info.id, samples_rect)
 
         for action, rect in buttons:
@@ -691,6 +711,10 @@ class ChallengeNavigator:
 
         # Per-argument hint: for each input, show the name and a
         # short description taken from the challenge's ChallengeInfo.
+        # Indent the label by 2 spaces and the description by 4
+        # spaces - that visual hierarchy matches the return block
+        # below and keeps the column readable.
+        wrap_width = self._chars_for_width(fonts["small"], area.width - 32)
         arg_hints = self._arg_hints_for(challenge)
         if arg_hints:
             for arg_name, hint_text in arg_hints.items():
@@ -698,18 +722,20 @@ class ChallengeNavigator:
                     continue
                 self._text(screen, fonts["small"], f"  {arg_name}:", area.x + 16, sig_y, self.MUTED)
                 sig_y += 18
-                for line in self._wrap(hint_text, 50):
+                for line in self._wrap(hint_text, wrap_width):
                     self._text(screen, fonts["small"], f"    {line}", area.x + 16, sig_y, self.MUTED)
                     sig_y += 18
                 sig_y += 4
 
         # Return description - prefer an explicit hint from the
         # challenge, else say "see the sample I/O on the right".
+        # Indentation mirrors the per-arg block: label at 2 spaces,
+        # description at 4 spaces so the two columns line up.
         return_text = self._return_hint_for(challenge)
-        self._text(screen, fonts["small"], "returns:", area.x + 16, sig_y, self.MUTED)
+        self._text(screen, fonts["small"], "  return:", area.x + 16, sig_y, self.MUTED)
         sig_y += 18
-        for line in self._wrap(return_text, 50):
-            self._text(screen, fonts["small"], f"  {line}", area.x + 16, sig_y, self.MUTED)
+        for line in self._wrap(return_text, wrap_width):
+            self._text(screen, fonts["small"], f"    {line}", area.x + 16, sig_y, self.MUTED)
             sig_y += 18
 
     def _draw_sample_lines(self, screen, fonts, challenge_id, area):
@@ -1071,6 +1097,25 @@ class ChallengeNavigator:
         if current:
             lines.append(current)
         return lines or [""]
+
+    @staticmethod
+    def _chars_for_width(font, pixel_width: int) -> int:
+        """Approximate how many characters of ``font`` fit in ``pixel_width``.
+
+        Used when we know a panel's width in pixels but ``_wrap``
+        wants a char count. Falls back to a conservative estimate
+        of 8 px per char when the font size is unknown.
+        """
+        if pixel_width <= 0:
+            return 20
+        char_w = 8
+        try:
+            char_w, _ = font.size("M")
+        except (AttributeError, Exception):
+            pass
+        if not char_w or char_w <= 0:
+            char_w = 8
+        return max(20, pixel_width // char_w)
 
 
 def create_solution_file(challenge_id: str) -> str:
