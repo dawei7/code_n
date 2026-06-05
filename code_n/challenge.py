@@ -327,8 +327,25 @@ class Challenge(ABC):
         if animate:
             self.visualize_result(counter)
 
-        if pygame and self.grid:
+        if pygame:
             from .pygame_renderer import PygameRenderer, VisualRunResult
+
+            # Some challenges (greedy problems, dynamic-programming
+            # problems on flat lists, anything not 2D) don't have a
+            # 2D grid to visualize. The Pygame renderer still needs
+            # *some* grid object to lay out its result window, so
+            # substitute a 1x1 placeholder when one wasn't set up.
+            # The challenge's own setup() should also set a
+            # representative grid for pedagogical value; this is a
+            # safety net so a missing grid never silently swallows a
+            # run.
+            if self.grid is None:
+                from .grid import CellType as _CellType, Grid as _Grid
+                placeholder = _Grid(1, 1)
+                placeholder.set(0, 0, _CellType.VALUE, value="?")
+                grid_for_renderer = placeholder
+            else:
+                grid_for_renderer = self.grid
 
             visual_result = VisualRunResult(
                 passed=passed,
@@ -342,7 +359,7 @@ class Challenge(ABC):
                 trace_frames=trace.frames,
             )
             PygameRenderer(speed=pygame_speed).play(
-                grid=self.grid,
+                grid=grid_for_renderer,
                 operations=counter.ops_log,
                 title=self.info.name,
                 result=visual_result,
