@@ -741,31 +741,44 @@ class PygameRenderer:
 
         title_surface = fonts["title"].render(title, True, self.TEXT)
         screen.blit(title_surface, (self.margin, 18))
-        self._draw_main_description(screen, fonts, result.description)
 
-        # The algorithm grid is no longer drawn in the main area -
-        # the variables panel generalizes it (lists, dicts, scalars,
-        # 2D mazes, all show as cells with the same touched-cell
-        # coloring). This frees the full main area for the
-        # variables + code + validated visualization.
+        # ----- Three-section main area: Description / Code / Variables -----
+        #
+        # Each section is its own rounded panel with a labelled header.
+        # The Description panel sits at the top, the Code panel sits
+        # under it, and the Variables panel takes the remaining
+        # vertical space at the bottom. The user wanted all three to
+        # be visually distinct (so you can tell at a glance where one
+        # section ends and the next begins) and more breathing room
+        # between the Validated line and the variables list - this
+        # is now a hard 20px gap plus the panel border.
+        main_x = self.margin
+        main_w = self._main_area_width()
+        y = 56  # below the title bar
+        bottom = self.height - self.margin
+        section_gap = 20  # extra space between Validated and Variables
+
+        desc_bottom = self._draw_description_section(
+            screen, fonts, main_x, y, main_w, bottom - y,
+            result.description,
+        )
+        if desc_bottom > 0:
+            y = desc_bottom + section_gap
+
         if trace_frame and trace_frame.locals:
-            main_x = self.margin
-            main_w = self._main_area_width()
-            desc_bottom = self.margin + 70 + self._description_height(
-                result.description,
-            )
-            avail_top = desc_bottom + 24
-            avail_bottom = self.height - self.margin
-            if avail_bottom - avail_top >= 60:
-                self._draw_main_variables(
-                    screen, fonts,
-                    x=main_x,
-                    y=avail_top,
-                    max_width=main_w,
-                    max_y=avail_bottom,
-                    trace_frame=trace_frame,
-                    cell_size=cell_size,
-                    current_detail=detail,
+            code_h = self._code_section_height(fonts, trace_frame)
+            if y + code_h <= bottom:
+                self._draw_code_section(
+                    screen, fonts, main_x, y, main_w, code_h, trace_frame,
+                )
+                y += code_h + section_gap
+
+        if trace_frame and trace_frame.locals:
+            vars_h = bottom - y
+            if vars_h >= 100:
+                self._draw_variables_section(
+                    screen, fonts, main_x, y, main_w, vars_h,
+                    trace_frame, cell_size=cell_size,
                 )
 
         self._draw_panel(
@@ -1138,108 +1151,199 @@ class PygameRenderer:
         return 70 + self._description_height()
 
     def _draw_main_description(self, screen, fonts, description: str):
-        if not description:
-            return
-        x = self.margin
-        y = 56
-        width = self._main_area_width()
-        self._draw_text(screen, fonts["body"], "Description", x, y, self.TEXT)
-        y += 24
-        previous_clip = screen.get_clip()
-        import pygame
-        screen.set_clip(pygame.Rect(x, y, width, self._description_height(description) - 24))
-        for line in self._description_lines(description):
-            self._draw_text(screen, fonts["small"], line, x, y, self.MUTED)
-            y += 18
-        screen.set_clip(previous_clip)
+        # Kept as a thin shim so any out-of-tree callers still work;
+        # the new 3-section layout uses ``_draw_description_section``
+        # instead. Returns the y position after the panel (or 0 if
+        # there was no description to draw).
+        return self._draw_description_section(
+            screen, fonts, self.margin, 56,
+            self._main_area_width(), 600, description,
+        )
 
-    def _draw_main_variables(
+    # --- Section panel helpers ------------------------------------------
+    #
+    # The main area is split into three rounded panels with a
+    # labelled header each: Description, Code, Variables. Each
+    # helper draws the panel background + border + title, then
+    # returns the y position the next section can start at. The
+    # content drawers are separate so the caller can compute the
+    # section height up front (the Variables section needs to know
+    # how much space the panel has so it can truncate variables that
+    # don't fit).
+
+    def _draw_description_section(
         self,
         screen,
         fonts,
         x: int,
         y: int,
         max_width: int,
-        max_y: int,
+        max_height: int,
+        description: str,
+    ) -> int:
+        """Draw the Description section panel. Returns the y position
+        just below the panel (0 if the description is empty).
+        """
+        if not description:
+            return 0
+        import pygame
+
+        lines = self._description_lines(description)
+        if not lines:
+            return 0
+
+        panel_pad = 12
+        title_h = 28
+        line_h = 18
+        content_h = len(lines) * line_h
+        # Top padding (under title), bottom padding (under text)
+        inner_h = 6 + content_h + 6
+        panel_h = title_h + inner_h
+        if panel_h > max_height:
+            panel_h = max_height
+
+        panel_rect = pygame.Rect(x, y, max_width, panel_h)
+        pygame.draw.rect(screen, self.PANEL, panel_rect, border_radius=8)
+        pygame.draw.rect(screen, self.GRID_LINE, panel_rect, width=1, border_radius=8)
+
+        # Title at the top of the panel.
+        self._draw_text(screen, fonts["body"], "Description", x + panel_pad, y + 5, self.TEXT)
+        # Horizontal separator under the title.
+        sep_y = y + title_h
+        pygame.draw.line(
+            screen, self.GRID_LINE,
+            (x + 1, sep_y), (x + max_width - 1, sep_y),
+            1,
+        )
+        # Body text.
+        content_y = sep_y + 6
+        for line in lines:
+            if content_y + line_h > y + panel_h:
+                break
+            self._draw_text(screen, fonts["small"], line, x + panel_pad, content_y, self.MUTED)
+            content_y += line_h
+        return y + panel_h
+
+    def _code_section_height(self, fonts, trace_frame) -> int:
+        """Height of the Code section panel. The content is fixed:
+        ``Line N`` + code line + Validated line.
+        """
+        title_h = 28
+        line_h = 18
+        # 1 line for "Line N", 1 for the code, 1 for the validated.
+        content_lines = 3
+        inner_h = 8 + content_lines * line_h + 6
+        return title_h + inner_h
+
+    def _draw_code_section(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        max_width: int,
+        panel_h: int,
         trace_frame,
-        cell_size: int = 24,
-        current_detail: str = "",
     ) -> None:
-        """Render the player's local variables as a fully-fledged
-        visual in the main area, below the grid.
-
-        Layout: each variable is three lines -
-          * the variable name (bold) on one line
-          * the index labels (0, 1, 2, ...) on the next line
-          * the cells themselves, one per element, on the next line(s)
-
-        The cell size matches the algorithm grid so the player
-        sees a consistent visual rhythm. Lists / tuples /
-        TrackedList become a row of cells with index headers,
-        wrapping when the panel is narrower than the list.
-        Dicts become a 2-row key/value strip. Scalars become a
-        single cell with no index.
-
-        Above the variables list, a "Current op" line shows what
-        the engine is doing right now (``compare: list[i] > list[i-1]``,
-        ``list[i] = list[i-1] + 1``, etc.), so the player can map
-        each operation to the data-structure change below it.
-
-        Up to 8 variables are shown before '+N more' truncation.
+        """Draw the Code section panel: title, Line N, source line,
+        and the Validated line.
         """
         import pygame
 
-        # Title strip.
-        if y + 24 > max_y:
-            return
+        panel_pad = 12
+        title_h = 28
+
+        panel_rect = pygame.Rect(x, y, max_width, panel_h)
+        pygame.draw.rect(screen, self.PANEL, panel_rect, border_radius=8)
+        pygame.draw.rect(screen, self.GRID_LINE, panel_rect, width=1, border_radius=8)
+
+        # Title.
+        self._draw_text(screen, fonts["body"], "Code", x + panel_pad, y + 5, self.TEXT)
+        # Separator under the title.
+        sep_y = y + title_h
+        pygame.draw.line(
+            screen, self.GRID_LINE,
+            (x + 1, sep_y), (x + max_width - 1, sep_y),
+            1,
+        )
+        # Content.
+        content_y = sep_y + 8
         prefix = "Breakpoint line" if trace_frame.breakpoint else "Line"
         self._draw_text(
-            screen,
-            fonts["body"],
-            f"{prefix} {trace_frame.line_no} variables",
-            x,
-            y,
-            self.TEXT,
+            screen, fonts["small"],
+            f"{prefix} {trace_frame.line_no}",
+            x + panel_pad, content_y, self.MUTED,
         )
-        y += 24
-
-        # Code line: the original Python statement the engine
-        # just executed (e.g. ``if ratings[i] > ratings[i + 1]:``).
-        # Drawn on its own line, prefixed with "Code:" so the
-        # player can see what statement is being analysed below.
+        content_y += 18
         code_line, _ = self._format_source_line(trace_frame)
         if code_line:
             self._draw_text(
                 screen, fonts["small"],
-                f"Code: {code_line}", x, y, self.MUTED,
+                f"  {code_line}", x + panel_pad, content_y, self.MUTED,
             )
-            y += 18
-        # Validated line: same source line, but with every Name
-        # and Subscript reference substituted by its current
-        # value, and the result of the statement at the end.
-        # E.g. ``Validated: if: ratings[16] > ratings[16 - 1] = True``.
+            content_y += 18
         _, validated_line = self._format_source_line(trace_frame)
         if validated_line:
             self._draw_text(
-                screen, fonts["small"], validated_line, x, y, self.ACCENT_COLOR,
+                screen, fonts["small"],
+                validated_line, x + panel_pad, content_y, self.ACCENT_COLOR,
             )
-            y += 18
+
+    def _draw_variables_section(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        max_width: int,
+        panel_h: int,
+        trace_frame,
+        cell_size: int = 24,
+    ) -> None:
+        """Draw the Variables section panel: title, then one row per
+        local variable rendered with the matching data-structure
+        visual (list/tuple cells with index labels, dict 2-row
+        key/value strip, set cells, scalar single cell).
+        """
+        import pygame
+
+        panel_pad = 12
+        title_h = 28
+        content_x = x + panel_pad
+        content_w = max_width - panel_pad * 2
+
+        panel_rect = pygame.Rect(x, y, max_width, panel_h)
+        pygame.draw.rect(screen, self.PANEL, panel_rect, border_radius=8)
+        pygame.draw.rect(screen, self.GRID_LINE, panel_rect, width=1, border_radius=8)
+
+        # Title.
+        self._draw_text(screen, fonts["body"], "Variables", x + panel_pad, y + 5, self.TEXT)
+        # Separator.
+        sep_y = y + title_h
+        pygame.draw.line(
+            screen, self.GRID_LINE,
+            (x + 1, sep_y), (x + max_width - 1, sep_y),
+            1,
+        )
+
+        content_top = sep_y + 8
+        content_bottom = y + panel_h - 8
+        if content_bottom <= content_top:
+            return
 
         cell_gap = 1
-        strip_x = x
-        strip_w = max(40, max_width)
+        strip_w = max(40, content_w)
         cols_per_row = max(1, (strip_w + cell_gap) // (cell_size + cell_gap))
-        # Use a small font for index labels so the digit fits even
-        # when the cells are at the default 44px.
         idx_font = fonts["small"]
 
+        cur_y = content_top
         shown = 0
         for name, value in trace_frame.locals.items():
-            if shown >= 8:
+            if shown >= 12:
                 self._draw_text(
                     screen, fonts["small"],
                     f"+{len(trace_frame.locals) - shown} more...",
-                    x, y, self.MUTED,
+                    content_x, cur_y, self.MUTED,
                 )
                 break
 
@@ -1251,65 +1355,59 @@ class PygameRenderer:
             except ImportError:
                 pass
 
-            # Estimate the height this variable needs.
-            if isinstance(raw, (list, tuple)) and raw:
+            # Compute the height the variable needs.
+            is_list_like = isinstance(raw, (list, tuple)) and raw
+            is_dict_like = isinstance(raw, dict) and raw
+            is_set_like = isinstance(raw, set) and raw
+            if is_list_like:
                 items = list(raw)
                 needed_rows = (len(items) + cols_per_row - 1) // cols_per_row
-            elif isinstance(raw, dict) and raw:
+            elif is_dict_like:
                 needed_rows = 2
+            elif is_set_like:
+                needed_rows = 1
             else:
                 needed_rows = 1
-            idx_label_h = 14 if isinstance(raw, (list, tuple)) and raw else 0
-            # Extra bottom space between variables (the "bigger
-            # space" the user asked for). Includes room for a
-            # horizontal separator line.
-            between_vars = 24
-            needed_h = idx_label_h + needed_rows * (cell_size + 2) + 22
-            if y + needed_h + between_vars + 6 > max_y:
+            idx_label_h = 14 if is_list_like else 0
+            between_vars = 18
+            needed_h = idx_label_h + needed_rows * (cell_size + 2) + 22 + between_vars
+            if cur_y + needed_h > content_bottom:
                 self._draw_text(
                     screen, fonts["small"],
                     "...",
-                    x, y, self.MUTED,
+                    content_x, cur_y, self.MUTED,
                 )
                 break
 
-            # Horizontal separator above each variable (except
-            # the first one) so the player can see at a glance
-            # where one variable ends and the next begins. The
-            # line spans the full panel width.
+            # Horizontal separator between variables (not before the
+            # first one).
             if shown > 0:
                 pygame.draw.line(
                     screen, self.GRID_LINE,
-                    (x, y - between_vars // 2),
-                    (x + max_width, y - between_vars // 2),
+                    (content_x, cur_y - between_vars // 2),
+                    (content_x + content_w, cur_y - between_vars // 2),
                     1,
                 )
 
-            # Name on its own line.
-            self._draw_text(screen, fonts["body"], f"{name}:", x, y, self.TEXT)
-            y += 22
-            # Index labels (only for list/tuple strips).
-            if isinstance(raw, (list, tuple)) and raw:
+            # Variable name on its own line.
+            self._draw_text(
+                screen, fonts["body"], f"{name}:", content_x, cur_y, self.TEXT,
+            )
+            cur_y += 22
+            if is_list_like:
                 self._draw_index_labels(
-                    screen, idx_font, strip_x, y,
+                    screen, idx_font, content_x, cur_y,
                     cell_size, cell_gap, cols_per_row, len(items),
                 )
-                y += idx_label_h
-            # Cells. The strip pulls touched-cell info from
-            # self._touched_cells (indexed by index alone, since
-            # the engine's op.detail hardcodes the variable
-            # name as "list"). We pass ``name`` so the strip can
-            # build a (var_name, index) key for the touched-cell
-            # tracker - this prevents ``ratings[i]`` from
-            # accidentally flashing ``candies[i]`` too.
+                cur_y += idx_label_h
             self._draw_variable_strip(
                 screen, fonts,
-                strip_x, y,
+                content_x, cur_y,
                 cell_size, cell_gap, cols_per_row,
                 raw,
                 var_name=name,
             )
-            y += needed_h - 22 - idx_label_h + between_vars
+            cur_y += needed_rows * (cell_size + 2) + between_vars
             shown += 1
 
     def _draw_index_labels(
@@ -1346,23 +1444,26 @@ class PygameRenderer:
         raw,
         var_name: Optional[str] = None,
     ) -> None:
-        """Render a list / dict / scalar as a row (or two rows for
-        dicts) of cells. Uses ``str()`` (not ``repr()``) for each
-        value so strings appear without surrounding quotes and
-        numbers appear as plain numbers.
+        """Render any Python data structure (list, tuple, dict,
+        set, scalar) as a row (or 2 rows for dicts) of cells.
 
-        If ``var_name`` is given, cells whose **index** was
-        touched by the most recent operation stay colored in
-        the op-type color (read=blue, write=yellow, compare=red,
-        swap=orange) for as long as the current op is on
-        screen. The cells are keyed by ``(var_name, index)`` so
-        a line that only touches ``ratings[i]`` only flashes the
-        ``ratings`` strip, not ``candies`` at the same index.
+        Data-structure rules:
+          * list / tuple / TrackedList - row of cells, one per
+            element, with index labels above (wraps when narrow)
+          * dict  - 2-row strip: keys on top, values on bottom
+            (so the player can see the key -> value mapping)
+          * set   - row of cells, one per element, no index
+            labels (sets are unordered)
+          * scalar (int, str, bool, float, None, TrackedValue) -
+            single cell
 
-        When the player is paused / in step mode, the dict is
-        not replaced, so the touched cells stay colored until
-        the player advances - exactly the 'leave it colored if
-        paused' behavior the user asked for.
+        Touched-cell coloring: the touched_cells dict is keyed
+        by ``(var_name, <key-or-index>)``. For scalars, the key
+        is ``None`` - the whole single cell flashes. For dicts,
+        the key is the dict key, so the cell whose KEY was
+        touched is colored. For sets, the value is the set
+        element. Cells in the touched set stay colored until
+        the next op replaces the dict.
         """
         import pygame
 
@@ -1370,6 +1471,7 @@ class PygameRenderer:
         op_colors = {
             "READ": self.READ,
             "WRITE": self.WRITE,
+            "COMPARE": self.COMPARE_A,
             "COMPARE_A": self.COMPARE_A,
             "COMPARE_B": self.COMPARE_B,
             "SWAP": self.SWAP,
@@ -1385,11 +1487,11 @@ class PygameRenderer:
 
         def _color_for(var_key) -> tuple:
             """Return the cell background color for ``var_key``,
-            which is the (var_name, index) tuple the renderer
-            is currently drawing. Returns the default cell_bg if
-            the cell isn't in the touched-cells dict.
+            which is the (var_name, <key-or-index>) tuple the
+            renderer is currently drawing. Returns the default
+            cell_bg if the cell isn't in the touched-cells dict.
             """
-            if not self._touched_cells:
+            if not self._touched_cells or var_key is None:
                 return cell_bg
             entry = self._touched_cells.get(var_key)
             if entry is None:
@@ -1409,6 +1511,7 @@ class PygameRenderer:
             text_surface = cell_font.render(label, True, self.TEXT)
             screen.blit(text_surface, text_surface.get_rect(center=rect.center))
 
+        # list / tuple - 1+ rows of cells with index labels.
         if isinstance(raw, (list, tuple)) and raw:
             items = list(raw)
             for index, item in enumerate(items):
@@ -1420,18 +1523,59 @@ class PygameRenderer:
                     item, touched_key=(var_name, index),
                 )
             return
+
+        # dict - 2 rows: keys on top, values on bottom.
+        # Touched cell: the cell whose KEY matches the
+        # touched key.
         if isinstance(raw, dict) and raw:
             items = list(raw.items())
             for index, (k, v) in enumerate(items):
                 if index >= cols_per_row:
                     break
-                # Dict strips don't have meaningful indices for
-                # the touched-cell tracker (the engine's detail
-                # only mentions the whole ``dict[k]`` access).
-                _cell(x + index * (cell_size + cell_gap), y, k)
-                _cell(x + index * (cell_size + cell_gap), y + cell_size + 2, v)
+                _cell(
+                    x + index * (cell_size + cell_gap), y, k,
+                    touched_key=(var_name, k),
+                )
+                _cell(
+                    x + index * (cell_size + cell_gap), y + cell_size + 2, v,
+                    touched_key=(var_name, k),
+                )
             return
-        _cell(x, y, raw)
+
+        # set - 1 row of cells, no index labels.
+        if isinstance(raw, set) and raw:
+            items = list(raw)
+            for index, item in enumerate(items):
+                row = index // cols_per_row
+                col = index % cols_per_row
+                # Touched cell: lookup by (var_name, element).
+                # Sets are unordered so the AST walker keys the
+                # touched dict by the element value itself, not
+                # by a position; the renderer just does a direct
+                # dict get. (The previous code used a wrong
+                # tuple-unpacking that compared the second half
+                # of the dict key to the element, so set
+                # coloring was silently broken.)
+                cell_color = _color_for((var_name, item))
+                rect = pygame.Rect(
+                    x + col * (cell_size + cell_gap),
+                    y + row * (cell_size + 2),
+                    cell_size, cell_size,
+                )
+                pygame.draw.rect(screen, cell_color, rect, border_radius=3)
+                pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=3)
+                cell_font = fonts["cell"] if cell_size >= 28 else fonts["small"]
+                label = _format(item)
+                if len(label) > 6:
+                    label = label[:5] + "…"
+                text_surface = cell_font.render(label, True, self.TEXT)
+                screen.blit(text_surface, text_surface.get_rect(center=rect.center))
+            return
+
+        # Scalar (int, str, bool, float, None, TrackedValue) -
+        # single cell. The ``(var_name, None)`` key in the
+        # touched dict flags scalar touches.
+        _cell(x, y, raw, touched_key=(var_name, None) if var_name else None)
 
     def _cell_rect(self, grid_rect, cell_size, coord):
         import pygame
@@ -1475,25 +1619,47 @@ class PygameRenderer:
         self,
         op: OpRecord,
         trace_frame,
-    ) -> dict[tuple[str, int], str]:
-        """Extract touched (var_name, index) pairs for a ``CALL`` op.
+    ) -> dict:
+        """Extract touched (var_name, key) pairs for a ``CALL`` op.
 
         For line-based tracing, the engine records one CALL op
         per source line. The detail is just ``line N`` and the
         actual cells the line touched are encoded in the
         player's source code, so we read the source line from
-        ``trace_frame.source_file`` at ``trace_frame.line_no`` and
-        walk its AST for Subscript references. The corresponding
-        list indices are evaluated against the live locals.
+        ``trace_frame.source_file`` at ``trace_frame.line_no``
+        and walk its AST. We pick up three kinds of references:
 
-        Returns a dict keyed by ``(var_name, index)`` so the
-        renderer can match against the actual variable being
-        drawn. Index-only matching would flash ``ratings[i]`` and
+        1. Bare ``Name`` nodes whose value in locals is a scalar
+           (int, str, bool, float, None, TrackedValue). These
+           become ``(var_name, None) -> op_type`` entries so the
+           single-cell ``n: 30`` / ``i: 2`` / ``total: 48`` cells
+           flash when the line references them.
+
+        2. ``Subscript`` nodes in BOTH ``Load`` and ``Store``
+           contexts. The ``Store`` case matters for dict writes
+           (``d["foo"] = 5``) and list overwrites
+           (``candies[i] = max(...)``) — the LHS subscript has
+           ``Store`` context and the old Load-only walker missed
+           it. Each subscript becomes ``(var_name, key) -> op_type``
+           where ``key`` is the integer index for lists/tuples
+           and the actual key for dicts.
+
+        3. ``Compare`` nodes with the ``In`` operator. ``x in
+           my_set`` records a read against the set but the
+           specific element touched is only knowable from the
+           source, so we resolve ``x`` and add
+           ``(set_name, x) -> op_type``. The set renderer
+           matches by element value because sets are unordered.
+           ``key in my_dict`` and ``value in my_list`` are
+           handled the same way.
+
+        Index-only matching would flash ``ratings[i]`` and
         ``candies[i]`` together even though only ``ratings`` was
-        touched.
+        touched; we use the actual variable name from the AST
+        to avoid that.
         """
         import ast as _ast
-        touched: dict[tuple[str, int], str] = {}
+        touched: dict = {}
         if not trace_frame:
             return touched
         source_file = getattr(trace_frame, "source_file", None)
@@ -1532,26 +1698,110 @@ class PygameRenderer:
                 except SyntaxError:
                     return touched
 
+        # 1) Bare Name references in Load OR Store context. We
+        #    only mark scalars; collections are handled by the
+        #    Subscript branch below which knows the specific cell.
+        #    Store context covers the assignment target of
+        #    ``x = 5`` (which is what ``x = data[i]`` uses for
+        #    its LHS ``x``) - without it the scalar cell never
+        #    flashes when the engine writes to it.
         for node in _ast.walk(tree):
-            if isinstance(node, _ast.Subscript) and isinstance(node.ctx, _ast.Load):
-                # The variable being subscripted: only flash
-                # THIS list, not every list at the same index.
+            if isinstance(node, _ast.Name) and isinstance(node.ctx, (_ast.Load, _ast.Store)):
+                if node.id in locals_dict:
+                    value = locals_dict[node.id]
+                    if not isinstance(value, (list, tuple, dict, set)):
+                        touched[(node.id, None)] = op_kind
+
+        # 2) Subscript references — both Load (read) and Store
+        #    (write). The variable name comes from the AST
+        #    (e.g. ``candies`` in ``candies[i]``), not a
+        #    wildcard, so only the actual list/dict being
+        #    subscripted gets its cell colored.
+        for node in _ast.walk(tree):
+            if not isinstance(node, _ast.Subscript):
+                continue
+            try:
                 var_src = _ast.unparse(node.value)
+            except Exception:
+                continue
+            if var_src not in locals_dict:
+                continue
+            container = locals_dict[var_src]
+            try:
                 index_src = _ast.unparse(node.slice)
+                sub_tree = _ast.parse(index_src, mode="eval")
+                for sub in _ast.walk(sub_tree):
+                    if isinstance(sub, (_ast.Call, _ast.Attribute)):
+                        raise ValueError("no calls / attrs")
+                index = eval(
+                    compile(sub_tree, "<ast>", "eval"),
+                    {"__builtins__": safe_builtins},
+                    locals_dict,
+                )
+            except Exception:
+                continue
+            if isinstance(container, (list, tuple)) and isinstance(index, int):
+                if 0 <= index < len(container):
+                    touched[(var_src, index)] = op_kind
+            elif isinstance(container, dict):
+                if index in container:
+                    try:
+                        hash(index)
+                        touched[(var_src, index)] = op_kind
+                    except TypeError:
+                        # Unhashable key — can't track it through
+                        # a dict lookup. Fall through silently.
+                        pass
+
+        # 3) ``In`` comparisons: ``x in my_set`` reads the set
+        #    and the specific element being tested is the LHS.
+        #    Sets are unordered so we can't use a positional
+        #    key — the renderer matches by element value.
+        #    We also handle ``key in my_dict`` (which marks
+        #    the dict entry) and ``value in my_list`` (which
+        #    marks the list element).
+        for node in _ast.walk(tree):
+            if not isinstance(node, _ast.Compare):
+                continue
+            for op_node, comparator in zip(node.ops, node.comparators):
+                if not isinstance(op_node, _ast.In):
+                    continue
                 try:
-                    sub_tree = _ast.parse(index_src, mode="eval")
-                    for sub in _ast.walk(sub_tree):
-                        if isinstance(sub, (_ast.Call, _ast.Attribute)):
-                            raise ValueError("no calls / attrs")
-                    index = eval(
-                        compile(sub_tree, "<ast>", "eval"),
+                    container_src = _ast.unparse(comparator)
+                except Exception:
+                    continue
+                if container_src not in locals_dict:
+                    continue
+                container = locals_dict[container_src]
+                try:
+                    needle = eval(
+                        compile(_ast.Expression(node.left), "<ast>", "eval"),
                         {"__builtins__": safe_builtins},
                         locals_dict,
                     )
                 except Exception:
                     continue
-                if isinstance(index, int):
-                    touched[(var_src, index)] = op_kind
+                if isinstance(container, set):
+                    for element in container:
+                        if element == needle:
+                            try:
+                                hash(element)
+                                touched[(container_src, element)] = op_kind
+                            except TypeError:
+                                pass
+                            break
+                elif isinstance(container, (list, tuple)):
+                    for element_index, element in enumerate(container):
+                        if element == needle:
+                            touched[(container_src, element_index)] = op_kind
+                            break
+                elif isinstance(container, dict):
+                    if needle in container:
+                        try:
+                            hash(needle)
+                            touched[(container_src, needle)] = op_kind
+                        except TypeError:
+                            pass
         return touched
 
     @staticmethod
@@ -1578,6 +1828,16 @@ class PygameRenderer:
         recorded the specific op type.
         """
         import ast as _ast
+        # A bare if/elif/while header line (no body) fails to parse
+        # in exec mode, but the keyword itself tells us this is a
+        # comparison branch — the condition expression is what
+        # touched the cells. Check the prefix first so we don't
+        # fall through to the "exec failed → eval → no body → READ"
+        # trap.
+        stripped = text.lstrip()
+        for kw in ("if ", "elif ", "while "):
+            if stripped.startswith(kw):
+                return "COMPARE"
         try:
             tree = _ast.parse(text, mode="exec")
         except SyntaxError:

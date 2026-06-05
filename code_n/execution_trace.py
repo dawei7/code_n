@@ -26,6 +26,12 @@ class TraceFrame:
     locals: dict[str, Any] = field(default_factory=dict)
     return_value: str = ""
     breakpoint: bool = False
+    # Path of the player's source file the frame was captured in.
+    # Lets the renderer look up the matching source line so the
+    # "Current op" panel can show the actual Python statement
+    # (e.g. ``candies[i] = max(candies[i], candies[i+1] + 1)``)
+    # alongside the op-level detail.
+    source_file: str = ""
 
 
 @dataclass
@@ -89,6 +95,7 @@ def run_with_trace(func: Callable, kwargs: dict[str, Any], counter: OperationCou
                     locals=_serialize_locals(frame.f_locals),
                     return_value=return_value,
                     breakpoint=frame.f_lineno in breakpoint_lines,
+                    source_file=frame.f_code.co_filename,
                 )
             )
             if event == "return":
