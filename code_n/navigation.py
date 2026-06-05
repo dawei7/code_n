@@ -499,15 +499,19 @@ class ChallengeNavigator:
         padding = 18
         content_x = area.x + padding
         content_width = area.width - padding * 2
-        # Two button rows (Explore/Run/Open on top, Solve/Reset below)
-        # take 44 + 8 + 44 = 96 px. Then a 16 px gap before the
-        # Controls section, which has 4 lines at 20 px each plus a
-        # 28 px header = 108 px. So 96 + 16 + 108 = 220 px total. The
-        # controls header sits 16 px below the buttons; the controls
-        # block extends another 88 px down to its last line.
-        controls_y = area.bottom - 156
-        buttons_y = controls_y - 112
-        description_bottom = buttons_y - 14
+        # Layout, top to bottom in the details panel:
+        #   ... description (clipped to description_bottom) ...
+        #   Controls header + 1 line of shortcut text  (48 px)
+        #   32 px visual gap
+        #   5 action buttons in 2 rows             (96 px)
+        #   16 px gap to the bottom-anchored footer
+        #
+        # So: controls_y = buttons_y - 32 - 48
+        # And: buttons end at area.bottom - 16, so buttons_y = area.bottom - 112
+        # Putting it together: controls_y = area.bottom - 192
+        buttons_y = area.bottom - 112
+        controls_y = buttons_y - 80
+        description_bottom = controls_y - 14
 
         self._text(screen, fonts["heading"], item.node.name, area.x + 18, area.y + 18, self.TEXT)
         self._text(screen, fonts["body"], item.node.challenge_id, area.x + 18, area.y + 52, self.MUTED)
@@ -545,20 +549,20 @@ class ChallengeNavigator:
             if y < description_bottom:
                 self._text(screen, fonts["body"], "Challenge exists in tree, but is not implemented yet.", content_x, y, self.WARNING)
 
-        self._draw_action_buttons(screen, fonts, area, buttons_y)
-
-        # A clear visual gap between the action buttons above and the
-        # Controls section below so they don't read as one block.
+        # Controls section comes BEFORE the action buttons, with a
+        # 32 px visual gap between the two so they don't read as
+        # one block. The controls are minimal: only the truly
+        # global shortcuts (name, refresh, quit) live here, because
+        # the per-button shortcuts are already embedded in the
+        # button labels themselves.
         y = controls_y
         self._text(screen, fonts["body"], "Controls", content_x, y, self.TEXT)
         y += 28
-        # Keep the Controls section minimal: only the truly
-        # global shortcuts (name, refresh, quit). Click/Explore/Run/Open
-        # shortcuts are already embedded in the button labels
-        # above, so repeating them here would be noise.
         for line in ["N: student name | F5: refresh | Esc: quit"]:
             self._text(screen, fonts["small"], line, content_x, y, self.MUTED)
             y += 20
+
+        self._draw_action_buttons(screen, fonts, area, buttons_y)
 
     def _draw_action_buttons(self, screen, fonts, area, y: int):
         import pygame
