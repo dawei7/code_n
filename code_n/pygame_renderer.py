@@ -1334,7 +1334,6 @@ class PygameRenderer:
         cell_gap = 1
         strip_w = max(40, content_w)
         cols_per_row = max(1, (strip_w + cell_gap) // (cell_size + cell_gap))
-        idx_font = fonts["small"]
 
         cur_y = content_top
         shown = 0
@@ -1368,9 +1367,11 @@ class PygameRenderer:
                 needed_rows = 1
             else:
                 needed_rows = 1
-            idx_label_h = 14 if is_list_like else 0
+            # The per-cell index inside each list/tuple cell
+            # replaces the old top-of-row labels, so the cell
+            # block no longer needs the 14px header band.
             between_vars = 18
-            needed_h = idx_label_h + needed_rows * (cell_size + 2) + 22 + between_vars
+            needed_h = needed_rows * (cell_size + 2) + 22 + between_vars
             if cur_y + needed_h > content_bottom:
                 self._draw_text(
                     screen, fonts["small"],
@@ -1394,12 +1395,6 @@ class PygameRenderer:
                 screen, fonts["body"], f"{name}:", content_x, cur_y, self.TEXT,
             )
             cur_y += 22
-            if is_list_like:
-                self._draw_index_labels(
-                    screen, idx_font, content_x, cur_y,
-                    cell_size, cell_gap, cols_per_row, len(items),
-                )
-                cur_y += idx_label_h
             self._draw_variable_strip(
                 screen, fonts,
                 content_x, cur_y,
@@ -1421,16 +1416,12 @@ class PygameRenderer:
         cols_per_row: int,
         count: int,
     ) -> None:
-        """Draw the column index (0, 1, 2, ...) above a list strip,
-        matching the algorithm grid's header style.
+        """Deprecated: the per-cell index inside each list/tuple
+        cell replaced the old top-of-row labels (see
+        ``_cell``'s ``cell_index`` arg). Kept as a no-op shim so
+        older callers don't break; remove after the next sweep.
         """
-        import pygame
-
-        for index in range(min(count, cols_per_row)):
-            cx = x + index * (cell_size + cell_gap) + cell_size // 2
-            label = str(index)
-            text_surface = font.render(label, True, self.MUTED)
-            screen.blit(text_surface, text_surface.get_rect(centerx=cx, y=y))
+        return None
 
     def _draw_variable_strip(
         self,
@@ -1932,6 +1923,26 @@ class PygameRenderer:
         if op_type_name == "CALL":
             return self._touched_from_call(op, trace_frame)
         locals_dict = trace_frame.locals if trace_frame else {}
+        # Unwrap TrackedList (and friends) to plain lists. The
+        # engine emits ops like ``list[i] = v`` for every
+        # TrackedList operation, so without this step the
+        # ``isinstance(value, (list, tuple))`` check below was
+        # False for every list the player touched, and the
+        # variables panel never colored anything for challenges
+        # whose only list was the TrackedList challenge input
+        # (bubble sort, selection sort, etc.). Same unwrap
+        # happens in _touched_from_call and in
+        # _draw_variables_section, so the keys match the
+        # renderer's lookups.
+        try:
+            from code_n.tracked import TrackedList as _TL
+        except ImportError:
+            _TL = None
+        if _TL is not None:
+            locals_dict = {
+                _name: (list(_value) if isinstance(_value, _TL) else _value)
+                for _name, _value in locals_dict.items()
+            }
         touched: dict[tuple[str, int], str] = {}
         safe_builtins = {
             k: getattr(__builtins__, k) if hasattr(__builtins__, k) else __builtins__[k]

@@ -275,5 +275,67 @@ class TouchedFromCallTests(unittest.TestCase):
         self.assertNotIn(("data", None), touched)
 
 
+class ExtractTouchedCellsTests(unittest.TestCase):
+    """``_extract_touched_cells`` is the dispatcher: it routes
+    CALL ops to ``_touched_from_call`` (line-based tracing) and
+    handles READ / WRITE / COMPARE / SWAP ops itself via the
+    engine's hardcoded ``list[i] = v`` detail format.
+
+    The non-CALL path had the same TrackedList bug as the
+    SUBSCRIPT walker: the wildcard loop checked
+    ``isinstance(value, (list, tuple))`` and TrackedList is
+    neither, so for challenges whose only list is the engine's
+    TrackedList input (bubble sort, selection sort, ...) every
+    op produced no touched cells. Bubble sort's
+    ``if data[i] > data[i+1]:`` records READ + READ + COMPARE
+    ops, all of which go through this path.
+    """
+
+    def setUp(self):
+        self.r = _make_renderer()
+
+    def test_read_op_with_tracked_list(self):
+        """A READ op with detail ``list[5]`` should mark cell 5
+        of any list-like local, including TrackedList."""
+        from code_n.counter import OpRecord, OpType
+        from code_n.tracked import TrackedList
+        op = OpRecord(op_type=OpType.READ, detail="list[5]")
+        frame = _with_source(
+            "",
+            locals_dict={"data": TrackedList([10, 20, 30, 40, 50, 60, 70, 80])},
+            line_no=1,
+        )
+        touched = self.r._extract_touched_cells(op, frame)
+        self.assertEqual(touched.get(("data", 5)), "READ")
+
+    def test_compare_op_with_tracked_list_two_indices(self):
+        """A COMPARE op detail like ``list[5]=X vs list[6]=Y``
+        captures both indices; both cells should be touched."""
+        from code_n.counter import OpRecord, OpType
+        from code_n.tracked import TrackedList
+        op = OpRecord(op_type=OpType.COMPARE, detail="list[5]=X vs list[6]=Y")
+        frame = _with_source(
+            "",
+            locals_dict={"data": TrackedList([10, 20, 30, 40, 50, 60, 70, 80])},
+            line_no=1,
+        )
+        touched = self.r._extract_touched_cells(op, frame)
+        self.assertEqual(touched.get(("data", 5)), "COMPARE")
+        self.assertEqual(touched.get(("data", 6)), "COMPARE")
+
+    def test_write_op_with_tracked_list(self):
+        """A WRITE op with detail ``list[5] = 99`` marks the cell."""
+        from code_n.counter import OpRecord, OpType
+        from code_n.tracked import TrackedList
+        op = OpRecord(op_type=OpType.WRITE, detail="list[5] = 99")
+        frame = _with_source(
+            "",
+            locals_dict={"data": TrackedList([10, 20, 30, 40, 50, 60, 70, 80])},
+            line_no=1,
+        )
+        touched = self.r._extract_touched_cells(op, frame)
+        self.assertEqual(touched.get(("data", 5)), "WRITE")
+
+
 if __name__ == "__main__":
     unittest.main()
