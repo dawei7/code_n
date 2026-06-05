@@ -21,7 +21,7 @@ from .branding import GAME_TITLE
 # future sessions should append here. Derived dynamically from the
 # registry in :func:`_category_order` but pinned so the navigator
 # renders in a predictable order regardless of insertion order.
-CATEGORIES: list[str] = ["intro", "sorting", "searching", "graphs", "dynamic"]
+CATEGORIES: list[str] = ["intro", "sorting", "searching", "graphs", "dynamic", "greedy"]
 
 CATEGORY_NAMES: dict[str, str] = {
     "intro": "Introduction",
@@ -29,6 +29,7 @@ CATEGORY_NAMES: dict[str, str] = {
     "searching": "Searching",
     "graphs": "Graphs",
     "dynamic": "Dynamic Programming",
+    "greedy": "Greedy Algorithms",
 }
 
 

@@ -94,7 +94,7 @@ class ChallengeNavigator:
         CellType.COMPARE_B: (75, 213, 190),
     }
 
-    CATEGORIES = ["intro", "sorting", "searching", "graphs", "dynamic"]
+    CATEGORIES = ["intro", "sorting", "searching", "graphs", "dynamic", "greedy"]
     CATEGORY_NAMES = {
         "intro": "Introduction",
         "sorting": "Sorting",
