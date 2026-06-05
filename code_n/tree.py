@@ -3,14 +3,33 @@
 The tree is a DAG (Directed Acyclic Graph) where nodes are challenges
 and edges describe suggested learning flow. Challenges remain open so
 learners can choose the order that fits their needs.
+
+Sourced from the :class:`~challenges.spec.AlgorithmSpec` registered
+for each challenge - the spec carries its own ``parents``/``children``
+edges. Adding a new challenge is a one-file change.
 """
 
-import json
-import os
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from typing import Optional
 
 from .branding import GAME_TITLE
+
+
+# Canonical display order for categories. New categories added by
+# future sessions should append here. Derived dynamically from the
+# registry in :func:`_category_order` but pinned so the navigator
+# renders in a predictable order regardless of insertion order.
+CATEGORIES: list[str] = ["intro", "sorting", "searching", "graphs", "dynamic"]
+
+CATEGORY_NAMES: dict[str, str] = {
+    "intro": "Introduction",
+    "sorting": "Sorting",
+    "searching": "Searching",
+    "graphs": "Graphs",
+    "dynamic": "Dynamic Programming",
+}
 
 
 @dataclass
@@ -22,43 +41,53 @@ class TreeNode:
     parents: list[str] = field(default_factory=list)
 
 
-# The challenge tree definition
-# Format: (id, name, category, [prerequisite_ids])
-CHALLENGE_TREE = {
-    # === ROOT ===
-    "intro_01": TreeNode("intro_01", "Hello Grid", "intro", children=["sort_01", "search_01", "graph_01", "dp_01"]),
+def _build_tree() -> dict[str, TreeNode]:
+    """Build the challenge tree from the registry.
 
-    # === SORTING PATH ===
-    "sort_01": TreeNode("sort_01", "Bubble Sort", "sorting", children=["sort_02"], parents=["intro_01"]),
-    "sort_02": TreeNode("sort_02", "Selection Sort", "sorting", children=["sort_03"], parents=["sort_01"]),
-    "sort_03": TreeNode("sort_03", "Insertion Sort", "sorting", children=["sort_04", "sort_05"], parents=["sort_02"]),
-    "sort_04": TreeNode("sort_04", "Merge Sort", "sorting", children=["sort_06"], parents=["sort_03"]),
-    "sort_05": TreeNode("sort_05", "Quick Sort", "sorting", children=["sort_06"], parents=["sort_03"]),
-    "sort_06": TreeNode("sort_06", "Heap Sort", "sorting", children=["sort_07"], parents=["sort_04", "sort_05"]),
-    "sort_07": TreeNode("sort_07", "Counting Sort", "sorting", children=[], parents=["sort_06"]),
+    Each :class:`AlgorithmSpec` carries ``parents`` and ``children``
+    lists. We turn each into a :class:`TreeNode`. The category field
+    on the spec drives grouping; the name and id are taken directly.
+    """
+    from challenges.registry import CHALLENGE_REGISTRY
 
-    # === SEARCHING PATH ===
-    "search_01": TreeNode("search_01", "Linear Search", "searching", children=["search_02"], parents=["intro_01"]),
-    "search_02": TreeNode("search_02", "Binary Search", "searching", children=["search_03", "search_04"], parents=["search_01"]),
-    "search_03": TreeNode("search_03", "BFS Grid", "searching", children=["search_05"], parents=["search_02"]),
-    "search_04": TreeNode("search_04", "DFS Grid", "searching", children=["search_05"], parents=["search_02"]),
-    "search_05": TreeNode("search_05", "A* Pathfinding", "searching", children=[], parents=["search_03", "search_04"]),
+    nodes: dict[str, TreeNode] = {}
+    # First pass: create every node.
+    for cid, cls in CHALLENGE_REGISTRY.items():
+        # Pull the spec from a fresh instance so we don't have to
+        # introspect the factory class.
+        instance = cls()
+        spec = getattr(instance, "_spec", None)
+        if spec is None:
+            # Shouldn't happen - every challenge in the registry is
+            # built by make_challenge() which always sets _spec.
+            continue
+        nodes[cid] = TreeNode(
+            challenge_id=spec.id,
+            name=spec.name,
+            category=spec.category,
+            children=list(spec.children),
+            parents=list(spec.parents),
+        )
+    return nodes
 
-    # === GRAPH PATH ===
-    "graph_01": TreeNode("graph_01", "Graph Representation", "graphs", children=["graph_02", "graph_03"], parents=["intro_01"]),
-    "graph_02": TreeNode("graph_02", "BFS Traversal", "graphs", children=["graph_04"], parents=["graph_01"]),
-    "graph_03": TreeNode("graph_03", "DFS Traversal", "graphs", children=["graph_04"], parents=["graph_01"]),
-    "graph_04": TreeNode("graph_04", "Dijkstra", "graphs", children=["graph_05"], parents=["graph_02", "graph_03"]),
-    "graph_05": TreeNode("graph_05", "Bellman-Ford", "graphs", children=["graph_06"], parents=["graph_04"]),
-    "graph_06": TreeNode("graph_06", "Minimum Spanning Tree", "graphs", children=[], parents=["graph_05"]),
 
-    # === DYNAMIC PROGRAMMING PATH ===
-    "dp_01": TreeNode("dp_01", "Fibonacci", "dynamic", children=["dp_02"], parents=["intro_01"]),
-    "dp_02": TreeNode("dp_02", "Climbing Stairs", "dynamic", children=["dp_03", "dp_04"], parents=["dp_01"]),
-    "dp_03": TreeNode("dp_03", "Knapsack", "dynamic", children=["dp_05"], parents=["dp_02"]),
-    "dp_04": TreeNode("dp_04", "Longest Common Subsequence", "dynamic", children=["dp_05"], parents=["dp_02"]),
-    "dp_05": TreeNode("dp_05", "Matrix Chain Multiplication", "dynamic", children=[], parents=["dp_03", "dp_04"]),
-}
+CHALLENGE_TREE: dict[str, TreeNode] = _build_tree()
+
+
+def _category_order() -> list[str]:
+    """Return the display order of categories that have at least one node."""
+    seen: list[str] = []
+    for cat in CATEGORIES:
+        if any(node.category == cat for node in CHALLENGE_TREE.values()):
+            if cat not in seen:
+                seen.append(cat)
+    # Any category present in the tree but missing from CATEGORIES
+    # gets appended in the order it appears, so adding a new
+    # category to a spec never silently hides it.
+    for node in CHALLENGE_TREE.values():
+        if node.category not in seen:
+            seen.append(node.category)
+    return seen
 
 
 class ChallengeTree:
@@ -106,20 +135,11 @@ class ChallengeTree:
         lines = []
         lines.append(f"\033[1m=== {GAME_TITLE} Challenge Tree ===\033[0m\n")
 
-        categories = ["intro", "sorting", "searching", "graphs", "dynamic"]
-        category_names = {
-            "intro": "Introduction",
-            "sorting": "Sorting",
-            "searching": "Searching",
-            "graphs": "Graphs",
-            "dynamic": "Dynamic Programming",
-        }
-
-        for cat in categories:
+        for cat in _category_order():
             nodes = self.get_category_nodes(cat)
             if not nodes:
                 continue
-            lines.append(f"\033[1m{category_names.get(cat, cat)}\033[0m")
+            lines.append(f"\033[1m{CATEGORY_NAMES.get(cat, cat)}\033[0m")
 
             for node in nodes:
                 status_value = progress.status_for(node.challenge_id)

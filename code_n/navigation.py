@@ -26,6 +26,27 @@ from .tracked import TrackedGrid, TrackedList
 from .window import is_resize_event, mono_font, open_maximized_window, sync_window_size
 
 
+def _strip_leading_docstring(source: str) -> list[str]:
+    """Drop the file-header docstring so the example panel shows
+    just the imports and ``def solve()`` body, not the explanatory
+    paragraph above it.
+
+    Handles the ``\\"\\"\\" ... \\"\\"\\"`` docstring at the start of
+    the source and any blank lines that follow. Returns the rest
+    as a list of lines (with the trailing newline trimmed).
+    """
+    text = source.lstrip("\n")
+    if not text.startswith('"""') and not text.startswith("'''"):
+        return text.splitlines()
+    quote = text[:3]
+    end = text.find(quote, 3)
+    if end < 0:
+        return text.splitlines()
+    rest = text[end + 3 :]
+    # Trim leading blank lines.
+    return rest.lstrip("\n").splitlines()
+
+
 @dataclass
 class NavItem:
     node: TreeNode
@@ -752,101 +773,23 @@ class ChallengeNavigator:
     def _arg_hints_for(self, challenge) -> dict[str, str]:
         """Per-challenge map of input-name -> human-readable description.
 
-        Lives next to the explore view so the player knows what each
-        argument means before they write their solution.
+        Sourced from the challenge's :class:`AlgorithmSpec`. Adding
+        a new challenge is one entry in the spec - no edit here.
         """
-        cid = type(challenge).__name__
-        return {
-            "IntroHelloGrid": {
-                "data": "list-like of n integers. Read it with data[i].",
-            },
-            "BubbleSortChallenge": {
-                "data": "list-like of n random integers. Mutate in place.",
-                "n": "length of data.",
-            },
-            "SelectionSortChallenge": {
-                "data": "list-like of n random integers. Mutate in place.",
-                "n": "length of data.",
-            },
-            "InsertionSortChallenge": {
-                "data": "list-like of n random integers. Mutate in place.",
-                "n": "length of data.",
-            },
-            "MergeSortChallenge": {
-                "data": "list-like of n random integers. Mutate in place.",
-                "n": "length of data.",
-            },
-            "QuickSortChallenge": {
-                "data": "list-like of n random integers. Mutate in place.",
-                "n": "length of data.",
-            },
-            "LinearSearchChallenge": {
-                "data": "list-like of n random integers.",
-                "target": "value to find in data.",
-            },
-            "BinarySearchChallenge": {
-                "data": "sorted list-like of n random integers.",
-                "target": "value to find in data.",
-                "n": "length of data.",
-            },
-            "BFSGridChallenge": {
-                "grid": "2D list-like. 0 = walkable, 1 = wall. Read with grid[row][column].",
-                "start": "(row, column) start position.",
-                "goal": "(row, column) goal position.",
-                "size": "width and height of the square grid.",
-            },
-            "DFSGridChallenge": {
-                "grid": "2D list-like. 0 = walkable, 1 = wall. Read with grid[row][column].",
-                "start": "(row, column) start position.",
-                "size": "width and height of the square grid.",
-            },
-            "GraphRepresentationChallenge": {
-                "num_nodes": "number of nodes in the graph.",
-                "edges": "list-like of (u, v) tuples representing undirected edges.",
-            },
-            "DijkstraChallenge": {
-                "num_nodes": "number of nodes in the graph.",
-                "edges": "list-like of (u, v, weight) tuples for directed edges.",
-                "start": "source node.",
-            },
-            "FibonacciChallenge": {
-                "n": "index of the Fibonacci number to compute.",
-            },
-            "ClimbingStairsChallenge": {
-                "n": "number of stairs.",
-            },
-            "KnapsackChallenge": {
-                "weights": "list-like of item weights (length n).",
-                "values": "list-like of item values (length n).",
-                "capacity": "knapsack capacity.",
-                "n": "number of items.",
-            },
-            "LCSChallenge": {
-                "seq_a": "first string (or list-like of characters).",
-                "seq_b": "second string (or list-like of characters).",
-            },
-        }.get(cid, {})
+        spec = getattr(challenge, "_spec", None)
+        if spec is not None:
+            return dict(spec.inputs)
+        return {}
 
     def _return_hint_for(self, challenge) -> str:
-        cid = type(challenge).__name__
-        return {
-            "IntroHelloGrid": "the maximum value in data.",
-            "BubbleSortChallenge": "the same data object, sorted in place (in ascending order).",
-            "SelectionSortChallenge": "the same data object, sorted in place (in ascending order).",
-            "InsertionSortChallenge": "the same data object, sorted in place (in ascending order).",
-            "MergeSortChallenge": "the same data object, sorted in place (in ascending order).",
-            "QuickSortChallenge": "the same data object, sorted in place (in ascending order).",
-            "LinearSearchChallenge": "the index of target in data, or -1 if not found.",
-            "BinarySearchChallenge": "the index of target in data, or -1 if not found.",
-            "BFSGridChallenge": "the length of the shortest path from start to goal in steps. The challenge always has a path.",
-            "DFSGridChallenge": "the number of walkable cells reachable from start (including start).",
-            "GraphRepresentationChallenge": "a dict mapping each node to a sorted list of its neighbors.",
-            "DijkstraChallenge": "a dict mapping each node to its shortest distance from start. Unreachable nodes get -1.",
-            "FibonacciChallenge": "the n-th Fibonacci number (fib(0)=0, fib(1)=1).",
-            "ClimbingStairsChallenge": "the number of distinct ways to climb n stairs (1 or 2 steps at a time).",
-            "KnapsackChallenge": "the maximum total value of items that fit in the knapsack.",
-            "LCSChallenge": "the length of the longest common subsequence of seq_a and seq_b.",
-        }.get(cid, "see the sample I/O on the right.")
+        """Per-challenge return-value description.
+
+        Sourced from the challenge's :class:`AlgorithmSpec`.
+        """
+        spec = getattr(challenge, "_spec", None)
+        if spec is not None:
+            return spec.returns
+        return "see the sample I/O on the right."
 
     def _draw_sample_grid(self, screen, fonts, grid: Optional[Grid], area):
         import pygame
@@ -905,83 +848,19 @@ class ChallengeNavigator:
         screen.set_clip(previous_clip)
 
     def _example_solution_lines(self, challenge_id: str) -> list[str]:
-        lines = sample_lines(challenge_id)
-        if lines:
-            return lines
-        examples: dict[str, list[str]] = {
-            "intro_01": [
-                "def solve(data):",
-                "    best = data[0]",
-                "    for index in range(1, len(data)):",
-                "        value = data[index]",
-                "        if value > best:",
-                "            best = value",
-                "    return best",
-            ],
-            "sort_01": [
-                "def solve(data, n):",
-                "    for end in range(n - 1, 0, -1):",
-                "        for index in range(end):",
-                "            if data[index] > data[index + 1]:",
-                "                data[index], data[index + 1] = data[index + 1], data[index]",
-                "    return data",
-            ],
-            "search_01": [
-                "def solve(data, target):",
-                "    for index in range(len(data)):",
-                "        if data[index] == target:",
-                "            return index",
-                "    return -1",
-            ],
-            "search_02": [
-                "def solve(data, target, n):",
-                "    left, right = 0, n - 1",
-                "    while left <= right:",
-                "        mid = (left + right) // 2",
-                "        value = data[mid]",
-                "        if value == target: return mid",
-                "        if value < target: left = mid + 1",
-                "        else: right = mid - 1",
-                "    return -1",
-            ],
-            "graph_01": [
-                "def solve(num_nodes, edges):",
-                "    graph = {node: [] for node in range(num_nodes)}",
-                "    for u, v in edges:",
-                "        graph[u].append(v)",
-                "        graph[v].append(u)",
-                "    return {node: sorted(neighbors)",
-                "            for node, neighbors in graph.items()}",
-            ],
-            "dp_01": [
-                "def solve(n):",
-                "    if n <= 1:",
-                "        return n",
-                "    previous, current = 0, 1",
-                "    for _ in range(2, n + 1):",
-                "        previous, current = current, previous + current",
-                "    return current",
-            ],
-        }
-        if challenge_id.startswith("search_0"):
-            return examples.get(challenge_id, [
-                "# Grid search pattern",
-                "def solve(grid, start, goal, size):",
-                "    frontier = [(start, 0)]",
-                "    visited = {start}",
-                "    # Pop cells, inspect neighbors, return distance.",
-                "    return -1",
-            ])
-        if challenge_id.startswith("sort_"):
-            return examples["sort_01"]
-        if challenge_id.startswith("graph_"):
-            return examples["graph_01"]
-        if challenge_id.startswith("dp_"):
-            return examples["dp_01"]
+        # Prefer the registered AlgorithmSpec's source so the example
+        # is always in sync with the actual canonical solution.
+        from challenges.registry import get_challenge
+        challenge = get_challenge(challenge_id)
+        spec = getattr(challenge, "_spec", None) if challenge is not None else None
+        if spec is not None:
+            return _strip_leading_docstring(spec.source)
+
+        # Fall back to a generic stub for unknown ids.
         return [
             "# Study the input names shown on the left.",
             "# Keep the operation limit in mind.",
-            "def solve(**kwargs):",
+            "def solve():",
             "    # Build a small correct version first.",
             "    return None",
         ]

@@ -1,51 +1,36 @@
-"""Challenge registry - maps challenge IDs to their implementations."""
+"""Challenge registry - maps challenge IDs to their implementations.
+
+Built once at import time from the :data:`SPECS` lists exported by
+each module in :mod:`challenges.algorithms`. Adding a new challenge
+is one entry in one of those modules - no edit to this file needed.
+"""
 
 from typing import Optional
+
 from code_n.challenge import Challenge
-
-from challenges.intro import IntroHelloGrid
-from challenges.sorting import (
-    BubbleSortChallenge,
-    SelectionSortChallenge,
-    InsertionSortChallenge,
-    MergeSortChallenge,
-    QuickSortChallenge,
-)
-from challenges.searching import (
-    LinearSearchChallenge,
-    BinarySearchChallenge,
-    BFSGridChallenge,
-    DFSGridChallenge,
-)
-from challenges.graphs import (
-    GraphRepresentationChallenge,
-    DijkstraChallenge,
-)
-from challenges.dynamic import (
-    FibonacciChallenge,
-    ClimbingStairsChallenge,
-    KnapsackChallenge,
-    LCSChallenge,
-)
+from .spec import AlgorithmSpec, make_challenge
 
 
+def _collect_specs() -> list[AlgorithmSpec]:
+    """Import every per-category module and concatenate its SPECS.
+
+    Done at import time so the registry is fixed for the life of
+    the process - the player can rely on ``list_challenges()`` being
+    stable.
+    """
+    from challenges.algorithms import intro, sorting, searching, graphs, dynamic
+    return [
+        *intro.SPECS,
+        *sorting.SPECS,
+        *searching.SPECS,
+        *graphs.SPECS,
+        *dynamic.SPECS,
+    ]
+
+
+# Pre-build the registry. Each spec becomes a Challenge subclass.
 CHALLENGE_REGISTRY: dict[str, type[Challenge]] = {
-    "intro_01": IntroHelloGrid,
-    "sort_01": BubbleSortChallenge,
-    "sort_02": SelectionSortChallenge,
-    "sort_03": InsertionSortChallenge,
-    "sort_04": MergeSortChallenge,
-    "sort_05": QuickSortChallenge,
-    "search_01": LinearSearchChallenge,
-    "search_02": BinarySearchChallenge,
-    "search_03": BFSGridChallenge,
-    "search_04": DFSGridChallenge,
-    "graph_01": GraphRepresentationChallenge,
-    "graph_04": DijkstraChallenge,
-    "dp_01": FibonacciChallenge,
-    "dp_02": ClimbingStairsChallenge,
-    "dp_03": KnapsackChallenge,
-    "dp_04": LCSChallenge,
+    spec.id: make_challenge(spec) for spec in _collect_specs()
 }
 
 

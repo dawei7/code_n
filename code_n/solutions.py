@@ -50,156 +50,53 @@ def solution_hint(challenge_id: str) -> str:
     )
 
 
-# Per-challenge template metadata. Each entry is (parameter list,
-# input descriptions, return description). The template generator
-# below uses this to build a clean stub with the EXACT parameter
-# names from the challenge's setup() method - never **kwargs.
-_CHALLENGE_TEMPLATES: dict[str, dict] = {
-    "intro_01": {
-        "params": ["data"],
-        "inputs": {
-            "data": "list-like of n integers. Read with data[i].",
-        },
-        "returns": "the maximum value in data.",
-    },
-    "sort_01": {
-        "params": ["data", "n"],
-        "inputs": {
-            "data": "list-like of n random integers. Mutate in place.",
-            "n": "length of data.",
-        },
-        "returns": "the same data object, sorted in place (in ascending order).",
-    },
-    "sort_02": {
-        "params": ["data", "n"],
-        "inputs": {
-            "data": "list-like of n random integers. Mutate in place.",
-            "n": "length of data.",
-        },
-        "returns": "the same data object, sorted in place (in ascending order).",
-    },
-    "sort_03": {
-        "params": ["data", "n"],
-        "inputs": {
-            "data": "list-like of n random integers. Mutate in place.",
-            "n": "length of data.",
-        },
-        "returns": "the same data object, sorted in place (in ascending order).",
-    },
-    "sort_04": {
-        "params": ["data", "n"],
-        "inputs": {
-            "data": "list-like of n random integers. Mutate in place.",
-            "n": "length of data.",
-        },
-        "returns": "the same data object, sorted in place (in ascending order).",
-    },
-    "sort_05": {
-        "params": ["data", "n"],
-        "inputs": {
-            "data": "list-like of n random integers. Mutate in place.",
-            "n": "length of data.",
-        },
-        "returns": "the same data object, sorted in place (in ascending order).",
-    },
-    "search_01": {
-        "params": ["data", "target"],
-        "inputs": {
-            "data": "list-like of n random integers.",
-            "target": "value to find in data.",
-        },
-        "returns": "the index of target in data, or -1 if not found.",
-    },
-    "search_02": {
-        "params": ["data", "target", "n"],
-        "inputs": {
-            "data": "sorted list-like of n random integers.",
-            "target": "value to find in data.",
-            "n": "length of data.",
-        },
-        "returns": "the index of target in data, or -1 if not found.",
-    },
-    "search_03": {
-        "params": ["grid", "start", "goal", "size"],
-        "inputs": {
-            "grid": "2D list-like. 0 = walkable, 1 = wall. Read with grid[row][column].",
-            "start": "(row, column) start position.",
-            "goal": "(row, column) goal position.",
-            "size": "width and height of the square grid.",
-        },
-        "returns": "the length of the shortest path from start to goal in steps. The challenge always has a path.",
-    },
-    "search_04": {
-        "params": ["grid", "start", "size"],
-        "inputs": {
-            "grid": "2D list-like. 0 = walkable, 1 = wall. Read with grid[row][column].",
-            "start": "(row, column) start position.",
-            "size": "width and height of the square grid.",
-        },
-        "returns": "the number of walkable cells reachable from start (including start).",
-    },
-    "graph_01": {
-        "params": ["num_nodes", "edges"],
-        "inputs": {
-            "num_nodes": "number of nodes in the graph.",
-            "edges": "list-like of (u, v) tuples representing undirected edges.",
-        },
-        "returns": "a dict mapping each node to a sorted list of its neighbors.",
-    },
-    "graph_04": {
-        "params": ["num_nodes", "edges", "start"],
-        "inputs": {
-            "num_nodes": "number of nodes in the graph.",
-            "edges": "list-like of (u, v, weight) tuples for directed edges.",
-            "start": "source node.",
-        },
-        "returns": "a dict mapping each node to its shortest distance from start. Unreachable nodes get -1.",
-    },
-    "dp_01": {
-        "params": ["n"],
-        "inputs": {
-            "n": "index of the Fibonacci number to compute.",
-        },
-        "returns": "the n-th Fibonacci number (fib(0)=0, fib(1)=1).",
-    },
-    "dp_02": {
-        "params": ["n"],
-        "inputs": {
-            "n": "number of stairs.",
-        },
-        "returns": "the number of distinct ways to climb n stairs (1 or 2 steps at a time).",
-    },
-    "dp_03": {
-        "params": ["weights", "values", "capacity", "n"],
-        "inputs": {
-            "weights": "list-like of item weights (length n).",
-            "values": "list-like of item values (length n).",
-            "capacity": "knapsack capacity.",
-            "n": "number of items.",
-        },
-        "returns": "the maximum total value of items that fit in the knapsack.",
-    },
-    "dp_04": {
-        "params": ["seq_a", "seq_b"],
-        "inputs": {
-            "seq_a": "first string (or list-like of characters).",
-            "seq_b": "second string (or list-like of characters).",
-        },
-        "returns": "the length of the longest common subsequence of seq_a and seq_b.",
-    },
-}
+def _build_templates() -> dict[str, dict]:
+    """Build the per-challenge template metadata from the registry.
+
+    Each registered :class:`~challenges.spec.AlgorithmSpec` exposes
+    ``params``, ``inputs``, and ``returns``; the template generator
+    in :func:`_solution_template` consumes those three keys.
+    """
+    from challenges.registry import get_challenge
+
+    templates: dict[str, dict] = {}
+    for challenge_id, _cls in _iter_registered_ids():
+        challenge = get_challenge(challenge_id)
+        if challenge is None:
+            continue
+        spec = getattr(challenge, "_spec", None)
+        if spec is None:
+            continue
+        templates[spec.id] = {
+            "params": list(spec.params),
+            "inputs": dict(spec.inputs),
+            "returns": spec.returns,
+        }
+    return templates
+
+
+def _iter_registered_ids():
+    """Yield ``(id, class)`` pairs in registry-insertion order."""
+    from challenges.registry import CHALLENGE_REGISTRY
+    for cid, cls in CHALLENGE_REGISTRY.items():
+        yield cid, cls
+
+
+# Backwards-compatible public name. The same dict used to be
+# hand-maintained; it's now derived from the spec at import time
+# so every new entry in a ``challenges/algorithms/<cat>.py`` file
+# shows up here automatically.
+_CHALLENGE_TEMPLATES: dict[str, dict] = _build_templates()
 
 
 def _solution_template(challenge_id: str, heading: str, description: str) -> str:
     """Build a starter file for the player.
 
     Every challenge now has a template with EXPLICIT parameter
-    names (no more ``def solve(**kwargs):``). The templates live
-    in ``_CHALLENGE_TEMPLATES``; the per-challenge entry says
-    what the args are, what they mean, and what the function
-    should return. The starter file is the same shape so the
-    player can read the docstring, fill in the body, and not
-    have to guess.
+    names (no more ``def solve(**kwargs):``). The data comes from
+    the registered ``AlgorithmSpec``; the starter file is the
+    same shape so the player can read the docstring, fill in the
+    body, and not have to guess.
     """
     safe_description = description.replace('"""', "'''")
     samples = sample_doc(challenge_id)
