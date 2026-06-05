@@ -227,6 +227,7 @@ class PygameRenderer:
     GRID_LINE = (64, 73, 89)
     TEXT = (232, 236, 243)
     MUTED = (157, 166, 178)
+    ACCENT_COLOR = (103, 165, 255)
     PASS = (58, 185, 117)
     FAIL = (239, 86, 86)
     READ = (103, 165, 255)
@@ -708,8 +709,9 @@ class PygameRenderer:
         # Variables panel: live in the main area, below the grid, so
         # the player can see the data structures evolve alongside the
         # algorithm. Layout: stacked horizontally, each row is one
-        # variable (name + cell grid). Wraps inside the available
-        # width.
+        # variable (name + cell grid). Cells match the grid's cell
+        # size and carry index labels so each element is identifiable,
+        # like the algorithm grid above.
         if trace_frame and trace_frame.locals:
             main_x = self.margin
             main_w = self._main_area_width()
@@ -724,6 +726,8 @@ class PygameRenderer:
                     max_width=main_w,
                     max_y=avail_bottom,
                     trace_frame=trace_frame,
+                    cell_size=cell_size,
+                    current_detail=detail,
                 )
         self._draw_grid_headers(screen, fonts, grid_rect, cell_size, display_rows, full_cols)
 
@@ -1209,20 +1213,30 @@ class PygameRenderer:
         max_width: int,
         max_y: int,
         trace_frame,
+        cell_size: int = 24,
+        current_detail: str = "",
     ) -> None:
         """Render the player's local variables as a fully-fledged
         visual in the main area, below the grid.
 
-        Layout: each variable is two lines - a bold ``name:`` label
-        on the first line, then the full representation on the next
-        line (or lines, for long lists). Lists / tuples / TrackedList
-        become a row of small cells, one per element, wrapping as
-        needed. Dicts become a 2-row "key / value" strip. Scalars
-        become a single cell. Up to 8 variables are shown before
-        '+N more' truncation.
+        Layout: each variable is three lines -
+          * the variable name (bold) on one line
+          * the index labels (0, 1, 2, ...) on the next line
+          * the cells themselves, one per element, on the next line(s)
 
-        No truncation of the list itself - the player sees the full
-        representation, like the algorithm grid at the top.
+        The cell size matches the algorithm grid so the player
+        sees a consistent visual rhythm. Lists / tuples /
+        TrackedList become a row of cells with index headers,
+        wrapping when the panel is narrower than the list.
+        Dicts become a 2-row key/value strip. Scalars become a
+        single cell with no index.
+
+        Above the variables list, a "Current op" line shows what
+        the engine is doing right now (``compare: list[i] > list[i-1]``,
+        ``list[i] = list[i-1] + 1``, etc.), so the player can map
+        each operation to the data-structure change below it.
+
+        Up to 8 variables are shown before '+N more' truncation.
         """
         import pygame
 
@@ -1240,11 +1254,22 @@ class PygameRenderer:
         )
         y += 24
 
-        cell_size = 18
+        # Current op strip: shows the latest operation that the
+        # engine recorded on this trace frame. Drawn on its own
+        # line so it's visible without scrolling past every
+        # variable.
+        if current_detail and current_detail != "Ready":
+            op_text = f"Current op: {current_detail}"
+            self._draw_text(screen, fonts["small"], op_text, x, y, self.ACCENT_COLOR)
+            y += 18
+
         cell_gap = 1
         strip_x = x
         strip_w = max(40, max_width)
         cols_per_row = max(1, (strip_w + cell_gap) // (cell_size + cell_gap))
+        # Use a small font for index labels so the digit fits even
+        # when the cells are at the default 44px.
+        idx_font = fonts["small"]
 
         shown = 0
         for name, value in trace_frame.locals.items():
@@ -1272,7 +1297,8 @@ class PygameRenderer:
                 needed_rows = 2
             else:
                 needed_rows = 1
-            needed_h = needed_rows * (cell_size + 2) + 22  # +22 for the name line
+            idx_label_h = 14 if isinstance(raw, (list, tuple)) and raw else 0
+            needed_h = idx_label_h + needed_rows * (cell_size + 2) + 22
             if y + needed_h + 6 > max_y:
                 self._draw_text(
                     screen, fonts["small"],
@@ -1284,15 +1310,44 @@ class PygameRenderer:
             # Name on its own line.
             self._draw_text(screen, fonts["body"], f"{name}:", x, y, self.TEXT)
             y += 22
-            # Representation (cells).
+            # Index labels (only for list/tuple strips).
+            if isinstance(raw, (list, tuple)) and raw:
+                self._draw_index_labels(
+                    screen, idx_font, strip_x, y,
+                    cell_size, cell_gap, cols_per_row, len(items),
+                )
+                y += idx_label_h
+            # Cells.
             self._draw_variable_strip(
                 screen, fonts,
                 strip_x, y,
                 cell_size, cell_gap, cols_per_row,
                 raw,
             )
-            y += needed_h - 22 + 8
+            y += needed_h - 22 - idx_label_h + 6
             shown += 1
+
+    def _draw_index_labels(
+        self,
+        screen,
+        font,
+        x: int,
+        y: int,
+        cell_size: int,
+        cell_gap: int,
+        cols_per_row: int,
+        count: int,
+    ) -> None:
+        """Draw the column index (0, 1, 2, ...) above a list strip,
+        matching the algorithm grid's header style.
+        """
+        import pygame
+
+        for index in range(min(count, cols_per_row)):
+            cx = x + index * (cell_size + cell_gap) + cell_size // 2
+            label = str(index)
+            text_surface = font.render(label, True, self.MUTED)
+            screen.blit(text_surface, text_surface.get_rect(centerx=cx, y=y))
 
     def _draw_variable_strip(
         self,
@@ -1306,8 +1361,8 @@ class PygameRenderer:
         raw,
     ) -> None:
         """Render a list / dict / scalar as a row (or two rows for
-        dicts) of small cells. Uses ``str()`` (not ``repr()``) for
-        each value, so strings appear without surrounding quotes and
+        dicts) of cells. Uses ``str()`` (not ``repr()``) for each
+        value so strings appear without surrounding quotes and
         numbers appear as plain numbers.
         """
         import pygame
@@ -1315,11 +1370,6 @@ class PygameRenderer:
         cell_bg = (52, 60, 74)
 
         def _format(val) -> str:
-            # For the player-facing visual we want plain text, not
-            # Python repr. Convert the value to a string and strip
-            # the surrounding quotes that str() would add for a
-            # string literal - the user shouldn't see 'hello' for a
-            # cell holding the value "hello".
             try:
                 if isinstance(val, str):
                     return val
@@ -1334,15 +1384,13 @@ class PygameRenderer:
             rect = pygame.Rect(px, py, cell_size, cell_size)
             pygame.draw.rect(screen, cell_bg, rect, border_radius=3)
             pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=3)
-            cell_font = fonts["small"] if cell_size < 24 else fonts["body"]
+            # Use a small font for narrow cells (matches the grid).
+            cell_font = fonts["cell"] if cell_size >= 28 else fonts["small"]
             text_surface = cell_font.render(label, True, self.TEXT)
             screen.blit(text_surface, text_surface.get_rect(center=rect.center))
 
         if isinstance(raw, (list, tuple)) and raw:
             items = list(raw)
-            # Show the FULL list, no truncation. Long lists wrap
-            # to multiple rows (the columns_per_row calculation
-            # above handles this).
             for index, item in enumerate(items):
                 row = index // cols_per_row
                 col = index % cols_per_row
