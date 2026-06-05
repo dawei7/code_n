@@ -13,8 +13,6 @@ from typing import Any, Optional
 from challenges.registry import get_challenge
 from .branding import (
     BACKSTORY_PARAGRAPHS,
-    BACKSTORY_SHORT,
-    GAME_SUBTITLE,
     GAME_TITLE,
     MAX_PLAYER_NAME_LENGTH,
     normalize_player_name,
@@ -421,13 +419,15 @@ class ChallengeNavigator:
 
         sync_window_size(self, screen)
         screen.fill(self.BACKGROUND)
-        self._text(screen, fonts["title"], GAME_TITLE, 30, 24, self.TEXT)
-        subtitle = f"{self.player_name()} - {GAME_SUBTITLE}"
-        self._text(screen, fonts["body"], subtitle, 30, 62, self.MUTED)
+        # Short title: the student's name plus the course name. We
+        # do not render the long "cOde(n) - Algorithms..." subtitle
+        # anymore; the user found it too verbose.
+        title = f"{self.player_name()} - Data Structures and Algorithms (DSA)"
+        self._text(screen, fonts["title"], title, 30, 24, self.TEXT)
 
         margin = 30
         gap = 24
-        top = 105
+        top = 80
         bottom_h = 32
         bottom_y = max(top + 420, self.height - bottom_h - 20)
         content_h = max(360, bottom_y - top - 13)
@@ -502,10 +502,13 @@ class ChallengeNavigator:
         content_x = area.x + padding
         content_width = area.width - padding * 2
         # Two button rows (Explore/Run/Open on top, Solve/Reset below)
-        # take 44 + 8 + 44 = 96 px. Push the controls section down to make
-        # room.
-        controls_y = area.bottom - 132
-        buttons_y = controls_y - 96
+        # take 44 + 8 + 44 = 96 px. Then a 16 px gap before the
+        # Controls section, which has 4 lines at 20 px each plus a
+        # 28 px header = 108 px. So 96 + 16 + 108 = 220 px total. The
+        # controls header sits 16 px below the buttons; the controls
+        # block extends another 88 px down to its last line.
+        controls_y = area.bottom - 156
+        buttons_y = controls_y - 112
         description_bottom = buttons_y - 14
 
         self._text(screen, fonts["heading"], item.node.name, area.x + 18, area.y + 18, self.TEXT)
@@ -523,12 +526,6 @@ class ChallengeNavigator:
         y += 24
         self._text(screen, fonts["small"], f"Student: {self.player_name()}", content_x, y, self.TEXT)
         y += 28
-        self._text(screen, fonts["body"], "Backstory", content_x, y, self.TEXT)
-        y += 24
-        for line in self._wrap(BACKSTORY_SHORT, 42)[:3]:
-            self._text(screen, fonts["small"], line, content_x, y, self.MUTED)
-            y += 18
-        y += 8
 
         if challenge:
             info = challenge.info
@@ -552,6 +549,8 @@ class ChallengeNavigator:
 
         self._draw_action_buttons(screen, fonts, area, buttons_y)
 
+        # A clear visual gap between the action buttons above and the
+        # Controls section below so they don't read as one block.
         y = controls_y
         self._text(screen, fonts["body"], "Controls", content_x, y, self.TEXT)
         y += 28
