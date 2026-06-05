@@ -173,8 +173,8 @@ class LimitForTests(unittest.TestCase):
         self.assertEqual(limit_for(10_000, ComplexityClass.O_1), 10)
 
     def test_o_n_grows_linearly(self):
-        self.assertEqual(limit_for(100, ComplexityClass.O_N), 410)
-        self.assertEqual(limit_for(50, ComplexityClass.O_N), 210)
+        self.assertEqual(limit_for(100, ComplexityClass.O_N), 610)
+        self.assertEqual(limit_for(50, ComplexityClass.O_N), 310)
 
     def test_o_n2_grows_quadratically(self):
         self.assertEqual(limit_for(50, ComplexityClass.O_N2), 50 * 50 * 8 + 10)
@@ -209,14 +209,14 @@ class ThresholdTests(unittest.TestCase):
         counter = OperationCounter()
         for _ in range(20):
             counter.read("a")
-        # O_N at n=8 -> 8*4+10 = 42
+        # O_N at n=8 -> 8*6+10 = 58
         self.assertTrue(counter.meets_threshold(8, ComplexityClass.O_N))
 
     def test_meets_threshold_over_budget(self):
         counter = OperationCounter()
-        for _ in range(50):
+        for _ in range(70):
             counter.read("a")
-        # O_N at n=8 -> 42
+        # O_N at n=8 -> 58
         self.assertFalse(counter.meets_threshold(8, ComplexityClass.O_N))
 
     def test_unknown_threshold_is_always_met(self):

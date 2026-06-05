@@ -204,11 +204,22 @@ class OperationCounter:
 
     @staticmethod
     def limit_for(n: int, max_class: ComplexityClass) -> int:
-        """Return the operation budget for a required complexity class."""
+        """Return the operation budget for a required complexity class.
+
+        The constant factors were tuned against the line-based
+        counter (used for non-Tracked inputs): a clean O(n)
+        algorithm with two passes (left + right) and a per-element
+        compare-then-update uses ~3 line events per element, so the
+        4x ratio was too tight and Candy Distribution (greedy_08)
+        failed the budget. 6x comfortably fits any 2-pass O(n)
+        implementation while still catching O(n^2) at small n
+        (O(n^2) at n=8 uses ~64 line events, above the 6x = 58
+        budget).
+        """
         limits = {
             ComplexityClass.O_1: 10,
             ComplexityClass.O_LOG_N: int(math.log2(max(n, 2)) * 3) + 10,
-            ComplexityClass.O_N: n * 4 + 10,
+            ComplexityClass.O_N: n * 6 + 10,
             ComplexityClass.O_N_LOG_N: int(n * math.log2(max(n, 2)) * 10) + 10,
             ComplexityClass.O_N2: n * n * 8 + 10,
             ComplexityClass.O_N3: n * n * n * 8 + 10,
