@@ -405,5 +405,113 @@ class SerializeLocalsTests(unittest.TestCase):
         self.assertIsInstance(result["items"], TrackedList)
 
 
+class ClassifyVariableTests(unittest.TestCase):
+    """``_classify_variable`` is the dispatcher that picks a
+    rendering strategy for each local. BFS exposes the full
+    spread of types: TrackedGrid, TrackedQueue, plain scalars,
+    and a set of (row, col) tuples for ``visited``. Each one
+    needs a different visual (2D grid, horizontal strip, 2D
+    overlay, single cell) and the classification has to pick
+    the right one."""
+
+    def setUp(self):
+        from code_n.pygame_renderer import PygameRenderer
+        self.r = PygameRenderer(speed="instant")
+
+    def test_tracked_grid_classifies_as_grid(self):
+        from code_n.tracked import TrackedGrid
+        grid = TrackedGrid(5, 5, default=0)
+        kind, payload, h = self.r._classify_variable(grid, content_w=200, cell_size=18)
+        self.assertEqual(kind, "grid")
+        # Payload is (raw_data, cell_size).
+        raw, grid_cell = payload
+        self.assertEqual(len(raw), 5)
+        self.assertEqual(len(raw[0]), 5)
+        # Cell size is bounded so a 35x35 grid still fits in the
+        # panel width; max is 14 so values stay readable.
+        self.assertLessEqual(grid_cell, 14)
+        self.assertGreaterEqual(grid_cell, 8)
+        # Height = rows * (cell + gap) + small bottom padding.
+        self.assertGreater(h, 0)
+
+    def test_tracked_queue_classifies_as_queue(self):
+        from code_n.tracked import TrackedQueue
+        q = TrackedQueue()
+        q.enqueue(1)
+        q.enqueue(2)
+        q.enqueue(3)
+        kind, payload, h = self.r._classify_variable(q, content_w=200, cell_size=18)
+        self.assertEqual(kind, "queue")
+        items, _ = payload
+        self.assertEqual(items, [1, 2, 3])
+        self.assertGreater(h, 0)
+
+    def test_tracked_stack_classifies_as_stack(self):
+        from code_n.tracked import TrackedStack
+        s = TrackedStack()
+        s.push(10)
+        s.push(20)
+        kind, payload, h = self.r._classify_variable(s, content_w=200, cell_size=18)
+        self.assertEqual(kind, "stack")
+        items, _ = payload
+        self.assertEqual(items, [10, 20])
+
+    def test_set_of_2tuples_classifies_as_set2d(self):
+        """BFS's ``visited`` is a set of (row, col) tuples; the
+        renderer should detect this and treat it as a 2D overlay
+        rather than dumping the tuples as one giant line of text.
+        """
+        visited = {(0, 0), (0, 1), (1, 0), (1, 1)}
+        kind, payload, h = self.r._classify_variable(visited, content_w=200, cell_size=18)
+        self.assertEqual(kind, "set2d")
+        value_set, max_r, max_c, grid_cell = payload
+        self.assertEqual(value_set, visited)
+        # The grid extent is inferred from the data (max + 1).
+        self.assertEqual(max_r, 2)
+        self.assertEqual(max_c, 2)
+        self.assertLessEqual(grid_cell, 14)
+
+    def test_list_of_2tuples_also_classifies_as_set2d(self):
+        """``frontier`` in BFS is a TrackedQueue of (row, col, dist)
+        tuples, but plain lists of (row, col) pairs should also
+        be detected as a 2D overlay."""
+        frontier = [(0, 0), (0, 1), (1, 0), (2, 3)]
+        kind, payload, h = self.r._classify_variable(frontier, content_w=200, cell_size=18)
+        self.assertEqual(kind, "set2d")
+
+    def test_list_classifies_as_list(self):
+        kind, payload, h = self.r._classify_variable([1, 2, 3], content_w=200, cell_size=18)
+        self.assertEqual(kind, "list")
+
+    def test_dict_classifies_as_dict(self):
+        kind, payload, h = self.r._classify_variable({"a": 1, "b": 2}, content_w=200, cell_size=18)
+        self.assertEqual(kind, "dict")
+
+    def test_set_of_non_tuples_classifies_as_set(self):
+        """A set of plain ints (or strings) is a regular set, not
+        a 2D overlay. The 2D detection requires 2-tuple of ints."""
+        kind, payload, h = self.r._classify_variable({1, 2, 3}, content_w=200, cell_size=18)
+        self.assertEqual(kind, "set")
+
+    def test_scalar_classifies_as_scalar(self):
+        kind, payload, h = self.r._classify_variable(42, content_w=200, cell_size=18)
+        self.assertEqual(kind, "scalar")
+        self.assertEqual(payload, 42)
+
+    def test_tracked_list_classifies_as_list(self):
+        from code_n.tracked import TrackedList
+        tl = TrackedList([1, 2, 3])
+        kind, payload, h = self.r._classify_variable(tl, content_w=200, cell_size=18)
+        self.assertEqual(kind, "list")
+
+    def test_empty_collections_get_empty_kind(self):
+        """An empty list / dict / set still occupies one cell-row
+        of vertical space so the player sees the variable exists.
+        """
+        for empty in ([], {}, set()):
+            kind, payload, h = self.r._classify_variable(empty, content_w=200, cell_size=18)
+            self.assertEqual(kind, "empty")
+
+
 if __name__ == "__main__":
     unittest.main()

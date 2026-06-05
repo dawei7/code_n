@@ -370,6 +370,13 @@ class TrackedQueue:
     def is_empty(self) -> bool:
         return len(self._data) == 0
 
+    @property
+    def raw(self) -> list:
+        """Access the underlying FIFO list. Bypasses all tracking; for
+        visualization / verification only. The first element is the
+        next to be dequeued."""
+        return list(self._data)
+
 
 class TrackedStack:
     """A stack that counts operations."""
@@ -399,6 +406,13 @@ class TrackedStack:
     def is_empty(self) -> bool:
         return len(self._data) == 0
 
+    @property
+    def raw(self) -> list:
+        """Access the underlying LIFO list. Bypasses all tracking; for
+        visualization / verification only. The last element is the
+        top of the stack (next to be popped)."""
+        return list(self._data)
+
 
 class TrackedSet:
     """A set that counts operations."""
@@ -423,3 +437,9 @@ class TrackedSet:
 
     def __contains__(self, value: Any) -> bool:
         return self.contains(value)
+
+    @property
+    def raw(self) -> set:
+        """Access the underlying set. Bypasses all tracking; for
+        visualization / verification only."""
+        return set(self._data)

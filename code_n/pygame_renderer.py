@@ -290,6 +290,19 @@ class PygameRenderer:
         # Scroll position, in source-grid cells. (0, 0) is the top-left.
         self.scroll_x: int = 0
         self.scroll_y: int = 0
+        # Vertical scroll for the Variables panel. The variables list
+        # can be much taller than the available main-area height (a
+        # 35x35 TrackedGrid + visited set + queue + scalars is
+        # hundreds of cells), so we render it with a scroll offset
+        # when the content overflows. The wheel scrolls within the
+        # variables panel when the mouse is over it; right-drag
+        # still pans the main algorithm grid.
+        self._vars_scroll_y: int = 0
+        # Cached rect of the Variables panel, set during the last
+        # _draw() so the play() loop's wheel handler can tell
+        # "mouse over the variables panel" from "mouse over the
+        # main grid / side panel".
+        self._vars_panel_rect: tuple[int, int, int, int] = (0, 0, 0, 0)
         # True while the right mouse button is held down for panning.
         self._right_panning: bool = False
         # Sub-cell panning accumulator. Right-drag moves in pixels; we
@@ -391,6 +404,31 @@ class PygameRenderer:
         self.scroll_y = max(0, min(self.scroll_y + dy_cells, max_y))
         return (self.scroll_x, self.scroll_y) != (old_x, old_y)
 
+    # ---- Variables-panel scroll ---------------------------------------
+    #
+    # The variables list is its own scrollable region. A BFS
+    # challenge has ``grid`` (35x35 TrackedGrid), ``visited`` (set
+    # of up to ~1200 cells), and a handful of scalars; that's
+    # much taller than the available main-area height, so we
+    # render the panel with a vertical scroll offset and let the
+    # wheel scroll it when the mouse is over the panel.
+
+    def _mouse_in_vars_panel(self, pos) -> bool:
+        if pos is None or not self._vars_panel_rect:
+            return False
+        x, y, w, h = self._vars_panel_rect
+        if w <= 0 or h <= 0:
+            return False
+        return x <= pos[0] < x + w and y <= pos[1] < y + h
+
+    def _scroll_vars(self, dy: int) -> None:
+        """Scroll the Variables panel by ``dy`` pixels (positive = up,
+        matching the natural "wheel up scrolls up" convention). Clamped
+        so the content can't scroll past the top or past the bottom.
+        """
+        max_scroll = max(0, self._vars_content_height - self._vars_view_height)
+        self._vars_scroll_y = max(0, min(self._vars_scroll_y + dy, max_scroll))
+
     def play(self, grid: Grid, operations: Iterable[OpRecord], title: str, result: VisualRunResult):
         import pygame
 
@@ -478,6 +516,11 @@ class PygameRenderer:
             self.cell_size = 44
             self.scroll_x = 0
             self.scroll_y = 0
+            # Reset the variables-panel scroll too - the locals
+            # of the first frame are typically much smaller than
+            # the mid-replay state, so starting at the top makes
+            # sense.
+            self._vars_scroll_y = 0
             return "Step mode: press Space, Enter, or Right Arrow." if self.manual_step else "Replay started"
 
         def toggle_pause() -> str:
@@ -609,15 +652,25 @@ class PygameRenderer:
                         self._pan_accum_y += dy_cells * PAN_PIXELS_PER_CELL
                         self.scroll_by(dx_cells, dy_cells, grid, visual_values)
                 elif mousewheel_event is not None and event.type == mousewheel_event:
-                    # Mouse wheel zooms (only). Wheel up = bigger cells,
-                    # wheel down = smaller. Modifiers (Shift, Ctrl) are
-                    # ignored: the only way to pan is right-drag.
+                    # Mouse wheel does two things depending on where
+                    # the cursor is. Over the Variables panel: scroll
+                    # the variables list (a 35x35 TrackedGrid plus a
+                    # visited set is much taller than the panel, so
+                    # the user needs to scroll). Anywhere else (the
+                    # main algorithm grid): zoom in/out.
                     wheel_y = getattr(event, "y", 0) or 0
                     if wheel_y:
-                        current_detail = self.zoom_by(wheel_y * ZOOM_STEP)
+                        if self._mouse_in_vars_panel(getattr(event, "pos", None) or pygame.mouse.get_pos()):
+                            self._scroll_vars(-wheel_y * 18)
+                        else:
+                            current_detail = self.zoom_by(wheel_y * ZOOM_STEP)
                 elif old_mousewheel is not None and event.type == pygame.MOUSEBUTTONDOWN and event.button in (4, 5):
                     # Fallback for pygame 1.x: button 4 = wheel up, 5 = wheel down.
-                    current_detail = self.zoom_by(ZOOM_STEP if event.button == 4 else -ZOOM_STEP)
+                    if self._mouse_in_vars_panel(getattr(event, "pos", None) or pygame.mouse.get_pos()):
+                        # Scroll the variables panel: button 4 = up (negative dy).
+                        self._scroll_vars(18 if event.button == 4 else -18)
+                    else:
+                        current_detail = self.zoom_by(ZOOM_STEP if event.button == 4 else -ZOOM_STEP)
                 elif event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_ESCAPE, pygame.K_q):
                         running = False
@@ -1298,14 +1351,38 @@ class PygameRenderer:
         max_width: int,
         panel_h: int,
         trace_frame,
-        cell_size: int = 24,
+        cell_size: int = 18,
     ) -> None:
-        """Draw the Variables section panel: title, then one row per
+        """Draw the Variables section panel: title, then one entry per
         local variable rendered with the matching data-structure
-        visual (list/tuple cells with index labels, dict 2-row
-        key/value strip, set cells, scalar single cell).
+        visual. Supports:
+
+          * list / tuple / TrackedList        - row of cells, per-cell index
+          * dict                              - 2-row key/value strip
+          * set / TrackedSet                  - row of cells, no index
+          * TrackedGrid                       - 2D grid (the actual maze)
+          * TrackedQueue                      - horizontal strip w/ front→ arrow
+          * TrackedStack                      - vertical strip w/ top→ arrow
+          * list / set of (row, col) tuples  - 2D overlay
+          * scalar                            - single cell
+
+        The panel is scrollable: a 35x35 TrackedGrid plus a visited
+        set is much taller than the available main-area height, so
+        we render with a vertical offset and let the wheel scroll
+        it when the mouse is over the panel. ``self._vars_scroll_y``
+        is the offset, ``self._vars_content_height`` is the total
+        rendered height of all variables (set by this function), and
+        ``self._vars_view_height`` is the visible portion (panel
+        height minus title + padding). The wheel handler clamps
+        ``_vars_scroll_y`` so it can't scroll past either edge.
         """
         import pygame
+
+        # Record the panel rect for the wheel handler. The play()
+        # loop checks if the mouse is inside this rect to decide
+        # whether the wheel scrolls the variables or zooms the main
+        # algorithm grid.
+        self._vars_panel_rect = (x, y, max_width, panel_h)
 
         panel_pad = 12
         title_h = 28
@@ -1328,61 +1405,67 @@ class PygameRenderer:
 
         content_top = sep_y + 8
         content_bottom = y + panel_h - 8
-        if content_bottom <= content_top:
+        self._vars_view_height = max(0, content_bottom - content_top)
+        if self._vars_view_height <= 0:
             return
 
-        cell_gap = 1
-        strip_w = max(40, content_w)
-        cols_per_row = max(1, (strip_w + cell_gap) // (cell_size + cell_gap))
+        if not trace_frame or not trace_frame.locals:
+            return
 
-        cur_y = content_top
-        shown = 0
+        # Pre-classify each variable into a (kind, payload) pair and
+        # compute its rendered height. The actual draw step is a
+        # second pass so the scroll math stays simple: total
+        # height -> max_scroll = max(0, total - view) -> clamp
+        # _vars_scroll_y -> walk again, skipping rows outside the
+        # visible window.
+        items: list[tuple[str, str, Any, int]] = []
+        between_vars = 18
         for name, value in trace_frame.locals.items():
-            if shown >= 12:
-                self._draw_text(
-                    screen, fonts["small"],
-                    f"+{len(trace_frame.locals) - shown} more...",
-                    content_x, cur_y, self.MUTED,
-                )
+            kind, payload, h = self._classify_variable(
+                value, content_w, cell_size,
+            )
+            total_h = h + between_vars
+            items.append((name, kind, payload, total_h))
+
+        # Total content height = sum of all variable blocks (we
+        # always render every variable; the scroll is what keeps
+        # the overflow out of the visible area). Subtract the
+        # trailing between_vars since the last block doesn't need
+        # bottom padding.
+        if items:
+            self._vars_content_height = sum(b[3] for b in items) - between_vars
+        else:
+            self._vars_content_height = 0
+
+        # Clamp the scroll offset now that we know the content
+        # height (it can grow as new variables appear mid-replay).
+        max_scroll = max(0, self._vars_content_height - self._vars_view_height)
+        if self._vars_scroll_y > max_scroll:
+            self._vars_scroll_y = max_scroll
+
+        # Clip subsequent draws to the panel content area so a
+        # variable that strays past the bottom doesn't paint over
+        # the side panel.
+        previous_clip = screen.get_clip()
+        screen.set_clip(pygame.Rect(
+            x + 1, content_top,
+            max_width - 2, self._vars_view_height,
+        ))
+
+        # Second pass: walk the items, skipping rows that fall
+        # outside the visible window after the scroll offset.
+        cur_y = content_top - self._vars_scroll_y
+        for index, (name, kind, payload, total_h) in enumerate(items):
+            # Skip rows that are entirely above the visible area.
+            if cur_y + total_h <= content_top:
+                cur_y += total_h
+                continue
+            # Stop once the bottom of the panel is reached.
+            if cur_y >= content_bottom:
                 break
 
-            raw = value
-            try:
-                from code_n.tracked import TrackedList as _TL
-                if isinstance(raw, _TL):
-                    raw = list(raw)
-            except ImportError:
-                pass
-
-            # Compute the height the variable needs.
-            is_list_like = isinstance(raw, (list, tuple)) and raw
-            is_dict_like = isinstance(raw, dict) and raw
-            is_set_like = isinstance(raw, set) and raw
-            if is_list_like:
-                items = list(raw)
-                needed_rows = (len(items) + cols_per_row - 1) // cols_per_row
-            elif is_dict_like:
-                needed_rows = 2
-            elif is_set_like:
-                needed_rows = 1
-            else:
-                needed_rows = 1
-            # The per-cell index inside each list/tuple cell
-            # replaces the old top-of-row labels, so the cell
-            # block no longer needs the 14px header band.
-            between_vars = 18
-            needed_h = needed_rows * (cell_size + 2) + 22 + between_vars
-            if cur_y + needed_h > content_bottom:
-                self._draw_text(
-                    screen, fonts["small"],
-                    "...",
-                    content_x, cur_y, self.MUTED,
-                )
-                break
-
-            # Horizontal separator between variables (not before the
-            # first one).
-            if shown > 0:
+            # Separator between variables (skip above the first).
+            if index > 0:
                 pygame.draw.line(
                     screen, self.GRID_LINE,
                     (content_x, cur_y - between_vars // 2),
@@ -1394,16 +1477,474 @@ class PygameRenderer:
             self._draw_text(
                 screen, fonts["body"], f"{name}:", content_x, cur_y, self.TEXT,
             )
-            cur_y += 22
-            self._draw_variable_strip(
+            self._draw_variable_visual(
                 screen, fonts,
-                content_x, cur_y,
-                cell_size, cell_gap, cols_per_row,
-                raw,
-                var_name=name,
+                content_x, cur_y + 22,
+                content_w,
+                kind, payload, name,
+                cell_size=cell_size,
             )
-            cur_y += needed_rows * (cell_size + 2) + between_vars
-            shown += 1
+            cur_y += total_h
+
+        screen.set_clip(previous_clip)
+
+        # Scroll indicator: a small bar on the right edge of the
+        # panel showing how much of the content is visible. Only
+        # drawn when the content actually overflows.
+        if self._vars_content_height > self._vars_view_height:
+            track_x = x + max_width - 6
+            track_y = content_top
+            track_h = self._vars_view_height
+            thumb_h = max(20, int(
+                track_h * self._vars_view_height / max(1, self._vars_content_height),
+            ))
+            thumb_y = track_y + int(
+                (track_h - thumb_h) * self._vars_scroll_y
+                / max(1, self._vars_content_height - self._vars_view_height),
+            )
+            pygame.draw.rect(
+                screen, self.GRID_LINE,
+                pygame.Rect(track_x, track_y, 4, track_h),
+                border_radius=2,
+            )
+            pygame.draw.rect(
+                screen, self.READ,
+                pygame.Rect(track_x, thumb_y, 4, thumb_h),
+                border_radius=2,
+            )
+
+    def _classify_variable(self, value, content_w: int, cell_size: int) -> tuple[str, Any, int]:
+        """Return (kind, payload, height_px) for a local variable.
+
+        ``kind`` is one of: "grid", "queue", "stack", "set2d",
+        "list", "tuple", "dict", "set", "scalar", "unknown".
+        ``payload`` is whatever the corresponding draw helper
+        expects (a 2D list for "grid", a flat list for queue/stack,
+        the raw collection for "set2d", etc.). ``height_px`` is the
+        vertical space the rendering will consume (not including
+        the per-variable between-vars padding, which the caller
+        adds).
+        """
+        try:
+            from code_n.tracked import (
+                TrackedGrid, TrackedQueue, TrackedStack, TrackedList, TrackedSet,
+            )
+        except ImportError:
+            TrackedGrid = TrackedQueue = TrackedStack = TrackedList = TrackedSet = None  # noqa
+
+        # 2D grid (TrackedGrid) — render as a 2D maze.
+        if TrackedGrid is not None and isinstance(value, TrackedGrid):
+            raw = value.raw
+            # Use smaller cells for 2D so a 35x35 fits in the
+            # panel width. 10px per cell is enough to see the
+            # value (0/1) when zoomed in mentally.
+            grid_cell = min(12, max(8, content_w // max(1, len(raw[0]) if raw else 1)))
+            grid_cell = min(grid_cell, 14)
+            height = len(raw) * (grid_cell + 1) + 4
+            return "grid", (raw, grid_cell), height
+
+        # Queue / Stack — render as labeled strips.
+        if TrackedQueue is not None and isinstance(value, TrackedQueue):
+            items = list(value.raw)
+            grid_cell = cell_size
+            # Cap at a reasonable width; if the queue is huge,
+            # the user can scroll the variables panel to see it.
+            cols = max(1, (content_w) // (grid_cell + 1))
+            rows = (len(items) + cols - 1) // max(1, cols) if items else 1
+            height = max(grid_cell, rows * (grid_cell + 1)) + 6
+            return "queue", (items, grid_cell), height
+        if TrackedStack is not None and isinstance(value, TrackedStack):
+            items = list(value.raw)
+            # Stack: top of stack at the top of the column.
+            # Vertical strip, but allow it to wrap horizontally
+            # if the stack is huge.
+            grid_cell = cell_size
+            cols = max(1, (content_w) // (grid_cell + 1))
+            rows = (len(items) + cols - 1) // max(1, cols) if items else 1
+            height = max(grid_cell, rows * (grid_cell + 1)) + 6
+            return "stack", (items, grid_cell), height
+
+        # Unwrap TrackedList and TrackedSet to plain list/set so
+        # the rest of the classification can use the standard
+        # list/tuple/dict/set checks.
+        if TrackedList is not None and isinstance(value, TrackedList):
+            value = list(value.raw)
+        if TrackedSet is not None and isinstance(value, TrackedSet):
+            value = set(value.raw)
+
+        # Set / list / tuple of (int, int) — render as a 2D
+        # overlay. The size is inferred from the max values + 1.
+        if isinstance(value, (set, list, tuple)) and value:
+            sample = next(iter(value))
+            if (isinstance(sample, tuple) and len(sample) == 2
+                    and all(isinstance(x, int) for x in sample)):
+                max_r = max(item[0] for item in value) + 1
+                max_c = max(item[1] for item in value) + 1
+                # Use a smaller cell size for the overlay.
+                grid_cell = min(12, max(8, content_w // max(1, max_c)))
+                grid_cell = min(grid_cell, 14)
+                height = max_r * (grid_cell + 1) + 4
+                return "set2d", (set(value), max_r, max_c, grid_cell), height
+
+        # Standard collections.
+        if isinstance(value, (list, tuple)) and value:
+            items = list(value)
+            cols = max(1, (content_w) // (cell_size + 1))
+            rows = (len(items) + cols - 1) // cols
+            return "list", (items, cell_size), rows * (cell_size + 1) + 2
+        if isinstance(value, dict) and value:
+            cols = max(1, (content_w) // (cell_size + 1))
+            rows = max(2, ((len(value) + cols - 1) // cols) * 2)
+            return "dict", (list(value.items()), cell_size), rows * (cell_size + 1) + 2
+        if isinstance(value, set) and value:
+            items = list(value)
+            cols = max(1, (content_w) // (cell_size + 1))
+            rows = (len(items) + cols - 1) // cols
+            return "set", (items, cell_size), rows * (cell_size + 1) + 2
+        if isinstance(value, (list, tuple, dict, set)):
+            # Empty collection: still allocate one row of cells so
+            # the player can see the variable is present.
+            return "empty", None, cell_size + 2
+
+        # Scalar (or anything we don't recognize).
+        return "scalar", value, cell_size + 2
+
+    def _draw_variable_visual(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        max_width: int,
+        kind: str,
+        payload,
+        var_name: str,
+        cell_size: int = 18,
+    ) -> None:
+        """Render a classified variable. The classification was done
+        by ``_classify_variable``; this method just dispatches.
+        """
+        if kind == "grid":
+            raw, grid_cell = payload
+            self._draw_2d_grid(
+                screen, x, y, raw,
+                cell_size=grid_cell, label_kind="walkable",
+            )
+        elif kind == "queue":
+            items, grid_cell = payload
+            self._draw_strip_with_label(
+                screen, fonts, x, y, items, grid_cell,
+                label="front→", var_name=var_name,
+            )
+        elif kind == "stack":
+            items, grid_cell = payload
+            self._draw_strip_with_label(
+                screen, fonts, x, y, items, grid_cell,
+                label="top→", var_name=var_name,
+            )
+        elif kind == "set2d":
+            value_set, max_r, max_c, grid_cell = payload
+            self._draw_2d_overlay(
+                screen, x, y, max_r, max_c, value_set,
+                cell_size=grid_cell,
+            )
+        elif kind == "list":
+            items, grid_cell = payload
+            self._draw_flat_strip(
+                screen, fonts, x, y, items, grid_cell,
+                var_name=var_name,
+            )
+        elif kind == "tuple":
+            items, grid_cell = payload
+            self._draw_flat_strip(
+                screen, fonts, x, y, items, grid_cell,
+                var_name=var_name,
+            )
+        elif kind == "dict":
+            items, grid_cell = payload
+            self._draw_dict_strip(
+                screen, fonts, x, y, items, grid_cell,
+                var_name=var_name,
+            )
+        elif kind == "set":
+            items, grid_cell = payload
+            self._draw_set_strip(
+                screen, fonts, x, y, items, grid_cell,
+                var_name=var_name,
+            )
+        elif kind == "empty":
+            self._draw_text(
+                screen, fonts["small"], "(empty)", x, y, self.MUTED,
+            )
+        else:  # "scalar" or anything else
+            self._draw_scalar_cell(
+                screen, fonts, x, y, cell_size, payload, var_name,
+            )
+
+    def _draw_2d_grid(
+        self,
+        screen,
+        x: int,
+        y: int,
+        raw: list[list],
+        cell_size: int = 12,
+        label_kind: str = "walkable",
+    ) -> None:
+        """Render a 2D data grid (TrackedGrid raw data) as a compact
+        block of cells. ``label_kind`` controls the cell palette:
+
+          * "walkable" - 0 = dark/walkable, 1 = light/wall.
+            Matches the BFS / DFS maze layout (0 = open, 1 = wall).
+        """
+        import pygame
+        cell_gap = 1
+        # 0 = walkable (use empty cell color), 1 = wall (use WALL color).
+        walkable_bg = (34, 39, 48)
+        wall_bg = self.WALL if hasattr(self, "WALL") else (10, 12, 16)
+        for r, row in enumerate(raw):
+            for c, value in enumerate(row):
+                rect = pygame.Rect(
+                    x + c * (cell_size + cell_gap),
+                    y + r * (cell_size + cell_gap),
+                    cell_size, cell_size,
+                )
+                bg = wall_bg if value == 1 else walkable_bg
+                pygame.draw.rect(screen, bg, rect, border_radius=1)
+                pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=1)
+                # Show the value if there's room.
+                if cell_size >= 14:
+                    label = "1" if value else "0"
+                    f = fonts["small"] if cell_size < 18 else fonts["cell"]
+                    text_surface = f.render(label, True, self.MUTED)
+                    screen.blit(text_surface, text_surface.get_rect(center=rect.center))
+
+    def _draw_2d_overlay(
+        self,
+        screen,
+        x: int,
+        y: int,
+        rows: int,
+        cols: int,
+        value_set,
+        cell_size: int = 12,
+    ) -> None:
+        """Render a set / list of (row, col) tuples as a 2D grid
+        where cells in the set are highlighted. ``rows`` and
+        ``cols`` are the grid dimensions (inferred from the data
+        by ``_classify_variable``).
+        """
+        import pygame
+        cell_gap = 1
+        empty_bg = (44, 52, 64)
+        marked_bg = self.READ
+        for r in range(rows):
+            for c in range(cols):
+                rect = pygame.Rect(
+                    x + c * (cell_size + cell_gap),
+                    y + r * (cell_size + cell_gap),
+                    cell_size, cell_size,
+                )
+                bg = marked_bg if (r, c) in value_set else empty_bg
+                pygame.draw.rect(screen, bg, rect, border_radius=1)
+                pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=1)
+
+    def _draw_strip_with_label(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        items: list,
+        cell_size: int,
+        label: str = "front→",
+        var_name: Optional[str] = None,
+    ) -> None:
+        """Draw a queue / stack as a strip of cells with a small
+        arrow label indicating the operational end (the end that
+        the next dequeue / pop reads from). The first cell
+        (front of the queue / top of the stack) is on the left;
+        new items go to the right.
+        """
+        import pygame
+        if not items:
+            self._draw_text(screen, fonts["small"], "(empty)", x, y + cell_size // 2 - 8, self.MUTED)
+            return
+        cell_gap = 1
+        # Arrow label sits to the right of the first cell so
+        # the user can see "this end is the front/top".
+        for index, item in enumerate(items):
+            cx = x + index * (cell_size + cell_gap)
+            self._draw_one_cell(screen, fonts, cx, y, cell_size, item,
+                                touched_key=(var_name, None) if var_name else None)
+        # Label arrow at the end of the strip showing the
+        # direction. For "front→" (queue) the front is the LEFT
+        # so the arrow points left; for "top→" (stack) the top
+        # is the LEFT as well (LIFO - the next pop is at the
+        # end of the list, but for visualization we want the top
+        # of the stack prominent on the left). We use "←" for
+        # both to keep the visual simple.
+        arrow = "←" if label.startswith("front") or label.startswith("top") else "→"
+        arrow_x = x + len(items) * (cell_size + cell_gap) + 4
+        self._draw_text(screen, fonts["small"], f"{label} {arrow}", arrow_x, y + 4, self.MUTED)
+
+    def _draw_flat_strip(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        items: list,
+        cell_size: int,
+        var_name: Optional[str] = None,
+    ) -> None:
+        """Render a list / tuple as 1+ rows of cells with per-cell
+        index labels (the smaller-cell version of the legacy
+        list rendering path)."""
+        import pygame
+        if not items:
+            self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
+            return
+        cell_gap = 1
+        cols_per_row = max(1, (x + 600) // (cell_size + cell_gap))  # crude wrap
+        for index, item in enumerate(items):
+            row = index // cols_per_row
+            col = index % cols_per_row
+            cx = x + col * (cell_size + cell_gap)
+            cy = y + row * (cell_size + cell_gap)
+            self._draw_one_cell(screen, fonts, cx, cy, cell_size, item,
+                                touched_key=(var_name, index) if var_name else None,
+                                cell_index=index)
+
+    def _draw_dict_strip(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        items: list,
+        cell_size: int,
+        var_name: Optional[str] = None,
+    ) -> None:
+        """Render a dict as a 2-row strip (keys on top, values on
+        bottom)."""
+        import pygame
+        if not items:
+            self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
+            return
+        cell_gap = 1
+        for index, (k, v) in enumerate(items):
+            cx = x + index * (cell_size + cell_gap)
+            self._draw_one_cell(screen, fonts, cx, y, cell_size, k,
+                                touched_key=(var_name, k) if var_name else None)
+            self._draw_one_cell(screen, fonts, cx, y + cell_size + cell_gap, cell_size, v,
+                                touched_key=(var_name, k) if var_name else None)
+
+    def _draw_set_strip(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        items: list,
+        cell_size: int,
+        var_name: Optional[str] = None,
+    ) -> None:
+        """Render a set as 1+ rows of cells (no index labels, since
+        sets are unordered)."""
+        import pygame
+        if not items:
+            self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
+            return
+        cell_gap = 1
+        cols_per_row = max(1, (x + 600) // (cell_size + cell_gap))
+        for index, item in enumerate(items):
+            row = index // cols_per_row
+            col = index % cols_per_row
+            cx = x + col * (cell_size + cell_gap)
+            cy = y + row * (cell_size + cell_gap)
+            self._draw_one_cell(screen, fonts, cx, cy, cell_size, item,
+                                touched_key=(var_name, item) if var_name else None)
+
+    def _draw_scalar_cell(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        cell_size: int,
+        value,
+        var_name: Optional[str] = None,
+    ) -> None:
+        """Render a scalar as a single cell."""
+        self._draw_one_cell(screen, fonts, x, y, cell_size, value,
+                            touched_key=(var_name, None) if var_name else None)
+
+    def _draw_one_cell(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        cell_size: int,
+        value,
+        touched_key=None,
+        cell_index: Optional[int] = None,
+    ) -> None:
+        """Single-cell drawer used by every variable-visual helper.
+        Handles the label truncation, the per-cell index overlay,
+        and the touched-cell coloring. Kept private to this
+        section so the cell-strip dispatch in
+        ``_draw_variable_strip`` (the legacy 1D-only path) can
+        stay as a thin wrapper for backwards compatibility.
+        """
+        import pygame
+        label = self._format_value_label(value)
+        if len(label) > 6:
+            label = label[:5] + "…"
+        rect = pygame.Rect(x, y, cell_size, cell_size)
+        bg = self._color_for_cell(touched_key)
+        pygame.draw.rect(screen, bg, rect, border_radius=3)
+        pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=3)
+        if cell_index is not None and cell_size >= 18:
+            idx_surface = fonts["small"].render(str(cell_index), True, self.MUTED)
+            screen.blit(idx_surface, (x + 2, y + 1))
+        cell_font = fonts["cell"] if cell_size >= 24 else fonts["small"]
+        text_surface = cell_font.render(label, True, self.TEXT)
+        if cell_index is not None and cell_size >= 18:
+            value_rect = text_surface.get_rect(center=(rect.centerx, rect.centery + 5))
+            screen.blit(text_surface, value_rect)
+        else:
+            screen.blit(text_surface, text_surface.get_rect(center=rect.center))
+
+    def _color_for_cell(self, touched_key) -> tuple:
+        """Look up the touched-cell color for ``touched_key``
+        (a ``(var_name, <key>)`` tuple). Returns the default
+        cell background if the key isn't in the touched dict.
+        """
+        cell_bg = (52, 60, 74)
+        if not self._touched_cells or touched_key is None:
+            return cell_bg
+        entry = self._touched_cells.get(touched_key)
+        if entry is None:
+            return cell_bg
+        op_colors = {
+            "READ": self.READ,
+            "WRITE": self.WRITE,
+            "COMPARE": self.COMPARE_A,
+            "COMPARE_A": self.COMPARE_A,
+            "COMPARE_B": self.COMPARE_B,
+            "SWAP": self.SWAP,
+        }
+        return op_colors.get(entry, cell_bg)
+
+    @staticmethod
+    def _format_value_label(value) -> str:
+        try:
+            if isinstance(value, str):
+                return value
+            return str(value)
+        except Exception:
+            return "?"
 
     def _draw_index_labels(
         self,
@@ -1416,11 +1957,10 @@ class PygameRenderer:
         cols_per_row: int,
         count: int,
     ) -> None:
-        """Deprecated: the per-cell index inside each list/tuple
-        cell replaced the old top-of-row labels (see
-        ``_cell``'s ``cell_index`` arg). Kept as a no-op shim so
-        older callers don't break; remove after the next sweep.
-        """
+        """Deprecated no-op: the per-cell index inside each
+        list/tuple cell replaced the old top-of-row labels.
+        Kept as a shim so any stale caller doesn't break; will
+        be removed in the next sweep."""
         return None
 
     def _draw_variable_strip(
