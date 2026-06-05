@@ -48,11 +48,20 @@ class TrackedListTests(unittest.TestCase):
         # 1 append, 1 pop = 2 writes
         self.assertEqual(lst._len_writes(), 2)
 
-    def test_swap_counts_one_swap_op(self):
+    def test_tuple_swap_records_two_writes(self):
+        """TrackedList used to expose a ``swap`` method that recorded
+        a single SWAP op. It was removed (see PR removing swap): the
+        player is expected to write their own swap or use Python's
+        tuple-assignment, both of which record two WRITE ops -
+        making the real cost of a swap visible in the budget. This
+        test locks that in: ``lst[a], lst[b] = lst[b], lst[a]``
+        produces 2 writes, not 1 swap.
+        """
         lst = TrackedList([1, 2])
-        lst.swap(0, 1)
+        lst[0], lst[1] = lst[1], lst[0]
         self.assertEqual(lst.raw, [2, 1])
-        self.assertEqual(lst._len_swaps(), 1)
+        self.assertEqual(lst._len_writes(), 2)
+        self.assertEqual(lst._len_swaps(), 0)
 
     def test_compare_counts(self):
         lst = TrackedList([1, 2, 3])
@@ -113,10 +122,21 @@ class TrackedGridTests(unittest.TestCase):
         self.assertFalse(grid.in_bounds(0, -1))
 
     def test_swap(self):
+        """TrackedGrid used to expose a ``swap`` method; it was
+        removed in the same pass as TrackedList.swap. Verify the
+        only path to swap two grid cells is two ``set`` calls
+        (4 writes total: read-modify-write semantics aren't free
+        here either - you have to read both cells, swap them in
+        Python, and write both back)."""
         grid = TrackedGrid(2, 2)
         grid.set(0, 0, 1)
         grid.set(1, 1, 2)
-        grid.swap(0, 0, 1, 1)
+        # No grid.swap available; the canonical way to swap two
+        # cells is to read both, swap in Python, write both.
+        a = grid.get(0, 0).raw
+        b = grid.get(1, 1).raw
+        grid.set(0, 0, b)
+        grid.set(1, 1, a)
         self.assertEqual(grid.get(0, 0).raw, 2)
         self.assertEqual(grid.get(1, 1).raw, 1)
 

@@ -170,11 +170,11 @@ def solve(data, n):
         gt = high
         while i <= gt:
             if items[i] < pivot:
-                items.swap(lt, i)
+                items[lt], items[i] = items[i], items[lt]
                 lt += 1
                 i += 1
             elif items[i] > pivot:
-                items.swap(i, gt)
+                items[i], items[gt] = items[gt], items[i]
                 gt -= 1
             else:
                 i += 1

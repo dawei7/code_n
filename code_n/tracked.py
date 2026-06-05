@@ -246,11 +246,6 @@ class TrackedList:
             return 1
         return 0
 
-    def swap(self, i: int, j: int):
-        """Swap elements at indices i and j."""
-        get_counter().swap(f"list[{i}]<->list[{j}]")
-        self._data[i], self._data[j] = self._data[j], self._data[i]
-
     def append(self, value: Any):
         value = unwrap_tracked(value)
         get_counter().write(f"list.append({value})")
@@ -316,10 +311,6 @@ class TrackedGrid:
         elif a > b:
             return 1
         return 0
-
-    def swap(self, x1: int, y1: int, x2: int, y2: int):
-        get_counter().swap(f"grid[{x1},{y1}]<->grid[{x2},{y2}]")
-        self._data[y1][x1], self._data[y2][x2] = self._data[y2][x2], self._data[y1][x1]
 
     @property
     def raw(self) -> list[list]:
