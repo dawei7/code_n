@@ -119,6 +119,22 @@ def _serialize_locals(locals_map: dict[str, Any]) -> dict[str, Any]:
     one: one cell per list element, one row per dict pair, etc.
     Previously the locals were pre-rendered to ``repr()`` strings
     which forced the renderer to dump truncated text.
+
+    Mutable containers (list, set, dict) are shallow-copied so the
+    snapshot is independent of the player's later mutations. The
+    BFS Grid challenge is the canonical example: the BFS mutates
+    ``frontier`` (plain list) and ``visited`` (plain set) in place
+    across every iteration, and the tracer fires one line event
+    per iteration. Without the copy, every captured frame shares
+    the same list/set references as the live ones, and by the time
+    the renderer reads the stored locals they all show the FINAL
+    state of the BFS - the variable panel at step 0 would show
+    ``frontier`` with the post-goal layer and ``visited`` with
+    every cell the BFS touched, instead of the start state. The
+    shallow copy freezes each container's contents at the moment
+    of the line event so a frame captured at line 20 (just after
+    ``frontier = []``) keeps ``frontier == []`` even after the
+    rest of the BFS has run.
     """
     result: dict[str, Any] = {}
     for key, value in locals_map.items():
@@ -141,6 +157,19 @@ def _serialize_locals(locals_map: dict[str, Any]) -> dict[str, Any]:
                 value = value.raw
         except ImportError:
             pass
+        # Snapshot mutable containers. Tuples, scalars, and the
+        # TrackedGrid wrapper (which the BFS only reads) are
+        # immutable from the player's perspective and don't need
+        # a copy. A shallow copy is enough: the elements inside
+        # the player's frontier (3-tuples) and visited (2-tuples)
+        # are themselves immutable, so freezing the outer
+        # container is sufficient.
+        if isinstance(value, list):
+            value = list(value)
+        elif isinstance(value, set):
+            value = set(value)
+        elif isinstance(value, dict):
+            value = dict(value)
         result[key] = value
     return result
 
