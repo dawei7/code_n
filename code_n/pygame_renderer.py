@@ -2157,25 +2157,65 @@ class PygameRenderer:
     ) -> dict:
         """Extract touched (var_name, key) pairs for a ``CALL`` op.
 
-        For line-based tracing, the engine records one CALL op
-        per source line. The detail is just ``line N`` and the
-        actual cells the line touched are encoded in the
-        player's source code, so we read the source line from
-        ``trace_frame.source_file`` at ``trace_frame.line_no``
-        and walk its AST. We pick up three kinds of references:
+        Thin wrapper around ``_walk_source_line`` that infers
+        the op kind from the source line. See
+        ``_walk_source_line`` for the full description of the
+        AST walk.
+        """
+        text = self._source_line_text(trace_frame)
+        op_kind = self._infer_call_kind(text) or "READ"
+        return self._walk_source_line(trace_frame, op_kind)
+
+    def _source_line_text(self, trace_frame) -> str:
+        """Read the source line text from the trace frame.
+
+        Returns the line (leading / trailing whitespace stripped)
+        or ``""`` if the frame has no source file / line number /
+        line content.
+        """
+        if not trace_frame:
+            return ""
+        source_file = getattr(trace_frame, "source_file", None)
+        line_no = trace_frame.line_no
+        if not source_file or not line_no or line_no <= 0:
+            return ""
+        try:
+            with open(source_file, "r", encoding="utf-8", errors="replace") as f:
+                lines = f.readlines()
+        except OSError:
+            return ""
+        idx = line_no - 1
+        if idx < 0 or idx >= len(lines):
+            return ""
+        return lines[idx].rstrip().lstrip()
+
+    def _walk_source_line(self, trace_frame, op_kind: str) -> dict:
+        """Parse the source line from ``trace_frame`` and return
+        ``{(var_name, key): op_kind}`` for every cell the line
+        touched. Used by BOTH the CALL op path (where the
+        engine only recorded ``line N``) and the non-CALL op
+        path (where the engine recorded a specific operation
+        but the source line still tells us the scalars that
+        line referenced - the engine doesn't track scalar
+        reads / writes).
+
+        Three kinds of references are picked up:
 
         1. Bare ``Name`` nodes whose value in locals is a scalar
            (int, str, bool, float, None, TrackedValue). These
-           become ``(var_name, None) -> op_type`` entries so the
+           become ``(var_name, None) -> op_kind`` entries so the
            single-cell ``n: 30`` / ``i: 2`` / ``total: 48`` cells
-           flash when the line references them.
+           flash when the line references them. Walked in both
+           Load and Store context (Store covers the LHS of
+           ``x = 5``, so the scalar cell flashes when the engine
+           writes to it).
 
         2. ``Subscript`` nodes in BOTH ``Load`` and ``Store``
-           contexts. The ``Store`` case matters for dict writes
+           contexts. ``Store`` matters for dict writes
            (``d["foo"] = 5``) and list overwrites
-           (``candies[i] = max(...)``) — the LHS subscript has
+           (``candies[i] = max(...)``) - the LHS subscript has
            ``Store`` context and the old Load-only walker missed
-           it. Each subscript becomes ``(var_name, key) -> op_type``
+           it. Each subscript becomes ``(var_name, key) -> op_kind``
            where ``key`` is the integer index for lists/tuples
            and the actual key for dicts.
 
@@ -2183,35 +2223,20 @@ class PygameRenderer:
            my_set`` records a read against the set but the
            specific element touched is only knowable from the
            source, so we resolve ``x`` and add
-           ``(set_name, x) -> op_type``. The set renderer
+           ``(set_name, x) -> op_kind``. The set renderer
            matches by element value because sets are unordered.
            ``key in my_dict`` and ``value in my_list`` are
            handled the same way.
 
-        Index-only matching would flash ``ratings[i]`` and
-        ``candies[i]`` together even though only ``ratings`` was
-        touched; we use the actual variable name from the AST
-        to avoid that.
+        Returns ``{}`` if the frame has no source line (in
+        that case, only the op-detail regex path can run, and
+        that's the caller's responsibility).
         """
         import ast as _ast
-        touched: dict = {}
-        if not trace_frame:
-            return touched
-        source_file = getattr(trace_frame, "source_file", None)
-        line_no = trace_frame.line_no
-        if not source_file or not line_no or line_no <= 0:
-            return touched
-        try:
-            with open(source_file, "r", encoding="utf-8", errors="replace") as f:
-                lines = f.readlines()
-        except OSError:
-            return touched
-        idx = line_no - 1
-        if idx < 0 or idx >= len(lines):
-            return touched
-        text = lines[idx].rstrip().lstrip()
+        text = self._source_line_text(trace_frame)
+        if not text:
+            return {}
 
-        op_kind = self._infer_call_kind(text) or "READ"
         safe_builtins = self._safe_builtins()
         locals_dict = trace_frame.locals or {}
 
@@ -2219,12 +2244,10 @@ class PygameRenderer:
         # Subscript walker only matches ``isinstance(container,
         # (list, tuple))``; without this step, every line that
         # reads or writes a TrackedList element (e.g. ``data[i]``
-        # in bubble sort) produces no touched cells, so the
-        # variables panel never colored anything for challenges
-        # that use the engine's tracked inputs. The renderer's
-        # _draw_variables_section does the same unwrap, so the
-        # keys we put in touched_cells match the keys the
-        # renderer uses when looking up the cell to color.
+        # in bubble sort) produces no touched cells. The
+        # renderer's _draw_variables_section does the same
+        # unwrap, so the keys we put in touched_cells match the
+        # keys the renderer uses when looking up the cell.
         try:
             from code_n.tracked import TrackedList as _TL
         except ImportError:
@@ -2245,21 +2268,17 @@ class PygameRenderer:
                     try:
                         tree = _ast.parse(test_str, mode="eval")
                     except SyntaxError:
-                        return touched
+                        return {}
                     break
             else:
                 try:
                     tree = _ast.parse(text, mode="eval")
                 except SyntaxError:
-                    return touched
+                    return {}
 
-        # 1) Bare Name references in Load OR Store context. We
-        #    only mark scalars; collections are handled by the
-        #    Subscript branch below which knows the specific cell.
-        #    Store context covers the assignment target of
-        #    ``x = 5`` (which is what ``x = data[i]`` uses for
-        #    its LHS ``x``) - without it the scalar cell never
-        #    flashes when the engine writes to it.
+        touched: dict = {}
+
+        # 1) Bare Name references in Load OR Store context.
         for node in _ast.walk(tree):
             if isinstance(node, _ast.Name) and isinstance(node.ctx, (_ast.Load, _ast.Store)):
                 if node.id in locals_dict:
@@ -2267,11 +2286,7 @@ class PygameRenderer:
                     if not isinstance(value, (list, tuple, dict, set)):
                         touched[(node.id, None)] = op_kind
 
-        # 2) Subscript references — both Load (read) and Store
-        #    (write). The variable name comes from the AST
-        #    (e.g. ``candies`` in ``candies[i]``), not a
-        #    wildcard, so only the actual list/dict being
-        #    subscripted gets its cell colored.
+        # 2) Subscript references.
         for node in _ast.walk(tree):
             if not isinstance(node, _ast.Subscript):
                 continue
@@ -2304,17 +2319,9 @@ class PygameRenderer:
                         hash(index)
                         touched[(var_src, index)] = op_kind
                     except TypeError:
-                        # Unhashable key — can't track it through
-                        # a dict lookup. Fall through silently.
                         pass
 
-        # 3) ``In`` comparisons: ``x in my_set`` reads the set
-        #    and the specific element being tested is the LHS.
-        #    Sets are unordered so we can't use a positional
-        #    key — the renderer matches by element value.
-        #    We also handle ``key in my_dict`` (which marks
-        #    the dict entry) and ``value in my_list`` (which
-        #    marks the list element).
+        # 3) ``In`` comparisons.
         for node in _ast.walk(tree):
             if not isinstance(node, _ast.Compare):
                 continue
@@ -2496,6 +2503,26 @@ class PygameRenderer:
                 for name, value in locals_dict.items():
                     if isinstance(value, (list, tuple)) and index < len(value):
                         touched[(name, index)] = op_type_name
+
+        # Also walk the source line for SCALAR Name references.
+        # The engine doesn't record scalar reads / writes at all
+        # (only TrackedList / TrackedGrid / TrackedQueue / etc.
+        # operations), so a line like ``if data[i] > data[i+1]:``
+        # only records the two READ ops + the COMPARE op, but
+        # the source line also references the scalar ``i`` which
+        # never gets touched unless we walk the AST. Without this
+        # pass the ``i: 2`` cell (or whatever scalar the line
+        # used) stays gray on every op. The user explicitly asked
+        # for scalars to blink: 'I don't see the single variables
+        # blinking if they are used'.
+        source_touched = self._walk_source_line(trace_frame, op_type_name)
+        # source_touched wins for shared keys (e.g., the
+        # Subscript walker in the source line produces a
+        # var-name-specific entry, the regex produces a
+        # wildcard ``list[...]`` entry - the var-name-specific
+        # one is correct).
+        for key, value in source_touched.items():
+            touched[key] = value
         return touched
 
     def _format_source_line(self, trace_frame: Optional[TraceFrame]) -> tuple[str, str]:

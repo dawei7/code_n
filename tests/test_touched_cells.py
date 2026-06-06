@@ -336,6 +336,55 @@ class ExtractTouchedCellsTests(unittest.TestCase):
         touched = self.r._extract_touched_cells(op, frame)
         self.assertEqual(touched.get(("data", 5)), "WRITE")
 
+    def test_non_call_op_touches_scalars_from_source_line(self):
+        """User directive: 'I don't see the single variables
+        blinking if they are used'. The non-CALL path used to
+        only regex the engine's op.detail (which is hardcoded
+        ``list[i] = v`` for tracked ops and never names the
+        scalars). The source line ``if data[i] > data[i + 1]:``
+        also references the scalar ``i``, and that touch was
+        silently dropped - the ``i: 2`` cell stayed gray.
+
+        Fix: _extract_touched_cells also walks the source
+        line (via _walk_source_line) for the non-CALL path so
+        Name references to scalars in the line get marked
+        just like they are for CALL ops. The line is read
+        from trace_frame.source_file at trace_frame.line_no.
+        """
+        from code_n.counter import OpRecord, OpType
+        from code_n.tracked import TrackedList
+        op = OpRecord(op_type=OpType.READ, detail="list[5]")
+        frame = _with_source(
+            "if data[i] > data[i + 1]:\n",
+            locals_dict={
+                "data": TrackedList([10, 20, 30, 40, 50, 60, 70, 80]),
+                "i": 5,
+            },
+            line_no=1,
+        )
+        touched = self.r._extract_touched_cells(op, frame)
+        # The TrackedList element at index 5 (still wrapped to
+        # plain list inside the walker).
+        self.assertEqual(touched.get(("data", 5)), "READ")
+        # The scalar ``i`` was referenced in the source line.
+        self.assertEqual(touched.get(("i", None)), "READ")
+
+    def test_non_call_op_touches_scalars_written_by_aug_assign(self):
+        """Augmented assignment ``total += 1`` writes to a scalar
+        on the LHS. The Name walker handles Store context, so
+        ``total`` should be marked as touched even though the
+        engine didn't record anything for the scalar (no
+        tracked data structure involved)."""
+        from code_n.counter import OpRecord, OpType
+        op = OpRecord(op_type=OpType.WRITE, detail="list.append(1)")
+        frame = _with_source(
+            "total += 1\n",
+            locals_dict={"total": 0},
+            line_no=1,
+        )
+        touched = self.r._extract_touched_cells(op, frame)
+        self.assertEqual(touched.get(("total", None)), "WRITE")
+
 
 class SerializeLocalsTests(unittest.TestCase):
     """``_serialize_locals`` runs on every Python line event
