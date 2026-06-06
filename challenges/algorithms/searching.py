@@ -371,19 +371,22 @@ SEARCH_03_SOURCE = '''\
 """Optimal solution for search_03: BFS on a 2D grid.
 
 Find the shortest path from START to GOAL by exploring the grid
-level by level with a TrackedQueue. O(n^2) for an n x n grid
+level by level with a FIFO queue. O(n^2) for an n x n grid
 since every cell is visited at most once.
+
+The engine no longer ships a TrackedQueue - the player
+brings their own (collections.deque is the obvious choice).
 """
 
 
 def solve(grid, start, goal, size):
-    from code_n.tracked import TrackedQueue
+    from collections import deque
 
-    frontier = TrackedQueue()
-    frontier.enqueue((start[0], start[1], 0))
+    frontier = deque()
+    frontier.append((start[0], start[1], 0))
     visited = set()
     while frontier:
-        row, col, distance = frontier.dequeue()
+        row, col, distance = frontier.popleft()
         if (row, col) in visited:
             continue
         visited.add((row, col))
@@ -393,24 +396,25 @@ def solve(grid, start, goal, size):
             nr, nc = row + dr, col + dc
             if 0 <= nr < size and 0 <= nc < size and (nr, nc) not in visited:
                 if grid[nr][nc] == 0:
-                    frontier.enqueue((nr, nc, distance + 1))
+                    frontier.append((nr, nc, distance + 1))
     return -1
 '''
 
 SEARCH_04_SOURCE = '''\
 """Optimal solution for search_04: DFS on a 2D grid.
 
-Explore reachable cells depth-first using a TrackedStack. O(n^2)
-for an n x n grid.
+Explore reachable cells depth-first using a LIFO stack.
+O(n^2) for an n x n grid.
+
+The engine no longer ships a TrackedStack - the player
+brings their own (a plain list with .append() / .pop()
+gives the standard LIFO semantics).
 """
 
 
 def solve(grid, start, size):
-    from code_n.tracked import TrackedStack
-
     visited = set()
-    stack = TrackedStack()
-    stack.push(start)
+    stack = [start]
     while stack:
         row, col = stack.pop()
         if (row, col) in visited:
@@ -419,7 +423,7 @@ def solve(grid, start, size):
         for dr, dc in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
             nr, nc = row + dr, col + dc
             if 0 <= nr < size and 0 <= nc < size and (nr, nc) not in visited and grid[nr][nc] == 0:
-                stack.push((nr, nc))
+                stack.append((nr, nc))
     return len(visited)
 '''
 
@@ -653,10 +657,12 @@ SPECS: list[AlgorithmSpec] = [
         hint="Use a queue. Start from START, explore all neighbors level by level.",
         parents=["search_02"],
         children=["search_05"],
-        expected_operations=[
-            OperationConstraint("queue.enqueue", OP_AT_LEAST, 1),
-            OperationConstraint("queue.dequeue", OP_AT_LEAST, 1),
-        ],
+        # The BFS used to require queue.enqueue / queue.dequeue
+        # (the TrackedQueue ops), but TrackedQueue was removed
+        # from the engine. The fingerprint for BFS is now
+        # implicit: BFS visits every reachable cell exactly once
+        # (the O(n^2) grid-read budget is the real gate). We
+        # drop the queue-op fingerprint here.
     ),
     AlgorithmSpec(
         id="search_04",
@@ -693,11 +699,11 @@ SPECS: list[AlgorithmSpec] = [
         hint="Use a stack (or recursion). Mark cells as visited and explore neighbors.",
         parents=["search_02"],
         children=["search_05"],
-        expected_operations=[
-            OperationConstraint("queue.enqueue", OP_AT_MOST, 0),
-            OperationConstraint("queue.dequeue", OP_AT_MOST, 0),
-            OperationConstraint("stack.push", OP_AT_LEAST, 1),
-        ],
+        # DFS used to forbid queue ops and require stack.push.
+        # TrackedQueue / TrackedStack are gone from the engine,
+        # so the queue-forbid constraints are meaningless. The
+        # DFS fingerprint was always weak (it can't tell DFS
+        # from BFS that uses a deque) - we drop it entirely.
     ),
     _flat_search_spec(
         spec_id="search_05",

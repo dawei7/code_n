@@ -36,20 +36,21 @@ from code_n.challenge import (
     check_fingerprint,
 )
 from code_n.counter import OpRecord, OpType, reset_counter
-from code_n.tracked import TrackedList, TrackedQueue, TrackedStack
+from code_n.tracked import TrackedList
 
 
 # ---- reference solutions for the fingerprint-tagged challenges -----
 
 
-def _bfs_with_tracked_queue(grid, start, goal, size):
-    """A BFS that uses TrackedQueue (the cOde(n) way). This should
-    match the BFS fingerprint."""
-    frontier = TrackedQueue()
-    frontier.enqueue((start[0], start[1], 0))
+def _bfs_with_deque(grid, start, goal, size):
+    """A BFS that uses collections.deque (the canonical way
+    now that TrackedQueue is gone). Has the right complexity."""
+    from collections import deque
+    frontier = deque()
+    frontier.append((start[0], start[1], 0))
     visited = set()
     while frontier:
-        row, col, distance = frontier.dequeue()
+        row, col, distance = frontier.popleft()
         if (row, col) in visited:
             continue
         visited.add((row, col))
@@ -59,7 +60,7 @@ def _bfs_with_tracked_queue(grid, start, goal, size):
             nr, nc = row + dr, col + dc
             if 0 <= nr < size and 0 <= nc < size and (nr, nc) not in visited:
                 if grid[nr][nc] == 0:
-                    frontier.enqueue((nr, nc, distance + 1))
+                    frontier.append((nr, nc, distance + 1))
     return -1
 
 
@@ -86,11 +87,12 @@ def _bfs_with_raw_list(grid, start, goal, size):
     return -1
 
 
-def _dfs_with_tracked_stack(grid, start, size):
-    """A DFS that uses TrackedStack. Should match the DFS fingerprint."""
+def _dfs_with_list(grid, start, size):
+    """A DFS that uses a plain list as a LIFO stack. TrackedStack
+    is gone from the engine; a plain list works fine for the
+    'last item popped first' semantics."""
     visited = set()
-    stack = TrackedStack()
-    stack.push(start)
+    stack = [start]
     while stack:
         row, col = stack.pop()
         if (row, col) in visited:
@@ -99,7 +101,7 @@ def _dfs_with_tracked_stack(grid, start, size):
         for dr, dc in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
             nr, nc = row + dr, col + dc
             if 0 <= nr < size and 0 <= nc < size and (nr, nc) not in visited and grid[nr][nc] == 0:
-                stack.push((nr, nc))
+                stack.append((nr, nc))
     return len(visited)
 
 
@@ -228,7 +230,9 @@ class CheckFingerprintTests(unittest.TestCase):
 
 
 class BFSChallengeFingerprintTests(unittest.TestCase):
-    """The BFS challenge requires queue.enqueue + queue.dequeue."""
+    """TrackedQueue is gone; the BFS challenge no longer has a
+    queue-op fingerprint. The O(n^2) budget on grid reads /
+    writes is the only gate."""
 
     def setUp(self):
         reset_counter()
@@ -236,38 +240,37 @@ class BFSChallengeFingerprintTests(unittest.TestCase):
     def tearDown(self):
         reset_counter()
 
-    def test_challenge_has_fingerprint(self):
+    def test_challenge_has_no_queue_fingerprint(self):
+        """The queue-op fingerprint is dropped (TrackedQueue
+        no longer exists). Only the O(n^2) budget gates the
+        challenge."""
         challenge = get_challenge("search_03")
-        needles = {c.needle: c for c in challenge.info.expected_operations}
-        self.assertIn("queue.enqueue", needles)
-        self.assertIn("queue.dequeue", needles)
-        self.assertEqual(needles["queue.enqueue"].relation, OP_AT_LEAST)
-        self.assertEqual(needles["queue.dequeue"].relation, OP_AT_LEAST)
+        needles = {c.needle for c in challenge.info.expected_operations}
+        self.assertNotIn("queue.enqueue", needles)
+        self.assertNotIn("queue.dequeue", needles)
 
-    def test_real_bfs_with_tracked_queue_matches(self):
+    def test_real_bfs_with_deque_passes(self):
         challenge = get_challenge("search_03")
         result = challenge.run(
-            solve_fn=_bfs_with_tracked_queue, n=15, seed=1, animate=False,
+            solve_fn=_bfs_with_deque, n=15, seed=1, animate=False,
         )
         self.assertTrue(result.passed, msg=result.message)
-        self.assertTrue(result.algorithm_match, msg=result.algorithm_reason)
 
-    def test_bfs_using_raw_list_is_flagged_but_still_passes(self):
+    def test_bfs_using_raw_list_still_passes(self):
         """A BFS with a regular Python list is correct + within
-        threshold, but the op log has no queue.enqueue, so the
-        fingerprint fires. The player still passes (passed=True) but
-        sees the algorithm hint."""
+        threshold. The queue-op fingerprint is gone, so it just
+        passes cleanly."""
         challenge = get_challenge("search_03")
         result = challenge.run(
             solve_fn=_bfs_with_raw_list, n=15, seed=1, animate=False,
         )
         self.assertTrue(result.passed, msg=result.message)
-        self.assertFalse(result.algorithm_match)
-        self.assertIn("queue.enqueue", result.algorithm_reason)
 
 
 class DFSChallengeFingerprintTests(unittest.TestCase):
-    """The DFS challenge forbids queue ops and requires stack.push."""
+    """TrackedStack is gone; the DFS challenge no longer has a
+    stack-op fingerprint. The O(n^2) budget on grid reads /
+    writes is the only gate."""
 
     def setUp(self):
         reset_counter()
@@ -275,23 +278,19 @@ class DFSChallengeFingerprintTests(unittest.TestCase):
     def tearDown(self):
         reset_counter()
 
-    def test_challenge_has_fingerprint(self):
+    def test_challenge_has_no_stack_fingerprint(self):
         challenge = get_challenge("search_04")
-        constraints = {c.needle: c for c in challenge.info.expected_operations}
-        self.assertIn("queue.enqueue", constraints)
-        self.assertIn("queue.dequeue", constraints)
-        self.assertIn("stack.push", constraints)
-        self.assertEqual(constraints["queue.enqueue"].relation, OP_AT_MOST)
-        self.assertEqual(constraints["queue.dequeue"].relation, OP_AT_MOST)
-        self.assertEqual(constraints["stack.push"].relation, OP_AT_LEAST)
+        needles = {c.needle for c in challenge.info.expected_operations}
+        self.assertNotIn("queue.enqueue", needles)
+        self.assertNotIn("queue.dequeue", needles)
+        self.assertNotIn("stack.push", needles)
 
-    def test_real_dfs_with_tracked_stack_matches(self):
+    def test_real_dfs_with_list_passes(self):
         challenge = get_challenge("search_04")
         result = challenge.run(
-            solve_fn=_dfs_with_tracked_stack, n=15, seed=1, animate=False,
+            solve_fn=_dfs_with_list, n=15, seed=1, animate=False,
         )
         self.assertTrue(result.passed, msg=result.message)
-        self.assertTrue(result.algorithm_match, msg=result.algorithm_reason)
 
 
 class FingerprintDocumentedLimitations(unittest.TestCase):

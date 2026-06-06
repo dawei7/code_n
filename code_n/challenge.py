@@ -22,7 +22,7 @@ from .counter import (
     ComplexityClass, OpStats, OperationLimitExceeded
 )
 from .renderer import Renderer
-from .tracked import TrackedList, TrackedGrid, TrackedQueue, TrackedStack, TrackedSet
+from .tracked import TrackedList, TrackedGrid
 from .execution_trace import ExecutionStepLimitExceeded, ExecutionTrace, run_with_trace
 
 
@@ -383,5 +383,5 @@ class Challenge(ABC):
 
 
 def _has_tracked_inputs(setup_data: dict[str, Any]) -> bool:
-    tracked_types = (TrackedList, TrackedGrid, TrackedQueue, TrackedStack, TrackedSet)
+    tracked_types = (TrackedList, TrackedGrid)
     return any(isinstance(value, tracked_types) for value in setup_data.values())

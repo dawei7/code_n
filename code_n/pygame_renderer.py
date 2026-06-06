@@ -1648,13 +1648,14 @@ class PygameRenderer:
         padding).
 
         All the engine's tracked wrappers (TrackedList /
-        TrackedGrid / TrackedQueue / TrackedStack / TrackedSet)
-        are unwrapped to their underlying Python types. A
-        TrackedGrid is a list of lists, which the renderer
-        detects as the "list2d" kind and draws as a real 2D
-        grid (one row per inner list, one cell per element).
-        TrackedQueue / TrackedStack are lists, drawn as 1D
-        strips. The user asked for this:
+        TrackedGrid) are unwrapped to their underlying Python
+        types. A TrackedGrid is a list of lists, which the
+        renderer detects as the "list2d" kind and draws as a
+        real 2D grid (one row per inner list, one cell per
+        element). TrackedQueue / TrackedStack / TrackedSet
+        are gone from the engine - the player brings their
+        own (collections.deque, plain list, plain set), and
+        those are handled by the standard list / set paths.
         'display a 2 dimensional list as 2 dimensions ... You
         should generalize it, but somehow keep it smart.' The
         auto-sized cell keeps a 5x5 readable and a 35x35
@@ -1670,21 +1671,15 @@ class PygameRenderer:
         for, where the cell height matches the tuple length.
         """
         try:
-            from code_n.tracked import (
-                TrackedGrid, TrackedList, TrackedQueue, TrackedSet, TrackedStack,
-            )
+            from code_n.tracked import TrackedGrid, TrackedList
         except ImportError:
-            TrackedGrid = TrackedList = TrackedQueue = TrackedSet = TrackedStack = None  # noqa
+            TrackedGrid = TrackedList = None  # noqa
 
         # Unwrap all tracked wrappers to plain Python types.
         if TrackedList is not None and isinstance(value, TrackedList):
             value = list(value.raw)
-        if TrackedSet is not None and isinstance(value, TrackedSet):
-            value = set(value.raw)
         if TrackedGrid is not None and isinstance(value, TrackedGrid):
             value = value.raw  # list of lists
-        if TrackedQueue is not None and isinstance(value, (TrackedQueue, TrackedStack)):
-            value = list(value.raw)
 
         # 2D list of lists - a real 2D grid. Detected by checking
         # that every element is itself a list. Mixed types

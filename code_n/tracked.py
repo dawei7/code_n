@@ -342,104 +342,14 @@ class TrackedGridRow:
         return self._grid.width
 
 
-class TrackedQueue:
-    """A queue that counts operations."""
+# TrackedQueue / TrackedStack / TrackedSet removed: the
+# player has to build their own queue / stack / set. The
+# engine only counts operations on the challenge's input
+# (TrackedList / TrackedGrid). For queue / stack / set, the
+# player can use ``collections.deque`` or a plain list /
+# set. No op counting is needed there because the budget
+# (O(n log n) for sorts, O(n^2) for BFS / DFS) is enforced
+# by counting the grid / list reads and writes - the queue
+# ops are a constant per cell visit, so they don't change
+# the asymptotic class.
 
-    def __init__(self):
-        self._data: list[Any] = []
-
-    def enqueue(self, value: Any):
-        get_counter().write(f"queue.enqueue({value})")
-        self._data.append(value)
-
-    def dequeue(self) -> Any:
-        get_counter().read("queue.dequeue()")
-        if not self._data:
-            raise IndexError("Queue is empty")
-        return self._data.pop(0)
-
-    def peek(self) -> Any:
-        get_counter().read("queue.peek()")
-        if not self._data:
-            raise IndexError("Queue is empty")
-        return self._data[0]
-
-    def __len__(self) -> int:
-        return len(self._data)
-
-    def is_empty(self) -> bool:
-        return len(self._data) == 0
-
-    @property
-    def raw(self) -> list:
-        """Access the underlying FIFO list. Bypasses all tracking; for
-        visualization / verification only. The first element is the
-        next to be dequeued."""
-        return list(self._data)
-
-
-class TrackedStack:
-    """A stack that counts operations."""
-
-    def __init__(self):
-        self._data: list[Any] = []
-
-    def push(self, value: Any):
-        get_counter().write(f"stack.push({value})")
-        self._data.append(value)
-
-    def pop(self) -> Any:
-        get_counter().read("stack.pop()")
-        if not self._data:
-            raise IndexError("Stack is empty")
-        return self._data.pop()
-
-    def peek(self) -> Any:
-        get_counter().read("stack.peek()")
-        if not self._data:
-            raise IndexError("Stack is empty")
-        return self._data[-1]
-
-    def __len__(self) -> int:
-        return len(self._data)
-
-    def is_empty(self) -> bool:
-        return len(self._data) == 0
-
-    @property
-    def raw(self) -> list:
-        """Access the underlying LIFO list. Bypasses all tracking; for
-        visualization / verification only. The last element is the
-        top of the stack (next to be popped)."""
-        return list(self._data)
-
-
-class TrackedSet:
-    """A set that counts operations."""
-
-    def __init__(self):
-        self._data: set = set()
-
-    def add(self, value: Any):
-        get_counter().write(f"set.add({value})")
-        self._data.add(value)
-
-    def contains(self, value: Any) -> bool:
-        get_counter().read(f"set.contains({value})")
-        return value in self._data
-
-    def remove(self, value: Any):
-        get_counter().write(f"set.remove({value})")
-        self._data.discard(value)
-
-    def __len__(self) -> int:
-        return len(self._data)
-
-    def __contains__(self, value: Any) -> bool:
-        return self.contains(value)
-
-    @property
-    def raw(self) -> set:
-        """Access the underlying set. Bypasses all tracking; for
-        visualization / verification only."""
-        return set(self._data)

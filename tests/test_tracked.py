@@ -11,9 +11,6 @@ from code_n.counter import reset_counter
 from code_n.tracked import (
     TrackedGrid,
     TrackedList,
-    TrackedQueue,
-    TrackedSet,
-    TrackedStack,
     TrackedValue,
     unwrap_tracked,
 )
@@ -139,57 +136,6 @@ class TrackedGridTests(unittest.TestCase):
         grid.set(1, 1, a)
         self.assertEqual(grid.get(0, 0).raw, 2)
         self.assertEqual(grid.get(1, 1).raw, 1)
-
-
-class TrackedQueueTests(unittest.TestCase):
-    def setUp(self):
-        reset_counter()
-
-    def tearDown(self):
-        reset_counter()
-
-    def test_enqueue_dequeue(self):
-        q = TrackedQueue()
-        q.enqueue(1)
-        q.enqueue(2)
-        self.assertEqual(q.dequeue(), 1)
-        self.assertEqual(q.peek(), 2)
-
-    def test_dequeue_empty_raises(self):
-        q = TrackedQueue()
-        with self.assertRaises(IndexError):
-            q.dequeue()
-
-
-class TrackedStackTests(unittest.TestCase):
-    def test_push_pop_peek(self):
-        s = TrackedStack()
-        s.push("a")
-        s.push("b")
-        self.assertEqual(s.peek(), "b")
-        self.assertEqual(s.pop(), "b")
-        self.assertEqual(s.pop(), "a")
-
-    def test_pop_empty_raises(self):
-        s = TrackedStack()
-        with self.assertRaises(IndexError):
-            s.pop()
-
-
-class TrackedSetTests(unittest.TestCase):
-    def test_add_and_contains(self):
-        s = TrackedSet()
-        s.add(1)
-        s.add(2)
-        self.assertTrue(s.contains(1))
-        self.assertFalse(s.contains(3))
-        self.assertIn(1, s)
-
-    def test_remove(self):
-        s = TrackedSet()
-        s.add(1)
-        s.remove(1)
-        self.assertFalse(s.contains(1))
 
 
 class TrackedValueTests(unittest.TestCase):
