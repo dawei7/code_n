@@ -296,8 +296,14 @@ class PygameRenderer:
         # 35x35 TrackedGrid + visited set + queue + scalars is
         # hundreds of cells), so we render it with a scroll offset
         # when the content overflows. The wheel scrolls within the
-        # variables panel when the mouse is over it; right-drag
-        # still pans the main algorithm grid.
+        # variables panel when the mouse is over it. The right-drag
+        # pans the variables panel too (only there - the main
+        # grid is no longer drawn in the main area, so there's
+        # nothing to pan outside the variables section).
+        # A 50-element list at 18px cells is ~950px wide, much
+        # wider than the ~700px panel, so horizontal panning
+        # matters as much as vertical.
+        self._vars_scroll_x: int = 0
         self._vars_scroll_y: int = 0
         # Cached rect of the Variables panel, set during the last
         # _draw() so the play() loop's wheel handler can tell
@@ -422,13 +428,22 @@ class PygameRenderer:
             return False
         return x <= pos[0] < x + w and y <= pos[1] < y + h
 
-    def _scroll_vars(self, dy: int) -> None:
-        """Scroll the Variables panel by ``dy`` pixels (positive = up,
-        matching the natural "wheel up scrolls up" convention). Clamped
-        so the content can't scroll past the top or past the bottom.
+    def _scroll_vars(self, dx: int, dy: int) -> None:
+        """Scroll the Variables panel by ``(dx, dy)`` pixels. Positive
+        ``dx`` scrolls right (reveals content to the right of the
+        current view); positive ``dy`` scrolls down (same
+        convention as the wheel handler - the user wheels "up" to
+        see content above, so the wheel handler passes a negative
+        ``dy`` to that effect).
+
+        Clamped so the content can't scroll past the top/left or
+        past the bottom/right. The user can also right-drag inside
+        the panel to pan - that handler routes through here too.
         """
-        max_scroll = max(0, self._vars_content_height - self._vars_view_height)
-        self._vars_scroll_y = max(0, min(self._vars_scroll_y + dy, max_scroll))
+        max_x = max(0, self._vars_content_width - self._vars_view_width)
+        max_y = max(0, self._vars_content_height - self._vars_view_height)
+        self._vars_scroll_x = max(0, min(self._vars_scroll_x + dx, max_x))
+        self._vars_scroll_y = max(0, min(self._vars_scroll_y + dy, max_y))
 
     def play(self, grid: Grid, operations: Iterable[OpRecord], title: str, result: VisualRunResult):
         import pygame
@@ -519,8 +534,9 @@ class PygameRenderer:
             self.scroll_y = 0
             # Reset the variables-panel scroll too - the locals
             # of the first frame are typically much smaller than
-            # the mid-replay state, so starting at the top makes
-            # sense.
+            # the mid-replay state, so starting at the top-left
+            # makes sense.
+            self._vars_scroll_x = 0
             self._vars_scroll_y = 0
             return "Step mode: press Space, Enter, or Right Arrow." if self.manual_step else "Replay started"
 
@@ -607,19 +623,25 @@ class PygameRenderer:
                                 watchpoints.add(coord)
                                 current_detail = f"Watching {coord}; replay pauses when an operation touches it."
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
-                    # Right-click enters "pan" mode. From now until the
-                    # button is released, every mouse motion event pans
-                    # the grid. The pan is bounded so dragging past the
-                    # edge stops at the grid boundary; you can't scroll
-                    # into the void. Reset the sub-cell accumulator on
-                    # down so a stale fraction from a prior drag can't
-                    # cause a sudden jump when the user starts panning
-                    # again.
-                    self._right_panning = True
-                    self._pan_accum_x = 0.0
-                    self._pan_accum_y = 0.0
+                    # Right-click enters "pan" mode ONLY when the
+                    # click was inside the Variables panel. The
+                    # main grid is no longer drawn in the main
+                    # area, so right-drag outside the variables
+                    # panel is a no-op - panning and scrolling live
+                    # there and only there. (Old behavior was to
+                    # pan the algorithm grid; the user's directive
+                    # was 'I need panning and scrolling function
+                    # here and only here' - meaning the variables
+                    # panel.)
+                    self._right_panning = self._mouse_in_vars_panel(event.pos)
+                    if self._right_panning:
+                        self._pan_accum_x = 0.0
+                        self._pan_accum_y = 0.0
                     try:
-                        pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
+                        pygame.mouse.set_cursor(
+                            pygame.SYSTEM_CURSOR_HAND if self._right_panning
+                            else pygame.SYSTEM_CURSOR_ARROW
+                        )
                     except (AttributeError, pygame.error):
                         pass
                 elif event.type == pygame.MOUSEBUTTONUP and event.button == 3:
@@ -631,47 +653,57 @@ class PygameRenderer:
                     except (AttributeError, pygame.error):
                         pass
                 elif event.type == pygame.MOUSEMOTION and self._right_panning:
-                    # event.rel is (dx, dy) in pixels since the last
-                    # motion event. The user wants "inverted" / natural
-                    # panning: dragging right pulls the world to the
-                    # right (scroll_x decreases), so the cells the
-                    # finger lands on stay under the cursor. Same for
-                    # the vertical axis.
-                    #
-                    # A float accumulator carries the sub-pixel motion
-                    # between events so small drags still produce smooth
-                    # movement instead of snapping to whole cells every
-                    # PAN_PIXELS_PER_CELL pixels. scroll_by clamps to
-                    # the grid bounds.
+                    # Pan the variables panel (both X and Y) with
+                    # the inverted / grab-the-world convention:
+                    # dragging right pulls the world right
+                    # (scroll_x decreases), dragging down pulls
+                    # the world down (scroll_y decreases), so the
+                    # cells under the cursor stay under the
+                    # finger. A float accumulator carries the
+                    # sub-pixel motion between events so small
+                    # drags feel smooth; _scroll_vars clamps to
+                    # the content bounds.
                     rel_x, rel_y = event.rel
                     self._pan_accum_x += rel_x
                     self._pan_accum_y += rel_y
-                    dx_cells = -int(self._pan_accum_x // PAN_PIXELS_PER_CELL)
-                    dy_cells = -int(self._pan_accum_y // PAN_PIXELS_PER_CELL)
-                    if dx_cells or dy_cells:
-                        self._pan_accum_x += dx_cells * PAN_PIXELS_PER_CELL
-                        self._pan_accum_y += dy_cells * PAN_PIXELS_PER_CELL
-                        self.scroll_by(dx_cells, dy_cells, grid, visual_values)
+                    dx_pixels = -int(self._pan_accum_x // PAN_PIXELS_PER_CELL)
+                    dy_pixels = -int(self._pan_accum_y // PAN_PIXELS_PER_CELL)
+                    if dx_pixels or dy_pixels:
+                        self._pan_accum_x += dx_pixels * PAN_PIXELS_PER_CELL
+                        self._pan_accum_y += dy_pixels * PAN_PIXELS_PER_CELL
+                        self._scroll_vars(dx_pixels, dy_pixels)
                 elif mousewheel_event is not None and event.type == mousewheel_event:
-                    # Mouse wheel does two things depending on where
-                    # the cursor is. Over the Variables panel: scroll
-                    # the variables list (a 35x35 TrackedGrid plus a
-                    # visited set is much taller than the panel, so
-                    # the user needs to scroll). Anywhere else (the
-                    # main algorithm grid): zoom in/out.
+                    # Mouse wheel: scroll the variables panel
+                    # (both X and Y) when the cursor is over the
+                    # panel. Outside the variables panel the
+                    # wheel does nothing - panning and scrolling
+                    # live there and only there. (The old behavior
+                    # was to zoom the main algorithm grid; that
+                    # grid isn't drawn in the main area anymore,
+                    # so the wheel would have been a no-op
+                    # anyway.)
                     wheel_y = getattr(event, "y", 0) or 0
-                    if wheel_y:
-                        if self._mouse_in_vars_panel(getattr(event, "pos", None) or pygame.mouse.get_pos()):
-                            self._scroll_vars(-wheel_y * 18)
+                    wheel_x = getattr(event, "x", 0) or 0
+                    if (wheel_y or wheel_x) and self._mouse_in_vars_panel(
+                        getattr(event, "pos", None) or pygame.mouse.get_pos()
+                    ):
+                        # Shift-wheel gives horizontal scroll even
+                        # without right-drag, in case the user
+                        # prefers it.
+                        mods = pygame.key.get_mods()
+                        if mods & pygame.KMOD_SHIFT:
+                            self._scroll_vars(-wheel_y * 18, 0)
                         else:
-                            current_detail = self.zoom_by(wheel_y * ZOOM_STEP)
+                            self._scroll_vars(0, -wheel_y * 18)
                 elif old_mousewheel is not None and event.type == pygame.MOUSEBUTTONDOWN and event.button in (4, 5):
                     # Fallback for pygame 1.x: button 4 = wheel up, 5 = wheel down.
                     if self._mouse_in_vars_panel(getattr(event, "pos", None) or pygame.mouse.get_pos()):
                         # Scroll the variables panel: button 4 = up (negative dy).
-                        self._scroll_vars(18 if event.button == 4 else -18)
+                        self._scroll_vars(0, 18 if event.button == 4 else -18)
                     else:
-                        current_detail = self.zoom_by(ZOOM_STEP if event.button == 4 else -ZOOM_STEP)
+                        # Outside the panel: no-op (no more main
+                        # grid to zoom).
+                        pass
                 elif event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_ESCAPE, pygame.K_q):
                         running = False
@@ -1406,7 +1438,12 @@ class PygameRenderer:
 
         content_top = sep_y + 8
         content_bottom = y + panel_h - 8
-        self._vars_view_height = max(0, content_bottom - content_top)
+        # Reserve a thin strip at the very bottom of the panel
+        # for the horizontal scroll bar. The vertical bar lives
+        # on the right edge.
+        scrollbar_h = 6
+        self._vars_view_height = max(0, content_bottom - content_top - scrollbar_h)
+        self._vars_view_width = max(0, content_w)
         if self._vars_view_height <= 0:
             return
 
@@ -1420,6 +1457,7 @@ class PygameRenderer:
         # _vars_scroll_y -> walk again, skipping rows outside the
         # visible window.
         items: list[tuple[str, str, Any, int]] = []
+        max_content_width = 0
         between_vars = 26  # generous gap so cells don't feel cramped
         for name, value in trace_frame.locals.items():
             # Skip class / function / module objects in the locals
@@ -1435,6 +1473,10 @@ class PygameRenderer:
             kind, payload, h = self._classify_variable(
                 value, content_w, cell_size,
             )
+            w = self._estimate_variable_width(
+                value, content_w, cell_size,
+            )
+            max_content_width = max(max_content_width, w)
             total_h = h + between_vars
             items.append((name, kind, payload, total_h))
 
@@ -1447,16 +1489,21 @@ class PygameRenderer:
             self._vars_content_height = sum(b[3] for b in items) - between_vars
         else:
             self._vars_content_height = 0
+        self._vars_content_width = max_content_width
 
-        # Clamp the scroll offset now that we know the content
-        # height (it can grow as new variables appear mid-replay).
-        max_scroll = max(0, self._vars_content_height - self._vars_view_height)
-        if self._vars_scroll_y > max_scroll:
-            self._vars_scroll_y = max_scroll
+        # Clamp the scroll offsets now that we know the content
+        # dimensions (both can grow as new variables appear
+        # mid-replay).
+        max_scroll_x = max(0, self._vars_content_width - self._vars_view_width)
+        max_scroll_y = max(0, self._vars_content_height - self._vars_view_height)
+        if self._vars_scroll_x > max_scroll_x:
+            self._vars_scroll_x = max_scroll_x
+        if self._vars_scroll_y > max_scroll_y:
+            self._vars_scroll_y = max_scroll_y
 
         # Clip subsequent draws to the panel content area so a
-        # variable that strays past the bottom doesn't paint over
-        # the side panel.
+        # variable that strays past the bottom / right doesn't
+        # paint over the side panel.
         previous_clip = screen.get_clip()
         screen.set_clip(pygame.Rect(
             x + 1, content_top,
@@ -1473,6 +1520,7 @@ class PygameRenderer:
         # ``between_vars`` gap alone separates the variables
         # visually.
         cur_y = content_top - self._vars_scroll_y
+        cur_x = content_x - self._vars_scroll_x
         for index, (name, kind, payload, total_h) in enumerate(items):
             # Skip rows that are entirely above the visible area.
             if cur_y + total_h <= content_top:
@@ -1484,11 +1532,11 @@ class PygameRenderer:
 
             # Variable name on its own line.
             self._draw_text(
-                screen, fonts["body"], f"{name}:", content_x, cur_y, self.TEXT,
+                screen, fonts["body"], f"{name}:", cur_x, cur_y, self.TEXT,
             )
             self._draw_variable_visual(
                 screen, fonts,
-                content_x, cur_y + 22,
+                cur_x, cur_y + 22,
                 content_w,
                 kind, payload, name,
                 cell_size=cell_size,
@@ -1497,9 +1545,9 @@ class PygameRenderer:
 
         screen.set_clip(previous_clip)
 
-        # Scroll indicator: a small bar on the right edge of the
-        # panel showing how much of the content is visible. Only
-        # drawn when the content actually overflows.
+        # Vertical scroll indicator: a small bar on the right edge
+        # of the panel showing how much of the content is visible.
+        # Only drawn when the content actually overflows.
         if self._vars_content_height > self._vars_view_height:
             track_x = x + max_width - 6
             track_y = content_top
@@ -1521,6 +1569,77 @@ class PygameRenderer:
                 pygame.Rect(track_x, thumb_y, 4, thumb_h),
                 border_radius=2,
             )
+
+        # Horizontal scroll indicator: a small bar along the
+        # bottom of the panel. Only drawn when the content
+        # overflows horizontally.
+        if self._vars_content_width > self._vars_view_width:
+            track_x = content_x
+            track_y = content_bottom - scrollbar_h + 1
+            track_w = self._vars_view_width
+            thumb_w = max(20, int(
+                track_w * self._vars_view_width / max(1, self._vars_content_width),
+            ))
+            thumb_x = track_x + int(
+                (track_w - thumb_w) * self._vars_scroll_x
+                / max(1, self._vars_content_width - self._vars_view_width),
+            )
+            pygame.draw.rect(
+                screen, self.GRID_LINE,
+                pygame.Rect(track_x, track_y, track_w, 4),
+                border_radius=2,
+            )
+            pygame.draw.rect(
+                screen, self.READ,
+                pygame.Rect(thumb_x, track_y, thumb_w, 4),
+                border_radius=2,
+            )
+
+    def _estimate_variable_width(
+        self, value, content_w: int, cell_size: int,
+    ) -> int:
+        """Rough width estimate in pixels for one variable. Used
+        by ``_draw_variables_section`` to compute the horizontal
+        scroll bounds. Doesn't have to be exact - overestimating
+        is harmless (the user can scroll into empty space) and
+        underestimating only means they can't reach the last
+        few pixels.
+
+        For collections it's ``len * (cell + gap)``. For a
+        TrackedGrid it's ``cols * (grid_cell + gap)`` where
+        ``grid_cell`` is the smaller cell size the grid uses.
+        For TrackedQueue / TrackedStack of tuples it's the
+        widest tuple's sub-value count, not the element count
+        (a queue of 10 triples is 3 cells wide per row, not
+        10). The estimate is good enough to bound scrolling.
+        """
+        try:
+            from code_n.tracked import (
+                TrackedGrid, TrackedList, TrackedQueue, TrackedSet, TrackedStack,
+            )
+        except ImportError:
+            TrackedGrid = TrackedList = TrackedQueue = TrackedSet = TrackedStack = None  # noqa
+        cell_gap = 1
+        if TrackedGrid is not None and isinstance(value, TrackedGrid):
+            raw = value.raw
+            cols = len(raw[0]) if raw else 0
+            grid_cell = min(12, max(8, content_w // max(1, cols))) if cols else 8
+            return cols * (grid_cell + cell_gap)
+        if TrackedQueue is not None and isinstance(value, (TrackedQueue, TrackedStack)):
+            items = list(value.raw)
+            if not items:
+                return cell_size + cell_gap
+            widest = 1
+            for item in items:
+                if isinstance(item, (list, tuple)):
+                    widest = max(widest, len(item))
+            return widest * (cell_size + cell_gap)
+        # Standard collections + tracked wrappers: use __len__.
+        try:
+            n = len(value)
+        except TypeError:
+            return cell_size + cell_gap
+        return n * (cell_size + cell_gap)
 
     def _classify_variable(self, value, content_w: int, cell_size: int) -> tuple[str, Any, int]:
         """Return (kind, payload, height_px) for a local variable.
