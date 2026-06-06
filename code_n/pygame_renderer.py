@@ -1537,8 +1537,18 @@ class PygameRenderer:
             if cur_y + total_h <= content_top:
                 cur_y += total_h
                 continue
-            # Stop once the bottom of the panel is reached.
-            if cur_y >= content_bottom:
+            # The cell for this variable starts ``LABEL_OFFSET = 22``
+            # pixels below the label (``{name}:`` line). The old
+            # break only checked the label's top - so a variable
+            # whose label fit but whose cell didn't (e.g. ``nc:``
+            # at the very bottom of the panel) drew the label and
+            # clipped the cell silently. The user couldn't scroll
+            # further to see it because no scrollbar hint was
+            # given either - the value just disappeared. We now
+            # bail out as soon as the cell's top would land
+            # below the panel.
+            label_offset = 22
+            if cur_y + label_offset >= content_bottom:
                 break
 
             # Variable name on its own line.
@@ -1547,7 +1557,7 @@ class PygameRenderer:
             )
             self._draw_variable_visual(
                 screen, fonts,
-                cur_x, cur_y + 22,
+                cur_x, cur_y + label_offset,
                 content_w,
                 kind, payload, name,
                 cell_size=cell_size,
@@ -2496,6 +2506,67 @@ class PygameRenderer:
         for node in _ast.walk(tree):
             if not isinstance(node, _ast.Subscript):
                 continue
+
+            # NESTED subscript FIRST: ``grid[nr][nc]``. The
+            # outer Subscript's value is itself a Subscript
+            # (``grid[nr]``), and the unparse of that value
+            # ("grid[nr]") is NOT a name in locals_dict. So the
+            # normal ``var_src not in locals_dict`` check below
+            # would silently drop the outer Subscript and the
+            # walker would only see the inner one (recording
+            # just the row index). Detect the nested case up
+            # front and resolve the indices from both slices.
+            if isinstance(node.value, _ast.Subscript):
+                inner = node.value
+                # The innermost Name is the variable (e.g. 'grid').
+                try:
+                    var_src = _ast.unparse(inner.value)
+                except Exception:
+                    continue
+                if var_src not in locals_dict:
+                    continue
+                container = locals_dict[var_src]
+                try:
+                    inner_idx = eval(
+                        compile(
+                            _ast.Expression(inner.slice),
+                            "<ast>", "eval",
+                        ),
+                        {"__builtins__": safe_builtins},
+                        locals_dict,
+                    )
+                    outer_idx = eval(
+                        compile(
+                            _ast.Expression(node.slice),
+                            "<ast>", "eval",
+                        ),
+                        {"__builtins__": safe_builtins},
+                        locals_dict,
+                    )
+                except Exception:
+                    continue
+                if isinstance(inner_idx, int) and isinstance(outer_idx, int):
+                    # For a 2D list of lists, the inner index is
+                    # the row and the outer is the column. For a
+                    # TrackedGrid, the same holds: ``grid[nr]``
+                    # returns the row, ``[nc]`` indexes into it.
+                    if isinstance(container, (list, tuple)):
+                        if 0 <= inner_idx < len(container):
+                            touched[(var_src, (inner_idx, outer_idx))] = op_kind
+                    else:
+                        # TrackedGrid / TrackedList path - the
+                        # renderer uses the same ``(row, col)``
+                        # key for the grid's 2D rendering.
+                        try:
+                            from code_n.tracked import TrackedGrid as _TG_w
+                            if _TG_w is not None and isinstance(container, _TG_w):
+                                if 0 <= inner_idx < container.height:
+                                    touched[(var_src, (inner_idx, outer_idx))] = op_kind
+                        except ImportError:
+                            pass
+                continue
+
+            # Single-subscript case: ``data[i]`` or ``grid[nr]``.
             try:
                 var_src = _ast.unparse(node.value)
             except Exception:
@@ -2526,6 +2597,20 @@ class PygameRenderer:
                         touched[(var_src, index)] = op_kind
                     except TypeError:
                         pass
+            else:
+                # TrackedGrid ``grid[nr]`` (single index on the LHS
+                # of a 2D access, or anywhere a row is read by
+                # itself). The renderer's grid is keyed by
+                # ``(row, col)`` tuples, so a single-index touch
+                # here doesn't have a direct key - skip it. The
+                # nested-subscript branch above is what lights up
+                # the specific cell.
+                try:
+                    from code_n.tracked import TrackedGrid as _TG_w2
+                    if _TG_w2 is not None and isinstance(container, _TG_w2):
+                        continue
+                except ImportError:
+                    pass
 
         # 3) ``In`` comparisons.
         for node in _ast.walk(tree):
@@ -2809,10 +2894,14 @@ class PygameRenderer:
                 return src
             try:
                 # Walk the tree and replace Name nodes with their
-                # values. For Subscript nodes, only the slice (the
-                # index) gets substituted - the value (the list)
-                # stays as a Name so the unparse reads as
-                # ``candies[16-1]`` rather than ``[2,1,3,...][16-1]``.
+                # values. For Subscript nodes, the slice (the
+                # index) gets substituted; for NESTED subscripts
+                # (``grid[nr][nc]``) the value is also recursed
+                # into so the inner Subscript's Names (here ``nr``)
+                # are substituted too. A Name value (the
+                # variable itself, e.g. ``grid``) is left alone so
+                # the unparse reads as ``grid[5][18]`` rather than
+                # the unfriendly ``[[0,1,...],...][5][18]``.
                 class _Subst(_ast.NodeTransformer):
                     def visit_Name(self, node):
                         if (isinstance(node.ctx, _ast.Load)
@@ -2824,6 +2913,8 @@ class PygameRenderer:
                     def visit_Subscript(self, node):
                         if node.slice is not None:
                             node.slice = self.visit(node.slice)
+                        if isinstance(node.value, _ast.Subscript):
+                            node.value = self.visit(node.value)
                         return node
                 new_tree = _Subst().visit(tree)
                 return _ast.unparse(new_tree)
@@ -2949,7 +3040,21 @@ class PygameRenderer:
                                     return _ast.Constant(
                                         value=locals_dict[node.id])
                                 return node
-                        new_target.slice = _SliceSubst().visit(new_target.slice)
+
+                            def visit_Subscript(self, node):
+                                # Substitute the slice; for nested
+                                # subscripts like ``grid[nr][nc]``,
+                                # recurse into the inner Subscript
+                                # so BOTH ``nr`` and ``nc`` get
+                                # substituted. The Name value
+                                # (``grid``) stays as a Name so
+                                # the unparse reads naturally.
+                                if node.slice is not None:
+                                    node.slice = self.visit(node.slice)
+                                if isinstance(node.value, _ast.Subscript):
+                                    node.value = self.visit(node.value)
+                                return node
+                        new_target = _SliceSubst().visit(new_target)
                     lhs_str = _ast.unparse(new_target)
                 except Exception:
                     lhs_str = _ast.unparse(target)
@@ -2978,9 +3083,15 @@ class PygameRenderer:
                             # the value (the list/dict). Otherwise
                             # the unparse reads as ``[1, 2, 3][i-1]``
                             # instead of the much friendlier
-                            # ``candies[i-1]``.
+                            # ``candies[i-1]``. For NESTED
+                            # subscripts (``grid[nr][nc]``), the
+                            # outer value is itself a Subscript -
+                            # recurse into it so the inner index
+                            # (``nr``) gets substituted too.
                             if node.slice is not None:
                                 node.slice = self.visit(node.slice)
+                            if isinstance(node.value, _ast.Subscript):
+                                node.value = self.visit(node.value)
                             return node
                     rhs_tree = _RhsSubst().visit(rhs_tree)
                     rhs_substituted = _ast.unparse(rhs_tree)
