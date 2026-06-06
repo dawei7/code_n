@@ -488,7 +488,8 @@ class ClassifyVariableTests(unittest.TestCase):
         self.assertGreaterEqual(cell_2d, 8)
         self.assertLessEqual(cell_2d, 24)
         # Height = rows * (cell + gap) + bottom padding.
-        self.assertEqual(h, 5 * (cell_2d + 1) + 4)
+        # Height = column header (14px) + 5 rows of cells + bottom padding.
+        self.assertEqual(h, 14 + 5 * (cell_2d + 1) + 4)
 
     def test_tracked_queue_classifies_as_list(self):
         """User directive: 'it is not allowed to have any such
@@ -507,7 +508,8 @@ class ClassifyVariableTests(unittest.TestCase):
         self.assertEqual(kind, "list")
         items, _ = payload
         self.assertEqual(items, [1, 2, 3])
-        self.assertEqual(h, 18 + 2)
+        # Height = column header (14px) + cell row (18px) + 2 padding.
+        self.assertEqual(h, 14 + 18 + 2)
 
     def test_tracked_stack_classifies_as_list(self):
         """Same as the TrackedQueue test: the TrackedStack is

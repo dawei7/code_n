@@ -210,7 +210,7 @@ DEFAULT_CELL_SIZE = 30
 # one cell. Smaller = more sensitive. The float accumulator carries
 # sub-cell motion between events, so very small drags feel smooth
 # rather than snapping to whole cells.
-PAN_PIXELS_PER_CELL = 4
+PAN_PIXELS_PER_CELL = 1
 
 # Time-based throttle for continuous arrow-key scrolling while a key
 # is held down. At 60 FPS this gives ~25 scroll steps per second.
@@ -1474,6 +1474,19 @@ class PygameRenderer:
             kind, payload, h = self._classify_variable(
                 value, content_w, cell_size,
             )
+            # Hide empty collections. The user complained that
+            # 'frontier is not there' at the start of BFS and
+            # neither is 'visited' - both are initialized to
+            # empty (TrackedQueue() and set()) in the canonical
+            # solution, so they show up in trace_frame.locals
+            # on frame 0 but contain nothing. Showing them as
+            # '(empty)' is noise; the variable just appears in
+            # the panel once something is enqueued / added. The
+            # same rule applies to TrackedStack: an empty stack
+            # doesn't render. Scalars (0, None, etc.) are
+            # always shown - those are real values, not 'empty'.
+            if kind == "empty":
+                continue
             w = self._estimate_variable_width(
                 value, content_w, cell_size,
             )
@@ -1606,35 +1619,20 @@ class PygameRenderer:
         underestimating only means they can't reach the last
         few pixels.
 
-        For collections it's ``len * (cell + gap)``. For a
-        TrackedGrid it's ``cols * (grid_cell + gap)`` where
-        ``grid_cell`` is the smaller cell size the grid uses.
-        For TrackedQueue / TrackedStack of tuples it's the
-        widest tuple's sub-value count, not the element count
-        (a queue of 10 triples is 3 cells wide per row, not
-        10). The estimate is good enough to bound scrolling.
+        For collections it's ``len * (cell + gap)``. For a 2D
+        list of lists we add a left margin for the row labels
+        (``label_w = max(20, int(cell * 1.2))``) so the user
+        can read the row index on the left of each row.
         """
-        try:
-            from code_n.tracked import (
-                TrackedGrid, TrackedList, TrackedQueue, TrackedSet, TrackedStack,
-            )
-        except ImportError:
-            TrackedGrid = TrackedList = TrackedQueue = TrackedSet = TrackedStack = None  # noqa
         cell_gap = 1
-        if TrackedGrid is not None and isinstance(value, TrackedGrid):
-            raw = value.raw
-            cols = len(raw[0]) if raw else 0
-            grid_cell = min(12, max(8, content_w // max(1, cols))) if cols else 8
-            return cols * (grid_cell + cell_gap)
-        if TrackedQueue is not None and isinstance(value, (TrackedQueue, TrackedStack)):
-            items = list(value.raw)
-            if not items:
-                return cell_size + cell_gap
-            widest = 1
-            for item in items:
-                if isinstance(item, (list, tuple)):
-                    widest = max(widest, len(item))
-            return widest * (cell_size + cell_gap)
+        # 2D list of lists: width = label_w + cols * (cell + gap).
+        if isinstance(value, list) and value and all(
+            isinstance(item, list) for item in value
+        ):
+            cols = max((len(row) for row in value), default=0)
+            cell_2d = min(24, max(8, content_w // max(1, cols)))
+            label_w = max(20, int(cell_2d * 1.2))
+            return label_w + cols * (cell_2d + cell_gap)
         # Standard collections + tracked wrappers: use __len__.
         try:
             n = len(value)
@@ -1706,7 +1704,12 @@ class PygameRenderer:
             # fits (the user scrolls to see more).
             cell_2d = min(24, max(8, content_w // max(1, cols)))
             cell_gap = 1
-            height = rows * (cell_2d + cell_gap) + 4
+            # Height includes the column-header row (14px) on
+            # top of the cells. The row labels to the left fit
+            # in the content area's existing left padding so
+            # no extra width is reserved for them here.
+            header_h = 14
+            height = header_h + rows * (cell_2d + cell_gap) + 4
             return "list2d", (value, cell_2d), height
 
         # Standard collections. Each one is drawn as a single
@@ -1722,21 +1725,25 @@ class PygameRenderer:
             # one cell tall, tuple / list elements are N cells
             # tall (one per sub-value). The strip is drawn
             # with all cells aligned to the same y, and taller
-            # cells extend further down.
+            # cells extend further down. The column-header
+            # strip on top (14px) is included so the panel
+            # reserves room for it.
+            header_h = 14
             max_h = cell_size
             for item in items:
                 if isinstance(item, (tuple, list)):
                     max_h = max(max_h, len(item) * cell_size)
-            return "list", (items, cell_size), max_h + 2
+            return "list", (items, cell_size), header_h + max_h + 2
         if isinstance(value, dict) and value:
             return "dict", (list(value.items()), cell_size), 2 * (cell_size + 2)
         if isinstance(value, set) and value:
             items = list(value)
+            header_h = 14
             max_h = cell_size
             for item in items:
                 if isinstance(item, (tuple, list)):
                     max_h = max(max_h, len(item) * cell_size)
-            return "set", (items, cell_size), max_h + 2
+            return "set", (items, cell_size), header_h + max_h + 2
         if isinstance(value, (list, tuple, dict, set)):
             # Empty collection: still allocate one row of cells so
             # the player can see the variable is present.
@@ -1793,10 +1800,6 @@ class PygameRenderer:
             self._draw_set_strip(
                 screen, fonts, x, y, items, grid_cell,
                 var_name=var_name,
-            )
-        elif kind == "empty":
-            self._draw_text(
-                screen, fonts["small"], "(empty)", x, y, self.MUTED,
             )
         else:  # "scalar" or anything else
             self._draw_scalar_cell(
@@ -1934,8 +1937,10 @@ class PygameRenderer:
         cell_size: int,
         var_name: Optional[str] = None,
     ) -> None:
-        """Render a list / tuple as ONE row of cells. No
-        wrapping - a 50-element list is 50 cells in a single
+        """Render a list / tuple as ONE row of cells with a
+        column-header row above showing each element's index.
+
+        No wrapping - a 50-element list is 50 cells in a single
         horizontal line. Cells past the panel's right edge are
         clipped by the panel's set_clip() rect; the user can
         wheel-zoom out to shrink the cell size, or just accept
@@ -1950,18 +1955,34 @@ class PygameRenderer:
         "organize the cells always to match the content size"
         the user asked for, and the "1 value per line" rendering
         for tuples.
+
+        The per-cell index in the top-left corner of each
+        cell is removed (the user: 'have it on top ... not in
+        each cell'). The column header above the cells carries
+        the index instead - 0, 1, 2, ..., one per cell.
         """
         import pygame
         if not items:
             self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
             return
         cell_gap = 1
+        # Column headers on top: the index of each element.
+        # Same width as the cells, drawn at the same x
+        # positions so they line up.
+        header_h = 14
+        for index in range(len(items)):
+            self._draw_index_header_cell(
+                screen, fonts,
+                x + index * (cell_size + cell_gap),
+                y, cell_size, str(index),
+            )
+        # Cells, drawn one cell-size below the headers.
         cx = x
+        cell_y = y + header_h
         for index, item in enumerate(items):
             self._draw_one_cell(
-                screen, fonts, cx, y, cell_size, item,
+                screen, fonts, cx, cell_y, cell_size, item,
                 touched_key=(var_name, index) if var_name else None,
-                cell_index=index,
             )
             cx += cell_size + cell_gap
 
@@ -1975,18 +1996,23 @@ class PygameRenderer:
         cell_size: int,
         var_name: Optional[str] = None,
     ) -> None:
-        """Render a list of lists as a real 2D grid.
+        """Render a list of lists as a real 2D grid with
+        column headers on top and row labels on the left.
 
-        One row per inner list, one cell per element. Cells
-        past the panel's right edge are clipped (the user
-        scrolls horizontally). The user asked for this:
-        'display a 2 dimensional list as 2 dimensions ... You
-        should generalize it, but somehow keep it smart.' The
-        'smart' part is the auto-sized cell - a 5x5 grid gets
-        up to 24px cells (readable), a 35x35 gets ~20px
-        (fits the panel width), a 100x100 gets the 8px
-        minimum. The cell_size comes from ``_classify_variable``
-        and the caller controls the y.
+        Layout: cells are at ``(x + label_w + c * cell, y + header_h + r * cell)``.
+        Column header ``c`` sits at ``(x + label_w + c * cell, y)``.
+        Row label ``r`` sits at ``(x, y + header_h + r * cell)``.
+        The corner where the row label column and the column
+        header row meet is left blank.
+
+        The user asked for this:
+          - 'it is a 2d index not just an incremental number' -
+            the headers show the actual (r, c) coordinates
+            instead of a linear ``0, 1, 2, ...`` per-cell label.
+          - 'have it on top or at the left side of the element,
+            not in each cell' - headers go above the cells and
+            row labels go to the left; the per-cell label in
+            the top-left corner is gone.
         """
         import pygame
         if not data:
@@ -1998,21 +2024,62 @@ class PygameRenderer:
         # still draw a 3-wide grid with the missing cell left
         # blank rather than collapsing the whole grid.
         cols = max((len(row) for row in data), default=0)
+        rows = len(data)
+        # Margins for the headers / row labels.
+        header_h = 14
+        label_w = max(20, int(cell_size * 1.2))
+        # Column headers on top, scrolling with the content
+        # (the caller applies the scroll offset to x before
+        # calling us, so the headers are already in scrolled
+        # coordinates).
+        for c in range(cols):
+            self._draw_index_header_cell(
+                screen, fonts, x + label_w + c * (cell_size + cell_gap),
+                y, cell_size, str(c),
+            )
+        # Cells.
         for r, row in enumerate(data):
+            # Row label on the left of this row.
+            self._draw_index_header_cell(
+                screen, fonts, x, y + header_h + r * (cell_size + cell_gap),
+                cell_size, str(r), wide=label_w,
+            )
             for c in range(cols):
                 if c >= len(row):
                     continue  # leave the cell blank (ragged row)
                 value = row[c]
-                cx = x + c * (cell_size + cell_gap)
-                cy = y + r * (cell_size + cell_gap)
-                # Linear index for the per-cell label; (r, c)
-                # for the touched-cell key.
-                linear = r * cols + c
+                cx = x + label_w + c * (cell_size + cell_gap)
+                cy = y + header_h + r * (cell_size + cell_gap)
+                # The (r, c) tuple is the touched-cell key. The
+                # caller passes the linear index too (via
+                # cell_index) for any code that still wants it,
+                # but the cell itself no longer shows the index -
+                # the header row + column does.
                 self._draw_one_cell(
                     screen, fonts, cx, cy, cell_size, value,
                     touched_key=(var_name, (r, c)) if var_name else None,
-                    cell_index=linear,
                 )
+
+    def _draw_index_header_cell(
+        self, screen, fonts, x, y, cell_size, label: str, wide: Optional[int] = None,
+    ) -> None:
+        """Draw a small header cell holding a single index
+        label. Used for the column-headers-on-top and
+        row-labels-on-the-left of a 2D grid, and for the
+        column-headers-on-top of a 1D list. ``wide`` overrides
+        the default square cell width (used for the row label
+        column on the left of a 2D grid)."""
+        import pygame
+        w = wide if wide is not None else cell_size
+        # Outline only - no fill, so the user can still see the
+        # grid behind the label cells.
+        rect = pygame.Rect(x, y, w, cell_size)
+        pygame.draw.rect(screen, self.PANEL, rect, border_radius=2)
+        pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=2)
+        # Center the label in the cell.
+        text_surface = fonts["small"].render(label, True, self.MUTED)
+        text_rect = text_surface.get_rect(center=rect.center)
+        screen.blit(text_surface, text_rect)
 
     def _draw_dict_strip(
         self,
@@ -2121,13 +2188,10 @@ class PygameRenderer:
         pygame.draw.rect(screen, bg, rect, border_radius=3)
         pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=3)
 
-        # Per-cell index in the top-left, only when the cell
-        # is wide enough to fit it (the same threshold as the
-        # legacy scalar cell so the index never crowds the
-        # value for tiny cells).
-        if cell_index is not None and cell_size >= 18:
-            idx_surface = fonts["small"].render(str(cell_index), True, self.MUTED)
-            screen.blit(idx_surface, (x + 2, y + 1))
+        # Per-cell index in the top-left was removed (the
+        # user: 'have it on top ... not in each cell'). The
+        # column header / row label strip above and to the
+        # left of the cells carries the index instead.
 
         # Content layout: tuple / list = one value per line,
         # centered on its own row. Scalar = centered in the
