@@ -24,16 +24,21 @@ def _make_renderer(width: int = 1100, height: int = 720) -> PygameRenderer:
 
 
 class ZoomStateTests(unittest.TestCase):
-    def test_starts_at_default_30px(self):
+    def test_starts_at_default_22px(self):
         r = _make_renderer()
-        self.assertEqual(r.cell_size, 30)
-        self.assertEqual(r.zoom_label(), "30px")
+        self.assertEqual(r.cell_size, 22)
+        self.assertEqual(r.zoom_label(), "22px")
         self.assertEqual(r.scroll_x, 0)
         self.assertEqual(r.scroll_y, 0)
 
     def test_default_zoom_constant(self):
-        self.assertEqual(DEFAULT_CELL_SIZE, 30)
-        self.assertEqual(ZOOM_MIN, 22)
+        # The default 22px is in the middle of the new
+        # ZOOM_MIN..MAX = 12..50 range so the user can
+        # wheel-zoom either way. 12 is the floor because a
+        # 2D grid at very small cells still needs to fit a
+        # few pixels per cell to be discernible.
+        self.assertEqual(DEFAULT_CELL_SIZE, 22)
+        self.assertEqual(ZOOM_MIN, 12)
         self.assertEqual(ZOOM_MAX, 50)
         self.assertGreaterEqual(ZOOM_STEP, 1)
 
