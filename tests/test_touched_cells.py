@@ -486,8 +486,10 @@ class ClassifyVariableTests(unittest.TestCase):
         self.assertEqual(len(data[0]), 5)
         self.assertGreaterEqual(cell_2d, 8)
         self.assertLessEqual(cell_2d, 24)
-        # Height = column header (14px) + 5 rows of cells + bottom padding.
-        self.assertEqual(h, 14 + 5 * (cell_2d + 1) + 4)
+        # Height = column header (cell_2d, same size as a data
+        # cell per the user's directive 'have the same cell size
+        # as the cells themselves') + 5 rows + bottom padding.
+        self.assertEqual(h, cell_2d + 5 * (cell_2d + 1) + 4)
 
     def test_deque_classifies_as_list(self):
         """The player builds their own queue now that TrackedQueue

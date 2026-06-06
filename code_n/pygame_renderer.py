@@ -1705,10 +1705,13 @@ class PygameRenderer:
             # The user asked: 'why is the 2d grid not zoomable?'.
             cell_2d = min(cell_size, max(8, content_w // max(1, cols)), 24)
             cell_gap = 1
-            # Height includes the column-header row (14px) on
-            # top of the cells.
-            header_h = 14
-            height = header_h + rows * (cell_2d + cell_gap) + 4
+            # The column-header row is the SAME cell size as
+            # the data cells (the user: 'have the same cell
+            # size as the cells themselves'). The row labels
+            # to the left are ``label_w`` wide and the same
+            # cell height, so they're vertically aligned with
+            # the data row.
+            height = cell_2d + rows * (cell_2d + cell_gap) + 4
             return "list2d", (value, cell_2d), height
 
         # Standard collections. Each one is drawn as a single
@@ -1725,30 +1728,28 @@ class PygameRenderer:
             # tall (one per sub-value). The strip is drawn
             # with all cells aligned to the same y, and taller
             # cells extend further down. The column-header
-            # strip on top (14px) is included so the panel
-            # reserves room for it. If the list is longer
-            # than the 20-element cap the renderer shows,
-            # add another 14px for the '+N more' text.
-            header_h = 14
-            more_h = 14
+            # strip on top is the SAME size as a data cell
+            # (the user: 'have the same cell size as the
+            # cells themselves'), so the panel reserves
+            # ``cell_size`` for it. The 'no cap' policy (the
+            # user complained that the previous 20-cell cap
+            # was cutting the variable at the bottom) means
+            # all items are shown - the user scrolls
+            # vertically to see the rest.
             max_h = cell_size
             for item in items:
                 if isinstance(item, (tuple, list)):
                     max_h = max(max_h, len(item) * cell_size)
-            extra = more_h if len(items) > 20 else 0
-            return "list", (items, cell_size), header_h + max_h + 2 + extra
+            return "list", (items, cell_size), cell_size + max_h + 2
         if isinstance(value, dict) and value:
             return "dict", (list(value.items()), cell_size), 2 * (cell_size + 2)
         if isinstance(value, set) and value:
             items = list(value)
-            header_h = 14
-            more_h = 14
             max_h = cell_size
             for item in items:
                 if isinstance(item, (tuple, list)):
                     max_h = max(max_h, len(item) * cell_size)
-            extra = more_h if len(items) > 20 else 0
-            return "set", (items, cell_size), header_h + max_h + 2 + extra
+            return "set", (items, cell_size), cell_size + max_h + 2
         if isinstance(value, (list, tuple, dict, set)):
             # Empty collection: still allocate one row of cells so
             # the player can see the variable is present.
@@ -1961,60 +1962,43 @@ class PygameRenderer:
         the user asked for, and the "1 value per line" rendering
         for tuples.
 
-        The per-cell index in the top-left corner of each
-        cell is removed (the user: 'have it on top ... not in
-        each cell'). The column header above the cells carries
-        the index instead - 0, 1, 2, ..., one per cell.
+        The column header is the SAME cell size as a data
+        cell (the user: 'have the same cell size as the cells
+        themselves'). So a column header for index 5 is just
+        a square cell with '5' in the middle, same width and
+        height as the data cell at index 5. The data cells
+        start one full cell below the header row.
 
-        Long lists are capped at ``STRIP_CAP`` (20) cells with
-        a '+N more' indicator. The user complained that
-        'frontier and visited is so huge even there were only
-        few ops' - the cap keeps the variable from eating the
-        whole variables panel, and the indicator tells the
-        player how many more are hidden.
+        No cap: every element is drawn. The user complained
+        that the previous 20-element cap was 'cutting the
+        variable at the bottom' - the panel scrolls
+        vertically now, so the user can see the rest. For
+        very long lists the user can also wheel-zoom out to
+        shrink the cell size.
         """
         import pygame
         if not items:
             self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
             return
         cell_gap = 1
-        # Column headers on top: the index of each element
-        # that's actually drawn (the cap, not the full count).
-        # Short height so it doesn't overlap the cells below.
-        header_h = 14
-        cap = 20
-        drawn = items[:cap]
-        for index in range(len(drawn)):
+        # Column headers on top: the index of each element,
+        # same cell size as the data cells. The user: 'have
+        # the same cell size as the cells themselves'.
+        for index in range(len(items)):
             self._draw_index_header_cell(
                 screen, fonts,
                 x + index * (cell_size + cell_gap),
                 y, cell_size, str(index),
-                height=header_h,
             )
-        # Cells, drawn one cell-size below the headers.
+        # Cells, drawn one cell-size below the header row.
         cx = x
-        cell_y = y + header_h
-        max_shown_h = cell_size
-        for index, item in enumerate(drawn):
+        cell_y = y + cell_size
+        for index, item in enumerate(items):
             self._draw_one_cell(
                 screen, fonts, cx, cell_y, cell_size, item,
                 touched_key=(var_name, index) if var_name else None,
             )
-            # Track the tallest shown cell so the '+N more'
-            # text can sit just below the cells.
-            if isinstance(item, (tuple, list)):
-                max_shown_h = max(max_shown_h, len(item) * cell_size)
             cx += cell_size + cell_gap
-        # Cap reached: render a small '+N more' indicator
-        # below the cells. The text is right under the cells
-        # and the panel's content_bottom clips anything past
-        # the visible area.
-        if len(items) > cap:
-            self._draw_text(
-                screen, fonts["small"],
-                f"... and {len(items) - cap} more",
-                x, cell_y + max_shown_h + 4, self.MUTED,
-            )
 
     def _draw_2d_list(
         self,
@@ -2058,27 +2042,24 @@ class PygameRenderer:
         # Margins for the headers / row labels.
         header_h = 14
         label_w = max(20, int(cell_size * 1.2))
-        # Column headers on top, scrolling with the content
-        # (the caller applies the scroll offset to x before
-        # calling us, so the headers are already in scrolled
-        # coordinates).
+        # Column headers on top, each the same cell size as the
+        # data cells. The user: 'have the same cell size as
+        # the cells themselves' - a column header is itself
+        # a square cell, just with a number label.
         for c in range(cols):
-            # Column header is short (height=header_h) so it
-            # doesn't overlap the cells below it. Without this,
-            # a square column-header cell at cell_size > 14
-            # would extend past header_h and the first row of
-            # cells would be drawn on top of the column header.
             self._draw_index_header_cell(
                 screen, fonts, x + label_w + c * (cell_size + cell_gap),
-                y, cell_size, str(c), height=header_h,
+                y, cell_size, str(c),
             )
         # Cells.
         for r, row in enumerate(data):
-            # Row label on the left of this row. The label's
-            # height matches the cell height (default), so
-            # the label is vertically aligned with its row.
+            # Row label on the left of this row. The label is
+            # ``label_w`` wide (a thin column on the left)
+            # and ``cell_size`` tall (the same height as the
+            # data cells in this row), so it sits flush with
+            # the row.
             self._draw_index_header_cell(
-                screen, fonts, x, y + header_h + r * (cell_size + cell_gap),
+                screen, fonts, x, y + cell_size + r * (cell_size + cell_gap),
                 cell_size, str(r), width=label_w,
             )
             for c in range(cols):
@@ -2086,12 +2067,16 @@ class PygameRenderer:
                     continue  # leave the cell blank (ragged row)
                 value = row[c]
                 cx = x + label_w + c * (cell_size + cell_gap)
-                cy = y + header_h + r * (cell_size + cell_gap)
+                # The data cells start one full cell below the
+                # column header row, so they're not on top of
+                # the header cells. (The column header and the
+                # data cell are the same cell size, so this is
+                # exactly one row's worth of vertical offset.)
+                cy = y + cell_size + r * (cell_size + cell_gap)
                 # The (r, c) tuple is the touched-cell key. The
-                # caller passes the linear index too (via
-                # cell_index) for any code that still wants it,
-                # but the cell itself no longer shows the index -
-                # the header row + column does.
+                # cell itself doesn't show an index (per the
+                # earlier directive) - the header row + column
+                # carries the index.
                 self._draw_one_cell(
                     screen, fonts, cx, cy, cell_size, value,
                     touched_key=(var_name, (r, c)) if var_name else None,
@@ -2174,35 +2159,22 @@ class PygameRenderer:
         var_name: Optional[str] = None,
     ) -> None:
         """Render a set as ONE row of cells (no index labels, since
-        sets are unordered). Capped at 20 cells with a '+N more'
-        indicator for the rest - same cap as ``_draw_flat_strip``
-        so a 100-element visited set doesn't eat the whole
-        variables panel. The user: 'frontier and visited is
-        so huge even there were only few ops'."""
+        sets are unordered). Every element is drawn - the user
+        complained that the previous 20-element cap was
+        'cutting the variable at the bottom'; the panel scrolls
+        vertically now, so a 600-element visited set just
+        needs scrolling. The user can also wheel-zoom out to
+        shrink the cell size."""
         import pygame
         if not items:
             self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
             return
         cell_gap = 1
-        cap = 20
-        drawn = items[:cap]
-        for index, item in enumerate(drawn):
+        for index, item in enumerate(items):
             cx = x + index * (cell_size + cell_gap)
             self._draw_one_cell(
                 screen, fonts, cx, y, cell_size, item,
                 touched_key=(var_name, item) if var_name else None,
-            )
-        if len(items) > cap:
-            # Position the '+N more' below the tallest cell so
-            # it doesn't overlap any cell content.
-            max_shown_h = cell_size
-            for item in drawn:
-                if isinstance(item, (tuple, list)):
-                    max_shown_h = max(max_shown_h, len(item) * cell_size)
-            self._draw_text(
-                screen, fonts["small"],
-                f"... and {len(items) - cap} more",
-                x, y + max_shown_h + 4, self.MUTED,
             )
 
     def _draw_scalar_cell(

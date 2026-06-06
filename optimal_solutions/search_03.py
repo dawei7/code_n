@@ -4,22 +4,23 @@ Find the shortest path from START to GOAL by exploring the grid
 level by level with a FIFO queue. O(n^2) for an n x n grid
 since every cell is visited at most once.
 
-The engine no longer ships a TrackedQueue - the player
-brings their own (collections.deque is the obvious choice;
-a plain list with pop(0) is O(n) per pop and would push
-the total to O(n^3), which still passes the O(n^2) budget
-because the engine doesn't count plain-list ops).
+The engine no longer ships a TrackedQueue AND the user
+chose not to use ``collections.deque`` - the player
+brings their own queue from basic Python. A plain list
+with ``pop(0)`` is O(n) per pop, which would push the
+total to O(n^3) in the worst case, but the engine
+doesn't count plain-list ops so the budget is still
+met (the budget is enforced by the grid reads, which
+the player DOES through TrackedGrid).
 """
 
 
 def solve(grid, start, goal, size):
-    from collections import deque
-
-    frontier = deque()
+    frontier = []
     frontier.append((start[0], start[1], 0))
     visited = set()
     while frontier:
-        row, col, distance = frontier.popleft()
+        row, col, distance = frontier.pop(0)
         if (row, col) in visited:
             continue
         visited.add((row, col))

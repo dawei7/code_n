@@ -76,7 +76,7 @@ def run_with_trace(func: Callable, kwargs: dict[str, Any], counter: OperationCou
     def tracer(frame, event, arg):
         nonlocal step_count, last_step_update
         frame_file = os.path.normcase(os.path.abspath(frame.f_code.co_filename))
-        if frame_file == target_file and event in {"line", "return"}:
+        if frame_file == target_file and event in {"call", "line", "return"}:
             if count_lines and event == "line":
                 counter.call(f"line {frame.f_lineno}")
             if event == "line":

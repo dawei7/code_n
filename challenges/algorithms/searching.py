@@ -374,19 +374,19 @@ Find the shortest path from START to GOAL by exploring the grid
 level by level with a FIFO queue. O(n^2) for an n x n grid
 since every cell is visited at most once.
 
-The engine no longer ships a TrackedQueue - the player
-brings their own (collections.deque is the obvious choice).
+The engine no longer ships a TrackedQueue AND the user
+chose not to use ``collections.deque`` - the player
+brings their own queue from basic Python (a plain list
+with ``pop(0)``).
 """
 
 
 def solve(grid, start, goal, size):
-    from collections import deque
-
-    frontier = deque()
+    frontier = []
     frontier.append((start[0], start[1], 0))
     visited = set()
     while frontier:
-        row, col, distance = frontier.popleft()
+        row, col, distance = frontier.pop(0)
         if (row, col) in visited:
             continue
         visited.add((row, col))
