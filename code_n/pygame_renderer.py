@@ -210,7 +210,7 @@ DEFAULT_CELL_SIZE = 30
 # one cell. Smaller = more sensitive. The float accumulator carries
 # sub-cell motion between events, so very small drags feel smooth
 # rather than snapping to whole cells.
-PAN_PIXELS_PER_CELL = 16
+PAN_PIXELS_PER_CELL = 4
 
 # Time-based throttle for continuous arrow-key scrolling while a key
 # is held down. At 60 FPS this gives ~25 scroll steps per second.
@@ -1645,31 +1645,34 @@ class PygameRenderer:
     def _classify_variable(self, value, content_w: int, cell_size: int) -> tuple[str, Any, int]:
         """Return (kind, payload, height_px) for a local variable.
 
-        ``kind`` is one of: "list", "tuple", "dict", "set",
-        "scalar", "empty", "unknown". ``payload`` is whatever
-        the corresponding draw helper expects. ``height_px``
-        is the vertical space the rendering will consume (not
-        including the per-variable between-vars padding).
+        ``kind`` is one of: "list2d", "list", "tuple", "dict",
+        "set", "scalar", "empty", "unknown". ``payload`` is
+        whatever the corresponding draw helper expects.
+        ``height_px`` is the vertical space the rendering will
+        consume (not including the per-variable between-vars
+        padding).
 
         All the engine's tracked wrappers (TrackedList /
         TrackedGrid / TrackedQueue / TrackedStack / TrackedSet)
-        are unwrapped to their underlying Python types here so
-        the rest of the renderer can treat them like plain
-        lists / lists-of-lists / sets. The variables panel
-        shows them as a normal 1D strip of cells - the same
-        treatment a plain list / dict / set gets. The user
-        asked for this explicitly: 'Why is grid not displayed
-        like 2 normal 2d list? Instead it is something
-        special, please change it'. Same for TrackedQueue /
-        TrackedStack - the player should not need any special
-        import to get the queue / stack visualization; the
-        variables panel treats a list as a list.
+        are unwrapped to their underlying Python types. A
+        TrackedGrid is a list of lists, which the renderer
+        detects as the "list2d" kind and draws as a real 2D
+        grid (one row per inner list, one cell per element).
+        TrackedQueue / TrackedStack are lists, drawn as 1D
+        strips. The user asked for this:
+        'display a 2 dimensional list as 2 dimensions ... You
+        should generalize it, but somehow keep it smart.' The
+        auto-sized cell keeps a 5x5 readable and a 35x35
+        compact.
 
-        For sets of ``(int, int)`` tuples (e.g. BFS's
-        ``visited`` set), the 2D overlay (``set2d`` kind) is
-        kept because the user did not complain about it and
-        it carries useful information - the same data
-        rendered as a 1D set would lose the spatial layout.
+        The "set2d" 2D overlay for sets of ``(int, int)``
+        tuples (formerly used for BFS's ``visited`` set) is
+        removed. The user: 'Why visited looks like that?
+        Visited does not look like a real variable.' So
+        visited now renders as a plain set of 2-tuples,
+        each tuple drawn as a multi-line cell (one value per
+        line) - the 'single big field ()' the user asked
+        for, where the cell height matches the tuple length.
         """
         try:
             from code_n.tracked import (
@@ -1684,52 +1687,56 @@ class PygameRenderer:
         if TrackedSet is not None and isinstance(value, TrackedSet):
             value = set(value.raw)
         if TrackedGrid is not None and isinstance(value, TrackedGrid):
-            # A TrackedGrid's ``.raw`` is a list of lists - the
-            # normal 2D list shape. We pass it through; the
-            # standard list / list-of-lists rendering treats
-            # each inner list as a cell whose text is the
-            # inner list's repr. No special maze visualization.
-            value = value.raw
+            value = value.raw  # list of lists
         if TrackedQueue is not None and isinstance(value, (TrackedQueue, TrackedStack)):
-            # TrackedQueue / TrackedStack's ``.raw`` is a plain
-            # list. Same normal-list rendering as a regular
-            # Python list.
             value = list(value.raw)
 
-        # Set / list / tuple of (int, int) - render as a 2D
-        # overlay. Kept for sets of 2-tuples because the
-        # spatial layout carries information that a 1D strip
-        # wouldn't (e.g. BFS's ``visited`` shows which cells
-        # have been visited at a glance).
-        if isinstance(value, (set, list, tuple)) and value:
-            sample = next(iter(value))
-            if (isinstance(sample, tuple) and len(sample) == 2
-                    and all(isinstance(x, int) for x in sample)):
-                max_r = max(item[0] for item in value) + 1
-                max_c = max(item[1] for item in value) + 1
-                grid_cell = min(12, max(8, content_w // max(1, max_c)))
-                grid_cell = min(grid_cell, 14)
-                height = max_r * (grid_cell + 1) + 4
-                return "set2d", (set(value), max_r, max_c, grid_cell), height
+        # 2D list of lists - a real 2D grid. Detected by checking
+        # that every element is itself a list. Mixed types
+        # (e.g. ``[1, [2, 3], 4]``) fall through to the 1D
+        # list path instead.
+        if isinstance(value, list) and value and all(
+            isinstance(item, list) for item in value
+        ):
+            rows = len(value)
+            cols = max((len(row) for row in value), default=0)
+            # Smart auto-size: cap at 24px so a 5x5 grid is
+            # readable; shrink to fit a 35x35 grid in the panel
+            # width. Minimum 8px so even a 100x100 grid still
+            # fits (the user scrolls to see more).
+            cell_2d = min(24, max(8, content_w // max(1, cols)))
+            cell_gap = 1
+            height = rows * (cell_2d + cell_gap) + 4
+            return "list2d", (value, cell_2d), height
 
         # Standard collections. Each one is drawn as a single
         # row (or two rows for dicts: keys on top, values below)
-        # regardless of length - if the collection is longer
+        # regardless of length. If the collection is longer
         # than the panel width, the trailing cells are clipped
         # by the panel's set_clip() rect, and the user can
         # either wheel-zoom out to shrink the cells or accept
-        # the clip. The previous behavior wrapped at ~30 cells
-        # per row, which made a 50-element list look like a
-        # 2x25 mini-grid and broke the "this is a sequence"
-        # visual signal.
+        # the clip.
         if isinstance(value, (list, tuple)) and value:
             items = list(value)
-            return "list", (items, cell_size), cell_size + 2
+            # Height matches the tallest cell: scalars are
+            # one cell tall, tuple / list elements are N cells
+            # tall (one per sub-value). The strip is drawn
+            # with all cells aligned to the same y, and taller
+            # cells extend further down.
+            max_h = cell_size
+            for item in items:
+                if isinstance(item, (tuple, list)):
+                    max_h = max(max_h, len(item) * cell_size)
+            return "list", (items, cell_size), max_h + 2
         if isinstance(value, dict) and value:
             return "dict", (list(value.items()), cell_size), 2 * (cell_size + 2)
         if isinstance(value, set) and value:
             items = list(value)
-            return "set", (items, cell_size), cell_size + 2
+            max_h = cell_size
+            for item in items:
+                if isinstance(item, (tuple, list)):
+                    max_h = max(max_h, len(item) * cell_size)
+            return "set", (items, cell_size), max_h + 2
         if isinstance(value, (list, tuple, dict, set)):
             # Empty collection: still allocate one row of cells so
             # the player can see the variable is present.
@@ -1755,15 +1762,13 @@ class PygameRenderer:
         TrackedGrid / TrackedQueue / TrackedStack are no longer
         special-cased here - the classifier unwraps them to
         plain lists and the standard list / dict / set renderers
-        handle them. ``set2d`` (sets of ``(int, int)`` tuples) is
-        still here because the spatial layout is useful for
-        ``visited``-style overlays.
+        handle them. ``list2d`` is a list of lists (2D grid).
         """
-        if kind == "set2d":
-            value_set, max_r, max_c, grid_cell = payload
-            self._draw_2d_overlay(
-                screen, x, y, max_r, max_c, value_set,
-                cell_size=grid_cell,
+        if kind == "list2d":
+            data, cell_2d = payload
+            self._draw_2d_list(
+                screen, fonts, x, y, data, cell_2d,
+                var_name=var_name,
             )
         elif kind == "list":
             items, grid_cell = payload
@@ -1937,48 +1942,77 @@ class PygameRenderer:
         the clip. The user explicitly asked for this: "1 list
         should be just in 1 row, not wrapped".
 
-        Tuple elements get a wider cell ("single big field")
-        so their ``(a, b, c)`` text fits without aggressive
-        truncation - the user asked for tuples to show as ``()``
-        in a normal list view. The wider cell width is
-        proportional to the text length. List elements (e.g.
-        the inner lists of a 2D grid) stay at the standard
-        cell size with the standard truncation: a 35-element
-        inner list as one wide cell would blow the panel
-        width; the compact form keeps the grid's overall
-        shape scannable. Scalar elements also stay at the
-        standard cell size.
+        All cells are the same width (``cell_size``). Tuple
+        and list elements get a taller cell - one cell-size
+        per sub-value - so the values stack vertically. The
+        row height is the tallest cell's height, and shorter
+        cells just have empty space below them. This is the
+        "organize the cells always to match the content size"
+        the user asked for, and the "1 value per line" rendering
+        for tuples.
         """
         import pygame
         if not items:
             self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
             return
         cell_gap = 1
-        # Measure a single character's width once (M is the
-        # widest letter in most monospace fonts) so we can
-        # size the wider tuple cells to fit their text.
-        char_w = max(1, fonts["small"].size("M")[0])
         cx = x
         for index, item in enumerate(items):
-            if isinstance(item, tuple):
-                # Tuple cell: sized to fit the full repr
-                # (``(0, 0, 0)`` for a 3-tuple). The minimum
-                # is cell_size; long tuples get long cells,
-                # the user scrolls horizontally to see them.
-                label = self._format_value_label(item)
-                this_cell = max(cell_size, len(label) * char_w + 10)
-            else:
-                # Scalar or list element: standard cell size.
-                # The list case uses the normal truncation
-                # (6 chars) so a grid's 35-element inner list
-                # doesn't push the whole row off the panel.
-                this_cell = cell_size
             self._draw_one_cell(
-                screen, fonts, cx, y, this_cell, item,
+                screen, fonts, cx, y, cell_size, item,
                 touched_key=(var_name, index) if var_name else None,
                 cell_index=index,
             )
-            cx += this_cell + cell_gap
+            cx += cell_size + cell_gap
+
+    def _draw_2d_list(
+        self,
+        screen,
+        fonts,
+        x: int,
+        y: int,
+        data: list,
+        cell_size: int,
+        var_name: Optional[str] = None,
+    ) -> None:
+        """Render a list of lists as a real 2D grid.
+
+        One row per inner list, one cell per element. Cells
+        past the panel's right edge are clipped (the user
+        scrolls horizontally). The user asked for this:
+        'display a 2 dimensional list as 2 dimensions ... You
+        should generalize it, but somehow keep it smart.' The
+        'smart' part is the auto-sized cell - a 5x5 grid gets
+        up to 24px cells (readable), a 35x35 gets ~20px
+        (fits the panel width), a 100x100 gets the 8px
+        minimum. The cell_size comes from ``_classify_variable``
+        and the caller controls the y.
+        """
+        import pygame
+        if not data:
+            self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
+            return
+        cell_gap = 1
+        # Pad the row lengths so all rows align. The 2D list
+        # may be ragged (e.g. ``[[1, 2, 3], [4, 5]]``); we
+        # still draw a 3-wide grid with the missing cell left
+        # blank rather than collapsing the whole grid.
+        cols = max((len(row) for row in data), default=0)
+        for r, row in enumerate(data):
+            for c in range(cols):
+                if c >= len(row):
+                    continue  # leave the cell blank (ragged row)
+                value = row[c]
+                cx = x + c * (cell_size + cell_gap)
+                cy = y + r * (cell_size + cell_gap)
+                # Linear index for the per-cell label; (r, c)
+                # for the touched-cell key.
+                linear = r * cols + c
+                self._draw_one_cell(
+                    screen, fonts, cx, cy, cell_size, value,
+                    touched_key=(var_name, (r, c)) if var_name else None,
+                    cell_index=linear,
+                )
 
     def _draw_dict_strip(
         self,
@@ -2056,30 +2090,76 @@ class PygameRenderer:
         cell_index: Optional[int] = None,
     ) -> None:
         """Single-cell drawer used by every variable-visual helper.
-        Handles the label truncation, the per-cell index overlay,
-        and the touched-cell coloring. Kept private to this
-        section so the cell-strip dispatch in
-        ``_draw_variable_strip`` (the legacy 1D-only path) can
-        stay as a thin wrapper for backwards compatibility.
+        Handles the per-cell index overlay, the touched-cell
+        coloring, and the per-line content layout.
+
+        Tuple and list values are rendered as a "single big
+        field ()" - one cell, with each sub-value on its own
+        line. The cell height is ``cell_size * len(value)`` (one
+        cell-size per sub-value) and the cell width stays at
+        ``cell_size``. The user asked for this: 'Display tuples
+        in cells as 1 value per line and begin a new line for
+        a new value'. The caller is responsible for the
+        row-level layout (taller cells extend down from the
+        top of the row).
+
+        Scalar values are rendered as before: a single
+        ``cell_size``-square cell with the value centered.
         """
         import pygame
-        label = self._format_value_label(value)
-        if len(label) > 6:
-            label = label[:5] + "…"
-        rect = pygame.Rect(x, y, cell_size, cell_size)
+        # Compute cell height. Tuples / lists get one row per
+        # sub-value, so the cell grows taller for longer
+        # collections. Scalars stay at one cell tall.
+        if isinstance(value, (tuple, list)):
+            cell_height = cell_size * len(value) + 2
+        else:
+            cell_height = cell_size
+
+        # Background + border.
         bg = self._color_for_cell(touched_key)
+        rect = pygame.Rect(x, y, cell_size, cell_height)
         pygame.draw.rect(screen, bg, rect, border_radius=3)
         pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=3)
+
+        # Per-cell index in the top-left, only when the cell
+        # is wide enough to fit it (the same threshold as the
+        # legacy scalar cell so the index never crowds the
+        # value for tiny cells).
         if cell_index is not None and cell_size >= 18:
             idx_surface = fonts["small"].render(str(cell_index), True, self.MUTED)
             screen.blit(idx_surface, (x + 2, y + 1))
-        cell_font = fonts["cell"] if cell_size >= 24 else fonts["small"]
-        text_surface = cell_font.render(label, True, self.TEXT)
-        if cell_index is not None and cell_size >= 18:
-            value_rect = text_surface.get_rect(center=(rect.centerx, rect.centery + 5))
-            screen.blit(text_surface, value_rect)
+
+        # Content layout: tuple / list = one value per line,
+        # centered on its own row. Scalar = centered in the
+        # square cell. For multi-line cells the value sits a
+        # bit lower so the per-cell index at the top doesn't
+        # crowd it.
+        if isinstance(value, (tuple, list)):
+            for i, sub in enumerate(value):
+                sub_label = str(sub)
+                if len(sub_label) > 6:
+                    sub_label = sub_label[:5] + "…"
+                line_y = y + i * cell_size + cell_size // 2
+                text_surface = fonts["small"].render(sub_label, True, self.TEXT)
+                text_rect = text_surface.get_rect(
+                    center=(x + cell_size // 2, line_y),
+                )
+                screen.blit(text_surface, text_rect)
         else:
-            screen.blit(text_surface, text_surface.get_rect(center=rect.center))
+            label = self._format_value_label(value)
+            if len(label) > 6:
+                label = label[:5] + "…"
+            cell_font = fonts["cell"] if cell_size >= 24 else fonts["small"]
+            text_surface = cell_font.render(label, True, self.TEXT)
+            if cell_index is not None and cell_size >= 18:
+                value_rect = text_surface.get_rect(
+                    center=(rect.centerx, rect.centery + 5),
+                )
+                screen.blit(text_surface, value_rect)
+            else:
+                screen.blit(
+                    text_surface, text_surface.get_rect(center=rect.center),
+                )
 
     def _color_for_cell(self, touched_key) -> tuple:
         """Look up the touched-cell color for ``touched_key``

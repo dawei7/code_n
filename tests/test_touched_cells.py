@@ -467,24 +467,28 @@ class ClassifyVariableTests(unittest.TestCase):
         from code_n.pygame_renderer import PygameRenderer
         self.r = PygameRenderer(speed="instant")
 
-    def test_tracked_grid_classifies_as_list_of_lists(self):
-        """User directive: 'Why is grid not displayed like 2
-        normal 2d list? Instead it is something special,
-        please change it.' The TrackedGrid is unwrapped to its
-        ``.raw`` (a list of lists) and routed through the
-        standard list rendering - the same treatment a plain
-        2D list would get. No more 2D-maze special case.
+    def test_tracked_grid_classifies_as_list2d(self):
+        """User directive: 'display a 2 dimensional list as 2
+        dimensions ... You should generalize it, but somehow
+        keep it smart.' The TrackedGrid is unwrapped to its
+        ``.raw`` (a list of lists) and the new 'list2d' kind
+        draws it as a real 2D grid - one row per inner list,
+        one cell per element, with the cell size auto-fit to
+        the panel width (smaller for large grids, capped at
+        24px for small grids).
         """
         from code_n.tracked import TrackedGrid
         grid = TrackedGrid(5, 5, default=0)
         kind, payload, h = self.r._classify_variable(grid, content_w=200, cell_size=18)
-        self.assertEqual(kind, "list")
-        items, _ = payload
-        # 5 inner lists, each with 5 elements.
-        self.assertEqual(len(items), 5)
-        self.assertEqual(len(items[0]), 5)
-        # Height = 1 row (it's a 1D list of inner lists now).
-        self.assertEqual(h, 18 + 2)
+        self.assertEqual(kind, "list2d")
+        data, cell_2d = payload
+        # 5 rows, 5 cols, auto-sized cell between 8 and 24.
+        self.assertEqual(len(data), 5)
+        self.assertEqual(len(data[0]), 5)
+        self.assertGreaterEqual(cell_2d, 8)
+        self.assertLessEqual(cell_2d, 24)
+        # Height = rows * (cell + gap) + bottom padding.
+        self.assertEqual(h, 5 * (cell_2d + 1) + 4)
 
     def test_tracked_queue_classifies_as_list(self):
         """User directive: 'it is not allowed to have any such
@@ -518,28 +522,29 @@ class ClassifyVariableTests(unittest.TestCase):
         items, _ = payload
         self.assertEqual(items, [10, 20])
 
-    def test_set_of_2tuples_classifies_as_set2d(self):
-        """BFS's ``visited`` is a set of (row, col) tuples; the
-        renderer should detect this and treat it as a 2D overlay
-        rather than dumping the tuples as one giant line of text.
+    def test_set_of_2tuples_classifies_as_set(self):
+        """BFS's ``visited`` is a set of (row, col) tuples. The
+        old 2D overlay ('set2d' kind) is removed per the
+        user's complaint ('Visited does not look like a real
+        variable'); visited is now classified as a regular
+        set. The tuple elements are still drawn as multi-line
+        cells by ``_draw_set_strip`` / ``_draw_one_cell``.
         """
         visited = {(0, 0), (0, 1), (1, 0), (1, 1)}
         kind, payload, h = self.r._classify_variable(visited, content_w=200, cell_size=18)
-        self.assertEqual(kind, "set2d")
-        value_set, max_r, max_c, grid_cell = payload
-        self.assertEqual(value_set, visited)
-        # The grid extent is inferred from the data (max + 1).
-        self.assertEqual(max_r, 2)
-        self.assertEqual(max_c, 2)
-        self.assertLessEqual(grid_cell, 14)
+        self.assertEqual(kind, "set")
+        items, _ = payload
+        self.assertEqual(set(items), visited)
 
-    def test_list_of_2tuples_also_classifies_as_set2d(self):
+    def test_list_of_2tuples_classifies_as_list(self):
         """``frontier`` in BFS is a TrackedQueue of (row, col, dist)
-        tuples, but plain lists of (row, col) pairs should also
-        be detected as a 2D overlay."""
+        tuples; plain lists of (row, col) pairs are now
+        classified as a regular list (the 'set2d' overlay for
+        collections of 2-tuples was removed). The tuple
+        elements are drawn as multi-line cells."""
         frontier = [(0, 0), (0, 1), (1, 0), (2, 3)]
         kind, payload, h = self.r._classify_variable(frontier, content_w=200, cell_size=18)
-        self.assertEqual(kind, "set2d")
+        self.assertEqual(kind, "list")
 
     def test_list_classifies_as_list(self):
         kind, payload, h = self.r._classify_variable([1, 2, 3], content_w=200, cell_size=18)

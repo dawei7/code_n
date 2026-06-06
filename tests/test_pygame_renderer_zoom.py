@@ -212,21 +212,23 @@ class PanStateTests(unittest.TestCase):
         r._right_panning = True
         r.scroll_x = 5
 
-        # Simulate play()'s accumulator logic on a 5px drag.
-        # PAN_PIXELS_PER_CELL is 16, so 5px is sub-cell and should not
+        # Simulate play()'s accumulator logic on a 3px drag.
+        # PAN_PIXELS_PER_CELL is 4 (the renderer was made more
+        # sensitive per user feedback: 'panning should be much
+        # more sensitive'). 3px is sub-cell and should not
         # change scroll_x.
         accum = 0.0
-        rel = 5
+        rel = 3
         accum += rel
         dx = -int(accum // PAN_PIXELS_PER_CELL)
         accum += dx * PAN_PIXELS_PER_CELL
         self.assertEqual(dx, 0)
-        self.assertEqual(accum, 5.0)
+        self.assertEqual(accum, 3.0)
         self.assertEqual(r.scroll_x, 5)
 
-        # Now add another 12px (total 17px). That crosses one boundary
-        # and leaves 1px in the accumulator.
-        accum += 12
+        # Now add another 2px (total 5px). That crosses one
+        # boundary and leaves 1px in the accumulator.
+        accum += 2
         dx = -int(accum // PAN_PIXELS_PER_CELL)
         accum += dx * PAN_PIXELS_PER_CELL
         self.assertEqual(dx, -1)
