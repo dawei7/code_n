@@ -1596,21 +1596,24 @@ class PygameRenderer:
                 height = max_r * (grid_cell + 1) + 4
                 return "set2d", (set(value), max_r, max_c, grid_cell), height
 
-        # Standard collections.
+        # Standard collections. Each one is drawn as a single
+        # row (or two rows for dicts: keys on top, values below)
+        # regardless of length - if the collection is longer
+        # than the panel width, the trailing cells are clipped
+        # by the panel's set_clip() rect, and the user can
+        # either wheel-zoom out to shrink the cells or accept
+        # the clip. The previous behavior wrapped at ~30 cells
+        # per row, which made a 50-element list look like a
+        # 2x25 mini-grid and broke the "this is a sequence"
+        # visual signal.
         if isinstance(value, (list, tuple)) and value:
             items = list(value)
-            cols = max(1, (content_w) // (cell_size + 1))
-            rows = (len(items) + cols - 1) // cols
-            return "list", (items, cell_size), rows * (cell_size + 1) + 2
+            return "list", (items, cell_size), cell_size + 2
         if isinstance(value, dict) and value:
-            cols = max(1, (content_w) // (cell_size + 1))
-            rows = max(2, ((len(value) + cols - 1) // cols) * 2)
-            return "dict", (list(value.items()), cell_size), rows * (cell_size + 1) + 2
+            return "dict", (list(value.items()), cell_size), 2 * (cell_size + 2)
         if isinstance(value, set) and value:
             items = list(value)
-            cols = max(1, (content_w) // (cell_size + 1))
-            rows = (len(items) + cols - 1) // cols
-            return "set", (items, cell_size), rows * (cell_size + 1) + 2
+            return "set", (items, cell_size), cell_size + 2
         if isinstance(value, (list, tuple, dict, set)):
             # Empty collection: still allocate one row of cells so
             # the player can see the variable is present.
@@ -1822,21 +1825,22 @@ class PygameRenderer:
         cell_size: int,
         var_name: Optional[str] = None,
     ) -> None:
-        """Render a list / tuple as 1+ rows of cells with per-cell
-        index labels (the smaller-cell version of the legacy
-        list rendering path)."""
+        """Render a list / tuple as ONE row of cells. No
+        wrapping - a 50-element list is 50 cells in a single
+        horizontal line. Cells past the panel's right edge are
+        clipped by the panel's set_clip() rect; the user can
+        wheel-zoom out to shrink the cell size, or just accept
+        the clip. The user explicitly asked for this: "1 list
+        should be just in 1 row, not wrapped".
+        """
         import pygame
         if not items:
             self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
             return
         cell_gap = 1
-        cols_per_row = max(1, (x + 600) // (cell_size + cell_gap))  # crude wrap
         for index, item in enumerate(items):
-            row = index // cols_per_row
-            col = index % cols_per_row
-            cx = x + col * (cell_size + cell_gap)
-            cy = y + row * (cell_size + cell_gap)
-            self._draw_one_cell(screen, fonts, cx, cy, cell_size, item,
+            cx = x + index * (cell_size + cell_gap)
+            self._draw_one_cell(screen, fonts, cx, y, cell_size, item,
                                 touched_key=(var_name, index) if var_name else None,
                                 cell_index=index)
 
@@ -1850,8 +1854,11 @@ class PygameRenderer:
         cell_size: int,
         var_name: Optional[str] = None,
     ) -> None:
-        """Render a dict as a 2-row strip (keys on top, values on
-        bottom)."""
+        """Render a dict as TWO rows of cells (keys on top, values
+        on the bottom). No wrapping, no truncation - a dict
+        with 50 entries is 50 columns wide. Same clipping
+        behavior as ``_draw_flat_strip``.
+        """
         import pygame
         if not items:
             self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
@@ -1874,20 +1881,17 @@ class PygameRenderer:
         cell_size: int,
         var_name: Optional[str] = None,
     ) -> None:
-        """Render a set as 1+ rows of cells (no index labels, since
-        sets are unordered)."""
+        """Render a set as ONE row of cells (no index labels, since
+        sets are unordered). No wrapping, no truncation - same
+        one-row rule as lists / tuples."""
         import pygame
         if not items:
             self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
             return
         cell_gap = 1
-        cols_per_row = max(1, (x + 600) // (cell_size + cell_gap))
         for index, item in enumerate(items):
-            row = index // cols_per_row
-            col = index % cols_per_row
-            cx = x + col * (cell_size + cell_gap)
-            cy = y + row * (cell_size + cell_gap)
-            self._draw_one_cell(screen, fonts, cx, cy, cell_size, item,
+            cx = x + index * (cell_size + cell_gap)
+            self._draw_one_cell(screen, fonts, cx, y, cell_size, item,
                                 touched_key=(var_name, item) if var_name else None)
 
     def _draw_scalar_cell(
