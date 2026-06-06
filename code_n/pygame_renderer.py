@@ -527,9 +527,18 @@ class PygameRenderer:
             overlays = {}
             source_breakpoints_hit = set()
             last_op_detail = ""
-            # Each fresh replay starts at the default zoom (30px per cell)
-            # and the top-left of the grid.
-            self.cell_size = 44
+            # Each fresh replay starts at the default variables
+            # cell size (18px) and the top-left of the grid.
+            # 18px is a reasonable default for the variables
+            # panel - big enough that 2-3 digit values are
+            # readable, small enough that a 50-element list
+            # mostly fits in the panel width with horizontal
+            # panning for the rest. The old 44 was the
+            # main-algorithm-grid default; that grid isn't
+            # drawn in the main area anymore, so 44 would just
+            # have made the variables cells too big on first
+            # frame. The user can wheel-zoom from here.
+            self.cell_size = 18
             self.scroll_x = 0
             self.scroll_y = 0
             # Reset the variables-panel scroll too - the locals
@@ -673,36 +682,28 @@ class PygameRenderer:
                         self._pan_accum_y += dy_pixels * PAN_PIXELS_PER_CELL
                         self._scroll_vars(dx_pixels, dy_pixels)
                 elif mousewheel_event is not None and event.type == mousewheel_event:
-                    # Mouse wheel: scroll the variables panel
-                    # (both X and Y) when the cursor is over the
-                    # panel. Outside the variables panel the
-                    # wheel does nothing - panning and scrolling
-                    # live there and only there. (The old behavior
-                    # was to zoom the main algorithm grid; that
-                    # grid isn't drawn in the main area anymore,
-                    # so the wheel would have been a no-op
-                    # anyway.)
+                    # Mouse wheel: ZOOM the variables panel cell
+                    # size when the cursor is over the panel.
+                    # Outside the panel the wheel does nothing -
+                    # panning (right-drag) and zooming (wheel)
+                    # live there and only there. (User directive:
+                    # 'zooming with mouse scroll should only work
+                    # in variables panel'. Earlier the wheel did
+                    # vertical scrolling of the variables list;
+                    # that scrolling is now handled by right-drag
+                    # panning, which covers both axes.)
                     wheel_y = getattr(event, "y", 0) or 0
-                    wheel_x = getattr(event, "x", 0) or 0
-                    if (wheel_y or wheel_x) and self._mouse_in_vars_panel(
+                    if wheel_y and self._mouse_in_vars_panel(
                         getattr(event, "pos", None) or pygame.mouse.get_pos()
                     ):
-                        # Shift-wheel gives horizontal scroll even
-                        # without right-drag, in case the user
-                        # prefers it.
-                        mods = pygame.key.get_mods()
-                        if mods & pygame.KMOD_SHIFT:
-                            self._scroll_vars(-wheel_y * 18, 0)
-                        else:
-                            self._scroll_vars(0, -wheel_y * 18)
+                        current_detail = self.zoom_by(wheel_y * ZOOM_STEP)
                 elif old_mousewheel is not None and event.type == pygame.MOUSEBUTTONDOWN and event.button in (4, 5):
                     # Fallback for pygame 1.x: button 4 = wheel up, 5 = wheel down.
                     if self._mouse_in_vars_panel(getattr(event, "pos", None) or pygame.mouse.get_pos()):
-                        # Scroll the variables panel: button 4 = up (negative dy).
-                        self._scroll_vars(0, 18 if event.button == 4 else -18)
+                        # Zoom the variables panel: button 4 = bigger cells, 5 = smaller.
+                        current_detail = self.zoom_by(ZOOM_STEP if event.button == 4 else -ZOOM_STEP)
                     else:
-                        # Outside the panel: no-op (no more main
-                        # grid to zoom).
+                        # Outside the panel: no-op.
                         pass
                 elif event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_ESCAPE, pygame.K_q):
