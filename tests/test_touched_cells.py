@@ -467,41 +467,54 @@ class ClassifyVariableTests(unittest.TestCase):
         from code_n.pygame_renderer import PygameRenderer
         self.r = PygameRenderer(speed="instant")
 
-    def test_tracked_grid_classifies_as_grid(self):
+    def test_tracked_grid_classifies_as_list_of_lists(self):
+        """User directive: 'Why is grid not displayed like 2
+        normal 2d list? Instead it is something special,
+        please change it.' The TrackedGrid is unwrapped to its
+        ``.raw`` (a list of lists) and routed through the
+        standard list rendering - the same treatment a plain
+        2D list would get. No more 2D-maze special case.
+        """
         from code_n.tracked import TrackedGrid
         grid = TrackedGrid(5, 5, default=0)
         kind, payload, h = self.r._classify_variable(grid, content_w=200, cell_size=18)
-        self.assertEqual(kind, "grid")
-        # Payload is (raw_data, cell_size).
-        raw, grid_cell = payload
-        self.assertEqual(len(raw), 5)
-        self.assertEqual(len(raw[0]), 5)
-        # Cell size is bounded so a 35x35 grid still fits in the
-        # panel width; max is 14 so values stay readable.
-        self.assertLessEqual(grid_cell, 14)
-        self.assertGreaterEqual(grid_cell, 8)
-        # Height = rows * (cell + gap) + small bottom padding.
-        self.assertGreater(h, 0)
+        self.assertEqual(kind, "list")
+        items, _ = payload
+        # 5 inner lists, each with 5 elements.
+        self.assertEqual(len(items), 5)
+        self.assertEqual(len(items[0]), 5)
+        # Height = 1 row (it's a 1D list of inner lists now).
+        self.assertEqual(h, 18 + 2)
 
-    def test_tracked_queue_classifies_as_queue(self):
+    def test_tracked_queue_classifies_as_list(self):
+        """User directive: 'it is not allowed to have any such
+        special imports like from code_n.tracked import
+        TrackedQueue'. The TrackedQueue is unwrapped to its
+        ``.raw`` (a plain list) and rendered with the same
+        list-of-cells treatment a normal Python list would
+        get. No more vertical-strip special case.
+        """
         from code_n.tracked import TrackedQueue
         q = TrackedQueue()
         q.enqueue(1)
         q.enqueue(2)
         q.enqueue(3)
         kind, payload, h = self.r._classify_variable(q, content_w=200, cell_size=18)
-        self.assertEqual(kind, "queue")
+        self.assertEqual(kind, "list")
         items, _ = payload
         self.assertEqual(items, [1, 2, 3])
-        self.assertGreater(h, 0)
+        self.assertEqual(h, 18 + 2)
 
-    def test_tracked_stack_classifies_as_stack(self):
+    def test_tracked_stack_classifies_as_list(self):
+        """Same as the TrackedQueue test: the TrackedStack is
+        unwrapped to a plain list and routed through the
+        standard list rendering."""
         from code_n.tracked import TrackedStack
         s = TrackedStack()
         s.push(10)
         s.push(20)
         kind, payload, h = self.r._classify_variable(s, content_w=200, cell_size=18)
-        self.assertEqual(kind, "stack")
+        self.assertEqual(kind, "list")
         items, _ = payload
         self.assertEqual(items, [10, 20])
 

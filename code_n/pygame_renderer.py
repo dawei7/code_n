@@ -1645,72 +1645,68 @@ class PygameRenderer:
     def _classify_variable(self, value, content_w: int, cell_size: int) -> tuple[str, Any, int]:
         """Return (kind, payload, height_px) for a local variable.
 
-        ``kind`` is one of: "grid", "queue", "stack", "set2d",
-        "list", "tuple", "dict", "set", "scalar", "unknown".
-        ``payload`` is whatever the corresponding draw helper
-        expects (a 2D list for "grid", a flat list for queue/stack,
-        the raw collection for "set2d", etc.). ``height_px`` is the
-        vertical space the rendering will consume (not including
-        the per-variable between-vars padding, which the caller
-        adds).
+        ``kind`` is one of: "list", "tuple", "dict", "set",
+        "scalar", "empty", "unknown". ``payload`` is whatever
+        the corresponding draw helper expects. ``height_px``
+        is the vertical space the rendering will consume (not
+        including the per-variable between-vars padding).
+
+        All the engine's tracked wrappers (TrackedList /
+        TrackedGrid / TrackedQueue / TrackedStack / TrackedSet)
+        are unwrapped to their underlying Python types here so
+        the rest of the renderer can treat them like plain
+        lists / lists-of-lists / sets. The variables panel
+        shows them as a normal 1D strip of cells - the same
+        treatment a plain list / dict / set gets. The user
+        asked for this explicitly: 'Why is grid not displayed
+        like 2 normal 2d list? Instead it is something
+        special, please change it'. Same for TrackedQueue /
+        TrackedStack - the player should not need any special
+        import to get the queue / stack visualization; the
+        variables panel treats a list as a list.
+
+        For sets of ``(int, int)`` tuples (e.g. BFS's
+        ``visited`` set), the 2D overlay (``set2d`` kind) is
+        kept because the user did not complain about it and
+        it carries useful information - the same data
+        rendered as a 1D set would lose the spatial layout.
         """
         try:
             from code_n.tracked import (
-                TrackedGrid, TrackedQueue, TrackedStack, TrackedList, TrackedSet,
+                TrackedGrid, TrackedList, TrackedQueue, TrackedSet, TrackedStack,
             )
         except ImportError:
-            TrackedGrid = TrackedQueue = TrackedStack = TrackedList = TrackedSet = None  # noqa
+            TrackedGrid = TrackedList = TrackedQueue = TrackedSet = TrackedStack = None  # noqa
 
-        # 2D grid (TrackedGrid) — render as a 2D maze.
-        if TrackedGrid is not None and isinstance(value, TrackedGrid):
-            raw = value.raw
-            # Use smaller cells for 2D so a 35x35 fits in the
-            # panel width. 10px per cell is enough to see the
-            # value (0/1) when zoomed in mentally.
-            grid_cell = min(12, max(8, content_w // max(1, len(raw[0]) if raw else 1)))
-            grid_cell = min(grid_cell, 14)
-            height = len(raw) * (grid_cell + 1) + 4
-            return "grid", (raw, grid_cell), height
-
-        # Queue / Stack — render as a vertical list of rows
-        # (one element per row). Each element is either a
-        # single scalar cell or, if the element is a tuple, a
-        # row of cells (one per sub-value). The whole list
-        # grows downward; the variables panel scrolls if it
-        # doesn't fit.
-        if TrackedQueue is not None and isinstance(value, TrackedQueue):
-            items = list(value.raw)
-            grid_cell = cell_size
-            # Total height = label row (20px) + one row per
-            # element. Each row is cell_size + 4 (gap). The
-            # scroll handles overflow.
-            per_row_h = grid_cell + 4
-            height = 20 + (len(items) * per_row_h if items else grid_cell) + 2
-            return "queue", (items, grid_cell), height
-        if TrackedStack is not None and isinstance(value, TrackedStack):
-            items = list(value.raw)
-            grid_cell = cell_size
-            per_row_h = grid_cell + 4
-            height = 20 + (len(items) * per_row_h if items else grid_cell) + 2
-            return "stack", (items, grid_cell), height
-
-        # Unwrap TrackedList and TrackedSet to plain list/set so
-        # the rest of the classification can use the standard
-        # list/tuple/dict/set checks.
+        # Unwrap all tracked wrappers to plain Python types.
         if TrackedList is not None and isinstance(value, TrackedList):
             value = list(value.raw)
         if TrackedSet is not None and isinstance(value, TrackedSet):
             value = set(value.raw)
+        if TrackedGrid is not None and isinstance(value, TrackedGrid):
+            # A TrackedGrid's ``.raw`` is a list of lists - the
+            # normal 2D list shape. We pass it through; the
+            # standard list / list-of-lists rendering treats
+            # each inner list as a cell whose text is the
+            # inner list's repr. No special maze visualization.
+            value = value.raw
+        if TrackedQueue is not None and isinstance(value, (TrackedQueue, TrackedStack)):
+            # TrackedQueue / TrackedStack's ``.raw`` is a plain
+            # list. Same normal-list rendering as a regular
+            # Python list.
+            value = list(value.raw)
 
-        # Set / list / tuple of (int, int) — render as a 2D
-        # overlay. The size is inferred from the max values + 1.
+        # Set / list / tuple of (int, int) - render as a 2D
+        # overlay. Kept for sets of 2-tuples because the
+        # spatial layout carries information that a 1D strip
+        # wouldn't (e.g. BFS's ``visited`` shows which cells
+        # have been visited at a glance).
         if isinstance(value, (set, list, tuple)) and value:
             sample = next(iter(value))
             if (isinstance(sample, tuple) and len(sample) == 2
                     and all(isinstance(x, int) for x in sample)):
                 max_r = max(item[0] for item in value) + 1
                 max_c = max(item[1] for item in value) + 1
-                # Use a smaller cell size for the overlay.
                 grid_cell = min(12, max(8, content_w // max(1, max_c)))
                 grid_cell = min(grid_cell, 14)
                 height = max_r * (grid_cell + 1) + 4
@@ -1756,26 +1752,14 @@ class PygameRenderer:
     ) -> None:
         """Render a classified variable. The classification was done
         by ``_classify_variable``; this method just dispatches.
+        TrackedGrid / TrackedQueue / TrackedStack are no longer
+        special-cased here - the classifier unwraps them to
+        plain lists and the standard list / dict / set renderers
+        handle them. ``set2d`` (sets of ``(int, int)`` tuples) is
+        still here because the spatial layout is useful for
+        ``visited``-style overlays.
         """
-        if kind == "grid":
-            raw, grid_cell = payload
-            self._draw_2d_grid(
-                screen, x, y, raw,
-                cell_size=grid_cell, label_kind="walkable",
-            )
-        elif kind == "queue":
-            items, grid_cell = payload
-            self._draw_strip_with_label(
-                screen, fonts, x, y, items, grid_cell,
-                label="front→", var_name=var_name,
-            )
-        elif kind == "stack":
-            items, grid_cell = payload
-            self._draw_strip_with_label(
-                screen, fonts, x, y, items, grid_cell,
-                label="top→", var_name=var_name,
-            )
-        elif kind == "set2d":
+        if kind == "set2d":
             value_set, max_r, max_c, grid_cell = payload
             self._draw_2d_overlay(
                 screen, x, y, max_r, max_c, value_set,
@@ -1952,17 +1936,49 @@ class PygameRenderer:
         wheel-zoom out to shrink the cell size, or just accept
         the clip. The user explicitly asked for this: "1 list
         should be just in 1 row, not wrapped".
+
+        Tuple elements get a wider cell ("single big field")
+        so their ``(a, b, c)`` text fits without aggressive
+        truncation - the user asked for tuples to show as ``()``
+        in a normal list view. The wider cell width is
+        proportional to the text length. List elements (e.g.
+        the inner lists of a 2D grid) stay at the standard
+        cell size with the standard truncation: a 35-element
+        inner list as one wide cell would blow the panel
+        width; the compact form keeps the grid's overall
+        shape scannable. Scalar elements also stay at the
+        standard cell size.
         """
         import pygame
         if not items:
             self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
             return
         cell_gap = 1
+        # Measure a single character's width once (M is the
+        # widest letter in most monospace fonts) so we can
+        # size the wider tuple cells to fit their text.
+        char_w = max(1, fonts["small"].size("M")[0])
+        cx = x
         for index, item in enumerate(items):
-            cx = x + index * (cell_size + cell_gap)
-            self._draw_one_cell(screen, fonts, cx, y, cell_size, item,
-                                touched_key=(var_name, index) if var_name else None,
-                                cell_index=index)
+            if isinstance(item, tuple):
+                # Tuple cell: sized to fit the full repr
+                # (``(0, 0, 0)`` for a 3-tuple). The minimum
+                # is cell_size; long tuples get long cells,
+                # the user scrolls horizontally to see them.
+                label = self._format_value_label(item)
+                this_cell = max(cell_size, len(label) * char_w + 10)
+            else:
+                # Scalar or list element: standard cell size.
+                # The list case uses the normal truncation
+                # (6 chars) so a grid's 35-element inner list
+                # doesn't push the whole row off the panel.
+                this_cell = cell_size
+            self._draw_one_cell(
+                screen, fonts, cx, y, this_cell, item,
+                touched_key=(var_name, index) if var_name else None,
+                cell_index=index,
+            )
+            cx += this_cell + cell_gap
 
     def _draw_dict_strip(
         self,
