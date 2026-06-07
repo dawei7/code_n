@@ -30,13 +30,18 @@ logs/
 web/node_modules/
 web/dist/
 web/.vite/
+web/*.tsbuildinfo
+web/vite.config.d.ts
+web/vite.config.js
 
 # Electron desktop wrapper
 electron/node_modules/
 electron/dist/
+electron/release/
 
-# Server build artifacts (future PyInstaller bundling)
+# Server build artifacts (PyInstaller bundling)
 server/dist/
+server/build/
 
 # Editor caches
 .idea/

@@ -1,0 +1,35 @@
+{
+  "appId": "com.dawei7.coden",
+  "productName": "cOde(n)",
+  "copyright": "Copyright © 2026 dawei7",
+  "directories": {
+    "output": "release"
+  },
+  "files": [
+    "dist/**/*",
+    "package.json"
+  ],
+  "extraResources": [
+    {
+      "from": "../server/dist/coden-server",
+      "to": "coden-server"
+    }
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "assets/icon.ico",
+    "artifactName": "coden-${version}-portable.${ext}"
+  },
+  "portable": {
+    "artifactName": "coden-${version}-portable.exe",
+    "splashImage": null
+  },
+  "asar": true,
+  "compression": "normal",
+  "buildDependenciesFromSource": false
+}

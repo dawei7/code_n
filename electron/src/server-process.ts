@@ -1,14 +1,23 @@
 /**
- * Server process management for the Electron dev launcher.
+ * Server process management for the Electron desktop wrapper.
  *
- * Spawns ``uvicorn`` as a child process, parses the port from
- * stdout, polls ``/api/health`` until the server is ready, and
- * exposes a ``kill()`` method that the main process calls on
- * Electron quit so the uvicorn process doesn't outlive the app.
+ * Two spawn modes:
  *
- * The Electron dev launcher is a stopgap until the full
- * PyInstaller `coden-server.exe` + electron-builder NSIS
- * packaging is implemented (next sprint per the rebuild plan).
+ *   1. **Bundled** (production) — when electron-builder packages the
+ *      PyInstaller output into ``extraResources``, the bundled
+ *      ``coden-server.exe`` lives at
+ *      ``process.resourcesPath/coden-server/coden-server.exe``. We
+ *      spawn it directly. Its stdout uses the same uvicorn logging
+ *      format as dev, so the port-parsing + health-polling code
+ *      below is identical.
+ *
+ *   2. **Dev** (no bundled server) — fall back to spawning
+ *      ``python -m uvicorn`` from the repo's venv. Used when you
+ *      run ``npm start`` in electron/ without first running
+ *      ``build_app.py`` (which produces the PyInstaller bundle).
+ *
+ * The same ``startServer()`` function picks one based on which
+ * artifact is present on disk.
  */
 
 import { spawn, ChildProcess } from 'node:child_process';
@@ -16,7 +25,7 @@ import * as path from 'node:path';
 import * as fs from 'node:fs';
 
 
-/** How long to wait for uvicorn to log its port line, then for /api/health. */
+/** How long to wait for the server to log its port line, then for /api/health. */
 const PORT_TIMEOUT_MS = 10_000;
 const HEALTH_TIMEOUT_MS = 10_000;
 const HEALTH_POLL_INTERVAL_MS = 100;
@@ -25,6 +34,19 @@ export interface ServerHandle {
   process: ChildProcess;
   port: number;
   kill(): void;
+  /** Where the server actually lives on disk (for diagnostics). */
+  source: 'bundled' | 'dev-venv';
+}
+
+
+function bundledServerPath(): string | null {
+  // electron-builder puts extraResources at process.resourcesPath.
+  // In dev, process.resourcesPath is the electron/ directory, not
+  // the packaging output, so the check naturally fails.
+  if (!process.resourcesPath) return null;
+  const exeName = process.platform === 'win32' ? 'coden-server.exe' : 'coden-server';
+  const candidate = path.join(process.resourcesPath, 'coden-server', exeName);
+  return fs.existsSync(candidate) ? candidate : null;
 }
 
 
@@ -47,32 +69,58 @@ function findPythonExe(repoRoot: string): string {
 
 
 /**
- * Spawn uvicorn and wait until the server is ready to accept requests.
+ * Spawn the FastAPI server (bundled or dev) and wait until it's
+ * ready to accept requests. On any failure, the child process is
+ * killed before the error is thrown so the caller doesn't have to
+ * clean up.
  *
- * On any failure, the child process is killed before the error is
- * thrown so the caller doesn't have to clean up.
+ * @param repoRoot    In dev, used as cwd + CODEN_HOME. In production
+ *                    (bundled), ignored — the caller passes a
+ *                    writable ``userData`` dir via ``codenHome``.
+ * @param codenHome   Directory where ``progress.json`` and
+ *                    ``solutions/`` live. Required for the bundled
+ *                    case (the exe's install dir is read-only on
+ *                    Windows). In dev, defaults to ``repoRoot``.
  */
-export async function startServer(repoRoot: string): Promise<ServerHandle> {
-  const pythonExe = findPythonExe(repoRoot);
+export async function startServer(
+  repoRoot: string,
+  codenHome: string = repoRoot,
+): Promise<ServerHandle> {
+  // --- Choose the spawn target ---
+  const bundled = bundledServerPath();
+  let child: ChildProcess;
+  let source: 'bundled' | 'dev-venv';
 
-  const child = spawn(
-    pythonExe,
-    [
-      '-m', 'uvicorn',
-      'server.app.main:app',
-      '--host', '127.0.0.1',
-      '--port', '0',  // pick a free port; we read it from stdout
-    ],
-    {
-      cwd: repoRoot,
-      env: { ...process.env, CODEN_HOME: repoRoot },
+  if (bundled) {
+    source = 'bundled';
+    child = spawn(bundled, [], {
+      env: { ...process.env, CODEN_HOME: codenHome },
       stdio: ['ignore', 'pipe', 'pipe'],
-    },
-  );
+      windowsHide: true,
+    });
+  } else {
+    source = 'dev-venv';
+    const pythonExe = findPythonExe(repoRoot);
+    child = spawn(
+      pythonExe,
+      [
+        '-m', 'uvicorn',
+        'server.app.main:app',
+        '--host', '127.0.0.1',
+        '--port', '0',  // pick a free port; we read it from stdout
+      ],
+      {
+        cwd: repoRoot,
+        env: { ...process.env, CODEN_HOME: codenHome },
+        stdio: ['ignore', 'pipe', 'pipe'],
+        windowsHide: true,
+      },
+    );
+  }
 
-  // If uvicorn exits before we can parse the port, surface that error.
-  // We use a holder object so the closure can mutate the inner value
-  // without TypeScript's flow analysis narrowing it to `never`.
+  // If the server exits before we can parse the port, surface that
+  // error. Holder object so the closure can mutate without
+  // TypeScript's flow analysis narrowing it to `never`.
   const exited: { code: number | null | undefined } = { code: undefined };
   child.on('exit', (code) => {
     exited.code = code;
@@ -91,25 +139,24 @@ export async function startServer(repoRoot: string): Promise<ServerHandle> {
     };
     child.stdout?.on('data', onData);
     child.stderr?.on('data', (chunk) => {
-      // Forward uvicorn's stderr to the parent process so the
-      // developer can see it in the Electron terminal.
-      process.stderr.write(`[uvicorn] ${chunk.toString()}`);
+      // Forward stderr to the parent process so the developer
+      // can see it in the Electron terminal.
+      process.stderr.write(`[server] ${chunk.toString()}`);
     });
 
     const timer = setTimeout(() => {
       child.stdout?.off('data', onData);
       reject(new Error(
-        `Timeout (${PORT_TIMEOUT_MS}ms) waiting for uvicorn to print its port. ` +
+        `Timeout (${PORT_TIMEOUT_MS}ms) waiting for server to print its port. ` +
         `Last stdout: ${buffer.slice(-200)}`,
       ));
     }, PORT_TIMEOUT_MS);
 
-    // Race the timer with the child's exit event.
     const interval = setInterval(() => {
-      if (exited) {
+      if (exited.code !== undefined) {
         clearTimeout(timer);
         clearInterval(interval);
-        reject(new Error(`uvicorn exited with code ${exited.code} before printing a port`));
+        reject(new Error(`server exited with code ${exited.code} before printing a port`));
       }
     }, 100);
   });
@@ -118,8 +165,8 @@ export async function startServer(repoRoot: string): Promise<ServerHandle> {
   const healthUrl = `http://127.0.0.1:${port}/api/health`;
   const deadline = Date.now() + HEALTH_TIMEOUT_MS;
   while (Date.now() < deadline) {
-    if (exited) {
-      throw new Error(`uvicorn exited with code ${exited.code} before becoming healthy`);
+    if (exited.code !== undefined) {
+      throw new Error(`server exited with code ${exited.code} before becoming healthy`);
     }
     try {
       const res = await fetch(healthUrl);
@@ -127,6 +174,7 @@ export async function startServer(repoRoot: string): Promise<ServerHandle> {
         return {
           process: child,
           port,
+          source,
           kill() {
             try {
               child.kill();

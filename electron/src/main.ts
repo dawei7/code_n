@@ -32,10 +32,17 @@ function resolveRepoRoot(): string {
 
 async function createWindow(): Promise<void> {
   const repoRoot = resolveRepoRoot();
+  // In production, progress.json + solutions/ live in the user's
+  // app data dir (writable on Windows, where Program Files is not).
+  // In dev, they live in the repo root.
+  const codenHome = app.isPackaged
+    ? app.getPath('userData')
+    : repoRoot;
   console.log(`[coden-electron] repo root: ${repoRoot}`);
+  console.log(`[coden-electron] CODEN_HOME: ${codenHome} (packaged=${app.isPackaged})`);
 
   try {
-    server = await startServer(repoRoot);
+    server = await startServer(repoRoot, codenHome);
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
     console.error(`[coden-electron] failed to start server:\n${message}`);
@@ -47,7 +54,7 @@ async function createWindow(): Promise<void> {
     return;
   }
 
-  console.log(`[coden-electron] server up at http://127.0.0.1:${server.port}`);
+  console.log(`[coden-electron] server up at http://127.0.0.1:${server.port} (source=${server.source})`);
 
   mainWindow = new BrowserWindow({
     width: 1280,

@@ -87,8 +87,41 @@ outlive the app.
 **Set `CODEN_DEVTOOLS=1`** to open Chrome DevTools in the
 BrowserWindow for debugging.
 
-**Note:** This is the dev launcher. Full PyInstaller `coden-server.exe`
-+ electron-builder NSIS packaging is a follow-up sprint.
+### Production build (portable .exe)
+
+The `build_app.py` orchestrator runs the full pipeline: build the
+React app, bundle the FastAPI server with PyInstaller, compile the
+Electron main process, and package a single portable .exe via
+electron-builder.
+
+```bash
+cd "c:/dawei7/code_n"
+.venv/Scripts/python.exe build_app.py
+```
+
+The output is `electron/release/coden-X.Y.Z-portable.exe`
+(~85 MB) — a single self-extracting .exe that the user can
+double-click. No Python, no Node, no venv required on the target
+machine.
+
+The bundle contains:
+- The Electron 31.7.7 runtime + Chromium
+- The compiled Electron main process (TypeScript → JS)
+- The PyInstaller-bundled `coden-server.exe` (Python 3.13 + FastAPI
+  + uvicorn + the engine + all 25 challenges)
+- The compiled React app (`web/dist/`)
+- The coden icon
+
+When the .exe runs, the Electron main process detects the bundled
+server at `process.resourcesPath/coden-server/coden-server.exe`,
+spawns it, polls `/api/health`, then opens a BrowserWindow at
+the server's URL. The server picks a free port (default: 0) and
+prints it on stdout; the launcher parses the port and loads the
+UI.
+
+`progress.json` + `solutions/` live in the user's writable app
+data dir (`%APPDATA%/cOde(n)` on Windows, set by
+`app.getPath('userData')` in the launcher).
 
 ## How to run the tests
 

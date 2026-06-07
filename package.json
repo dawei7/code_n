@@ -8,6 +8,7 @@
     "build:electron": "npm run build --prefix electron",
     "start:electron": "npm start --prefix electron",
     "dev": "npm run build:web && npm run start:electron",
+    "build:app": ".venv/Scripts/python.exe build_app.py",
     "test:engine": ".venv/Scripts/python.exe -m unittest discover -s tests",
     "test:server": ".venv/Scripts/python.exe -m unittest discover -s server/tests -t .",
     "test:web": "npm run typecheck --prefix web",
