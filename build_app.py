@@ -115,20 +115,34 @@ def step_electron_build() -> None:
 
 
 def step_electron_dist() -> None:
-    """Package the Electron app as a portable .exe."""
+    """Package the Electron app.
+
+    The output is ``electron/release/win-unpacked/`` with
+    ``cOde(n).exe`` as the entry point. (We use electron-builder's
+    ``dir`` target rather than ``portable`` because the portable
+    target uses NSIS under the hood, which can hang on first build
+    while it downloads + runs makensis. The ``dir`` target is the
+    raw unpacked Electron app, no installer wrapper, ready to
+    double-click.)
+    """
     npm = find_tool("npm")
     run([npm, "run", "dist"], cwd=REPO_ROOT / "electron")
-    release = REPO_ROOT / "electron" / "release"
-    if not release.is_dir():
-        print(f"electron release dir missing: {release}")
+    unpacked = REPO_ROOT / "electron" / "release" / "win-unpacked"
+    if not unpacked.is_dir():
+        print(f"electron unpacked dir missing: {unpacked}")
         sys.exit(1)
-    exes = list(release.glob("*.exe"))
-    if not exes:
-        print(f"no .exe in {release}")
+    launcher = unpacked / ("cOde(n).exe" if IS_WINDOWS else "coden")
+    if not launcher.is_file():
+        print(f"launcher missing: {launcher}")
         sys.exit(1)
-    for exe in exes:
-        size_mb = exe.stat().st_size / (1024 * 1024)
-        print(f"OK: {exe.relative_to(REPO_ROOT)} ({size_mb:.1f} MB)")
+    size_mb = launcher.stat().st_size / (1024 * 1024)
+    print(f"OK: launcher at {launcher.relative_to(REPO_ROOT)} ({size_mb:.1f} MB)")
+    print()
+    print("To run:")
+    print(f"  {launcher}")
+    print()
+    print("If Windows SmartScreen shows 'Windows protected your PC':")
+    print("  click 'More info' -> 'Run anyway' (no code-signing cert yet).")
 
 
 def main() -> None:

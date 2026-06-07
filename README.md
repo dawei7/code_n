@@ -87,11 +87,11 @@ outlive the app.
 **Set `CODEN_DEVTOOLS=1`** to open Chrome DevTools in the
 BrowserWindow for debugging.
 
-### Production build (portable .exe)
+### Production build (desktop .exe)
 
 The `build_app.py` orchestrator runs the full pipeline: build the
 React app, bundle the FastAPI server with PyInstaller, compile the
-Electron main process, and package a single portable .exe via
+Electron main process, and package a desktop app via
 electron-builder.
 
 ```bash
@@ -99,10 +99,25 @@ cd "c:/dawei7/code_n"
 .venv/Scripts/python.exe build_app.py
 ```
 
-The output is `electron/release/coden-X.Y.Z-portable.exe`
-(~85 MB) — a single self-extracting .exe that the user can
-double-click. No Python, no Node, no venv required on the target
+The output is `electron/release/win-unpacked/cOde(n).exe`
+(~170 MB) — double-click it to launch. The folder also contains
+`resources/coden-server/coden-server.exe` (the bundled Python
+server, ~8 MB). No Python, no Node, no venv required on the target
 machine.
+
+**Why the `dir` target, not `portable`:** electron-builder's
+`portable` target uses NSIS and can hang on first build while it
+downloads + runs `makensis.exe`. The `dir` target is the raw
+unpacked Electron app — same user experience (double-click the
+.exe), no NSIS step.
+
+**PyInstaller stdout gotcha:** the bundled `coden-server.exe` is
+built with `console=False` in [server.spec](server/server.spec).
+PyInstaller's bootloader captures stdout to its own console window
+when `console=True`, which breaks the pipe Electron uses to read
+the server's port. `console=False` makes the .exe a GUI subsystem
+app that inherits stdio from the parent, so Electron can read the
+"Uvicorn running on..." line normally.
 
 The bundle contains:
 - The Electron 31.7.7 runtime + Chromium

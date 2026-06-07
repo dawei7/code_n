@@ -18,16 +18,11 @@
   "win": {
     "target": [
       {
-        "target": "portable",
+        "target": "dir",
         "arch": ["x64"]
       }
     ],
-    "icon": "assets/icon.ico",
-    "artifactName": "coden-${version}-portable.${ext}"
-  },
-  "portable": {
-    "artifactName": "coden-${version}-portable.exe",
-    "splashImage": null
+    "icon": "assets/icon.ico"
   },
   "asar": true,
   "compression": "normal",

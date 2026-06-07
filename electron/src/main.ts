@@ -40,15 +40,29 @@ async function createWindow(): Promise<void> {
     : repoRoot;
   console.log(`[coden-electron] repo root: ${repoRoot}`);
   console.log(`[coden-electron] CODEN_HOME: ${codenHome} (packaged=${app.isPackaged})`);
+  console.log(`[coden-electron] process.resourcesPath: ${process.resourcesPath}`);
+  const bundledCheck = path.join(process.resourcesPath, 'coden-server',
+    process.platform === 'win32' ? 'coden-server.exe' : 'coden-server');
+  console.log(`[coden-electron] bundled path candidate: ${bundledCheck}`);
+  console.log(`[coden-electron] bundled exists: ${require('fs').existsSync(bundledCheck)}`);
 
   try {
     server = await startServer(repoRoot, codenHome);
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
     console.error(`[coden-electron] failed to start server:\n${message}`);
+    // server is null/undefined here because the throw happened before
+    // assignment. The hint is based on the bundled path we checked
+    // above, not on server.source.
+    const bundledExists = require('fs').existsSync(bundledCheck);
+    const hint = bundledExists
+      ? `The bundled server exists at:\n  ${bundledCheck}\n\n` +
+        'Try running it directly from a terminal to see the actual error.'
+      : `Bundled server NOT found at:\n  ${bundledCheck}\n\n` +
+        `For dev: cd "${repoRoot}" && python -m venv .venv && .venv/Scripts/pip install -r requirements.txt`;
     dialog.showErrorBox(
       'Failed to start cOde(n) server',
-      `${message}\n\nMake sure the venv is set up: cd "${repoRoot}" && python -m venv .venv && .venv/Scripts/pip install -r requirements.txt`,
+      `${message}\n\n${hint}`,
     );
     app.quit();
     return;

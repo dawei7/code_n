@@ -21,12 +21,13 @@
  */
 
 import { spawn, ChildProcess } from 'node:child_process';
+import * as os from 'node:os';
 import * as path from 'node:path';
 import * as fs from 'node:fs';
 
 
-/** How long to wait for the server to log its port line, then for /api/health. */
-const PORT_TIMEOUT_MS = 10_000;
+/** How long to wait for the server to log its port, then for /api/health. */
+const PORT_TIMEOUT_MS = 15_000;
 const HEALTH_TIMEOUT_MS = 10_000;
 const HEALTH_POLL_INTERVAL_MS = 100;
 
@@ -86,6 +87,12 @@ export async function startServer(
   repoRoot: string,
   codenHome: string = repoRoot,
 ): Promise<ServerHandle> {
+  // The bundled server writes the bound port to a temp file
+  // (path from CODEN_PORT_FILE env var). We poll for it; this is
+  // more reliable than parsing stdout when the parent is a Windows
+  // GUI-subsystem app.
+  const portFile = path.join(os.tmpdir(), `coden-server-port-${process.pid}.txt`);
+
   // --- Choose the spawn target ---
   const bundled = bundledServerPath();
   let child: ChildProcess;
@@ -94,7 +101,7 @@ export async function startServer(
   if (bundled) {
     source = 'bundled';
     child = spawn(bundled, [], {
-      env: { ...process.env, CODEN_HOME: codenHome },
+      env: { ...process.env, CODEN_HOME: codenHome, CODEN_PORT_FILE: portFile },
       stdio: ['ignore', 'pipe', 'pipe'],
       windowsHide: true,
     });
@@ -107,11 +114,11 @@ export async function startServer(
         '-m', 'uvicorn',
         'server.app.main:app',
         '--host', '127.0.0.1',
-        '--port', '0',  // pick a free port; we read it from stdout
+        '--port', '0',  // pick a free port; we read it from the port file
       ],
       {
         cwd: repoRoot,
-        env: { ...process.env, CODEN_HOME: codenHome },
+        env: { ...process.env, CODEN_HOME: codenHome, CODEN_PORT_FILE: portFile },
         stdio: ['ignore', 'pipe', 'pipe'],
         windowsHide: true,
       },
@@ -126,40 +133,55 @@ export async function startServer(
     exited.code = code;
   });
 
-  // Stream stdout and wait for the "Uvicorn running on http://127.0.0.1:PORT" line.
-  const port = await new Promise<number>((resolve, reject) => {
-    let buffer = '';
-    const onData = (chunk: Buffer) => {
-      buffer += chunk.toString();
-      const match = buffer.match(/Uvicorn running on https?:\/\/127\.0\.0\.1:(\d+)/);
-      if (match) {
-        child.stdout?.off('data', onData);
-        resolve(Number(match[1]));
-      }
-    };
-    child.stdout?.on('data', onData);
-    child.stderr?.on('data', (chunk) => {
-      // Forward stderr to the parent process so the developer
-      // can see it in the Electron terminal.
-      process.stderr.write(`[server] ${chunk.toString()}`);
-    });
+  // Stream stdout (for diagnostics) and poll the port file. The
+  // port file is the canonical signal; stdout is best-effort.
+  let stdoutBuffer = '';
+  child.stdout?.on('data', (chunk: Buffer) => {
+    stdoutBuffer += chunk.toString();
+    process.stdout.write(`[server] ${chunk.toString()}`);
+  });
+  child.stderr?.on('data', (chunk: Buffer) => {
+    process.stderr.write(`[server] ${chunk.toString()}`);
+  });
 
+  // Wait for the port file to appear.
+  const port = await new Promise<number>((resolve, reject) => {
     const timer = setTimeout(() => {
-      child.stdout?.off('data', onData);
       reject(new Error(
-        `Timeout (${PORT_TIMEOUT_MS}ms) waiting for server to print its port. ` +
-        `Last stdout: ${buffer.slice(-200)}`,
+        `Timeout (${PORT_TIMEOUT_MS}ms) waiting for server to write ${portFile}. ` +
+        `Last stdout: ${stdoutBuffer.slice(-200)}`,
       ));
     }, PORT_TIMEOUT_MS);
 
-    const interval = setInterval(() => {
+    const poll = setInterval(() => {
       if (exited.code !== undefined) {
         clearTimeout(timer);
-        clearInterval(interval);
-        reject(new Error(`server exited with code ${exited.code} before printing a port`));
+        clearInterval(poll);
+        reject(new Error(`server exited with code ${exited.code} before writing the port file`));
+        return;
       }
-    }, 100);
+      try {
+        if (fs.existsSync(portFile)) {
+          const content = fs.readFileSync(portFile, 'utf-8').trim();
+          const parsed = Number(content);
+          if (Number.isFinite(parsed) && parsed > 0) {
+            clearTimeout(timer);
+            clearInterval(poll);
+            resolve(parsed);
+          }
+        }
+      } catch {
+        // file may not be fully written yet; retry
+      }
+    }, HEALTH_POLL_INTERVAL_MS);
   });
+
+  // Clean up the port file once we've consumed it.
+  try {
+    fs.unlinkSync(portFile);
+  } catch {
+    // best-effort; the OS will clean up /tmp eventually
+  }
 
   // Now wait for /api/health to return 200.
   const healthUrl = `http://127.0.0.1:${port}/api/health`;
