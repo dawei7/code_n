@@ -1,4 +1,13 @@
-"""Pygame challenge navigation hub."""
+"""Pygame challenge navigation hub.
+
+DEPRECATED: see legacy/README.md.
+
+The 2026-06-07 web rebuild replaced this hub with the React
+``ChallengeList`` component (``web/src/components/ChallengeList.tsx``).
+This module is kept in place only because the existing test suite
+imports it; the source file move to ``../legacy/`` and the test
+deprecation will happen in the follow-up sprint.
+"""
 
 from __future__ import annotations
 

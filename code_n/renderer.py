@@ -1,6 +1,14 @@
 """Terminal-based 2D renderer with ANSI colors.
 
-Renders the grid state to the terminal with color-coded cells
+Renders the grid state to the terminal with color-coded cells.
+
+DEPRECATED: see legacy/README.md.
+
+The 2026-06-07 web rebuild replaced this with the React DOM-based
+visualizer. This module is kept in place only because the existing
+test suite (``tests/test_renderer_*.py``) imports it; the source
+file move to ``../legacy/`` and the test deprecation will happen
+in the follow-up sprint.
 and displays stats after a run.
 """
 

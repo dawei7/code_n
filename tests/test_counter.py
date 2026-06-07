@@ -188,8 +188,11 @@ class MaxNCapTests(unittest.TestCase):
     shows a grid that can be panned to fit on screen."""
 
     def test_max_n_is_50(self):
-        from run_challenge import MAX_N
-        self.assertEqual(MAX_N, 50)
+        # MAX_N is a class attribute on Challenge (code_n/challenge.py).
+        # The old CLI runner used to re-export it as a module constant;
+        # that file moved to legacy/ in the 2026-06-07 web rebuild.
+        from code_n.challenge import Challenge
+        self.assertEqual(Challenge.MAX_N, 50)
 
 
 if __name__ == "__main__":

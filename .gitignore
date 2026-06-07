@@ -26,3 +26,22 @@ dist/
 progress.json
 logs/
 
+# Web frontend (React + Vite)
+web/node_modules/
+web/dist/
+web/.vite/
+
+# Electron desktop wrapper
+electron/node_modules/
+electron/dist/
+
+# Server build artifacts (future PyInstaller bundling)
+server/dist/
+
+# Editor caches
+.idea/
+.vscode/
+
+# Chromium / Electron crash logs (not from our code)
+debug.log
+*.log

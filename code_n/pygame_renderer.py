@@ -1,4 +1,14 @@
-"""Pygame renderer for animated algorithm visualization."""
+"""Pygame renderer for animated algorithm visualization.
+
+DEPRECATED: see legacy/README.md.
+
+The 2026-06-07 web rebuild replaced the Pygame renderer with a React
++ Tailwind + DOM-based visualizer served by the FastAPI server in
+``../server/``. This module is kept in place only because the
+existing test suite (``tests/test_pygame_renderer_*.py``) imports it;
+the source file move to ``../legacy/`` and the test deprecation
+will happen in the follow-up sprint that drops Pygame from CI.
+"""
 
 from __future__ import annotations
 
