@@ -79,6 +79,7 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
         heading=f"{spec.id}: {spec.name}",
         description=spec.description,
     )
+    complexity_notes = getattr(spec, "complexity_notes", {}) or {}
 
     return ChallengeDetail(
         **summary.model_dump(),
@@ -86,6 +87,7 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
         samples=samples,
         starter_source=starter_source,
         optimal_source=spec.source or "",
+        complexity_notes=complexity_notes,
     )
 
 

@@ -68,9 +68,10 @@ class AlgorithmSpec:
     hints, and the samples panel need. Optional fields cover
     advanced things: a per-algorithm ``hint`` shown on a failed
     fingerprint, a custom ``max_n`` for 2D challenges, the
-    ``expected_operations`` fingerprint rules, and the
+    ``expected_operations`` fingerprint rules, the
     ``parents``/``children`` edges for the navigator's learning
-    path.
+    path, and the ``complexity_notes`` (best/average/worst case
+    analysis strings) shown in the scientific complexity panel.
     """
 
     id: str
@@ -93,6 +94,11 @@ class AlgorithmSpec:
     max_n: Optional[int] = None
     parents: list[str] = field(default_factory=list)
     children: list[str] = field(default_factory=list)
+    # Per-algorithm complexity analysis for the scientific panel.
+    # Keys are the labels shown to the user (e.g. "best", "average",
+    # "worst", "space"); values are short strings describing the
+    # behavior. Empty dict → hide the panel for that algorithm.
+    complexity_notes: dict[str, str] = field(default_factory=dict)
 
 
 def make_challenge(spec: AlgorithmSpec) -> type[Challenge]:

@@ -127,10 +127,23 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   async run() {
-    const { currentDetail, source, n, seed } = get();
+    const { currentDetail, n, seed } = get();
     if (!currentDetail) return;
     set({ isRunning: true, error: null, isPlaying: false });
     try {
+      // The main window no longer embeds the editor, so the source
+      // lives in the pop-out editor (or in solutions/{id}.py on
+      // disk via the server's saved file). Fetch the latest saved
+      // source from the server before each run.
+      let source: string;
+      try {
+        const saved = await solutionsApi.getSolution(currentDetail.id);
+        source = saved.exists && saved.source
+          ? saved.source
+          : currentDetail.starter_source;
+      } catch {
+        source = currentDetail.starter_source;
+      }
       const result = await runApi.runChallenge({
         challengeId: currentDetail.id,
         source,

@@ -34,6 +34,11 @@ export interface ChallengeDetail extends ChallengeSummary {
   samples: Sample[];
   starter_source: string;
   optimal_source: string;
+  /** Per-algorithm analysis notes for the scientific panel.
+   *  Keys are labels (best/average/worst/space/stable/in_place);
+   *  values are short human-readable strings. Empty for algorithms
+   *  that haven't been annotated yet. */
+  complexity_notes: Record<string, string>;
 }
 
 export interface OpRecordOut {

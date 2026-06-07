@@ -382,6 +382,7 @@ def _sort_spec(
     parents: list[str],
     children: list[str],
     rows: int = 3,
+    complexity_notes: dict | None = None,
 ) -> AlgorithmSpec:
     return AlgorithmSpec(
         id=spec_id,
@@ -404,6 +405,7 @@ def _sort_spec(
         hint=hint,
         parents=parents,
         children=children,
+        complexity_notes=complexity_notes or {},
     )
 
 
@@ -423,6 +425,14 @@ SPECS: list[AlgorithmSpec] = [
         hint="Move larger values toward the end of the list, one pass at a time.",
         parents=["intro_01"],
         children=["sort_02"],
+        complexity_notes={
+            "best":     "O(n) — already-sorted input: one pass, zero swaps. With the early-exit flag this is the canonical optimal case.",
+            "average":  "Θ(n²) — random input: roughly half the pairs are out of order, so about n²/4 swaps and n²/2 comparisons.",
+            "worst":    "O(n²) — reverse-sorted input: every comparison triggers a swap. n·(n-1)/2 compares and n·(n-1)/2 swaps.",
+            "space":    "O(1) — in-place; only a handful of scalar temporaries.",
+            "stable":   "Yes — equal elements keep their relative order.",
+            "in_place": "Yes — no auxiliary array needed.",
+        },
     ),
     _sort_spec(
         spec_id="sort_02",
@@ -440,6 +450,14 @@ SPECS: list[AlgorithmSpec] = [
         hint="For each index i, find min in [i..n-1] and swap it to position i.",
         parents=["sort_01"],
         children=["sort_03"],
+        complexity_notes={
+            "best":     "O(n²) — same as worst; selection sort always scans the full unsorted suffix.",
+            "average":  "Θ(n²) — n²/2 comparisons and at most n swaps regardless of input order.",
+            "worst":    "O(n²) — same as best; no early-exit optimization.",
+            "space":    "O(1) — in-place; only a few scalar temporaries.",
+            "stable":   "No — the swap across the unsorted region reorders equal elements.",
+            "in_place": "Yes.",
+        },
     ),
     _sort_spec(
         spec_id="sort_03",

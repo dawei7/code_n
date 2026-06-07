@@ -1,30 +1,41 @@
 import { useAppStore } from '../store/useAppStore';
-import { Editor } from './Editor';
-import { Toolbar } from './Toolbar';
 import { StepControls } from './StepControls';
 import { StatusBanner } from './StatusBanner';
 import { OpLog } from './OpLog';
-import { LocalsPanel } from '../components/LocalsPanel';
+import { LocalsPanel } from './LocalsPanel';
+import { ComplexityAnalysis } from './ComplexityAnalysis';
+
+
+declare global {
+  interface Window {
+    electronAPI?: {
+      popOutEditor(): Promise<boolean>;
+    };
+  }
+}
 
 
 /**
- * ChallengeView — the main panel for one challenge.
+ * ChallengeView — the main window's analysis surface.
  *
- * Three-column layout:
- *  - Left: description, status banner, toolbar, editor
- *  - Center: step controls (top) + the locals inspector (bottom,
- *    the main inspection surface — native JSON-tree view of every
- *    variable at the current frame)
- *  - Right: stats (compares/swaps/reads/writes/complexity) + op log
- *    (the per-step color-coded operation history)
+ * Layout (no embedded editor — the editor lives in a pop-out
+ * BrowserWindow so it can be moved to a second monitor):
  *
- * The bar-chart visualizer was removed (per user feedback) — the
- * LocalsPanel's tree view of `data: [...]` shows the same array in
- * a more native, drillable form. For 2D challenges (BFS/DFS, next
- * sprint) the same approach shows `grid: [[...][...]]` directly.
+ *   +--- 4 cols ---+--- 5 cols ---+--- 3 cols ---+
+ *   | description  | step controls | op log      |
+ *   | status       | locals        |  + CSV      |
+ *   | complexity   |  inspector    |             |
+ *   |  analysis    |               |             |
+ *   +--------------+---------------+-------------+
+ *
+ * The top header has the Run and Open editor buttons (replacing
+ * the old embedded Monaco).
  */
 export function ChallengeView() {
   const detail = useAppStore((s) => s.currentDetail);
+  const isRunning = useAppStore((s) => s.isRunning);
+  const runResult = useAppStore((s) => s.runResult);
+  const run = useAppStore((s) => s.run);
 
   if (!detail) {
     return (
@@ -37,38 +48,67 @@ export function ChallengeView() {
     );
   }
 
+  async function handleOpenEditor() {
+    const api = window.electronAPI;
+    if (api?.popOutEditor) {
+      await api.popOutEditor();
+    } else {
+      // Dev / browser fallback.
+      window.open(window.location.pathname + '?view=editor', '_blank');
+    }
+  }
+
   return (
     <div className="h-full flex flex-col">
-      {/* Header strip */}
-      <div className="px-4 py-2 border-b border-coden-border bg-coden-surface shrink-0">
-        <div className="flex items-baseline justify-between">
-          <div>
-            <h2 className="text-lg font-semibold">{detail.name}</h2>
-            <div className="text-xs text-coden-muted font-mono">
-              {detail.id} · {detail.category} · difficulty {detail.difficulty}/10
-            </div>
-          </div>
-          <div className="text-xs text-coden-muted">
-            Required: <span className="font-mono text-coden-text">{detail.required_complexity}</span>
+      {/* Header strip with the action buttons */}
+      <div className="px-4 py-2 border-b border-coden-border bg-coden-surface shrink-0 flex items-center gap-4">
+        <div className="flex-1 min-w-0">
+          <h2 className="text-lg font-semibold truncate">{detail.name}</h2>
+          <div className="text-xs text-coden-muted font-mono truncate">
+            {detail.id} · {detail.category} · difficulty {detail.difficulty}/10
           </div>
         </div>
+        <button
+          type="button"
+          onClick={run}
+          disabled={isRunning}
+          className="px-4 py-1.5 text-sm font-semibold rounded bg-coden-accent text-coden-bg hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isRunning ? 'Running…' : '▶ Run'}
+        </button>
+        <button
+          type="button"
+          onClick={handleOpenEditor}
+          className="px-3 py-1.5 text-sm rounded border border-coden-border text-coden-text hover:bg-coden-border"
+          title="Open the code editor in a separate window (drag to a second monitor)"
+        >
+          ⧉ Open editor
+        </button>
+        {runResult && (
+          <div className="text-xs text-coden-muted font-mono">
+            n=<span className="text-coden-text">{runResult.n}</span>
+            <span className="mx-2 text-coden-muted">|</span>
+            req:{' '}
+            <span className="text-coden-text">{detail.required_complexity}</span>
+            <span className="mx-2 text-coden-muted">|</span>
+            ops:{' '}
+            <span className="text-coden-text">{runResult.stats.total.toLocaleString()}</span>
+          </div>
+        )}
       </div>
 
       <div className="flex-1 grid grid-cols-12 gap-3 p-3 overflow-hidden">
-        {/* Left column: description + editor + status */}
-        <div className="col-span-4 flex flex-col gap-3 overflow-hidden">
-          <div className="bg-coden-surface border border-coden-border rounded p-3 overflow-y-auto max-h-40 text-sm">
+        {/* Left column: description + status + complexity analysis */}
+        <div className="col-span-4 flex flex-col gap-3 overflow-y-auto">
+          <div className="bg-coden-surface border border-coden-border rounded p-3 text-sm shrink-0">
             <div className="text-xs uppercase text-coden-muted font-semibold mb-1">
               Description
             </div>
             <div className="whitespace-pre-wrap">{detail.description}</div>
           </div>
           <StatusBanner />
-          <div className="flex-1 flex flex-col min-h-0">
-            <Toolbar />
-            <div className="flex-1 min-h-0 mt-2">
-              <Editor />
-            </div>
+          <div className="flex-1 min-h-0">
+            <ComplexityAnalysis />
           </div>
         </div>
 
@@ -83,9 +123,9 @@ export function ChallengeView() {
           </div>
         </div>
 
-        {/* Right column: stats + op log */}
+        {/* Right column: op log (with CSV export) */}
         <div className="col-span-3 flex flex-col gap-3 overflow-hidden">
-          <div className="bg-coden-surface border border-coden-border rounded p-3 overflow-hidden flex flex-col min-h-0">
+          <div className="flex-1 bg-coden-surface border border-coden-border rounded p-3 overflow-hidden flex flex-col min-h-0">
             <div className="text-xs uppercase text-coden-muted font-semibold mb-2 shrink-0">
               Stats &amp; ops
             </div>

@@ -57,7 +57,11 @@ class ChallengeDetail(ChallengeSummary):
     params: list[ParamDoc]
     samples: list[Sample]
     starter_source: str
-    optimal_source: str  # The Solve button writes this verbatim.
+    optimal_source: str
+    # Per-algorithm complexity notes (best/average/worst/space/
+    # stable/in_place) for the scientific complexity panel.
+    # Empty dict → hide the panel for this algorithm.
+    complexity_notes: dict[str, str] = {}  # The Solve button writes this verbatim.
 
 
 # ----------------------------------------------------------------------------

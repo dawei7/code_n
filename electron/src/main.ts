@@ -76,7 +76,8 @@ async function createWindow(): Promise<void> {
       height: 700,
       minWidth: 500,
       minHeight: 400,
-      title: 'cOde(n) — Editor',
+      title: 'cOde(n)',  // same title as the main window by design —
+                       // the pop-out IS a peer of the main window
       backgroundColor: '#020617',
       webPreferences: {
         preload: path.join(__dirname, 'preload.js'),
