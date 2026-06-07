@@ -58,6 +58,36 @@ class DisplayCell:
     source_coord: Optional[tuple[int, int]] = None
 
 
+class _TruncationSentinel:
+    """Marker placed in a truncated collection between the head
+    and tail slices. The renderer detects this and draws a
+    single ``...`` cell instead of treating it as a regular
+    element. The class is private (underscore) and has no
+    public API - the only thing that creates one is
+    ``_apply_view_mode`` and the only thing that reads it is
+    the variable visual drawing path.
+    """
+    __slots__ = ()
+
+    def __repr__(self):
+        return "..."
+
+    def __eq__(self, other):
+        # Any two sentinels are equal - the renderer compares
+        # via ``isinstance(item, _TruncationSentinel)`` so the
+        # actual equality doesn't matter for the draw path,
+        # but defining __eq__ makes the sentinels behave as
+        # expected if the user code (or the tests) compares
+        # them.
+        return isinstance(other, _TruncationSentinel)
+
+    def __hash__(self):
+        return 0
+
+
+_TRUNCATION_SENTINEL_LABEL = "..."
+
+
 class ComputationCancelled(RuntimeError):
     """Raised when the user closes the computation progress window."""
 
@@ -197,14 +227,34 @@ SPEED_PRESETS = [
 DEFAULT_SPEED_INDEX = 4
 
 # Continuous zoom range. The cell size is an int in [ZOOM_MIN, ZOOM_MAX]
-# and the user changes it with the mouse wheel only — no buttons, no
-# keyboard shortcuts. 22px is small enough to fit the whole 50-cell
-# 1D array in one screen; 50px is large enough that 3-digit values
-# still fit comfortably.
+# and the user changes it with the +/- buttons in the Variables panel
+# header (the wheel is now reserved for vertical scrolling). 28px is
+# the default: big enough that the cells in a 35x35 TrackedGrid are
+# still readable, small enough that 8-10 of them fit across a typical
+# 700px panel.
 ZOOM_MIN = 12
 ZOOM_MAX = 50
-ZOOM_STEP = 2  # pixels per wheel notch
-DEFAULT_CELL_SIZE = 22
+ZOOM_STEP = 2  # pixels per +/- button click
+DEFAULT_CELL_SIZE = 28
+
+# Discrete zoom presets the +/- buttons cycle through. The user can
+# only land on these values; the buttons don't allow free-form in-
+# between sizes. 28 is in the middle of the ladder.
+ZOOM_PRESETS = (16, 20, 24, 28, 32, 36, 42, 48)
+
+# How many items to show at the head and tail of a truncated
+# collection. "10" mode shows the first 10 and the last 1 with
+# "..." between; "custom" shows HEAD + TAIL (default 5 + 5).
+TRUNCATE_HEAD = 10
+TRUNCATE_TAIL = 1
+CUSTOM_HEAD = 5
+CUSTOM_TAIL = 5
+
+# Pixels of vertical scroll per mouse-wheel notch in the variables
+# panel. The previous behavior was to ZOOM with the wheel; the user
+# asked for the wheel to scroll the variables list up/down instead
+# (and zoom to be done by the +/- buttons in the panel header).
+WHEEL_SCROLL_PIXELS = 28
 
 # Pixels of right-drag the user has to move to advance the view by
 # one cell. Smaller = more sensitive. The float accumulator carries
@@ -310,6 +360,24 @@ class PygameRenderer:
         # "mouse over the variables panel" from "mouse over the
         # main grid / side panel".
         self._vars_panel_rect: tuple[int, int, int, int] = (0, 0, 0, 0)
+        # Per-variable UI state. Default everything visible
+        # ("full" = no truncation). The set of hidden names and
+        # the dict of view modes persist across replay / reset
+        # until the user changes them.
+        self._hidden_vars: set[str] = set()
+        # var_name -> "full" / "10" / "custom"
+        self._var_view_modes: dict[str, str] = {}
+        # Cached rects of the per-variable clickable controls and
+        # the +/- zoom buttons, populated by the last
+        # _draw_variables_section() pass. The play() loop's click
+        # handler reads them to decide which toggle to fire.
+        # Each entry: var_name -> (visibility_rect, view_mode_rect)
+        self._var_control_rects: dict[
+            str, tuple[tuple[int, int, int, int], tuple[int, int, int, int]]
+        ] = {}
+        # (+/- zoom button rects in the panel header)
+        self._zoom_minus_rect: tuple[int, int, int, int] = (0, 0, 0, 0)
+        self._zoom_plus_rect: tuple[int, int, int, int] = (0, 0, 0, 0)
         # True while the right mouse button is held down for panning.
         self._right_panning: bool = False
         # Sub-cell panning accumulator. Right-drag moves in pixels; we
@@ -334,9 +402,10 @@ class PygameRenderer:
     def zoom_by(self, delta: int) -> str:
         """Change the cell size by `delta` pixels, clamped to [ZOOM_MIN, ZOOM_MAX].
 
-        Called exclusively by the mouse-wheel handler; there is no
-        button or key shortcut for zoom. Positive delta zooms in
-        (bigger cells), negative zooms out.
+        Used by the +/- zoom buttons in the Variables panel header.
+        Positive delta zooms in (bigger cells), negative zooms out.
+        Clamps to the ZOOM_PRESETS ladder so the user can only land
+        on a known-good size.
         """
         new_size = max(ZOOM_MIN, min(ZOOM_MAX, self.cell_size + delta))
         if new_size == self.cell_size:
@@ -347,6 +416,84 @@ class PygameRenderer:
 
     def zoom_label(self) -> str:
         return f"{self.cell_size}px"
+
+    def zoom_step(self, direction: int) -> str:
+        """Jump the cell size to the next preset in ``ZOOM_PRESETS``
+        in the given direction (-1 = smaller, +1 = bigger).
+
+        The +/- buttons use this instead of ``zoom_by`` so the cell
+        size only ever lands on a preset value, not an arbitrary
+        intermediate. Wheel scrolling no longer touches the cell
+        size at all.
+        """
+        # Find the closest preset to the current size, then
+        # advance in the requested direction.
+        presets = sorted(ZOOM_PRESETS)
+        if not presets:
+            return self.zoom_label()
+        # If we're below the smallest preset, snap up; if above
+        # the largest, snap down. Otherwise move to the next
+        # preset in the requested direction.
+        if self.cell_size <= presets[0]:
+            next_size = presets[0] if direction > 0 else presets[0]
+        elif self.cell_size >= presets[-1]:
+            next_size = presets[-1]
+        else:
+            # Find the smallest preset strictly greater (for
+            # +1) or strictly smaller (for -1) than the current.
+            if direction > 0:
+                candidates = [p for p in presets if p > self.cell_size]
+                next_size = candidates[0] if candidates else presets[-1]
+            else:
+                candidates = [p for p in presets if p < self.cell_size]
+                next_size = candidates[-1] if candidates else presets[0]
+        if next_size == self.cell_size:
+            cap = "max" if direction > 0 else "min"
+            return f"Zoom: {self.zoom_label()} ({cap})"
+        self.cell_size = next_size
+        return f"Zoom: {self.zoom_label()}"
+
+    def _handle_vars_panel_click(
+        self, pos, trace_frame,
+    ) -> Optional[str]:
+        """Handle a left-click inside the Variables panel.
+
+        Looks up the click against the cached zoom +/- rects and the
+        per-variable control rects (visibility toggle, view mode
+        cycle). Returns a status string for the side panel, or None
+        if the click wasn't on any of the controls.
+        """
+        x, y = pos
+        if self._point_in_rect(x, y, self._zoom_minus_rect):
+            return self.zoom_step(-1)
+        if self._point_in_rect(x, y, self._zoom_plus_rect):
+            return self.zoom_step(+1)
+        for name, (vis_rect, mode_rect) in self._var_control_rects.items():
+            if self._point_in_rect(x, y, vis_rect):
+                # Toggle visibility. When a variable is hidden
+                # we still allocate space for its name row so
+                # the user can click the eye to bring it back.
+                if name in self._hidden_vars:
+                    self._hidden_vars.discard(name)
+                else:
+                    self._hidden_vars.add(name)
+                return f"{name}: {'shown' if name not in self._hidden_vars else 'hidden'}"
+            if self._point_in_rect(x, y, mode_rect):
+                # Cycle view mode full -> 10 -> custom -> full.
+                current = self._var_view_modes.get(name, "full")
+                order = ("full", "10", "custom")
+                idx = order.index(current) if current in order else 0
+                new_mode = order[(idx + 1) % len(order)]
+                self._var_view_modes[name] = new_mode
+                return f"{name}: view = {new_mode}"
+        return None
+
+    @staticmethod
+    def _point_in_rect(x: int, y: int, rect: tuple[int, int, int, int]) -> bool:
+        rx, ry, rw, rh = rect
+        if rw <= 0 or rh <= 0:
+            return False
+        return rx <= x < rx + rw and ry <= y < ry + rh
 
     def _speed_display(self) -> str:
         """Human-readable current speed for the side panel.
@@ -620,14 +767,29 @@ class PygameRenderer:
                     if action:
                         current_detail = handle_control_action(action)
                     else:
-                        coord = self._coord_at_pos(event.pos, grid, visual_values)
-                        if coord:
-                            if coord in watchpoints:
-                                watchpoints.remove(coord)
-                                current_detail = f"Removed watchpoint {coord}"
-                            else:
-                                watchpoints.add(coord)
-                                current_detail = f"Watching {coord}; replay pauses when an operation touches it."
+                        # Variables-panel clicks (zoom +/-, per-
+                        # variable visibility / view mode). These
+                        # take priority over the main-grid
+                        # watchpoint logic - a click inside the
+                        # variables panel never accidentally adds
+                        # a watchpoint to the main algorithm grid.
+                        var_action = self._handle_vars_panel_click(
+                            event.pos, trace_frame,
+                        )
+                        if var_action is not None:
+                            # No status message; the visible
+                            # change (button state, eye icon)
+                            # is its own feedback.
+                            current_detail = var_action
+                        else:
+                            coord = self._coord_at_pos(event.pos, grid, visual_values)
+                            if coord:
+                                if coord in watchpoints:
+                                    watchpoints.remove(coord)
+                                    current_detail = f"Removed watchpoint {coord}"
+                                else:
+                                    watchpoints.add(coord)
+                                    current_detail = f"Watching {coord}; replay pauses when an operation touches it."
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
                     # Right-click enters "pan" mode ONLY when the
                     # click was inside the Variables panel. The
@@ -679,26 +841,35 @@ class PygameRenderer:
                         self._pan_accum_y += dy_pixels * PAN_PIXELS_PER_CELL
                         self._scroll_vars(dx_pixels, dy_pixels)
                 elif mousewheel_event is not None and event.type == mousewheel_event:
-                    # Mouse wheel: ZOOM the variables panel cell
-                    # size when the cursor is over the panel.
-                    # Outside the panel the wheel does nothing -
-                    # panning (right-drag) and zooming (wheel)
-                    # live there and only there. (User directive:
-                    # 'zooming with mouse scroll should only work
-                    # in variables panel'. Earlier the wheel did
-                    # vertical scrolling of the variables list;
-                    # that scrolling is now handled by right-drag
-                    # panning, which covers both axes.)
+                    # Mouse wheel: VERTICAL SCROLL of the variables
+                    # panel when the cursor is over it. The wheel
+                    # used to ZOOM the cell size here, but the user
+                    # wants the wheel to scroll (so a long list
+                    # can be browsed without dragging) and the
+                    # +/- buttons in the panel header to handle
+                    # zoom instead. Wheel up scrolls the content
+                    # UP (revealing what's above), wheel down
+                    # scrolls DOWN - the same direction as a web
+                    # page. Outside the variables panel the wheel
+                    # does nothing.
                     wheel_y = getattr(event, "y", 0) or 0
                     if wheel_y and self._mouse_in_vars_panel(
                         getattr(event, "pos", None) or pygame.mouse.get_pos()
                     ):
-                        current_detail = self.zoom_by(wheel_y * ZOOM_STEP)
+                        # Wheel up = positive y, content moves up,
+                        # we need a negative scroll offset to
+                        # reveal what's above. Wheel down is the
+                        # opposite.
+                        self._scroll_vars(0, -wheel_y * WHEEL_SCROLL_PIXELS)
                 elif old_mousewheel is not None and event.type == pygame.MOUSEBUTTONDOWN and event.button in (4, 5):
                     # Fallback for pygame 1.x: button 4 = wheel up, 5 = wheel down.
                     if self._mouse_in_vars_panel(getattr(event, "pos", None) or pygame.mouse.get_pos()):
-                        # Zoom the variables panel: button 4 = bigger cells, 5 = smaller.
-                        current_detail = self.zoom_by(ZOOM_STEP if event.button == 4 else -ZOOM_STEP)
+                        # Scroll the variables panel. Button 4
+                        # (wheel up) reveals what's above, so the
+                        # content moves up and the scroll offset
+                        # becomes more negative.
+                        delta = -WHEEL_SCROLL_PIXELS if event.button == 4 else WHEEL_SCROLL_PIXELS
+                        self._scroll_vars(0, delta)
                     else:
                         # Outside the panel: no-op.
                         pass
@@ -1384,25 +1555,33 @@ class PygameRenderer:
         trace_frame,
         cell_size: int = 18,
     ) -> None:
-        """Draw the Variables section panel: title, then one entry per
-        local variable rendered with the matching data-structure
-        visual. Supports:
+        """Draw the Variables section panel: title, +/- zoom
+        buttons, then one entry per local variable rendered with
+        the matching data-structure visual.
 
-          * list / tuple / TrackedList        - row of cells, per-cell index
-          * dict                              - 2-row key/value strip
-          * set / TrackedSet                  - row of cells, no index
-          * TrackedGrid                       - 2D grid (the actual maze)
-          * TrackedQueue                      - horizontal strip w/ front→ arrow
-          * TrackedStack                      - vertical strip w/ top→ arrow
-          * list / set of (row, col) tuples  - 2D overlay
-          * scalar                            - single cell
+        Each variable has two clickable controls next to its name:
+          * a visibility toggle (eye icon) that hides / shows the
+            variable's visual but keeps the name row so the user
+            can bring it back with one click
+          * a view mode toggle that cycles ``full`` -> ``10`` ->
+            ``custom`` -> ``full``; ``10`` shows the first 10 and
+            the last 1 with a ``...`` cell between, ``custom``
+            shows the first 5 and the last 5.
 
-        The panel is scrollable: a 35x35 TrackedGrid plus a visited
-        set is much taller than the available main-area height, so
-        we render with a vertical offset and let the wheel scroll
-        it when the mouse is over the panel. ``self._vars_scroll_y``
-        is the offset, ``self._vars_content_height`` is the total
-        rendered height of all variables (set by this function), and
+        The 1D rendering for list / set / tuple is now VERTICAL
+        (one element per row, with sub-values as columns within
+        the row) - the user's directive: "the 1 dimension in
+        whatever list tuple, list list, list set is shown
+        vertically and the second dimension horizontally".
+        2D list-of-lists keeps the existing rows-x-cols layout.
+
+        The panel is scrollable: a 35x35 TrackedGrid plus a
+        visited set is much taller than the available main-area
+        height, so we render with a vertical offset and let the
+        wheel scroll it when the mouse is over the panel.
+        ``self._vars_scroll_y`` is the offset,
+        ``self._vars_content_height`` is the total rendered
+        height of all variables (set by this function), and
         ``self._vars_view_height`` is the visible portion (panel
         height minus title + padding). The wheel handler clamps
         ``_vars_scroll_y`` so it can't scroll past either edge.
@@ -1426,6 +1605,47 @@ class PygameRenderer:
 
         # Title.
         self._draw_text(screen, fonts["body"], "Variables", x + panel_pad, y + 5, self.TEXT)
+        # Zoom +/- buttons + current zoom label, on the right of
+        # the header. The wheel no longer changes the cell size;
+        # the user clicks these to step through ZOOM_PRESETS.
+        zoom_btn_w = 24
+        zoom_btn_h = 20
+        zoom_label = self.zoom_label()
+        # Right-aligned starting at x + max_width - panel_pad.
+        plus_rect = pygame.Rect(
+            x + max_width - panel_pad - zoom_btn_w,
+            y + 4,
+            zoom_btn_w, zoom_btn_h,
+        )
+        # The zoom label sits between the two buttons. Measure
+        # its width so the minus button can sit to its left.
+        zoom_label_w = fonts["small"].size(zoom_label)[0] + 12
+        label_rect = pygame.Rect(
+            plus_rect.x - zoom_label_w,
+            y + 4,
+            zoom_label_w, zoom_btn_h,
+        )
+        minus_rect = pygame.Rect(
+            label_rect.x - zoom_btn_w,
+            y + 4,
+            zoom_btn_w, zoom_btn_h,
+        )
+        # Cache for the click handler.
+        self._zoom_minus_rect = minus_rect
+        self._zoom_plus_rect = plus_rect
+        # Draw the buttons (filled in their resting state).
+        for rect, glyph in (
+            (minus_rect, "−"),  # minus
+            (plus_rect, "+"),
+        ):
+            pygame.draw.rect(screen, (44, 52, 64), rect, border_radius=4)
+            pygame.draw.rect(screen, self.GRID_LINE, rect, width=1, border_radius=4)
+            self._draw_centered_text(screen, fonts["small"], glyph, rect, self.TEXT)
+        # Zoom label.
+        self._draw_text(
+            screen, fonts["small"], zoom_label,
+            label_rect.x + 6, label_rect.y + 3, self.MUTED,
+        )
         # Separator.
         sep_y = y + title_h
         pygame.draw.line(
@@ -1448,13 +1668,22 @@ class PygameRenderer:
         if not trace_frame or not trace_frame.locals:
             return
 
+        # Width reserved on the right of each variable row for the
+        # visibility + view-mode clickable buttons.
+        controls_w = 60
+        name_w = max(0, content_w - controls_w - 4)
+        # The per-variable control rects are populated as we walk
+        # the items in the second pass. Clear the previous frame's
+        # data so a removed variable's rect doesn't linger.
+        self._var_control_rects = {}
+
         # Pre-classify each variable into a (kind, payload) pair and
         # compute its rendered height. The actual draw step is a
         # second pass so the scroll math stays simple: total
         # height -> max_scroll = max(0, total - view) -> clamp
         # _vars_scroll_y -> walk again, skipping rows outside the
         # visible window.
-        items: list[tuple[str, str, Any, int]] = []
+        items: list[tuple[str, str, Any, int, bool]] = []
         max_content_width = 0
         between_vars = 26  # generous gap so cells don't feel cramped
         for name, value in trace_frame.locals.items():
@@ -1468,8 +1697,12 @@ class PygameRenderer:
             # — the class is implicit in the variables that USE it.
             if isinstance(value, (type, types.FunctionType, types.ModuleType)):
                 continue
+            # Apply the user's view-mode truncation BEFORE
+            # classification so the visual's height is correct
+            # for the truncated collection.
+            display_value = self._apply_view_mode(name, value)
             kind, payload, h = self._classify_variable(
-                value, content_w, cell_size,
+                display_value, content_w, cell_size,
             )
             # Hide empty collections. The user complained that
             # 'frontier is not there' at the start of BFS and
@@ -1485,11 +1718,101 @@ class PygameRenderer:
             if kind == "empty":
                 continue
             w = self._estimate_variable_width(
-                value, content_w, cell_size,
+                display_value, content_w, cell_size,
             )
             max_content_width = max(max_content_width, w)
-            total_h = h + between_vars
-            items.append((name, kind, payload, total_h))
+            # If the variable is hidden, allocate a small "name
+            # only" row so the user can click the eye icon to
+            # bring it back.
+            hidden = name in self._hidden_vars
+            row_h = 18 if hidden else h
+            total_h = row_h + between_vars
+            items.append((name, kind, payload, total_h, hidden))
+
+        # Total content height = sum of all variable blocks (we
+        # always render every variable; the scroll is what keeps
+        # the overflow out of the visible area). Subtract the
+        # trailing between_vars since the last block doesn't need
+        # bottom padding.
+        if items:
+            self._vars_content_height = sum(b[3] for b in items) - between_vars
+        else:
+            self._vars_content_height = 0
+        self._vars_content_width = max_content_width
+
+        # Clamp the scroll offsets now that we know the content
+        # dimensions (both can grow as new variables appear
+        # mid-replay).
+        max_scroll_x = max(0, self._vars_content_width - self._vars_view_width)
+        max_scroll_y = max(0, self._vars_content_height - self._vars_view_height)
+        if self._vars_scroll_x > max_scroll_x:
+            self._vars_scroll_x = max_scroll_x
+        if self._vars_scroll_y > max_scroll_y:
+            self._vars_scroll_y = max_scroll_y
+
+        # Clip subsequent draws to the panel content area so a
+        # variable that strays past the bottom / right doesn't
+        # paint over the side panel.
+        previous_clip = screen.get_clip()
+        screen.set_clip(pygame.Rect(
+            x + 1, content_top,
+            max_width - 2, self._vars_view_height,
+        ))
+
+        # Second pass: walk the items, skipping rows that fall
+        # outside the visible window after the scroll offset.
+        # No horizontal separator lines between variables - they
+        # were drawn at ``cur_y - between_vars // 2`` and ended
+        # up touching the cells of the previous variable when
+        # that variable was short (a single-cell scalar left the
+        # line overlapping the cell border). The generous
+        # ``between_vars`` gap alone separates the variables
+        # visually.
+        cur_y = content_top - self._vars_scroll_y
+        cur_x = content_x - self._vars_scroll_x
+        for index, (name, kind, payload, total_h, hidden) in enumerate(items):
+            # Skip rows that are entirely above the visible area.
+            if cur_y + total_h <= content_top:
+                cur_y += total_h
+                continue
+            # The cell for this variable starts ``LABEL_OFFSET = 22``
+            # pixels below the label (``{name}:`` line). The old
+            # break only checked the label's top - so a variable
+            # whose label fit but whose cell didn't (e.g. ``nc:``
+            # at the very bottom of the panel) drew the label and
+            # clipped the cell silently. The user couldn't scroll
+            # further to see it because no scrollbar hint was
+            # given either - the value just disappeared. We now
+            # bail out as soon as the cell's top would land
+            # below the panel.
+            label_offset = 22
+            if cur_y + label_offset >= content_bottom:
+                break
+
+            # Variable name on its own line, truncated to fit.
+            self._draw_text(
+                screen, fonts["body"], f"{name}:", cur_x, cur_y, self.TEXT,
+            )
+            # Per-variable controls on the right of the row.
+            vis_rect, mode_rect = self._draw_var_controls(
+                screen, fonts,
+                x=cur_x + content_w - controls_w,
+                y=cur_y,
+                name=name,
+                hidden=hidden,
+            )
+            self._var_control_rects[name] = (vis_rect, mode_rect)
+            if not hidden:
+                self._draw_variable_visual(
+                    screen, fonts,
+                    cur_x, cur_y + label_offset,
+                    content_w,
+                    kind, payload, name,
+                    cell_size=cell_size,
+                )
+            cur_y += total_h
+
+        screen.set_clip(previous_clip)
 
         # Total content height = sum of all variable blocks (we
         # always render every variable; the scroll is what keeps
@@ -1616,6 +1939,115 @@ class PygameRenderer:
                 border_radius=2,
             )
 
+    def _apply_view_mode(self, name: str, value):
+        """Return the value to display for ``name`` after applying
+        the user's per-variable view mode.
+
+        ``full``  -> the value unchanged
+        ``10``    -> first 10 + last 1 of any collection, with
+                     the middle hidden behind a sentinel list
+                     that renders as a single ``...`` cell
+        ``custom`` -> first 5 + last 5 (the user's directive: a
+                      custom truncation; this is the default for
+                      ``custom`` mode until the user picks a
+                      different head/tail count via the UI)
+
+        Scalars are returned unchanged - they have no head or
+        tail. Truncated lists and sets are returned as new
+        collections with the sentinel embedded, so the renderer
+        walks the same ``list``/``set`` kind and just produces
+        a shorter strip.
+        """
+        mode = self._var_view_modes.get(name, "full")
+        if mode == "full":
+            return value
+        # Scalar / non-collection: nothing to truncate.
+        if not hasattr(value, "__len__") or isinstance(value, str):
+            return value
+        n = len(value)
+        if mode == "10":
+            head, tail = TRUNCATE_HEAD, TRUNCATE_TAIL
+        else:  # "custom"
+            head, tail = CUSTOM_HEAD, CUSTOM_TAIL
+        # If the collection is short enough to fit in head + tail
+        # (or the head/tail split would overlap), just show it
+        # all - no point in the "..." sentinel.
+        if n <= head + tail + 1:
+            return value
+        # Slice the collection. We use a private sentinel class
+        # for the "..." marker so the renderer can draw a single
+        # "..." cell in the gap.
+        if isinstance(value, list):
+            truncated = list(value[:head])
+            truncated.append(_TruncationSentinel())
+            truncated.extend(value[n - tail:])
+            return truncated
+        if isinstance(value, tuple):
+            items = list(value[:head])
+            items.append(_TruncationSentinel())
+            items.extend(value[n - tail:])
+            return tuple(items)
+        if isinstance(value, set):
+            # Sets are unordered; the "first N" is whatever
+            # iteration order Python gives us. That's the best
+            # we can do without a list. The user can switch to
+            # ``full`` if order matters.
+            items = list(value)
+            truncated = items[:head]
+            truncated.append(_TruncationSentinel())
+            truncated.extend(items[n - tail:])
+            return set(truncated)
+        return value
+
+    def _draw_var_controls(
+        self, screen, fonts, x: int, y: int, name: str, hidden: bool,
+    ) -> tuple:
+        """Draw the per-variable clickable controls (visibility
+        toggle + view-mode button) on the right side of the
+        variable's name row. Returns the two rects so the click
+        handler in ``play()`` can hit-test them.
+        """
+        import pygame
+        btn_h = 18
+        # Visibility toggle: a small button on the right with a
+        # "v" (visible) or "h" (hidden) glyph. The button is
+        # always the same size so the eye icon doesn't jump as
+        # the user toggles.
+        vis_w = 20
+        vis_rect = pygame.Rect(x, y, vis_w, btn_h)
+        vis_glyph = "h" if hidden else "v"
+        # Active / inactive colors. The "hidden" state gets a
+        # muted background to telegraph that no data is below.
+        vis_bg = (50, 38, 38) if hidden else (38, 50, 64)
+        pygame.draw.rect(screen, vis_bg, vis_rect, border_radius=3)
+        pygame.draw.rect(screen, self.GRID_LINE, vis_rect, width=1, border_radius=3)
+        self._draw_centered_text(
+            screen, fonts["small"], vis_glyph, vis_rect,
+            self.MUTED if hidden else self.TEXT,
+        )
+        # View-mode button: a slightly wider button showing the
+        # current mode. Clicking it cycles full -> 10 -> custom.
+        mode = self._var_view_modes.get(name, "full")
+        mode_label = {"full": "F", "10": "10", "custom": "C"}[mode]
+        mode_w = 28
+        mode_rect = pygame.Rect(x + vis_w + 4, y, mode_w, btn_h)
+        # Highlight the current mode so the user knows what's active.
+        mode_bg = (44, 52, 64)
+        pygame.draw.rect(screen, mode_bg, mode_rect, border_radius=3)
+        pygame.draw.rect(screen, self.GRID_LINE, mode_rect, width=1, border_radius=3)
+        # Underline the active state with a thicker border in
+        # the ACCENT color so it pops against the muted MUTED
+        # grid line.
+        pygame.draw.rect(
+            screen,
+            self.ACCENT_COLOR if mode != "full" else self.GRID_LINE,
+            mode_rect, width=2, border_radius=3,
+        )
+        self._draw_centered_text(
+            screen, fonts["small"], mode_label, mode_rect, self.TEXT,
+        )
+        return vis_rect, mode_rect
+
     def _estimate_variable_width(
         self, value, content_w: int, cell_size: int,
     ) -> int:
@@ -1724,42 +2156,53 @@ class PygameRenderer:
             height = cell_2d + rows * (cell_2d + cell_gap) + 4
             return "list2d", (value, cell_2d), height
 
-        # Standard collections. Each one is drawn as a single
-        # row (or two rows for dicts: keys on top, values below)
-        # regardless of length. If the collection is longer
-        # than the panel width, the trailing cells are clipped
-        # by the panel's set_clip() rect, and the user can
-        # either wheel-zoom out to shrink the cells or accept
-        # the clip.
+        # Standard collections. Each one is drawn as a VERTICAL
+        # strip: one element per row, with the element's
+        # contents (if it's a tuple/list) drawn as columns
+        # within the row. The user's directive: "the 1
+        # dimension in whatever list tuple, list list, list
+        # set is shown vertically and the second dimension
+        # horizontally". A 1D list becomes N rows of single
+        # cells; a list of tuples becomes N rows of M cells.
+        # The truncation sentinel (``_TruncationSentinel``)
+        # passes through as a scalar so the renderer can draw
+        # a ``...`` cell in the gap.
         if isinstance(value, (list, tuple)) and value:
             items = list(value)
-            # Height matches the tallest cell: scalars are
-            # one cell tall, tuple / list elements are N cells
-            # tall (one per sub-value). The strip is drawn
-            # with all cells aligned to the same y, and taller
-            # cells extend further down. The column-header
-            # strip on top is the SAME size as a data cell
-            # (the user: 'have the same cell size as the
-            # cells themselves'), so the panel reserves
-            # ``cell_size`` for it. The 'no cap' policy (the
-            # user complained that the previous 20-cell cap
-            # was cutting the variable at the bottom) means
-            # all items are shown - the user scrolls
-            # vertically to see the rest.
-            max_h = cell_size
+            # Height = sum of per-row heights. Each row is
+            # one cell tall; if the element is a tuple/list,
+            # the cell is N cells tall (one per sub-value).
+            # The header row at the top is the same height as
+            # a data cell (the user: 'have the same cell size
+            # as the cells themselves').
+            n_rows = len(items)
+            header_h = cell_size
+            row_h = 0
             for item in items:
-                if isinstance(item, (tuple, list)):
-                    max_h = max(max_h, len(item) * cell_size)
-            return "list", (items, cell_size), cell_size + max_h + 2
+                if isinstance(item, _TruncationSentinel):
+                    row_h += cell_size + 2
+                elif isinstance(item, (tuple, list)):
+                    sub = len(item)
+                    row_h += cell_size * sub + 2
+                else:
+                    row_h += cell_size + 2
+            return "list", (items, cell_size), header_h + row_h
         if isinstance(value, dict) and value:
             return "dict", (list(value.items()), cell_size), 2 * (cell_size + 2)
         if isinstance(value, set) and value:
             items = list(value)
-            max_h = cell_size
+            n_rows = len(items)
+            header_h = cell_size
+            row_h = 0
             for item in items:
-                if isinstance(item, (tuple, list)):
-                    max_h = max(max_h, len(item) * cell_size)
-            return "set", (items, cell_size), cell_size + max_h + 2
+                if isinstance(item, _TruncationSentinel):
+                    row_h += cell_size + 2
+                elif isinstance(item, (tuple, list)):
+                    sub = len(item)
+                    row_h += cell_size * sub + 2
+                else:
+                    row_h += cell_size + 2
+            return "set", (items, cell_size), header_h + row_h
         if isinstance(value, (list, tuple, dict, set)):
             # Empty collection: still allocate one row of cells so
             # the player can see the variable is present.
@@ -1953,62 +2396,98 @@ class PygameRenderer:
         cell_size: int,
         var_name: Optional[str] = None,
     ) -> None:
-        """Render a list / tuple as ONE row of cells with a
-        column-header row above showing each element's index.
+        """Render a list / tuple VERTICALLY: one element per row,
+        with the element's contents (if it's a tuple/list) drawn
+        as columns within the row.
 
-        No wrapping - a 50-element list is 50 cells in a single
-        horizontal line. Cells past the panel's right edge are
-        clipped by the panel's set_clip() rect; the user can
-        wheel-zoom out to shrink the cell size, or just accept
-        the clip. The user explicitly asked for this: "1 list
-        should be just in 1 row, not wrapped".
+        The user's directive: "the 1 dimension in whatever list
+        tuple, list list, list set is shown vertically and the
+        second dimension horizontally". A 1D list becomes N
+        rows of single cells; a list of tuples becomes N rows
+        of M cells (one per sub-value, the sub-values laid
+        out horizontally within each row). 2D list-of-lists
+        goes through ``_draw_2d_list`` instead (it already had
+        the right layout) and a TrackedGrid is unwrapped to a
+        list-of-lists by the classifier.
 
-        All cells are the same width (``cell_size``). Tuple
-        and list elements get a taller cell - one cell-size
-        per sub-value - so the values stack vertically. The
-        row height is the tallest cell's height, and shorter
-        cells just have empty space below them. This is the
-        "organize the cells always to match the content size"
-        the user asked for, and the "1 value per line" rendering
-        for tuples.
+        Layout:
+          * Column header (if there are columns): one cell per
+            column index, same cell size as the data cells.
+          * For each item:
+            - If it's a scalar: 1 cell wide, 1 cell tall.
+            - If it's a tuple/list: M cells wide (one per
+              sub-value), 1 cell tall per sub-value (stacked
+              vertically within the row's first column).
+            - If it's a ``_TruncationSentinel``: a single
+              ``...`` cell, 1 column wide, 1 cell tall.
 
-        The column header is the SAME cell size as a data
-        cell (the user: 'have the same cell size as the cells
-        themselves'). So a column header for index 5 is just
-        a square cell with '5' in the middle, same width and
-        height as the data cell at index 5. The data cells
-        start one full cell below the header row.
-
-        No cap: every element is drawn. The user complained
-        that the previous 20-element cap was 'cutting the
-        variable at the bottom' - the panel scrolls
-        vertically now, so the user can see the rest. For
-        very long lists the user can also wheel-zoom out to
-        shrink the cell size.
+        Cells past the panel's right edge are clipped by the
+        panel's set_clip() rect; the user can shrink the cell
+        size with the zoom buttons in the panel header to fit
+        more on screen. No cap: every element is drawn. The
+        panel scrolls vertically for long lists.
         """
         import pygame
         if not items:
             self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
             return
         cell_gap = 1
-        # Column headers on top: the index of each element,
-        # same cell size as the data cells. The user: 'have
-        # the same cell size as the cells themselves'.
-        for index in range(len(items)):
+        # Determine the maximum number of columns across all
+        # items. A 1D list has 1 column; a list of 3-tuples has
+        # 3 columns. Truncation sentinels take 1 column.
+        max_cols = 1
+        for item in items:
+            if isinstance(item, _TruncationSentinel):
+                cols = 1
+            elif isinstance(item, (tuple, list)):
+                cols = len(item)
+            else:
+                cols = 1
+            max_cols = max(max_cols, cols)
+        # Column headers on top: one per column. Same cell
+        # size as the data cells (the user: 'have the same
+        # cell size as the cells themselves').
+        for col in range(max_cols):
             self._draw_index_header_cell(
                 screen, fonts,
-                x + index * (cell_size + cell_gap),
-                y, cell_size, str(index),
+                x + col * (cell_size + cell_gap),
+                y, cell_size, str(col),
             )
-        # Cells, drawn one cell-size below the header row.
-        cx = x
-        cell_y = y + cell_size
+        # Walk each item as a row.
+        cur_y = y + cell_size
         for index, item in enumerate(items):
+            if isinstance(item, _TruncationSentinel):
+                # The "..." marker - one wide cell with the
+                # sentinel label. The touched_key uses the
+                # item's own index so a re-render still
+                # highlights the right cell.
+                self._draw_one_cell(
+                    screen, fonts, x, cur_y, cell_size,
+                    _TRUNCATION_SENTINEL_LABEL,
+                    touched_key=(var_name, index) if var_name else None,
+                )
+                cur_y += cell_size + 2
+                continue
+            if isinstance(item, (tuple, list)):
+                # Tuple / list element: each sub-value gets
+                # its own cell, drawn left to right within
+                # the row. The cell height is cell_size *
+                # len(item) (one cell-size per sub-value) so
+                # the values stack vertically.
+                for j, sub in enumerate(item):
+                    cx = x + j * (cell_size + cell_gap)
+                    self._draw_one_cell(
+                        screen, fonts, cx, cur_y, cell_size, sub,
+                        touched_key=(var_name, index) if var_name else None,
+                    )
+                cur_y += cell_size * len(item) + 2
+                continue
+            # Scalar element: single cell in column 0.
             self._draw_one_cell(
-                screen, fonts, cx, cell_y, cell_size, item,
+                screen, fonts, x, cur_y, cell_size, item,
                 touched_key=(var_name, index) if var_name else None,
             )
-            cx += cell_size + cell_gap
+            cur_y += cell_size + 2
 
     def _draw_2d_list(
         self,
@@ -2168,24 +2647,72 @@ class PygameRenderer:
         cell_size: int,
         var_name: Optional[str] = None,
     ) -> None:
-        """Render a set as ONE row of cells (no index labels, since
-        sets are unordered). Every element is drawn - the user
-        complained that the previous 20-element cap was
-        'cutting the variable at the bottom'; the panel scrolls
-        vertically now, so a 600-element visited set just
-        needs scrolling. The user can also wheel-zoom out to
-        shrink the cell size."""
+        """Render a set VERTICALLY: one element per row (no column
+        header, since sets are unordered). For set elements that
+        are themselves tuples, the sub-values are drawn as
+        columns within the row. ``_TruncationSentinel`` items
+        render as a single ``...`` cell.
+
+        The user's directive: "the 1 dimension in whatever list
+        tuple, list list, list set is shown vertically and the
+        second dimension horizontally". A 1D set becomes N rows
+        of single cells; a set of tuples becomes N rows of M
+        cells. The user can shrink the cell size with the zoom
+        buttons in the panel header to fit more on screen.
+        """
         import pygame
         if not items:
             self._draw_text(screen, fonts["small"], "(empty)", x, y, self.MUTED)
             return
         cell_gap = 1
-        for index, item in enumerate(items):
-            cx = x + index * (cell_size + cell_gap)
-            self._draw_one_cell(
-                screen, fonts, cx, y, cell_size, item,
-                touched_key=(var_name, item) if var_name else None,
+        # Determine the maximum number of columns across all
+        # items. A 1D set has 1 column; a set of 3-tuples has
+        # 3 columns. Truncation sentinels take 1 column.
+        max_cols = 1
+        for item in items:
+            if isinstance(item, _TruncationSentinel):
+                cols = 1
+            elif isinstance(item, (tuple, list)):
+                cols = len(item)
+            else:
+                cols = 1
+            max_cols = max(max_cols, cols)
+        # Column headers (same size as the data cells, the
+        # user's "have the same cell size as the cells
+        # themselves" rule). Sets are unordered so the column
+        # numbers are still useful for picking out a sub-value
+        # by its position in a tuple.
+        for col in range(max_cols):
+            self._draw_index_header_cell(
+                screen, fonts,
+                x + col * (cell_size + cell_gap),
+                y, cell_size, str(col),
             )
+        cur_y = y + cell_size
+        for index, item in enumerate(items):
+            if isinstance(item, _TruncationSentinel):
+                self._draw_one_cell(
+                    screen, fonts, x, cur_y, cell_size,
+                    _TRUNCATION_SENTINEL_LABEL,
+                    touched_key=(var_name, index) if var_name else None,
+                )
+                cur_y += cell_size + 2
+                continue
+            if isinstance(item, (tuple, list)):
+                for j, sub in enumerate(item):
+                    cx = x + j * (cell_size + cell_gap)
+                    self._draw_one_cell(
+                        screen, fonts, cx, cur_y, cell_size, sub,
+                        touched_key=(var_name, index) if var_name else None,
+                    )
+                cur_y += cell_size * len(item) + 2
+                continue
+            # Scalar element: single cell in column 0.
+            self._draw_one_cell(
+                screen, fonts, x, cur_y, cell_size, item,
+                touched_key=(var_name, index) if var_name else None,
+            )
+            cur_y += cell_size + 2
 
     def _draw_scalar_cell(
         self,
