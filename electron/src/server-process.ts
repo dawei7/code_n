@@ -100,8 +100,11 @@ export async function startServer(
 
   if (bundled) {
     source = 'bundled';
+    // In production, the React build lives at extraResources/web-dist.
+    // Tell the server where to find it via CODEN_WEB_DIST.
+    const webDist = path.join(process.resourcesPath, 'web-dist');
     child = spawn(bundled, [], {
-      env: { ...process.env, CODEN_HOME: codenHome, CODEN_PORT_FILE: portFile },
+      env: { ...process.env, CODEN_HOME: codenHome, CODEN_PORT_FILE: portFile, CODEN_WEB_DIST: webDist },
       stdio: ['ignore', 'pipe', 'pipe'],
       windowsHide: true,
     });

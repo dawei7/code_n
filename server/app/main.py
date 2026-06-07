@@ -23,7 +23,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from server.app.config import CORS_ORIGINS, PROJECT_ROOT, ensure_data_dirs
+from server.app.config import CORS_ORIGINS, PROJECT_ROOT, WEB_DIST, ensure_data_dirs
 from server.app.routes import challenges, health, progress, run, solutions
 from server.app import error_handlers
 
@@ -37,7 +37,9 @@ logging.basicConfig(
 # Path to the built React app. Mounted at "/" if it exists; absent
 # in Vite-only dev (the user runs `npm run dev` separately and the
 # Vite proxy handles /api/* forwarding).
-WEB_DIST = PROJECT_ROOT / "web" / "dist"
+# The actual path comes from server.app.config.WEB_DIST, which reads
+# the CODEN_WEB_DIST env var (set by the Electron launcher to the
+# extraResource path) or falls back to <PROJECT_ROOT>/web/dist.
 
 
 def create_app() -> FastAPI:

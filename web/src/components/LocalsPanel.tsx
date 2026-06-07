@@ -1,10 +1,23 @@
+import JsonView from '@uiw/react-json-view';
+import { vscodeTheme } from '@uiw/react-json-view/vscode';
 import { useAppStore } from '../store/useAppStore';
 
 
 /**
  * LocalsPanel — shows the locals snapshot at the current trace
- * frame, plus the source line that the player was on (looked up
- * from the editor source by line_no).
+ * frame as a native, drillable data structure view.
+ *
+ * Uses @uiw/react-json-view to render the locals. Each local
+ * variable is a top-level node; lists / dicts / sets (which the
+ * server normalizes to arrays) can be expanded/collapsed to drill
+ * in. The component is a single <JsonView> rooted at the locals
+ * object so the variable names are the top-level keys (sorted in
+ * insertion order: data, n, end, i for sort_01).
+ *
+ * The tracecodec already unwraps TrackedList/TrackedValue and
+ * converts sets/tuples to arrays for JSON, so what we see here
+ * is a faithful (and "native") representation of the player's
+ * actual Python state at this frame.
  */
 export function LocalsPanel() {
   const source = useAppStore((s) => s.source);
@@ -23,40 +36,37 @@ export function LocalsPanel() {
   const sourceLines = source.split('\n');
   const line = sourceLines[frame.line_no - 1] ?? '';
 
+  // Light theme tweaks on top of the bundled "vscode" dark theme.
+  const themed = {
+    ...vscodeTheme,
+    '--w-rjv-font-family': 'JetBrains Mono, Menlo, Monaco, monospace',
+    '--w-rjv-font-size': '12px',
+    '--w-rjv-line-color': '#94a3b8',          // slate-400
+    '--w-rjv-key-string': '#34d399',          // coden-accent for keys
+    '--w-rjv-background-color': '#0f172a',   // coden-surface
+  } as Record<string, string>;
+
   return (
     <div className="flex-1 flex flex-col min-h-0 text-xs">
       <div className="bg-coden-bg rounded border border-coden-border px-2 py-1 mb-2 font-mono shrink-0">
         <span className="text-coden-muted">line {frame.line_no}:</span>{' '}
         <span className="text-coden-text">{line.trim() || '(empty)'}</span>
       </div>
-      <div className="flex-1 overflow-y-auto font-mono bg-coden-bg rounded border border-coden-border">
-        {Object.entries(frame.locals).length === 0 ? (
+      <div className="flex-1 overflow-auto bg-coden-bg rounded border border-coden-border">
+        {Object.keys(frame.locals).length === 0 ? (
           <div className="text-coden-muted p-2">(no locals)</div>
         ) : (
-          Object.entries(frame.locals).map(([name, value]) => (
-            <div key={name} className="px-2 py-0.5 border-b border-coden-border last:border-b-0">
-              <span className="text-coden-muted">{name}</span>
-              <span className="text-coden-text"> = </span>
-              <span className="text-coden-accent">
-                {formatValue(value)}
-              </span>
-            </div>
-          ))
+          <JsonView
+            value={frame.locals}
+            collapsed={2}        // expand variables; collapse deeper nested levels
+            displayDataTypes={false}
+            displayObjectSize={true}
+            enableClipboard={true}
+            style={themed}
+            className="p-2"
+          />
         )}
       </div>
     </div>
   );
-}
-
-
-function formatValue(v: unknown): string {
-  if (Array.isArray(v)) {
-    if (v.length <= 12) return `[${v.map(formatValue).join(', ')}]`;
-    return `[${v.slice(0, 10).map(formatValue).join(', ')}, … (${v.length})]`;
-  }
-  if (v === null) return 'None';
-  if (typeof v === 'string') return JSON.stringify(v);
-  if (typeof v === 'number' || typeof v === 'boolean') return String(v);
-  if (typeof v === 'object') return JSON.stringify(v).slice(0, 80);
-  return String(v);
 }

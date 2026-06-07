@@ -1,18 +1,27 @@
 import { useAppStore } from '../store/useAppStore';
 import { Editor } from './Editor';
 import { Toolbar } from './Toolbar';
-import { Visualizer } from './Visualizer';
 import { StepControls } from './StepControls';
 import { StatusBanner } from './StatusBanner';
 import { OpLog } from './OpLog';
-import { LocalsPanel } from './LocalsPanel';
+import { LocalsPanel } from '../components/LocalsPanel';
 
 
 /**
  * ChallengeView — the main panel for one challenge.
  *
- * Three-column layout: description + editor (left), visualizer
- * + step controls (center), op log + locals (right).
+ * Three-column layout:
+ *  - Left: description, status banner, toolbar, editor
+ *  - Center: step controls (top) + the locals inspector (bottom,
+ *    the main inspection surface — native JSON-tree view of every
+ *    variable at the current frame)
+ *  - Right: stats (compares/swaps/reads/writes/complexity) + op log
+ *    (the per-step color-coded operation history)
+ *
+ * The bar-chart visualizer was removed (per user feedback) — the
+ * LocalsPanel's tree view of `data: [...]` shows the same array in
+ * a more native, drillable form. For 2D challenges (BFS/DFS, next
+ * sprint) the same approach shows `grid: [[...][...]]` directly.
  */
 export function ChallengeView() {
   const detail = useAppStore((s) => s.currentDetail);
@@ -63,27 +72,24 @@ export function ChallengeView() {
           </div>
         </div>
 
-        {/* Center column: visualizer + step controls */}
+        {/* Center column: step controls + locals inspector */}
         <div className="col-span-5 flex flex-col gap-2 overflow-hidden">
-          <div className="flex-1 bg-coden-surface border border-coden-border rounded p-3 overflow-hidden">
-            <Visualizer />
-          </div>
           <StepControls />
+          <div className="flex-1 bg-coden-surface border border-coden-border rounded p-3 overflow-hidden flex flex-col min-h-0">
+            <div className="text-xs uppercase text-coden-muted font-semibold mb-2 shrink-0">
+              Locals at this step
+            </div>
+            <LocalsPanel />
+          </div>
         </div>
 
-        {/* Right column: op log + locals */}
+        {/* Right column: stats + op log */}
         <div className="col-span-3 flex flex-col gap-3 overflow-hidden">
           <div className="bg-coden-surface border border-coden-border rounded p-3 overflow-hidden flex flex-col min-h-0">
             <div className="text-xs uppercase text-coden-muted font-semibold mb-2 shrink-0">
               Stats &amp; ops
             </div>
             <OpLog />
-          </div>
-          <div className="bg-coden-surface border border-coden-border rounded p-3 overflow-hidden flex flex-col min-h-0">
-            <div className="text-xs uppercase text-coden-muted font-semibold mb-2 shrink-0">
-              Locals at step
-            </div>
-            <LocalsPanel />
           </div>
         </div>
       </div>

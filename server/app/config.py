@@ -4,7 +4,9 @@ All paths and tunables are resolved from environment variables at import
 time, with sensible defaults that match the project layout in dev. The
 Electron desktop wrapper sets ``CODEN_HOME`` to ``app.getPath('userData')``
 in production so that ``progress.json`` and ``solutions/`` live in the
-user's writable app data directory.
+user's writable app data directory. ``CODEN_WEB_DIST`` points to the
+bundled React build (``resources/web-dist/``) so the FastAPI server
+can mount the UI at ``/``.
 """
 from __future__ import annotations
 
@@ -21,6 +23,12 @@ CODEN_HOME = Path(os.environ.get("CODEN_HOME", str(PROJECT_ROOT)))
 # Server / data paths.
 PROGRESS_FILE = Path(os.environ.get("CODEN_PROGRESS_FILE", str(CODEN_HOME / "progress.json")))
 SOLUTIONS_DIR = Path(os.environ.get("CODEN_SOLUTIONS_DIR", str(CODEN_HOME / "solutions")))
+
+# Bundled React build: where the FastAPI server serves the UI from.
+# In dev: defaults to <repo>/web/dist. In production (Electron):
+# the Electron main process sets CODEN_WEB_DIST to the absolute path
+# of ``resources/web-dist/`` (the extraResource).
+WEB_DIST = Path(os.environ.get("CODEN_WEB_DIST", str(PROJECT_ROOT / "web" / "dist")))
 
 # Server config.
 CODEN_HOST = os.environ.get("CODEN_HOST", "127.0.0.1")

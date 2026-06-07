@@ -13,6 +13,10 @@
     {
       "from": "../server/dist/coden-server",
       "to": "coden-server"
+    },
+    {
+      "from": "../web/dist",
+      "to": "web-dist"
     }
   ],
   "win": {
