@@ -1855,7 +1855,7 @@ class PygameRenderer:
         # visually.
         cur_y = content_top - self._vars_scroll_y
         cur_x = content_x - self._vars_scroll_x
-        for index, (name, kind, payload, total_h) in enumerate(items):
+        for index, (name, kind, payload, total_h, hidden) in enumerate(items):
             # Skip rows that are entirely above the visible area.
             if cur_y + total_h <= content_top:
                 cur_y += total_h
