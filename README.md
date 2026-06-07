@@ -60,6 +60,36 @@ Open `http://localhost:5173`. Click `sort_01` in the left rail, then
 - FastAPI: add `--reload` to the uvicorn command
 - Vite: hot-reload is on by default in dev
 
+## How to run the Electron desktop wrapper
+
+The Electron dev launcher spawns the FastAPI server as a child
+process, waits for it to become healthy on `/api/health`, then opens
+a `BrowserWindow` at the server's URL. The FastAPI server mounts
+`web/dist/` as static files, so the React app loads from the same
+process that serves the API.
+
+```bash
+# 1. Build the React app (one time, or after React changes)
+cd "c:/dawei7/code_n/web"
+npm run build
+
+# 2. Start Electron (it builds its main process + spawns uvicorn)
+cd "c:/dawei7/code_n/electron"
+npm install  # first time only
+npm start
+```
+
+A native window opens at the FastAPI server's URL (a random free
+port — the launcher parses it from uvicorn's stdout). On window
+close, the launcher kills the uvicorn process so it doesn't
+outlive the app.
+
+**Set `CODEN_DEVTOOLS=1`** to open Chrome DevTools in the
+BrowserWindow for debugging.
+
+**Note:** This is the dev launcher. Full PyInstaller `coden-server.exe`
++ electron-builder NSIS packaging is a follow-up sprint.
+
 ## How to run the tests
 
 ```bash

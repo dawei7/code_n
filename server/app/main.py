@@ -7,6 +7,8 @@ Wires together:
 * the exception handlers
 * the on-startup registry warm (so the first /api/challenges
   request doesn't pay the import cost of the spec framework)
+* the ``web/dist/`` static mount (for the Electron desktop wrapper,
+  so the FastAPI server can serve the built React app at ``/``)
 
 The factory pattern keeps ``uvicorn server.app.main:app`` working
 in dev, and lets the Electron launcher's tests import the app
@@ -15,11 +17,13 @@ without binding to a port.
 from __future__ import annotations
 
 import logging
+from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
-from server.app.config import CORS_ORIGINS, ensure_data_dirs
+from server.app.config import CORS_ORIGINS, PROJECT_ROOT, ensure_data_dirs
 from server.app.routes import challenges, health, progress, run, solutions
 from server.app import error_handlers
 
@@ -30,6 +34,12 @@ logging.basicConfig(
 )
 
 
+# Path to the built React app. Mounted at "/" if it exists; absent
+# in Vite-only dev (the user runs `npm run dev` separately and the
+# Vite proxy handles /api/* forwarding).
+WEB_DIST = PROJECT_ROOT / "web" / "dist"
+
+
 def create_app() -> FastAPI:
     app = FastAPI(
         title="cOde(n) server",
@@ -38,6 +48,8 @@ def create_app() -> FastAPI:
     )
 
     # CORS — dev: Vite on 5173, prod: Electron's app:// scheme.
+    # Same-origin requests (Electron loading from this same server)
+    # don't trigger CORS, so we don't need to list 127.0.0.1:*.
     app.add_middleware(
         CORSMiddleware,
         allow_origins=CORS_ORIGINS,
@@ -46,7 +58,8 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
-    # Routes
+    # Routes — registered before the static catch-all so /api/*
+    # always wins the match.
     app.include_router(health.router, prefix="/api")
     app.include_router(challenges.router, prefix="/api")
     app.include_router(run.router, prefix="/api")
@@ -55,6 +68,18 @@ def create_app() -> FastAPI:
 
     # Exception handlers
     error_handlers.register(app)
+
+    # Static UI mount — only if the React build is present.
+    # In the Vite-only dev workflow this is absent and the user
+    # runs `npm run dev` separately.
+    if WEB_DIST.is_dir() and (WEB_DIST / "index.html").is_file():
+        app.mount("/", StaticFiles(directory=str(WEB_DIST), html=True), name="ui")
+        logging.info("Mounted web UI from %s", WEB_DIST)
+    else:
+        logging.info(
+            "web/dist not found at %s; UI served separately (run `npm run build` in web/ for Electron, or `npm run dev` for Vite HMR)",
+            WEB_DIST,
+        )
 
     # Warm the registry at startup so the first request is fast.
     @app.on_event("startup")
