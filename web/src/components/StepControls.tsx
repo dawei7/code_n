@@ -1,18 +1,27 @@
 import { useAppStore } from '../store/useAppStore';
 
 
-const SPEEDS = [1, 2, 4, 8, 16, 30] as const;
+// Frame interval (ms) options. The label is "Xms / Xs per frame" so
+// it's obvious that higher = slower. The default is 1000ms (1s per
+// frame), which gives the player a full second to read each step.
+const FRAME_INTERVALS: ReadonlyArray<{ ms: number; label: string }> = [
+  { ms: 100,  label: '100ms / frame (very fast)' },
+  { ms: 250,  label: '250ms / frame' },
+  { ms: 500,  label: '500ms / frame' },
+  { ms: 1000, label: '1s / frame' },
+  { ms: 2000, label: '2s / frame (slow)' },
+];
 
 
 export function StepControls() {
   const runResult = useAppStore((s) => s.runResult);
   const frameIndex = useAppStore((s) => s.frameIndex);
   const isPlaying = useAppStore((s) => s.isPlaying);
-  const speed = useAppStore((s) => s.speed);
+  const frameIntervalMs = useAppStore((s) => s.frameIntervalMs);
   const step = useAppStore((s) => s.step);
   const play = useAppStore((s) => s.play);
   const pause = useAppStore((s) => s.pause);
-  const setSpeed = useAppStore((s) => s.setSpeed);
+  const setFrameIntervalMs = useAppStore((s) => s.setFrameIntervalMs);
   const jumpToFrame = useAppStore((s) => s.jumpToFrame);
 
   const disabled = !runResult;
@@ -77,13 +86,14 @@ export function StepControls() {
       />
 
       <select
-        value={speed}
-        onChange={(e) => setSpeed(Number(e.target.value))}
+        value={frameIntervalMs}
+        onChange={(e) => setFrameIntervalMs(Number(e.target.value))}
         className="bg-coden-bg border border-coden-border rounded px-2 py-1 text-xs font-mono"
+        title="How long each frame is shown in the play loop"
       >
-        {SPEEDS.map((s) => (
-          <option key={s} value={s}>
-            {s} step/s
+        {FRAME_INTERVALS.map((opt) => (
+          <option key={opt.ms} value={opt.ms}>
+            {opt.label}
           </option>
         ))}
       </select>

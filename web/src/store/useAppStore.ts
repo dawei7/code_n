@@ -42,7 +42,10 @@ export interface AppState {
   // Step player
   frameIndex: number;
   isPlaying: boolean;
-  speed: number;  // steps per second
+  /** How long to display each frame in the play loop, in ms.
+   *  500 = 2 fps (slow, easy to study), 1000 = 1 fps (default),
+   *  250 = 4 fps (fast), 100 = 10 fps (very fast). */
+  frameIntervalMs: number;
 
   // Progress
   progress: ProgressOut | null;
@@ -57,7 +60,7 @@ export interface AppState {
   reset(): void;
   step(delta: StepDelta): void;
   jumpToFrame(i: number): void;
-  setSpeed(s: number): void;
+  setFrameIntervalMs(ms: number): void;
   play(): void;
   pause(): void;
   loadProgress(): Promise<void>;
@@ -78,7 +81,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   error: null,
   frameIndex: 0,
   isPlaying: false,
-  speed: 4,
+  frameIntervalMs: 1000,
   progress: null,
 
   async loadChallenges() {
@@ -167,7 +170,9 @@ export const useAppStore = create<AppState>((set, get) => ({
     if (delta === 'first') next = 0;
     else if (delta === 'last') next = last;
     else next = Math.max(0, Math.min(last, frameIndex + delta));
-    set({ frameIndex: next, isPlaying: false });
+    // NB: don't touch isPlaying here — the play loop calls step(1)
+    // and we don't want each step to pause itself.
+    set({ frameIndex: next });
   },
 
   jumpToFrame(i: number) {
@@ -178,7 +183,13 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   setSpeed(s: number) {
-    set({ speed: s });
+    // Backwards-compat shim: older callers pass "steps per second".
+    // Convert to ms-per-frame.
+    set({ frameIntervalMs: Math.max(50, Math.round(1000 / Math.max(1, s))) });
+  },
+
+  setFrameIntervalMs(ms: number) {
+    set({ frameIntervalMs: Math.max(50, Math.round(ms)) });
   },
 
   play() {

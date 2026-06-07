@@ -1,19 +1,17 @@
 /**
  * Electron main process for the cOde(n) desktop wrapper.
  *
- * Dev launcher flow:
+ * Flow:
  *   1. Spawn uvicorn as a child process (server-process.ts).
- *   2. Wait for the FastAPI server to become healthy on /api/health.
- *   3. Open a BrowserWindow at the FastAPI server's URL.
- *   4. On quit, kill the uvicorn process so it doesn't outlive the app.
- *
- * The FastAPI server mounts `web/dist/` as static files, so the
- * BrowserWindow's URL points at the same uvicorn process that
- * serves the API. In dev, run `npm run build` in web/ first so
- * the static mount has something to serve.
+ *   2. Wait for the FastAPI server to write its port file.
+ *   3. Open a BrowserWindow at the server's URL.
+ *   4. The renderer can request a "pop out editor" via IPC, which
+ *      creates a second BrowserWindow loading ?view=editor.
+ *   5. On quit, kill the uvicorn process so it doesn't outlive
+ *      the app.
  */
 
-import { app, BrowserWindow, dialog } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import * as path from 'node:path';
 import { startServer, ServerHandle } from './server-process';
 
@@ -41,25 +39,22 @@ async function createWindow(): Promise<void> {
   console.log(`[coden-electron] repo root: ${repoRoot}`);
   console.log(`[coden-electron] CODEN_HOME: ${codenHome} (packaged=${app.isPackaged})`);
   console.log(`[coden-electron] process.resourcesPath: ${process.resourcesPath}`);
-  const bundledCheck = path.join(process.resourcesPath, 'coden-server',
-    process.platform === 'win32' ? 'coden-server.exe' : 'coden-server');
-  console.log(`[coden-electron] bundled path candidate: ${bundledCheck}`);
-  console.log(`[coden-electron] bundled exists: ${require('fs').existsSync(bundledCheck)}`);
 
   try {
     server = await startServer(repoRoot, codenHome);
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
     console.error(`[coden-electron] failed to start server:\n${message}`);
-    // server is null/undefined here because the throw happened before
-    // assignment. The hint is based on the bundled path we checked
-    // above, not on server.source.
-    const bundledExists = require('fs').existsSync(bundledCheck);
+    const webDist = path.join(process.resourcesPath, 'web-dist');
+    const serverExe = path.join(process.resourcesPath, 'coden-server',
+      process.platform === 'win32' ? 'coden-server.exe' : 'coden-server');
+    const bundledExists = require('fs').existsSync(serverExe);
     const hint = bundledExists
-      ? `The bundled server exists at:\n  ${bundledCheck}\n\n` +
+      ? `The bundled server exists at:\n  ${serverExe}\n\n` +
         'Try running it directly from a terminal to see the actual error.'
-      : `Bundled server NOT found at:\n  ${bundledCheck}\n\n` +
+      : `Bundled server NOT found at:\n  ${serverExe}\n\n` +
         `For dev: cd "${repoRoot}" && python -m venv .venv && .venv/Scripts/pip install -r requirements.txt`;
+    void webDist; // keep referenced for diagnostic
     dialog.showErrorBox(
       'Failed to start cOde(n) server',
       `${message}\n\n${hint}`,
@@ -70,6 +65,33 @@ async function createWindow(): Promise<void> {
 
   console.log(`[coden-electron] server up at http://127.0.0.1:${server.port} (source=${server.source})`);
 
+  // Register the IPC handler that opens a pop-out editor window.
+  // The renderer calls window.electronAPI.popOutEditor() (exposed
+  // by preload.ts); we open a new BrowserWindow here.
+  ipcMain.handle('pop-out-editor', () => {
+    const port = server?.port;
+    if (!port) return false;
+    const win = new BrowserWindow({
+      width: 900,
+      height: 700,
+      minWidth: 500,
+      minHeight: 400,
+      title: 'cOde(n) — Editor',
+      backgroundColor: '#020617',
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js'),
+        contextIsolation: true,
+        nodeIntegration: false,
+      },
+    });
+    const url = `http://127.0.0.1:${port}/?view=editor`;
+    void win.loadURL(url);
+    return true;
+  });
+
+  const mainUrl = `http://127.0.0.1:${server.port}/`;
+  console.log(`[coden-electron] loading ${mainUrl}`);
+
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
@@ -79,22 +101,17 @@ async function createWindow(): Promise<void> {
     backgroundColor: '#020617',
     show: false,
     webPreferences: {
-      // No preload for MVP; the React app talks to the FastAPI
-      // server directly via fetch. Future work: expose a typed
-      // IPC bridge for native features (open file dialog, etc.).
+      preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
     },
   });
 
-  const url = `http://127.0.0.1:${server.port}/`;
-  console.log(`[coden-electron] loading ${url}`);
-
   mainWindow.once('ready-to-show', () => {
     mainWindow?.show();
   });
 
-  await mainWindow.loadURL(url);
+  await mainWindow.loadURL(mainUrl);
 
   // Open devtools in dev builds (F12 toggles, but the console
   // is useful for the developer too).

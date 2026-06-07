@@ -1,6 +1,15 @@
 import { useAppStore } from '../store/useAppStore';
 
 
+declare global {
+  interface Window {
+    electronAPI?: {
+      popOutEditor(): Promise<boolean>;
+    };
+  }
+}
+
+
 /**
  * Toolbar — Run / Reset / Save / Show solution buttons + n/seed inputs.
  */
@@ -18,6 +27,18 @@ export function Toolbar() {
   const setSeed = useAppStore((s) => s.setSeed);
 
   if (!detail) return null;
+
+  async function handlePopOut() {
+    const api = window.electronAPI;
+    if (api?.popOutEditor) {
+      await api.popOutEditor();
+    } else {
+      // Dev / browser fallback: open the same URL in a new tab.
+      // The URL is just a hint; the browser will reuse the same
+      // process. Mostly useful for quick testing.
+      window.open(window.location.pathname + '?view=editor', '_blank');
+    }
+  }
 
   return (
     <div className="flex items-center gap-2 flex-wrap">
@@ -52,6 +73,14 @@ export function Toolbar() {
         title="Copy the canonical optimal solution into the editor"
       >
         Show solution
+      </button>
+      <button
+        type="button"
+        onClick={handlePopOut}
+        className="px-3 py-1.5 text-sm rounded border border-coden-border text-coden-text hover:bg-coden-border"
+        title="Open the editor in a separate window you can drag to a second monitor"
+      >
+        ⧉ Pop out
       </button>
 
       <div className="flex items-center gap-1 ml-auto text-xs">
