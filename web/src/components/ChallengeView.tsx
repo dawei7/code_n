@@ -4,6 +4,7 @@ import { StatusBanner } from './StatusBanner';
 import { OpLog } from './OpLog';
 import { LocalsPanel } from './LocalsPanel';
 import { ComplexityAnalysis } from './ComplexityAnalysis';
+import { CodePanel } from './CodePanel';
 
 
 declare global {
@@ -123,13 +124,16 @@ export function ChallengeView() {
           </div>
         </div>
 
-        {/* Right column: op log (with CSV export) */}
+        {/* Right column: op log (top) + code view (bottom) */}
         <div className="col-span-3 flex flex-col gap-3 overflow-hidden">
-          <div className="flex-1 bg-coden-surface border border-coden-border rounded p-3 overflow-hidden flex flex-col min-h-0">
+          <div className="flex-1 min-h-0 bg-coden-surface border border-coden-border rounded p-3 overflow-hidden flex flex-col">
             <div className="text-xs uppercase text-coden-muted font-semibold mb-2 shrink-0">
               Stats &amp; ops
             </div>
             <OpLog />
+          </div>
+          <div className="flex-1 min-h-0 overflow-hidden">
+            <CodePanel />
           </div>
         </div>
       </div>

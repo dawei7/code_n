@@ -151,7 +151,9 @@ export const useAppStore = create<AppState>((set, get) => ({
         n,
         seed,
       });
-      set({ runResult: result, opIndex: 0 });
+      // Persist the source that was actually run so the CodePanel
+      // can render it in the second half of the right panel.
+      set({ runResult: result, opIndex: 0, source });
       // Side-effect: persist progress if it passed.
       if (result.passed) {
         try {
