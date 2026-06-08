@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useAppStore } from '../store/useAppStore';
 
 
@@ -48,6 +48,27 @@ export function CodePanel() {
   const lines = source.split('\n');
   const activeIdx = activeLine !== null ? activeLine - 1 : -1;
 
+  // Ref to the scrollable code container, used to keep the
+  // active line in view as the user steps through ops.
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  /**
+   * Auto-scroll the highlighted line into the center of the
+   * visible area whenever the active line changes. Same
+   * pedagogical intent as the OpLog auto-scroll: keep the
+   * user's focus on the line being executed, even as the
+   * algorithm walks through the source.
+   */
+  useEffect(() => {
+    if (activeLine === null) return;
+    const container = containerRef.current;
+    if (!container) return;
+    const el = container.querySelector<HTMLElement>(`[data-line-no="${activeLine}"]`);
+    if (el) {
+      el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  }, [activeLine, lines.length]);
+
   return (
     <div className="bg-coden-surface border border-coden-border rounded p-2 h-full flex flex-col overflow-hidden">
       <div className="text-xs uppercase text-coden-muted font-semibold mb-2 shrink-0 flex items-center justify-between">
@@ -58,12 +79,17 @@ export function CodePanel() {
           </span>
         )}
       </div>
-      <div className="flex-1 overflow-auto font-mono text-xs bg-coden-bg rounded border border-coden-border">
+      <div
+        ref={containerRef}
+        className="flex-1 overflow-auto font-mono text-xs bg-coden-bg rounded border border-coden-border"
+      >
         {lines.map((text, i) => {
           const isActive = i === activeIdx;
+          const lineNo = i + 1;
           return (
             <div
               key={i}
+              data-line-no={lineNo}
               className={[
                 'px-2 py-0.5 flex gap-2 transition-colors',
                 isActive
@@ -77,7 +103,7 @@ export function CodePanel() {
                   isActive ? 'text-coden-accent font-semibold' : 'text-coden-muted',
                 ].join(' ')}
               >
-                {i + 1}
+                {lineNo}
               </span>
               <span className={isActive ? 'text-coden-text' : 'text-coden-text'}>
                 {text || ' '}
