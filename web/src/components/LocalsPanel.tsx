@@ -25,16 +25,19 @@ export function LocalsPanel() {
   const runResult = useAppStore((s) => s.runResult);
   const opIndex = useAppStore((s) => s.opIndex);
 
-  if (!runResult) {
-    return <div className="text-xs text-coden-muted">Run the code to inspect locals.</div>;
-  }
-
   // Compute the frame for the current op. The user-visible
   // position is opIndex (steps 1 op at a time); the frame is
   // derived as the latest trace frame with op_index <= opIndex.
   // This is the same algorithm the play loop / op log uses, so
   // the source line, locals, and op log stay in sync.
+  //
+  // NB: this useMemo MUST be called on every render, regardless
+  // of whether runResult exists. Putting it after the !runResult
+  // early-return causes React's "Rendered fewer hooks than
+  // expected" error (because the first render skips the hook
+  // and the second render doesn't).
   const frame = useMemo(() => {
+    if (!runResult) return undefined;
     const trace = runResult.trace;
     let frameIdx = 0;
     for (let f = 0; f < trace.length; f++) {
@@ -44,6 +47,9 @@ export function LocalsPanel() {
     return trace[frameIdx];
   }, [runResult, opIndex]);
 
+  if (!runResult) {
+    return <div className="text-xs text-coden-muted">Run the code to inspect locals.</div>;
+  }
   if (!frame) {
     return <div className="text-xs text-coden-muted">No frame at this step.</div>;
   }
