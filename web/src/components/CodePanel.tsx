@@ -22,10 +22,11 @@ export function CodePanel() {
   const runResult = useAppStore((s) => s.runResult);
   const opIndex = useAppStore((s) => s.opIndex);
 
+  // === ALL HOOKS MUST BE CALLED ON EVERY RENDER ===
+  // (Rules of Hooks). Early-returns go BELOW the hook block.
+
   // The active line is the frame for the current opIndex. Same
   // derivation as LocalsPanel — kept consistent on purpose.
-  // MUST be called on every render (Rules of Hooks): the
-  // !source / !runResult guards happen AFTER this hook.
   const activeLine = useMemo(() => {
     if (!runResult) return null;
     const trace = runResult.trace;
@@ -37,6 +38,32 @@ export function CodePanel() {
     return trace[frameIdx]?.line_no ?? null;
   }, [runResult, opIndex]);
 
+  // Ref to the scrollable code container, used by the
+  // auto-scroll effect below.
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Lines count (derived; safe for the effect even when source
+  // is empty). Computed here so the useEffect below has a
+  // stable value to depend on.
+  const linesLength = source ? source.split('\n').length : 0;
+
+  // Auto-scroll the highlighted line into the center of the
+  // visible area whenever the active line changes. Same
+  // pédagogical intent as the OpLog auto-scroll: keep the
+  // user's focus on the line being executed, even as the
+  // algorithm walks through the source.
+  useEffect(() => {
+    if (activeLine === null) return;
+    const container = containerRef.current;
+    if (!container) return;
+    const el = container.querySelector<HTMLElement>(`[data-line-no="${activeLine}"]`);
+    if (el) {
+      el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  }, [activeLine, linesLength]);
+
+  // === EARLY RETURNS GO BELOW THE HOOK BLOCK ===
+
   if (!source) {
     return (
       <div className="bg-coden-surface border border-coden-border rounded p-3 h-full flex items-center justify-center text-xs text-coden-muted">
@@ -47,27 +74,6 @@ export function CodePanel() {
 
   const lines = source.split('\n');
   const activeIdx = activeLine !== null ? activeLine - 1 : -1;
-
-  // Ref to the scrollable code container, used to keep the
-  // active line in view as the user steps through ops.
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  /**
-   * Auto-scroll the highlighted line into the center of the
-   * visible area whenever the active line changes. Same
-   * pedagogical intent as the OpLog auto-scroll: keep the
-   * user's focus on the line being executed, even as the
-   * algorithm walks through the source.
-   */
-  useEffect(() => {
-    if (activeLine === null) return;
-    const container = containerRef.current;
-    if (!container) return;
-    const el = container.querySelector<HTMLElement>(`[data-line-no="${activeLine}"]`);
-    if (el) {
-      el.scrollIntoView({ block: 'center', behavior: 'smooth' });
-    }
-  }, [activeLine, lines.length]);
 
   return (
     <div className="bg-coden-surface border border-coden-border rounded p-2 h-full flex flex-col overflow-hidden">
@@ -105,7 +111,7 @@ export function CodePanel() {
               >
                 {lineNo}
               </span>
-              <span className={isActive ? 'text-coden-text' : 'text-coden-text'}>
+              <span className="text-coden-text">
                 {text || ' '}
               </span>
             </div>

@@ -47,24 +47,12 @@ export function OpLog() {
   // highlighted op in view as the user steps / clicks / plays.
   const containerRef = useRef<HTMLDivElement>(null);
 
-  if (!runResult) {
-    return <div className="text-xs text-coden-muted">No run yet.</div>;
-  }
-
-  const { stats, ops_log, actual_complexity, required_complexity } = runResult;
-
-  /**
-   * Auto-scroll the highlighted op into the center of the visible
-   * area whenever opIndex changes. Triggered on:
-   *   - Run (opIndex resets to 0; no scroll needed since 0 is at the top)
-   *   - Step / play / slider drag (opIndex advances or jumps)
-   *   - Clicking an op in the op log (jumpToOpIndex)
-   * 'nearest' is subtle — it scrolls only if the active op is not
-   * currently visible, so the user's manual scrolling within the
-   * op log isn't yanked around. The user requested "center of
-   * the focus", so we use 'center' to keep the active row
-   * centered as you step through.
-   */
+  // All hooks MUST be called on every render, regardless of
+  // whether runResult exists, to satisfy the Rules of Hooks.
+  // (Putting useRef / useEffect after an early return causes
+  // React to throw "Rendered fewer hooks than expected" and
+  // unmount the whole component tree — blank screen.)
+  const opsLength = runResult?.ops_log.length ?? 0;
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -72,7 +60,13 @@ export function OpLog() {
     if (el) {
       el.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
-  }, [opIndex, ops_log.length]);
+  }, [opIndex, opsLength]);
+
+  if (!runResult) {
+    return <div className="text-xs text-coden-muted">No run yet.</div>;
+  }
+
+  const { stats, ops_log, actual_complexity, required_complexity } = runResult;
 
   return (
     <div className="flex-1 flex flex-col min-h-0 text-xs">
