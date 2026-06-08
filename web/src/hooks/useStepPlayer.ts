@@ -3,13 +3,18 @@
  *
  * Uses setInterval (not requestAnimationFrame) because the
  * animation rate is set by `frameIntervalMs` (how long each
- * frame is shown) — typically 250-2000 ms, much slower than
- * 60 fps, so a 1-frame-per-tick interval is exactly the
- * right granularity. CSS transitions on the cells give the
- * visual smoothness; the React state update changes the data
- * behind the cells.
+ * step is shown) — typically 250-2000 ms, much slower than
+ * 60 fps, so a 1-step-per-tick interval is exactly the right
+ * granularity.
  *
- * NB: `frameIndex` is intentionally NOT in the effect deps.
+ * Stepping is in **op** units: each tick advances one op. The
+ * LocalsPanel computes the corresponding frame (latest frame
+ * with op_index <= current opIndex) and renders the locals
+ * for that frame. CSS transitions give the visual smoothness
+ * for the bars / cells; the React state update changes the
+ * data behind the cells.
+ *
+ * NB: `opIndex` is intentionally NOT in the effect deps.
  * Including it would cause the effect to re-run (and clear+restart
  * the interval) on every step, which would prevent the play
  * loop from actually advancing at the configured speed.
@@ -28,8 +33,8 @@ export function useStepPlayer(): void {
     const id = setInterval(() => {
       const s = useAppStore.getState();
       if (!s.runResult) return;
-      const last = s.runResult.trace.length - 1;
-      if (s.frameIndex >= last) {
+      const last = s.runResult.ops_log.length - 1;
+      if (s.opIndex >= last) {
         s.pause();
         return;
       }

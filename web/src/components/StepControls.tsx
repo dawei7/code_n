@@ -15,17 +15,20 @@ const FRAME_INTERVALS: ReadonlyArray<{ ms: number; label: string }> = [
 
 export function StepControls() {
   const runResult = useAppStore((s) => s.runResult);
-  const frameIndex = useAppStore((s) => s.frameIndex);
+  const opIndex = useAppStore((s) => s.opIndex);
   const isPlaying = useAppStore((s) => s.isPlaying);
   const frameIntervalMs = useAppStore((s) => s.frameIntervalMs);
   const step = useAppStore((s) => s.step);
   const play = useAppStore((s) => s.play);
   const pause = useAppStore((s) => s.pause);
   const setFrameIntervalMs = useAppStore((s) => s.setFrameIntervalMs);
-  const jumpToFrame = useAppStore((s) => s.jumpToFrame);
+  const jumpToOpIndex = useAppStore((s) => s.jumpToOpIndex);
 
   const disabled = !runResult;
-  const last = runResult?.trace.length ? runResult.trace.length - 1 : 0;
+  // Step in op units — each click of next/prev advances one op,
+  // even if multiple ops happened on the same Python line. The
+  // slider goes 0..ops_log.length-1.
+  const last = runResult?.ops_log.length ? runResult.ops_log.length - 1 : 0;
 
   return (
     <div className="bg-coden-surface border border-coden-border rounded px-3 py-2 flex items-center gap-2">
@@ -34,7 +37,7 @@ export function StepControls() {
         onClick={() => step('first')}
         disabled={disabled}
         className="px-2 py-1 text-sm rounded border border-coden-border hover:bg-coden-border disabled:opacity-30"
-        title="Jump to first frame (Home)"
+        title="Jump to first op (Home)"
       >
         ⏮
       </button>
@@ -43,7 +46,7 @@ export function StepControls() {
         onClick={() => step(-1)}
         disabled={disabled}
         className="px-2 py-1 text-sm rounded border border-coden-border hover:bg-coden-border disabled:opacity-30"
-        title="Step back (←)"
+        title="Step back one op (←)"
       >
         ◀
       </button>
@@ -61,7 +64,7 @@ export function StepControls() {
         onClick={() => step(1)}
         disabled={disabled}
         className="px-2 py-1 text-sm rounded border border-coden-border hover:bg-coden-border disabled:opacity-30"
-        title="Step forward (→)"
+        title="Step forward one op (→)"
       >
         ▶|
       </button>
@@ -70,7 +73,7 @@ export function StepControls() {
         onClick={() => step('last')}
         disabled={disabled}
         className="px-2 py-1 text-sm rounded border border-coden-border hover:bg-coden-border disabled:opacity-30"
-        title="Jump to last frame (End)"
+        title="Jump to last op (End)"
       >
         ⏭
       </button>
@@ -79,8 +82,8 @@ export function StepControls() {
         type="range"
         min={0}
         max={last}
-        value={frameIndex}
-        onChange={(e) => jumpToFrame(Number(e.target.value))}
+        value={opIndex}
+        onChange={(e) => jumpToOpIndex(Number(e.target.value))}
         disabled={disabled}
         className="flex-1 mx-2 accent-coden-accent"
       />
@@ -89,7 +92,7 @@ export function StepControls() {
         value={frameIntervalMs}
         onChange={(e) => setFrameIntervalMs(Number(e.target.value))}
         className="bg-coden-bg border border-coden-border rounded px-2 py-1 text-xs font-mono"
-        title="How long each frame is shown in the play loop"
+        title="How long each step is shown in the play loop"
       >
         {FRAME_INTERVALS.map((opt) => (
           <option key={opt.ms} value={opt.ms}>

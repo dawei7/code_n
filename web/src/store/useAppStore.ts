@@ -40,7 +40,7 @@ export interface AppState {
   error: string | null;
 
   // Step player
-  frameIndex: number;
+  opIndex: number;
   isPlaying: boolean;
   /** How long to display each frame in the play loop, in ms.
    *  500 = 2 fps (slow, easy to study), 1000 = 1 fps (default),
@@ -59,6 +59,7 @@ export interface AppState {
   run(): Promise<void>;
   reset(): void;
   step(delta: StepDelta): void;
+  jumpToOpIndex(i: number): void;
   jumpToFrame(i: number): void;
   setFrameIntervalMs(ms: number): void;
   play(): void;
@@ -79,7 +80,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   isRunning: false,
   runResult: null,
   error: null,
-  frameIndex: 0,
+  opIndex: 0,
   isPlaying: false,
   frameIntervalMs: 1000,
   progress: null,
@@ -90,7 +91,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   async selectChallenge(id: string) {
-    set({ isRunning: true, error: null, runResult: null, frameIndex: 0, isPlaying: false });
+    set({ isRunning: true, error: null, runResult: null, opIndex: 0, isPlaying: false });
     try {
       const detail = await challengesApi.getChallenge(id);
       // Load the player's saved source from disk, or fall back to the starter.
@@ -150,7 +151,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         n,
         seed,
       });
-      set({ runResult: result, frameIndex: 0 });
+      set({ runResult: result, opIndex: 0 });
       // Side-effect: persist progress if it passed.
       if (result.passed) {
         try {
@@ -172,27 +173,43 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   reset() {
-    set({ runResult: null, error: null, frameIndex: 0, isPlaying: false });
+    set({ runResult: null, error: null, opIndex: 0, isPlaying: false });
   },
 
   step(delta: StepDelta) {
-    const { runResult, frameIndex } = get();
+    // Step in **op** units, not frame units. The trace fires one
+    // frame per Python `line` event; ops fire on each read/write/
+    // compare. Multiple ops can happen on the same line, so
+    // stepping by op (rather than frame) is what the user wants
+    // when they click "next": they want to see the next actual
+    // operation, not the next line.
+    const { runResult, opIndex } = get();
     if (!runResult) return;
-    const last = runResult.trace.length - 1;
-    let next = frameIndex;
+    const last = runResult.ops_log.length - 1;
+    let next = opIndex;
     if (delta === 'first') next = 0;
     else if (delta === 'last') next = last;
-    else next = Math.max(0, Math.min(last, frameIndex + delta));
-    // NB: don't touch isPlaying here — the play loop calls step(1)
-    // and we don't want each step to pause itself.
-    set({ frameIndex: next });
+    else next = Math.max(0, Math.min(last, opIndex + delta));
+    set({ opIndex: next });
+  },
+
+  jumpToOpIndex(i: number) {
+    const { runResult } = get();
+    if (!runResult) return;
+    const last = runResult.ops_log.length - 1;
+    set({ opIndex: Math.max(0, Math.min(last, i)) });
   },
 
   jumpToFrame(i: number) {
+    // Convenience: jump to the op that corresponds to the given
+    // trace frame. Used by the op log "click to jump" handler.
     const { runResult } = get();
     if (!runResult) return;
-    const last = runResult.trace.length - 1;
-    set({ frameIndex: Math.max(0, Math.min(last, i)) });
+    const trace = runResult.trace;
+    if (i < 0 || i >= trace.length) return;
+    // The frame's op_index is the op that triggered the line
+    // event. Jump to that op.
+    set({ opIndex: Math.max(0, Math.min(trace[i].op_index, runResult.ops_log.length - 1)) });
   },
 
   setSpeed(s: number) {

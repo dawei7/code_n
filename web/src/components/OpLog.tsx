@@ -38,46 +38,23 @@ function exportOpsCsv(ops: OpRecordOut[], challengeId: string) {
 
 export function OpLog() {
   const runResult = useAppStore((s) => s.runResult);
-  const frameIndex = useAppStore((s) => s.frameIndex);
-  const jumpToFrame = useAppStore((s) => s.jumpToFrame);
+  const opIndex = useAppStore((s) => s.opIndex);
+  const jumpToOpIndex = useAppStore((s) => s.jumpToOpIndex);
   const currentDetail = useAppStore((s) => s.currentDetail);
 
   if (!runResult) {
     return <div className="text-xs text-coden-muted">No run yet.</div>;
   }
 
-  const { stats, ops_log, trace, actual_complexity, required_complexity } = runResult;
-  const opIndexAtFrame = trace[frameIndex]?.op_index ?? 0;
+  const { stats, ops_log, actual_complexity, required_complexity } = runResult;
 
   /**
-   * Find the LAST trace frame whose op_index is <= the given op's index.
-   *
-   * The trace fires one frame per Python `line` event; multiple ops
-   * can happen on the same line (e.g. `data[i] = data[j]` is one
-   * read of data[i] + one read of data[j] + one write of data[i],
-   * all on the same line). The op_index values are 0, 1, 2, 3, ...
-   * but a frame might cover ops 0-3. So the right frame for op N
-   * is the latest frame with op_index <= N.
-   *
-   * We precompute a `frameForOp` array so clicking is O(1) instead
-   * of O(trace) per op.
+   * Stepping is in op units (each click of the slider advances
+   * one op). The op log highlights the op at opIndex; the
+   * LocalsPanel computes the corresponding frame (latest frame
+   * with op_index <= opIndex) and shows its locals + source
+   * line. The two stay in sync via the same opIndex state.
    */
-  const frameForOp: number[] = (() => {
-    const map: number[] = new Array(ops_log.length);
-    let lastFrame = 0;
-    let traceIdx = 0;
-    for (let i = 0; i < ops_log.length; i++) {
-      // Advance traceIdx while the trace's next frame still has
-      // op_index <= i. After this loop, traceIdx is the last frame
-      // whose op_index is <= i.
-      while (traceIdx < trace.length - 1 && trace[traceIdx + 1].op_index <= i) {
-        traceIdx += 1;
-      }
-      lastFrame = traceIdx;
-      map[i] = lastFrame;
-    }
-    return map;
-  })();
 
   return (
     <div className="flex-1 flex flex-col min-h-0 text-xs">
@@ -123,17 +100,17 @@ export function OpLog() {
           <div className="text-coden-muted p-2">No ops recorded.</div>
         ) : (
           ops_log.map((op, i) => {
-            const isCurrent = i === opIndexAtFrame;
+            const isCurrent = i === opIndex;
             return (
               <button
                 type="button"
                 key={i}
-                onClick={() => jumpToFrame(frameForOp[i] ?? 0)}
+                onClick={() => jumpToOpIndex(i)}
                 className={[
                   'w-full text-left px-2 py-0.5 hover:bg-coden-border cursor-pointer',
                   isCurrent ? 'bg-coden-border border-l-2 border-coden-accent' : '',
                 ].join(' ')}
-                title={`Op ${i} — click to jump to the trace frame showing this op`}
+                title={`Op ${i} — click to jump to this op`}
               >
                 <span className="text-coden-muted mr-1">{i.toString().padStart(4, ' ')}</span>
                 <span className={opColor(op.op_type)}>

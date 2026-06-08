@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import JsonView from '@uiw/react-json-view';
 import { vscodeTheme } from '@uiw/react-json-view/vscode';
 import { useAppStore } from '../store/useAppStore';
@@ -22,13 +23,27 @@ import { useAppStore } from '../store/useAppStore';
 export function LocalsPanel() {
   const source = useAppStore((s) => s.source);
   const runResult = useAppStore((s) => s.runResult);
-  const frameIndex = useAppStore((s) => s.frameIndex);
+  const opIndex = useAppStore((s) => s.opIndex);
 
   if (!runResult) {
     return <div className="text-xs text-coden-muted">Run the code to inspect locals.</div>;
   }
 
-  const frame = runResult.trace[frameIndex];
+  // Compute the frame for the current op. The user-visible
+  // position is opIndex (steps 1 op at a time); the frame is
+  // derived as the latest trace frame with op_index <= opIndex.
+  // This is the same algorithm the play loop / op log uses, so
+  // the source line, locals, and op log stay in sync.
+  const frame = useMemo(() => {
+    const trace = runResult.trace;
+    let frameIdx = 0;
+    for (let f = 0; f < trace.length; f++) {
+      if (trace[f].op_index <= opIndex) frameIdx = f;
+      else break;
+    }
+    return trace[frameIdx];
+  }, [runResult, opIndex]);
+
   if (!frame) {
     return <div className="text-xs text-coden-muted">No frame at this step.</div>;
   }
