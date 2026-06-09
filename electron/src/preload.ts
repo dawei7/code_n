@@ -7,27 +7,35 @@
  * sees this as ``window.electronAPI`` and calls these functions
  * to invoke native capabilities.
  *
- * For MVP we expose just one function: ``popOutEditor``, which
- * asks the main process to open a new BrowserWindow that loads
- * the React app in editor-only mode (?view=editor). The user
- * can then drag the new window to a second monitor.
+ * Exposed functions:
+ *   - popOutEditor() — opens the legacy pop-out Monaco editor
+ *     window at `?view=editor`.
+ *   - popOutPane(paneId, tabId) — opens a new BrowserWindow at
+ *     `?view=pane&paneId=...&tabId=...` that hosts a single tab
+ *     in its own window.
+ *   - onPaneWindowClosed(cb) — subscribe to "a detached window
+ *     was closed" events. Returns an unsubscribe function. Used
+ *     by the main window to clear the corresponding "detached"
+ *     flag in the layout store.
+ *
+ * The `ElectronAPI` type and the `Window.electronAPI` global
+ * augmentation are declared in `web/src/types/electron.d.ts` so
+ * both the renderer and the preload agree on a single shape.
  */
 
 import { contextBridge, ipcRenderer } from 'electron';
+import type { ElectronAPI } from '../../web/src/types/electron';
 
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  /** Ask the main process to open a new BrowserWindow in editor-only mode. */
   popOutEditor: (): Promise<boolean> => ipcRenderer.invoke('pop-out-editor'),
-});
 
+  popOutPane: (paneId: string, tabId: string): Promise<boolean> =>
+    ipcRenderer.invoke('pop-out-pane', paneId, tabId),
 
-export type ElectronAPI = {
-  popOutEditor: () => Promise<boolean>;
-};
-
-declare global {
-  interface Window {
-    electronAPI: ElectronAPI;
-  }
-}
+  onPaneWindowClosed: (cb: (paneId: string) => void): (() => void) => {
+    const handler = (_evt: unknown, paneId: string) => cb(paneId);
+    ipcRenderer.on('pane-window-closed', handler);
+    return () => { ipcRenderer.removeListener('pane-window-closed', handler); };
+  },
+} satisfies ElectronAPI);

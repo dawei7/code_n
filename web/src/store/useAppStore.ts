@@ -68,7 +68,24 @@ export interface AppState {
   markDone(): Promise<void>;
   saveSolution(): Promise<void>;
   loadSolution(): Promise<void>;
+  /**
+   * Apply a snapshot that came from another window via the
+   * BroadcastChannel. Sets the sentinel `applyingRemoteRef`
+   * so the broadcast subscriber does not re-broadcast this
+   * change. Always defers via setTimeout(0) at the call site
+   * to break the synchronous subscribe→setState loop.
+   */
+  _applyRemoteSnapshot(s: Partial<AppState>): void;
 }
+
+
+/**
+ * Module-scope ref-sentinel: true while a remote snapshot is
+ * being applied. A real Zustand field would re-fire subscribers;
+ * a ref does not. The broadcast subscriber in web/src/lib/
+ * broadcastSync.ts reads this to skip re-broadcasting.
+ */
+export const applyingRemoteRef = { current: false };
 
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -266,5 +283,17 @@ export const useAppStore = create<AppState>((set, get) => ({
     if (!currentDetail) return;
     const saved = await solutionsApi.getSolution(currentDetail.id);
     if (saved.exists) set({ source: saved.source });
+  },
+
+  _applyRemoteSnapshot(s) {
+    applyingRemoteRef.current = true;
+    try {
+      set(s);
+    } finally {
+      // Reset on the next microtask so any in-flight subscriber
+      // calls finish first. requestAnimationFrame is sufficient
+      // and cheap; subscribers run during the same tick anyway.
+      queueMicrotask(() => { applyingRemoteRef.current = false; });
+    }
   },
 }));

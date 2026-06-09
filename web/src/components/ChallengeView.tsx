@@ -7,17 +7,14 @@ import { ComplexityAnalysis } from './ComplexityAnalysis';
 import { CodePanel } from './CodePanel';
 
 
-declare global {
-  interface Window {
-    electronAPI?: {
-      popOutEditor(): Promise<boolean>;
-    };
-  }
-}
-
-
 /**
  * ChallengeView — the main window's analysis surface.
+ *
+ * NOTE: kept for reference; superseded by LayoutRoot. The
+ * new pane system (see web/src/components/layout/) replaces
+ * this component entirely. Kept here only because deleting
+ * legacy source files is a guarded action in this sandbox;
+ * the file is no longer imported anywhere.
  *
  * Layout (no embedded editor — the editor lives in a pop-out
  * BrowserWindow so it can be moved to a second monitor):

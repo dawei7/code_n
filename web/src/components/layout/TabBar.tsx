@@ -1,0 +1,278 @@
+/**
+ * TabBar.tsx — the tab strip at the top of a pane.
+ *
+ * Each tab is a button. Pointer-driven reorder (not HTML5 DnD —
+ * dark-theme friendly, no ghost image, works on touch). On
+ * pointerup the target pane is found via
+ * event.target.closest('[data-pane-id]') and the moveTab action
+ * is dispatched.
+ *
+ * Right-click on a tab opens a context menu: Close, Close others,
+ * Close all (only enabled for closable tabs), Move to pane →.
+ */
+import { useEffect, useRef, useState } from 'react';
+import { useLayoutStore } from '../../store/useLayoutStore';
+import { allLeaves } from './tree-ops';
+import { getTab } from './tabs/registry';
+import type { LeafNode } from './tree-ops';
+
+
+interface TabBarProps {
+  leaf: LeafNode;
+  /** When true, the leaf is rendered as a "Detached — Reattach"
+   *  placeholder; we still render its tabs read-only. */
+  detached?: boolean;
+}
+
+
+interface DragState {
+  pointerId: number;
+  tabId: string;
+  startX: number;
+  startY: number;
+  currentX: number;
+  currentY: number;
+  /** Width of the tab being dragged (for ghost sizing). */
+  width: number;
+}
+
+
+interface ContextMenuState {
+  x: number;
+  y: number;
+  tabId: string;
+}
+
+
+export function TabBar({ leaf, detached = false }: TabBarProps) {
+  const setActiveTab = useLayoutStore((s) => s.setActiveTab);
+  const moveTab = useLayoutStore((s) => s.moveTab);
+  const closeTabInLeaf = useLayoutStore((s) => s.closeTabInLeaf);
+  const closeOtherTabs = useLayoutStore((s) => s.closeOtherTabs);
+  const closeTabEverywhere = useLayoutStore((s) => s.closeTabEverywhere);
+  const tree = useLayoutStore((s) => s.tree);
+
+  const [drag, setDrag] = useState<DragState | null>(null);
+  const [ctxMenu, setCtxMenu] = useState<ContextMenuState | null>(null);
+  const ctxRef = useRef<HTMLDivElement | null>(null);
+
+  // Close the context menu on any outside click or Escape.
+  useEffect(() => {
+    if (!ctxMenu) return;
+    function onDown(e: MouseEvent) {
+      if (ctxRef.current && !ctxRef.current.contains(e.target as Node)) {
+        setCtxMenu(null);
+      }
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setCtxMenu(null);
+    }
+    window.addEventListener('mousedown', onDown);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('mousedown', onDown);
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [ctxMenu]);
+
+  // Drag global handlers — set on pointerdown, removed on pointerup.
+  useEffect(() => {
+    if (!drag) return;
+    function onMove(e: PointerEvent) {
+      if (e.pointerId !== drag!.pointerId) return;
+      setDrag({ ...drag!, currentX: e.clientX, currentY: e.clientY });
+    }
+    function onUp(e: PointerEvent) {
+      if (e.pointerId !== drag!.pointerId) return;
+      // Find the pane under the pointer.
+      const target = document.elementFromPoint(e.clientX, e.clientY);
+      const paneEl = target?.closest('[data-pane-id]');
+      const toPaneId = paneEl?.getAttribute('data-pane-id') ?? null;
+      if (toPaneId && toPaneId !== leaf.id) {
+        moveTab(drag!.tabId, leaf.id, toPaneId);
+      }
+      setDrag(null);
+    }
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    return () => {
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+    };
+  }, [drag, leaf.id, moveTab]);
+
+  const startDrag = (
+    e: React.PointerEvent<HTMLButtonElement>,
+    tabId: string,
+    width: number,
+  ) => {
+    if (detached) return;
+    if (e.button !== 0) return;
+    e.preventDefault();
+    e.stopPropagation();
+    setDrag({
+      pointerId: e.pointerId,
+      tabId,
+      startX: e.clientX,
+      startY: e.clientY,
+      currentX: e.clientX,
+      currentY: e.clientY,
+      width,
+    });
+  };
+
+  const onContextMenu = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    tabId: string,
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCtxMenu({ x: e.clientX, y: e.clientY, tabId });
+  };
+
+  const onClickTab = (tabId: string) => {
+    if (detached) return;
+    setActiveTab(leaf.id, tabId);
+  };
+
+  const onCloseClick = (
+    e: React.MouseEvent<HTMLSpanElement>,
+    tabId: string,
+  ) => {
+    e.stopPropagation();
+    e.preventDefault();
+    closeTabInLeaf(tabId, leaf.id);
+  };
+
+  const allTabs = allLeaves(tree).flatMap((l) => l.tabIds);
+  const tabIsGlobal = (id: string) => allTabs.includes(id);
+
+  // The ghost position for the active drag, in pixels.
+  const ghost = drag
+    ? {
+        left: drag.currentX - drag.width / 2,
+        top: drag.currentY - 12,
+        width: drag.width,
+      }
+    : null;
+
+  return (
+    <div className="flex items-stretch h-7 bg-coden-surface border-b border-coden-border overflow-x-auto">
+      {leaf.tabIds.map((tabId) => {
+        const def = getTab(tabId);
+        if (!def) return null;
+        const isActive = leaf.activeTabId === tabId && !detached;
+        return (
+          <button
+            key={tabId}
+            type="button"
+            data-tab-id={tabId}
+            data-active={isActive ? 'true' : 'false'}
+            onClick={() => onClickTab(tabId)}
+            onContextMenu={(e) => onContextMenu(e, tabId)}
+            onPointerDown={(e) =>
+              startDrag(e, tabId, e.currentTarget.offsetWidth)
+            }
+            className={[
+              'group flex items-center gap-1.5 px-3 text-xs font-mono whitespace-nowrap',
+              'border-r border-coden-border select-none',
+              isActive
+                ? 'bg-coden-bg text-coden-text'
+                : 'bg-coden-surface text-coden-muted hover:text-coden-text hover:bg-coden-bg/50',
+              detached ? 'cursor-default' : 'cursor-pointer',
+            ].join(' ')}
+            title={def.label}
+          >
+            <span aria-hidden="true">{def.icon}</span>
+            <span>{def.label}</span>
+            {def.closable && !detached && (
+              <span
+                role="button"
+                aria-label={`Close ${def.label}`}
+                tabIndex={-1}
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={(e) => onCloseClick(e, tabId)}
+                className="ml-1 text-coden-muted hover:text-coden-text hover:bg-coden-border rounded-sm w-4 h-4 inline-flex items-center justify-center"
+              >
+                ×
+              </span>
+            )}
+          </button>
+        );
+      })}
+
+      {/* Drag ghost */}
+      {ghost && drag && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'fixed',
+            left: ghost.left,
+            top: ghost.top,
+            width: ghost.width,
+            pointerEvents: 'none',
+            zIndex: 50,
+            opacity: 0.85,
+          }}
+          className="flex items-center gap-1.5 px-3 h-7 text-xs font-mono bg-coden-bg border border-coden-accent text-coden-text rounded shadow-lg"
+        >
+          <span>{getTab(drag.tabId)?.icon}</span>
+          <span>{getTab(drag.tabId)?.label}</span>
+        </div>
+      )}
+
+      {/* Context menu */}
+      {ctxMenu && (
+        <div
+          ref={ctxRef}
+          style={{
+            position: 'fixed',
+            left: ctxMenu.x,
+            top: ctxMenu.y,
+            zIndex: 60,
+          }}
+          className="bg-coden-surface border border-coden-border rounded shadow-xl text-xs font-mono min-w-[180px] py-1"
+        >
+          <button
+            type="button"
+            className="block w-full text-left px-3 py-1 hover:bg-coden-border"
+            onClick={() => { closeTabInLeaf(ctxMenu.tabId, leaf.id); setCtxMenu(null); }}
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            className="block w-full text-left px-3 py-1 hover:bg-coden-border"
+            onClick={() => { closeOtherTabs(ctxMenu.tabId, leaf.id); setCtxMenu(null); }}
+          >
+            Close others
+          </button>
+          {getTab(ctxMenu.tabId)?.closable && tabIsGlobal(ctxMenu.tabId) && (
+            <button
+              type="button"
+              className="block w-full text-left px-3 py-1 hover:bg-coden-border text-rose-300"
+              onClick={() => { closeTabEverywhere(ctxMenu.tabId); setCtxMenu(null); }}
+            >
+              Close all (remove)
+            </button>
+          )}
+          <div className="border-t border-coden-border my-1" />
+          <div className="px-3 py-1 text-coden-muted">Move to pane</div>
+          {allLeaves(tree)
+            .filter((l) => l.id !== leaf.id)
+            .map((l) => (
+              <button
+                key={l.id}
+                type="button"
+                className="block w-full text-left px-3 py-1 hover:bg-coden-border"
+                onClick={() => { moveTab(ctxMenu.tabId, leaf.id, l.id); setCtxMenu(null); }}
+              >
+                → {l.id.slice(0, 12)}…
+                {l.activeTabId ? ` (${l.activeTabId})` : ''}
+              </button>
+            ))}
+        </div>
+      )}
+    </div>
+  );
+}

@@ -1,17 +1,14 @@
 import { useAppStore } from '../store/useAppStore';
 
 
-declare global {
-  interface Window {
-    electronAPI?: {
-      popOutEditor(): Promise<boolean>;
-    };
-  }
-}
-
-
 /**
  * Toolbar — Run / Reset / Save / Show solution buttons + n/seed inputs.
+ *
+ * NOTE: kept for reference; superseded by AppShell's TransportBar.
+ * The new pane system (see web/src/components/AppShell.tsx) hosts
+ * the same controls in its TransportBar. Kept here only because
+ * deleting legacy source files is a guarded action in this
+ * sandbox; this file is no longer imported anywhere.
  */
 export function Toolbar() {
   const detail = useAppStore((s) => s.currentDetail);
