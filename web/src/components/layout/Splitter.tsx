@@ -11,7 +11,7 @@
  *   - Keyboard: Arrow keys shift 6% (Shift = 12%); Home/End set
  *     min/max on the left child. role=separator for a11y.
  */
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useLayoutStore } from '../../store/useLayoutStore';
 
 
@@ -29,6 +29,12 @@ interface SplitterProps {
 export function Splitter({ splitId, direction, index, leftSize }: SplitterProps) {
   const resizeSplit = useLayoutStore((s) => s.resizeSplit);
   const resetSplit = useLayoutStore((s) => s.resetSplit);
+  // Whether the %-input is showing. Shown on hover or focus, hidden
+  // on blur/leave (unless the input itself is focused for editing).
+  const [hovered, setHovered] = useState(false);
+  const [editingSize, setEditingSize] = useState(false);
+  // Pending string in the input — committed on Enter / blur.
+  const [draft, setDraft] = useState('');
 
   // The ref points to the left-child DOM node so we can write
   // inline style during drag without round-tripping through React.
@@ -129,6 +135,24 @@ export function Splitter({ splitId, direction, index, leftSize }: SplitterProps)
     resetSplit(splitId);
   }, [resetSplit, splitId]);
 
+  // Commit a typed percentage (0-100) to the left child's size.
+  // Clamped to [10, 90] to match the drag clamp; delta is
+  // computed from the current leftSize so the store's clamp +
+  // renormalize logic stays the single source of truth.
+  const commitSize = useCallback((raw: string) => {
+    const pct = Number(raw);
+    if (!Number.isFinite(pct)) return;
+    const clamped = Math.max(10, Math.min(90, pct));
+    const targetFrac = clamped / 100;
+    const delta = targetFrac - leftSize;
+    if (Math.abs(delta) > 1e-6) {
+      resizeSplit(splitId, index, delta);
+    }
+  }, [index, leftSize, resizeSplit, splitId]);
+
+  // Show the input on hover or focus.
+  const showInput = hovered || editingSize;
+
   const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
     const step = e.shiftKey ? 0.12 : 0.06;
     let delta = 0;
@@ -173,20 +197,81 @@ export function Splitter({ splitId, direction, index, leftSize }: SplitterProps)
       onPointerCancel={finishDrag}
       onDoubleClick={onDoubleClick}
       onKeyDown={onKeyDown}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={() => setHovered(false)}
       className={[
-        'shrink-0 flex items-center justify-center',
+        'shrink-0 flex items-center justify-center group relative',
         isRow ? 'w-0 mx-[3px] h-full' : 'h-0 my-[3px] w-full',
         cursorClass,
       ].join(' ')}
       style={{ minWidth: minPx, minHeight: minPx }}
-      title="Drag to resize (double-click to reset)"
+      title="Drag to resize, double-click to reset, focus and type a % to set an exact size"
     >
       <div
         className={[
           isRow ? 'w-px h-full' : 'h-px w-full',
-          'bg-coden-border',
+          'bg-coden-border group-hover:bg-coden-accent transition-colors',
         ].join(' ')}
       />
+      {/* The % badge: appears on hover or focus. Positioned at the
+          CENTER of the splitter (perpendicular to its direction), so
+          it sits ON the divider line for both row and col splits.
+          Renders a small number input — type a 10-90 value and press
+          Enter (or blur) to apply. */}
+      {showInput && (
+        <div
+          className={[
+            'absolute z-30 flex items-center gap-1 pointer-events-auto',
+            'bg-coden-surface border border-coden-border rounded shadow-lg',
+            'px-1.5 py-0.5 text-[10px] font-mono',
+            isRow ? 'top-1/2 -translate-y-1/2' : 'left-1/2 -translate-x-1/2',
+          ].join(' ')}
+          // Don't let the badge's own pointer events bubble up to
+          // the splitter's pointerdown handler (which would start a
+          // drag from the badge itself).
+          onPointerDown={(e) => e.stopPropagation()}
+        >
+          <input
+            type="number"
+            min={10}
+            max={90}
+            step={1}
+            value={editingSize ? draft : Math.round(leftSize * 100)}
+            onChange={(e) => {
+              setEditingSize(true);
+              setDraft(e.target.value);
+            }}
+            onFocus={(e) => {
+              setEditingSize(true);
+              setDraft(String(Math.round(leftSize * 100)));
+              e.currentTarget.select();
+            }}
+            onBlur={() => {
+              if (editingSize) commitSize(draft);
+              setEditingSize(false);
+              setHovered(false);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                commitSize((e.target as HTMLInputElement).value);
+                setEditingSize(false);
+                (e.target as HTMLInputElement).blur();
+                e.preventDefault();
+              } else if (e.key === 'Escape') {
+                setEditingSize(false);
+                (e.target as HTMLInputElement).blur();
+                e.preventDefault();
+              }
+            }}
+            className="w-9 bg-coden-bg border border-coden-border rounded px-1 py-0 text-coden-text text-[10px] font-mono text-right"
+            aria-label="Left pane size (percent)"
+            title="Type a percentage (10-90) and press Enter"
+          />
+          <span className="text-coden-muted">%</span>
+        </div>
+      )}
     </div>
   );
 }

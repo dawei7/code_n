@@ -113,16 +113,9 @@ function TopHeader() {
         </button>
         <button
           type="button"
-          onClick={() => applyPreset(4)}
-          className="px-2 py-1 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border"
-          title="Reset the layout to the 4-pane default"
-        >
-          Reset
-        </button>
-        <button
-          type="button"
           onClick={() => {
-            // Snap all splits back to equal sizes.
+            // Snap all splits back to equal sizes (1/N each child).
+            // Tree structure is preserved — only sizes change.
             const equalize = (n: import('./layout/tree-ops').LayoutNode): import('./layout/tree-ops').LayoutNode => {
               if (n.kind === 'leaf') return n;
               return {
@@ -133,10 +126,18 @@ function TopHeader() {
             };
             replaceTree(equalize(tree));
           }}
-          className="px-2 py-1 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border"
-          title="Reset all splitters to equal sizes"
+          className="px-2 py-1 rounded border border-coden-accent text-coden-accent hover:bg-coden-accent hover:text-coden-bg"
+          title="Resize ALL panes to be equal (1/N). Use this to fix any pane that's been squished."
         >
-          ⇔ Equalize
+          ⇔ Equal sizes
+        </button>
+        <button
+          type="button"
+          onClick={() => applyPreset(4)}
+          className="px-2 py-1 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border"
+          title="Reset the whole layout to the 4-pane default (clears your arrangement)"
+        >
+          ↺ Reset layout
         </button>
       </div>
     </header>
