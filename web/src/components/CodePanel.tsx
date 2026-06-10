@@ -111,7 +111,10 @@ export function CodePanel() {
               >
                 {lineNo}
               </span>
-              <span className="text-coden-text">
+              {/* whitespace-pre preserves leading spaces and tabs so
+                  Python indentation is visible. min-w-0 lets the long
+                  lines wrap if the pane is narrow. */}
+              <span className="text-coden-text whitespace-pre min-w-0 flex-1">
                 {text || ' '}
               </span>
             </div>
