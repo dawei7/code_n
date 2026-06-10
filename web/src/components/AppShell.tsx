@@ -92,18 +92,25 @@ function TopHeader() {
         <span className="text-coden-muted font-mono">{leafCount} panes</span>
         <label className="text-coden-muted">Layout</label>
         <select
-          value={String(leafCount)}
+          value={leafCount === 2 ? '2' : '4'}
           onChange={(e) => {
             const n = Number(e.target.value);
-            if (n === 2 || n === 3 || n === 4) applyPreset(n);
+            if (n === 2 || n === 4) applyPreset(n);
           }}
           className="bg-coden-bg border border-coden-border rounded px-2 py-1 font-mono text-coden-text"
-          title="Choose 2, 3, or 4 regions"
+          title="Choose 2 or 4 regions"
         >
           <option value="2">2</option>
-          <option value="3">3</option>
           <option value="4">4</option>
         </select>
+        <button
+          type="button"
+          onClick={() => useLayoutStore.getState().addEmptyPane()}
+          className="px-2 py-1 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border"
+          title="Add a new empty pane (you can drop a tab into it from the picker or by dragging)"
+        >
+          + Pane
+        </button>
         <button
           type="button"
           onClick={() => applyPreset(4)}

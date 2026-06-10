@@ -138,6 +138,14 @@ export interface LayoutState {
   markDetached(paneId: string, detached: boolean): void;
   /** Replace the entire tree (used by the layout dropdown). */
   replaceTree(tree: LayoutNode): void;
+  /**
+   * Add an empty leaf to the right of the FIRST leaf found in
+   * the tree. The existing leaf is wrapped in a new col-split
+   * with the new empty leaf as its sibling (50/50 sizes). The
+   * new empty leaf uses the existing empty-pane picker UI so
+   * the user can drop a tab into it.
+   */
+  addEmptyPane(): void;
 }
 
 
@@ -232,6 +240,34 @@ export const useLayoutStore = create<LayoutState>((set) => {
 
     replaceTree(tree) {
       commit(() => ({ tree }));
+    },
+
+    addEmptyPane() {
+      commit((s) => {
+        const splitId = newId('n');
+        const emptyId = newId('n');
+        const wrap = (node: LayoutNode): LayoutNode => {
+          // If this is a leaf, wrap it.
+          if (node.kind === 'leaf') {
+            return {
+              kind: 'split',
+              id: splitId,
+              direction: 'col',
+              sizes: [0.5, 0.5],
+              children: [
+                node,
+                { kind: 'leaf', id: emptyId, tabIds: [], activeTabId: null },
+              ],
+            };
+          }
+          // Otherwise, recurse into the first child.
+          if (node.children.length > 0) {
+            return { ...node, children: [wrap(node.children[0]!), ...node.children.slice(1)] };
+          }
+          return node;
+        };
+        return { tree: wrap(s.tree) };
+      });
     },
   };
 });
