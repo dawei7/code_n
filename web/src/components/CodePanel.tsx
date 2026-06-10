@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useAppStore } from '../store/useAppStore';
+import { useLayoutStore } from '../store/useLayoutStore';
 
 
 /**
@@ -21,6 +22,24 @@ export function CodePanel() {
   const source = useAppStore((s) => s.source);
   const runResult = useAppStore((s) => s.runResult);
   const opIndex = useAppStore((s) => s.opIndex);
+  const moveTab = useLayoutStore((s) => s.moveTab);
+  const tree = useLayoutStore((s) => s.tree);
+  // The first leaf in the tree. The Source view lives in some
+  // leaf, but CodePanel doesn't know which — the "✎ Edit" button
+  // adds the editor tab to the first leaf, which is the most
+  // predictable behaviour for a 4-pane 2×2 layout.
+  const firstLeafId = useMemo(() => {
+    // Walk the tree depth-first and return the first leaf's id.
+    const walk = (n: import('./layout/tree-ops').LayoutNode): string | null => {
+      if (n.kind === 'leaf') return n.id;
+      for (const c of n.children) {
+        const id = walk(c);
+        if (id) return id;
+      }
+      return null;
+    };
+    return walk(tree) ?? '';
+  }, [tree]);
 
   // === ALL HOOKS MUST BE CALLED ON EVERY RENDER ===
   // (Rules of Hooks). Early-returns go BELOW the hook block.
@@ -75,15 +94,56 @@ export function CodePanel() {
   const lines = source.split('\n');
   const activeIdx = activeLine !== null ? activeLine - 1 : -1;
 
+  // The Source view is intentionally read-only. To make editing
+  // discoverable from here, we offer two affordances in the header:
+  //   1. "Edit" — adds the Monaco editor tab to the first leaf
+  //      (so the user can switch between Source and Editor in
+  //      the same pane), AND
+  //   2. "⧉" — pops the editor out into its own window
+  //      (preserves the read-only Source view on the main screen).
+  function handleEdit() {
+    // The Source view is the same source object as the Editor.
+    // Adding the Editor tab gives the user an editable surface
+    // next to / above / below the Source view (depending on
+    // where their leaf is). No data copy — they share state.
+    moveTab('editor', null, firstLeafId);
+  }
+  function handlePopOutEditor() {
+    const api = (window as Window).electronAPI;
+    if (api?.popOutEditor) {
+      void api.popOutEditor();
+    } else {
+      window.open(window.location.pathname + '?view=editor', '_blank');
+    }
+  }
+
   return (
     <div className="bg-coden-surface border border-coden-border rounded p-2 h-full flex flex-col overflow-hidden">
       <div className="text-xs uppercase text-coden-muted font-semibold mb-2 shrink-0 flex items-center justify-between">
         <span>Source</span>
-        {activeLine !== null && (
-          <span className="text-coden-accent normal-case font-mono">
-            ▶ line {activeLine} active
-          </span>
-        )}
+        <div className="flex items-center gap-2 normal-case font-normal">
+          {activeLine !== null && (
+            <span className="text-coden-accent font-mono">
+              ▶ line {activeLine} active
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={handleEdit}
+            className="px-2 py-0.5 rounded border border-coden-border text-coden-text hover:bg-coden-border"
+            title="Add the Editor tab to the first pane (so you can edit code next to this read-only Source view)"
+          >
+            ✎ Edit
+          </button>
+          <button
+            type="button"
+            onClick={handlePopOutEditor}
+            className="px-2 py-0.5 rounded border border-coden-border text-coden-text hover:bg-coden-border"
+            title="Pop the Monaco editor out into its own window"
+          >
+            ⧉
+          </button>
+        </div>
       </div>
       <div
         ref={containerRef}
