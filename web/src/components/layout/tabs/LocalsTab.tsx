@@ -8,11 +8,16 @@ import { LocalsPanel } from '../../LocalsPanel';
 
 export function LocalsTab() {
   return (
-    <div className="h-full bg-coden-surface border border-coden-border rounded p-3 overflow-hidden flex flex-col min-h-0">
+    <div className="h-full bg-coden-surface border border-coden-border rounded p-3 flex flex-col min-h-0">
       <div className="text-xs uppercase text-coden-muted font-semibold mb-2 shrink-0">
         Locals at this step
       </div>
-      <div className="flex-1 min-h-0 overflow-hidden">
+      {/* The LocalsPanel owns its own vertical scrollbar (the JSON
+          view needs to be vertically scrollable when locals are
+          many). Letting this wrapper be overflow-visible instead
+          of overflow-hidden lets the LocalsPanel's overflow-auto
+          actually take effect. */}
+      <div className="flex-1 min-h-0 overflow-auto">
         <LocalsPanel />
       </div>
     </div>

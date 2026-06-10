@@ -8,7 +8,7 @@ import { CodePanel } from '../../CodePanel';
 
 export function SourceTab() {
   return (
-    <div className="h-full overflow-hidden">
+    <div className="h-full flex flex-col min-h-0">
       <CodePanel />
     </div>
   );
