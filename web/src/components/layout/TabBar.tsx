@@ -17,6 +17,7 @@
  * top-left and bottom-right) — that's by design.
  */
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useLayoutStore } from '../../store/useLayoutStore';
 import { allLeaves } from './tree-ops';
 import { BUILTIN_TABS, getTab } from './tabs/registry';
@@ -61,8 +62,10 @@ export function TabBar({ leaf, detached = false }: TabBarProps) {
   const [drag, setDrag] = useState<DragState | null>(null);
   const [ctxMenu, setCtxMenu] = useState<ContextMenuState | null>(null);
   const [addOpen, setAddOpen] = useState(false);
+  const [addPos, setAddPos] = useState<{ left: number; top: number } | null>(null);
   const ctxRef = useRef<HTMLDivElement | null>(null);
-  const addRef = useRef<HTMLDivElement | null>(null);
+  const addButtonRef = useRef<HTMLButtonElement | null>(null);
+  const addMenuRef = useRef<HTMLDivElement | null>(null);
 
   // Close the context menu on any outside click or Escape.
   useEffect(() => {
@@ -83,22 +86,36 @@ export function TabBar({ leaf, detached = false }: TabBarProps) {
     };
   }, [ctxMenu]);
 
-  // Close the "+" add-menu on any outside click or Escape.
+  // Close the "+" add-menu on any outside click or Escape. The menu
+  // is rendered via a portal, so the outside-click check has to
+  // test BOTH the menu element AND the trigger button.
   useEffect(() => {
     if (!addOpen) return;
     function onDown(e: MouseEvent) {
-      if (addRef.current && !addRef.current.contains(e.target as Node)) {
-        setAddOpen(false);
-      }
+      const target = e.target as Node;
+      if (addMenuRef.current?.contains(target)) return;
+      if (addButtonRef.current?.contains(target)) return;
+      setAddOpen(false);
     }
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Escape') setAddOpen(false);
     }
+    // Recompute the menu position on scroll or resize while open.
+    function reposition() {
+      const btn = addButtonRef.current;
+      if (!btn) return;
+      const r = btn.getBoundingClientRect();
+      setAddPos({ left: r.left, top: r.bottom });
+    }
     window.addEventListener('mousedown', onDown);
     window.addEventListener('keydown', onKey);
+    window.addEventListener('scroll', reposition, true);
+    window.addEventListener('resize', reposition);
     return () => {
       window.removeEventListener('mousedown', onDown);
       window.removeEventListener('keydown', onKey);
+      window.removeEventListener('scroll', reposition, true);
+      window.removeEventListener('resize', reposition);
     };
   }, [addOpen]);
 
@@ -196,13 +213,21 @@ export function TabBar({ leaf, detached = false }: TabBarProps) {
 
   return (
     <div className="flex items-stretch h-7 bg-coden-surface border-b border-coden-border overflow-x-auto">
-      {/* The "+" add-tab button. Always shown (except in detached
-          mode where adding is not meaningful). */}
+      {/* The "+" add-tab button. The menu is rendered via a portal
+          (see below) so it can escape the pane's `overflow-hidden`
+          ancestor and is not clipped at the pane edge. */}
       {!detached && (
-        <div ref={addRef} className="relative flex items-stretch shrink-0">
+        <div className="relative flex items-stretch shrink-0">
           <button
+            ref={addButtonRef}
             type="button"
-            onClick={() => setAddOpen((v) => !v)}
+            onClick={() => {
+              if (!addOpen && addButtonRef.current) {
+                const r = addButtonRef.current.getBoundingClientRect();
+                setAddPos({ left: r.left, top: r.bottom });
+              }
+              setAddOpen((v) => !v);
+            }}
             className={[
               'px-2 h-full text-xs font-mono border-r border-coden-border',
               'text-coden-muted hover:text-coden-text hover:bg-coden-bg/50',
@@ -212,36 +237,43 @@ export function TabBar({ leaf, detached = false }: TabBarProps) {
           >
             + Tab
           </button>
-          {addOpen && (
-            <div
-              style={{ position: 'absolute', top: '100%', left: 0, zIndex: 60 }}
-              className="bg-coden-surface border border-coden-border rounded shadow-xl text-xs font-mono min-w-[180px] py-1"
-            >
-              {BUILTIN_TABS.map((def) => {
-                const already = leaf.tabIds.includes(def.id);
-                return (
-                  <button
-                    key={def.id}
-                    type="button"
-                    disabled={already}
-                    onClick={() => addTabToThisPane(def.id)}
-                    className={[
-                      'w-full text-left px-3 py-1 flex items-center gap-2',
-                      already
-                        ? 'text-coden-muted opacity-50 cursor-not-allowed'
-                        : 'hover:bg-coden-border cursor-pointer',
-                    ].join(' ')}
-                    title={already ? `${def.label} is already in this pane` : `Add ${def.label} to this pane`}
-                  >
-                    <span aria-hidden="true">{def.icon}</span>
-                    <span className="flex-1">{def.label}</span>
-                    {already && <span className="text-[10px] text-coden-muted">added</span>}
-                  </button>
-                );
-              })}
-            </div>
-          )}
         </div>
+      )}
+      {addOpen && addPos && createPortal(
+        <div
+          ref={addMenuRef}
+          style={{
+            position: 'fixed',
+            left: addPos.left,
+            top: addPos.top,
+            zIndex: 1000,
+          }}
+          className="bg-coden-surface border border-coden-border rounded shadow-xl text-xs font-mono min-w-[180px] py-1"
+        >
+          {BUILTIN_TABS.map((def) => {
+            const already = leaf.tabIds.includes(def.id);
+            return (
+              <button
+                key={def.id}
+                type="button"
+                disabled={already}
+                onClick={() => addTabToThisPane(def.id)}
+                className={[
+                  'w-full text-left px-3 py-1 flex items-center gap-2',
+                  already
+                    ? 'text-coden-muted opacity-50 cursor-not-allowed'
+                    : 'hover:bg-coden-border cursor-pointer',
+                ].join(' ')}
+                title={already ? `${def.label} is already in this pane` : `Add ${def.label} to this pane`}
+              >
+                <span aria-hidden="true">{def.icon}</span>
+                <span className="flex-1">{def.label}</span>
+                {already && <span className="text-[10px] text-coden-muted">added</span>}
+              </button>
+            );
+          })}
+        </div>,
+        document.body,
       )}
       {leaf.tabIds.map((tabId) => {
         const def = getTab(tabId);
@@ -306,15 +338,16 @@ export function TabBar({ leaf, detached = false }: TabBarProps) {
         </div>
       )}
 
-      {/* Context menu */}
-      {ctxMenu && (
+      {/* Context menu (rendered via portal so it can overflow the
+          pane's `overflow-hidden` ancestor at the pane edge). */}
+      {ctxMenu && createPortal(
         <div
           ref={ctxRef}
           style={{
             position: 'fixed',
             left: ctxMenu.x,
             top: ctxMenu.y,
-            zIndex: 60,
+            zIndex: 1000,
           }}
           className="bg-coden-surface border border-coden-border rounded shadow-xl text-xs font-mono min-w-[180px] py-1"
         >
@@ -356,7 +389,8 @@ export function TabBar({ leaf, detached = false }: TabBarProps) {
                 {l.activeTabId ? ` (${l.activeTabId})` : ''}
               </button>
             ))}
-        </div>
+        </div>,
+        document.body,
       )}
     </div>
   );
