@@ -2,27 +2,24 @@
  * PaneHeader.tsx — the tab bar + per-pane controls.
  *
  * Per-pane controls:
- *   - ⧉ Detach: pops the current active tab out into a new
- *     BrowserWindow. (Implemented in step 7; for now the button
- *     is rendered but no-op-safe.)
- *   - × Close pane: only if there is more than one leaf in the
- *     tree. Redistributes the leaf's tabs to a sibling.
+ *   - ⧉ Detach: pops the pane out into a new BrowserWindow.
+ *   - × Close pane: only visible when the pane is empty (no
+ *     tabs to display) — closes the empty pane by removing
+ *     the leaf from the tree. Tabs themselves have their own
+ *     × button (in TabBar) that closes the tab from this
+ *     pane only.
  *
  * The whole header carries `data-pane-id` so drag-to-another-pane
  * (TabBar's pointerup) can find its target.
  */
 import { TabBar } from './TabBar';
 import { useLayoutStore } from '../../store/useLayoutStore';
-import { allLeaves } from './tree-ops';
+import type { LeafNode } from './tree-ops';
 
 
 interface PaneHeaderProps {
   paneId: string;
-  leaf: import('./tree-ops').LayoutNode extends infer T
-    ? T extends { kind: 'leaf'; id: string; tabIds: string[]; activeTabId: string | null }
-      ? T
-      : never
-    : never;
+  leaf: LeafNode;
   detached: boolean;
   onDetach: () => void;
   onReattach: () => void;
@@ -30,9 +27,8 @@ interface PaneHeaderProps {
 
 
 export function PaneHeader({ paneId, leaf, detached, onDetach, onReattach }: PaneHeaderProps) {
-  const tree = useLayoutStore((s) => s.tree);
   const removeLeaf = useLayoutStore((s) => s.removeLeaf);
-  const canClose = allLeaves(tree).length > 1;
+  const isEmpty = leaf.tabIds.length === 0;
 
   return (
     <div
@@ -55,22 +51,23 @@ export function PaneHeader({ paneId, leaf, detached, onDetach, onReattach }: Pan
             <button
               type="button"
               onClick={onDetach}
-              disabled={!leaf.activeTabId}
+              disabled={!leaf.activeTabId || isEmpty}
               className="text-xs px-2 py-0.5 rounded text-coden-muted hover:text-coden-text hover:bg-coden-border disabled:opacity-30"
               title="Pop this pane out into its own window"
             >
               ⧉
             </button>
           )}
-          <button
-            type="button"
-            onClick={() => canClose && removeLeaf(paneId)}
-            disabled={!canClose}
-            className="text-xs px-2 py-0.5 rounded text-coden-muted hover:text-rose-300 hover:bg-coden-border disabled:opacity-30"
-            title="Close this pane (tabs redistribute to a sibling)"
-          >
-            ×
-          </button>
+          {isEmpty && !detached && (
+            <button
+              type="button"
+              onClick={() => removeLeaf(paneId)}
+              className="text-xs px-2 py-0.5 rounded text-coden-muted hover:text-rose-300 hover:bg-coden-border"
+              title="Close this empty pane"
+            >
+              ×
+            </button>
+          )}
         </div>
       </div>
       {detached && (

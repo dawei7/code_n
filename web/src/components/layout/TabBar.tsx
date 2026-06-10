@@ -185,7 +185,7 @@ export function TabBar({ leaf, detached = false }: TabBarProps) {
           >
             <span aria-hidden="true">{def.icon}</span>
             <span>{def.label}</span>
-            {def.closable && !detached && (
+            {!detached && (
               <span
                 role="button"
                 aria-label={`Close ${def.label}`}

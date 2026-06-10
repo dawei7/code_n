@@ -17,6 +17,7 @@ export function Pane({ leaf }: PaneProps) {
   const detachedPanes = useLayoutStore((s) => s.detachedPanes);
   const markDetached = useLayoutStore((s) => s.markDetached);
   const isDetached = !!detachedPanes[leaf.id];
+  const isEmpty = leaf.tabIds.length === 0;
 
   const onDetach = () => {
     if (!leaf.activeTabId) return;
@@ -53,6 +54,17 @@ export function Pane({ leaf }: PaneProps) {
         {isDetached ? (
           <div className="h-full flex items-center justify-center text-coden-muted text-xs">
             (detached — reattach to view here)
+          </div>
+        ) : isEmpty ? (
+          <div
+            data-pane-id={leaf.id}
+            className="h-full flex flex-col items-center justify-center text-coden-muted text-xs gap-2 select-none"
+          >
+            <div className="text-2xl opacity-40">∅</div>
+            <div>No tabs in this pane.</div>
+            <div className="text-[10px]">
+              Drag a tab here from another pane, or right-click a tab → Move to pane.
+            </div>
           </div>
         ) : (
           <PaneContent tabId={leaf.activeTabId} />
