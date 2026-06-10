@@ -28,6 +28,7 @@ interface PaneHeaderProps {
 
 export function PaneHeader({ paneId, leaf, detached, onDetach, onReattach }: PaneHeaderProps) {
   const removeLeaf = useLayoutStore((s) => s.removeLeaf);
+  const addEmptyPane = useLayoutStore((s) => s.addEmptyPane);
   const isEmpty = leaf.tabIds.length === 0;
 
   return (
@@ -48,15 +49,25 @@ export function PaneHeader({ paneId, leaf, detached, onDetach, onReattach }: Pan
               ↩ Reattach
             </button>
           ) : (
-            <button
-              type="button"
-              onClick={onDetach}
-              disabled={!leaf.activeTabId || isEmpty}
-              className="text-xs px-2 py-0.5 rounded text-coden-muted hover:text-coden-text hover:bg-coden-border disabled:opacity-30"
-              title="Pop this pane out into its own window"
-            >
-              ⧉
-            </button>
+            <>
+              <button
+                type="button"
+                onClick={() => addEmptyPane()}
+                className="text-xs px-2 py-0.5 rounded text-coden-muted hover:text-coden-text hover:bg-coden-border"
+                title="Add a new empty pane next to the first pane (you can drop a tab into it)"
+              >
+                ⊞ New pane
+              </button>
+              <button
+                type="button"
+                onClick={onDetach}
+                disabled={!leaf.activeTabId || isEmpty}
+                className="text-xs px-2 py-0.5 rounded text-coden-muted hover:text-coden-text hover:bg-coden-border disabled:opacity-30"
+                title="Pop this pane out into its own window"
+              >
+                ⧉
+              </button>
+            </>
           )}
           {isEmpty && !detached && (
             <button

@@ -207,10 +207,10 @@ export function TabBar({ leaf, detached = false }: TabBarProps) {
               'px-2 h-full text-xs font-mono border-r border-coden-border',
               'text-coden-muted hover:text-coden-text hover:bg-coden-bg/50',
             ].join(' ')}
-            title="Add a tab to this pane"
-            aria-label="Add tab"
+            title="Add a tab to THIS pane (use the ⊞ in the pane header to add a NEW pane)"
+            aria-label="Add tab to this pane"
           >
-            +
+            + Tab
           </button>
           {addOpen && (
             <div
