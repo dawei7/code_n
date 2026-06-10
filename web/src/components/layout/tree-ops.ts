@@ -331,13 +331,31 @@ function mapTree(
 
 /**
  * Build a default tree for a given number of regions.
+ *   - 1 → one leaf with every default tab
  *   - 2 → single split (row) with 2 leaves, 50/50
  *   - 3 → split (row): big-left leaf + right-split (col) with 2 leaves
  *   - 4 → split (row) of 2 split (col)s, each with 2 leaves
+ *   - 5 → 2 rows x 3 cols, with one empty picker leaf
+ *   - 6 → 2 rows x 3 cols, with one empty picker leaf
  *
- * The default tab assignment per leaf matches the plan's spec.
+ * Each preset's tab assignment is curated so the most useful
+ * information is always in view. n=5/6 include one empty leaf
+ * as a "drop a tab here" slot — the empty-pane picker still
+ * works, but the user CANNOT add NEW panes (that's a header
+ * preset decision, not a runtime action).
  */
-export function presetForN(n: 2 | 3 | 4, idGen: () => string): LayoutNode {
+export function presetForN(
+  n: 1 | 2 | 3 | 4 | 5 | 6,
+  idGen: () => string,
+): LayoutNode {
+  if (n === 1) {
+    return {
+      kind: 'leaf',
+      id: idGen(),
+      tabIds: ['description', 'complexity', 'locals', 'stats', 'source'],
+      activeTabId: 'description',
+    };
+  }
   if (n === 2) {
     return {
       kind: 'split',
@@ -371,7 +389,70 @@ export function presetForN(n: 2 | 3 | 4, idGen: () => string): LayoutNode {
       ],
     };
   }
-  // n === 4
+  if (n === 4) {
+    return {
+      kind: 'split',
+      id: idGen(),
+      direction: 'row',
+      sizes: [0.5, 0.5],
+      children: [
+        {
+          kind: 'split',
+          id: idGen(),
+          direction: 'col',
+          sizes: [0.5, 0.5],
+          children: [
+            { kind: 'leaf', id: idGen(), tabIds: ['description'], activeTabId: 'description' },
+            { kind: 'leaf', id: idGen(), tabIds: ['complexity'], activeTabId: 'complexity' },
+          ],
+        },
+        {
+          kind: 'split',
+          id: idGen(),
+          direction: 'col',
+          sizes: [0.5, 0.5],
+          children: [
+            { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
+            { kind: 'leaf', id: idGen(), tabIds: ['source'], activeTabId: 'source' },
+          ],
+        },
+      ],
+    };
+  }
+  if (n === 5) {
+    // 2 rows x 3 cols. The first row has 2 cells (description,
+    // complexity); the second row has 3 (locals, source, editor).
+    return {
+      kind: 'split',
+      id: idGen(),
+      direction: 'row',
+      sizes: [0.5, 0.5],
+      children: [
+        {
+          kind: 'split',
+          id: idGen(),
+          direction: 'col',
+          sizes: [0.5, 0.5],
+          children: [
+            { kind: 'leaf', id: idGen(), tabIds: ['description'], activeTabId: 'description' },
+            { kind: 'leaf', id: idGen(), tabIds: ['complexity'], activeTabId: 'complexity' },
+          ],
+        },
+        {
+          kind: 'split',
+          id: idGen(),
+          direction: 'col',
+          sizes: [0.34, 0.33, 0.33],
+          children: [
+            { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
+            { kind: 'leaf', id: idGen(), tabIds: ['source'], activeTabId: 'source' },
+            { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
+          ],
+        },
+      ],
+    };
+  }
+  // n === 6: 2 rows x 3 cols.
   return {
     kind: 'split',
     id: idGen(),
@@ -382,20 +463,22 @@ export function presetForN(n: 2 | 3 | 4, idGen: () => string): LayoutNode {
         kind: 'split',
         id: idGen(),
         direction: 'col',
-        sizes: [0.5, 0.5],
+        sizes: [0.34, 0.33, 0.33],
         children: [
           { kind: 'leaf', id: idGen(), tabIds: ['description'], activeTabId: 'description' },
           { kind: 'leaf', id: idGen(), tabIds: ['complexity'], activeTabId: 'complexity' },
+          { kind: 'leaf', id: idGen(), tabIds: ['locals'], activeTabId: 'locals' },
         ],
       },
       {
         kind: 'split',
         id: idGen(),
         direction: 'col',
-        sizes: [0.5, 0.5],
+        sizes: [0.34, 0.33, 0.33],
         children: [
-          { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
+          { kind: 'leaf', id: idGen(), tabIds: ['stats'], activeTabId: 'stats' },
           { kind: 'leaf', id: idGen(), tabIds: ['source'], activeTabId: 'source' },
+          { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
         ],
       },
     ],

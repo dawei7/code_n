@@ -57,7 +57,13 @@ export function Pane({ leaf }: PaneProps) {
         onDetach={onDetach}
         onReattach={onReattach}
       />
-      <div className="flex-1 min-h-0 overflow-hidden">
+      {/* The body scrolls vertically. overflow-x-hidden keeps long
+          lines / wide tables from triggering a horizontal scrollbar
+          on the pane itself (inner content can still scroll its own
+          X axis if it wants to). min-h-0 is what lets flex children
+          actually shrink past their content height — without it the
+          scrollbar would never appear. */}
+      <div className="flex-1 min-h-0 overflow-y-auto overflow-x-auto">
         {isDetached ? (
           <div className="h-full flex items-center justify-center text-coden-muted text-xs">
             (detached — reattach to view here)

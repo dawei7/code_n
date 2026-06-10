@@ -121,7 +121,7 @@ export interface LayoutState {
   detachedPanes: Record<string, true>;
 
   // --- Actions ---
-  applyPreset(n: 2 | 3 | 4): void;
+  applyPreset(n: 1 | 2 | 3 | 4 | 5 | 6): void;
   setActiveTab(leafId: string, tabId: string): void;
   moveTab(tabId: string, fromLeafId: string | null, toLeafId: string): void;
   closeTabInLeaf(tabId: string, leafId: string): void;
@@ -243,31 +243,9 @@ export const useLayoutStore = create<LayoutState>((set) => {
     },
 
     addEmptyPane() {
-      commit((s) => {
-        const splitId = newId('n');
-        const emptyId = newId('n');
-        const wrap = (node: LayoutNode): LayoutNode => {
-          // If this is a leaf, wrap it.
-          if (node.kind === 'leaf') {
-            return {
-              kind: 'split',
-              id: splitId,
-              direction: 'col',
-              sizes: [0.5, 0.5],
-              children: [
-                node,
-                { kind: 'leaf', id: emptyId, tabIds: [], activeTabId: null },
-              ],
-            };
-          }
-          // Otherwise, recurse into the first child.
-          if (node.children.length > 0) {
-            return { ...node, children: [wrap(node.children[0]!), ...node.children.slice(1)] };
-          }
-          return node;
-        };
-        return { tree: wrap(s.tree) };
-      });
+      // No-op: pane creation is a header preset decision (1..6),
+      // not a runtime action. The user picks N from the dropdown
+      // and the store replaces the whole tree.
     },
   };
 });
