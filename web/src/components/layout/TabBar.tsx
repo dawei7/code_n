@@ -9,11 +9,17 @@
  *
  * Right-click on a tab opens a context menu: Close, Close others,
  * Close all (only enabled for closable tabs), Move to pane →.
+ *
+ * The trailing "+" button opens a popover listing every built-in
+ * tab. Clicking a tab there adds it to this pane and activates it.
+ * Tabs already present in THIS pane are shown as "Added" (disabled).
+ * The same tab can be in multiple panes (e.g. Description in both
+ * top-left and bottom-right) — that's by design.
  */
 import { useEffect, useRef, useState } from 'react';
 import { useLayoutStore } from '../../store/useLayoutStore';
 import { allLeaves } from './tree-ops';
-import { getTab } from './tabs/registry';
+import { BUILTIN_TABS, getTab } from './tabs/registry';
 import type { LeafNode } from './tree-ops';
 
 
@@ -54,7 +60,9 @@ export function TabBar({ leaf, detached = false }: TabBarProps) {
 
   const [drag, setDrag] = useState<DragState | null>(null);
   const [ctxMenu, setCtxMenu] = useState<ContextMenuState | null>(null);
+  const [addOpen, setAddOpen] = useState(false);
   const ctxRef = useRef<HTMLDivElement | null>(null);
+  const addRef = useRef<HTMLDivElement | null>(null);
 
   // Close the context menu on any outside click or Escape.
   useEffect(() => {
@@ -74,6 +82,36 @@ export function TabBar({ leaf, detached = false }: TabBarProps) {
       window.removeEventListener('keydown', onKey);
     };
   }, [ctxMenu]);
+
+  // Close the "+" add-menu on any outside click or Escape.
+  useEffect(() => {
+    if (!addOpen) return;
+    function onDown(e: MouseEvent) {
+      if (addRef.current && !addRef.current.contains(e.target as Node)) {
+        setAddOpen(false);
+      }
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setAddOpen(false);
+    }
+    window.addEventListener('mousedown', onDown);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('mousedown', onDown);
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [addOpen]);
+
+  const addTabToThisPane = (tabId: string) => {
+    if (leaf.tabIds.includes(tabId)) {
+      // Already here — just activate it.
+      setActiveTab(leaf.id, tabId);
+    } else {
+      // Use moveTab with fromLeafId=null to add without removing.
+      moveTab(tabId, null, leaf.id);
+    }
+    setAddOpen(false);
+  };
 
   // Drag global handlers — set on pointerdown, removed on pointerup.
   useEffect(() => {
@@ -158,6 +196,53 @@ export function TabBar({ leaf, detached = false }: TabBarProps) {
 
   return (
     <div className="flex items-stretch h-7 bg-coden-surface border-b border-coden-border overflow-x-auto">
+      {/* The "+" add-tab button. Always shown (except in detached
+          mode where adding is not meaningful). */}
+      {!detached && (
+        <div ref={addRef} className="relative flex items-stretch shrink-0">
+          <button
+            type="button"
+            onClick={() => setAddOpen((v) => !v)}
+            className={[
+              'px-2 h-full text-xs font-mono border-r border-coden-border',
+              'text-coden-muted hover:text-coden-text hover:bg-coden-bg/50',
+            ].join(' ')}
+            title="Add a tab to this pane"
+            aria-label="Add tab"
+          >
+            +
+          </button>
+          {addOpen && (
+            <div
+              style={{ position: 'absolute', top: '100%', left: 0, zIndex: 60 }}
+              className="bg-coden-surface border border-coden-border rounded shadow-xl text-xs font-mono min-w-[180px] py-1"
+            >
+              {BUILTIN_TABS.map((def) => {
+                const already = leaf.tabIds.includes(def.id);
+                return (
+                  <button
+                    key={def.id}
+                    type="button"
+                    disabled={already}
+                    onClick={() => addTabToThisPane(def.id)}
+                    className={[
+                      'w-full text-left px-3 py-1 flex items-center gap-2',
+                      already
+                        ? 'text-coden-muted opacity-50 cursor-not-allowed'
+                        : 'hover:bg-coden-border cursor-pointer',
+                    ].join(' ')}
+                    title={already ? `${def.label} is already in this pane` : `Add ${def.label} to this pane`}
+                  >
+                    <span aria-hidden="true">{def.icon}</span>
+                    <span className="flex-1">{def.label}</span>
+                    {already && <span className="text-[10px] text-coden-muted">added</span>}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
       {leaf.tabIds.map((tabId) => {
         const def = getTab(tabId);
         if (!def) return null;
