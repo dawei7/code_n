@@ -628,6 +628,168 @@ def _verify_rod_cutting(challenge, result: Any) -> bool:
     return result == challenge._expected
 
 
+# === dp_10: Unique Paths (grid, right/down only) ===================
+#
+# Count the number of distinct paths from the top-left to the
+# bottom-right of an m x n grid, moving only right or down.
+# The setup picks m, n in [2, max(2, n)]; cells may carry an
+# "obstacle" flag (1 = blocked). The "no obstacles" case is the
+# classic combinatorial (m+n-2 choose m-1).
+
+
+DP_10_SOURCE = '''
+def solve(grid, m, n):
+    """Count paths from (0,0) to (m-1, n-1) moving only right/down.
+
+    Cells with value 1 are obstacles (cannot enter). 0 = free.
+    """
+    if grid[0][0] == 1 or grid[m - 1][n - 1] == 1:
+        return 0
+    dp = [[0] * n for _ in range(m)]
+    dp[0][0] = 1
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == 1:
+                dp[i][j] = 0
+                continue
+            if i > 0:
+                dp[i][j] += dp[i - 1][j]
+            if j > 0:
+                dp[i][j] += dp[i][j - 1]
+    return dp[m - 1][n - 1]
+'''
+
+
+def _setup_unique_paths(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    # Use n to size the grid (roughly square). n=4 → 3x3, n=8 → 4x4, etc.
+    m = max(2, min(n, 6))
+    k = max(2, min(n, 6))
+    # Random grid with no obstacles (0 = free). Always solvable.
+    grid = [[0] * k for _ in range(m)]
+    challenge._grid = grid
+    challenge._m = m
+    challenge._k = k
+    return {"grid": grid, "m": m, "n": k}
+
+
+def _verify_unique_paths(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    m, n = challenge._m, challenge._k
+    grid = challenge._grid
+    if grid[0][0] == 1 or grid[m - 1][n - 1] == 1:
+        return result == 0
+    dp = [[0] * n for _ in range(m)]
+    dp[0][0] = 1
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == 1:
+                dp[i][j] = 0
+                continue
+            if i > 0:
+                dp[i][j] += dp[i - 1][j]
+            if j > 0:
+                dp[i][j] += dp[i][j - 1]
+    return result == dp[m - 1][n - 1]
+
+
+# === dp_11: House Robber ==========================================
+#
+# Max sum of non-adjacent elements in a 1D array. The classic
+# "rob houses in a line" problem: pick a subset of indices
+# with no two consecutive, maximizing the sum.
+
+
+DP_11_SOURCE = '''
+def solve(arr):
+    """Max sum of non-adjacent elements in arr."""
+    n = len(arr)
+    if n == 0:
+        return 0
+    if n == 1:
+        return arr[0]
+    # dp[i] = max sum using the first i elements (1-indexed).
+    dp = [0] * (n + 1)
+    dp[1] = arr[0]
+    for i in range(2, n + 1):
+        dp[i] = max(dp[i - 1], dp[i - 2] + arr[i - 1])
+    return dp[n]
+'''
+
+
+def _setup_house_robber(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    n_elems = max(1, min(n, 16))
+    # Mix of positive and zero (House Robber assumes non-negative).
+    arr = [rng.randint(0, 100) for _ in range(n_elems)]
+    # Pre-compute expected.
+    if not arr:
+        challenge._expected = 0
+    elif len(arr) == 1:
+        challenge._expected = arr[0]
+    else:
+        dp = [0] * (n_elems + 1)
+        dp[1] = arr[0]
+        for i in range(2, n_elems + 1):
+            dp[i] = max(dp[i - 1], dp[i - 2] + arr[i - 1])
+        challenge._expected = dp[n_elems]
+    return {"arr": arr}
+
+
+def _verify_house_robber(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    return result == challenge._expected
+
+
+# === dp_12: Min Cost Path (grid) ==================================
+#
+# Find a path from (0,0) to (m-1, n-1) with minimum sum of
+# cell values. Movement: right and down only.
+
+
+DP_12_SOURCE = '''
+def solve(grid, m, n):
+    """Min-cost path from (0,0) to (m-1, n-1) moving only right/down."""
+    dp = [[0] * n for _ in range(m)]
+    dp[0][0] = grid[0][0]
+    for i in range(1, m):
+        dp[i][0] = dp[i - 1][0] + grid[i][0]
+    for j in range(1, n):
+        dp[0][j] = dp[0][j - 1] + grid[0][j]
+    for i in range(1, m):
+        for j in range(1, n):
+            dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]
+    return dp[m - 1][n - 1]
+'''
+
+
+def _setup_min_cost_path(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    m = max(2, min(n, 6))
+    k = max(2, min(n, 6))
+    grid = [[rng.randint(1, 20) for _ in range(k)] for _ in range(m)]
+    # Pre-compute expected.
+    dp = [[0] * k for _ in range(m)]
+    dp[0][0] = grid[0][0]
+    for i in range(1, m):
+        dp[i][0] = dp[i - 1][0] + grid[i][0]
+    for j in range(1, k):
+        dp[0][j] = dp[0][j - 1] + grid[0][j]
+    for i in range(1, m):
+        for j in range(1, k):
+            dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]
+    challenge._expected = dp[m - 1][k - 1]
+    return {"grid": grid, "m": m, "n": k}
+
+
+def _verify_min_cost_path(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    return result == challenge._expected
+
+
 # Append the new DP specs to SPECS.
 
 
@@ -795,6 +957,103 @@ SPECS.extend([
         ],
         hint="dp[length] = max revenue for a rod of that length. For each length, try every first-cut size.",
         parents=["dp_03"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="dp_10",
+        name="Unique Paths",
+        category="dynamic",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Count the number of distinct paths from the top-left\n"
+            "(0, 0) to the bottom-right (m-1, n-1) of an m x n grid,\n"
+            "moving only right or down. Cells with value 1 are\n"
+            "obstacles (cannot enter); 0 = free. The setup uses an\n"
+            "obstacle-free grid.\n"
+            "Requirement: O(m * n).\n"
+            "Source: https://www.geeksforgeeks.org/count-all-paths-from-top-left-to-bottom-right-of-a-mxn-matrix/"
+        ),
+        source_url="https://www.geeksforgeeks.org/count-all-paths-from-top-left-to-bottom-right-of-a-mxn-matrix/",
+        params=["grid", "m", "n"],
+        inputs={
+            "grid": "2D list-like; 0 = free, 1 = obstacle.",
+            "m": "number of rows.",
+            "n": "number of columns.",
+        },
+        returns="the number of distinct paths from (0,0) to (m-1, n-1).",
+        source=DP_10_SOURCE,
+        setup_fn=_setup_unique_paths,
+        verify_fn=_verify_unique_paths,
+        samples=[
+            Sample("grid = [[0,0,0],[0,0,0]], m = 2, n = 3", "3 (R-R-D, R-D-R, D-R-R)"),
+            Sample("grid = [[0,1],[0,0]], m = 2, n = 2", "1 (only D then R)"),
+        ],
+        hint="dp[i][j] = dp[i-1][j] + dp[i][j-1] (with obstacles zeroed out).",
+        parents=["dp_04"],
+        children=["dp_12"],
+    ),
+    AlgorithmSpec(
+        id="dp_11",
+        name="House Robber",
+        category="dynamic",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Given an array of non-negative integers (the value of\n"
+            "each house), return the maximum sum you can rob without\n"
+            "robbing two adjacent houses.\n"
+            "Requirement: O(n) — two rolling variables are enough.\n"
+            "Source: https://www.geeksforgeeks.org/maximum-sum-such-that-no-two-elements-are-adjacent/"
+        ),
+        source_url="https://www.geeksforgeeks.org/maximum-sum-such-that-no-two-elements-are-adjacent/",
+        params=["arr"],
+        inputs={
+            "arr": "list of non-negative integers (each house's value).",
+        },
+        returns="the maximum sum with no two chosen indices adjacent.",
+        source=DP_11_SOURCE,
+        setup_fn=_setup_house_robber,
+        verify_fn=_verify_house_robber,
+        samples=[
+            Sample("arr = [5, 3, 4, 11, 2]", "16 (5+11)"),
+            Sample("arr = [10, 1, 1, 10, 1, 1, 10]", "30 (10+10+10)"),
+            Sample("arr = [2, 1, 1, 2]", "4 (2+2)"),
+        ],
+        hint="dp[i] = max(dp[i-1], dp[i-2] + arr[i]). Skip-or-take at each house.",
+        parents=["dp_10"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="dp_12",
+        name="Min Cost Path",
+        category="dynamic",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Find the minimum-cost path from the top-left to the\n"
+            "bottom-right of an m x n grid, moving only right or down.\n"
+            "The cost of a path is the sum of the cells visited.\n"
+            "Requirement: O(m * n).\n"
+            "Source: https://www.geeksforgeeks.org/min-cost-path-dp-6/"
+        ),
+        source_url="https://www.geeksforgeeks.org/min-cost-path-dp-6/",
+        params=["grid", "m", "n"],
+        inputs={
+            "grid": "2D list-like of non-negative cell costs.",
+            "m": "number of rows.",
+            "n": "number of columns.",
+        },
+        returns="the minimum cost of any path from (0,0) to (m-1, n-1).",
+        source=DP_12_SOURCE,
+        setup_fn=_setup_min_cost_path,
+        verify_fn=_verify_min_cost_path,
+        samples=[
+            Sample("grid = [[1,3,1],[1,5,1],[4,2,1]], m = 3, n = 3", "7 (1→3→1→1→1, sum 7)"),
+            Sample("grid = [[2,3],[4,1]], m = 2, n = 2", "7 (2→3→1 or 2→4→1)"),
+        ],
+        hint="dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j].",
+        parents=["dp_10"],
         children=[],
     ),
 ])

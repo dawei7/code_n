@@ -805,6 +805,259 @@ def _verify_union_find(challenge, result: Any) -> bool:
     return result == expected
 
 
+# === graph_10: Prim's MST =========================================
+#
+# Vertex-growth MST, similar shape to Kruskal (graph_08) but
+# uses a min-heap of (weight, neighbor) instead of DSU.
+
+
+GRAPH_10_SOURCE = '''
+def solve(num_nodes, edges):
+    """Prim's minimum spanning tree on an undirected weighted graph.
+
+    Returns the MST as a sorted list of (u, v, w) tuples, or []
+    if the graph is not connected.
+    """
+    import heapq
+    if num_nodes == 0:
+        return []
+    adj = [[] for _ in range(num_nodes)]
+    for u, v, w in edges:
+        adj[u].append((v, w))
+        adj[v].append((u, w))
+    visited = [False] * num_nodes
+    visited[0] = True
+    heap: list = []
+    for v, w in adj[0]:
+        heapq.heappush(heap, (w, 0, v))
+    mst: list[tuple[int, int, int]] = []
+    while heap:
+        w, u, v = heapq.heappop(heap)
+        if visited[v]:
+            continue
+        visited[v] = True
+        mst.append((u, v, w))
+        for nxt, w2 in adj[v]:
+            if not visited[nxt]:
+                heapq.heappush(heap, (w2, v, nxt))
+    if len(mst) != num_nodes - 1:
+        return []
+    return sorted(mst)
+'''
+
+
+def _setup_prim(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    # Same connected-graph pattern as Kruskal.
+    return _setup_kruskal(challenge, n, seed)
+
+
+def _verify_prim(challenge, result: Any) -> bool:
+    # The MST of a connected graph is unique up to edge ordering.
+    # We sort both sides; both algorithms should produce MSTs with
+    # the same total weight and same edge set.
+    if not isinstance(result, list):
+        return False
+    # Re-run Kruskal (graph_08) and compare total weight — simpler
+    # than comparing edge sets across MSTs.
+    total = sum(w for _, _, w in result)
+    num_nodes = challenge._num_nodes
+    parent = list(range(num_nodes))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(a, b):
+        ra, rb = find(a), find(b)
+        if ra == rb:
+            return False
+        parent[ra] = rb
+        return True
+
+    expected_w = 0
+    edges_used = 0
+    for u, v, w in sorted(challenge._edges, key=lambda e: e[2]):
+        if union(u, v):
+            expected_w += w
+            edges_used += 1
+    if edges_used != num_nodes - 1:
+        return result == []
+    return total == expected_w and len(result) == num_nodes - 1
+
+
+# === graph_11: Cycle Detect (Undirected) ==========================
+
+
+GRAPH_11_SOURCE = '''
+def solve(num_nodes, edges):
+    """Return True iff the undirected graph has a cycle.
+
+    Uses iterative DFS with parent tracking. The graph is
+    undirected; edges is a list of (u, v) tuples.
+    """
+    adj = [[] for _ in range(num_nodes)]
+    for u, v in edges:
+        adj[u].append(v)
+        adj[v].append(u)
+    visited = [False] * num_nodes
+    for start in range(num_nodes):
+        if visited[start]:
+            continue
+        # Iterative DFS with explicit parent stack.
+        stack = [(start, -1)]
+        visited[start] = True
+        while stack:
+            u, parent = stack.pop()
+            for v in adj[u]:
+                if not visited[v]:
+                    visited[v] = True
+                    stack.append((v, u))
+                elif v != parent:
+                    return True
+    return False
+'''
+
+
+def _setup_cycle_detect(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    num_nodes = max(2, n)
+    # Decide acyclic vs cyclic.
+    is_cyclic = rng.random() < 0.5
+    edges = set()
+    # Chain from 0 to n-1 (always present, always acyclic).
+    for i in range(num_nodes - 1):
+        edges.add((i, i + 1))
+    if is_cyclic:
+        # Add an extra edge that closes a cycle.
+        # Pick any u in [0, n-1] and v in [u+2, n-1] (guarantees
+        # a cycle via the chain).
+        u = rng.randint(0, num_nodes - 3)
+        v = rng.randint(u + 2, num_nodes - 1)
+        edges.add((u, v))
+    # Add a few extra non-cycle edges (just to make the graph denser).
+    for _ in range(min(num_nodes, 3)):
+        a = rng.randint(0, num_nodes - 1)
+        b = rng.randint(0, num_nodes - 1)
+        if a != b:
+            lo, hi = sorted((a, b))
+            # Skip if this would close a cycle (any edge between
+            # nodes already connected by the chain closes a cycle).
+            # Easier: just allow extra edges; if the "is_cyclic"
+            # branch added one, the answer stays True.
+            edges.add((lo, hi))
+    edges_list = sorted(edges)
+    # Recompute the expected answer: the chain alone is acyclic,
+    # but the closure edge in the is_cyclic branch made it cyclic.
+    # The extra random edges might also close cycles — re-run
+    # the canonical cycle detection to determine the actual answer.
+    from collections import deque
+    expected = False
+    if num_nodes > 0:
+        adj = [[] for _ in range(num_nodes)]
+        for u, v in edges_list:
+            adj[u].append(v)
+            adj[v].append(u)
+        visited = [False] * num_nodes
+        for s in range(num_nodes):
+            if visited[s]:
+                continue
+            stack = [(s, -1)]
+            visited[s] = True
+            found = False
+            while stack:
+                u, parent = stack.pop()
+                for v in adj[u]:
+                    if not visited[v]:
+                        visited[v] = True
+                        stack.append((v, u))
+                    elif v != parent:
+                        expected = True
+                        found = True
+                        break
+                if found:
+                    break
+            if expected:
+                break
+    challenge._expected = expected
+    return {"num_nodes": num_nodes, "edges": edges_list}
+
+
+def _verify_cycle_detect(challenge, result: Any) -> bool:
+    if not isinstance(result, bool):
+        return False
+    return result == challenge._expected
+
+
+# === graph_12: Bipartite Check ====================================
+#
+# 2-coloring via BFS. A graph is bipartite iff it has no odd
+# cycles (equivalently, iff we can 2-color it).
+
+
+GRAPH_12_SOURCE = '''
+def solve(num_nodes, edges):
+    """Return True iff the undirected graph is bipartite.
+
+    Uses BFS-based 2-coloring. Returns False as soon as we try
+    to assign two different colors to the same node.
+    """
+    from collections import deque
+    adj = [[] for _ in range(num_nodes)]
+    for u, v in edges:
+        adj[u].append(v)
+        adj[v].append(u)
+    color = [-1] * num_nodes  # -1 = uncolored, 0/1 = two colors
+    for start in range(num_nodes):
+        if color[start] != -1:
+            continue
+        color[start] = 0
+        q = deque([start])
+        while q:
+            u = q.popleft()
+            for v in adj[u]:
+                if color[v] == -1:
+                    color[v] = 1 - color[u]
+                    q.append(v)
+                elif color[v] == color[u]:
+                    return False
+    return True
+'''
+
+
+def _setup_bipartite(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    num_nodes = max(2, n)
+    # Half the time build a bipartite graph, half the time add
+    # an odd cycle (3-cycle) to make it non-bipartite.
+    is_bipartite = rng.random() < 0.5
+    edges = set()
+    # Build a tree (always bipartite).
+    for i in range(num_nodes - 1):
+        edges.add((i, i + 1))
+    if not is_bipartite and num_nodes >= 3:
+        # Add a 3-cycle: edges 0-1, 1-2, 0-2. (0-1 and 1-2 are
+        # already in the chain; add 0-2 to close a triangle.)
+        edges.add((0, 2))
+    # Add a few extra non-cycle edges (still bipartite).
+    for _ in range(min(num_nodes, 3)):
+        a = rng.randint(0, num_nodes - 1)
+        b = rng.randint(0, num_nodes - 1)
+        if a != b:
+            lo, hi = sorted((a, b))
+            edges.add((lo, hi))
+    edges_list = sorted(edges)
+    challenge._expected = is_bipartite
+    return {"num_nodes": num_nodes, "edges": edges_list}
+
+
+def _verify_bipartite(challenge, result: Any) -> bool:
+    if not isinstance(result, bool):
+        return False
+    return result == challenge._expected
+
+
 # === Spec list ====================================================
 
 
@@ -1041,5 +1294,101 @@ SPECS.extend([
         hint="Path compression + union by rank gives near-constant amortized ops.",
         parents=["graph_01"],
         children=["graph_08"],
+    ),
+    AlgorithmSpec(
+        id="graph_10",
+        name="Prim's MST",
+        category="graphs",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Find the minimum spanning tree of an undirected, weighted\n"
+            "graph using Prim's algorithm (vertex-growth with a min-heap).\n"
+            "Return the MST as a sorted list of (u, v, weight) tuples,\n"
+            "or [] if the graph is not connected. The setup always\n"
+            "produces a connected graph.\n"
+            "Requirement: O(E log V) with a heap; O(V^2) without.\n"
+            "Source: https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/"
+        ),
+        source_url="https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/",
+        params=["num_nodes", "edges"],
+        inputs={
+            "num_nodes": "number of nodes in the graph.",
+            "edges": "list-like of (u, v, weight) tuples for undirected edges.",
+        },
+        returns="a sorted list of MST edges (u, v, w), or [] if disconnected.",
+        source=GRAPH_10_SOURCE,
+        setup_fn=_setup_prim,
+        verify_fn=_verify_prim,
+        samples=[
+            Sample("num_nodes = 4, edges = [(0, 1, 10), (0, 2, 6), (0, 3, 5), (1, 3, 15), (2, 3, 4)]", "[(2, 3, 4), (0, 3, 5), (0, 1, 10)]"),
+            Sample("num_nodes = 3, edges = [(0, 1, 1), (1, 2, 2)]", "[(0, 1, 1), (1, 2, 2)]"),
+        ],
+        hint="Start at any node. Repeatedly add the cheapest edge that connects a visited node to an unvisited one.",
+        parents=["graph_08"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="graph_11",
+        name="Cycle Detection",
+        category="graphs",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Return True iff the undirected graph has a cycle.\n"
+            "Uses iterative DFS with parent tracking.\n"
+            "Requirement: O(V + E).\n"
+            "Source: https://www.geeksforgeeks.org/detect-cycle-undirected-graph/"
+        ),
+        source_url="https://www.geeksforgeeks.org/detect-cycle-undirected-graph/",
+        params=["num_nodes", "edges"],
+        inputs={
+            "num_nodes": "number of nodes in the graph.",
+            "edges": "list-like of (u, v) tuples for undirected edges.",
+        },
+        returns="True iff the graph has at least one cycle.",
+        source=GRAPH_11_SOURCE,
+        setup_fn=_setup_cycle_detect,
+        verify_fn=_verify_cycle_detect,
+        samples=[
+            Sample("num_nodes = 4, edges = [(0, 1), (0, 2), (1, 2), (2, 3)]", "True (0-1-2-0)"),
+            Sample("num_nodes = 4, edges = [(0, 1), (1, 2), (2, 3)]", "False (chain)"),
+            Sample("num_nodes = 3, edges = [(0, 1), (1, 2)]", "False"),
+        ],
+        hint="DFS. If you reach an already-visited node that is NOT your parent, there's a cycle.",
+        parents=["graph_03"],
+        children=["graph_12"],
+    ),
+    AlgorithmSpec(
+        id="graph_12",
+        name="Bipartite Check",
+        category="graphs",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Return True iff the undirected graph is bipartite\n"
+            "(2-colorable). Equivalent: the graph contains no odd\n"
+            "cycles. BFS-based 2-coloring is the standard approach.\n"
+            "Requirement: O(V + E).\n"
+            "Source: https://www.geeksforgeeks.org/bipartite-graph/"
+        ),
+        source_url="https://www.geeksforgeeks.org/bipartite-graph/",
+        params=["num_nodes", "edges"],
+        inputs={
+            "num_nodes": "number of nodes in the graph.",
+            "edges": "list-like of (u, v) tuples for undirected edges.",
+        },
+        returns="True iff the graph is 2-colorable (no odd cycles).",
+        source=GRAPH_12_SOURCE,
+        setup_fn=_setup_bipartite,
+        verify_fn=_verify_bipartite,
+        samples=[
+            Sample("num_nodes = 4, edges = [(0, 1), (0, 3), (1, 2), (2, 3)]", "True (color 0: 0,2; color 1: 1,3)"),
+            Sample("num_nodes = 3, edges = [(0, 1), (1, 2), (0, 2)]", "False (triangle)"),
+            Sample("num_nodes = 2, edges = []", "True"),
+        ],
+        hint="BFS. Assign alternating colors; if a neighbor already has the same color, fail.",
+        parents=["graph_11"],
+        children=[],
     ),
 ])

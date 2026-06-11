@@ -6,10 +6,12 @@ import type { ChallengeSummary } from '../types/api';
  * ChallengeList — left rail with one row per challenge.
  *
  * Each row shows the human title (e.g. "Bubble Sort") as the
- * primary label, with the machine id (e.g. "sort_01") as a small
- * muted prefix so the URL slug is still discoverable. The
- * engine runner and verifier handle every spec the registry
- * exposes, so all challenges are clickable.
+ * primary label, full-width. The complexity class sits in a
+ * tooltip / on a second line below the title for narrow panes.
+ * The machine id is intentionally NOT shown in the rail (it
+ * is in the detail panel header and URL slug for power users).
+ * The engine runner and verifier handle every spec the
+ * registry exposes, so all challenges are clickable.
  */
 export function ChallengeList() {
   const challenges = useAppStore((s) => s.challenges);
@@ -45,22 +47,19 @@ export function ChallengeList() {
                       'hover:bg-coden-border',
                       isCurrent ? 'bg-coden-border text-white' : 'text-coden-text',
                     ].join(' ')}
-                    title={`${c.id} — ${c.name}`}
+                    title={`${c.name} · ${c.required_complexity} · ${c.id}`}
                   >
                     {isDone ? (
-                      <span className="text-coden-accent" aria-label="completed">✓</span>
+                      <span className="text-coden-accent shrink-0" aria-label="completed">✓</span>
                     ) : (
-                      <span className="w-3" aria-hidden="true" />
+                      <span className="w-3 shrink-0" aria-hidden="true" />
                     )}
-                    <span className="flex-1 truncate">
-                      <span className="text-[10px] text-coden-muted font-mono mr-1.5">
-                        {c.id}
-                      </span>
-                      {c.name}
-                    </span>
-                    <span className="text-[10px] text-coden-muted font-mono">
-                      {c.required_complexity}
-                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="truncate">{c.name}</div>
+                      <div className="text-[10px] text-coden-muted font-mono truncate">
+                        {c.required_complexity}
+                      </div>
+                    </div>
                   </button>
                 </li>
               );
