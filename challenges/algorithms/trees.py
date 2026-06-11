@@ -669,3 +669,348 @@ SPECS.extend([
         children=[],
     ),
 ])
+
+
+# === tree_08: BST Insert ======================================
+#
+# Build a NEW BST that includes the inserted value. Returns
+# the new children and values arrays (the player can either
+# mutate the input or build new lists — both are fine; the
+# verifier checks structural equality).
+
+
+TREE_08_SOURCE = '''
+def solve(children, values, root, n, key):
+    """Insert `key` into the BST. Return (new_children, new_values)."""
+    new_children = [list(c) for c in children]
+    new_values = list(values)
+    if n == 0:
+        # Empty tree: the new node IS the root.
+        new_values.append(key)
+        new_children.append([-1, -1])
+        return new_children, new_values
+    u = root
+    while True:
+        if key == new_values[u]:
+            # Already present — no change.
+            return new_children, new_values
+        if key < new_values[u]:
+            left, right = new_children[u]
+            if left == -1:
+                new_idx = len(new_values)
+                new_values.append(key)
+                new_children.append([-1, -1])
+                new_children[u][0] = new_idx
+                return new_children, new_values
+            u = left
+        else:
+            left, right = new_children[u]
+            if right == -1:
+                new_idx = len(new_values)
+                new_values.append(key)
+                new_children.append([-1, -1])
+                new_children[u][1] = new_idx
+                return new_children, new_values
+            u = right
+'''
+
+
+def _setup_bst_insert(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    n_nodes = max(1, min(n, 10))
+    # Build a BST with random values.
+    values: list[int] = []
+    children: list[list[int]] = []
+
+    def insert(parent_idx: int, v: int) -> None:
+        cur = parent_idx
+        while True:
+            if v == values[cur]:
+                return
+            if v < values[cur]:
+                left, right = children[cur]
+                if left == -1:
+                    new_idx = len(values)
+                    values.append(v)
+                    children.append([-1, -1])
+                    children[cur][0] = new_idx
+                    return
+                cur = left
+            else:
+                left, right = children[cur]
+                if right == -1:
+                    new_idx = len(values)
+                    values.append(v)
+                    children.append([-1, -1])
+                    children[cur][1] = new_idx
+                    return
+                cur = right
+
+    seen = set()
+    while len(values) < n_nodes:
+        v = rng.randint(1, 100)
+        if v in seen:
+            continue
+        seen.add(v)
+        if not values:
+            values.append(v)
+            children.append([-1, -1])
+        else:
+            insert(0, v)
+    # Pick a key: 50% an existing value (no change), 50% a new one.
+    if rng.random() < 0.5:
+        key = rng.choice(values)
+    else:
+        key = rng.randint(200, 300)
+        while key in seen:
+            key = rng.randint(200, 300)
+    challenge._children = [list(c) for c in children]
+    challenge._values = list(values)
+    challenge._key = key
+    return {
+        "children": children,
+        "values": values,
+        "root": 0,
+        "n": len(values),
+        "key": key,
+    }
+
+
+def _verify_bst_insert(challenge, result: Any) -> bool:
+    if not isinstance(result, tuple) or len(result) != 2:
+        return False
+    new_children, new_values = result
+    if not isinstance(new_children, list) or not isinstance(new_values, list):
+        return False
+    # Re-run the insert and compare.
+    children = [list(c) for c in challenge._children]
+    values = list(challenge._values)
+    key = challenge._key
+    if not values:
+        return new_values == [key] and new_children == [[-1, -1]]
+    u = 0
+    while True:
+        if key == values[u]:
+            return new_values == values and new_children == children
+        if key < values[u]:
+            left, right = children[u]
+            if left == -1:
+                new_idx = len(values)
+                values.append(key)
+                children.append([-1, -1])
+                children[u][0] = new_idx
+                return new_values == values and new_children == children
+            u = left
+        else:
+            left, right = children[u]
+            if right == -1:
+                new_idx = len(values)
+                values.append(key)
+                children.append([-1, -1])
+                children[u][1] = new_idx
+                return new_values == values and new_children == children
+            u = right
+
+
+# === tree_09: Mirror / Invert =================================
+
+
+TREE_09_SOURCE = '''
+def solve(children, root, n):
+    """Return the children list with every node's children reversed.
+
+    A multi-way tree mirrors by reversing each node's child list.
+    A single-node tree is its own mirror.
+    """
+    new_children = [list(reversed(c)) for c in children]
+    return new_children
+'''
+
+
+def _setup_mirror(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    n_nodes = max(1, n)
+    children: list[list[int]] = [[] for _ in range(n_nodes)]
+    for i in range(1, n_nodes):
+        parent = rng.randint(0, i - 1)
+        children[parent].append(i)
+    challenge._children = children
+    return {"children": children, "root": 0, "n": n_nodes}
+
+
+def _verify_mirror(challenge, result: Any) -> bool:
+    if not isinstance(result, list):
+        return False
+    expected = [list(reversed(c)) for c in challenge._children]
+    return result == expected
+
+
+# === tree_10: Max Path Sum ====================================
+#
+# Maximum sum of any root-to-leaf path in a multi-way tree
+# with non-negative values. (For arbitrary signs, the problem
+# is the "binary tree max path sum" which is more complex; the
+# setup uses non-negative to keep the spec simple.)
+
+
+TREE_10_SOURCE = '''
+def solve(children, values, root, n):
+    """Max root-to-leaf path sum (all values are non-negative)."""
+    best = [0]
+
+    def walk(u):
+        # The best root-to-leaf sum through u = values[u] + max child sum.
+        if not children[u]:
+            best[0] = max(best[0], values[u])
+            return values[u]
+        child_sums = [walk(v) for v in children[u]]
+        s = values[u] + max(child_sums)
+        best[0] = max(best[0], s)
+        return s
+
+    walk(root)
+    return best[0]
+'''
+
+
+def _setup_max_path_sum(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    n_nodes = max(1, n)
+    children: list[list[int]] = [[] for _ in range(n_nodes)]
+    for i in range(1, n_nodes):
+        parent = rng.randint(0, i - 1)
+        children[parent].append(i)
+    # Non-negative values; mix small and large.
+    values = [rng.randint(1, 50) for _ in range(n_nodes)]
+    challenge._children = children
+    challenge._values = values
+    return {"children": children, "values": values, "root": 0, "n": n_nodes}
+
+
+def _verify_max_path_sum(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    children = challenge._children
+    values = challenge._values
+    best = 0
+
+    def walk(u):
+        nonlocal best
+        if not children[u]:
+            if values[u] > best:
+                best = values[u]
+            return values[u]
+        child_sums = [walk(v) for v in children[u]]
+        s = values[u] + max(child_sums)
+        if s > best:
+            best = s
+        return s
+
+    walk(0)
+    return result == best
+
+
+# Append the new tree specs to SPECS.
+SPECS.extend([
+    AlgorithmSpec(
+        id="tree_08",
+        name="BST Insert",
+        category="trees",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_LOG_N,
+        description=(
+            "Insert `key` into a binary search tree. Return a tuple\n"
+            "(new_children, new_values) representing the BST after\n"
+            "the insert. If `key` is already in the tree, return\n"
+            "the tree unchanged.\n"
+            "The tree is given as a binary shape: children[i] = [left, right].\n"
+            "Requirement: O(log n) on a balanced BST.\n"
+            "Source: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/"
+        ),
+        source_url="https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/",
+        params=["children", "values", "root", "n", "key"],
+        inputs={
+            "children": "list of length n; children[i] = [left, right] (each -1 if absent).",
+            "values": "list of length n; values[i] is the BST key at node i.",
+            "root": "the root node index.",
+            "n": "number of nodes in the tree.",
+            "key": "the value to insert.",
+        },
+        returns="a tuple (new_children, new_values) of the BST after insert.",
+        source=TREE_08_SOURCE,
+        setup_fn=_setup_bst_insert,
+        verify_fn=_verify_bst_insert,
+        samples=[
+            Sample("children = [[1, -1], [-1, -1]], values = [10, 5], root = 0, n = 2, key = 15", "([(1,2),(-1,-1),(-1,-1)], [10,5,15]) (added as right child of 10)"),
+            Sample("children = [[1, -1], [-1, -1]], values = [10, 5], root = 0, n = 2, key = 10", "unchanged (already in tree)"),
+        ],
+        hint="Walk the tree like a search; the first absent child slot on the way is where the new node goes.",
+        parents=["tree_06"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="tree_09",
+        name="Mirror Tree",
+        category="trees",
+        difficulty=2,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Return the children list of the mirrored (inverted) tree.\n"
+            "For a multi-way tree, mirroring means reversing every\n"
+            "node's child list. A single-node tree is its own mirror.\n"
+            "Requirement: O(n).\n"
+            "Source: https://www.geeksforgeeks.org/write-an-efficient-c-function-to-convert-a-tree-into-its-mirror-tree/"
+        ),
+        source_url="https://www.geeksforgeeks.org/write-an-efficient-c-function-to-convert-a-tree-into-its-mirror-tree/",
+        params=["children", "root", "n"],
+        inputs={
+            "children": "list of length n; children[i] is the list of i's children.",
+            "root": "the root node index.",
+            "n": "number of nodes in the tree.",
+        },
+        returns="a new children list with every node's child list reversed.",
+        source=TREE_09_SOURCE,
+        setup_fn=_setup_mirror,
+        verify_fn=_verify_mirror,
+        samples=[
+            Sample("children = [[1, 2], [3, 4], [], [], []], root = 0, n = 5", "[[2, 1], [4, 3], [], [], []]"),
+            Sample("children = [[]], root = 0, n = 1", "[[]]"),
+        ],
+        hint="For each node, reverse its child list. Recurse on the children (though for the result you only need the reverses).",
+        parents=["tree_01"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="tree_10",
+        name="Max Path Sum",
+        category="trees",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Return the maximum root-to-leaf path sum in a multi-way\n"
+            "tree. All values are non-negative. The path starts at\n"
+            "the root and ends at any leaf.\n"
+            "Requirement: O(n) — single DFS.\n"
+            "Source: https://www.geeksforgeeks.org/find-the-maximum-sum-path-in-a-binary-tree/"
+        ),
+        source_url="https://www.geeksforgeeks.org/find-the-maximum-sum-path-in-a-binary-tree/",
+        params=["children", "values", "root", "n"],
+        inputs={
+            "children": "list of length n; children[i] is the list of i's children.",
+            "values": "list of non-negative integers at each node.",
+            "root": "the root node index.",
+            "n": "number of nodes in the tree.",
+        },
+        returns="the maximum sum along any root-to-leaf path.",
+        source=TREE_10_SOURCE,
+        setup_fn=_setup_max_path_sum,
+        verify_fn=_verify_max_path_sum,
+        samples=[
+            Sample("children = [[1, 2], [3], [4], [], []], values = [1, 2, 3, 4, 5], root = 0, n = 5", "9 (1→2→4)"),
+            Sample("children = [[]], values = [42], root = 0, n = 1", "42"),
+        ],
+        hint="DFS. For each node, the best path through it = values[u] + max(best_child_path).",
+        parents=["tree_04"],
+        children=[],
+    ),
+])
