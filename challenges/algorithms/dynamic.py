@@ -358,3 +358,443 @@ SPECS: list[AlgorithmSpec] = [
         children=[],
     ),
 ]
+
+
+# === dp_05: Coin Change ========================================
+#
+# The setup always includes coin value 1 in the denominations
+# so the answer is always finite (otherwise the verify would
+# have to special-case the impossible case and the player
+# couldn't tell from a "0" whether it was 0 coins or -1).
+
+
+DP_05_SOURCE = '''
+def solve(coins, amount):
+    """Minimum number of coins summing to amount. -1 if impossible.
+
+    Because the setup always includes coin value 1, the answer
+    is always finite. -1 is still returned as a defensive
+    fallback for any future spec that doesn't guarantee this.
+    """
+    INF = float("inf")
+    dp = [INF] * (amount + 1)
+    dp[0] = 0
+    for v in range(1, amount + 1):
+        for c in coins:
+            if c <= v and dp[v - c] + 1 < dp[v]:
+                dp[v] = dp[v - c] + 1
+    return dp[amount] if dp[amount] != INF else -1
+'''
+
+
+def _setup_coin_change(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    # Number of distinct coin denominations.
+    num_coins = max(1, min(n, 8))
+    # Always include 1 so the answer is always finite.
+    coins = {1}
+    while len(coins) < num_coins:
+        c = rng.randint(2, max(3, n * 2))
+        coins.add(c)
+    coins_list = sorted(coins)
+    # amount: scale with n so the table is non-trivial.
+    amount = max(1, n * 3)
+    # Pre-compute the expected answer the verifier will check.
+    INF = float("inf")
+    dp = [INF] * (amount + 1)
+    dp[0] = 0
+    for v in range(1, amount + 1):
+        for c in coins_list:
+            if c <= v and dp[v - c] + 1 < dp[v]:
+                dp[v] = dp[v - c] + 1
+    expected = dp[amount] if dp[amount] != INF else -1
+    challenge._expected = expected
+    return {"coins": coins_list, "amount": amount}
+
+
+def _verify_coin_change(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    return result == challenge._expected
+
+
+# === dp_06: Subset Sum ==========================================
+#
+# The setup picks a target that IS reachable, so the answer is
+# always True. (If we picked a random target, half the time
+# it'd be unreachable and we'd have to define a "no" answer
+# in a way that's hard to verify against the canonical solve.)
+
+
+DP_06_SOURCE = '''
+def solve(arr, target):
+    """True iff some subset of arr sums to target."""
+    # Standard 1D DP over the running sum.
+    reachable = {0}
+    for v in arr:
+        new_reach = set(reachable)
+        for s in reachable:
+            new_reach.add(s + v)
+        reachable = new_reach
+    return target in reachable
+'''
+
+
+def _setup_subset_sum(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    n_elems = max(1, min(n, 12))
+    # Generate small positive integers so the running sum
+    # doesn't blow up.
+    arr = [rng.randint(1, max(2, n)) for _ in range(n_elems)]
+    # Pick a target by summing a random non-empty subset —
+    # guarantees reachability.
+    subset_size = rng.randint(1, n_elems)
+    target = sum(rng.choice(arr) for _ in range(subset_size))
+    # If the random subset accidentally picked all zeros or
+    # summed to 0, re-roll until we get a positive target.
+    while target == 0 and any(v > 0 for v in arr):
+        subset_size = rng.randint(1, n_elems)
+        target = sum(rng.choice(arr) for _ in range(subset_size))
+    challenge._target = target
+    challenge._arr = arr
+    return {"arr": arr, "target": target}
+
+
+def _verify_subset_sum(challenge, result: Any) -> bool:
+    if not isinstance(result, bool):
+        return False
+    # The setup always picks a reachable target, so the
+    # correct answer is always True. The test exercises the
+    # DP; verifying the result is True checks the DP worked.
+    return result is True
+
+
+# === dp_07: Longest Increasing Subsequence =====================
+#
+# The O(n log n) patience-sorting version is the canonical
+# answer; the spec advertises O_N_LOG_N. The setup picks a
+# random array and stashes the expected LIS length.
+
+
+DP_07_SOURCE = '''
+def solve(arr):
+    """Length of the longest strictly-increasing subsequence."""
+    import bisect
+    # `tails[k]` = the smallest tail value of any increasing
+    # subsequence of length k+1. Binary search updates the slot
+    # for each arr[i].
+    tails = []
+    for v in arr:
+        i = bisect.bisect_left(tails, v)  # leftmost >= v
+        if i == len(tails):
+            tails.append(v)
+        else:
+            tails[i] = v
+    return len(tails)
+'''
+
+
+def _setup_lis(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    n_elems = max(1, min(n, 20))
+    # Mix decreasing, increasing, and random to exercise
+    # both extremes of LIS.
+    arr = [rng.randint(1, max(2, n)) for _ in range(n_elems)]
+    # Compute expected via the same O(n log n) algorithm.
+    import bisect
+    tails = []
+    for v in arr:
+        i = bisect.bisect_left(tails, v)
+        if i == len(tails):
+            tails.append(v)
+        else:
+            tails[i] = v
+    challenge._expected = len(tails)
+    return {"arr": arr}
+
+
+def _verify_lis(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    return result == challenge._expected
+
+
+# === dp_08: Edit Distance (Levenshtein) ========================
+
+
+DP_08_SOURCE = '''
+def solve(word1, word2):
+    """Levenshtein distance: min single-char edits to turn w1 into w2."""
+    m, n = len(word1), len(word2)
+    # dp[i][j] = distance between word1[:i] and word2[:j].
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    for i in range(m + 1):
+        dp[i][0] = i
+    for j in range(n + 1):
+        dp[0][j] = j
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if word1[i - 1] == word2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = 1 + min(
+                    dp[i - 1][j],      # delete word1[i-1]
+                    dp[i][j - 1],      # insert word2[j-1]
+                    dp[i - 1][j - 1],  # substitute
+                )
+    return dp[m][n]
+'''
+
+
+def _setup_edit_distance(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    # Two short strings of length up to n.
+    alphabet = "abcdefgh"
+    len1 = max(1, rng.randint(1, max(1, n)))
+    len2 = max(1, rng.randint(1, max(1, n)))
+    word1 = "".join(rng.choice(alphabet) for _ in range(len1))
+    word2 = "".join(rng.choice(alphabet) for _ in range(len2))
+    # Pre-compute the expected answer.
+    m, n_words = len(word1), len(word2)
+    dp = [[0] * (n_words + 1) for _ in range(m + 1)]
+    for i in range(m + 1):
+        dp[i][0] = i
+    for j in range(n_words + 1):
+        dp[0][j] = j
+    for i in range(1, m + 1):
+        for j in range(1, n_words + 1):
+            if word1[i - 1] == word2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])
+    challenge._expected = dp[m][n_words]
+    return {"word1": word1, "word2": word2}
+
+
+def _verify_edit_distance(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    return result == challenge._expected
+
+
+# === dp_09: Rod Cutting =========================================
+
+
+DP_09_SOURCE = '''
+def solve(prices, n):
+    """Max revenue cutting a rod of length n given a price table.
+
+    prices[i] is the price of a piece of length (i+1) for i in
+    range(n). The rod itself is of length n, so prices must be
+    indexed from i=0 to i=n-1.
+    """
+    # dp[i] = max revenue for a rod of length i.
+    dp = [0] * (n + 1)
+    for length in range(1, n + 1):
+        for cut in range(1, length + 1):
+            # Price of the first piece is prices[cut-1].
+            revenue = prices[cut - 1] + dp[length - cut]
+            if revenue > dp[length]:
+                dp[length] = revenue
+    return dp[n]
+'''
+
+
+def _setup_rod_cutting(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    # prices has length n (one price per possible piece length 1..n).
+    # Monotonically increasing so the optimum is to NOT cut (cut=rod
+    # gives price[n-1] which beats any combination of smaller pieces).
+    # We perturb it to make the problem interesting.
+    prices = []
+    base = 1
+    for _ in range(max(1, n)):
+        base += rng.randint(1, 3)
+        prices.append(base)
+    # Pre-compute expected via the same DP.
+    dp = [0] * (n + 1)
+    for length in range(1, n + 1):
+        for cut in range(1, length + 1):
+            revenue = prices[cut - 1] + dp[length - cut]
+            if revenue > dp[length]:
+                dp[length] = revenue
+    challenge._expected = dp[n]
+    return {"prices": prices, "n": n}
+
+
+def _verify_rod_cutting(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    return result == challenge._expected
+
+
+# Append the new DP specs to SPECS.
+
+
+# Append the new DP specs to SPECS. We do this at module load
+# (after the function defs above) so the spec factories can
+# reference the helpers cleanly.
+SPECS.extend([
+    AlgorithmSpec(
+        id="dp_05",
+        name="Coin Change",
+        category="dynamic",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Given a list of coin denominations and a target amount,\n"
+            "return the minimum number of coins needed to make the\n"
+            "amount. Return -1 if it is impossible.\n"
+            "The setup always includes coin 1, so the answer is always\n"
+            "finite (1 is the worst case).\n"
+            "Requirement: O(n * amount) where n is the number of coins.\n"
+            "Source: https://www.geeksforgeeks.org/coin-change-dp-7/"
+        ),
+        source_url="https://www.geeksforgeeks.org/coin-change-dp-7/",
+        params=["coins", "amount"],
+        inputs={
+            "coins": "list of positive integer coin denominations.",
+            "amount": "the target sum to make.",
+        },
+        returns="the minimum number of coins summing to amount, or -1.",
+        source=DP_05_SOURCE,
+        setup_fn=_setup_coin_change,
+        verify_fn=_verify_coin_change,
+        samples=[
+            Sample("coins = [1, 5, 10, 25], amount = 11", "2 (10+1)"),
+            Sample("coins = [2], amount = 3", "-1"),
+            Sample("coins = [1, 2, 5], amount = 7", "2 (5+2)"),
+        ],
+        hint="Bottom-up DP. dp[v] = min coins to make v. Always include coin 1 to keep the answer finite.",
+        parents=["dp_03"],
+        children=["dp_06"],
+    ),
+    AlgorithmSpec(
+        id="dp_06",
+        name="Subset Sum",
+        category="dynamic",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Return True iff some subset of the input array sums to\n"
+            "the target. The setup always picks a reachable target,\n"
+            "so the canonical answer is always True.\n"
+            "Requirement: O(n * sum) where sum is the total of arr.\n"
+            "Source: https://www.geeksforgeeks.org/subset-sum-problem-dp-25/"
+        ),
+        source_url="https://www.geeksforgeeks.org/subset-sum-problem-dp-25/",
+        params=["arr", "target"],
+        inputs={
+            "arr": "list of positive integers.",
+            "target": "the sum to check for (always reachable in tests).",
+        },
+        returns="True iff a subset of arr sums to target.",
+        source=DP_06_SOURCE,
+        setup_fn=_setup_subset_sum,
+        verify_fn=_verify_subset_sum,
+        samples=[
+            Sample("arr = [3, 34, 4, 12, 5, 2], target = 9", "True (4+5)"),
+            Sample("arr = [3, 34, 4, 12, 5, 2], target = 30", "False"),
+            Sample("arr = [1, 2, 3], target = 6", "True (1+2+3)"),
+        ],
+        hint="Track which sums are reachable. For each element, every existing reachable sum gives a new one (itself + the element).",
+        parents=["dp_05"],
+        children=["dp_07"],
+    ),
+    AlgorithmSpec(
+        id="dp_07",
+        name="Longest Increasing Subsequence",
+        category="dynamic",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N_LOG_N,
+        description=(
+            "Return the length of the longest strictly-increasing\n"
+            "subsequence of the input array. A subsequence is not\n"
+            "required to be contiguous.\n"
+            "Requirement: O(n log n) — the patience-sorting algorithm\n"
+            "with binary search beats the O(n^2) DP.\n"
+            "Source: https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/"
+        ),
+        source_url="https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/",
+        params=["arr"],
+        inputs={
+            "arr": "list of integers.",
+        },
+        returns="the length of the longest strictly-increasing subsequence.",
+        source=DP_07_SOURCE,
+        setup_fn=_setup_lis,
+        verify_fn=_verify_lis,
+        samples=[
+            Sample("arr = [10, 9, 2, 5, 3, 7, 101, 18]", "4"),
+            Sample("arr = [0, 1, 0, 3, 2, 3]", "4"),
+            Sample("arr = [7, 7, 7, 7, 7, 7, 7]", "1"),
+        ],
+        hint="Patience sorting. Maintain a 'tails' array; for each value, binary-search the leftmost slot >= v.",
+        parents=["dp_06"],
+        children=["dp_08"],
+    ),
+    AlgorithmSpec(
+        id="dp_08",
+        name="Edit Distance",
+        category="dynamic",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Compute the Levenshtein distance between two strings:\n"
+            "the minimum number of single-character insertions,\n"
+            "deletions, or substitutions to turn one into the other.\n"
+            "Requirement: O(m * n) where m, n are the string lengths.\n"
+            "Source: https://www.geeksforgeeks.org/edit-distance-dp-5/"
+        ),
+        source_url="https://www.geeksforgeeks.org/edit-distance-dp-5/",
+        params=["word1", "word2"],
+        inputs={
+            "word1": "the source string.",
+            "word2": "the target string.",
+        },
+        returns="the minimum edit distance between word1 and word2.",
+        source=DP_08_SOURCE,
+        setup_fn=_setup_edit_distance,
+        verify_fn=_verify_edit_distance,
+        samples=[
+            Sample('word1 = "horse", word2 = "ros"', "3"),
+            Sample('word1 = "intention", word2 = "execution"', "5"),
+            Sample('word1 = "abc", word2 = "abc"', "0"),
+        ],
+        hint="dp[i][j] = distance between word1[:i] and word2[:j]. On mismatch, 1 + min of delete/insert/substitute.",
+        parents=["dp_04"],
+        children=["dp_09"],
+    ),
+    AlgorithmSpec(
+        id="dp_09",
+        name="Rod Cutting",
+        category="dynamic",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Given a price table where prices[i] is the price of a\n"
+            "rod piece of length (i+1), find the maximum revenue\n"
+            "obtainable by cutting a rod of length n into pieces.\n"
+            "Requirement: O(n^2).\n"
+            "Source: https://www.geeksforgeeks.org/cutting-a-rod-dp-13/"
+        ),
+        source_url="https://www.geeksforgeeks.org/cutting-a-rod-dp-13/",
+        params=["prices", "n"],
+        inputs={
+            "prices": "list of length n; prices[i] is the price of a piece of length i+1.",
+            "n": "the rod length.",
+        },
+        returns="the maximum revenue obtainable by cutting the rod.",
+        source=DP_09_SOURCE,
+        setup_fn=_setup_rod_cutting,
+        verify_fn=_verify_rod_cutting,
+        samples=[
+            Sample("prices = [1, 5, 8, 9], n = 4", "10 (two pieces of length 2)"),
+            Sample("prices = [1, 5, 8, 9, 10, 17, 17, 20], n = 8", "22"),
+            Sample("prices = [3], n = 1", "3"),
+        ],
+        hint="dp[length] = max revenue for a rod of that length. For each length, try every first-cut size.",
+        parents=["dp_03"],
+        children=[],
+    ),
+])
