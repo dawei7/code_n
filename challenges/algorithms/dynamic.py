@@ -1057,3 +1057,309 @@ SPECS.extend([
         children=[],
     ),
 ])
+
+
+# === dp_13: Matrix Chain Multiplication ========================
+
+
+DP_13_SOURCE = '''
+def solve(p):
+    """Matrix chain multiplication: min scalar mults for p[0..n-1]."""
+    n = len(p) - 1
+    if n <= 1:
+        return 0
+    INF = float("inf")
+    dp = [[0] * n for _ in range(n)]
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            dp[i][j] = INF
+            for k in range(i, j):
+                cost = dp[i][k] + dp[k + 1][j] + p[i] * p[k + 1] * p[j + 1]
+                if cost < dp[i][j]:
+                    dp[i][j] = cost
+    return dp[0][n - 1]
+'''
+
+
+def _setup_mcm(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    n_mats = max(2, min(n, 8))
+    rng = random.Random(seed)
+    p = [rng.randint(1, 20) for _ in range(n_mats + 1)]
+    if n_mats <= 1:
+        challenge._expected = 0
+    else:
+        INF = float("inf")
+        dp = [[0] * n_mats for _ in range(n_mats)]
+        for length in range(2, n_mats + 1):
+            for i in range(n_mats - length + 1):
+                j = i + length - 1
+                dp[i][j] = INF
+                for k in range(i, j):
+                    cost = dp[i][k] + dp[k + 1][j] + p[i] * p[k + 1] * p[j + 1]
+                    if cost < dp[i][j]:
+                        dp[i][j] = cost
+        challenge._expected = dp[0][n_mats - 1]
+    return {"p": p}
+
+
+def _verify_mcm(challenge, result: Any) -> bool:
+    return isinstance(result, int) and result == challenge._expected
+
+
+# === dp_14: Palindromic Partitioning (min cuts) ================
+
+
+DP_14_SOURCE = '''
+def solve(s):
+    """Min cuts to partition s into all-palindromic substrings."""
+    n = len(s)
+    if n <= 1:
+        return 0
+    is_pal = [[False] * n for _ in range(n)]
+    for i in range(n):
+        is_pal[i][i] = True
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            if s[i] == s[j]:
+                if length == 2 or is_pal[i + 1][j - 1]:
+                    is_pal[i][j] = True
+    INF = float("inf")
+    dp = [INF] * n
+    for i in range(n):
+        if is_pal[0][i]:
+            dp[i] = 0
+        else:
+            for j in range(i):
+                if is_pal[j + 1][i] and dp[j] + 1 < dp[i]:
+                    dp[i] = dp[j] + 1
+    return dp[n - 1]
+'''
+
+
+def _setup_pal_partition(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    s_len = max(1, min(n, 12))
+    s = "".join(rng.choice("abc") for _ in range(s_len))
+    n_words = len(s)
+    if n_words <= 1:
+        challenge._expected = 0
+    else:
+        is_pal = [[False] * n_words for _ in range(n_words)]
+        for i in range(n_words):
+            is_pal[i][i] = True
+        for length in range(2, n_words + 1):
+            for i in range(n_words - length + 1):
+                j = i + length - 1
+                if s[i] == s[j]:
+                    if length == 2 or is_pal[i + 1][j - 1]:
+                        is_pal[i][j] = True
+        INF = float("inf")
+        dp = [INF] * n_words
+        for i in range(n_words):
+            if is_pal[0][i]:
+                dp[i] = 0
+            else:
+                for j in range(i):
+                    if is_pal[j + 1][i] and dp[j] + 1 < dp[i]:
+                        dp[i] = dp[j] + 1
+        challenge._expected = dp[n_words - 1]
+    return {"s": s}
+
+
+def _verify_pal_partition(challenge, result: Any) -> bool:
+    return isinstance(result, int) and result == challenge._expected
+
+
+# === dp_15: Word Break ========================================
+
+
+DP_15_SOURCE = '''
+def solve(s, word_dict):
+    """True iff s can be segmented into dictionary words."""
+    n = len(s)
+    word_set = set(word_dict)
+    dp = [False] * (n + 1)
+    dp[0] = True
+    for i in range(1, n + 1):
+        for j in range(i):
+            if dp[j] and s[j:i] in word_set:
+                dp[i] = True
+                break
+    return dp[n]
+'''
+
+
+def _setup_word_break(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    s_len = max(2, min(n, 12))
+    word_dict = ["a", "ab", "abc", "b", "bc", "cd", "abcde", "de", "f", "fg"]
+    s = "".join(rng.choice(word_dict) for _ in range(max(1, s_len // 2)))
+    challenge._s = s
+    return {"s": s, "word_dict": word_dict}
+
+
+def _verify_word_break(challenge, result: Any) -> bool:
+    return isinstance(result, bool)
+
+
+# === dp_16: Egg Dropping ======================================
+
+
+DP_16_SOURCE = '''
+def solve(k, n):
+    """Min moves (drops) to find the critical floor with k eggs, n floors."""
+    dp = [[0] * (n + 1) for _ in range(k + 1)]
+    m = 0
+    while dp[k][m] < n:
+        m += 1
+        for e in range(1, k + 1):
+            dp[e][m] = dp[e - 1][m - 1] + dp[e][m - 1] + 1
+    return m
+'''
+
+
+def _setup_egg_drop(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    k = max(1, min(n, 6))
+    m_floors = max(1, min(n + 1, 8))
+    challenge._k = k
+    challenge._m_floors = m_floors
+    return {"k": k, "n": m_floors}
+
+
+def _verify_egg_drop(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    k = challenge._k
+    n = challenge._m_floors
+    dp = [[0] * (n + 1) for _ in range(k + 1)]
+    m = 0
+    while dp[k][m] < n:
+        m += 1
+        for e in range(1, k + 1):
+            dp[e][m] = dp[e - 1][m - 1] + dp[e][m - 1] + 1
+    return result == m
+
+
+# Append the new DP specs to SPECS.
+SPECS.extend([
+    AlgorithmSpec(
+        id="dp_13",
+        name="Matrix Chain Multiplication",
+        category="dynamic",
+        difficulty=7,
+        required_complexity=ComplexityClass.O_N3,
+        description=(
+            "Given a list of matrix dimensions p[0..n], where matrix i\n"
+            "has shape p[i-1] x p[i], find the minimum number of\n"
+            "scalar multiplications needed to compute the chain product.\n"
+            "Requirement: O(n^3).\n"
+            "Source: https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/"
+        ),
+        source_url="https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/",
+        params=["p"],
+        inputs={"p": "list of length n+1; matrix i has shape p[i-1] x p[i]."},
+        returns="the minimum number of scalar multiplications.",
+        source=DP_13_SOURCE,
+        setup_fn=_setup_mcm,
+        verify_fn=_verify_mcm,
+        samples=[
+            Sample("p = [1, 2, 3, 4, 5]", "38"),
+            Sample("p = [10, 20, 30]", "6000"),
+        ],
+        hint="dp[i][j] = min over k of (dp[i][k] + dp[k+1][j] + p[i]*p[k+1]*p[j+1]).",
+        parents=["dp_12"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="dp_14",
+        name="Palindromic Partitioning",
+        category="dynamic",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Given a string, partition it into substrings that are all\n"
+            "palindromes. Return the minimum number of cuts needed.\n"
+            "Requirement: O(n^2).\n"
+            "Source: https://www.geeksforgeeks.org/palindromic-partitioning-dp-17/"
+        ),
+        source_url="https://www.geeksforgeeks.org/palindromic-partitioning-dp-17/",
+        params=["s"],
+        inputs={"s": "the input string (lowercase letters)."},
+        returns="the minimum number of cuts to make every substring a palindrome.",
+        source=DP_14_SOURCE,
+        setup_fn=_setup_pal_partition,
+        verify_fn=_verify_pal_partition,
+        samples=[
+            Sample("s = 'aaaa'", "0"),
+            Sample("s = 'abacd'", "2"),
+        ],
+        hint="First compute is_pal[i][j]; then dp[i] = min over j of (dp[j] + 1 if is_pal[j+1][i]).",
+        parents=["dp_12"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="dp_15",
+        name="Word Break",
+        category="dynamic",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Given a string s and a dictionary of words, return True\n"
+            "iff s can be segmented into a sequence of one or more\n"
+            "dictionary words. The setup builds s by concatenating\n"
+            "random dictionary words, so the answer is always True.\n"
+            "Requirement: O(n * L).\n"
+            "Source: https://www.geeksforgeeks.org/word-break-problem-dp-32/"
+        ),
+        source_url="https://www.geeksforgeeks.org/word-break-problem-dp-32/",
+        params=["s", "word_dict"],
+        inputs={
+            "s": "the string to segment.",
+            "word_dict": "list of unique words in the dictionary.",
+        },
+        returns="True iff s can be segmented into dictionary words.",
+        source=DP_15_SOURCE,
+        setup_fn=_setup_word_break,
+        verify_fn=_verify_word_break,
+        samples=[
+            Sample("s = 'leetcode', word_dict = ['leet', 'code']", "True"),
+            Sample("s = 'catsandog', word_dict = ['cats', 'dog', 'sand', 'and', 'cat']", "False"),
+        ],
+        hint="dp[i] = True if some dp[j] is True AND s[j:i] is in word_dict.",
+        parents=["dp_04"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="dp_16",
+        name="Egg Dropping",
+        category="dynamic",
+        difficulty=7,
+        required_complexity=ComplexityClass.O_N3,
+        description=(
+            "Given k eggs and n floors, find the minimum number of\n"
+            "moves (drops) needed to determine the critical floor.\n"
+            "Use dp[e][m] = dp[e-1][m-1] + dp[e][m-1] + 1.\n"
+            "Requirement: O(k * n * log n) — find smallest m with dp[k][m] >= n.\n"
+            "Source: https://www.geeksforgeeks.org/egg-dropping-puzzle-dp-11/"
+        ),
+        source_url="https://www.geeksforgeeks.org/egg-dropping-puzzle-dp-11/",
+        params=["k", "n"],
+        inputs={
+            "k": "number of eggs available.",
+            "n": "number of floors to test.",
+        },
+        returns="the minimum number of drops needed to find the critical floor.",
+        source=DP_16_SOURCE,
+        setup_fn=_setup_egg_drop,
+        verify_fn=_verify_egg_drop,
+        samples=[
+            Sample("k = 1, n = 2", "2"),
+            Sample("k = 2, n = 6", "3"),
+        ],
+        hint="dp[e][m] = dp[e-1][m-1] + dp[e][m-1] + 1. Find smallest m with dp[k][m] >= n.",
+        parents=["dp_12"],
+        children=[],
+    ),
+])
