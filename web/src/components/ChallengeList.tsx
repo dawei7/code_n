@@ -5,10 +5,11 @@ import type { ChallengeSummary } from '../types/api';
 /**
  * ChallengeList — left rail with one row per challenge.
  *
- * MVP behavior: sort_01 is enabled (the engine runner + visualizer
- * work end-to-end for it). All other challenges show their name +
- * category but the row is dimmed and clicking it shows a "Coming
- * in the next sprint" placeholder.
+ * Each row shows the human title (e.g. "Bubble Sort") as the
+ * primary label, with the machine id (e.g. "sort_01") as a small
+ * muted prefix so the URL slug is still discoverable. The
+ * engine runner and verifier handle every spec the registry
+ * exposes, so all challenges are clickable.
  */
 export function ChallengeList() {
   const challenges = useAppStore((s) => s.challenges);
@@ -31,25 +32,33 @@ export function ChallengeList() {
           </div>
           <ul>
             {items.map((c) => {
-              const enabled = c.id === 'sort_01';
               const isCurrent = c.id === currentId;
               const isDone = completed.includes(c.id);
               return (
                 <li key={c.id}>
                   <button
                     type="button"
-                    disabled={!enabled}
                     onClick={() => selectChallenge(c.id)}
                     className={[
-                      'w-full text-left px-2 py-1.5 rounded text-sm font-mono',
+                      'w-full text-left px-2 py-1.5 rounded text-sm',
                       'flex items-center gap-2',
-                      enabled ? 'hover:bg-coden-border' : 'opacity-40 cursor-not-allowed',
+                      'hover:bg-coden-border',
                       isCurrent ? 'bg-coden-border text-white' : 'text-coden-text',
                     ].join(' ')}
+                    title={`${c.id} — ${c.name}`}
                   >
-                    {isDone && <span className="text-coden-accent">✓</span>}
-                    <span className="flex-1 truncate">{c.id}</span>
-                    <span className="text-xs text-coden-muted">
+                    {isDone ? (
+                      <span className="text-coden-accent" aria-label="completed">✓</span>
+                    ) : (
+                      <span className="w-3" aria-hidden="true" />
+                    )}
+                    <span className="flex-1 truncate">
+                      <span className="text-[10px] text-coden-muted font-mono mr-1.5">
+                        {c.id}
+                      </span>
+                      {c.name}
+                    </span>
+                    <span className="text-[10px] text-coden-muted font-mono">
                       {c.required_complexity}
                     </span>
                   </button>
@@ -59,10 +68,6 @@ export function ChallengeList() {
           </ul>
         </div>
       ))}
-      <div className="px-2 py-3 text-xs text-coden-muted border-t border-coden-border">
-        Only <span className="font-mono text-coden-accent">sort_01</span> is
-        wired up in the MVP. Other challenges are listed for reference.
-      </div>
     </div>
   );
 }
