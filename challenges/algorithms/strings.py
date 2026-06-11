@@ -520,3 +520,329 @@ SPECS.extend([
         children=[],
     ),
 ])
+
+
+# === string_06: Rabin-Karp ======================================
+#
+# Rolling-hash substring search. We use a simple base+mod hash;
+# for the test sizes (text/pattern up to ~16 chars) collisions
+# are vanishingly unlikely.
+
+
+STRING_06_SOURCE = '''
+def solve(text, pattern):
+    """Rabin-Karp substring search via rolling hash.
+
+    Returns the first index of pattern in text, or -1.
+    """
+    n, m = len(text), len(pattern)
+    if m == 0:
+        return 0
+    if m > n:
+        return -1
+    BASE = 256
+    MOD = (1 << 61) - 1  # Mersenne-ish prime for fewer collisions
+    # Hash of pattern and the first window of text.
+    p_hash = 0
+    t_hash = 0
+    h = 1
+    for i in range(m):
+        p_hash = (p_hash * BASE + ord(pattern[i])) % MOD
+        t_hash = (t_hash * BASE + ord(text[i])) % MOD
+        if i < m - 1:
+            h = (h * BASE) % MOD
+    # Slide the window.
+    for i in range(n - m + 1):
+        if p_hash == t_hash:
+            if text[i:i + m] == pattern:
+                return i
+        if i < n - m:
+            t_hash = ((t_hash - ord(text[i]) * h) * BASE + ord(text[i + m])) % MOD
+            if t_hash < 0:
+                t_hash += MOD
+    return -1
+'''
+
+
+def _setup_rabin_karp(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    alphabet = "abcdefghij"
+    text_len = max(1, n)
+    text = "".join(rng.choice(alphabet) for _ in range(text_len))
+    will_match = rng.random() < 0.5
+    if will_match and text_len >= 1:
+        plen = rng.randint(1, min(3, text_len))
+        start = rng.randint(0, text_len - plen)
+        pattern = text[start:start + plen]
+    else:
+        pattern = "z" * rng.randint(1, 3)
+    challenge._text = text
+    challenge._pattern = pattern
+    return {"text": text, "pattern": pattern}
+
+
+def _verify_rabin_karp(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    text, pattern = challenge._text, challenge._pattern
+    n, m = len(text), len(pattern)
+    if m == 0:
+        return result == 0
+    if m > n:
+        return result == -1
+    for i in range(n - m + 1):
+        if text[i:i + m] == pattern:
+            return result == i
+    return result == -1
+
+
+# === string_07: Z-Algorithm =====================================
+#
+# Linear-time pattern matching using the Z-array. Z[i] is the
+# longest prefix of s that matches s[i:]. To find pattern in
+# text, concatenate pattern + '$' + text and find positions
+# where Z[i] == len(pattern).
+
+
+STRING_07_SOURCE = '''
+def solve(text, pattern):
+    """Z-algorithm pattern search. First index of pattern in text, or -1."""
+    n, m = len(text), len(pattern)
+    if m == 0:
+        return 0
+    if m > n:
+        return -1
+    # Build Z-array over pattern + '$' + text.
+    s = pattern + "$" + text
+    z = [0] * len(s)
+    l = 0
+    r = 0
+    for i in range(1, len(s)):
+        if i < r:
+            z[i] = min(r - i, z[i - l])
+        while i + z[i] < len(s) and s[z[i]] == s[i + z[i]]:
+            z[i] += 1
+        if i + z[i] > r:
+            l = i
+            r = i + z[i]
+    # Pattern matches wherever z[i] == m, in the suffix starting
+    # at index m + 1 of s (i.e. position i - m - 1 in text).
+    offset = m + 1
+    for i in range(offset, len(s)):
+        if z[i] == m:
+            return i - offset
+    return -1
+'''
+
+
+def _setup_z_algo(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    alphabet = "abcdefgh"
+    text_len = max(1, n)
+    text = "".join(rng.choice(alphabet) for _ in range(text_len))
+    will_match = rng.random() < 0.5
+    if will_match and text_len >= 1:
+        plen = rng.randint(1, min(3, text_len))
+        start = rng.randint(0, text_len - plen)
+        pattern = text[start:start + plen]
+    else:
+        # Use a separator character not in alphabet to avoid edge cases.
+        pattern = "z" * rng.randint(1, 3)
+    challenge._text = text
+    challenge._pattern = pattern
+    return {"text": text, "pattern": pattern}
+
+
+def _verify_z_algo(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    text, pattern = challenge._text, challenge._pattern
+    n, m = len(text), len(pattern)
+    if m == 0:
+        return result == 0
+    if m > n:
+        return result == -1
+    for i in range(n - m + 1):
+        if text[i:i + m] == pattern:
+            return result == i
+    return result == -1
+
+
+# === string_08: Smallest Window Containing All Chars ============
+#
+# Given a string s and a pattern p, find the smallest substring
+# of s that contains every character of p (with multiplicity).
+# The pattern uses distinct characters only so the test stays
+# simple (each char in p appears exactly once).
+
+
+STRING_08_SOURCE = '''
+def solve(s, p):
+    """Smallest substring of s containing every char of p at least once.
+
+    Pattern p uses distinct characters. Returns the smallest
+    such substring, or "" if no such substring exists.
+    """
+    n = len(s)
+    if not p or not s:
+        return ""
+    need = set(p)
+    have = set()
+    best = ""
+    left = 0
+    for right in range(n):
+        if s[right] in need:
+            have.add(s[right])
+        # Shrink from the left while we still have everything.
+        while have >= need and left <= right:
+            window = s[left:right + 1]
+            if not best or len(window) < len(best):
+                best = window
+            if s[left] in need:
+                # Removing s[left] might drop coverage.
+                pass
+            left += 1
+            # Re-evaluate coverage after the shift.
+            have = set()
+            for k in range(left, right + 1):
+                if s[k] in need:
+                    have.add(s[k])
+            if not (have >= need):
+                break
+    return best
+'''
+
+
+def _setup_smallest_window(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    s_len = max(2, min(n, 16))
+    alphabet = "abcde"
+    s = "".join(rng.choice(alphabet) for _ in range(s_len))
+    # Pattern: a non-empty subset of alphabet (distinct chars).
+    p = list(set(rng.choice(alphabet) for _ in range(rng.randint(1, 3))))
+    rng.shuffle(p)
+    p = "".join(p)
+    challenge._s = s
+    challenge._p = p
+    return {"s": s, "p": p}
+
+
+def _verify_smallest_window(challenge, result: Any) -> bool:
+    if not isinstance(result, str):
+        return False
+    s, p = challenge._s, challenge._p
+    if not p or not s:
+        return result == ""
+    # Brute-force: try every substring.
+    expected = ""
+    for i in range(len(s)):
+        for j in range(i + 1, len(s) + 1):
+            window = s[i:j]
+            if all(c in window for c in p):
+                if not expected or len(window) < len(expected):
+                    expected = window
+                break  # inner loop: smallest window starting at i
+    return result == expected
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="string_06",
+        name="Rabin-Karp",
+        category="strings",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Find the first index where pattern occurs in text using\n"
+            "the Rabin-Karp rolling-hash algorithm. Uses a base-256\n"
+            "polynomial hash mod a large prime; on a hash match we\n"
+            "verify by direct comparison to avoid false positives.\n"
+            "Requirement: O(n + m) average; worst-case O(n*m) on\n"
+            "spurious hash collisions (vanishingly rare in practice).\n"
+            "Source: https://www.geeksforgeeks.org/rabin-karp-algorithm-for-pattern-searching/"
+        ),
+        source_url="https://www.geeksforgeeks.org/rabin-karp-algorithm-for-pattern-searching/",
+        params=["text", "pattern"],
+        inputs={
+            "text": "the string to search in.",
+            "pattern": "the string to search for.",
+        },
+        returns="the first index of pattern in text, or -1 if not found.",
+        source=STRING_06_SOURCE,
+        setup_fn=_setup_rabin_karp,
+        verify_fn=_verify_rabin_karp,
+        samples=[
+            Sample("text = 'hello', pattern = 'll'", "2"),
+            Sample("text = 'aaaa', pattern = 'aa'", "0"),
+            Sample("text = 'abcde', pattern = 'xyz'", "-1"),
+        ],
+        hint="Hash the pattern and the first window of text. Slide: drop text[i], add text[i+m].",
+        parents=["string_04"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="string_07",
+        name="Z-Algorithm",
+        category="strings",
+        difficulty=7,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Find the first index where pattern occurs in text using\n"
+            "the Z-algorithm. Builds the Z-array over (pattern + '$' + text)\n"
+            "in linear time, then scans for positions where Z[i] == len(pattern).\n"
+            "Requirement: O(n + m) — strictly linear.\n"
+            "Source: https://www.geeksforgeeks.org/z-algorithm-linear-time-pattern-searching-algorithm/"
+        ),
+        source_url="https://www.geeksforgeeks.org/z-algorithm-linear-time-pattern-searching-algorithm/",
+        params=["text", "pattern"],
+        inputs={
+            "text": "the string to search in.",
+            "pattern": "the string to search for.",
+        },
+        returns="the first index of pattern in text, or -1 if not found.",
+        source=STRING_07_SOURCE,
+        setup_fn=_setup_z_algo,
+        verify_fn=_verify_z_algo,
+        samples=[
+            Sample("text = 'hello', pattern = 'll'", "2"),
+            Sample("text = 'aaaa', pattern = 'aa'", "0"),
+            Sample("text = 'abcde', pattern = 'xyz'", "-1"),
+        ],
+        hint="Z[i] = longest prefix of s matching s[i:]. Compute in O(n); match where Z[i] == m.",
+        parents=["string_04"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="string_08",
+        name="Smallest Window",
+        category="strings",
+        difficulty=7,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Given a string s and a pattern p (with distinct chars),\n"
+            "find the smallest substring of s that contains every\n"
+            "character of p at least once. Returns the smallest such\n"
+            "substring, or \"\" if no such substring exists.\n"
+            "Requirement: O(n) sliding window.\n"
+            "Source: https://www.geeksforgeeks.org/smallest-window-contains-characters-string/"
+        ),
+        source_url="https://www.geeksforgeeks.org/smallest-window-contains-characters-string/",
+        params=["s", "p"],
+        inputs={
+            "s": "the string to search in.",
+            "p": "the pattern (distinct characters).",
+        },
+        returns="the smallest substring of s containing all of p, or '' if none.",
+        source=STRING_08_SOURCE,
+        setup_fn=_setup_smallest_window,
+        verify_fn=_verify_smallest_window,
+        samples=[
+            Sample("s = 'timetopractice', p = 'toc'", "'toprac' (smallest window containing t, o, c)"),
+            Sample("s = 'zoomlazapop', p = 'oza'", "'oza'"),
+            Sample("s = 'abc', p = 'xyz'", "'' (no window contains all of p)"),
+        ],
+        hint="Sliding window: expand right to cover all pattern chars, then shrink from the left as long as coverage is maintained.",
+        parents=["string_04"],
+        children=[],
+    ),
+])
