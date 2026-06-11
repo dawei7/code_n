@@ -18,7 +18,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
     the process - the player can rely on ``list_challenges()`` being
     stable.
     """
-    from challenges.algorithms import intro, sorting, searching, graphs, dynamic, greedy
+    from challenges.algorithms import intro, sorting, searching, graphs, dynamic, greedy, strings
     return [
         *intro.SPECS,
         *sorting.SPECS,
@@ -26,6 +26,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
         *graphs.SPECS,
         *dynamic.SPECS,
         *greedy.SPECS,
+        *strings.SPECS,
     ]
 
 
