@@ -1363,3 +1363,153 @@ SPECS.extend([
         children=[],
     ),
 ])
+
+
+# === dp_17: Partition Equal Subset Sum ==========================
+
+
+DP_17_SOURCE = '''
+def solve(arr):
+    """True iff arr can be split into two equal-sum subsets."""
+    total = sum(arr)
+    if total % 2 != 0:
+        return False
+    target = total // 2
+    reachable = {0}
+    for v in arr:
+        reachable = reachable | {s + v for s in reachable}
+    return target in reachable
+'''
+
+
+def _setup_partition(challenge, n, seed):
+    rng = random.Random(seed)
+    n_elems = max(1, min(n, 12))
+    # Loop until the total is even (so the answer is well-defined).
+    while True:
+        arr = [rng.randint(1, 10) for _ in range(n_elems)]
+        if sum(arr) % 2 == 0:
+            break
+    # Pre-compute the expected answer via the canonical solve.
+    ns: dict[str, Any] = {"__name__": "spec.dp_17"}
+    exec(DP_17_SOURCE, ns)
+    challenge._expected = ns["solve"](arr)
+    return {"arr": arr}
+
+
+def _verify_partition(challenge, result):
+    if not isinstance(result, bool):
+        return False
+    return result == challenge._expected
+
+
+# === dp_18: Max Product Subarray ===============================
+
+
+DP_18_SOURCE = '''
+def solve(arr):
+    """Max product of a contiguous subarray of arr (positive & negative)."""
+    if not arr:
+        return 0
+    best = arr[0]
+    cur_max = arr[0]
+    cur_min = arr[0]
+    for v in arr[1:]:
+        if v < 0:
+            cur_max, cur_min = cur_min, cur_max
+        cur_max = max(v, cur_max * v)
+        cur_min = min(v, cur_min * v)
+        if cur_max > best:
+            best = cur_max
+    return best
+'''
+
+
+def _setup_max_product(challenge, n, seed):
+    rng = random.Random(seed)
+    n_elems = max(1, min(n, 12))
+    arr = [rng.choice([-5, -2, -1, 0, 1, 2, 3, 5, 10]) for _ in range(n_elems)]
+    if not arr:
+        challenge._expected = 0
+    else:
+        best = arr[0]
+        cur_max = arr[0]
+        cur_min = arr[0]
+        for v in arr[1:]:
+            if v < 0:
+                cur_max, cur_min = cur_min, cur_max
+            cur_max = max(v, cur_max * v)
+            cur_min = min(v, cur_min * v)
+            if cur_max > best:
+                best = cur_max
+        challenge._expected = best
+    return {"arr": arr}
+
+
+def _verify_max_product(challenge, result):
+    if not isinstance(result, int):
+        return False
+    return result == challenge._expected
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="dp_17",
+        name="Partition Equal Subset Sum",
+        category="dynamic",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Return True iff the input array can be split into two\n"
+            "subsets with equal sum. A classic 0/1-knapsack variant.\n"
+            "The setup always picks a total that's even so the\n"
+            "answer is well-defined.\n"
+            "Requirement: O(n * total).\n"
+            "Source: https://www.geeksforgeeks.org/partition-equal-subset-sum/"
+        ),
+        source_url="https://www.geeksforgeeks.org/partition-equal-subset-sum/",
+        params=["arr"],
+        inputs={"arr": "list of positive integers."},
+        returns="True iff arr can be split into two equal-sum subsets.",
+        source=DP_17_SOURCE,
+        setup_fn=_setup_partition,
+        verify_fn=_verify_partition,
+        samples=[
+            Sample("arr = [1, 5, 11, 5]", "True (1+5+5 = 11)"),
+            Sample("arr = [1, 2, 3, 5]", "False"),
+        ],
+        hint="Total must be even. Track reachable subset sums; check if total/2 is in the set.",
+        parents=["dp_06"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="dp_18",
+        name="Max Product Subarray",
+        category="dynamic",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Return the maximum product of a contiguous subarray.\n"
+            "May contain negatives; track BOTH the max-ending-here\n"
+            "and min-ending-here products (a negative * negative\n"
+            "flips the sign and may yield a new max).\n"
+            "Requirement: O(n) — single pass.\n"
+            "Source: https://www.geeksforgeeks.org/maximum-product-subarray/"
+        ),
+        source_url="https://www.geeksforgeeks.org/maximum-product-subarray/",
+        params=["arr"],
+        inputs={"arr": "list of integers (positive, negative, or zero)."},
+        returns="the maximum product of any contiguous subarray.",
+        source=DP_18_SOURCE,
+        setup_fn=_setup_max_product,
+        verify_fn=_verify_max_product,
+        samples=[
+            Sample("arr = [2, 3, -2, 4]", "6 (subarray [2, 3])"),
+            Sample("arr = [-2, 0, -1]", "0"),
+            Sample("arr = [-2, 3, -4]", "24 (subarray [-2, 3, -4])"),
+        ],
+        hint="Track both cur_max and cur_min. On a negative, swap them. cur_max = max(v, cur_max * v).",
+        parents=["dp_11"],
+        children=[],
+    ),
+])
