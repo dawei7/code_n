@@ -10,7 +10,7 @@ Run with:
 
 SPECS_TO_ADD = [
     {
-        "id": "tree_11",
+        "id": "tree_13",
         "name": "Balanced Tree Check",
         "category": "trees",
         "difficulty": 3,
@@ -81,10 +81,10 @@ return result == expected
         ],
         "hint": "Recurse. For each node, if the two subtree heights differ by more than 1, the tree is unbalanced.",
         "parents": ["tree_04"],
-        "children": ["tree_12"],
+        "children": ["tree_14"],
     },
     {
-        "id": "tree_12",
+        "id": "tree_14",
         "name": "Symmetric Tree Check",
         "category": "trees",
         "difficulty": 3,
@@ -155,7 +155,7 @@ return result == expected
             ("children = [[1, 2], [3, -1], [-1, -1]], root = 0, n = 3", "False"),
         ],
         "hint": "A tree is symmetric iff its left and right subtrees are mirrors of each other.",
-        "parents": ["tree_11"],
+        "parents": ["tree_13"],
         "children": [],
     },
 ]

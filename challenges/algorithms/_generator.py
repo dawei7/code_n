@@ -70,19 +70,34 @@ OPTIMAL_DIR = CHALLENGES_DIR / "optimal_solutions"
 
 
 def _indent_block(text: str, spaces: int) -> str:
-    """Indent every non-blank line of `text` by `spaces` spaces.
+    """Indent every non-blank line of `text` to `spaces` columns.
 
-    Blank lines are left blank (no whitespace) so the source
-    stays readable. Leading/trailing newlines are stripped so
-    the caller can wrap the result cleanly.
+    The author is likely writing the text inside a Python dict
+    literal, so every line is over-indented. We strip the
+    common leading whitespace (like textwrap.dedent does),
+    then re-indent to the target `spaces`.
+
+    Blank lines are left blank so the source stays readable.
+    Leading/trailing newlines are stripped.
     """
-    pad = " " * spaces
+    raw_lines = text.strip("\n").splitlines()
+    # Compute the minimum indent across non-blank lines.
+    min_indent = None
+    for line in raw_lines:
+        if line.strip() == "":
+            continue
+        lead = len(line) - len(line.lstrip())
+        if min_indent is None or lead < min_indent:
+            min_indent = lead
+    if min_indent is None:
+        min_indent = 0
+    # Strip and re-indent.
     out_lines = []
-    for line in text.strip("\n").splitlines():
+    for line in raw_lines:
         if line.strip() == "":
             out_lines.append("")
         else:
-            out_lines.append(pad + line)
+            out_lines.append(" " * spaces + line[min_indent:])
     return "\n".join(out_lines)
 
 
@@ -148,58 +163,66 @@ def _format_helper(name: str, body: str) -> str:
 def render_spec_block(record: dict[str, Any], complexity_map: dict[str, str]) -> str:
     """Render a single AlgorithmSpec(...) block for the SPECS list.
 
-    Indentation: 4 spaces (inside SPECS.extend([...])).
+    Indentation: 4 spaces (inside SPECS.extend([...])). All
+    multi-line fields (description, inputs, samples) are
+    rendered with simple, consistent indents so the output is
+    always syntactically valid Python.
     """
     complexity = complexity_map.get(record["complexity"], "O_N")
-    params_str = "[" + ", ".join(f'"{p}"' for p in record["params"]) + "]"
-    inputs_str = "{\n" + _indent_block(
-        "".join(f'    "{k}": "{v}",\n' for k, v in record["inputs"].items()),
-        8,
-    ).rstrip(",\n") + "\n    }" if record.get("inputs") else "{}"
-    # Build samples.
-    samples_lines = []
-    for s in record["samples"]:
-        # Each sample is a Sample(input_repr, output_repr) call.
-        samples_lines.append(f'            Sample("{s[0]}", "{s[1]}"),')
-    samples_str = "\n".join(samples_lines) if samples_lines else ""
-    parents_str = "[" + ", ".join(f'"{p}"' for p in record.get("parents", [])) + "]"
-    children_str = "[" + ", ".join(f'"{c}"' for c in record.get("children", [])) + "]"
+    I = "    "      # 4 spaces: outer indent of the spec block.
+    B = "        "  # 8 spaces: each keyword arg's line.
+    D = "            "  # 12 spaces: content inside multi-line fields.
+
     source_const = record["id"].upper().replace("-", "_") + "_SOURCE"
     setup_fn = "_setup_" + record["id"].replace("-", "_")
     verify_fn = "_verify_" + record["id"].replace("-", "_")
+    parents_str = "[" + ", ".join(f'"{p}"' for p in record.get("parents", [])) + "]"
+    children_str = "[" + ", ".join(f'"{c}"' for c in record.get("children", [])) + "]"
     description = record["description"].rstrip()
     hint = record.get("hint", "")
+    samples = record.get("samples", [])
 
-    parts = [
-        f'    AlgorithmSpec(',
-        f'        id="{record["id"]}",',
-        f'        name="{record["name"]}",',
-        f'        category="{record["category"]}",',
-        f'        difficulty={record["difficulty"]},',
-        f'        required_complexity=ComplexityClass.{complexity},',
-        f'        description=(',
-    ]
-    # Description is a parenthesized string concatenation; preserve
-    # the user's newlines by wrapping in a single triple-quoted
-    # literal at indent 12.
-    desc_block = _indent_block(f'"""\n{description}\n"""', 12)
-    parts.append(desc_block + ",")
-    parts.append(f'        source_url="{record["source_url"]}",')
-    parts.append(f'        params={params_str},')
-    parts.append(f'        inputs={inputs_str},')
-    parts.append(f'        returns="{record["returns"]}",')
-    parts.append(f'        source={source_const},')
-    parts.append(f'        setup_fn={setup_fn},')
-    parts.append(f'        verify_fn={verify_fn},')
-    if samples_str:
-        parts.append(f'        samples=[')
-        parts.append(samples_str)
-        parts.append(f'        ],')
-    parts.append(f'        hint="{hint}",')
-    parts.append(f'        parents={parents_str},')
-    parts.append(f'        children={children_str},')
-    parts.append(f'    ),')
-    return "\n".join(parts) + "\n"
+    lines: list[str] = []
+    lines.append(f"{I}AlgorithmSpec(")
+    lines.append(f'{B}id="{record["id"]}",')
+    lines.append(f'{B}name="{record["name"]}",')
+    lines.append(f'{B}category="{record["category"]}",')
+    lines.append(f"{B}difficulty={record['difficulty']},")
+    lines.append(f"{B}required_complexity=ComplexityClass.{complexity},")
+    # Description: triple-quoted, body at indent 12.
+    lines.append(f'{B}description=("""')
+    for desc_line in description.split("\n"):
+        if desc_line == "":
+            lines.append("")
+        else:
+            lines.append(f"{D}{desc_line}")
+    lines.append(f'{D}"""),')
+    lines.append(f'{B}source_url="{record["source_url"]}",')
+    params_str = "[" + ", ".join(f'"{p}"' for p in record["params"]) + "]"
+    lines.append(f"{B}params={params_str},")
+    # Inputs: multi-line dict if non-empty, else {}.
+    if record.get("inputs"):
+        lines.append(f"{B}inputs={{")
+        for k, v in record["inputs"].items():
+            lines.append(f'{D}"{k}": "{v}",')
+        lines.append(f"{B}}},")
+    else:
+        lines.append(f"{B}inputs={{}},")
+    lines.append(f'{B}returns="{record["returns"]}",')
+    lines.append(f"{B}source={source_const},")
+    lines.append(f"{B}setup_fn={setup_fn},")
+    lines.append(f"{B}verify_fn={verify_fn},")
+    # Samples: multi-line list if any.
+    if samples:
+        lines.append(f"{B}samples=[")
+        for s in samples:
+            lines.append(f'{D}Sample("{s[0]}", "{s[1]}"),')
+        lines.append(f"{B}],")
+    lines.append(f'{B}hint="{hint}",')
+    lines.append(f"{B}parents={parents_str},")
+    lines.append(f"{B}children={children_str},")
+    lines.append(f"{I}),")
+    return "\n".join(lines) + "\n"
 
 
 def render_helpers(record: dict[str, Any]) -> str:
