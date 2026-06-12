@@ -1014,3 +1014,176 @@ SPECS.extend([
         children=[],
     ),
 ])
+
+
+# === tree_11: Balanced Tree Check ================================
+
+
+TREE_11_SOURCE = '''
+def solve(children, root, n):
+    """Return True iff the binary tree is height-balanced."""
+    balanced = [True]
+
+    def height(u):
+        if u == -1:
+            return 0
+        l = height(children[u][0])
+        r = height(children[u][1])
+        if abs(l - r) > 1:
+            balanced[0] = False
+        return 1 + max(l, r)
+
+    height(root)
+    return balanced[0]
+'''
+
+
+def _setup_balanced(challenge, n, seed):
+    rng = random.Random(seed)
+    n_nodes = max(1, min(n, 12))
+    children = [[-1, -1] for _ in range(n_nodes)]
+    for i in range(1, n_nodes):
+        parent = rng.randint(0, i - 1)
+        side = 0 if rng.random() < 0.5 else 1
+        if children[parent][side] == -1:
+            children[parent][side] = i
+        else:
+            children[parent][1 - side] = i
+    challenge._children = children
+    return {"children": children, "root": 0, "n": n_nodes}
+
+
+def _verify_balanced(challenge, result):
+    def walk(u):
+        if u == -1:
+            return 0
+        l = walk(challenge._children[u][0])
+        r = walk(challenge._children[u][1])
+        if abs(l - r) > 1:
+            return -1
+        return 1 + max(l, r)
+    expected = walk(0) != -1
+    return result == expected
+
+
+# === tree_12: Symmetric Tree Check ===============================
+
+
+TREE_12_SOURCE = '''
+def solve(children, root, n):
+    """True iff the binary tree is a mirror of itself around the root."""
+    if root == -1:
+        return True
+
+    def is_mirror(a, b):
+        if a == -1 and b == -1:
+            return True
+        if a == -1 or b == -1:
+            return False
+        return (
+            is_mirror(children[a][0], children[b][1])
+            and is_mirror(children[a][1], children[b][0])
+        )
+
+    return is_mirror(children[root][0], children[root][1])
+'''
+
+
+def _setup_symmetric(challenge, n, seed):
+    rng = random.Random(seed)
+    n_nodes = max(1, min(n, 8))
+    children = [[-1, -1] for _ in range(n_nodes)]
+    for i in range(1, n_nodes - 1, 2):
+        children[0][0] = i
+        children[0][1] = i + 1
+        if i + 2 < n_nodes:
+            children[i][0] = i + 2
+            children[i + 1][1] = i + 3 if i + 3 < n_nodes else -1
+    challenge._children = children
+    return {"children": children, "root": 0, "n": n_nodes}
+
+
+def _verify_symmetric(challenge, result):
+    def is_mirror(a, b):
+        if a == -1 and b == -1:
+            return True
+        if a == -1 or b == -1:
+            return False
+        return (
+            is_mirror(challenge._children[a][0], challenge._children[b][1])
+            and is_mirror(challenge._children[a][1], challenge._children[b][0])
+        )
+    expected = is_mirror(challenge._children[0][0], challenge._children[0][1])
+    return result == expected
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="tree_11",
+        name="Balanced Tree Check",
+        category="trees",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Return True iff the binary tree is height-balanced:\n"
+            "for every node, the heights of its left and right\n"
+            "subtrees differ by at most 1.\n"
+            "Tree is given as a binary shape: children[i] = [left, right].\n"
+            "Requirement: O(n).\n"
+            "Source: https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/"
+        ),
+        source_url="https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/",
+        params=["children", "root", "n"],
+        inputs={
+            "children": "list of length n; children[i] = [left, right] (-1 = absent).",
+            "root": "the root node index.",
+            "n": "number of nodes.",
+        },
+        returns="True iff the tree is height-balanced.",
+        source=TREE_11_SOURCE,
+        setup_fn=_setup_balanced,
+        verify_fn=_verify_balanced,
+        samples=[
+            Sample("children = [[1, 2], [3, 4], [-1, -1], [-1, -1], [-1, -1]], root = 0, n = 5", "True"),
+            Sample("children = [[1, -1], [-1, -1]], root = 0, n = 2", "True"),
+            Sample("children = [[1, 2], [-1, -1], [3, -1], [-1, -1], [-1, -1]], root = 0, n = 5", "False"),
+        ],
+        hint="Recurse. For each node, if the two subtree heights differ by more than 1, the tree is unbalanced.",
+        parents=["tree_04"],
+        children=["tree_12"],
+    ),
+    AlgorithmSpec(
+        id="tree_12",
+        name="Symmetric Tree Check",
+        category="trees",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Return True iff the binary tree is symmetric around\n"
+            "its center: the left subtree is the mirror of the right\n"
+            "subtree.\n"
+            "Tree is given as a binary shape: children[i] = [left, right].\n"
+            "Requirement: O(n).\n"
+            "Source: https://www.geeksforgeeks.org/symmetric-tree-tree-which-is-mirror-image-of-itself/"
+        ),
+        source_url="https://www.geeksforgeeks.org/symmetric-tree-tree-which-is-mirror-image-of-itself/",
+        params=["children", "root", "n"],
+        inputs={
+            "children": "list of length n; children[i] = [left, right] (-1 = absent).",
+            "root": "the root node index.",
+            "n": "number of nodes.",
+        },
+        returns="True iff the tree is symmetric around its root.",
+        source=TREE_12_SOURCE,
+        setup_fn=_setup_symmetric,
+        verify_fn=_verify_symmetric,
+        samples=[
+            Sample("children = [[1, 2], [3, 4], [4, 3], [-1, -1], [-1, -1]], root = 0, n = 5", "True"),
+            Sample("children = [[1, -1], [-1, -1]], root = 0, n = 2", "True"),
+            Sample("children = [[1, 2], [3, -1], [-1, -1]], root = 0, n = 3", "False"),
+        ],
+        hint="A tree is symmetric iff its left and right subtrees are mirrors of each other.",
+        parents=["tree_11"],
+        children=[],
+    ),
+])
