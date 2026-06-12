@@ -846,3 +846,156 @@ SPECS.extend([
         children=[],
     ),
 ])
+
+
+# === string_09: Run-Length Encoding =============================
+#
+# Encode a string by collapsing consecutive identical chars
+# into <char><count> pairs. Empty input -> empty output.
+
+
+STRING_09_SOURCE = '''
+def solve(s):
+    """Run-length encode s as <char><count> pairs."""
+    if not s:
+        return ""
+    out = []
+    cur = s[0]
+    count = 1
+    for c in s[1:]:
+        if c == cur:
+            count += 1
+        else:
+            out.append(cur + str(count))
+            cur = c
+            count = 1
+    out.append(cur + str(count))
+    return "".join(out)
+'''
+
+
+def _setup_rle(challenge, n, seed):
+    rng = random.Random(seed)
+    s_len = max(0, min(n, 12))
+    s = ""
+    while len(s) < s_len:
+        run = rng.randint(1, 3)
+        c = rng.choice("abcde")
+        s += c * run
+    s = s[:s_len]
+    ns: dict[str, Any] = {"__name__": "spec.string_09"}
+    exec(STRING_09_SOURCE, ns)
+    challenge._expected = ns["solve"](s)
+    return {"s": s}
+
+
+def _verify_rle(challenge, result):
+    if not isinstance(result, str):
+        return False
+    return result == challenge._expected
+
+
+# === string_10: Word Break (segmentation) =======================
+#
+# Same as dp_15 but in the strings category: given a string
+# and a dictionary, return True iff the string can be
+# segmented into a sequence of dictionary words.
+
+
+STRING_10_SOURCE = '''
+def solve(s, word_dict):
+    """True iff s can be segmented into dictionary words."""
+    n = len(s)
+    word_set = set(word_dict)
+    dp = [False] * (n + 1)
+    dp[0] = True
+    for i in range(1, n + 1):
+        for j in range(i):
+            if dp[j] and s[j:i] in word_set:
+                dp[i] = True
+                break
+    return dp[n]
+'''
+
+
+def _setup_word_break_str(challenge, n, seed):
+    rng = random.Random(seed)
+    s_len = max(2, min(n, 12))
+    word_dict = ["a", "ab", "abc", "b", "bc", "cd", "abcde", "de", "f", "fg"]
+    s = "".join(rng.choice(word_dict) for _ in range(max(1, s_len // 2)))
+    challenge._s = s
+    return {"s": s, "word_dict": word_dict}
+
+
+def _verify_word_break_str(challenge, result):
+    if not isinstance(result, bool):
+        return False
+    return isinstance(result, bool)
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="string_09",
+        name="Run-Length Encoding",
+        category="strings",
+        difficulty=2,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Encode a string by collapsing consecutive identical\n"
+            "characters into <char><count> pairs. For example,\n"
+            "'aaabbc' becomes 'a3b2c1' and '' becomes ''.\n"
+            "The input contains only lowercase letters (no digits\n"
+            "in the alphabet so there's no ambiguity).\n"
+            "Requirement: O(n).\n"
+            "Source: https://www.geeksforgeeks.org/run-length-encoding/"
+        ),
+        source_url="https://www.geeksforgeeks.org/run-length-encoding/",
+        params=["s"],
+        inputs={"s": "the input string (lowercase letters)."},
+        returns="the run-length encoded string.",
+        source=STRING_09_SOURCE,
+        setup_fn=_setup_rle,
+        verify_fn=_verify_rle,
+        samples=[
+            Sample("s = 'aaabbc'", "'a3b2c1'"),
+            Sample("s = 'abcd'", "'a1b1c1d1'"),
+            Sample("s = ''", "''"),
+        ],
+        hint="Walk the string, counting consecutive equal chars. Emit <char><count> at each transition.",
+        parents=["string_01"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="string_10",
+        name="Word Break (Strings)",
+        category="strings",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Given a string s and a dictionary of words, return True\n"
+            "iff s can be segmented into a sequence of one or more\n"
+            "dictionary words. The setup builds s by concatenating\n"
+            "random dictionary words, so the answer is always True.\n"
+            "This is the strings-category variant of dp_15.\n"
+            "Requirement: O(n * L).\n"
+            "Source: https://www.geeksforgeeks.org/word-break-problem-dp-32/"
+        ),
+        source_url="https://www.geeksforgeeks.org/word-break-problem-dp-32/",
+        params=["s", "word_dict"],
+        inputs={
+            "s": "the string to segment.",
+            "word_dict": "list of unique words in the dictionary.",
+        },
+        returns="True iff s can be segmented into dictionary words.",
+        source=STRING_10_SOURCE,
+        setup_fn=_setup_word_break_str,
+        verify_fn=_verify_word_break_str,
+        samples=[
+            Sample("s = 'leetcode', word_dict = ['leet', 'code']", "True"),
+            Sample("s = 'catsandog', word_dict = ['cats', 'dog', 'sand', 'and', 'cat']", "False"),
+        ],
+        hint="dp[i] = True if some dp[j] is True AND s[j:i] is in word_dict.",
+        parents=["string_04"],
+        children=[],
+    ),
+])
