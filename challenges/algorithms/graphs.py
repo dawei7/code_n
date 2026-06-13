@@ -2440,6 +2440,119 @@ SPECS.extend([
         ],
         hint="Held-Karp: dp[mask][i] = min cost to visit exactly mask, end at i. Try each j not in mask.",
         parents=["graph_19"],
+        children=["graph_21"],
+    ),
+])
+
+
+# === graph_21: Hamiltonian Path Existence ===
+
+GRAPH_21_SOURCE = '''
+def solve(n, edges):
+    """Return True iff there's a Hamiltonian path from node 0
+    to node n-1 (visiting every vertex exactly once).
+
+    Backtracking: try each permutation of intermediate nodes.
+    For the test gauntlet (n <= 6), the brute force is fast.
+    """
+    if n <= 1:
+        return n == 1
+    adj = [set() for _ in range(n)]
+    for u, v in edges:
+        adj[u].add(v)
+        adj[v].add(u)
+    visited = [False] * n
+    visited[0] = True
+
+    def dfs(u, count):
+        if count == n:
+            return u == n - 1
+        for v in adj[u]:
+            if not visited[v]:
+                visited[v] = True
+                if dfs(v, count + 1):
+                    return True
+                visited[v] = False
+        return False
+
+    return dfs(0, 1)
+'''
+
+
+def _setup_hamiltonian(challenge, n, seed):
+    rng = random.Random(seed)
+    n_nodes = max(2, min(n, 6))
+    edges = set()
+    for i in range(1, n_nodes):
+        u = rng.randint(0, i - 1)
+        edges.add((min(u, i), max(u, i)))
+    for _ in range(n_nodes):
+        u = rng.randint(0, n_nodes - 1)
+        v = rng.randint(0, n_nodes - 1)
+        if u != v:
+            edges.add((min(u, v), max(u, v)))
+    challenge._n = n_nodes
+    challenge._edges = sorted(edges)
+    return {"n": n_nodes, "edges": sorted(edges)}
+
+
+def _verify_hamiltonian(challenge, result):
+    if not isinstance(result, bool):
+        return False
+    n = challenge._n
+    edges = challenge._edges
+    adj = [set() for _ in range(n)]
+    for u, v in edges:
+        adj[u].add(v)
+        adj[v].add(u)
+
+    def has_hamiltonian_path(u, visited):
+        if len(visited) == n:
+            return u == n - 1
+        for v in adj[u]:
+            if v not in visited:
+                visited.add(v)
+                if has_hamiltonian_path(v, visited):
+                    return True
+                visited.discard(v)
+        return False
+
+    return result is has_hamiltonian_path(0, {0})
+
+
+# === graph_22: Bipartite Check (BFS, already in graph_12) ===
+# This slot reserved.
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="graph_21",
+        name="Hamiltonian Path Existence",
+        category="graphs",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_2N,
+        description=(
+            "Return True iff there's a Hamiltonian path from 0 to\n"
+            "n-1 in the undirected graph. Backtracking: at each\n"
+            "step, try each unvisited neighbour. Stop at the first\n"
+            "path that visits every vertex and ends at n-1.\n"
+            "Source: https://www.geeksforgeeks.org/backtracking-set-7-hamiltonian-cycle/"
+        ),
+        source_url="https://www.geeksforgeeks.org/backtracking-set-7-hamiltonian-cycle/",
+        params=["n", "edges"],
+        inputs={
+            "n": "number of nodes (capped at 6).",
+            "edges": "list of (u, v) tuples (undirected).",
+        },
+        returns="True iff a Hamiltonian path from 0 to n-1 exists.",
+        source=GRAPH_21_SOURCE,
+        setup_fn=_setup_hamiltonian,
+        verify_fn=_verify_hamiltonian,
+        samples=[
+            Sample("n = 4, edges = [(0, 1), (0, 2), (1, 3), (2, 3)]", "True (0->1->3->2 or 0->2->3->1)"),
+            Sample("n = 4, edges = [(0, 1), (1, 2), (2, 3)]", "False (3 is only reachable from 2)"),
+        ],
+        hint="DFS from 0. At each vertex, try unvisited neighbours. Stop at n-1 when count == n.",
+        parents=["graph_20"],
         children=[],
     ),
 ])

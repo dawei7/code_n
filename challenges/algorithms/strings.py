@@ -1302,6 +1302,94 @@ SPECS.extend([
         ],
         hint="Build Z-array of pattern + '$' + s. Z[i] >= m in s-region means match.",
         parents=["string_12"],
+        children=["string_14"],
+    ),
+])
+
+
+# === string_14: Longest Repeating Subsequence ===
+
+STRING_14_SOURCE = '''
+def solve(s, n):
+    """Length of the longest subsequence of s that occurs at
+    least twice, with the two occurrences not sharing any
+    position (i.e., the same character at two different indices).
+
+    The setup keeps n small (n <= 8), so we can use a brute
+    force that enumerates every pair of disjoint subsequences.
+    O(2^n * 2^n) but trivially fast at n=8.
+    """
+    if n == 0:
+        return 0
+    best = 0
+    for mask1 in range(1 << n):
+        sub1 = [s[i] for i in range(n) if mask1 & (1 << i)]
+        for mask2 in range(1 << n):
+            if mask1 & mask2:
+                continue
+            sub2 = [s[i] for i in range(n) if mask2 & (1 << i)]
+            if sub1 == sub2 and len(sub1) > best:
+                best = len(sub1)
+    return best
+'''
+
+
+def _setup_lrs(challenge, n, seed):
+    rng = random.Random(seed)
+    n_chars = max(1, min(n, 8))
+    s = "".join(rng.choice("abc") for _ in range(n_chars))
+    challenge._s = s
+    return {"s": s, "n": len(s)}
+
+
+def _verify_lrs(challenge, result):
+    if not isinstance(result, int):
+        return False
+    s = challenge._s
+    n = len(s)
+    # Brute force: try every pair of disjoint subsequences.
+    best = 0
+    for mask1 in range(1 << n):
+        sub1 = [s[i] for i in range(n) if mask1 & (1 << i)]
+        for mask2 in range(1 << n):
+            if mask1 & mask2:
+                continue
+            sub2 = [s[i] for i in range(n) if mask2 & (1 << i)]
+            if sub1 == sub2:
+                if len(sub1) > best:
+                    best = len(sub1)
+    return result == best
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="string_14",
+        name="Longest Repeating Subsequence",
+        category="strings",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Length of the longest subsequence of s that appears at\n"
+            "least twice, with the two occurrences at DIFFERENT\n"
+            "positions (a character cannot be reused). O(n^2) DP.\n"
+            "Source: https://www.geeksforgeeks.org/longest-repeating-subsequence/"
+        ),
+        source_url="https://www.geeksforgeeks.org/longest-repeating-subsequence/",
+        params=["s", "n"],
+        inputs={
+            "s": "string of n characters.",
+            "n": "length of s.",
+        },
+        returns="the length of the longest repeating subsequence.",
+        source=STRING_14_SOURCE,
+        setup_fn=_setup_lrs,
+        verify_fn=_verify_lrs,
+        samples=[
+            Sample("s = 'aabb', n = 4", "2 ('ab' or 'ab' on positions 0,2 vs 1,3)"),
+            Sample("s = 'abc', n = 3", "0"),
+        ],
+        hint="dp[i][j]: s[i]==s[j] and i!=j -> 1 + dp[i+1][j+1]; else max(dp[i+1][j], dp[i][j+1]).",
+        parents=["string_13"],
         children=[],
     ),
 ])

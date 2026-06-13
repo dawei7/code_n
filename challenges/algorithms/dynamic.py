@@ -2583,6 +2583,85 @@ SPECS.extend([
         ],
         hint="Maintain a sorted tails array. For each value, binary-search the leftmost >= position and replace.",
         parents=["dp_28"],
+        children=["dp_30"],
+    ),
+])
+
+
+# === dp_30: Coin Change (Count Ways) ===
+
+DP_30_SOURCE = '''
+def solve(coins, n, amount):
+    """Count the number of ways to make ``amount`` using the
+    given coin denominations (unlimited supply, order doesn't
+    matter). Standard O(n * amount) DP.
+    """
+    dp = [0] * (amount + 1)
+    dp[0] = 1
+    for c in coins:
+        for a in range(c, amount + 1):
+            dp[a] += dp[a - c]
+    return dp[amount]
+'''
+
+
+def _setup_coin_change(challenge, n, seed):
+    rng = random.Random(seed)
+    n_coins = max(1, min(n, 4))
+    coins = sorted({rng.randint(1, 5) for _ in range(n_coins)})
+    if 1 not in coins:
+        coins = [1] + coins
+        coins = sorted(set(coins))
+    amount = max(1, min(n * 3, 12))
+    challenge._coins = list(coins)
+    challenge._amount = amount
+    return {"coins": list(coins), "n": len(coins), "amount": amount}
+
+
+def _verify_coin_change(challenge, result):
+    if not isinstance(result, int):
+        return False
+    coins = challenge._coins
+    amount = challenge._amount
+    dp = [0] * (amount + 1)
+    dp[0] = 1
+    for c in coins:
+        for a in range(c, amount + 1):
+            dp[a] += dp[a - c]
+    return result == dp[amount]
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="dp_30",
+        name="Coin Change (Count Ways)",
+        category="dynamic",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Count the number of ways to make ``amount`` using the\n"
+            "given coin denominations (unlimited supply, order\n"
+            "doesn't matter). DP: dp[a] = number of ways to make a.\n"
+            "For each coin c, dp[a] += dp[a - c]. O(n * amount).\n"
+            "Source: https://www.geeksforgeeks.org/coin-change-dp-7/"
+        ),
+        source_url="https://www.geeksforgeeks.org/coin-change-dp-7/",
+        params=["coins", "n", "amount"],
+        inputs={
+            "coins": "list of n coin denominations (unlimited supply).",
+            "n": "number of coin types.",
+            "amount": "target amount (always 1..12 in the setup).",
+        },
+        returns="the number of ways to make amount.",
+        source=DP_30_SOURCE,
+        setup_fn=_setup_coin_change,
+        verify_fn=_verify_coin_change,
+        samples=[
+            Sample("coins = [1, 2, 3], n = 3, amount = 4", "4 (1111, 112, 22, 13)"),
+            Sample("coins = [1, 5, 6], n = 3, amount = 7", "2 (1111111, 16)"),
+        ],
+        hint="For each coin, walk forward. dp[a] += dp[a - c]. Base: dp[0] = 1.",
+        parents=["dp_29"],
         children=[],
     ),
 ])
