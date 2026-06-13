@@ -517,6 +517,77 @@ SPECS.extend([
         ],
         hint="a XOR b has a 1 in every position where a and b differ. Count the 1-bits.",
         parents=["bit_05"],
+        children=["bit_07"],
+    ),
+])
+
+
+# === bit_07: Swap Odd and Even Bits ===
+#
+# Mask out the even bits, shift them right by 1, then mask out
+# the odd bits and shift them left by 1. OR the two halves.
+
+
+BIT_07_SOURCE = '''
+def solve(n):
+    """Swap the odd and even bits of n. Bit 0 (LSB) goes to bit 1, etc."""
+    even_mask = 0x55555555  # 0101 0101 ...
+    odd_mask = 0xAAAAAAAA   # 1010 1010 ...
+    even_bits = (n & even_mask) >> 1
+    odd_bits = (n & odd_mask) << 1
+    return even_bits | odd_bits
+'''
+
+
+def _setup_swap_bits(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random((seed or 0) * 31 + n)
+    max_val = max(2, 1 << min(n, 20))
+    value = rng.randint(0, max_val)
+    challenge._value = value
+    return {"n": value}
+
+
+def _verify_swap_bits(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    value = challenge._value
+    even_mask = 0x55555555
+    odd_mask = 0xAAAAAAAA
+    expected = ((value & even_mask) >> 1) | ((value & odd_mask) << 1)
+    return result == expected
+
+
+# Append the bit_07 spec.
+SPECS.extend([
+    AlgorithmSpec(
+        id="bit_07",
+        name="Swap Odd and Even Bits",
+        category="intro",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_1,
+        description=(
+            "Swap the odd and even bits of n. Bit 0 (LSB) goes to bit 1;\n"
+            "bit 1 goes to bit 0; and so on. Two mask operations:\n"
+            "isolate the even bits (0x5555...), shift right by 1;\n"
+            "isolate the odd bits (0xAAAA...), shift left by 1;\n"
+            "OR them together.\n"
+            "Requirement: O(1) (a fixed number of bitwise ops).\n"
+            "Source: https://www.geeksforgeeks.org/swap-all-odd-and-even-bits/"
+        ),
+        source_url="https://www.geeksforgeeks.org/swap-all-odd-and-even-bits/",
+        params=["n"],
+        inputs={"n": "non-negative integer."},
+        returns="n with odd and even bits swapped.",
+        source=BIT_07_SOURCE,
+        setup_fn=_setup_swap_bits,
+        verify_fn=_verify_swap_bits,
+        samples=[
+            Sample("n = 23 (binary 10111)", "43 (binary 101011)"),
+            Sample("n = 10 (binary 1010)", "5 (binary 0101)"),
+            Sample("n = 0", "0"),
+        ],
+        hint="0x5555... masks even bits; 0xAAAA... masks odd bits. Shift and OR.",
+        parents=["bit_06"],
         children=[],
     ),
 ])

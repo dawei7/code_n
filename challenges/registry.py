@@ -34,6 +34,10 @@ def _collect_specs() -> list[AlgorithmSpec]:
         divide_conquer,
         recursion,
         branch_and_bound,
+        stack,
+        linked_list,
+        geometric,
+        randomized,
     )
     return [
         *intro.SPECS,
@@ -51,6 +55,10 @@ def _collect_specs() -> list[AlgorithmSpec]:
         *divide_conquer.SPECS,
         *recursion.SPECS,
         *branch_and_bound.SPECS,
+        *stack.SPECS,
+        *linked_list.SPECS,
+        *geometric.SPECS,
+        *randomized.SPECS,
     ]
 
 

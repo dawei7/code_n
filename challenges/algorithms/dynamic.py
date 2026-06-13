@@ -1452,7 +1452,180 @@ def _verify_max_product(challenge, result):
     return result == challenge._expected
 
 
+# === dp_19: Longest Palindromic Subsequence ===
+
+DP_19_SOURCE = '''
+def solve(s, n):
+    """Length of the longest palindromic subsequence of s.
+
+    Classic DP: dp[i][j] = LPS length in s[i..j].
+    Base: dp[i][i] = 1. Recurrence: if s[i] == s[j],
+    dp[i][j] = dp[i+1][j-1] + 2; else dp[i][j] = max(dp[i+1][j], dp[i][j-1]).
+    """
+    if n == 0:
+        return 0
+    # dp[i] is the row for s[i..i+L]; build by length.
+    dp = [[0] * n for _ in range(n)]
+    for i in range(n):
+        dp[i][i] = 1
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            if s[i] == s[j]:
+                if length == 2:
+                    dp[i][j] = 2
+                else:
+                    dp[i][j] = dp[i + 1][j - 1] + 2
+            else:
+                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+    return dp[0][n - 1]
+'''
+
+
+def _setup_lps(challenge, n, seed):
+    rng = random.Random(seed)
+    n_chars = max(1, min(n, 10))
+    s = "".join(rng.choice("abc") for _ in range(n_chars))
+    challenge._s = s
+    return {"s": s, "n": len(s)}
+
+
+def _verify_lps(challenge, result):
+    if not isinstance(result, int):
+        return False
+    s = challenge._s
+    # Brute force: try every subsequence.
+    best = 0
+    for mask in range(1 << len(s)):
+        sub = "".join(s[i] for i in range(len(s)) if mask & (1 << i))
+        if sub == sub[::-1]:
+            if len(sub) > best:
+                best = len(sub)
+    return result == best
+
+
+# === dp_20: Shortest Common Supersequence (length) ===
+
+DP_20_SOURCE = '''
+def solve(s1, s2, n1, n2):
+    """Length of the shortest string that has both s1 and s2 as subsequences.
+
+    The length is n1 + n2 - LCS(s1, s2). Compute LCS first, then
+    combine the lengths.
+    """
+    if n1 == 0:
+        return n2
+    if n2 == 0:
+        return n1
+    # Build LCS DP table.
+    dp = [[0] * (n2 + 1) for _ in range(n1 + 1)]
+    for i in range(n1):
+        for j in range(n2):
+            if s1[i] == s2[j]:
+                dp[i + 1][j + 1] = dp[i][j] + 1
+            else:
+                dp[i + 1][j + 1] = max(dp[i + 1][j], dp[i][j + 1])
+    lcs = dp[n1][n2]
+    return n1 + n2 - lcs
+'''
+
+
+def _setup_scs(challenge, n, seed):
+    rng = random.Random(seed)
+    n1 = max(1, min(n // 2 + 1, 6))
+    n2 = max(1, min(n - n1 + 1, 6))
+    n1 = min(n1, 6)
+    n2 = min(n2, 6)
+    s1 = "".join(rng.choice("abc") for _ in range(n1))
+    s2 = "".join(rng.choice("abc") for _ in range(n2))
+    challenge._s1 = s1
+    challenge._s2 = s2
+    return {"s1": s1, "s2": s2, "n1": len(s1), "n2": len(s2)}
+
+
+def _verify_scs(challenge, result):
+    if not isinstance(result, int):
+        return False
+    s1, s2 = challenge._s1, challenge._s2
+    # Brute force: enumerate every common supersequence's length and take the min.
+    # Enumerate via LCS DP.
+    n1, n2 = len(s1), len(s2)
+    dp = [[0] * (n2 + 1) for _ in range(n1 + 1)]
+    for i in range(n1):
+        for j in range(n2):
+            if s1[i] == s2[j]:
+                dp[i + 1][j + 1] = dp[i][j] + 1
+            else:
+                dp[i + 1][j + 1] = max(dp[i + 1][j], dp[i][j + 1])
+    expected = n1 + n2 - dp[n1][n2]
+    return result == expected
+
+
 SPECS.extend([
+    AlgorithmSpec(
+        id="dp_19",
+        name="Longest Palindromic Subsequence",
+        category="dynamic",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Return the length of the longest subsequence of s that is\n"
+            "also a palindrome. Standard interval DP: dp[i][j] = LPS\n"
+            "length in s[i..j]. dp[i][i] = 1. If s[i] == s[j],\n"
+            "dp[i][j] = dp[i+1][j-1] + 2; else dp[i][j] = max(\n"
+            "dp[i+1][j], dp[i][j-1]). O(n^2) time and space.\n"
+            "Source: https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/"
+        ),
+        source_url="https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/",
+        params=["s", "n"],
+        inputs={
+            "s": "string of n lower-case characters (capped at 10 in the setup).",
+            "n": "length of s.",
+        },
+        returns="the length of the longest palindromic subsequence.",
+        source=DP_19_SOURCE,
+        setup_fn=_setup_lps,
+        verify_fn=_verify_lps,
+        samples=[
+            Sample('s = "bbbab", n = 5', "4 (bbbb)"),
+            Sample('s = "cbbd", n = 4', "2 (bb)"),
+        ],
+        hint="If s[i] == s[j]: dp[i][j] = dp[i+1][j-1] + 2. Else: max of (i+1,j) and (i,j-1).",
+        parents=["dp_15"],
+        children=["dp_20"],
+    ),
+    AlgorithmSpec(
+        id="dp_20",
+        name="Shortest Common Supersequence (Length)",
+        category="dynamic",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "The shortest string that has both s1 and s2 as subsequences.\n"
+            "Length is n1 + n2 - LCS(s1, s2). Compute the LCS length via\n"
+            "the standard DP table.\n"
+            "Source: https://www.geeksforgeeks.org/shortest-common-supersequence/"
+        ),
+        source_url="https://www.geeksforgeeks.org/shortest-common-supersequence/",
+        params=["s1", "s2", "n1", "n2"],
+        inputs={
+            "s1": "first string (capped at 6 in the setup).",
+            "s2": "second string (capped at 6 in the setup).",
+            "n1": "length of s1.",
+            "n2": "length of s2.",
+        },
+        returns="the length of the shortest common supersequence.",
+        source=DP_20_SOURCE,
+        setup_fn=_setup_scs,
+        verify_fn=_verify_scs,
+        samples=[
+            Sample('s1 = "abac", s2 = "cab", n1 = 4, n2 = 3', "5 (cabac)"),
+            Sample('s1 = "abc", s2 = "abc", n1 = 3, n2 = 3', "3"),
+        ],
+        hint="SCS length = n1 + n2 - LCS(s1, s2).",
+        parents=["dp_19"],
+        children=[],
+    ),
     AlgorithmSpec(
         id="dp_17",
         name="Partition Equal Subset Sum",
