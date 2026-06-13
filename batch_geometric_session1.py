@@ -1,0 +1,509 @@
+"""Spec generator input - 4 more geometric specs for Session 1.
+
+Covers the next most-pedagogical GfG geometric algorithm
+variants that geometric_01..03 (Closest Pair, Convex Hull
+Graham Scan, Line Segment Intersection) don't already cover:
+
+  geometric_04  Point in Polygon (Ray Casting)
+  geometric_05  Convex Hull (Jarvis March / Gift Wrapping)
+  geometric_06  Rectangle Overlap (axis-aligned)
+  geometric_07  Max Points on Same Line (slope-hashing)
+
+After this batch, geometric.py covers the canonical D&C
+and brute-force geometric algorithm examples.
+
+Run with:
+    cd c:/dawei7/code_n
+    .venv/Scripts/python.exe -m challenges.algorithms._generator \\
+        --module geometric \\
+        --input batch_geometric_session1.py
+"""
+
+
+SPECS_TO_ADD = [
+    # ============================================================
+    # geometric_04: Point in Polygon (Ray Casting)
+    # ============================================================
+    {
+        "id": "geometric_04",
+        "name": "Point in Polygon (Ray Casting)",
+        "category": "geometric",
+        "difficulty": 4,
+        "complexity": "O_N",
+        "description": (
+            "Given a simple polygon (as a list of (x, y) vertices\n"
+            "in order) and a query point, return True if the\n"
+            "point lies inside the polygon and False otherwise.\n"
+            "Use the ray-casting (even-odd) algorithm: shoot a\n"
+            "horizontal ray from the point to +infinity and count\n"
+            "the number of times it crosses a polygon edge. An\n"
+            "odd count means inside. The point is also\n"
+            "considered inside if it lies exactly on an edge or\n"
+            "vertex. O(n) per query.\n"
+            "Source: https://www.geeksforgeeks.org/dsa/how-to-check-if-a-given-point-lies-inside-a-polygon/"
+        ),
+        "source_url": "https://www.geeksforgeeks.org/dsa/how-to-check-if-a-given-point-lies-inside-a-polygon/",
+        "params": ["polygon", "point", "m"],
+        "inputs": {
+            "polygon": "list of m (x, y) tuples, the polygon vertices in order.",
+            "point": "the (x, y) tuple to test.",
+            "m": "number of polygon vertices.",
+        },
+        "returns": "True if the point is inside the polygon (or on its boundary), False otherwise.",
+        "solve": '''
+def solve(polygon, point, m):
+    """Ray-casting point-in-polygon test."""
+    if m < 3:
+        return False
+    x, y = point
+    inside = False
+    j = m - 1
+    for i in range(m):
+        xi, yi = polygon[i]
+        xj, yj = polygon[j]
+        # Edge (xj, yj) -> (xi, yi). Check if the horizontal
+        # ray at y=y from the point crosses this edge.
+        if ((yi > y) != (yj > y)):
+            # The edge straddles the ray. Compute the x
+            # intersection and check it's to the right of the
+            # point.
+            x_int = (xj * (yi - y) + xi * (y - yj)) / (yi - yj)
+            if x < x_int:
+                inside = not inside
+        # Also: if the point lies on this edge, count as inside.
+        # We can detect collinearity by checking the cross product
+        # and bounding box.
+        def _on_seg(a, b, c):
+            return (min(a[0], b[0]) <= c[0] <= max(a[0], b[0])
+                    and min(a[1], b[1]) <= c[1] <= max(a[1], b[1])
+                    and (b[0] - a[0]) * (c[1] - a[1])
+                        == (b[1] - a[1]) * (c[0] - a[0]))
+        if _on_seg(polygon[i], polygon[j], point):
+            return True
+        j = i
+    return inside
+''',
+        "setup": '''
+import random
+rng = random.Random(seed)
+# Build a simple convex polygon (a square or rectangle) so the
+# test is well-defined. The spec runtime passes `n` as the
+# setup size; we treat it as the polygon size.
+m = max(3, min(n, 8))
+# Generate a regular-ish convex polygon.
+cx, cy = 10, 10
+radius = 6
+import math
+polygon = []
+for k in range(m):
+    angle = 2 * math.pi * k / m + rng.uniform(-0.1, 0.1)
+    px = cx + radius * math.cos(angle)
+    py = cy + radius * math.sin(angle)
+    polygon.append((round(px, 2), round(py, 2)))
+# Pick a query point: 50/50 inside vs outside.
+# Use a slightly larger bounding box to allow outside.
+inside_box = (cx, cy)  # known to be inside for a regular convex polygon
+outside_box = (cx + 3 * radius, cy + 3 * radius)  # definitely outside
+if rng.random() < 0.5:
+    point = inside_box
+else:
+    point = outside_box
+challenge._polygon = list(polygon)
+challenge._point = point
+return {
+    "polygon": list(polygon),
+    "point": point,
+    "m": m,
+}
+''',
+        "verify": '''
+# Brute-force verify: for convex polygons (which our setup
+# generates), use the winding-number test by counting the
+# number of signed cross products that change sign around
+# the point.
+# Simpler: use a "ray to +infinity" cast manually and count
+# crossings robustly.
+polygon = challenge._polygon
+m = len(polygon)
+px, py = challenge._point
+# Reference: for convex polygons generated by a circle,
+# inside if distance from center < radius, outside if > radius.
+import math
+center = (10, 10)
+radius = 6
+dist = math.hypot(px - center[0], py - center[1])
+expected = dist < radius
+# Also: if the point is on the boundary, expected is True.
+# Skip boundary check for the test (probability of hitting it
+# exactly is zero with float coordinates).
+return result == expected
+''',
+        "samples": [
+            ("polygon = [(0,0),(10,0),(10,10),(0,10)], point = (5,5), m = 4", "True (inside a square)"),
+            ("polygon = [(0,0),(10,0),(10,10),(0,10)], point = (20,5), m = 4", "False (outside)"),
+        ],
+        "hint": "Cast a horizontal ray from the point to +infinity. Count the number of polygon edges it crosses. Odd count means inside. Also: if the point lies on any edge, return True.",
+        "parents": ["geometric_03"],
+        "children": ["geometric_05"],
+    },
+
+    # ============================================================
+    # geometric_05: Convex Hull (Jarvis March / Gift Wrapping)
+    # ============================================================
+    {
+        "id": "geometric_05",
+        "name": "Convex Hull (Jarvis March)",
+        "category": "geometric",
+        "difficulty": 4,
+        "complexity": "O_N2",
+        "description": (
+            "Compute the convex hull of n points using Jarvis\n"
+            "March (gift wrapping). Start at the leftmost point,\n"
+            "then repeatedly find the next hull vertex as the\n"
+            "point that makes the smallest (most counterclockwise)\n"
+            "angle with the current edge. Stop when we return\n"
+            "to the start. Return the hull vertices as a list of\n"
+            "(x, y) tuples in CCW order, starting from the\n"
+            "leftmost point. O(n^2) worst case, but O(nh) for\n"
+            "small hulls.\n"
+            "Source: https://www.geeksforgeeks.org/dsa/convex-hull-using-jarvis-algorithm/"
+        ),
+        "source_url": "https://www.geeksforgeeks.org/dsa/convex-hull-using-jarvis-algorithm/",
+        "params": ["points", "n"],
+        "inputs": {
+            "points": "list of n (x, y) tuples.",
+            "n": "number of points.",
+        },
+        "returns": "a list of (x, y) tuples forming the convex hull, in CCW order starting from the leftmost point.",
+        "solve": '''
+def solve(points, n):
+    """Convex hull via Jarvis March (gift wrapping)."""
+    if n < 3:
+        return sorted(points)
+    # Find the leftmost point.
+    leftmost = min(range(n), key=lambda i: (points[i][0], points[i][1]))
+    hull = []
+    cur = leftmost
+    while True:
+        hull.append(cur)
+        # Find the next hull vertex: the most counterclockwise
+        # point with respect to the current edge.
+        candidate = None
+        for j in range(n):
+            if j == cur:
+                continue
+            if candidate is None:
+                candidate = j
+                continue
+            # We want (candidate - cur) to be the most
+            # counterclockwise of all points. Cross product
+            # positive means j is more CCW than candidate.
+            cross = ((points[candidate][0] - points[cur][0])
+                     * (points[j][1] - points[cur][1])
+                     - (points[candidate][1] - points[cur][1])
+                     * (points[j][0] - points[cur][0]))
+            if cross < 0:
+                candidate = j
+        # If the next candidate is the leftmost, we're done.
+        if candidate == leftmost:
+            break
+        cur = candidate
+        # Safety: avoid infinite loop on degenerate inputs.
+        if len(hull) > n:
+            break
+    return [points[i] for i in hull]
+''',
+        "setup": '''
+import random
+rng = random.Random(seed)
+n = max(3, min(n, 10))
+# Build a simple convex polygon (a square or rectangle) plus a
+# few interior points, so the hull is non-trivial.
+points = []
+# Outer square.
+points.extend([(0, 0), (10, 0), (10, 10), (0, 10)])
+# Add some interior points (random subset of these) to make
+# the hull include more than the obvious square. Cap so that
+# the total number of points does not exceed n.
+interior = [(3, 5), (5, 2), (7, 5), (2, 8), (5, 5), (5, 7), (8, 3)]
+rng.shuffle(interior)
+n_inner = max(0, min(len(interior), n - 4))
+points.extend(interior[:n_inner])
+# Pad with more random points if needed (to reach n).
+seen = set(points)
+while len(points) < n:
+    p = (rng.randint(0, 10), rng.randint(0, 10))
+    if p not in seen:
+        seen.add(p)
+        points.append(p)
+# If we somehow overshot (shouldn't happen with n_inner = n - 4),
+# truncate to n.
+points = points[:n]
+rng.shuffle(points)
+challenge._points = list(points)
+return {"points": list(points), "n": n}
+''',
+        "verify": '''
+# Reference: Graham scan (already implemented in geometric_02).
+import math
+def _cross(o, a, b):
+    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+def _graham(points):
+    pts = sorted(set(points))
+    if len(pts) < 3:
+        return sorted(pts)
+    pivot = min(pts)
+    def key(p):
+        if p == pivot:
+            return (-math.inf,)
+        dx = p[0] - pivot[0]
+        dy = p[1] - pivot[1]
+        return (math.atan2(dy, dx), dx * dx + dy * dy)
+    rest = [p for p in pts if p != pivot]
+    rest.sort(key=key)
+    hull = [pivot]
+    for p in rest:
+        while len(hull) >= 2:
+            o, a = hull[-2], hull[-1]
+            if _cross(o, a, p) <= 0:
+                hull.pop()
+            else:
+                break
+        hull.append(p)
+    return sorted(hull)
+
+expected = _graham(challenge._points)
+got = sorted(result)
+return got == expected
+''',
+        "samples": [
+            ("points = [(0,0),(1,1),(2,0),(1,0.5),(0,2)], n = 5", "a sorted CCW hull, e.g. [(0,0),(2,0),(0,2)]"),
+        ],
+        "hint": "Start at the leftmost point. At each step, find the most counterclockwise point (use cross product) and add it to the hull. Stop when you return to the start.",
+        "parents": ["geometric_04"],
+        "children": ["geometric_07"],
+    },
+
+    # ============================================================
+    # geometric_06: Rectangle Overlap
+    # ============================================================
+    {
+        "id": "geometric_06",
+        "name": "Rectangle Overlap (Axis-Aligned)",
+        "category": "geometric",
+        "difficulty": 2,
+        "complexity": "O_1",
+        "description": (
+            "Given two axis-aligned rectangles (each given by its\n"
+            "top-left corner l1, l2 and bottom-right corner r1,\n"
+            "r2 with l.x <= r.x and l.y >= r.y, i.e., y grows\n"
+            "upward), determine whether the two rectangles\n"
+            "overlap (have a positive-area intersection).\n"
+            "Two rectangles do NOT overlap iff one is entirely\n"
+            "to the left of the other, or entirely above the\n"
+            "other. Return True if they overlap, False\n"
+            "otherwise. O(1).\n"
+            "Source: https://www.geeksforgeeks.org/dsa/find-two-rectangles-overlap/"
+        ),
+        "source_url": "https://www.geeksforgeeks.org/dsa/find-two-rectangles-overlap/",
+        "params": ["l1", "r1", "l2", "r2"],
+        "inputs": {
+            "l1": "(x, y) of the top-left corner of rectangle 1.",
+            "r1": "(x, y) of the bottom-right corner of rectangle 1.",
+            "l2": "(x, y) of the top-left corner of rectangle 2.",
+            "r2": "(x, y) of the bottom-right corner of rectangle 2.",
+        },
+        "returns": "True if the rectangles overlap, False otherwise.",
+        "solve": '''
+def solve(l1, r1, l2, r2):
+    """Two rectangles do not overlap iff one is entirely left
+    of the other, or one is entirely above the other.
+    l1 = top-left, r1 = bottom-right (y-axis points up).
+    """
+    # If rectangle 1 is to the right of rectangle 2, no overlap.
+    if l1[0] > r2[0] or l2[0] > r1[0]:
+        return False
+    # If rectangle 1 is above rectangle 2, no overlap.
+    # "Above" means l1.y > r2.y (r1.y is the lower y-bound of rect 1).
+    if r1[1] > l2[1] or r2[1] > l1[1]:
+        return False
+    return True
+''',
+        "setup": '''
+import random
+rng = random.Random(seed)
+# Build two random axis-aligned rectangles. ~half the time, make
+# them overlap; the other half, keep them disjoint.
+def rand_rect():
+    x1 = rng.randint(0, 15)
+    x2 = rng.randint(x1 + 1, 25)
+    y1 = rng.randint(5, 25)
+    y2 = rng.randint(0, y1 - 1)
+    return (x1, y1), (x2, y2)
+l1, r1 = rand_rect()
+l2, r2 = rand_rect()
+if rng.random() < 0.5:
+    # Force overlap: place rect2 so it overlaps rect1.
+    l2 = (l1[0] + 1, l1[1] + 1)
+    r2 = (r1[0] + 1, r1[1] - 1) if r1[1] - 1 > r1[1] - 2 else (r1[0] + 2, r1[1] - 2)
+else:
+    # Force non-overlap: place rect2 to the right of rect1.
+    l2 = (r1[0] + 3, l1[1])
+    r2 = (r1[0] + 10, r1[1] - 5)
+challenge._l1 = l1
+challenge._r1 = r1
+challenge._l2 = l2
+challenge._r2 = r2
+return {"l1": l1, "r1": r1, "l2": l2, "r2": r2}
+''',
+        "verify": '''
+# Brute force: for each corner of rect 2, check if it's strictly
+# inside rect 1 (which is sufficient for non-touching overlap).
+# Or do the inverse. Easiest: re-run the canonical condition.
+l1 = challenge._l1
+r1 = challenge._r1
+l2 = challenge._l2
+r2 = challenge._r2
+expected = (l1[0] <= r2[0] and l2[0] <= r1[0]
+            and r1[1] <= l2[1] and r2[1] <= l1[1])
+return result == expected
+''',
+        "samples": [
+            ("l1 = (0,10), r1 = (10,0), l2 = (5,5), r2 = (15,0)", "True (overlap)"),
+            ("l1 = (0,10), r1 = (10,0), l2 = (-10,5), r2 = (-1,0)", "False (rect2 is left of rect1)"),
+        ],
+        "hint": "Two rectangles do NOT overlap iff one is entirely to the left of the other (l1.x > r2.x or l2.x > r1.x) OR one is entirely above the other (r1.y > l2.y or r2.y > l1.y). Otherwise they overlap.",
+        "parents": ["geometric_05"],
+        "children": [],
+    },
+
+    # ============================================================
+    # geometric_07: Max Points on Same Line
+    # ============================================================
+    {
+        "id": "geometric_07",
+        "name": "Max Points on Same Line",
+        "category": "geometric",
+        "difficulty": 5,
+        "complexity": "O_N2",
+        "description": (
+            "Given n points in the plane, find the maximum\n"
+            "number of points that lie on the same straight line.\n"
+            "For each pivot point, compute the slope to every\n"
+            "other point (as a normalized (dy, dx) pair to avoid\n"
+            "floating-point precision issues). Group points by\n"
+            "slope and track the max group size. Handle vertical\n"
+            "lines and duplicate points separately. O(n^2 log n)\n"
+            "with the hash map, O(n^2) without.\n"
+            "Source: https://www.geeksforgeeks.org/dsa/count-maximum-points-on-same-line/"
+        ),
+        "source_url": "https://www.geeksforgeeks.org/dsa/count-maximum-points-on-same-line/",
+        "params": ["points", "n"],
+        "inputs": {
+            "points": "list of n (x, y) integer tuples.",
+            "n": "number of points.",
+        },
+        "returns": "the maximum number of points on the same line, as an int.",
+        "solve": '''
+def solve(points, n):
+    """Max points on the same line via slope hashing."""
+    from math import gcd
+    if n < 2:
+        return n
+    best = 0
+    for i in range(n):
+        slopes = {}
+        duplicates = 0
+        vertical = 0
+        for j in range(n):
+            if i == j:
+                continue
+            if points[i] == points[j]:
+                duplicates += 1
+                continue
+            dx = points[j][0] - points[i][0]
+            dy = points[j][1] - points[i][1]
+            if dx == 0:
+                # Vertical line.
+                vertical += 1
+            else:
+                g = gcd(abs(dx), abs(dy))
+                dx //= g
+                dy //= g
+                # Normalize sign: force dx > 0 (or both zero).
+                if dx < 0:
+                    dx = -dx
+                    dy = -dy
+                key = (dy, dx)
+                slopes[key] = slopes.get(key, 0) + 1
+        local_max = vertical
+        for c in slopes.values():
+            if c > local_max:
+                local_max = c
+        total = local_max + duplicates + 1  # +1 for the pivot itself
+        if total > best:
+            best = total
+    return best
+''',
+        "setup": '''
+import random
+rng = random.Random(seed)
+n = max(2, min(n, 8))
+# Build a set with a guaranteed collinear subset of size >= 3.
+import random
+rng2 = random.Random(seed + 1)
+# Pick a slope (dy, dx) and a base point.
+dx = rng2.choice([-3, -2, -1, 1, 2, 3])
+dy = rng2.choice([-3, -2, -1, 1, 2, 3])
+bx, by = rng2.randint(-10, 10), rng2.randint(-10, 10)
+n_collinear = max(2, min(n - 1, rng2.randint(3, max(3, n - 1))))
+points = set()
+for k in range(n_collinear):
+    x = bx + k * dx
+    y = by + k * dy
+    points.add((x, y))
+# Add more random points until we have n total.
+while len(points) < n:
+    p = (rng2.randint(-15, 15), rng2.randint(-15, 15))
+    if p not in points:
+        points.add(p)
+points = list(points)
+rng2.shuffle(points)
+challenge._points = list(points)
+return {"points": list(points), "n": len(points)}
+''',
+        "verify": '''
+# Brute force: for every pair of points, count how many points
+# lie on the line through them. The max over all pairs is the
+# answer.
+points = challenge._points
+n = len(points)
+if n < 2:
+    return result == n
+best = 1
+for i in range(n):
+    for j in range(i + 1, n):
+        # Line through points[i] and points[j].
+        ax, ay = points[i]
+        bx, by = points[j]
+        # Count points on this line.
+        cnt = 0
+        for k in range(n):
+            x, y = points[k]
+            # collinearity: (bx-ax)*(y-ay) == (by-ay)*(x-ax)
+            if (bx - ax) * (y - ay) == (by - ay) * (x - ax):
+                cnt += 1
+        if cnt > best:
+            best = cnt
+return result == best
+''',
+        "samples": [
+            ("points = [(-1,1),(0,0),(1,1),(2,2),(3,3),(3,4)], n = 6", "4 (the line y=x has 4 points)"),
+            ("points = [(0,0),(1,0),(0,1),(1,1)], n = 4", "2 (no three collinear)"),
+        ],
+        "hint": "For each pivot i, hash the slope (dy, dx) to every other point j. Group by slope; handle verticals (dx=0) and duplicates separately. The max group size + 1 + duplicates is the max points on a line through i.",
+        "parents": ["geometric_05"],
+        "children": [],
+    },
+]
