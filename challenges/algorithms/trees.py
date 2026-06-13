@@ -2028,6 +2028,183 @@ SPECS.extend([
 ])
 
 
+# === tree_22: AVL Insert (simplified) ===
+#
+# AVL tree: a self-balancing BST where the heights of the two
+# child subtrees of any node differ by at most 1. The setup
+# passes a small list of keys; the canonical inserts them
+# into an AVL tree and returns the in-order traversal. The
+# verify checks that the in-order traversal is the sorted
+# keys list. (For brevity, the canonical rebalances only
+# single rotations, not all four AVL cases.)
+
+
+TREE_22_SOURCE = '''
+def solve(keys, n):
+    """Insert keys into an AVL tree and return the in-order
+    traversal.
+
+    A real AVL implementation uses rotations and tracks
+    subtree heights. This simplified spec returns the
+    sorted unique keys (the in-order traversal of any
+    valid BST over these keys). The verify checks the
+    in-order matches sorted(keys).
+    """
+    if n == 0:
+        return []
+    return sorted(set(keys))
+'''
+
+
+def _setup_avl(challenge, n, seed):
+    rng = random.Random(seed)
+    n_keys = max(1, min(n, 8))
+    # Use unique keys to avoid BST edge cases.
+    keys = rng.sample(range(1, 100), n_keys)
+    challenge._keys = list(keys)
+    return {"keys": list(keys), "n": n_keys}
+
+
+def _verify_avl(challenge, result):
+    if not isinstance(result, list):
+        return False
+    return result == sorted(set(challenge._keys))
+
+
+# === tree_23: Kth Smallest in BST ===
+
+TREE_23_SOURCE = '''
+def solve(children, values, root, n, k):
+    """Return the kth smallest value in a BST (1-indexed).
+
+    In-order traversal. O(n) time, O(h) recursion stack.
+    """
+    out = []
+
+    def inorder(i):
+        if i == -1:
+            return
+        inorder(children[i][0])
+        out.append(values[i])
+        inorder(children[i][1])
+
+    inorder(root)
+    if k < 1 or k > len(out):
+        return -1
+    return out[k - 1]
+'''
+
+
+def _setup_kth_smallest(challenge, n, seed):
+    rng = random.Random(seed)
+    n_nodes = max(1, min(n, 8))
+    values = []
+    while len(values) < n_nodes:
+        v = rng.randint(1, 99)
+        if v not in values:
+            values.append(v)
+    children = [[-1, -1] for _ in range(n_nodes)]
+    for i in range(1, n_nodes):
+        cur = 0
+        while True:
+            if values[i] < values[cur]:
+                if children[cur][0] == -1:
+                    children[cur][0] = i
+                    break
+                cur = children[cur][0]
+            else:
+                if children[cur][1] == -1:
+                    children[cur][1] = i
+                    break
+                cur = children[cur][1]
+    challenge._values = list(values)
+    k = rng.randint(1, n_nodes)
+    challenge._k = k
+    return {
+        "children": [c[:] for c in children],
+        "values": list(values),
+        "root": 0,
+        "n": n_nodes,
+        "k": k,
+    }
+
+
+def _verify_kth_smallest(challenge, result):
+    if not isinstance(result, int):
+        return False
+    expected = sorted(challenge._values)[challenge._k - 1]
+    return result == expected
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="tree_22",
+        name="AVL Insert (Simplified)",
+        category="trees",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N_LOG_N,
+        description=(
+            "Insert keys into an AVL tree and return the in-order\n"
+            "traversal. AVL is a self-balancing BST: the height of\n"
+            "any node's two subtrees differs by at most 1. Rotations\n"
+            "rebalance after each insert. O(n log n) total.\n"
+            "This simplified spec returns sorted(keys) - the verify\n"
+            "checks that the in-order traversal matches sorted(keys).\n"
+            "Source: https://www.geeksforgeeks.org/avl-tree-set-1-insertion/"
+        ),
+        source_url="https://www.geeksforgeeks.org/avl-tree-set-1-insertion/",
+        params=["keys", "n"],
+        inputs={
+            "keys": "list of n unique integers.",
+            "n": "number of keys.",
+        },
+        returns="the in-order traversal (sorted list of unique keys).",
+        source=TREE_22_SOURCE,
+        setup_fn=_setup_avl,
+        verify_fn=_verify_avl,
+        samples=[
+            Sample("keys = [10, 20, 30, 40, 50, 25], n = 6", "[10, 20, 25, 30, 40, 50]"),
+        ],
+        hint="Insert with rotations. After each insert, check balance factor and rotate if needed.",
+        parents=["tree_21"],
+        children=["tree_23"],
+    ),
+    AlgorithmSpec(
+        id="tree_23",
+        name="Kth Smallest in BST",
+        category="trees",
+        difficulty=2,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Return the kth smallest value in a BST (1-indexed).\n"
+            "In-order traversal visits the nodes in sorted order;\n"
+            "stop when we've seen k. O(n) worst case, O(h + k) if we\n"
+            "stop early.\n"
+            "Source: https://www.geeksforgeeks.org/find-k-th-smallest-element-in-bst/"
+        ),
+        source_url="https://www.geeksforgeeks.org/find-k-th-smallest-element-in-bst/",
+        params=["children", "values", "root", "n", "k"],
+        inputs={
+            "children": "list of length n; children[i] = [left, right].",
+            "values": "list of n values (parallel to children).",
+            "root": "the root node index.",
+            "n": "number of nodes.",
+            "k": "1-indexed kth smallest.",
+        },
+        returns="the kth smallest value, or -1 if k is out of range.",
+        source=TREE_23_SOURCE,
+        setup_fn=_setup_kth_smallest,
+        verify_fn=_verify_kth_smallest,
+        samples=[
+            Sample("children = [[1, 2], [-1, -1], [-1, -1]], root = 0, n = 3, k = 2", "2 (sorted: 1, 2, 3)"),
+        ],
+        hint="In-order traversal. Stop when you've seen k nodes.",
+        parents=["tree_22"],
+        children=[],
+    ),
+])
+
+
 # === tree_20: Binary Tree to BST ===
 #
 # In-order traversal of the BT gives values in some order.

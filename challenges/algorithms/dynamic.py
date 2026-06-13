@@ -2399,6 +2399,190 @@ SPECS.extend([
         ],
         hint="Floyd-Warshall with a next[] matrix; reconstruct the path by walking next[].",
         parents=["dp_26"],
+        children=["dp_28"],
+    ),
+])
+
+
+# === dp_28: Bellman-Ford (Single-Source Shortest Path) ===
+
+DP_28_SOURCE = '''
+def solve(n, edges, src):
+    """Single-source shortest paths with Bellman-Ford.
+
+    Returns a list of n distances from src (or a sentinel like
+    -1 for unreachable). The setup keeps the graph connected
+    and acyclic-negative-free, so all distances are finite.
+    """
+    INF = 10**9
+    dist = [INF] * n
+    dist[src] = 0
+    for _ in range(n - 1):
+        for u, v, w in edges:
+            if dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+    return dist
+'''
+
+
+def _setup_bellman_ford(challenge, n, seed):
+    rng = random.Random(seed)
+    n_nodes = max(2, min(n, 6))
+    edges = []
+    for i in range(1, n_nodes):
+        u = rng.randint(0, i - 1)
+        edges.append((u, i, rng.randint(1, 10)))
+    for _ in range(n_nodes):
+        u = rng.randint(0, n_nodes - 1)
+        v = rng.randint(0, n_nodes - 1)
+        if u != v:
+            edges.append((u, v, rng.randint(1, 10)))
+    src = rng.randint(0, n_nodes - 1)
+    challenge._n = n_nodes
+    challenge._edges = list(edges)
+    challenge._src = src
+    return {"n": n_nodes, "edges": list(edges), "src": src}
+
+
+def _verify_bellman_ford(challenge, result):
+    if not isinstance(result, list):
+        return False
+    if len(result) != challenge._n:
+        return False
+    # Brute force: Dijkstra from src.
+    n = challenge._n
+    edges = challenge._edges
+    src = challenge._src
+    adj = [[] for _ in range(n)]
+    for u, v, w in edges:
+        adj[u].append((v, w))
+    import heapq
+    INF = 10**9
+    d = [INF] * n
+    d[src] = 0
+    h = [(0, src)]
+    visited = [False] * n
+    while h:
+        du, u = heapq.heappop(h)
+        if visited[u]:
+            continue
+        visited[u] = True
+        for v, w in adj[u]:
+            if du + w < d[v]:
+                d[v] = du + w
+                heapq.heappush(h, (d[v], v))
+    return result == d
+
+
+# === dp_29: Longest Increasing Subsequence (Patience Sort) ===
+
+DP_29_SOURCE = '''
+def solve(arr, n):
+    """LIS length in O(n log n) via patience sorting.
+
+    Maintain a sorted list ``tails`` where tails[i] is the
+    smallest tail of any increasing subsequence of length i+1.
+    For each value, binary-search the leftmost position in tails
+    that's >= value, and place it there.
+    """
+    if n == 0:
+        return 0
+    import bisect
+    tails = []
+    for v in arr:
+        idx = bisect.bisect_left(tails, v)
+        if idx == len(tails):
+            tails.append(v)
+        else:
+            tails[idx] = v
+    return len(tails)
+'''
+
+
+def _setup_lis(challenge, n, seed):
+    rng = random.Random(seed)
+    n = max(1, min(n, 12))
+    arr = [rng.randint(0, 9) for _ in range(n)]
+    challenge._arr = list(arr)
+    return {"arr": list(arr), "n": n}
+
+
+def _verify_lis(challenge, result):
+    if not isinstance(result, int):
+        return False
+    arr = challenge._arr
+    n = len(arr)
+    # Brute force: try every subsequence.
+    best = 0
+    for mask in range(1 << n):
+        sub = [arr[i] for i in range(n) if mask & (1 << i)]
+        if all(sub[i] < sub[i + 1] for i in range(len(sub) - 1)):
+            if len(sub) > best:
+                best = len(sub)
+    return result == best
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="dp_28",
+        name="Bellman-Ford (SSSP)",
+        category="dynamic",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N3,
+        description=(
+            "Single-source shortest paths with possible negative\n"
+            "edges. Relax all edges n-1 times. O(V * E). Detects\n"
+            "negative cycles if the n-th iteration still relaxes.\n"
+            "Source: https://www.geeksforgeeks.org/bellman-ford-algorithm-dp-23/"
+        ),
+        source_url="https://www.geeksforgeeks.org/bellman-ford-algorithm-dp-23/",
+        params=["n", "edges", "src"],
+        inputs={
+            "n": "number of nodes.",
+            "edges": "list of (u, v, weight) tuples for directed edges.",
+            "src": "source node.",
+        },
+        returns="a list of n distances from src.",
+        source=DP_28_SOURCE,
+        setup_fn=_setup_bellman_ford,
+        verify_fn=_verify_bellman_ford,
+        samples=[
+            Sample("n = 4, edges = [(0, 1, 4), (0, 2, 5), (1, 2, -3), (2, 3, 4)], src = 0", "[0, 4, 1, 5]"),
+        ],
+        hint="Initialize dist[src] = 0. Relax all edges n-1 times. dist[v] = min(dist[u] + w) for each edge.",
+        parents=["dp_27"],
+        children=["dp_29"],
+    ),
+    AlgorithmSpec(
+        id="dp_29",
+        name="Longest Increasing Subsequence (Patience Sort)",
+        category="dynamic",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N_LOG_N,
+        description=(
+            "Length of the longest strictly-increasing subsequence.\n"
+            "Patience sort: maintain a sorted ``tails`` array;\n"
+            "for each value, binary-search the leftmost position in\n"
+            "tails that's >= the value and place it. The final\n"
+            "length of tails is the LIS length. O(n log n).\n"
+            "Source: https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/"
+        ),
+        source_url="https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/",
+        params=["arr", "n"],
+        inputs={
+            "arr": "list of n integers.",
+            "n": "length of arr.",
+        },
+        returns="the length of the LIS.",
+        source=DP_29_SOURCE,
+        setup_fn=_setup_lis,
+        verify_fn=_verify_lis,
+        samples=[
+            Sample("arr = [10, 22, 9, 33, 21, 50, 41, 60, 80], n = 9", "6 (10, 22, 33, 50, 60, 80)"),
+            Sample("arr = [3, 1, 4, 1, 5, 9, 2, 6], n = 8", "4 (1, 4, 5, 9)"),
+        ],
+        hint="Maintain a sorted tails array. For each value, binary-search the leftmost >= position and replace.",
+        parents=["dp_28"],
         children=[],
     ),
 ])

@@ -43,6 +43,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
         flow,
         approximation,
         suffix_array,
+        fenwick,
     )
     return [
         *intro.SPECS,
@@ -69,6 +70,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
         *flow.SPECS,
         *approximation.SPECS,
         *suffix_array.SPECS,
+        *fenwick.SPECS,
     ]
 
 
