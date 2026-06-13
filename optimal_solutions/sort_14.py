@@ -32,13 +32,13 @@ def solve(data, n):
             sift_down(lo, end, lo)
 
     def partition(lo, hi):
-        pivot = work[hi]
+        pivot = work[hi - 1]
         i = lo
-        for j in range(lo, hi):
+        for j in range(lo, hi - 1):
             if work[j] <= pivot:
                 work[i], work[j] = work[j], work[i]
                 i += 1
-        work[i], work[hi] = work[hi], work[i]
+        work[i], work[hi - 1] = work[hi - 1], work[i]
         return i
 
     def intro_sort(lo, hi, depth):

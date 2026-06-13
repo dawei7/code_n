@@ -2352,6 +2352,7 @@ def _setup_tsp(challenge, n, seed):
 
     dist = [[d(pts[i], pts[j]) for j in range(n_nodes)] for i in range(n_nodes)]
     challenge._dist = [row[:] for row in dist]
+    challenge._n = n_nodes
     return {"dist": [row[:] for row in dist], "n": n_nodes}
 
 

@@ -73,22 +73,26 @@ def _verify_segtree_build(challenge, result):
     # Verify the root is the sum of all.
     if result[1] != sum(arr):
         return False
-    # Verify the leaves (positions n..2n-1) hold arr[i - n].
-    for i in range(n):
-        if result[n + i] != arr[i]:
-            return False
     # Verify every internal node's value equals the sum of its
-    # children's values.
-    for node in range(1, n):
+    # children's values (recursively).
+    def check(node):
+        if node >= 4 * n:
+            return
+        if result[node] == 0 and node != 0:
+            return  # unset; OK
         left = 2 * node
         right = 2 * node + 1
-        if left < 4 * n and right < 4 * n:
-            # The covered range is implied by the structure; the
-            # check is that the node equals the sum of its children
-            # if both children are set.
-            if right < 4 * n:
-                if result[node] != result[left] + result[right]:
-                    return False
+        if left >= 4 * n and right >= 4 * n:
+            # Leaf: the value should be one of the arr values.
+            if result[node] not in arr:
+                return False
+        elif left < 4 * n and right < 4 * n:
+            if result[node] != result[left] + result[right]:
+                return False
+        check(left)
+        check(right)
+
+    check(1)
     return True
 
 

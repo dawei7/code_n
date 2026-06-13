@@ -22,6 +22,7 @@ def solve(data, n):
             sub.sort()
             work[i:end] = sub
             j = end
+            runs[-1] = (runs[-1][0], j)  # update with extended end
         i = j
     while len(runs) > 1:
         new_runs = []
