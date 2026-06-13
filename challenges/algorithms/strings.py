@@ -996,6 +996,217 @@ SPECS.extend([
         ],
         hint="dp[i] = True if some dp[j] is True AND s[j:i] is in word_dict.",
         parents=["string_04"],
+        children=["string_11"],
+    ),
+])
+
+
+# === string_11: Longest Common Substring ===
+
+STRING_11_SOURCE = '''
+def solve(s1, s2, n1, n2):
+    """Length of the longest common substring of s1 and s2.
+
+    dp[i][j] = length of the longest common suffix of s1[..i]
+    and s2[..j]. dp[i][j] = dp[i-1][j-1] + 1 if s1[i-1] == s2[j-1]
+    else 0. The answer is the maximum dp value.
+    """
+    if n1 == 0 or n2 == 0:
+        return 0
+    best = 0
+    dp = [[0] * (n2 + 1) for _ in range(n1 + 1)]
+    for i in range(1, n1 + 1):
+        for j in range(1, n2 + 1):
+            if s1[i - 1] == s2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+                if dp[i][j] > best:
+                    best = dp[i][j]
+            else:
+                dp[i][j] = 0
+    return best
+'''
+
+
+def _setup_lc_substring(challenge, n, seed):
+    rng = random.Random(seed)
+    n1 = max(1, min(n, 6))
+    n2 = max(1, min(n - n1 + 1, 6))
+    n1 = min(n1, 6)
+    n2 = min(n2, 6)
+    s1 = "".join(rng.choice("abc") for _ in range(n1))
+    s2 = "".join(rng.choice("abc") for _ in range(n2))
+    challenge._s1 = s1
+    challenge._s2 = s2
+    return {"s1": s1, "s2": s2, "n1": len(s1), "n2": len(s2)}
+
+
+def _verify_lc_substring(challenge, result):
+    if not isinstance(result, int):
+        return False
+    s1, s2 = challenge._s1, challenge._s2
+    # Brute force: check every substring.
+    best = 0
+    for i in range(len(s1)):
+        for j in range(len(s2)):
+            k = 0
+            while i + k < len(s1) and j + k < len(s2) and s1[i + k] == s2[j + k]:
+                k += 1
+            if k > best:
+                best = k
+    return result == best
+
+
+# === string_12: String to Integer (atoi) ===
+#
+# Trim leading whitespace, handle optional +/- sign, then read
+# digits until a non-digit. Clamp to the int32 range [-2^31, 2^31-1].
+# Return 0 if the string is empty / no digits / overflow before sign.
+
+
+STRING_12_SOURCE = '''
+def solve(s, n):
+    """Implement atoi: parse s as a 32-bit signed integer."""
+    if n == 0:
+        return 0
+    i = 0
+    # Skip leading whitespace.
+    while i < n and s[i] == " ":
+        i += 1
+    if i == n:
+        return 0
+    sign = 1
+    if s[i] == "+":
+        i += 1
+    elif s[i] == "-":
+        sign = -1
+        i += 1
+    result = 0
+    INT_MAX = 2**31 - 1
+    INT_MIN = -2**31
+    while i < n and s[i].isdigit():
+        digit = int(s[i])
+        new_result = result * 10 + digit
+        if sign == 1 and new_result > INT_MAX:
+            return INT_MAX
+        if sign == -1 and -new_result < INT_MIN:
+            return INT_MIN
+        result = new_result
+        i += 1
+    return sign * result
+'''
+
+
+def _setup_atoi(challenge, n, seed):
+    rng = random.Random(seed)
+    # Generate a string with whitespace, optional sign, and digits.
+    n_chars = max(1, min(n, 8))
+    digits = [str(rng.randint(0, 9)) for _ in range(n_chars)]
+    s_list = []
+    for _ in range(rng.randint(0, 3)):
+        s_list.append(" ")
+    if rng.random() < 0.5:
+        s_list.append(rng.choice("+-"))
+    s_list.extend(digits)
+    # Sometimes add a non-digit suffix.
+    if rng.random() < 0.5:
+        s_list.append(rng.choice("abc"))
+    s = "".join(s_list)
+    challenge._s = s
+    return {"s": s, "n": len(s)}
+
+
+def _verify_atoi(challenge, result):
+    if not isinstance(result, int):
+        return False
+    s = challenge._s
+    i = 0
+    while i < len(s) and s[i] == " ":
+        i += 1
+    if i == len(s):
+        return result == 0
+    sign = 1
+    if s[i] == "+":
+        i += 1
+    elif s[i] == "-":
+        sign = -1
+        i += 1
+    value = 0
+    while i < len(s) and s[i].isdigit():
+        value = value * 10 + int(s[i])
+        i += 1
+    value = sign * value
+    INT_MAX = 2**31 - 1
+    INT_MIN = -2**31
+    if value > INT_MAX:
+        value = INT_MAX
+    if value < INT_MIN:
+        value = INT_MIN
+    return result == value
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="string_11",
+        name="Longest Common Substring",
+        category="strings",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Length of the longest common substring (consecutive, not\n"
+            "subsequence) of s1 and s2. Standard DP: dp[i][j] = length\n"
+            "of the common suffix of s1[..i] and s2[..j]. The answer\n"
+            "is the max over the table.\n"
+            "Source: https://www.geeksforgeeks.org/longest-common-substring-dp-29/"
+        ),
+        source_url="https://www.geeksforgeeks.org/longest-common-substring-dp-29/",
+        params=["s1", "s2", "n1", "n2"],
+        inputs={
+            "s1": "first string (capped at 6 in the setup).",
+            "s2": "second string (capped at 6 in the setup).",
+            "n1": "length of s1.",
+            "n2": "length of s2.",
+        },
+        returns="the length of the longest common substring.",
+        source=STRING_11_SOURCE,
+        setup_fn=_setup_lc_substring,
+        verify_fn=_verify_lc_substring,
+        samples=[
+            Sample('s1 = "abcdxyz", s2 = "xyzabcd", n1 = 7, n2 = 7', "4 (abcd or xyzd)"),
+            Sample('s1 = "geeks", s2 = "geekfor", n1 = 5, n2 = 7', "4 (geek)"),
+        ],
+        hint="dp[i][j] = dp[i-1][j-1] + 1 if chars match, else 0. Track the max.",
+        parents=["string_10"],
+        children=["string_12"],
+    ),
+    AlgorithmSpec(
+        id="string_12",
+        name="String to Integer (atoi)",
+        category="strings",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Parse a string as a 32-bit signed integer. Skip leading\n"
+            "whitespace, handle an optional +/- sign, read digits\n"
+            "until a non-digit. Clamp to the int32 range.\n"
+            "Source: https://www.geeksforgeeks.org/write-your-own-atoi/"
+        ),
+        source_url="https://www.geeksforgeeks.org/write-your-own-atoi/",
+        params=["s", "n"],
+        inputs={
+            "s": "the string to parse.",
+            "n": "length of s.",
+        },
+        returns="the parsed integer (clamped to int32 range, or 0 if invalid).",
+        source=STRING_12_SOURCE,
+        setup_fn=_setup_atoi,
+        verify_fn=_verify_atoi,
+        samples=[
+            Sample("s = ' -42', n = 4", "-42"),
+            Sample("s = '4193 with words', n = 15", "4193"),
+            Sample("s = 'words and 987', n = 13", "0"),
+        ],
+        hint="Skip whitespace, optional sign, read digits, clamp to int32 range.",
+        parents=["string_11"],
         children=[],
     ),
 ])

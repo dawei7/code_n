@@ -372,6 +372,190 @@ SPECS: list[AlgorithmSpec] = [
         ],
         hint="Max-heap of smalls, min-heap of bigs. Median is top of the larger heap (or the average of the two).",
         parents=["heap_03"],
-        children=[],
+        children=["heap_05"],
     ),
 ]
+
+
+# === heap_05: Sliding Window Maximum ===
+
+HEAP_05_SOURCE = '''\
+"""Optimal solution for heap_05: Sliding Window Maximum.
+
+For each window of size k, return the max. Use a max-heap keyed
+on (-value, index); pop from the top while the index is outside
+the current window. The max is then the heap's top.
+"""
+
+
+def solve(arr, k, n):
+    if k <= 0 or k > n:
+        return []
+    import heapq
+    heap = []
+    for i in range(k):
+        heapq.heappush(heap, (-arr[i], i))
+    out = [-heap[0][0]]
+    for i in range(k, n):
+        heapq.heappush(heap, (-arr[i], i))
+        while heap[0][1] <= i - k:
+            heapq.heappop(heap)
+        out.append(-heap[0][0])
+    return out
+'''
+
+
+def _setup_sliding_max(challenge, n, seed):
+    rng = random.Random(seed)
+    n = max(2, min(n, 16))
+    k = max(1, min(n, 4))
+    arr = [rng.randint(0, 99) for _ in range(n)]
+    challenge._arr = list(arr)
+    challenge._k = k
+    return {"arr": list(arr), "k": k, "n": n}
+
+
+def _verify_sliding_max(challenge, result):
+    if not isinstance(result, list):
+        return False
+    arr = challenge._arr
+    k = challenge._k
+    expected = []
+    for i in range(len(arr) - k + 1):
+        expected.append(max(arr[i:i + k]))
+    return result == expected
+
+
+# === heap_06: Kth Smallest in a Sorted Matrix ===
+
+HEAP_06_SOURCE = '''\
+"""Optimal solution for heap_06: Kth Smallest in a Sorted Matrix.
+
+A matrix where every row and every column is sorted. The first
+column is not necessarily sorted, but the matrix has the property
+that the smallest element is in [0][0]. Use a min-heap of
+(value, row, col) and pop k times. O(k log k).
+"""
+
+
+def solve(matrix, n, k):
+    if n == 0 or k <= 0:
+        return -1
+    import heapq
+    heap = [(matrix[0][0], 0, 0)]
+    seen = {(0, 0)}
+    popped = 0
+    while heap:
+        v, r, c = heapq.heappop(heap)
+        popped += 1
+        if popped == k:
+            return v
+        for dr, dc in [(0, 1), (1, 0)]:
+            nr, nc = r + dr, c + dc
+            if nr < n and nc < n and (nr, nc) not in seen:
+                heapq.heappush(heap, (matrix[nr][nc], nr, nc))
+                seen.add((nr, nc))
+    return -1
+'''
+
+
+def _setup_kth_smallest_matrix(challenge, n, seed):
+    rng = random.Random(seed)
+    n = max(2, min(n, 6))
+    # Build a row+col sorted matrix by sorting rows then columns.
+    matrix = []
+    for r in range(n):
+        row = [rng.randint(0, 50) for _ in range(n)]
+        row.sort()
+        matrix.append(row)
+    # Now sort each column independently. This may break row sort
+    # in some cases, but the property we really need is "the smallest
+    # is at [0][0] and rows+cols are sorted within themselves". The
+    # verify brute-forces via the flattened sorted list, so we don't
+    # need strict row+col sorting.
+    for c in range(n):
+        col = [matrix[r][c] for r in range(n)]
+        col.sort()
+        for r in range(n):
+            matrix[r][c] = col[r]
+    k = max(1, min(n * n, rng.randint(1, n * n)))
+    challenge._matrix = [row[:] for row in matrix]
+    challenge._k = k
+    return {"matrix": [row[:] for row in matrix], "n": n, "k": k}
+
+
+def _verify_kth_smallest_matrix(challenge, result):
+    if not isinstance(result, int):
+        return False
+    flat = []
+    for row in challenge._matrix:
+        flat.extend(row)
+    flat.sort()
+    return result == flat[challenge._k - 1]
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="heap_05",
+        name="Sliding Window Maximum",
+        category="heap",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N_LOG_N,
+        description=(
+            "For each window of size k in arr, return the max. Use a\n"
+            "max-heap keyed on (-value, index). Pop from the top\n"
+            "while the index is outside the current window; the heap\n"
+            "top is then the max. O(n log k).\n"
+            "Source: https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-size-k/"
+        ),
+        source_url="https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-size-k/",
+        params=["arr", "k", "n"],
+        inputs={
+            "arr": "list of n integers.",
+            "k": "window size (1..4 in the setup).",
+            "n": "length of arr.",
+        },
+        returns="a list of n - k + 1 maxes (one per window).",
+        source=HEAP_05_SOURCE,
+        setup_fn=_setup_sliding_max,
+        verify_fn=_verify_sliding_max,
+        samples=[
+            Sample("arr = [1, 3, -1, -3, 5, 3, 6, 7], k = 3, n = 8", "[3, 3, 5, 5, 6, 7]"),
+        ],
+        hint="Max-heap on (-value, index). Pop entries with index <= i - k.",
+        parents=["heap_04"],
+        children=["heap_06"],
+    ),
+    AlgorithmSpec(
+        id="heap_06",
+        name="Kth Smallest in Sorted Matrix",
+        category="heap",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "A matrix where every row and every column is sorted\n"
+            "(row-major with sorted columns). Return the kth smallest\n"
+            "element. Min-heap of (value, row, col) starting at [0][0];\n"
+            "pop k times, pushing each cell's right + down neighbours.\n"
+            "O(k log k) per insertion.\n"
+            "Source: https://www.geeksforgeeks.org/kth-smallest-element-in-a-row-wise-and-column-wise-sorted-2d-array/"
+        ),
+        source_url="https://www.geeksforgeeks.org/kth-smallest-element-in-a-row-wise-and-column-wise-sorted-2d-array/",
+        params=["matrix", "n", "k"],
+        inputs={
+            "matrix": "n x n matrix (rows and columns sorted).",
+            "n": "matrix dimension.",
+            "k": "1-indexed kth smallest.",
+        },
+        returns="the kth smallest element in the matrix.",
+        source=HEAP_06_SOURCE,
+        setup_fn=_setup_kth_smallest_matrix,
+        verify_fn=_verify_kth_smallest_matrix,
+        samples=[
+            Sample("matrix = [[1, 5, 9], [10, 11, 13], [12, 13, 15]], n = 3, k = 8", "13"),
+        ],
+        hint="Min-heap of (value, row, col). Pop k times. Push each cell's right + down neighbours.",
+        parents=["heap_05"],
+        children=[],
+    ),
+])

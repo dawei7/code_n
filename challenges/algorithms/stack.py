@@ -288,6 +288,205 @@ SPECS: list[AlgorithmSpec] = [
         ],
         hint="Stack of indices where arr[index] is strictly greater than today's. Pop <= and read the gap.",
         parents=["stack_02"],
-        children=[],
+        children=["stack_04"],
     ),
 ]
+
+
+# === stack_04: Largest Rectangle in Histogram ===
+
+STACK_04_SOURCE = '''\
+"""Optimal solution for stack_04: Largest Rectangle in Histogram.
+
+Monotonic stack of bar indices with increasing heights. For each
+bar popped, the rectangle extends from the previous-smaller on
+the left to the current on the right. Track the max area across
+all pops. O(n).
+"""
+
+
+def solve(heights, n):
+    if n == 0:
+        return 0
+    stack = []  # indices with increasing heights
+    best = 0
+    for i in range(n + 1):
+        cur_h = heights[i] if i < n else 0
+        while stack and heights[stack[-1]] > cur_h:
+            top = stack.pop()
+            h = heights[top]
+            left = stack[-1] + 1 if stack else 0
+            right = i - 1
+            area = h * (right - left + 1)
+            if area > best:
+                best = area
+        stack.append(i)
+    return best
+'''
+
+
+def _setup_largest_rect(challenge, n, seed):
+    rng = random.Random(seed)
+    n = max(1, min(n, 12))
+    heights = [rng.randint(0, 20) for _ in range(n)]
+    challenge._heights = list(heights)
+    return {"heights": list(heights), "n": n}
+
+
+def _verify_largest_rect(challenge, result):
+    if not isinstance(result, int):
+        return False
+    heights = challenge._heights
+    n = len(heights)
+    # Brute force: for each (i, j), area = min(heights[i..j]) * (j - i + 1).
+    best = 0
+    for i in range(n):
+        for j in range(i, n):
+            area = min(heights[k] for k in range(i, j + 1)) * (j - i + 1)
+            if area > best:
+                best = area
+    return result == best
+
+
+# === stack_05: Min Stack ===
+
+STACK_05_SOURCE = '''\
+"""Optimal solution for stack_05: Min Stack.
+
+Two parallel stacks: one for values, one for the running minimum.
+push, pop, top, get_min are all O(1).
+"""
+
+
+def solve(ops, n):
+    """Run a sequence of operations and return the result of get_min calls.
+
+    ops is a list of (cmd, value) tuples where cmd is "push", "pop",
+    or "get_min". For "pop" and "get_min" the value is unused.
+    For "push" the value is the value to push. Returns a list of
+    ints: for each "get_min", the min of the stack at that point;
+    for each "pop", the value popped (or -1 if the stack was empty).
+    """
+    stack = []
+    mins = []
+    out = []
+    for op in ops:
+        cmd = op[0]
+        if cmd == "push":
+            v = op[1]
+            stack.append(v)
+            if not mins or v <= mins[-1]:
+                mins.append(v)
+        elif cmd == "pop":
+            if not stack:
+                out.append(-1)
+            else:
+                v = stack.pop()
+                if mins and v == mins[-1]:
+                    mins.pop()
+                out.append(v)
+        elif cmd == "get_min":
+            out.append(mins[-1] if mins else -1)
+    return out
+'''
+
+
+def _setup_min_stack(challenge, n, seed):
+    rng = random.Random(seed)
+    n_ops = max(1, min(n, 12))
+    ops = []
+    for _ in range(n_ops):
+        cmd = rng.choices(["push", "pop", "get_min"], weights=[3, 1, 1])[0]
+        if cmd == "push":
+            v = rng.randint(-9, 9)
+            ops.append(("push", v))
+        else:
+            ops.append((cmd, 0))
+    challenge._ops = list(ops)
+    return {"ops": list(ops), "n": len(ops)}
+
+
+def _verify_min_stack(challenge, result):
+    if not isinstance(result, list):
+        return False
+    # Brute force: just track a Python list and its min.
+    stack = []
+    expected = []
+    for op in challenge._ops:
+        cmd = op[0]
+        if cmd == "push":
+            stack.append(op[1])
+        elif cmd == "pop":
+            if not stack:
+                expected.append(-1)
+            else:
+                expected.append(stack.pop())
+        elif cmd == "get_min":
+            expected.append(min(stack) if stack else -1)
+    return result == expected
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="stack_04",
+        name="Largest Rectangle in Histogram",
+        category="stack",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Given an array of bar heights, return the area of the\n"
+            "largest rectangle that fits entirely within the bars.\n"
+            "Monotonic stack of indices with increasing heights; for\n"
+            "each bar popped, the rectangle's width is the run of\n"
+            "indices with height >= that bar.\n"
+            "Source: https://www.geeksforgeeks.org/largest-rectangular-area-in-a-histogram-using-stack/"
+        ),
+        source_url="https://www.geeksforgeeks.org/largest-rectangular-area-in-a-histogram-using-stack/",
+        params=["heights", "n"],
+        inputs={
+            "heights": "list of n bar heights.",
+            "n": "length of heights.",
+        },
+        returns="the largest rectangle area.",
+        source=STACK_04_SOURCE,
+        setup_fn=_setup_largest_rect,
+        verify_fn=_verify_largest_rect,
+        samples=[
+            Sample("heights = [2, 1, 5, 6, 2, 3], n = 6", "10 (5 * 2)"),
+            Sample("heights = [2, 4], n = 2", "4"),
+        ],
+        hint="Monotonic stack. Pop bars while the current bar is shorter; the popped bar's rectangle is the run.",
+        parents=["stack_03"],
+        children=["stack_05"],
+    ),
+    AlgorithmSpec(
+        id="stack_05",
+        name="Min Stack",
+        category="stack",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Implement a stack that supports push, pop, and get_min\n"
+            "in O(1). Two parallel stacks: the main one and a stack\n"
+            "of running minimums. Return a list of results: for each\n"
+            "get_min, the current min; for each pop, the popped value.\n"
+            "Source: https://www.geeksforgeeks.org/design-a-stack-that-supports-getmin-in-o1-time-and-o1-extra-space/"
+        ),
+        source_url="https://www.geeksforgeeks.org/design-a-stack-that-supports-getmin-in-o1-time-and-o1-extra-space/",
+        params=["ops", "n"],
+        inputs={
+            "ops": "list of (cmd, value) tuples; cmd in {push, pop, get_min}.",
+            "n": "length of ops.",
+        },
+        returns="a list of results - one per pop or get_min op.",
+        source=STACK_05_SOURCE,
+        setup_fn=_setup_min_stack,
+        verify_fn=_verify_min_stack,
+        samples=[
+            Sample('ops = [("push", 2), ("push", 0), ("get_min", 0), ("pop", 0), ("get_min", 0)], n = 5', "[0, 2, 2]"),
+        ],
+        hint="Parallel stack of running minimums. On push, append to mins if v <= mins[-1]. On pop, drop if equal.",
+        parents=["stack_04"],
+        children=[],
+    ),
+])

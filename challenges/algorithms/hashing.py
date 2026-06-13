@@ -356,6 +356,178 @@ SPECS: list[AlgorithmSpec] = [
         ],
         hint="Sort each string's characters to form a key; collect the originals into per-key lists.",
         parents=["hash_03"],
-        children=[],
+        children=["hash_05"],
     ),
 ]
+
+
+# === hash_05: Count Distinct Elements in Window ===
+#
+# Sliding window of size k. Track counts in a hash map; expand
+# the right end, shrink the left. The number of keys is the
+# distinct count in the current window.
+
+
+HASH_05_SOURCE = '''
+def solve(arr, k, n):
+    """For each window of size k, return the number of distinct
+    elements. O(n) total: amortized O(1) per window step.
+    """
+    if k <= 0 or k > n:
+        return []
+    counts = {}
+    out = []
+    for i in range(k):
+        counts[arr[i]] = counts.get(arr[i], 0) + 1
+    out.append(len(counts))
+    for i in range(k, n):
+        # Add arr[i].
+        counts[arr[i]] = counts.get(arr[i], 0) + 1
+        # Remove arr[i - k].
+        old = arr[i - k]
+        counts[old] -= 1
+        if counts[old] == 0:
+            del counts[old]
+        out.append(len(counts))
+    return out
+'''
+
+
+def _setup_distinct_window(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    n = max(2, min(n, 16))
+    k = max(1, min(n, 4))
+    arr = [rng.randint(0, max(1, n // 2)) for _ in range(n)]
+    challenge._arr = list(arr)
+    challenge._k = k
+    return {"arr": list(arr), "k": k, "n": n}
+
+
+def _verify_distinct_window(challenge, result: Any) -> bool:
+    if not isinstance(result, list):
+        return False
+    arr = challenge._arr
+    k = challenge._k
+    expected = []
+    for i in range(len(arr) - k + 1):
+        window = arr[i:i + k]
+        expected.append(len(set(window)))
+    return result == expected
+
+
+# === hash_06: Longest Consecutive Sequence ===
+#
+# Sort then walk; or use a hash-set and check for the start of
+# each run (arr[k] - 1 not in the set). The hash-set version is
+# O(n) amortized; the sort version is O(n log n) but easier to
+# verify, so we use it here.
+
+
+HASH_06_SOURCE = '''
+def solve(arr, n):
+    """Return the length of the longest consecutive run."""
+    if n == 0:
+        return 0
+    s = sorted(set(arr))
+    best = 1
+    cur = 1
+    for i in range(1, len(s)):
+        if s[i] == s[i - 1] + 1:
+            cur += 1
+            if cur > best:
+                best = cur
+        else:
+            cur = 1
+    return best
+'''
+
+
+def _setup_consecutive(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    n = max(1, min(n, 16))
+    arr = [rng.randint(0, max(2, n) * 2) for _ in range(n)]
+    challenge._arr = list(arr)
+    return {"arr": list(arr), "n": n}
+
+
+def _verify_consecutive(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    arr = sorted(set(challenge._arr))
+    best = 0
+    cur = 0
+    last = None
+    for v in arr:
+        if last is not None and v == last + 1:
+            cur += 1
+        else:
+            cur = 1
+        if cur > best:
+            best = cur
+        last = v
+    return result == best
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="hash_05",
+        name="Count Distinct in Window",
+        category="hashing",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "For each window of size k in arr, return the number of\n"
+            "distinct elements. Sliding window + count map: O(n) total.\n"
+            "Source: https://www.geeksforgeeks.org/count-distinct-elements-in-every-window-of-size-k/"
+        ),
+        source_url="https://www.geeksforgeeks.org/count-distinct-elements-in-every-window-of-size-k/",
+        params=["arr", "k", "n"],
+        inputs={
+            "arr": "list of n integers (small value range).",
+            "k": "window size (1..4 in the setup).",
+            "n": "length of arr.",
+        },
+        returns="a list of n - k + 1 distinct counts (one per window).",
+        source=HASH_05_SOURCE,
+        setup_fn=_setup_distinct_window,
+        verify_fn=_verify_distinct_window,
+        samples=[
+            Sample("arr = [1, 2, 1, 3, 4, 2, 3], k = 4, n = 7", "[3, 4, 4, 3]"),
+            Sample("arr = [1, 1, 1, 1], k = 2, n = 4", "[1, 1, 1]"),
+        ],
+        hint="Sliding window. Hash map of counts; len(map) = distinct count.",
+        parents=["hash_04"],
+        children=["hash_06"],
+    ),
+    AlgorithmSpec(
+        id="hash_06",
+        name="Longest Consecutive Sequence",
+        category="hashing",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N_LOG_N,
+        description=(
+            "Given an unsorted array, return the length of the longest\n"
+            "sequence of consecutive integers. Sort, then walk; O(n\n"
+            "log n). Real O(n) solution uses a set: for each v, if v-1\n"
+            "isn't in the set, walk forward counting.\n"
+            "Source: https://www.geeksforgeeks.org/longest-consecutive-subsequence/"
+        ),
+        source_url="https://www.geeksforgeeks.org/longest-consecutive-subsequence/",
+        params=["arr", "n"],
+        inputs={
+            "arr": "list of n integers (can include duplicates).",
+            "n": "length of arr.",
+        },
+        returns="the length of the longest consecutive-integer run.",
+        source=HASH_06_SOURCE,
+        setup_fn=_setup_consecutive,
+        verify_fn=_verify_consecutive,
+        samples=[
+            Sample("arr = [1, 9, 3, 10, 4, 20, 2], n = 7", "4 (1,2,3,4)"),
+            Sample("arr = [36, 41, 56, 35, 44, 33, 34, 92, 43, 32, 42], n = 11", "9"),
+        ],
+        hint="Sort + dedupe, then walk and count runs. Set-based O(n) works too.",
+        parents=["hash_05"],
+        children=[],
+    ),
+])

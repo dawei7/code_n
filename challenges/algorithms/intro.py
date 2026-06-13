@@ -588,6 +588,177 @@ SPECS.extend([
         ],
         hint="0x5555... masks even bits; 0xAAAA... masks odd bits. Shift and OR.",
         parents=["bit_06"],
+        children=["bit_08"],
+    ),
+])
+
+
+# === bit_08: Divide Without / ===
+#
+# Repeated subtraction: dividend = divisor * quotient + remainder.
+# Build the quotient bit-by-bit from the most significant bit
+# of the divisor. Use absolute values; handle the sign at the end.
+
+
+BIT_08_SOURCE = '''
+def solve(dividend, divisor):
+    """Return dividend / divisor (integer division) without using /."""
+    if divisor == 0:
+        return 0  # undefined; the setup avoids this
+    if dividend == 0:
+        return 0
+    # Work with absolute values.
+    negative = (dividend < 0) != (divisor < 0)
+    a = abs(dividend)
+    b = abs(divisor)
+    quotient = 0
+    # Find the highest power of 2 of b that fits in a.
+    power = 32
+    while (b << power) > a:
+        power -= 1
+    while power >= 0:
+        if (b << power) <= a:
+            a -= b << power
+            quotient |= 1 << power
+        power -= 1
+    if negative:
+        quotient = -quotient
+    return quotient
+'''
+
+
+def _setup_div_no_slash(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random((seed or 0) * 31 + n)
+    # Pick a dividend and a divisor that give a sensible quotient.
+    divisor = rng.randint(1, max(2, n))
+    quotient = rng.randint(0, max(2, n) * 2)
+    dividend = divisor * quotient + rng.randint(0, divisor - 1)
+    if rng.random() < 0.5 and dividend != 0:
+        dividend = -dividend
+    if rng.random() < 0.5:
+        divisor = -divisor
+    challenge._dividend = dividend
+    challenge._divisor = divisor
+    return {"dividend": dividend, "divisor": divisor}
+
+
+def _verify_div_no_slash(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    if challenge._divisor == 0:
+        return result == 0
+    # Brute force: repeated subtraction.
+    a, b = abs(challenge._dividend), abs(challenge._divisor)
+    q = 0
+    while a >= b:
+        a -= b
+        q += 1
+    if (challenge._dividend < 0) != (challenge._divisor < 0):
+        q = -q
+    return result == q
+
+
+# === bit_09: Multiply Without * ===
+#
+# Bit-by-bit multiplication: for each set bit of b, add (a << k)
+# to the result. O(log b) additions.
+
+
+BIT_09_SOURCE = '''
+def solve(a, b):
+    """Return a * b without using *."""
+    negative = (a < 0) != (b < 0)
+    x = abs(a)
+    y = abs(b)
+    result = 0
+    while y > 0:
+        if y & 1:
+            result += x
+        x <<= 1
+        y >>= 1
+    if negative:
+        result = -result
+    return result
+'''
+
+
+def _setup_mul_no_star(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random((seed or 0) * 31 + n)
+    max_val = max(2, n * 5)
+    a = rng.randint(-max_val, max_val)
+    b = rng.randint(-max_val, max_val)
+    challenge._a = a
+    challenge._b = b
+    return {"a": a, "b": b}
+
+
+def _verify_mul_no_star(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    return result == challenge._a * challenge._b
+
+
+# Append bit_08 and bit_09.
+SPECS.extend([
+    AlgorithmSpec(
+        id="bit_08",
+        name="Divide Without /",
+        category="intro",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_LOG_N,
+        description=(
+            "Compute dividend / divisor (integer division) using only\n"
+            "addition, subtraction, and shifts. Long-division-style:\n"
+            "find the highest power of 2 of the divisor that fits in\n"
+            "the dividend, subtract, repeat. Handle signs at the end.\n"
+            "Requirement: O(log(dividend / divisor)).\n"
+            "Source: https://www.geeksforgeeks.org/divide-two-numbers-without-using-multiplication-division-mod-operator/"
+        ),
+        source_url="https://www.geeksforgeeks.org/divide-two-numbers-without-using-multiplication-division-mod-operator/",
+        params=["dividend", "divisor"],
+        inputs={
+            "dividend": "the dividend (non-zero; can be negative).",
+            "divisor": "the divisor (non-zero; can be negative).",
+        },
+        returns="dividend // divisor.",
+        source=BIT_08_SOURCE,
+        setup_fn=_setup_div_no_slash,
+        verify_fn=_verify_div_no_slash,
+        samples=[
+            Sample("dividend = 10, divisor = 3", "3"),
+            Sample("dividend = 43, divisor = 8", "5"),
+        ],
+        hint="Find the highest shift of divisor that fits. Subtract. Repeat on the remainder.",
+        parents=["bit_07"],
+        children=["bit_09"],
+    ),
+    AlgorithmSpec(
+        id="bit_09",
+        name="Multiply Without *",
+        category="intro",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_LOG_N,
+        description=(
+            "Compute a * b using only addition and shifts. For each\n"
+            "set bit of b, add (a << k) to the result. O(log b).\n"
+            "Source: https://www.geeksforgeeks.org/multiply-two-numbers-without-using/"
+        ),
+        source_url="https://www.geeksforgeeks.org/multiply-two-numbers-without-using/",
+        params=["a", "b"],
+        inputs={
+            "a": "first factor (can be negative).",
+            "b": "second factor (can be negative).",
+        },
+        returns="a * b.",
+        source=BIT_09_SOURCE,
+        setup_fn=_setup_mul_no_star,
+        verify_fn=_verify_mul_no_star,
+        samples=[
+            Sample("a = 3, b = 5", "15"),
+            Sample("a = -4, b = 6", "-24"),
+        ],
+        hint="For each set bit k of b, add (a << k) to the result.",
+        parents=["bit_08"],
         children=[],
     ),
 ])

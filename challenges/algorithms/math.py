@@ -241,6 +241,84 @@ SPECS: list[AlgorithmSpec] = [
         ],
         hint="Square the base, multiply into result on set bits. Reduce mod after every multiplication.",
         parents=["math_02"],
-        children=[],
+        children=["math_04"],
     ),
 ]
+
+
+# === math_04: Karatsuba Multiplication ===
+
+MATH_04_SOURCE = '''
+def solve(x, y):
+    """Karatsuba multiplication of two non-negative integers.
+
+    Recursive divide and conquer: split each number into halves,
+    compute 3 half-sized products (instead of 4), combine. Faster
+    asymptotically than grade-school O(n^2) multiplication.
+    """
+    if x < 10 or y < 10:
+        return x * y
+    # Choose the split based on the larger operand.
+    n = max(len(str(x)), len(str(y)))
+    half = n // 2
+    power = 10 ** half
+    a, b = divmod(x, power)
+    c, d = divmod(y, power)
+    ac = solve(a, c)
+    bd = solve(b, d)
+    ad_bc = solve(a + b, c + d) - ac - bd
+    return ac * (10 ** (2 * half)) + ad_bc * power + bd
+'''
+
+
+def _setup_karatsuba(challenge, n, seed):
+    rng = random.Random(seed)
+    # Bounded so the test gauntlet runs in reasonable time.
+    max_digits = max(2, min(n, 6))
+    a = rng.randint(1, 10 ** max_digits - 1)
+    b = rng.randint(1, 10 ** max_digits - 1)
+    challenge._a = a
+    challenge._b = b
+    return {"x": a, "y": b}
+
+
+def _verify_karatsuba(challenge, result):
+    if not isinstance(result, int):
+        return False
+    return result == challenge._a * challenge._b
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="math_04",
+        name="Karatsuba Multiplication",
+        category="math",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N_LOG_N,
+        description=(
+            "Multiply two non-negative integers using Karatsuba's\n"
+            "divide-and-conquer algorithm. Split each operand in half,\n"
+            "compute 3 half-sized products (ac, bd, and (a+b)(c+d) - ac - bd),\n"
+            "and combine. Asymptotically O(n^log_2(3)) ~ O(n^1.585), faster\n"
+            "than grade-school O(n^2).\n"
+            "Source: https://www.geeksforgeeks.org/karatsuba-algorithm-for-fast-multiplication/"
+        ),
+        source_url="https://www.geeksforgeeks.org/karatsuba-algorithm-for-fast-multiplication/",
+        params=["x", "y"],
+        inputs={
+            "x": "first non-negative integer.",
+            "y": "second non-negative integer.",
+        },
+        returns="x * y.",
+        source=MATH_04_SOURCE,
+        setup_fn=_setup_karatsuba,
+        verify_fn=_verify_karatsuba,
+        samples=[
+            Sample("x = 1234, y = 5678", "7006652"),
+            Sample("x = 99, y = 99", "9801"),
+        ],
+        hint="Split each into halves. Compute ac, bd, (a+b)(c+d) - ac - bd. Combine with the right place values.",
+        parents=["math_03"],
+        children=[],
+    ),
+])

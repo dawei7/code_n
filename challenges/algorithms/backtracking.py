@@ -396,6 +396,246 @@ SPECS: list[AlgorithmSpec] = [
         ],
         hint="At each step, try each dict word as a prefix; recurse on the rest.",
         parents=["backtrack_03"],
-        children=[],
+        children=["backtrack_05"],
     ),
 ]
+
+
+# === backtrack_05: Rat in a Maze ===
+#
+# 1 = open, 0 = blocked. Move in 4 directions. Start at (0, 0),
+# reach (n-1, n-1). The setup uses a small maze (n <= 4) so the
+# brute-force verifier is fast. Return the path as a list of
+# (row, col) tuples, or [] if no path.
+
+
+BACKTRACK_05_SOURCE = '''
+def solve(maze, n):
+    """Find a path from (0, 0) to (n-1, n-1) in a 0/1 maze. 1 = open."""
+    if n == 0 or maze[0][0] == 0 or maze[n - 1][n - 1] == 0:
+        return []
+    visited = [[False] * n for _ in range(n)]
+    path = []
+
+    def helper(r, c):
+        if r == n - 1 and c == n - 1:
+            path.append((r, c))
+            return True
+        if r < 0 or c < 0 or r >= n or c >= n:
+            return False
+        if visited[r][c] or maze[r][c] == 0:
+            return False
+        visited[r][c] = True
+        path.append((r, c))
+        if helper(r + 1, c) or helper(r, c + 1):
+            return True
+        path.pop()
+        return False
+
+    if helper(0, 0):
+        return path
+    return []
+'''
+
+
+def _setup_rat_maze(challenge, n, seed):
+    rng = random.Random(seed)
+    n_maze = max(2, min(n, 4))
+    # Build a maze with a guaranteed path.
+    maze = [[0] * n_maze for _ in range(n_maze)]
+    # Carve a random path from (0, 0) to (n-1, n-1).
+    r, c = 0, 0
+    maze[r][c] = 1
+    while (r, c) != (n_maze - 1, n_maze - 1):
+        maze[r][c] = 1
+        if r == n_maze - 1:
+            c += 1
+        elif c == n_maze - 1:
+            r += 1
+        else:
+            if rng.random() < 0.5:
+                r += 1
+            else:
+                c += 1
+    # Sprinkle some extra open cells.
+    for _ in range(n_maze):
+        rr = rng.randint(0, n_maze - 1)
+        cc = rng.randint(0, n_maze - 1)
+        maze[rr][cc] = 1
+    challenge._maze = [row[:] for row in maze]
+    return {"maze": [row[:] for row in maze], "n": n_maze}
+
+
+def _verify_rat_maze(challenge, result):
+    if not isinstance(result, list):
+        return False
+    maze = challenge._maze
+    n = len(maze)
+    if not result:
+        # Check if any path exists at all.
+        if n == 0 or maze[0][0] == 0 or maze[n - 1][n - 1] == 0:
+            return True
+        return False
+    # The path must start at (0, 0), end at (n-1, n-1), and each
+    # step is 4-neighbour.
+    if result[0] != (0, 0) or result[-1] != (n - 1, n - 1):
+        return False
+    for i in range(1, len(result)):
+        r, c = result[i]
+        pr, pc = result[i - 1]
+        if abs(r - pr) + abs(c - pc) != 1:
+            return False
+        if maze[r][c] == 0:
+            return False
+    return True
+
+
+# === backtrack_06: Knight's Tour (small board) ===
+#
+# For a board of size n, find any sequence of knight moves that
+# visits every cell exactly once. Setup uses n <= 4; backtracking
+# with simple heuristics.
+
+
+BACKTRACK_06_SOURCE = '''
+def solve(n):
+    """Return a path visiting all n*n cells via knight moves, or []."""
+    if n <= 1:
+        return [(0, 0)] if n == 1 else []
+    # No closed-form tour for n in {2, 3, 4}. The minimum is 5x5.
+    if n < 5:
+        return []
+    # Build a board of visited flags.
+    visited = [[False] * n for _ in range(n)]
+    path = []
+    moves = [(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2), (2, -1)]
+
+    def degree(r, c):
+        # Count how many on-board unvisited neighbours.
+        count = 0
+        for dr, dc in moves:
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < n and 0 <= nc < n and not visited[nr][nc]:
+                count += 1
+        return count
+
+    def helper(r, c, step):
+        visited[r][c] = True
+        path.append((r, c))
+        if step == n * n:
+            return True
+        # Warnsdorff's rule: pick the neighbour with the fewest onward moves.
+        candidates = []
+        for dr, dc in moves:
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < n and 0 <= nc < n and not visited[nr][nc]:
+                candidates.append((degree(nr, nc), nr, nc))
+        candidates.sort()
+        for _, nr, nc in candidates:
+            if helper(nr, nc, step + 1):
+                return True
+        visited[r][c] = False
+        path.pop()
+        return False
+
+    if helper(0, 0, 1):
+        return path
+    return []
+'''
+
+
+def _setup_knight_tour(challenge, n, seed):
+    # A knight's tour doesn't exist for n < 5. The test gauntlet runs
+    # at n=4, 8, 16; pick a board size that's at least 5 so the
+    # canonical algorithm has work to do. Cap at 8 (5x5, 6x6, 7x7,
+    # 8x8) to keep the brute-force verify fast.
+    n_board = max(5, min(n, 8))
+    challenge._n = n_board
+    return {"n": n_board}
+
+
+def _verify_knight_tour(challenge, result):
+    if not isinstance(result, list):
+        return False
+    n = challenge._n
+    expected_len = n * n if n >= 1 else 0
+    if len(result) != expected_len:
+        return False
+    moves = {(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2), (2, -1)}
+    seen = set()
+    for r, c in result:
+        if not (0 <= r < n and 0 <= c < n):
+            return False
+        if (r, c) in seen:
+            return False
+        seen.add((r, c))
+    for i in range(1, len(result)):
+        pr, pc = result[i - 1]
+        r, c = result[i]
+        if (r - pr, c - pc) not in moves:
+            return False
+    return True
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="backtrack_05",
+        name="Rat in a Maze",
+        category="backtracking",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_2N,
+        description=(
+            "Find a path from (0, 0) to (n-1, n-1) in a 0/1 maze\n"
+            "(1 = open, 0 = blocked). Move 4-neighbour (right, down,\n"
+            "left, up). Backtracking DFS with a visited set. The setup\n"
+            "carves a guaranteed path, so the answer is always non-empty.\n"
+            "Source: https://www.geeksforgeeks.org/rat-in-a-maze-problem-when-movement-in-all-possible-directions-is-allowed/"
+        ),
+        source_url="https://www.geeksforgeeks.org/rat-in-a-maze-problem-when-movement-in-all-possible-directions-is-allowed/",
+        params=["maze", "n"],
+        inputs={
+            "maze": "n x n maze; 1 = open, 0 = blocked.",
+            "n": "maze dimension (capped at 4 in the setup).",
+        },
+        returns="a path as a list of (row, col) tuples, or [] if no path.",
+        source=BACKTRACK_05_SOURCE,
+        setup_fn=_setup_rat_maze,
+        verify_fn=_verify_rat_maze,
+        samples=[
+            Sample("maze = [[1, 0, 0, 0], [1, 1, 0, 1], [0, 1, 0, 0], [1, 1, 1, 1]], n = 4", "[(0,0), (1,0), (1,1), (2,1), (3,1), (3,2), (3,3)] (or similar)"),
+        ],
+        hint="DFS with visited set. Move 4-neighbour. Stop when you reach (n-1, n-1).",
+        parents=["backtrack_04"],
+        children=["backtrack_06"],
+    ),
+    AlgorithmSpec(
+        id="backtrack_06",
+        name="Knight's Tour",
+        category="backtracking",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_2N,
+        description=(
+            "Find a sequence of knight moves that visits every cell of\n"
+            "an n x n board exactly once. Warnsdorff's heuristic: at\n"
+            "each step, prefer the move with the fewest onward\n"
+            "neighbours. Setup uses n <= 4 so the brute-force verify\n"
+            "is fast.\n"
+            "Source: https://www.geeksforgeeks.org/the-knights-tour-problem/"
+        ),
+        source_url="https://www.geeksforgeeks.org/the-knights-tour-problem/",
+        params=["n"],
+        inputs={
+            "n": "board dimension (capped at 4 in the setup).",
+        },
+        returns="a list of n*n (row, col) tuples - the tour order, or [] if no tour exists.",
+        source=BACKTRACK_06_SOURCE,
+        setup_fn=_setup_knight_tour,
+        verify_fn=_verify_knight_tour,
+        samples=[
+            Sample("n = 5", "a 25-cell tour exists (canonical Warnsdorff)"),
+        ],
+        hint="DFS. At each step, prefer the move whose destination has the fewest onward neighbours.",
+        parents=["backtrack_05"],
+        children=[],
+    ),
+])

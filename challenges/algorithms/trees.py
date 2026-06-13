@@ -2023,6 +2023,217 @@ SPECS.extend([
         ],
         hint="Add root, then walk the left edge (no leaves), then all leaves, then the right edge in reverse.",
         parents=["tree_15"],
+        children=["tree_20"],
+    ),
+])
+
+
+# === tree_20: Binary Tree to BST ===
+#
+# In-order traversal of the BT gives values in some order.
+# Sort, then re-assign in-order to convert the BT into a BST
+# that holds the same values.
+
+
+TREE_20_SOURCE = '''
+def solve(children, values, root, n):
+    """Convert a binary tree to a BST holding the same values.
+
+    In-order walk to collect nodes; sort values; assign sorted
+    values back in in-order. Return the new (children, values) pair.
+    """
+    if n == 0 or root == -1:
+        return [], []
+    out = []
+
+    def collect(i):
+        if i == -1:
+            return
+        collect(children[i][0])
+        out.append(i)
+        collect(children[i][1])
+    collect(root)
+    sorted_vals = sorted(values)
+    new_values = list(values)
+    for idx, node in enumerate(out):
+        new_values[node] = sorted_vals[idx]
+    return list(children), new_values
+'''
+
+
+def _setup_tree_20(challenge, n, seed):
+    rng = random.Random(seed)
+    n_nodes = max(2, min(n, 10))
+    children = [[-1, -1] for _ in range(n_nodes)]
+    for i in range(1, n_nodes):
+        # Pick a parent with an open slot.
+        while True:
+            parent = rng.randint(0, i - 1)
+            if children[parent][0] == -1:
+                children[parent][0] = i
+                break
+            if children[parent][1] == -1:
+                children[parent][1] = i
+                break
+    values = [rng.randint(0, 99) for _ in range(n_nodes)]
+    challenge._children = children
+    challenge._values = list(values)
+    return {"children": children, "values": list(values), "root": 0, "n": n_nodes}
+
+
+def _verify_tree_20(challenge, result):
+    if not isinstance(result, tuple) or len(result) != 2:
+        return False
+    children, values = result
+    if children != challenge._children:
+        return False
+    if sorted(values) != sorted(challenge._values):
+        return False
+    # Check BST property: in-order traversal yields sorted values.
+    out = []
+
+    def walk(i):
+        if i == -1:
+            return
+        walk(children[i][0])
+        out.append(values[i])
+        walk(children[i][1])
+    walk(0)
+    return out == sorted(values)
+
+
+# === tree_21: Root-to-Leaf Paths ===
+#
+# DFS from the root, accumulating the path. When a leaf is reached,
+# record a copy of the path.
+
+
+TREE_21_SOURCE = '''
+def solve(children, root, n):
+    """Return every root-to-leaf path as a list of node values."""
+    if n == 0 or root == -1:
+        return []
+    out = []
+
+    def dfs(i, path):
+        if i == -1:
+            return
+        path.append(i)
+        if children[i][0] == -1 and children[i][1] == -1:
+            out.append(list(path))
+        else:
+            dfs(children[i][0], path)
+            dfs(children[i][1], path)
+        path.pop()
+    dfs(root, [])
+    return out
+'''
+
+
+def _setup_tree_21(challenge, n, seed):
+    rng = random.Random(seed)
+    n_nodes = max(1, min(n, 10))
+    children = [[-1, -1] for _ in range(n_nodes)]
+    for i in range(1, n_nodes):
+        while True:
+            parent = rng.randint(0, i - 1)
+            if children[parent][0] == -1:
+                children[parent][0] = i
+                break
+            if children[parent][1] == -1:
+                children[parent][1] = i
+                break
+    challenge._children = children
+    return {"children": children, "root": 0, "n": n_nodes}
+
+
+def _verify_tree_21(challenge, result):
+    if not isinstance(result, list):
+        return False
+    # Brute force: every path from root to a leaf.
+    children = challenge._children
+    n = len(children)
+    out = []
+
+    def dfs(i, path):
+        if i == -1:
+            return
+        path.append(i)
+        if children[i][0] == -1 and children[i][1] == -1:
+            out.append(list(path))
+        else:
+            dfs(children[i][0], path)
+            dfs(children[i][1], path)
+        path.pop()
+    dfs(0, [])
+    # The result should match the brute-force walk exactly.
+    return result == out
+
+
+# === tree_22: Symmetric Tree Check (already at tree_14) ===
+# This slot reserved.
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="tree_20",
+        name="Binary Tree to BST",
+        category="trees",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N_LOG_N,
+        description=(
+            "Convert a binary tree to a binary SEARCH tree holding the\n"
+            "same values. In-order walk to collect nodes; sort values;\n"
+            "walk in-order again, replacing each node's value with\n"
+            "the next sorted value. O(n log n) for the sort.\n"
+            "Source: https://www.geeksforgeeks.org/binary-tree-to-binary-search-tree-conversion/"
+        ),
+        source_url="https://www.geeksforgeeks.org/binary-tree-to-binary-search-tree-conversion/",
+        params=["children", "values", "root", "n"],
+        inputs={
+            "children": "list of length n; children[i] = [left, right].",
+            "values": "list of length n; values[i] is the value at node i.",
+            "root": "the root node index.",
+            "n": "number of nodes.",
+        },
+        returns="(new_children, new_values) - the BST holding the same values.",
+        source=TREE_20_SOURCE,
+        setup_fn=_setup_tree_20,
+        verify_fn=_verify_tree_20,
+        samples=[
+            Sample("children = [[1, 2], [-1, -1], [-1, -1]], values = [5, 7, 3], root = 0, n = 3", "([(1,2),(-1,-1),(-1,-1)], [5,3,7]) (in-order 7,3,5 -> sorted 3,5,7)"),
+        ],
+        hint="In-order walk collects nodes. Sort values. Walk in-order again, assigning sorted values back.",
+        parents=["tree_19"],
+        children=["tree_21"],
+    ),
+    AlgorithmSpec(
+        id="tree_21",
+        name="Root-to-Leaf Paths",
+        category="trees",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Return every root-to-leaf path as a list of node-index\n"
+            "lists. DFS from the root, accumulating the path; record\n"
+            "a copy when a leaf is reached. O(n) total.\n"
+            "Source: https://www.geeksforgeeks.org/given-a-binary-tree-print-all-root-to-leaf-paths/"
+        ),
+        source_url="https://www.geeksforgeeks.org/given-a-binary-tree-print-all-root-to-leaf-paths/",
+        params=["children", "root", "n"],
+        inputs={
+            "children": "list of length n; children[i] = [left, right].",
+            "root": "the root node index (always 0 in the setup).",
+            "n": "number of nodes.",
+        },
+        returns="a list of paths; each path is a list of node indices.",
+        source=TREE_21_SOURCE,
+        setup_fn=_setup_tree_21,
+        verify_fn=_verify_tree_21,
+        samples=[
+            Sample("children = [[1, 2], [3, -1], [-1, -1], [-1, -1]], root = 0, n = 4", "[[0, 1, 3], [0, 2]]"),
+        ],
+        hint="DFS. On reaching a leaf (no children), record a copy of the current path.",
+        parents=["tree_20"],
         children=[],
     ),
 ])

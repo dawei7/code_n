@@ -1686,3 +1686,395 @@ SPECS.extend([
         children=[],
     ),
 ])
+
+
+# === dp_21: Boolean Parenthesization ===
+
+DP_21_SOURCE = '''
+def solve(s, n):
+    """Count the number of ways to parenthesize a boolean expression
+    so it evaluates to True. The expression has T/F operands and
+    &, |, ^ operators. Standard interval DP.
+    """
+    if n == 0:
+        return 0
+    # Count of True (T_count) and False (F_count) for each interval [i, j].
+    # We only need to consider operand positions: even indices.
+    T = [[0] * n for _ in range(n)]
+    F = [[0] * n for _ in range(n)]
+    for i in range(0, n, 2):
+        T[i][i] = 1 if s[i] == "T" else 0
+        F[i][i] = 1 if s[i] == "F" else 0
+    for gap in range(2, n, 2):
+        for i in range(0, n - gap, 2):
+            j = i + gap
+            T[i][j] = F[i][j] = 0
+            for k in range(i + 1, j, 2):
+                op = s[k]
+                lt, lf = T[i][k - 1], F[i][k - 1]
+                rt, rf = T[k + 1][j], F[k + 1][j]
+                if op == "&":
+                    T[i][j] += lt * rt
+                    F[i][j] += lt * rf + lf * rt + lf * rf
+                elif op == "|":
+                    T[i][j] += lt * rt + lt * rf + lf * rt
+                    F[i][j] += lf * rf
+                else:  # ^
+                    T[i][j] += lt * rf + lf * rt
+                    F[i][j] += lt * rt + lf * rf
+    return T[0][n - 1]
+'''
+
+
+def _setup_bool_paren(challenge, n, seed):
+    rng = random.Random(seed)
+    # Boolean expressions: T F T F ... with operators between.
+    n_ops = max(1, min(n, 6))
+    operands = [rng.choice("TF") for _ in range(n_ops + 1)]
+    operators = [rng.choice("&|^") for _ in range(n_ops)]
+    s_list = [operands[0]]
+    for i, op in enumerate(operators):
+        s_list.append(op)
+        s_list.append(operands[i + 1])
+    s = "".join(s_list)
+    challenge._s = s
+    return {"s": s, "n": len(s)}
+
+
+def _verify_bool_paren(challenge, result):
+    if not isinstance(result, int):
+        return False
+    s = challenge._s
+    # Brute-force: enumerate every way to parenthesize and count Trues.
+    operands = [c for c in s if c in "TF"]
+    operators = [c for c in s if c in "&|^"]
+
+    def rec(i, j):
+        if i == j:
+            return (1 if operands[i] == "T" else 0,
+                    1 if operands[i] == "F" else 0)
+        t = 0
+        f = 0
+        for k in range(i, j):
+            lt, lf = rec(i, k)
+            rt, rf = rec(k + 1, j)
+            op = operators[k]
+            if op == "&":
+                t += lt * rt
+                f += lt * rf + lf * rt + lf * rf
+            elif op == "|":
+                t += lt * rt + lt * rf + lf * rt
+                f += lf * rf
+            else:  # ^
+                t += lt * rf + lf * rt
+                f += lt * rt + lf * rf
+        return t, f
+
+    expected, _ = rec(0, len(operands) - 1)
+    return result == expected
+
+
+# === dp_22: Egg Dropping ===
+
+DP_22_SOURCE = '''
+def solve(eggs, floors):
+    """Return the minimum number of trials needed in the worst case
+    to find the critical floor in the egg-dropping problem.
+    dp[e][f] = min trials for e eggs and f floors. Recurrence: drop
+    from floor x -> 1 + max(dp[e-1][x-1], dp[e][f-x]).
+    """
+    if floors == 0:
+        return 0
+    if eggs == 1:
+        return floors
+    # Build the table.
+    dp = [[0] * (floors + 1) for _ in range(eggs + 1)]
+    for f in range(1, floors + 1):
+        dp[1][f] = f
+    for e in range(2, eggs + 1):
+        for f in range(1, floors + 1):
+            best = f  # worst case: try every floor with one egg
+            for x in range(1, f + 1):
+                worst = 1 + max(dp[e - 1][x - 1], dp[e][f - x])
+                if worst < best:
+                    best = worst
+            dp[e][f] = best
+    return dp[eggs][floors]
+'''
+
+
+def _setup_egg_drop(challenge, n, seed):
+    rng = random.Random(seed)
+    eggs = max(1, min(n, 6))
+    floors = max(1, min(n * 2, 10))
+    challenge._eggs = eggs
+    challenge._floors = floors
+    return {"eggs": eggs, "floors": floors}
+
+
+def _verify_egg_drop(challenge, result):
+    if not isinstance(result, int):
+        return False
+    eggs, floors = challenge._eggs, challenge._floors
+
+    def solve_brute(e, f):
+        if f == 0:
+            return 0
+        if e == 1:
+            return f
+        best = f
+        for x in range(1, f + 1):
+            worst = 1 + max(solve_brute(e - 1, x - 1), solve_brute(e, f - x))
+            if worst < best:
+                best = worst
+        return best
+
+    return result == solve_brute(eggs, floors)
+
+
+# === dp_23: Min Cost Climbing Stairs ===
+
+DP_23_SOURCE = '''
+def solve(cost, n):
+    """Minimum cost to reach the top of a staircase where you may
+    climb 1 or 2 steps at a time. ``cost[i]`` is the cost of step i.
+    dp[i] = min cost to reach step i. dp[0]=cost[0], dp[1]=cost[1],
+    dp[i] = cost[i] + min(dp[i-1], dp[i-2]). The answer is
+    min(dp[n-1], dp[n-2]) - either of the last two steps.
+    """
+    if n == 0:
+        return 0
+    if n == 1:
+        return cost[0]
+    prev2 = cost[0]
+    prev1 = cost[1]
+    for i in range(2, n):
+        cur = cost[i] + min(prev1, prev2)
+        prev2, prev1 = prev1, cur
+    return min(prev1, prev2)
+'''
+
+
+def _setup_min_cost_climb(challenge, n, seed):
+    rng = random.Random(seed)
+    n = max(1, min(n, 12))
+    cost = [rng.randint(1, 20) for _ in range(n)]
+    challenge._cost = list(cost)
+    return {"cost": list(cost), "n": n}
+
+
+def _verify_min_cost_climb(challenge, result):
+    if not isinstance(result, int):
+        return False
+    cost = challenge._cost
+    n = len(cost)
+    if n == 0:
+        return result == 0
+    if n == 1:
+        return result == cost[0]
+    # Brute force: every path from 0 to n-1 or 1 to n-1.
+    best = float("inf")
+
+    def walk(i, total):
+        nonlocal best
+        if i >= n:
+            if total < best:
+                best = total
+            return
+        walk(i + 1, total + cost[i])
+        walk(i + 2, total + cost[i])
+
+    walk(0, 0)
+    walk(1, 0)
+    return result == best
+
+
+# === dp_24: Palindromic Partitioning (min cuts) ===
+
+DP_24_SOURCE = '''
+def solve(s, n):
+    """Return the minimum number of cuts to partition s into palindromes.
+
+    Precompute palindrome table: is_pal[i][j] = True iff s[i..j] is
+    a palindrome. Then dp[i] = min cuts for s[i..n-1].
+    dp[n] = 0 (empty suffix needs 0 cuts).
+    dp[i] = min over j >= i with is_pal[i][j] of (0 if j == n-1 else 1 + dp[j+1]).
+    """
+    if n == 0:
+        return 0
+    is_pal = [[False] * n for _ in range(n)]
+    for i in range(n - 1, -1, -1):
+        for j in range(i, n):
+            if s[i] == s[j] and (j - i < 2 or is_pal[i + 1][j - 1]):
+                is_pal[i][j] = True
+    INF = float("inf")
+    dp = [INF] * (n + 1)
+    dp[n] = 0
+    for i in range(n - 1, -1, -1):
+        for j in range(i, n):
+            if is_pal[i][j]:
+                cost = 0 if j == n - 1 else 1 + dp[j + 1]
+                if cost < dp[i]:
+                    dp[i] = cost
+    return dp[0]
+'''
+
+
+def _setup_palin_partition(challenge, n, seed):
+    rng = random.Random(seed)
+    n_chars = max(1, min(n, 10))
+    s = "".join(rng.choice("abc") for _ in range(n_chars))
+    challenge._s = s
+    return {"s": s, "n": len(s)}
+
+
+def _verify_palin_partition(challenge, result):
+    if not isinstance(result, int):
+        return False
+    s = challenge._s
+    n = len(s)
+    # Brute force: try every partition.
+    best = n - 1 if n > 0 else 0
+
+    def helper(i, cuts):
+        nonlocal best
+        if i == n:
+            if cuts < best:
+                best = cuts
+            return
+        for j in range(i, n):
+            sub = s[i:j + 1]
+            if sub == sub[::-1]:
+                helper(j + 1, cuts + (0 if j == n - 1 else 1))
+
+    helper(0, 0)
+    return result == best
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="dp_21",
+        name="Boolean Parenthesization",
+        category="dynamic",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N3,
+        description=(
+            "Count the number of ways to parenthesize a boolean\n"
+            "expression (operands T/F, operators &|^) so it evaluates\n"
+            "to True. Interval DP: T[i][j] / F[i][j] = count of ways\n"
+            "for s[i..j]. At each split, combine the four quadrants\n"
+            "based on the operator.\n"
+            "Source: https://www.geeksforgeeks.org/boolean-parenthesization-problem/"
+        ),
+        source_url="https://www.geeksforgeeks.org/boolean-parenthesization-problem/",
+        params=["s", "n"],
+        inputs={
+            "s": "expression string (operands T/F, operators & | ^).",
+            "n": "length of s.",
+        },
+        returns="the number of parenthesizations that evaluate to True.",
+        source=DP_21_SOURCE,
+        setup_fn=_setup_bool_paren,
+        verify_fn=_verify_bool_paren,
+        samples=[
+            Sample('s = "T|T&F^T", n = 7', "4"),
+            Sample('s = "T^T^T", n = 5', "0"),
+        ],
+        hint="For each split k with operator op, count T[i][j] and F[i][j] from the four quadrants.",
+        parents=["dp_20"],
+        children=["dp_22"],
+    ),
+    AlgorithmSpec(
+        id="dp_22",
+        name="Egg Dropping",
+        category="dynamic",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Return the minimum number of trials needed in the worst\n"
+            "case to find the critical floor. dp[e][f] = min trials for\n"
+            "e eggs and f floors. Drop from floor x -> 1 + worst(\n"
+            "dp[e-1][x-1] (breaks), dp[e][f-x] (survives)).\n"
+            "Source: https://www.geeksforgeeks.org/egg-dropping-puzzle-dp-11/"
+        ),
+        source_url="https://www.geeksforgeeks.org/egg-dropping-puzzle-dp-11/",
+        params=["eggs", "floors"],
+        inputs={
+            "eggs": "number of eggs (1..6 in the setup).",
+            "floors": "number of floors (1..10 in the setup).",
+        },
+        returns="the minimum worst-case number of trials.",
+        source=DP_22_SOURCE,
+        setup_fn=_setup_egg_drop,
+        verify_fn=_verify_egg_drop,
+        samples=[
+            Sample("eggs = 1, floors = 10", "10"),
+            Sample("eggs = 2, floors = 6", "3"),
+        ],
+        hint="dp[1][f] = f. dp[e][f] = min over x of 1 + max(dp[e-1][x-1], dp[e][f-x]).",
+        parents=["dp_21"],
+        children=["dp_23"],
+    ),
+    AlgorithmSpec(
+        id="dp_23",
+        name="Min Cost Climbing Stairs",
+        category="dynamic",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Minimum cost to reach the top of a staircase where you\n"
+            "may climb 1 or 2 steps at a time. cost[i] is the cost of\n"
+            "step i. dp[i] = cost[i] + min(dp[i-1], dp[i-2]). The\n"
+            "answer is min(dp[n-1], dp[n-2]) - either of the last two.\n"
+            "Source: https://www.geeksforgeeks.org/min-cost-climbing-stairs/"
+        ),
+        source_url="https://www.geeksforgeeks.org/min-cost-climbing-stairs/",
+        params=["cost", "n"],
+        inputs={
+            "cost": "list of n step costs.",
+            "n": "length of cost.",
+        },
+        returns="the minimum total cost to reach the top.",
+        source=DP_23_SOURCE,
+        setup_fn=_setup_min_cost_climb,
+        verify_fn=_verify_min_cost_climb,
+        samples=[
+            Sample("cost = [10, 15, 20], n = 3", "15 (start at step 1)"),
+            Sample("cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1], n = 10", "6"),
+        ],
+        hint="dp[i] = cost[i] + min(dp[i-1], dp[i-2]). Answer is min of the last two steps.",
+        parents=["dp_22"],
+        children=["dp_24"],
+    ),
+    AlgorithmSpec(
+        id="dp_24",
+        name="Palindromic Partitioning (Min Cuts)",
+        category="dynamic",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Return the minimum number of cuts to partition s into\n"
+            "palindromes. Precompute is_pal[i][j] (whether s[i..j] is a\n"
+            "palindrome) in O(n^2), then dp[i] = min over j with\n"
+            "is_pal[i][j] of (0 if j == n-1 else 1 + dp[j+1]).\n"
+            "Source: https://www.geeksforgeeks.org/palindromic-partitioning-dp-17/"
+        ),
+        source_url="https://www.geeksforgeeks.org/palindromic-partitioning-dp-17/",
+        params=["s", "n"],
+        inputs={
+            "s": "string of n lower-case characters (capped at 10 in the setup).",
+            "n": "length of s.",
+        },
+        returns="the minimum number of cuts to partition s into palindromes.",
+        source=DP_24_SOURCE,
+        setup_fn=_setup_palin_partition,
+        verify_fn=_verify_palin_partition,
+        samples=[
+            Sample('s = "ababbbabbababa", n = 13', "3 (a|babbbab|b|ababa)"),
+            Sample('s = "aab", n = 3', "1 (aa|b)"),
+        ],
+        hint="Precompute is_pal, then dp[i] = min cuts to cover s[i..n-1] with palindromes.",
+        parents=["dp_23"],
+        children=[],
+    ),
+])
