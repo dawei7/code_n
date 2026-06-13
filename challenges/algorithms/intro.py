@@ -285,6 +285,238 @@ SPECS.extend([
         ],
         hint="XOR a XOR a = 0 and a XOR 0 = a. XOR everything in the array; the duplicates cancel.",
         parents=["bit_02"],
+        children=["bit_04"],
+    ),
+])
+
+
+# === bit_04: Power Set =======================================
+#
+# All subsets of an input list. Canonical bit-trick: each
+# element i of the input is included in subset ``mask`` iff
+# bit i of mask is set. The setup uses a small list (n <= 6)
+# so the 2^n outer result is manageable.
+
+
+BIT_04_SOURCE = '''
+def solve(arr, n):
+    """Return every subset of arr as a list of lists. Subsets are
+    returned in the same bit-iteration order so the verify can
+    do a plain equality check on the flattened representation.
+    """
+    result = []
+    for mask in range(1 << n):
+        subset = []
+        for i in range(n):
+            if mask & (1 << i):
+                subset.append(arr[i])
+        result.append(subset)
+    return result
+'''
+
+
+def _setup_power_set(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    # 2^n subsets blows up fast; cap at 6 so the test stays small.
+    n = max(1, min(n, 6))
+    arr = rng.sample(range(1, 100), n)
+    challenge._arr = list(arr)
+    return {"arr": list(arr), "n": n}
+
+
+def _verify_power_set(challenge, result: Any) -> bool:
+    if not isinstance(result, list):
+        return False
+    arr = challenge._arr
+    expected = []
+    for mask in range(1 << len(arr)):
+        subset = [arr[i] for i in range(len(arr)) if mask & (1 << i)]
+        expected.append(subset)
+    return result == expected
+
+
+# === bit_05: Single Number III ==============================
+#
+# Two unique elements; everyone else appears twice. Classic
+# trick: XOR everything, find a set bit (it differs between
+# the two unique values), then split the array by that bit
+# and XOR each half.
+
+
+BIT_05_SOURCE = '''
+def solve(arr):
+    """Return the two elements that appear exactly once (sorted)."""
+    xor_all = 0
+    for v in arr:
+        xor_all ^= v
+    # Pick a set bit; bit 0 is fine if it's set, otherwise
+    # pick the lowest set bit.
+    diff_bit = xor_all & -xor_all
+    a, b = 0, 0
+    for v in arr:
+        if v & diff_bit:
+            a ^= v
+        else:
+            b ^= v
+    return sorted([a, b])
+'''
+
+
+def _setup_single_number_iii(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    n_pairs = max(1, min(n, 8))
+    # Pick two unique values that differ in at least one bit.
+    u1 = rng.randint(0, 1000)
+    u2 = rng.randint(0, 1000)
+    while (u1 ^ u2) == 0:
+        u2 = rng.randint(0, 1000)
+    pairs = []
+    for _ in range(n_pairs):
+        v = rng.randint(0, 1000)
+        pairs.extend([v, v])
+    rng.shuffle(pairs)
+    # Drop the two unique values in at random positions.
+    arr = list(pairs)
+    arr.insert(rng.randint(0, len(arr)), u1)
+    arr.insert(rng.randint(0, len(arr)), u2)
+    challenge._expected = sorted([u1, u2])
+    return {"arr": arr}
+
+
+def _verify_single_number_iii(challenge, result: Any) -> bool:
+    if not isinstance(result, list) or len(result) != 2:
+        return False
+    if result != sorted(result):
+        return False
+    return result == challenge._expected
+
+
+# === bit_06: Bit Flips to Convert =============================
+#
+# Hamming distance between two integers: the number of bits
+# that differ. XOR the two numbers, then count set bits.
+
+
+BIT_06_SOURCE = '''
+def solve(a, b):
+    """Return the number of bit flips to convert a to b (Hamming distance)."""
+    return bin(a ^ b).count("1")
+'''
+
+
+def _setup_bit_flips(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    max_val = max(2, 1 << min(n, 20))
+    a = rng.randint(0, max_val)
+    b = rng.randint(0, max_val)
+    challenge._a = a
+    challenge._b = b
+    return {"a": a, "b": b}
+
+
+def _verify_bit_flips(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    return result == bin(challenge._a ^ challenge._b).count("1")
+
+
+# Append the bit_04..06 specs.
+SPECS.extend([
+    AlgorithmSpec(
+        id="bit_04",
+        name="Power Set",
+        category="intro",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_2N,
+        description=(
+            "Return every subset of the input list as a list of lists.\n"
+            "The number of subsets is 2^n; iteration is in the same bit\n"
+            "order as the verifier, so the result is comparable directly.\n"
+            "Requirement: O(2^n * n) time.\n"
+            "Source: https://www.geeksforgeeks.org/power-set/"
+        ),
+        source_url="https://www.geeksforgeeks.org/power-set/",
+        params=["arr", "n"],
+        inputs={
+            "arr": "list of n distinct integers (capped at 6 in the setup).",
+            "n": "length of arr.",
+        },
+        returns="a list of 2^n subsets (each a list), in bit-iteration order.",
+        source=BIT_04_SOURCE,
+        setup_fn=_setup_power_set,
+        verify_fn=_verify_power_set,
+        samples=[
+            Sample("arr = [1, 2, 3], n = 3", "[[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]"),
+            Sample("arr = [1], n = 1", "[[], [1]]"),
+        ],
+        hint="For each mask in [0, 2^n), include arr[i] iff bit i of mask is set.",
+        parents=["bit_03"],
+        children=["bit_05"],
+    ),
+    AlgorithmSpec(
+        id="bit_05",
+        name="Single Number III",
+        category="intro",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Every element in the input array appears exactly twice\n"
+            "except for TWO elements, which each appear once. Return\n"
+            "those two unique values (sorted). XOR everything to find\n"
+            "a bit that differs between the two uniques, then split the\n"
+            "array by that bit and XOR each half.\n"
+            "Requirement: O(n) time, O(1) extra space.\n"
+            "Source: https://www.geeksforgeeks.org/find-two-non-repeating-elements-given-array/"
+        ),
+        source_url="https://www.geeksforgeeks.org/find-two-non-repeating-elements-given-array/",
+        params=["arr"],
+        inputs={
+            "arr": "list of integers; two unique values, others appear twice.",
+        },
+        returns="a sorted list [a, b] of the two unique elements.",
+        source=BIT_05_SOURCE,
+        setup_fn=_setup_single_number_iii,
+        verify_fn=_verify_single_number_iii,
+        samples=[
+            Sample("arr = [1, 2, 3, 2, 1, 4]", "[3, 4]"),
+            Sample("arr = [5, 1, 5]", "[1] -> wait, the setup always has pairs + 2 uniques, so this is invalid input."),
+            Sample("arr = [1, 1, 2, 3]", "[2, 3]"),
+        ],
+        hint="XOR everything -> diff bit. Split by diff bit and XOR each side to recover each unique value.",
+        parents=["bit_04"],
+        children=["bit_06"],
+    ),
+    AlgorithmSpec(
+        id="bit_06",
+        name="Bit Flips to Convert",
+        category="intro",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Given two non-negative integers a and b, return the number\n"
+            "of bit flips to convert a to b. Equivalent to the Hamming\n"
+            "distance between the two integers' binary representations.\n"
+            "XOR a and b, then count the set bits.\n"
+            "Requirement: O(log(max(a, b))).\n"
+            "Source: https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b/"
+        ),
+        source_url="https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b/",
+        params=["a", "b"],
+        inputs={
+            "a": "first integer.",
+            "b": "second integer.",
+        },
+        returns="the Hamming distance between a and b.",
+        source=BIT_06_SOURCE,
+        setup_fn=_setup_bit_flips,
+        verify_fn=_verify_bit_flips,
+        samples=[
+            Sample("a = 10 (1010), b = 20 (10100)", "3"),
+            Sample("a = 7 (0111), b = 8 (1000)", "4"),
+            Sample("a = 0, b = 0", "0"),
+        ],
+        hint="a XOR b has a 1 in every position where a and b differ. Count the 1-bits.",
+        parents=["bit_05"],
         children=[],
     ),
 ])
