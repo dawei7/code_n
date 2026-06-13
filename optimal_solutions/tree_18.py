@@ -1,6 +1,8 @@
 """Optimal solution for tree_18: Right Side View.
 
-Return the list of node indices visible from the RIGHT
+BFS level-by-level; the rightmost node at each level is the
+one visible from the right side. Return the list of those
+nodes, top-to-bottom.
 """
 
 

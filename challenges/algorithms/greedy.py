@@ -721,6 +721,121 @@ def solve(coins, amount):
 '''
 
 
+GREEDY_11_SOURCE = '''\
+"""Optimal solution for greedy_11: Egyptian Fraction.
+
+Every positive rational number ``p/q`` can be written as the sum
+of distinct unit fractions (1/d) - the greedy algorithm
+repeatedly takes the smallest unit fraction not smaller than the
+remainder, which is ``ceil(q / p)``. Stop when the remainder
+hits zero; cap the loop at q+1 steps so a degenerate input can't
+run forever.
+"""
+
+
+def solve(p, q):
+    if p <= 0 or q <= 0:
+        return []
+    result = []
+    for _ in range(q + 1):
+        if p == 0:
+            break
+        d = (q + p - 1) // p  # ceil(q / p)
+        result.append(d)
+        p = p * d - q
+        q = q * d
+        # Reduce to keep numbers small.
+        from math import gcd
+        g = gcd(p, q) or 1
+        p //= g
+        q //= g
+    return result
+'''
+
+
+GREEDY_12_SOURCE = '''\
+"""Optimal solution for greedy_12: Max Trains for Stoppage.
+
+Given arrival and departure times for trains at a single platform,
+find the maximum number of trains that can be handled without
+conflict. Greedy: sort by departure time, accept a train iff its
+arrival is after the last accepted departure. O(n log n) for the
+sort.
+"""
+
+
+def solve(arrivals, departures, n):
+    if n == 0:
+        return 0
+    order = sorted(range(n), key=lambda i: (departures[i], arrivals[i]))
+    count = 0
+    last_departure = -1
+    for i in order:
+        if arrivals[i] >= last_departure:
+            count += 1
+            last_departure = departures[i]
+    return count
+'''
+
+
+# --- greedy_11 Egyptian Fraction helpers. ---
+
+
+def _setup_egyptian(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    # Pick a fraction with smallish numerator and denominator so the
+    # greedy algorithm finishes within a reasonable number of steps.
+    q = rng.randint(2, max(2, n) * 3)
+    p = rng.randint(1, q)
+    challenge._p = p
+    challenge._q = q
+    return {"p": p, "q": q}
+
+
+def _verify_egyptian(challenge, result: Any) -> bool:
+    if not isinstance(result, list) or not result:
+        return False
+    # Sum 1/d for each d in result; should equal challenge._p / challenge._q.
+    from fractions import Fraction
+    total = sum(Fraction(1, d) for d in result)
+    expected = Fraction(challenge._p, challenge._q)
+    return total == expected and len(result) == len(set(result))  # distinct
+
+
+# --- greedy_12 Max Trains helpers. ---
+
+
+def _setup_max_trains(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    n_trains = max(1, min(n, 12))
+    arrivals = []
+    departures = []
+    for _ in range(n_trains):
+        a = rng.randint(0, 100)
+        # Keep departures after arrivals, with reasonable spans.
+        d = a + rng.randint(1, 30)
+        arrivals.append(a)
+        departures.append(d)
+    challenge._arrivals = arrivals
+    challenge._departures = departures
+    return {"arrivals": list(arrivals), "departures": list(departures), "n": n_trains}
+
+
+def _verify_max_trains(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    # Re-run the greedy and compare.
+    n = len(challenge._arrivals)
+    order = sorted(range(n), key=lambda i: (challenge._departures[i], challenge._arrivals[i]))
+    count = 0
+    last = -1
+    for i in order:
+        if challenge._arrivals[i] >= last:
+            count += 1
+            last = challenge._departures[i]
+    return result == count
+
+
 SPECS: list[AlgorithmSpec] = [
     AlgorithmSpec(
         id="greedy_01",
@@ -1058,6 +1173,72 @@ SPECS: list[AlgorithmSpec] = [
         ],
         hint="Sort denominations descending. Repeatedly take as many of the largest coin as fits.",
         parents=["greedy_09"],
+        children=["greedy_11"],
+    ),
+    AlgorithmSpec(
+        id="greedy_11",
+        name="Egyptian Fraction",
+        category="greedy",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Represent a rational number ``p/q`` (with p, q > 0) as a sum of\n"
+            "distinct unit fractions ``1/d_i``. The greedy algorithm picks\n"
+            "the smallest unit fraction ``>= p/q`` at each step, which is\n"
+            "``1 / ceil(q/p)``, and recurses on the remainder.\n"
+            "Requirement: O(q) iterations in the worst case.\n"
+            "Source: https://www.geeksforgeeks.org/greedy-algorithms-set-2-kruskals-minimum-spanning-tree-algorithm/"
+        ),
+        source_url="https://www.geeksforgeeks.org/greedy-algorithms-set-2-kruskals-minimum-spanning-tree-algorithm/",
+        params=["p", "q"],
+        inputs={
+            "p": "numerator of the fraction (positive).",
+            "q": "denominator of the fraction (positive).",
+        },
+        returns="a list of unit-fraction denominators summing to p/q.",
+        source=GREEDY_11_SOURCE,
+        setup_fn=_setup_egyptian,
+        verify_fn=_verify_egyptian,
+        samples=[
+            Sample("p = 2, q = 3", "[2, 6]  (2/3 = 1/2 + 1/6)"),
+            Sample("p = 6, q = 14", "[3, 11, 231]  (6/14 = 1/3 + 1/11 + 1/231)"),
+            Sample("p = 1, q = 2", "[2]"),
+        ],
+        hint="At each step, d = ceil(q / p). Subtract p/q from 1/d and recurse.",
+        parents=["greedy_10"],
+        children=["greedy_12"],
+    ),
+    AlgorithmSpec(
+        id="greedy_12",
+        name="Max Trains for Stoppage",
+        category="greedy",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_N_LOG_N,
+        description=(
+            "A single platform can hold one train at a time. Given arrival and\n"
+            "departure times for n trains, find the maximum number that can be\n"
+            "served without overlap. Greedy: sort by departure, accept a train\n"
+            "iff its arrival is >= the last accepted departure.\n"
+            "Requirement: O(n log n).\n"
+            "Source: https://www.geeksforgeeks.org/maximum-trains-stoppage-can-use/"
+        ),
+        source_url="https://www.geeksforgeeks.org/maximum-trains-stoppage-can-use/",
+        params=["arrivals", "departures", "n"],
+        inputs={
+            "arrivals": "list of n arrival times.",
+            "departures": "list of n departure times (parallel to arrivals).",
+            "n": "number of trains.",
+        },
+        returns="the maximum number of trains that can be served without conflict.",
+        source=GREEDY_12_SOURCE,
+        setup_fn=_setup_max_trains,
+        verify_fn=_verify_max_trains,
+        samples=[
+            Sample("arrivals = [100, 120, 150, 200], departures = [110, 130, 210, 220], n = 4", "3"),
+            Sample("arrivals = [900, 1000, 1100], departures = [1000, 1100, 1200], n = 3", "3"),
+        ],
+        hint="Sort by departure. Greedily accept a train if its arrival is >= the last accepted departure.",
+        parents=["greedy_11"],
         children=[],
     ),
 ]

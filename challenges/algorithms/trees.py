@@ -1522,7 +1522,13 @@ def _verify_tree_15(challenge, result):
 
 TREE_16_SOURCE = '''
 def solve(children, root, n):
-    """Serialize the tree to a string, then deserialize it. Return the new children list."""
+    """Serialize the tree to a string, then deserialize it back.
+
+    The contract: preorder traversal with 'N' for null,
+    comma-separated. Deserialization uses the original node
+    indices from the tokens so the round-trip is a structural
+    identity on a valid tree.
+    """
     # Serialize: preorder with 'N' for null.
     parts = []
 
@@ -1535,41 +1541,26 @@ def solve(children, root, n):
         ser(children[u][1])
 
     ser(root)
-    s = ",".join(parts)
-    # Deserialize.
-    tokens = s.split(",")
+    tokens = ",".join(parts).split(",")
+
+    # Deserialize: pre-register each new node at the index named
+    # by the token, then recurse on left/right.
     idx = [0]
-
-    def des():
-        tok = tokens[idx[0]]
-        idx[0] += 1
-        if tok == "N":
-            return -1
-        node = int(tok)
-        left = des()
-        right = des()
-        return [node, left, right]
-
     new_children = []
-    nodes = []
 
     def build():
         tok = tokens[idx[0]]
         idx[0] += 1
         if tok == "N":
             return -1
-        node_idx = len(nodes)
-        nodes.append(int(tok))
-        # Pre-register so children can refer to this index.
-        new_children.append([-1, -1])
+        node_idx = int(tok)
+        while len(new_children) <= node_idx:
+            new_children.append([-1, -1])
         new_children[node_idx][0] = build()
         new_children[node_idx][1] = build()
         return node_idx
 
-    # Reset and rebuild.
-    idx[0] = 0
-    new_children = []
-    new_root = build()
+    build()
     return new_children
 '''
 
@@ -1578,18 +1569,24 @@ def _setup_tree_16(challenge, n, seed):
     n_nodes = max(1, min(n, 10))
     children = [[-1, -1] for _ in range(n_nodes)]
     for i in range(1, n_nodes):
-        parent = rng.randint(0, i - 1)
-        side = 0 if rng.random() < 0.5 else 1
-        if children[parent][side] == -1:
-            children[parent][side] = i
-        else:
-            children[parent][1 - side] = i
+        # Pick a parent with an open slot so every node stays
+        # attached (the old random-side assignment could overwrite
+        # an existing child and detach nodes from the tree).
+        while True:
+            parent = rng.randint(0, i - 1)
+            if children[parent][0] == -1:
+                children[parent][0] = i
+                break
+            if children[parent][1] == -1:
+                children[parent][1] = i
+                break
     challenge._children = children
     return {"children": children, "root": 0, "n": n_nodes}
 
 def _verify_tree_16(challenge, result):
-    # Re-run the canonical solve (serialize then deserialize) and
-    # compare the result with the original structure.
+    # Round-trip the original and compare. Both the solve and the
+    # verifier serialize then deserialize; if the inputs match, the
+    # outputs match.
     def ser(ch, u, parts):
         if u == -1:
             parts.append("N")
@@ -1600,8 +1597,7 @@ def _verify_tree_16(challenge, result):
 
     parts = []
     ser(challenge._children, 0, parts)
-    s = ",".join(parts)
-    tokens = s.split(",")
+    tokens = ",".join(parts).split(",")
     idx = [0]
     new_children = []
 
@@ -1610,20 +1606,15 @@ def _verify_tree_16(challenge, result):
         idx[0] += 1
         if tok == "N":
             return -1
-        new_children.append([-1, -1])
-        new_children[-1][0] = build()
-        new_children[-1][1] = build()
-        return len(new_children) - 1
+        node_idx = int(tok)
+        while len(new_children) <= node_idx:
+            new_children.append([-1, -1])
+        new_children[node_idx][0] = build()
+        new_children[node_idx][1] = build()
+        return node_idx
 
-    new_root = build()
-    # Pad to the same length (the canonical solve may produce a
-    # different-length list if N appears differently).
-    max_len = max(len(new_children), len(challenge._children))
-    for _ in range(max_len - len(new_children)):
-        new_children.append([-1, -1])
-    for _ in range(max_len - len(challenge._children)):
-        challenge._children.append([-1, -1])
-    return new_children == challenge._children[:max_len] and new_root == 0
+    build()
+    return result == new_children
 
 
 
@@ -1665,12 +1656,18 @@ def _setup_tree_17(challenge, n, seed):
     n_nodes = max(2, min(n, 10))
     children = [[-1, -1] for _ in range(n_nodes)]
     for i in range(1, n_nodes):
-        parent = rng.randint(0, i - 1)
-        side = 0 if rng.random() < 0.5 else 1
-        if children[parent][side] == -1:
-            children[parent][side] = i
-        else:
-            children[parent][1 - side] = i
+        # Always attach to a parent with an open slot so no node
+        # gets detached from the tree (the old random-side
+        # assignment could overwrite an existing child and orphan
+        # the previous occupant, breaking path-finding).
+        while True:
+            parent = rng.randint(0, i - 1)
+            if children[parent][0] == -1:
+                children[parent][0] = i
+                break
+            if children[parent][1] == -1:
+                children[parent][1] = i
+                break
     # Pick two distinct nodes for p, q.
     nodes = list(range(n_nodes))
     rng.shuffle(nodes)

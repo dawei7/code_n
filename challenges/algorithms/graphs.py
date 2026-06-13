@@ -1058,6 +1058,625 @@ def _verify_bipartite(challenge, result: Any) -> bool:
     return result == challenge._expected
 
 
+# === graph_13 Articulation Points ===
+
+GRAPH_13_SOURCE = '''\
+"""Optimal solution for graph_13: Articulation Points.
+
+Tarjan-style DFS on an undirected graph. A node u is an
+articulation point iff one of its DFS-tree children v has
+``low[v] >= disc[u]`` (and u is not the root, OR u is the
+root with more than one DFS child). The result is the sorted
+list of articulation point indices.
+"""
+
+
+def solve(num_nodes, edges):
+    if num_nodes <= 0:
+        return []
+    adj = [set() for _ in range(num_nodes)]
+    for u, v in edges:
+        adj[u].add(v)
+        adj[v].add(u)
+    disc = [-1] * num_nodes
+    low = [0] * num_nodes
+    parent = [-1] * num_nodes
+    ap = set()
+
+    def dfs(u, time):
+        disc[u] = low[u] = time
+        time += 1
+        children = 0
+        for v in sorted(adj[u]):
+            if disc[v] == -1:
+                parent[v] = u
+                children += 1
+                time = dfs(v, time)
+                low[u] = min(low[u], low[v])
+                if parent[u] == -1 and children > 1:
+                    ap.add(u)
+                if parent[u] != -1 and low[v] >= disc[u]:
+                    ap.add(u)
+            elif v != parent[u]:
+                low[u] = min(low[u], disc[v])
+        return time
+
+    dfs(0, 0)
+    return sorted(ap)
+'''
+
+
+def _setup_articulation(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    num_nodes = max(3, min(n, 8))
+    # Build a connected undirected graph with a small chance of cycles.
+    edges = set()
+    for i in range(1, num_nodes):
+        parent = rng.randint(0, i - 1)
+        edges.add((min(parent, i), max(parent, i)))
+    # Add a few extra edges to create cycles (so the algorithm has work to do).
+    extra = max(0, num_nodes // 2)
+    for _ in range(extra):
+        u = rng.randint(0, num_nodes - 1)
+        v = rng.randint(0, num_nodes - 1)
+        if u != v:
+            edges.add((min(u, v), max(u, v)))
+    edges_list = sorted(edges)
+    challenge._num_nodes = num_nodes
+    challenge._edges = edges_list
+    return {"num_nodes": num_nodes, "edges": edges_list}
+
+
+def _verify_articulation(challenge, result: Any) -> bool:
+    if not isinstance(result, list):
+        return False
+    if sorted(result) != result:
+        return False  # must be sorted
+    # Re-run Tarjan's articulation-point algorithm and compare.
+    num_nodes = challenge._num_nodes
+    adj = [set() for _ in range(num_nodes)]
+    for u, v in challenge._edges:
+        adj[u].add(v)
+        adj[v].add(u)
+    disc = [-1] * num_nodes
+    low = [0] * num_nodes
+    parent = [-1] * num_nodes
+    ap = set()
+
+    def dfs(u, time):
+        disc[u] = low[u] = time
+        time += 1
+        children = 0
+        for v in sorted(adj[u]):
+            if disc[v] == -1:
+                parent[v] = u
+                children += 1
+                time = dfs(v, time)
+                low[u] = min(low[u], low[v])
+                if parent[u] == -1 and children > 1:
+                    ap.add(u)
+                if parent[u] != -1 and low[v] >= disc[u]:
+                    ap.add(u)
+            elif v != parent[u]:
+                low[u] = min(low[u], disc[v])
+        return time
+
+    dfs(0, 0)
+    expected = sorted(ap)
+    return result == expected
+
+
+# === graph_14 Bridges ===
+
+GRAPH_14_SOURCE = '''\
+"""Optimal solution for graph_14: Bridges.
+
+Tarjan-style DFS on an undirected graph. An edge (u, v) is a
+bridge iff, in the DFS tree, ``low[v] > disc[u]``. The result
+is the sorted list of (u, v) bridge tuples with u < v.
+"""
+
+
+def solve(num_nodes, edges):
+    if num_nodes <= 0:
+        return []
+    adj = [set() for _ in range(num_nodes)]
+    for u, v in edges:
+        adj[u].add(v)
+        adj[v].add(u)
+    disc = [-1] * num_nodes
+    low = [0] * num_nodes
+    bridges = set()
+
+    def dfs(u, parent, time):
+        disc[u] = low[u] = time
+        time += 1
+        for v in sorted(adj[u]):
+            if disc[v] == -1:
+                time = dfs(v, u, time)
+                low[u] = min(low[u], low[v])
+                if low[v] > disc[u]:
+                    bridges.add((min(u, v), max(u, v)))
+            elif v != parent:
+                low[u] = min(low[u], disc[v])
+        return time
+
+    dfs(0, -1, 0)
+    return sorted(bridges)
+'''
+
+
+def _setup_bridges(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    num_nodes = max(3, min(n, 8))
+    edges = set()
+    for i in range(1, num_nodes):
+        parent = rng.randint(0, i - 1)
+        edges.add((min(parent, i), max(parent, i)))
+    # Extra edges to create cycles (cycles hide bridges).
+    extra = max(0, num_nodes // 3)
+    for _ in range(extra):
+        u = rng.randint(0, num_nodes - 1)
+        v = rng.randint(0, num_nodes - 1)
+        if u != v:
+            edges.add((min(u, v), max(u, v)))
+    edges_list = sorted(edges)
+    challenge._num_nodes = num_nodes
+    challenge._edges = edges_list
+    return {"num_nodes": num_nodes, "edges": edges_list}
+
+
+def _verify_bridges(challenge, result: Any) -> bool:
+    if not isinstance(result, list):
+        return False
+    if sorted(result) != result:
+        return False
+    num_nodes = challenge._num_nodes
+    adj = [set() for _ in range(num_nodes)]
+    for u, v in challenge._edges:
+        adj[u].add(v)
+        adj[v].add(u)
+    disc = [-1] * num_nodes
+    low = [0] * num_nodes
+    bridges = set()
+
+    def dfs(u, parent, time):
+        disc[u] = low[u] = time
+        time += 1
+        for v in sorted(adj[u]):
+            if disc[v] == -1:
+                time = dfs(v, u, time)
+                low[u] = min(low[u], low[v])
+                if low[v] > disc[u]:
+                    bridges.add((min(u, v), max(u, v)))
+            elif v != parent:
+                low[u] = min(low[u], disc[v])
+        return time
+
+    dfs(0, -1, 0)
+    expected = sorted(bridges)
+    return result == expected
+
+
+# === graph_15 Tarjan's SCC ===
+
+GRAPH_15_SOURCE = '''\
+"""Optimal solution for graph_15: Tarjan's SCC.
+
+Single-pass DFS on a directed graph that maintains each node's
+discovery time and low-link value. When low[u] == disc[u], u
+is the root of an SCC; pop the stack until u is removed.
+Returns a list of SCCs, each sorted; outer list sorted by
+smallest element.
+"""
+
+
+def solve(num_nodes, edges):
+    if num_nodes <= 0:
+        return []
+    adj = [[] for _ in range(num_nodes)]
+    for u, v in edges:
+        adj[u].append(v)
+    disc = [-1] * num_nodes
+    low = [0] * num_nodes
+    on_stack = [False] * num_nodes
+    stack = []
+    sccs = []
+
+    def dfs(u, time):
+        disc[u] = low[u] = time
+        time += 1
+        stack.append(u)
+        on_stack[u] = True
+        for v in sorted(adj[u]):
+            if disc[v] == -1:
+                time = dfs(v, time)
+                low[u] = min(low[u], low[v])
+            elif on_stack[v]:
+                low[u] = min(low[u], disc[v])
+        if low[u] == disc[u]:
+            component = []
+            while True:
+                w = stack.pop()
+                on_stack[w] = False
+                component.append(w)
+                if w == u:
+                    break
+            sccs.append(sorted(component))
+        return time
+
+    for start in range(num_nodes):
+        if disc[start] == -1:
+            dfs(start, 0)
+    return sorted(sccs, key=lambda c: c[0])
+'''
+
+
+def _setup_tarjan_scc(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    num_nodes = max(3, min(n, 8))
+    # Build a random DAG-ish base; add a few back edges to create SCCs.
+    edges = set()
+    for i in range(1, num_nodes):
+        parent = rng.randint(0, i - 1)
+        edges.add((parent, i))
+    back = max(0, num_nodes // 3)
+    for _ in range(back):
+        u = rng.randint(0, num_nodes - 1)
+        v = rng.randint(0, u - 1) if u > 0 else 0
+        if u != v:
+            edges.add((u, v))
+    edges_list = sorted(edges)
+    challenge._num_nodes = num_nodes
+    challenge._edges = edges_list
+    return {"num_nodes": num_nodes, "edges": edges_list}
+
+
+def _verify_tarjan_scc(challenge, result: Any) -> bool:
+    if not isinstance(result, list):
+        return False
+    num_nodes = challenge._num_nodes
+    adj = [[] for _ in range(num_nodes)]
+    for u, v in challenge._edges:
+        adj[u].append(v)
+    disc = [-1] * num_nodes
+    low = [0] * num_nodes
+    on_stack = [False] * num_nodes
+    stack = []
+    sccs = []
+
+    def dfs(u, time):
+        disc[u] = low[u] = time
+        time += 1
+        stack.append(u)
+        on_stack[u] = True
+        for v in sorted(adj[u]):
+            if disc[v] == -1:
+                time = dfs(v, time)
+                low[u] = min(low[u], low[v])
+            elif on_stack[v]:
+                low[u] = min(low[u], disc[v])
+        if low[u] == disc[u]:
+            component = []
+            while True:
+                w = stack.pop()
+                on_stack[w] = False
+                component.append(w)
+                if w == u:
+                    break
+            sccs.append(sorted(component))
+        return time
+
+    for start in range(num_nodes):
+        if disc[start] == -1:
+            dfs(start, 0)
+    expected = sorted(sccs, key=lambda c: c[0])
+    return result == expected
+
+
+# === graph_16 Kosaraju's SCC ===
+
+GRAPH_16_SOURCE = '''\
+"""Optimal solution for graph_16: Kosaraju's SCC.
+
+Two-pass DFS on a directed graph. Pass 1 walks the original
+graph, pushing each node onto a stack when its DFS finishes.
+Pass 2 walks the transpose graph in stack-pop order; each DFS
+tree in pass 2 is one SCC. Outer list sorted by smallest
+element.
+"""
+
+
+def solve(num_nodes, edges):
+    if num_nodes <= 0:
+        return []
+    adj = [[] for _ in range(num_nodes)]
+    radj = [[] for _ in range(num_nodes)]
+    for u, v in edges:
+        adj[u].append(v)
+        radj[v].append(u)
+    visited = [False] * num_nodes
+    order = []
+
+    def dfs1(u):
+        visited[u] = True
+        for v in sorted(adj[u]):
+            if not visited[v]:
+                dfs1(v)
+        order.append(u)
+
+    for u in range(num_nodes):
+        if not visited[u]:
+            dfs1(u)
+    visited = [False] * num_nodes
+    sccs = []
+
+    def dfs2(u, comp):
+        visited[u] = True
+        comp.append(u)
+        for v in sorted(radj[u]):
+            if not visited[v]:
+                dfs2(v, comp)
+
+    for u in reversed(order):
+        if not visited[u]:
+            comp = []
+            dfs2(u, comp)
+            sccs.append(sorted(comp))
+    return sorted(sccs, key=lambda c: c[0])
+'''
+
+
+def _setup_kosaraju_scc(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    num_nodes = max(3, min(n, 8))
+    edges = set()
+    for i in range(1, num_nodes):
+        parent = rng.randint(0, i - 1)
+        edges.add((parent, i))
+    back = max(0, num_nodes // 3)
+    for _ in range(back):
+        u = rng.randint(0, num_nodes - 1)
+        v = rng.randint(0, u - 1) if u > 0 else 0
+        if u != v:
+            edges.add((u, v))
+    edges_list = sorted(edges)
+    challenge._num_nodes = num_nodes
+    challenge._edges = edges_list
+    return {"num_nodes": num_nodes, "edges": edges_list}
+
+
+def _verify_kosaraju_scc(challenge, result: Any) -> bool:
+    if not isinstance(result, list):
+        return False
+    num_nodes = challenge._num_nodes
+    adj = [[] for _ in range(num_nodes)]
+    radj = [[] for _ in range(num_nodes)]
+    for u, v in challenge._edges:
+        adj[u].append(v)
+        radj[v].append(u)
+    visited = [False] * num_nodes
+    order = []
+
+    def dfs1(u):
+        visited[u] = True
+        for v in sorted(adj[u]):
+            if not visited[v]:
+                dfs1(v)
+        order.append(u)
+
+    for u in range(num_nodes):
+        if not visited[u]:
+            dfs1(u)
+    visited = [False] * num_nodes
+    sccs = []
+
+    def dfs2(u, comp):
+        visited[u] = True
+        comp.append(u)
+        for v in sorted(radj[u]):
+            if not visited[v]:
+                dfs2(v, comp)
+
+    for u in reversed(order):
+        if not visited[u]:
+            comp = []
+            dfs2(u, comp)
+            sccs.append(sorted(comp))
+    expected = sorted(sccs, key=lambda c: c[0])
+    return result == expected
+
+
+# === graph_17 0-1 BFS ===
+
+GRAPH_17_SOURCE = '''\
+"""Optimal solution for graph_17: 0-1 BFS.
+
+Shortest path on a graph with edge weights in {0, 1}. Use a
+deque: pop the left, push 0-weight neighbors to the LEFT and
+1-weight neighbors to the RIGHT. This is O(V + E).
+"""
+
+
+def solve(num_nodes, edges, start):
+    if num_nodes <= 0:
+        return {}
+    adj = [[] for _ in range(num_nodes)]
+    for u, v, w in edges:
+        adj[u].append((v, w))
+        adj[v].append((u, w))
+    INF = float("inf")
+    dist = [INF] * num_nodes
+    dist[start] = 0
+    from collections import deque
+    dq = deque([start])
+    while dq:
+        u = dq.popleft()
+        for v, w in adj[u]:
+            if dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+                if w == 0:
+                    dq.appendleft(v)
+                else:
+                    dq.append(v)
+    return {i: (-1 if dist[i] == INF else dist[i]) for i in range(num_nodes)}
+'''
+
+
+def _setup_zero_one_bfs(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    num_nodes = max(4, min(n, 10))
+    edges = []
+    for i in range(1, num_nodes):
+        parent = rng.randint(0, i - 1)
+        w = rng.randint(0, 1)
+        edges.append((parent, i, w))
+        edges.append((i, parent, w))
+    # Extra edges.
+    for _ in range(num_nodes):
+        u = rng.randint(0, num_nodes - 1)
+        v = rng.randint(0, num_nodes - 1)
+        if u != v:
+            edges.append((u, v, rng.randint(0, 1)))
+    challenge._num_nodes = num_nodes
+    challenge._edges = edges
+    challenge._start = 0
+    return {"num_nodes": num_nodes, "edges": list(edges), "start": 0}
+
+
+def _verify_zero_one_bfs(challenge, result: Any) -> bool:
+    if not isinstance(result, dict):
+        return False
+    num_nodes = challenge._num_nodes
+    adj = [[] for _ in range(num_nodes)]
+    for u, v, w in challenge._edges:
+        adj[u].append((v, w))
+        adj[v].append((u, w))
+    INF = float("inf")
+    dist = [INF] * num_nodes
+    dist[0] = 0
+    from collections import deque
+    dq = deque([0])
+    while dq:
+        u = dq.popleft()
+        for v, w in adj[u]:
+            if dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+                if w == 0:
+                    dq.appendleft(v)
+                else:
+                    dq.append(v)
+    expected = {i: (-1 if dist[i] == INF else dist[i]) for i in range(num_nodes)}
+    return result == expected
+
+
+# === graph_18 A* Search (2D grid) ===
+
+GRAPH_18_SOURCE = '''\
+"""Optimal solution for graph_18: A* Search on a 2D grid.
+
+Manhattan-distance heuristic. Walk the grid with 4-neighbour
+moves; a priority queue keyed on f = g + h (cost so far plus
+Manhattan distance to goal) drives the expansion order.
+Return the shortest path length in steps, or -1 if no path.
+"""
+
+
+def solve(grid, start, goal, size):
+    from heapq import heappush, heappop
+    if grid[start[0]][start[1]] == 1 or grid[goal[0]][goal[1]] == 1:
+        return -1
+    if start == goal:
+        return 0
+
+    def heuristic(p):
+        return abs(p[0] - goal[0]) + abs(p[1] - goal[1])
+
+    open_heap = []
+    heappush(open_heap, (heuristic(start), 0, start))
+    g_score = {start: 0}
+    while open_heap:
+        f, g, current = heappop(open_heap)
+        if current == goal:
+            return g
+        if g > g_score.get(current, float("inf")):
+            continue
+        row, col = current
+        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            nr, nc = row + dr, col + dc
+            if 0 <= nr < size and 0 <= nc < size and grid[nr][nc] == 0:
+                nbr = (nr, nc)
+                tentative = g + 1
+                if tentative < g_score.get(nbr, float("inf")):
+                    g_score[nbr] = tentative
+                    heappush(open_heap, (tentative + heuristic(nbr), tentative, nbr))
+    return -1
+'''
+
+
+def _setup_astar(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    size = max(3, min(n, 12))
+    # 0 = walkable, 1 = wall. Start top-left, goal bottom-right.
+    grid = [[0] * size for _ in range(size)]
+    # Scatter walls; keep start/goal walkable and reachable.
+    wall_count = max(1, size // 2)
+    for _ in range(wall_count):
+        r = rng.randint(0, size - 1)
+        c = rng.randint(0, size - 1)
+        if (r, c) != (0, 0) and (r, c) != (size - 1, size - 1):
+            grid[r][c] = 1
+    # BFS to verify a path exists; if not, clear a row to ensure reachability.
+    from collections import deque
+    if not _has_path(grid, size, (0, 0), (size - 1, size - 1)):
+        for c in range(size):
+            grid[size - 1][c] = 0
+    challenge._grid = grid
+    return {
+        "grid": [row[:] for row in grid],
+        "start": (0, 0),
+        "goal": (size - 1, size - 1),
+        "size": size,
+    }
+
+
+def _has_path(grid, size, start, goal):
+    from collections import deque
+    q = deque([start])
+    seen = {start}
+    while q:
+        r, c = q.popleft()
+        if (r, c) == goal:
+            return True
+        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < size and 0 <= nc < size and (nr, nc) not in seen and grid[nr][nc] == 0:
+                seen.add((nr, nc))
+                q.append((nr, nc))
+    return False
+
+
+def _verify_astar(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    grid = challenge._grid
+    size = len(grid)
+    # Brute-force BFS gives the ground-truth shortest path.
+    from collections import deque
+    q = deque([(0, 0, 0)])
+    seen = {(0, 0)}
+    while q:
+        r, c, d = q.popleft()
+        if (r, c) == (size - 1, size - 1):
+            return result == d
+        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < size and 0 <= nc < size and (nr, nc) not in seen and grid[nr][nc] == 0:
+                seen.add((nr, nc))
+                q.append((nr, nc, d + 1))
+    return result == -1
+
+
 # === Spec list ====================================================
 
 
@@ -1389,6 +2008,212 @@ SPECS.extend([
         ],
         hint="BFS. Assign alternating colors; if a neighbor already has the same color, fail.",
         parents=["graph_11"],
+        children=["graph_13"],
+    ),
+    AlgorithmSpec(
+        id="graph_13",
+        name="Articulation Points",
+        category="graphs",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Find all articulation points (cut vertices) in an undirected\n"
+            "graph. A node u is an articulation point iff its removal\n"
+            "disconnects the graph. Tarjan-style DFS: u is one iff it has\n"
+            "more than one DFS child (if root) or some child v has\n"
+            "``low[v] >= disc[u]``.\n"
+            "Return the sorted list of articulation point indices.\n"
+            "Requirement: O(V + E).\n"
+            "Source: https://www.geeksforgeeks.org/articulation-points-or-cut-vertices-in-a-graph/"
+        ),
+        source_url="https://www.geeksforgeeks.org/articulation-points-or-cut-vertices-in-a-graph/",
+        params=["num_nodes", "edges"],
+        inputs={
+            "num_nodes": "number of nodes in the graph.",
+            "edges": "list-like of (u, v) tuples for undirected edges.",
+        },
+        returns="a sorted list of articulation point indices.",
+        source=GRAPH_13_SOURCE,
+        setup_fn=_setup_articulation,
+        verify_fn=_verify_articulation,
+        samples=[
+            Sample("num_nodes = 5, edges = [(0, 1), (1, 2), (2, 0), (0, 3), (3, 4)]", "[0, 3]"),
+            Sample("num_nodes = 4, edges = [(0, 1), (1, 2), (2, 3)]", "[1, 2]"),
+        ],
+        hint="Tarjan DFS. A node is an articulation point if it has >1 DFS child (when root) or a child v with low[v] >= disc[u].",
+        parents=["graph_12"],
+        children=["graph_14"],
+    ),
+    AlgorithmSpec(
+        id="graph_14",
+        name="Bridges",
+        category="graphs",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Find all bridges (cut edges) in an undirected graph. An\n"
+            "edge (u, v) is a bridge iff its removal disconnects the\n"
+            "graph. Tarjan-style DFS: (u, v) is a bridge iff\n"
+            "``low[v] > disc[u]``.\n"
+            "Return the sorted list of (u, v) tuples (u < v).\n"
+            "Requirement: O(V + E).\n"
+            "Source: https://www.geeksforgeeks.org/bridge-in-a-graph/"
+        ),
+        source_url="https://www.geeksforgeeks.org/bridge-in-a-graph/",
+        params=["num_nodes", "edges"],
+        inputs={
+            "num_nodes": "number of nodes in the graph.",
+            "edges": "list-like of (u, v) tuples for undirected edges.",
+        },
+        returns="a sorted list of (u, v) bridge tuples (u < v).",
+        source=GRAPH_14_SOURCE,
+        setup_fn=_setup_bridges,
+        verify_fn=_verify_bridges,
+        samples=[
+            Sample("num_nodes = 5, edges = [(0, 1), (1, 2), (2, 0), (0, 3), (3, 4)]", "[(0, 3), (3, 4)]"),
+            Sample("num_nodes = 4, edges = [(0, 1), (1, 2), (2, 3)]", "[(0, 1), (1, 2), (2, 3)]"),
+        ],
+        hint="Tarjan DFS. (u, v) is a bridge iff low[v] > disc[u].",
+        parents=["graph_13"],
+        children=["graph_15"],
+    ),
+    AlgorithmSpec(
+        id="graph_15",
+        name="Tarjan's SCC",
+        category="graphs",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Find all strongly connected components of a directed graph\n"
+            "using Tarjan's algorithm. Each SCC is a maximal set of\n"
+            "nodes where every node can reach every other.\n"
+            "Return a list of SCCs; each SCC is sorted internally; the\n"
+            "outer list is sorted by smallest element.\n"
+            "Requirement: O(V + E).\n"
+            "Source: https://www.geeksforgeeks.org/tarjan-algorithm-find-strongly-connected-components/"
+        ),
+        source_url="https://www.geeksforgeeks.org/tarjan-algorithm-find-strongly-connected-components/",
+        params=["num_nodes", "edges"],
+        inputs={
+            "num_nodes": "number of nodes in the graph.",
+            "edges": "list-like of (u, v) tuples for directed edges.",
+        },
+        returns="a list of SCCs (each a sorted list of node indices; outer list sorted).",
+        source=GRAPH_15_SOURCE,
+        setup_fn=_setup_tarjan_scc,
+        verify_fn=_verify_tarjan_scc,
+        samples=[
+            Sample("num_nodes = 5, edges = [(0, 1), (1, 2), (2, 0), (1, 3), (3, 4)]", "[[0, 1, 2], [3], [4]]"),
+            Sample("num_nodes = 3, edges = [(0, 1), (1, 2)]", "[[0], [1], [2]]"),
+        ],
+        hint="DFS with disc and low. When low[u] == disc[u], u is the root of an SCC - pop the stack.",
+        parents=["graph_14"],
+        children=["graph_16"],
+    ),
+    AlgorithmSpec(
+        id="graph_16",
+        name="Kosaraju's SCC",
+        category="graphs",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Find all strongly connected components of a directed graph\n"
+            "using Kosaraju's two-pass algorithm. Pass 1: DFS in the\n"
+            "original graph, pushing nodes onto a stack in finish time\n"
+            "order. Pass 2: pop the stack and DFS on the transpose\n"
+            "graph; each DFS tree is one SCC.\n"
+            "Return a list of SCCs sorted as in Tarjan's spec.\n"
+            "Requirement: O(V + E).\n"
+            "Source: https://www.geeksforgeeks.org/strongly-connected-components/"
+        ),
+        source_url="https://www.geeksforgeeks.org/strongly-connected-components/",
+        params=["num_nodes", "edges"],
+        inputs={
+            "num_nodes": "number of nodes in the graph.",
+            "edges": "list-like of (u, v) tuples for directed edges.",
+        },
+        returns="a list of SCCs (each a sorted list of node indices; outer list sorted).",
+        source=GRAPH_16_SOURCE,
+        setup_fn=_setup_kosaraju_scc,
+        verify_fn=_verify_kosaraju_scc,
+        samples=[
+            Sample("num_nodes = 5, edges = [(0, 1), (1, 2), (2, 0), (1, 3), (3, 4)]", "[[0, 1, 2], [3], [4]]"),
+            Sample("num_nodes = 3, edges = [(0, 1), (1, 2), (2, 0)]", "[[0, 1, 2]]"),
+        ],
+        hint="Two passes. Pass 1 pushes nodes by finish order; pass 2 DFS the transpose graph in reverse finish order.",
+        parents=["graph_15"],
+        children=["graph_17"],
+    ),
+    AlgorithmSpec(
+        id="graph_17",
+        name="0-1 BFS",
+        category="graphs",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Shortest path on a graph with edge weights in {0, 1}.\n"
+            "Use a deque: pop the left, push 0-weight neighbors to the\n"
+            "LEFT and 1-weight neighbors to the RIGHT. This makes the\n"
+            "algorithm O(V + E) - the same as BFS, but supports unit\n"
+            "weights too.\n"
+            "Return a dict mapping each node to its shortest distance from\n"
+            "start. Unreachable nodes get -1.\n"
+            "Requirement: O(V + E).\n"
+            "Source: https://www.geeksforgeeks.org/0-1-bfs-shortest-path-unit-weight-edges/"
+        ),
+        source_url="https://www.geeksforgeeks.org/0-1-bfs-shortest-path-unit-weight-edges/",
+        params=["num_nodes", "edges", "start"],
+        inputs={
+            "num_nodes": "number of nodes in the graph.",
+            "edges": "list-like of (u, v, weight) tuples; weight is 0 or 1.",
+            "start": "source node.",
+        },
+        returns="a dict mapping each node to its shortest distance. Unreachable nodes get -1.",
+        source=GRAPH_17_SOURCE,
+        setup_fn=_setup_zero_one_bfs,
+        verify_fn=_verify_zero_one_bfs,
+        samples=[
+            Sample("num_nodes = 4, edges = [(0, 1, 0), (1, 2, 1), (0, 2, 1), (2, 3, 0)], start = 0", "{0: 0, 1: 0, 2: 1, 3: 1}"),
+        ],
+        hint="Deque (not queue). 0-weight neighbors go to the LEFT, 1-weight neighbors go to the RIGHT.",
+        parents=["graph_16"],
+        children=["graph_18"],
+    ),
+    AlgorithmSpec(
+        id="graph_18",
+        name="A* Search",
+        category="graphs",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Shortest path on a 2D grid with 4-neighbour moves. The\n"
+            "expansion order is driven by a priority queue keyed on\n"
+            "``f = g + h``, where g is the cost-so-far and h is the\n"
+            "Manhattan-distance heuristic from the current cell to the\n"
+            "goal. With an admissible heuristic, A* finds an optimal\n"
+            "path in (typically) far fewer expansions than BFS.\n"
+            "Return the shortest path length in steps, or -1 if no path.\n"
+            "Source: https://www.geeksforgeeks.org/a-search-algorithm/"
+        ),
+        source_url="https://www.geeksforgeeks.org/a-search-algorithm/",
+        params=["grid", "start", "goal", "size"],
+        inputs={
+            "grid": "2D list-like. 0 = walkable, 1 = wall. Read with grid[row][column].",
+            "start": "(row, column) start position.",
+            "goal": "(row, column) goal position.",
+            "size": "width and height of the square grid.",
+        },
+        returns="the length of the shortest path from start to goal in steps, or -1.",
+        source=GRAPH_18_SOURCE,
+        setup_fn=_setup_astar,
+        verify_fn=_verify_astar,
+        max_n=35,  # MAX_2D_N
+        samples=[
+            Sample("grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]], start = (0, 0), goal = (2, 2), size = 3", "4"),
+            Sample("grid = [[0, 0, 1], [0, 0, 0], [1, 0, 0]], start = (0, 0), goal = (2, 2), size = 3", "4"),
+        ],
+        hint="Priority queue keyed on (g + h, g, position) where h is the Manhattan distance to the goal.",
+        parents=["graph_17"],
         children=[],
     ),
 ])

@@ -1,11 +1,13 @@
 """Optimal solution for tree_19: Boundary Traversal.
 
-Return the boundary traversal of a binary tree:
+Walk the boundary of a binary tree anti-clockwise:
+left edge top-to-bottom, then leaves left-to-right, then
+right edge bottom-to-top.
 """
 
 
 def solve(children, root, n):
-    """Boundary traversal: left edge, leaves, right edge (reversed)."""
+    """Boundary traversal: left edge + leaves + right edge (reversed)."""
     if root == -1:
         return []
     out = [root]

@@ -41,7 +41,15 @@ def _setup_flat_search(
     sorted_data: bool,
 ) -> dict[str, Any]:
     rng = random.Random(seed)
-    if sorted_data:
+    if sorted_data == "rotated":
+        base = sorted(rng.sample(range(1, max(2, n) * 3), n))
+        # Rotate at a random pivot (always non-trivial for n > 1).
+        if n > 1:
+            pivot = rng.randint(1, n - 1)
+            challenge._data = base[pivot:] + base[:pivot]
+        else:
+            challenge._data = base
+    elif sorted_data:
         challenge._data = sorted(rng.sample(range(1, max(2, n) * 3), n))
     else:
         challenge._data = [rng.randint(1, 99) for _ in range(n)]
@@ -364,6 +372,158 @@ def solve(data, target, n):
 '''
 
 
+SEARCH_09_SOURCE = '''\
+"""Optimal solution for search_09: Fibonacci Search.
+
+Sorted array; uses Fibonacci numbers to split the range. Always
+shrinks by at least one Fibonacci number, so the loop runs in
+O(log n) time. Like binary search, the range is split by index
+(not value), but the split point is computed as Fib(m-2)/Fib(m)
+of the range rather than the midpoint.
+"""
+
+
+def solve(data, target, n):
+    if n == 0:
+        return -1
+    # Initialise the smallest Fibonacci >= n.
+    fib2, fib1 = 0, 1
+    fib = fib1 + fib2
+    while fib < n:
+        fib2 = fib1
+        fib1 = fib
+        fib = fib1 + fib2
+    offset = -1
+    while fib > 1:
+        i = min(offset + fib2, n - 1)
+        if data[i] < target:
+            fib = fib1
+            fib1 = fib2
+            fib2 = fib - fib1
+            offset = i
+        elif data[i] > target:
+            fib = fib2
+            fib1 = fib1 - fib2
+            fib2 = fib - fib1
+        else:
+            return i
+    if fib1 and offset + 1 < n and data[offset + 1] == target:
+        return offset + 1
+    return -1
+'''
+
+
+SEARCH_10_SOURCE = '''\
+"""Optimal solution for search_10: Sublist Search.
+
+Find the first index where ``sub`` appears in ``data`` as a
+contiguous run, or -1 if it never does. Sliding window: align
+``data[i..i+m-1]`` with ``sub`` for every i in [0..n-m].
+O(n * m) worst case.
+"""
+
+
+def solve(data, sub, n, m):
+    if m == 0:
+        return 0
+    if m > n:
+        return -1
+    for i in range(n - m + 1):
+        match = True
+        for j in range(m):
+            if data[i + j] != sub[j]:
+                match = False
+                break
+        if match:
+            return i
+    return -1
+'''
+
+
+SEARCH_11_SOURCE = '''\
+"""Optimal solution for search_11: Count Occurrences (Sorted).
+
+Sorted array; count how many times ``target`` appears. Two
+binary searches: one for the first occurrence, one for the
+last. Difference + 1 = count (or 0 if target is missing).
+O(log n) time.
+"""
+
+
+def solve(data, target, n):
+    if n == 0:
+        return 0
+
+    def lower_bound(lo, hi, t):
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if data[mid] < t:
+                lo = mid + 1
+            else:
+                hi = mid
+        return lo
+
+    def upper_bound(lo, hi, t):
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if data[mid] <= t:
+                lo = mid + 1
+            else:
+                hi = mid
+        return lo
+
+    first = lower_bound(0, n, target)
+    if first == n or data[first] != target:
+        return 0
+    last = upper_bound(first, n, target)
+    return last - first
+'''
+
+
+SEARCH_12_SOURCE = '''\
+"""Optimal solution for search_12: Search in Rotated Sorted Array.
+
+A sorted array that has been rotated at some unknown pivot.
+Find the index of ``target`` (or -1) in O(log n) time.
+
+Two-step: find the pivot (smallest element), then binary-search
+the half that could contain the target.
+"""
+
+
+def solve(data, target, n):
+    if n == 0:
+        return -1
+    low, high = 0, n - 1
+    # Find the rotation pivot: the smallest element.
+    while low < high:
+        mid = (low + high) // 2
+        if data[mid] > data[high]:
+            low = mid + 1
+        else:
+            high = mid
+    pivot = low
+    # Decide which half to search.
+    if pivot == 0:
+        low, high = 0, n - 1
+    elif data[0] <= target <= data[pivot - 1]:
+        # Target is in the upper half (data[0..pivot-1]).
+        low, high = 0, pivot - 1
+    else:
+        # Target is in the lower half (data[pivot..n-1]).
+        low, high = pivot, n - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if data[mid] == target:
+            return mid
+        if data[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+'''
+
+
 # --- 2D BFS / DFS sources. ---
 
 
@@ -569,6 +729,68 @@ def _flat_search_spec(
         parents=parents,
         children=children,
     )
+
+
+# --- search_10 Sublist Search helpers. ---
+
+
+def _setup_sublist(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    n = max(1, n)
+    data = [rng.randint(1, 9) for _ in range(n)]
+    # Pick a sublist that's guaranteed to appear in data: copy a
+    # contiguous window from data itself.
+    m = min(rng.randint(1, max(1, n)), n)
+    start = rng.randint(0, n - m)
+    sub = list(data[start:start + m])
+    challenge._data = data
+    challenge._sub = sub
+    challenge._m = m
+    return {
+        "data": TrackedList(data),
+        "sub": TrackedList(sub),
+        "n": n,
+        "m": m,
+    }
+
+
+def _verify_sublist(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    if result == -1:
+        return not any(
+            challenge._data[i:i + challenge._m] == challenge._sub
+            for i in range(len(challenge._data) - challenge._m + 1)
+        )
+    if result < 0 or result + challenge._m > len(challenge._data):
+        return False
+    return challenge._data[result:result + challenge._m] == challenge._sub
+
+
+# --- search_11 Count Occurrences helpers. ---
+
+
+def _setup_count_occurrences(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
+    rng = random.Random(seed)
+    if n <= 0:
+        data, target = [], 0
+    else:
+        # Sorted array with some duplicates.
+        data = sorted(rng.sample(range(1, max(2, n) * 3), n))
+        target = data[rng.randint(0, n - 1)]
+    challenge._data = data
+    challenge._target = target
+    return {
+        "data": TrackedList(data),
+        "target": target,
+        "n": n,
+    }
+
+
+def _verify_count_occurrences(challenge, result: Any) -> bool:
+    if not isinstance(result, int):
+        return False
+    return result == challenge._data.count(challenge._target)
 
 
 SPECS: list[AlgorithmSpec] = [
@@ -796,6 +1018,119 @@ SPECS: list[AlgorithmSpec] = [
             Sample("data = [10, 20, 30, 40, 50], target = 10", "0"),
         ],
         parents=["search_07"],
+        children=["search_09"],
+    ),
+    _flat_search_spec(
+        spec_id="search_09",
+        name="Fibonacci Search",
+        difficulty=4,
+        required_complexity=ComplexityClass.O_LOG_N,
+        description=(
+            "Sorted array; uses Fibonacci numbers to split the range. Always\n"
+            "shrinks by at least one Fibonacci number, so the loop runs in\n"
+            "O(log n) time. The split is by index, not value, so the only\n"
+            "operation is the standard '<=' comparison.\n"
+            "Source: https://www.geeksforgeeks.org/fibonacci-search/"
+        ),
+        source_url="https://www.geeksforgeeks.org/fibonacci-search/",
+        source=SEARCH_09_SOURCE,
+        hint="Use Fibonacci numbers Fib(m-2)/Fib(m) of the range as the split point.",
+        sorted_data=True,
+        samples=[
+            Sample("data = [1, 4, 7, 9, 12, 15, 18, 22, 25, 30], target = 22", "7"),
+            Sample("data = [1, 4, 7, 9, 12, 15, 18, 22, 25, 30], target = 13", "-1"),
+            Sample("data = [1, 4, 7, 9, 12, 15, 18, 22, 25, 30], target = 1", "0"),
+        ],
+        parents=["search_08"],
+        children=[],
+    ),
+    AlgorithmSpec(
+        id="search_10",
+        name="Sublist Search",
+        category="searching",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Find the first index where ``sub`` appears as a contiguous run\n"
+            "in ``data``, or -1 if it never does. Sliding window of length m\n"
+            "scanned across an n-length list.\n"
+            "Source: https://www.geeksforgeeks.org/search-an-element-in-a-list/"
+        ),
+        source_url="https://www.geeksforgeeks.org/search-an-element-in-a-list/",
+        params=["data", "sub", "n", "m"],
+        inputs={
+            "data": "list-like of n random integers.",
+            "sub": "list-like of m integers to find inside data.",
+            "n": "length of data.",
+            "m": "length of sub (m <= n).",
+        },
+        returns="the first index i where data[i:i+m] == sub, or -1 if not present.",
+        source=SEARCH_10_SOURCE,
+        setup_fn=_setup_sublist,
+        verify_fn=_verify_sublist,
+        samples=[
+            Sample("data = [1, 2, 3, 4, 5, 6], sub = [3, 4, 5], n = 6, m = 3", "2"),
+            Sample("data = [1, 2, 3, 4, 5], sub = [4, 5, 6], n = 5, m = 3", "-1"),
+            Sample("data = [1, 2, 3], sub = [1, 2, 3], n = 3, m = 3", "0"),
+        ],
+        hint="Slide a window of length m across data. Compare element by element.",
+        parents=["search_01"],
+        children=["search_11"],
+    ),
+    AlgorithmSpec(
+        id="search_11",
+        name="Count Occurrences (Sorted)",
+        category="searching",
+        difficulty=3,
+        required_complexity=ComplexityClass.O_LOG_N,
+        description=(
+            "Count how many times ``target`` appears in a sorted array.\n"
+            "Two binary searches (first and last occurrence) give the count\n"
+            "in O(log n) time, no scan of duplicates needed.\n"
+            "Source: https://www.geeksforgeeks.org/count-number-of-occurrences-in-a-sorted-array/"
+        ),
+        source_url="https://www.geeksforgeeks.org/count-number-of-occurrences-in-a-sorted-array/",
+        params=["data", "target", "n"],
+        inputs={
+            "data": "sorted list-like of n random integers (with duplicates possible).",
+            "target": "value to count.",
+            "n": "length of data.",
+        },
+        returns="the number of times target appears in data.",
+        source=SEARCH_11_SOURCE,
+        setup_fn=_setup_count_occurrences,
+        verify_fn=_verify_count_occurrences,
+        samples=[
+            Sample("data = [1, 2, 2, 2, 3, 4, 5], target = 2, n = 7", "3"),
+            Sample("data = [1, 2, 3, 4, 5], target = 6, n = 5", "0"),
+            Sample("data = [5, 5, 5, 5], target = 5, n = 4", "4"),
+        ],
+        hint="Find the first occurrence (lower_bound) and one-past-the-last (upper_bound). Difference = count.",
+        parents=["search_10"],
+        children=["search_12"],
+    ),
+    _flat_search_spec(
+        spec_id="search_12",
+        name="Search in Rotated Sorted Array",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_LOG_N,
+        description=(
+            "A sorted array that has been rotated at some unknown pivot.\n"
+            "Find the index of ``target`` (or -1) in O(log n) time. First\n"
+            "find the pivot (the smallest element), then binary-search the\n"
+            "half that could contain the target.\n"
+            "Source: https://www.geeksforgeeks.org/search-an-element-in-a-sorted-and-pivoted-array/"
+        ),
+        source_url="https://www.geeksforgeeks.org/search-an-element-in-a-sorted-and-pivoted-array/",
+        source=SEARCH_12_SOURCE,
+        hint="Find the rotation pivot first, then binary-search the half that could contain the target.",
+        sorted_data="rotated",
+        samples=[
+            Sample("data = [5, 6, 7, 8, 9, 10, 1, 2, 3, 4], target = 6", "1"),
+            Sample("data = [5, 6, 7, 8, 9, 10, 1, 2, 3, 4], target = 3", "8"),
+            Sample("data = [5, 6, 7, 8, 9, 10, 1, 2, 3, 4], target = 30", "-1"),
+        ],
+        parents=["search_11"],
         children=[],
     ),
 ]

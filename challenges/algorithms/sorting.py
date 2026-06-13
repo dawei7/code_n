@@ -356,6 +356,75 @@ def solve(data, n):
 '''
 
 
+SORT_11_SOURCE = '''\
+"""Optimal solution for sort_11: Cycle Sort.
+
+In-place, write-optimal sort. For each position, count elements
+smaller than it to find its final index, then place the value
+there. The displaced value starts a new cycle. O(n^2) time,
+O(1) extra space, and at most n-1 writes.
+"""
+
+
+def solve(data, n):
+    for cycle_start in range(n - 1):
+        item = data[cycle_start]
+        pos = cycle_start
+        for i in range(cycle_start + 1, n):
+            if data[i] < item:
+                pos += 1
+        if pos == cycle_start:
+            continue
+        # Skip past duplicates of `item` already at `pos`.
+        while item == data[pos]:
+            pos += 1
+        data[pos], item = item, data[pos]
+        while pos != cycle_start:
+            pos = cycle_start
+            for i in range(cycle_start + 1, n):
+                if data[i] < item:
+                    pos += 1
+            while item == data[pos]:
+                pos += 1
+            data[pos], item = item, data[pos]
+    return data
+'''
+
+
+SORT_12_SOURCE = '''\
+"""Optimal solution for sort_12: Pancake Sort.
+
+The only allowed operation is ``reverse prefix [0..k]`` for
+some k. For each pass, find the maximum in the current
+unsorted prefix, flip it to the front, then flip the prefix
+to drop the max to the end. O(n^2) flips.
+"""
+
+
+def solve(data, n):
+    def flip(end):
+        start = 0
+        while start < end:
+            data[start], data[end] = data[end], data[start]
+            start += 1
+            end -= 1
+
+    size = n
+    while size > 1:
+        # Find index of the maximum element in data[0..size-1].
+        max_idx = 0
+        for i in range(1, size):
+            if data[i] > data[max_idx]:
+                max_idx = i
+        if max_idx != size - 1:
+            if max_idx != 0:
+                flip(max_idx)
+            flip(size - 1)
+        size -= 1
+    return data
+'''
+
+
 # --- Sample I/O for all sorts (same shape, one shared list). ---
 
 SORTING_SAMPLES: list[Sample] = [
@@ -600,5 +669,60 @@ SPECS: list[AlgorithmSpec] = [
         hint="Use a gap sequence (e.g. Knuth's 1, 4, 13, 40, ...). gapped-insertion-sort at each gap.",
         parents=["sort_09"],
         children=[],
+    ),
+    _sort_spec(
+        spec_id="sort_11",
+        name="Cycle Sort",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "An in-place sort that minimises the number of writes:\n"
+            "for each position, count how many elements are smaller\n"
+            "and place the value directly at its sorted position,\n"
+            "rotating the displaced value into the next cycle.\n"
+            "Worst case is O(n^2) but writes are at most n-1.\n"
+            "Requirement: O(n^2) time, O(1) extra space.\n"
+            "Source: https://www.geeksforgeeks.org/cycle-sort/"
+        ),
+        source_url="https://www.geeksforgeeks.org/cycle-sort/",
+        source=SORT_11_SOURCE,
+        hint="For each position, count smaller items to find the right slot, then place & rotate.",
+        parents=["sort_10"],
+        children=["sort_12"],
+        complexity_notes={
+            "best":     "O(n²) — must count for every position even on sorted input.",
+            "average":  "Θ(n²) — dominated by the per-position smaller-element count.",
+            "worst":    "O(n²) — same; cycle sort is unique in that writes are bounded at n-1.",
+            "space":    "O(1) — strictly in-place.",
+            "stable":   "No — equal elements get reordered inside each cycle.",
+            "in_place": "Yes — and write-optimal (≤ n-1 writes).",
+        },
+    ),
+    _sort_spec(
+        spec_id="sort_12",
+        name="Pancake Sort",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N2,
+        description=(
+            "Sort using only 'flip' operations: reverse the prefix\n"
+            "[0..k] for any k. Strategy: for each max value, flip it\n"
+            "to the front, then flip the whole unsorted prefix to\n"
+            "drop it into its sorted slot at the end.\n"
+            "Requirement: O(n^2) flips, O(1) extra space.\n"
+            "Source: https://www.geeksforgeeks.org/pancake-sorting/"
+        ),
+        source_url="https://www.geeksforgeeks.org/pancake-sorting/",
+        source=SORT_12_SOURCE,
+        hint="Find the current max, flip it to the front, then flip the unsorted prefix to drop it at the end.",
+        parents=["sort_11"],
+        children=[],
+        complexity_notes={
+            "best":     "O(n) flips on already-sorted input (one flip per position is unnecessary; with the naive 2*n loop it is O(n²)).",
+            "average":  "Θ(n²) flips — two flips per element once the max search is O(n).",
+            "worst":    "O(n²) flips.",
+            "space":    "O(1) — only a few scalar temporaries.",
+            "stable":   "No — flips reorder equal elements.",
+            "in_place": "Yes.",
+        },
     ),
 ]

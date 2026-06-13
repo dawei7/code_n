@@ -1,11 +1,15 @@
 """Optimal solution for tree_16: Serialize / Deserialize.
 
-Serialize a binary tree to a string, then deserialize it back.
+Standard format: preorder traversal with 'N' for null,
+comma-separated. The serialize-then-deserialize round-trip
+preserves the structure on a valid binary tree. Deserialization
+uses the original node indices from the tokens so the round-trip
+is a structural identity.
 """
 
 
 def solve(children, root, n):
-    """Serialize the tree to a string, then deserialize it. Return the new children list."""
+    """Serialize the tree, then deserialize it. Return the new children list."""
     # Serialize: preorder with 'N' for null.
     parts = []
 
@@ -18,39 +22,24 @@ def solve(children, root, n):
         ser(children[u][1])
 
     ser(root)
-    s = ",".join(parts)
-    # Deserialize.
-    tokens = s.split(",")
+    tokens = ",".join(parts).split(",")
+
+    # Deserialize: pre-register each new node at the index named
+    # by the token, then recurse on left/right.
     idx = [0]
-
-    def des():
-        tok = tokens[idx[0]]
-        idx[0] += 1
-        if tok == "N":
-            return -1
-        node = int(tok)
-        left = des()
-        right = des()
-        return [node, left, right]
-
     new_children = []
-    nodes = []
 
     def build():
         tok = tokens[idx[0]]
         idx[0] += 1
         if tok == "N":
             return -1
-        node_idx = len(nodes)
-        nodes.append(int(tok))
-        # Pre-register so children can refer to this index.
-        new_children.append([-1, -1])
+        node_idx = int(tok)
+        while len(new_children) <= node_idx:
+            new_children.append([-1, -1])
         new_children[node_idx][0] = build()
         new_children[node_idx][1] = build()
         return node_idx
 
-    # Reset and rebuild.
-    idx[0] = 0
-    new_children = []
-    new_root = build()
+    build()
     return new_children
