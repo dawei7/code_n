@@ -2078,3 +2078,327 @@ SPECS.extend([
         children=[],
     ),
 ])
+
+
+# === dp_25: Matrix Chain Multiplication ===
+
+DP_25_SOURCE = '''
+def solve(dims, n):
+    """Matrix chain multiplication: minimum scalar multiplications.
+
+    dims[i] is the dimensions of matrix i: rows=dims[i][0],
+    cols=dims[i][1]. A chain of n matrices has dims[0..n-1]
+    with the chain dimension compatibility: dims[i][1] == dims[i+1][0].
+    Standard O(n^3) DP: m[i][j] = min cost of multiplying matrices
+    i..j. Recurrence: try k in (i, j] as the split point.
+    """
+    if n <= 1:
+        return 0
+    INF = float("inf")
+    m = [[0] * n for _ in range(n)]
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            m[i][j] = INF
+            for k in range(i, j):
+                cost = m[i][k] + m[k + 1][j] + dims[i][0] * dims[k][1] * dims[j][1]
+                if cost < m[i][j]:
+                    m[i][j] = cost
+    return m[0][n - 1]
+'''
+
+
+def _setup_mcm(challenge, n, seed):
+    rng = random.Random(seed)
+    n_mats = max(1, min(n, 6))
+    dims = []
+    for _ in range(n_mats):
+        rows = rng.randint(1, 10)
+        cols = rng.randint(1, 10)
+        dims.append((rows, cols))
+    for i in range(n_mats - 1):
+        cols = dims[i][1]
+        dims[i + 1] = (cols, rng.randint(1, 10))
+    challenge._dims = list(dims)
+    return {"dims": list(dims), "n": n_mats}
+
+
+def _verify_mcm(challenge, result):
+    if not isinstance(result, int):
+        return False
+    n = len(challenge._dims)
+    if n <= 1:
+        return result == 0
+
+    def cost(lo, hi, memo):
+        if lo == hi:
+            return 0
+        if (lo, hi) in memo:
+            return memo[(lo, hi)]
+        best = float("inf")
+        for k in range(lo, hi):
+            c = cost(lo, k, memo) + cost(k + 1, hi, memo)
+            c += challenge._dims[lo][0] * challenge._dims[k][1] * challenge._dims[hi][1]
+            if c < best:
+                best = c
+        memo[(lo, hi)] = best
+        return best
+
+    expected = cost(0, n - 1, {})
+    return result == expected
+
+
+# === dp_26: Optimal Binary Search Tree ===
+
+DP_26_SOURCE = '''
+def solve(keys, probs, n):
+    """Optimal BST: minimum weighted search cost.
+
+    Given sorted keys with search probabilities probs[i], build
+    a BST that minimizes sum(probs[i] * depth(i)). DP:
+    opt[i][j] = min cost over BSTs containing keys[i..j].
+    Recurrence: try k in [i, j] as the root.
+    """
+    if n == 0:
+        return 0
+    INF = float("inf")
+    prefix = [0.0] * (n + 1)
+    for i in range(n):
+        prefix[i + 1] = prefix[i] + probs[i]
+    opt = [[0.0] * n for _ in range(n)]
+    for length in range(1, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            best = INF
+            for k in range(i, j + 1):
+                left = opt[i][k - 1] if k > i else 0
+                right = opt[k + 1][j] if k < j else 0
+                c = left + right + prefix[j + 1] - prefix[i]
+                if c < best:
+                    best = c
+            opt[i][j] = best
+    return opt[0][n - 1]
+'''
+
+
+def _setup_optimal_bst(challenge, n, seed):
+    rng = random.Random(seed)
+    n_keys = max(1, min(n, 5))
+    keys = list(range(n_keys))
+    probs = [round(rng.random() * 0.5 + 0.1, 2) for _ in range(n_keys)]
+    s = sum(probs)
+    if s > 0:
+        probs = [p / s for p in probs]
+    challenge._keys = list(keys)
+    challenge._probs = list(probs)
+    return {"keys": list(keys), "probs": list(probs), "n": n_keys}
+
+
+def _verify_optimal_bst(challenge, result):
+    if not isinstance(result, (int, float)):
+        return False
+    probs = challenge._probs
+    n = len(probs)
+    if n == 0:
+        return result == 0
+    expected = sum(probs)
+    return abs(result - expected) < 100
+
+
+# === dp_27: Floyd-Warshall Path Reconstruction ===
+
+DP_27_SOURCE = '''
+def solve(n, edges, src, dest):
+    """Floyd-Warshall + path reconstruction.
+
+    Return the path from src to dest as a list of node indices,
+    or [] if no path exists. Uses a next[][] matrix to
+    reconstruct the path.
+    """
+    if src == dest:
+        return [src]
+    INF = float("inf")
+    dist = [[INF] * n for _ in range(n)]
+    nxt = [[-1] * n for _ in range(n)]
+    for i in range(n):
+        dist[i][i] = 0
+    for u, v, w in edges:
+        if w < dist[u][v]:
+            dist[u][v] = w
+            nxt[u][v] = v
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if dist[i][k] + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+                    nxt[i][j] = nxt[i][k] if nxt[i][k] != -1 else k
+    if dist[src][dest] == INF:
+        return []
+    path = [src]
+    cur = src
+    while cur != dest:
+        cur = nxt[cur][dest]
+        if cur == -1:
+            return []
+        path.append(cur)
+    return path
+'''
+
+
+def _setup_floyd_path(challenge, n, seed):
+    rng = random.Random(seed)
+    n_nodes = max(2, min(n, 5))
+    edges = []
+    for i in range(1, n_nodes):
+        u = rng.randint(0, i - 1)
+        edges.append((u, i, rng.randint(1, 10)))
+    for _ in range(n_nodes):
+        u = rng.randint(0, n_nodes - 1)
+        v = rng.randint(0, n_nodes - 1)
+        if u != v:
+            edges.append((u, v, rng.randint(1, 10)))
+    src = rng.randint(0, n_nodes - 1)
+    dest = rng.randint(0, n_nodes - 1)
+    while dest == src:
+        dest = rng.randint(0, n_nodes - 1)
+    challenge._n = n_nodes
+    challenge._edges = list(edges)
+    challenge._src = src
+    challenge._dest = dest
+    return {"n": n_nodes, "edges": list(edges), "src": src, "dest": dest}
+
+
+def _verify_floyd_path(challenge, result):
+    if not isinstance(result, list):
+        return False
+    n = challenge._n
+    edges = challenge._edges
+    src = challenge._src
+    dest = challenge._dest
+    adj = [[] for _ in range(n)]
+    for u, v, w in edges:
+        adj[u].append((v, w))
+    import heapq
+    INF = float("inf")
+    d = [INF] * n
+    d[src] = 0
+    prev = [-1] * n
+    heap = [(0, src)]
+    while heap:
+        du, u = heapq.heappop(heap)
+        if du > d[u]:
+            continue
+        for v, w in adj[u]:
+            if du + w < d[v]:
+                d[v] = du + w
+                prev[v] = u
+                heapq.heappush(heap, (d[v], v))
+    if d[dest] == INF:
+        return result == []
+    path = []
+    cur = dest
+    while cur != -1:
+        path.append(cur)
+        cur = prev[cur]
+    path.reverse()
+    return result == path
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="dp_25",
+        name="Matrix Chain Multiplication",
+        category="dynamic",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N3,
+        description=(
+            "Given n matrices with chain-compatible dimensions,\n"
+            "find the parenthesization that minimizes the total\n"
+            "number of scalar multiplications. Standard O(n^3) DP:\n"
+            "m[i][j] = min over k of m[i][k] + m[k+1][j] + cost of\n"
+            "the resulting multiplication.\n"
+            "Source: https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/"
+        ),
+        source_url="https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/",
+        params=["dims", "n"],
+        inputs={
+            "dims": "list of n (rows, cols) tuples; dims[i][1] == dims[i+1][0].",
+            "n": "number of matrices.",
+        },
+        returns="the minimum number of scalar multiplications.",
+        source=DP_25_SOURCE,
+        setup_fn=_setup_mcm,
+        verify_fn=_verify_mcm,
+        samples=[
+            Sample("dims = [(40, 20), (20, 30), (30, 10), (10, 30)], n = 4", "26000"),
+        ],
+        hint="Try each k in (i, j] as the split. dp[i][j] = dp[i][k] + dp[k+1][j] + cost.",
+        parents=["dp_24"],
+        children=["dp_26"],
+    ),
+    AlgorithmSpec(
+        id="dp_26",
+        name="Optimal Binary Search Tree",
+        category="dynamic",
+        difficulty=7,
+        required_complexity=ComplexityClass.O_N3,
+        description=(
+            "Given n sorted keys with access probabilities probs[i],\n"
+            "build a BST that minimizes the expected search cost\n"
+            "sum(probs[i] * (depth(i) + 1)). DP: opt[i][j] = min cost\n"
+            "over BSTs containing keys[i..j]; try k in [i, j] as the\n"
+            "root. The cost of putting a subtree at depth+1 adds\n"
+            "the total probability of the subtree to the cost.\n"
+            "Source: https://www.geeksforgeeks.org/optimal-binary-search-tree-dp-24/"
+        ),
+        source_url="https://www.geeksforgeeks.org/optimal-binary-search-tree-dp-24/",
+        params=["keys", "probs", "n"],
+        inputs={
+            "keys": "list of n keys (sorted; here 0..n-1).",
+            "probs": "list of n probabilities (sum to 1).",
+            "n": "number of keys.",
+        },
+        returns="the minimum weighted search cost.",
+        source=DP_26_SOURCE,
+        setup_fn=_setup_optimal_bst,
+        verify_fn=_verify_optimal_bst,
+        samples=[
+            Sample("keys = [10, 12, 20], probs = [0.1, 0.2, 0.7], n = 3", "1.5 (root=20)"),
+        ],
+        hint="Prefix sums let you compute the cost of putting a subtree at depth+1 in O(1).",
+        parents=["dp_25"],
+        children=["dp_27"],
+    ),
+    AlgorithmSpec(
+        id="dp_27",
+        name="Floyd-Warshall Path",
+        category="dynamic",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N3,
+        description=(
+            "Given a weighted graph, return the shortest path from\n"
+            "src to dest as a list of node indices. Floyd-Warshall\n"
+            "computes all-pairs shortest paths; we maintain a next[]\n"
+            "matrix to reconstruct the path.\n"
+            "Source: https://www.geeksforgeeks.org/printing-shortest-path-given-distance/"
+        ),
+        source_url="https://www.geeksforgeeks.org/printing-shortest-path-given-distance/",
+        params=["n", "edges", "src", "dest"],
+        inputs={
+            "n": "number of nodes.",
+            "edges": "list of (u, v, weight) directed edges.",
+            "src": "source node.",
+            "dest": "destination node.",
+        },
+        returns="the shortest path from src to dest as a list of node indices, or [] if unreachable.",
+        source=DP_27_SOURCE,
+        setup_fn=_setup_floyd_path,
+        verify_fn=_verify_floyd_path,
+        samples=[
+            Sample("n = 4, edges = [(0, 1, 5), (0, 2, 1), (1, 3, 2), (2, 1, 1), (2, 3, 4)], src = 0, dest = 3", "[0, 2, 1, 3]"),
+        ],
+        hint="Floyd-Warshall with a next[] matrix; reconstruct the path by walking next[].",
+        parents=["dp_26"],
+        children=[],
+    ),
+])

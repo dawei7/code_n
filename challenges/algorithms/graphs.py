@@ -2217,3 +2217,228 @@ SPECS.extend([
         children=[],
     ),
 ])
+
+
+# === graph_19: M-Coloring Problem ===
+
+GRAPH_19_SOURCE = '''
+def solve(n, edges, m):
+    """Return True iff the graph can be colored with m colors
+    such that no two adjacent vertices share a color.
+
+    Backtracking: assign colors to vertices one at a time.
+    At each step, try each color; if it doesn't conflict with
+    any already-colored neighbor, recurse.
+    """
+    if n == 0:
+        return True
+    adj = [set() for _ in range(n)]
+    for u, v in edges:
+        adj[u].add(v)
+        adj[v].add(u)
+    color = [-1] * n
+
+    def safe(v, c):
+        for u in adj[v]:
+            if color[u] == c:
+                return False
+        return True
+
+    def helper(v):
+        if v == n:
+            return True
+        for c in range(m):
+            if safe(v, c):
+                color[v] = c
+                if helper(v + 1):
+                    return True
+                color[v] = -1
+        return False
+
+    return helper(0)
+'''
+
+
+def _setup_m_coloring(challenge, n, seed):
+    rng = random.Random(seed)
+    n_nodes = max(2, min(n, 6))
+    edges = set()
+    for i in range(1, n_nodes):
+        u = rng.randint(0, i - 1)
+        edges.add((min(u, i), max(u, i)))
+    for _ in range(n_nodes):
+        u = rng.randint(0, n_nodes - 1)
+        v = rng.randint(0, n_nodes - 1)
+        if u != v:
+            edges.add((min(u, v), max(u, v)))
+    # Choose m so that the answer is True (small graphs are usually 2-colorable).
+    m = 3
+    challenge._n = n_nodes
+    challenge._edges = sorted(edges)
+    challenge._m = m
+    return {"n": n_nodes, "edges": sorted(edges), "m": m}
+
+
+def _verify_m_coloring(challenge, result):
+    if not isinstance(result, bool):
+        return False
+    # Brute force: try every assignment.
+    n = challenge._n
+    edges = challenge._edges
+    m = challenge._m
+    for mask in range(m ** n):
+        # Decode mask as a base-m representation.
+        colors = []
+        x = mask
+        for _ in range(n):
+            colors.append(x % m)
+            x //= m
+        if all(colors[u] != colors[v] for u, v in edges):
+            return result is True
+    return result is False
+
+
+# === graph_20: Travelling Salesman (DP) ===
+
+GRAPH_20_SOURCE = '''
+def solve(dist, n):
+    """Travelling Salesman: minimum Hamiltonian cycle cost.
+
+    Held-Karp DP: dp[mask][i] = min cost to start at 0,
+    visit exactly the cities in ``mask``, and end at city i.
+    Recurrence: dp[mask][i] = min over j in mask of
+    dp[mask ^ (1<<i)][j] + dist[j][i]. Final answer is
+    min over i of dp[all][i] + dist[i][0].
+    """
+    if n <= 1:
+        return 0
+    INF = float("inf")
+    # dp[mask][i] where mask is an int, i is the destination.
+    dp = [[INF] * n for _ in range(1 << n)]
+    dp[1][0] = 0  # Start at 0 with only 0 visited.
+    for mask in range(1, 1 << n):
+        if not (mask & 1):
+            continue  # mask must include 0
+        for i in range(n):
+            if not (mask & (1 << i)) or dp[mask][i] == INF:
+                continue
+            # Try extending to a new city j.
+            for j in range(n):
+                if mask & (1 << j):
+                    continue
+                new_mask = mask | (1 << j)
+                new_cost = dp[mask][i] + dist[i][j]
+                if new_cost < dp[new_mask][j]:
+                    dp[new_mask][j] = new_cost
+    full = (1 << n) - 1
+    best = INF
+    for i in range(n):
+        if dp[full][i] < INF:
+            cycle = dp[full][i] + dist[i][0]
+            if cycle < best:
+                best = cycle
+    return best
+'''
+
+
+def _setup_tsp(challenge, n, seed):
+    rng = random.Random(seed)
+    n_nodes = max(2, min(n, 5))  # 2^n subset enumeration grows fast
+    # Generate a random distance matrix satisfying triangle inequality.
+    pts = [(rng.randint(0, 10), rng.randint(0, 10)) for _ in range(n_nodes)]
+
+    def d(a, b):
+        return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+    dist = [[d(pts[i], pts[j]) for j in range(n_nodes)] for i in range(n_nodes)]
+    challenge._dist = [row[:] for row in dist]
+    return {"dist": [row[:] for row in dist], "n": n_nodes}
+
+
+def _verify_tsp(challenge, result):
+    if not isinstance(result, int):
+        return False
+    n = challenge._n
+    dist = challenge._dist
+    from itertools import permutations
+    if n <= 1:
+        return result == 0
+    # Brute force: try every permutation starting and ending at 0.
+    best = float("inf")
+    nodes = list(range(1, n))
+    for perm in permutations(nodes):
+        cost = dist[0][perm[0]]
+        for i in range(len(perm) - 1):
+            cost += dist[perm[i]][perm[i + 1]]
+        cost += dist[perm[-1]][0]
+        if cost < best:
+            best = cost
+    return result == best
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="graph_19",
+        name="M-Coloring Problem",
+        category="graphs",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_2N,
+        description=(
+            "Return True iff the graph can be colored with m\n"
+            "colors such that no two adjacent vertices share a\n"
+            "color. Backtracking: assign colors to vertices one\n"
+            "at a time, picking only colors that don't conflict\n"
+            "with already-colored neighbours.\n"
+            "Source: https://www.geeksforgeeks.org/m-coloring-problem-backtracking-5/"
+        ),
+        source_url="https://www.geeksforgeeks.org/m-coloring-problem-backtracking-5/",
+        params=["n", "edges", "m"],
+        inputs={
+            "n": "number of nodes.",
+            "edges": "list of (u, v) tuples (undirected).",
+            "m": "number of available colors.",
+        },
+        returns="True iff a valid m-coloring exists.",
+        source=GRAPH_19_SOURCE,
+        setup_fn=_setup_m_coloring,
+        verify_fn=_verify_m_coloring,
+        samples=[
+            Sample("n = 4, edges = [(0, 1), (1, 2), (2, 3), (3, 0)], m = 2", "True (alternating)"),
+            Sample("n = 3, edges = [(0, 1), (1, 2), (0, 2)], m = 2", "False (triangle)"),
+        ],
+        hint="Backtrack. At each vertex, try each color that doesn't conflict with neighbours.",
+        parents=["graph_12"],
+        children=["graph_20"],
+    ),
+    AlgorithmSpec(
+        id="graph_20",
+        name="Travelling Salesman (Held-Karp DP)",
+        category="graphs",
+        difficulty=7,
+        required_complexity=ComplexityClass.O_2N,
+        description=(
+            "Given a distance matrix, find the minimum-cost\n"
+            "Hamiltonian cycle (visit every city exactly once,\n"
+            "return to start). Held-Karp DP: dp[mask][i] = min\n"
+            "cost to visit exactly the cities in ``mask`` and end\n"
+            "at city i. Recurrence adds one city at a time.\n"
+            "Source: https://www.geeksforgeeks.org/travelling-salesman-problem-using-dynamic-programming/"
+        ),
+        source_url="https://www.geeksforgeeks.org/travelling-salesman-problem-using-dynamic-programming/",
+        params=["dist", "n"],
+        inputs={
+            "dist": "n x n distance matrix.",
+            "n": "number of cities.",
+        },
+        returns="the minimum Hamiltonian cycle cost.",
+        source=GRAPH_20_SOURCE,
+        setup_fn=_setup_tsp,
+        verify_fn=_verify_tsp,
+        samples=[
+            Sample("dist = [[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]], n = 4", "80 (0->1->2->3->0 or 0->3->2->1->0)"),
+        ],
+        hint="Held-Karp: dp[mask][i] = min cost to visit exactly mask, end at i. Try each j not in mask.",
+        parents=["graph_19"],
+        children=[],
+    ),
+])

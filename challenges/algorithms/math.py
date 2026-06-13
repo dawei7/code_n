@@ -322,3 +322,199 @@ SPECS.extend([
         children=[],
     ),
 ])
+
+
+# === math_05: Big Integer Add (string) ===
+
+MATH_05_SOURCE = '''
+def solve(a, b):
+    """Add two non-negative integers given as digit strings.
+
+    Reverse both strings, add digit by digit with carry, then
+    reverse the result. Handles arbitrary length.
+    """
+    if not a:
+        return b
+    if not b:
+        return a
+    a_rev = a[::-1]
+    b_rev = b[::-1]
+    n = max(len(a_rev), len(b_rev))
+    carry = 0
+    out = []
+    for i in range(n):
+        da = int(a_rev[i]) if i < len(a_rev) else 0
+        db = int(b_rev[i]) if i < len(b_rev) else 0
+        s = da + db + carry
+        out.append(str(s % 10))
+        carry = s // 10
+    if carry:
+        out.append(str(carry))
+    return "".join(reversed(out))
+'''
+
+
+def _setup_big_add(challenge, n, seed):
+    rng = random.Random(seed)
+    n_digits = max(1, min(n, 6))
+    a = "".join(str(rng.randint(0, 9)) for _ in range(n_digits))
+    if a[0] == "0" and len(a) > 1:
+        a = "1" + a[1:]
+    b = "".join(str(rng.randint(0, 9)) for _ in range(n_digits))
+    if b[0] == "0" and len(b) > 1:
+        b = "1" + b[1:]
+    challenge._a = a
+    challenge._b = b
+    return {"a": a, "b": b}
+
+
+def _verify_big_add(challenge, result):
+    if not isinstance(result, str):
+        return False
+    expected = str(int(challenge._a) + int(challenge._b))
+    return result.lstrip("0") == expected.lstrip("0") or (result == "0" and expected == "0")
+
+
+# === math_06: Carmichael Function ===
+
+MATH_06_SOURCE = '''
+def solve(n):
+    """Carmichael function: the smallest m > 0 such that
+    a^m == 1 (mod n) for every a coprime to n.
+
+    Lambda(n) is computed as follows:
+    - lambda(1) = 1
+    - lambda(2) = 1, lambda(4) = 2
+    - for n = 2^k (k >= 3): lambda(n) = 2^(k-2)
+    - lambda(p^k) for odd prime p: p^(k-1) * (p-1)
+    - lambda(lcm of coprime a, b) = lcm(lambda(a), lambda(b))
+    """
+    if n == 1:
+        return 1
+    if n == 2:
+        return 1
+    if n == 4:
+        return 2
+    # Factor n.
+    temp = n
+    factors = {}
+    p = 2
+    while p * p <= temp:
+        while temp % p == 0:
+            factors[p] = factors.get(p, 0) + 1
+            temp //= p
+        p += 1
+    if temp > 1:
+        factors[temp] = factors.get(temp, 0) + 1
+    # Compute lambda for each prime power.
+    from math import gcd
+    lam = 1
+    for p, k in factors.items():
+        if p == 2:
+            if k == 1:
+                pk_lam = 1
+            elif k == 2:
+                pk_lam = 2
+            else:
+                pk_lam = 2 ** (k - 2)
+        else:
+            pk_lam = (p ** (k - 1)) * (p - 1)
+        # lcm of two coprime lambdas.
+        lam = lam * pk_lam // gcd(lam, pk_lam)
+    return lam
+'''
+
+
+def _setup_carmichael(challenge, n, seed):
+    rng = random.Random(seed)
+    n_val = max(2, min(n, 30))
+    # Pick a value with multiple small prime factors for an interesting answer.
+    candidates = [12, 15, 16, 18, 20, 21, 24, 25, 27, 28, 30, 35, 36, 40, 45, 48, 50]
+    val = rng.choice(candidates)
+    challenge._n = val
+    return {"n": val}
+
+
+def _verify_carmichael(challenge, result):
+    if not isinstance(result, int):
+        return False
+    n = challenge._n
+    # Find the actual Carmichael function by testing coprime a's.
+    from math import gcd
+    expected = 1
+    for a in range(2, n):
+        if gcd(a, n) == 1:
+            # Find the multiplicative order of a mod n.
+            k = 1
+            x = a % n
+            while x != 1:
+                x = (x * a) % n
+                k += 1
+            expected = max(expected, k)
+    return result == expected
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="math_05",
+        name="Big Integer Add (Strings)",
+        category="math",
+        difficulty=2,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Add two non-negative integers given as digit strings.\n"
+            "Reverse, add digit-by-digit with carry, reverse the\n"
+            "result. Handles arbitrary length without overflow.\n"
+            "Source: https://www.geeksforgeeks.org/add-two-numbers-without-using-arithmetic-operators/"
+        ),
+        source_url="https://www.geeksforgeeks.org/add-two-numbers-without-using-arithmetic-operators/",
+        params=["a", "b"],
+        inputs={
+            "a": "first integer (digit string).",
+            "b": "second integer (digit string).",
+        },
+        returns="a + b as a digit string.",
+        source=MATH_05_SOURCE,
+        setup_fn=_setup_big_add,
+        verify_fn=_verify_big_add,
+        samples=[
+            Sample('a = "123", b = "456"', '"579"'),
+            Sample('a = "999", b = "1"', '"1000"'),
+        ],
+        hint="Reverse, add digit by digit, carry, reverse back.",
+        parents=["math_04"],
+        children=["math_06"],
+    ),
+    AlgorithmSpec(
+        id="math_06",
+        name="Carmichael Function",
+        category="math",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N_LOG_N,
+        description=(
+            "The Carmichael function lambda(n): the smallest m > 0\n"
+            "such that a^m == 1 (mod n) for every a coprime to n.\n"
+            "Compute via prime factorization: lambda(p^k) is p^(k-1)\n"
+            "* (p-1) for odd primes, 2^(k-2) for n = 2^k, k >= 3.\n"
+            "For composite n, lambda is the lcm of the per-prime-power\n"
+            "lambdas.\n"
+            "Source: https://www.geeksforgeeks.org/carmichael-function/"
+        ),
+        source_url="https://www.geeksforgeeks.org/carmichael-function/",
+        params=["n"],
+        inputs={
+            "n": "positive integer (small, with multiple prime factors in the setup).",
+        },
+        returns="the Carmichael function value lambda(n).",
+        source=MATH_06_SOURCE,
+        setup_fn=_setup_carmichael,
+        verify_fn=_verify_carmichael,
+        samples=[
+            Sample("n = 12", "2 (gcd(5,12)=1, 5^2 = 25 = 1 mod 12)"),
+            Sample("n = 35", "12 (lambda(5)=4, lambda(7)=6, lcm=12)"),
+        ],
+        hint="Factor n. Compute lambda per prime power. Combine via lcm.",
+        parents=["math_05"],
+        children=[],
+    ),
+])

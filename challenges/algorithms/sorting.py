@@ -725,4 +725,154 @@ SPECS: list[AlgorithmSpec] = [
             "in_place": "Yes.",
         },
     ),
+    _sort_spec(
+        spec_id="sort_13",
+        name="Tim Sort (Simplified)",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N_LOG_N,
+        description=(
+            "Tim Sort: divide into runs (already-sorted subsequences),\n"
+            "then merge with a stack-based merge policy. This simplified\n"
+            "version uses Python's built-in sorted() for each run\n"
+            "and merges them, demonstrating the O(n log n) average\n"
+            "case and O(n) on already-sorted data.\n"
+            "Source: https://www.geeksforgeeks.org/tim-sort/"
+        ),
+        source_url="https://www.geeksforgeeks.org/tim-sort/",
+        source='''
+"""Simplified Tim Sort: identify natural runs, then merge.
+
+The real Tim Sort tracks minrun and uses a complex stack-based
+merge policy. This simplified version sorts each run with
+Python's built-in sorted() and merges pairwise.
+"""
+
+
+def solve(data, n):
+    if n <= 1:
+        return data
+    work = list(data)
+    RUN = max(1, min(32, n // 4))
+    runs = []
+    i = 0
+    while i < n:
+        j = i + 1
+        while j < n and work[j] >= work[j - 1]:
+            j += 1
+        runs.append((i, j))
+        # Extend the run to RUN length with sort.
+        if j - i < RUN:
+            end = min(i + RUN, n)
+            sub = work[i:end]
+            sub.sort()
+            work[i:end] = sub
+            j = end
+        i = j
+    # Merge runs pairwise.
+    while len(runs) > 1:
+        new_runs = []
+        for k in range(0, len(runs), 2):
+            if k + 1 < len(runs):
+                lo1, hi1 = runs[k]
+                lo2, hi2 = runs[k + 1]
+                merged = []
+                a, b = lo1, lo2
+                while a < hi1 and b < hi2:
+                    if work[a] <= work[b]:
+                        merged.append(work[a])
+                        a += 1
+                    else:
+                        merged.append(work[b])
+                        b += 1
+                merged.extend(work[a:hi1])
+                merged.extend(work[b:hi2])
+                work[lo1:hi2] = merged
+                new_runs.append((lo1, hi2))
+            else:
+                new_runs.append(runs[k])
+        runs = new_runs
+    return work
+''',
+        hint="Find natural runs (ascending or descending). Extend to minrun. Merge pairwise.",
+        parents=["sort_12"],
+        children=["sort_14"],
+    ),
+    _sort_spec(
+        spec_id="sort_14",
+        name="Intro Sort (Simplified)",
+        difficulty=6,
+        required_complexity=ComplexityClass.O_N_LOG_N,
+        description=(
+            "Intro Sort: quicksort with a depth limit; when the\n"
+            "recursion depth exceeds a threshold (typically 2 log n),\n"
+            "fall back to heapsort. This gives the O(n log n)\n"
+            "guarantee of heapsort and the average-case speed of\n"
+            "quicksort.\n"
+            "Source: https://www.geeksforgeeks.org/intro-sort/"
+        ),
+        source_url="https://www.geeksforgeeks.org/intro-sort/",
+        source='''
+"""Simplified Intro Sort: quicksort with a depth limit.
+
+If recursion depth exceeds depth_limit, fall back to heap
+sort on the current range.
+"""
+
+
+def solve(data, n):
+    if n <= 1:
+        return data
+    work = list(data)
+    import math
+    depth_limit = 2 * int(math.log2(n)) if n > 1 else 0
+
+    def sift_down(lo, hi, root):
+        while True:
+            child = 2 * (root - lo) + 1 + lo
+            if child >= hi:
+                break
+            if child + 1 < hi and work[child + 1] > work[child]:
+                child += 1
+            if work[child] > work[root]:
+                work[root], work[child] = work[child], work[root]
+                root = child
+            else:
+                break
+
+    def heap_sort(lo, hi):
+        # Build max-heap.
+        for start in range((hi - lo) // 2 - 1 + lo, lo - 1, -1):
+            sift_down(lo, hi, start)
+        # Extract.
+        for end in range(hi - 1, lo, -1):
+            work[lo], work[end] = work[end], work[lo]
+            sift_down(lo, end, lo)
+
+    def partition(lo, hi):
+        pivot = work[hi]
+        i = lo
+        for j in range(lo, hi):
+            if work[j] <= pivot:
+                work[i], work[j] = work[j], work[i]
+                i += 1
+        work[i], work[hi] = work[hi], work[i]
+        return i
+
+    def intro_sort(lo, hi, depth):
+        if hi - lo <= 1:
+            return
+        if depth == 0:
+            heap_sort(lo, hi)
+            return
+        p = partition(lo, hi)
+        intro_sort(lo, p, depth - 1)
+        intro_sort(p + 1, hi, depth - 1)
+
+    intro_sort(0, n, depth_limit)
+    return work
+''',
+        hint="Quicksort with depth limit. When depth hits 0, call heapsort on the current range.",
+        parents=["sort_13"],
+        children=[],
+    ),
 ]

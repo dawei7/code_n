@@ -38,6 +38,11 @@ def _collect_specs() -> list[AlgorithmSpec]:
         linked_list,
         geometric,
         randomized,
+        trie,
+        segment_tree,
+        flow,
+        approximation,
+        suffix_array,
     )
     return [
         *intro.SPECS,
@@ -59,6 +64,11 @@ def _collect_specs() -> list[AlgorithmSpec]:
         *linked_list.SPECS,
         *geometric.SPECS,
         *randomized.SPECS,
+        *trie.SPECS,
+        *segment_tree.SPECS,
+        *flow.SPECS,
+        *approximation.SPECS,
+        *suffix_array.SPECS,
     ]
 
 

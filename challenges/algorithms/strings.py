@@ -1207,6 +1207,101 @@ SPECS.extend([
         ],
         hint="Skip whitespace, optional sign, read digits, clamp to int32 range.",
         parents=["string_11"],
+        children=["string_13"],
+    ),
+])
+
+
+# === string_13: Z-Algorithm ===
+
+STRING_13_SOURCE = '''
+def solve(s, n, pattern, m):
+    """Return the list of starting indices in s where pattern occurs.
+
+    Build the Z-array of pattern + '$' + s, then walk it.
+    Z[i] is the longest prefix of the combined string that
+    starts at position i. Z[i] >= m iff pattern occurs at
+    position i - m - 1 in s.
+    """
+    if m == 0 or n == 0:
+        return []
+    combined = pattern + "$" + s
+    L = len(combined)
+    z = [0] * L
+    left = 0
+    right = 0
+    for i in range(1, L):
+        if i < right:
+            z[i] = min(right - i, z[i - left])
+        while i + z[i] < L and combined[z[i]] == combined[i + z[i]]:
+            z[i] += 1
+        if i + z[i] > right:
+            left = i
+            right = i + z[i]
+    out = []
+    for i in range(m + 1, L):
+        if z[i] == m:
+            out.append(i - m - 1)
+    return out
+'''
+
+
+def _setup_z_algo(challenge, n, seed):
+    rng = random.Random(seed)
+    n_chars = max(2, min(n, 10))
+    s = "".join(rng.choice("abc") for _ in range(n_chars))
+    m = rng.randint(1, 3)
+    pattern = "".join(rng.choice("abc") for _ in range(m))
+    challenge._s = s
+    challenge._pattern = pattern
+    return {"s": s, "n": len(s), "pattern": pattern, "m": m}
+
+
+def _verify_z_algo(challenge, result):
+    if not isinstance(result, list):
+        return False
+    s = challenge._s
+    pattern = challenge._pattern
+    expected = []
+    for i in range(len(s) - len(pattern) + 1):
+        if s[i:i + len(pattern)] == pattern:
+            expected.append(i)
+    return result == expected
+
+
+SPECS.extend([
+    AlgorithmSpec(
+        id="string_13",
+        name="Z-Algorithm (Pattern Search)",
+        category="strings",
+        difficulty=5,
+        required_complexity=ComplexityClass.O_N,
+        description=(
+            "Find every position in s where pattern occurs, using the\n"
+            "Z-algorithm. Build the Z-array of pattern + '$' + s;\n"
+            "Z[i] is the longest prefix of the combined string that\n"
+            "starts at position i. Z[i] == |pattern| in the s region\n"
+            "iff pattern matches there. O(n + m) total.\n"
+            "Source: https://www.geeksforgeeks.org/z-algorithm-linear-time-pattern-searching-algorithm/"
+        ),
+        source_url="https://www.geeksforgeeks.org/z-algorithm-linear-time-pattern-searching-algorithm/",
+        params=["s", "n", "pattern", "m"],
+        inputs={
+            "s": "string to search in.",
+            "n": "length of s.",
+            "pattern": "the pattern.",
+            "m": "length of pattern.",
+        },
+        returns="a sorted list of starting indices where pattern occurs.",
+        source=STRING_13_SOURCE,
+        setup_fn=_setup_z_algo,
+        verify_fn=_verify_z_algo,
+        samples=[
+            Sample("s = 'aabxaayaab', n = 10, pattern = 'aab', m = 3", "[0, 6]"),
+            Sample("s = 'aaaa', n = 4, pattern = 'aa', m = 2", "[0, 1, 2]"),
+        ],
+        hint="Build Z-array of pattern + '$' + s. Z[i] >= m in s-region means match.",
+        parents=["string_12"],
         children=[],
     ),
 ])
