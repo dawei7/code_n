@@ -1,0 +1,25 @@
+# Local secrets (GitHub PAT for auto-update publishing).
+# Set GH_TOKEN here; the build pipeline reads it from this file.
+# DO NOT commit this file - it is gitignored via the lines below.
+#
+# Allowed: .env.example  (template, committed, shows the format)
+# Ignored: .env, .env.local, .env.*.local
+.env
+.env.local
+.env.*.local
+!/.env.example
+
+# Node
+node_modules/
+*.tsbuildinfo
+
+# TypeScript build output
+dist/
+
+# electron-builder output
+release/
+
+# npm debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
