@@ -188,14 +188,39 @@ export function ReferenceTab() {
             td: ({ node, ...props }) => (
               <td {...props} className="border border-coden-border px-2 py-1" />
             ),
-            pre: ({ node, ...props }) => (
-              <pre {...props} className="bg-coden-bg border border-coden-border rounded p-3 text-xs overflow-x-auto" />
+            pre: ({ children, ...props }) => (
+              <pre
+                {...props}
+                className="bg-coden-bg border border-coden-border rounded p-3 text-xs overflow-x-auto my-3"
+              >
+                {children}
+              </pre>
             ),
-            code: ({ node, className, children, ...props }) => {
-              const isInline = !(props as { node?: unknown }).node && !String(children).includes('\n');
-              return isInline
-                ? <code {...props} className="bg-coden-bg border border-coden-border rounded px-1 py-0.5 text-xs" />
-                : <code {...props} className={className} />;
+            code: ({ className, children, ...props }) => {
+              // Heuristic for inline vs block: the code inside a <pre>
+              // always contains newlines; inline code never does. The
+              // AST `node` prop is no longer reliable in react-markdown v9,
+              // so we use the children-string check instead.
+              const isBlock = String(children).includes('\n');
+              if (isBlock) {
+                // Inside a <pre>. Just pass through with the language
+                // className (e.g. "language-python"); the <pre> handles
+                // background + padding.
+                return (
+                  <code {...props} className={className}>
+                    {children}
+                  </code>
+                );
+              }
+              // Inline code (e.g. `foo` in a sentence). Style as a chip.
+              return (
+                <code
+                  {...props}
+                  className="bg-coden-bg border border-coden-border rounded px-1 py-0.5 text-coden-accent text-xs"
+                >
+                  {children}
+                </code>
+              );
             },
           }}
         >
