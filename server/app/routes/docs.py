@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import Response
 from pydantic import BaseModel
 
 from challenges.registry import CHALLENGE_REGISTRY
@@ -118,21 +119,31 @@ def docs_index() -> list[DocIndexEntry]:
 
 
 @router.get("/docs/overview")
-def docs_overview() -> str:
+def docs_overview() -> Response:
     """Return the general overview doc (docs/README.md).
 
-    Returns plain text; the frontend renders it with the same
-    markdown engine it uses for per-algorithm docs.
+    Returns the file content with ``text/markdown`` so the
+    client receives the raw markdown (no JSON wrapping or
+    string escaping). FastAPI's default is to JSON-encode
+    ``str`` returns, which would wrap the whole doc in
+    quotes and escape newlines as ``\\n`` - not what we want
+    for a markdown consumer.
     """
     readme = DOCS_ROOT / "README.md"
     if not readme.is_file():
         raise HTTPException(status_code=404, detail="docs/README.md not found")
-    return readme.read_text(encoding="utf-8")
+    return Response(
+        content=readme.read_text(encoding="utf-8"),
+        media_type="text/markdown; charset=utf-8",
+    )
 
 
 @router.get("/docs/by-id/{challenge_id}")
-def docs_by_id(challenge_id: str) -> str:
-    """Return the per-algorithm doc for a challenge (by challenge id)."""
+def docs_by_id(challenge_id: str) -> Response:
+    """Return the per-algorithm doc for a challenge (by challenge id).
+
+    See :func:`docs_overview` for the media-type note.
+    """
     cls = CHALLENGE_REGISTRY.get(challenge_id)
     if cls is None:
         raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
@@ -144,16 +155,22 @@ def docs_by_id(challenge_id: str) -> str:
             detail=f"No doc yet for {challenge_id} ({spec.name}). "
                    f"Contribute at docs/algorithms/{spec.category}/{challenge_id}_*.md",
         )
-    return doc.read_text(encoding="utf-8")
+    return Response(
+        content=doc.read_text(encoding="utf-8"),
+        media_type="text/markdown; charset=utf-8",
+    )
 
 
 @router.get("/docs/{path:path}")
-def docs_raw(path: str) -> str:
+def docs_raw(path: str) -> Response:
     """Return the raw text of any file under DOCS_ROOT.
 
     Path-traversal safe: the resolved absolute path must remain
     inside DOCS_ROOT. The 403 is intentional - we don't want
     ``/api/docs/../server/app/main.py`` to leak the engine source.
+
+    Sends the file with ``text/markdown`` so the client receives
+    raw markdown (not JSON-wrapped).
     """
     if not DOCS_ROOT.is_dir():
         raise HTTPException(status_code=500, detail="DOCS_ROOT does not exist")
@@ -164,4 +181,7 @@ def docs_raw(path: str) -> str:
         raise HTTPException(status_code=403, detail="Path traversal denied")
     if not target.is_file():
         raise HTTPException(status_code=404, detail=f"Doc not found: {path}")
-    return target.read_text(encoding="utf-8")
+    return Response(
+        content=target.read_text(encoding="utf-8"),
+        media_type="text/markdown; charset=utf-8",
+    )
