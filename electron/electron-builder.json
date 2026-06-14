@@ -22,6 +22,12 @@
   "win": {
     "target": [
       {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      },
+      {
         "target": "dir",
         "arch": [
           "x64"
@@ -29,6 +35,17 @@
       }
     ],
     "icon": "assets/icon.ico"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "allowElevation": false,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "cOde(n)",
+    "deleteAppDataOnUninstall": true,
+    "artifactName": "cOde(n)-Setup-${version}.${ext}"
   },
   "asar": true,
   "compression": "normal",

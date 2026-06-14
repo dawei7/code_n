@@ -114,19 +114,30 @@ def step_electron_build() -> None:
     print(f"OK: electron main at {expected.relative_to(REPO_ROOT)}")
 
 
-def step_electron_dist() -> None:
+def step_electron_dist(publish: str = "never") -> None:
     """Package the Electron app.
 
-    The output is ``electron/release/win-unpacked/`` with
-    ``cOde(n).exe`` as the entry point. (We use electron-builder's
-    ``dir`` target rather than ``portable`` because the portable
-    target uses NSIS under the hood, which can hang on first build
-    while it downloads + runs makensis. The ``dir`` target is the
-    raw unpacked Electron app, no installer wrapper, ready to
-    double-click.)
+    Outputs both an NSIS installer and a portable ``win-unpacked/``
+    folder (driven by ``electron-builder.json``'s ``win.target``
+    list, which now contains both):
+
+    - ``electron/release/cOde(n)-Setup-<version>.exe`` (NSIS
+      installer, per-user, ~95 MB) — this is what end users
+      install.
+    - ``electron/release/win-unpacked/cOde(n).exe`` (portable
+      folder, ~170 MB) — useful for dev / smoke tests.
+
+    The ``publish`` value is forwarded to electron-builder:
+        never          - default; build only, no GitHub release.
+        onTagOrDraft   - publish only when the current commit
+                         already has a tag (or a draft release
+                         exists). Used by ``release.py``.
+        always         - force-publish on every build. Dangerous;
+                         use only if you know what you're doing.
     """
-    npm = find_tool("npm")
-    run([npm, "run", "dist"], cwd=REPO_ROOT / "electron")
+    npx = find_tool("npx")
+    run([npx, "electron-builder", "--win", "--x64", "--publish", publish],
+        cwd=REPO_ROOT / "electron")
     unpacked = REPO_ROOT / "electron" / "release" / "win-unpacked"
     if not unpacked.is_dir():
         print(f"electron unpacked dir missing: {unpacked}")
@@ -135,11 +146,23 @@ def step_electron_dist() -> None:
     if not launcher.is_file():
         print(f"launcher missing: {launcher}")
         sys.exit(1)
+    # Find the NSIS installer electron-builder just produced.
+    installers = sorted((REPO_ROOT / "electron" / "release").glob(
+        "cOde(n)-Setup-*.exe"
+    ))
     size_mb = launcher.stat().st_size / (1024 * 1024)
     print(f"OK: launcher at {launcher.relative_to(REPO_ROOT)} ({size_mb:.1f} MB)")
+    if installers:
+        inst = installers[-1]
+        inst_mb = inst.stat().st_size / (1024 * 1024)
+        print(f"OK: installer at {inst.relative_to(REPO_ROOT)} ({inst_mb:.1f} MB)")
     print()
-    print("To run:")
+    print("To run (portable):")
     print(f"  {launcher}")
+    if installers:
+        print()
+        print("To install (NSIS):")
+        print(f"  {installers[-1]}")
     print()
     print("If Windows SmartScreen shows 'Windows protected your PC':")
     print("  click 'More info' -> 'Run anyway' (no code-signing cert yet).")
@@ -151,6 +174,18 @@ def main() -> None:
         "--step",
         choices=["web", "server", "electron-build", "electron-dist", "all"],
         default="all",
+    )
+    parser.add_argument(
+        "--publish",
+        choices=["never", "onTagOrDraft", "always"],
+        default="never",
+        help=(
+            "Forwarded to electron-builder when --step electron-dist "
+            "is selected. 'never' (default) builds only; "
+            "'onTagOrDraft' creates a GitHub release if the current "
+            "commit has a matching tag (used by release.py); "
+            "'always' force-publishes on every build."
+        ),
     )
     args = parser.parse_args()
 
@@ -165,7 +200,7 @@ def main() -> None:
     if args.step in ("electron-build", "all"):
         step_electron_build()
     if args.step in ("electron-dist", "all"):
-        step_electron_dist()
+        step_electron_dist(args.publish)
 
     print("\nBuild complete.")
 

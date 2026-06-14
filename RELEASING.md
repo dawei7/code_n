@@ -1,8 +1,8 @@
 # Releasing cOde(n) — auto-update flow
 
-This doc covers how to cut a new release so existing
-installations of cOde(n) auto-update themselves. Read this end-to-end
-the first time; the second time it's a 5-minute checklist.
+This doc covers how to cut a new release so existing installations of
+cOde(n) auto-update themselves. Read this end-to-end the first time;
+the second time it's a single command.
 
 ---
 
@@ -11,21 +11,27 @@ the first time; the second time it's a 5-minute checklist.
 ```
                        YOUR MACHINE                       GITHUB
                        ────────────                       ──────
-   1. git tag v0.2.0 && git push --tags        ─────▶
-   2. python build_app.py (or npm run dist)
-      ┌─ electron-builder reads $GH_TOKEN
-      ├─ packages win-unpacked/ + a portable .exe
-      ├─ creates a draft GitHub Release for v0.2.0
-      └─ uploads .exe + .blockmap + latest.yml         ────▶  Releases/v0.2.0
+   1. python release.py                            ─────▶
+      ┌─ bumps electron/package.json to v0.2.0
+      ├─ git commit + push main
+      ├─ git tag v0.2.0 + push tag
+      ├─ builds web (Vite) + server (PyInstaller) + electron (TS)
+      └─ electron-builder --publish onTagOrDraft (reads $GH_TOKEN)
+         ├─ packages cOde(n)-Setup-0.2.0.exe (NSIS installer)
+         ├─ packages win-unpacked/cOde(n).exe (portable)
+         ├─ generates latest.yml + .blockmap
+         └─ creates a published GitHub Release for v0.2.0
+                                                       ────▶  Releases/v0.2.0
 
-   3. User opens cOde(n) v0.1.0 on their machine
-      ┌─ main process: autoUpdater.checkForUpdates()         ────▶  GitHub API
+   2. User opens cOde(n) v0.1.0 on their machine
+      ┌─ main process: autoUpdater.checkForUpdates()         ─────▶  GitHub API
       │   (one shot, on launch)
-      ├─ finds v0.2.0, sees it's newer stable              ────▶  latest.yml
-      ├─ autoDownloads the new .exe in the background
+      ├─ finds v0.2.0, sees it's newer stable              ─────▶  latest.yml
+      ├─ autoDownloads the new installer in the background
       └─ shows a "Restart to install" pill in the UI
-   4. User clicks Restart → quitAndInstall()
-      └─ On next launch, the user is on v0.2.0.
+   3. User clicks Restart → quitAndInstall()
+      └─ NSIS applies the diff (delta update via .blockmap).
+         On next launch the user is on 0.2.0.
 ```
 
 The "check on launch" is a one-shot, not periodic — the spec is
@@ -82,83 +88,56 @@ npm install            # one time, picks up electron-updater
 npm run dist:dry       # packages the .exe WITHOUT publishing
 ```
 
-This should produce `electron/release/win-unpacked/cOde(n).exe` and
-NOT touch GitHub. If this fails, you have a build-pipeline bug —
-fix that before cutting a real release.
+This should produce both:
+
+- `electron/release/cOde(n)-Setup-0.1.0.exe` (the NSIS installer, ~95 MB)
+- `electron/release/win-unpacked/cOde(n).exe` (the portable folder, ~170 MB)
+
+If this fails, you have a build-pipeline bug — fix that before
+cutting a real release.
 
 ---
 
-## 3. Cutting a real release (5 minutes)
-
-### 3.1 Bump the version
-
-`electron/package.json` is the source of truth. Bump it:
-
-```json
-{
-  "name": "coden-electron",
-  "version": "0.2.0",
-  ...
-}
-```
-
-(`0.1.0` → `0.2.0` for new features, `0.1.0` → `0.1.1` for patches.
-`0.1.0` → `1.0.0` is your call when you decide it's "stable".)
-
-### 3.2 Commit + tag
+## 3. Cutting a real release (one command)
 
 ```bash
-cd <repo-root>
-# Stage and commit the version bump.
-git add electron/package.json
-git commit -m "chore: bump version to v0.2.0"
-# Create the matching tag.
-git tag v0.2.0
-git push origin main --tags
-```
+cd "c:/dawei7/code_n"
 
-The `v` prefix is conventional; electron-builder will strip it for
-the GitHub Release name (`Release v0.2.0` or `0.2.0`).
-
-### 3.3 Build + publish
-
-```bash
-cd <repo-root>
 # Make sure $GH_TOKEN is set in this shell.
 echo $GH_TOKEN   # sanity check; should print your token
 
-# Build + publish. This is the step that talks to GitHub.
-.venv/Scripts/python.exe build_app.py
-# or, if you've already built web+server:
-cd electron && npm run dist
+# Cut a minor release: 0.1.0 -> 0.2.0
+.venv/Scripts/python.exe release.py
+
+# Or a patch release: 0.1.0 -> 0.1.1
+.venv/Scripts/python.exe release.py --patch
+
+# Or an explicit version: 1.0.0-rc1, etc.
+.venv/Scripts/python.exe release.py --set 1.0.0
+
+# Or a dry-run (bump + tag + build, but no push / no publish):
+.venv/Scripts/python.exe release.py --dry-run
 ```
 
-What electron-builder does under the hood:
-1. Runs `electron-builder --win --x64` with `publish: { provider: "github", owner: "dawei7", repo: "code_n", releaseType: "release", channel: "latest" }`.
-2. Builds the unpacked `electron/release/win-unpacked/`.
-3. Calls the GitHub Releases API to create a draft release for
-   the tag, uploads `cOde(n) 0.X.Y.exe` + the `.blockmap` +
-   `latest.yml` to it, then publishes (un-drafts) the release.
-4. **Stable only**: `releaseType: "release"` + `channel: "latest"`
-   ensures pre-releases (`-rc`, `-beta`) are NEVER picked up by
-   `autoUpdater.channel = 'latest'` in `electron/src/updater.ts`.
+`release.py` does the whole pipeline:
+1. Bumps `electron/package.json` (default: minor; `--patch` for
+   hotfix; `--set X.Y.Z` for explicit).
+2. Refuses to run on a dirty working tree or non-`main` branch.
+3. Commits the version bump, pushes the branch, creates + pushes
+   the `vX.Y.Z` tag.
+4. Builds web + server + electron artifacts.
+5. Runs `electron-builder --win --x64 --publish onTagOrDraft`,
+   which uses `$GH_TOKEN` to:
+   - Create a published GitHub release for the tag.
+   - Attach the NSIS installer (`cOde(n)-Setup-X.Y.Z.exe`),
+     its `.blockmap`, and `latest.yml`.
+6. Prints the release URL at the end.
 
-### 3.4 Verify
+After the script finishes, every installed cOde(n) on the
+previous version will auto-pull the new release on its next
+launch.
 
-- Check <https://github.com/dawei7/code_n/releases/tag/v0.2.0>:
-  the release should be **published** (not draft), with all three
-  artifacts attached (`*.exe`, `*.exe.blockmap`, `latest.yml`).
-- On a machine with the previous version installed, launch
-  cOde(n). The "Check for updates" button should briefly show
-  "Checking…" and then either:
-  - "You are on the latest version" (if the test machine is
-    already on the new version), OR
-  - a green "Update v0.2.0 ready" pill in the bottom-right with a
-    Restart button. Click Restart → on next launch you're on 0.2.0.
-
----
-
-## 4. Behavior matrix
+### Behavior matrix
 
 | State                                 | User sees                                           |
 |---------------------------------------|------------------------------------------------------|
@@ -172,21 +151,62 @@ What electron-builder does under the hood:
 
 ---
 
+## 4. Verifying a release
+
+- Check <https://github.com/dawei7/code_n/releases/tag/vX.Y.Z>:
+  the release should be **published** (not draft), with all three
+  artifacts attached (`*.exe`, `*.exe.blockmap`, `latest.yml`).
+- On a machine with the previous version installed, launch
+  cOde(n). The "Check for updates" button should briefly show
+  "Checking…" and then either:
+  - "You are on the latest version" (if the test machine is
+    already on the new version), OR
+  - a green "Update v0.X.Y ready" pill in the bottom-right with a
+    Restart button. Click Restart → on next launch you're on the
+    new version.
+
+---
+
 ## 5. Troubleshooting
 
-### Build complains "GitHub Personal Access Token is not set"
+### "FATAL: $GH_TOKEN is not set"
+
+`release.py` checks for `$GH_TOKEN` upfront and refuses to run.
+Set it in your shell (see section 2.2) and re-run.
+
+### "FATAL: working tree is dirty"
+
+Commit or stash your uncommitted changes, then re-run. The bump
++ tag should be the only thing in the release commit.
+
+### "FATAL: current branch is 'X', not 'main'"
+
+Releases are only cut from `main`. Switch to `main` and rebase
+your changes if needed.
+
+### "FATAL: tag vX.Y.Z already exists on origin"
+
+The tag was already pushed (maybe from a previous run that
+partially failed). Either:
+- Cut a different version (`--set X.Y.Z+1`)
+- Or delete the tag locally + remotely:
+  ```bash
+  git tag -d vX.Y.Z
+  git push origin --delete vX.Y.Z
+  ```
+
+### "Build complains GitHub Personal Access Token is not set"
 
 ```
 Error: GitHub Personal Access Token is not set, neither programmatically, nor using env variable "GH_TOKEN"
 ```
 
 → `$GH_TOKEN` is not in the environment of the shell that ran
-`npm run dist`. Run `echo $GH_TOKEN` in that shell — if it's
+the build. Run `echo $GH_TOKEN` in that shell — if it's
 empty, your `.env` isn't being loaded, or you set it in a
 different shell. Use `direnv` or set it inline:
-
 ```bash
-GH_TOKEN=ghp_...  npm run dist
+GH_TOKEN=ghp_...  .venv/Scripts/python.exe release.py
 ```
 
 ### Build creates the release as a draft
@@ -217,12 +237,13 @@ fine-grained PAT with that one permission checked.
 
 ### "I want to test the updater without shipping a real release"
 
-Use `npm run dist:dry` from `electron/`. It builds the unpacked
-app, but does NOT publish. The auto-updater will report
-`not-available` (correct — no GitHub release exists). To actually
-test the download flow, cut a **draft** GitHub Release manually
-with the artifacts from a `dist:dry` build, install the previous
-version of the .exe somewhere else, and click "Check for updates".
-Then `dist:dry` again with the new version. The auto-updater
-DOES check for updates across `draft` releases (only `prerelease`
-is filtered out by `releaseType: "release"`).
+Use `npm run dist:dry` from `electron/`. It builds the installer
+and the portable folder, but does NOT publish. The auto-updater
+will report `not-available` (correct — no GitHub release exists).
+To actually test the download flow, cut a **draft** GitHub
+Release manually with the artifacts from a `dist:dry` build,
+install the previous version of the installer somewhere else,
+and click "Check for updates". Then `dist:dry` again with the
+new version. The auto-updater DOES check for updates across
+`draft` releases (only `prerelease` is filtered out by
+`releaseType: "release"`).
