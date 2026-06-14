@@ -33,7 +33,7 @@ BACKSTORY_SHORT = (
 
 
 def normalize_player_name(name: str) -> str:
-    """Return a compact ASCII display name suitable for Pygame UI text."""
+    """Return a compact ASCII display name for UI display."""
     cleaned = " ".join(name.strip().split())
     cleaned = "".join(ch for ch in cleaned if 32 <= ord(ch) <= 126)
     return (cleaned[:MAX_PLAYER_NAME_LENGTH] or DEFAULT_PLAYER_NAME)

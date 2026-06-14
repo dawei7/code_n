@@ -189,8 +189,6 @@ class MaxNCapTests(unittest.TestCase):
 
     def test_max_n_is_50(self):
         # MAX_N is a class attribute on Challenge (code_n/challenge.py).
-        # The old CLI runner used to re-export it as a module constant;
-        # that file moved to legacy/ in the 2026-06-07 web rebuild.
         from code_n.challenge import Challenge
         self.assertEqual(Challenge.MAX_N, 50)
 

@@ -31,7 +31,7 @@ from code_n.grid import CellType, Grid
 from code_n.tracked import TrackedList
 
 
-# --- Visualisation helper. The Pygame renderer needs a Grid to
+# --- Visualisation helper. The web visualizer needs a Grid to
 # draw on, and the user has asked that every data structure get a
 # representative visual. This helper builds a Grid from a list of
 # rows (one per "field") of equal length and fills each cell with

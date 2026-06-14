@@ -1,7 +1,8 @@
 """Execution tracing for player solutions.
 
-Captures local variable snapshots from the player's solve function so the
-Pygame renderer can behave like a lightweight algorithm debugger.
+Captures local variable snapshots from the player's solve function so
+the visualizer (the React/Electron frontend) can replay the
+algorithm step by step.
 """
 
 from __future__ import annotations

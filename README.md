@@ -29,10 +29,8 @@ code_n engine + challenges registry   ← UNTOUCHED
 
 - **Backend:** FastAPI in `server/` (wraps the engine)
 - **Frontend:** React + Vite + TypeScript + Tailwind + Monaco + Zustand in `web/`
-- **Desktop wrapper:** Electron in `electron/` (dev launcher only; full .exe build is a follow-up)
-- **Engine:** `code_n/`, `challenges/`, `optimal_solutions/`, the 207-test engine suite — **untouched**
-
-See `legacy/README.md` for the old Pygame/CLI build (still functional, archived).
+- **Desktop wrapper:** Electron in `electron/` (bundles the React app + the PyInstaller-bundled FastAPI server into a portable `.exe`)
+- **Engine:** `code_n/`, `challenges/`, `optimal_solutions/`, the 102-test suite (83 engine + 19 server) — the algorithmic core
 
 ## How to run the dev workflow
 
@@ -179,21 +177,6 @@ The MVP only has a 1D sort visualizer (in
 `cellStates: CellState[][]` from the current trace frame's locals,
 then render with CSS Grid. The `useStepPlayer` hook and the
 `useAppStore` slice are challenge-agnostic.
-
-## Legacy build
-
-The old Pygame/CLI build is preserved in `legacy/`. It still
-works:
-
-```bash
-cd "c:/dawei7/code_n"
-.venv/Scripts/python.exe main.py                                          # CLI menu
-.venv/Scripts/python.exe run_challenge.py --pygame intro_01 --n 8 --seed 1
-.venv/Scripts/python.exe build_windows_exe.py                             # rebuild old exe
-```
-
-The Pygame exe is at `dist/cOde(n)/cOde(n).exe` (gitignored).
-See `legacy/README.md` for the full archive notes.
 
 ## License
 

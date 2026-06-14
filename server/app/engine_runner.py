@@ -308,8 +308,7 @@ def _build_message(
 ) -> str:
     """Build the same pass/fail message the engine's Challenge.run prints.
 
-    The Pygame/terminal renderer reads this off the ChallengeResult
-    and prints it. The web StatusBanner shows it in the UI.
+    The web StatusBanner shows it in the UI.
     """
     if error_message:
         return error_message

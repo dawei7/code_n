@@ -10,16 +10,14 @@ Each challenge defines:
   several algorithms of the same complexity could solve the problem.
 """
 
-import random
-import traceback
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Any, Callable, Optional
 
-from .grid import Grid, CellType
+from .grid import Grid
 from .counter import (
-    OperationCounter, OpRecord, get_counter, reset_counter,
-    ComplexityClass, OpStats, OperationLimitExceeded
+    OpRecord, get_counter, reset_counter,
+    ComplexityClass, OpStats, OperationLimitExceeded,
 )
 from .tracked import TrackedList, TrackedGrid
 from .execution_trace import ExecutionStepLimitExceeded, ExecutionTrace, run_with_trace
@@ -138,35 +136,8 @@ class Challenge(ABC):
 
     def __init__(self):
         self.grid: Optional[Grid] = None
-        # Renderer is imported lazily (and only constructed on
-        # first use) because the underlying ``code_n.renderer`` and
-        # ``code_n.pygame_renderer`` modules are part of the legacy
-        # Pygame flow that the React/Electron/server side never
-        # touches. Removing the eager import lets us drop those
-        # legacy modules from code_n/ entirely without breaking
-        # any other consumer of challenge.py.
-        self._renderer: Any = None
         self._n: int = 0
         self._seed: Optional[int] = None
-
-    def _get_renderer(self) -> Any:
-        """Lazy-load the legacy ``Renderer`` class on first use.
-
-        The ``code_n.renderer`` module is part of the legacy
-        Pygame/CLI flow. The React/Electron/server side never
-        imports challenge.py, but the legacy runner does, so we
-        keep the call sites working via a lazy import. If the
-        legacy module is missing (because the user deleted it),
-        this returns None and the visualize methods become no-ops.
-        """
-        if self._renderer is None:
-            try:
-                from .renderer import Renderer  # type: ignore[import-not-found]
-                self._renderer = Renderer()
-            except ImportError:
-                # Legacy module was removed; visualizer is unavailable.
-                self._renderer = False  # sentinel "tried, not available"
-        return self._renderer if self._renderer else None
 
     @property
     def max_n(self) -> int:
@@ -196,92 +167,49 @@ class Challenge(ABC):
         """Verify the player's solution is correct."""
         ...
 
-    def visualize_setup(self):
-        """Show the initial state on the grid."""
-        if self.grid:
-            renderer = self._get_renderer()
-            if renderer is not None:
-                renderer.display(self.grid, title=self.info.name)
-
-    def visualize_result(self, counter: OperationCounter):
-        """Show the final state with stats."""
-        if self.grid:
-            renderer = self._get_renderer()
-            if renderer is not None:
-                renderer.display(
-                    self.grid,
-                    title=self.info.name,
-                    counter=counter,
-                    n=self._n,
-                    threshold=self.info.required_complexity
-                )
-
     def run(self, solve_fn: Callable, n: int = 16,
-            seed: Optional[int] = None, animate: bool = True,
-            pygame: bool = False,
-            pygame_speed: Optional[str] = None) -> ChallengeResult:
-        """Execute the challenge with the player's solution function."""
+            seed: Optional[int] = None, animate: bool = False) -> ChallengeResult:
+        """Execute the challenge with the player's solution function.
+
+        This is the engine-internal path used by the unit tests. It
+        does pure setup → solve → verify → classify → message
+        bookkeeping and returns a :class:`ChallengeResult`. It has
+        no I/O (no ``input()`` prompt, no ``print()``, no
+        visualization, no side effects beyond the global
+        :class:`OperationCounter`).
+
+        The ``animate`` parameter is retained for backward
+        compatibility with the test suite (which passes
+        ``animate=False``) but is otherwise a no-op: visualization
+        was always a no-op anyway because the legacy Pygame
+        renderer modules were removed.
+
+        The server uses its own trace pipeline in
+        :mod:`server.app.engine_runner` and never calls this.
+        """
         self._n = n
         self._seed = seed
 
         reset_counter()
         counter = get_counter()
         operation_limit = counter.limit_for(n, self.info.required_complexity)
-        progress_window = None
-        if pygame:
-            from .pygame_renderer import ComputationProgressWindow
-
-            progress_window = ComputationProgressWindow(
-                self.info.name,
-                self.info.description,
-                operation_limit,
-            )
 
         # Setup
-        if progress_window:
-            progress_window.update("Preparing challenge", 0, operation_limit, force=True)
         setup_data = self.setup(n, seed)
 
-        # Show initial state
-        if animate:
-            self.visualize_setup()
-            input("\nPress Enter to run your solution...")
-
-        # Run player's solution
+        # Run player's solution under trace capture so the resulting
+        # ChallengeResult carries the frame timeline (even though
+        # no test currently inspects it; the server uses its own).
         trace = ExecutionTrace()
         error_message = ""
         result = None
-        step_limit = max(10_000, operation_limit * 25)
         counter.set_operation_limit(operation_limit, self.info.required_complexity)
-        if progress_window:
-            progress_interval = max(1, operation_limit // 250)
-            progress_window.update("Running your solution", 0, operation_limit, force=True)
-            counter.set_progress_callback(
-                lambda total, limit: progress_window.update("Running your solution", total, limit),
-                interval=progress_interval,
-            )
         try:
             count_lines = not _has_tracked_inputs(setup_data)
-            if pygame:
+            if count_lines:
                 result, trace = run_with_trace(
-                    solve_fn,
-                    setup_data,
-                    counter,
-                    count_lines=count_lines,
-                    step_limit=step_limit,
-                    step_callback=(
-                        lambda steps: progress_window.update(
-                            f"Running your solution ({steps} Python steps)",
-                            counter.total_ops,
-                            operation_limit,
-                        )
-                        if progress_window
-                        else None
-                    ),
-                    step_interval=max(500, step_limit // 250),
+                    solve_fn, setup_data, counter, count_lines=True,
                 )
-            elif count_lines:
-                result, trace = run_with_trace(solve_fn, setup_data, counter, count_lines=True)
             else:
                 result = solve_fn(**setup_data)
         except OperationLimitExceeded as exc:
@@ -290,19 +218,11 @@ class Challenge(ABC):
         except ExecutionStepLimitExceeded as exc:
             error_message = str(exc)
             trace.return_value = error_message
-        except Exception as exc:
-            if not pygame:
-                raise
-            error_message = f"Your solution crashed: {type(exc).__name__}: {exc}"
-            trace.return_value = "\n".join(traceback.format_exception_only(type(exc), exc)).strip()
         finally:
             counter.clear_operation_limit()
-            counter.clear_progress_callback()
-            if progress_window:
-                progress_window.update("Preparing replay", counter.total_ops, operation_limit, force=True)
-                progress_window.close()
 
-        # Verify correctness
+        # Verify correctness. The verifier runs with the counter
+        # disabled so its own reads don't inflate the op budget.
         if error_message:
             correct = False
         else:
@@ -311,29 +231,30 @@ class Challenge(ABC):
                 counter.enabled = False
                 correct = self.verify(result)
             except Exception as exc:
-                if not pygame:
-                    raise
                 correct = False
                 error_message = f"Could not verify your result: {type(exc).__name__}: {exc}"
                 trace.return_value = repr(result)
             finally:
                 counter.enabled = was_counting
+
         stats = counter.stats
         actual_complexity = counter.classify(n)
         within_threshold = counter.meets_threshold(n, self.info.required_complexity)
-
         passed = correct and within_threshold
 
         # Algorithm fingerprint check. The fingerprint is advisory:
-        # it never affects `passed`, only `algorithm_match` and a hint
-        # appended to the result message. The point is to teach the
-        # player which specific algorithm they used when several
-        # algorithms of the same O-class could solve the problem.
+        # it never affects ``passed``, only ``algorithm_match`` and
+        # a hint appended to the result message. The point is to
+        # teach the player which specific algorithm they used when
+        # several algorithms of the same O-class could solve the
+        # problem.
         algorithm_match, algorithm_reason = check_fingerprint(
             counter.ops_log, self.info.expected_operations,
         )
 
-        # Build message
+        # Build the pass/fail message. The server's
+        # ``build_message()`` helper in engine_runner.py mirrors
+        # this logic for the HTTP path; keep the two in sync.
         if error_message:
             message = error_message
         elif not correct:
@@ -352,51 +273,6 @@ class Challenge(ABC):
             if not algorithm_match and algorithm_reason:
                 message += f"\nAlgorithm hint: {algorithm_reason}"
 
-        # Show result
-        if animate:
-            self.visualize_result(counter)
-
-        if pygame:
-            from .pygame_renderer import PygameRenderer, VisualRunResult
-
-            # Some challenges (greedy problems, dynamic-programming
-            # problems on flat lists, anything not 2D) don't have a
-            # 2D grid to visualize. The Pygame renderer still needs
-            # *some* grid object to lay out its result window, so
-            # substitute a 1x1 placeholder when one wasn't set up.
-            # The challenge's own setup() should also set a
-            # representative grid for pedagogical value; this is a
-            # safety net so a missing grid never silently swallows a
-            # run.
-            if self.grid is None:
-                from .grid import CellType as _CellType, Grid as _Grid
-                placeholder = _Grid(1, 1)
-                placeholder.set(0, 0, _CellType.VALUE, value="?")
-                grid_for_renderer = placeholder
-            else:
-                grid_for_renderer = self.grid
-
-            visual_result = VisualRunResult(
-                passed=passed,
-                message=message,
-                stats=stats,
-                actual_complexity=actual_complexity,
-                required_complexity=self.info.required_complexity,
-                n=n,
-                description=self.info.description,
-                return_value=trace.return_value or repr(result),
-                trace_frames=trace.frames,
-            )
-            PygameRenderer(speed=pygame_speed).play(
-                grid=grid_for_renderer,
-                operations=counter.ops_log,
-                title=self.info.name,
-                result=visual_result,
-            )
-
-        if animate or pygame:
-            print(f"\n{message}")
-
         return ChallengeResult(
             passed=passed,
             correct=correct,
@@ -407,7 +283,7 @@ class Challenge(ABC):
             actual_complexity=actual_complexity,
             required_complexity=self.info.required_complexity,
             n=n,
-            message=message
+            message=message,
         )
 
 
