@@ -1,12 +1,11 @@
 """Optimal solution for bit_08: Divide Without /.
 
-Repeated subtraction: dividend = divisor * quotient + remainder.
-Build the quotient bit-by-bit from the most significant bit
-of the divisor. Use absolute values; handle the sign at the end.
+Compute dividend / divisor (integer division) using
 """
 
 
 def solve(dividend, divisor):
+    """Return dividend / divisor (integer division) without using /."""
     if divisor == 0:
         return 0
     if dividend == 0:

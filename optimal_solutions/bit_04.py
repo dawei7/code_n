@@ -1,12 +1,11 @@
 """Optimal solution for bit_04: Power Set.
 
-Return every subset of the input list as a list of lists.
-Iterate ``mask`` from 0 to 2^n-1; include arr[i] in the subset
-iff bit i of mask is set.
+Return every subset of the input list as a list
 """
 
 
 def solve(arr, n):
+    """Return every subset of arr as a list of lists."""
     result = []
     for mask in range(1 << n):
         subset = []

@@ -20,6 +20,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
     """
     from challenges.algorithms import (
         intro,
+        bit_manipulation,
         sorting,
         searching,
         graphs,
@@ -35,6 +36,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
         recursion,
         branch_and_bound,
         stack,
+        queue,
         linked_list,
         geometric,
         randomized,
@@ -47,6 +49,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
     )
     return [
         *intro.SPECS,
+        *bit_manipulation.SPECS,
         *sorting.SPECS,
         *searching.SPECS,
         *graphs.SPECS,
@@ -62,6 +65,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
         *recursion.SPECS,
         *branch_and_bound.SPECS,
         *stack.SPECS,
+        *queue.SPECS,
         *linked_list.SPECS,
         *geometric.SPECS,
         *randomized.SPECS,

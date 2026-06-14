@@ -1,11 +1,11 @@
 """Optimal solution for bit_09: Multiply Without *.
 
-Bit-by-bit multiplication: for each set bit of b, add (a << k)
-to the result. O(log b) additions.
+Compute a * b using only addition and shifts. For
 """
 
 
 def solve(a, b):
+    """Return a * b without using *."""
     negative = (a < 0) != (b < 0)
     x = abs(a)
     y = abs(b)

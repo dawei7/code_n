@@ -1,10 +1,11 @@
 """Optimal solution for bit_01: Count Set Bits.
 
-Walk the bits of n and count the 1s.
+Count the number of 1-bits in the binary
 """
 
 
 def solve(n):
+    """Count the 1-bits in n (Hamming weight)."""
     count = 0
     while n:
         count += n & 1
