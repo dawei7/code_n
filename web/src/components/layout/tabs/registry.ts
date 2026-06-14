@@ -26,6 +26,13 @@ import { ComplexityTab } from './ComplexityTab';
 // opens the editor tab.
 const EditorTab = lazy(() => import('./EditorTab').then((m) => ({ default: m.EditorTab })));
 
+// Reference tab: also lazy. Pulls in `react-markdown` + `remark-gfm`
+// (~80 KB gzipped) which we don't want in the main bundle unless
+// the user actually opens the reference pane.
+const ReferenceTab = lazy(() =>
+  import('./ReferenceTab').then((m) => ({ default: m.ReferenceTab })),
+);
+
 
 export interface TabDef {
   /** Stable id referenced by the layout store. */
@@ -48,12 +55,13 @@ export interface TabDef {
 
 /** Built-in tabs, in the order they appear in the default presets. */
 export const BUILTIN_TABS: TabDef[] = [
-  { id: 'description', label: 'Description', icon: '📋', Component: DescriptionTab, closable: false },
-  { id: 'complexity',  label: 'Complexity',  icon: '🧮', Component: ComplexityTab,  closable: false },
-  { id: 'locals',      label: 'Locals',      icon: '🔢', Component: LocalsTab,      closable: false },
-  { id: 'stats',       label: 'Stats & Ops', icon: '📊', Component: StatsTab,       closable: false },
-  { id: 'source',      label: 'Source',      icon: '📄', Component: SourceTab,      closable: false },
-  { id: 'editor',      label: 'Editor',      icon: '⌨️',  Component: EditorTab,      closable: true  },
+  { id: 'description', label: 'Description', icon: '📋', Component: DescriptionTab,  closable: false },
+  { id: 'reference',   label: 'Reference',   icon: '📚', Component: ReferenceTab,    closable: false },
+  { id: 'complexity',  label: 'Complexity',  icon: '🧮', Component: ComplexityTab,   closable: false },
+  { id: 'locals',      label: 'Locals',      icon: '🔢', Component: LocalsTab,       closable: false },
+  { id: 'stats',       label: 'Stats & Ops', icon: '📊', Component: StatsTab,        closable: false },
+  { id: 'source',      label: 'Source',      icon: '📄', Component: SourceTab,       closable: false },
+  { id: 'editor',      label: 'Editor',      icon: '⌨️',  Component: EditorTab,       closable: true  },
 ];
 
 

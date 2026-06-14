@@ -103,8 +103,18 @@ export async function startServer(
     // In production, the React build lives at extraResources/web-dist.
     // Tell the server where to find it via CODEN_WEB_DIST.
     const webDist = path.join(process.resourcesPath, 'web-dist');
+    // Algorithm reference docs live at extraResources/docs; the
+    // server reads them via CODEN_DOCS_DIR. (In dev, the server
+    // falls back to <repo>/docs automatically.)
+    const docsDir = path.join(process.resourcesPath, 'docs');
     child = spawn(bundled, [], {
-      env: { ...process.env, CODEN_HOME: codenHome, CODEN_PORT_FILE: portFile, CODEN_WEB_DIST: webDist },
+      env: {
+        ...process.env,
+        CODEN_HOME: codenHome,
+        CODEN_PORT_FILE: portFile,
+        CODEN_WEB_DIST: webDist,
+        CODEN_DOCS_DIR: docsDir,
+      },
       stdio: ['ignore', 'pipe', 'pipe'],
       windowsHide: true,
     });

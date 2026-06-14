@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import typography from '@tailwindcss/typography';
 
 // Dark-only theme. Slate for surfaces, emerald for "passed" / sorted,
 // rose for errors / swapped, amber for compare highlights.
@@ -41,7 +42,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };
 
 export default config;

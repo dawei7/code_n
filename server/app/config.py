@@ -30,6 +30,12 @@ SOLUTIONS_DIR = Path(os.environ.get("CODEN_SOLUTIONS_DIR", str(CODEN_HOME / "sol
 # of ``resources/web-dist/`` (the extraResource).
 WEB_DIST = Path(os.environ.get("CODEN_WEB_DIST", str(PROJECT_ROOT / "web" / "dist")))
 
+# Algorithm documentation files. Same dev/prod split as WEB_DIST:
+# in dev the docs/ tree is at <repo>/docs; in the packaged app
+# the Electron launcher sets CODEN_DOCS_DIR to the absolute path
+# of ``resources/docs/`` (the extraResource).
+DOCS_ROOT = Path(os.environ.get("CODEN_DOCS_DIR", str(PROJECT_ROOT / "docs")))
+
 # Server config.
 CODEN_HOST = os.environ.get("CODEN_HOST", "127.0.0.1")
 CODEN_PORT = int(os.environ.get("CODEN_PORT", "8000"))

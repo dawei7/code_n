@@ -17,6 +17,10 @@
     {
       "from": "../web/dist",
       "to": "web-dist"
+    },
+    {
+      "from": "../docs",
+      "to": "docs"
     }
   ],
   "win": {
