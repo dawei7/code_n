@@ -21,7 +21,6 @@ from .counter import (
     OperationCounter, OpRecord, get_counter, reset_counter,
     ComplexityClass, OpStats, OperationLimitExceeded
 )
-from .renderer import Renderer
 from .tracked import TrackedList, TrackedGrid
 from .execution_trace import ExecutionStepLimitExceeded, ExecutionTrace, run_with_trace
 
@@ -139,9 +138,35 @@ class Challenge(ABC):
 
     def __init__(self):
         self.grid: Optional[Grid] = None
-        self.renderer = Renderer()
+        # Renderer is imported lazily (and only constructed on
+        # first use) because the underlying ``code_n.renderer`` and
+        # ``code_n.pygame_renderer`` modules are part of the legacy
+        # Pygame flow that the React/Electron/server side never
+        # touches. Removing the eager import lets us drop those
+        # legacy modules from code_n/ entirely without breaking
+        # any other consumer of challenge.py.
+        self._renderer: Any = None
         self._n: int = 0
         self._seed: Optional[int] = None
+
+    def _get_renderer(self) -> Any:
+        """Lazy-load the legacy ``Renderer`` class on first use.
+
+        The ``code_n.renderer`` module is part of the legacy
+        Pygame/CLI flow. The React/Electron/server side never
+        imports challenge.py, but the legacy runner does, so we
+        keep the call sites working via a lazy import. If the
+        legacy module is missing (because the user deleted it),
+        this returns None and the visualize methods become no-ops.
+        """
+        if self._renderer is None:
+            try:
+                from .renderer import Renderer  # type: ignore[import-not-found]
+                self._renderer = Renderer()
+            except ImportError:
+                # Legacy module was removed; visualizer is unavailable.
+                self._renderer = False  # sentinel "tried, not available"
+        return self._renderer if self._renderer else None
 
     @property
     def max_n(self) -> int:
@@ -174,18 +199,22 @@ class Challenge(ABC):
     def visualize_setup(self):
         """Show the initial state on the grid."""
         if self.grid:
-            self.renderer.display(self.grid, title=self.info.name)
+            renderer = self._get_renderer()
+            if renderer is not None:
+                renderer.display(self.grid, title=self.info.name)
 
     def visualize_result(self, counter: OperationCounter):
         """Show the final state with stats."""
         if self.grid:
-            self.renderer.display(
-                self.grid,
-                title=self.info.name,
-                counter=counter,
-                n=self._n,
-                threshold=self.info.required_complexity
-            )
+            renderer = self._get_renderer()
+            if renderer is not None:
+                renderer.display(
+                    self.grid,
+                    title=self.info.name,
+                    counter=counter,
+                    n=self._n,
+                    threshold=self.info.required_complexity
+                )
 
     def run(self, solve_fn: Callable, n: int = 16,
             seed: Optional[int] = None, animate: bool = True,
