@@ -16,6 +16,7 @@
 import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import * as path from 'node:path';
 import { startServer, ServerHandle } from './server-process';
+import { initAutoUpdater, runAutoCheckOnLaunch } from './updater';
 
 
 let mainWindow: BrowserWindow | null = null;
@@ -184,7 +185,18 @@ async function createWindow(): Promise<void> {
 
 
 app.whenReady().then(() => {
+  // Wire the auto-updater event listeners + IPC handlers before
+  // createWindow() so the renderer can call 'update:check' as soon
+  // as it boots, even before the first auto-check on launch fires.
+  initAutoUpdater();
+
   void createWindow();
+
+  // One auto-check on launch, after the main window is up. In
+  // dev (app.isPackaged === false) this is a no-op. The check
+  // broadcasts a 'update:status' event to the renderer with the
+  // result; no UI prompt unless an update is found + downloaded.
+  runAutoCheckOnLaunch();
 
   app.on('activate', () => {
     // macOS: re-create the window when the dock icon is clicked.

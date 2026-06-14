@@ -23,12 +23,21 @@
     "target": [
       {
         "target": "dir",
-        "arch": ["x64"]
+        "arch": [
+          "x64"
+        ]
       }
     ],
     "icon": "assets/icon.ico"
   },
   "asar": true,
   "compression": "normal",
-  "buildDependenciesFromSource": false
+  "buildDependenciesFromSource": false,
+  "publish": {
+    "provider": "github",
+    "owner": "dawei7",
+    "repo": "code_n",
+    "releaseType": "release",
+    "channel": "latest"
+  }
 }

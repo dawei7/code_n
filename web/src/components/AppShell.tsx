@@ -21,11 +21,13 @@ import { useEffect } from 'react';
 import { useAppStore } from '../store/useAppStore';
 import { useStepPlayer } from '../hooks/useStepPlayer';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
+import { useUpdater } from '../hooks/useUpdater';
 import { ChallengeList } from './ChallengeList';
 import { LayoutRoot } from './layout/LayoutRoot';
 import { useLayoutStore } from '../store/useLayoutStore';
 import { StepControls } from './StepControls';
 import { allLeaves } from './layout/tree-ops';
+import { UpdateToast } from './UpdateToast';
 
 
 export function AppShell() {
@@ -64,6 +66,7 @@ export function AppShell() {
           <LayoutRoot />
         </main>
       </div>
+      <UpdateToast />
     </div>
   );
 }
@@ -76,6 +79,21 @@ function TopHeader() {
   const replaceTree = useLayoutStore((s) => s.replaceTree);
   const tree = useLayoutStore((s) => s.tree);
   const leafCount = allLeaves(tree).length;
+  const updater = useUpdater();
+
+  // Tooltip describing the last update action for the "Check for
+  // updates" button. Changes when the state changes.
+  const updateButtonTitle = (() => {
+    switch (updater.state.status.state) {
+      case 'idle': return 'Check for cOde(n) updates';
+      case 'checking': return 'Checking for updates…';
+      case 'available': return `Update v${updater.state.status.version} available; downloading…`;
+      case 'downloading': return `Downloading v${updater.state.status.version}…`;
+      case 'downloaded': return `v${updater.state.status.version} ready — click Restart below`;
+      case 'not-available': return 'You are on the latest version';
+      case 'error': return `Update error: ${updater.state.status.message ?? 'unknown'}`;
+    }
+  })();
 
   return (
     <header className="h-10 flex items-center justify-between px-4 border-b border-coden-border bg-coden-surface shrink-0">
@@ -85,6 +103,14 @@ function TopHeader() {
         {challenges.length > 0 && (
           <span className="text-xs text-coden-muted font-mono">
             {challenges.length} challenges
+          </span>
+        )}
+        {updater.state.appVersion && (
+          <span
+            className="text-[10px] text-coden-muted font-mono"
+            title={`Currently running v${updater.state.appVersion.current} on the '${updater.state.appVersion.channel}' channel`}
+          >
+            v{updater.state.appVersion.current}
           </span>
         )}
       </div>
@@ -134,6 +160,15 @@ function TopHeader() {
           title="Reset the whole layout to the 4-pane default (clears your arrangement)"
         >
           ↺ Reset layout
+        </button>
+        <button
+          type="button"
+          onClick={() => void updater.checkNow()}
+          disabled={updater.state.checking || updater.state.status.state === 'downloading'}
+          className="px-2 py-1 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border disabled:opacity-50 disabled:cursor-not-allowed"
+          title={updateButtonTitle}
+        >
+          {updater.state.checking ? 'Checking…' : '↻ Check for updates'}
         </button>
       </div>
     </header>
