@@ -92,6 +92,12 @@ export interface AiReport {
     return_value: string;
   } | null;
   algorithm_hint: string;
+  // AST-derived op counts and tolerance band. Used by the
+  // LLM to reason about how close the user is to optimal.
+  user_ast_ops: number | null;
+  reference_ast_ops: number | null;
+  reference_ci_low: number | null;
+  reference_ci_high: number | null;
 }
 
 export interface RunResponse {
@@ -119,6 +125,15 @@ export interface RunResponse {
   trace: TraceFrameOut[];
   return_value_repr: string;
   truncated: boolean;
+  // ---- AST-derived op counts (the "scientific" metric) ----
+  // Counted statically by walking the source's AST. Used by
+  // the Complexity tab to compare the user's count against
+  // the reference's count, with a deterministic ±5% band.
+  user_ast_ops: number | null;
+  reference_ast_ops: number | null;
+  /** ±5% tolerance band around the reference's AST op count. */
+  reference_ci_low: number | null;
+  reference_ci_high: number | null;
   /** Structured AI report — always populated. The AI Report
    *  tab renders it; the local Ollama hint endpoint takes it
    *  as input. The optimal source is NEVER in this report

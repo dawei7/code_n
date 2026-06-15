@@ -170,7 +170,7 @@ function presetForN(n, idGen) {
       kind: 'split', id: idGen(), direction: 'row', sizes: [0.5, 0.5],
       children: [
         { kind: 'leaf', id: idGen(), tabIds: ['description', 'complexity'], activeTabId: 'description' },
-        { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
+        { kind: 'leaf', id: idGen(), tabIds: ['locals'], activeTabId: 'locals' },
       ],
     };
   }
@@ -182,7 +182,7 @@ function presetForN(n, idGen) {
         {
           kind: 'split', id: idGen(), direction: 'col', sizes: [0.55, 0.45],
           children: [
-            { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
+            { kind: 'leaf', id: idGen(), tabIds: ['locals'], activeTabId: 'locals' },
             { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
           ],
         },
@@ -202,7 +202,7 @@ function presetForN(n, idGen) {
       {
         kind: 'split', id: idGen(), direction: 'col', sizes: [0.5, 0.5],
         children: [
-          { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
+          { kind: 'leaf', id: idGen(), tabIds: ['locals'], activeTabId: 'locals' },
           { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
         ],
       },

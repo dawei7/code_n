@@ -69,6 +69,7 @@ from code_n.execution_trace import (
 from code_n.tracked import TrackedGrid, TrackedList
 
 from .ai_report import build as build_ai_report
+from .ast_ops import count_ops as ast_count_ops
 from .config import MAX_TRACE_FRAMES
 from .schemas import (
     OpRecordOut,
@@ -251,48 +252,35 @@ def run_player_code(
             counter.ops_log, challenge.info.expected_operations
         )
 
-        # --- 9b. Too-efficient check (AST + op ratio vs reference) ---
-        # Only run if the user's solution looks correct so far; the
-        # ratio check is meaningless on a wrong answer. We need the
-        # reference op count, which means running the reference
-        # solution once. We save the user's counter state, reset,
-        # run the reference, capture reference_ops, then reset
-        # again and rebuild the user's ops in a fresh counter so
-        # the stats below are the user's (not contaminated by the
-        # reference run).
+        # --- 9b. AST-based op counts (the "scientific" metric) ---
+        # We count ops by walking the AST of BOTH the user's
+        # source and the reference's source. The result is a
+        # deterministic integer per (source, n) pair. No
+        # dynamic counter is involved — the displayed
+        # "ops" number in the Complexity tab is the count of
+        # each operation the user can see in their code,
+        # multiplied by the loop iteration count. See
+        # server/app/ast_ops.py.
+        user_ast_ops = ast_count_ops(source, n)
+        spec = getattr(challenge, "_spec", None)
+        reference_source = (spec.source if spec is not None else None) or ""
+        reference_ast_ops = (
+            ast_count_ops(reference_source, n) if reference_source else None
+        )
+
+        # --- 9c. Too-efficient check (AST + ratio vs reference) ---
+        # We use the AST-based op count for the ratio check
+        # too. If the user's AST count is < 30% of the
+        # reference's AST count, they probably skipped work
+        # (or hardcoded an answer). The check is purely
+        # structural — no runtime data needed.
         too_efficient = False
         too_efficient_reason = ""
         if correct:
-            saved_user_ops = list(counter.ops_log)
-            counter.reset()
-            reference_ops: Optional[int] = None
-            try:
-                # Run the reference against the same setup data.
-                # We do NOT route through the tracer (we don't need
-                # locals for the reference), and we let any exception
-                # be a "reference failed too" signal (skip the
-                # ratio check rather than block on it).
-                if hasattr(challenge, "_reference_solve"):
-                    challenge._reference_solve(**setup_data)
-                    reference_ops = counter.total_ops
-            except Exception:
-                # Reference itself failed for some reason (e.g.
-                # challenge uses a per-n TrackedList and the
-                # reference is a no-op); fall through with no
-                # reference_ops so only the AST scan runs.
-                reference_ops = None
-            finally:
-                # Restore the user's ops into a fresh counter so
-                # the rest of this function sees the user stats.
-                counter.reset()
-                for op in saved_user_ops:
-                    counter.record(op.op_type, op.detail)
-                stats = counter.stats  # rebuild for the response
-
             te_result = check_too_efficient(
                 user_source=source,
-                user_ops=stats.total,
-                reference_ops=reference_ops,
+                user_ops=user_ast_ops,
+                reference_ops=reference_ast_ops,
             )
             if te_result.flagged:
                 too_efficient = True
@@ -304,6 +292,21 @@ def run_player_code(
                 # be noise.
                 algorithm_match = True
                 algorithm_reason = ""
+
+        # --- 9d. ±5% tolerance band around the reference's AST ops ---
+        # The user's AST op count should land within this band
+        # to be considered "as efficient as the reference".
+        #   low  = floor(μ * 0.95)
+        #   high = ceil (μ * 1.05)
+        # Below the band: likely a cheat. Above the band:
+        # correct but slower than optimal. The band is the
+        # "as good as the canonical solution" range.
+        reference_ci_low: Optional[int] = None
+        reference_ci_high: Optional[int] = None
+        if reference_ast_ops is not None and reference_ast_ops > 0:
+            import math
+            reference_ci_low = int(math.floor(reference_ast_ops * 0.95))
+            reference_ci_high = int(math.ceil(reference_ast_ops * 1.05))
 
         message = _build_message(
             error_message=error_message,
@@ -343,6 +346,10 @@ def run_player_code(
             mode=mode,
             too_efficient=too_efficient,
             too_efficient_reason=too_efficient_reason,
+            user_ast_ops=user_ast_ops,
+            reference_ast_ops=reference_ast_ops,
+            reference_ci_low=reference_ci_low,
+            reference_ci_high=reference_ci_high,
             message=message,
             stats=StatsOut(
                 comparisons=stats.comparisons,
@@ -382,6 +389,10 @@ def run_player_code(
                 too_efficient_reason=too_efficient_reason,
                 trace_frames=trace.frames,
                 algorithm_hint=algorithm_reason,
+                user_ast_ops=user_ast_ops,
+                reference_ast_ops=reference_ast_ops,
+                reference_ci_low=reference_ci_low,
+                reference_ci_high=reference_ci_high,
             ).to_dict(),
         )
     finally:

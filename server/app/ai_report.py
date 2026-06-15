@@ -67,6 +67,13 @@ class AiReport:
     # fingerprint (when present and the algorithm match failed).
     # Useful for the fallback hint when Ollama is down.
     algorithm_hint: str = ""
+    # AST-derived op counts (the "scientific" metric, computed
+    # statically by walking the source's AST). Used by the
+    # Complexity tab and the LLM hint prompt.
+    user_ast_ops: Optional[int] = None
+    reference_ast_ops: Optional[int] = None
+    reference_ci_low: Optional[int] = None
+    reference_ci_high: Optional[int] = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -80,6 +87,10 @@ class AiReport:
             "result": self.result,
             "locals_at_failure": self.locals_at_failure,
             "algorithm_hint": self.algorithm_hint,
+            "user_ast_ops": self.user_ast_ops,
+            "reference_ast_ops": self.reference_ast_ops,
+            "reference_ci_low": self.reference_ci_low,
+            "reference_ci_high": self.reference_ci_high,
         }
 
 
@@ -104,6 +115,10 @@ def build(
     too_efficient_reason: str,
     trace_frames: list[Any],
     algorithm_hint: str = "",
+    user_ast_ops: Optional[int] = None,
+    reference_ast_ops: Optional[int] = None,
+    reference_ci_low: Optional[int] = None,
+    reference_ci_high: Optional[int] = None,
 ) -> AiReport:
     """Build the report from the run's raw state.
 
@@ -131,6 +146,10 @@ def build(
         The static ``algorithm_reason`` from the OperationConstraint
         fingerprint check, when present. Used as a fallback hint
         when Ollama is down.
+    reference_ops, reference_ci_low, reference_ci_high:
+        Deterministic ±5% tolerance band around the reference's
+        op count. Forwarded to the LLM so it can reason about
+        the user's efficiency.
     """
     # --- test summary ---
     test_summary: dict[str, Any] = {

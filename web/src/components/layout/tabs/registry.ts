@@ -15,7 +15,6 @@
 import { lazy } from 'react';
 import { DescriptionTab } from './DescriptionTab';
 import { LocalsTab } from './LocalsTab';
-import { StatsTab } from './StatsTab';
 import { ComplexityTab } from './ComplexityTab';
 
 
@@ -71,7 +70,6 @@ export const BUILTIN_TABS: TabDef[] = [
   { id: 'reference',   label: 'Reference',   icon: '📚', Component: ReferenceTab,    closable: false },
   { id: 'complexity',  label: 'Complexity',  icon: '🧮', Component: ComplexityTab,   closable: false },
   { id: 'locals',      label: 'Locals',      icon: '🔢', Component: LocalsTab,       closable: false },
-  { id: 'stats',       label: 'Stats & Ops', icon: '📊', Component: StatsTab,        closable: false },
   // The AI Report tab is registered but only shown when AI
   // mode is on. The tab id is stable; visibility is gated by
   // the app store (see useVisibleTabs hook).

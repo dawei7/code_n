@@ -164,6 +164,29 @@ class RunResponse(BaseModel):
     trace: list[TraceFrameOut]
     return_value_repr: str
     truncated: bool = False  # True if the trace was downsampled for size.
+    # ---- AST-based op count (the "scientific" metric) -------------
+    # Counted by walking the source's AST and summing each
+    # operation (Compare, BinOp, Call, Subscript, Attribute,
+    # etc.), with loop bodies multiplied by their iteration
+    # count. Deterministic — same source, same n, same result.
+    # See server/app/ast_ops.py for the full algorithm.
+    #
+    # These are the numbers the Complexity tab displays.
+    # The dynamic `stats.total` above is still populated for
+    # the post-run visualizer (it powers the per-line trace
+    # and the ops log), but is NOT used for the
+    # user-facing efficiency metric — we want the count to
+    # match what the user sees in their source, not what
+    # the runtime happened to count.
+    user_ast_ops: Optional[int] = None       # User's source, n
+    reference_ast_ops: Optional[int] = None  # Reference, same n
+    # ±5% tolerance band around the reference's AST op
+    # count. The user's AST count should land within this
+    # band to be considered "as efficient as the reference".
+    # Below the band: likely a cheat. Above the band:
+    # correct but slower than optimal.
+    reference_ci_low: Optional[int] = None
+    reference_ci_high: Optional[int] = None
     # Structured AI report. Always populated. The AI Report tab
     # renders it for the user; the local Ollama hint endpoint
     # takes it as input. The optimal source is NOT in this

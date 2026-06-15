@@ -1,183 +1,392 @@
-import { useMemo } from 'react';
-import { useAppStore } from '../store/useAppStore';
-import type { RunResponse } from '../types/api';
-
-
 /**
- * ComplexityAnalysis — a scientific complexity panel for the current
- * challenge. Shows the required vs achieved complexity, the engine's
- * operation budget, the player's actual op counts, and (when
- * annotated) the algorithm's best/average/worst case analysis.
+ * ComplexityAnalysis — a *scientific* complexity panel for the
+ * current challenge. Shows the user's AST-derived op count
+ * against the reference's AST-derived op count, with a
+ * deterministic ±5% tolerance band.
  *
- * Sources of truth:
- *   - Required complexity: challenge.required_complexity (from spec)
- *   - Achieved complexity: runResult.actual_complexity (from engine)
- *   - Budget: counter.limit_for(n, required_complexity) — same
- *     formula the engine uses to decide pass/fail
- *   - Actual ops: runResult.stats
- *   - Per-case notes: challenge.complexity_notes (from spec)
+ * Why AST-derived (not the runtime counter)?
+ *   The runtime ``OperationCounter`` tracks ops that flow
+ *   through the ``TrackedList`` / ``TrackedValue`` proxies —
+ *   reads, writes, compares, swaps. It misses plain attribute
+ *   access, subscripts on non-tracked lists, and the
+ *   per-iteration cost of loops. The user looking at their
+ *   source sees a ``for`` loop, an ``if``, an ``arr[i]`` —
+ *   they want a count that matches that view, not a count of
+ *   what happened to be tracked at runtime.
+ *
+ *   The server walks both the user's source and the
+ *   reference's source through the AST, summing each
+ *   operation (Compare, BinOp, UnaryOp, BoolOp, Call,
+ *   Subscript, Attribute) and multiplying loop bodies by
+ *   their iteration count. The result is a deterministic
+ *   integer per (source, n) pair.
+ *
+ * The ±5% band:
+ *   `low  = floor(μ * 0.95)`
+ *   `high = ceil (μ * 1.05)`
+ *   where μ is the reference's AST op count. Inside the
+ *   band: as efficient as the reference. Below: likely a
+ *   cheat. Above: correct but slower.
+ *
+ * Required vs achieved complexity:
+ *   Shown as a secondary metric. The required complexity is
+ *   the algorithm's known class (e.g. ``O(n²)`` for bubble
+ *   sort). The achieved complexity is what the engine's
+ *   heuristic classifier assigned to the actual op count.
+ *   Both are useful for context but are *secondary* to the
+ *   raw op count, which is the primary signal.
  */
+import { useAppStore } from '../store/useAppStore';
+
+
 export function ComplexityAnalysis() {
   const detail = useAppStore((s) => s.currentDetail);
   const runResult = useAppStore((s) => s.runResult);
   const n = useAppStore((s) => s.n);
 
-  // The engine's limit formula. We duplicate it here so the panel
-  // can show "ops used / budget" without re-running anything.
-  // See code_n/counter.py:OperationCounter.limit_for.
-  const budget = useMemo(() => {
-    if (!detail) return 0;
-    const factor = {
-      'O(1)':        10,
-      'O(log n)':     1500,  // log2(n) * 3 + 10  (approximated at n=50: 24)
-      'O(n)':        8 * n + 10,
-      'O(n log n)':  Math.floor(n * Math.log2(Math.max(n, 2)) * 10) + 10,
-      'O(n²)':       8 * n * n + 10,
-      'O(n³)':       8 * n * n * n + 10,
-      'O(2ⁿ)':       2 ** Math.min(n, 25) + 10,
-    }[detail.required_complexity] ?? 10 ** 12;
-    return factor;
-  }, [detail, n]);
-
   if (!detail) return null;
 
+  // The reference's AST op count is the "true" optimal
+  // (within the same algorithm family — bubble sort vs
+  // quicksort would have different reference counts).
+  const ref = runResult?.reference_ast_ops ?? null;
+  const user = runResult?.user_ast_ops ?? null;
+  const ciLow = runResult?.reference_ci_low ?? null;
+  const ciHigh = runResult?.reference_ci_high ?? null;
+
+  // Status: where the user's count lands relative to the
+  // band. ``null`` when no run yet.
+  const status: 'below' | 'inside' | 'above' | 'no-ref' | 'no-run' = (() => {
+    if (!runResult) return 'no-run';
+    if (ref === null || user === null) return 'no-ref';
+    if (ciLow !== null && user < ciLow) return 'below';
+    if (ciHigh !== null && user > ciHigh) return 'above';
+    return 'inside';
+  })();
+
   return (
-    <div className="bg-coden-surface border border-coden-border rounded p-3 text-xs font-mono overflow-y-auto">
-      <div className="text-coden-muted text-[10px] uppercase tracking-wider font-semibold mb-2">
+    <div className="bg-coden-surface border border-coden-border rounded p-4 text-xs font-mono overflow-y-auto h-full">
+      <div className="text-coden-muted text-[10px] uppercase tracking-wider font-semibold mb-3">
         Complexity analysis
       </div>
 
-      {/* Required vs achieved (the pass/fail verdict's underlying check) */}
-      <table className="w-full mb-3">
-        <thead>
-          <tr className="text-coden-muted text-left">
-            <th className="font-normal pb-1 pr-3"></th>
-            <th className="font-normal pb-1 pr-3">Required</th>
-            <th className="font-normal pb-1 pr-3">Achieved</th>
-            <th className="font-normal pb-1">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="pr-3 text-coden-muted">Time complexity</td>
-            <td className="pr-3">{detail.required_complexity}</td>
-            <td className="pr-3">
-              {runResult ? runResult.actual_complexity : '—'}
-            </td>
-            <td>
-              {runResult ? (
-                runResult.within_threshold ? (
-                  <span className="text-coden-accent">within budget</span>
-                ) : runResult.correct ? (
-                  <span className="text-amber-400">over budget</span>
-                ) : (
-                  <span className="text-rose-400">incorrect</span>
-                )
-              ) : (
-                <span className="text-coden-muted">—</span>
-              )}
-            </td>
-          </tr>
-          <tr>
-            <td className="pr-3 text-coden-muted">Space complexity</td>
-            <td className="pr-3">O(1)</td>
-            <td className="pr-3">O(1)</td>
-            <td className="text-coden-accent">in-place</td>
-          </tr>
-        </tbody>
-      </table>
+      {/* Side-by-side op counts (the primary metric) */}
+      <div className="grid grid-cols-2 gap-3 mb-4">
+        <MetricCard
+          label="Your code (AST)"
+          value={user}
+          accent="text-coden-text"
+          sublabel={detail.id}
+        />
+        <MetricCard
+          label="Reference (AST)"
+          value={ref}
+          accent="text-coden-accent"
+          sublabel="canonical solution"
+        />
+      </div>
 
-      {/* Op counts vs budget */}
+      {/* The ±5% tolerance band (visual scale) */}
+      {ref !== null && ciLow !== null && ciHigh !== null && (
+        <ToleranceBand
+          ref={ref}
+          ciLow={ciLow}
+          ciHigh={ciHigh}
+          user={user}
+          n={n}
+        />
+      )}
+
+      {/* Verdict: where the user's count lands. */}
       {runResult && (
-        <OpBudget runResult={runResult} budget={budget} n={n} />
+        <Verdict
+          status={status}
+          user={user}
+          ref={ref}
+          required={detail.required_complexity}
+          actual={runResult.actual_complexity}
+          tooEfficient={runResult.too_efficient}
+        />
       )}
 
-      {/* Per-algorithm best/average/worst notes */}
-      {detail.complexity_notes && Object.keys(detail.complexity_notes).length > 0 && (
-        <div className="mt-3 pt-3 border-t border-coden-border">
-          <div className="text-coden-muted text-[10px] uppercase tracking-wider font-semibold mb-2">
-            Algorithm complexity (reference)
-          </div>
-          <dl className="space-y-1.5">
-            {Object.entries(detail.complexity_notes).map(([k, v]) => (
-              <div key={k} className="flex gap-2">
-                <dt className="text-coden-accent w-16 shrink-0 font-semibold capitalize">{k}</dt>
-                <dd className="text-coden-text flex-1">{v}</dd>
-              </div>
-            ))}
-          </dl>
+      {/* Required vs achieved complexity (secondary context) */}
+      <div className="mt-4 pt-3 border-t border-coden-border">
+        <div className="text-coden-muted text-[10px] uppercase tracking-wider font-semibold mb-2">
+          Complexity class
         </div>
-      )}
+        <table className="w-full">
+          <tbody>
+            <tr>
+              <td className="text-coden-muted pr-3 py-0.5">Required</td>
+              <td className="text-coden-text font-semibold">{detail.required_complexity}</td>
+            </tr>
+            <tr>
+              <td className="text-coden-muted pr-3 py-0.5">Achieved (heuristic)</td>
+              <td className="text-coden-text">
+                {runResult ? runResult.actual_complexity : '—'}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p className="text-[10px] text-coden-muted mt-1.5 leading-relaxed">
+          The required class is the algorithm's known
+          complexity (e.g. <span className="text-coden-text">O(n²)</span> for
+          bubble sort). The achieved class is the engine's
+          heuristic — for small n the counts can land in
+          different buckets. Use the raw AST op count above
+          as the primary signal.
+        </p>
+      </div>
     </div>
   );
 }
 
 
-function OpBudget({ runResult, budget, n }: { runResult: RunResponse; budget: number; n: number }) {
-  const { stats } = runResult;
-  const utilizationPct = budget > 0 ? Math.min(100, (stats.total / budget) * 100) : 0;
-  // Color the utilization bar based on how close to the budget.
-  const utilizationColor =
-    utilizationPct < 50  ? 'bg-coden-accent' :
-    utilizationPct < 80  ? 'bg-amber-400' :
-    utilizationPct < 100 ? 'bg-rose-400' :
-                           'bg-rose-600';
+/** A single big-number card: label on top, value centered. */
+function MetricCard({
+  label,
+  value,
+  accent,
+  sublabel,
+}: {
+  label: string;
+  value: number | null;
+  accent: string;
+  sublabel?: string;
+}) {
+  return (
+    <div className="border border-coden-border rounded p-3 bg-coden-bg">
+      <div className="text-[10px] uppercase tracking-wider text-coden-muted font-semibold">
+        {label}
+      </div>
+      <div className={`text-3xl font-bold tabular-nums mt-1 ${accent}`}>
+        {value !== null ? value.toLocaleString() : '—'}
+      </div>
+      {sublabel && (
+        <div className="text-[10px] text-coden-muted mt-0.5 truncate">
+          {sublabel}
+        </div>
+      )}
+      <div className="text-[10px] text-coden-muted mt-1">AST ops</div>
+    </div>
+  );
+}
+
+
+/** The ±5% band around the reference, with the user's
+ *  count marked. A horizontal scale with the reference
+ *  value in the center. */
+function ToleranceBand({
+  ref,
+  ciLow,
+  ciHigh,
+  user,
+  n,
+}: {
+  ref: number;
+  ciLow: number;
+  ciHigh: number;
+  user: number | null;
+  n: number;
+}) {
+  // Choose a scale that includes the reference and a
+  // little padding. The lower bound is 0; the upper is
+  // max(reference * 1.5, user * 1.1) — this gives a
+  // visual frame for both.
+  const scaleMax = Math.max(ref * 1.5, user !== null ? user * 1.1 : 0);
+  const pct = (v: number) => Math.max(0, Math.min(100, (v / scaleMax) * 100));
+  // The user's position on the scale (clamped to the
+  // scale for visualization; the actual numeric value
+  // is shown below the bar).
+  const userPct = user !== null ? pct(user) : null;
+  // Did the user's count fall outside the scale entirely?
+  const userOffScale = user !== null && user > scaleMax;
 
   return (
-    <div className="mb-2">
+    <div className="mb-4">
       <div className="text-coden-muted text-[10px] uppercase tracking-wider font-semibold mb-2">
-        Operation budget (n = {n})
+        Tolerance band (±5% of reference)  ·  n = {n}
       </div>
-      <table className="w-full">
-        <thead>
-          <tr className="text-coden-muted text-left">
-            <th className="font-normal pb-1 pr-3">Op</th>
-            <th className="font-normal pb-1 pr-3 text-right">Count</th>
-            <th className="font-normal pb-1"></th>
-          </tr>
-        </thead>
-        <tbody className="text-coden-text">
-          <BudgetRow label="Compares" value={stats.comparisons} color="text-amber-300" />
-          <BudgetRow label="Swaps"    value={stats.swaps}       color="text-rose-300" />
-          <BudgetRow label="Reads"    value={stats.reads}       color="text-blue-300" />
-          <BudgetRow label="Writes"   value={stats.writes}      color="text-rose-300" />
-          <BudgetRow label="Calls"    value={stats.calls}       color="text-slate-300" />
-        </tbody>
-        <tfoot>
-          <tr className="border-t border-coden-border">
-            <td className="pt-1 pr-3 text-coden-accent font-semibold">Total</td>
-            <td className="pt-1 pr-3 text-right text-coden-accent font-semibold">{stats.total}</td>
-            <td className="pt-1 text-coden-muted text-[10px]">
-              / {budget.toLocaleString()} budget
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-      {/* Utilization bar */}
-      <div className="mt-2">
-        <div className="h-1.5 bg-coden-bg rounded overflow-hidden border border-coden-border">
+      {/* The bar. Three segments: below band (red-tinted),
+          band (accent-tinted), above band (amber-tinted). */}
+      <div className="relative h-9 rounded border border-coden-border overflow-hidden bg-coden-bg">
+        {/* The band itself (drawn first, on top of the bg) */}
+        <div
+          className="absolute top-0 bottom-0 bg-coden-accent/25 border-l border-r border-coden-accent/60"
+          style={{ left: `${pct(ciLow)}%`, width: `${pct(ciHigh) - pct(ciLow)}%` }}
+          title={`±5% band: [${ciLow}, ${ciHigh}]`}
+        />
+        {/* The reference's value as a vertical tick in the
+            center of the band. */}
+        <div
+          className="absolute top-0 bottom-0 w-px bg-coden-accent"
+          style={{ left: `${pct(ref)}%` }}
+          title={`Reference: ${ref}`}
+        />
+        {/* The user's value as a larger dot. Color depends
+            on whether it landed inside the band. */}
+        {user !== null && userPct !== null && (
           <div
-            className={`h-full ${utilizationColor} transition-all`}
-            style={{ width: `${utilizationPct}%` }}
+            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-coden-bg"
+            style={{
+              left: `calc(${userPct}% - 0.375rem)`,
+              backgroundColor: userWithinBand(user, ciLow, ciHigh)
+                ? '#22c55e'   // green: inside band
+                : user < ciLow
+                ? '#f87171'   // red: too cheap (cheat?)
+                : '#fbbf24',  // amber: too slow
+            }}
+            title={`Your count: ${user}`}
           />
-        </div>
-        <div className="text-[10px] text-coden-muted mt-0.5 flex justify-between">
+        )}
+        {/* Labels under the bar */}
+        <div className="absolute bottom-0 left-0 right-0 flex justify-between text-[10px] text-coden-muted px-1">
           <span>0</span>
-          <span>{utilizationPct.toFixed(1)}% of budget</span>
-          <span>{budget.toLocaleString()}</span>
+          <span>{scaleMax.toLocaleString()}</span>
         </div>
       </div>
+      {/* Numeric scale with the three key values. */}
+      <div className="grid grid-cols-3 mt-2 text-[10px] tabular-nums">
+        <div className="text-left">
+          <div className="text-coden-muted">CI low</div>
+          <div className="text-rose-300 font-semibold">{ciLow.toLocaleString()}</div>
+        </div>
+        <div className="text-center">
+          <div className="text-coden-muted">Reference</div>
+          <div className="text-coden-accent font-semibold">{ref.toLocaleString()}</div>
+        </div>
+        <div className="text-right">
+          <div className="text-coden-muted">CI high</div>
+          <div className="text-rose-300 font-semibold">{ciHigh.toLocaleString()}</div>
+        </div>
+      </div>
+      {userOffScale && (
+        <div className="text-[10px] text-amber-400 mt-1">
+          Your count ({user}) is off-scale; the bar shows the band but your dot is past the right edge.
+        </div>
+      )}
     </div>
   );
 }
 
 
-function BudgetRow({ label, value, color }: { label: string; value: number; color: string }) {
+function userWithinBand(user: number, lo: number, hi: number): boolean {
+  return user >= lo && user <= hi;
+}
+
+
+function Verdict({
+  status,
+  user,
+  ref,
+  required,
+  actual,
+  tooEfficient,
+}: {
+  status: 'below' | 'inside' | 'above' | 'no-ref' | 'no-run';
+  user: number | null;
+  ref: number | null;
+  required: string;
+  actual: string;
+  tooEfficient: boolean;
+}) {
+  // Compute the ratio (user / ref) as a percentage for
+  // the verdict text.
+  const ratioPct = (user !== null && ref !== null && ref > 0)
+    ? (user / ref) * 100
+    : null;
+
+  if (status === 'no-run') {
+    return (
+      <div className="border border-coden-border rounded p-3 bg-coden-bg text-coden-muted">
+        Run the challenge to see the analysis.
+      </div>
+    );
+  }
+  if (status === 'no-ref') {
+    return (
+      <div className="border border-coden-border rounded p-3 bg-coden-bg text-coden-muted">
+        No reference comparison available for this run.
+      </div>
+    );
+  }
+
+  // The three outcome bands. Each has a colored icon,
+  // a one-line verdict, and a short explanation.
+  if (status === 'below') {
+    return (
+      <VerdictBlock
+        color="rose"
+        icon="⚠"
+        title="Below the band — too efficient"
+        body={
+          tooEfficient
+            ? 'The engine flagged this as too efficient — likely a hardcoded return or a missing loop body.'
+            : 'Your code uses fewer AST operations than the reference. Double-check you actually implemented the algorithm.'
+        }
+        sub={`${user} ops vs ${ref} ref (${ratioPct?.toFixed(0)}% of optimal)`}
+      />
+    );
+  }
+  if (status === 'above') {
+    return (
+      <VerdictBlock
+        color="amber"
+        icon="△"
+        title="Above the band — slower than optimal"
+        body={
+          actual === required
+            ? 'Your solution is correct and within the required complexity class, but it does more work than the canonical solution.'
+            : `Your solution is correct but slower than the required ${required} class. Consider optimizing.`
+        }
+        sub={`${user} ops vs ${ref} ref (${ratioPct?.toFixed(0)}% of optimal — ${user! - ref!} ops above)`}
+      />
+    );
+  }
+  // inside
   return (
-    <tr>
-      <td className={`pr-3 ${color}`}>{label}</td>
-      <td className="pr-3 text-right tabular-nums">{value.toLocaleString()}</td>
-      <td></td>
-    </tr>
+    <VerdictBlock
+      color="emerald"
+      icon="✓"
+      title="As efficient as the reference"
+      body={`Your code's AST op count is within ±5% of the canonical solution's count for this input size.`}
+      sub={`${user} ops vs ${ref} ref (${ratioPct?.toFixed(0)}% of optimal)`}
+    />
+  );
+}
+
+
+function VerdictBlock({
+  color,
+  icon,
+  title,
+  body,
+  sub,
+}: {
+  color: 'rose' | 'amber' | 'emerald';
+  icon: string;
+  title: string;
+  body: string;
+  sub?: string;
+}) {
+  const colorMap = {
+    rose:   { border: 'border-rose-500/40',  bg: 'bg-rose-500/10',     text: 'text-rose-300' },
+    amber:  { border: 'border-amber-500/40', bg: 'bg-amber-500/10',    text: 'text-amber-300' },
+    emerald: { border: 'border-emerald-500/40', bg: 'bg-emerald-500/10', text: 'text-emerald-300' },
+  } as const;
+  const c = colorMap[color];
+  return (
+    <div className={`border ${c.border} ${c.bg} rounded p-3 mb-3`}>
+      <div className="flex items-start gap-2">
+        <div className={`text-base ${c.text} font-bold shrink-0`}>{icon}</div>
+        <div className="flex-1">
+          <div className={`text-sm font-semibold ${c.text}`}>{title}</div>
+          <div className="text-xs text-coden-text mt-1 leading-relaxed">{body}</div>
+          {sub && (
+            <div className="text-[10px] text-coden-muted mt-1.5 font-mono">{sub}</div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

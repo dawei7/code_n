@@ -55,11 +55,15 @@ export function EditorTab() {
     return () => window.removeEventListener('keydown', onKey);
   }, [saveSolution]);
 
-  // Whenever the breakpoints set changes, re-apply the
-  // Monaco decorations so the gutter markers stay in sync
-  // with the store. We use ``deltaDecorations`` so the
-  // existing decoration collection is replaced atomically
-  // (Monaco's recommended pattern for fast updates).
+  // Whenever the breakpoints set OR the current debug
+  // line changes, re-apply the Monaco decorations so the
+  // gutter markers and the current-line highlight stay
+  // in sync with the store. We use ``deltaDecorations`` so
+  // the existing decoration collection is replaced
+  // atomically (Monaco's recommended pattern for fast
+  // updates).
+  const debugCurrentLine = useAppStore((s) => s.debugCurrentLine);
+  const debugStatus = useAppStore((s) => s.debugStatus);
   useEffect(() => {
     const editor = editorRef.current;
     if (!editor || !decorationsRef.current) return;
@@ -75,8 +79,27 @@ export function EditorTab() {
         },
       });
     }
+    // Highlight the current line when the debugger is
+    // paused on it. We use a class on the line decoration
+    // (left gutter) plus a subtle background class.
+    if (debugCurrentLine !== null && debugStatus === 'paused') {
+      newDecorations.push({
+        range: {
+          startLineNumber: debugCurrentLine,
+          endLineNumber: debugCurrentLine,
+          startColumn: 1,
+          endColumn: 1,
+        },
+        options: {
+          isWholeLine: true,
+          className: 'coden-debug-current-line',
+          glyphMarginClassName: 'coden-debug-pause-glyph',
+          linesDecorationsClassName: 'coden-debug-pause-line',
+        },
+      });
+    }
     decorationsRef.current.set(newDecorations);
-  }, [breakpoints]);
+  }, [breakpoints, debugCurrentLine, debugStatus]);
 
   // The mouse-down handler converts gutter clicks into
   // breakpoint toggles. Monaco gives us the line number via
@@ -124,12 +147,16 @@ export function EditorTab() {
 
   return (
     <div className="h-full flex flex-col bg-coden-bg">
-      <div className="px-3 py-1.5 text-xs text-coden-muted border-b border-coden-border bg-coden-surface flex items-center justify-between shrink-0">
-        <span className="font-mono">
+      <div className="px-3 py-1.5 text-xs text-coden-muted border-b border-coden-border bg-coden-surface flex items-center justify-between shrink-0 gap-3">
+        <span className="font-mono min-w-0 truncate">
           {currentDetail ? `${currentDetail.id} — ${currentDetail.name}` : 'no challenge'}
           {isRunning && <span className="ml-2 text-amber-400">(read-only while running)</span>}
         </span>
-        <span className="text-coden-muted">{status || 'Ctrl+S to save · click ◉ in the gutter to set a breakpoint'}</span>
+        <span className="text-coden-muted shrink-0 flex items-center gap-2">
+          <DebugStatusPill />
+          <span className="text-coden-muted/60">·</span>
+          <span>{status || 'click ◉ in the gutter to set a breakpoint'}</span>
+        </span>
       </div>
       <div className="flex-1 min-h-0">
         <MonacoEditor
@@ -162,24 +189,74 @@ export function EditorTab() {
         />
       </div>
       <style>{`
-        /* The red dot that appears in the Monaco glyph
-           margin on a breakpoint line. The dot is a simple
-           Unicode bullet styled red via the coden-accent
-           palette; we use a CSS class so Monaco can apply
-           it via deltaDecorations. */
+        /* Large red breakpoint dot in the Monaco glyph
+           margin. We use a custom CSS class so Monaco can
+           apply it via deltaDecorations. The 20px column
+           has room for a full circle (10px diameter). */
         .coden-breakpoint-glyph::before {
-          content: '●';
-          color: #f87171;
-          font-size: 12px;
-          line-height: 1;
+          content: '';
           display: inline-block;
-          transform: translateY(-1px);
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #f87171;
+          border: 2px solid #fca5a5;
+          box-shadow: 0 0 4px rgba(248, 113, 113, 0.4);
+          transform: translateY(1px);
         }
+        /* The line itself is also tinted red. */
         .coden-breakpoint-line {
           background: rgba(248, 113, 113, 0.10);
           border-left: 2px solid #f87171;
         }
+        /* When the debugger is paused, the current line
+           gets a stronger highlight (the green "pause
+           glyph" + accent background). */
+        .coden-debug-current-line {
+          background: rgba(56, 189, 248, 0.10) !important;
+        }
+        .coden-debug-pause-glyph::before {
+          content: '';
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #38bdf8;
+          border: 2px solid #7dd3fc;
+          box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+          transform: translateY(1px);
+        }
+        .coden-debug-pause-line {
+          background: rgba(56, 189, 248, 0.30);
+          width: 4px !important;
+        }
       `}</style>
     </div>
+  );
+}
+
+
+/** Small status pill shown in the editor header when a
+ *  debug session is active. Mirrors the StatusBlock in
+ *  the Debug tab but inline so the user always sees the
+ *  debug state without leaving the editor. */
+function DebugStatusPill() {
+  const debugStatus = useAppStore((s) => s.debugStatus);
+  const debugCurrentLine = useAppStore((s) => s.debugCurrentLine);
+  if (debugStatus === 'idle' || debugStatus === 'exited' || debugStatus === 'error') {
+    return null;
+  }
+  const color =
+    debugStatus === 'paused' ? 'bg-coden-accent/30 text-coden-accent border border-coden-accent'
+    : debugStatus === 'starting' ? 'bg-amber-500/20 text-amber-400'
+    : 'bg-coden-accent/15 text-coden-accent';
+  const label =
+    debugStatus === 'paused' ? `⏸ ${debugCurrentLine ?? '?'}`
+    : debugStatus === 'starting' ? 'starting…'
+    : '▶ running';
+  return (
+    <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${color}`}>
+      🐞 {label}
+    </span>
   );
 }
