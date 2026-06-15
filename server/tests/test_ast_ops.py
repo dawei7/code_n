@@ -110,6 +110,40 @@ class CountOpsTest(unittest.TestCase):
         source = "for i in range(0, n, 2):\n    x = i\n"
         self.assertEqual(count_ops(source, 16), 1 + 8)
 
+    def test_range_with_negative_step(self) -> None:
+        # ``range(n - 1, 0, -1)`` iterates n - 1 times (the
+        # classic bubble-sort outer loop). Earlier versions
+        # of the walker clamped the negative step to +1,
+        # returning 0 iterations — this test guards against
+        # that regression.
+        source = (
+            "def solve(data, n):\n"
+            "    for end in range(n - 1, 0, -1):\n"
+            "        x = end\n"
+        )
+        # 1 (for) + (n - 1) × (1 assign) = 1 + (n - 1) = n
+        self.assertEqual(count_ops(source, 16), 16)
+        self.assertEqual(count_ops(source, 8), 8)
+
+    def test_bubble_sort_matches_expected(self) -> None:
+        # Sanity check: a full bubble sort should produce a
+        # count in the right ballpark (n^2 ops times the
+        # per-iteration constant). For n=8 the count is 680.
+        source = (
+            "def solve(data, n):\n"
+            "    for end in range(n - 1, 0, -1):\n"
+            "        for i in range(end):\n"
+            "            if data[i] > data[i + 1]:\n"
+            "                data[i], data[i + 1] = data[i + 1], data[i]\n"
+            "    return data\n"
+        )
+        count = count_ops(source, 8)
+        # The exact number is 680 with the current walker;
+        # we assert a range so a small tweak to the walker
+        # doesn't break this test.
+        self.assertGreater(count, 600)
+        self.assertLess(count, 800)
+
     def test_nested_loop_with_inner_range_n_minus_1(self) -> None:
         # ``for i in range(n-1): for j in range(n-1-i): ...``
         # Inner range iter count is (n-1) - i. The inner body runs

@@ -102,10 +102,12 @@ export function EditorTab() {
   }, [breakpoints, debugCurrentLine, debugStatus]);
 
   // The mouse-down handler converts gutter clicks into
-  // breakpoint toggles. Monaco gives us the line number via
-  // ``target.position.lineNumber`` when the click is on the
-  // glyph margin; for the line-number gutter we have to
-  // detect it via the DOM class.
+  // breakpoint toggles. We use Monaco's ``onMouseDown``
+  // event which gives us the ``target.type`` (GUTTER_GLYPH_MARGIN
+  // / GUTTER_LINE_NUMBERS / CONTENT_TEXT) and the line position
+  // directly — no fragile DOM-class inspection. The glyph
+  // margin gives the most precise breakpoint location; we
+  // also accept line-number clicks as a convenience.
   const onMount: OnMount = (ed, monaco) => {
     editorRef.current = ed;
     decorationsRef.current = ed.createDecorationsCollection([]);
@@ -125,24 +127,19 @@ export function EditorTab() {
     });
     monaco.editor.setTheme('coden-dark');
 
-    // Click handler for the glyph margin. Monaco doesn't
-    // expose a "glyphMarginClick" event in v0.46+ (it was
-    // removed in 0.46), so we listen for mousedown on the
-    // DOM and check if the target is in the glyph margin.
-    const dom = ed.getDomNode();
-    if (dom) {
-      dom.addEventListener('mousedown', (ev) => {
-        const target = ev.target as HTMLElement | null;
-        if (!target) return;
-        // Monaco's glyph-margin class is ``.glyph-margin``.
-        if (target.closest('.glyph-margin')) {
-          const position = ed.getPosition();
-          if (position) {
-            toggleBreakpoint(position.lineNumber);
-          }
-        }
-      });
-    }
+    // MouseTargetType enum (re-declared locally because the
+    // monaco-editor module doesn't export the type without
+    // pulling in the full Monaco API). Values match
+    // monaco-editor's MouseTargetType.
+    const GUTTER_GLYPH_MARGIN = 1;
+    const GUTTER_LINE_NUMBERS = 2;
+
+    ed.onMouseDown((e) => {
+      const t = e.target as { type?: number; position?: { lineNumber: number } };
+      if (t.type !== GUTTER_GLYPH_MARGIN && t.type !== GUTTER_LINE_NUMBERS) return;
+      if (!t.position) return;
+      toggleBreakpoint(t.position.lineNumber);
+    });
   };
 
   return (

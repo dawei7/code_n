@@ -147,6 +147,38 @@ class AiReportShapeTest(conftest._Base):
         self.assertEqual(roundtripped["challenge_id"], "sort_01")
         self.assertIn("locals_at_failure", roundtripped)
 
+    def test_report_includes_ast_op_counts(self) -> None:
+        # The report must propagate the AST-derived op counts
+        # (user_ast_ops, reference_ast_ops, and the ±5% CI
+        # band). This was a regression: the engine_runner
+        # passed these as kwargs to build_ai_report, but the
+        # builder's ``return AiReport(...)`` forgot to include
+        # them — they ended up None in the JSON. The
+        # Complexity tab reads runResult.user_ast_ops
+        # directly, so this bug was non-fatal there, but the
+        # AI report was empty and the LLM was missing the
+        # most useful context.
+        r = self.client.post(
+            "/api/challenges/sort_01/run",
+            json={"source": SORT_01_SOURCE, "n": 8, "seed": 1},
+        )
+        report = r.json()["ai_report"]
+        # The user submitted the canonical solution; its
+        # AST op count for n=8 should match the reference
+        # exactly (within 1 for tie-breaking).
+        self.assertIsNotNone(report["user_ast_ops"])
+        self.assertIsNotNone(report["reference_ast_ops"])
+        self.assertIsNotNone(report["reference_ci_low"])
+        self.assertIsNotNone(report["reference_ci_high"])
+        # The user and reference are both bubble sort, so
+        # the values should be the same.
+        self.assertEqual(report["user_ast_ops"], report["reference_ast_ops"])
+        # The CI low is floor(μ × 0.95); high is ceil(μ × 1.05).
+        μ = report["reference_ast_ops"]
+        import math
+        self.assertEqual(report["reference_ci_low"], math.floor(μ * 0.95))
+        self.assertEqual(report["reference_ci_high"], math.ceil(μ * 1.05))
+
     def test_report_for_wrong_solution(self) -> None:
         # A wrong solution (returns data unchanged) produces a
         # report with passed=False and a clear message.

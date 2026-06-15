@@ -237,7 +237,29 @@ def _range_iter_count(iter_node: ast.AST, n: int) -> int:
         step = _eval_int(args[2], n) or 1
         if stop is None:
             return n
-        return max(0, math.ceil((stop - start) / max(1, step)))
+        if step == 0:
+            return n
+        # Compute the number of iterations for
+        # ``range(start, stop, step)``. We use the standard
+        # Python formula: ``max(0, ceil((stop - start) / step))``.
+        # We don't ``max(1, step)`` here — that would clamp
+        # negative steps (e.g. ``range(n - 1, 0, -1)``) to +1
+        # and incorrectly report 0 iterations.
+        diff = stop - start
+        # Python's range() iteration count for the given
+        # step: ceil(diff / step) when diff and step have
+        # the same sign, floor otherwise. We use the
+        # general ``math.ceil`` (which works for both
+        # signs in Python because the division rounds toward
+        # negative infinity for negative numbers).
+        if (diff > 0 and step > 0) or (diff < 0 and step < 0):
+            iters = math.ceil(diff / step)
+        else:
+            # diff / step is non-positive. Either we've
+            # already passed the stop (iters <= 0) or step
+            # points the wrong way. Treat as zero iterations.
+            return 0
+        return max(0, iters)
     return n
 
 

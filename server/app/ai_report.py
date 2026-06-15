@@ -216,4 +216,8 @@ def build(
         result=result,
         locals_at_failure=locals_at_failure,
         algorithm_hint=algorithm_hint,
+        user_ast_ops=user_ast_ops,
+        reference_ast_ops=reference_ast_ops,
+        reference_ci_low=reference_ci_low,
+        reference_ci_high=reference_ci_high,
     )
