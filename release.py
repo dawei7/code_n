@@ -8,7 +8,7 @@ Pipeline:
     3. Push the branch to ``origin main``.
     4. Create a ``vX.Y.Z`` tag locally and push it.
     5. Build web + server + electron artifacts.
-    6. Run ``electron-builder --publish onTagOrDraft`` with
+    6. Run ``electron-builder --publish always`` with
        ``$GH_TOKEN`` set, which creates a published GitHub
        release for the new tag, attaches the NSIS installer +
        its ``.blockmap`` + ``latest.yml``, and (because
@@ -155,15 +155,24 @@ def compute_new_version(
 def run_build(venv_python: str) -> None:
     """Run web + server + electron-build + electron-dist steps.
 
-    The electron-dist step is invoked with ``--publish onTagOrDraft``
-    so electron-builder only creates a GitHub release when the
-    current commit has the matching tag.
+    The electron-dist step is invoked with ``--publish always``
+    so the publish actually completes within this script
+    run. We previously used ``onTagOrDraft`` but it had a
+    "build is not on tag" check that frequently skipped the
+    publish, requiring a manual second pass. ``always`` is
+    simpler: if the release for the tag doesn't exist yet,
+    electron-builder creates it (draft, then publishes); if it
+    does exist, electron-builder updates the existing release
+    (deletes old assets, uploads new). Either way, the
+    GitHub release for the new tag is in the right state by
+    the time run_build returns, so the ``--cleanup-old``
+    step can see the new tag as the "latest" and keep it.
     """
     _run([venv_python, "build_app.py", "--step", "web"])
     _run([venv_python, "build_app.py", "--step", "server"])
     _run([venv_python, "build_app.py", "--step", "electron-build"])
     _run([venv_python, "build_app.py", "--step", "electron-dist",
-          "--publish", "onTagOrDraft"])
+          "--publish", "always"])
 
 
 # ---------------------------------------------------------------------------
