@@ -192,6 +192,15 @@ def main() -> None:
         help="Tag + push only; skip the full build (assumes the "
              "build has already been run for the current commit).",
     )
+    parser.add_argument(
+        "--cleanup-old", action="store_true",
+        help="After the publish, delete the assets of every older "
+             "release (keeps the latest one). Saves ~95 MB per "
+             "old release. Old release ENTRIES are kept (the "
+             "version history stays visible); only the installers "
+             "and blockmaps are removed. The script "
+             "``release_cleanup.py`` does the same thing standalone.",
+    )
     args = parser.parse_args()
 
     # -- Sanity checks --------------------------------------------------
@@ -271,6 +280,33 @@ def main() -> None:
     print("Every installed cOde(n) on the previous version will auto-pull")
     print("this release on its next launch (the 'Restart to install' pill")
     print("appears when the background download finishes).")
+
+    # -- Optional: clean up old release assets --------------------------
+
+    if args.cleanup_old:
+        print()
+        print("Cleaning up old release assets (--cleanup-old)...")
+        try:
+            # Inline-import so the cleanup module is a hard runtime
+            # dep only when the user actually asks for it.
+            import release_cleanup
+            # Reuse the same token we already loaded. The cleanup
+            # script also reads from the env / electron/.env, so we
+            # just need GH_TOKEN in os.environ.
+            from pathlib import Path as _P
+            if not os.environ.get("GH_TOKEN") and (_P("electron") / ".env").is_file():
+                for _line in (_P("electron") / ".env").read_text("utf-8").splitlines():
+                    if _line.strip().startswith("GH_TOKEN="):
+                        os.environ["GH_TOKEN"] = _line.split("=", 1)[1].strip()
+                        break
+            sys.argv = ["release_cleanup.py", "--yes"]
+            rc = release_cleanup.main()
+            if rc != 0:
+                print(f"(cleanup returned {rc}; release itself was "
+                      f"still successful, but cleanup partially failed.)")
+        except Exception as e:
+            print(f"(cleanup failed: {e}; release itself was still "
+                  f"successful.)")
 
 
 if __name__ == "__main__":

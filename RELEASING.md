@@ -131,11 +131,53 @@ echo $GH_TOKEN   # sanity check; should print your token
    - Create a published GitHub release for the tag.
    - Attach the NSIS installer (`cOde(n)-Setup-X.Y.Z.exe`),
      its `.blockmap`, and `latest.yml`.
-6. Prints the release URL at the end.
+6. (Optional, see `--cleanup-old` below) Deletes the
+   installer/blockmap of every older release to save ~95 MB
+   per old release.
+7. Prints the release URL at the end.
 
 After the script finishes, every installed cOde(n) on the
 previous version will auto-pull the new release on its next
 launch.
+
+### Saving space: `--cleanup-old`
+
+GitHub Releases are independent — each release keeps its
+own copy of every asset. For a project that releases
+frequently, that adds up to ~95 MB × N releases. To keep
+only the **latest** release's installer on the repo (old
+release ENTRIES are kept, so version history stays
+visible), pass `--cleanup-old`:
+
+```bash
+.venv/Scripts/python.exe release.py --cleanup-old
+```
+
+This calls `release_cleanup.py` after the publish. The
+script also has a standalone mode:
+
+```bash
+# Show what would be deleted (no API writes)
+.venv/Scripts/python.exe release_cleanup.py --dry-run
+
+# Delete old release assets (keeps the latest)
+.venv/Scripts/python.exe release_cleanup.py --yes
+
+# Keep a specific tag (instead of auto-picking the latest)
+.venv/Scripts/python.exe release_cleanup.py --keep v0.5.0 --yes
+
+# Also delete the old release ENTRIES (git tags stay)
+.venv/Scripts/python.exe release_cleanup.py --yes --delete-releases
+```
+
+The cleanup is **irreversible** — old installers can't be
+re-downloaded from GitHub once deleted. Users who haven't
+auto-updated past the latest version can still install
+from the latest release directly, but anyone pinned to a
+specific old version would need to upgrade.
+
+The token needs `Contents: read and write` (the same
+permission `release.py` already needs).
 
 ### Behavior matrix
 
