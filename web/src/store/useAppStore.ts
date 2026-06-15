@@ -23,6 +23,16 @@ import * as solutionsApi from '../api/solutions';
 
 
 export type StepDelta = -1 | 1 | -10 | 10 | 'first' | 'last';
+export type RunMode = 'practice' | 'real_test';
+export type DebugStatus = 'idle' | 'starting' | 'running' | 'paused' | 'exited' | 'error';
+
+export interface DebugLocal {
+  name: string;
+  value: string;
+  type: string;
+  scope: string;
+  variablesReference?: number;
+}
 
 export interface AppState {
   // Challenge selection
@@ -33,6 +43,14 @@ export interface AppState {
   source: string;
   n: number;
   seed: number | null;
+  /** Practice = the user picks n + seed (default). Real-test = the
+   *  server picks a "reasonable" n and a random seed; the UI
+   *  disables the n / seed inputs and shows the actual values the
+   *  server used once the run completes. */
+  mode: RunMode;
+  /** When ON, the AI Report tab is visible and a "Get hint" button
+   *  is available in the transport bar. Toggle in the header. */
+  aiMode: boolean;
 
   // Last run
   isRunning: boolean;
@@ -50,12 +68,32 @@ export interface AppState {
   // Progress
   progress: ProgressOut | null;
 
+  // Debug session (set of line numbers the user has clicked).
+  // This is the SINGLE source of truth for breakpoints: the
+  // editor gutter reads from here, the Debug tab writes here,
+  // and the useDebugSession hook pushes changes to the server.
+  breakpoints: Set<number>;
+  /** Debug session lifecycle: idle (no session), starting (POST
+   *  in flight), running (paused inside solve()), paused
+   *  (similar to running but the server explicitly paused us),
+   *  exited (the run completed), error (something broke). */
+  debugStatus: DebugStatus;
+  /** The most recent stopped event's data. Re-renders of the
+   * Debug tab subscribe to this slice. */
+  debugCurrentLine: number | null;
+  debugLocals: DebugLocal[];
+  debugStoppedReason: string;
+  /** Server-side error message when debugStatus = 'error'. */
+  debugError: string;
+
   // --- Actions ---
   loadChallenges(): Promise<void>;
   selectChallenge(id: string): Promise<void>;
   setSource(s: string): void;
   setN(n: number): void;
   setSeed(s: number | null): void;
+  setMode(m: RunMode): void;
+  setAiMode(on: boolean): void;
   run(): Promise<void>;
   reset(): void;
   step(delta: StepDelta): void;
@@ -68,6 +106,8 @@ export interface AppState {
   markDone(): Promise<void>;
   saveSolution(): Promise<void>;
   loadSolution(): Promise<void>;
+  toggleBreakpoint(line: number): void;
+  clearBreakpoints(): void;
   /**
    * Apply a snapshot that came from another window via the
    * BroadcastChannel. Sets the sentinel `applyingRemoteRef`
@@ -94,6 +134,8 @@ export const useAppStore = create<AppState>((set, get) => ({
   source: '',
   n: 16,
   seed: 1,
+  mode: 'practice',
+  aiMode: false,
   isRunning: false,
   runResult: null,
   error: null,
@@ -101,6 +143,12 @@ export const useAppStore = create<AppState>((set, get) => ({
   isPlaying: false,
   frameIntervalMs: 1000,
   progress: null,
+  breakpoints: new Set<number>(),
+  debugStatus: 'idle',
+  debugCurrentLine: null,
+  debugLocals: [],
+  debugStoppedReason: '',
+  debugError: '',
 
   async loadChallenges() {
     const list = await challengesApi.listChallenges();
@@ -108,7 +156,23 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   async selectChallenge(id: string) {
-    set({ isRunning: true, error: null, runResult: null, opIndex: 0, isPlaying: false });
+    set({
+      isRunning: true,
+      error: null,
+      runResult: null,
+      opIndex: 0,
+      isPlaying: false,
+      // Breakpoints are line-number-scoped to one source
+      // file; switching challenges invalidates them. Clear
+      // the set so the new challenge's gutter doesn't show
+      // stale markers.
+      breakpoints: new Set<number>(),
+      debugStatus: 'idle',
+      debugCurrentLine: null,
+      debugLocals: [],
+      debugStoppedReason: '',
+      debugError: '',
+    });
     try {
       const detail = await challengesApi.getChallenge(id);
       // Load the player's saved source from disk, or fall back to the starter.
@@ -144,8 +208,16 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ seed: s });
   },
 
+  setMode(m: RunMode) {
+    set({ mode: m });
+  },
+
+  setAiMode(on: boolean) {
+    set({ aiMode: on });
+  },
+
   async run() {
-    const { currentDetail, n, seed } = get();
+    const { currentDetail, n, seed, mode } = get();
     if (!currentDetail) return;
     set({ isRunning: true, error: null, isPlaying: false });
     try {
@@ -167,7 +239,13 @@ export const useAppStore = create<AppState>((set, get) => ({
         source,
         n,
         seed,
+        mode,
       });
+      // After a real-test run, sync the UI n/seed to what the
+      // server actually used (it ignored our values).
+      if (mode === 'real_test') {
+        set({ n: result.n, seed: result.seed });
+      }
       // Persist the source that was actually run so the CodePanel
       // can render it in the second half of the right panel.
       set({ runResult: result, opIndex: 0, source });
@@ -283,6 +361,19 @@ export const useAppStore = create<AppState>((set, get) => ({
     if (!currentDetail) return;
     const saved = await solutionsApi.getSolution(currentDetail.id);
     if (saved.exists) set({ source: saved.source });
+  },
+
+  toggleBreakpoint(line: number) {
+    // The set lives in zustand state. We replace the
+    // reference (rather than mutating) so subscribers
+    // re-render — zustand uses shallow identity checks.
+    const next = new Set(get().breakpoints);
+    if (next.has(line)) next.delete(line); else next.add(line);
+    set({ breakpoints: next });
+  },
+
+  clearBreakpoints() {
+    set({ breakpoints: new Set() });
   },
 
   _applyRemoteSnapshot(s) {

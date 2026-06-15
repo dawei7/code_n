@@ -68,6 +68,7 @@ from code_n.execution_trace import (
 )
 from code_n.tracked import TrackedGrid, TrackedList
 
+from .ai_report import build as build_ai_report
 from .config import MAX_TRACE_FRAMES
 from .schemas import (
     OpRecordOut,
@@ -75,6 +76,7 @@ from .schemas import (
     StatsOut,
     TraceFrameOut,
 )
+from .too_efficient import check as check_too_efficient
 from .trace_codec import serialize_frame, serialize_op
 
 
@@ -129,6 +131,7 @@ def run_player_code(
     source: str,
     n: int = 16,
     seed: Optional[int] = None,
+    mode: str = "practice",
 ) -> RunResponse:
     """Run a player's source against a challenge and return the structured result.
 
@@ -141,7 +144,10 @@ def run_player_code(
     n:
         Input size. Clamped against ``challenge.max_n`` by the route layer.
     seed:
-        Optional RNG seed for reproducible inputs.
+        Optional RNG seed for reproducible inputs. The route layer
+        picks a fresh seed when ``mode="real_test"``.
+    mode:
+        Echoed back in the response. "practice" or "real_test".
 
     Returns
     -------
@@ -245,6 +251,60 @@ def run_player_code(
             counter.ops_log, challenge.info.expected_operations
         )
 
+        # --- 9b. Too-efficient check (AST + op ratio vs reference) ---
+        # Only run if the user's solution looks correct so far; the
+        # ratio check is meaningless on a wrong answer. We need the
+        # reference op count, which means running the reference
+        # solution once. We save the user's counter state, reset,
+        # run the reference, capture reference_ops, then reset
+        # again and rebuild the user's ops in a fresh counter so
+        # the stats below are the user's (not contaminated by the
+        # reference run).
+        too_efficient = False
+        too_efficient_reason = ""
+        if correct:
+            saved_user_ops = list(counter.ops_log)
+            counter.reset()
+            reference_ops: Optional[int] = None
+            try:
+                # Run the reference against the same setup data.
+                # We do NOT route through the tracer (we don't need
+                # locals for the reference), and we let any exception
+                # be a "reference failed too" signal (skip the
+                # ratio check rather than block on it).
+                if hasattr(challenge, "_reference_solve"):
+                    challenge._reference_solve(**setup_data)
+                    reference_ops = counter.total_ops
+            except Exception:
+                # Reference itself failed for some reason (e.g.
+                # challenge uses a per-n TrackedList and the
+                # reference is a no-op); fall through with no
+                # reference_ops so only the AST scan runs.
+                reference_ops = None
+            finally:
+                # Restore the user's ops into a fresh counter so
+                # the rest of this function sees the user stats.
+                counter.reset()
+                for op in saved_user_ops:
+                    counter.record(op.op_type, op.detail)
+                stats = counter.stats  # rebuild for the response
+
+            te_result = check_too_efficient(
+                user_source=source,
+                user_ops=stats.total,
+                reference_ops=reference_ops,
+            )
+            if te_result.flagged:
+                too_efficient = True
+                too_efficient_reason = te_result.message
+                passed = False
+                # Drop the algorithm-hint line in the too-efficient
+                # case; the user knows *what* they did wrong (they
+                # cheated or skipped work), and the hint would
+                # be noise.
+                algorithm_match = True
+                algorithm_reason = ""
+
         message = _build_message(
             error_message=error_message,
             correct=correct,
@@ -254,6 +314,8 @@ def run_player_code(
             required_complexity=required_complexity,
             algorithm_match=algorithm_match,
             algorithm_reason=algorithm_reason,
+            too_efficient=too_efficient,
+            too_efficient_reason=too_efficient_reason,
         )
 
         # --- 10. Serialize the trace + ops log. Downsample if huge. ---
@@ -277,6 +339,10 @@ def run_player_code(
             actual_complexity=actual_complexity.value,
             required_complexity=required_complexity.value,
             n=n,
+            seed=seed,
+            mode=mode,
+            too_efficient=too_efficient,
+            too_efficient_reason=too_efficient_reason,
             message=message,
             stats=StatsOut(
                 comparisons=stats.comparisons,
@@ -290,6 +356,33 @@ def run_player_code(
             trace=[TraceFrameOut(**f) for f in trace_serialized],
             return_value_repr=str(trace.return_value or repr(result)),
             truncated=truncated,
+            ai_report=build_ai_report(
+                challenge_id=challenge_id,
+                challenge_name=challenge.info.name,
+                category=challenge.info.category,
+                description=challenge.info.description,
+                required_complexity=required_complexity.value,
+                n=n,
+                seed=seed,
+                user_source=source,
+                passed=passed,
+                correct=correct,
+                within_threshold=within_threshold,
+                actual_complexity=actual_complexity.value,
+                message=message,
+                ops_total=stats.total,
+                ops_breakdown={
+                    "comparisons": stats.comparisons,
+                    "swaps": stats.swaps,
+                    "reads": stats.reads,
+                    "writes": stats.writes,
+                    "calls": stats.calls,
+                },
+                too_efficient=too_efficient,
+                too_efficient_reason=too_efficient_reason,
+                trace_frames=trace.frames,
+                algorithm_hint=algorithm_reason,
+            ).to_dict(),
         )
     finally:
         # Always clean up the temp dir, even on exception.
@@ -305,11 +398,21 @@ def _build_message(
     required_complexity: ComplexityClass,
     algorithm_match: bool,
     algorithm_reason: str,
+    too_efficient: bool = False,
+    too_efficient_reason: str = "",
 ) -> str:
     """Build the same pass/fail message the engine's Challenge.run prints.
 
-    The web StatusBanner shows it in the UI.
+    The web StatusBanner shows it in the UI. When ``too_efficient``
+    is true, the run is shown as not correct with a short
+    explanation (the user can fix and retry).
     """
+    if too_efficient:
+        return (
+            f"Solution rejected: {too_efficient_reason}"
+            if too_efficient_reason
+            else "Solution rejected: too efficient (suspicious pattern)."
+        )
     if error_message:
         return error_message
     if not correct:

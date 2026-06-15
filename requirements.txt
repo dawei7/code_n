@@ -1,3 +1,9 @@
 fastapi>=0.115
 uvicorn[standard]>=0.30
 pydantic>=2.7
+# debugpy: the real Python debugger used for the Debug tab
+# (interactive breakpoints + step / continue). The server
+# spawns a subprocess that imports debugpy and listens on a
+# localhost port; the server's debug_controller.py is the
+# DAP client.
+debugpy>=1.8.0

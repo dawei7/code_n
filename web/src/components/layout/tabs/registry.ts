@@ -16,7 +16,6 @@ import { lazy } from 'react';
 import { DescriptionTab } from './DescriptionTab';
 import { LocalsTab } from './LocalsTab';
 import { StatsTab } from './StatsTab';
-import { SourceTab } from './SourceTab';
 import { ComplexityTab } from './ComplexityTab';
 
 
@@ -31,6 +30,19 @@ const EditorTab = lazy(() => import('./EditorTab').then((m) => ({ default: m.Edi
 // the user actually opens the reference pane.
 const ReferenceTab = lazy(() =>
   import('./ReferenceTab').then((m) => ({ default: m.ReferenceTab })),
+);
+
+// AI Report tab: lazy because it pulls in react-markdown and
+// is only relevant when AI mode is on.
+const AiReportTab = lazy(() =>
+  import('./AiReportTab').then((m) => ({ default: m.AiReportTab })),
+);
+
+// Debug tab: lazy. Only added to a leaf when the user
+// starts a debug session; lives in its own chunk so the
+// debugger UI doesn't bloat the main bundle.
+const DebugTab = lazy(() =>
+  import('./DebugTab').then((m) => ({ default: m.DebugTab })),
 );
 
 
@@ -60,7 +72,14 @@ export const BUILTIN_TABS: TabDef[] = [
   { id: 'complexity',  label: 'Complexity',  icon: '🧮', Component: ComplexityTab,   closable: false },
   { id: 'locals',      label: 'Locals',      icon: '🔢', Component: LocalsTab,       closable: false },
   { id: 'stats',       label: 'Stats & Ops', icon: '📊', Component: StatsTab,        closable: false },
-  { id: 'source',      label: 'Source',      icon: '📄', Component: SourceTab,       closable: false },
+  // The AI Report tab is registered but only shown when AI
+  // mode is on. The tab id is stable; visibility is gated by
+  // the app store (see useVisibleTabs hook).
+  { id: 'aiReport',    label: 'AI Report',   icon: '🤖', Component: AiReportTab,     closable: false },
+  // The Debug tab is registered but only shown when a
+  // debug session is active. Same gating pattern as the
+  // AI Report tab.
+  { id: 'debug',       label: 'Debug',       icon: '🐞', Component: DebugTab,        closable: true  },
   { id: 'editor',      label: 'Editor',      icon: '⌨️',  Component: EditorTab,       closable: true  },
 ];
 

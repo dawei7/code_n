@@ -170,7 +170,7 @@ function presetForN(n, idGen) {
       kind: 'split', id: idGen(), direction: 'row', sizes: [0.5, 0.5],
       children: [
         { kind: 'leaf', id: idGen(), tabIds: ['description', 'complexity'], activeTabId: 'description' },
-        { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats', 'source'], activeTabId: 'locals' },
+        { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
       ],
     };
   }
@@ -183,7 +183,7 @@ function presetForN(n, idGen) {
           kind: 'split', id: idGen(), direction: 'col', sizes: [0.55, 0.45],
           children: [
             { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
-            { kind: 'leaf', id: idGen(), tabIds: ['source'], activeTabId: 'source' },
+            { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
           ],
         },
       ],
@@ -203,7 +203,7 @@ function presetForN(n, idGen) {
         kind: 'split', id: idGen(), direction: 'col', sizes: [0.5, 0.5],
         children: [
           { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
-          { kind: 'leaf', id: idGen(), tabIds: ['source'], activeTabId: 'source' },
+          { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
         ],
       },
     ],
@@ -331,17 +331,17 @@ test('closeTabInLeaf: removes a tab from one leaf only', () => {
   const tree = presetForN(4, () => `id${Math.random()}`);
   const leaves = allLeaves(tree);
   const a = leaves[0];
-  // Add 'source' to A first.
-  const withSource = moveTab(tree, 'source', null, a.id);
-  // Add 'source' to B too.
+  // Add 'editor' to A first.
+  const withEditor = moveTab(tree, 'editor', null, a.id);
+  // Add 'editor' to B too.
   const b = leaves[1];
-  const both = moveTab(withSource, 'source', null, b.id);
+  const both = moveTab(withEditor, 'editor', null, b.id);
   // Now close in A only.
-  const closed = closeTabInLeaf(both, 'source', a.id);
+  const closed = closeTabInLeaf(both, 'editor', a.id);
   const aAfter = findLeaf(closed, a.id);
   const bAfter = findLeaf(closed, b.id);
-  assert.ok(!aAfter.tabIds.includes('source'));
-  assert.ok(bAfter.tabIds.includes('source'));
+  assert.ok(!aAfter.tabIds.includes('editor'));
+  assert.ok(bAfter.tabIds.includes('editor'));
 });
 
 test('closeOtherTabs: removes from every leaf except the keeper', () => {

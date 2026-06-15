@@ -352,7 +352,7 @@ export function presetForN(
     return {
       kind: 'leaf',
       id: idGen(),
-      tabIds: ['description', 'complexity', 'locals', 'stats', 'source'],
+      tabIds: ['description', 'complexity', 'locals', 'stats'],
       activeTabId: 'description',
     };
   }
@@ -364,7 +364,7 @@ export function presetForN(
       sizes: [0.5, 0.5],
       children: [
         { kind: 'leaf', id: idGen(), tabIds: ['description', 'complexity'], activeTabId: 'description' },
-        { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats', 'source'], activeTabId: 'locals' },
+        { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
       ],
     };
   }
@@ -383,7 +383,7 @@ export function presetForN(
           sizes: [0.55, 0.45],
           children: [
             { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
-            { kind: 'leaf', id: idGen(), tabIds: ['source'], activeTabId: 'source' },
+            { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
           ],
         },
       ],
@@ -413,7 +413,7 @@ export function presetForN(
           sizes: [0.5, 0.5],
           children: [
             { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
-            { kind: 'leaf', id: idGen(), tabIds: ['source'], activeTabId: 'source' },
+            { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
           ],
         },
       ],
@@ -421,7 +421,7 @@ export function presetForN(
   }
   if (n === 5) {
     // 2 rows x 3 cols. The first row has 2 cells (description,
-    // complexity); the second row has 3 (locals, source, editor).
+    // complexity); the second row has 2 (locals, editor).
     return {
       kind: 'split',
       id: idGen(),
@@ -442,10 +442,9 @@ export function presetForN(
           kind: 'split',
           id: idGen(),
           direction: 'col',
-          sizes: [0.34, 0.33, 0.33],
+          sizes: [0.5, 0.5],
           children: [
             { kind: 'leaf', id: idGen(), tabIds: ['locals', 'stats'], activeTabId: 'locals' },
-            { kind: 'leaf', id: idGen(), tabIds: ['source'], activeTabId: 'source' },
             { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
           ],
         },
@@ -474,10 +473,9 @@ export function presetForN(
         kind: 'split',
         id: idGen(),
         direction: 'col',
-        sizes: [0.34, 0.33, 0.33],
+        sizes: [0.5, 0.5],
         children: [
           { kind: 'leaf', id: idGen(), tabIds: ['stats'], activeTabId: 'stats' },
-          { kind: 'leaf', id: idGen(), tabIds: ['source'], activeTabId: 'source' },
           { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
         ],
       },

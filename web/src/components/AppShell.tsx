@@ -22,6 +22,7 @@ import { useAppStore } from '../store/useAppStore';
 import { useStepPlayer } from '../hooks/useStepPlayer';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { useUpdater } from '../hooks/useUpdater';
+import { useDebugSession } from '../hooks/useDebugSession';
 import { ChallengeList } from './ChallengeList';
 import { LayoutRoot } from './layout/LayoutRoot';
 import { useLayoutStore } from '../store/useLayoutStore';
@@ -33,6 +34,7 @@ import { UpdateToast } from './UpdateToast';
 export function AppShell() {
   const loadChallenges = useAppStore((s) => s.loadChallenges);
   const loadProgress = useAppStore((s) => s.loadProgress);
+  const aiMode = useAppStore((s) => s.aiMode);
 
   useEffect(() => {
     loadChallenges();
@@ -50,6 +52,27 @@ export function AppShell() {
     });
     return unsubscribe;
   }, []);
+
+  // Add/remove the AI Report tab from the layout based on
+  // `aiMode`. When AI is on, add it to the first leaf that
+  // has the locals tab (so it sits next to the other analysis
+  // surfaces); when AI is off, close it from every leaf.
+  useEffect(() => {
+    const layout = useLayoutStore.getState();
+    const leaves = allLeaves(layout.tree);
+    if (aiMode) {
+      const target = leaves.find((l) => l.tabIds.includes('locals')) ?? leaves[0];
+      if (target && !target.tabIds.includes('aiReport')) {
+        layout.moveTab('aiReport', null, target.id);
+      }
+    } else {
+      for (const l of leaves) {
+        if (l.tabIds.includes('aiReport')) {
+          layout.closeTabInLeaf('aiReport', l.id);
+        }
+      }
+    }
+  }, [aiMode]);
 
   useStepPlayer();
   useKeyboardShortcuts();
@@ -80,6 +103,8 @@ function TopHeader() {
   const tree = useLayoutStore((s) => s.tree);
   const leafCount = allLeaves(tree).length;
   const updater = useUpdater();
+  const aiMode = useAppStore((s) => s.aiMode);
+  const setAiMode = useAppStore((s) => s.setAiMode);
 
   // Tooltip describing the last update action for the "Check for
   // updates" button. Changes when the state changes.
@@ -116,6 +141,18 @@ function TopHeader() {
       </div>
       <div className="flex items-center gap-2 text-xs">
         <span className="text-coden-muted font-mono">{leafCount} panes</span>
+        <label
+          className="flex items-center gap-1 cursor-pointer text-coden-muted hover:text-coden-text"
+          title="Show the AI Report tab and enable Ollama-powered hints (requires local Ollama running)"
+        >
+          <input
+            type="checkbox"
+            checked={aiMode}
+            onChange={(e) => setAiMode(e.target.checked)}
+            className="accent-coden-accent"
+          />
+          AI
+        </label>
         <label className="text-coden-muted">Layout</label>
         <select
           value={leafCount}
@@ -177,9 +214,10 @@ function TopHeader() {
 
 
 /**
- * TransportBar — challenge title, Run, Reset, n/seed, step controls.
- * Carved out of the old ChallengeView so it lives at the same level
- * as the pane tree (the panes never own the transport).
+ * TransportBar — challenge title, mode toggle, Run, Reset, n/seed,
+ * step controls. Carved out of the old ChallengeView so it lives
+ * at the same level as the pane tree (the panes never own the
+ * transport).
  */
 function TransportBar() {
   const detail = useAppStore((s) => s.currentDetail);
@@ -192,6 +230,12 @@ function TransportBar() {
   const setN = useAppStore((s) => s.setN);
   const seed = useAppStore((s) => s.seed);
   const setSeed = useAppStore((s) => s.setSeed);
+  const mode = useAppStore((s) => s.mode);
+  const setMode = useAppStore((s) => s.setMode);
+  const aiMode = useAppStore((s) => s.aiMode);
+  const source = useAppStore((s) => s.source);
+  const debugStatus = useAppStore((s) => s.debugStatus);
+  const debugSession = useDebugSession();
 
   async function handlePopOut() {
     const api = (window as Window).electronAPI;
@@ -215,6 +259,40 @@ function TransportBar() {
         ) : (
           <div className="text-sm text-coden-muted">Pick a challenge →</div>
         )}
+      </div>
+
+      {/* Mode toggle: practice (user picks n/seed) vs real_test
+          (server picks n/seed, fresh every run). */}
+      <div className="flex items-center text-xs shrink-0">
+        <div
+          className="inline-flex rounded border border-coden-border overflow-hidden"
+          title="Practice: you pick n + seed. Real test: server picks both, fresh every run."
+        >
+          <button
+            type="button"
+            onClick={() => setMode('practice')}
+            className={[
+              'px-2 py-1 font-semibold',
+              mode === 'practice'
+                ? 'bg-coden-accent text-coden-bg'
+                : 'text-coden-muted hover:text-coden-text hover:bg-coden-border',
+            ].join(' ')}
+          >
+            Practice
+          </button>
+          <button
+            type="button"
+            onClick={() => setMode('real_test')}
+            className={[
+              'px-2 py-1 font-semibold border-l border-coden-border',
+              mode === 'real_test'
+                ? 'bg-coden-accent text-coden-bg'
+                : 'text-coden-muted hover:text-coden-text hover:bg-coden-border',
+            ].join(' ')}
+          >
+            Real test
+          </button>
+        </div>
       </div>
 
       <div className="flex items-center gap-1 ml-2 shrink-0">
@@ -251,25 +329,106 @@ function TransportBar() {
         >
           ⧉
         </button>
+        <button
+          type="button"
+          onClick={() => {
+            // Start (or stop) a debug session. We use the
+            // current challenge + n + seed as the args, and
+            // pull the source from the store (the same one
+            // the regular Run path uses, so what you debug
+            // is what you ran).
+            if (debugStatus === 'exited' || debugStatus === 'error' || debugStatus === 'idle') {
+              if (!detail) return;
+              void debugSession.start({
+                challengeId: detail.id,
+                source: source || '',
+                n,
+                seed,
+              });
+              // Add the Debug tab to the first leaf and
+              // activate it so the user sees the debugger
+              // surface right away.
+              const layout = useLayoutStore.getState();
+              const leaves = allLeaves(layout.tree);
+              const target = leaves.find((l) => l.tabIds.includes('locals')) ?? leaves[0];
+              if (target && !target.tabIds.includes('debug')) {
+                layout.moveTab('debug', null, target.id);
+              }
+              if (target) {
+                layout.setActiveTab(target.id, 'debug');
+              }
+            } else {
+              debugSession.stop();
+            }
+          }}
+          disabled={!detail || isRunning}
+          className={[
+            'px-2 py-1.5 text-sm rounded border font-semibold',
+            'disabled:opacity-50 disabled:cursor-not-allowed',
+            debugStatus === 'idle' || debugStatus === 'exited' || debugStatus === 'error'
+              ? 'border-coden-border text-coden-text hover:bg-coden-border'
+              : 'border-coden-accent bg-coden-accent/15 text-coden-accent hover:bg-coden-accent/25',
+          ].join(' ')}
+          title={
+            debugStatus === 'idle' || debugStatus === 'exited' || debugStatus === 'error'
+              ? 'Start a debug session (uses the current source + n + seed)'
+              : 'Stop the current debug session'
+          }
+        >
+          {debugStatus === 'idle' || debugStatus === 'exited' || debugStatus === 'error'
+            ? '🐞 Debug'
+            : '⏹ Stop debug'}
+        </button>
+        {aiMode && runResult && (
+          <button
+            type="button"
+            onClick={() => {
+              // Open the AI Report tab in the first leaf that
+              // has it; if it isn't in any leaf (e.g. AI was
+              // turned on but the tab was never added), do
+              // nothing here — the user can drag it from the
+              // tab pool. The effect above adds it on toggle.
+              const layout = useLayoutStore.getState();
+              const leaves = allLeaves(layout.tree);
+              const target = leaves.find((l) => l.tabIds.includes('aiReport'));
+              if (target) {
+                layout.setActiveTab(target.id, 'aiReport');
+              }
+            }}
+            className="px-2 py-1.5 text-sm rounded border border-coden-accent text-coden-accent hover:bg-coden-accent hover:text-coden-bg"
+            title="Open the AI Report tab"
+          >
+            🤖 Hint
+          </button>
+        )}
       </div>
 
       {detail && (
-        <div className="flex items-center gap-1 text-xs shrink-0">
+        <div
+          className="flex items-center gap-1 text-xs shrink-0"
+          title={
+            mode === 'real_test'
+              ? 'Server picks n + seed for the real test'
+              : 'Pick the input size and a seed'
+          }
+        >
           <label className="text-coden-muted">n</label>
           <input
             type="number"
             min={2}
             max={detail.max_n}
             value={n}
+            disabled={mode === 'real_test'}
             onChange={(e) => setN(Math.max(2, Math.min(detail.max_n, Number(e.target.value) || 16)))}
-            className="w-16 bg-coden-bg border border-coden-border rounded px-2 py-1 font-mono text-coden-text"
+            className="w-16 bg-coden-bg border border-coden-border rounded px-2 py-1 font-mono text-coden-text disabled:opacity-50 disabled:cursor-not-allowed"
           />
           <label className="text-coden-muted ml-1">seed</label>
           <input
             type="number"
             value={seed ?? ''}
+            disabled={mode === 'real_test'}
             onChange={(e) => setSeed(e.target.value === '' ? null : Number(e.target.value))}
-            className="w-16 bg-coden-bg border border-coden-border rounded px-2 py-1 font-mono text-coden-text"
+            className="w-16 bg-coden-bg border border-coden-border rounded px-2 py-1 font-mono text-coden-text disabled:opacity-50 disabled:cursor-not-allowed"
           />
         </div>
       )}
@@ -280,6 +439,14 @@ function TransportBar() {
 
       {runResult && detail && (
         <div className="text-xs text-coden-muted font-mono shrink-0">
+          {runResult.mode === 'real_test' && (
+            <span
+              className="mr-2 px-1.5 py-0.5 rounded bg-coden-accent/20 text-coden-accent font-semibold"
+              title="Real test: server picked n + seed"
+            >
+              REAL TEST
+            </span>
+          )}
           n=<span className="text-coden-text">{runResult.n}</span>
           <span className="mx-1 text-coden-muted">|</span>
           req:{' '}

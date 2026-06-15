@@ -10,7 +10,7 @@ Naming convention: outbound models end in ``Out`` (or are themselves
 """
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any, Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -74,6 +74,18 @@ class RunRequest(BaseModel):
 
     The player types code in the editor; the server writes it to a
     temp file, imports it, and runs it against the engine.
+
+    ``mode`` controls how ``n`` and ``seed`` are interpreted:
+      - ``"practice"`` (default): use the player-supplied ``n`` /
+        ``seed`` exactly. This is the standard "I want to test my
+        code" flow.
+      - ``"real_test"``: the server ignores the player's ``n`` /
+        ``seed`` and picks a deterministic-feeling but fresh ``n``
+        and a random ``seed`` for a fair, surprise test. ``n`` is
+        ``min(64, challenge.max_n)`` (so the algorithm has real
+        work to do) and ``seed`` is a random 31-bit integer. The
+        client UI shows the actual ``n``/``seed`` used in the
+        response.
     """
 
     source: str = Field(
@@ -82,6 +94,7 @@ class RunRequest(BaseModel):
     )
     n: int = Field(16, ge=2, le=100)
     seed: Optional[int] = None
+    mode: Literal["practice", "real_test"] = "practice"
 
 
 class OpRecordOut(BaseModel):
@@ -138,12 +151,25 @@ class RunResponse(BaseModel):
     actual_complexity: str
     required_complexity: str
     n: int
+    seed: Optional[int] = None  # Echoed from the request (or the
+                                # server-picked value in real_test mode)
+    mode: str = "practice"      # Echoed: "practice" or "real_test"
+    too_efficient: bool = False # True if the run was flagged as
+                                # too efficient (AST scan or op
+                                # count ratio vs reference)
+    too_efficient_reason: str = ""
     message: str
     stats: StatsOut
     ops_log: list[OpRecordOut]
     trace: list[TraceFrameOut]
     return_value_repr: str
     truncated: bool = False  # True if the trace was downsampled for size.
+    # Structured AI report. Always populated. The AI Report tab
+    # renders it for the user; the local Ollama hint endpoint
+    # takes it as input. The optimal source is NOT in this
+    # report (it's added server-side only when the LLM prompt
+    # is built, so it can't leak through the UI).
+    ai_report: dict = {}
 
 
 # ----------------------------------------------------------------------------

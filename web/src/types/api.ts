@@ -66,6 +66,34 @@ export interface StatsOut {
   total: number;
 }
 
+export interface AiReport {
+  challenge_id: string;
+  challenge_name: string;
+  category: string;
+  description: string;
+  required_complexity: string;
+  test: { n: number; seed: number | null };
+  user_source: string;
+  result: {
+    passed: boolean;
+    correct: boolean;
+    within_threshold: boolean;
+    actual_complexity: string;
+    message: string;
+    ops_total: number;
+    ops_breakdown: Record<string, number>;
+    too_efficient: boolean;
+    too_efficient_reason: string;
+  };
+  locals_at_failure: {
+    line_no: number;
+    event: string;
+    locals: Record<string, unknown>;
+    return_value: string;
+  } | null;
+  algorithm_hint: string;
+}
+
 export interface RunResponse {
   passed: boolean;
   correct: boolean;
@@ -75,12 +103,28 @@ export interface RunResponse {
   actual_complexity: string;
   required_complexity: string;
   n: number;
+  /** The actual seed used (echoed from the request, or the
+   *  server-picked value in real_test mode). */
+  seed: number | null;
+  /** What mode produced this run. Echoes the request so the UI
+   *  can label the n/seed as "real test" without re-deriving it. */
+  mode: 'practice' | 'real_test';
+  /** True if the run was flagged as too efficient (AST scan or
+   *  op-count ratio). In that case `passed` is also False. */
+  too_efficient: boolean;
+  too_efficient_reason: string;
   message: string;
   stats: StatsOut;
   ops_log: OpRecordOut[];
   trace: TraceFrameOut[];
   return_value_repr: string;
   truncated: boolean;
+  /** Structured AI report — always populated. The AI Report
+   *  tab renders it; the local Ollama hint endpoint takes it
+   *  as input. The optimal source is NEVER in this report
+   *  (it's added server-side only when the LLM prompt is
+   *  built, so it can't leak through the UI). */
+  ai_report: AiReport;
 }
 
 export interface LevelRecordOut {
