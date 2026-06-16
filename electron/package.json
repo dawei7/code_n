@@ -1,6 +1,6 @@
 {
   "name": "coden-electron",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "private": true,
   "description": "cOde(n) desktop wrapper (Electron).",
   "main": "dist/main.js",
