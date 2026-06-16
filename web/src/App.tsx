@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { AppShell } from './components/AppShell';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { mountBroadcastSync } from './lib/broadcastSync';
 
 
@@ -27,8 +28,21 @@ const DetachedPaneHost = lazy(() =>
  * The BroadcastChannel sync is mounted in AppShell and
  * DetachedPaneHost, but NOT in EditorView (the legacy editor
  * stays decoupled per the plan).
+ *
+ * ErrorBoundary wraps everything: a render error in any
+ * child surfaces as a visible red card with the message +
+ * stack, instead of an invisible black-screen failure.
  */
 export default function App() {
+  return (
+    <ErrorBoundary>
+      <RoutedApp />
+    </ErrorBoundary>
+  );
+}
+
+
+function RoutedApp() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('view') === 'editor') {
     return (
