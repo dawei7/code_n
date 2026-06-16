@@ -89,7 +89,7 @@ export function ComplexityAnalysis() {
       {/* The ±5% tolerance band (visual scale) */}
       {ref !== null && ciLow !== null && ciHigh !== null && (
         <ToleranceBand
-          ref={ref}
+          refValue={ref}
           ciLow={ciLow}
           ciHigh={ciHigh}
           user={user}
@@ -102,7 +102,7 @@ export function ComplexityAnalysis() {
         <Verdict
           status={status}
           user={user}
-          ref={ref}
+          refValue={ref}
           required={detail.required_complexity}
           actual={runResult.actual_complexity}
           tooEfficient={runResult.too_efficient}
@@ -177,13 +177,13 @@ function MetricCard({
  *  count marked. A horizontal scale with the reference
  *  value in the center. */
 function ToleranceBand({
-  ref,
+  refValue,
   ciLow,
   ciHigh,
   user,
   n,
 }: {
-  ref: number;
+  refValue: number;
   ciLow: number;
   ciHigh: number;
   user: number | null;
@@ -193,7 +193,7 @@ function ToleranceBand({
   // little padding. The lower bound is 0; the upper is
   // max(reference * 1.5, user * 1.1) — this gives a
   // visual frame for both.
-  const scaleMax = Math.max(ref * 1.5, user !== null ? user * 1.1 : 0);
+  const scaleMax = Math.max(refValue * 1.5, user !== null ? user * 1.1 : 0);
   const pct = (v: number) => Math.max(0, Math.min(100, (v / scaleMax) * 100));
   // The user's position on the scale (clamped to the
   // scale for visualization; the actual numeric value
@@ -220,8 +220,8 @@ function ToleranceBand({
             center of the band. */}
         <div
           className="absolute top-0 bottom-0 w-px bg-coden-accent"
-          style={{ left: `${pct(ref)}%` }}
-          title={`Reference: ${ref}`}
+          style={{ left: `${pct(refValue)}%` }}
+          title={`Reference: ${refValue}`}
         />
         {/* The user's value as a larger dot. Color depends
             on whether it landed inside the band. */}
@@ -253,7 +253,7 @@ function ToleranceBand({
         </div>
         <div className="text-center">
           <div className="text-coden-muted">Reference</div>
-          <div className="text-coden-accent font-semibold">{ref.toLocaleString()}</div>
+          <div className="text-coden-accent font-semibold">{refValue.toLocaleString()}</div>
         </div>
         <div className="text-right">
           <div className="text-coden-muted">CI high</div>
@@ -278,22 +278,22 @@ function userWithinBand(user: number, lo: number, hi: number): boolean {
 function Verdict({
   status,
   user,
-  ref,
+  refValue,
   required,
   actual,
   tooEfficient,
 }: {
   status: 'below' | 'inside' | 'above' | 'no-ref' | 'no-run';
   user: number | null;
-  ref: number | null;
+  refValue: number | null;
   required: string;
   actual: string;
   tooEfficient: boolean;
 }) {
-  // Compute the ratio (user / ref) as a percentage for
+  // Compute the ratio (user / refValue) as a percentage for
   // the verdict text.
-  const ratioPct = (user !== null && ref !== null && ref > 0)
-    ? (user / ref) * 100
+  const ratioPct = (user !== null && refValue !== null && refValue > 0)
+    ? (user / refValue) * 100
     : null;
 
   if (status === 'no-run') {
@@ -324,7 +324,7 @@ function Verdict({
             ? 'The engine flagged this as too efficient — likely a hardcoded return or a missing loop body.'
             : 'Your code uses fewer AST operations than the reference. Double-check you actually implemented the algorithm.'
         }
-        sub={`${user} ops vs ${ref} ref (${ratioPct?.toFixed(0)}% of optimal)`}
+        sub={`${user} ops vs ${refValue} ref (${ratioPct?.toFixed(0)}% of optimal)`}
       />
     );
   }
@@ -339,7 +339,7 @@ function Verdict({
             ? 'Your solution is correct and within the required complexity class, but it does more work than the canonical solution.'
             : `Your solution is correct but slower than the required ${required} class. Consider optimizing.`
         }
-        sub={`${user} ops vs ${ref} ref (${ratioPct?.toFixed(0)}% of optimal — ${user! - ref!} ops above)`}
+        sub={`${user} ops vs ${refValue} ref (${ratioPct?.toFixed(0)}% of optimal — ${user! - refValue!} ops above)`}
       />
     );
   }
@@ -350,7 +350,7 @@ function Verdict({
       icon="✓"
       title="As efficient as the reference"
       body={`Your code's AST op count is within ±5% of the canonical solution's count for this input size.`}
-      sub={`${user} ops vs ${ref} ref (${ratioPct?.toFixed(0)}% of optimal)`}
+      sub={`${user} ops vs ${refValue} ref (${ratioPct?.toFixed(0)}% of optimal)`}
     />
   );
 }
