@@ -13,6 +13,12 @@
  *   - popOutPane(paneId, tabId) — opens a new BrowserWindow at
  *     `?view=pane&paneId=...&tabId=...` that hosts a single tab
  *     in its own window.
+ *   - popOutDebug() — opens the popped-out debug window at
+ *     `?view=debug&sessionId=...` (or focuses the existing one).
+ *     Auto-invoked by the main window when a breakpoint is hit
+ *     during a debug session.
+ *   - closeDebugPopout() — asks the main process to close the
+ *     popped-out debug window. Used when the debug session ends.
  *   - onPaneWindowClosed(cb) — subscribe to "a detached window
  *     was closed" events. Returns an unsubscribe function. Used
  *     by the main window to clear the corresponding "detached"
@@ -42,6 +48,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   popOutPane: (paneId: string, tabId: string): Promise<boolean> =>
     ipcRenderer.invoke('pop-out-pane', paneId, tabId),
+
+  popOutDebug: (sessionId: string): Promise<boolean> =>
+    ipcRenderer.invoke('pop-out-debug', sessionId),
+
+  closeDebugPopout: (): Promise<boolean> => ipcRenderer.invoke('close-debug-popout'),
 
   onPaneWindowClosed: (cb: (paneId: string) => void): (() => void) => {
     const handler = (_evt: unknown, paneId: string) => cb(paneId);

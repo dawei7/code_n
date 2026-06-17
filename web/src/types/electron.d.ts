@@ -62,6 +62,21 @@ export type ElectronAPI = {
    */
   popOutPane: (paneId: string, tabId: string) => Promise<boolean>;
   /**
+   * Open (or focus) the popped-out debug window at
+   * `?view=debug&sessionId=...`. Returns true on success.
+   * Auto-invoked by the main window when a breakpoint is hit
+   * during a debug session. The pop-out is a pure view of the
+   * main window's debug state; commands (step, continue, stop)
+   * flow back over a BroadcastChannel and the main window
+   * forwards them to the WS.
+   */
+  popOutDebug: (sessionId: string) => Promise<boolean>;
+  /**
+   * Close the popped-out debug window if one is open. Used
+   * by the main window when the debug session ends.
+   */
+  closeDebugPopout: () => Promise<boolean>;
+  /**
    * Subscribe to "a detached pane window was closed" events.
    * Returns an unsubscribe function. The handler receives the
    * paneId of the window that just closed.

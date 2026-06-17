@@ -28,6 +28,11 @@ let server: ServerHandle | null = null;
  *  pop-out-pane. */
 const detachedWindows = new Map<string, BrowserWindow>();
 
+/** Fixed key for the popped-out debug window. There's at most one
+ *  debug pop-out at a time (it's per-session, and there's only one
+ *  active session at a time). */
+const DEBUG_POPOUT_KEY = 'debug';
+
 
 /** Resolve the repo root by walking up from electron/dist/main.js. */
 function resolveRepoRoot(): string {
@@ -145,6 +150,59 @@ async function createWindow(): Promise<void> {
       `&paneId=${encodeURIComponent(paneId)}` +
       `&tabId=${encodeURIComponent(tabId)}`;
     void win.loadURL(url);
+    return true;
+  });
+
+  // Pop out the debug window. The main window calls this when
+  // a breakpoint is hit during a debug session. There's at most
+  // one debug pop-out at a time (per DEBUG_POPOUT_KEY); calling
+  // it again focuses the existing window. The sessionId is
+  // passed as a URL param so the pop-out window can show it in
+  // its header.
+  ipcMain.handle('pop-out-debug', (_evt, sessionId: string) => {
+    const port = server?.port;
+    if (!port) return false;
+    const existing = detachedWindows.get(DEBUG_POPOUT_KEY);
+    if (existing && !existing.isDestroyed()) {
+      existing.focus();
+      return true;
+    }
+    const win = new BrowserWindow({
+      width: 900,
+      height: 700,
+      minWidth: 600,
+      minHeight: 400,
+      title: 'cOde(n) · Debug',
+      backgroundColor: '#020617',
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js'),
+        contextIsolation: true,
+        nodeIntegration: false,
+      },
+    });
+    detachedWindows.set(DEBUG_POPOUT_KEY, win);
+    win.on('closed', () => {
+      detachedWindows.delete(DEBUG_POPOUT_KEY);
+      // Notify the main window that the debug pop-out is gone
+      // (it may have been closed manually, not via the session
+      // ending). The main window listens for this so it doesn't
+      // try to call close() on a destroyed window.
+      mainWindow?.webContents.send('pane-window-closed', DEBUG_POPOUT_KEY);
+    });
+    const url =
+      `http://127.0.0.1:${port}/?view=debug` +
+      `&sessionId=${encodeURIComponent(sessionId ?? '')}`;
+    void win.loadURL(url);
+    return true;
+  });
+
+  // Close the popped-out debug window if one is open. Called by
+  // the main window when the debug session transitions to
+  // 'exited' / 'error' / 'idle'.
+  ipcMain.handle('close-debug-popout', () => {
+    const win = detachedWindows.get(DEBUG_POPOUT_KEY);
+    if (!win || win.isDestroyed()) return false;
+    win.close();
     return true;
   });
 

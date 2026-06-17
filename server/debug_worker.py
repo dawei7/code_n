@@ -108,6 +108,12 @@ def main() -> int:
     setup_data = challenge.setup(n, seed)
 
     # Exec the player's source in a fresh namespace.
+    # NOTE: No source wrapping / AST rewriting is performed here.
+    # The source is compiled and exec'd verbatim; the tracking
+    # proxies (TrackedList, TrackedGrid, ...) are applied to the
+    # setup data inside ``challenge.setup``, not to the player's
+    # ``solve`` function. What the user sees in the editor is
+    # exactly what runs.
     namespace: dict = {"__name__": "player_solution"}
     try:
         exec(compile(source_path.read_text(encoding="utf-8"), str(source_path), "exec"), namespace)

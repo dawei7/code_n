@@ -170,7 +170,14 @@ def run_player_code(
         raise NTooLarge(n, challenge.max_n)
 
     # --- 2. Stage the source in a temp dir so the engine's tracer can
-    #        filter to this exact file. ---
+    #        filter to this exact file.
+    #
+    # NOTE: No source wrapping / AST rewriting is performed here. The
+    # player source is exec'd verbatim via ``runpy.run_path``; the
+    # engine's tracking proxies (TrackedList, TrackedGrid, ...) are
+    # applied to the setup data inside ``challenge.setup``, not to
+    # the player's ``solve`` function. What the user sees in the
+    # editor is exactly what runs. ---
     tmpdir = Path(tempfile.mkdtemp(prefix="coden-run-"))
     solution_path = tmpdir / "solution.py"
     solution_path.write_text(source, encoding="utf-8")

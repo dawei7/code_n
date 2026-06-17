@@ -5,18 +5,36 @@
  * down on stop.
  *
  * The hook is the SOLE owner of the WebSocket — the UI
- * components (DebugTab, the transport bar's Debug button)
- * just call its methods. All protocol logic (message types,
- * JSON encoding) lives here.
+ * components (DebugTab, the popped-out DetachedDebugHost)
+ * just call its methods (or post commands that the hook
+ * forwards). All protocol logic (message types, JSON
+ * encoding) lives here.
  *
  * Singleton model: the WebSocket and the controller's state
  * are kept at MODULE scope, not in a per-call closure. The
  * hook just returns the same object no matter how many times
- * it's called. This is important because both the transport
- * bar's "Debug" button and the DebugTab itself need to talk
- * to the same WebSocket; if each had its own hook instance,
- * the second caller would have a stale, empty view of the
- * world.
+ * it's called. The main window (AppShell) mounts the hook
+ * once; the popped-out debug window (DetachedDebugHost) posts
+ * commands on the ``coden-debug-cmd`` BroadcastChannel and
+ * this hook forwards them to the WS.
+ *
+ * Pop-out lifecycle (added in v0.8.4):
+ *   - The main window owns the WS.
+ *   - On every 'paused' transition (i.e. a breakpoint or step
+ *     pause), the main window calls
+ *     ``window.electronAPI.popOutDebug(sessionId)``. Electron
+ *     opens a new BrowserWindow at ``?view=debug&sessionId=...``
+ *     (or focuses the existing one). The pop-out is a pure
+ *     view of the main window's debug state and ships user
+ *     actions back over coden-debug-cmd.
+ *   - On every 'exited' / 'error' transition, the main window
+ *     calls ``window.electronAPI.closeDebugPopout()`` so the
+ *     pop-out disappears automatically.
+ *   - If the user manually closes the pop-out mid-session, the
+ *     Electron main process fires a 'pane-window-closed' event
+ *     with key 'debug'; the main window's paneWindowClosed
+ *     handler ignores it (no layout-store flag to clear). The
+ *     next 'paused' event reopens the pop-out (auto-reopen UX).
  *
  * State machine (mirrors `debugStatus` in the store):
  *
@@ -34,6 +52,8 @@
 import { useCallback, useEffect, useRef } from 'react';
 
 import { useAppStore, DebugLocal } from '../store/useAppStore';
+import { startDebugSession } from '../api/debug';
+import { DEBUG_CMD_CHANNEL, type DebugCommand } from '../lib/debugCommands';
 
 
 interface StartArgs {
@@ -170,16 +190,11 @@ export function useDebugSession() {
       debugStoppedReason: '',
     });
     try {
-      const res = await fetch('/api/debug/sessions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(args),
-      });
-      if (!res.ok) {
-        const detail = await res.text();
-        throw new Error(`debug session start failed: ${res.status} ${detail}`);
-      }
-      const body = await res.json() as { session_id: string; ws_url: string };
+      // POST /api/debug/sessions. The api helper converts
+      // ``challengeId`` to ``challenge_id`` (snake_case) before
+      // sending; sending camelCase used to trip a 422 from
+      // Pydantic.
+      const body = await startDebugSession(args);
       controller.sessionId = body.session_id;
 
       const wsScheme = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
@@ -265,6 +280,78 @@ export function useDebugSession() {
       debugLocals: [],
     });
   }, [send, store]);
+
+  // -- pop-out on 'paused', close on 'exited' / 'error' ------------
+  //
+  // Subscribe to the store and trigger the Electron pop-out
+  // when the session pauses. The pop-out is a pure view of
+  // the store, so we don't need to pass it any state — it
+  // reads everything via the existing broadcastSync infra.
+  //
+  // We only run this in the main window (where ``popOutDebug``
+  // makes sense). The popped-out window doesn't run this effect
+  // because it doesn't mount AppShell (which is where the
+  // hook is).
+  useEffect(() => {
+    const api = (typeof window !== 'undefined' ? window.electronAPI : null);
+    if (!api?.popOutDebug) {
+      // Dev (browser) — no pop-out; the user still gets the
+      // DebugTab in the 4-pane layout.
+      return;
+    }
+    const unsub = useAppStore.subscribe((state, prev) => {
+      if (state.debugStatus === prev.debugStatus) return;
+      if (state.debugStatus === 'paused' && controller.sessionId) {
+        // Fire-and-forget. If the pop-out is already open,
+        // Electron just focuses it.
+        void api.popOutDebug(controller.sessionId);
+      } else if (
+        state.debugStatus === 'exited' ||
+        state.debugStatus === 'error' ||
+        state.debugStatus === 'idle'
+      ) {
+        // Auto-close per the UX spec: the pop-out disappears
+        // when the session ends.
+        void api.closeDebugPopout();
+      }
+    });
+    return unsub;
+  }, []);
+
+  // -- Listen for pop-out commands ----------------------------------
+  //
+  // The popped-out debug window (DetachedDebugHost) posts
+  // DebugCommand messages on the coden-debug-cmd
+  // BroadcastChannel. We forward each one to the WS via
+  // the same send() helper the in-window controls use.
+  //
+  // This is the main window's only "command receiver" — the
+  // pop-out has no WS of its own.
+  useEffect(() => {
+    if (typeof BroadcastChannel === 'undefined') return;
+    const ch = new BroadcastChannel(DEBUG_CMD_CHANNEL);
+    const onMessage = (ev: MessageEvent<DebugCommand>) => {
+      const cmd = ev.data;
+      switch (cmd.kind) {
+        case 'continue': continueExec(); break;
+        case 'step_over': stepOver(); break;
+        case 'step_in':   stepIn(); break;
+        case 'step_out':  stepOut(); break;
+        case 'stop':      stop(); break;
+        // popout_ready / popout_closed are informational; the
+        // Electron main process already tracks the window via
+        // its own detachedWindows map.
+        case 'popout_ready':
+        case 'popout_closed':
+          break;
+      }
+    };
+    ch.addEventListener('message', onMessage);
+    return () => {
+      ch.removeEventListener('message', onMessage);
+      ch.close();
+    };
+  }, [continueExec, stepOver, stepIn, stepOut, stop]);
 
   return {
     start,

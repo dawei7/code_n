@@ -234,8 +234,39 @@ function TransportBar() {
   const setMode = useAppStore((s) => s.setMode);
   const aiMode = useAppStore((s) => s.aiMode);
   const source = useAppStore((s) => s.source);
+  const breakpoints = useAppStore((s) => s.breakpoints);
   const debugStatus = useAppStore((s) => s.debugStatus);
   const debugSession = useDebugSession();
+
+  /**
+   * Unified Run handler. If the user has set any breakpoints
+   * in the editor gutter, this starts a debug session (the
+   * session auto-pops-out into its own window the first time
+   * a breakpoint is hit; see useDebugSession). Otherwise it
+   * runs the challenge normally and renders the trace in
+   * the 4-pane layout.
+   *
+   * Real-test mode forces the regular path: debug sessions
+   * are exploratory and don't make sense with a server-picked
+   * seed.
+   */
+  function handleRun() {
+    if (!detail) return;
+    if (
+      breakpoints.size > 0 &&
+      mode === 'practice' &&
+      (debugStatus === 'idle' || debugStatus === 'exited' || debugStatus === 'error')
+    ) {
+      void debugSession.start({
+        challengeId: detail.id,
+        source: source || '',
+        n,
+        seed,
+      });
+      return;
+    }
+    void run();
+  }
 
   async function handlePopOut() {
     const api = (window as Window).electronAPI;
@@ -298,9 +329,14 @@ function TransportBar() {
       <div className="flex items-center gap-1 ml-2 shrink-0">
         <button
           type="button"
-          onClick={run}
+          onClick={handleRun}
           disabled={isRunning || !detail}
           className="px-3 py-1.5 text-sm font-semibold rounded bg-coden-accent text-coden-bg hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+          title={
+            breakpoints.size > 0
+              ? `Run with debug (${breakpoints.size} breakpoint${breakpoints.size === 1 ? '' : 's'})`
+              : 'Run the challenge'
+          }
         >
           {isRunning ? 'Running…' : '▶ Run'}
         </button>
@@ -328,56 +364,6 @@ function TransportBar() {
           title="Open the standalone editor in a separate window"
         >
           ⧉
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            // Start (or stop) a debug session. We use the
-            // current challenge + n + seed as the args, and
-            // pull the source from the store (the same one
-            // the regular Run path uses, so what you debug
-            // is what you ran).
-            if (debugStatus === 'exited' || debugStatus === 'error' || debugStatus === 'idle') {
-              if (!detail) return;
-              void debugSession.start({
-                challengeId: detail.id,
-                source: source || '',
-                n,
-                seed,
-              });
-              // Add the Debug tab to the first leaf and
-              // activate it so the user sees the debugger
-              // surface right away.
-              const layout = useLayoutStore.getState();
-              const leaves = allLeaves(layout.tree);
-              const target = leaves.find((l) => l.tabIds.includes('locals')) ?? leaves[0];
-              if (target && !target.tabIds.includes('debug')) {
-                layout.moveTab('debug', null, target.id);
-              }
-              if (target) {
-                layout.setActiveTab(target.id, 'debug');
-              }
-            } else {
-              debugSession.stop();
-            }
-          }}
-          disabled={!detail || isRunning}
-          className={[
-            'px-2 py-1.5 text-sm rounded border font-semibold',
-            'disabled:opacity-50 disabled:cursor-not-allowed',
-            debugStatus === 'idle' || debugStatus === 'exited' || debugStatus === 'error'
-              ? 'border-coden-border text-coden-text hover:bg-coden-border'
-              : 'border-coden-accent bg-coden-accent/15 text-coden-accent hover:bg-coden-accent/25',
-          ].join(' ')}
-          title={
-            debugStatus === 'idle' || debugStatus === 'exited' || debugStatus === 'error'
-              ? 'Start a debug session (uses the current source + n + seed)'
-              : 'Stop the current debug session'
-          }
-        >
-          {debugStatus === 'idle' || debugStatus === 'exited' || debugStatus === 'error'
-            ? '🐞 Debug'
-            : '⏹ Stop debug'}
         </button>
         {aiMode && runResult && (
           <button

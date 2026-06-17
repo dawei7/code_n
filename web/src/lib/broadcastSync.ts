@@ -18,7 +18,7 @@
  * `applyingRemoteRef` ref-sentinel in useAppStore enforces this).
  */
 import { useAppStore, applyingRemoteRef } from '../store/useAppStore';
-import type { AppState } from '../store/useAppStore';
+import type { AppState, DebugLocal, DebugStatus } from '../store/useAppStore';
 import type { RunResponse } from '../types/api';
 
 
@@ -53,6 +53,17 @@ interface BulkPayload {
   /** Request id from the originating window so the receiver can
    *  drop stale runs if a newer run started. */
   requestId: string | null;
+  // -- Debug surface state, mirrored to the popped-out window --
+  // The main window owns the WS; the pop-out is a pure view
+  // that reads these slices and posts commands back on
+  // coden-debug-cmd. Set isn't JSON-serializable, so we ship
+  // breakpoints as a sorted array and reconstruct on receive.
+  breakpoints: number[];
+  debugStatus: DebugStatus;
+  debugCurrentLine: number | null;
+  debugLocals: DebugLocal[];
+  debugStoppedReason: string;
+  debugError: string;
 }
 
 
@@ -86,6 +97,15 @@ function bulkSig(s: AppState): string {
     n: s.n,
     sd: s.seed,
     rid: activeRequestId,
+    // Debug surface signature: status + breakpoints + current line +
+    // stopped reason + error string. We intentionally do NOT include
+    // ``debugLocals`` here — it changes on every step and would
+    // flood the channel. Locals flow through the WS, not broadcast.
+    ds: s.debugStatus,
+    bp: Array.from(s.breakpoints).sort((a, b) => a - b),
+    dl: s.debugCurrentLine,
+    dr: s.debugStoppedReason,
+    de: s.debugError,
   });
 }
 
@@ -100,6 +120,12 @@ function postBulk(): void {
     n: s.n,
     seed: s.seed,
     requestId: activeRequestId,
+    breakpoints: Array.from(s.breakpoints).sort((a, b) => a - b),
+    debugStatus: s.debugStatus,
+    debugCurrentLine: s.debugCurrentLine,
+    debugLocals: s.debugLocals,
+    debugStoppedReason: s.debugStoppedReason,
+    debugError: s.debugError,
   };
   const msg: BulkMsg = {
     kind: 'snapshot',
@@ -167,6 +193,12 @@ function applyBulk(msg: BulkMsg): void {
       runResult: msg.payload.runResult,
       n: msg.payload.n,
       seed: msg.payload.seed,
+      breakpoints: new Set(msg.payload.breakpoints),
+      debugStatus: msg.payload.debugStatus,
+      debugCurrentLine: msg.payload.debugCurrentLine,
+      debugLocals: msg.payload.debugLocals,
+      debugStoppedReason: msg.payload.debugStoppedReason,
+      debugError: msg.payload.debugError,
     });
     // Note: we do NOT touch currentDetail from broadcast; the
     // detached window's challenge selection is driven by its
