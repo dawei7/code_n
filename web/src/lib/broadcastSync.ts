@@ -93,7 +93,7 @@ function bulkSig(s: AppState): string {
   return JSON.stringify({
     cd: s.currentDetail?.id ?? null,
     src: s.source,
-    rr: s.runResult?.stats.total ?? null,
+    rr: s.runResult?.user_ast_ops ?? null,
     n: s.n,
     sd: s.seed,
     rid: activeRequestId,

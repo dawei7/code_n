@@ -29,8 +29,9 @@ def solve(data, n):
         return merged
 
     sorted_items = merge_sort(data)
-    # Copy back into the player's TrackedList so the in-place contract
-    # is satisfied. Each `data[i] = value` counts as one write.
+    # Copy back into the player's list so the in-place contract
+    # is satisfied. Each `data[i] = value` counts as one write
+    # in the AST op count.
     for i, value in enumerate(sorted_items):
         data[i] = value
     return data

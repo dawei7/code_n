@@ -3,6 +3,17 @@
 Captures local variable snapshots from the player's solve function so
 the visualizer (the React/Electron frontend) can replay the
 algorithm step by step.
+
+The tracer uses Python's :func:`sys.settrace` to fire on every line
+event in the player's file. Each event becomes one
+:class:`TraceFrame`. The frame's ``frame_index`` is its position in
+the trace's frame list — the visualizer slider drives off this
+index directly.
+
+The runtime op counter was removed in v0.8.5; this module no
+longer needs it. ``frame_index`` replaces the old ``op_index``,
+and the per-step "is this a real op?" question is no longer
+asked — every line event is one step.
 """
 
 from __future__ import annotations
@@ -12,12 +23,15 @@ import sys
 from dataclasses import dataclass, field
 from typing import Any, Callable, Optional
 
-from .counter import OperationCounter
-
 
 @dataclass
 class TraceFrame:
-    op_index: int
+    # The frame's own position in the trace's frame list. The
+    # tracer sets it at capture time (``frame_index =
+    # len(trace.frames)``) so the trace is already sorted by
+    # this field and ``trace[frame_index]`` is O(1) for the
+    # visualizer slider.
+    frame_index: int
     line_no: int
     event: str
     # The actual Python locals from the player's frame, NOT
@@ -40,14 +54,24 @@ class ExecutionTrace:
     frames: list[TraceFrame] = field(default_factory=list)
     return_value: str = ""
 
-    def latest_at(self, op_index: int) -> TraceFrame | None:
-        latest: TraceFrame | None = None
+    def latest_at(self, frame_index: int) -> TraceFrame | None:
+        """Return the latest frame at or before ``frame_index``.
+
+        Used by the visualizer when the slider is dragged: we
+        want the snapshot of the locals at the latest step ≤
+        the slider position. With ``frame_index`` being the
+        frame's own list position, this is just
+        ``trace.frames[min(frame_index, len(trace.frames) - 1)]``
+        for any monotonic slider position.
+        """
+        if not self.frames:
+            return None
+        if frame_index >= self.frames[-1].frame_index:
+            return self.frames[-1]
         for frame in self.frames:
-            if frame.op_index <= op_index:
-                latest = frame
-            else:
-                break
-        return latest
+            if frame.frame_index > frame_index:
+                return self.frames[max(0, self.frames.index(frame) - 1)]
+        return self.frames[-1]
 
 
 class ExecutionStepLimitExceeded(RuntimeError):
@@ -61,12 +85,18 @@ class ExecutionStepLimitExceeded(RuntimeError):
         )
 
 
-def run_with_trace(func: Callable, kwargs: dict[str, Any], counter: OperationCounter,
-                   count_lines: bool = False,
+def run_with_trace(func: Callable, kwargs: dict[str, Any],
                    step_limit: Optional[int] = None,
                    step_callback: Optional[Callable[[int], None]] = None,
                    step_interval: int = 1000) -> tuple[Any, ExecutionTrace]:
-    """Run a player's function and capture local variables from their script file."""
+    """Run a player's function and capture local variables from their script file.
+
+    Each Python line event in the player's file becomes one
+    :class:`TraceFrame`. ``step_limit`` is a safety cap to
+    catch infinite loops; it is independent of the
+    complexity budget (the AST op counter handles the
+    budget — see :mod:`server.app.ast_ops`).
+    """
     trace = ExecutionTrace()
     target_file = os.path.normcase(os.path.abspath(func.__code__.co_filename))
     breakpoint_lines = _load_inline_breakpoints(target_file)
@@ -78,8 +108,6 @@ def run_with_trace(func: Callable, kwargs: dict[str, Any], counter: OperationCou
         nonlocal step_count, last_step_update
         frame_file = os.path.normcase(os.path.abspath(frame.f_code.co_filename))
         if frame_file == target_file and event in {"call", "line", "return"}:
-            if count_lines and event == "line":
-                counter.call(f"line {frame.f_lineno}")
             if event == "line":
                 step_count += 1
                 if step_callback and step_count - last_step_update >= max(1, step_interval):
@@ -90,7 +118,7 @@ def run_with_trace(func: Callable, kwargs: dict[str, Any], counter: OperationCou
             return_value = _safe_repr(arg) if event == "return" else ""
             trace.frames.append(
                 TraceFrame(
-                    op_index=counter.total_ops,
+                    frame_index=len(trace.frames),
                     line_no=frame.f_lineno,
                     event=event,
                     locals=_serialize_locals(frame.f_locals),
@@ -141,30 +169,12 @@ def _serialize_locals(locals_map: dict[str, Any]) -> dict[str, Any]:
     for key, value in locals_map.items():
         if key.startswith("__"):
             continue
-        # Unwrap TrackedValue so the renderer gets a plain object.
-        # (TrackedList stays as-is so we can render it like a list.)
-        # The TrackedValue proxy exposes the underlying value via
-        # ``.raw`` (not ``.value`` - that attribute doesn't
-        # exist and accessing it routes through ``__getattr__``
-        # to the wrapped int/str/etc., which raises
-        # AttributeError: 'int' object has no attribute 'value'.
-        # The bug only triggered for solutions that put a
-        # TrackedValue in their locals (e.g. quicksort's
-        # ``pivot = items[high]``); the previous sorts only
-        # worked with TrackedList, which is not a TrackedValue.
-        try:
-            from code_n.tracked import TrackedValue as _TV
-            if isinstance(value, _TV):
-                value = value.raw
-        except ImportError:
-            pass
-        # Snapshot mutable containers. Tuples, scalars, and the
-        # TrackedGrid wrapper (which the BFS only reads) are
-        # immutable from the player's perspective and don't need
-        # a copy. A shallow copy is enough: the elements inside
-        # the player's frontier (3-tuples) and visited (2-tuples)
-        # are themselves immutable, so freezing the outer
-        # container is sufficient.
+        # Snapshot mutable containers. Tuples and scalars are
+        # immutable from the player's perspective and don't
+        # need a copy. A shallow copy is enough: the elements
+        # inside the player's frontier (3-tuples) and visited
+        # (2-tuples) are themselves immutable, so freezing the
+        # outer container is sufficient.
         if isinstance(value, list):
             value = list(value)
         elif isinstance(value, set):
@@ -191,9 +201,7 @@ def _load_inline_breakpoints(path: str) -> set[int]:
 
 def _safe_repr(value: Any, max_len: int = 80) -> str:
     try:
-        if hasattr(value, "raw"):
-            text = repr(value.raw)
-        elif isinstance(value, list):
+        if isinstance(value, list):
             text = _repr_sequence(value, "[", "]")
         elif isinstance(value, tuple):
             text = _repr_sequence(list(value), "(", ")")

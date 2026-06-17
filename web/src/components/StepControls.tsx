@@ -25,10 +25,10 @@ export function StepControls() {
   const jumpToOpIndex = useAppStore((s) => s.jumpToOpIndex);
 
   const disabled = !runResult;
-  // Step in op units — each click of next/prev advances one op,
-  // even if multiple ops happened on the same Python line. The
-  // slider goes 0..ops_log.length-1.
-  const last = runResult?.ops_log.length ? runResult.ops_log.length - 1 : 0;
+  // Step in frame units — each click of next/prev advances one
+  // Python line event captured by the tracer. The slider goes
+  // 0..trace.length-1.
+  const last = runResult?.trace.length ? runResult.trace.length - 1 : 0;
 
   return (
     <div className="bg-coden-surface border border-coden-border rounded px-3 py-2 flex items-center gap-2">

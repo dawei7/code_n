@@ -28,20 +28,22 @@ class RunSort01Test(conftest._Base):
         self.assertTrue(body["passed"], f"expected passed=true, got: {body}")
         self.assertTrue(body["correct"])
         self.assertTrue(body["within_threshold"])
-        # The engine's classifier is conservative at small n; for n=8
-        # bubble sort's ~112 ops can land in either O(n²) or O(n log n)
-        # depending on the random data. The budget is generous enough
-        # that both classes are within the O(n²) threshold.
+        # The AST-derived complexity class for a working bubble
+        # sort at n=8: ~112 AST ops fits the O(n²) budget
+        # (n²·8+10 = 522) and doesn't fit O(n log n) (n log n·10+10
+        # = 250) so the classifier picks O(n²). The O(n log n) class
+        # has a budget of 250 which is just at the edge of
+        # bubble-sort's 112 ops; either class is acceptable as
+        # long as within_threshold is true.
         self.assertIn(body["actual_complexity"], {"O(n²)", "O(n log n)"})
         self.assertEqual(body["required_complexity"], "O(n²)")
-        self.assertGreater(body["stats"]["total"], 0)
-        # The trace should have a non-trivial number of frames for a
-        # working bubble sort. (n=8 → ~ 8 outer * 8 inner * 3 lines/iter = ~190)
+        # The AST op count must be positive (a working bubble
+        # sort does many ops).
+        self.assertGreater(body["user_ast_ops"], 0)
+        # The trace should have a non-trivial number of frames
+        # for a working bubble sort. (n=8 → ~ 8 outer * 8 inner *
+        # 3 lines/iter = ~190 frames)
         self.assertGreater(len(body["trace"]), 50, "trace should have captured line events")
-        # The ops log should have reads, comparisons, writes.
-        self.assertGreater(body["stats"]["comparisons"], 0)
-        self.assertGreater(body["stats"]["reads"], 0)
-        self.assertGreater(body["stats"]["writes"], 0)
 
     def test_no_op_returns_incorrect(self) -> None:
         # A solution that does nothing should fail correctness.

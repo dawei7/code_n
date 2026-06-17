@@ -439,7 +439,7 @@ function TransportBar() {
           <span className="text-coden-text">{detail.required_complexity}</span>
           <span className="mx-1 text-coden-muted">|</span>
           ops:{' '}
-          <span className="text-coden-text">{runResult.stats.total.toLocaleString()}</span>
+          <span className="text-coden-text">{(runResult.user_ast_ops ?? 0).toLocaleString()}</span>
         </div>
       )}
     </div>

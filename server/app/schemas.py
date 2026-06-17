@@ -97,13 +97,6 @@ class RunRequest(BaseModel):
     mode: Literal["practice", "real_test"] = "practice"
 
 
-class OpRecordOut(BaseModel):
-    """One row of the engine's operation log."""
-
-    op_type: str  # OpType.value: "compare" | "swap" | "read" | "write" | "call"
-    detail: str
-
-
 class TraceFrameOut(BaseModel):
     """One frame of the execution trace, captured at a Python line event.
 
@@ -111,9 +104,14 @@ class TraceFrameOut(BaseModel):
     that line. ``source_line`` is the actual source text (looked up
     server-side from ``source_file:line_no``) so the frontend can show
     "the statement that just ran" in the LocalsPanel header.
+
+    ``frame_index`` is the frame's own position in the trace's frame
+    list. The frontend's step-player slider drives off this index
+    directly (``trace[opIndex]`` gives the locals at slider position
+    ``opIndex``).
     """
 
-    op_index: int
+    frame_index: int
     line_no: int
     event: str  # "call" | "line" | "return"
     locals: dict[str, Any]
@@ -123,31 +121,22 @@ class TraceFrameOut(BaseModel):
     source_line: str = ""
 
 
-class StatsOut(BaseModel):
-    """Aggregate operation counts for the run."""
-
-    comparisons: int = 0
-    swaps: int = 0
-    reads: int = 0
-    writes: int = 0
-    calls: int = 0
-    total: int = 0
-
-
 class RunResponse(BaseModel):
     """The full result of a single run.
 
-    ``ops_log`` and ``trace`` are the two timelines the visualizer
-    steps through. The frontend maps them to the same step index:
-    ``step N`` shows ``trace[N]`` for the locals and ``ops_log[N]``
-    for the highlighted cells.
+    The verdict (``passed``, ``correct``, ``within_threshold``,
+    ``actual_complexity``, ``message``) is derived from the
+    AST-based op counter. ``trace`` is the visualizer source —
+    the frontend's step player walks through ``trace.frames``
+    and shows the locals at each step.
+
+    The runtime op counter and per-op-type stats breakdown
+    (``stats`` / ``ops_log``) were removed in v0.8.5.
     """
 
     passed: bool
     correct: bool
     within_threshold: bool
-    algorithm_match: bool
-    algorithm_reason: str
     actual_complexity: str
     required_complexity: str
     n: int
@@ -159,8 +148,6 @@ class RunResponse(BaseModel):
                                 # count ratio vs reference)
     too_efficient_reason: str = ""
     message: str
-    stats: StatsOut
-    ops_log: list[OpRecordOut]
     trace: list[TraceFrameOut]
     return_value_repr: str
     truncated: bool = False  # True if the trace was downsampled for size.
@@ -171,13 +158,10 @@ class RunResponse(BaseModel):
     # count. Deterministic — same source, same n, same result.
     # See server/app/ast_ops.py for the full algorithm.
     #
-    # These are the numbers the Complexity tab displays.
-    # The dynamic `stats.total` above is still populated for
-    # the post-run visualizer (it powers the per-line trace
-    # and the ops log), but is NOT used for the
-    # user-facing efficiency metric — we want the count to
-    # match what the user sees in their source, not what
-    # the runtime happened to count.
+    # This is the SINGLE source of truth for "how many ops
+    # does your code do?" — used by the Complexity tab, the
+    # verdict (within_threshold), the AI report, and the
+    # progress-best-ops recording.
     user_ast_ops: Optional[int] = None       # User's source, n
     reference_ast_ops: Optional[int] = None  # Reference, same n
     # ±5% tolerance band around the reference's AST op

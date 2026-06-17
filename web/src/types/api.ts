@@ -41,13 +41,11 @@ export interface ChallengeDetail extends ChallengeSummary {
   complexity_notes: Record<string, string>;
 }
 
-export interface OpRecordOut {
-  op_type: 'compare' | 'swap' | 'read' | 'write' | 'call' | string;
-  detail: string;
-}
-
 export interface TraceFrameOut {
-  op_index: number;
+  /** The frame's own position in the trace's frame list.
+   *  The frontend's step-player slider drives the slider
+   *  off this index directly (``trace[opIndex]``). */
+  frame_index: number;
   line_no: number;
   event: 'call' | 'line' | 'return' | string;
   locals: Record<string, unknown>;
@@ -55,15 +53,6 @@ export interface TraceFrameOut {
   breakpoint: boolean;
   source_file: string;
   source_line: string;
-}
-
-export interface StatsOut {
-  comparisons: number;
-  swaps: number;
-  reads: number;
-  writes: number;
-  calls: number;
-  total: number;
 }
 
 export interface AiReport {
@@ -80,8 +69,9 @@ export interface AiReport {
     within_threshold: boolean;
     actual_complexity: string;
     message: string;
+    /** AST-derived op count (the sole "how many ops" metric
+     *  since v0.8.5). Used by the AI report's hint prompt. */
     ops_total: number;
-    ops_breakdown: Record<string, number>;
     too_efficient: boolean;
     too_efficient_reason: string;
   };
@@ -104,8 +94,6 @@ export interface RunResponse {
   passed: boolean;
   correct: boolean;
   within_threshold: boolean;
-  algorithm_match: boolean;
-  algorithm_reason: string;
   actual_complexity: string;
   required_complexity: string;
   n: number;
@@ -120,15 +108,15 @@ export interface RunResponse {
   too_efficient: boolean;
   too_efficient_reason: string;
   message: string;
-  stats: StatsOut;
-  ops_log: OpRecordOut[];
   trace: TraceFrameOut[];
   return_value_repr: string;
   truncated: boolean;
   // ---- AST-derived op counts (the "scientific" metric) ----
-  // Counted statically by walking the source's AST. Used by
-  // the Complexity tab to compare the user's count against
-  // the reference's count, with a deterministic ±5% band.
+  // Counted statically by walking the source's AST. This is
+  // the SINGLE source of truth for "how many ops does your
+  // code do?" — used by the Complexity tab, the verdict
+  // (within_threshold), the AI report, and the
+  // progress-best-ops recording.
   user_ast_ops: number | null;
   reference_ast_ops: number | null;
   /** ±5% tolerance band around the reference's AST op count. */

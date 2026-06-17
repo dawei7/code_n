@@ -17,13 +17,19 @@ leak through the AI tab. The LLM response is post-processed to
 strip code before it's returned to the user.
 
 The report is JSON-serialisable: sets are converted to lists,
-TrackedList / TrackedGrid are unwrapped via the engine codec,
-and the rest is plain dicts / str / int / float / bool.
+the rest is plain dicts / str / int / float / bool.
+
+Op counts in the report (``ops_total``) are the AST-derived
+counts — the single source of truth for "how many ops does
+your code do?" since v0.8.5. The per-op-type breakdown
+(``ops_breakdown``: comparisons, swaps, reads, writes, calls)
+was tied to the runtime counter and is gone; there's no
+structural equivalent from the AST walk.
 """
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any, Optional
 
 from .trace_codec import to_json_safe
@@ -63,9 +69,10 @@ class AiReport:
     user_source: str
     result: dict[str, Any]
     locals_at_failure: Optional[dict[str, Any]] = None
-    # Optional: an algorithm hint from the OperationConstraint
-    # fingerprint (when present and the algorithm match failed).
-    # Useful for the fallback hint when Ollama is down.
+    # Optional: an algorithm hint to surface in the report. The
+    # only place this is set is the verdict message (for
+    # "Correct, but too slow") — the LLM uses it as a fallback
+    # hint when Ollama is down.
     algorithm_hint: str = ""
     # AST-derived op counts (the "scientific" metric, computed
     # statically by walking the source's AST). Used by the
@@ -110,11 +117,9 @@ def build(
     actual_complexity: str,
     message: str,
     ops_total: int,
-    ops_breakdown: dict[str, int],
     too_efficient: bool,
     too_efficient_reason: str,
     trace_frames: list[Any],
-    algorithm_hint: str = "",
     user_ast_ops: Optional[int] = None,
     reference_ast_ops: Optional[int] = None,
     reference_ci_low: Optional[int] = None,
@@ -133,8 +138,9 @@ def build(
         The source the player submitted.
     passed, correct, within_threshold, actual_complexity, message:
         From the RunResponse verdict.
-    ops_total, ops_breakdown:
-        ``{"comparisons": N, "swaps": N, ...}`` for the run.
+    ops_total:
+        The AST-derived op count (was the runtime counter's
+        ``stats.total`` before v0.8.5).
     too_efficient, too_efficient_reason:
         From the too_efficient check.
     trace_frames:
@@ -142,11 +148,7 @@ def build(
         The report picks the last frame as the "locals at failure"
         snapshot. If the list is empty (e.g. syntax error before
         execution started), ``locals_at_failure`` is None.
-    algorithm_hint:
-        The static ``algorithm_reason`` from the OperationConstraint
-        fingerprint check, when present. Used as a fallback hint
-        when Ollama is down.
-    reference_ops, reference_ci_low, reference_ci_high:
+    user_ast_ops, reference_ast_ops, reference_ci_low, reference_ci_high:
         Deterministic ±5% tolerance band around the reference's
         op count. Forwarded to the LLM so it can reason about
         the user's efficiency.
@@ -165,7 +167,6 @@ def build(
         "actual_complexity": actual_complexity,
         "message": message,
         "ops_total": ops_total,
-        "ops_breakdown": ops_breakdown,
         "too_efficient": too_efficient,
         "too_efficient_reason": too_efficient_reason,
     }
@@ -215,7 +216,7 @@ def build(
         user_source=(user_source or "")[:_SOURCE_CAP],
         result=result,
         locals_at_failure=locals_at_failure,
-        algorithm_hint=algorithm_hint,
+        algorithm_hint="",
         user_ast_ops=user_ast_ops,
         reference_ast_ops=reference_ast_ops,
         reference_ci_low=reference_ci_low,

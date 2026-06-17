@@ -15,7 +15,6 @@ from typing import Any, Optional
 from challenges.spec import AlgorithmSpec, Sample
 from code_n.counter import ComplexityClass
 from code_n.grid import Grid, CellType
-from code_n.tracked import TrackedList
 
 
 # --- Graph Representation ---
@@ -46,7 +45,7 @@ def _setup_graph_representation(challenge, n: int, seed: Optional[int]) -> dict[
 
     return {
         "num_nodes": challenge._num_nodes,
-        "edges": TrackedList(challenge._edges),
+        "edges": challenge._edges,
     }
 
 

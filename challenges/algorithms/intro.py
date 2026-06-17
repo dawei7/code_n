@@ -20,7 +20,6 @@ from challenges.spec import AlgorithmSpec, Sample
 from code_n.branding import GAME_TITLE
 from code_n.counter import ComplexityClass
 from code_n.grid import Grid, CellType
-from code_n.tracked import TrackedList
 
 
 # --- Setup / verify helpers (module-level so they're picklable,
@@ -35,7 +34,12 @@ def _setup_hello_grid(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
     challenge.grid = Grid(n, 3)
     challenge.grid.fill_row(0, challenge._data, CellType.UNSORTED)
 
-    return {"data": TrackedList(challenge._data)}
+    # The player receives the same list reference the engine
+    # keeps in challenge._data — so the verifier can read
+    # any in-place mutations via challenge._data. The old
+    # TrackedList wrapper (removed in v0.8.5) just made the
+    # reference explicit; a plain list works the same way.
+    return {"data": challenge._data}
 
 
 def _verify_hello_grid(challenge, result: Any) -> bool:

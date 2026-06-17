@@ -15,9 +15,9 @@ import { useAppStore } from '../store/useAppStore';
  * object so the variable names are the top-level keys (sorted in
  * insertion order: data, n, end, i for sort_01).
  *
- * The tracecodec already unwraps TrackedList/TrackedValue and
- * converts sets/tuples to arrays for JSON, so what we see here
- * is a faithful (and "native") representation of the player's
+ * The player's input is a plain list / dict (no TrackedList /
+ * TrackedValue wrapper — those were removed in v0.8.5). What
+ * we see here is a faithful representation of the player's
  * actual Python state at this frame.
  */
 export function LocalsPanel() {
@@ -25,11 +25,12 @@ export function LocalsPanel() {
   const runResult = useAppStore((s) => s.runResult);
   const opIndex = useAppStore((s) => s.opIndex);
 
-  // Compute the frame for the current op. The user-visible
-  // position is opIndex (steps 1 op at a time); the frame is
-  // derived as the latest trace frame with op_index <= opIndex.
-  // This is the same algorithm the play loop / op log uses, so
-  // the source line, locals, and op log stay in sync.
+  // Compute the frame for the current step. The user-visible
+  // position is opIndex (the slider index); the frame at this
+  // position is just trace[opIndex] (clamped to the bounds). The
+  // trace is already sorted by frame_index, so the frame the
+  // slider "is on" is the most recent one captured at or
+  // before the slider position.
   //
   // NB: this useMemo MUST be called on every render, regardless
   // of whether runResult exists. Putting it after the !runResult
@@ -39,12 +40,9 @@ export function LocalsPanel() {
   const frame = useMemo(() => {
     if (!runResult) return undefined;
     const trace = runResult.trace;
-    let frameIdx = 0;
-    for (let f = 0; f < trace.length; f++) {
-      if (trace[f].op_index <= opIndex) frameIdx = f;
-      else break;
-    }
-    return trace[frameIdx];
+    if (trace.length === 0) return undefined;
+    const idx = Math.max(0, Math.min(opIndex, trace.length - 1));
+    return trace[idx];
   }, [runResult, opIndex]);
 
   if (!runResult) {

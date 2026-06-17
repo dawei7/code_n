@@ -12,16 +12,15 @@ standalone, a setup that produces kwargs that don't match the
 solve signature, a verify that's too lenient or too strict, and
 a description / hint / returns that are accidentally empty.
 
-It does NOT exercise the player's solve() - that would require a
-full Challenge.run() with op counting. The op-budget is the
-player's problem; the reference solve's job is to be correct.
+It does NOT exercise the player's solve() against the complexity
+budget — that's the ``run_player_code`` server path, which is
+tested separately in ``server/tests/``.
 """
 from __future__ import annotations
 
 import unittest
 
 from challenges.registry import CHALLENGE_REGISTRY, get_challenge
-from code_n.counter import reset_counter
 
 
 # Sizes to exercise per challenge. Most challenges accept n up to
@@ -45,7 +44,6 @@ class EverySpecRoundTripTests(unittest.TestCase):
                         # Each challenge instance must be fresh so
                         # the previous setup's state doesn't leak
                         # into the next verify.
-                        reset_counter()
                         setup_data = challenge.setup(n, seed=42)
                         # Call the reference solve.
                         try:

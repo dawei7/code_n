@@ -254,7 +254,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         try {
           await progressApi.markChallengeDone(
             currentDetail.id,
-            result.stats.total,
+            result.user_ast_ops ?? 0,
             result.actual_complexity,
           );
           await get().loadProgress();
@@ -274,15 +274,14 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   step(delta: StepDelta) {
-    // Step in **op** units, not frame units. The trace fires one
-    // frame per Python `line` event; ops fire on each read/write/
-    // compare. Multiple ops can happen on the same line, so
-    // stepping by op (rather than frame) is what the user wants
-    // when they click "next": they want to see the next actual
-    // operation, not the next line.
+    // Step in **frame** units (one per Python line event
+    // captured by the tracer). The runtime op counter was
+    // removed in v0.8.5; the visualizer's ``opIndex`` slider
+    // is now a frame index that drives ``trace[opIndex]``
+    // directly.
     const { runResult, opIndex } = get();
     if (!runResult) return;
-    const last = runResult.ops_log.length - 1;
+    const last = runResult.trace.length - 1;
     let next = opIndex;
     if (delta === 'first') next = 0;
     else if (delta === 'last') next = last;
@@ -293,20 +292,22 @@ export const useAppStore = create<AppState>((set, get) => ({
   jumpToOpIndex(i: number) {
     const { runResult } = get();
     if (!runResult) return;
-    const last = runResult.ops_log.length - 1;
+    const last = runResult.trace.length - 1;
     set({ opIndex: Math.max(0, Math.min(last, i)) });
   },
 
   jumpToFrame(i: number) {
-    // Convenience: jump to the op that corresponds to the given
-    // trace frame. Used by the op log "click to jump" handler.
+    // Convenience: jump to the frame index the caller
+    // provided (e.g. from the op log "click to jump" handler
+    // on a line number — the caller would resolve the line to
+    // a frame index first).
     const { runResult } = get();
     if (!runResult) return;
     const trace = runResult.trace;
     if (i < 0 || i >= trace.length) return;
-    // The frame's op_index is the op that triggered the line
-    // event. Jump to that op.
-    set({ opIndex: Math.max(0, Math.min(trace[i].op_index, runResult.ops_log.length - 1)) });
+    // The frame_index is the frame's own position in the
+    // trace's frame list. Jump to that.
+    set({ opIndex: trace[i].frame_index });
   },
 
   setSpeed(s: number) {
@@ -341,7 +342,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     try {
       await progressApi.markChallengeDone(
         currentDetail.id,
-        runResult.stats.total,
+        runResult.user_ast_ops ?? 0,
         runResult.actual_complexity,
       );
       await get().loadProgress();

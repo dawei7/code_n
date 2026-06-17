@@ -15,7 +15,6 @@ from typing import Any, Optional
 from challenges.spec import AlgorithmSpec, Sample
 from code_n.counter import ComplexityClass
 from code_n.grid import Grid, CellType
-from code_n.tracked import TrackedList
 
 
 # --- Fibonacci ---
@@ -131,8 +130,8 @@ def _setup_knapsack(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
     challenge.grid.fill_row(2, challenge._values, CellType.PATH)
 
     return {
-        "weights": TrackedList(challenge._weights),
-        "values": TrackedList(challenge._values),
+        "weights": challenge._weights,
+        "values": challenge._values,
         "capacity": challenge._capacity,
         "n": num_items,
     }

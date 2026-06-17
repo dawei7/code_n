@@ -13,7 +13,7 @@ Ten algorithms from GFG's "Sorting Algorithms" catalog:
   09 Bucket Sort   - uniform buckets, O(n + k) avg
   10 Shell Sort    - insertion with shrinking gaps, O(n^1.5)
 
-All ten share the same data contract (``TrackedList`` of n random
+All ten share the same data contract (a plain list of n random
 integers, mutate in place or return a sorted list) and the same
 samples, so the player learns the algorithm not the boilerplate.
 """
@@ -27,7 +27,6 @@ from challenges.algorithms._sort_helpers import is_sorted_result
 from challenges.spec import AlgorithmSpec, Sample
 from code_n.counter import ComplexityClass
 from code_n.grid import Grid, CellType
-from code_n.tracked import TrackedList
 
 
 # --- Setup / verify shared by every sort challenge. ---
@@ -40,12 +39,17 @@ def _setup_sort(challenge, n: int, seed: Optional[int], *, rows: int = 3) -> dic
     challenge.grid = Grid(n, rows)
     challenge.grid.fill_row(0, challenge._data, CellType.UNSORTED)
 
-    challenge._working_data = TrackedList(challenge._data)
-    return {"data": challenge._working_data, "n": n}
+    # The player receives the same list reference the engine
+    # keeps in challenge._data — so the verifier reads the
+    # player's mutations via challenge._data (in the in-place
+    # contract) or via the returned value. The old
+    # ``_working_data = TrackedList(challenge._data)`` indirection
+    # (removed in v0.8.5) is no longer needed.
+    return {"data": challenge._data, "n": n}
 
 
 def _verify_sort(challenge, result: Any) -> bool:
-    return is_sorted_result(result, challenge._data, challenge._working_data)
+    return is_sorted_result(result, challenge._data)
 
 
 # --- Canonical source for every sort. The Solve button writes

@@ -28,7 +28,7 @@ export function StatusBanner() {
     );
   }
 
-  const { passed, correct, within_threshold, message, actual_complexity, required_complexity, stats, truncated } = runResult;
+  const { passed, correct, within_threshold, message, actual_complexity, required_complexity, user_ast_ops, truncated } = runResult;
 
   if (passed) {
     return (
@@ -53,7 +53,7 @@ export function StatusBanner() {
       <div className="bg-amber-900/30 border border-amber-700 text-amber-200 rounded px-3 py-2 text-sm">
         <span className="font-semibold">⏱ {message}</span>
         <div className="text-xs mt-1">
-          {stats.total} ops at {actual_complexity}; need {required_complexity}.
+          {(user_ast_ops ?? 0).toLocaleString()} ops at {actual_complexity}; need {required_complexity}.
         </div>
       </div>
     );

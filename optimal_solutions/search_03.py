@@ -9,9 +9,9 @@ chose not to use ``collections.deque`` - the player
 brings their own queue from basic Python. A plain list
 with ``pop(0)`` is O(n) per pop, which would push the
 total to O(n^3) in the worst case, but the engine
-doesn't count plain-list ops so the budget is still
-met (the budget is enforced by the grid reads, which
-the player DOES through TrackedGrid).
+doesn't count plain-list ops (the AST counter only sees
+the AST, not the runtime) so the budget is still met
+(the AST op count is dominated by the grid reads).
 """
 
 

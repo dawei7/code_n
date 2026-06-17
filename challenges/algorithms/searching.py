@@ -23,10 +23,8 @@ from collections import deque
 from typing import Any, Optional
 
 from challenges.spec import AlgorithmSpec, Sample
-from code_n.challenge import OP_AT_LEAST, OP_AT_MOST, OperationConstraint
-from code_n.counter import ComplexityClass, get_counter
+from code_n.counter import ComplexityClass
 from code_n.grid import Grid, CellType
-from code_n.tracked import TrackedGrid, TrackedList
 
 
 # --- 1D search helpers shared by linear/binary/ternary/jump/
@@ -68,7 +66,7 @@ def _setup_flat_search(
         challenge.grid.set(challenge._expected, 0, CellType.GOAL, challenge._target)
 
     out: dict[str, Any] = {
-        "data": TrackedList(challenge._data),
+        "data": challenge._data,
         "target": challenge._target,
     }
     if sorted_data:
@@ -613,13 +611,12 @@ def _setup_bfs(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
     challenge.grid.set(0, 0, CellType.START, "S")
     challenge.grid.set(size - 1, size - 1, CellType.GOAL, "G")
 
-    grid = TrackedGrid(size, size)
-    for gy in range(size):
-        for gx in range(size):
-            grid._data[gy][gx] = challenge._grid_data[gy][gx]
-
+    # The player receives the grid as a plain list-of-lists.
+    # ``challenge._grid_data`` IS the same reference the player
+    # mutates via ``grid[y][x]`` (no TrackedGrid wrapper since
+    # v0.8.5).
     return {
-        "grid": grid,
+        "grid": challenge._grid_data,
         "start": challenge._start,
         "goal": challenge._goal,
         "size": size,
@@ -627,7 +624,7 @@ def _setup_bfs(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
 
 
 def _verify_bfs(challenge, result: Any) -> bool:
-    return result == challenge._expected_length and get_counter().stats.reads > 0
+    return result == challenge._expected_length
 
 
 def _setup_dfs(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
@@ -650,16 +647,11 @@ def _setup_dfs(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
                 challenge.grid.set(gx, gy, CellType.EMPTY)
     challenge.grid.set(0, 0, CellType.START, "S")
 
-    grid = TrackedGrid(size, size)
-    for gy in range(size):
-        for gx in range(size):
-            grid._data[gy][gx] = challenge._grid_data[gy][gx]
-
-    return {"grid": grid, "start": (0, 0), "size": size}
+    return {"grid": challenge._grid_data, "start": (0, 0), "size": size}
 
 
 def _verify_dfs(challenge, result: Any) -> bool:
-    return result == challenge._expected_count and get_counter().stats.reads > 0
+    return result == challenge._expected_count
 
 
 def _dfs_count(grid_data: list[list[int]], size: int, start: tuple[int, int]) -> int:
@@ -747,8 +739,8 @@ def _setup_sublist(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
     challenge._sub = sub
     challenge._m = m
     return {
-        "data": TrackedList(data),
-        "sub": TrackedList(sub),
+        "data": data,
+        "sub": sub,
         "n": n,
         "m": m,
     }
@@ -781,7 +773,7 @@ def _setup_count_occurrences(challenge, n: int, seed: Optional[int]) -> dict[str
     challenge._data = data
     challenge._target = target
     return {
-        "data": TrackedList(data),
+        "data": data,
         "target": target,
         "n": n,
     }

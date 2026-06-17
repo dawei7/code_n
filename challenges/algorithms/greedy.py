@@ -28,7 +28,6 @@ from typing import Any, Optional
 from challenges.spec import AlgorithmSpec, Sample
 from code_n.counter import ComplexityClass
 from code_n.grid import CellType, Grid
-from code_n.tracked import TrackedList
 
 
 # --- Visualisation helper. The web visualizer needs a Grid to
@@ -127,8 +126,8 @@ def _setup_fractional_knapsack(challenge, n: int, seed: Optional[int]) -> dict[s
     )
     challenge.grid = _make_data_grid([challenge._values, challenge._weights])
     return {
-        "values": TrackedList(challenge._values),
-        "weights": TrackedList(challenge._weights),
+        "values": challenge._values,
+        "weights": challenge._weights,
         "capacity": challenge._capacity,
         "n": challenge._n,
     }

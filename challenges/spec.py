@@ -29,7 +29,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Callable, Optional
 
-from code_n.challenge import Challenge, ChallengeInfo, OperationConstraint
+from code_n.challenge import Challenge, ChallengeInfo
 from code_n.counter import ComplexityClass
 
 
@@ -67,8 +67,7 @@ class AlgorithmSpec:
     Required fields are everything the runtime, the templates, the
     hints, and the samples panel need. Optional fields cover
     advanced things: a per-algorithm ``hint`` shown on a failed
-    fingerprint, a custom ``max_n`` for 2D challenges, the
-    ``expected_operations`` fingerprint rules, the
+    run, a custom ``max_n`` for 2D challenges, the
     ``parents``/``children`` edges for the navigator's learning
     path, and the ``complexity_notes`` (best/average/worst case
     analysis strings) shown in the scientific complexity panel.
@@ -89,7 +88,6 @@ class AlgorithmSpec:
     verify_fn: VerifyFn
 
     samples: list[Sample] = field(default_factory=list)
-    expected_operations: list[OperationConstraint] = field(default_factory=list)
     hint: str = ""
     max_n: Optional[int] = None
     parents: list[str] = field(default_factory=list)
@@ -142,7 +140,6 @@ def make_challenge(spec: AlgorithmSpec) -> type[Challenge]:
                 difficulty=spec.difficulty,
                 required_complexity=info_required_complexity,
                 hint=spec.hint,
-                expected_operations=list(spec.expected_operations),
             )
 
         @property

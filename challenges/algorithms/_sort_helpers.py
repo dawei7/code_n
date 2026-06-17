@@ -10,16 +10,30 @@ from __future__ import annotations
 
 from typing import Any
 
-from code_n.tracked import TrackedList, unwrap_tracked
 
+def is_sorted_result(result: Any, expected_data: list) -> bool:
+    """Return True iff ``result`` is a sorted version of
+    ``expected_data``.
 
-def is_sorted_result(result: Any, expected_data: list, working_data: TrackedList | None = None) -> bool:
+    Two valid player contracts:
+
+    * **Return the sorted list** — ``result`` is a list (or tuple)
+      that compares element-wise to ``sorted(expected_data)``.
+    * **Mutate in place** — ``result is None``; the player mutated
+      ``expected_data`` (which IS the player's list reference,
+      passed straight from the engine's setup). The caller passes
+      ``expected_data`` itself, so reading it now shows the
+      post-mutation state.
+
+    The ``working_data`` parameter (and the ``TrackedList`` /
+    ``unwrap_tracked`` machinery behind it) was removed in
+    v0.8.5: the setup function passes the raw list reference
+    directly, so ``expected_data`` is both the canonical
+    pre-run storage and the player's input — the same object.
+    """
     expected = sorted(expected_data)
-    if result is None and working_data is not None:
-        return working_data.raw == expected
-    if isinstance(result, TrackedList):
-        return result.raw == expected
+    if result is None:
+        return expected_data == expected
     if isinstance(result, (list, tuple)):
-        values = [unwrap_tracked(value) for value in result]
-        return values == expected
+        return list(result) == expected
     return False

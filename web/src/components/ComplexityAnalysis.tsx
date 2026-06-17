@@ -1,25 +1,22 @@
 /**
- * ComplexityAnalysis — a *scientific* complexity panel for the
+ * ComplexityAnalysis — the *scientific* complexity panel for the
  * current challenge. Shows the user's AST-derived op count
  * against the reference's AST-derived op count, with a
  * deterministic ±5% tolerance band.
  *
- * Why AST-derived (not the runtime counter)?
- *   The runtime ``OperationCounter`` tracks ops that flow
- *   through the ``TrackedList`` / ``TrackedValue`` proxies —
- *   reads, writes, compares, swaps. It misses plain attribute
- *   access, subscripts on non-tracked lists, and the
- *   per-iteration cost of loops. The user looking at their
- *   source sees a ``for`` loop, an ``if``, an ``arr[i]`` —
- *   they want a count that matches that view, not a count of
- *   what happened to be tracked at runtime.
+ * The op counts come from the AST walk in
+ * ``server/app/ast_ops.py`` (the sole op metric since
+ * v0.8.5). The walk counts every ``Compare`` / ``BinOp`` /
+ * ``UnaryOp`` / ``BoolOp`` / ``Call`` / ``Subscript`` /
+ * ``Attribute`` node in the source, multiplied by the
+ * enclosing-loop iteration count inferred from the
+ * ``range(...)`` call. The result is a deterministic integer
+ * per ``(source, n)`` pair.
  *
- *   The server walks both the user's source and the
- *   reference's source through the AST, summing each
- *   operation (Compare, BinOp, UnaryOp, BoolOp, Call,
- *   Subscript, Attribute) and multiplying loop bodies by
- *   their iteration count. The result is a deterministic
- *   integer per (source, n) pair.
+ * The player's input is a plain list / dict / set — no
+ * runtime instrumentation, no ``TrackedList`` wrapper, no
+ * runtime op counter. What the user sees in the editor is
+ * exactly what gets counted.
  *
  * The ±5% band:
  *   `low  = floor(μ * 0.95)`
@@ -31,10 +28,11 @@
  * Required vs achieved complexity:
  *   Shown as a secondary metric. The required complexity is
  *   the algorithm's known class (e.g. ``O(n²)`` for bubble
- *   sort). The achieved complexity is what the engine's
- *   heuristic classifier assigned to the actual op count.
- *   Both are useful for context but are *secondary* to the
- *   raw op count, which is the primary signal.
+ *   sort). The achieved complexity is the smallest
+ *   ``ComplexityClass`` whose budget fits the user's AST op
+ *   count at the run's ``n``. Both are useful for context
+ *   but are *secondary* to the raw op count, which is the
+ *   primary signal.
  */
 import { useAppStore } from '../store/useAppStore';
 

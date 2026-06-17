@@ -7,12 +7,14 @@
  * 60 fps, so a 1-step-per-tick interval is exactly the right
  * granularity.
  *
- * Stepping is in **op** units: each tick advances one op. The
- * LocalsPanel computes the corresponding frame (latest frame
- * with op_index <= current opIndex) and renders the locals
- * for that frame. CSS transitions give the visual smoothness
- * for the bars / cells; the React state update changes the
- * data behind the cells.
+ * Stepping is in **frame** units: each tick advances one
+ * Python line event captured by the tracer. The LocalsPanel
+ * uses ``trace[opIndex]`` to render the locals at this
+ * frame. The runtime op counter was removed in v0.8.5; the
+ * visualizer's ``opIndex`` slider is now a frame index.
+ * CSS transitions give the visual smoothness for the bars /
+ * cells; the React state update changes the data behind the
+ * cells.
  *
  * NB: `opIndex` is intentionally NOT in the effect deps.
  * Including it would cause the effect to re-run (and clear+restart
@@ -33,7 +35,7 @@ export function useStepPlayer(): void {
     const id = setInterval(() => {
       const s = useAppStore.getState();
       if (!s.runResult) return;
-      const last = s.runResult.ops_log.length - 1;
+      const last = s.runResult.trace.length - 1;
       if (s.opIndex >= last) {
         s.pause();
         return;
