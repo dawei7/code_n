@@ -24,7 +24,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from server.app.config import CORS_ORIGINS, PROJECT_ROOT, WEB_DIST, ensure_data_dirs
-from server.app.routes import ai, challenges, debug, docs, health, progress, run, solutions
+from server.app.routes import challenges, docs, health, progress, run, solutions, vscode
 from server.app import error_handlers
 
 
@@ -66,15 +66,12 @@ def create_app() -> FastAPI:
     app.include_router(challenges.router, prefix="/api")
     app.include_router(docs.router, prefix="/api")
     app.include_router(run.router, prefix="/api")
-    app.include_router(ai.router, prefix="/api")
-    # The debug router has two pieces: the REST endpoint
-    # (``/api/debug/sessions``) and the WebSocket
-    # (``/ws/debug/{id}``). The WS is NOT under /api because
-    # the client connects directly to it.
-    app.include_router(debug.router, prefix="/api")
-    app.include_router(debug.ws_router)
     app.include_router(progress.router, prefix="/api")
     app.include_router(solutions.router, prefix="/api")
+    # The cOde(n) → VSCode handoff (writes the active challenge
+    # id to solutions/.vscode-active so the next F5 in VSCode
+    # defaults to the right challenge).
+    app.include_router(vscode.router, prefix="/api")
 
     # Exception handlers
     error_handlers.register(app)

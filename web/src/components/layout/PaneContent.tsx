@@ -1,8 +1,10 @@
 /**
  * PaneContent.tsx — given a tabId, render the right component.
  * Wraps the registry lookup in a Suspense boundary so the
- * lazy-loaded EditorTab (Monaco) can show a placeholder while
- * its chunk is fetching.
+ * lazy-loaded ReferenceTab (react-markdown chunk) can show a
+ * placeholder while its chunk is fetching. The v0.9.0 pivot
+ * removed the Monaco editor tab, so Monaco is no longer
+ * pulled in by any tab.
  */
 import { Suspense } from 'react';
 import { getTab } from './tabs/registry';

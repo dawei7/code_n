@@ -8,21 +8,11 @@
  * to invoke native capabilities.
  *
  * Exposed functions:
- *   - popOutEditor() — opens the legacy pop-out Monaco editor
- *     window at `?view=editor`.
- *   - popOutPane(paneId, tabId) — opens a new BrowserWindow at
- *     `?view=pane&paneId=...&tabId=...` that hosts a single tab
- *     in its own window.
- *   - popOutDebug() — opens the popped-out debug window at
- *     `?view=debug&sessionId=...` (or focuses the existing one).
- *     Auto-invoked by the main window when a breakpoint is hit
- *     during a debug session.
- *   - closeDebugPopout() — asks the main process to close the
- *     popped-out debug window. Used when the debug session ends.
- *   - onPaneWindowClosed(cb) — subscribe to "a detached window
- *     was closed" events. Returns an unsubscribe function. Used
- *     by the main window to clear the corresponding "detached"
- *     flag in the layout store.
+ *   - openInVSCode() — opens the repo root in VSCode (calls
+ *     ``shell.openPath(repoRoot)`` in the main process). The
+ *     renderer should have written
+ *     ``solutions/.vscode-active`` first so the F5 launch
+ *     config defaults to the right challenge.
  *   - checkForUpdates() / installUpdateAndRestart() / getAppVersion()
  *     — see the auto-update wiring in `electron/src/updater.ts`
  *     and the React UI in `web/src/components/UpdateToast.tsx`.
@@ -30,8 +20,11 @@
  *     broadcast by the main process whenever the auto-updater
  *     state changes. Returns an unsubscribe function.
  *
+ * The v0.9.0 pivot removed the pop-out-editor, pop-out-debug,
+ * and pop-out-pane IPC handlers (no detached BrowserWindows).
+ *
  * The `ElectronAPI` type and the `Window.electronAPI` global
- * augmentation are declared in `web/src/types/electron.d.ts` so
+ * augmentation are declared in `web/src/types/electron.ts` so
  * both the renderer and the preload agree on a single shape.
  */
 
@@ -44,21 +37,7 @@ import type {
 
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  popOutEditor: (): Promise<boolean> => ipcRenderer.invoke('pop-out-editor'),
-
-  popOutPane: (paneId: string, tabId: string): Promise<boolean> =>
-    ipcRenderer.invoke('pop-out-pane', paneId, tabId),
-
-  popOutDebug: (sessionId: string): Promise<boolean> =>
-    ipcRenderer.invoke('pop-out-debug', sessionId),
-
-  closeDebugPopout: (): Promise<boolean> => ipcRenderer.invoke('close-debug-popout'),
-
-  onPaneWindowClosed: (cb: (paneId: string) => void): (() => void) => {
-    const handler = (_evt: unknown, paneId: string) => cb(paneId);
-    ipcRenderer.on('pane-window-closed', handler);
-    return () => { ipcRenderer.removeListener('pane-window-closed', handler); };
-  },
+  openInVSCode: (): Promise<boolean> => ipcRenderer.invoke('open-in-vscode'),
 
   // ---- Auto-update surface ----
 

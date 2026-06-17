@@ -1,12 +1,30 @@
 /**
  * Zustand store: the single source of truth for the UI.
  *
- * Holds: the challenge list, the current challenge id, the editor
- * source, the run arguments (n, seed), the last run result, the
- * step-player state (frame index, play/pause, speed), and progress.
+ * Holds: the challenge list, the current challenge id, a
+ * display-only copy of the player's source, the run arguments
+ * (n, seed), the last run result, and progress.
  *
- * Components subscribe to slices so keystrokes in the editor don't
- * re-render the visualizer (and vice versa).
+ * The v0.9.0 pivot removed:
+ *   - The per-step trace + step player (the player debugs in
+ *     VSCode; the trace is no longer shipped by the server).
+ *   - The in-app debug surface (debug session state, breakpoints,
+ *     pop-out debug window).
+ *   - The AI report tab + Ollama hint endpoint.
+ *   - The editor (Monaco) + editor pop-out window.
+ *
+ * What stays:
+ *   - Challenge selection (left rail, current detail).
+ *   - Source-of-truth model: ``source`` is a display-only
+ *     copy of ``solutions/<id>.py`` on disk. The ``run()``
+ *     action re-reads the file from disk before sending it to
+ *     the server, so VSCode edits are picked up automatically.
+ *   - Run args (n, seed, mode).
+ *   - The last run result + the verdict.
+ *   - Progress (per-challenge best ops, completed list).
+ *
+ * Components subscribe to slices so a Run doesn't re-render
+ * the challenge list (and vice versa).
  */
 import { create } from 'zustand';
 
@@ -22,25 +40,22 @@ import * as progressApi from '../api/progress';
 import * as solutionsApi from '../api/solutions';
 
 
-export type StepDelta = -1 | 1 | -10 | 10 | 'first' | 'last';
 export type RunMode = 'practice' | 'real_test';
-export type DebugStatus = 'idle' | 'starting' | 'running' | 'paused' | 'exited' | 'error';
 
-export interface DebugLocal {
-  name: string;
-  value: string;
-  type: string;
-  scope: string;
-  variablesReference?: number;
-}
 
 export interface AppState {
   // Challenge selection
   challenges: ChallengeSummary[];
   currentDetail: ChallengeDetail | null;
 
-  // Editor + run args
+  // Display-only copy of solutions/<id>.py. The run() action
+  // re-reads the file from disk before sending it to the server,
+  // so VSCode edits are always picked up. The zustand copy is
+  // updated after Run (and on challenge select) so the UI
+  // always shows what's on disk.
   source: string;
+
+  // Run args
   n: number;
   seed: number | null;
   /** Practice = the user picks n + seed (default). Real-test = the
@@ -48,43 +63,14 @@ export interface AppState {
    *  disables the n / seed inputs and shows the actual values the
    *  server used once the run completes. */
   mode: RunMode;
-  /** When ON, the AI Report tab is visible and a "Get hint" button
-   *  is available in the transport bar. Toggle in the header. */
-  aiMode: boolean;
 
   // Last run
   isRunning: boolean;
   runResult: RunResponse | null;
   error: string | null;
 
-  // Step player
-  opIndex: number;
-  isPlaying: boolean;
-  /** How long to display each frame in the play loop, in ms.
-   *  500 = 2 fps (slow, easy to study), 1000 = 1 fps (default),
-   *  250 = 4 fps (fast), 100 = 10 fps (very fast). */
-  frameIntervalMs: number;
-
   // Progress
   progress: ProgressOut | null;
-
-  // Debug session (set of line numbers the user has clicked).
-  // This is the SINGLE source of truth for breakpoints: the
-  // editor gutter reads from here, the Debug tab writes here,
-  // and the useDebugSession hook pushes changes to the server.
-  breakpoints: Set<number>;
-  /** Debug session lifecycle: idle (no session), starting (POST
-   *  in flight), running (paused inside solve()), paused
-   *  (similar to running but the server explicitly paused us),
-   *  exited (the run completed), error (something broke). */
-  debugStatus: DebugStatus;
-  /** The most recent stopped event's data. Re-renders of the
-   * Debug tab subscribe to this slice. */
-  debugCurrentLine: number | null;
-  debugLocals: DebugLocal[];
-  debugStoppedReason: string;
-  /** Server-side error message when debugStatus = 'error'. */
-  debugError: string;
 
   // --- Actions ---
   loadChallenges(): Promise<void>;
@@ -93,37 +79,28 @@ export interface AppState {
   setN(n: number): void;
   setSeed(s: number | null): void;
   setMode(m: RunMode): void;
-  setAiMode(on: boolean): void;
   run(): Promise<void>;
   reset(): void;
-  step(delta: StepDelta): void;
-  jumpToOpIndex(i: number): void;
-  jumpToFrame(i: number): void;
-  setFrameIntervalMs(ms: number): void;
-  play(): void;
-  pause(): void;
   loadProgress(): Promise<void>;
   markDone(): Promise<void>;
-  saveSolution(): Promise<void>;
-  loadSolution(): Promise<void>;
-  toggleBreakpoint(line: number): void;
-  clearBreakpoints(): void;
   /**
-   * Apply a snapshot that came from another window via the
-   * BroadcastChannel. Sets the sentinel `applyingRemoteRef`
-   * so the broadcast subscriber does not re-broadcast this
-   * change. Always defers via setTimeout(0) at the call site
-   * to break the synchronous subscribe→setState loop.
+   * Force a re-read of ``solutions/<id>.py`` from disk. Used by
+   * the AppShell on a "Reload from disk" button (the user
+   * clicked it after editing in VSCode). The file-on-disk model
+   * means a regular Run also picks up the latest content — this
+   * is just an explicit refresh for the display copy.
    */
-  _applyRemoteSnapshot(s: Partial<AppState>): void;
+  refreshSourceFromDisk(): Promise<void>;
 }
 
 
 /**
- * Module-scope ref-sentinel: true while a remote snapshot is
- * being applied. A real Zustand field would re-fire subscribers;
- * a ref does not. The broadcast subscriber in web/src/lib/
- * broadcastSync.ts reads this to skip re-broadcasting.
+ * Module-scope ref-sentinel: kept for the broadcastSync
+ * integration (the main window and any future detached
+ * surfaces may still need to suppress echo broadcasts).
+ * Currently a no-op because there are no detached windows —
+ * the v0.9.0 pivot removed the editor pop-out + the
+ * debug pop-out + the detached-pane host.
  */
 export const applyingRemoteRef = { current: false };
 
@@ -135,20 +112,10 @@ export const useAppStore = create<AppState>((set, get) => ({
   n: 16,
   seed: 1,
   mode: 'practice',
-  aiMode: false,
   isRunning: false,
   runResult: null,
   error: null,
-  opIndex: 0,
-  isPlaying: false,
-  frameIntervalMs: 1000,
   progress: null,
-  breakpoints: new Set<number>(),
-  debugStatus: 'idle',
-  debugCurrentLine: null,
-  debugLocals: [],
-  debugStoppedReason: '',
-  debugError: '',
 
   async loadChallenges() {
     const list = await challengesApi.listChallenges();
@@ -160,22 +127,13 @@ export const useAppStore = create<AppState>((set, get) => ({
       isRunning: true,
       error: null,
       runResult: null,
-      opIndex: 0,
-      isPlaying: false,
-      // Breakpoints are line-number-scoped to one source
-      // file; switching challenges invalidates them. Clear
-      // the set so the new challenge's gutter doesn't show
-      // stale markers.
-      breakpoints: new Set<number>(),
-      debugStatus: 'idle',
-      debugCurrentLine: null,
-      debugLocals: [],
-      debugStoppedReason: '',
-      debugError: '',
     });
     try {
       const detail = await challengesApi.getChallenge(id);
-      // Load the player's saved source from disk, or fall back to the starter.
+      // Load the player's saved source from disk, or fall back
+      // to the starter. The file is the source of truth — the
+      // user edits it in VSCode, the run action reads it from
+      // disk, and the cOde(n) UI shows a display copy.
       let source = detail.starter_source;
       try {
         const saved = await solutionsApi.getSolution(id);
@@ -199,6 +157,11 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   setSource(s: string) {
+    // Display-only: when the user runs, the server reads the
+    // file from disk; this set is just so the UI can show
+    // what's in the (in-memory) copy. In normal use the
+    // source is reloaded from disk on challenge select and
+    // after each run.
     set({ source: s });
   },
   setN(n: number) {
@@ -212,19 +175,14 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ mode: m });
   },
 
-  setAiMode(on: boolean) {
-    set({ aiMode: on });
-  },
-
   async run() {
     const { currentDetail, n, seed, mode } = get();
     if (!currentDetail) return;
-    set({ isRunning: true, error: null, isPlaying: false });
+    set({ isRunning: true, error: null });
     try {
-      // The main window no longer embeds the editor, so the source
-      // lives in the pop-out editor (or in solutions/{id}.py on
-      // disk via the server's saved file). Fetch the latest saved
-      // source from the server before each run.
+      // File on disk is the source of truth. Re-read before
+      // every run so VSCode edits are picked up automatically —
+      // no need for an explicit "Save" button.
       let source: string;
       try {
         const saved = await solutionsApi.getSolution(currentDetail.id);
@@ -243,12 +201,15 @@ export const useAppStore = create<AppState>((set, get) => ({
       });
       // After a real-test run, sync the UI n/seed to what the
       // server actually used (it ignored our values).
+      const updates: Partial<AppState> = {
+        runResult: result,
+        source,
+      };
       if (mode === 'real_test') {
-        set({ n: result.n, seed: result.seed });
+        updates.n = result.n;
+        updates.seed = result.seed;
       }
-      // Persist the source that was actually run so the CodePanel
-      // can render it in the second half of the right panel.
-      set({ runResult: result, opIndex: 0, source });
+      set(updates);
       // Side-effect: persist progress if it passed.
       if (result.passed) {
         try {
@@ -270,61 +231,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   reset() {
-    set({ runResult: null, error: null, opIndex: 0, isPlaying: false });
-  },
-
-  step(delta: StepDelta) {
-    // Step in **frame** units (one per Python line event
-    // captured by the tracer). The runtime op counter was
-    // removed in v0.8.5; the visualizer's ``opIndex`` slider
-    // is now a frame index that drives ``trace[opIndex]``
-    // directly.
-    const { runResult, opIndex } = get();
-    if (!runResult) return;
-    const last = runResult.trace.length - 1;
-    let next = opIndex;
-    if (delta === 'first') next = 0;
-    else if (delta === 'last') next = last;
-    else next = Math.max(0, Math.min(last, opIndex + delta));
-    set({ opIndex: next });
-  },
-
-  jumpToOpIndex(i: number) {
-    const { runResult } = get();
-    if (!runResult) return;
-    const last = runResult.trace.length - 1;
-    set({ opIndex: Math.max(0, Math.min(last, i)) });
-  },
-
-  jumpToFrame(i: number) {
-    // Convenience: jump to the frame index the caller
-    // provided (e.g. from the op log "click to jump" handler
-    // on a line number — the caller would resolve the line to
-    // a frame index first).
-    const { runResult } = get();
-    if (!runResult) return;
-    const trace = runResult.trace;
-    if (i < 0 || i >= trace.length) return;
-    // The frame_index is the frame's own position in the
-    // trace's frame list. Jump to that.
-    set({ opIndex: trace[i].frame_index });
-  },
-
-  setSpeed(s: number) {
-    // Backwards-compat shim: older callers pass "steps per second".
-    // Convert to ms-per-frame.
-    set({ frameIntervalMs: Math.max(50, Math.round(1000 / Math.max(1, s))) });
-  },
-
-  setFrameIntervalMs(ms: number) {
-    set({ frameIntervalMs: Math.max(50, Math.round(ms)) });
-  },
-
-  play() {
-    if (get().runResult) set({ isPlaying: true });
-  },
-  pause() {
-    set({ isPlaying: false });
+    set({ runResult: null, error: null });
   },
 
   async loadProgress() {
@@ -351,41 +258,16 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
   },
 
-  async saveSolution() {
-    const { currentDetail, source } = get();
-    if (!currentDetail) return;
-    await solutionsApi.putSolution(currentDetail.id, source);
-  },
-
-  async loadSolution() {
+  async refreshSourceFromDisk() {
     const { currentDetail } = get();
     if (!currentDetail) return;
-    const saved = await solutionsApi.getSolution(currentDetail.id);
-    if (saved.exists) set({ source: saved.source });
-  },
-
-  toggleBreakpoint(line: number) {
-    // The set lives in zustand state. We replace the
-    // reference (rather than mutating) so subscribers
-    // re-render — zustand uses shallow identity checks.
-    const next = new Set(get().breakpoints);
-    if (next.has(line)) next.delete(line); else next.add(line);
-    set({ breakpoints: next });
-  },
-
-  clearBreakpoints() {
-    set({ breakpoints: new Set() });
-  },
-
-  _applyRemoteSnapshot(s) {
-    applyingRemoteRef.current = true;
     try {
-      set(s);
-    } finally {
-      // Reset on the next microtask so any in-flight subscriber
-      // calls finish first. requestAnimationFrame is sufficient
-      // and cheap; subscribers run during the same tick anyway.
-      queueMicrotask(() => { applyingRemoteRef.current = false; });
+      const saved = await solutionsApi.getSolution(currentDetail.id);
+      if (saved.exists) {
+        set({ source: saved.source });
+      }
+    } catch {
+      // ignore
     }
   },
 }));

@@ -5,15 +5,22 @@
  *   1. Spawn uvicorn as a child process (server-process.ts).
  *   2. Wait for the FastAPI server to write its port file.
  *   3. Open a BrowserWindow at the server's URL.
- *   4. The renderer can request a "pop out editor" via IPC, which
- *      creates a second BrowserWindow loading ?view=editor.
- *   5. The renderer can request "pop out a pane" via IPC, which
- *      creates a BrowserWindow loading ?view=pane&paneId=...&tabId=...
- *   6. On quit, kill the uvicorn process so it doesn't outlive
+ *   4. The renderer can request "open in VSCode" via IPC,
+ *      which calls ``shell.openPath(repoRoot)``. VSCode on
+ *      the user's machine handles the rest — opening the
+ *      project at the repo root, with the cOde(n)-written
+ *      ``solutions/.vscode-active`` file telling the launch
+ *      config which challenge to default to.
+ *   5. On quit, kill the uvicorn process so it doesn't outlive
  *      the app.
+ *
+ * The v0.9.0 pivot removed the pop-out-editor, pop-out-debug,
+ * and pop-out-pane BrowserWindows (the cOde(n) app is now a
+ * single window; editing + debugging happens in VSCode).
+ * The detachedWindows map is gone.
  */
 
-import { app, BrowserWindow, dialog, ipcMain } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import * as path from 'node:path';
 import { startServer, ServerHandle } from './server-process';
 import { initAutoUpdater, runAutoCheckOnLaunch } from './updater';
@@ -21,17 +28,6 @@ import { initAutoUpdater, runAutoCheckOnLaunch } from './updater';
 
 let mainWindow: BrowserWindow | null = null;
 let server: ServerHandle | null = null;
-
-/** Track every detached BrowserWindow so we can notify the main
- *  window when one closes (so it can clear the "detached" flag
- *  for that pane). Keyed by paneId for both pop-out-editor and
- *  pop-out-pane. */
-const detachedWindows = new Map<string, BrowserWindow>();
-
-/** Fixed key for the popped-out debug window. There's at most one
- *  debug pop-out at a time (it's per-session, and there's only one
- *  active session at a time). */
-const DEBUG_POPOUT_KEY = 'debug';
 
 
 /** Resolve the repo root by walking up from electron/dist/main.js. */
@@ -79,131 +75,37 @@ async function createWindow(): Promise<void> {
 
   console.log(`[coden-electron] server up at http://127.0.0.1:${server.port} (source=${server.source})`);
 
-  // Register the IPC handler that opens a pop-out editor window.
-  // The renderer calls window.electronAPI.popOutEditor() (exposed
-  // by preload.ts); we open a new BrowserWindow here.
-  ipcMain.handle('pop-out-editor', () => {
-    const port = server?.port;
-    if (!port) return false;
-    const win = new BrowserWindow({
-      width: 900,
-      height: 700,
-      minWidth: 500,
-      minHeight: 400,
-      title: 'cOde(n)',  // same title as the main window by design —
-                       // the pop-out IS a peer of the main window
-      backgroundColor: '#020617',
-      webPreferences: {
-        preload: path.join(__dirname, 'preload.js'),
-        contextIsolation: true,
-        nodeIntegration: false,
-      },
-    });
-    // Use a stable key for the legacy pop-out so we can also
-    // notify the main window if the editor window is closed.
-    const key = 'editor';
-    detachedWindows.set(key, win);
-    win.on('closed', () => {
-      detachedWindows.delete(key);
-      mainWindow?.webContents.send('pane-window-closed', key);
-    });
-    const url = `http://127.0.0.1:${port}/?view=editor`;
-    void win.loadURL(url);
-    return true;
-  });
-
-  // Generic "pop out a pane" handler. Opens a new BrowserWindow
-  // at ?view=pane&paneId=...&tabId=... that hosts the DetachedPaneHost
-  // component. When the window closes, the main window is notified
-  // so it can clear the corresponding detached flag.
-  ipcMain.handle('pop-out-pane', (_evt, paneId: string, tabId: string) => {
-    const port = server?.port;
-    if (!port) return false;
-    if (!paneId || !tabId) return false;
-    // If a window for this pane is already open, focus it instead
-    // of opening a duplicate.
-    const existing = detachedWindows.get(paneId);
-    if (existing && !existing.isDestroyed()) {
-      existing.focus();
+  // Open the project in VSCode. Called by the renderer's
+  // "Open in VSCode" button (in the transport bar + the VSCode
+  // tab). Routes through ``shell.openPath`` — on Windows, that
+  // invokes the OS file-association handler; VSCode (when
+  // installed) registers itself for the project's folder, so
+  // it opens at the repo root with the .vscode/ launch config
+  // active. The renderer should have written
+  // solutions/.vscode-active FIRST so the F5 launch config
+  // defaults to the right challenge.
+  ipcMain.handle('open-in-vscode', () => {
+    try {
+      // ``shell.openPath`` returns a promise that resolves to
+      // an error string (empty on success). We don't wait on it
+      // here — the handler returns true immediately and logs
+      // any error asynchronously.
+      void shell.openPath(repoRoot).then(
+        (errMsg) => {
+          if (errMsg) {
+            console.warn(`[coden-electron] shell.openPath: ${errMsg}`);
+          }
+        },
+        (err) => {
+          console.warn(`[coden-electron] shell.openPath rejected: ${err}`);
+        },
+      );
       return true;
+    } catch (e) {
+      const message = e instanceof Error ? e.message : String(e);
+      console.error(`[coden-electron] openInVSCode failed: ${message}`);
+      return false;
     }
-    const win = new BrowserWindow({
-      width: 700,
-      height: 600,
-      minWidth: 400,
-      minHeight: 300,
-      title: `cOde(n) · ${tabId}`,
-      backgroundColor: '#020617',
-      webPreferences: {
-        preload: path.join(__dirname, 'preload.js'),
-        contextIsolation: true,
-        nodeIntegration: false,
-      },
-    });
-    detachedWindows.set(paneId, win);
-    win.on('closed', () => {
-      detachedWindows.delete(paneId);
-      mainWindow?.webContents.send('pane-window-closed', paneId);
-    });
-    const url =
-      `http://127.0.0.1:${port}/?view=pane` +
-      `&paneId=${encodeURIComponent(paneId)}` +
-      `&tabId=${encodeURIComponent(tabId)}`;
-    void win.loadURL(url);
-    return true;
-  });
-
-  // Pop out the debug window. The main window calls this when
-  // a breakpoint is hit during a debug session. There's at most
-  // one debug pop-out at a time (per DEBUG_POPOUT_KEY); calling
-  // it again focuses the existing window. The sessionId is
-  // passed as a URL param so the pop-out window can show it in
-  // its header.
-  ipcMain.handle('pop-out-debug', (_evt, sessionId: string) => {
-    const port = server?.port;
-    if (!port) return false;
-    const existing = detachedWindows.get(DEBUG_POPOUT_KEY);
-    if (existing && !existing.isDestroyed()) {
-      existing.focus();
-      return true;
-    }
-    const win = new BrowserWindow({
-      width: 900,
-      height: 700,
-      minWidth: 600,
-      minHeight: 400,
-      title: 'cOde(n) · Debug',
-      backgroundColor: '#020617',
-      webPreferences: {
-        preload: path.join(__dirname, 'preload.js'),
-        contextIsolation: true,
-        nodeIntegration: false,
-      },
-    });
-    detachedWindows.set(DEBUG_POPOUT_KEY, win);
-    win.on('closed', () => {
-      detachedWindows.delete(DEBUG_POPOUT_KEY);
-      // Notify the main window that the debug pop-out is gone
-      // (it may have been closed manually, not via the session
-      // ending). The main window listens for this so it doesn't
-      // try to call close() on a destroyed window.
-      mainWindow?.webContents.send('pane-window-closed', DEBUG_POPOUT_KEY);
-    });
-    const url =
-      `http://127.0.0.1:${port}/?view=debug` +
-      `&sessionId=${encodeURIComponent(sessionId ?? '')}`;
-    void win.loadURL(url);
-    return true;
-  });
-
-  // Close the popped-out debug window if one is open. Called by
-  // the main window when the debug session transitions to
-  // 'exited' / 'error' / 'idle'.
-  ipcMain.handle('close-debug-popout', () => {
-    const win = detachedWindows.get(DEBUG_POPOUT_KEY);
-    if (!win || win.isDestroyed()) return false;
-    win.close();
-    return true;
   });
 
   const mainUrl = `http://127.0.0.1:${server.port}/`;

@@ -1,36 +1,20 @@
-"""Convert engine trace frames to JSON-safe dicts.
+"""JSON-safe conversion for ``solve()`` return values.
 
-The engine's :class:`code_n.execution_trace.TraceFrame` carries
-``locals`` as a snapshot of the player's frame.f_locals at the
-time of the line event. The engine's own ``_serialize_locals``
-already shallow-copies mutable containers, but it still leaves
-``set`` and ``tuple`` types intact - both of which are not
-JSON-serialisable. The BFS challenges have set-valued locals
-(``visited``) and tuple-valued ones (``frontier`` cells are
-``(x, y)`` tuples), so this module finishes the job.
+The per-step trace was removed from the API in the v0.9.0 pivot
+(player edits + debugs in VSCode). What's left is :func:`to_json_safe`,
+which the engine runner uses to render the return value of
+``solve()`` as a compact string for the ``RunResponse.return_value_repr``
+field. The recursion handles the common structured types
+(list, tuple, set, dict) and stringifies anything else.
 
-:func:`to_json_safe` is a recursive conversion that turns any
-Python object into a JSON-safe value. The fall-through
-``str(value)`` is deliberate: a string repr is always JSON-safe,
-and any object that isn't a known structured type is probably
-engine internals leaking through.
-
-Note: the old runtime counter's
-``TrackedList`` / ``TrackedGrid`` / ``TrackedValue`` wrappers
-were removed in v0.8.5. The branches in ``to_json_safe`` that
-used to unwrap them are gone — the player's input is now a
-plain list / dict / set, and the list / tuple / set / dict
-paths handle them.
+Order matters in :func:`to_json_safe`: ``bool`` is a subclass
+of ``int``, so we check ``bool`` before ``int``.
 """
 from __future__ import annotations
 
 from typing import Any
 
-from code_n.execution_trace import TraceFrame
 
-
-# Order matters in to_json_safe: bool is a subclass of int, so check
-# bool before int.
 _PRIMITIVE_TYPES = (bool, int, float, str, type(None))
 
 
@@ -56,27 +40,3 @@ def to_json_safe(value: Any) -> Any:
         return str(value)
     except Exception:
         return f"<{type(value).__name__}>"
-
-
-def serialize_frame(frame: TraceFrame) -> dict[str, Any]:
-    """Convert a :class:`TraceFrame` to a JSON-safe dict.
-
-    The ``locals`` dict is run through :func:`to_json_safe` so that
-    every value is wire-safe (sets become arrays, tuples become
-    arrays, dict keys are stringified, etc.). The ``frame_index``
-    field is the frame's position in the trace's frame list —
-    the visualizer's step player drives the slider off this
-    index directly.
-    """
-    return {
-        "frame_index": int(frame.frame_index),
-        "line_no": int(frame.line_no),
-        "event": frame.event,
-        "locals": to_json_safe(frame.locals),
-        "return_value": frame.return_value or "",
-        "breakpoint": bool(frame.breakpoint),
-        "source_file": frame.source_file or "",
-        # source_line is filled in by the route layer; we don't
-        # know the source text here.
-        "source_line": "",
-    }

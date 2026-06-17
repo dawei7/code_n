@@ -10,7 +10,7 @@ Naming convention: outbound models end in ``Out`` (or are themselves
 """
 from __future__ import annotations
 
-from typing import Any, Literal, Optional
+from typing import Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -52,7 +52,12 @@ class ChallengeSummary(BaseModel):
 
 
 class ChallengeDetail(ChallengeSummary):
-    """Full data for the challenge view, including the editor's starter code."""
+    """Full data for the challenge view, including the starter code.
+
+    The player writes their solution in ``solutions/<id>.py`` (edited
+    in VSCode or any external editor). The starter source ships with
+    the challenge and is what the player sees on first open.
+    """
 
     params: list[ParamDoc]
     samples: list[Sample]
@@ -72,8 +77,9 @@ class ChallengeDetail(ChallengeSummary):
 class RunRequest(BaseModel):
     """Body for ``POST /api/challenges/{id}/run``.
 
-    The player types code in the editor; the server writes it to a
-    temp file, imports it, and runs it against the engine.
+    The player writes their solution in ``solutions/<id>.py`` (via
+    VSCode or any external editor); the server reads that file at
+    run time, exec's it, and runs it against the engine.
 
     ``mode`` controls how ``n`` and ``seed`` are interpreted:
       - ``"practice"`` (default): use the player-supplied ``n`` /
@@ -97,41 +103,26 @@ class RunRequest(BaseModel):
     mode: Literal["practice", "real_test"] = "practice"
 
 
-class TraceFrameOut(BaseModel):
-    """One frame of the execution trace, captured at a Python line event.
-
-    ``locals`` is a JSON-safe snapshot of the player's frame locals at
-    that line. ``source_line`` is the actual source text (looked up
-    server-side from ``source_file:line_no``) so the frontend can show
-    "the statement that just ran" in the LocalsPanel header.
-
-    ``frame_index`` is the frame's own position in the trace's frame
-    list. The frontend's step-player slider drives off this index
-    directly (``trace[opIndex]`` gives the locals at slider position
-    ``opIndex``).
-    """
-
-    frame_index: int
-    line_no: int
-    event: str  # "call" | "line" | "return"
-    locals: dict[str, Any]
-    return_value: str
-    breakpoint: bool
-    source_file: str
-    source_line: str = ""
-
-
 class RunResponse(BaseModel):
-    """The full result of a single run.
+    """The result of a single run.
 
     The verdict (``passed``, ``correct``, ``within_threshold``,
     ``actual_complexity``, ``message``) is derived from the
-    AST-based op counter. ``trace`` is the visualizer source —
-    the frontend's step player walks through ``trace.frames``
-    and shows the locals at each step.
+    AST-based op counter. The four complexity numbers
+    (``user_ast_ops``, ``reference_ast_ops``, ``reference_ci_low``,
+    ``reference_ci_high``) drive the Complexity tab and the
+    ±5% tolerance band comparison.
 
-    The runtime op counter and per-op-type stats breakdown
-    (``stats`` / ``ops_log``) were removed in v0.8.5.
+    ``return_value_repr`` is a short string representation of what
+    ``solve()`` returned (capped at a few hundred chars so a
+    10,000-element list doesn't blow up the response).
+
+    The runtime op counter, the per-step trace, the AI report
+    tab, and the in-app debug surface were all removed in the
+    v0.9.0 pivot (the player edits + debugs in VSCode). The
+    engine still runs the player's source under a tracer for
+    the step-limit guard (catches infinite loops), but the
+    trace is not serialized into the response.
     """
 
     passed: bool
@@ -148,9 +139,7 @@ class RunResponse(BaseModel):
                                 # count ratio vs reference)
     too_efficient_reason: str = ""
     message: str
-    trace: list[TraceFrameOut]
     return_value_repr: str
-    truncated: bool = False  # True if the trace was downsampled for size.
     # ---- AST-based op count (the "scientific" metric) -------------
     # Counted by walking the source's AST and summing each
     # operation (Compare, BinOp, Call, Subscript, Attribute,
@@ -160,8 +149,8 @@ class RunResponse(BaseModel):
     #
     # This is the SINGLE source of truth for "how many ops
     # does your code do?" — used by the Complexity tab, the
-    # verdict (within_threshold), the AI report, and the
-    # progress-best-ops recording.
+    # verdict (within_threshold), and the progress-best-ops
+    # recording.
     user_ast_ops: Optional[int] = None       # User's source, n
     reference_ast_ops: Optional[int] = None  # Reference, same n
     # ±5% tolerance band around the reference's AST op
@@ -171,12 +160,6 @@ class RunResponse(BaseModel):
     # correct but slower than optimal.
     reference_ci_low: Optional[int] = None
     reference_ci_high: Optional[int] = None
-    # Structured AI report. Always populated. The AI Report tab
-    # renders it for the user; the local Ollama hint endpoint
-    # takes it as input. The optimal source is NOT in this
-    # report (it's added server-side only when the LLM prompt
-    # is built, so it can't leak through the UI).
-    ai_report: dict = {}
 
 
 # ----------------------------------------------------------------------------

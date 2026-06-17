@@ -53,17 +53,13 @@ CORS_ORIGINS = [
     "file://",
 ]
 
-# Trace size guard. We refuse to send back more than this many trace
-# frames in one RunResponse. For sort_01 at n=50 the bubble sort
-# produces ~5,000-7,000 frames; the limit leaves headroom for n=100.
-MAX_TRACE_FRAMES = 50_000
-
 
 def ensure_data_dirs() -> None:
     """Create the user-writable directories if missing.
 
-    Called once at server startup. The solutions directory is where the
-    web UI saves the player's edited code (``PUT /api/solutions/{id}``).
+    Called once at server startup. The solutions directory is the
+    file the player edits in VSCode (``PUT /api/solutions/{id}``
+    or direct file edits); cOde(n) reads it back on every Run.
     """
     CODEN_HOME.mkdir(parents=True, exist_ok=True)
     SOLUTIONS_DIR.mkdir(parents=True, exist_ok=True)

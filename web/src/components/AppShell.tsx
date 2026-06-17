@@ -4,7 +4,7 @@
  *   +-------------------------------------------+
  *   | header  logo  ........ Layout: 4 ▾       |
  *   +-------------------------------------------+
- *   | transport  challenge  Run  step ctrls ... |
+ *   | transport  challenge  Run  n/seed ...    |
  *   +-------------------------------------------+
  *   |                                           |
  *   |  LayoutRoot (the pane tree)               |
@@ -16,65 +16,41 @@
  * The aside (ChallengeList) stays as a fixed global rail — it's
  * a navigation surface, not analysis content. The pane tree
  * lives in the main area only.
+ *
+ * The v0.9.0 transport bar is much smaller than the old one:
+ *   - challenge title (left)
+ *   - practice / real-test toggle
+ *   - Run / Reset / Open in VSCode buttons
+ *   - n + seed inputs
+ *   - a compact "n=… | req: … | ops: …" result line (when
+ *     a run is available)
+ *
+ * No editor pop-out, no AI mode toggle, no debug pop-out,
+ * no step controls. The "Open in VSCode" button writes the
+ * active challenge id to solutions/.vscode-active and calls
+ * Electron's shell.openPath(repoRoot).
  */
 import { useEffect } from 'react';
 import { useAppStore } from '../store/useAppStore';
-import { useStepPlayer } from '../hooks/useStepPlayer';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { useUpdater } from '../hooks/useUpdater';
-import { useDebugSession } from '../hooks/useDebugSession';
 import { ChallengeList } from './ChallengeList';
 import { LayoutRoot } from './layout/LayoutRoot';
 import { useLayoutStore } from '../store/useLayoutStore';
-import { StepControls } from './StepControls';
 import { allLeaves } from './layout/tree-ops';
 import { UpdateToast } from './UpdateToast';
+import { writeActiveChallenge } from '../api/vscode';
 
 
 export function AppShell() {
   const loadChallenges = useAppStore((s) => s.loadChallenges);
   const loadProgress = useAppStore((s) => s.loadProgress);
-  const aiMode = useAppStore((s) => s.aiMode);
 
   useEffect(() => {
     loadChallenges();
     loadProgress();
   }, [loadChallenges, loadProgress]);
 
-  // When a detached BrowserWindow closes, clear the corresponding
-  // "detached" flag in the layout store so the placeholder goes
-  // away. Uses the shared electronAPI type from types/electron.d.ts.
-  useEffect(() => {
-    const api = window.electronAPI;
-    if (!api?.onPaneWindowClosed) return;
-    const unsubscribe = api.onPaneWindowClosed((paneId) => {
-      useLayoutStore.getState().markDetached(paneId, false);
-    });
-    return unsubscribe;
-  }, []);
-
-  // Add/remove the AI Report tab from the layout based on
-  // `aiMode`. When AI is on, add it to the first leaf that
-  // has the locals tab (so it sits next to the other analysis
-  // surfaces); when AI is off, close it from every leaf.
-  useEffect(() => {
-    const layout = useLayoutStore.getState();
-    const leaves = allLeaves(layout.tree);
-    if (aiMode) {
-      const target = leaves.find((l) => l.tabIds.includes('locals')) ?? leaves[0];
-      if (target && !target.tabIds.includes('aiReport')) {
-        layout.moveTab('aiReport', null, target.id);
-      }
-    } else {
-      for (const l of leaves) {
-        if (l.tabIds.includes('aiReport')) {
-          layout.closeTabInLeaf('aiReport', l.id);
-        }
-      }
-    }
-  }, [aiMode]);
-
-  useStepPlayer();
   useKeyboardShortcuts();
 
   return (
@@ -103,8 +79,6 @@ function TopHeader() {
   const tree = useLayoutStore((s) => s.tree);
   const leafCount = allLeaves(tree).length;
   const updater = useUpdater();
-  const aiMode = useAppStore((s) => s.aiMode);
-  const setAiMode = useAppStore((s) => s.setAiMode);
 
   // Tooltip describing the last update action for the "Check for
   // updates" button. Changes when the state changes.
@@ -141,18 +115,6 @@ function TopHeader() {
       </div>
       <div className="flex items-center gap-2 text-xs">
         <span className="text-coden-muted font-mono">{leafCount} panes</span>
-        <label
-          className="flex items-center gap-1 cursor-pointer text-coden-muted hover:text-coden-text"
-          title="Show the AI Report tab and enable Ollama-powered hints (requires local Ollama running)"
-        >
-          <input
-            type="checkbox"
-            checked={aiMode}
-            onChange={(e) => setAiMode(e.target.checked)}
-            className="accent-coden-accent"
-          />
-          AI
-        </label>
         <label className="text-coden-muted">Layout</label>
         <select
           value={leafCount}
@@ -214,9 +176,11 @@ function TopHeader() {
 
 
 /**
- * TransportBar — challenge title, mode toggle, Run, Reset, n/seed,
- * step controls. Carved out of the old ChallengeView so it lives
- * at the same level as the pane tree (the panes never own the
+ * TransportBar — challenge title, mode toggle, Run, Reset,
+ * Open in VSCode, n/seed inputs, compact result line.
+ *
+ * Carved out of the old ChallengeView so it lives at the
+ * same level as the pane tree (the panes never own the
  * transport).
  */
 function TransportBar() {
@@ -225,55 +189,30 @@ function TransportBar() {
   const run = useAppStore((s) => s.run);
   const reset = useAppStore((s) => s.reset);
   const runResult = useAppStore((s) => s.runResult);
-  const saveSolution = useAppStore((s) => s.saveSolution);
   const n = useAppStore((s) => s.n);
   const setN = useAppStore((s) => s.setN);
   const seed = useAppStore((s) => s.seed);
   const setSeed = useAppStore((s) => s.setSeed);
   const mode = useAppStore((s) => s.mode);
   const setMode = useAppStore((s) => s.setMode);
-  const aiMode = useAppStore((s) => s.aiMode);
-  const source = useAppStore((s) => s.source);
-  const breakpoints = useAppStore((s) => s.breakpoints);
-  const debugStatus = useAppStore((s) => s.debugStatus);
-  const debugSession = useDebugSession();
 
-  /**
-   * Unified Run handler. If the user has set any breakpoints
-   * in the editor gutter, this starts a debug session (the
-   * session auto-pops-out into its own window the first time
-   * a breakpoint is hit; see useDebugSession). Otherwise it
-   * runs the challenge normally and renders the trace in
-   * the 4-pane layout.
-   *
-   * Real-test mode forces the regular path: debug sessions
-   * are exploratory and don't make sense with a server-picked
-   * seed.
-   */
-  function handleRun() {
+  async function handleOpenInVSCode() {
     if (!detail) return;
-    if (
-      breakpoints.size > 0 &&
-      mode === 'practice' &&
-      (debugStatus === 'idle' || debugStatus === 'exited' || debugStatus === 'error')
-    ) {
-      void debugSession.start({
-        challengeId: detail.id,
-        source: source || '',
-        n,
-        seed,
-      });
-      return;
+    // Write the active-challenge handoff file FIRST so the
+    // user's F5 in VSCode (after VSCode opens) defaults to
+    // the right challenge. Even if the IPC call below fails
+    // (no VSCode installed), the handoff is in place.
+    try {
+      await writeActiveChallenge(detail.id);
+    } catch {
+      // ignore — best-effort
     }
-    void run();
-  }
-
-  async function handlePopOut() {
-    const api = (window as Window).electronAPI;
-    if (api?.popOutEditor) {
-      await api.popOutEditor();
+    const api = window.electronAPI;
+    if (api?.openInVSCode) {
+      await api.openInVSCode();
     } else {
-      window.open(window.location.pathname + '?view=editor', '_blank');
+      // Dev / browser fallback: open the vscode:// URL.
+      window.open('vscode://file/' + encodeURIComponent(window.location.host), '_blank');
     }
   }
 
@@ -329,14 +268,10 @@ function TransportBar() {
       <div className="flex items-center gap-1 ml-2 shrink-0">
         <button
           type="button"
-          onClick={handleRun}
+          onClick={() => void run()}
           disabled={isRunning || !detail}
           className="px-3 py-1.5 text-sm font-semibold rounded bg-coden-accent text-coden-bg hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
-          title={
-            breakpoints.size > 0
-              ? `Run with debug (${breakpoints.size} breakpoint${breakpoints.size === 1 ? '' : 's'})`
-              : 'Run the challenge'
-          }
+          title="Run the solution from solutions/<id>.py (re-reads the file on every click)"
         >
           {isRunning ? 'Running…' : '▶ Run'}
         </button>
@@ -350,43 +285,13 @@ function TransportBar() {
         </button>
         <button
           type="button"
-          onClick={saveSolution}
+          onClick={() => void handleOpenInVSCode()}
           disabled={!detail}
-          className="px-2 py-1.5 text-sm rounded border border-coden-border text-coden-text hover:bg-coden-border disabled:opacity-50"
-          title="Save (Ctrl/Cmd+S)"
+          className="px-2 py-1.5 text-sm rounded border border-coden-accent text-coden-accent hover:bg-coden-accent hover:text-coden-bg disabled:opacity-50 disabled:cursor-not-allowed"
+          title="Open the project in VSCode (writes the active challenge id to solutions/.vscode-active first)"
         >
-          💾
+          {'</>'} VSCode
         </button>
-        <button
-          type="button"
-          onClick={handlePopOut}
-          className="px-2 py-1.5 text-sm rounded border border-coden-border text-coden-text hover:bg-coden-border"
-          title="Open the standalone editor in a separate window"
-        >
-          ⧉
-        </button>
-        {aiMode && runResult && (
-          <button
-            type="button"
-            onClick={() => {
-              // Open the AI Report tab in the first leaf that
-              // has it; if it isn't in any leaf (e.g. AI was
-              // turned on but the tab was never added), do
-              // nothing here — the user can drag it from the
-              // tab pool. The effect above adds it on toggle.
-              const layout = useLayoutStore.getState();
-              const leaves = allLeaves(layout.tree);
-              const target = leaves.find((l) => l.tabIds.includes('aiReport'));
-              if (target) {
-                layout.setActiveTab(target.id, 'aiReport');
-              }
-            }}
-            className="px-2 py-1.5 text-sm rounded border border-coden-accent text-coden-accent hover:bg-coden-accent hover:text-coden-bg"
-            title="Open the AI Report tab"
-          >
-            🤖 Hint
-          </button>
-        )}
       </div>
 
       {detail && (
@@ -418,10 +323,6 @@ function TransportBar() {
           />
         </div>
       )}
-
-      <div className="flex-1 min-w-0">
-        <StepControls />
-      </div>
 
       {runResult && detail && (
         <div className="text-xs text-coden-muted font-mono shrink-0">

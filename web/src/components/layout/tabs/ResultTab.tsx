@@ -1,0 +1,328 @@
+/**
+ * ResultTab — the verdict + complexity band + return value,
+ * rendered as a single card.
+ *
+ * Replaces the old in-app debug surface + step player. The
+ * player runs the challenge in cOde(n), sees the verdict
+ * here, then opens VSCode to fix the code (or to read the
+ * result more carefully via the breakpoints / locals
+ * view in VSCode's debug panel).
+ *
+ * Layout:
+ *   - Big status banner (emerald/amber/rose) with the
+ *     pass/fail/error message + the actual complexity.
+ *   - Compact two-card metric row: your ops vs reference.
+ *   - Inline ±5% tolerance band (the simpler one from
+ *     ComplexityAnalysis, not the full scientific panel).
+ *   - The ``return_value_repr`` as a code-styled block
+ *     (so the player can confirm "yes, that's what my
+ *     code produced").
+ *   - Re-run button + a hint pointing to VSCode for
+ *     debugging.
+ */
+import { useAppStore } from '../../../store/useAppStore';
+
+
+export function ResultTab() {
+  const detail = useAppStore((s) => s.currentDetail);
+  const result = useAppStore((s) => s.runResult);
+  const error = useAppStore((s) => s.error);
+  const run = useAppStore((s) => s.run);
+  const reset = useAppStore((s) => s.reset);
+  const isRunning = useAppStore((s) => s.isRunning);
+
+  if (!detail) {
+    return (
+      <div className="h-full flex items-center justify-center text-xs text-coden-muted">
+        Pick a challenge from the left rail.
+      </div>
+    );
+  }
+
+  // Error path
+  if (error) {
+    return (
+      <div className="h-full overflow-y-auto p-4 space-y-4">
+        <div className="border border-rose-500/40 bg-rose-500/10 rounded p-4">
+          <div className="text-rose-300 font-semibold text-sm mb-1">Run failed</div>
+          <pre className="text-xs text-coden-text whitespace-pre-wrap font-mono">{error}</pre>
+          <button
+            type="button"
+            onClick={() => void run()}
+            disabled={isRunning}
+            className="mt-3 px-3 py-1 text-xs rounded bg-coden-accent text-coden-bg hover:opacity-90 disabled:opacity-50"
+          >
+            {isRunning ? 'Running…' : 'Try again'}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // No run yet
+  if (!result) {
+    return (
+      <div className="h-full overflow-y-auto p-4 space-y-4">
+        <div className="border border-coden-border bg-coden-surface rounded p-4 text-sm text-coden-muted">
+          <div className="font-semibold text-coden-text mb-1">No run yet</div>
+          <p>
+            Click <span className="font-mono text-coden-text">▶ Run</span> in the
+            transport bar (or press <span className="font-mono">R</span> /{' '}
+            <span className="font-mono">F5</span>) to execute the solution from{' '}
+            <span className="font-mono text-coden-text">solutions/{detail.id}.py</span>.
+          </p>
+          <p className="mt-2 text-xs">
+            To edit the code, click the{' '}
+            <span className="font-mono text-coden-accent">&lt;/&gt;</span> button
+            to open the project in VSCode.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Determine the status color
+  const variant: 'pass' | 'tooSlow' | 'tooEfficient' | 'fail' = result.passed
+    ? 'pass'
+    : result.too_efficient
+      ? 'tooEfficient'
+      : result.correct
+        ? 'tooSlow'
+        : 'fail';
+
+  return (
+    <div className="h-full overflow-y-auto p-4 space-y-4">
+      <VerdictCard result={result} variant={variant} />
+      <ComplexityCard result={result} requiredComplexity={detail.required_complexity} />
+      {result.return_value_repr && (
+        <ReturnValueCard value={result.return_value_repr} />
+      )}
+      <ActionRow
+        onRun={run}
+        onReset={reset}
+        isRunning={isRunning}
+        variant={variant}
+        message={result.message}
+      />
+    </div>
+  );
+}
+
+
+function VerdictCard({
+  result,
+  variant,
+}: {
+  result: NonNullable<ReturnType<typeof useAppStore.getState>['runResult']>;
+  variant: 'pass' | 'tooSlow' | 'tooEfficient' | 'fail';
+}) {
+  const styles = {
+    pass: {
+      border: 'border-emerald-500/40',
+      bg: 'bg-emerald-500/10',
+      icon: 'PASS',
+      iconColor: 'text-emerald-300',
+      title: result.message.split('\n')[0],
+    },
+    tooSlow: {
+      border: 'border-amber-500/40',
+      bg: 'bg-amber-500/10',
+      icon: 'SLOW',
+      iconColor: 'text-amber-300',
+      title: result.message,
+    },
+    tooEfficient: {
+      border: 'border-amber-500/40',
+      bg: 'bg-amber-500/10',
+      icon: 'REJ',
+      iconColor: 'text-amber-300',
+      title: result.message,
+    },
+    fail: {
+      border: 'border-rose-500/40',
+      bg: 'bg-rose-500/10',
+      icon: 'FAIL',
+      iconColor: 'text-rose-300',
+      title: result.message,
+    },
+  }[variant];
+
+  return (
+    <div className={`border ${styles.border} ${styles.bg} rounded p-4`}>
+      <div className="flex items-baseline justify-between gap-3 mb-1">
+        <span className={`font-bold text-base ${styles.iconColor}`}>
+          {styles.icon}
+        </span>
+        <span className="text-xs font-mono text-coden-muted">
+          {result.actual_complexity} (required {result.required_complexity})
+        </span>
+      </div>
+      <div className="text-sm text-coden-text">{styles.title}</div>
+    </div>
+  );
+}
+
+
+function ComplexityCard({
+  result,
+  requiredComplexity,
+}: {
+  result: NonNullable<ReturnType<typeof useAppStore.getState>['runResult']>;
+  requiredComplexity: string;
+}) {
+  const user = result.user_ast_ops;
+  const ref = result.reference_ast_ops;
+  const ciLow = result.reference_ci_low;
+  const ciHigh = result.reference_ci_high;
+
+  return (
+    <div className="border border-coden-border bg-coden-surface rounded p-3">
+      <div className="text-xs uppercase text-coden-muted font-semibold mb-2">
+        Complexity
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        <Metric label="Your code (AST)" value={user} />
+        <Metric label="Reference (AST)" value={ref} accent="text-coden-accent" />
+      </div>
+      {ciLow !== null && ciHigh !== null && ref !== null && ref > 0 && (
+        <div className="mt-3">
+          <div className="text-[10px] uppercase text-coden-muted font-semibold mb-1">
+            ±5% tolerance band around the reference
+          </div>
+          <div className="flex items-center gap-2 text-xs font-mono">
+            <span className="text-rose-300">{ciLow.toLocaleString()}</span>
+            <div className="flex-1 h-2 rounded bg-coden-bg border border-coden-border relative overflow-hidden">
+              {/* The band itself */}
+              {user !== null && (
+                <div
+                  className="absolute top-0 bottom-0 bg-coden-accent/25 border-l border-r border-coden-accent/60"
+                  style={{
+                    left: `${(ciLow / Math.max(ref * 1.5, user * 1.1)) * 100}%`,
+                    width: `${((ciHigh - ciLow) / Math.max(ref * 1.5, user * 1.1)) * 100}%`,
+                  }}
+                />
+              )}
+              {user !== null && (
+                <div
+                  className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border border-coden-bg"
+                  style={{
+                    left: `${(user / Math.max(ref * 1.5, user * 1.1)) * 100}%`,
+                    backgroundColor:
+                      user < ciLow ? '#f87171' : user > ciHigh ? '#fbbf24' : '#22c55e',
+                  }}
+                />
+              )}
+            </div>
+            <span className="text-rose-300">{ciHigh.toLocaleString()}</span>
+          </div>
+          <div className="mt-1 text-[10px] text-coden-muted">
+            Green dot = within the band (as efficient as the reference).
+            Red = too cheap (likely a cheat). Amber = too slow.
+            See the <span className="text-coden-accent">Complexity</span> tab
+            for the full analysis.
+          </div>
+        </div>
+      )}
+      <div className="mt-2 text-[10px] text-coden-muted">
+        Required: <span className="text-coden-text font-semibold">{requiredComplexity}</span>
+        {result.actual_complexity && (
+          <>
+            {' '}· Achieved:{' '}
+            <span className="text-coden-text font-semibold">{result.actual_complexity}</span>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+
+function Metric({
+  label,
+  value,
+  accent = 'text-coden-text',
+}: {
+  label: string;
+  value: number | null;
+  accent?: string;
+}) {
+  return (
+    <div className="border border-coden-border rounded p-2 bg-coden-bg">
+      <div className="text-[10px] uppercase tracking-wider text-coden-muted font-semibold">
+        {label}
+      </div>
+      <div className={`text-2xl font-bold tabular-nums mt-0.5 ${accent}`}>
+        {value !== null ? value.toLocaleString() : '—'}
+      </div>
+      <div className="text-[10px] text-coden-muted">AST ops</div>
+    </div>
+  );
+}
+
+
+function ReturnValueCard({ value }: { value: string }) {
+  return (
+    <div className="border border-coden-border bg-coden-surface rounded p-3">
+      <div className="text-xs uppercase text-coden-muted font-semibold mb-2">
+        Returned
+      </div>
+      <pre className="bg-coden-bg border border-coden-border rounded p-2 text-[11px] font-mono overflow-x-auto whitespace-pre-wrap break-words max-h-64 overflow-y-auto">
+{value}
+      </pre>
+      <div className="mt-1 text-[10px] text-coden-muted">
+        What <span className="font-mono text-coden-text">solve()</span> returned.
+        Capped server-side; long lists are truncated with a trailing ellipsis.
+      </div>
+    </div>
+  );
+}
+
+
+function ActionRow({
+  onRun,
+  onReset,
+  isRunning,
+  variant,
+  message,
+}: {
+  onRun: () => void | Promise<void>;
+  onReset: () => void;
+  isRunning: boolean;
+  variant: 'pass' | 'tooSlow' | 'tooEfficient' | 'fail';
+  message: string;
+}) {
+  return (
+    <div className="border border-coden-border bg-coden-surface rounded p-3 text-xs space-y-2">
+      <div className="text-coden-muted">
+        To debug, click the{' '}
+        <span className="font-mono text-coden-accent">&lt;/&gt;</span>{' '}
+        button to open the project in VSCode and press F5 — breakpoints in{' '}
+        <span className="font-mono text-coden-text">solutions/&lt;id&gt;.py</span>{' '}
+        will hit normally. The verdict above is what cOde(n) computed for
+        the latest run.
+      </div>
+      {variant === 'fail' && (
+        <div className="text-rose-300/80">
+          <span className="font-semibold">Hint:</span> {message}
+        </div>
+      )}
+      <div className="flex gap-2 pt-1">
+        <button
+          type="button"
+          onClick={() => void onRun()}
+          disabled={isRunning}
+          className="px-3 py-1 text-xs rounded bg-coden-accent text-coden-bg hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isRunning ? 'Running…' : '▶ Run again'}
+        </button>
+        <button
+          type="button"
+          onClick={onReset}
+          className="px-3 py-1 text-xs rounded border border-coden-border text-coden-text hover:bg-coden-border"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  );
+}

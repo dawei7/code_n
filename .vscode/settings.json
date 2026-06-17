@@ -1,0 +1,35 @@
+{
+  "_comment": "VSCode workspace settings for cOde(n). The default Python interpreter is the repo's .venv (which is what the FastAPI server, the engine tests, and tools/run_solution.py all use). Pylance is pointed at the same venv so the editor understands the project's actual types.",
+
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}"
+  ],
+  "python.analysis.typeCheckingMode": "basic",
+
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/.ruff_cache": true,
+    ".venv": true,
+    "build/": true,
+    "dist/": true,
+    "web/dist/": true,
+    "web/node_modules/": true,
+    "electron/dist/": true,
+    "electron/release/": true,
+    "server/dist/": true,
+    "server/build/": true
+  },
+  "search.exclude": {
+    "**/__pycache__": true,
+    "**/node_modules": true,
+    ".venv/**": true,
+    "web/dist/**": true,
+    "electron/dist/**": true,
+    "electron/release/**": true,
+    "server/dist/**": true
+  }
+}

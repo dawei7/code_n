@@ -33,6 +33,11 @@ web/.vite/
 web/*.tsbuildinfo
 web/vite.config.d.ts
 web/vite.config.js
+# Stray tsc emits under src/types/ (the only legitimate
+# .ts file there is electron.ts). The web project uses
+# noEmit but project-references builds (tsc -b) can still
+# drop .js next to .ts in some configurations.
+web/src/types/*.js
 
 # Electron desktop wrapper
 electron/node_modules/
@@ -45,7 +50,19 @@ server/build/
 
 # Editor caches
 .idea/
-.vscode/
+
+# The cOde(n)-specific VSCode files (launch.json + tasks.json +
+# settings.json) are committed — they're the in-VSCode equivalent
+# of the cOde(n) app's buttons. Everything else under .vscode/ is
+# local workspace state (extensions, recents, the per-developer
+# handoff file the "Open in VSCode" button writes) and stays out
+# of git.
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/settings.json
+!.vscode/extensions.json
+solutions/.vscode-active
 
 # Chromium / Electron crash logs (not from our code)
 debug.log

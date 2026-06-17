@@ -15,7 +15,7 @@
  *
  * The player's input is a plain list / dict / set — no
  * runtime instrumentation, no ``TrackedList`` wrapper, no
- * runtime op counter. What the user sees in the editor is
+ * runtime op counter. What the user writes in VSCode is
  * exactly what gets counted.
  *
  * The ±5% band:

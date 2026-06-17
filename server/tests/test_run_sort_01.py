@@ -4,8 +4,11 @@ This is the load-bearing test. It posts the canonical
 ``SORT_01_SOURCE`` (bubble sort) to the server, gets a
 :class:`RunResponse` back, and asserts the result is correct
 (``passed=True``) AND within the complexity budget
-(``within_threshold=True``) AND uses the expected algorithm
-(``algorithm_match=True`` for sort_01 — no fingerprint, so True).
+(``within_threshold=True``).
+
+The per-step trace was removed from the response in v0.9.0
+(the player debugs in VSCode). We assert on the verdict
+fields only.
 
 Also tests the negative case: a deliberately wrong solution
 should return ``passed=False`` with a useful message.
@@ -40,10 +43,10 @@ class RunSort01Test(conftest._Base):
         # The AST op count must be positive (a working bubble
         # sort does many ops).
         self.assertGreater(body["user_ast_ops"], 0)
-        # The trace should have a non-trivial number of frames
-        # for a working bubble sort. (n=8 → ~ 8 outer * 8 inner *
-        # 3 lines/iter = ~190 frames)
-        self.assertGreater(len(body["trace"]), 50, "trace should have captured line events")
+        # The return value is rendered as a compact string.
+        # A sort of [3, 1, 2] returns something like "[1, 2, 3]".
+        self.assertIn("return_value_repr", body)
+        self.assertIsInstance(body["return_value_repr"], str)
 
     def test_no_op_returns_incorrect(self) -> None:
         # A solution that does nothing should fail correctness.
@@ -60,20 +63,6 @@ class RunSort01Test(conftest._Base):
         self.assertFalse(body["passed"])
         self.assertFalse(body["correct"])
         self.assertIn("Incorrect", body["message"])
-
-    def test_trace_includes_locals_snapshot(self) -> None:
-        r = self.client.post(
-            "/api/challenges/sort_01/run",
-            json={"source": SORT_01_SOURCE, "n": 4, "seed": 1},
-        )
-        self.assertEqual(r.status_code, 200)
-        body = r.json()
-        # At least one frame should have a `data` local that's a list.
-        any_with_data = any(
-            isinstance(f["locals"].get("data"), list)
-            for f in body["trace"]
-        )
-        self.assertTrue(any_with_data, "expected some trace frames to have `data` as a list")
 
     def test_unknown_challenge_returns_404(self) -> None:
         r = self.client.post(

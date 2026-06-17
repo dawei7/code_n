@@ -5,8 +5,8 @@ and the Python engine. It is the only file that:
 
 * exec()'s player code
 * calls into the engine's :class:`code_n.challenge.Challenge`
-* runs the player's ``solve()`` under a tracer (for the
-  visualizer step player)
+* runs the player's ``solve()`` under a tracer (the tracer
+  enforces a step limit that catches infinite loops)
 * converts the AST-based op count + the verifier's verdict
   into the Pydantic response model in :mod:`server.app.schemas`
 
@@ -16,8 +16,7 @@ Design notes
 **One temp file per run.** The engine's tracer uses
 ``func.__code__.co_filename`` to filter frames to the player's
 file. A real file gives each run a unique filename (so two
-concurrent runs with the same source don't collide) and lets
-the breakpoint loader work against an actual on-disk file. The
+concurrent runs with the same source don't collide). The
 temp file is cleaned up in a ``finally`` block.
 
 **No source wrapping.** The player source is exec'd verbatim
@@ -43,19 +42,23 @@ independent of the complexity budget — a single ``for i in
 range(10**9):`` would trip the cap, but a correct but
 sloppy O(n²) solution that just barely exceeds the budget
 would still be evaluated end-to-end.
+
+**The trace is internal-only.** The per-step trace frames
+are no longer shipped to the frontend (the player debugs in
+VSCode). The engine still uses the tracer for the step
+limit; the trace exists only as a local variable in
+``run_player_code`` and is discarded after the run.
 """
 from __future__ import annotations
 
 import logging
-import os
 import runpy
 import shutil
 import tempfile
-import traceback
 from pathlib import Path
 from typing import Any, Optional
 
-from challenges.registry import CHALLENGE_REGISTRY, get_challenge
+from challenges.registry import CHALLENGE_REGISTRY
 from code_n.challenge import Challenge
 from code_n.counter import (
     ComplexityClass,
@@ -68,12 +71,10 @@ from code_n.execution_trace import (
     run_with_trace,
 )
 
-from .ai_report import build as build_ai_report
 from .ast_ops import count_ops as ast_count_ops
-from .config import MAX_TRACE_FRAMES
-from .schemas import RunResponse, TraceFrameOut
+from .schemas import RunResponse
 from .too_efficient import check as check_too_efficient
-from .trace_codec import serialize_frame
+from .trace_codec import to_json_safe
 
 
 log = logging.getLogger(__name__)
@@ -301,16 +302,13 @@ def run_player_code(
             too_efficient_reason=too_efficient_reason,
         )
 
-        # --- 12. Serialize the trace. Downsample if huge. ---
-        trace_serialized = [serialize_frame(f) for f in trace.frames]
-        truncated = False
-        if len(trace_serialized) > MAX_TRACE_FRAMES:
-            # Keep every Nth frame + the first + last so the visualizer
-            # can still see the start and end states. For MVP we just
-            # truncate; the follow-up is to downsample more cleverly.
-            step = max(1, len(trace_serialized) // MAX_TRACE_FRAMES)
-            trace_serialized = trace_serialized[::step]
-            truncated = True
+        # --- 12. Render the return value as a compact string. ---
+        # The trace's ``return_value`` is what the tracer captured
+        # for the top-level ``solve()`` call; if the tracer didn't
+        # run (e.g. ``solve`` wasn't defined), fall back to the
+        # raw return. Cap at _RETURN_VALUE_CAP so a 10,000-element
+        # list doesn't blow up the response.
+        return_value_repr = _format_return_value(trace.return_value or result)
 
         return RunResponse(
             passed=passed,
@@ -328,32 +326,7 @@ def run_player_code(
             reference_ci_low=reference_ci_low,
             reference_ci_high=reference_ci_high,
             message=message,
-            trace=[TraceFrameOut(**f) for f in trace_serialized],
-            return_value_repr=str(trace.return_value or repr(result)),
-            truncated=truncated,
-            ai_report=build_ai_report(
-                challenge_id=challenge_id,
-                challenge_name=challenge.info.name,
-                category=challenge.info.category,
-                description=challenge.info.description,
-                required_complexity=required_complexity.value,
-                n=n,
-                seed=seed,
-                user_source=source,
-                passed=passed,
-                correct=correct,
-                within_threshold=within_threshold,
-                actual_complexity=actual_complexity.value,
-                message=message,
-                ops_total=user_ast_ops,
-                too_efficient=too_efficient,
-                too_efficient_reason=too_efficient_reason,
-                trace_frames=trace.frames,
-                user_ast_ops=user_ast_ops,
-                reference_ast_ops=reference_ast_ops,
-                reference_ci_low=reference_ci_low,
-                reference_ci_high=reference_ci_high,
-            ).to_dict(),
+            return_value_repr=return_value_repr,
         )
     finally:
         # Always clean up the temp dir, even on exception.
@@ -395,3 +368,34 @@ def _build_message(
             f"need {required_complexity.value}"
         )
     return f"Passed! {user_ast_ops} ops (complexity: {actual_complexity.value})"
+
+
+# Cap on the rendered return value. A 10,000-element list at
+# ~5 chars per element would be 50 KB; we cap well below that so
+# the response stays small and the UI can show it without
+# horizontal scrolling.
+_RETURN_VALUE_CAP = 500
+
+
+def _format_return_value(value: Any) -> str:
+    """Render the return value of ``solve()`` as a compact string.
+
+    Goes through :func:`trace_codec.to_json_safe` so lists /
+    tuples / sets / dicts render sensibly (Python ``repr()`` would
+    produce a single-line blob that's unreadable for nested
+    structures). Capped at :data:`_RETURN_VALUE_CAP` characters
+    with a trailing ellipsis when truncated.
+    """
+    try:
+        safe = to_json_safe(value)
+        # ``json.dumps`` with ``indent`` produces a human-readable
+        # multi-line form for nested structures. The default
+        # ``str()`` of a list is single-line, which is fine for
+        # short results but bad for grids.
+        import json
+        text = json.dumps(safe, indent=2)
+    except Exception:
+        text = repr(value)
+    if len(text) > _RETURN_VALUE_CAP:
+        text = text[:_RETURN_VALUE_CAP] + "…"
+    return text

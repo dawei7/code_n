@@ -348,11 +348,15 @@ export function presetForN(
   n: 1 | 2 | 3 | 4 | 5 | 6,
   idGen: () => string,
 ): LayoutNode {
+  // The v0.9.0 layouts: Description + Complexity + Result + VSCode
+  // are the four surfaces cOde(n) ships. The 1-pane preset puts
+  // all four tabs in a single leaf; 2-pane splits description vs
+  // the rest; 3+ panes spread them out.
   if (n === 1) {
     return {
       kind: 'leaf',
       id: idGen(),
-      tabIds: ['description', 'complexity', 'locals'],
+      tabIds: ['description', 'result', 'complexity', 'vscode'],
       activeTabId: 'description',
     };
   }
@@ -364,7 +368,7 @@ export function presetForN(
       sizes: [0.5, 0.5],
       children: [
         { kind: 'leaf', id: idGen(), tabIds: ['description', 'complexity'], activeTabId: 'description' },
-        { kind: 'leaf', id: idGen(), tabIds: ['locals'], activeTabId: 'locals' },
+        { kind: 'leaf', id: idGen(), tabIds: ['result', 'vscode'], activeTabId: 'result' },
       ],
     };
   }
@@ -373,7 +377,7 @@ export function presetForN(
       kind: 'split',
       id: idGen(),
       direction: 'row',
-      sizes: [0.55, 0.45],
+      sizes: [0.4, 0.6],
       children: [
         { kind: 'leaf', id: idGen(), tabIds: ['description', 'complexity'], activeTabId: 'description' },
         {
@@ -382,8 +386,8 @@ export function presetForN(
           direction: 'col',
           sizes: [0.55, 0.45],
           children: [
-            { kind: 'leaf', id: idGen(), tabIds: ['locals'], activeTabId: 'locals' },
-            { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
+            { kind: 'leaf', id: idGen(), tabIds: ['result'], activeTabId: 'result' },
+            { kind: 'leaf', id: idGen(), tabIds: ['vscode'], activeTabId: 'vscode' },
           ],
         },
       ],
@@ -412,15 +416,15 @@ export function presetForN(
           direction: 'col',
           sizes: [0.5, 0.5],
           children: [
-            { kind: 'leaf', id: idGen(), tabIds: ['locals'], activeTabId: 'locals' },
-            { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
+            { kind: 'leaf', id: idGen(), tabIds: ['result'], activeTabId: 'result' },
+            { kind: 'leaf', id: idGen(), tabIds: ['vscode'], activeTabId: 'vscode' },
           ],
         },
       ],
     };
   }
   if (n === 5) {
-    // 2 rows x 2 cols.
+    // 2 rows x 2 cols + 1 spare.
     return {
       kind: 'split',
       id: idGen(),
@@ -443,8 +447,8 @@ export function presetForN(
           direction: 'col',
           sizes: [0.5, 0.5],
           children: [
-            { kind: 'leaf', id: idGen(), tabIds: ['locals'], activeTabId: 'locals' },
-            { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
+            { kind: 'leaf', id: idGen(), tabIds: ['result'], activeTabId: 'result' },
+            { kind: 'leaf', id: idGen(), tabIds: ['vscode', 'reference'], activeTabId: 'vscode' },
           ],
         },
       ],
@@ -465,7 +469,7 @@ export function presetForN(
         children: [
           { kind: 'leaf', id: idGen(), tabIds: ['description'], activeTabId: 'description' },
           { kind: 'leaf', id: idGen(), tabIds: ['complexity'], activeTabId: 'complexity' },
-          { kind: 'leaf', id: idGen(), tabIds: ['locals'], activeTabId: 'locals' },
+          { kind: 'leaf', id: idGen(), tabIds: ['reference'], activeTabId: 'reference' },
         ],
       },
       {
@@ -474,8 +478,8 @@ export function presetForN(
         direction: 'col',
         sizes: [0.5, 0.5],
         children: [
-          { kind: 'leaf', id: idGen(), tabIds: ['editor'], activeTabId: 'editor' },
-          { kind: 'leaf', id: idGen(), tabIds: ['aiReport'], activeTabId: 'aiReport' },
+          { kind: 'leaf', id: idGen(), tabIds: ['result'], activeTabId: 'result' },
+          { kind: 'leaf', id: idGen(), tabIds: ['vscode'], activeTabId: 'vscode' },
         ],
       },
     ],

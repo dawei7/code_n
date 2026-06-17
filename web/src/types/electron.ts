@@ -4,9 +4,16 @@
  * type for the global Window augmentation; the preload script
  * imports it for its own runtime typing.
  *
+ * The in-app debug surface, the editor pop-out, and the
+ * detached-pane host were all removed in the v0.9.0 pivot
+ * (the player edits + debugs in VSCode). The remaining IPC
+ * surface is the auto-updater + an "Open in VSCode" button
+ * that calls ``shell.openPath(repoRoot)`` in the Electron
+ * main process.
+ *
  * The auto-update surface (`checkForUpdates`, `onUpdateStatus`,
- * etc.) is wired in `electron/src/updater.ts` and surfaced to
- * the React UI via `web/src/components/UpdateToast.tsx`.
+ * etc.) is wired in `electron/src/updater.ts` and surfaced to the
+ * React UI via `web/src/components/UpdateToast.tsx`.
  */
 export type UpdateState =
   | 'idle'
@@ -52,36 +59,21 @@ export interface AppVersionInfo {
 
 export type ElectronAPI = {
   /**
-   * Open a new BrowserWindow hosting the legacy pop-out Monaco
-   * editor at `?view=editor`. Returns true on success.
+   * Open the repo root in VSCode (the player's default editor
+   * for editing solutions/<id>.py). The Electron main process
+   * calls ``shell.openPath(repoRoot)`` which routes through
+   * the OS file-association handler — VSCode on Windows opens
+   * the project; macOS / Linux do the same via xdg-open /
+   * the equivalent. Returns true on success, false if VSCode
+   * isn't installed (the UI should fall back to a toast).
+   *
+   * The renderer should have written the active-challenge
+   * handoff file (via the ``/api/vscode/active`` HTTP route
+   * in the FastAPI server) BEFORE calling this — the F5
+   * launch config in VSCode reads that file when no id is
+   * passed on the command line.
    */
-  popOutEditor: () => Promise<boolean>;
-  /**
-   * Open a new BrowserWindow hosting a detached pane at
-   * `?view=pane&paneId=...&tabId=...`. Returns true on success.
-   */
-  popOutPane: (paneId: string, tabId: string) => Promise<boolean>;
-  /**
-   * Open (or focus) the popped-out debug window at
-   * `?view=debug&sessionId=...`. Returns true on success.
-   * Auto-invoked by the main window when a breakpoint is hit
-   * during a debug session. The pop-out is a pure view of the
-   * main window's debug state; commands (step, continue, stop)
-   * flow back over a BroadcastChannel and the main window
-   * forwards them to the WS.
-   */
-  popOutDebug: (sessionId: string) => Promise<boolean>;
-  /**
-   * Close the popped-out debug window if one is open. Used
-   * by the main window when the debug session ends.
-   */
-  closeDebugPopout: () => Promise<boolean>;
-  /**
-   * Subscribe to "a detached pane window was closed" events.
-   * Returns an unsubscribe function. The handler receives the
-   * paneId of the window that just closed.
-   */
-  onPaneWindowClosed: (cb: (paneId: string) => void) => () => void;
+  openInVSCode: () => Promise<boolean>;
 
   /**
    * Trigger a manual update check. Returns a structured result
@@ -100,14 +92,14 @@ export type ElectronAPI = {
   installUpdateAndRestart: () => void;
   /**
    * Current installed version + the update channel we're
-   * listening to. Used by the React UI to show "v0.1.0" in the
-   * header next to the "Check for updates" button.
+   * listening to. Used by the React UI to show "v0.1.0" in
+   * the header next to the "Check for updates" button.
    */
   getAppVersion: () => Promise<AppVersionInfo>;
   /**
    * Subscribe to "update:status" events broadcast by the main
-   * process whenever the auto-updater state changes. Returns an
-   * unsubscribe function. React UI uses this to drive the
+   * process whenever the auto-updater state changes. Returns
+   * an unsubscribe function. React UI uses this to drive the
    * "downloading…" / "restart to install" toast.
    */
   onUpdateStatus: (cb: (payload: UpdateStatusPayload) => void) => () => void;
