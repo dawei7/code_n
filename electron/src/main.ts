@@ -21,6 +21,7 @@
  */
 
 import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
+import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { startServer, ServerHandle } from './server-process';
 import { initAutoUpdater, runAutoCheckOnLaunch } from './updater';
@@ -30,23 +31,145 @@ let mainWindow: BrowserWindow | null = null;
 let server: ServerHandle | null = null;
 
 
+/**
+ * Path to the JSON file that stores the user's cOde(n) source
+ * repo location. Lives in `app.getPath('userData')` (writable on
+ * Windows) so it persists across upgrades.
+ *
+ * Why we need this: in dev, the repo is the parent of electron/,
+ * so we can resolve it from __dirname. In the packaged app, the
+ * EXE is installed in AppData/Local/Programs/coden-electron/ —
+ * not where the user actually has the source code (where their
+ * `solutions/<id>.py` files live). The user picks the source
+ * folder once on first launch, we save it here, and every
+ * subsequent "Open in VSCode" uses it.
+ */
+const REPO_PATH_FILE = 'repo-path.json';
+
+
+interface RepoPathConfig {
+  path: string;
+}
+
+
 /** Resolve the repo root by walking up from electron/dist/main.js. */
-function resolveRepoRoot(): string {
+function resolveDevRepoRoot(): string {
   // In dev, this file is at electron/dist/main.js; the repo root
-  // is three parents up.
+  // is three parents up. In the packaged app this returns the
+  // install dir, which is NOT where the user's source lives —
+  // use getUserRepoPath() for that.
   return path.resolve(__dirname, '..', '..', '..');
 }
 
 
+/** Path to the user-chosen repo path JSON (in userData). */
+function repoPathFile(): string {
+  return path.join(app.getPath('userData'), REPO_PATH_FILE);
+}
+
+
+/** Read the user-chosen repo path from disk. Returns null
+ *  if the file doesn't exist, can't be parsed, or points to
+ *  a directory that no longer exists. */
+function getUserRepoPath(): string | null {
+  try {
+    const raw = fs.readFileSync(repoPathFile(), 'utf-8');
+    const data = JSON.parse(raw) as Partial<RepoPathConfig>;
+    if (data && typeof data.path === 'string' && data.path.length > 0) {
+      // Verify the path still exists; if not, drop the stale
+      // config and let the user re-pick.
+      if (fs.existsSync(data.path)) {
+        return data.path;
+      }
+      console.warn(`[coden-electron] stored repo path ${data.path} no longer exists; clearing`);
+      try {
+        fs.unlinkSync(repoPathFile());
+      } catch {
+        // best-effort
+      }
+    }
+  } catch {
+    // file doesn't exist or isn't valid JSON — fine, first run
+  }
+  return null;
+}
+
+
+/** Write the user-chosen repo path to disk. */
+function setUserRepoPath(repoPath: string): void {
+  const data: RepoPathConfig = { path: repoPath };
+  fs.writeFileSync(repoPathFile(), JSON.stringify(data, null, 2), 'utf-8');
+}
+
+
+/** Heuristic: does this folder look like a cOde(n) source repo?
+ *  We check for the three markers that always exist: .vscode/
+ *  (the launch config), solutions/ (the player's saved code),
+ *  and tools/run_solution.py (the F5 entry point). */
+function looksLikeRepo(repoPath: string): boolean {
+  return (
+    fs.existsSync(path.join(repoPath, '.vscode')) &&
+    fs.existsSync(path.join(repoPath, 'solutions')) &&
+    fs.existsSync(path.join(repoPath, 'tools', 'run_solution.py'))
+  );
+}
+
+
+/** Show the OS folder picker. Returns the chosen path or null
+ *  if the user cancelled. */
+async function pickRepoFolder(): Promise<string | null> {
+  const result = await dialog.showOpenDialog({
+    title: 'Select your cOde(n) source folder',
+    message: 'Pick the folder where you cloned the cOde(n) repository ' +
+            '(the one with .vscode/, solutions/, and tools/ subfolders). ' +
+            'This is where your solutions/<id>.py files live.',
+    properties: ['openDirectory'],
+  });
+  if (result.canceled || result.filePaths.length === 0) return null;
+  return result.filePaths[0];
+}
+
+
+/** The "Open in VSCode" target. Falls back through three tiers:
+ *  1. The user-chosen path (stored in userData on first run).
+ *  2. The dev heuristic (resolveDevRepoRoot) — only correct in
+ *     a dev launch, but harmless to try.
+ *  3. Prompt the user to pick a folder, then save it.
+ *
+ *  Returns the resolved path, or null if the user cancelled
+ *  the picker. The renderer can show a "please pick your repo"
+ *  prompt if it gets null. */
+async function resolveOpenRepoPath(): Promise<string | null> {
+  const stored = getUserRepoPath();
+  if (stored && looksLikeRepo(stored)) return stored;
+  const dev = resolveDevRepoRoot();
+  if (looksLikeRepo(dev)) return dev;
+  const picked = await pickRepoFolder();
+  if (!picked) return null;
+  if (!looksLikeRepo(picked)) {
+    // Picked the wrong folder. Clear the stored path (if any
+    // — none here, but be defensive) and bail.
+    return null;
+  }
+  setUserRepoPath(picked);
+  return picked;
+}
+
+
 async function createWindow(): Promise<void> {
-  const repoRoot = resolveRepoRoot();
+  // The dev repo root is the source tree (for the FastAPI server
+  // to find solutions/, progress.json, .vscode/, etc.). In the
+  // packaged app the server reads everything from the bundled
+  // resources, so the dev heuristic isn't useful here — but we
+  // still log it for diagnostic purposes.
+  const repoRoot = resolveDevRepoRoot();
   // In production, progress.json + solutions/ live in the user's
   // app data dir (writable on Windows, where Program Files is not).
   // In dev, they live in the repo root.
   const codenHome = app.isPackaged
     ? app.getPath('userData')
     : repoRoot;
-  console.log(`[coden-electron] repo root: ${repoRoot}`);
+  console.log(`[coden-electron] dev repo root: ${repoRoot}`);
   console.log(`[coden-electron] CODEN_HOME: ${codenHome} (packaged=${app.isPackaged})`);
   console.log(`[coden-electron] process.resourcesPath: ${process.resourcesPath}`);
 
@@ -84,28 +207,45 @@ async function createWindow(): Promise<void> {
   // active. The renderer should have written
   // solutions/.vscode-active FIRST so the F5 launch config
   // defaults to the right challenge.
-  ipcMain.handle('open-in-vscode', () => {
+  //
+  // The path comes from ``resolveOpenRepoPath`` which uses the
+  // user-stored repo path (saved on first launch), falling
+  // back to a folder picker if nothing's stored yet. The result
+  // is the absolute path to the user's cOde(n) source repo —
+  // NOT the install dir. This is what powers the
+  // "Open solutions/<id>.py" use case.
+  ipcMain.handle('open-in-vscode', async () => {
+    const target = await resolveOpenRepoPath();
+    if (!target) return false;
     try {
-      // ``shell.openPath`` returns a promise that resolves to
-      // an error string (empty on success). We don't wait on it
-      // here — the handler returns true immediately and logs
-      // any error asynchronously.
-      void shell.openPath(repoRoot).then(
-        (errMsg) => {
-          if (errMsg) {
-            console.warn(`[coden-electron] shell.openPath: ${errMsg}`);
-          }
-        },
-        (err) => {
-          console.warn(`[coden-electron] shell.openPath rejected: ${err}`);
-        },
-      );
+      const errMsg = await shell.openPath(target);
+      if (errMsg) {
+        console.warn(`[coden-electron] shell.openPath(${target}): ${errMsg}`);
+        return false;
+      }
       return true;
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
       console.error(`[coden-electron] openInVSCode failed: ${message}`);
       return false;
     }
+  });
+
+  // Read the stored repo path (returns null if none / stale).
+  // The renderer calls this on mount to decide whether to show
+  // a "set your repo path" prompt.
+  ipcMain.handle('get-repo-path', () => getUserRepoPath());
+
+  // Manually change the repo path. Pops the OS folder picker,
+  // validates the chosen folder, and saves it. Returns the new
+  // path on success or null on cancel/invalid. Used by the
+  // renderer's "Change" button in the VSCode tab.
+  ipcMain.handle('set-repo-path', async () => {
+    const picked = await pickRepoFolder();
+    if (!picked) return null;
+    if (!looksLikeRepo(picked)) return null;
+    setUserRepoPath(picked);
+    return picked;
   });
 
   const mainUrl = `http://127.0.0.1:${server.port}/`;

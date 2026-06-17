@@ -59,13 +59,19 @@ export interface AppVersionInfo {
 
 export type ElectronAPI = {
   /**
-   * Open the repo root in VSCode (the player's default editor
-   * for editing solutions/<id>.py). The Electron main process
-   * calls ``shell.openPath(repoRoot)`` which routes through
-   * the OS file-association handler — VSCode on Windows opens
-   * the project; macOS / Linux do the same via xdg-open /
-   * the equivalent. Returns true on success, false if VSCode
-   * isn't installed (the UI should fall back to a toast).
+   * Open the user's cOde(n) source folder in VSCode. The
+   * Electron main process calls ``shell.openPath(repoPath)``
+   * which routes through the OS file-association handler —
+   * VSCode on Windows opens the project; macOS / Linux do
+   * the same via xdg-open / the equivalent. Returns true on
+   * success, false if VSCode isn't installed or the user
+   * cancelled the repo-folder picker.
+   *
+   * On the first call, if no repo path is stored, the main
+   * process pops an OS folder picker so the user can point
+   * cOde(n) at their cOde(n) source clone (the one with
+   * ``.vscode/``, ``solutions/``, and ``tools/`` subfolders).
+   * Subsequent calls reuse the stored path.
    *
    * The renderer should have written the active-challenge
    * handoff file (via the ``/api/vscode/active`` HTTP route
@@ -74,6 +80,23 @@ export type ElectronAPI = {
    * passed on the command line.
    */
   openInVSCode: () => Promise<boolean>;
+  /**
+   * Read the user-chosen cOde(n) repo path (stored in
+   * ``app.getPath('userData')/repo-path.json`` by the main
+   * process). Returns the path string or null if no path
+   * is set yet. The renderer calls this on mount to decide
+   * whether to show a "set your repo path" prompt.
+   */
+  getRepoPath: () => Promise<string | null>;
+  /**
+   * Manually change the repo path. Pops an OS folder picker
+   * (handled by the main process), validates that the chosen
+   * folder looks like a cOde(n) source clone (has ``.vscode/``,
+   * ``solutions/``, ``tools/run_solution.py``), and saves the
+   * new path. Returns the new path string on success or
+   * null if the user cancelled or picked an invalid folder.
+   */
+  setRepoPath: () => Promise<string | null>;
 
   /**
    * Trigger a manual update check. Returns a structured result

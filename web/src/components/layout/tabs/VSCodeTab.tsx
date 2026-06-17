@@ -6,15 +6,17 @@
  * "click here for the setup details" surface.
  *
  * The tab shows:
+ *   - The user's cOde(n) source folder (so they know where
+ *     "Open in VSCode" is pointing) + a "Change" button to
+ *     repoint at a different repo.
  *   - A big "Open in VSCode" button (calls Electron's
  *     shell.openPath via the openInVSCode IPC, or the
  *     vscode:// URL fallback in dev).
- *   - The repo root (so the user knows where to look).
- *   - A 3-step "how to debug a challenge" walkthrough.
+ *   - The 3-step "how to debug a challenge" walkthrough.
  *   - The current active-challenge id (so the user can
  *     see what the F5 default will be).
  */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppStore } from '../../../store/useAppStore';
 import { writeActiveChallenge } from '../../../api/vscode';
 
@@ -23,6 +25,28 @@ export function VSCodeTab() {
   const detail = useAppStore((s) => s.currentDetail);
   const [opening, setOpening] = useState(false);
   const [lastError, setLastError] = useState<string | null>(null);
+  const [repoPath, setRepoPath] = useState<string | null>(null);
+  const [changingRepo, setChangingRepo] = useState(false);
+
+  // On mount, fetch the user-chosen repo path. The main
+  // process stores this in app.getPath('userData')/repo-path.json
+  // after the first "Open in VSCode" click (where the picker
+  // is shown if nothing is set yet). null = "not set yet",
+  // which the UI surfaces as a prompt to click "Open in VSCode".
+  useEffect(() => {
+    const api = window.electronAPI;
+    if (api?.getRepoPath) {
+      void api.getRepoPath().then(setRepoPath);
+    }
+  }, []);
+
+  async function refreshRepoPath() {
+    const api = window.electronAPI;
+    if (api?.getRepoPath) {
+      const p = await api.getRepoPath();
+      setRepoPath(p);
+    }
+  }
 
   async function handleOpenInVSCode() {
     setOpening(true);
@@ -43,7 +67,22 @@ export function VSCodeTab() {
       if (api?.openInVSCode) {
         const ok = await api.openInVSCode();
         if (!ok) {
-          setLastError('VSCode did not respond. Is it installed and on PATH?');
+          // Two failure modes: (a) VSCode isn't installed,
+          // (b) the user cancelled the repo-path picker on
+          // first run. Distinguish by re-checking the path.
+          const p = await api.getRepoPath?.();
+          if (!p) {
+            setLastError(
+              'No repo path set. Click "Change" to pick the folder where ' +
+              'you cloned the cOde(n) repository.',
+            );
+          } else {
+            setLastError('VSCode did not respond. Is it installed and on PATH?');
+          }
+        } else {
+          // Refresh the path — the picker may have just set
+          // it for the first time.
+          await refreshRepoPath();
         }
       } else {
         // Dev / browser fallback: open the vscode:// protocol URL.
@@ -56,6 +95,26 @@ export function VSCodeTab() {
       setLastError(e instanceof Error ? e.message : String(e));
     } finally {
       setOpening(false);
+    }
+  }
+
+  async function handleChangeRepo() {
+    setChangingRepo(true);
+    try {
+      const api = window.electronAPI;
+      if (api?.setRepoPath) {
+        const newPath = await api.setRepoPath();
+        if (newPath) {
+          setRepoPath(newPath);
+        } else {
+          setLastError(
+            'Picked folder does not look like a cOde(n) source clone ' +
+            '(missing .vscode/ or solutions/ or tools/run_solution.py).',
+          );
+        }
+      }
+    } finally {
+      setChangingRepo(false);
     }
   }
 
@@ -72,12 +131,49 @@ export function VSCodeTab() {
         </p>
       </header>
 
+      {/* Repo path card. Shows the currently-configured path
+          (set on first "Open in VSCode" click) so the user
+          can see where the project will open. The "Change"
+          button pops a folder picker to repoint at a
+          different clone. */}
+      <div className="border border-coden-border bg-coden-bg rounded p-3 text-xs space-y-2">
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0 flex-1">
+            <div className="text-coden-muted uppercase tracking-wider font-semibold text-[10px] mb-1">
+              Your cOde(n) source folder
+            </div>
+            {repoPath ? (
+              <div className="font-mono text-coden-text break-all">
+                {repoPath}
+              </div>
+            ) : (
+              <div className="text-coden-muted italic">
+                Not set yet — click "Open in VSCode" below and pick your
+                cOde(n) source clone (the one with .vscode/, solutions/,
+                and tools/ subfolders).
+              </div>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={() => void handleChangeRepo()}
+            disabled={changingRepo}
+            className="px-2 py-1 text-xs rounded border border-coden-border text-coden-text hover:bg-coden-border disabled:opacity-50 shrink-0"
+            title="Pick a different cOde(n) source folder"
+          >
+            {changingRepo ? '…' : 'Change'}
+          </button>
+        </div>
+      </div>
+
       <button
         type="button"
         onClick={() => void handleOpenInVSCode()}
         disabled={opening}
         className="w-full px-4 py-3 text-sm font-semibold rounded border border-coden-accent bg-coden-accent/10 text-coden-accent hover:bg-coden-accent hover:text-coden-bg disabled:opacity-50 disabled:cursor-not-allowed"
-        title="Open the project in VSCode (or the vscode:// handler if you're in a browser)"
+        title={repoPath
+          ? `Open ${repoPath} in VSCode`
+          : 'Pick your cOde(n) source folder, then open it in VSCode'}
       >
         {opening ? 'Opening…' : '</> Open in VSCode'}
       </button>
@@ -95,14 +191,17 @@ export function VSCodeTab() {
         <ol className="text-xs text-coden-text space-y-2 list-decimal list-inside">
           <li>
             Click <span className="font-mono text-coden-accent">Open in VSCode</span>{' '}
-            above. VSCode opens the project at the repo root.
+            above. VSCode opens your cOde(n) source folder (set on
+            first click).
           </li>
           <li>
             Open{' '}
             <span className="font-mono text-coden-text">
               solutions/{detail?.id ?? '<id>'}.py
             </span>{' '}
-            in VSCode.
+            in VSCode. A starter is already there; replace the{' '}
+            <span className="font-mono text-coden-muted"># Write your code here.</span>
+            {' '}body with your implementation.
           </li>
           <li>
             Press{' '}
@@ -143,6 +242,7 @@ export function VSCodeTab() {
           <li><span className="text-coden-accent">.vscode/tasks.json</span> — non-debug tasks + tests</li>
           <li><span className="text-coden-accent">.vscode/settings.json</span> — Python interpreter + file excludes</li>
           <li><span className="text-coden-accent">.vscode/extensions.json</span> — recommended extensions</li>
+          <li><span className="text-coden-accent">solutions/&lt;id&gt;.py</span> — the 264 starter templates</li>
           <li><span className="text-coden-accent">solutions/.vscode-active</span> — the active-challenge handoff (gitignored)</li>
         </ul>
       </section>

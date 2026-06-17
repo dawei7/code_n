@@ -38,6 +38,8 @@ import type {
 
 contextBridge.exposeInMainWorld('electronAPI', {
   openInVSCode: (): Promise<boolean> => ipcRenderer.invoke('open-in-vscode'),
+  getRepoPath: (): Promise<string | null> => ipcRenderer.invoke('get-repo-path'),
+  setRepoPath: (): Promise<string | null> => ipcRenderer.invoke('set-repo-path'),
 
   // ---- Auto-update surface ----
 
