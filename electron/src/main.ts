@@ -388,14 +388,21 @@ async function createWindow(): Promise<void> {
   const codenHome = app.isPackaged
     ? app.getPath('userData')
     : repoRoot;
-  const electronPkg = require('../package.json') as { version?: string };
+  // Use ``app.getVersion()`` instead of requiring package.json
+  // directly: from the tsconfig's ``rootDir: ".."`` output path
+  // (``dist/electron/src/main.js``), a relative require would
+  // resolve to a non-existent ``dist/electron/package.json`` and
+  // throw on startup. ``app.getVersion()`` reads from the
+  // app's own package.json (the asar root), which is always
+  // present.
+  const electronPkgVersion = app.getVersion();
   // Set up the diagnostic log file as early as possible so
   // even crashes during startup are captured.
   logFilePath = path.join(codenHome, LOG_FILENAME);
   try {
     fs.writeFileSync(
       logFilePath,
-      `=== cOde(n) v${electronPkg.version ?? '?'} starting at ${new Date().toISOString()} ===\n` +
+      `=== cOde(n) v${electronPkgVersion} starting at ${new Date().toISOString()} ===\n` +
         `CODEN_HOME: ${codenHome}\n` +
         `install dir: ${path.dirname(app.getPath('exe'))}\n` +
         `process.resourcesPath: ${process.resourcesPath}\n` +
@@ -414,7 +421,7 @@ async function createWindow(): Promise<void> {
   console.warn = (...args: unknown[]) => { writeLog('WARN', args); origWarn(...args); };
   console.error = (...args: unknown[]) => { writeLog('ERROR', args); origError(...args); };
 
-  console.log(`[coden-electron] === cOde(n) v${electronPkg.version ?? '?'} starting ===`);
+  console.log(`[coden-electron] === cOde(n) v${electronPkgVersion} starting ===`);
   console.log(`[coden-electron] dev repo root: ${repoRoot}`);
   console.log(`[coden-electron] CODEN_HOME: ${codenHome} (packaged=${app.isPackaged})`);
   console.log(`[coden-electron] process.resourcesPath: ${process.resourcesPath}`);
