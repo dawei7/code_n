@@ -251,21 +251,44 @@ async function openSolutionFile(
   // most reliable path when VSCode is installed and the
   // user accepted "Add to PATH" during the VSCode
   // installer.
+  //
+  // On Windows, ``code`` is a ``.cmd`` batch wrapper. Node's
+  // ``spawn`` cannot invoke ``.cmd`` files natively (it would
+  // fail with ENOENT) — we need ``shell: true`` so the OS
+  // shell resolves the extension. The 'error' event from
+  // ``spawn`` is also asynchronous (fires after the
+  // synchronous return) and would surface as an uncaught
+  // exception if not handled; we attach a handler that logs
+  // and swallows the failure so the IPC reply still works.
   const codeExe = findCodeCli();
   console.log(
     `[coden-electron] openInVSCode: target=${filePath}; ` +
     `code CLI=${codeExe ?? '(not found)'}`,
   );
   if (codeExe) {
+    let spawnError: Error | null = null;
     try {
       const child = spawn(codeExe, [filePath, '-n'], {
         detached: true,
         stdio: 'ignore',
         windowsHide: true,
+        // Windows needs the shell to resolve .cmd / .bat
+        // extensions; without this, spawn fails with ENOENT
+        // even though the file is on PATH.
+        shell: process.platform === 'win32',
+      });
+      child.on('error', (err) => {
+        spawnError = err;
+        console.warn(
+          `[coden-electron] code CLI spawn error for ${filePath}: ` +
+          `${err.message}; falling back to shell.openPath`,
+        );
       });
       child.unref();
-      console.log(`[coden-electron] openInVSCode: spawned code CLI for ${filePath}`);
-      return { ok: true, filePath };
+      if (!spawnError) {
+        console.log(`[coden-electron] openInVSCode: spawned code CLI for ${filePath}`);
+        return { ok: true, filePath };
+      }
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
       console.warn(
@@ -320,20 +343,47 @@ async function openSolutionFile(
 
 
 /** Find the ``code`` (or ``code.cmd``) CLI. Checks PATH
- *  first, then the standard Windows install location
- *  (``%LOCALAPPDATA%\Programs\Microsoft VS Code\bin``).
- *  Returns the absolute path or null. */
+ *  first, then the two standard Windows install locations:
+ *  per-user (``%LOCALAPPDATA%\Programs\Microsoft VS Code\``)
+ *  and per-machine (``C:\Program Files\Microsoft VS Code\``).
+ *  Returns the absolute path or null.
+ *
+ *  Note: on Windows, the CLI is a ``.cmd`` batch wrapper,
+ *  not a native binary. We always return the full path
+ *  (including the ``.cmd`` extension) so the caller can
+ *  spawn it with ``shell: true`` to let the OS resolve
+ *  the extension. */
 function findCodeCli(): string | null {
-  // PATH
-  const fromPath = findOnPath('code') ?? findOnPath('code.cmd');
+  // PATH — prefer ``code.cmd`` (the real Windows entry
+  // point) over the bare ``code`` name, which Windows'
+  // ``where`` may resolve to the extensionless file.
+  const fromPath = findOnPath('code.cmd') ?? findOnPath('code');
   if (fromPath) return fromPath;
-  // Standard Windows install (the user-installed version
-  // — the system-installed MSI uses a different path)
   if (process.platform === 'win32') {
-    const local = process.env.LOCALAPPDATA ?? '';
     const candidates = [
-      path.join(local, 'Programs', 'Microsoft VS Code', 'bin', 'code.cmd'),
-      path.join(local, 'Programs', 'Microsoft VS Code', 'Code.exe'),
+      // Per-user install (default for the user installer)
+      path.join(
+        process.env.LOCALAPPDATA ?? '',
+        'Programs', 'Microsoft VS Code', 'bin', 'code.cmd',
+      ),
+      // Per-machine install (default for the system MSI)
+      path.join(
+        process.env.ProgramFiles ?? 'C:\\Program Files',
+        'Microsoft VS Code', 'bin', 'code.cmd',
+      ),
+      // Fallback: the VSCode app itself (Code.exe). We
+      // accept this last because it's the GUI launcher,
+      // not a CLI wrapper; spawning it with a file arg
+      // works but loses the ``-n`` flag's "new window"
+      // semantic.
+      path.join(
+        process.env.LOCALAPPDATA ?? '',
+        'Programs', 'Microsoft VS Code', 'Code.exe',
+      ),
+      path.join(
+        process.env.ProgramFiles ?? 'C:\\Program Files',
+        'Microsoft VS Code', 'Code.exe',
+      ),
     ];
     for (const c of candidates) {
       if (fs.existsSync(c)) return c;
