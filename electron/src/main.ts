@@ -214,19 +214,23 @@ function isValidChallengeId(id: unknown): id is string {
  *  Returns a small result object so the renderer can show a
  *  precise error message on failure.
  *
- *  Tries three strategies in order:
- *    1. ``code <file> -n`` via the ``code`` CLI (if on PATH
+ *  Tries strategies in order:
+ *    1. (Windows only) ``shell.openExternal('vscode://file/<path>')``
+ *       — uses VSCode's own URL handler, which is registered at
+ *       install time on every Windows machine. Atomic, no
+ *       process-group bookkeeping, no ``.cmd`` wrapper race.
+ *    2. ``code <file> -n`` via the ``code`` CLI (if on PATH
  *       or in the standard install location). The ``-n``
  *       forces a NEW VSCode window so the file isn't added
- *       to a stale window with the wrong workspace.
- *    2. ``shell.openPath(filePath)`` — uses the OS file
+ *       to a stale window with the wrong workspace. On Windows
+ *       we launch through ``cmd.exe /c start ""`` so the
+ *       wrapping ``cmd.exe`` returns immediately and the
+ *       spawned ``Code.exe`` is properly detached.
+ *    3. ``shell.openPath(filePath)`` — uses the OS file
  *       association. Works when the user has associated
  *       ``.py`` with VSCode.
- *    3. ``shell.openExternal('vscode://file/<path>')`` —
- *       uses VSCode's own URL handler (always registered
- *       on install, regardless of file associations).
  *
- *  If all three fail (VSCode not installed at all), we
+ *  If all strategies fail (VSCode not installed at all), we
  *  return a clear error so the renderer can tell the user. */
 async function openSolutionFile(
   codenHome: string,
@@ -245,21 +249,43 @@ async function openSolutionFile(
     };
   }
 
-  // Strategy 1: the ``code`` CLI (if installed). The ``-n``
+  // Strategy 1 (Windows only): the ``vscode://file/<path>`` URL.
+  // VSCode registers this handler on install regardless of any
+  // ``Add to PATH`` choice. Using ``shell.openExternal`` here is
+  // atomic and side-steps the Windows ``.cmd`` + detached-spawn
+  // race described below (the wrapping ``cmd.exe`` can exit
+  // before ``Code.exe`` actually launches, so ``spawn`` reports
+  // success while nothing visible happens).
+  if (process.platform === 'win32') {
+    try {
+      const fileUrl = 'vscode://file/' + pathToVscodeUrl(filePath);
+      await shell.openExternal(fileUrl);
+      console.log(`[coden-electron] openInVSCode: vscode:// URL OK for ${fileUrl}`);
+      return { ok: true, filePath };
+    } catch (e) {
+      const message = e instanceof Error ? e.message : String(e);
+      console.warn(
+        `[coden-electron] vscode:// URL failed for ${filePath}: ${message}; ` +
+        'falling back to code CLI',
+      );
+    }
+  }
+
+  // Strategy 2: the ``code`` CLI (if installed). The ``-n``
   // flag forces a fresh window so the file isn't added to
-  // a stale window with the wrong workspace. This is the
-  // most reliable path when VSCode is installed and the
-  // user accepted "Add to PATH" during the VSCode
-  // installer.
+  // a stale window with the wrong workspace.
   //
   // On Windows, ``code`` is a ``.cmd`` batch wrapper. Node's
   // ``spawn`` cannot invoke ``.cmd`` files natively (it would
-  // fail with ENOENT) — we need ``shell: true`` so the OS
-  // shell resolves the extension. The 'error' event from
-  // ``spawn`` is also asynchronous (fires after the
-  // synchronous return) and would surface as an uncaught
-  // exception if not handled; we attach a handler that logs
-  // and swallows the failure so the IPC reply still works.
+  // fail with ENOENT). We also can't just rely on
+  // ``detached: true``: the wrapping ``cmd.exe`` exits as soon
+  // as it hands off to ``Code.exe``, and on some Windows builds
+  // the new process group is reaped before the GUI process is
+  // fully initialised — so the spawn "succeeds" but VSCode
+  // never appears. The reliable Windows pattern is to launch
+  // through ``cmd.exe /c start ""`` (the Windows builtin that
+  // returns immediately after spawning the child). On macOS /
+  // Linux a plain detached spawn is fine.
   const codeExe = findCodeCli();
   console.log(
     `[coden-electron] openInVSCode: target=${filePath}; ` +
@@ -268,15 +294,28 @@ async function openSolutionFile(
   if (codeExe) {
     let spawnError: Error | null = null;
     try {
-      const child = spawn(codeExe, [filePath, '-n'], {
-        detached: true,
-        stdio: 'ignore',
-        windowsHide: true,
-        // Windows needs the shell to resolve .cmd / .bat
-        // extensions; without this, spawn fails with ENOENT
-        // even though the file is on PATH.
-        shell: process.platform === 'win32',
-      });
+      let child: ReturnType<typeof spawn>;
+      if (process.platform === 'win32') {
+        child = spawn(
+          'cmd.exe',
+          ['/d', '/s', '/c', 'start', '""', `"${codeExe}"`, `"${filePath}"`, '-n'],
+          {
+            detached: true,
+            stdio: 'ignore',
+            windowsHide: true,
+            // The command line above is already a single properly-
+            // quoted Windows command — do NOT let Node re-tokenise
+            // it through the shell, or the embedded quotes break.
+            shell: false,
+          },
+        );
+      } else {
+        child = spawn(codeExe, [filePath, '-n'], {
+          detached: true,
+          stdio: 'ignore',
+          windowsHide: true,
+        });
+      }
       child.on('error', (err) => {
         spawnError = err;
         console.warn(
@@ -298,7 +337,7 @@ async function openSolutionFile(
     }
   }
 
-  // Strategy 2: file association. The most common path
+  // Strategy 3: file association. The most common path
   // when the ``code`` CLI isn't installed.
   try {
     const errMsg = await shell.openPath(filePath);
@@ -318,8 +357,11 @@ async function openSolutionFile(
     );
   }
 
-  // Strategy 3: vscode:// URL. Always works if VSCode is
-  // installed (the URL handler is registered on install).
+  // Final fallback: vscode:// URL. Always works if VSCode is
+  // installed (the URL handler is registered on install). On
+  // Windows this is now strategy 1 and we shouldn't reach here
+  // unless both the code CLI and shell.openPath failed; on
+  // macOS / Linux it's the catch-all after file association.
   try {
     const fileUrl = 'vscode://file/' + pathToVscodeUrl(filePath);
     await shell.openExternal(fileUrl);
@@ -328,7 +370,7 @@ async function openSolutionFile(
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
     console.error(
-      `[coden-electron] openInVSCode: all 3 strategies failed for ${filePath}; ` +
+      `[coden-electron] openInVSCode: all strategies failed for ${filePath}; ` +
       `last error: ${message}`,
     );
     return {
