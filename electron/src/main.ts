@@ -47,6 +47,36 @@ let mainWindow: BrowserWindow | null = null;
 let server: ServerHandle | null = null;
 
 
+// --- Diagnostic log file -------------------------------------------
+// We write every console.log/warn/error to a small log file
+// in the user's userData dir so the user can see the main
+// process's output without having to run the app from a
+// terminal. The file is overwritten on each launch; size
+// is bounded by the number of clicks.
+//
+// Why: the v0.9.6 fix added detailed per-click logging
+// (``openInVSCode: target=...; code CLI=...``) so we can
+// tell which version of the main process is running and
+// which strategy was taken. The packaged app is a GUI
+// subsystem binary on Windows, so its stdout isn't easily
+// visible to the user. The log file is.
+const LOG_FILENAME = 'coden.log';
+let logFilePath: string | null = null;
+
+function writeLog(level: string, args: unknown[]): void {
+  if (!logFilePath) return;
+  try {
+    const ts = new Date().toISOString();
+    const line = `[${ts}] [${level}] ${args
+      .map((a) => (typeof a === 'string' ? a : JSON.stringify(a)))
+      .join(' ')}\n`;
+    fs.appendFileSync(logFilePath, line, 'utf-8');
+  } catch {
+    // best-effort
+  }
+}
+
+
 /**
  * Workspace files copied into the per-user dir on first launch.
  * Order matters only for the log output — they're all
@@ -359,11 +389,37 @@ async function createWindow(): Promise<void> {
     ? app.getPath('userData')
     : repoRoot;
   const electronPkg = require('../package.json') as { version?: string };
+  // Set up the diagnostic log file as early as possible so
+  // even crashes during startup are captured.
+  logFilePath = path.join(codenHome, LOG_FILENAME);
+  try {
+    fs.writeFileSync(
+      logFilePath,
+      `=== cOde(n) v${electronPkg.version ?? '?'} starting at ${new Date().toISOString()} ===\n` +
+        `CODEN_HOME: ${codenHome}\n` +
+        `install dir: ${path.dirname(app.getPath('exe'))}\n` +
+        `process.resourcesPath: ${process.resourcesPath}\n` +
+        `app.isPackaged: ${app.isPackaged}\n` +
+        `\n`,
+      'utf-8',
+    );
+  } catch {
+    // best-effort
+  }
+  // Mirror the console.* calls to the log file.
+  const origLog = console.log.bind(console);
+  const origWarn = console.warn.bind(console);
+  const origError = console.error.bind(console);
+  console.log = (...args: unknown[]) => { writeLog('INFO', args); origLog(...args); };
+  console.warn = (...args: unknown[]) => { writeLog('WARN', args); origWarn(...args); };
+  console.error = (...args: unknown[]) => { writeLog('ERROR', args); origError(...args); };
+
   console.log(`[coden-electron] === cOde(n) v${electronPkg.version ?? '?'} starting ===`);
   console.log(`[coden-electron] dev repo root: ${repoRoot}`);
   console.log(`[coden-electron] CODEN_HOME: ${codenHome} (packaged=${app.isPackaged})`);
   console.log(`[coden-electron] process.resourcesPath: ${process.resourcesPath}`);
   console.log(`[coden-electron] install dir (executable): ${path.dirname(app.getPath('exe'))}`);
+  console.log(`[coden-electron] log file: ${logFilePath}`);
 
   // Stage the per-user VSCode workspace files (.vscode/, tools/,
   // server/, code_n/, challenges/) into codenHome if they're
