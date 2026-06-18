@@ -195,6 +195,13 @@ def main() -> int:
         n=args.n,
         seed=seed,
         mode=args.mode,
+        # Pass the workspace path so debugpy can hit breakpoints
+        # in the player's open editor file. The engine normally
+        # copies the source into a temp dir for tracer filename
+        # uniqueness; the explicit ``execution_path`` opt-out
+        # (added for this VSCode entry point) keeps everything
+        # mapped to ``solutions/<id>.py``.
+        execution_path=str(_REPO_ROOT / "solutions" / f"{challenge_id}.py"),
     )
 
     verdict_line = _format_verdict(result)
@@ -222,5 +229,36 @@ def main() -> int:
     return 0 if result.passed else 1
 
 
+def _is_debugger_attached() -> bool:
+    """Return True if debugpy is currently attached to this process.
+
+    debugpy sets ``sys.flags.debug`` and exposes ``sys.gettrace()``
+    returning a non-None callable. Either signal is enough for the
+    VSCode F5 case; we don't try to be clever about remote attach.
+    """
+    if getattr(sys, "flags", None) is not None and getattr(sys.flags, "debug", 0):
+        return True
+    return sys.gettrace() is not None
+
+
 if __name__ == "__main__":
-    raise SystemExit(main())
+    exit_code = main()
+    # Under a debugger, leave the process alive so the player can
+    # inspect post-run state (locals, return value, the trace
+    # object) after the verdict prints. ``SystemExit`` would
+    # tear down the process before they get a chance to look.
+    if _is_debugger_attached():
+        # Block forever so the IDE stays attached. The user ends
+        # the session with the Stop button. ``input()`` on EOF
+        # raises EOFError, which we swallow.
+        try:
+            print(
+                "\n[run_solution] debugger attached — process held open. "
+                "Press Stop in VSCode to end the session.",
+                file=sys.stderr,
+            )
+            input()
+        except EOFError:
+            pass
+    else:
+        raise SystemExit(exit_code)

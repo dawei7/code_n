@@ -76,9 +76,9 @@
   "inputs": [
     {
       "id": "challengeId",
-      "type": "promptString",
-      "description": "Challenge id (e.g. sort_01, search_03, intro_01). Leave empty to use the active challenge from cOde(n).",
-      "default": ""
+      "type": "command",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe ${workspaceFolder}/.vscode/get_active_challenge.py",
+      "description": "Active challenge id from cOde(n) (solutions/.vscode-active); falls back to most-recently-modified solutions/*.py"
     },
     {
       "id": "n",

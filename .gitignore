@@ -73,6 +73,7 @@ bundled-workspace/challenges/
 !.vscode/launch.json
 !.vscode/tasks.json
 !.vscode/settings.json
+!.vscode/get_active_challenge.py
 !.vscode/extensions.json
 solutions/.vscode-active
 

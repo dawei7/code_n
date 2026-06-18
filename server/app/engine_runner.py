@@ -136,6 +136,7 @@ def run_player_code(
     n: int = 16,
     seed: Optional[int] = None,
     mode: str = "practice",
+    execution_path: Optional[str] = None,
 ) -> RunResponse:
     """Run a player's source against a challenge and return the structured result.
 
@@ -152,6 +153,15 @@ def run_player_code(
         picks a fresh seed when ``mode="real_test"``.
     mode:
         Echoed back in the response. "practice" or "real_test".
+    execution_path:
+        Optional workspace path to execute from. When provided,
+        ``runpy.run_path`` runs this exact path instead of a
+        tempfile copy, so debugpy breakpoints in the player's
+        ``solutions/<id>.py`` hit normally. Used by the VSCode
+        F5 entry point (``tools/run_solution.py``); the FastAPI
+        route (which receives only the source text from the
+        renderer) leaves this ``None`` and gets the temp-file
+        behaviour.
 
     Returns
     -------
@@ -174,18 +184,37 @@ def run_player_code(
     if n > challenge.max_n:
         raise NTooLarge(n, challenge.max_n)
 
-    # --- 2. Stage the source in a temp dir so the engine's tracer can
-    #        filter to this exact file.
-    #
+    # --- 2. Stage the source. By default we write it to a fresh
+    #        temp dir so the tracer sees a unique ``co_filename``
+    #        per run (avoids cache collisions between concurrent
+    #        runs of the same challenge). When ``execution_path``
+    #        is given (VSCode debug entry point) we skip the temp
+    #        file and run from that exact path so debugpy hits
+    #        breakpoints in the player's open editor file.
     # NOTE: No source wrapping / AST rewriting is performed here. The
     # player source is exec'd verbatim via ``runpy.run_path``. The
     # engine's tracking proxies (TrackedList, TrackedGrid, ...) were
     # removed in v0.8.5; the player's input is now a plain list /
     # dict / set. What the user sees in the editor is exactly what
     # runs.
-    tmpdir = Path(tempfile.mkdtemp(prefix="coden-run-"))
-    solution_path = tmpdir / "solution.py"
-    solution_path.write_text(source, encoding="utf-8")
+    tmpdir: Path | None = None
+    if execution_path is not None:
+        # Caller (typically tools/run_solution.py) wants the source
+        # to execute from the workspace path so debugpy breakpoints
+        # in the open editor file hit. ``runpy.run_path`` reads the
+        # file from disk; we don't write to it.
+        solution_path = Path(execution_path)
+        if not solution_path.is_file():
+            raise PlayerSyntaxError(
+                SyntaxError(
+                    f"Solution file not found on disk: {solution_path}",
+                    (str(solution_path), 0, 0, ""),
+                )
+            )
+    else:
+        tmpdir = Path(tempfile.mkdtemp(prefix="coden-run-"))
+        solution_path = tmpdir / "solution.py"
+        solution_path.write_text(source, encoding="utf-8")
 
     try:
         # --- 3. Exec the source in a fresh namespace ---
@@ -329,8 +358,11 @@ def run_player_code(
             return_value_repr=return_value_repr,
         )
     finally:
-        # Always clean up the temp dir, even on exception.
-        shutil.rmtree(tmpdir, ignore_errors=True)
+        # Always clean up the temp dir, even on exception. Skip
+        # when we ran from an explicit ``execution_path`` (no
+        # temp dir was created).
+        if tmpdir is not None:
+            shutil.rmtree(tmpdir, ignore_errors=True)
 
 
 def _build_message(
