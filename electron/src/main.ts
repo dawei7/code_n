@@ -181,7 +181,21 @@ function isValidChallengeId(id: unknown): id is string {
 
 /** Open the player's ``solutions/<id>.py`` file in VSCode.
  *  Returns a small result object so the renderer can show a
- *  precise error message on failure. */
+ *  precise error message on failure.
+ *
+ *  Tries two strategies in order:
+ *    1. ``shell.openPath(filePath)`` — uses the OS file
+ *       association (works when the user has associated
+ *       ``.py`` with VSCode, which is the default on most
+ *       dev machines).
+ *    2. ``shell.openExternal('vscode://file/<path>')`` —
+ *       uses the ``vscode://`` URL handler that VSCode
+ *       registers on install. This works even when ``.py``
+ *       is associated with Notepad or some other editor;
+ *       VSCode always handles its own protocol.
+ *
+ *  If both fail (VSCode not installed at all), we return a
+ *  clear error so the renderer can tell the user. */
 async function openSolutionFile(
   codenHome: string,
   challengeId: string,
@@ -198,19 +212,63 @@ async function openSolutionFile(
         'then click "Open in VSCode" again.',
     };
   }
+  // Strategy 1: file association. The most common path.
   try {
     const errMsg = await shell.openPath(filePath);
-    if (errMsg) {
-      // shell.openPath returns a non-empty string on failure
-      // (e.g. no app associated with .py). Surface that to the
-      // user verbatim.
-      return { ok: false, filePath, error: errMsg };
+    if (!errMsg) {
+      return { ok: true, filePath };
     }
+    // shell.openPath returned a non-empty error (e.g. ".py is
+    // not associated with any app"). Fall through to the
+    // vscode:// URL fallback below.
+    console.warn(
+      `[coden-electron] shell.openPath failed for ${filePath}: ${errMsg}; ` +
+      'falling back to vscode:// URL',
+    );
+  } catch (e) {
+    const message = e instanceof Error ? e.message : String(e);
+    console.warn(
+      `[coden-electron] shell.openPath threw for ${filePath}: ${message}; ` +
+      'falling back to vscode:// URL',
+    );
+  }
+  // Strategy 2: vscode:// URL. Always works if VSCode is
+  // installed (the URL handler is registered on install). The
+  // file path must be absolute and forward-slash-encoded per
+  // the RFC 3986 / vscode:// spec; ``pathToFileURL`` gives us
+  // that for free.
+  try {
+    const fileUrl = 'vscode://file' + pathToVscodeUrl(filePath);
+    await shell.openExternal(fileUrl);
     return { ok: true, filePath };
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
-    return { ok: false, filePath, error: message };
+    return {
+      ok: false,
+      filePath,
+      error:
+        `Could not open the file in VSCode. ` +
+        'Is VSCode installed? (Last error: ' + message + ')',
+    };
   }
+}
+
+
+/** Convert an absolute file path to the path portion of a
+ *  ``vscode://file/...`` URL. Forward slashes, percent-encoded
+ *  (the ``encodeURI`` semantics for the path component — we
+ *  can't use ``encodeURIComponent`` because that escapes
+ *  ``/``, which would break the URL structure; and we can't
+ *  use ``encodeURI`` because that doesn't escape ``#``,
+ *  ``?``, etc., which are valid in filenames on Windows). */
+function pathToVscodeUrl(p: string): string {
+  // Normalize to forward slashes (Windows paths use
+  // backslashes; the URL form uses forward slashes).
+  const fwd = p.replace(/\\/g, '/');
+  // Split on '/' to encode each segment, then rejoin.
+  // ``encodeURIComponent`` escapes the right chars; the
+  // forward slashes between segments are preserved.
+  return fwd.split('/').map(encodeURIComponent).join('/');
 }
 
 

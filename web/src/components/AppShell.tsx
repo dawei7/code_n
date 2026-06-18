@@ -39,7 +39,6 @@ import { LayoutRoot } from './layout/LayoutRoot';
 import { useLayoutStore } from '../store/useLayoutStore';
 import { allLeaves } from './layout/tree-ops';
 import { UpdateToast } from './UpdateToast';
-import { writeActiveChallenge } from '../api/vscode';
 
 
 export function AppShell() {
@@ -195,38 +194,15 @@ function TransportBar() {
   const setSeed = useAppStore((s) => s.setSeed);
   const mode = useAppStore((s) => s.mode);
   const setMode = useAppStore((s) => s.setMode);
+  const openInVSCode = useAppStore((s) => s.openInVSCode);
 
   async function handleOpenInVSCode() {
     if (!detail) return;
-    // Write the active-challenge handoff file FIRST so the
-    // user's F5 in VSCode (after VSCode opens) defaults to
-    // the right challenge. Even if the IPC call below fails
-    // (no VSCode installed), the handoff is in place.
-    try {
-      await writeActiveChallenge(detail.id);
-    } catch {
-      // ignore — best-effort
-    }
-    const api = window.electronAPI;
-    if (api?.openInVSCode) {
-      const result = await api.openInVSCode(detail.id);
-      if (!result.ok) {
-        // Log the failure; the VSCodeTab renders a friendly
-        // version of the same error.
-        // eslint-disable-next-line no-console
-        console.warn('[coden] openInVSCode failed:', result.error);
-      }
-    } else {
-      // Dev / browser fallback: there is no .py file to point
-      // at from the browser (the renderer doesn't know the
-      // user's appData path). Show a clear hint.
-      // eslint-disable-next-line no-console
-      console.warn(
-        '[coden] window.electronAPI.openInVSCode is not available. ' +
-        'Run the app via `npm start` in electron/ (after `python build_app.py`) ' +
-        'so the Electron main process can resolve the file path.',
-      );
-    }
+    // The store action handles: handoff-file write, on-demand
+    // starter creation, the IPC call, the v0.9.2-vs-v0.9.3
+    // boolean vs object return shape, and shared error state
+    // (so VSCodeTab sees the same error the TransportBar set).
+    await openInVSCode(detail);
   }
 
   return (

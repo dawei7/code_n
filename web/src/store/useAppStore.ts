@@ -34,10 +34,45 @@ import type {
   ProgressOut,
   RunResponse,
 } from '../types/api';
+import type { OpenInVSCodeResult } from '../types/electron';
 import * as challengesApi from '../api/challenges';
 import * as runApi from '../api/run';
 import * as progressApi from '../api/progress';
 import * as solutionsApi from '../api/solutions';
+import * as vscodeApi from '../api/vscode';
+
+
+// Re-export so the inline ``import('...')`` in the action
+// signature resolves to a named type, not a dynamic one.
+export type { ChallengeDetail } from '../types/api';
+
+
+/** Normalise the IPC result across main-process versions.
+ *  Old versions return a plain boolean. New versions return
+ *  ``{ ok, filePath?, error? }``. The boolean case gets
+ *  upgraded to the object shape so callers don't need to
+ *  special-case it. */
+function normaliseOpenResult(
+  raw: unknown,
+): OpenInVSCodeResult {
+  if (typeof raw === 'boolean') {
+    return raw
+      ? { ok: true }
+      : { ok: false, error: 'VSCode did not respond. Is it installed?' };
+  }
+  if (raw && typeof raw === 'object' && 'ok' in raw) {
+    return raw as OpenInVSCodeResult;
+  }
+  return { ok: false, error: 'Unexpected response from the desktop app.' };
+}
+
+
+/** Tiny re-export of the vscode API so the action can call
+ *  ``writeActiveChallengeFor(id)`` without a separate import
+ *  inside the store closure. The exported ``vscode`` API
+ *  uses ``apiPost`` which uses ``fetch``; the store
+ *  doesn't need anything fancier. */
+const writeActiveChallengeFor = vscodeApi.writeActiveChallenge;
 
 
 export type RunMode = 'practice' | 'real_test';
@@ -91,6 +126,25 @@ export interface AppState {
    * is just an explicit refresh for the display copy.
    */
   refreshSourceFromDisk(): Promise<void>;
+
+  // --- Open-in-VSCode state (shared between TransportBar + VSCodeTab) ---
+  /** True while a click is being processed. */
+  vscodeOpening: boolean;
+  /** Last error from the most recent open attempt, or null. */
+  vscodeLastError: string | null;
+  /** The absolute file path the most recent successful open targeted. */
+  vscodeLastOpenedPath: string | null;
+  /** Click handler — the handoff-file write + on-demand starter
+   *  creation + IPC call, all in one. Defined here (not as a
+   *  component hook) so the TransportBar's button and the
+   *  VSCodeTab's big button share the same loading + error
+   *  state. Returns a normalised result for callers that want
+   *  to chain. */
+  openInVSCode: (detail: import('../types/api').ChallengeDetail | null)
+    => Promise<import('../types/electron').OpenInVSCodeResult>;
+  /** Manually clear the error (e.g. when the user opens the
+   *  VSCodeTab after seeing a stale error in the transport bar). */
+  clearVSCodeError: () => void;
 }
 
 
@@ -116,6 +170,10 @@ export const useAppStore = create<AppState>((set, get) => ({
   runResult: null,
   error: null,
   progress: null,
+
+  vscodeOpening: false,
+  vscodeLastError: null,
+  vscodeLastOpenedPath: null,
 
   async loadChallenges() {
     const list = await challengesApi.listChallenges();
@@ -269,5 +327,73 @@ export const useAppStore = create<AppState>((set, get) => ({
     } catch {
       // ignore
     }
+  },
+
+  async openInVSCode(detail) {
+    if (!detail) {
+      const error = 'Pick a challenge first.';
+      set({ vscodeLastError: error });
+      return { ok: false, error };
+    }
+    set({ vscodeOpening: true, vscodeLastError: null });
+    try {
+      // 1. Write the handoff file so the F5 launch config
+      //    defaults to this challenge.
+      try {
+        await writeActiveChallengeFor(detail.id);
+      } catch {
+        // best-effort
+      }
+      // 2. Make sure the solution file exists. The player
+      //    might be opening this challenge in VSCode for the
+      //    first time — the file might be missing. Create
+      //    it from the starter template if so.
+      try {
+        const existing = await solutionsApi.getSolution(detail.id);
+        if (!existing.exists || !existing.source) {
+          try {
+            await solutionsApi.putSolution(detail.id, detail.starter_source);
+          } catch {
+            // best-effort; main process will surface
+            // "file not found" if the write didn't go through
+          }
+        }
+      } catch {
+        // best-effort
+      }
+      // 3. Hand off to the main process.
+      const api = window.electronAPI;
+      if (!api?.openInVSCode) {
+        const error =
+          'The cOde(n) desktop app is not running. Launch the ' +
+          'packaged app (or `npm start` in electron/ after a build) ' +
+          'so the Electron main process can resolve the file path.';
+        set({ vscodeLastError: error });
+        return { ok: false, error };
+      }
+      const result = normaliseOpenResult(await api.openInVSCode(detail.id));
+      if (!result.ok) {
+        set({
+          vscodeLastError:
+            result.error ??
+            'Could not open the file in VSCode. Is VSCode installed?',
+        });
+      } else if (result.filePath) {
+        set({ vscodeLastOpenedPath: result.filePath, vscodeLastError: null });
+      } else {
+        set({ vscodeLastError: null });
+      }
+      return result;
+    } catch (e) {
+      const message = e instanceof Error ? e.message : String(e);
+      set({ vscodeLastError: message });
+      return { ok: false, error: message };
+    } finally {
+      set({ vscodeOpening: false });
+    }
+  },
+
+  clearVSCodeError() {
+    set({ vscodeLastError: null });
   },
 }));

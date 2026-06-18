@@ -20,54 +20,20 @@
  * workspace is now a standard per-user path (app.getPath('userData'))
  * set up automatically on first launch — no user picking.
  */
-import { useState } from 'react';
 import { useAppStore } from '../../../store/useAppStore';
-import { writeActiveChallenge } from '../../../api/vscode';
 
 
 export function VSCodeTab() {
   const detail = useAppStore((s) => s.currentDetail);
-  const [opening, setOpening] = useState(false);
-  const [lastError, setLastError] = useState<string | null>(null);
-  const [lastOpenedPath, setLastOpenedPath] = useState<string | null>(null);
+  const open = useAppStore((s) => s.openInVSCode);
+  const opening = useAppStore((s) => s.vscodeOpening);
+  const lastError = useAppStore((s) => s.vscodeLastError);
+  const lastOpenedPath = useAppStore((s) => s.vscodeLastOpenedPath);
+  const clearVSCodeError = useAppStore((s) => s.clearVSCodeError);
 
   async function handleOpenInVSCode() {
-    if (!detail) return;
-    setOpening(true);
-    setLastError(null);
-    try {
-      // Write the active-challenge handoff file FIRST so when
-      // VSCode opens and the user presses F5, the launch
-      // config defaults to the right challenge. Even if the
-      // IPC fails afterwards, the handoff is in place.
-      try {
-        await writeActiveChallenge(detail.id);
-      } catch {
-        // ignore — the Open below is the user-visible action
-      }
-      const api = window.electronAPI;
-      if (api?.openInVSCode) {
-        const result = await api.openInVSCode(detail.id);
-        if (!result.ok) {
-          setLastError(
-            result.error ??
-            'Could not open the file in VSCode. Is VSCode installed?',
-          );
-        } else if (result.filePath) {
-          setLastOpenedPath(result.filePath);
-        }
-      } else {
-        setLastError(
-          'The cOde(n) desktop app is not running. Launch the ' +
-          'packaged app (or `npm start` in electron/ after a build) ' +
-          'so the Electron main process can resolve the file path.',
-        );
-      }
-    } catch (e) {
-      setLastError(e instanceof Error ? e.message : String(e));
-    } finally {
-      setOpening(false);
-    }
+    clearVSCodeError();
+    await open(detail);
   }
 
   return (
