@@ -209,10 +209,23 @@ function TransportBar() {
     }
     const api = window.electronAPI;
     if (api?.openInVSCode) {
-      await api.openInVSCode();
+      const result = await api.openInVSCode(detail.id);
+      if (!result.ok) {
+        // Log the failure; the VSCodeTab renders a friendly
+        // version of the same error.
+        // eslint-disable-next-line no-console
+        console.warn('[coden] openInVSCode failed:', result.error);
+      }
     } else {
-      // Dev / browser fallback: open the vscode:// URL.
-      window.open('vscode://file/' + encodeURIComponent(window.location.host), '_blank');
+      // Dev / browser fallback: there is no .py file to point
+      // at from the browser (the renderer doesn't know the
+      // user's appData path). Show a clear hint.
+      // eslint-disable-next-line no-console
+      console.warn(
+        '[coden] window.electronAPI.openInVSCode is not available. ' +
+        'Run the app via `npm start` in electron/ (after `python build_app.py`) ' +
+        'so the Electron main process can resolve the file path.',
+      );
     }
   }
 
@@ -288,7 +301,7 @@ function TransportBar() {
           onClick={() => void handleOpenInVSCode()}
           disabled={!detail}
           className="px-2 py-1.5 text-sm rounded border border-coden-accent text-coden-accent hover:bg-coden-accent hover:text-coden-bg disabled:opacity-50 disabled:cursor-not-allowed"
-          title="Open the project in VSCode (writes the active challenge id to solutions/.vscode-active first)"
+          title="Open solutions/<id>.py in VSCode (writes the active challenge id to solutions/.vscode-active first)"
         >
           {'</>'} VSCode
         </button>

@@ -4,20 +4,35 @@
  * Flow:
  *   1. Spawn uvicorn as a child process (server-process.ts).
  *   2. Wait for the FastAPI server to write its port file.
- *   3. Open a BrowserWindow at the server's URL.
- *   4. The renderer can request "open in VSCode" via IPC,
- *      which calls ``shell.openPath(repoRoot)``. VSCode on
- *      the user's machine handles the rest — opening the
- *      project at the repo root, with the cOde(n)-written
- *      ``solutions/.vscode-active`` file telling the launch
- *      config which challenge to default to.
- *   5. On quit, kill the uvicorn process so it doesn't outlive
+ *   3. On startup, ensure the per-user VSCode workspace is in
+ *      place under `app.getPath('userData')` — copy the bundled
+ *      `.vscode/`, `tools/`, `server/`, `code_n/`, `challenges/`
+ *      from the packaged resources if they're missing. This
+ *      makes the userData dir a self-contained VSCode workspace
+ *      so "Open in VSCode" can open a specific file with F5
+ *      debugging intact.
+ *   4. Open a BrowserWindow at the server's URL.
+ *   5. The renderer can request "open in VSCode" via IPC. The
+ *      handler takes a challenge id, computes the absolute path
+ *      to the player's source file (`<userData>/solutions/<id>.py`),
+ *      and calls `shell.openPath(filePath)`. VSCode opens the
+ *      file (not a folder). The file is in a folder with
+ *      `.vscode/launch.json`, so F5 works.
+ *   6. On quit, kill the uvicorn process so it doesn't outlive
  *      the app.
  *
  * The v0.9.0 pivot removed the pop-out-editor, pop-out-debug,
  * and pop-out-pane BrowserWindows (the cOde(n) app is now a
  * single window; editing + debugging happens in VSCode).
  * The detachedWindows map is gone.
+ *
+ * v0.9.x: the "Open in VSCode" flow no longer asks the user to
+ * pick a repo folder on first launch. The location is the
+ * standard per-user appData dir (Windows:
+ * `C:\Users\<user>\AppData\Roaming\coden-electron\`), the file
+ * is the exact `solutions/<id>.py` for the current challenge,
+ * and the workspace files (so F5 works) are staged on first
+ * launch from the bundled resources.
  */
 
 import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
@@ -32,127 +47,170 @@ let server: ServerHandle | null = null;
 
 
 /**
- * Path to the JSON file that stores the user's cOde(n) source
- * repo location. Lives in `app.getPath('userData')` (writable on
- * Windows) so it persists across upgrades.
- *
- * Why we need this: in dev, the repo is the parent of electron/,
- * so we can resolve it from __dirname. In the packaged app, the
- * EXE is installed in AppData/Local/Programs/coden-electron/ —
- * not where the user actually has the source code (where their
- * `solutions/<id>.py` files live). The user picks the source
- * folder once on first launch, we save it here, and every
- * subsequent "Open in VSCode" uses it.
+ * Workspace files copied into the per-user dir on first launch.
+ * Order matters only for the log output — they're all
+ * independent at copy time. The source must live in
+ * `process.resourcesPath/bundled-workspace/<name>/` in packaged
+ * mode (it's there because `electron-builder.json` declares
+ * it as an extraResource); in dev, the staging step in
+ * `build_app.py` puts the same files at
+ * `<repo>/bundled-workspace/<name>/` and we read them from
+ * there instead.
  */
-const REPO_PATH_FILE = 'repo-path.json';
+const WORKSPACE_DIRS = [
+  '.vscode',
+  'tools',
+  'server',
+  'code_n',
+  'challenges',
+] as const;
 
 
-interface RepoPathConfig {
-  path: string;
-}
-
-
-/** Resolve the repo root by walking up from electron/dist/main.js. */
+/** Heuristic: does this folder look like a cOde(n) source repo?
+ *  Used by the dev fallback to know whether to bother copying
+ *  workspace files from a source-tree staging area. In
+ *  packaged mode, we copy from the bundled resource, not from
+ *  the dev tree, so this is a dev-only check. */
 function resolveDevRepoRoot(): string {
   // In dev, this file is at electron/dist/main.js; the repo root
   // is three parents up. In the packaged app this returns the
   // install dir, which is NOT where the user's source lives —
-  // use getUserRepoPath() for that.
+  // we never use it for workspace files in packaged mode.
   return path.resolve(__dirname, '..', '..', '..');
 }
 
 
-/** Path to the user-chosen repo path JSON (in userData). */
-function repoPathFile(): string {
-  return path.join(app.getPath('userData'), REPO_PATH_FILE);
-}
-
-
-/** Read the user-chosen repo path from disk. Returns null
- *  if the file doesn't exist, can't be parsed, or points to
- *  a directory that no longer exists. */
-function getUserRepoPath(): string | null {
-  try {
-    const raw = fs.readFileSync(repoPathFile(), 'utf-8');
-    const data = JSON.parse(raw) as Partial<RepoPathConfig>;
-    if (data && typeof data.path === 'string' && data.path.length > 0) {
-      // Verify the path still exists; if not, drop the stale
-      // config and let the user re-pick.
-      if (fs.existsSync(data.path)) {
-        return data.path;
-      }
-      console.warn(`[coden-electron] stored repo path ${data.path} no longer exists; clearing`);
-      try {
-        fs.unlinkSync(repoPathFile());
-      } catch {
-        // best-effort
-      }
-    }
-  } catch {
-    // file doesn't exist or isn't valid JSON — fine, first run
-  }
+/**
+ * Where to find the bundled workspace tree. In packaged mode,
+ * the resource is at `process.resourcesPath/bundled-workspace/`.
+ * In dev, the `build_app.py` step stages the same files at
+ * `<repo>/bundled-workspace/`. We prefer the bundled resource;
+ * if it doesn't exist (e.g. someone running `npm start` in
+ * electron/ without first running `build_app.py`), we fall back
+ * to the dev staging dir.
+ */
+function resolveBundledWorkspaceRoot(): string | null {
+  const packaged = path.join(process.resourcesPath ?? '', 'bundled-workspace');
+  if (fs.existsSync(packaged)) return packaged;
+  const dev = path.join(resolveDevRepoRoot(), 'bundled-workspace');
+  if (fs.existsSync(dev)) return dev;
   return null;
 }
 
 
-/** Write the user-chosen repo path to disk. */
-function setUserRepoPath(repoPath: string): void {
-  const data: RepoPathConfig = { path: repoPath };
-  fs.writeFileSync(repoPathFile(), JSON.stringify(data, null, 2), 'utf-8');
+/** Recursively copy a directory. Uses `fs.cpSync` (Node 16+)
+ *  with `dereference: true` so any symlinks in the source
+ *  resolve to the target file (we don't want to copy a
+ *  symlink-as-symlink — the user's workspace needs real
+ *  files for VSCode to handle them properly). */
+function copyDirSync(src: string, dst: string): void {
+  fs.cpSync(src, dst, { recursive: true, dereference: true });
 }
 
 
-/** Heuristic: does this folder look like a cOde(n) source repo?
- *  We check for the three markers that always exist: .vscode/
- *  (the launch config), solutions/ (the player's saved code),
- *  and tools/run_solution.py (the F5 entry point). */
-function looksLikeRepo(repoPath: string): boolean {
-  return (
-    fs.existsSync(path.join(repoPath, '.vscode')) &&
-    fs.existsSync(path.join(repoPath, 'solutions')) &&
-    fs.existsSync(path.join(repoPath, 'tools', 'run_solution.py'))
-  );
-}
-
-
-/** Show the OS folder picker. Returns the chosen path or null
- *  if the user cancelled. */
-async function pickRepoFolder(): Promise<string | null> {
-  const result = await dialog.showOpenDialog({
-    title: 'Select your cOde(n) source folder',
-    message: 'Pick the folder where you cloned the cOde(n) repository ' +
-            '(the one with .vscode/, solutions/, and tools/ subfolders). ' +
-            'This is where your solutions/<id>.py files live.',
-    properties: ['openDirectory'],
-  });
-  if (result.canceled || result.filePaths.length === 0) return null;
-  return result.filePaths[0];
-}
-
-
-/** The "Open in VSCode" target. Falls back through three tiers:
- *  1. The user-chosen path (stored in userData on first run).
- *  2. The dev heuristic (resolveDevRepoRoot) — only correct in
- *     a dev launch, but harmless to try.
- *  3. Prompt the user to pick a folder, then save it.
+/**
+ * Copy the bundled workspace files (``.vscode``, ``tools``,
+ * ``server``, ``code_n``, ``challenges``) into the user's
+ * per-user appData dir if they're missing. Idempotent —
+ * each dir is copied only if it doesn't already exist in
+ * the destination, so subsequent launches are a no-op
+ * (just one ``existsSync`` per dir). Player data
+ * (``solutions/``, ``progress.json``) is never touched.
  *
- *  Returns the resolved path, or null if the user cancelled
- *  the picker. The renderer can show a "please pick your repo"
- *  prompt if it gets null. */
-async function resolveOpenRepoPath(): Promise<string | null> {
-  const stored = getUserRepoPath();
-  if (stored && looksLikeRepo(stored)) return stored;
-  const dev = resolveDevRepoRoot();
-  if (looksLikeRepo(dev)) return dev;
-  const picked = await pickRepoFolder();
-  if (!picked) return null;
-  if (!looksLikeRepo(picked)) {
-    // Picked the wrong folder. Clear the stored path (if any
-    // — none here, but be defensive) and bail.
-    return null;
+ * The .vscode/ dir in particular is hand-tuned for the
+ * bundled case — its ``settings.json`` points Python at the
+ * system ``python`` on PATH instead of the dev repo's
+ * ``.venv/Scripts/python.exe``. So the launch config
+ * (``tools/run_solution.py`` under debugpy) works in the
+ * packaged app without any venv.
+ */
+function ensureWorkspaceFiles(codenHome: string): void {
+  const bundled = resolveBundledWorkspaceRoot();
+  if (!bundled) {
+    // Dev mode without a staging step (e.g. someone running
+    // `npm start` in electron/ without first running
+    // `build_app.py`). Log and bail; the user can still edit
+    // files in VSCode, but F5 won't have a launch config to
+    // work against.
+    console.warn(
+      '[coden-electron] no bundled-workspace found; skipping ' +
+      'workspace setup. Run `python build_app.py` to stage it.',
+    );
+    return;
   }
-  setUserRepoPath(picked);
-  return picked;
+  for (const name of WORKSPACE_DIRS) {
+    const dst = path.join(codenHome, name);
+    if (fs.existsSync(dst)) {
+      // Already there (from a previous launch). Never overwrite
+      // — the user might have edited tools/ or added their own
+      // .vscode tweaks. To force a refresh, the user can delete
+      // the dir and relaunch.
+      continue;
+    }
+    const src = path.join(bundled, name);
+    if (!fs.existsSync(src)) {
+      console.warn(
+        `[coden-electron] bundled workspace dir missing: ${src}`,
+      );
+      continue;
+    }
+    try {
+      copyDirSync(src, dst);
+      console.log(`[coden-electron] staged ${name}/ -> ${dst}`);
+    } catch (e) {
+      const message = e instanceof Error ? e.message : String(e);
+      console.error(
+        `[coden-electron] failed to stage ${name}/: ${message}`,
+      );
+    }
+  }
+}
+
+
+/** Sanity-check the challenge id the renderer passed us.
+ *  Rejects empty strings, path separators, and ``..`` so a
+ *  buggy renderer can't escape the solutions dir. */
+function isValidChallengeId(id: unknown): id is string {
+  if (typeof id !== 'string' || id.length === 0) return false;
+  if (id.length > 128) return false; // challenge ids are short
+  if (/[\\/]/.test(id)) return false; // no path separators
+  if (id.includes('..')) return false; // no traversal
+  return /^[A-Za-z0-9_]+$/.test(id);
+}
+
+
+/** Open the player's ``solutions/<id>.py`` file in VSCode.
+ *  Returns a small result object so the renderer can show a
+ *  precise error message on failure. */
+async function openSolutionFile(
+  codenHome: string,
+  challengeId: string,
+): Promise<{ ok: boolean; filePath?: string; error?: string }> {
+  ensureWorkspaceFiles(codenHome);
+  const filePath = path.join(codenHome, 'solutions', `${challengeId}.py`);
+  if (!fs.existsSync(filePath)) {
+    return {
+      ok: false,
+      filePath,
+      error:
+        `Solution file not found: ${filePath}. ` +
+        'Pick the challenge in cOde(n) first to create its starter, ' +
+        'then click "Open in VSCode" again.',
+    };
+  }
+  try {
+    const errMsg = await shell.openPath(filePath);
+    if (errMsg) {
+      // shell.openPath returns a non-empty string on failure
+      // (e.g. no app associated with .py). Surface that to the
+      // user verbatim.
+      return { ok: false, filePath, error: errMsg };
+    }
+    return { ok: true, filePath };
+  } catch (e) {
+    const message = e instanceof Error ? e.message : String(e);
+    return { ok: false, filePath, error: message };
+  }
 }
 
 
@@ -172,6 +230,14 @@ async function createWindow(): Promise<void> {
   console.log(`[coden-electron] dev repo root: ${repoRoot}`);
   console.log(`[coden-electron] CODEN_HOME: ${codenHome} (packaged=${app.isPackaged})`);
   console.log(`[coden-electron] process.resourcesPath: ${process.resourcesPath}`);
+
+  // Stage the per-user VSCode workspace files (.vscode/, tools/,
+  // server/, code_n/, challenges/) into codenHome if they're
+  // missing. Idempotent — no-op on subsequent launches. We do
+  // this BEFORE starting the server so that if the player
+  // clicks "Open in VSCode" right after install, the workspace
+  // is already set up.
+  ensureWorkspaceFiles(codenHome);
 
   try {
     server = await startServer(repoRoot, codenHome);
@@ -198,54 +264,25 @@ async function createWindow(): Promise<void> {
 
   console.log(`[coden-electron] server up at http://127.0.0.1:${server.port} (source=${server.source})`);
 
-  // Open the project in VSCode. Called by the renderer's
-  // "Open in VSCode" button (in the transport bar + the VSCode
-  // tab). Routes through ``shell.openPath`` — on Windows, that
-  // invokes the OS file-association handler; VSCode (when
-  // installed) registers itself for the project's folder, so
-  // it opens at the repo root with the .vscode/ launch config
-  // active. The renderer should have written
-  // solutions/.vscode-active FIRST so the F5 launch config
-  // defaults to the right challenge.
-  //
-  // The path comes from ``resolveOpenRepoPath`` which uses the
-  // user-stored repo path (saved on first launch), falling
-  // back to a folder picker if nothing's stored yet. The result
-  // is the absolute path to the user's cOde(n) source repo —
-  // NOT the install dir. This is what powers the
-  // "Open solutions/<id>.py" use case.
-  ipcMain.handle('open-in-vscode', async () => {
-    const target = await resolveOpenRepoPath();
-    if (!target) return false;
-    try {
-      const errMsg = await shell.openPath(target);
-      if (errMsg) {
-        console.warn(`[coden-electron] shell.openPath(${target}): ${errMsg}`);
-        return false;
-      }
-      return true;
-    } catch (e) {
-      const message = e instanceof Error ? e.message : String(e);
-      console.error(`[coden-electron] openInVSCode failed: ${message}`);
-      return false;
+  // Open the player's solutions/<id>.py in VSCode. Called by
+  // the renderer's "Open in VSCode" button (in the transport
+  // bar + the VSCode tab). Routes through ``shell.openPath``
+  // — on Windows, that invokes the OS file-association
+  // handler; VSCode (when installed + associated with .py)
+  // opens the file in its currently-active window. The
+  // renderer's prior call to ``/api/vscode/active`` writes
+  // ``solutions/.vscode-active`` so the F5 launch config
+  // (in the workspace we just staged) defaults to the right
+  // challenge.
+  ipcMain.handle('open-in-vscode', async (_evt, payload: unknown) => {
+    const challengeId =
+      payload && typeof payload === 'object' && 'challengeId' in payload
+        ? (payload as { challengeId: unknown }).challengeId
+        : undefined;
+    if (!isValidChallengeId(challengeId)) {
+      return { ok: false, error: 'Invalid challenge id' };
     }
-  });
-
-  // Read the stored repo path (returns null if none / stale).
-  // The renderer calls this on mount to decide whether to show
-  // a "set your repo path" prompt.
-  ipcMain.handle('get-repo-path', () => getUserRepoPath());
-
-  // Manually change the repo path. Pops the OS folder picker,
-  // validates the chosen folder, and saves it. Returns the new
-  // path on success or null on cancel/invalid. Used by the
-  // renderer's "Change" button in the VSCode tab.
-  ipcMain.handle('set-repo-path', async () => {
-    const picked = await pickRepoFolder();
-    if (!picked) return null;
-    if (!looksLikeRepo(picked)) return null;
-    setUserRepoPath(picked);
-    return picked;
+    return openSolutionFile(codenHome, challengeId);
   });
 
   const mainUrl = `http://127.0.0.1:${server.port}/`;

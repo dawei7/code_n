@@ -1,0 +1,33 @@
+{
+  "_comment": "VSCode workspace settings for cOde(n), bundled with the desktop app. Differs from the dev repo's .vscode/settings.json in that python.defaultInterpreterPath is the system 'python' (whatever is on PATH) instead of '.venv/Scripts/python.exe' — the bundled workspace has no .venv/ (the engine runs in a PyInstaller bundle, not a venv). If you don't have Python on PATH, F5 debugging won't work; the cOde(n) Run button still works regardless. To set up Python: install python.org or a distro and ensure 'python' resolves on your shell's PATH.",
+
+  "python.defaultInterpreterPath": "python",
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}"
+  ],
+  "python.analysis.typeCheckingMode": "basic",
+
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/.ruff_cache": true,
+    "build/": true,
+    "dist/": true,
+    "web/dist/": true,
+    "web/node_modules/": true,
+    "electron/dist/": true,
+    "electron/release/": true,
+    "server/dist/": true,
+    "server/build/": true
+  },
+  "search.exclude": {
+    "**/__pycache__": true,
+    "**/node_modules": true,
+    "web/dist/**": true,
+    "electron/dist/**": true,
+    "electron/release/**": true,
+    "server/dist/**": true
+  }
+}

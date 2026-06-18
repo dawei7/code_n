@@ -6,17 +6,21 @@
  * "click here for the setup details" surface.
  *
  * The tab shows:
- *   - The user's cOde(n) source folder (so they know where
- *     "Open in VSCode" is pointing) + a "Change" button to
- *     repoint at a different repo.
- *   - A big "Open in VSCode" button (calls Electron's
- *     shell.openPath via the openInVSCode IPC, or the
- *     vscode:// URL fallback in dev).
+ *   - The path of the current challenge's solution file
+ *     (so the user knows which file will open in VSCode).
+ *   - A big "Open in VSCode" button (calls the openInVSCode
+ *     IPC, which opens the exact solutions/<id>.py file in
+ *     the player's VSCode).
  *   - The 3-step "how to debug a challenge" walkthrough.
- *   - The current active-challenge id (so the user can
- *     see what the F5 default will be).
+ *   - The current active-challenge id (so the user can see
+ *     what the F5 default will be).
+ *
+ * v0.9.x: the previous "Your cOde(n) source folder" card +
+ * "Change" button were removed. The location of the player's
+ * workspace is now a standard per-user path (app.getPath('userData'))
+ * set up automatically on first launch — no user picking.
  */
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAppStore } from '../../../store/useAppStore';
 import { writeActiveChallenge } from '../../../api/vscode';
 
@@ -25,30 +29,10 @@ export function VSCodeTab() {
   const detail = useAppStore((s) => s.currentDetail);
   const [opening, setOpening] = useState(false);
   const [lastError, setLastError] = useState<string | null>(null);
-  const [repoPath, setRepoPath] = useState<string | null>(null);
-  const [changingRepo, setChangingRepo] = useState(false);
-
-  // On mount, fetch the user-chosen repo path. The main
-  // process stores this in app.getPath('userData')/repo-path.json
-  // after the first "Open in VSCode" click (where the picker
-  // is shown if nothing is set yet). null = "not set yet",
-  // which the UI surfaces as a prompt to click "Open in VSCode".
-  useEffect(() => {
-    const api = window.electronAPI;
-    if (api?.getRepoPath) {
-      void api.getRepoPath().then(setRepoPath);
-    }
-  }, []);
-
-  async function refreshRepoPath() {
-    const api = window.electronAPI;
-    if (api?.getRepoPath) {
-      const p = await api.getRepoPath();
-      setRepoPath(p);
-    }
-  }
+  const [lastOpenedPath, setLastOpenedPath] = useState<string | null>(null);
 
   async function handleOpenInVSCode() {
+    if (!detail) return;
     setOpening(true);
     setLastError(null);
     try {
@@ -56,65 +40,33 @@ export function VSCodeTab() {
       // VSCode opens and the user presses F5, the launch
       // config defaults to the right challenge. Even if the
       // IPC fails afterwards, the handoff is in place.
-      if (detail) {
-        try {
-          await writeActiveChallenge(detail.id);
-        } catch {
-          // ignore — the Open below is the user-visible action
-        }
+      try {
+        await writeActiveChallenge(detail.id);
+      } catch {
+        // ignore — the Open below is the user-visible action
       }
       const api = window.electronAPI;
       if (api?.openInVSCode) {
-        const ok = await api.openInVSCode();
-        if (!ok) {
-          // Two failure modes: (a) VSCode isn't installed,
-          // (b) the user cancelled the repo-path picker on
-          // first run. Distinguish by re-checking the path.
-          const p = await api.getRepoPath?.();
-          if (!p) {
-            setLastError(
-              'No repo path set. Click "Change" to pick the folder where ' +
-              'you cloned the cOde(n) repository.',
-            );
-          } else {
-            setLastError('VSCode did not respond. Is it installed and on PATH?');
-          }
-        } else {
-          // Refresh the path — the picker may have just set
-          // it for the first time.
-          await refreshRepoPath();
+        const result = await api.openInVSCode(detail.id);
+        if (!result.ok) {
+          setLastError(
+            result.error ??
+            'Could not open the file in VSCode. Is VSCode installed?',
+          );
+        } else if (result.filePath) {
+          setLastOpenedPath(result.filePath);
         }
       } else {
-        // Dev / browser fallback: open the vscode:// protocol URL.
-        // The user must have VSCode installed for this to work;
-        // the protocol handler is registered on install.
-        const path = window.location.host || '127.0.0.1:5173';
-        window.open(`vscode://vscode-oss/${encodeURIComponent(path)}`, '_blank');
+        setLastError(
+          'The cOde(n) desktop app is not running. Launch the ' +
+          'packaged app (or `npm start` in electron/ after a build) ' +
+          'so the Electron main process can resolve the file path.',
+        );
       }
     } catch (e) {
       setLastError(e instanceof Error ? e.message : String(e));
     } finally {
       setOpening(false);
-    }
-  }
-
-  async function handleChangeRepo() {
-    setChangingRepo(true);
-    try {
-      const api = window.electronAPI;
-      if (api?.setRepoPath) {
-        const newPath = await api.setRepoPath();
-        if (newPath) {
-          setRepoPath(newPath);
-        } else {
-          setLastError(
-            'Picked folder does not look like a cOde(n) source clone ' +
-            '(missing .vscode/ or solutions/ or tools/run_solution.py).',
-          );
-        }
-      }
-    } finally {
-      setChangingRepo(false);
     }
   }
 
@@ -131,49 +83,39 @@ export function VSCodeTab() {
         </p>
       </header>
 
-      {/* Repo path card. Shows the currently-configured path
-          (set on first "Open in VSCode" click) so the user
-          can see where the project will open. The "Change"
-          button pops a folder picker to repoint at a
-          different clone. */}
+      {/* Current file card. Shows the path of the file that
+          "Open in VSCode" will open, so the user knows what
+          they're about to edit. The path lives in the standard
+          per-user appData dir; cOde(n) sets the whole thing up
+          automatically on first launch. */}
       <div className="border border-coden-border bg-coden-bg rounded p-3 text-xs space-y-2">
-        <div className="flex items-start justify-between gap-2">
-          <div className="min-w-0 flex-1">
-            <div className="text-coden-muted uppercase tracking-wider font-semibold text-[10px] mb-1">
-              Your cOde(n) source folder
-            </div>
-            {repoPath ? (
-              <div className="font-mono text-coden-text break-all">
-                {repoPath}
-              </div>
-            ) : (
-              <div className="text-coden-muted italic">
-                Not set yet — click "Open in VSCode" below and pick your
-                cOde(n) source clone (the one with .vscode/, solutions/,
-                and tools/ subfolders).
-              </div>
-            )}
-          </div>
-          <button
-            type="button"
-            onClick={() => void handleChangeRepo()}
-            disabled={changingRepo}
-            className="px-2 py-1 text-xs rounded border border-coden-border text-coden-text hover:bg-coden-border disabled:opacity-50 shrink-0"
-            title="Pick a different cOde(n) source folder"
-          >
-            {changingRepo ? '…' : 'Change'}
-          </button>
+        <div className="text-coden-muted uppercase tracking-wider font-semibold text-[10px] mb-1">
+          Current solution file
         </div>
+        {detail ? (
+          <div className="font-mono text-coden-text break-all">
+            solutions/{detail.id}.py
+          </div>
+        ) : (
+          <div className="text-coden-muted italic">
+            Pick a challenge to see its file path.
+          </div>
+        )}
+        {lastOpenedPath && (
+          <div className="text-[10px] text-coden-muted mt-2 break-all">
+            Last opened: <span className="font-mono text-coden-text">{lastOpenedPath}</span>
+          </div>
+        )}
       </div>
 
       <button
         type="button"
         onClick={() => void handleOpenInVSCode()}
-        disabled={opening}
+        disabled={opening || !detail}
         className="w-full px-4 py-3 text-sm font-semibold rounded border border-coden-accent bg-coden-accent/10 text-coden-accent hover:bg-coden-accent hover:text-coden-bg disabled:opacity-50 disabled:cursor-not-allowed"
-        title={repoPath
-          ? `Open ${repoPath} in VSCode`
-          : 'Pick your cOde(n) source folder, then open it in VSCode'}
+        title={detail
+          ? `Open solutions/${detail.id}.py in VSCode`
+          : 'Pick a challenge first'}
       >
         {opening ? 'Opening…' : '</> Open in VSCode'}
       </button>
@@ -191,15 +133,11 @@ export function VSCodeTab() {
         <ol className="text-xs text-coden-text space-y-2 list-decimal list-inside">
           <li>
             Click <span className="font-mono text-coden-accent">Open in VSCode</span>{' '}
-            above. VSCode opens your cOde(n) source folder (set on
-            first click).
+            above. VSCode opens the current solution file
+            (<span className="font-mono text-coden-text">solutions/{detail?.id ?? '<id>'}.py</span>).
           </li>
           <li>
-            Open{' '}
-            <span className="font-mono text-coden-text">
-              solutions/{detail?.id ?? '<id>'}.py
-            </span>{' '}
-            in VSCode. A starter is already there; replace the{' '}
+            Edit the file. A starter is already there; replace the{' '}
             <span className="font-mono text-coden-muted"># Write your code here.</span>
             {' '}body with your implementation.
           </li>
@@ -208,13 +146,19 @@ export function VSCodeTab() {
             <span className="font-mono text-coden-text">F5</span> → pick{' '}
             <span className="font-mono text-coden-text">Run current challenge (debug)</span>
             {' '}→ enter the challenge id (or leave blank to use the active
-            one), n, and seed.
+            one), n, and seed. The verdict prints in the integrated terminal.
           </li>
           <li>
             Set a breakpoint in your code, then step with F10 (over) / F11 (in)
-            / Shift+F11 (out). The verdict prints in the integrated terminal.
+            / Shift+F11 (out).
           </li>
         </ol>
+        <p className="text-[11px] text-coden-muted mt-2">
+          F5 in VSCode requires Python on your <span className="font-mono">PATH</span>.
+          If you don't have it, just use cOde(n)'s{' '}
+          <span className="font-mono text-coden-accent">▶ Run</span> button — it
+          works regardless.
+        </p>
       </section>
 
       <section>
@@ -234,17 +178,25 @@ export function VSCodeTab() {
 
       <section>
         <h3 className="text-xs uppercase text-coden-muted font-semibold mb-2">
-          What's in the repo
+          Where everything lives
         </h3>
-        <ul className="text-xs text-coden-text space-y-1.5 list-disc list-inside font-mono">
-          <li><span className="text-coden-accent">tools/run_solution.py</span> — the F5 entry point</li>
-          <li><span className="text-coden-accent">.vscode/launch.json</span> — the debug config</li>
-          <li><span className="text-coden-accent">.vscode/tasks.json</span> — non-debug tasks + tests</li>
-          <li><span className="text-coden-accent">.vscode/settings.json</span> — Python interpreter + file excludes</li>
-          <li><span className="text-coden-accent">.vscode/extensions.json</span> — recommended extensions</li>
-          <li><span className="text-coden-accent">solutions/&lt;id&gt;.py</span> — the 264 starter templates</li>
-          <li><span className="text-coden-accent">solutions/.vscode-active</span> — the active-challenge handoff (gitignored)</li>
-        </ul>
+        <p className="text-xs text-coden-text mb-2">
+          Your workspace is set up automatically in the standard
+          per-user appData folder. On Windows that's typically:
+        </p>
+        <pre className="text-[11px] font-mono text-coden-text bg-coden-bg border border-coden-border rounded p-2 overflow-x-auto whitespace-pre">
+{`C:\\Users\\<you>\\AppData\\Roaming\\coden-electron\\
+├── solutions/         # your code (the source of truth)
+├── .vscode/           # launch.json, tasks.json, settings.json
+├── tools/             # tools/run_solution.py (F5 entry point)
+├── server/, code_n/, challenges/   # engine source (for F5 to import)
+└── progress.json      # your per-challenge best ops`}
+        </pre>
+        <p className="text-[11px] text-coden-muted mt-2">
+          cOde(n) copies the engine files into this folder on first
+          launch. The folder is per-user — you don't pick a location
+          and you don't have to point VSCode at anything.
+        </p>
       </section>
 
       <section>

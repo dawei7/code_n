@@ -8,12 +8,20 @@
  * detached-pane host were all removed in the v0.9.0 pivot
  * (the player edits + debugs in VSCode). The remaining IPC
  * surface is the auto-updater + an "Open in VSCode" button
- * that calls ``shell.openPath(repoRoot)`` in the Electron
- * main process.
+ * that opens the player's exact ``solutions/<id>.py`` file
+ * in VSCode.
  *
  * The auto-update surface (`checkForUpdates`, `onUpdateStatus`,
  * etc.) is wired in `electron/src/updater.ts` and surfaced to the
  * React UI via `web/src/components/UpdateToast.tsx`.
+ *
+ * The "Open in VSCode" flow takes a challenge id, computes the
+ * file path inside the standard per-user appData dir, and
+ * calls ``shell.openPath(filePath)`` in the Electron main
+ * process. The file's parent folder is a self-contained VSCode
+ * workspace (``.vscode/``, ``tools/``, ``server/``, etc. were
+ * copied there on first launch), so F5 hits breakpoints in the
+ * player's source without any further setup.
  */
 export type UpdateState =
   | 'idle'
@@ -57,46 +65,50 @@ export interface AppVersionInfo {
 }
 
 
+/**
+ * Result of ``openInVSCode(challengeId)``.
+ *
+ * On success: ``ok: true`` + the absolute ``filePath`` that
+ * was handed to ``shell.openPath`` (useful for the renderer's
+ * "now editing" indicator).
+ *
+ * On failure: ``ok: false`` + a human-readable ``error``.
+ * Common reasons:
+ *   - The challenge id was invalid (renderer bug — should
+ *     never happen in practice)
+ *   - The solution file doesn't exist yet (the player clicked
+ *     "Open in VSCode" before the challenge was selected in
+ *     cOde(n))
+ *   - VSCode isn't installed, or no app is associated with
+ *     ``.py`` files (the OS error from ``shell.openPath``)
+ */
+export interface OpenInVSCodeResult {
+  ok: boolean;
+  filePath?: string;
+  error?: string;
+}
+
+
 export type ElectronAPI = {
   /**
-   * Open the user's cOde(n) source folder in VSCode. The
-   * Electron main process calls ``shell.openPath(repoPath)``
-   * which routes through the OS file-association handler —
-   * VSCode on Windows opens the project; macOS / Linux do
-   * the same via xdg-open / the equivalent. Returns true on
-   * success, false if VSCode isn't installed or the user
-   * cancelled the repo-folder picker.
-   *
-   * On the first call, if no repo path is stored, the main
-   * process pops an OS folder picker so the user can point
-   * cOde(n) at their cOde(n) source clone (the one with
-   * ``.vscode/``, ``solutions/``, and ``tools/`` subfolders).
-   * Subsequent calls reuse the stored path.
+   * Open the player's exact ``solutions/<challengeId>.py`` file
+   * in VSCode. The Electron main process calls
+   * ``shell.openPath(filePath)`` where ``filePath`` is the
+   * absolute path inside the standard per-user appData dir
+   * (``app.getPath('userData')/solutions/<id>.py``). VSCode
+   * (when installed + associated with ``.py``) opens the file
+   * in its currently-active window. The parent folder is a
+   * self-contained VSCode workspace with ``.vscode/launch.json``,
+   * ``tools/run_solution.py``, and the engine source on the
+   * Python path, so F5 hits breakpoints in the player's file.
    *
    * The renderer should have written the active-challenge
-   * handoff file (via the ``/api/vscode/active`` HTTP route
-   * in the FastAPI server) BEFORE calling this — the F5
-   * launch config in VSCode reads that file when no id is
-   * passed on the command line.
+   * handoff file (via the ``/api/vscode/active`` HTTP route in
+   * the FastAPI server) BEFORE calling this — the F5 launch
+   * config in VSCode reads that file when no id is passed on
+   * the command line.
    */
-  openInVSCode: () => Promise<boolean>;
-  /**
-   * Read the user-chosen cOde(n) repo path (stored in
-   * ``app.getPath('userData')/repo-path.json`` by the main
-   * process). Returns the path string or null if no path
-   * is set yet. The renderer calls this on mount to decide
-   * whether to show a "set your repo path" prompt.
-   */
-  getRepoPath: () => Promise<string | null>;
-  /**
-   * Manually change the repo path. Pops an OS folder picker
-   * (handled by the main process), validates that the chosen
-   * folder looks like a cOde(n) source clone (has ``.vscode/``,
-   * ``solutions/``, ``tools/run_solution.py``), and saves the
-   * new path. Returns the new path string on success or
-   * null if the user cancelled or picked an invalid folder.
-   */
-  setRepoPath: () => Promise<string | null>;
+  openInVSCode: (challengeId: string) => Promise<OpenInVSCodeResult>;
 
   /**
    * Trigger a manual update check. Returns a structured result

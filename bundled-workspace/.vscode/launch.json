@@ -1,0 +1,84 @@
+{
+  // VSCode debug + run configurations for cOde(n), bundled with
+  // the desktop app.
+  //
+  // This is a copy of the repo's .vscode/launch.json. The only
+  // difference between the bundled and dev versions is
+  // .vscode/settings.json's `python.defaultInterpreterPath`,
+  // which points to the system `python` here (there is no
+  // .venv/ in the user's per-user workspace) and to
+  // .venv/Scripts/python.exe in the dev repo. The launch
+  // config itself is identical: it runs tools/run_solution.py
+  // under debugpy with the active challenge id, n, and seed.
+  //
+  // The .vscode/ folder, tools/, server/, code_n/, and
+  // challenges/ are all copied into the user's per-user
+  // appData directory (app.getPath('userData')) on first
+  // launch by the Electron main process. The launch.json's
+  // ${workspaceFolder} variable resolves to that userData
+  // dir, so F5 just works in the packaged app.
+  //
+  // Working directory: the userData workspace. Python
+  // interpreter: the system `python` (whatever is on PATH).
+  // If Python isn't on PATH, debugpy will fail with a clear
+  // error — the cOde(n) Run button still works, so this is
+  // a graceful degradation rather than a regression.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run current challenge (debug)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/tools/run_solution.py",
+      "args": [
+        "${input:challengeId}",
+        "--n", "${input:n}",
+        "--seed", "${input:seed}",
+        "--no-ansi"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "justMyCode": false,
+      "purpose": ["debug-test"]
+    },
+    {
+      "name": "Run current challenge (no debug)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/tools/run_solution.py",
+      "args": [
+        "${input:challengeId}",
+        "--n", "${input:n}",
+        "--seed", "${input:seed}",
+        "--no-ansi"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "justMyCode": true,
+      "purpose": ["debug-test"],
+      "presentation": {
+        "hidden": false
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "challengeId",
+      "type": "promptString",
+      "description": "Challenge id (e.g. sort_01, search_03, intro_01). Leave empty to use the active challenge from cOde(n).",
+      "default": ""
+    },
+    {
+      "id": "n",
+      "type": "promptString",
+      "description": "Input size n (max depends on the challenge - see the description in cOde(n))",
+      "default": "16"
+    },
+    {
+      "id": "seed",
+      "type": "promptString",
+      "description": "Random seed (any integer)",
+      "default": "1"
+    }
+  ]
+}

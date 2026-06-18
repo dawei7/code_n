@@ -3,8 +3,9 @@
 Pipeline:
     1. Build the React app               (``web/``    → ``web/dist/``)
     2. Bundle the FastAPI server         (``server/`` → ``server/dist/coden-server/``)
-    3. Compile the Electron main process (``electron/`` → ``electron/dist/``)
-    4. Build the Electron .exe           (``electron/`` → ``electron/release/coden-*.exe``)
+    3. Stage the per-user workspace      (``tools/`` + ``server/`` + ``code_n/`` + ``challenges/`` → ``bundled-workspace/``)
+    4. Compile the Electron main process (``electron/`` → ``electron/dist/``)
+    5. Build the Electron .exe           (``electron/`` → ``electron/release/coden-*.exe``)
 
 Run with::
 
@@ -102,6 +103,106 @@ def step_server() -> None:
     print(f"OK: bundled server at {expected.relative_to(REPO_ROOT)}")
 
 
+def step_stage_bundled_workspace() -> None:
+    """Stage the per-user VSCode workspace template.
+
+    Populates ``bundled-workspace/`` at the repo root by copying
+    a snapshot of the engine source modules (``tools/``,
+    ``server/``, ``code_n/``, ``challenges/``) next to the
+    hand-tuned ``.vscode/`` template (which is checked in).
+    The Electron main process then copies this whole tree into
+    the user's ``app.getPath('userData')`` on first launch,
+    turning the userData dir into a self-contained VSCode
+    workspace where ``solutions/<id>.py`` can be edited and
+    debugged via F5 (the launch config runs
+    ``tools/run_solution.py`` under debugpy, which needs the
+    engine modules on the Python path).
+
+    This step is idempotent: it ``rm -rf``s the per-step
+    subdirs (``tools/``, ``server/``, ``code_n/``,
+    ``challenges/``) and recreates them from the repo on every
+    build. The ``.vscode/`` template is left untouched (it's
+    hand-written, not auto-generated). This keeps the build
+    deterministic: any change to the engine source flows
+    straight into the bundle.
+
+    Why a staging dir, not just bundling the repo root?
+        Bundling the whole repo would also bundle .venv/,
+        dist/, build/, .git/, docs/source/, etc. — ~hundreds
+        of MB of useless stuff. The staging dir is exactly
+        the ~500 KB of files the user needs in their
+        workspace.
+
+    Why copy the engine source if it's already in the
+    PyInstaller bundle?
+        The PyInstaller bundle is a frozen ``.exe``; the
+        source ``.py`` files inside it are compiled to
+        ``.pyc`` and embedded — debugpy can't import from
+        it. ``tools/run_solution.py`` does a regular
+        ``from server.app.engine_runner import
+        run_player_code``; for that to work, the ``server/``
+        package must be on ``sys.path`` as readable ``.py``
+        files. We copy the engine source into the user's
+        workspace for this reason.
+    """
+    stage = REPO_ROOT / "bundled-workspace"
+    stage.mkdir(parents=True, exist_ok=True)
+
+    # The .vscode/ template is hand-written and checked in.
+    # If it's missing, the build is broken — bail out clearly.
+    template_vsc = stage / ".vscode"
+    if not template_vsc.is_dir():
+        print(f"bundled-workspace template missing at {template_vsc}")
+        sys.exit(1)
+
+    # The .py source dirs are copied from the repo at build
+    # time. We clear the destination first so a removed file
+    # in the source is reflected in the bundle.
+    for src_name in ("tools", "server", "code_n", "challenges"):
+        src = REPO_ROOT / src_name
+        dst = stage / src_name
+        if not src.is_dir():
+            print(f"source dir missing: {src}")
+            sys.exit(1)
+        if dst.exists():
+            shutil.rmtree(dst)
+
+        def _ignore(_dir: str, names: list[str]) -> set[str]:
+            # Drop bytecode + tool caches, plus the heavy
+            # build outputs (PyInstaller dist/build dirs are
+            # 50+ MB on their own and aren't part of the
+            # runtime engine source).
+            drop = {
+                "__pycache__",
+                ".pytest_cache",
+                ".mypy_cache",
+                ".ruff_cache",
+                "dist",
+                "build",
+            }
+            return {n for n in names if n in drop or n.endswith(".pyc")}
+
+        shutil.copytree(src, dst, ignore=_ignore)
+
+    # Sanity check: the launch config + the F5 entry point must
+    # both end up in the staging dir, or the user's "Open in
+    # VSCode" → F5 loop will break.
+    must_have = [
+        stage / ".vscode" / "launch.json",
+        stage / ".vscode" / "settings.json",
+        stage / "tools" / "run_solution.py",
+        stage / "server" / "app" / "engine_runner.py",
+        stage / "code_n" / "challenge.py",
+        stage / "challenges" / "registry.py",
+    ]
+    missing = [p for p in must_have if not p.is_file()]
+    if missing:
+        print(f"bundled-workspace missing files: {missing}")
+        sys.exit(1)
+    size_kb = sum(p.stat().st_size for p in stage.rglob("*") if p.is_file()) / 1024
+    print(f"OK: bundled-workspace staged at {stage.relative_to(REPO_ROOT)} ({size_kb:.0f} KB)")
+
+
 def step_electron_build() -> None:
     """Compile the Electron main process TypeScript."""
     npm = find_tool("npm")
@@ -172,7 +273,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--step",
-        choices=["web", "server", "electron-build", "electron-dist", "all"],
+        choices=["web", "server", "stage-workspace", "electron-build", "electron-dist", "all"],
         default="all",
     )
     parser.add_argument(
@@ -197,6 +298,8 @@ def main() -> None:
         step_web()
     if args.step in ("server", "all"):
         step_server()
+    if args.step in ("stage-workspace", "all"):
+        step_stage_bundled_workspace()
     if args.step in ("electron-build", "all"):
         step_electron_build()
     if args.step in ("electron-dist", "all"):

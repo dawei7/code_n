@@ -21,6 +21,10 @@
     {
       "from": "../docs",
       "to": "docs"
+    },
+    {
+      "from": "../bundled-workspace",
+      "to": "bundled-workspace"
     }
   ],
   "win": {

@@ -8,11 +8,16 @@
  * to invoke native capabilities.
  *
  * Exposed functions:
- *   - openInVSCode() — opens the repo root in VSCode (calls
- *     ``shell.openPath(repoRoot)`` in the main process). The
- *     renderer should have written
- *     ``solutions/.vscode-active`` first so the F5 launch
- *     config defaults to the right challenge.
+ *   - openInVSCode(challengeId) — opens the player's exact
+ *     ``solutions/<challengeId>.py`` file in VSCode. The file
+ *     lives in the standard per-user appData dir
+ *     (``app.getPath('userData')/solutions/<id>.py``), and the
+ *     parent folder is a self-contained VSCode workspace
+ *     (``.vscode/`` + ``tools/`` + ``server/`` etc. were copied
+ *     there on first launch by the main process). So F5 hits
+ *     breakpoints in the player's file. Returns a result
+ *     object with ``ok``, the resolved ``filePath``, and an
+ *     ``error`` string on failure.
  *   - checkForUpdates() / installUpdateAndRestart() / getAppVersion()
  *     — see the auto-update wiring in `electron/src/updater.ts`
  *     and the React UI in `web/src/components/UpdateToast.tsx`.
@@ -31,15 +36,15 @@
 import { contextBridge, ipcRenderer } from 'electron';
 import type {
   ElectronAPI,
+  OpenInVSCodeResult,
   UpdateState,
   UpdateStatusPayload,
 } from '../../web/src/types/electron';
 
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  openInVSCode: (): Promise<boolean> => ipcRenderer.invoke('open-in-vscode'),
-  getRepoPath: (): Promise<string | null> => ipcRenderer.invoke('get-repo-path'),
-  setRepoPath: (): Promise<string | null> => ipcRenderer.invoke('set-repo-path'),
+  openInVSCode: (challengeId: string): Promise<OpenInVSCodeResult> =>
+    ipcRenderer.invoke('open-in-vscode', { challengeId }),
 
   // ---- Auto-update surface ----
 

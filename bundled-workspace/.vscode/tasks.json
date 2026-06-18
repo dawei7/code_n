@@ -1,0 +1,97 @@
+{
+  // VSCode tasks for cOde(n), bundled with the desktop app.
+  //
+  // This is a copy of the repo's .vscode/tasks.json. The "Run
+  // current challenge (no debug)" task and the "Start cOde(n)
+  // server" task both shell out to the system `python`. The
+  // bundled workspace does not have a project-level .venv/
+  // (the engine runs in a PyInstaller bundle, not in a
+  // venv), so we use `python` from PATH.
+  //
+  // The "Run engine tests" and "Run server tests" tasks run
+  // unittest against the bundled copies of the engine
+  // modules (server/, code_n/, challenges/, tests/).
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run current challenge (no debug)",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "tools/run_solution.py",
+        "${input:challengeId}",
+        "--n", "${input:n}",
+        "--seed", "${input:seed}",
+        "--no-ansi"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Start cOde(n) server",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "-m", "uvicorn",
+        "server.app.main:app",
+        "--host", "127.0.0.1",
+        "--port", "8000"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "Run engine tests",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "unittest", "discover", "-s", "tests", "-t", ".", "-v"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run server tests",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "unittest", "discover", "-s", "server/tests", "-t", ".", "-v"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "challengeId",
+      "type": "promptString",
+      "description": "Challenge id (e.g. sort_01, search_03, intro_01). Leave empty to use the active challenge from cOde(n).",
+      "default": ""
+    },
+    {
+      "id": "n",
+      "type": "promptString",
+      "description": "Input size n (max depends on the challenge - see the description in cOde(n))",
+      "default": "16"
+    },
+    {
+      "id": "seed",
+      "type": "promptString",
+      "description": "Random seed (any integer)",
+      "default": "1"
+    }
+  ]
+}
