@@ -38,6 +38,7 @@
 import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { spawn, spawnSync } from 'node:child_process';
 import { startServer, ServerHandle } from './server-process';
 import { initAutoUpdater, runAutoCheckOnLaunch } from './updater';
 
@@ -183,19 +184,20 @@ function isValidChallengeId(id: unknown): id is string {
  *  Returns a small result object so the renderer can show a
  *  precise error message on failure.
  *
- *  Tries two strategies in order:
- *    1. ``shell.openPath(filePath)`` — uses the OS file
- *       association (works when the user has associated
- *       ``.py`` with VSCode, which is the default on most
- *       dev machines).
- *    2. ``shell.openExternal('vscode://file/<path>')`` —
- *       uses the ``vscode://`` URL handler that VSCode
- *       registers on install. This works even when ``.py``
- *       is associated with Notepad or some other editor;
- *       VSCode always handles its own protocol.
+ *  Tries three strategies in order:
+ *    1. ``code <file> -n`` via the ``code`` CLI (if on PATH
+ *       or in the standard install location). The ``-n``
+ *       forces a NEW VSCode window so the file isn't added
+ *       to a stale window with the wrong workspace.
+ *    2. ``shell.openPath(filePath)`` — uses the OS file
+ *       association. Works when the user has associated
+ *       ``.py`` with VSCode.
+ *    3. ``shell.openExternal('vscode://file/<path>')`` —
+ *       uses VSCode's own URL handler (always registered
+ *       on install, regardless of file associations).
  *
- *  If both fail (VSCode not installed at all), we return a
- *  clear error so the renderer can tell the user. */
+ *  If all three fail (VSCode not installed at all), we
+ *  return a clear error so the renderer can tell the user. */
 async function openSolutionFile(
   codenHome: string,
   challengeId: string,
@@ -212,15 +214,39 @@ async function openSolutionFile(
         'then click "Open in VSCode" again.',
     };
   }
-  // Strategy 1: file association. The most common path.
+
+  // Strategy 1: the ``code`` CLI (if installed). The ``-n``
+  // flag forces a fresh window so the file isn't added to
+  // a stale window with the wrong workspace. This is the
+  // most reliable path when VSCode is installed and the
+  // user accepted "Add to PATH" during the VSCode
+  // installer.
+  const codeExe = findCodeCli();
+  if (codeExe) {
+    try {
+      const child = spawn(codeExe, [filePath, '-n'], {
+        detached: true,
+        stdio: 'ignore',
+        windowsHide: true,
+      });
+      child.unref();
+      return { ok: true, filePath };
+    } catch (e) {
+      const message = e instanceof Error ? e.message : String(e);
+      console.warn(
+        `[coden-electron] code CLI failed for ${filePath}: ${message}; ` +
+        'falling back to shell.openPath',
+      );
+    }
+  }
+
+  // Strategy 2: file association. The most common path
+  // when the ``code`` CLI isn't installed.
   try {
     const errMsg = await shell.openPath(filePath);
     if (!errMsg) {
       return { ok: true, filePath };
     }
-    // shell.openPath returned a non-empty error (e.g. ".py is
-    // not associated with any app"). Fall through to the
-    // vscode:// URL fallback below.
     console.warn(
       `[coden-electron] shell.openPath failed for ${filePath}: ${errMsg}; ` +
       'falling back to vscode:// URL',
@@ -232,13 +258,11 @@ async function openSolutionFile(
       'falling back to vscode:// URL',
     );
   }
-  // Strategy 2: vscode:// URL. Always works if VSCode is
-  // installed (the URL handler is registered on install). The
-  // file path must be absolute and forward-slash-encoded per
-  // the RFC 3986 / vscode:// spec; ``pathToFileURL`` gives us
-  // that for free.
+
+  // Strategy 3: vscode:// URL. Always works if VSCode is
+  // installed (the URL handler is registered on install).
   try {
-    const fileUrl = 'vscode://file' + pathToVscodeUrl(filePath);
+    const fileUrl = 'vscode://file/' + pathToVscodeUrl(filePath);
     await shell.openExternal(fileUrl);
     return { ok: true, filePath };
   } catch (e) {
@@ -254,20 +278,58 @@ async function openSolutionFile(
 }
 
 
+/** Find the ``code`` (or ``code.cmd``) CLI. Checks PATH
+ *  first, then the standard Windows install location
+ *  (``%LOCALAPPDATA%\Programs\Microsoft VS Code\bin``).
+ *  Returns the absolute path or null. */
+function findCodeCli(): string | null {
+  // PATH
+  const fromPath = findOnPath('code') ?? findOnPath('code.cmd');
+  if (fromPath) return fromPath;
+  // Standard Windows install (the user-installed version
+  // — the system-installed MSI uses a different path)
+  if (process.platform === 'win32') {
+    const local = process.env.LOCALAPPDATA ?? '';
+    const candidates = [
+      path.join(local, 'Programs', 'Microsoft VS Code', 'bin', 'code.cmd'),
+      path.join(local, 'Programs', 'Microsoft VS Code', 'Code.exe'),
+    ];
+    for (const c of candidates) {
+      if (fs.existsSync(c)) return c;
+    }
+  }
+  return null;
+}
+
+
+/** Look up an executable on PATH. Node's ``which`` does
+ *  this, but isn't available on Windows by default. We use
+ *  ``child_process.spawnSync`` with the platform's shell
+ *  command (``where`` on Windows, ``which`` elsewhere). */
+function findOnPath(name: string): string | null {
+  try {
+    const cmd = process.platform === 'win32' ? 'where' : 'which';
+    const result = spawnSync(cmd, [name], { encoding: 'utf-8' });
+    if (result.status === 0 && result.stdout) {
+      const first = result.stdout.split(/\r?\n/)[0]?.trim();
+      if (first) return first;
+    }
+  } catch {
+    // PATH lookup failed; not a hard error
+  }
+  return null;
+}
+
+
 /** Convert an absolute file path to the path portion of a
- *  ``vscode://file/...`` URL. Forward slashes, percent-encoded
- *  (the ``encodeURI`` semantics for the path component — we
- *  can't use ``encodeURIComponent`` because that escapes
- *  ``/``, which would break the URL structure; and we can't
- *  use ``encodeURI`` because that doesn't escape ``#``,
- *  ``?``, etc., which are valid in filenames on Windows). */
+ *  ``vscode://file/<...>`` URL. Backslashes become forward
+ *  slashes; each path segment is ``encodeURIComponent``'d
+ *  so Windows drive letters (``C:`` → ``C%3A``) and other
+ *  special characters are correctly escaped. The leading
+ *  ``/`` (which separates the URL resource from the path)
+ *  is added by the caller. */
 function pathToVscodeUrl(p: string): string {
-  // Normalize to forward slashes (Windows paths use
-  // backslashes; the URL form uses forward slashes).
   const fwd = p.replace(/\\/g, '/');
-  // Split on '/' to encode each segment, then rejoin.
-  // ``encodeURIComponent`` escapes the right chars; the
-  // forward slashes between segments are preserved.
   return fwd.split('/').map(encodeURIComponent).join('/');
 }
 
