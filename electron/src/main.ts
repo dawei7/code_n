@@ -222,6 +222,10 @@ async function openSolutionFile(
   // user accepted "Add to PATH" during the VSCode
   // installer.
   const codeExe = findCodeCli();
+  console.log(
+    `[coden-electron] openInVSCode: target=${filePath}; ` +
+    `code CLI=${codeExe ?? '(not found)'}`,
+  );
   if (codeExe) {
     try {
       const child = spawn(codeExe, [filePath, '-n'], {
@@ -230,6 +234,7 @@ async function openSolutionFile(
         windowsHide: true,
       });
       child.unref();
+      console.log(`[coden-electron] openInVSCode: spawned code CLI for ${filePath}`);
       return { ok: true, filePath };
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
@@ -245,6 +250,7 @@ async function openSolutionFile(
   try {
     const errMsg = await shell.openPath(filePath);
     if (!errMsg) {
+      console.log(`[coden-electron] openInVSCode: shell.openPath OK for ${filePath}`);
       return { ok: true, filePath };
     }
     console.warn(
@@ -264,9 +270,14 @@ async function openSolutionFile(
   try {
     const fileUrl = 'vscode://file/' + pathToVscodeUrl(filePath);
     await shell.openExternal(fileUrl);
+    console.log(`[coden-electron] openInVSCode: vscode:// URL OK for ${fileUrl}`);
     return { ok: true, filePath };
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
+    console.error(
+      `[coden-electron] openInVSCode: all 3 strategies failed for ${filePath}; ` +
+      `last error: ${message}`,
+    );
     return {
       ok: false,
       filePath,
@@ -347,9 +358,12 @@ async function createWindow(): Promise<void> {
   const codenHome = app.isPackaged
     ? app.getPath('userData')
     : repoRoot;
+  const electronPkg = require('../package.json') as { version?: string };
+  console.log(`[coden-electron] === cOde(n) v${electronPkg.version ?? '?'} starting ===`);
   console.log(`[coden-electron] dev repo root: ${repoRoot}`);
   console.log(`[coden-electron] CODEN_HOME: ${codenHome} (packaged=${app.isPackaged})`);
   console.log(`[coden-electron] process.resourcesPath: ${process.resourcesPath}`);
+  console.log(`[coden-electron] install dir (executable): ${path.dirname(app.getPath('exe'))}`);
 
   // Stage the per-user VSCode workspace files (.vscode/, tools/,
   // server/, code_n/, challenges/) into codenHome if they're
