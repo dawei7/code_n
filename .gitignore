@@ -79,3 +79,6 @@ solutions/.vscode-active
 # Chromium / Electron crash logs (not from our code)
 debug.log
 *.log
+*.main.js
+
+# Stray main.js in electron/ from asar extraction (electron/main.js is not a real source file)
