@@ -3,7 +3,7 @@
   "version": "0.9.7",
   "private": true,
   "description": "cOde(n) desktop wrapper (Electron).",
-  "main": "dist/main.js",
+  "main": "dist/electron/src/main.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",

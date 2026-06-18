@@ -204,11 +204,19 @@ def step_stage_bundled_workspace() -> None:
 
 
 def step_electron_build() -> None:
-    """Compile the Electron main process TypeScript."""
+    """Compile the Electron main process TypeScript.
+
+    The tsconfig has ``rootDir: ".."`` (set to ``..`` to
+    accommodate a cross-project type import from
+    ``../web/src/types/electron.ts``), so the compiled
+    output mirrors the source structure: the entry is at
+    ``dist/electron/src/main.js`` (not ``dist/main.js``).
+    This step checks for the actual output path.
+    """
     npm = find_tool("npm")
     run([npm, "install", "--no-audit", "--no-fund"], cwd=REPO_ROOT / "electron")
     run([npm, "run", "build"], cwd=REPO_ROOT / "electron")
-    expected = REPO_ROOT / "electron" / "dist" / "main.js"
+    expected = REPO_ROOT / "electron" / "dist" / "electron" / "src" / "main.js"
     if not expected.is_file():
         print(f"electron build did not produce {expected}")
         sys.exit(1)
