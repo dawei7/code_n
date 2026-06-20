@@ -103,4 +103,4 @@ To release a new version of the app with automatic updates:
 ---
 
 ## 📝 License
-Proprietary / Educational License. Refer to the terms of use.
+This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details.
