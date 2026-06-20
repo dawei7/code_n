@@ -22,6 +22,10 @@
 import { useEffect, useState, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import rehypeRaw from 'rehype-raw';
+import 'katex/dist/katex.min.css';
 
 import { useAppStore } from '../../../store/useAppStore';
 
@@ -40,6 +44,7 @@ let OVERVIEW_CACHE: string | null = null;
 
 export function ReferenceTab() {
   const detail = useAppStore((s) => s.currentDetail);
+  const language = useAppStore((s) => s.language);
   const [state, setState] = useState<LoadState>({ kind: 'idle' });
 
   const challengeId = detail?.id ?? null;
@@ -54,7 +59,7 @@ export function ReferenceTab() {
           setState({ kind: 'loaded', markdown: OVERVIEW_CACHE });
           return;
         }
-        const res = await fetch('/api/docs/overview');
+        const res = await fetch(`/api/docs/overview?lang=${language}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
         OVERVIEW_CACHE = text;
@@ -69,7 +74,7 @@ export function ReferenceTab() {
           setState({ kind: 'loaded', markdown: cached });
           return;
         }
-        const res = await fetch(`/api/docs/by-id/${encodeURIComponent(id)}`);
+        const res = await fetch(`/api/docs/by-id/${encodeURIComponent(id)}?lang=${language}`);
         if (res.status === 404) {
           setState({
             kind: 'missing',
@@ -88,7 +93,7 @@ export function ReferenceTab() {
       const message = e instanceof Error ? e.message : String(e);
       setState({ kind: 'error', message });
     }
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     if (!challengeId) {
@@ -110,11 +115,11 @@ export function ReferenceTab() {
         );
       }
     });
-  }, [challengeId, challengeName, category, load]);
+  }, [challengeId, challengeName, category, language, load]);
 
   if (state.kind === 'idle' || state.kind === 'loading') {
     return (
-      <div className="h-full flex items-center justify-center text-xs text-coden-muted">
+      <div className="flex items-center justify-center text-xs text-coden-muted">
         Loading reference…
       </div>
     );
@@ -122,7 +127,7 @@ export function ReferenceTab() {
 
   if (state.kind === 'error') {
     return (
-      <div className="h-full flex flex-col items-center justify-center gap-2 text-xs">
+      <div className="flex flex-col items-center justify-center gap-2 text-xs">
         <div className="text-red-400">Failed to load doc:</div>
         <pre className="text-coden-muted whitespace-pre-wrap">{state.message}</pre>
         <button
@@ -143,7 +148,7 @@ export function ReferenceTab() {
       `Please add one at \`docs/algorithms/${state.category}/${state.challengeId}_<slug>.md\` using the template at \`docs/_template.md\`.`,
     );
     return (
-      <div className="h-full flex flex-col items-center justify-center gap-3 text-xs text-coden-muted">
+      <div className="flex flex-col items-center justify-center gap-3 text-xs text-coden-muted">
         <div className="text-base font-semibold text-coden-text">
           No reference doc yet for <code className="text-coden-accent">{state.challengeId}</code>
         </div>
@@ -164,7 +169,7 @@ export function ReferenceTab() {
 
   // Loaded: render the markdown.
   return (
-    <div className="h-full overflow-y-auto">
+    <div>
       <article className="prose prose-invert prose-sm max-w-none p-4
                           prose-headings:text-coden-text
                           prose-a:text-coden-accent
@@ -174,11 +179,29 @@ export function ReferenceTab() {
                           prose-table:my-2
                           prose-th:text-left">
         <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
+          remarkPlugins={[remarkGfm, remarkMath]}
+          rehypePlugins={[rehypeRaw, rehypeKatex]}
           components={{
-            a: ({ node, ...props }) => (
-              <a {...props} target="_blank" rel="noreferrer" />
-            ),
+            a: ({ node, ...props }) => {
+              if (props.href?.endsWith('.md')) {
+                // Extract the challenge ID (e.g. "dp_02_climbing-stairs.md" -> "dp_02")
+                const match = props.href.match(/^([a-z]+_\d+)/);
+                if (match) {
+                  return (
+                    <a
+                      {...props}
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        useAppStore.getState().selectChallenge(match[1]);
+                      }}
+                      className="cursor-pointer text-coden-accent hover:underline"
+                    />
+                  );
+                }
+              }
+              return <a {...props} target="_blank" rel="noreferrer" />;
+            },
             table: ({ node, ...props }) => (
               <table {...props} className="border-collapse border border-coden-border text-xs" />
             ),

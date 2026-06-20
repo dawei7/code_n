@@ -47,6 +47,14 @@ export interface ChallengeDetail extends ChallengeSummary {
   complexity_notes: Record<string, string>;
 }
 
+export interface ScalingPoint {
+  n: number;
+  user_ops: number;
+  ref_ops: number;
+  ci_low: number;
+  ci_high: number;
+}
+
 export interface RunResponse {
   passed: boolean;
   correct: boolean;
@@ -80,6 +88,7 @@ export interface RunResponse {
   /** ±5% tolerance band around the reference's AST op count. */
   reference_ci_low: number | null;
   reference_ci_high: number | null;
+  scaling_data: ScalingPoint[];
 }
 
 export interface LevelRecordOut {
@@ -100,4 +109,17 @@ export interface SolutionGet {
   challenge_id: string;
   source: string;
   exists: boolean;
+}
+
+export interface SolutionVersionsGet {
+  challenge_id: string;
+  active_version: number;
+  versions: number[];
+  version_names: Record<number, string>;
+  modified_versions: number[];
+  source: string;
+}
+
+export interface VersionSwitchRequest {
+  version: number;
 }

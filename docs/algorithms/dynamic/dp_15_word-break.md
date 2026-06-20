@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_15` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 4/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Word wrap problem](https://en.wikipedia.org/wiki/Word_wrap_problem) (related) |
@@ -54,25 +54,36 @@ dp[i] = any(dp[j] and s[j:i] in word_set for j in 0..i-1)
 
 **Answer:** `dp[len(s)]`.
 
-**Optimization:** turn `wordDict` into a set for O(1)
+**Optimization:** turn `wordDict` into a set for $O(1)$
 membership test. Optionally, also track `min_word_len` and
 `max_word_len` to skip irrelevant `j` values.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-word_break(s, word_dict):
-    word_set = set(word_dict)
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_15: Word Break.
+
+True iff s can be segmented into a sequence of dictionary words.
+"""
+
+
+def solve(s, word_dict):
     n = len(s)
+    word_set = set(word_dict)
     dp = [False] * (n + 1)
     dp[0] = True
-    for i from 1 to n:
-        for j from 0 to i - 1:
+    for i in range(1, n + 1):
+        for j in range(i):
             if dp[j] and s[j:i] in word_set:
                 dp[i] = True
                 break
     return dp[n]
 ```
+
+</details>
 
 ## Walk-through
 
@@ -101,15 +112,15 @@ word_break(s, word_dict):
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n²) | O(n) |
-| **Average** | O(n²) | O(n) |
-| **Worst** | O(n²) | O(n) |
+| **Best** | $O(n²)$ | $O(n)$ |
+| **Average** | $O(n²)$ | $O(n)$ |
+| **Worst** | $O(n²)$ | $O(n)$ |
 
-The double loop is O(n²). Substring creation `s[j:i]` is O(n)
-each, so the total is O(n³) naively. Use string slicing
+The double loop is $O(n²)$. Substring creation `s[j:i]` is $O(n)$
+each, so the total is $O(n³)$ naively. Use string slicing
 interning (Python) or the substring-lookup optimization to
-keep it O(n²). With Trie lookup, the worst case can be
-O(n·L) where L is the max word length.
+keep it $O(n²)$. With Trie lookup, the worst case can be
+$O(n·L)$ where L is the max word length.
 
 ## Variants & optimizations
 
@@ -119,8 +130,8 @@ O(n·L) where L is the max word length.
   are themselves composed of other dict words. Apply Word
   Break to each.
 - **Trie-based lookup** — for large dictionaries, put all
-  words in a Trie and walk the string in O(n) total time
-  per i (amortized O(n²) for the whole algorithm).
+  words in a Trie and walk the string in $O(n)$ total time
+  per i (amortized $O(n²)$ for the whole algorithm).
 - **Length-bounded dictionary** — precompute `min_len` and
   `max_len`; skip `j` where `i - j` is outside the range.
 - **Word Break with one wildcard** — `'*'` matches any

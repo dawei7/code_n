@@ -59,7 +59,6 @@ from pathlib import Path
 from typing import Any, Optional
 
 from challenges.registry import CHALLENGE_REGISTRY
-from code_n.challenge import Challenge
 from code_n.counter import (
     ComplexityClass,
     classify_ast_ops,
@@ -339,6 +338,26 @@ def run_player_code(
         # list doesn't blow up the response.
         return_value_repr = _format_return_value(trace.return_value or result)
 
+        # 4. Generate scaling data for the graph (n from 2 to min(max_n, 50))
+        scaling_data = []
+        # Only do this if it's correct (or within step limit) so we don't scale an infinite loop
+        # Wait, ast_count_ops does not run the code, it's just AST math. So it's perfectly safe
+        # to run it even if the code had an infinite loop at runtime!
+        max_scale_n = min(challenge.max_n, 50)
+        import math
+        for i in range(2, max_scale_n + 1):
+            u_ops = ast_count_ops(source, i)
+            r_ops = ast_count_ops(reference_source, i) if reference_source else 0
+            c_low = math.floor(r_ops * 0.95)
+            c_high = math.ceil(r_ops * 1.05)
+            scaling_data.append({
+                "n": i,
+                "user_ops": u_ops,
+                "ref_ops": r_ops,
+                "ci_low": c_low,
+                "ci_high": c_high,
+            })
+
         return RunResponse(
             passed=passed,
             correct=correct,
@@ -354,6 +373,7 @@ def run_player_code(
             reference_ast_ops=reference_ast_ops,
             reference_ci_low=reference_ci_low,
             reference_ci_high=reference_ci_high,
+            scaling_data=scaling_data,
             message=message,
             return_value_repr=return_value_repr,
         )

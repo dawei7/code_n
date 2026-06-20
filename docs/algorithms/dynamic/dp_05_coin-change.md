@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_05` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Change-making problem](https://en.wikipedia.org/wiki/Change-making_problem) |
@@ -64,22 +64,30 @@ edges).
 
 **Return:** `dp[amount]` if finite, else `-1`.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-coin_change(coins, amount):
-    dp = [+∞] * (amount + 1)
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_05: Coin Change.
+
+Minimum number of coins summing to the given amount.
+"""
+
+
+def solve(coins, amount):
+    INF = float("inf")
+    dp = [INF] * (amount + 1)
     dp[0] = 0
-    for a from 1 to amount:
+    for v in range(1, amount + 1):
         for c in coins:
-            if c <= a and dp[a - c] + 1 < dp[a]:
-                dp[a] = dp[a - c] + 1
-    return dp[amount] if dp[amount] != +∞ else -1
+            if c <= v and dp[v - c] + 1 < dp[v]:
+                dp[v] = dp[v - c] + 1
+    return dp[amount] if dp[amount] != INF else -1
 ```
 
-This is the standard bottom-up tabulation. Each entry is
-the minimum over at most `n` candidates, so total time is
-O(n · amount).
+</details>
 
 ## Walk-through
 
@@ -107,9 +115,9 @@ Answer: `dp[11] = 2` (10 + 1). ✓
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n · amount) | O(amount) |
-| **Average** | O(n · amount) | O(amount) |
-| **Worst** | O(n · amount) | O(amount) |
+| **Best** | $O(n · amount)$ | $O(amount)$ |
+| **Average** | $O(n · amount)$ | $O(amount)$ |
+| **Worst** | $O(n · amount)$ | $O(amount)$ |
 
 Pseudo-polynomial in `amount`, just like 0/1 knapsack. For
 very large `amount`, consider greedy if the coin system is
@@ -121,7 +129,7 @@ the Wikipedia entry for the precise characterization).
 - **Greedy for canonical coin systems** — if the denominations
   satisfy the canonical-coin property (every greedy choice is
   also the optimal choice for some amount), you can do
-  O(amount / max_denom) without a DP. US coins `[1, 5, 10, 25]`
+  $O(amount / max_denom)$ without a DP. US coins `[1, 5, 10, 25]`
   are canonical.
 - **Count ways** — instead of minimum, count the number of
   distinct ways to make the amount. Initial `dp[0] = 1`,

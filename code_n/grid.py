@@ -4,9 +4,9 @@ The grid is a 2D array where each cell can hold values, colors, and state.
 Players interact with the grid through the API to solve algorithm challenges.
 """
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import IntEnum
-from typing import Any, Optional
+from typing import Any
 
 
 class CellType(IntEnum):

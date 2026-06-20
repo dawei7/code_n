@@ -59,7 +59,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
 from pathlib import Path
 
@@ -94,13 +93,25 @@ def _read_active_challenge() -> str | None:
     intentionally specifying them on the launch config).
     """
     handoff_path = _REPO_ROOT / "solutions" / ".vscode-active"
-    if not handoff_path.is_file():
-        return None
-    try:
-        payload = json.loads(handoff_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        return None
-    return payload.get("id") or None
+    cid = None
+    if handoff_path.is_file():
+        try:
+            payload = json.loads(handoff_path.read_text(encoding="utf-8"))
+            cid = payload.get("id") or None
+        except (OSError, json.JSONDecodeError):
+            pass
+
+    if not cid:
+        solutions_dir = _REPO_ROOT / "solutions"
+        if solutions_dir.is_dir():
+            candidates = [
+                p for p in solutions_dir.iterdir()
+                if p.is_file() and p.suffix == ".py" and not p.name.startswith(".")
+            ]
+            if candidates:
+                candidates.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+                cid = candidates[0].stem
+    return cid
 
 
 def _format_verdict(result) -> str:

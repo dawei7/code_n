@@ -74,18 +74,50 @@ def _category_dir(category: str) -> Path:
     return DOCS_ROOT / "algorithms" / category
 
 
-def _find_doc_path(challenge_id: str, name: str, category: str) -> Optional[Path]:
+def _find_doc_path(challenge_id: str, name: str, category: str, lang: str = "en") -> Optional[Path]:
     """Return the absolute path of the doc, or None if it doesn't exist.
 
-    The filename convention is ``{challenge_id}_{slug}.md`` where
-    slug is the lowercased, hyphenated name.
+    Uses a prefix search on the challenge ID to resolve mismatches between
+    registry names and disk filenames (e.g. 'graph_02_bfs.md' vs 'graph_02_breadth-first-search.md').
     """
     cat_dir = _category_dir(category)
     if not cat_dir.is_dir():
         return None
-    candidate = cat_dir / f"{challenge_id}_{_slugify(name)}.md"
-    return candidate if candidate.is_file() else None
+    
+    # Try finding files starting with challenge_id
+    files = list(cat_dir.glob(f"{challenge_id}_*.md"))
+    if not files:
+        return None
+        
+    if lang == "de":
+        de_files = [f for f in files if f.name.endswith("_de.md")]
+        if de_files:
+            return de_files[0]
+            
+    en_files = [f for f in files if not f.name.endswith("_de.md")]
+    return en_files[0] if en_files else None
 
+
+def _find_math_path(challenge_id: str, name: str, category: str, lang: str = "en") -> Optional[Path]:
+    """Return the absolute path of the math doc, or None if it doesn't exist.
+    
+    Uses a prefix search on the challenge ID to resolve mismatches.
+    """
+    cat_dir = DOCS_ROOT / "mathematical" / category
+    if not cat_dir.is_dir():
+        return None
+        
+    files = list(cat_dir.glob(f"{challenge_id}_*.md"))
+    if not files:
+        return None
+        
+    if lang == "de":
+        de_files = [f for f in files if f.name.endswith("_de.md")]
+        if de_files:
+            return de_files[0]
+            
+    en_files = [f for f in files if not f.name.endswith("_de.md")]
+    return en_files[0] if en_files else None
 
 # --- Endpoints ---------------------------------------------------
 
@@ -119,7 +151,7 @@ def docs_index() -> list[DocIndexEntry]:
 
 
 @router.get("/docs/overview")
-def docs_overview() -> Response:
+def docs_overview(lang: str = "en") -> Response:
     """Return the general overview doc (docs/README.md).
 
     Returns the file content with ``text/markdown`` so the
@@ -129,7 +161,9 @@ def docs_overview() -> Response:
     quotes and escape newlines as ``\\n`` - not what we want
     for a markdown consumer.
     """
-    readme = DOCS_ROOT / "README.md"
+    readme_de = DOCS_ROOT / "README_de.md"
+    readme_en = DOCS_ROOT / "README.md"
+    readme = readme_de if lang == "de" and readme_de.is_file() else readme_en
     if not readme.is_file():
         raise HTTPException(status_code=404, detail="docs/README.md not found")
     return Response(
@@ -139,7 +173,7 @@ def docs_overview() -> Response:
 
 
 @router.get("/docs/by-id/{challenge_id}")
-def docs_by_id(challenge_id: str) -> Response:
+def docs_by_id(challenge_id: str, lang: str = "en") -> Response:
     """Return the per-algorithm doc for a challenge (by challenge id).
 
     See :func:`docs_overview` for the media-type note.
@@ -148,12 +182,32 @@ def docs_by_id(challenge_id: str) -> Response:
     if cls is None:
         raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
     spec = cls()._spec
-    doc = _find_doc_path(challenge_id, spec.name, spec.category)
+    doc = _find_doc_path(challenge_id, spec.name, spec.category, lang)
     if doc is None:
         raise HTTPException(
             status_code=404,
             detail=f"No doc yet for {challenge_id} ({spec.name}). "
                    f"Contribute at docs/algorithms/{spec.category}/{challenge_id}_*.md",
+        )
+    return Response(
+        content=doc.read_text(encoding="utf-8"),
+        media_type="text/markdown; charset=utf-8",
+    )
+
+
+@router.get("/math/by-id/{challenge_id}")
+def math_by_id(challenge_id: str, lang: str = "en") -> Response:
+    """Return the per-algorithm mathematical doc for a challenge (by challenge id)."""
+    cls = CHALLENGE_REGISTRY.get(challenge_id)
+    if cls is None:
+        raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
+    spec = cls()._spec
+    doc = _find_math_path(challenge_id, spec.name, spec.category, lang)
+    if doc is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"No mathematical doc yet for {challenge_id} ({spec.name}). "
+                   f"Contribute at docs/mathematical/{spec.category}/{challenge_id}_*.md",
         )
     return Response(
         content=doc.read_text(encoding="utf-8"),

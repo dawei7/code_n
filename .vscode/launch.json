@@ -59,9 +59,9 @@
   "inputs": [
     {
       "id": "challengeId",
-      "type": "command",
-      "command": "${workspaceFolder}/.venv/Scripts/python.exe ${workspaceFolder}/.vscode/get_active_challenge.py",
-      "description": "Active challenge id from cOde(n) (solutions/.vscode-active); falls back to most-recently-modified solutions/*.py"
+      "type": "promptString",
+      "default": "",
+      "description": "Challenge ID (leave empty to auto-detect from cOde(n) active challenge)"
     },
     {
       "id": "n",

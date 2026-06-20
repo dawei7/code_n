@@ -690,7 +690,6 @@ def _setup_bb_06(challenge, n, seed):
 def _verify_bb_06(challenge, result):
     # Brute force: try every permutation of cities 1..n-1 and
     # sum the tour cost including the return to 0.
-    import math
     from itertools import permutations
     n = challenge._n
     cost = challenge._cost

@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `graph_04` |
 | **Category** | graphs |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 8/10 |
 | **Wikipedia** | [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) |
@@ -75,9 +75,9 @@ engine checks against):
    (single-pair variant) or all reachable vertices are
    visited (single-source variant).
 
-The required complexity is O(n²), which is the n-scan version
+The required complexity is $O(n²)$, which is the n-scan version
 (no heap). For sparse graphs, a heap (binary or Fibonacci)
-reduces this to O((n + m) log n).
+reduces this to $O((n + m)$ log n).
 
 ## Algorithm (pseudocode, n² version)
 
@@ -149,19 +149,19 @@ was wrong; the walk-through is right.)
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n²) — n-scan min (no early exit until target found) | O(n) |
-| **Average** | O(n²) | O(n) |
-| **Worst** | O(n²) | O(n) |
+| **Best** | $O(n²)$ — n-scan min (no early exit until target found) | $O(n)$ |
+| **Average** | $O(n²)$ | $O(n)$ |
+| **Worst** | $O(n²)$ | $O(n)$ |
 
-The O(n²) version uses an O(n) linear scan to find the min.
-With a **binary heap** priority queue: O((n + m) log n). With
-a **Fibonacci heap**: O(n log n + m).
+The $O(n²)$ version uses an $O(n)$ linear scan to find the min.
+With a **binary heap** priority queue: $O((n + m)$ log n). With
+a **Fibonacci heap**: $O(n log n + m)$.
 
 ## Variants & optimizations
 
 - **Binary heap PQ** — push `(dist, vertex)` to a min-heap.
-  Pop the minimum; relax neighbors. O((n + m) log n).
-- **Fibonacci heap PQ** — O(n log n + m) amortized.
+  Pop the minimum; relax neighbors. $O((n + m)$ log n).
+- **Fibonacci heap PQ** — $O(n log n + m)$ amortized.
   Implementation is fiddly; rarely hand-rolled.
 - **A\*** — when you have a heuristic estimate `h(v)` of the
   distance from `v` to the target, A\* uses `dist + h` as
@@ -170,7 +170,7 @@ a **Fibonacci heap**: O(n log n + m).
 - **Bidirectional Dijkstra** — run from both `s` and `t`; stop
   when the two frontiers meet. ~2x speedup in practice.
 - **Bellman-Ford** — handles **negative** edge weights (Dijkstra
-  does NOT). See `graph_05`. O(n·m) vs. Dijkstra's O(n²).
+  does NOT). See `graph_05`. $O(n·m)$ vs. Dijkstra's $O(n²)$.
 - **Johnson's algorithm** — all-pairs shortest paths with
   negative edges but no negative cycles. Uses Bellman-Ford +
   n Dijkstras.
@@ -194,7 +194,7 @@ a **Fibonacci heap**: O(n log n + m).
 - **[graph_02 — BFS](graph_02_bfs.md)** — the unweighted
   special case of Dijkstra. (d=5/10, r=8/10)
 - **[graph_05 — Bellman-Ford](graph_05_bellman-ford.md)** —
-  handles negative weights. O(n·m) time. (d=5/10, r=8/10)
+  handles negative weights. $O(n·m)$ time. (d=5/10, r=8/10)
 - **[graph_06 — Floyd-Warshall](graph_06_floyd-warshall.md)** —
   all-pairs shortest paths. (d=5/10, r=8/10)
 - **[graph_18 — A\* Search](graph_18_a-star.md)** — Dijkstra

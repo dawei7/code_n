@@ -79,9 +79,20 @@ export type RunMode = 'practice' | 'real_test';
 
 
 export interface AppState {
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+
+  language: 'en' | 'de';
+  setLanguage: (lang: 'en' | 'de') => void;
+
+  baseFontSize: number;
+  increaseFontSize: () => void;
+  decreaseFontSize: () => void;
+
   // Challenge selection
   challenges: ChallengeSummary[];
   currentDetail: ChallengeDetail | null;
+  openChallengeIds: string[];
 
   // Display-only copy of solutions/<id>.py. The run() action
   // re-reads the file from disk before sending it to the server,
@@ -89,6 +100,10 @@ export interface AppState {
   // updated after Run (and on challenge select) so the UI
   // always shows what's on disk.
   source: string;
+  activeVersion: number;
+  versions: number[];
+  versionNames: Record<number, string>;
+  modifiedVersions: number[];
 
   // Run args
   n: number;
@@ -110,7 +125,9 @@ export interface AppState {
   // --- Actions ---
   loadChallenges(): Promise<void>;
   selectChallenge(id: string): Promise<void>;
+  closeChallenge(id: string): void;
   setSource(s: string): void;
+  saveSource(s: string): Promise<void>;
   setN(n: number): void;
   setSeed(s: number | null): void;
   setMode(m: RunMode): void;
@@ -126,6 +143,10 @@ export interface AppState {
    * is just an explicit refresh for the display copy.
    */
   refreshSourceFromDisk(): Promise<void>;
+
+  switchVersion(version: number): Promise<void>;
+  renameVersion(version: number, name: string): Promise<void>;
+  resetVersion(version: number): Promise<void>;
 
   // --- Open-in-VSCode state (shared between TransportBar + VSCodeTab) ---
   /** True while a click is being processed. */
@@ -160,9 +181,39 @@ export const applyingRemoteRef = { current: false };
 
 
 export const useAppStore = create<AppState>((set, get) => ({
+  theme: (localStorage.getItem('coden-theme') as 'dark' | 'light') || 'dark',
+  toggleTheme: () => set((state) => {
+    const next = state.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('coden-theme', next);
+    return { theme: next };
+  }),
+
+  language: (localStorage.getItem('coden-language') as 'en' | 'de') || 'en',
+  setLanguage: (lang) => set(() => {
+    localStorage.setItem('coden-language', lang);
+    return { language: lang };
+  }),
+
+  baseFontSize: Number(localStorage.getItem('coden-font-size')) || 16,
+  increaseFontSize: () => set((state) => {
+    const next = Math.min(24, state.baseFontSize + 2);
+    localStorage.setItem('coden-font-size', next.toString());
+    return { baseFontSize: next };
+  }),
+  decreaseFontSize: () => set((state) => {
+    const next = Math.max(12, state.baseFontSize - 2);
+    localStorage.setItem('coden-font-size', next.toString());
+    return { baseFontSize: next };
+  }),
+
   challenges: [],
   currentDetail: null,
+  openChallengeIds: [],
   source: '',
+  activeVersion: 1,
+  versions: [],
+  versionNames: {},
+  modifiedVersions: [],
   n: 16,
   seed: 1,
   mode: 'practice',
@@ -181,10 +232,14 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   async selectChallenge(id: string) {
+    const { openChallengeIds } = get();
+    const isNew = !openChallengeIds.includes(id);
+
     set({
       isRunning: true,
       error: null,
       runResult: null,
+      openChallengeIds: isNew ? [...openChallengeIds, id] : openChallengeIds,
     });
     try {
       const detail = await challengesApi.getChallenge(id);
@@ -195,11 +250,18 @@ export const useAppStore = create<AppState>((set, get) => ({
       let source = detail.starter_source;
       try {
         const saved = await solutionsApi.getSolution(id);
-        if (saved.exists && saved.source) {
+        if (saved && saved.source) {
           source = saved.source;
         }
+        set({ 
+          activeVersion: saved?.active_version ?? 1, 
+          versions: saved?.versions ?? [],
+          versionNames: saved?.version_names ?? {},
+          modifiedVersions: saved?.modified_versions ?? []
+        });
       } catch {
         // ignore — use starter
+        set({ activeVersion: 1, versions: [], versionNames: {}, modifiedVersions: [] });
       }
       set({
         currentDetail: detail,
@@ -214,6 +276,22 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
   },
 
+  closeChallenge(id: string) {
+    const { openChallengeIds, currentDetail } = get();
+    const newOpen = openChallengeIds.filter((cid) => cid !== id);
+    set({ openChallengeIds: newOpen });
+
+    // If we closed the active tab, switch to another one (or null)
+    if (currentDetail?.id === id) {
+      if (newOpen.length > 0) {
+        // Switch to the last opened tab
+        get().selectChallenge(newOpen[newOpen.length - 1]!);
+      } else {
+        set({ currentDetail: null, source: '', runResult: null, error: null });
+      }
+    }
+  },
+
   setSource(s: string) {
     // Display-only: when the user runs, the server reads the
     // file from disk; this set is just so the UI can show
@@ -221,6 +299,17 @@ export const useAppStore = create<AppState>((set, get) => ({
     // source is reloaded from disk on challenge select and
     // after each run.
     set({ source: s });
+  },
+  async saveSource(s: string) {
+    const { currentDetail } = get();
+    if (!currentDetail) return;
+    try {
+      // Optimistic update
+      set({ source: s });
+      await solutionsApi.putSolution(currentDetail.id, s);
+    } catch (e) {
+      console.error('Failed to save source:', e);
+    }
   },
   setN(n: number) {
     set({ n });
@@ -244,9 +333,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       let source: string;
       try {
         const saved = await solutionsApi.getSolution(currentDetail.id);
-        source = saved.exists && saved.source
-          ? saved.source
-          : currentDetail.starter_source;
+        source = saved && saved.source ? saved.source : currentDetail.starter_source;
       } catch {
         source = currentDetail.starter_source;
       }
@@ -321,8 +408,14 @@ export const useAppStore = create<AppState>((set, get) => ({
     if (!currentDetail) return;
     try {
       const saved = await solutionsApi.getSolution(currentDetail.id);
-      if (saved.exists) {
-        set({ source: saved.source });
+      if (saved && saved.source) {
+        set({ 
+          source: saved.source, 
+          activeVersion: saved.active_version, 
+          versions: saved.versions,
+          versionNames: saved.version_names,
+          modifiedVersions: saved.modified_versions
+        });
       }
     } catch {
       // ignore
@@ -350,7 +443,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       //    it from the starter template if so.
       try {
         const existing = await solutionsApi.getSolution(detail.id);
-        if (!existing.exists || !existing.source) {
+        if (!existing || !existing.source) {
           try {
             await solutionsApi.putSolution(detail.id, detail.starter_source);
           } catch {
@@ -395,5 +488,38 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   clearVSCodeError() {
     set({ vscodeLastError: null });
+  },
+
+  async switchVersion(version: number) {
+    const { currentDetail } = get();
+    if (!currentDetail) return;
+    try {
+      const res = await solutionsApi.switchVersion(currentDetail.id, version);
+      set({ source: res.source, activeVersion: res.active_version, versions: res.versions, versionNames: res.version_names, modifiedVersions: res.modified_versions });
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  async renameVersion(version: number, name: string) {
+    const { currentDetail } = get();
+    if (!currentDetail) return;
+    try {
+      const res = await solutionsApi.renameVersion(currentDetail.id, version, name);
+      set({ source: res.source, activeVersion: res.active_version, versions: res.versions, versionNames: res.version_names, modifiedVersions: res.modified_versions });
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  async resetVersion(version: number) {
+    const { currentDetail } = get();
+    if (!currentDetail) return;
+    try {
+      const res = await solutionsApi.resetVersion(currentDetail.id, version);
+      set({ source: res.source, activeVersion: res.active_version, versions: res.versions, versionNames: res.version_names, modifiedVersions: res.modified_versions });
+    } catch (e) {
+      console.error(e);
+    }
   },
 }));

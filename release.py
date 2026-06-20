@@ -281,7 +281,7 @@ def main() -> None:
               f"locally but NOT pushed and NOT published.")
         return
 
-    print(f"\nRelease complete!")
+    print("\nRelease complete!")
     print(f"  Version: v{new_version}")
     print(f"  Tag:     {tag}")
     print(f"  URL:     https://github.com/dawei7/code_n/releases/tag/{tag}")

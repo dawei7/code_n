@@ -59,7 +59,7 @@ export class ErrorBoundary extends Component<Props, State> {
             </span>{' '}
             {error.message}
           </div>
-          <pre className="text-[10px] text-coden-muted whitespace-pre-wrap break-words bg-coden-bg/60 rounded p-2 max-h-96 overflow-y-auto">
+          <pre className="text-xs text-coden-muted whitespace-pre-wrap break-words bg-coden-bg/60 rounded p-2 max-h-96 overflow-y-auto">
             {error.stack}
           </pre>
           <button

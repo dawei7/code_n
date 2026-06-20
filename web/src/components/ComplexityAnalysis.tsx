@@ -34,6 +34,15 @@
  *   but are *secondary* to the raw op count, which is the
  *   primary signal.
  */
+import {
+  ComposedChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 import { useAppStore } from '../store/useAppStore';
 
 
@@ -63,8 +72,8 @@ export function ComplexityAnalysis() {
   })();
 
   return (
-    <div className="bg-coden-surface border border-coden-border rounded p-4 text-xs font-mono overflow-y-auto h-full">
-      <div className="text-coden-muted text-[10px] uppercase tracking-wider font-semibold mb-3">
+    <div className="text-xs font-mono overflow-y-auto h-full">
+      <div className="text-coden-muted text-xs uppercase tracking-wider font-semibold mb-3">
         Complexity analysis
       </div>
 
@@ -95,6 +104,30 @@ export function ComplexityAnalysis() {
         />
       )}
 
+      {/* The scaling graph */}
+      {runResult?.scaling_data && runResult.scaling_data.length > 0 && (
+        <div className="mb-4">
+          <div className="text-coden-muted text-xs uppercase tracking-wider font-semibold mb-2">
+            Scaling Analysis (Ops vs n)
+          </div>
+          <div className="h-48 w-full bg-coden-inner rounded-lg p-2 shadow-inner">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={runResult.scaling_data} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--coden-border)" />
+                <XAxis dataKey="n" type="number" domain={['dataMin', 'dataMax']} tick={{fontSize: 10, fill: 'var(--coden-muted)'}} />
+                <YAxis tick={{fontSize: 10, fill: 'var(--coden-muted)'}} width={40} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: 'var(--coden-surface)', borderColor: 'var(--coden-border)', fontSize: '12px', color: 'var(--coden-text)' }}
+                  labelStyle={{ color: 'var(--coden-muted)' }}
+                />
+                <Line type="monotone" dataKey="ref_ops" stroke="var(--coden-accent)" strokeWidth={2} dot={false} name="Reference Ops" />
+                <Line type="monotone" dataKey="user_ops" stroke="var(--coden-text)" strokeWidth={2} dot={false} name="Your Code Ops" />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      )}
+
       {/* Verdict: where the user's count lands. */}
       {runResult && (
         <Verdict
@@ -109,7 +142,7 @@ export function ComplexityAnalysis() {
 
       {/* Required vs achieved complexity (secondary context) */}
       <div className="mt-4 pt-3 border-t border-coden-border">
-        <div className="text-coden-muted text-[10px] uppercase tracking-wider font-semibold mb-2">
+        <div className="text-coden-muted text-xs uppercase tracking-wider font-semibold mb-2">
           Complexity class
         </div>
         <table className="w-full">
@@ -126,7 +159,7 @@ export function ComplexityAnalysis() {
             </tr>
           </tbody>
         </table>
-        <p className="text-[10px] text-coden-muted mt-1.5 leading-relaxed">
+        <p className="text-xs text-coden-muted mt-1.5 leading-relaxed">
           The required class is the algorithm's known
           complexity (e.g. <span className="text-coden-text">O(n²)</span> for
           bubble sort). The achieved class is the engine's
@@ -153,19 +186,19 @@ function MetricCard({
   sublabel?: string;
 }) {
   return (
-    <div className="border border-coden-border rounded p-3 bg-coden-bg">
-      <div className="text-[10px] uppercase tracking-wider text-coden-muted font-semibold">
+    <div className="rounded-lg p-4 bg-coden-inner shadow-inner">
+      <div className="text-xs uppercase tracking-wider text-coden-muted font-semibold">
         {label}
       </div>
       <div className={`text-3xl font-bold tabular-nums mt-1 ${accent}`}>
         {value !== null ? value.toLocaleString() : '—'}
       </div>
       {sublabel && (
-        <div className="text-[10px] text-coden-muted mt-0.5 truncate">
+        <div className="text-xs text-coden-muted mt-0.5 truncate">
           {sublabel}
         </div>
       )}
-      <div className="text-[10px] text-coden-muted mt-1">AST ops</div>
+      <div className="text-xs text-coden-muted mt-1">AST ops</div>
     </div>
   );
 }
@@ -202,12 +235,12 @@ function ToleranceBand({
 
   return (
     <div className="mb-4">
-      <div className="text-coden-muted text-[10px] uppercase tracking-wider font-semibold mb-2">
+      <div className="text-coden-muted text-xs uppercase tracking-wider font-semibold mb-2">
         Tolerance band (±5% of reference)  ·  n = {n}
       </div>
       {/* The bar. Three segments: below band (red-tinted),
           band (accent-tinted), above band (amber-tinted). */}
-      <div className="relative h-9 rounded border border-coden-border overflow-hidden bg-coden-bg">
+      <div className="relative h-9 rounded-lg overflow-hidden bg-coden-inner shadow-inner">
         {/* The band itself (drawn first, on top of the bg) */}
         <div
           className="absolute top-0 bottom-0 bg-coden-accent/25 border-l border-r border-coden-accent/60"
@@ -238,13 +271,13 @@ function ToleranceBand({
           />
         )}
         {/* Labels under the bar */}
-        <div className="absolute bottom-0 left-0 right-0 flex justify-between text-[10px] text-coden-muted px-1">
+        <div className="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-coden-muted px-1">
           <span>0</span>
           <span>{scaleMax.toLocaleString()}</span>
         </div>
       </div>
       {/* Numeric scale with the three key values. */}
-      <div className="grid grid-cols-3 mt-2 text-[10px] tabular-nums">
+      <div className="grid grid-cols-3 mt-2 text-xs tabular-nums">
         <div className="text-left">
           <div className="text-coden-muted">CI low</div>
           <div className="text-rose-300 font-semibold">{ciLow.toLocaleString()}</div>
@@ -259,7 +292,7 @@ function ToleranceBand({
         </div>
       </div>
       {userOffScale && (
-        <div className="text-[10px] text-amber-400 mt-1">
+        <div className="text-xs text-amber-400 mt-1">
           Your count ({user}) is off-scale; the bar shows the band but your dot is past the right edge.
         </div>
       )}
@@ -296,14 +329,14 @@ function Verdict({
 
   if (status === 'no-run') {
     return (
-      <div className="border border-coden-border rounded p-3 bg-coden-bg text-coden-muted">
+      <div className="rounded-lg p-4 bg-[#181818] shadow-inner text-coden-muted">
         Run the challenge to see the analysis.
       </div>
     );
   }
   if (status === 'no-ref') {
     return (
-      <div className="border border-coden-border rounded p-3 bg-coden-bg text-coden-muted">
+      <div className="rounded-lg p-4 bg-[#181818] shadow-inner text-coden-muted">
         No reference comparison available for this run.
       </div>
     );
@@ -374,14 +407,14 @@ function VerdictBlock({
   } as const;
   const c = colorMap[color];
   return (
-    <div className={`border ${c.border} ${c.bg} rounded p-3 mb-3`}>
+    <div className={`${c.bg} rounded-lg p-4 mb-3 shadow-sm`}>
       <div className="flex items-start gap-2">
         <div className={`text-base ${c.text} font-bold shrink-0`}>{icon}</div>
         <div className="flex-1">
           <div className={`text-sm font-semibold ${c.text}`}>{title}</div>
           <div className="text-xs text-coden-text mt-1 leading-relaxed">{body}</div>
           {sub && (
-            <div className="text-[10px] text-coden-muted mt-1.5 font-mono">{sub}</div>
+            <div className="text-xs text-coden-muted mt-1.5 font-mono">{sub}</div>
           )}
         </div>
       </div>

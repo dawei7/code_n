@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `graph_07` |
 | **Category** | graphs |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 8/10 |
 | **Wikipedia** | [Topological sorting](https://en.wikipedia.org/wiki/Topological_sorting) |
@@ -143,12 +143,12 @@ Topo order: `[0, 1, 2, 3]`. ✓ (All edges go forward: 0→1 ✓,
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(V + E) | O(V) |
-| **Average** | O(V + E) | O(V) |
-| **Worst** | O(V + E) | O(V) |
+| **Best** | $O(V + E)$ | $O(V)$ |
+| **Average** | $O(V + E)$ | $O(V)$ |
+| **Worst** | $O(V + E)$ | $O(V)$ |
 
 For adjacency-matrix representations, the required
-complexity is O(V²).
+complexity is $O(V²)$.
 
 ## Variants & optimizations
 

@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `hash_03` |
 | **Category** | hashing |
-| **Complexity (required)** | O(n) |
+| **Complexity (required)** | $O(n)$ |
 | **Difficulty** | 4/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Sliding window](https://en.wikipedia.org/wiki/Sliding_window) |
@@ -57,30 +57,46 @@ For each `right` from `0` to `n-1`:
 we expand it greedily. When a duplicate would enter, we
 shrink from the left until the duplicate is gone. Each
 character enters and leaves the window at most once, so the
-total work is O(n).
+total work is $O(n)$.
 
 **Optimization with a hash map (last seen index):** instead of
 a set + while-loop, store the last index where each
 character appeared. When we'd add `s[right]`, jump `left` to
-`max(left, last_seen[s[right]] + 1)`. This is O(n) with
-O(1) work per character (no while loop), but conceptually
+`max(left, last_seen[s[right]] + 1)`. This is $O(n)$ with
+$O(1)$ work per character (no while loop), but conceptually
 equivalent.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-longest_unique_substring(s):
-    in_window = set()
-    left = 0
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for hash_03: Longest Substring Without Repeating.
+
+Sliding window: extend the right end, record the last index of
+each character seen. If a repeat sits inside the window, jump
+the left end past the previous occurrence. O(n).
+"""
+
+
+def solve(s, n):
+    if n == 0:
+        return 0
+    last = {}
     best = 0
-    for right, ch in enumerate(s):
-        while ch in in_window:
-            in_window.remove(s[left])
-            left += 1
-        in_window.add(ch)
-        best = max(best, right - left + 1)
+    left = 0
+    for right in range(n):
+        ch = s[right]
+        if ch in last and last[ch] >= left:
+            left = last[ch] + 1
+        last[ch] = right
+        if right - left + 1 > best:
+            best = right - left + 1
     return best
 ```
+
+</details>
 
 ## Walk-through
 
@@ -103,15 +119,15 @@ Answer: 3. ✓
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n) | O(min(n, σ)) |
-| **Average** | O(n) | O(min(n, σ)) |
-| **Worst** | O(n) | O(min(n, σ)) |
+| **Best** | $O(n)$ | $O(min(n, σ)$) |
+| **Average** | $O(n)$ | $O(min(n, σ)$) |
+| **Worst** | $O(n)$ | $O(min(n, σ)$) |
 
 `σ` = the size of the character set (e.g. 26 for lowercase
 English, 128 for ASCII, ~65k for full Unicode). The hash
 set holds at most `min(n, σ)` characters.
 
-The hash-map variant uses O(min(n, σ)) space too.
+The hash-map variant uses $O(min(n, σ)$) space too.
 
 ## Variants & optimizations
 

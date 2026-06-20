@@ -103,11 +103,11 @@ const WORKSPACE_DIRS = [
  *  packaged mode, we copy from the bundled resource, not from
  *  the dev tree, so this is a dev-only check. */
 function resolveDevRepoRoot(): string {
-  // In dev, this file is at electron/dist/main.js; the repo root
-  // is three parents up. In the packaged app this returns the
+  // In dev, this file is at electron/dist/electron/src/main.js; the repo root
+  // is four parents up. In the packaged app this returns the
   // install dir, which is NOT where the user's source lives —
   // we never use it for workspace files in packaged mode.
-  return path.resolve(__dirname, '..', '..', '..');
+  return path.resolve(__dirname, '..', '..', '..', '..');
 }
 
 
@@ -258,7 +258,7 @@ async function openSolutionFile(
   // success while nothing visible happens).
   if (process.platform === 'win32') {
     try {
-      const fileUrl = 'vscode://file/' + pathToVscodeUrl(filePath);
+      const fileUrl = 'antigravity-ide://file/' + pathToVscodeUrl(filePath);
       await shell.openExternal(fileUrl);
       console.log(`[coden-electron] openInVSCode: vscode:// URL OK for ${fileUrl}`);
       return { ok: true, filePath };
@@ -363,7 +363,7 @@ async function openSolutionFile(
   // unless both the code CLI and shell.openPath failed; on
   // macOS / Linux it's the catch-all after file association.
   try {
-    const fileUrl = 'vscode://file/' + pathToVscodeUrl(filePath);
+    const fileUrl = 'antigravity-ide://file/' + pathToVscodeUrl(filePath);
     await shell.openExternal(fileUrl);
     console.log(`[coden-electron] openInVSCode: vscode:// URL OK for ${fileUrl}`);
     return { ok: true, filePath };
@@ -399,19 +399,19 @@ function findCodeCli(): string | null {
   // PATH — prefer ``code.cmd`` (the real Windows entry
   // point) over the bare ``code`` name, which Windows'
   // ``where`` may resolve to the extensionless file.
-  const fromPath = findOnPath('code.cmd') ?? findOnPath('code');
+  const fromPath = findOnPath('antigravity-ide.cmd') ?? findOnPath('antigravity-ide');
   if (fromPath) return fromPath;
   if (process.platform === 'win32') {
     const candidates = [
       // Per-user install (default for the user installer)
       path.join(
         process.env.LOCALAPPDATA ?? '',
-        'Programs', 'Microsoft VS Code', 'bin', 'code.cmd',
+        'Programs', 'Antigravity IDE', 'bin', 'antigravity-ide.cmd',
       ),
       // Per-machine install (default for the system MSI)
       path.join(
         process.env.ProgramFiles ?? 'C:\\Program Files',
-        'Microsoft VS Code', 'bin', 'code.cmd',
+        'Antigravity IDE', 'bin', 'antigravity-ide.cmd',
       ),
       // Fallback: the VSCode app itself (Code.exe). We
       // accept this last because it's the GUI launcher,
@@ -420,11 +420,11 @@ function findCodeCli(): string | null {
       // semantic.
       path.join(
         process.env.LOCALAPPDATA ?? '',
-        'Programs', 'Microsoft VS Code', 'Code.exe',
+        'Programs', 'Antigravity IDE', 'Antigravity IDE.exe',
       ),
       path.join(
         process.env.ProgramFiles ?? 'C:\\Program Files',
-        'Microsoft VS Code', 'Code.exe',
+        'Antigravity IDE', 'Antigravity IDE.exe',
       ),
     ];
     for (const c of candidates) {

@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_09` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Cutting stock problem](https://en.wikipedia.org/wiki/Cutting_stock_problem) |
@@ -56,18 +56,30 @@ dp[i] = max(prices[j-1] + dp[i - j])  for j = 1..i
 This is the unbounded-knapsack shape — we're choosing
 "pieces" (lengths) with repetition, maximizing value.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-rod_cut(prices, n):
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_09: Rod Cutting.
+
+dp[length] = max revenue for a rod of that length. For each
+length, try every first-cut size.
+"""
+
+
+def solve(prices, n):
     dp = [0] * (n + 1)
-    for i from 1 to n:
-        for j from 1 to i:
-            candidate = prices[j-1] + dp[i - j]
-            if candidate > dp[i]:
-                dp[i] = candidate
+    for length in range(1, n + 1):
+        for cut in range(1, length + 1):
+            revenue = prices[cut - 1] + dp[length - cut]
+            if revenue > dp[length]:
+                dp[length] = revenue
     return dp[n]
 ```
+
+</details>
 
 ## Walk-through
 
@@ -92,12 +104,12 @@ Answer: `dp[8] = 22`. ✓ (cuts: 2 + 6, revenue 5 + 17 = 22.)
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n²) | O(n) |
-| **Average** | O(n²) | O(n) |
-| **Worst** | O(n²) | O(n) |
+| **Best** | $O(n²)$ | $O(n)$ |
+| **Average** | $O(n²)$ | $O(n)$ |
+| **Worst** | $O(n²)$ | $O(n)$ |
 
 Each `dp[i]` is the max over at most `i` candidates, so the
-double loop is O(n²). Space is O(n) for the dp array.
+double loop is $O(n²)$. Space is $O(n)$ for the dp array.
 
 ## Variants & optimizations
 

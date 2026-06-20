@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_04` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Longest common subsequence problem](https://en.wikipedia.org/wiki/Longest_common_subsequence_problem) |
@@ -62,23 +62,32 @@ is empty, so the LCS is empty).
 go diagonally; otherwise go to the larger of the two
 neighbors.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-lcs_length(s, t):
-    m, n = len(s), len(t)
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_04: Longest Common Subsequence.
+
+DP table: dp[i][j] = LCS length of seq_a[:i] and seq_b[:j]. O(n*m)
+time, O(n*m) space.
+"""
+
+
+def solve(seq_a, seq_b):
+    m, n = len(seq_a), len(seq_b)
     dp = [[0] * (n + 1) for _ in range(m + 1)]
-    for i from 1 to m:
-        for j from 1 to n:
-            if s[i-1] == t[j-1]:
-                dp[i][j] = 1 + dp[i-1][j-1]
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if seq_a[i - 1] == seq_b[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
             else:
-                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
     return dp[m][n]
 ```
 
-For reconstruction, build a `choice` table in the same pass
-and walk back from `(m, n)`.
+</details>
 
 ## Walk-through
 
@@ -101,20 +110,20 @@ and walk back from `(m, n)`.
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(m·n) | O(m·n) — 2D table; O(min(m,n)) with rolling |
-| **Average** | O(m·n) | O(m·n) |
-| **Worst** | O(m·n) | O(m·n) |
+| **Best** | $O(m·n)$ | $O(m·n)$ — 2D table; $O(min(m,n)$) with rolling |
+| **Average** | $O(m·n)$ | $O(m·n)$ |
+| **Worst** | $O(m·n)$ | $O(m·n)$ |
 
 Standard DP. The rolling-row version (keep only the previous
-row) drops space to O(n), but loses the ability to reconstruct
+row) drops space to $O(n)$, but loses the ability to reconstruct
 the LCS without re-running.
 
 ## Variants & optimizations
 
-- **Hunt-Szymanski algorithm** — O((r + n) log n) where `r` is
+- **Hunt-Szymanski algorithm** — $O((r + n)$ log n) where `r` is
   the number of matching pairs. Faster when the sequences are
   very similar (most characters match).
-- **Bit-parallel LCS** — O(n · ⌈m/w⌉) where w is the word size.
+- **Bit-parallel LCS** — $O(n · ⌈m/w⌉)$ where w is the word size.
   Excellent for short s and long t.
 - **Diff with line-level granularity** — git, diff, and
   similar tools work on lines, not characters, and use a

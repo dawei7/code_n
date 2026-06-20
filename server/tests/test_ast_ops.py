@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import unittest
 
-from server.app.ast_ops import _count_block, _eval_int, _range_iter_count, count_ops
+from server.app.ast_ops import _eval_int, _range_iter_count, count_ops
 
 
 class CountOpsTest(unittest.TestCase):

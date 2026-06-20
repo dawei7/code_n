@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_03` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem) |
@@ -71,20 +71,35 @@ for i in 0..n-1:
 ```
 
 This is the production implementation and the one cOde(n)'s
-engine checks against (O(n·W) time, O(W) space).
+engine checks against ($O(n·W)$ time, $O(W)$ space).
 
-## Algorithm (pseudocode)
+## Algorithm
 
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_03: 0/1 Knapsack.
+
+Classic DP table: dp[i][c] = max value using the first i items
+with capacity c. O(n * capacity) time, O(n * capacity) space.
+"""
+
+
+def solve(weights, values, capacity, n):
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        w = weights[i - 1]
+        v = values[i - 1]
+        for c in range(capacity + 1):
+            if w <= c:
+                dp[i][c] = max(dp[i - 1][c], dp[i - 1][c - w] + v)
+            else:
+                dp[i][c] = dp[i - 1][c]
+    return dp[n][capacity]
 ```
-knapsack_01(weights, values, W):
-    dp = [0] * (W + 1)
-    for i from 0 to len(weights) - 1:
-        wi = weights[i]
-        vi = values[i]
-        for w from W down to wi:
-            dp[w] = max(dp[w], dp[w - wi] + vi)
-    return dp[W]
-```
+
+</details>
 
 ## Walk-through
 
@@ -126,9 +141,9 @@ knapsack_01(weights, values, W):
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n·W) | O(W) |
-| **Average** | O(n·W) | O(W) |
-| **Worst** | O(n·W) | O(W) |
+| **Best** | $O(n·W)$ | $O(W)$ |
+| **Average** | $O(n·W)$ | $O(W)$ |
+| **Worst** | $O(n·W)$ | $O(W)$ |
 
 Note: the complexity is **pseudo-polynomial in W** — it
 depends on the *magnitude* of W, not the number of bits.
@@ -148,7 +163,7 @@ NP-hard in general; the DP is exact only for small W.
   sum, not a max).
 - **Meet-in-the-middle** — for large `W` and small `n` (n ≤ 40),
   split items into two halves, enumerate each half's subsets
-  (2^(n/2) each), and combine. Reduces to O(2^(n/2) · n).
+  (2^(n/2) each), and combine. Reduces to $O(2^(n/2)$ · n).
 
 ## Real-world applications
 

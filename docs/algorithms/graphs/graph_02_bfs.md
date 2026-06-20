@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `graph_02` |
 | **Category** | graphs |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 4/10 |
 | **Interview relevance** | 8/10 |
 | **Wikipedia** | [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search) |
@@ -74,8 +74,8 @@ while queue not empty:
 
 **Performance:** each vertex is enqueued at most once, and
 each edge is examined at most twice (once from each endpoint,
-in an undirected graph). Total: O(V + E) for an adjacency-
-list representation. For an adjacency matrix: O(V²).
+in an undirected graph). Total: $O(V + E)$ for an adjacency-
+list representation. For an adjacency matrix: $O(V²)$.
 
 **Why it gives shortest path on unweighted graphs:** when we
 first visit a vertex `v`, every path to `v` must go through
@@ -83,30 +83,39 @@ some neighbor that is itself at distance ≤ dist[v] - 1, and
 those neighbors are processed before `v`. So `dist[v]` is
 optimal.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-bfs(G, s):
-    visited = {s}
-    queue = deque([(s, 0)])
-    dist[s] = 0
-    parent[s] = None
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for graph_02: Breadth-First Search.
+
+Pure-graph BFS on adjacency lists, returns visit order.
+"""
+
+
+def solve(num_nodes, edges):
+    from collections import deque
+    adj = [[] for _ in range(num_nodes)]
+    for u, v in edges:
+        adj[u].append(v)
+        adj[v].append(u)
+    seen = [False] * num_nodes
     order = []
-    while queue:
-        u, du = queue.popleft()
+    q = deque([0])
+    seen[0] = True
+    while q:
+        u = q.popleft()
         order.append(u)
-        for v in G[u]:
-            if v not in visited:
-                visited.add(v)
-                dist[v] = du + 1
-                parent[v] = u
-                queue.append((v, du + 1))
-    return order, dist, parent
+        for v in sorted(adj[u]):
+            if not seen[v]:
+                seen[v] = True
+                q.append(v)
+    return order
 ```
 
-For the **n² version** (cOde(n)'s required complexity on
-the matrix representation), iterate over all V vertices per
-level and pick the unvisited one with the minimum dist.
+</details>
 
 ## Walk-through
 
@@ -130,11 +139,11 @@ BFS order: `[0, 1, 2, 3, 4, 6, 5]`. Distances match. ✓
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(V + E) for adjacency list, O(V²) for matrix | O(V) |
-| **Average** | O(V + E) | O(V) |
-| **Worst** | O(V + E) | O(V) |
+| **Best** | $O(V + E)$ for adjacency list, $O(V²)$ for matrix | $O(V)$ |
+| **Average** | $O(V + E)$ | $O(V)$ |
+| **Worst** | $O(V + E)$ | $O(V)$ |
 
-The required complexity is O(n²) for cOde(n)'s n²-matrix
+The required complexity is $O(n²)$ for cOde(n)'s n²-matrix
 variant.
 
 ## Variants & optimizations
@@ -145,7 +154,7 @@ variant.
   sources. Useful for "rotting oranges", "walls and gates".
 - **0-1 BFS** — when edges have weight 0 or 1, use a deque:
   push 0-weight edges to the front, 1-weight to the back.
-  O(V + E) without Dijkstra's O((V + E) log V). See
+  $O(V + E)$ without Dijkstra's $O((V + E)$ log V). See
   `graph_17`.
 - **BFS for bipartite check** — alternate-color the levels.
   If a level has both colors and any edge connects same

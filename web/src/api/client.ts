@@ -59,3 +59,19 @@ export async function apiPut<T>(path: string, body: unknown): Promise<T> {
   }
   return res.json() as Promise<T>;
 }
+
+export async function apiDelete<T>(path: string): Promise<T> {
+  const res = await fetch(`/api${path}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok) {
+    let detail: unknown = null;
+    try {
+      detail = await res.json();
+    } catch {
+      // ignore
+    }
+    throw new ApiError(res.status, detail, `DELETE ${path} → ${res.status}`);
+  }
+  return res.json() as Promise<T>;
+}

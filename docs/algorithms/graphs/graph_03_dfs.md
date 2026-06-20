@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `graph_03` |
 | **Category** | graphs |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 4/10 |
 | **Interview relevance** | 8/10 |
 | **Wikipedia** | [Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search) |
@@ -91,7 +91,7 @@ while stack:
         finish u
 ```
 
-**Performance:** O(V + E) for adjacency list, O(V²) for
+**Performance:** $O(V + E)$ for adjacency list, $O(V²)$ for
 matrix. Same as BFS, but DFS uses much less memory in
 practice (the stack is depth-bounded, the queue can hold
 the whole frontier).
@@ -154,26 +154,26 @@ DFS order: `[0, 1, 3, 5, 4, 2, 6]`. ✓
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(V + E) | O(V) |
-| **Average** | O(V + E) | O(V) |
-| **Worst** | O(V + E) | O(V) |
+| **Best** | $O(V + E)$ | $O(V)$ |
+| **Average** | $O(V + E)$ | $O(V)$ |
+| **Worst** | $O(V + E)$ | $O(V)$ |
 
-Recursive DFS uses O(depth) stack space; iterative uses
-O(depth) explicit-stack space too. The "O(V)" is for the
+Recursive DFS uses $O(depth)$ stack space; iterative uses
+$O(depth)$ explicit-stack space too. The "$O(V)$" is for the
 visited set and parent array; the actual stack can be much
 less in practice (worst case: V).
 
-The required complexity is O(n²) for cOde(n)'s matrix variant.
+The required complexity is $O(n²)$ for cOde(n)'s matrix variant.
 
 ## Variants & optimizations
 
 - **Topological sort** — DFS on a DAG, output vertices in
-  reverse finish order. O(V + E).
+  reverse finish order. $O(V + E)$.
 - **Cycle detection** — in undirected: any back edge is a
   cycle. In directed: a back-edge to an ancestor (using the
   gray/black coloring) is a cycle.
 - **Strongly connected components** — Tarjan's or Kosaraju's
-  algorithm, both based on DFS. O(V + E). See `graph_15`
+  algorithm, both based on DFS. $O(V + E)$. See `graph_15`
   and `graph_16`.
 - **Bipartite check** — 2-color the levels; if a back edge
   connects same-color vertices, not bipartite.

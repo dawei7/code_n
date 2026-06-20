@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_12` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 4/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Shortest path problem](https://en.wikipedia.org/wiki/Shortest_path_problem) |
@@ -89,20 +89,32 @@ is `dp[j-1]` (just updated):
 dp[j] = grid[i][j] + min(dp[j], dp[j-1])
 ```
 
-## Algorithm (pseudocode)
+## Algorithm
 
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_12: Min Cost Path.
+
+Minimum-cost path from (0,0) to (m-1, n-1), right/down only.
+"""
+
+
+def solve(grid, m, n):
+    dp = [[0] * n for _ in range(m)]
+    dp[0][0] = grid[0][0]
+    for i in range(1, m):
+        dp[i][0] = dp[i - 1][0] + grid[i][0]
+    for j in range(1, n):
+        dp[0][j] = dp[0][j - 1] + grid[0][j]
+    for i in range(1, m):
+        for j in range(1, n):
+            dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]
+    return dp[m - 1][n - 1]
 ```
-min_cost_path(grid):
-    m, n = len(grid), len(grid[0])
-    dp = [grid[0][0]] + [0] * (n - 1)
-    for j from 1 to n - 1:
-        dp[j] = dp[j-1] + grid[0][j]
-    for i from 1 to m - 1:
-        dp[0] += grid[i][0]
-        for j from 1 to n - 1:
-            dp[j] = grid[i][j] + min(dp[j], dp[j-1])
-    return dp[n - 1]
-```
+
+</details>
 
 ## Walk-through
 
@@ -130,11 +142,11 @@ Answer: `dp[2] = 7`. ✓
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(m·n) | O(n) with rolling |
-| **Average** | O(m·n) | O(n) |
-| **Worst** | O(m·n) | O(n) |
+| **Best** | $O(m·n)$ | $O(n)$ with rolling |
+| **Average** | $O(m·n)$ | $O(n)$ |
+| **Worst** | $O(m·n)$ | $O(n)$ |
 
-The required complexity is O(n²) for the cOde(n) engine
+The required complexity is $O(n²)$ for the cOde(n) engine
 where `n = max(m, n)`.
 
 ## Variants & optimizations

@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `hash_02` |
 | **Category** | hashing |
-| **Complexity (required)** | O(n) |
+| **Complexity (required)** | $O(n)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Hash table](https://en.wikipedia.org/wiki/Hash_table) |
@@ -31,13 +31,13 @@ number of **contiguous subarrays** whose sum equals `k`.
 
 - The classic "**prefix sum + hash map**" technique. Asked
   in some form at every company; tests whether you remember
-  the O(n) trick.
+  the $O(n)$ trick.
 - Foundation for many "**count subarrays with property X**"
   problems where X is sum-related.
 
 ## Approach
 
-**Brute force** (O(n²)): try every `(start, end)` pair.
+**Brute force** ($O(n²)$): try every `(start, end)` pair.
 
 **Prefix sum** (the trick): define `prefix[i]` = sum of
 `nums[0..i-1]`. The sum of `nums[i..j-1]` is
@@ -54,19 +54,32 @@ Iterate `j` from `0` to `n`:
 **Base case:** `count[0] = 1` (the empty prefix; a subarray
 starting at index 0 with sum 0 contributes one to the count).
 
-## Algorithm (pseudocode)
+## Algorithm
 
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for hash_02: Subarray Sum Equals K.
+
+The number of subarrays with sum k equals the number of prefix
+sums p_j such that p_j == p_i - k for some earlier prefix p_i.
+Track running prefix sums and the count of each. O(n).
+"""
+
+
+def solve(arr, k, n):
+    count = 0
+    prefix = 0
+    freq = {0: 1}
+    for i in range(n):
+        prefix += arr[i]
+        count += freq.get(prefix - k, 0)
+        freq[prefix] = freq.get(prefix, 0) + 1
+    return count
 ```
-subarray_sum(nums, k):
-    count = {0: 1}
-    running = 0
-    result = 0
-    for x in nums:
-        running += x
-        result += count.get(running - k, 0)
-        count[running] = count.get(running, 0) + 1
-    return result
-```
+
+</details>
 
 ## Walk-through
 
@@ -86,9 +99,9 @@ Answer: 2. ✓
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n) | O(n) |
-| **Average** | O(n) | O(n) |
-| **Worst** | O(n) | O(n) |
+| **Best** | $O(n)$ | $O(n)$ |
+| **Average** | $O(n)$ | $O(n)$ |
+| **Worst** | $O(n)$ | $O(n)$ |
 
 Single pass through the array. The hash map holds at most
 `n + 1` distinct prefix sums (including the initial 0).

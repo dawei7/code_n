@@ -20,7 +20,6 @@ so the brute-force verifier is fast.
 from __future__ import annotations
 
 import random
-from typing import Any, Optional
 
 from challenges.spec import AlgorithmSpec, Sample
 from code_n.counter import ComplexityClass

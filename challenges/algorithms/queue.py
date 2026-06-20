@@ -21,7 +21,6 @@ from __future__ import annotations
 
 import random
 from collections import deque
-from typing import Any, Optional
 
 from challenges.spec import AlgorithmSpec, Sample
 from code_n.counter import ComplexityClass
@@ -524,7 +523,6 @@ def solve(operations, n):
 '''
 
 def _setup_queue_01(challenge, n, seed):
-    import random
     rng = random.Random(seed)
     # Build a sequence of operations whose ground truth we can compute
     # with collections.deque.
@@ -608,7 +606,6 @@ def solve(operations, n):
 '''
 
 def _setup_queue_02(challenge, n, seed):
-    import random
     rng = random.Random(seed)
     n = max(1, min(n, 8))
     ops = []
@@ -625,7 +622,6 @@ def _setup_queue_02(challenge, n, seed):
         else:
             ops.append(("empty",))
     # Compute expected top results.
-    from collections import deque
     q = deque()
     expected_results = []
     for op in ops:
@@ -668,7 +664,6 @@ def solve(n):
 '''
 
 def _setup_queue_03(challenge, n, seed):
-    import random
     rng = random.Random(seed)
     # Cap n so the output list is small but non-trivial.
     n = max(1, min(n, 10))
@@ -709,8 +704,6 @@ def solve(stream, n):
 '''
 
 def _setup_queue_04(challenge, n, seed):
-    import random
-    import string
     rng = random.Random(seed)
     n = max(1, min(n, 12))
     stream = "".join(rng.choice("aabc") for _ in range(n))
@@ -776,7 +769,6 @@ def solve(operations, capacity, n):
 '''
 
 def _setup_queue_05(challenge, n, seed):
-    import random
     rng = random.Random(seed)
     # Pick a capacity and a sequence of operations.
     capacity = max(1, min(n, 8))

@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_06` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Subset sum problem](https://en.wikipedia.org/wiki/Subset_sum_problem) |
@@ -63,18 +63,27 @@ for x in nums:
 return dp[target]
 ```
 
-## Algorithm (pseudocode)
+## Algorithm
 
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_06: Subset Sum.
+
+True iff some subset of arr sums to target. Set-based DP over
+the running reachable sums.
+"""
+
+
+def solve(arr, target):
+    reachable = {0}
+    for v in arr:
+        reachable = reachable | {s + v for s in reachable}
+    return target in reachable
 ```
-subset_sum(nums, target):
-    dp = [False] * (target + 1)
-    dp[0] = True
-    for x in nums:
-        for t from target down to x:
-            if dp[t - x]:
-                dp[t] = True
-    return dp[target]
-```
+
+</details>
 
 ## Walk-through
 
@@ -126,9 +135,9 @@ subset_sum(nums, target):
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n·target) | O(target) |
-| **Average** | O(n·target) | O(target) |
-| **Worst** | O(n·target) | O(target) |
+| **Best** | $O(n·target)$ | $O(target)$ |
+| **Average** | $O(n·target)$ | $O(target)$ |
+| **Worst** | $O(n·target)$ | $O(target)$ |
 
 Pseudo-polynomial in `target` (same caveat as 0/1 knapsack).
 For very large `target`, exact solution is exponential.

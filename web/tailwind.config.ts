@@ -10,12 +10,12 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: [
+          'Roboto',
           'Inter',
           'system-ui',
           '-apple-system',
           'BlinkMacSystemFont',
           'Segoe UI',
-          'Roboto',
           'sans-serif',
         ],
         mono: [
@@ -29,15 +29,17 @@ const config: Config = {
       },
       colors: {
         coden: {
-          bg: '#020617',        // slate-950
-          surface: '#0f172a',   // slate-900
-          border: '#1e293b',    // slate-800
-          muted: '#475569',     // slate-600
-          text: '#e2e8f0',      // slate-200
-          accent: '#34d399',    // emerald-400
-          compare: '#fbbf24',   // amber-400
-          swap: '#fb7185',      // rose-400
-          read: '#60a5fa',      // blue-400
+          bg: 'var(--coden-bg)',
+          surface: 'var(--coden-surface)',
+          surfaceElevated: 'var(--coden-surface-elevated)',
+          border: 'var(--coden-border)',
+          muted: 'var(--coden-muted)',
+          text: 'var(--coden-text)',
+          accent: 'var(--coden-accent)',
+          compare: 'var(--coden-compare)',
+          swap: 'var(--coden-swap)',
+          read: 'var(--coden-read)',
+          inner: 'var(--coden-inner)',
         },
       },
     },

@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_24` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 6/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Palindrome](https://en.wikipedia.org/wiki/Palindrome) (problem variant) |
@@ -62,31 +62,42 @@ boolean table `is_pal[i][j]` = is `s[i..j]` a palindrome?
 on `is_pal[i+1][j-1]`, so iterate `j - i` increasing and you
 get the inner-cell-first behavior for free.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-min_cut(s):
-    n = len(s)
-    if n <= 1: return 0
+<details>
+<summary>Show Algorithm</summary>
 
-    # Stage 1: palindrome table
+```python
+"""Optimal solution for dp_24: Palindromic Partitioning (Min Cuts).
+
+Return the minimum number of cuts to partition s into
+palindromes. Precompute is_pal[i][j] (whether s[i..j] is a
+palindrome) in O(n^2), then dp[i] = min over j with
+is_pal[i][j] of (0 if j == n-1 else 1 + dp[j+1]).
+"""
+
+
+def solve(s, n):
+    if n == 0:
+        return 0
     is_pal = [[False] * n for _ in range(n)]
-    for i in range(n): is_pal[i][i] = True
-    for length in 2..n:
-        for i in 0..n-length:
-            j = i + length - 1
-            if s[i] == s[j] and (length == 2 or is_pal[i+1][j-1]):
+    for i in range(n - 1, -1, -1):
+        for j in range(i, n):
+            if s[i] == s[j] and (j - i < 2 or is_pal[i + 1][j - 1]):
                 is_pal[i][j] = True
-
-    # Stage 2: min cuts
-    dp = [0] * (n + 1)
-    for i in range(1, n + 1):
-        if is_pal[0][i-1]:
-            dp[i] = 0
-        else:
-            dp[i] = min(dp[j] + 1 for j in range(i) if is_pal[j][i-1])
-    return dp[n]
+    INF = float("inf")
+    dp = [INF] * (n + 1)
+    dp[n] = 0
+    for i in range(n - 1, -1, -1):
+        for j in range(i, n):
+            if is_pal[i][j]:
+                cost = 0 if j == n - 1 else 1 + dp[j + 1]
+                if cost < dp[i]:
+                    dp[i] = cost
+    return dp[0]
 ```
+
+</details>
 
 ## Walk-through
 
@@ -120,12 +131,12 @@ Answer: `dp[3] = 1`. ✓ (partition: "aa" | "b".)
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n²) | O(n²) |
-| **Average** | O(n²) | O(n²) |
-| **Worst** | O(n²) | O(n²) |
+| **Best** | $O(n²)$ | $O(n²)$ |
+| **Average** | $O(n²)$ | $O(n²)$ |
+| **Worst** | $O(n²)$ | $O(n²)$ |
 
-Both stages are O(n²). Space for the palindrome table is
-O(n²). Can be reduced to O(n) by computing `is_pal[i][j]`
+Both stages are $O(n²)$. Space for the palindrome table is
+$O(n²)$. Can be reduced to $O(n)$ by computing `is_pal[i][j]`
 on the fly inside Stage 2.
 
 ## Variants & optimizations
@@ -136,10 +147,10 @@ on the fly inside Stage 2.
   to a different cut objective.
 - **Print the actual partition** — store the `j` that
   achieved the min, walk back to reconstruct.
-- **O(n) space variant** — compute palindromes on the fly
+- **$O(n)$ space variant** — compute palindromes on the fly
   using expand-around-center; drop the 2D table.
 - **Manacher's algorithm** — preprocess palindromes in
-  O(n) (instead of O(n²)); useful when many queries need
+  $O(n)$ (instead of $O(n²)$); useful when many queries need
   palindromic info.
 
 ## Real-world applications

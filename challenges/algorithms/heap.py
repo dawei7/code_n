@@ -15,7 +15,6 @@ in place, the verify re-runs the same algorithm and compares.
 
 from __future__ import annotations
 
-import heapq
 import random
 from collections import Counter
 from typing import Any, Optional

@@ -33,7 +33,7 @@ export function ResultTab() {
 
   if (!detail) {
     return (
-      <div className="h-full flex items-center justify-center text-xs text-coden-muted">
+      <div className="flex items-center justify-center text-xs text-coden-muted p-4">
         Pick a challenge from the left rail.
       </div>
     );
@@ -42,7 +42,7 @@ export function ResultTab() {
   // Error path
   if (error) {
     return (
-      <div className="h-full overflow-y-auto p-4 space-y-4">
+      <div className="space-y-4 p-4">
         <div className="border border-rose-500/40 bg-rose-500/10 rounded p-4">
           <div className="text-rose-300 font-semibold text-sm mb-1">Run failed</div>
           <pre className="text-xs text-coden-text whitespace-pre-wrap font-mono">{error}</pre>
@@ -62,8 +62,8 @@ export function ResultTab() {
   // No run yet
   if (!result) {
     return (
-      <div className="h-full overflow-y-auto p-4 space-y-4">
-        <div className="border border-coden-border bg-coden-surface rounded p-4 text-sm text-coden-muted">
+      <div className="space-y-4 p-4">
+        <div className="bg-coden-surface rounded-lg p-6 shadow-md text-sm text-coden-muted">
           <div className="font-semibold text-coden-text mb-1">No run yet</div>
           <p>
             Click <span className="font-mono text-coden-text">▶ Run</span> in the
@@ -91,7 +91,7 @@ export function ResultTab() {
         : 'fail';
 
   return (
-    <div className="h-full overflow-y-auto p-4 space-y-4">
+    <div className="space-y-4 p-4">
       <VerdictCard result={result} variant={variant} />
       <ComplexityCard result={result} requiredComplexity={detail.required_complexity} />
       {result.return_value_repr && (
@@ -148,7 +148,7 @@ function VerdictCard({
   }[variant];
 
   return (
-    <div className={`border ${styles.border} ${styles.bg} rounded p-4`}>
+    <div className={`${styles.bg} rounded-lg p-5 shadow-sm`}>
       <div className="flex items-baseline justify-between gap-3 mb-1">
         <span className={`font-bold text-base ${styles.iconColor}`}>
           {styles.icon}
@@ -176,7 +176,7 @@ function ComplexityCard({
   const ciHigh = result.reference_ci_high;
 
   return (
-    <div className="border border-coden-border bg-coden-surface rounded p-3">
+    <div className="bg-coden-surface rounded-lg p-5 shadow-md mt-4">
       <div className="text-xs uppercase text-coden-muted font-semibold mb-2">
         Complexity
       </div>
@@ -186,7 +186,7 @@ function ComplexityCard({
       </div>
       {ciLow !== null && ciHigh !== null && ref !== null && ref > 0 && (
         <div className="mt-3">
-          <div className="text-[10px] uppercase text-coden-muted font-semibold mb-1">
+          <div className="text-xs uppercase text-coden-muted font-semibold mb-1">
             ±5% tolerance band around the reference
           </div>
           <div className="flex items-center gap-2 text-xs font-mono">
@@ -215,7 +215,7 @@ function ComplexityCard({
             </div>
             <span className="text-rose-300">{ciHigh.toLocaleString()}</span>
           </div>
-          <div className="mt-1 text-[10px] text-coden-muted">
+          <div className="mt-1 text-xs text-coden-muted">
             Green dot = within the band (as efficient as the reference).
             Red = too cheap (likely a cheat). Amber = too slow.
             See the <span className="text-coden-accent">Complexity</span> tab
@@ -223,7 +223,7 @@ function ComplexityCard({
           </div>
         </div>
       )}
-      <div className="mt-2 text-[10px] text-coden-muted">
+      <div className="mt-2 text-xs text-coden-muted">
         Required: <span className="text-coden-text font-semibold">{requiredComplexity}</span>
         {result.actual_complexity && (
           <>
@@ -247,14 +247,14 @@ function Metric({
   accent?: string;
 }) {
   return (
-    <div className="border border-coden-border rounded p-2 bg-coden-bg">
-      <div className="text-[10px] uppercase tracking-wider text-coden-muted font-semibold">
+    <div className="rounded-lg p-4 bg-coden-inner shadow-inner">
+      <div className="text-xs uppercase tracking-wider text-coden-muted font-semibold">
         {label}
       </div>
       <div className={`text-2xl font-bold tabular-nums mt-0.5 ${accent}`}>
         {value !== null ? value.toLocaleString() : '—'}
       </div>
-      <div className="text-[10px] text-coden-muted">AST ops</div>
+      <div className="text-xs text-coden-muted">AST ops</div>
     </div>
   );
 }
@@ -262,14 +262,14 @@ function Metric({
 
 function ReturnValueCard({ value }: { value: string }) {
   return (
-    <div className="border border-coden-border bg-coden-surface rounded p-3">
+    <div className="bg-coden-surface rounded-lg p-5 shadow-md mt-4">
       <div className="text-xs uppercase text-coden-muted font-semibold mb-2">
         Returned
       </div>
-      <pre className="bg-coden-bg border border-coden-border rounded p-2 text-[11px] font-mono overflow-x-auto whitespace-pre-wrap break-words max-h-64 overflow-y-auto">
+      <pre className="bg-coden-inner rounded-lg p-4 text-[11px] font-mono overflow-x-auto whitespace-pre-wrap break-words max-h-64 overflow-y-auto shadow-inner">
 {value}
       </pre>
-      <div className="mt-1 text-[10px] text-coden-muted">
+      <div className="mt-1 text-xs text-coden-muted">
         What <span className="font-mono text-coden-text">solve()</span> returned.
         Capped server-side; long lists are truncated with a trailing ellipsis.
       </div>
@@ -292,7 +292,7 @@ function ActionRow({
   message: string;
 }) {
   return (
-    <div className="border border-coden-border bg-coden-surface rounded p-3 text-xs space-y-2">
+    <div className="bg-coden-surface rounded-lg p-5 shadow-md text-xs space-y-3 mt-4">
       <div className="text-coden-muted">
         To debug, click the{' '}
         <span className="font-mono text-coden-accent">&lt;/&gt;</span>{' '}

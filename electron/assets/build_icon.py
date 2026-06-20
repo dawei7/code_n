@@ -14,7 +14,6 @@ the .ico format supports multiple resolutions (16, 32, 48, 64,
 """
 from __future__ import annotations
 
-import os
 import struct
 from pathlib import Path
 

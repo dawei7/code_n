@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_11` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n) |
+| **Complexity (required)** | $O(n)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence) (same shape) |
@@ -63,22 +63,32 @@ values. Roll with two variables: `prev` (= `dp[i-1]`) and
 
 **Answer:** `dp[n-1]` (or `prev` at the end of the loop).
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-rob(nums):
-    if not nums:
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_11: House Robber.
+
+Max sum of non-adjacent elements.
+"""
+
+
+def solve(arr):
+    n = len(arr)
+    if n == 0:
         return 0
-    if len(nums) == 1:
-        return nums[0]
-    prev2 = nums[0]                              # dp[0]
-    prev = max(nums[0], nums[1])                 # dp[1]
-    for i from 2 to len(nums) - 1:
-        curr = max(prev, nums[i] + prev2)
-        prev2 = prev
-        prev = curr
-    return prev
+    if n == 1:
+        return arr[0]
+    dp = [0] * (n + 1)
+    dp[1] = arr[0]
+    for i in range(2, n + 1):
+        dp[i] = max(dp[i - 1], dp[i - 2] + arr[i - 1])
+    return dp[n]
 ```
+
+</details>
 
 ## Walk-through
 
@@ -97,12 +107,12 @@ Returns 12. ✓ (Rob houses 0, 2, 4: 2 + 9 + 1 = 12.)
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n) | O(1) — rolling |
-| **Average** | O(n) | O(1) |
-| **Worst** | O(n) | O(1) |
+| **Best** | $O(n)$ | $O(1)$ — rolling |
+| **Average** | $O(n)$ | $O(1)$ |
+| **Worst** | $O(n)$ | $O(1)$ |
 
-The 2D `dp` table version uses O(n) space, but the rolling
-implementation is O(1). Both are O(n) time.
+The 2D `dp` table version uses $O(n)$ space, but the rolling
+implementation is $O(1)$. Both are $O(n)$ time.
 
 ## Variants & optimizations
 

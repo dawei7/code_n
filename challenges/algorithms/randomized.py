@@ -375,7 +375,6 @@ def _verify_randomized_05(challenge, result):
     # Brute-force: enumerate all subsets of vertices (S, V\S)
     # and find the cut with the smallest number of crossing
     # edges. O(2^n) for the partition, O(E) per check.
-    from itertools import combinations
     edges = challenge._edges
     n = challenge._n
     best = float("inf")

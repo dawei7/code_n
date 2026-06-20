@@ -15,8 +15,6 @@ The graph is passed as (n, edges) where edges is a list of
 from __future__ import annotations
 
 import random
-from collections import deque
-from typing import Any, Optional
 
 from challenges.spec import AlgorithmSpec, Sample
 from code_n.counter import ComplexityClass

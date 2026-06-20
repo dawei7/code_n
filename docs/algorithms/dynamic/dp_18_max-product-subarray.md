@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_18` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n) |
+| **Complexity (required)** | $O(n)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Maximum subarray problem](https://en.wikipedia.org/wiki/Maximum_subarray_problem) (related) |
@@ -68,26 +68,35 @@ min_ending[i] = min(candidate_a, candidate_b, candidate_c)
 **Space optimization:** same as Kadane's — keep only the
 last `max_ending` and `min_ending`, plus a running answer.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-max_product(nums):
-    if not nums:
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_18: Max Product Subarray.
+
+Track both cur_max and cur_min (negatives flip sign).
+"""
+
+
+def solve(arr):
+    if not arr:
         return 0
-    best = max_ending = min_ending = nums[0]
-    for i from 1 to len(nums) - 1:
-        x = nums[i]
-        if x < 0:
-            swap(max_ending, min_ending)   # negate both
-        max_ending = max(x, max_ending * x)
-        min_ending = min(x, min_ending * x)
-        best = max(best, max_ending)
+    best = arr[0]
+    cur_max = arr[0]
+    cur_min = arr[0]
+    for v in arr[1:]:
+        if v < 0:
+            cur_max, cur_min = cur_min, cur_max
+        cur_max = max(v, cur_max * v)
+        cur_min = min(v, cur_min * v)
+        if cur_max > best:
+            best = cur_max
     return best
 ```
 
-The swap trick: if `x` is negative, multiplying by `x` flips
-the comparison, so today's "max" is yesterday's "min" and
-vice versa.
+</details>
 
 ## Walk-through
 
@@ -106,17 +115,17 @@ Answer: 6. ✓ (subarray [2, 3] → product 6.)
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n) | O(1) |
-| **Average** | O(n) | O(1) |
-| **Worst** | O(n) | O(1) |
+| **Best** | $O(n)$ | $O(1)$ |
+| **Average** | $O(n)$ | $O(1)$ |
+| **Worst** | $O(n)$ | $O(1)$ |
 
-Single pass, two variables, O(1) extra space.
+Single pass, two variables, $O(1)$ extra space.
 
 ## Variants & optimizations
 
 - **Divide and conquer** — for very large arrays where
-  parallelism matters, D&C gives O(n log n) work with
-  O(log n) depth.
+  parallelism matters, D&C gives $O(n log n)$ work with
+  $O(log n)$ depth.
 - **Modular product** — if `nums` can have very large values
   and you need the product mod M, use modular arithmetic in
   the recurrence.

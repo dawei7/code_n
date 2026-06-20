@@ -9,15 +9,12 @@ file, etc.) later without touching the route code.
 from __future__ import annotations
 
 import os
-import tempfile
 from pathlib import Path
 from typing import Optional
 
 from code_n.progress import (
-    LevelRecord,
     PlayerProgress,
     load_progress,
-    save_progress,
 )
 
 from .config import PROGRESS_FILE

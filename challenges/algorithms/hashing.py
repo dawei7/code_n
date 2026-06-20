@@ -16,7 +16,6 @@ verify, single canonical ``solve`` to compare against.
 from __future__ import annotations
 
 import random
-from collections import Counter, defaultdict
 from typing import Any, Optional
 
 from challenges.spec import AlgorithmSpec, Sample

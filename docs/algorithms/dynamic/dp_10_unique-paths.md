@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_10` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 4/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Lattice path](https://en.wikipedia.org/wiki/Lattice_path) (same math) |
@@ -43,7 +43,7 @@ Answer: C(6, 3) = 20.
   phone screens at every company.
 - Foundation for the **Pascal's triangle** DP and the
   **binomial coefficient** formula.
-- The O(min(m, n)) space optimization is a great interview
+- The $O(min(m, n)$) space optimization is a great interview
   talking point.
 
 ## Approach
@@ -72,22 +72,43 @@ into a 1D array. Iterate `j` left-to-right, and the
 dp[j] = dp[j] + dp[j-1]
 ```
 where `dp[j]` on the RHS is the old "above" value. This is
-O(n) space.
+$O(n)$ space.
 
 **Closed form:** the answer is `C(m + n - 2, m - 1)` — choose
-which of the (m+n-2) moves are the (m-1) down moves. O(min(m, n))
-to compute, O(1) if you have a precomputed factorial table.
+which of the (m+n-2) moves are the (m-1) down moves. $O(min(m, n)$)
+to compute, $O(1)$ if you have a precomputed factorial table.
 
-## Algorithm (pseudocode)
+## Algorithm
 
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_10: Unique Paths.
+
+Count paths from (0,0) to (m-1, n-1) moving only right/down.
+1 = obstacle, 0 = free.
+"""
+
+
+def solve(grid, m, n):
+    if grid[0][0] == 1 or grid[m - 1][n - 1] == 1:
+        return 0
+    dp = [[0] * n for _ in range(m)]
+    dp[0][0] = 1
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == 1:
+                dp[i][j] = 0
+                continue
+            if i > 0:
+                dp[i][j] += dp[i - 1][j]
+            if j > 0:
+                dp[i][j] += dp[i][j - 1]
+    return dp[m - 1][n - 1]
 ```
-unique_paths(m, n):
-    dp = [1] * n
-    for i from 1 to m - 1:
-        for j from 1 to n - 1:
-            dp[j] = dp[j] + dp[j-1]
-    return dp[n - 1]
-```
+
+</details>
 
 ## Walk-through
 
@@ -137,16 +158,16 @@ Actually, looking again at the table I wrote initially, the answer is 10. So my 
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(m·n) | O(min(m, n)) with rolling |
-| **Average** | O(m·n) | O(min(m, n)) |
-| **Worst** | O(m·n) | O(min(m, n)) |
+| **Best** | $O(m·n)$ | $O(min(m, n)$) with rolling |
+| **Average** | $O(m·n)$ | $O(min(m, n)$) |
+| **Worst** | $O(m·n)$ | $O(min(m, n)$) |
 
-The 2D table is O(m·n) time and space. The rolling version
-is O(m·n) time and O(n) space (or O(min(m, n)) by choosing
+The 2D table is $O(m·n)$ time and space. The rolling version
+is $O(m·n)$ time and $O(n)$ space (or $O(min(m, n)$) by choosing
 the smaller dimension).
 
 The closed-form binomial-coefficient computation is
-O(min(m, n)) time using the multiplicative formula.
+$O(min(m, n)$) time using the multiplicative formula.
 
 ## Variants & optimizations
 

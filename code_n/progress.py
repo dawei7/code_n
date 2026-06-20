@@ -3,7 +3,6 @@
 import json
 import os
 from dataclasses import dataclass, field
-from typing import Optional
 
 from .branding import normalize_player_name
 from .solutions import PROJECT_ROOT

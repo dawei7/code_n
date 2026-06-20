@@ -25,7 +25,6 @@ GfG bit-manipulation syllabus.
 from __future__ import annotations
 
 import random
-from typing import Any, Optional
 
 from challenges.spec import AlgorithmSpec, Sample
 from code_n.counter import ComplexityClass
@@ -48,7 +47,6 @@ def solve(n):
 
 
 def _setup_bit_01(challenge, n, seed):
-    import random
     # n controls the magnitude: value is a random int in [0, 2^n).
     # Cap n at 30 so the loop stays short even for larger test sizes.
     value = (hash((seed, n)) & 0x7FFFFFFF) % (1 << min(n, 30))
@@ -70,7 +68,7 @@ def solve(n):
 
 
 def _setup_bit_02(challenge, n, seed):
-    import random, math
+    import math
     # Half the time pick a power of two, half the time pick something else.
     max_val = max(2, 1 << min(n, 20))
     rng = random.Random((seed or 0) * 31 + n)
@@ -103,7 +101,6 @@ def solve(arr):
 
 
 def _setup_bit_03(challenge, n, seed):
-    import random
     rng = random.Random(seed)
     n_pairs = max(1, min(n, 12))
     unique = rng.randint(0, 1000)
@@ -139,7 +136,6 @@ def solve(arr, n):
 
 
 def _setup_bit_04(challenge, n, seed):
-    import random
     rng = random.Random(seed)
     # 2^n subsets blows up fast; cap at 6.
     n = max(1, min(n, 6))
@@ -179,7 +175,6 @@ def solve(arr):
 
 
 def _setup_bit_05(challenge, n, seed):
-    import random
     rng = random.Random(seed)
     n_pairs = max(1, min(n, 8))
     u1 = rng.randint(0, 1000)
@@ -216,7 +211,6 @@ def solve(a, b):
 
 
 def _setup_bit_06(challenge, n, seed):
-    import random
     rng = random.Random(seed)
     max_val = max(2, 1 << min(n, 20))
     a = rng.randint(0, max_val)
@@ -246,7 +240,6 @@ def solve(n):
 
 
 def _setup_bit_07(challenge, n, seed):
-    import random
     rng = random.Random((seed or 0) * 31 + n)
     max_val = max(2, 1 << min(n, 20))
     value = rng.randint(0, max_val)
@@ -292,7 +285,6 @@ def solve(dividend, divisor):
 
 
 def _setup_bit_08(challenge, n, seed):
-    import random
     rng = random.Random((seed or 0) * 31 + n)
     divisor = rng.randint(1, max(2, n))
     quotient = rng.randint(0, max(2, n) * 2)
@@ -342,7 +334,6 @@ def solve(a, b):
 
 
 def _setup_bit_09(challenge, n, seed):
-    import random
     rng = random.Random((seed or 0) * 31 + n)
     max_val = max(2, n * 5)
     a = rng.randint(-max_val, max_val)
@@ -373,7 +364,6 @@ def solve(arr, n):
 
 
 def _setup_bit_10(challenge, n, seed):
-    import random
     rng = random.Random(seed)
     # arr has length n, values in [0, n], one missing.
     n = max(1, min(n, 12))
@@ -407,7 +397,6 @@ def solve(left, right):
 
 
 def _setup_bit_11(challenge, n, seed):
-    import random
     rng = random.Random(seed)
     max_val = max(2, 1 << min(n, 20))
     left = rng.randint(0, max_val)
@@ -441,7 +430,6 @@ def solve(n):
 
 
 def _setup_bit_12(challenge, n, seed):
-    import random
     rng = random.Random((seed or 0) * 31 + n)
     value = rng.randint(0, 2 ** min(n, 31) - 1)
     challenge._value = value

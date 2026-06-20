@@ -34,7 +34,6 @@ class MaxNCapTests(unittest.TestCase):
     the smallest zoom."""
 
     def test_1d_challenges_default_to_50(self):
-        from code_n.challenge import Challenge
         for cid in ("intro_01", "sort_01", "search_01", "search_02",
                     "dp_01", "dp_02"):
             ch = get_challenge(cid)

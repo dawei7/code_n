@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `graph_09` |
 | **Category** | graphs |
-| **Complexity (required)** | O(n) |
+| **Complexity (required)** | $O(n)$ |
 | **Difficulty** | 4/10 |
 | **Interview relevance** | 8/10 |
 | **Wikipedia** | [Disjoint-set data structure](https://en.wikipedia.org/wiki/Disjoint-set_data_structure) |
@@ -17,7 +17,7 @@ under two operations:
   set containing `x`.
 - `union(x, y)` — merge the sets containing `x` and `y`.
 
-Both operations should be fast (close to O(1) amortized).
+Both operations should be fast (close to $O(1)$ amortized).
 Useful for: connectivity queries, Kruskal's MST, network
 components, image processing, etc.
 
@@ -55,7 +55,7 @@ Two classic optimizations:
 the root of the larger one.
 
 With both, the amortized cost per operation is
-**O(α(n))** (inverse Ackermann, < 5 for any practical `n`).
+**$O(α(n)$)** (inverse Ackermann, < 5 for any practical `n`).
 
 **Path compression** (recursive):
 ```
@@ -90,30 +90,49 @@ def union(x, y):
     size[rx] += size[ry]
 ```
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-class DSU:
-    parent = [0, 1, 2, ..., n-1]
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for graph_09: Union-Find (DSU).
+
+Path compression + union by rank. Process a list of union/find
+ops and return the find results in order.
+"""
+
+
+def solve(n, ops):
+    parent = list(range(n))
     rank = [0] * n
 
     def find(x):
-        if parent[x] != x:
-            parent[x] = self.find(parent[x])
-        return parent[x]
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
 
-    def union(x, y):
-        rx = self.find(x); ry = self.find(y)
-        if rx == ry: return False
-        if rank[rx] < rank[ry]: rx, ry = ry, rx
-        parent[ry] = rx
-        if rank[rx] == rank[ry]: rank[rx] += 1
-        return True
+    def union(a, b):
+        ra, rb = find(a), find(b)
+        if ra == rb:
+            return
+        if rank[ra] < rank[rb]:
+            ra, rb = rb, ra
+        parent[rb] = ra
+        if rank[ra] == rank[rb]:
+            rank[ra] += 1
+
+    results = []
+    for op in ops:
+        if op[0] == "union":
+            union(op[1], op[2])
+        elif op[0] == "find":
+            results.append(find(op[1]) == find(op[2]))
+    return results
 ```
 
-The `union` returns `True` if a merge happened, `False` if
-`x` and `y` were already in the same set (useful for
-cycle detection).
+</details>
 
 ## Walk-through
 
@@ -138,15 +157,15 @@ All elements {0, 1, 2, 3, 4} are now in one set with root 0. ✓
 
 | | Time (amortized) | Space |
 |---|---|---|
-| **Best** | O(α(n)) per op | O(n) |
-| **Average** | O(α(n)) per op | O(n) |
-| **Worst** | O(α(n)) per op | O(n) |
+| **Best** | $O(α(n)$) per op | $O(n)$ |
+| **Average** | $O(α(n)$) per op | $O(n)$ |
+| **Worst** | $O(α(n)$) per op | $O(n)$ |
 
 `α(n)` is the inverse Ackermann function — for all
 practical `n` (n < 10^600), `α(n) ≤ 5`. So DSU is
-"effectively O(1) per operation".
+"effectively $O(1)$ per operation".
 
-Without the optimizations: O(n) per `find` in the worst
+Without the optimizations: $O(n)$ per `find` in the worst
 case (degenerate tree).
 
 ## Variants & optimizations
@@ -157,11 +176,11 @@ case (degenerate tree).
   "smaller" is the lower weight. Used in Kruskal's for
   "minimize total edge weight".
 - **Persistent DSU** — versioned history of unions; uses a
-  persistent segment tree. O(log n) per op.
-- **DSU with rollback** — undo the most recent union. O(log n)
+  persistent segment tree. $O(log n)$ per op.
+- **DSU with rollback** — undo the most recent union. $O(log n)$
   per op with the half-edge trick.
 - **DSU on trees** (small-to-large) — efficient subtree
-  queries on trees. O(n log n) preprocessing, O(1) query.
+  queries on trees. $O(n log n)$ preprocessing, $O(1)$ query.
 
 ## Real-world applications
 
@@ -185,7 +204,7 @@ case (degenerate tree).
 - **[graph_10 — Prim's MST](graph_10_prims-mst.md)** — the
   alternative MST algorithm (no DSU). (d=6/10, r=8/10)
 - **[graph_11 — Cycle Detection](graph_11_cycle-detection.md)** —
-  DSU detects cycles in O(V + E). (d=4/10, r=8/10)
+  DSU detects cycles in $O(V + E)$. (d=4/10, r=8/10)
 - **[graph_12 — Bipartite Check](graph_12_bipartite-check.md)** —
   can also be done with DSU (alternate coloring).
   (d=4/10, r=8/10)

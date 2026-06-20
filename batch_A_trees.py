@@ -10,7 +10,6 @@ Run with:
 
 # The generator loads this file as a module, so it must import
 # the symbols it uses.
-from challenges.spec import Sample
 
 
 SPECS_TO_ADD = [

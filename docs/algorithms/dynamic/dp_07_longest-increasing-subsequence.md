@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_07` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n log n) |
+| **Complexity (required)** | $O(n log n)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Longest increasing subsequence](https://en.wikipedia.org/wiki/Longest_increasing_subsequence) |
@@ -31,8 +31,8 @@ strictly greater than the previous one.
 
 ## When to use it
 
-- The canonical "**O(n²) DP that becomes O(n log n) with a
-  patience-sorting trick**" problem. The O(n log n) version
+- The canonical "**$O(n²)$ DP that becomes $O(n log n)$ with a
+  patience-sorting trick**" problem. The $O(n log n)$ version
   is asked at every top-tier company.
 - Whenever you need to find an **order-preserving subset** that
   satisfies a monotonicity constraint, LIS or a variant
@@ -44,9 +44,9 @@ strictly greater than the previous one.
 ## Approach
 
 There are two canonical approaches. cOde(n)'s engine checks
-against the O(n log n) one, so we'll focus on that.
+against the $O(n log n)$ one, so we'll focus on that.
 
-### The O(n log n) patience-sorting approach
+### The $O(n log n)$ patience-sorting approach
 
 Maintain an array `tails[]` where `tails[i]` is the **smallest
 possible tail value** of any increasing subsequence of
@@ -67,31 +67,38 @@ keep only the "smallest possible tail" because a smaller tail
 is always at least as good as a larger one (more elements can
 follow it).
 
-### The O(n²) DP approach (for understanding)
+### The $O(n²)$ DP approach (for understanding)
 
 `dp[i]` = length of LIS ending at `a[i]`. Recurrence:
 `dp[i] = 1 + max(dp[j])` over all `j < i` with `a[j] < a[i]`.
-Answer: `max(dp)`. The O(n log n) version above is a strict
+Answer: `max(dp)`. The $O(n log n)$ version above is a strict
 improvement and is the one to memorize.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-lis_length(a):
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_07: Longest Increasing Subsequence.
+
+Patience sorting with binary search — O(n log n).
+"""
+
+
+def solve(arr):
+    import bisect
     tails = []
-    for x in a:
-        # leftmost position where tails[pos] >= x
-        pos = lower_bound(tails, x)
-        if pos == len(tails):
-            tails.append(x)
+    for v in arr:
+        i = bisect.bisect_left(tails, v)
+        if i == len(tails):
+            tails.append(v)
         else:
-            tails[pos] = x
+            tails[i] = v
     return len(tails)
 ```
 
-`lower_bound` is a standard binary search: the first index
-where `tails[i] >= x`. For strict increase, use `>` here
-instead of `>=` (i.e. upper bound).
+</details>
 
 ## Walk-through
 
@@ -114,16 +121,16 @@ instead of `>=` (i.e. upper bound).
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n log n) | O(n) |
-| **Average** | O(n log n) | O(n) |
-| **Worst** | O(n log n) | O(n) |
+| **Best** | $O(n log n)$ | $O(n)$ |
+| **Average** | $O(n log n)$ | $O(n)$ |
+| **Worst** | $O(n log n)$ | $O(n)$ |
 
-The binary search is O(log n) per element, and we do it n
+The binary search is $O(log n)$ per element, and we do it n
 times. The `tails` array is at most n elements.
 
 For the strictly-decreasing-input case, `tails` never has a
-tail replaced, so binary search does the full O(log n) on
-each step — still O(n log n) total.
+tail replaced, so binary search does the full $O(log n)$ on
+each step — still $O(n log n)$ total.
 
 ## Variants & optimizations
 
@@ -133,14 +140,14 @@ each step — still O(n log n) total.
 - **Reconstruct the actual sequence** — store a parallel
   `parent[i]` array (the index `j` that was replaced when
   we updated `tails[pos]`). Then walk back from the last
-  element to reconstruct the LIS in reverse. O(n) extra
-  space and O(n) reconstruction time.
+  element to reconstruct the LIS in reverse. $O(n)$ extra
+  space and $O(n)$ reconstruction time.
 - **Longest non-decreasing subsequence of 2D points** —
   sort by x, then apply LIS on y. Used in the Russian doll
   envelopes problem.
 - **Patience sort** — this algorithm is exactly patience
   sorting; the number of piles is the LIS length, and the
-  full patience sort produces a stable sort in O(n log n).
+  full patience sort produces a stable sort in $O(n log n)$.
 
 ## Real-world applications
 
@@ -153,7 +160,7 @@ each step — still O(n log n) total.
   increasing stock prices, used in trend analysis.
 - **Patience sorting** — the algorithm above IS patience
   sorting; the pile count is the LIS length. Patience sort
-  is O(n log n) and stable.
+  is $O(n log n)$ and stable.
 
 ## Related algorithms in cOde(n)
 
@@ -165,7 +172,7 @@ each step — still O(n log n) total.
   (d=5/10, r=9/10)
 - **[stack_02 — Next Greater Element](stack_02_next-greater-element.md)** —
   another classic "longest increasing-like" problem, solved
-  with a monotonic stack in O(n). (d=4/10, r=7/10)
+  with a monotonic stack in $O(n)$. (d=4/10, r=7/10)
 
 ---
 

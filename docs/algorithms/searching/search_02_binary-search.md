@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `search_02` |
 | **Category** | searching |
-| **Complexity (required)** | O(log n) |
+| **Complexity (required)** | $O(log n)$ |
 | **Difficulty** | 3/10 |
 | **Interview relevance** | 8/10 |
 | **Wikipedia** | [Binary search](https://en.wikipedia.org/wiki/Binary_search) |
@@ -72,21 +72,33 @@ with `lo > hi`, we know `target` is not in the array.
 Pick one and stick with it; mixing the conventions is the
 #1 source of off-by-one bugs.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-binary_search(a, target):
-    lo, hi = 0, len(a) - 1
-    while lo <= hi:
-        mid = lo + (hi - lo) // 2     # overflow-safe
-        if a[mid] == target:
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for search_02: Binary Search.
+
+Sorted array; halve the search space each step. O(log n) time.
+"""
+
+
+def solve(data, target, n):
+    low, high = 0, n - 1
+    while low <= high:
+        mid = (low + high) // 2
+        value = data[mid]
+        if value == target:
             return mid
-        elif a[mid] < target:
-            lo = mid + 1
+        if value < target:
+            low = mid + 1
         else:
-            hi = mid - 1
+            high = mid - 1
     return -1
 ```
+
+</details>
 
 ## Walk-through
 
@@ -114,11 +126,11 @@ Let's try `target = 12` (not present):
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(1) — found at mid on first try | O(1) |
-| **Average** | O(log n) | O(1) |
-| **Worst** | O(log n) | O(1) |
+| **Best** | $O(1)$ — found at mid on first try | $O(1)$ |
+| **Average** | $O(log n)$ | $O(1)$ |
+| **Worst** | $O(log n)$ | $O(1)$ |
 
-Iterative is O(1) space; recursive is O(log n) stack space.
+Iterative is $O(1)$ space; recursive is $O(log n)$ stack space.
 
 ## Variants & optimizations
 
@@ -144,7 +156,7 @@ Iterative is O(1) space; recursive is O(log n) stack space.
 ## Real-world applications
 
 - **Database index lookup** — B-tree indexes generalize binary
-  search to disk-block-sized nodes; same O(log n) shape.
+  search to disk-block-sized nodes; same $O(log n)$ shape.
 - **Dictionary lookup** — finding a word in a sorted lexicon.
 - **git bisect** — binary search over the commit history to
   find the commit that introduced a bug.
@@ -163,7 +175,7 @@ Iterative is O(1) space; recursive is O(log n) stack space.
 - **[search_12 — Search in Rotated Sorted Array](search_12_search-in-rotated-sorted-array.md)** —
   the harder variant. (d=5/10, r=8/10)
 - **[hash_01 — Two Sum](hash_01_two-sum.md)** — alternative
-  O(n) approach using a hash map. (d=4/10, r=9/10)
+  $O(n)$ approach using a hash map. (d=4/10, r=9/10)
 
 ---
 

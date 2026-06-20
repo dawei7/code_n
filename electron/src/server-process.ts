@@ -124,10 +124,7 @@ export async function startServer(
     child = spawn(
       pythonExe,
       [
-        '-m', 'uvicorn',
-        'server.app.main:app',
-        '--host', '127.0.0.1',
-        '--port', '0',  // pick a free port; we read it from the port file
+        '-m', 'server.run_server',
       ],
       {
         cwd: repoRoot,

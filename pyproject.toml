@@ -1,0 +1,4 @@
+[tool.ruff.lint]
+# Ignore E741 (Ambiguous variable name) since `l` and `r` are standard for indices in algorithm challenges.
+# Ignore F841 (Unused variable) to avoid unsafe automatic removals.
+ignore = ["E741", "F841"]

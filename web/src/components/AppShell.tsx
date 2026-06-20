@@ -35,15 +35,28 @@ import { useAppStore } from '../store/useAppStore';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { useUpdater } from '../hooks/useUpdater';
 import { ChallengeList } from './ChallengeList';
-import { LayoutRoot } from './layout/LayoutRoot';
-import { useLayoutStore } from '../store/useLayoutStore';
-import { allLeaves } from './layout/tree-ops';
 import { UpdateToast } from './UpdateToast';
+import { TabBar } from './TabBar';
+import { Workspace } from './Workspace';
 
 
 export function AppShell() {
   const loadChallenges = useAppStore((s) => s.loadChallenges);
   const loadProgress = useAppStore((s) => s.loadProgress);
+  const baseFontSize = useAppStore((s) => s.baseFontSize);
+  const theme = useAppStore((s) => s.theme);
+
+  useEffect(() => {
+    document.documentElement.style.fontSize = `${baseFontSize}px`;
+  }, [baseFontSize]);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
 
   useEffect(() => {
     loadChallenges();
@@ -55,13 +68,14 @@ export function AppShell() {
   return (
     <div className="h-full flex flex-col bg-coden-bg text-coden-text">
       <TopHeader />
-      <TransportBar />
       <div className="flex-1 flex overflow-hidden">
         <aside className="w-64 border-r border-coden-border bg-coden-surface shrink-0 overflow-y-auto">
           <ChallengeList />
         </aside>
-        <main className="flex-1 overflow-hidden">
-          <LayoutRoot />
+        <main className="flex-1 flex flex-col min-w-0 bg-coden-bg">
+          <TabBar />
+          <TransportBar />
+          <Workspace />
         </main>
       </div>
       <UpdateToast />
@@ -70,14 +84,15 @@ export function AppShell() {
 }
 
 
-/** Top bar: brand on the left, Layout dropdown on the right. */
 function TopHeader() {
   const challenges = useAppStore((s) => s.challenges);
-  const applyPreset = useLayoutStore((s) => s.applyPreset);
-  const replaceTree = useLayoutStore((s) => s.replaceTree);
-  const tree = useLayoutStore((s) => s.tree);
-  const leafCount = allLeaves(tree).length;
   const updater = useUpdater();
+  const theme = useAppStore((s) => s.theme);
+  const toggleTheme = useAppStore((s) => s.toggleTheme);
+  const language = useAppStore((s) => s.language);
+  const setLanguage = useAppStore((s) => s.setLanguage);
+  const increaseFontSize = useAppStore((s) => s.increaseFontSize);
+  const decreaseFontSize = useAppStore((s) => s.decreaseFontSize);
 
   // Tooltip describing the last update action for the "Check for
   // updates" button. Changes when the state changes.
@@ -105,7 +120,7 @@ function TopHeader() {
         )}
         {updater.state.appVersion && (
           <span
-            className="text-[10px] text-coden-muted font-mono"
+            className="text-xs text-coden-muted font-mono"
             title={`Currently running v${updater.state.appVersion.current} on the '${updater.state.appVersion.channel}' channel`}
           >
             v{updater.state.appVersion.current}
@@ -113,51 +128,39 @@ function TopHeader() {
         )}
       </div>
       <div className="flex items-center gap-2 text-xs">
-        <span className="text-coden-muted font-mono">{leafCount} panes</span>
-        <label className="text-coden-muted">Layout</label>
-        <select
-          value={leafCount}
-          onChange={(e) => {
-            const n = Number(e.target.value);
-            if (n >= 1 && n <= 6) applyPreset(n as 1 | 2 | 3 | 4 | 5 | 6);
-          }}
-          className="bg-coden-bg border border-coden-border rounded px-2 py-1 font-mono text-coden-text"
-          title="Choose 1, 2, 3, 4, 5, or 6 panes"
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
+        <div className="flex items-center rounded border border-coden-border bg-coden-bg overflow-hidden mr-2">
+          <button
+            type="button"
+            onClick={decreaseFontSize}
+            className="px-2 py-1 text-coden-muted hover:text-coden-text hover:bg-coden-surface border-r border-coden-border transition-colors font-semibold"
+            title="Decrease text size"
+          >
+            A-
+          </button>
+          <button
+            type="button"
+            onClick={increaseFontSize}
+            className="px-2 py-1 text-coden-muted hover:text-coden-text hover:bg-coden-surface transition-colors font-semibold"
+            title="Increase text size"
+          >
+            A+
+          </button>
+        </div>
         <button
           type="button"
-          onClick={() => {
-            // Snap all splits back to equal sizes (1/N each child).
-            // Tree structure is preserved — only sizes change.
-            const equalize = (n: import('./layout/tree-ops').LayoutNode): import('./layout/tree-ops').LayoutNode => {
-              if (n.kind === 'leaf') return n;
-              return {
-                ...n,
-                sizes: Array.from({ length: n.children.length }, () => 1 / n.children.length),
-                children: n.children.map(equalize),
-              };
-            };
-            replaceTree(equalize(tree));
-          }}
-          className="px-2 py-1 rounded border border-coden-accent text-coden-accent hover:bg-coden-accent hover:text-coden-bg"
-          title="Resize ALL panes to be equal (1/N). Use this to fix any pane that's been squished."
+          onClick={() => setLanguage(language === 'en' ? 'de' : 'en')}
+          className="px-2 py-1 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border mr-1"
+          title={`Switch to ${language === 'en' ? 'German' : 'English'}`}
         >
-          ⇔ Equal sizes
+          {language === 'en' ? '🇩🇪 DE' : '🇬🇧 EN'}
         </button>
         <button
           type="button"
-          onClick={() => applyPreset(4)}
+          onClick={toggleTheme}
           className="px-2 py-1 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border"
-          title="Reset the whole layout to the 4-pane default (clears your arrangement)"
+          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >
-          ↺ Reset layout
+          {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
         </button>
         <button
           type="button"
@@ -211,7 +214,7 @@ function TransportBar() {
         {detail ? (
           <>
             <h2 className="text-sm font-semibold truncate leading-tight">{detail.name}</h2>
-            <div className="text-[10px] text-coden-muted font-mono truncate leading-tight">
+            <div className="text-xs text-coden-muted font-mono truncate leading-tight">
               {detail.id} · {detail.category} · difficulty {detail.difficulty}/10
             </div>
           </>
@@ -277,9 +280,9 @@ function TransportBar() {
           onClick={() => void handleOpenInVSCode()}
           disabled={!detail}
           className="px-2 py-1.5 text-sm rounded border border-coden-accent text-coden-accent hover:bg-coden-accent hover:text-coden-bg disabled:opacity-50 disabled:cursor-not-allowed"
-          title="Open solutions/<id>.py in VSCode (writes the active challenge id to solutions/.vscode-active first)"
+          title="Open solutions/<id>.py in Antigravity (writes the active challenge id to solutions/.vscode-active first)"
         >
-          {'</>'} VSCode
+          {'</>'} Antigravity
         </button>
       </div>
 

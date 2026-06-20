@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_19` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Longest palindromic subsequence](https://en.wikipedia.org/wiki/Longest_palindromic_subsequence) |
@@ -65,27 +65,43 @@ last) so the inner sub-problems are computed first.
 ### Approach B: Reduce to LCS
 
 The longest palindromic subsequence of `s` is the **longest
-common subsequence** of `s` and `reverse(s)`. Same O(n²)
+common subsequence** of `s` and `reverse(s)`. Same $O(n²)$
 complexity; reuse the existing `dp_04` implementation.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-lps(s):
-    n = len(s)
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_19: Longest Palindromic Subsequence.
+
+Classic DP: dp[i][j] = LPS length in s[i..j].
+Base: dp[i][i] = 1. Recurrence: if s[i] == s[j],
+dp[i][j] = dp[i+1][j-1] + 2; else dp[i][j] = max(dp[i+1][j], dp[i][j-1]).
+"""
+
+
+def solve(s, n):
+    if n == 0:
+        return 0
     dp = [[0] * n for _ in range(n)]
     for i in range(n):
         dp[i][i] = 1
-    for length in 2..n:
-        for i in 0..n-length:
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
             j = i + length - 1
             if s[i] == s[j]:
-                inner = dp[i+1][j-1] if i+1 <= j-1 else 0
-                dp[i][j] = inner + 2
+                if length == 2:
+                    dp[i][j] = 2
+                else:
+                    dp[i][j] = dp[i + 1][j - 1] + 2
             else:
-                dp[i][j] = max(dp[i+1][j], dp[i][j-1])
-    return dp[0][n-1]
+                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+    return dp[0][n - 1]
 ```
+
+</details>
 
 ## Walk-through
 
@@ -119,9 +135,9 @@ Initialize diagonal: `dp[i][i] = 1`.
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n²) | O(n²) |
-| **Average** | O(n²) | O(n²) |
-| **Worst** | O(n²) | O(n²) |
+| **Best** | $O(n²)$ | $O(n²)$ |
+| **Average** | $O(n²)$ | $O(n²)$ |
+| **Worst** | $O(n²)$ | $O(n²)$ |
 
 Standard 2D DP. The LCS-reduction approach has the same
 complexity but reuses an existing implementation.
@@ -129,10 +145,10 @@ complexity but reuses an existing implementation.
 ## Variants & optimizations
 
 - **Reconstruct the palindrome** — walk back from
-  `dp[0][n-1]`, picking matches greedily. O(n) extra space.
+  `dp[0][n-1]`, picking matches greedily. $O(n)$ extra space.
 - **Longest Palindromic Substring** (`string_02`) — must be
-  contiguous. Use Manacher's algorithm for O(n) time, or
-  expand-around-center for O(n²) time and O(1) space.
+  contiguous. Use Manacher's algorithm for $O(n)$ time, or
+  expand-around-center for $O(n²)$ time and $O(1)$ space.
 - **Count distinct palindromic subsequences** — modify the
   DP to count instead of maximize.
 - **Minimum insertions to make a palindrome** — same DP,

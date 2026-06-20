@@ -17,13 +17,12 @@ without binding to a port.
 from __future__ import annotations
 
 import logging
-from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from server.app.config import CORS_ORIGINS, PROJECT_ROOT, WEB_DIST, ensure_data_dirs
+from server.app.config import CORS_ORIGINS, WEB_DIST, ensure_data_dirs
 from server.app.routes import challenges, docs, health, progress, run, solutions, vscode
 from server.app import error_handlers
 

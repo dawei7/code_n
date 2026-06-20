@@ -25,4 +25,5 @@ Sample 2 output: [[], [1]]
 
 def solve(arr, n):
     # Write your code here.
-    return None
+    print("fsds")
+    return "dada"

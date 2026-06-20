@@ -12,15 +12,15 @@ export function DescriptionTab() {
 
   if (!detail) {
     return (
-      <div className="h-full flex items-center justify-center text-xs text-coden-muted">
+      <div className="flex items-center justify-center text-xs text-coden-muted p-4">
         Pick a challenge from the left rail.
       </div>
     );
   }
 
   return (
-    <div className="h-full flex flex-col gap-3 overflow-y-auto">
-      <div className="bg-coden-surface border border-coden-border rounded p-3 text-sm shrink-0">
+    <div className="flex flex-col gap-3">
+      <div className="bg-coden-surface rounded-lg p-4 text-sm shrink-0 shadow-md">
         <div className="text-xs uppercase text-coden-muted font-semibold mb-1">
           Description
         </div>

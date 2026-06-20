@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `hash_01` |
 | **Category** | hashing |
-| **Complexity (required)** | O(n) |
+| **Complexity (required)** | $O(n)$ |
 | **Difficulty** | 4/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Hash table](https://en.wikipedia.org/wiki/Hash_table) |
@@ -33,47 +33,60 @@ you may not use the same element twice.
   coding interviews. LeetCode's #1. The point isn't whether
   you know the algorithm (it's the dictionary lookup); the
   point is whether you can:
-  - **Argue the complexity** (O(n²) brute force vs. O(n) hash
+  - **Argue the complexity** ($O(n²)$ brute force vs. $O(n)$ hash
     map)
   - **Discuss the trade-offs** (extra space for the map vs.
-    O(1) extra space for the sorted two-pointer variant)
+    $O(1)$ extra space for the sorted two-pointer variant)
   - **Generalize** to 3-Sum, 4-Sum, K-Sum, or to "two numbers
     close to a target" (binary search on the sorted array)
 - Excellent test of whether you reach for the right data
   structure (hash map) when the problem asks for "find a
-  complement" in O(n) time.
+  complement" in $O(n)$ time.
 
 ## Approach
 
 For each element `nums[i]`, we need to find whether
 `target - nums[i]` has appeared earlier in the array.
 
-**Brute force** (O(n²)): nested loop. Try every pair.
+**Brute force** ($O(n²)$): nested loop. Try every pair.
 
-**Sort + two pointers** (O(n log n)): sort the array, then walk
+**Sort + two pointers** ($O(n log n)$): sort the array, then walk
 two pointers from the ends. The "answer indices" need to be
 preserved separately because sorting destroys the original
-ordering. The two-pointer variant is O(1) extra space.
+ordering. The two-pointer variant is $O(1)$ extra space.
 
-**Hash map** (O(n), the production version): for each
+**Hash map** ($O(n)$, the production version): for each
 `nums[i]`, check whether `target - nums[i]` is in the map.
 - If yes: we found our answer, return `[map[target - nums[i]], i]`.
 - If no: store `nums[i] -> i` in the map and move on.
 
-This is O(n) time and O(n) extra space. Single pass.
+This is $O(n)$ time and $O(n)$ extra space. Single pass.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-two_sum(nums, target):
-    seen = {}                # value -> index
-    for i, x in enumerate(nums):
-        complement = target - x
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for hash_01: Two Sum.
+
+Single pass: walk the array, for each value check whether
+target - value has been seen. If yes, return the two indices.
+Otherwise, store the current value's index in the map. O(n).
+"""
+
+
+def solve(arr, target, n):
+    seen = {}
+    for i in range(n):
+        complement = target - arr[i]
         if complement in seen:
-            return [seen[complement], i]
-        seen[x] = i
-    raise ValueError("no solution")
+            return sorted([seen[complement], i])
+        seen[arr[i]] = i
+    return [-1, -1]
 ```
+
+</details>
 
 ## Walk-through
 
@@ -90,27 +103,27 @@ Answer: `[0, 1]`. ✓
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n) | O(n) |
-| **Average** | O(n) | O(n) |
-| **Worst** | O(n) | O(n) |
+| **Best** | $O(n)$ | $O(n)$ |
+| **Average** | $O(n)$ | $O(n)$ |
+| **Worst** | $O(n)$ | $O(n)$ |
 
-Hash table lookups and inserts are expected O(1) (worst-case
-O(n) with a bad hash, but in practice O(1) for integer keys).
+Hash table lookups and inserts are expected $O(1)$ (worst-case
+$O(n)$ with a bad hash, but in practice $O(1)$ for integer keys).
 
 ## Variants & optimizations
 
-- **Sorted + two pointers** (O(n log n) time, O(1) space) —
+- **Sorted + two pointers** ($O(n log n)$ time, $O(1)$ space) —
   when you can't afford the extra hash map. The downside is
   you have to track the original indices through the sort.
 - **3-Sum, 4-Sum, K-Sum** — extend the pattern. 3-Sum:
   sort, then for each `i` solve "two sum" on the rest of the
-  array with target `-nums[i]`. Skip duplicates. O(n²) for
+  array with target `-nums[i]`. Skip duplicates. $O(n²)$ for
   3-Sum.
 - **Two Sum II (sorted input)** — the array is already sorted;
-  the two-pointer solution is O(n) with O(1) extra space.
+  the two-pointer solution is $O(n)$ with $O(1)$ extra space.
 - **Two Sum BST** — given a BST, find two nodes that sum to a
   target. Use the in-order iterator + reverse in-order
-  iterator (two-pointer on a BST) for O(n) time and O(log n)
+  iterator (two-pointer on a BST) for $O(n)$ time and $O(log n)$
   space.
 - **Subarray sum equals k** — the related prefix-sum +
   hash-map problem (`hash_02`).
@@ -137,7 +150,7 @@ O(n) with a bad hash, but in practice O(1) for integer keys).
 - **[hash_03 — Longest Substring Without Repeating](hash_03_longest-substring-without-repeating.md)** —
   hash-set with sliding window. (d=4/10, r=9/10)
 - **[search_02 — Binary Search](search_02_binary-search.md)** —
-  the alternative O(n log n) / O(1) approach for sorted
+  the alternative $O(n log n)$ / $O(1)$ approach for sorted
   input. (d=3/10, r=8/10)
 
 ---

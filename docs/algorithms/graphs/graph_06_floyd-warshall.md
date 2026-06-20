@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `graph_06` |
 | **Category** | graphs |
-| **Complexity (required)** | O(n³) |
+| **Complexity (required)** | $O(n³)$ |
 | **Difficulty** | 6/10 |
 | **Interview relevance** | 8/10 |
 | **Wikipedia** | [Floyd–Warshall algorithm](https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm) |
@@ -83,21 +83,36 @@ intermediates from `{0..k-1}` (already computed), so
 **Path reconstruction:** maintain a parallel `next[i][j]`
 matrix. Update it whenever you update `dist[i][j]`.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-floyd_warshall(weight):
-    n = len(weight)
-    dist = [row[:] for row in weight]      # copy
-    for i in range(n):
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for graph_06: Floyd-Warshall.
+
+All-pairs shortest distances via the triple-loop DP.
+"""
+
+
+def solve(num_nodes, edges):
+    INF = float("inf")
+    dist = [[INF] * num_nodes for _ in range(num_nodes)]
+    for i in range(num_nodes):
         dist[i][i] = 0
-    for k in range(n):
-        for i in range(n):
-            for j in range(n):
-                if dist[i][k] + dist[k][j] < dist[i][j]:
-                    dist[i][j] = dist[i][k] + dist[k][j]
-    return dist
+    for u, v, w in edges:
+        if w < dist[u][v]:
+            dist[u][v] = w
+    for k in range(num_nodes):
+        for i in range(num_nodes):
+            for j in range(num_nodes):
+                if dist[i][k] != INF and dist[k][j] != INF:
+                    if dist[i][k] + dist[k][j] < dist[i][j]:
+                        dist[i][j] = dist[i][k] + dist[k][j]
+    return [[d if d != INF else -1 for d in row] for row in dist]
 ```
+
+</details>
 
 ## Walk-through
 
@@ -129,29 +144,29 @@ Final matrix matches the example. ✓
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(n³) | O(n²) |
-| **Average** | O(n³) | O(n²) |
-| **Worst** | O(n³) | O(n²) |
+| **Best** | $O(n³)$ | $O(n²)$ |
+| **Average** | $O(n³)$ | $O(n²)$ |
+| **Worst** | $O(n³)$ | $O(n²)$ |
 
-Three nested loops, each O(n). The in-place version uses
-O(n²) space (just the distance matrix).
+Three nested loops, each $O(n)$. The in-place version uses
+$O(n²)$ space (just the distance matrix).
 
 ## Variants & optimizations
 
 - **Transitive closure** — `weight` is a boolean (reachable
   or not). Floyd-Warshall computes the transitive closure
-  in O(n³) — same code, different type.
+  in $O(n³)$ — same code, different type.
 - **Reconstruct the path** — track `next[i][j]` alongside
   `dist[i][j]`. To get the path `i → j`, if `next[i][j] =
   None`, no path; else include `j` and recurse on `i →
   next[i][j]`, then include `i` at the start.
 - **Faster for sparse graphs** — Johnson's algorithm
   reweights to non-negative and runs `n` Dijkstras. Total
-  O(n · (n + m) log n), which is faster when `m << n²`.
+  $O(n · (n + m)$ log n), which is faster when `m << n²`.
 - **Detect negative cycles** — if `dist[i][i] < 0` after
   running, `i` is on a negative cycle.
 - **Frequent queries on a small graph** — Floyd-Warshall
-  preprocess once, query in O(1).
+  preprocess once, query in $O(1)$.
 
 ## Real-world applications
 

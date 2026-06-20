@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_02` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n) |
+| **Complexity (required)** | $O(n)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence) (same recurrence) |
@@ -65,23 +65,30 @@ top-down memoized or bottom-up tabulated version touches each
 `f(k)` exactly once. And the rolling version only needs the
 last two values.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-climb_stairs(n):
-    if n < 2:
-        return 1
-    prev = 1        # f(0)
-    curr = 1        # f(1)
-    for i from 2 to n:
-        next = prev + curr
-        prev = curr
-        curr = next
-    return curr
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_02: Climbing Stairs.
+
+Count the number of ways to climb n stairs taking 1 or 2 steps
+at a time. Same recurrence as Fibonacci: ways(n) = ways(n-1) +
+ways(n-2). O(n) time, O(1) space.
+"""
+
+
+def solve(n):
+    if n <= 2:
+        return max(n, 1)
+    previous, current = 1, 2
+    for _ in range(3, n + 1):
+        previous, current = current, previous + current
+    return current
 ```
 
-For the modulo variant, replace `next = prev + curr` with
-`next = (prev + curr) mod M`.
+</details>
 
 ## Walk-through
 
@@ -101,33 +108,33 @@ Returns 8. ✓ (8 distinct ways to climb 5 stairs.)
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(1) | O(1) — `n < 2` |
-| **Average** | O(n) | O(1) |
-| **Worst** | O(n) | O(1) |
+| **Best** | $O(1)$ | $O(1)$ — `n < 2` |
+| **Average** | $O(n)$ | $O(1)$ |
+| **Worst** | $O(n)$ | $O(1)$ |
 
-The required complexity is O(n); the rolling implementation
+The required complexity is $O(n)$; the rolling implementation
 matches it exactly. The memoized recursive version is also
-O(n) but uses O(n) stack space (or O(n) extra heap if you
+$O(n)$ but uses $O(n)$ stack space (or $O(n)$ extra heap if you
 use a dict).
 
 ## Variants & optimizations
 
 - **k steps at a time** — replace the 1-or-2 with 1-or-2-or-…-or-k.
   Recurrence becomes `f(n) = f(n-1) + f(n-2) + … + f(n-k)`,
-  the k-bonacci sequence. Space stays O(1) but the constant
+  the k-bonacci sequence. Space stays $O(1)$ but the constant
   is now `O(k)` per iteration; switch to a sliding window of
   size `k` to keep it tight.
 - **Distinct step costs** — instead of "1 or 2 steps", you
   pay a `cost[i]` for taking `i` steps. Recurrence:
   `f(n) = max(f(n-1) + cost[1], f(n-2) + cost[2])`. This is
   the **Min Cost Climbing Stairs** problem (`dp_23`).
-- **Memoized recursion** — clean code but uses O(n) space for
+- **Memoized recursion** — clean code but uses $O(n)$ space for
   the call stack. The cOde(n) engine will accept it as long
-  as total operations are O(n) (they are, because each `f(k)`
+  as total operations are $O(n)$ (they are, because each `f(k)`
   is computed once).
 - **Matrix exponentiation** — for very large `n` (say `n > 10^9`)
   and many queries, raise the 2×2 transition matrix to the
-  nth power in O(log n).
+  nth power in $O(log n)$.
 
 ## Real-world applications
 

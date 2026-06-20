@@ -14,6 +14,36 @@ body,
   flex-direction: column;
 }
 
+:root {
+  /* Light Theme (Material Design inspired) */
+  --coden-bg: #f8f9fa;
+  --coden-surface: #ffffff;
+  --coden-surface-elevated: #f1f3f5;
+  --coden-border: #e2e8f0;
+  --coden-muted: #64748b;
+  --coden-text: #0f172a;
+  --coden-accent: #0284c7;  /* Material light blue/teal for light mode */
+  --coden-compare: #d97706; /* amber-600 */
+  --coden-swap: #e11d48;    /* rose-600 */
+  --coden-read: #2563eb;    /* blue-600 */
+  --coden-inner: #f1f5f9;   /* slate-100 */
+}
+
+.dark {
+  /* Dark Theme (Material Design) */
+  --coden-bg: #121212;
+  --coden-surface: #1e1e1e;
+  --coden-surface-elevated: #2d2d2d;
+  --coden-border: #333333;
+  --coden-muted: #a0a0a0;
+  --coden-text: #ffffff;
+  --coden-accent: #03dac6;
+  --coden-compare: #ffb300;
+  --coden-swap: #cf6679;
+  --coden-read: #64b5f6;
+  --coden-inner: #181818;
+}
+
 /* Custom scrollbar for the dark theme */
 ::-webkit-scrollbar {
   width: 10px;

@@ -951,7 +951,6 @@ def _setup_cycle_detect(challenge, n: int, seed: Optional[int]) -> dict[str, Any
     # but the closure edge in the is_cyclic branch made it cyclic.
     # The extra random edges might also close cycles — re-run
     # the canonical cycle detection to determine the actual answer.
-    from collections import deque
     expected = False
     if num_nodes > 0:
         adj = [[] for _ in range(num_nodes)]
@@ -1626,7 +1625,6 @@ def _setup_astar(challenge, n: int, seed: Optional[int]) -> dict[str, Any]:
         if (r, c) != (0, 0) and (r, c) != (size - 1, size - 1):
             grid[r][c] = 1
     # BFS to verify a path exists; if not, clear a row to ensure reachability.
-    from collections import deque
     if not _has_path(grid, size, (0, 0), (size - 1, size - 1)):
         for c in range(size):
             grid[size - 1][c] = 0

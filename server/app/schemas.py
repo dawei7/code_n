@@ -103,6 +103,14 @@ class RunRequest(BaseModel):
     mode: Literal["practice", "real_test"] = "practice"
 
 
+class ScalingPoint(BaseModel):
+    n: int
+    user_ops: int
+    ref_ops: int
+    ci_low: int
+    ci_high: int
+
+
 class RunResponse(BaseModel):
     """The result of a single run.
 
@@ -160,6 +168,7 @@ class RunResponse(BaseModel):
     # correct but slower than optimal.
     reference_ci_low: Optional[int] = None
     reference_ci_high: Optional[int] = None
+    scaling_data: list[ScalingPoint] = Field(default_factory=list)
 
 
 # ----------------------------------------------------------------------------
@@ -207,3 +216,19 @@ class SolutionGet(BaseModel):
 
 class SolutionPut(BaseModel):
     source: str
+
+
+class SolutionVersionsGet(BaseModel):
+    challenge_id: str
+    active_version: int
+    versions: list[int]
+    version_names: dict[int, str]
+    modified_versions: list[int] = Field(default_factory=list)
+    source: str
+
+
+class VersionSwitchRequest(BaseModel):
+    version: int
+
+class VersionRenameRequest(BaseModel):
+    name: str

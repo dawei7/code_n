@@ -4,7 +4,7 @@
 |---|---|
 | **ID** | `dp_08` |
 | **Category** | dynamic |
-| **Complexity (required)** | O(n²) |
+| **Complexity (required)** | $O(n²)$ |
 | **Difficulty** | 5/10 |
 | **Interview relevance** | 9/10 |
 | **Wikipedia** | [Edit distance](https://en.wikipedia.org/wiki/Edit_distance) |
@@ -61,28 +61,37 @@ insertions away from any string of length `j`.
 **Space optimization:** the recurrence only uses the previous
 row and the current row, so 2D → 2×(n+1) → with a small tweak
 even 1×(n+1) (use a `prev_row` variable). cOde(n)'s engine
-expects O(n²) time and accepts either 2D or optimized memory.
+expects $O(n²)$ time and accepts either 2D or optimized memory.
 
-## Algorithm (pseudocode)
+## Algorithm
 
-```
-edit_distance(s, t):
-    m, n = len(s), len(t)
+<details>
+<summary>Show Algorithm</summary>
+
+```python
+"""Optimal solution for dp_08: Edit Distance.
+
+Levenshtein distance via standard 2D DP.
+"""
+
+
+def solve(word1, word2):
+    m, n = len(word1), len(word2)
     dp = [[0] * (n + 1) for _ in range(m + 1)]
-    for i from 0 to m: dp[i][0] = i
-    for j from 0 to n: dp[0][j] = j
-    for i from 1 to m:
-        for j from 1 to n:
-            if s[i-1] == t[j-1]:
-                dp[i][j] = dp[i-1][j-1]
+    for i in range(m + 1):
+        dp[i][0] = i
+    for j in range(n + 1):
+        dp[0][j] = j
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if word1[i - 1] == word2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
             else:
-                dp[i][j] = 1 + min(
-                    dp[i-1][j-1],   # substitute
-                    dp[i-1][j],     # delete
-                    dp[i][j-1],     # insert
-                )
+                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])
     return dp[m][n]
 ```
+
+</details>
 
 ## Walk-through
 
@@ -111,12 +120,12 @@ Walk through filling `dp[1][1]` = edit("c", "c"):
 
 | | Time | Space |
 |---|---|---|
-| **Best** | O(m·n) | O(min(m, n)) with rolling |
-| **Average** | O(m·n) | O(min(m, n)) with rolling |
-| **Worst** | O(m·n) | O(min(m, n)) with rolling |
+| **Best** | $O(m·n)$ | $O(min(m, n)$) with rolling |
+| **Average** | $O(m·n)$ | $O(min(m, n)$) with rolling |
+| **Worst** | $O(m·n)$ | $O(min(m, n)$) with rolling |
 
-For the 2D table, space is O(m·n). The rolling-row version
-reduces to O(n) (or O(min(m, n)) whichever is smaller).
+For the 2D table, space is $O(m·n)$. The rolling-row version
+reduces to $O(n)$ (or $O(min(m, n)$) whichever is smaller).
 
 ## Variants & optimizations
 
@@ -126,11 +135,11 @@ reduces to O(n) (or O(min(m, n)) whichever is smaller).
 - **Weighted edit distance** — different costs for each
   operation. DNA alignment uses this (substitution matrix
   BLOSUM / PAM).
-- **Hirschberg's algorithm** — O(m·n) time, O(min(m, n))
+- **Hirschberg's algorithm** — $O(m·n)$ time, $O(min(m, n)$)
   space, AND reconstructs the actual sequence of edits. Uses
   divide-and-conquer + the rolling-row trick.
-- **Myers' bit-parallel algorithm** — O((m·n)/w) where w is
-  the word size, with w=64 effectively O(m·n/64). The
+- **Myers' bit-parallel algorithm** — $O((m·n)$/w) where w is
+  the word size, with w=64 effectively $O(m·n/64)$. The
   standard for production diff tools.
 
 ## Real-world applications
