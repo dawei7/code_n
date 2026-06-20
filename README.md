@@ -1,183 +1,106 @@
-# cOde(n)
+# cOde(n) — The Interactive Algorithms Arena
 
-A learning game for Python algorithms and data structures, inspired by
-*The Farmer Was Replaced*. The player writes a `solve(...)` function
-and the engine wraps the inputs in *tracked* data structures that
-count every read, write, compare, and swap. A solution passes only
-when it is both correct and stays within the operation budget implied
-by the required complexity class.
+**cOde(n)** is a premium, gamified learning platform and results visualizer for Python algorithms and data structures. Inspired by programming automation games, it provides developers and computer science students with a structured arena to write, debug, and optimize classic computer science challenges.
 
-**Similar to "The Farmer Was Replaced" — but for algorithms, entirely in Python.**
+Rather than relying on inaccurate runtime execution timers, **cOde(n)** analyzes solutions using static AST (Abstract Syntax Tree) operation counting. Your solutions are validated not only for functional correctness but also for structural complexity, ensuring they strictly adhere to their theoretical asymptotic bounds.
 
-## Architecture (2026-06-07 rebuild)
+---
 
-The cOde(n) frontend moved off Pygame in 2026-06-07. The Python
-engine is preserved as-is; the renderer and packaging were replaced
-with a server-client stack:
+## 🚀 Key Features
+
+* **Direct VSCode Integration**: The actual coding and debugging happen in your local VSCode workspace. Set breakpoints, inspect local variables, and run tests via standard VSCode debug tools (`F5`), while cOde(n) serves as your primary visual cockpit.
+* **AST Complexity Budgeting**: Solutions are analyzed statically based on operation counts nested within loop structures. Verdicts verify that the algorithm stays within the mathematical complexity budget (e.g., $O(n \log n)$) for the input size $n$.
+* **University-Level LaTeX Reference Sheets**: Includes comprehensive, mathematically rigorous formal specifications for every algorithm. The references detail state-space definitions, loop invariants, algebraic recurrence relations, and complexity proofs in formatted LaTeX.
+* **Rich Aesthetic UI**: A modern, dark-mode dashboard featuring glassmorphic components, fluid animations, and real-time visualization of complexity bands.
+* **Locally Hosted & Self-Updating**: Built as a packaged Electron application running a local FastAPI server, featuring fully automated updates via GitHub Releases.
+
+---
+
+## 🛠️ How it Works
 
 ```
-React + Tailwind (Monaco editor + DOM-based visualizer)
-   |
-   | fetch /api/*
-   v
-FastAPI (uvicorn on 127.0.0.1:<port>)
-   |
-   | uses
-   v
-code_n engine + challenges registry   ← UNTOUCHED
+                     VSCODE WORKSPACE                    cOde(n) DESKTOP
+                 ┌──────────────────────┐            ┌────────────────────┐
+                 │  solutions/sort_01.py│            │                    │
+                 │                      │            │  Visual Verdict    │
+   1. Open ────▶ │  def solve(data):    │ ────▶      │  [CORRECT]         │
+                 │      # Edit here     │      │     │  AST Ops: 180      │
+                 │                      │      │     │  Budget: 250       │
+   2. F5  ──────▶│  python run_solution │ ────┼────▶│  asymptotic band:  │
+                 │  (evaluates AST code)│            │  O(n log n)        │
+                 └──────────────────────┘            └────────────────────┘
 ```
 
-- **Backend:** FastAPI in `server/` (wraps the engine)
-- **Frontend:** React + Vite + TypeScript + Tailwind + Monaco + Zustand in `web/`
-- **Desktop wrapper:** Electron in `electron/` (bundles the React app + the PyInstaller-bundled FastAPI server into a portable `.exe`)
-- **Engine:** `code_n/`, `challenges/`, `optimal_solutions/`, the 102-test suite (83 engine + 19 server) — the algorithmic core
+1. **Select a Challenge**: Pick one of the 264 curated challenges from the sidebar navigator inside the cOde(n) app.
+2. **Open in VSCode**: Click the "Open in VSCode" button to auto-scaffold a clean starter file at `solutions/<id>.py` containing the precise function signature and sample input documentation.
+3. **Write and Debug**: Write your implementation in VSCode. Run the solution using the custom task runners or debug step-by-step.
+4. **View Verdicts**: The code is evaluated via the `code_n` engine. The complexity and correctness results are immediately mapped and displayed in cOde(n).
 
-## How to run the dev workflow
+---
 
-You need two terminals. The Vite dev server (port 5173) proxies
-`/api/*` to the FastAPI server (port 8000).
+## 📂 Project Architecture
 
-**Terminal 1 — FastAPI server:**
+The codebase is split into a robust client-server architecture packaged for desktop use:
+* **Frontend (`web/`)**: React, Vite, TypeScript, TailwindCSS, Zustand. A fast, premium web interface displaying challenge parameters, complexity curves, and mathematical references.
+* **Backend (`server/`)**: FastAPI, Uvicorn, Python. Serves the API, reads file updates, runs the AST analyzer, and exposes the challenge registry.
+* **Core Engine (`code_n/` & `challenges/`)**: The mathematical heart of cOde(n). Defines problem specs, validation inputs, verification functions, and bounds classifiers.
+* **Desktop Wrapper (`electron/`)**: Electron wrapper that bundles the React static bundle and the PyInstaller-compiled FastAPI server into a single portable `.exe` with auto-update mechanisms.
+
+---
+
+## 💻 Developer Guide
+
+### Prerequisites
+* Python 3.12+ (dependencies managed in virtual environment)
+* Node.js 18+ (for building Electron and React assets)
+
+### Local Development Flow
+To run the full development environment, open two terminals:
+
+**Terminal 1 (FastAPI Server)**:
+```powershell
+# Set up environment variables and launch FastAPI reload server
+.venv\Scripts\python.exe -m uvicorn server.app.main:app --port 8000 --reload
+```
+
+**Terminal 2 (React Frontend)**:
 ```bash
-cd "c:/dawei7/code_n"
-.venv/Scripts/python.exe -m uvicorn server.app.main:app --port 8000
-```
-
-**Terminal 2 — Vite dev server:**
-```bash
-cd "c:/dawei7/code_n/web"
-npm install  # first time only
+cd web
+npm install
 npm run dev
 ```
+Open `http://localhost:5173` to interact with the application.
 
-Open `http://localhost:5173`. Click `sort_01` in the left rail, then
-"Show solution" → "Run" to see the algorithm step through.
-
-### Hot reload
-
-- FastAPI: add `--reload` to the uvicorn command
-- Vite: hot-reload is on by default in dev
-
-## How to run the Electron desktop wrapper
-
-The Electron dev launcher spawns the FastAPI server as a child
-process, waits for it to become healthy on `/api/health`, then opens
-a `BrowserWindow` at the server's URL. The FastAPI server mounts
-`web/dist/` as static files, so the React app loads from the same
-process that serves the API.
-
+### Running the Electron App locally
+To start the desktop shell pointing to your local assets:
 ```bash
-# 1. Build the React app (one time, or after React changes)
-cd "c:/dawei7/code_n/web"
-npm run build
-
-# 2. Start Electron (it builds its main process + spawns uvicorn)
-cd "c:/dawei7/code_n/electron"
-npm install  # first time only
+cd electron
+npm install
 npm start
 ```
+*Tip: Set the environment variable `CODEN_DEVTOOLS=1` to launch Chrome Developer Tools alongside the desktop window.*
 
-A native window opens at the FastAPI server's URL (a random free
-port — the launcher parses it from uvicorn's stdout). On window
-close, the launcher kills the uvicorn process so it doesn't
-outlive the app.
-
-**Set `CODEN_DEVTOOLS=1`** to open Chrome DevTools in the
-BrowserWindow for debugging.
-
-### Production build (desktop .exe)
-
-The `build_app.py` orchestrator runs the full pipeline: build the
-React app, bundle the FastAPI server with PyInstaller, compile the
-Electron main process, and package a desktop app via
-electron-builder.
-
-```bash
-cd "c:/dawei7/code_n"
-.venv/Scripts/python.exe build_app.py
+### Testing Suite
+Always run the validation suite to verify core logic:
+```powershell
+# Run the core engine tests (108 tests)
+.venv\Scripts\python.exe -m pytest tests/ server/tests/
 ```
 
-The output is `electron/release/win-unpacked/cOde(n).exe`
-(~170 MB) — double-click it to launch. The folder also contains
-`resources/coden-server/coden-server.exe` (the bundled Python
-server, ~8 MB). No Python, no Node, no venv required on the target
-machine.
+---
 
-**Why the `dir` target, not `portable`:** electron-builder's
-`portable` target uses NSIS and can hang on first build while it
-downloads + runs `makensis.exe`. The `dir` target is the raw
-unpacked Electron app — same user experience (double-click the
-.exe), no NSIS step.
+## 🚀 Release Pipeline
 
-**PyInstaller stdout gotcha:** the bundled `coden-server.exe` is
-built with `console=False` in [server.spec](server/server.spec).
-PyInstaller's bootloader captures stdout to its own console window
-when `console=True`, which breaks the pipe Electron uses to read
-the server's port. `console=False` makes the .exe a GUI subsystem
-app that inherits stdio from the parent, so Electron can read the
-"Uvicorn running on..." line normally.
-
-The bundle contains:
-- The Electron 31.7.7 runtime + Chromium
-- The compiled Electron main process (TypeScript → JS)
-- The PyInstaller-bundled `coden-server.exe` (Python 3.13 + FastAPI
-  + uvicorn + the engine + all 25 challenges)
-- The compiled React app (`web/dist/`)
-- The coden icon
-
-When the .exe runs, the Electron main process detects the bundled
-server at `process.resourcesPath/coden-server/coden-server.exe`,
-spawns it, polls `/api/health`, then opens a BrowserWindow at
-the server's URL. The server picks a free port (default: 0) and
-prints it on stdout; the launcher parses the port and loads the
-UI.
-
-`progress.json` + `solutions/` live in the user's writable app
-data dir (`%APPDATA%/cOde(n)` on Windows, set by
-`app.getPath('userData')` in the launcher).
-
-## How to run the tests
-
-```bash
-cd "c:/dawei7/code_n"
-
-# Engine tests (the load-bearing 207 — must always be green)
-.venv/Scripts/python.exe -m unittest discover -s tests
-
-# Server tests (19 — covers all API endpoints + the end-to-end run)
-.venv/Scripts/python.exe -m unittest discover -s server/tests -t .
-
-# Web typecheck
-cd web && npx tsc --noEmit
-
-# Web production build
-cd web && npx vite build
+To release a new version of the app with automatic updates:
+1. Ensure your working tree is clean on the `main` branch.
+2. Set the `GH_TOKEN` environment variable in your shell.
+3. Run the automated release orchestrator:
+```powershell
+# Bumps version, runs builds (Vite + PyInstaller + Electron), tags git, and pushes to GitHub
+.venv\Scripts\python.exe release.py --patch --cleanup-old
 ```
 
-## How to add a new challenge
+---
 
-The engine's spec framework makes this a single-file change.
-
-1. Open the relevant `challenges/algorithms/<category>.py` (or create a new one).
-2. Add a `Sample(...)` if you want the explore view to show input/output.
-3. Add an `AlgorithmSpec(...)` to the `SPECS` list with: `id`, `name`,
-   `category`, `difficulty`, `required_complexity`, `description`,
-   `source_url`, `params`, `inputs`, `returns`, `source` (the canonical
-   optimal solution as Python), `setup_fn`, `verify_fn`, plus optional
-   `samples`, `expected_operations`, `max_n`, `parents`, `children`.
-
-The server's `GET /api/challenges` list and the React challenge rail
-pick the new spec up automatically on the next page load.
-
-## How to add a new visualizer (post-MVP)
-
-The MVP only has a 1D sort visualizer (in
-`web/src/components/Visualizer.tsx`). Adding a 2D grid visualizer
-(BFS/DFS) follows the same shape: derive `data: number[][]` and
-`cellStates: CellState[][]` from the current trace frame's locals,
-then render with CSS Grid. The `useStepPlayer` hook and the
-`useAppStore` slice are challenge-agnostic.
-
-## License
-
-TBD
+## 📝 License
+Proprietary / Educational License. Refer to the terms of use.
