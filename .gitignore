@@ -76,6 +76,8 @@ bundled-workspace/challenges/
 !.vscode/get_active_challenge.py
 !.vscode/extensions.json
 solutions/.vscode-active
+solutions/.versions.json
+solutions/*_v*.py
 
 # Chromium / Electron crash logs (not from our code)
 debug.log
