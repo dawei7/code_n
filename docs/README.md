@@ -25,21 +25,33 @@ algorithms you can practice next.
 
 Each algorithm has two scores (both 1-10):
 
-- **Difficulty** — how hard the algorithm is to implement
-  correctly on a whiteboard. 1 = trivial (one loop, no logic),
-  10 = research-level (Strassen, push-relabel, FPTAS).
-- **Interview relevance** — how often the algorithm is asked
-  in coding interviews at FAANG-tier and adjacent companies.
-  1 = never (esoteric), 10 = must-know (binary search, DP
-  basics, hash maps).
+### 1. Difficulty (1-10) — Whiteboard Implementation Hardness
+This score measures how difficult the algorithm is to implement correctly from memory or under interview conditions on a whiteboard:
+* **1: Trivial Sanity Checks** — E.g., `Linear Search`, `Power of Two Check`. One loop, minimal logic.
+* **2: Very Basic** — E.g., `Bubble Sort`, `Reverse String`, `XOR Single Number`. Simple linear/quadratic passes.
+* **3: Standard Easy** — E.g., `Binary Search`, `Reverse Linked List`, `BST Search`, `Pre/In/Post-order Tree Traversals`, `GCD`. Classic beginner algorithms.
+* **4: Medium-Easy** — E.g., `BFS/DFS Grid`, `Heap Operations`, `Next Greater Element`, `Circular Queue`. Involves multiple conditions or basic data structure state.
+* **5: Standard Medium** — E.g., `0/1 Knapsack`, `LCS`, `LIS`, `Dijkstra`, `Union-Find (DSU)`, `Kruskal's/Prim's MST`, basic segment trees.
+* **6: Medium-Hard** — E.g., `Floyd-Warshall`, `Bellman-Ford`, `Ford-Fulkerson Max Flow`, `KMP String Matching`, `Rabin-Karp`.
+* **7: Hard Whiteboard** — E.g., `Segment Tree with Lazy Propagation`, `Tarjan's SCC`, `Bridges/Articulation Points`, `Edmonds-Karp Max Flow`, `Convex Hull`.
+* **8: Very Hard / Complex** — E.g., `Dinic's Max Flow`, `Miller-Rabin Primality Test`, `Strassen Matrix Multiplication`, `LCP Array (Kasai)`.
+* **9-10: Advanced Graduate Level** — E.g., `Christofides 3/2-Approx TSP`, `0/1 Knapsack FPTAS`, `Push-Relabel Max Flow`, `Suffix Array Construction` from scratch. Virtually impossible to implement correctly within a 45-minute whiteboard session.
 
-A high-relevance + low-difficulty algorithm is "free win"
-material. A low-relevance + high-difficulty one is "stretch
-goal" territory.
+### 2. Interview Relevance (1-10) — Coding Interview Frequency
+This score reflects how frequently the algorithm actually appears in coding interviews at FAANG-tier and adjacent technology companies:
+* **10: Must-Know Core Essentials** — E.g., `Binary Search`, `DFS/BFS`, `Hash Maps` (Two Sum), standard tree traversals, simple string manipulation (Anagram Check). Asked in almost every cycle.
+* **8-9: Highly Relevant / Common** — E.g., `Sliding Window` (Smallest Window), standard 1D/2D DP (`Coin Change`, `LIS`, `LCS`, `Min Cost Climbing Stairs`), `Dijkstra`, `DSU/Union-Find`, `Lowest Common Ancestor`, `Min Stack`, `Trapping Rain Water`.
+* **6-7: Common / Standard Medium-Hard** — E.g., `Trie Insert/Search`, custom Heap/Priority Queue usage, classic backtracking (`Permutations`, `Combination Sum`).
+* **4-5: Rare / Niche** — E.g., `Heap Sort`, `Counting Sort`, `Radix Sort`, `Bellman-Ford`, `Kruskal's/Prim's MST`, `Floyd-Warshall`, `GCD`.
+* **2-3: Very Rare / Specialized** — E.g., `Sieve of Eratosthenes`, `Rabin-Karp`, `Fisher-Yates Shuffle`, `Reservoir Sampling`, `Segment Tree` point query.
+* **1: Virtually Never Asked / Out of Scope** — E.g., `KMP / Z-Algorithm` from scratch, `Suffix Array` construction, `Segment Tree with Lazy Propagation`, `Tarjan's / Kosaraju's SCC`, `Max-Flow / Min-Cut`, `Bipartite Matching`, `Branch & Bound`, `Approximation Algorithms` (FPTAS, Christofides), advanced math functions (Euler Totient, Carmichael).
+
+A high-relevance + low-difficulty algorithm is "free win" material. A low-relevance + high-difficulty one is "stretch goal" territory.
+
 
 ## Quick stats
 
-- **263** algorithms across **27** categories
+- **263** algorithms across **26** categories
 - **102** automated tests (83 engine + 19 server), all green
 - **89.6 MB** Windows installer (`cOde(n)-Setup-{version}.exe`)
   with in-app auto-update via GitHub Releases
@@ -80,12 +92,11 @@ and my `relevance` (avg). Higher relevance = interview priority.
 | **flow** | 6 | 6.0 | 6.2 | **1.8** |
 | **suffix_array** | 5 | 4.2 | 5.0 | **1.8** |
 | **approximation** | 7 | 5.0 | 5.6 | **1.1** |
-| **intro** | 1 | 1.0 | 1.0 | **1.0** |
 
 The top 6 categories by relevance (hashing, dynamic, searching,
 graphs, sorting, trees) cover **~75 % of real coding interview
-questions.** The bottom 7 (randomized, geometric, flow,
-suffix_array, approximation, intro, …) are mostly research
+questions.** The bottom 6 (randomized, geometric, flow,
+suffix_array, approximation, …) are mostly research
 material — interesting to know, rarely asked.
 
 ## Recommended interview-prep path
@@ -102,16 +113,15 @@ All are difficulty ≤ 3.
 
 | # | ID | Name | d | r |
 |---|---|---|---:|---:|
-| 1 | `intro_01` | Hello Grid | 1 | 1 |
-| 2 | `bit_02` | Power of Two Check | 1 | 7 |
-| 3 | `recursion_01` | Power Sum | 2 | 7 |
-| 4 | `linked_list_01` | Reverse Linked List | 2 | 7 |
-| 5 | `sort_01` | Bubble Sort | 2 | 8 |
-| 6 | `search_01` | Linear Search | 1 | 8 |
-| 7 | `search_02` | Binary Search | 3 | 8 |
-| 8 | `hash_01` | Two Sum | 4 | 9 |
-| 9 | `stack_01` | Balanced Parentheses | 2 | 7 |
-| 10 | `tree_01` | Preorder Traversal | 3 | 8 |
+| 1 | `bit_02` | Power of Two Check | 1 | 7 |
+| 2 | `recursion_01` | Power Sum | 2 | 7 |
+| 3 | `linked_list_01` | Reverse Linked List | 2 | 7 |
+| 4 | `sort_01` | Bubble Sort | 2 | 8 |
+| 5 | `search_01` | Linear Search | 1 | 8 |
+| 6 | `search_02` | Binary Search | 3 | 8 |
+| 7 | `hash_01` | Two Sum | 4 | 9 |
+| 8 | `stack_01` | Balanced Parentheses | 2 | 7 |
+| 9 | `tree_01` | Preorder Traversal | 3 | 8 |
 
 **Checkpoint:** you should be able to write binary search, a
 hash-map-backed two-sum, and a recursive linked-list reversal

@@ -3,43 +3,43 @@
 | | |
 |---|---|
 | **ID** | `approx_01` |
-| **Kategorie** | Approximation |
+| **Kategorie** | approximation |
 | **Komplexität (erforderlich)** | $O(V + E)$ |
-| **Schwierigkeitsgrad** | 5/10 |
+| **Schwierigkeit** | 5/10 |
 | **Relevanz für Vorstellungsgespräche** | 4/10 |
-| **Wikipedia** | [Vertex-Cover](https://en.wikipedia.org/wiki/Vertex_cover) |
+| **Wikipedia** | [Vertex cover](https://en.wikipedia.org/wiki/Vertex_cover) |
 
 ## Problemstellung
 
-Eine **Knotenbedeckung** eines ungerichteten Graphen ist eine Teilmenge seiner Knoten, sodass *jede Kante* im Graphen an mindestens einen Knoten dieser Teilmenge angrenzt (ihn berührt).
-Das Finden der absolut *minimalen* Knotenbedeckung ist ein NP-vollständiges Problem. Man kann jedoch einen Approximationsalgorithmus schreiben, der garantiert eine Knotenbedeckung findet, die nicht größer ist als genau das **Zweifache** der Größe der optimalen minimalen Bedeckung.
+Eine **Knotenbedeckung** (Vertex Cover) eines ungerichteten Graphen ist eine Teilmenge seiner Knoten, sodass *jede Kante* im Graphen inzident zu (verbunden mit) mindestens einem Knoten in dieser Teilmenge ist.
+Das Finden der absoluten *minimalen* Knotenbedeckung ist ein NP-vollständiges Problem. Man kann jedoch einen Approximationsalgorithmus schreiben, der garantiert eine Knotenbedeckung findet, die nicht größer als exakt das **Zweifache** der Größe der optimalen minimalen Knotenbedeckung ist.
 
 **Eingabe:** Ein ungerichteter Graph, dargestellt als Adjacency List oder Edge List.
-**Ausgabe:** Eine Liste von Knoten, die die approximierte Knotenabdeckung bilden.
+**Ausgabe:** Eine Liste von Knoten, die die approximierte Knotenbedeckung bilden.
 
-## Wann man es einsetzt
+## Wann man es verwendet
 
-- Wenn man eine minimale Anzahl von Wachpersonal/Kameras/Sensoren in einem Netzwerk aus Fluren so platzieren muss, dass jeder Flur überwacht wird.
-- Um in fortgeschrittenen Algorithmus-Vorstellungsgesprächen ein Verständnis für Approximationsverhältnisse bei NP-schwierigen Problemen zu demonstrieren.
+- Wenn Sie eine minimale Anzahl an Wachen/Kameras/Sensoren in einem Netzwerk von Fluren platzieren müssen, sodass jeder Flur überwacht wird.
+- Um in fortgeschrittenen Algorithmen-Interviews ein Verständnis für Approximationsverhältnisse bei NP-schweren Problemen zu demonstrieren.
 
-## Vorgehensweise
+## Ansatz
 
-Ein naiver, gieriger Ansatz bestünde darin, wiederholt den Knoten mit dem höchsten Grad (den meisten verbundenen Kanten) auszuwählen und ihn zur Überdeckung hinzuzufügen. Überraschenderweise garantiert dieser gradgierige Ansatz KEINE Approximation mit konstantem Faktor! Er kann zu einer Abdeckung führen, die $O(log V)$-mal größer ist als die optimale.
+Ein naiver Greedy-Ansatz bestünde darin, wiederholt den Knoten mit dem höchsten Grad (die meisten verbundenen Kanten) auszuwählen und ihn der Knotenbedeckung hinzuzufügen. Überraschenderweise garantiert dieser grad-basierte Greedy-Ansatz KEINE Approximation mit konstantem Faktor! Er kann eine Knotenbedeckung liefern, die $O(log V)$ mal größer als das Optimum ist.
 
-**Die Kantenauswahl-Approximation ($O(V+E)$):**
-Der einfachste und eleganteste 2-Approximationsalgorithmus wählt einfach zufällige Kanten aus, keine Knoten!
+**Die Kanten-Auswahl-Approximation ($O(V+E)$):**
+Der einfachste und eleganteste 2-Approximationsalgorithmus wählt einfach zufällige Kanten aus, nicht Knoten!
 
-1. Beginne mit einer leeren Menge `C` (unserer Überdeckung).
+1. Beginnen Sie mit einer leeren Menge `C` (unserer Knotenbedeckung).
 2. Solange noch Kanten im Graphen vorhanden sind:
-   - Wähle eine beliebige Kante `(u, v)` aus.
-   - Füge **beide** Endpunkte `u` und `v` zur Abdeckung `C` hinzu.
-   - Entferne `(u, v)` aus dem Graphen und entferne *alle anderen Kanten* vollständig, die entweder an `u` oder `v` angrenzen.
-3. Gib `C` zurück.
+   - Wählen Sie eine beliebige Kante `(u, v)`.
+   - Fügen Sie **beide** Endpunkte `u` und `v` zur Knotenbedeckung `C` hinzu.
+   - Entfernen Sie `(u, v)` aus dem Graphen und entfernen Sie vollständig *alle anderen Kanten*, die an `u` oder `v` hängen.
+3. Geben Sie `C` zurück.
 
-**Warum handelt es sich genau um eine 2-Approximation?**
-Jedes Mal, wenn wir eine Kante `(u, v)` auswählen, fügen wir *beide* Knoten zu unserer Überdeckung hinzu.
-Um diese bestimmte Kante abzudecken, *muss* die absolut optimale Lösung mindestens eine der Kanten `u` oder `v` auswählen.
-Indem wir beide auswählen, zahlen wir höchstens eine Strafe in Höhe des Zweifachen der optimalen Wahl für diese bestimmte Kante! Da wir alle angrenzenden Kanten sofort löschen, wird diese Strafe niemals doppelt gezählt. Somit ist die Gesamtgröße unserer Überdeckung \le 2 x OPT.
+**Warum ist es exakt eine 2-Approximation?**
+Jedes Mal, wenn wir eine Kante `(u, v)` wählen, fügen wir *beide* Knoten unserer Knotenbedeckung hinzu.
+Um diese spezifische Kante zu bedecken, *muss* die absolut optimale Lösung mindestens einen der Knoten `u` oder `v` wählen.
+Indem wir beide wählen, zahlen wir höchstens einen Aufschlag vom Faktor 2 gegenüber der optimalen Wahl für diese spezifische Kante. Da wir sofort alle inzidenten Kanten löschen, zählen wir diesen Aufschlag niemals doppelt. Somit gilt für die Gesamtgröße unserer Knotenbedeckung \le 2 x OPT.
 
 ## Algorithmus
 
@@ -81,24 +81,24 @@ def solve(n, edges):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
-Graphkanten: `[(1, 2), (2, 3), (3, 4), (4, 5)]` (Eine gerade Linie aus 5 Knoten).
-*(Die optimale Überdeckung hat die Größe 2: Knoten 2 und 4).*
+Graph-Kanten: `[(1, 2), (2, 3), (3, 4), (4, 5)]` (Eine gerade Linie aus 5 Knoten).
+*(Die optimale Knotenbedeckung hat die Größe 2: Knoten 2 und 4).*
 
-1. Beliebige Kante auswählen: Wählen wir `(2, 3)`.
-   - Knoten `2` und `3` zu `cover` hinzufügen. `cover = {2, 3}`.
+1. Wähle eine beliebige Kante: Wir wählen `(2, 3)`.
+   - Füge Knoten `2` und `3` zur `cover` hinzu. `cover = {2, 3}`.
    - Entferne `(2, 3)`.
    - Entferne Kanten, die `2` berühren: `(1, 2)`.
    - Entferne Kanten, die `3` berühren: `(3, 4)`.
    - Verbleibende Kanten: `[(4, 5)]`.
-2. Wähle eine beliebige Kante aus: `(4, 5)`.
-   - Füge die Knoten `4` und `5` zu `cover` hinzu. `cover = {2, 3, 4, 5}`.
+2. Wähle eine beliebige Kante: `(4, 5)`.
+   - Füge Knoten `4` und `5` zur `cover` hinzu. `cover = {2, 3, 4, 5}`.
    - Entferne `(4, 5)`.
-   - Verbleibende Kanten: Keine!
+   - Verbleibende Kanten: Leer!
 
-Die Schleife ist beendet. Zurückgegebenes Cover: `[2, 3, 4, 5]` (Größe 4).
-Die optimale Größe betrug 2. Unsere Größe ist 4. 4 \le 2 x 2. Die 2-Approximationsgrenze gilt! ✓
+Die Schleife endet. Zurückgegebene Knotenbedeckung: `[2, 3, 4, 5]` (Größe 4).
+Die optimale Größe war 2. Unsere Größe ist 4. 4 \le 2 x 2. Die 2-Approximationsschranke gilt! ✓
 
 ## Komplexität
 
@@ -108,27 +108,23 @@ Die optimale Größe betrug 2. Unsere Größe ist 4. 4 \le 2 x 2. Die 2-Approxim
 | **Durchschnittlicher Fall** | $O(V + E)$ | $O(V + E)$ |
 | **Schlechtester Fall** | $O(V + E)$ | $O(V + E)$ |
 
-Durch die Verwendung einer Adjacency List anstelle einer Iteration über eine Menge von Kanten können wir aneinandergrenzende Kanten sofort finden. Die Verarbeitung jeder Kante und jedes Knotens dauert konstante Zeit, was genau die Zeitkomplexität $O(V + E)$ ergibt.
-Die Platzkomplexität beträgt $O(V + E)$ für die Speicherung der Graphstrukturen und der Ergebnisabdeckung.
+Die Verwendung einer Adjacency List anstelle der Iteration über eine Menge von Kanten ermöglicht es uns, inzidente Kanten sofort zu finden. Die Verarbeitung jeder Kante und jedes Knotens benötigt konstante Zeit, was zu einer Zeitkomplexität von exakt $O(V + E)$ führt.
+Die Platzkomplexität beträgt $O(V + E)$, um die Graphenstrukturen und die resultierende Knotenbedeckung zu speichern.
 
 ## Varianten & Optimierungen
 
-- **Zweigeteilte Graphen:** Bei zweigeteilten Graphen ist keine Approximation erforderlich! Nach dem Satz von König entspricht die Größe der maximalen Paarung genau der minimalen Knotenüberdeckung. Die exakte minimale Knotenabdeckung lässt sich mit dem Hopcroft-Karp-Algorithmus in polynomieller Zeit ermitteln.
+- **Bipartite Graphen:** Für bipartite Graphen benötigen Sie keine Approximation! Nach dem Satz von König ist die Größe des maximalen Matchings exakt gleich der minimalen Knotenbedeckung. Sie können die exakte minimale Knotenbedeckung in Polynomialzeit mithilfe des Hopcroft-Karp-Algorithmus finden.
 
 ## Anwendungen in der Praxis
 
-- **Cybersicherheit:** Ermittlung der minimalen Anzahl strategischer Netzwerkrouter, auf denen Paketsniffer installiert werden müssen, damit der Datenverkehr über jede physikalische Verbindung überwacht wird.
-- **Biochemie:** Auswahl spezifischer Strukturmarker in Protein-Interaktionsnetzwerken, um evolutionäre Veränderungen nachzuverfolgen.
+- **Cybersicherheit:** Identifizierung der minimalen Anzahl strategischer Netzwerk-Router, an denen Paket-Sniffer installiert werden müssen, sodass der Datenverkehr über jede physische Verbindung überwacht wird.
+- **Biochemie:** Auswahl spezifischer struktureller Marker in Protein-Interaktionsnetzwerken, um evolutionäre Veränderungen zu verfolgen.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[approx_02 – Set Cover (Greedy)](approx_02_set-cover-greedy.md)** — Eine Verallgemeinerung des Vertex-Cover-Problems.
-- **[flow_03 - Bipartite Matching](../flow/flow_03_bipartite-matching.md)** — Die exakte Lösung in polynomieller Zeit für das Vertex-Cover-Problem, wenn der Graph zufällig bipartit ist.
+- **[approx_02 - Set Cover (Greedy)](approx_02_set-cover-greedy.md)** — Eine Verallgemeinerung des Knotenbedeckungsproblems.
+- **[flow_03 - Bipartite Matching](../flow/flow_03_bipartite-matching.md)** — Die exakte Polynomialzeit-Lösung für die Knotenbedeckung, falls der Graph bipartit ist.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-in Anlehnung an die kanonische Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) verfasst wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für Wettbewerbsprogrammierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

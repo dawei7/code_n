@@ -14,7 +14,7 @@ class ListChallengesTest(conftest._Base):
         self.assertGreaterEqual(len(body), 25, f"Got {len(body)} challenges; expected at least 25")
         ids = {c["id"] for c in body}
         self.assertIn("sort_01", ids)
-        self.assertIn("intro_01", ids)
+        self.assertIn("search_01", ids)
 
     def test_summary_has_required_fields(self) -> None:
         r = self.client.get("/api/challenges")

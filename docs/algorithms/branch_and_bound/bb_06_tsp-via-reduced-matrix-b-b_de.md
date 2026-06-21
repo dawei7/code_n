@@ -1,46 +1,46 @@
-# TSP über reduzierte Matrix (Branch-and-Bound)
+# TSP via Reduced Matrix (Branch and Bound)
 
 | | |
 |---|---|
 | **ID** | `bb_06` |
 | **Kategorie** | branch_and_bound |
-| **Komplexität (erforderlich)** | $O(N!)$ Worst Case |
-| **Schwierigkeitsgrad** | 9/10 |
+| **Komplexität (erforderlich)** | $O(N!)$ Schlechtester Fall |
+| **Schwierigkeit** | 9/10 |
 | **Relevanz für Vorstellungsgespräche** | 2/10 |
-| **Wikipedia** | [Handelsreisendenproblem](https://en.wikipedia.org/wiki/Travelling_salesman_problem) |
+| **Wikipedia** | [Travelling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem) |
 
 ## Problemstellung
 
-Gegeben ist eine N × N-Matrix, die die Entfernungen zwischen Städten darstellt. Finden Sie die absolut kürzeste optimale Route für das Handelsreisendenproblem.
-Im Gegensatz zu Approximationen (`approx_03`, `approx_04`) muss die **exakte** optimale Lösung gefunden werden.
-Im Gegensatz zur dynamischen Programmierung (Held-Karp `graph_20`, die $O(N^2 2^N)$ Speicherplatz benötigt und bei N=30 abstürzt), müssen Sie **Branch-and-Bound** mit Matrixreduktion verwenden, was sehr wenig Speicherplatz benötigt und den Suchbaum stark beschneidet, um im Durchschnittlicher Fall viel größere Datensätze zu lösen.
+Gegeben ist eine $N \times N$ Matrix, die die Distanzen zwischen Städten repräsentiert. Finden Sie die absolut kürzeste, optimale Travelling Salesman Tour.
+Im Gegensatz zu Approximationen (`approx_03`, `approx_04`) müssen Sie die **exakte** optimale Lösung finden.
+Im Gegensatz zur Dynamischen Programmierung (Held-Karp `graph_20`, welche $O(N^2 2^N)$ Platz benötigt und bei $N=30$ abstürzt), müssen Sie **Branch and Bound** mit Matrixreduktion verwenden. Dieses Verfahren benötigt sehr wenig Speicherplatz und beschneidet den Suchbaum stark, um im Durchschnitt deutlich größere Datensätze zu lösen.
 
-**Eingabe:** Eine N × N-Adjacency Matrix aus ganzen Zahlen.
-**Ausgabe:** Die minimale Gesamtentfernung der exakten optimalen Route.
+**Eingabe:** Eine $N \times N$ Adjazenzmatrix mit Ganzzahlen.
+**Ausgabe:** Die minimale Gesamtdistanz der exakten optimalen Tour.
 
 ## Wann man es verwendet
 
-- Um die exakte mathematische Minimalroute für ein Handlungsreisenden-Problem zu finden, wenn N ungefähr zwischen 20 und 60 liegt.
+- Um die exakte mathematische minimale Route für ein Travelling Salesman Problem zu finden, wenn $N$ etwa zwischen 20 und 60 liegt.
 
-## Vorgehensweise
+## Ansatz
 
-Wir durchlaufen den Zustandsraumbaum, wobei Ebene 0 die Startstadt ist, Ebene 1 die Auswahl der nächsten Stadt usw.
-Um „Branch and Bound“ mit Best-First-Suche anzuwenden, benötigen wir eine äußerst präzise mathematische Formel für die **untere Schranke**. Wenn wir uns gerade in Stadt 2 befinden, wie groß ist dann die absolut minimale Entfernung, die erforderlich ist, um die Tour zu beenden?
-Wir berechnen dies mithilfe der **reduzierten Matrix**-Technik!
+Wir untersuchen den Zustandsraum-Baum, wobei Ebene 0 die Startstadt ist, Ebene 1 die Wahl der nächsten Stadt usw.
+Um eine Best-First Search Branch and Bound-Suche durchzuführen, benötigen wir eine extrem präzise mathematische Formel für die **untere Schranke** (Lower Bound). Wenn wir uns aktuell in Stadt 2 befinden, was ist die absolut minimale Distanz, die erforderlich ist, um die Tour zu beenden?
+Wir berechnen dies mithilfe der **Reduced Matrix**-Technik!
 
-1. **Matrixreduktion:** Eine Matrix ist „reduziert“, wenn jede Zeile und jede Spalte mindestens ein `0` enthält.
-   - Um eine Zeile zu reduzieren, suche ihr kleinstes Element und ziehe dieses Minimum von jeder Zelle in der Zeile ab.
-   - Um eine Spalte zu reduzieren, suche ihr kleinstes Element und ziehe es von jeder Zelle in der Spalte ab.
-   - **Die entscheidende Erkenntnis:** Die Gesamtsumme, die wir von allen Zeilen und Spalten abgezogen haben, ist die absolute mathematische Untergrenze der Kosten für *jede* Tour, die diese Matrix nutzt! (Da jede Stadt betreten und wieder verlassen werden muss, *muss* man mindestens das Zeilenminimum und das Spaltenminimum bezahlen).
+1. **Matrixreduktion:** Eine Matrix ist "reduziert", wenn jede Zeile und jede Spalte mindestens eine `0` enthält.
+   - Um eine Zeile zu reduzieren, finden Sie das kleinste Element und subtrahieren dieses Minimum von jeder Zelle in der Zeile.
+   - Um eine Spalte zu reduzieren, finden Sie das kleinste Element und subtrahieren es von jeder Zelle in der Spalte.
+   - **Die entscheidende Erkenntnis:** Der Gesamtbetrag, den wir von allen Zeilen und Spalten subtrahiert haben, ist die absolute mathematische untere Schranke für die Kosten *jeder* Tour, die diese Matrix verwendet! (Da jede Stadt betreten und verlassen werden muss, *müssen* Sie mindestens das Zeilenminimum und das Spaltenminimum bezahlen).
 
-2. **Verzweigung:** Wenn wir uns in Stadt i befinden und beschließen, nach Stadt j zu reisen:
-   - Die Kosten für diese spezifische Verzweigung betragen: `cost_matrix[i][j]`.
-   - Wir erstellen eine neue Matrix für diesen untergeordneten Knoten. Da wir i verlassen und in j angekommen sind, können wir i nicht erneut verlassen oder erneut in j ankommen! Wir setzen Zeile i und Spalte j auf unendlich (`inf`).
-   - Wir können auch nicht direkt von j zum Anfang unseres Pfades zurückkehren, daher setzen wir `cost_matrix[j][start_city] = inf`.
+2. **Branching:** Wenn wir uns in Stadt $i$ befinden und entscheiden, nach Stadt $j$ zu reisen:
+   - Die Kosten für diesen spezifischen Zweig sind: `cost_matrix[i][j]`.
+   - Wir erstellen eine neue Matrix für diesen Kindknoten. Da wir $i$ verlassen und in $j$ angekommen sind, können wir $i$ nicht erneut verlassen oder $j$ erneut betreten! Wir setzen Zeile $i$ und Spalte $j$ auf unendlich (`inf`).
+   - Wir können auch nicht direkt von $j$ zum Start unseres Pfades zurückkehren, daher setzen wir `cost_matrix[j][start_city] = inf`.
    - Nun **reduzieren wir diese neue Kindmatrix**.
-   - Die untere Grenze für diesen Kindknoten lautet: `Parent_Bound + cost_matrix[i][j] + Total_Reduction_Cost_Of_Child_Matrix`.
+   - Die untere Schranke für diesen Kindknoten ist: `Parent_Bound + cost_matrix[i][j] + Total_Reduction_Cost_Of_Child_Matrix`.
 
-3. **Best-First-Suche:** Füge alle untergeordneten Knoten in eine Priority Queue ein, sortiert nach dieser unteren Grenze. Erweitere immer den Knoten mit der niedrigsten Grenze, bis wir einen Blattknoten erreichen (eine vollständige Tour). Da es sich um einen Min-Heap handelt, ist garantiert, dass die erste entnommene vollständige Tour optimal ist!
+3. **Best-First Search:** Fügen Sie alle Kindknoten in eine Priority Queue ein, sortiert nach dieser unteren Schranke. Erweitern Sie immer den Knoten mit der niedrigsten Schranke, bis wir einen Blattknoten (eine vollständige Tour) erreichen. Da es sich um einen Min-Heap handelt, ist die erste vollständige Tour, die entnommen wird, garantiert optimal!
 
 ## Algorithmus
 
@@ -145,49 +145,45 @@ def solve(cost, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 *(Konzeptionell)*
-Wenn bei der Reduktion der Wurzelmatrix 10 von den Zeilen und 5 von den Spalten abgezogen werden, betragen die absoluten Mindestkosten *jeder* Tour 15. Der Wurzelknoten wird mit `cost=15` in den Heap geschoben.
+Wenn durch das Reduzieren der Wurzelmatrix 10 von den Zeilen und 5 von den Spalten subtrahiert werden, betragen die absoluten Minimalkosten *jeder* Tour 15. Der Wurzelknoten wird mit `cost=15` in den Heap geschoben.
 
-Wurzel entfernen. Versuche, `0 -> 1` zu durchlaufen.
-- Die Entfernung `matrix[0][1]` betrug 3 (nach der Reduktion der Wurzel).
-- Erstelle eine Kindmatrix. Setze Zeile 0 und Spalte 1 auf `inf`. Setze `1 -> 0` auf `inf`.
-- Reduziere die Kindmatrix. Angenommen, die Reduktion kostet 2.
-- Grenze für den Zweig `0 -> 1` = `Parent_Cost (15) + Edge (3) + Child_Reduction (2) = 20`.
-- Auf den Heap schieben.
+Wurzel entnehmen. Versuche die Reise `0 -> 1`.
+- Die Distanz `matrix[0][1]` war 3 (nach der Wurzelreduktion).
+- Erstelle Kindmatrix. Setze Zeile 0 und Spalte 1 auf `inf`. Setze `1 -> 0` auf `inf`.
+- Reduziere Kindmatrix. Angenommen, die Reduktion kostet 2.
+- Schranke für den Zweig `0 -> 1` = `Parent_Cost (15) + Edge (3) + Child_Reduction (2) = 20`.
+- In den Heap schieben.
 
-Wenn `0 -> 2` zu einer Grenze von 18 führt, wird die Priority Queue zuerst `0 -> 2` erweitern!
+Wenn `0 -> 2` zu einer Schranke von 18 führt, wird die Priority Queue zuerst `0 -> 2` erweitern!
 
 ## Komplexität
 
-| | Zeit | Speicher |
+| | Zeit | Platz |
 |---|---|---|
 | **Bestfall** | $O(N^3)$ | $O(N^2)$ |
 | **Durchschnittlicher Fall** | Viel schneller als DP! | $O(Nodes * N^2)$ |
-| **Schlimmster Fall** | $O(N!)$ | $O(N! * N^2)$ |
+| **Schlechtester Fall** | $O(N!)$ | $O(N! * N^2)$ |
 
-Im absolut mathematischen Worst-Case-Szenario, in dem kein Pruning stattfindet, erweitert sich der Baum auf N! Blätter, und an jedem Knoten führen wir eine $O(N^2)$ Matrixkopie und -reduktion durch!
-Die untere Schranke der Matrixreduktion ist jedoch so erstaunlich eng und genau, dass die Best-First-Suche bei praktischen Datensätzen (z. B. 40 Städte) direkt zur Lösung gelangt und dabei nur einen winzigen Bruchteil des Baums durchforstet.
-Die Platzkomplexität ist hoch, da jeder Knoten in der Priority Queue eine eindeutige N × N-Matrix enthält.
+Im absoluten mathematischen Schlechtesten Fall, in dem kein Beschneiden (Pruning) stattfindet, expandiert der Baum $N!$ Blätter, und an jedem Knoten führen wir eine $O(N^2)$ Matrixkopie und -reduktion durch!
+Da die untere Schranke der Matrixreduktion jedoch erstaunlich präzise und genau ist, steuert die Best-First Search bei praktischen Datensätzen (z. B. 40 Städte) direkt auf die Lösung zu und untersucht nur einen winzigen Bruchteil des Baumes.
+Die Platzkomplexität ist hoch, da jeder Knoten in der Priority Queue eine eindeutige $N \times N$ Matrix speichert.
 
-## Varianten und Optimierungen
+## Varianten & Optimierungen
 
-- **Held-Karp-DP:** Das genaue Gegenteil dieses Paradigmas. Held-Karp benötigt für *jeden* Graphen genau $O(N^2 2^N)$ Zeit und Speicherplatz. B&B benötigt unvorhersehbare Zeit, skaliert jedoch oft auf größere N-Werte, da es die Erkundung des gesamten Zustandsraums vermeidet.
+- **Held-Karp DP:** Das exakte Gegenstück. Held-Karp benötigt für *jeden* Graphen exakt $O(N^2 2^N)$ Zeit und Platz. B&B benötigt unvorhersehbare Zeit, skaliert aber oft besser auf größere $N$, da es die vollständige Untersuchung des Zustandsraums vermeidet.
 
 ## Anwendungen in der Praxis
 
-- **Lieferkettenlogistik:** Berechnung der exakten minimalen Routenentfernungen für den Lkw-Vertrieb, bei dem die Kraftstoffkosten streng das absolute mathematische Minimum erfordern.
+- **Supply Chain Logistik:** Berechnung exakter minimaler Routendistanzen für die LKW-Flottenverteilung, bei denen Treibstoffkosten zwingend das absolute mathematische Minimum erfordern.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[graph_20 – TSP Held-Karp-DP](../graphs/graph_20_travelling-salesman-held-karp-dp.md)** — Die exakte Lösung mittels dynamischer Programmierung für dasselbe Problem.
-- **[bb_02 – Jobzuordnung (ungarisch)](bb_02_job-assignment-hungarian.md)** – Die Matrixreduktion ist genau derselbe grundlegende Mechanismus, der den ungarischen Zuordnungsalgorithmus antreibt!
+- **[graph_20 - TSP Held Karp DP](../graphs/graph_20_travelling-salesman-held-karp-dp.md)** — Die exakte Lösung mittels Dynamischer Programmierung für dasselbe Problem.
+- **[bb_02 - Job Assignment (Hungarian)](bb_02_job-assignment-hungarian.md)** — Die Matrixreduktion ist exakt derselbe fundamentale Mechanismus, der den ungarischen Algorithmus zur Zuordnung antreibt!
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-in Anlehnung an die kanonische Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) geschrieben wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitive Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

@@ -1,39 +1,39 @@
-# Floyd-Warshall (Formulierung als dynamische Programmierung)
+# Floyd-Warshall (Dynamische Programmierung Formulierung)
 
 | | |
 |---|---|
 | **ID** | `dp_27` |
-| **Kategorie** | dynamische_Programmierung |
+| **Kategorie** | dynamic_programming |
 | **Komplexität (erforderlich)** | $O(V^3)$ |
-| **Schwierigkeitsgrad** | 5/10 |
+| **Schwierigkeit** | 5/10 |
 | **Relevanz für Vorstellungsgespräche** | 7/10 |
 | **Wikipedia** | [Floyd-Warshall-Algorithmus](https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm) |
 
 ## Problemstellung
 
-*(Dieses Dokument befasst sich mit der formalen Zustandslogik der dynamischen Programmierung von `graph_06`).*
+*(Dieses Dokument untersucht die formale DP-Zustandslogik von `graph_06`.)*
 
-Finde die kürzesten Wege zwischen **allen Paaren** von Knoten in einem gewichteten Graphen. Negative Gewichte sind zulässig, Zyklen mit negativen Gewichten jedoch nicht.
+Finde die kürzesten Pfade zwischen **allen Paaren** von Knoten in einem gewichteten Graphen. Negative Kantengewichte sind erlaubt, Zyklen mit negativem Gesamtgewicht jedoch nicht.
 
-## Herangehensweise als DP-Problem
+## Ansatz als DP-Problem
 
-Floyd-Warshall ist nicht nur ein Graphenalgorithmus, sondern ein klassischer 3D-Algorithmus der dynamischen Programmierung.
+Floyd-Warshall ist nicht nur ein Graphalgorithmus; es ist ein klassischer 3D-Algorithmus der Dynamischen Programmierung.
 
 **Der DP-Zustand:**
-Sei `dp[k][i][j]` die kürzeste Entfernung vom Knoten `i` zum Knoten `j`, wobei AUSSCHLIESSLICH Knoten aus der Menge `{0, 1, 2, ... k}` als Zwischenstationen verwendet werden.
+Sei `dp[k][i][j]` die kürzeste Distanz vom Knoten `i` zum Knoten `j`, wobei NUR Knoten aus der Menge `{0, 1, 2, ... k}` als Zwischenstopps verwendet werden dürfen.
 
 **Der Übergang:**
-Wenn wir den kürzesten Weg unter Verwendung von Knoten bis einschließlich `k`(`dp[k][i][j]`) berechnen wollen, haben wir zwei Möglichkeiten:
-1. **Knoten `k` nicht verwenden:** Der kürzeste Weg stützt sich vollständig auf die vorherige Menge von Knoten. Die Kosten betragen `dp[k-1][i][j]`.
-2. **Knoten `k` verwenden:** Wir gehen von `i` nach `k` (unter Verwendung von Knoten bis einschließlich `k-1`) und gehen dann von `k` nach `j` (unter Verwendung von Knoten bis einschließlich `k-1`). Die Kosten betragen `dp[k-1][i][k] + dp[k-1][k][j]`.
+Wenn wir den kürzesten Pfad unter Verwendung von Knoten bis `k` (`dp[k][i][j]`) berechnen wollen, haben wir zwei Möglichkeiten:
+1. **Knoten `k` nicht verwenden:** Der kürzeste Pfad basiert vollständig auf der vorherigen Menge von Knoten. Die Kosten betragen `dp[k-1][i][j]`.
+2. **Knoten `k` verwenden:** Wir gehen von `i` nach `k` (unter Verwendung von Knoten bis `k-1`) und anschließend von `k` nach `j` (unter Verwendung von Knoten bis `k-1`). Die Kosten betragen `dp[k-1][i][k] + dp[k-1][k][j]`.
 
-Daher gilt:
+Daraus folgt:
 `dp[k][i][j] = min(dp[k-1][i][j], dp[k-1][i][k] + dp[k-1][k][j])`
 
-**Speicheroptimierung:**
-Beachten Sie, dass `dp[k]` sich AUSSCHLIESSLICH auf die Werte aus `dp[k-1]` stützt.
-Außerdem ändern sich `dp[k-1][i][k]` und `dp[k-1][k][j]` bei der Berechnung der `k`-ten Ebene nicht, da Pfade, die bei `k` enden oder beginnen, `k` ohnehin nicht als *Zwischenschritt* nutzen können!
-Daher können wir die Dimension `k` vollständig aus unserer DP-Tabelle weglassen und einfach eine 2D-Matrix an Ort und Stelle aktualisieren!
+**Platzoptimierung:**
+Beachte, dass `dp[k]` NUR von den Werten aus `dp[k-1]` abhängt.
+Des Weiteren ändern sich `dp[k-1][i][k]` und `dp[k-1][k][j]` nicht bei der Berechnung der `k`-ten Schicht, da Pfade, die bei `k` enden oder beginnen, `k` ohnehin nicht als *Zwischenschritt* verwenden können!
+Daher können wir die `k`-Dimension vollständig aus unserer DP-Tabelle entfernen und einfach eine 2D-Matrix in-place aktualisieren!
 
 ## Algorithmus
 
@@ -82,24 +82,20 @@ def solve(n, edges, src, dest):
 
 ## Komplexität
 
-| | Zeit | Speicher |
+| | Zeit | Platz |
 |---|---|---|
 | **Bestfall** | $O(V^3)$ | $O(V^2)$ |
 | **Durchschnittlicher Fall** | $O(V^3)$ | $O(V^2)$ |
-| **Schlechteste** | $O(V^3)$ | $O(V^2)$ |
+| **Schlechtester Fall** | $O(V^3)$ | $O(V^2)$ |
 
-Die drei eng verschachtelten Schleifen `k`, `i` und `j` bestimmen eindeutig die Zeitkomplexität $O(V^3)$.
-Die In-Place-DP-Optimierung reduziert die Platzkomplexität von $O(V^3)$ auf $O(V^2)$.
+Die drei eng verschachtelten Schleifen `k`, `i` und `j` definieren eindeutig die Zeitkomplexität von $O(V^3)$.
+Die in-place DP-Optimierung reduziert die Platzkomplexität von $O(V^3)$ auf $O(V^2)$.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[graph_06 – Floyd-Warshall](../graphs/graph_06_floyd-warshall.md)** – Die Perspektive der Graphentheorie.
-- **[dp_28 – Bellman-Ford](dp_28_bellman-ford-sssp.md)** – Die 2D-DP-Formulierung für kürzeste Wege mit einer Quelle.
+- **[graph_06 - Floyd-Warshall](../graphs/graph_06_floyd-warshall.md)** — Die graphentheoretische Perspektive.
+- **[dp_28 - Bellman-Ford](dp_28_bellman-ford-sssp.md)** — Die 2D-DP-Formulierung für kürzeste Pfade von einer einzelnen Quelle (Single-Source Shortest Paths).
 
 ---
 
-*Diese Dokumentation ist ein für cOde(n) verfasster Originalbeitrag,
-der sich an der kanonischen Struktur orientiert, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) verfasst wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folge dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

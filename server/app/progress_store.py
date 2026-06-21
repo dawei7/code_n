@@ -1,49 +1,125 @@
-"""Server-side wrapper over :mod:`code_n.progress`.
+"""Server-side wrapper over :mod:`code_n.progress` with multi-profile support.
 
-A thin shim that re-exports the engine's progress API but with paths
-resolved from :mod:`server.app.config`. This is the only place the
-server talks to ``progress.json``; route handlers go through these
-functions so we can swap in a different store (database, encrypted
-file, etc.) later without touching the route code.
+This is the only place the server talks to ``progress.json``.
 """
 from __future__ import annotations
 
+import json
 import os
 from pathlib import Path
 from typing import Optional
 
 from code_n.progress import (
     PlayerProgress,
-    load_progress,
 )
+from server.app.leetcode_mapping import LEETCODE_MAPPING, MILESTONES
 
 from .config import PROGRESS_FILE
 
 
+def load_profiles_data() -> dict:
+    """Load profiles from progress.json, or migrate legacy single-profile data."""
+    if not PROGRESS_FILE.exists():
+        # fresh default
+        return {
+            "active_profile": "Default",
+            "profiles": {
+                "Default": PlayerProgress(player_name="").to_dict()
+            }
+        }
+    try:
+        with open(PROGRESS_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:
+        return {
+            "active_profile": "Default",
+            "profiles": {
+                "Default": PlayerProgress(player_name="").to_dict()
+            }
+        }
+
+    if "profiles" in data:
+        # already updated schema
+        return data
+    else:
+        # legacy single-player format migration
+        try:
+            legacy_progress = PlayerProgress.from_dict(data)
+            return {
+                "active_profile": "Default",
+                "profiles": {
+                    "Default": legacy_progress.to_dict()
+                }
+            }
+        except Exception:
+            return {
+                "active_profile": "Default",
+                "profiles": {
+                    "Default": PlayerProgress(player_name="").to_dict()
+                }
+            }
+
+
+def save_profiles_data(data: dict) -> None:
+    PROGRESS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    tmp = str(PROGRESS_FILE) + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+    os.replace(tmp, str(PROGRESS_FILE))
+
+
 def load(path: Optional[Path] = None) -> PlayerProgress:
-    """Load the player's progress, or return a fresh one if the file is missing."""
-    target = path if path is not None else PROGRESS_FILE
-    return load_progress(str(target))
+    """Load the active profile's progress."""
+    data = load_profiles_data()
+    active = data.get("active_profile", "Default")
+    profiles = data.get("profiles", {})
+    if active not in profiles:
+        if not profiles:
+            profiles["Default"] = PlayerProgress(player_name="").to_dict()
+            active = "Default"
+        else:
+            active = list(profiles.keys())[0]
+        data["active_profile"] = active
+        data["profiles"] = profiles
+        save_profiles_data(data)
+    
+    return PlayerProgress.from_dict(profiles[active])
 
 
 def save(progress: PlayerProgress, path: Optional[Path] = None) -> None:
-    """Atomic-save ``progress`` to the on-disk JSON file.
+    """Save the progress for the active profile."""
+    # Recalculate milestones before saving
+    update_milestones(progress)
+    
+    data = load_profiles_data()
+    active = data.get("active_profile", "Default")
+    if "profiles" not in data:
+        data["profiles"] = {}
+    data["profiles"][active] = progress.to_dict()
+    save_profiles_data(data)
 
-    Writes to ``progress.json.tmp`` first and then ``os.replace``s it
-    into place, so a crash mid-write never leaves a half-written file
-    the next launch could misread.
-    """
-    target = path if path is not None else PROGRESS_FILE
-    target.parent.mkdir(parents=True, exist_ok=True)
-    # Engine's save_progress writes via `open(path, "w")` directly,
-    # not atomically. For the server we want atomicity, so we write
-    # to a sibling tmpfile and replace. (The engine's path is left
-    # untouched; the server can opt into the safer write.)
-    tmp = str(target) + ".tmp"
-    with open(tmp, "w", encoding="utf-8") as f:
-        import json
-        json.dump(progress.to_dict(), f, indent=2)
-    os.replace(tmp, str(target))
+
+def update_milestones(progress: PlayerProgress) -> list[str]:
+    """Check and update milestones reached by this profile."""
+    new_milestones = []
+    completed = set(progress.completed)
+    unlocked_leetcode = set(progress.unlocked_leetcode)
+    
+    for m in MILESTONES:
+        all_passed = True
+        for rid in m["required_ids"]:
+            has_lc = rid in LEETCODE_MAPPING
+            local_passed = rid in completed
+            lc_passed = (rid in unlocked_leetcode) if has_lc else True
+            
+            if not (local_passed and lc_passed):
+                all_passed = False
+                break
+        if all_passed:
+            new_milestones.append(m["id"])
+            
+    progress.milestones = new_milestones
+    return new_milestones
 
 
 def mark(challenge_id: str, ops: int, complexity: str) -> PlayerProgress:
@@ -63,7 +139,7 @@ def fail(challenge_id: str) -> PlayerProgress:
 
 
 def reset() -> PlayerProgress:
-    """Wipe all completion state and persist."""
+    """Wipe all completion state for the active profile and persist."""
     progress = load()
     progress.reset_statuses()
     save(progress)
@@ -85,4 +161,11 @@ def to_out(progress: PlayerProgress) -> dict:
             }
             for cid, rec in progress.records.items()
         },
+        "career_mode": progress.career_mode,
+        "leetcode_username": progress.leetcode_username,
+        "leetcode_solved": list(progress.leetcode_solved),
+        "unlocked_leetcode": list(progress.unlocked_leetcode),
+        "milestones": list(progress.milestones),
+        "gemini_api_key": progress.gemini_api_key,
+        "active_set": progress.active_set,
     }

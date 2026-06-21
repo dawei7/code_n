@@ -33,12 +33,13 @@ class ProgressTest(conftest._Base):
         # PUT a mark, then GET to confirm persistence.
         self.client.put(
             "/api/progress",
-            json={"mark": {"challenge_id": "intro_01", "ops": 99, "complexity": "O(1)"}},
+            json={"mark": {"challenge_id": "search_01", "ops": 99, "complexity": "O(1)"}},
         )
         r = self.client.get("/api/progress")
         self.assertEqual(r.status_code, 200)
         body = r.json()
-        self.assertIn("intro_01", body["completed"])
+        self.assertIn("search_01", body["completed"])
+
 
     def test_fail_challenge(self) -> None:
         # Mark first (so it ends up in completed), then fail (which

@@ -1,51 +1,51 @@
-# Quickhull (Konvexhülle)
+# Quickhull (Konvexe Hülle)
 
 | | |
 |---|---|
 | **ID** | `dc_16` |
 | **Kategorie** | divide_conquer |
-| **Komplexität (erforderlich)** | $O(N \log N)$ Zeit, $O(\log N)$ Speicherplatz |
-| **Schwierigkeitsgrad** | 8/10 |
-| **Relevanz für Vorstellungsgespräche** | 2/10 |
+| **Komplexität (erforderlich)** | $O(N \log N)$ Zeit, $O(\log N)$ Platz |
+| **Schwierigkeit** | 8/10 |
+| **Interview-Relevanz** | 2/10 |
 | **Wikipedia** | [Quickhull](https://en.wikipedia.org/wiki/Quickhull) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben sei eine Menge von N Punkten in einer 2D-Ebene. Bestimme die konvexe Hülle dieser Punkte.
+Gegeben ist eine Menge von N Punkten in einer 2D-Ebene. Gesucht ist die konvexe Hülle (Convex Hull) dieser Punkte.
 Die konvexe Hülle ist das kleinste konvexe Polygon, das alle Punkte vollständig umschließt.
-*Einschränkung:* Lösen Sie diese Aufgabe mithilfe des Quickhull-Algorithmus.
+*Bedingung:* Lösen Sie dies mit dem Quickhull-Algorithmus.
 
-**Eingabe:** Ein Array von `Points`, wobei `Point` die Eigenschaften `x` und `y` aufweist.
-**Ausgabe:** Ein Array von `Points`, das die konvexe Hülle darstellt.
+**Eingabe:** Ein Array von `Points`, wobei `Point` die Eigenschaften `x` und `y` besitzt.
+**Ausgabe:** Ein Array von `Points`, das die konvexe Hülle repräsentiert.
 
 ## Wann man es verwendet
 
-- Um das räumlich-geometrische Äquivalent von Quicksort zu verstehen.
-- Während die reine „Teile und herrsche“-Methode (`dc_15`) Punkte willkürlich anhand der X-Koordinate in der Mitte teilt, nutzt Quickhull Extrempunkte als „Pivots“, um große Teile der inneren Punkte geometrisch sofort auszusortieren.
+- Um das räumliche geometrische Äquivalent zu Quicksort zu verstehen.
+- Während die reine Divide-and-Conquer-Methode (`dc_15`) Punkte willkürlich anhand der X-Koordinate in der Mitte teilt, verwendet Quickhull Extrempunkte als "Pivots", um geometrisch große Mengen innerer Punkte sofort zu verwerfen.
 
-## Vorgehensweise
+## Ansatz
 
-**1. Die anfängliche Teilung anhand der „Pivots“:**
-Finde den Punkt mit der kleinsten X-Koordinate (P_{min}) und den Punkt mit der größten X-Koordinate (P_{max}).
-Da dies die horizontal absolut am weitesten entfernten Punkte sind, MÜSSEN sie mathematisch gesehen Eckpunkte der konvexen Hülle sein!
-Zeichne eine Gerade zwischen ihnen. Diese Gerade teilt alle verbleibenden Punkte in zwei Mengen auf: Punkte „oberhalb“ der Geraden und Punkte „unterhalb“ der Geraden.
+**1. Die initiale "Pivot"-Aufteilung:**
+Finden Sie den Punkt mit der minimalen X-Koordinate (P_{min}) und den Punkt mit der maximalen X-Koordinate (P_{max}).
+Da dies die horizontal am weitesten entfernten Punkte sind, MÜSSEN sie mathematisch gesehen Eckpunkte der konvexen Hülle sein!
+Zeichnen Sie eine Linie zwischen ihnen. Diese Linie teilt alle verbleibenden Punkte in zwei Mengen: Punkte "oberhalb" der Linie und Punkte "unterhalb" der Linie.
 
-**2. Die geometrische „Partition“ (Punkte verwerfen):**
-Konzentrieren wir uns auf die Punkte „oberhalb“ der Geraden.
-Finde in dieser Menge den Punkt P_{far}, der den **größten senkrechten Abstand** zur Linie P_{min} – P_{max} aufweist.
-Da P_{far} der absolute Höchstwert der Kurve auf dieser Seite der Linie ist, MUSS er ebenfalls ein Eckpunkt der konvexen Hülle sein!
+**2. Die geometrische "Partitionierung" (Verwerfen von Punkten):**
+Betrachten wir die Punkte "oberhalb" der Linie.
+Finden Sie den Punkt P_{far} in dieser Menge, der den **größten senkrechten Abstand** zur Linie P_{min} - P_{max} aufweist.
+Da P_{far} der absolute Scheitelpunkt der Kurve auf dieser Seite der Linie ist, MUSS er ebenfalls ein Eckpunkt der konvexen Hülle sein!
 Nun haben wir ein Dreieck, das durch P_{min}, P_{max} und P_{far} gebildet wird.
-*Die magische Optimierung:* Jeder Punkt, der sich derzeit INNERHALB dieses Dreiecks befindet, kann unmöglich auf der Außengrenze der konvexen Hülle liegen. Wir können sie alle endgültig verwerfen!
+*Die magische Optimierung:* Jeder Punkt, der sich aktuell INNERHALB dieses Dreiecks befindet, kann unmöglich auf der äußeren Begrenzung der konvexen Hülle liegen. Wir können alle diese Punkte dauerhaft verwerfen!
 
-**3. Der rekursive Schritt (Reduzieren und Erobern):**
-Die ursprüngliche Linie P_{min} – P_{max} wurde nun durch zwei neue Außenlinien ersetzt, die ein „Zelt“ bilden:
-Linie 1: P_{min} bis P_{far}
-Linie 2: P_{far} bis P_{max}
+**3. Der rekursive Schritt (Decrease and Conquer):**
+Die ursprüngliche Linie P_{min} - P_{max} wurde nun durch zwei neue äußere Linien ersetzt, die ein "Zelt" bilden:
+Linie 1: P_{min} zu P_{far}
+Linie 2: P_{far} zu P_{max}
 
 Wir rufen unsere Quickhull-Funktion rekursiv zweimal auf!
-- Einmal für die Punkte, die „außerhalb“ von Linie 1 liegen.
-- Einmal für die Punkte, die „außerhalb“ von Linie 2 liegen.
-Die Rekursion endet, wenn keine Punkte mehr „außerhalb“ einer bestimmten Linie liegen.
+- Einmal für die Punkte, die "außerhalb" von Linie 1 liegen.
+- Einmal für die Punkte, die "außerhalb" von Linie 2 liegen.
+Die Rekursion endet, wenn keine Punkte mehr "außerhalb" einer gegebenen Linie liegen.
 
 ## Algorithmus
 
@@ -113,51 +113,47 @@ def solve(points, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Ablauf
 
 *(Konzeptionell)*
-1. Finde P_{min} (ganz links) und P_{max} (ganz rechts). Füge sie zu `hull` hinzu.
-2. Zeichne eine Linie zwischen ihnen. Teile alle anderen Punkte in `left_set` (oberhalb) und `right_set` (unterhalb) auf.
-3. **Schritt `left_set`:**
-   - Finde den Punkt P_{top} mit der höchsten vertikalen Höhe relativ zur Linie. Füge P_{top} zu `hull` hinzu.
+1. Finden Sie P_{min} (ganz links) und P_{max} (ganz rechts). Fügen Sie diese zur `hull` hinzu.
+2. Zeichnen Sie eine Linie zwischen ihnen. Teilen Sie alle anderen Punkte in `left_set` (oberhalb) und `right_set` (unterhalb) auf.
+3. **Verarbeitung von `left_set`:**
+   - Finden Sie den Punkt P_{top} mit der größten vertikalen Höhe relativ zur Linie. Fügen Sie P_{top} zur `hull` hinzu.
    - Die Linie P_{min} \rightarrow P_{max} wird durch ein Dreieck ersetzt.
-   - Alle Punkte innerhalb des Dreiecks (unterhalb von P_{top}) werden endgültig verworfen!
+   - Alle Punkte innerhalb des Dreiecks (unterhalb von P_{top}) werden dauerhaft verworfen!
    - Wir erstellen eine neue Menge `s1` für Punkte außerhalb der Linie P_{min} \rightarrow P_{top}.
    - Wir erstellen eine neue Menge `s2` für Punkte außerhalb der Linie P_{top} \rightarrow P_{max}.
    - Rekursion auf `s1` und `s2`!
-4. **Verfahren `right_set`:**
-   - Gleiches Verfahren, jedoch zur Ermittlung von P_{bottom}.
+4. **Verarbeitung von `right_set`:**
+   - Gleicher Prozess, aber Suche nach P_{bottom}.
 
 ## Komplexität
 
-| | Zeit | Speicher |
+| | Zeit | Platz |
 |---|---|---|
 | **Bestfall** | $O(N \log N)$ | $O(\log N)$ |
 | **Durchschnittlicher Fall** | $O(N \log N)$ | $O(\log N)$ |
-| **Schlimmster Fall** | $O(N^2)$ | $O(N)$ |
+| **Schlechtester Fall** | $O(N^2)$ | $O(N)$ |
 
-Genau wie bei Quicksort gilt: Wenn der Pivot-Punkt (P_{far}) die verbleibenden Punkte relativ gleichmäßig aufteilt (ein „dickes“ Dreieck, das viele Punkte aussortiert), beträgt die Rekursionstiefe $O(\log N)$ und der Aufwand pro Ebene beträgt $O(N)$, was zu einer durchschnittlichen Laufzeit von $O(N \log N)$ führt.
-Sind jedoch alle Punkte perfekt kreisförmig angeordnet, werden durch die Dreiecke niemals Punkte verworfen! Der Algorithmus läuft dann darauf hinaus, dass pro Ebene 1 Punkt verarbeitet wird, was zu einer Katastrophe führt, bei der die $O(N^2)$-Zeitgrenze im schlimmsten Fall überschritten wird.
-Die Platzkomplexität beträgt im Durchschnittlicher Fall $O(\log N)$ für den Rekursionsstapel.
+Genau wie bei Quicksort gilt: Wenn der Pivot-Punkt (P_{far}) die verbleibenden Punkte relativ gleichmäßig aufteilt (ein "fettes" Dreieck, das viele Punkte verwirft), beträgt die Rekursionstiefe $O(\log N)$ und der Aufwand pro Ebene $O(N)$, was zu einer durchschnittlichen Zeitkomplexität von $O(N \log N)$ führt.
+Wenn jedoch alle Punkte perfekt auf einem Kreis angeordnet sind, werden durch die Dreiecke niemals Punkte verworfen! Der Algorithmus verkommt dazu, pro Ebene nur 1 Punkt zu verarbeiten, was im schlimmsten Fall zu einer Zeitkomplexität von $O(N^2)$ führt.
+Die Platzkomplexität beträgt im Durchschnitt $O(\log N)$ für den Rekursions-Stack.
 
 ## Varianten & Optimierungen
 
-- **Graham-Scan:** Wie immer garantiert der Graham-Scan eine Laufzeit von $O(N \log N)$ im schlimmsten Fall, indem er die Punkte zunächst nach Polarkoordinaten sortiert und so die Schwachstelle des Quickhull-Algorithmus im schlimmsten Fall vollständig umgeht.
-- **Chan-Algorithmus:** Ein verblüffender Algorithmus, der Graham-Scan und Jarvis-March mathematisch kombiniert, um eine strenge $O(N log H)$-Zeit zu erreichen, wobei H die Anzahl der Punkte ist, die tatsächlich auf der Hülle landen!
+- **Graham Scan:** Wie immer garantiert der Graham Scan eine Zeitkomplexität von $O(N \log N)$ im schlechtesten Fall, indem die Punkte zuerst nach ihrem Polarwinkel sortiert werden, wodurch die Anfälligkeit von Quickhull für den schlechtesten Fall vollständig vermieden wird.
+- **Chan's Algorithmus:** Ein verblüffender Algorithmus, der mathematisch Graham Scan und Jarvis March kombiniert, um eine strikte Zeitkomplexität von $O(N \log H)$ zu erreichen, wobei H die Anzahl der Punkte ist, die tatsächlich auf der Hülle liegen!
 
-## Praktische Anwendungen
+## Anwendungen in der Praxis
 
-- **Computergrafik (Hitboxen):** Erzeugung einer vereinfachten konvexen 2D-Kollisions-Hitbox für ein hochkomplexes Sprite. Quickhull ist in der Praxis bei zufällig verteilten Punkten im Allgemeinen schneller als der Graham-Scan, da es innere Pixel fast augenblicklich aggressiv verworfen.
+- **Computergrafik (Hitboxen):** Erzeugung der vereinfachten 2D-konvexen Kollisions-Hitbox für ein hochkomplexes Sprite. Quickhull ist in der Praxis bei zufällig verteilten Punkten im Allgemeinen schneller als Graham Scan, da es aggressiv und fast sofort innere Pixel verwirft.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dc_15 – Convex Hull Divide & Conquer](dc_15_convex-hull-divide-and-conquer.md)** — Die rekursive Merge-Methode mit strikter $O(N \log N)$-Laufzeit.
-- **[sort_02 – Quick Sort](../sorting/sort_02_quick-sort.md)** – Das 1D-Array-Analogon, das genau dieselbe $O(N^2)$ Pivot-Schwachstelle im Worst-Case-Szenario aufweist.
+- **[dc_15 - Convex Hull Divide & Conquer](dc_15_convex-hull-divide-and-conquer.md)** — Die strikte $O(N \log N)$ rekursive Merge-Methode.
+- **[sort_02 - Quick Sort](../sorting/sort_02_quick-sort.md)** — Das 1D-Array-Analogon, das unter exakt derselben $O(N^2)$ Pivot-Anfälligkeit im schlechtesten Fall leidet.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde
-und sich an der kanonischen Struktur orientiert, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt für cOde(n), modelliert nach der kanonischen Struktur, die von Referenzseiten für kompetitive Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

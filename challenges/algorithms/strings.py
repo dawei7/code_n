@@ -263,8 +263,9 @@ SPECS: list[AlgorithmSpec] = [
             Sample("s = 'anagram', t = 'nagaram'", "True"),
         ],
         hint="Sort both strings and compare, or count character frequencies.",
-        parents=["intro_01"],
+        parents=[],
         children=["string_02"],
+
     ),
     AlgorithmSpec(
         id="string_02",

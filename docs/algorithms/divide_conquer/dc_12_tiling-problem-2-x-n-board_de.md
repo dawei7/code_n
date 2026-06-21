@@ -1,49 +1,49 @@
-# Fliesenproblem (2 x N-Spielfeld)
+# Tiling Problem (2 x N Board)
 
 | | |
 |---|---|
 | **ID** | `dc_12` |
 | **Kategorie** | divide_conquer |
-| **Komplexität (erforderlich)** | $O(N)$ Zeit, $O(1)$ Speicherplatz |
-| **Schwierigkeitsgrad** | 3/10 |
+| **Komplexität (erforderlich)** | $O(N)$ Zeit, $O(1)$ Platz |
+| **Schwierigkeit** | 3/10 |
 | **Relevanz für Vorstellungsgespräche** | 5/10 |
-| **GeeksForGeeks-Äquivalent** | [Kachelproblem](https://www.geeksforgeeks.org/tiling-problem/) |
+| **GeeksForGeeks Äquivalent** | [Tiling Problem](https://www.geeksforgeeks.org/tiling-problem/) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben sind ein `2 x N`-Spielfeld und Kacheln der Größe `2 x 1`. Bestimme die Anzahl der Möglichkeiten, das gegebene Spielfeld mit diesen Kacheln zu bedecken.
-Ein Kachelstück kann entweder horizontal (und nimmt dabei `1 x 2` Platz ein) oder vertikal (und nimmt dabei `2 x 1` Platz ein) platziert werden.
-Da das Ergebnis sehr groß sein kann, gib es modulo 10^9 + 7 zurück.
+Gegeben ist ein `2 x N` Brett und Kacheln der Größe `2 x 1`. Bestimmen Sie die Anzahl der Möglichkeiten, das gegebene Brett mit diesen Kacheln zu füllen.
+Eine Kachel kann entweder horizontal (benötigt `1 x 2` Platz) oder vertikal (benötigt `2 x 1` Platz) platziert werden.
+Da das Ergebnis sehr groß sein kann, geben Sie es modulo 10^9 + 7 zurück.
 
-**Eingabe:** Eine ganze Zahl `N`, die die Breite des Spielbretts angibt.
-**Ausgabe:** Eine ganze Zahl, die die Anzahl der Möglichkeiten angibt, das Spielbrett zu bedecken.
+**Eingabe:** Eine Ganzzahl `N`, die die Breite des Bretts repräsentiert.
+**Ausgabe:** Eine Ganzzahl, die die Anzahl der Möglichkeiten repräsentiert, das Brett zu füllen.
 
-## Wann man dies anwenden sollte
+## Wann man es verwendet
 
-- Um zu erkennen, wann sich ein räumliches „Teile und herrsche“-Geometrieproblem mathematisch auf eine einfache Fibonacci-Folge reduzieren lässt.
-- Das bekannteste „Trick“-Problem zur Einführung in dynamische Programmierung und Rekursion.
+- Um zu erkennen, wann ein geometrisches Divide-and-Conquer-Problem mathematisch in eine einfache Fibonacci-Folge kollabiert.
+- Das berühmteste "Trick"-Problem für den Einstieg in Dynamische Programmierung / Rekursion.
 
-## Vorgehensweise
+## Ansatz
 
-**1. Die „Teile und herrsche“-Entscheidung:**
-Stell dir vor, du füllst das Spielfeld von links nach rechts. Du betrachtest gerade die linkeste leere Spalte. Sie haben genau zwei Möglichkeiten, wie Sie die erste Kachel platzieren können:
-- **Möglichkeit A (vertikal):** Sie platzieren eine Kachel vertikal. Sie füllt die gesamte erste Spalte perfekt aus. Sie haben nun ein perfekt rechteckiges, leeres Spielfeld der Größe `2 x (N - 1)`.
-- **Option B (horizontal):** Sie platzieren einen Stein horizontal in der oberen linken Ecke. Aber Moment! Der Platz direkt darunter in der unteren linken Ecke ist nun leer und kann NUR durch einen weiteren horizontalen Stein gefüllt werden! Das Platzieren eines horizontalen Steins zwingt dich dazu, einen zweiten direkt darunter zu platzieren. Dieser `2 x 2`-Block ist nun gefüllt. Du hast nun ein perfekt rechteckiges, leeres Spielfeld der Größe `2 x (N - 2)`.
+**1. Die Divide-and-Conquer-Entscheidung:**
+Stellen Sie sich vor, Sie füllen das Brett von links nach rechts. Sie betrachten aktuell die linke, leere Spalte. Sie haben genau zwei Möglichkeiten, die erste Kachel zu platzieren:
+- **Wahl A (Vertikal):** Sie platzieren eine Kachel vertikal. Sie füllt die gesamte erste Spalte perfekt aus. Es verbleibt ein perfekt rechteckiges, leeres Brett der Größe `2 x (N - 1)`.
+- **Wahl B (Horizontal):** Sie platzieren eine Kachel horizontal in der oberen linken Ecke. Aber Achtung! Der Platz direkt darunter in der unteren linken Ecke ist nun leer und kann NUR durch eine weitere horizontale Kachel gefüllt werden! Das Platzieren einer horizontalen Kachel zwingt Sie dazu, eine zweite direkt darunter zu platzieren. Dieser `2 x 2`-Block ist nun gefüllt. Es verbleibt ein perfekt rechteckiges, leeres Brett der Größe `2 x (N - 2)`.
 
-**2. Die Rekursionsbeziehung:**
-Sei f(N) die Anzahl der Möglichkeiten, ein `2 x N`-Spielfeld zu verlegen.
-Aus den obigen Möglichkeiten lässt sich dies mathematisch definieren:
+**2. Die Rekursionsgleichung:**
+Sei f(N) die Anzahl der Möglichkeiten, ein `2 x N` Brett zu füllen.
+Basierend auf den obigen Entscheidungen können wir dies mathematisch definieren:
 f(N) = f(N - 1) + f(N - 2)
 
-Moment mal … das ist doch die **Fibonacci-Folge**!
+Moment mal... das ist die **Fibonacci-Folge**!
 
-**3. Grenzfälle:**
-- f(0) = 1: Es gibt genau eine Möglichkeit, ein leeres Spielfeld zu verlegen (nichts tun).
-- f(1) = 1: Ein `2 x 1`-Spielfeld kann nur mit 1 vertikaler Kachel bedeckt werden.
-- f(2) = 2: Ein `2 x 2`-Spielfeld kann mit 2 vertikalen Kacheln oder 2 horizontalen Kacheln bedeckt werden.
+**3. Basisfälle:**
+- f(0) = 1: Es gibt genau 1 Möglichkeit, ein leeres Brett zu füllen (nichts tun).
+- f(1) = 1: Ein `2 x 1` Brett kann nur mit 1 vertikalen Kachel gefüllt werden.
+- f(2) = 2: Ein `2 x 2` Brett kann mit 2 vertikalen oder 2 horizontalen Kacheln gefüllt werden.
 
 **4. Ausführung:**
-Wir müssen keine rekursive „Teile und herrsche“-Funktion schreiben (die $O(2^N)$ Zeit in Anspruch nehmen oder $O(N)$ Memoization-Speicherplatz erfordern würde). Wir können die N-te Fibonacci-Zahl einfach iterativ mit zwei Variablen in streng $O(1)$ Speicherplatz berechnen!
+Wir müssen nicht tatsächlich eine rekursive Divide-and-Conquer-Funktion schreiben (die $O(2^N)$ Zeit benötigen oder $O(N)$ Platz für Memoization erfordern würde). Wir können die N-te Fibonacci-Zahl einfach iterativ unter Verwendung von zwei Variablen in strikt $O(1)$ Platz berechnen!
 
 ## Algorithmus
 
@@ -72,10 +72,10 @@ def solve(n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 `n = 4`. `MOD = 10^9 + 7`.
-Anfangswerte: `prev2 = 1`, `prev1 = 1`.
+Initial: `prev2 = 1`, `prev1 = 1`.
 
 1. **i = 2:**
    - `current = (1 + 1) % MOD = 2`.
@@ -94,31 +94,27 @@ Das Ergebnis ist `5`. ✓
 
 | | Zeit | Platz |
 |---|---|---|
-| **Bestwert** | $O(1)$ | $O(1)$ |
+| **Bestfall** | $O(1)$ | $O(1)$ |
 | **Durchschnittlicher Fall** | $O(N)$ | $O(1)$ |
 | **Schlechtester Fall** | $O(N)$ | $O(1)$ |
 
-Die `for`-Schleife wird N - 1 Mal durchlaufen und führt einfache Ganzzahladditionen durch. Die Zeitkomplexität beträgt streng $O(N)$.
-Es werden nur drei Ganzzahlvariablen verwaltet. Die Platzkomplexität beträgt streng $O(1)$.
+Die `for`-Schleife läuft N - 1 Mal und führt einfache Ganzzahladditionen durch. Die Zeitkomplexität ist strikt $O(N)$.
+Es werden nur drei Ganzzahlvariablen verwaltet. Die Platzkomplexität ist strikt $O(1)$.
 
 ## Varianten & Optimierungen
 
-- **Matrixpotenzierung ($O(\log N)$):** Wenn N sehr groß ist (z. B. 10^{18}), löst die $O(N)$-Schleife einen TLE aus! Man kann die Fibonacci-Folge als Matrixmultiplikation schreiben: \begin{bmatrix} f(N) \\ f(N-1) \end{bmatrix} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}^{N-1} x \begin{bmatrix} f(1) \\ f(0) \end{bmatrix}. Anschließend kannst du die schnelle Potenzierung (`dc_01`) auf die Matrix anwenden, um sie in genau $O(\log N)$ Zeit zu lösen!
-- **Domino- und Tromino-Verlegung (LeetCode 790):** Was wäre, wenn man `2x1` Dominosteine UND L-förmige Trominos verwenden könnte? Der Zustandsbaum verzweigt sich drastisch, da ein L-Tromino eine unregelmäßige Kante hinterlässt, die gefüllt werden muss! Die Rekursionsbeziehung lautet nun f(N) = 2 x f(N-1) + f(N-3).
+- **Matrix-Exponentiation ($O(\log N)$):** Wenn N sehr groß ist (z. B. 10^{18}), führt die $O(N)$-Schleife zu einem TLE (Time Limit Exceeded)! Sie können die Fibonacci-Folge als Matrixmultiplikation schreiben: \begin{bmatrix} f(N) \\ f(N-1) \end{bmatrix} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}^{N-1} x \begin{bmatrix} f(1) \\ f(0) \end{bmatrix}. Sie können dann die schnelle Exponentiation (`dc_01`) auf die Matrix anwenden, um das Problem in exakt $O(\log N)$ Zeit zu lösen!
+- **Domino and Tromino Tiling (LeetCode 790):** Was ist, wenn Sie `2x1` Dominosteine UND L-förmige Trominoes verwenden können? Der Zustandsraum verzweigt sich drastisch, da ein L-Tromino eine unregelmäßige Kante hinterlässt, die gefüllt werden muss! Die Rekursionsgleichung wird zu f(N) = 2 x f(N-1) + f(N-3).
 
 ## Anwendungen in der Praxis
 
-- **Statistische Mechanik:** Analyse der thermodynamischen Eigenschaften von zweiatomigen Molekülen (Dimeren), die sich an einer 2D-Kristallgitteroberfläche anlagern (mathematisch bekannt als das „Dimer-Covering-Problem“).
+- **Statistische Mechanik:** Analyse der thermodynamischen Eigenschaften von zweiatomigen Molekülen (Dimeren), die auf einer 2D-Kristallgitteroberfläche adsorbieren (mathematisch bekannt als das "Dimer Covering Problem").
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dp_01 – Treppensteigen](../dynamic/dp_01_climbing-stairs.md)** — Es handelt sich um genau dieselbe Fibonacci-Rekursionsbeziehung, nur dass hier anstelle des Platzierens von Kacheln das Hinaufsteigen von 1 oder 2 Stufen auf einer Treppe betrachtet wird.
-- **[dc_01 - Pow(x, n)](dc_01_power-x-to-the-n.md)** — Erforderlich für die Optimierung der Matrixpotenzierung $O(\log N)$.
+- **[dp_01 - Climbing Stairs](../dynamic/dp_01_climbing-stairs.md)** — Die buchstäblich identische Fibonacci-Rekursionsgleichung, nur formuliert als das Nehmen von 1 oder 2 Stufen auf einer Treppe anstatt des Platzierens von Kacheln.
+- **[dc_01 - Pow(x, n)](dc_01_power-x-to-the-n.md)** — Erforderlich für die $O(\log N)$ Matrix-Exponentiation-Optimierung.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde
-und sich an der kanonischen Struktur orientiert, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) geschrieben wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

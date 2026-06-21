@@ -30,7 +30,7 @@
  * active challenge id to solutions/.vscode-active and calls
  * Electron's shell.openPath(repoRoot).
  */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppStore } from '../store/useAppStore';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { useUpdater } from '../hooks/useUpdater';
@@ -38,13 +38,18 @@ import { ChallengeList } from './ChallengeList';
 import { UpdateToast } from './UpdateToast';
 import { TabBar } from './TabBar';
 import { Workspace } from './Workspace';
+import { ProfileModal } from './ProfileModal';
+import { InfoModal } from './InfoModal';
 
 
 export function AppShell() {
   const loadChallenges = useAppStore((s) => s.loadChallenges);
   const loadProgress = useAppStore((s) => s.loadProgress);
+  const loadProfiles = useAppStore((s) => s.loadProfiles);
   const baseFontSize = useAppStore((s) => s.baseFontSize);
   const theme = useAppStore((s) => s.theme);
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showInfoModal, setShowInfoModal] = useState(false);
 
   useEffect(() => {
     document.documentElement.style.fontSize = `${baseFontSize}px`;
@@ -61,13 +66,14 @@ export function AppShell() {
   useEffect(() => {
     loadChallenges();
     loadProgress();
-  }, [loadChallenges, loadProgress]);
+    loadProfiles();
+  }, [loadChallenges, loadProgress, loadProfiles]);
 
   useKeyboardShortcuts();
 
   return (
     <div className="h-full flex flex-col bg-coden-bg text-coden-text">
-      <TopHeader />
+      <TopHeader onOpenProfiles={() => setShowProfileModal(true)} onOpenInfo={() => setShowInfoModal(true)} />
       <div className="flex-1 flex overflow-hidden">
         <aside className="w-64 border-r border-coden-border bg-coden-surface shrink-0 overflow-y-auto">
           <ChallengeList />
@@ -79,12 +85,14 @@ export function AppShell() {
         </main>
       </div>
       <UpdateToast />
+      {showProfileModal && <ProfileModal onClose={() => setShowProfileModal(false)} />}
+      {showInfoModal && <InfoModal onClose={() => setShowInfoModal(false)} />}
     </div>
   );
 }
 
 
-function TopHeader() {
+function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void; onOpenInfo: () => void }) {
   const challenges = useAppStore((s) => s.challenges);
   const updater = useUpdater();
   const theme = useAppStore((s) => s.theme);
@@ -93,6 +101,8 @@ function TopHeader() {
   const setLanguage = useAppStore((s) => s.setLanguage);
   const increaseFontSize = useAppStore((s) => s.increaseFontSize);
   const decreaseFontSize = useAppStore((s) => s.decreaseFontSize);
+  const activeProfile = useAppStore((s) => s.activeProfile);
+  const progress = useAppStore((s) => s.progress);
 
   // Tooltip describing the last update action for the "Check for
   // updates" button. Changes when the state changes.
@@ -109,18 +119,34 @@ function TopHeader() {
   })();
 
   return (
-    <header className="h-10 flex items-center justify-between px-4 border-b border-coden-border bg-coden-surface shrink-0">
-      <div className="flex items-center gap-3">
-        <span className="text-lg">⚙️</span>
-        <h1 className="text-base font-semibold tracking-tight">cOde(n)</h1>
+    <header className="h-10 flex items-center justify-between px-4 border-b border-coden-border bg-coden-surface shrink-0 select-none">
+      <div className="flex items-center gap-2">
+        <button
+          onClick={onOpenProfiles}
+          className="text-base p-1 hover:bg-slate-800 rounded transition-all cursor-pointer flex items-center justify-center h-7 w-7"
+          title="Open Settings"
+        >
+          ⚙️
+        </button>
+        <button
+          onClick={onOpenInfo}
+          className="text-base p-1 hover:bg-slate-800 rounded transition-all cursor-pointer flex items-center justify-center h-7 w-7"
+          title="Open System Documentation & Help"
+        >
+          ℹ️
+        </button>
+        <h1 className="text-sm font-bold tracking-tight text-white ml-1">cOde(n)</h1>
         {challenges.length > 0 && (
-          <span className="text-xs text-coden-muted font-mono">
+          <span className="text-[11px] text-slate-500 font-mono">
             {challenges.length} challenges
           </span>
         )}
+        <span className="ml-3 px-2 py-0.5 rounded bg-slate-950 border border-slate-850 text-slate-400 text-[10.5px] font-medium select-none">
+          👤 User: {activeProfile} ({progress?.active_set === 'neetcode' ? 'NeetCode 250' : 'GeeksforGeeks'})
+        </span>
         {updater.state.appVersion && (
           <span
-            className="text-xs text-coden-muted font-mono"
+            className="text-[10px] text-slate-500 font-mono"
             title={`Currently running v${updater.state.appVersion.current} on the '${updater.state.appVersion.channel}' channel`}
           >
             v{updater.state.appVersion.current}

@@ -233,6 +233,23 @@ def run_player_code(
         # --- 5. Setup the challenge (returns plain lists / dicts) ---
         setup_data = challenge.setup(n, seed)
 
+        # Capture pristine setup data representation before user solve mutates it in-place.
+        setup_data_repr = {
+            k: _format_return_value(v) for k, v in setup_data.items()
+        }
+
+        # Deep-copy setup data for the reference solve before the player's
+        # code (which might perform in-place mutations) executes.
+        import copy
+        reference_return_value_repr: Optional[str] = None
+        if hasattr(challenge, "_reference_solve"):
+            try:
+                ref_setup_data = copy.deepcopy(setup_data)
+                ref_result = challenge._reference_solve(**ref_setup_data)
+                reference_return_value_repr = _format_return_value(ref_result)
+            except Exception as exc:
+                log.warning(f"Failed to run reference solve: {exc}")
+
         # --- 6. Run the player's solve() under the tracer ---
         error_message = ""
         result: Any = None
@@ -279,11 +296,38 @@ def run_player_code(
 
         # --- 9. Derive the verdict from the AST op count ---
         required_complexity = challenge.info.required_complexity
-        budget = limit_for(n, required_complexity)
-        within_threshold = user_ast_ops <= budget
-        # "as efficient as the smallest class whose budget
-        # still fits your op count"
-        actual_complexity = classify_ast_ops(user_ast_ops, n)
+
+        # --- 9a. Compute tolerance band around reference's AST ops ---
+        # The user's AST count should land within this band
+        # to be considered "as efficient as the reference".
+        #   low  = floor(μ * 0.90)
+        #   high = ceil (μ * 1.05)
+        # Below the band: likely a cheat. Above the band:
+        # correct but slower than optimal. The band is the
+        # "as good as the canonical solution" range.
+        reference_ci_low: Optional[int] = None
+        reference_ci_high: Optional[int] = None
+        if reference_ast_ops is not None and reference_ast_ops > 0:
+            import math
+            reference_ci_low = int(math.floor(reference_ast_ops * 0.90))
+            reference_ci_high = int(math.ceil(reference_ast_ops * 1.05))
+
+        # Check if the required complexity is fulfilled. If the user's solution
+        # falls within the tolerance band (<= reference_ci_high), it is automatically
+        # considered efficient enough. Otherwise, fallback to the hardcoded budget limit.
+        if reference_ci_high is not None:
+            within_threshold = user_ast_ops <= reference_ci_high
+        else:
+            budget = limit_for(n, required_complexity)
+            within_threshold = user_ast_ops <= budget
+
+        # Classify complexity dynamically using the reference's coefficient if available
+        actual_complexity = classify_ast_ops(
+            user_ast_ops,
+            n,
+            reference_ast_ops=reference_ast_ops,
+            required_complexity=required_complexity,
+        )
         passed = correct and within_threshold
 
         # --- 10. Too-efficient check (AST + ratio vs reference) ---
@@ -304,20 +348,13 @@ def run_player_code(
                 too_efficient_reason = te_result.message
                 passed = False
 
-        # --- 11. ±5% tolerance band around the reference's AST ops ---
-        # The user's AST op count should land within this band
-        # to be considered "as efficient as the reference".
-        #   low  = floor(μ * 0.95)
-        #   high = ceil (μ * 1.05)
-        # Below the band: likely a cheat. Above the band:
-        # correct but slower than optimal. The band is the
-        # "as good as the canonical solution" range.
-        reference_ci_low: Optional[int] = None
-        reference_ci_high: Optional[int] = None
+        # --- 11a. Compute reference coefficient ---
+        reference_coefficient: Optional[float] = None
         if reference_ast_ops is not None and reference_ast_ops > 0:
-            import math
-            reference_ci_low = int(math.floor(reference_ast_ops * 0.95))
-            reference_ci_high = int(math.ceil(reference_ast_ops * 1.05))
+            from code_n.counter import get_complexity_factor
+            ref_factor = get_complexity_factor(n, required_complexity)
+            reference_coefficient = (reference_ast_ops - 10) / ref_factor if ref_factor > 0 else 0.0
+            reference_coefficient = max(0.0, reference_coefficient)
 
         message = _build_message(
             error_message=error_message,
@@ -336,27 +373,9 @@ def run_player_code(
         # run (e.g. ``solve`` wasn't defined), fall back to the
         # raw return. Cap at _RETURN_VALUE_CAP so a 10,000-element
         # list doesn't blow up the response.
-        return_value_repr = _format_return_value(trace.return_value or result)
+        return_value_repr = _format_return_value(result)
 
-        # 4. Generate scaling data for the graph (n from 2 to min(max_n, 50))
         scaling_data = []
-        # Only do this if it's correct (or within step limit) so we don't scale an infinite loop
-        # Wait, ast_count_ops does not run the code, it's just AST math. So it's perfectly safe
-        # to run it even if the code had an infinite loop at runtime!
-        max_scale_n = min(challenge.max_n, 50)
-        import math
-        for i in range(2, max_scale_n + 1):
-            u_ops = ast_count_ops(source, i)
-            r_ops = ast_count_ops(reference_source, i) if reference_source else 0
-            c_low = math.floor(r_ops * 0.95)
-            c_high = math.ceil(r_ops * 1.05)
-            scaling_data.append({
-                "n": i,
-                "user_ops": u_ops,
-                "ref_ops": r_ops,
-                "ci_low": c_low,
-                "ci_high": c_high,
-            })
 
         return RunResponse(
             passed=passed,
@@ -373,9 +392,12 @@ def run_player_code(
             reference_ast_ops=reference_ast_ops,
             reference_ci_low=reference_ci_low,
             reference_ci_high=reference_ci_high,
+            reference_coefficient=reference_coefficient,
             scaling_data=scaling_data,
             message=message,
             return_value_repr=return_value_repr,
+            reference_return_value_repr=reference_return_value_repr,
+            setup_data_repr=setup_data_repr,
         )
     finally:
         # Always clean up the temp dir, even on exception. Skip
@@ -429,6 +451,51 @@ def _build_message(
 _RETURN_VALUE_CAP = 500
 
 
+def format_compact_json(value: Any, indent: int = 2) -> str:
+    """Recursively format JSON, keeping 1D arrays/lists horizontal.
+
+    If a list contains only primitive values, it is formatted as a single line
+    via json.dumps. Nested structures (like grids and dictionaries) are split
+    across lines and indented recursively.
+    """
+    import json
+
+    def is_primitive(val: Any) -> bool:
+        return isinstance(val, (int, float, str, bool, type(None)))
+
+    def is_1d_list(val: Any) -> bool:
+        if not isinstance(val, list):
+            return False
+        return all(is_primitive(item) for item in val)
+
+    if is_1d_list(value):
+        return json.dumps(value)
+
+    if isinstance(value, list):
+        parts = []
+        for item in value:
+            item_str = format_compact_json(item, indent)
+            indented = "\n".join(" " * indent + line for line in item_str.splitlines())
+            parts.append(indented)
+        return "[\n" + ",\n".join(parts) + "\n]"
+
+    if isinstance(value, dict):
+        parts = []
+        for k, v in value.items():
+            k_str = json.dumps(k)
+            v_str = format_compact_json(v, indent)
+            lines = v_str.splitlines()
+            if len(lines) == 1:
+                parts.append(" " * indent + f"{k_str}: {lines[0]}")
+            else:
+                first = " " * indent + f"{k_str}: {lines[0]}"
+                rest = "\n".join(" " * indent + line for line in lines[1:])
+                parts.append(first + "\n" + rest)
+        return "{\n" + ",\n".join(parts) + "\n}"
+
+    return json.dumps(value)
+
+
 def _format_return_value(value: Any) -> str:
     """Render the return value of ``solve()`` as a compact string.
 
@@ -440,12 +507,7 @@ def _format_return_value(value: Any) -> str:
     """
     try:
         safe = to_json_safe(value)
-        # ``json.dumps`` with ``indent`` produces a human-readable
-        # multi-line form for nested structures. The default
-        # ``str()`` of a list is single-line, which is fine for
-        # short results but bad for grids.
-        import json
-        text = json.dumps(safe, indent=2)
+        text = format_compact_json(safe, indent=2)
     except Exception:
         text = repr(value)
     if len(text) > _RETURN_VALUE_CAP:

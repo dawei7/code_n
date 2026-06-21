@@ -1,43 +1,43 @@
-# Zweigeteilte Zuordnung (Maximalfluss)
+# Bipartite Matching (Max Flow)
 
 | | |
 |---|---|
 | **ID** | `flow_03` |
-| **Kategorie** | Fluss |
-| **Komplexität (erforderlich)** | $O(V * E)$ |
-| **Schwierigkeitsgrad** | 4/10 |
-| **Relevanz für Vorstellungsgespräche** | 8/10 |
-| **Wikipedia** | [Maximale bipartite Zuordnung](https://en.wikipedia.org/wiki/Matching_(graph_theory)#In_unweighted_bipartite_graphs) |
+| **Category** | flow |
+| **Complexity (required)** | $O(V * E)$ |
+| **Difficulty** | 4/10 |
+| **Interview relevance** | 8/10 |
+| **Wikipedia** | [Maximum bipartite matching](https://en.wikipedia.org/wiki/Matching_(graph_theory)#In_unweighted_bipartite_graphs) |
 
-## Aufgabenstellung
+## Problem statement
 
-Gegeben ist ein bipartiter Graph, bestehend aus einer linken Menge von Knoten (z. B. Bewerber) und einer rechten Menge von Knoten (z. B. Stellen), mit ungewichteten Kanten, die angeben, welcher Bewerber für welche Stelle qualifiziert ist.
-Jeder Bewerber kann nur eine Stelle annehmen, und jede Stelle kann nur von einem Bewerber besetzt werden.
-Ermitteln Sie die **maximale bipartite Zuordnung**: die maximale Anzahl an Bewerbern, die erfolgreich einer Stelle zugeordnet werden können.
+Gegeben ist ein bipartiter Graph, der aus einer linken Menge von Knoten (z. B. Bewerber) und einer rechten Menge von Knoten (z. B. Jobs) besteht, wobei ungewichtete Kanten darstellen, welcher Bewerber für welchen Job qualifiziert ist.
+Jeder Bewerber kann nur einen Job annehmen und jeder Job kann nur von einem Bewerber besetzt werden.
+Finden Sie das **Maximum Bipartite Matching**: die maximale Anzahl an Bewerbern, die erfolgreich mit einem Job gepaart werden können.
 
-Sie müssen dies lösen, indem Sie das Problem elegant in ein **Max-Flow-Netzwerk** abbilden.
+Sie müssen dies lösen, indem Sie das Problem elegant auf ein **Max Flow Network** abbilden.
 
-**Eingabe:** Eine Adjacency List oder Matrix, die Kanten zwischen der linken Menge L und der rechten Menge R definiert.
-**Ausgabe:** Eine ganze Zahl, die die maximale Anzahl an Paarungen angibt.
+**Input:** Eine Adjazenzliste oder Matrix, die Kanten zwischen der linken Menge L und der rechten Menge R definiert.
+**Output:** Eine Ganzzahl, die die maximale Anzahl an Paarungen repräsentiert.
 
-## Wann man es verwendet
+## Wann ist es zu verwenden?
 
-- Zur Lösung ungewichteter Zuordnungs- und Terminierungsprobleme.
-- Hinweis: Wenn die Kanten *Kosten* oder *Gewichte* haben (z. B. Bewerber A verlangt 50k für Stelle 1), kann das Max-Flow-Verfahren das Problem nicht lösen! Sie müssen den Min-Cost-Max-Flow-Algorithmus oder den ungarischen Algorithmus (`bb_02`) verwenden.
+- Zur Lösung von ungewichteten Zuweisungs- und Planungsproblemen.
+- Hinweis: Wenn die Kanten *Kosten* oder *Gewichte* haben (z. B. Bewerber A fordert 50k für Job 1), kann Max Flow dies nicht lösen! Sie müssen Min-Cost Max-Flow oder den Ungarischen Algorithmus (`bb_02`) verwenden.
 
-## Vorgehensweise
+## Ansatz
 
-Wir können unseren bestehenden Code aus `Edmonds-Karp` oder `Ford-Fulkerson` fast unverändert übernehmen, um dieses Problem zu lösen!
+Wir können unseren bestehenden `Edmonds-Karp`- oder `Ford-Fulkerson`-Code fast ohne Änderungen übernehmen, um dies zu lösen!
 
-**Die Zuordnung:**
-1. Erstelle einen „Super-Quelle“-Knoten S und einen „Super-Senke“-Knoten T.
-2. Zeichne eine gerichtete Kante von S zu jedem Knoten der linken Menge (Bewerber). Weise diesen Kanten eine Kapazität von genau `1` zu.
-3. Zeichne eine gerichtete Kante von jedem Knoten der rechten Menge (Stellen) zu T. Weise diesen Kanten eine Kapazität von genau `1` zu.
-4. Machen Sie jede vorhandene Qualifikationskante zwischen Bewerber A und Stelle J zu einer gerichteten Kante A \to J und weisen Sie ihr eine Kapazität von genau `1` zu (oder `Infinity`, mathematisch spielt das keine Rolle, da die Engpässe bei S und T sie ohnehin auf 1 beschränken).
+**Die Abbildung:**
+1. Erstellen Sie einen "Super Source"-Knoten S und einen "Super Sink"-Knoten T.
+2. Zeichnen Sie eine gerichtete Kante von S zu jedem Knoten in der linken Menge (Bewerber). Geben Sie diesen Kanten eine Kapazität von genau `1`.
+3. Zeichnen Sie eine gerichtete Kante von jedem Knoten in der rechten Menge (Jobs) zu T. Geben Sie diesen Kanten eine Kapazität von genau `1`.
+4. Für jede existierende Qualifikationskante zwischen Bewerber A und Job J, machen Sie diese gerichtet A \to J und geben Sie ihr eine Kapazität von genau `1` (oder `Infinity`, mathematisch spielt es keine Rolle, da die Engpässe bei S und T es ohnehin auf 1 beschränken).
 
 **Das Ergebnis:**
-Da jeder Bewerber nur 1 Einheit Wasser von S erhalten kann, kann er nur 1 Einheit Wasser an einen Job weitergeben. Da jeder Job nur 1 Einheit Wasser an T weitergeben kann, kann er Wasser nur von 1 Bewerber erhalten!
-Führe „Max Flow“ von S nach T aus. Der resultierende Durchfluss entspricht genau der maximalen bipartiten Zuordnung!
+Da jeder Bewerber nur 1 Einheit Wasser von S erhalten kann, kann er nur 1 Einheit Wasser an einen Job weitergeben. Da jeder Job nur 1 Einheit Wasser an T weitergeben kann, kann er nur Wasser von 1 Bewerber empfangen!
+Führen Sie Max Flow von S nach T aus. Der resultierende Fluss ist exakt das Maximum Bipartite Matching!
 
 ## Algorithmus
 
@@ -99,9 +99,9 @@ def solve(left_n, right_n, edges):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
-3 Bewerber (`A0, A1, A2`). 3 Stellen (`J0, J1, J2`).
+3 Bewerber (`A0, A1, A2`). 3 Jobs (`J0, J1, J2`).
 `A0` möchte `J0`, `J1`.
 `A1` möchte `J1`.
 `A2` möchte `J1`.
@@ -111,44 +111,40 @@ def solve(left_n, right_n, edges):
    - J0 \to T (1), J1 \to T (1), J2 \to T (1).
    - A0 \to J0 (1), A0 \to J1 (1).
    - A1 \to J1 (1).
-   - A2 → J1 (1).
-2. **Edmonds-Karp-Algorithmus ausführen:**
-   - BFS findet `S -> A0 -> J0 -> T`. Schiebt 1 auf den Stack.
-   - BFS findet `S -> A1 -> J1 -> T`. Schiebt 1 auf den Stack.
-   - Nun möchte `A2` `J1` erreichen, aber die Leitung `J1 -> T` ist vollständig ausgelastet (0 Restkapazität).
-   - Es gibt keine weiteren Pfade mehr!
-3. **Ergebnis:** Maximaler Durchfluss = 2. Die optimale Zuordnung lautet (A0-J0, A1-J1). A2 erhält nichts. ✓
+   - A2 \to J1 (1).
+2. **Edmonds-Karp ausführen:**
+   - BFS findet `S -> A0 -> J0 -> T`. Schiebt 1.
+   - BFS findet `S -> A1 -> J1 -> T`. Schiebt 1.
+   - Nun möchte `A2` `J1`, aber die Leitung `J1 -> T` ist vollständig gesättigt (0 Restkapazität).
+   - Es existieren keine weiteren Pfade!
+3. **Ergebnis:** Max Flow = 2. Das optimale Matching ist (A0-J0, A1-J1). A2 bekommt nichts. ✓
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(V * E)$ | $O(V^2)$ |
+| **Bestfall** | $O(V * E)$ | $O(V^2)$ |
 | **Durchschnittlicher Fall** | $O(E * √V)$ | $O(V^2)$ |
 | **Schlechtester Fall** | $O(V * E)$ | $O(V^2)$ |
 
-Da jede Kapazität genau 1 beträgt (ein „Einheitsnetzwerk“), laufen Max-Flow-Algorithmen deutlich schneller als ihre theoretischen Grenzen!
-Für Edmonds-Karp in einem Einheitsnetzwerk ist mathematisch garantiert, dass es in $O(V \times E)$ statt in $O(V \cdot E^2)$ läuft.
-Die Platzkomplexität beträgt $O(V^2)$, wenn eine Adjacency Matrix verwendet wird, oder $O(V + E)$, wenn Listen verwendet werden.
+Da jede Kapazität genau 1 beträgt (ein "Unit Network"), laufen Max-Flow-Algorithmen deutlich schneller als ihre theoretischen Schranken!
+Edmonds-Karp garantiert auf einem Unit Network mathematisch eine Laufzeit von $O(V \times E)$ anstelle von $O(V \cdot E^2)$.
+Die Platzkomplexität beträgt $O(V^2)$ bei Verwendung einer Adjazenzmatrix oder $O(V + E)$ bei Verwendung von Listen.
 
 ## Varianten & Optimierungen
 
-- **Hopcroft-Karp-Algorithmus:** Ein hochspezialisierter Algorithmus, der *ausschließlich* für die bipartite Zuordnung entwickelt wurde. Er verhält sich wie der Dinic-Algorithmus in einem Einheitsnetzwerk und findet gleichzeitig mehrere augmentierende Pfade. Er läuft in einer erstaunlichen Zeit von O(E \sqrt{V})$.
+- **Hopcroft-Karp-Algorithmus:** Ein hochspezialisierter Algorithmus, der ausschließlich für Bipartite Matching entwickelt wurde. Er verhält sich wie der Dinic-Algorithmus auf einem Unit Network und findet mehrere augmentierende Pfade gleichzeitig. Er läuft in einer erstaunlichen Zeit von $O(E \sqrt{V})$.
 
-## Praktische Anwendungen
+## Anwendungen in der Praxis
 
-- **Dating-Apps:** Ermittlung der maximalen Anzahl gegenseitig akzeptabler Paarungen für eine Speed-Dating-Veranstaltung.
-- **Ressourcenzuweisung:** Zuweisung von IP-Adressen aus einem begrenzten DHCP-Pool an Geräte mit spezifischen Subnetz-Anforderungen.
+- **Dating-Apps:** Finden der maximalen Anzahl an gegenseitig akzeptablen Paarungen für ein Speed-Dating-Event.
+- **Ressourcenallokation:** Zuweisung von IP-Adressen aus einem begrenzten DHCP-Pool an Geräte mit spezifischen Subnetz-Anfragen.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[flow_02 – Edmonds-Karp](flow_02_edmonds-karp.md)** — Die Kern-Engine, die diese Lösung antreibt.
-- **[approx_01 – Vertex-Cover](../approximation/approx_01_vertex-cover-2-approx.md)** — Nach dem Satz von König ist in jedem bipartiten Graphen die Größe der maximalen Paarung genau gleich der des minimalen Vertex-Covers!
+- **[flow_02 - Edmonds-Karp](flow_02_edmonds-karp.md)** — Die Kern-Engine, die diese Lösung antreibt.
+- **[approx_01 - Vertex Cover](../approximation/approx_01_vertex-cover-2-approx.md)** — Nach dem Satz von König ist in jedem bipartiten Graphen die Größe des Maximum Matching exakt gleich der minimalen Knotenbedeckung!
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde
-und sich an der kanonischen Struktur orientiert, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt für cOde(n), modelliert nach der kanonischen Struktur, die von Referenzseiten für kompetitive Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

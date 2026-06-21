@@ -221,11 +221,23 @@ def main() -> int:
         import re
         verdict_line = re.sub(r"\033\[[0-9;]*m", "", verdict_line)
     print(verdict_line)
+    if (not result.passed or not result.correct) and result.setup_data_repr:
+        print("  inputs:")
+        for k, v in result.setup_data_repr.items():
+            lines = v.splitlines()
+            if len(lines) == 1:
+                print(f"    {k}: {lines[0]}")
+            else:
+                print(f"    {k}:")
+                for line in lines:
+                    print(f"      {line}")
     if result.return_value_repr:
         # The return value is a compact JSON-ish string from the
         # engine. Show it on a separate line so the player can see
         # what ``solve()`` actually produced.
         print(f"  returned: {result.return_value_repr}")
+    if (not result.passed or not result.correct) and result.reference_return_value_repr:
+        print(f"  expected: {result.reference_return_value_repr}")
     if result.user_ast_ops is not None and result.reference_ast_ops is not None:
         ci = f"[{result.reference_ci_low:,}, {result.reference_ci_high:,}]"
         print(

@@ -33,6 +33,7 @@ import type {
   ChallengeSummary,
   ProgressOut,
   RunResponse,
+  ProfileSummary,
 } from '../types/api';
 import type { OpenInVSCodeResult } from '../types/electron';
 import * as challengesApi from '../api/challenges';
@@ -40,6 +41,7 @@ import * as runApi from '../api/run';
 import * as progressApi from '../api/progress';
 import * as solutionsApi from '../api/solutions';
 import * as vscodeApi from '../api/vscode';
+import * as profilesApi from '../api/profiles';
 
 
 // Re-export so the inline ``import('...')`` in the action
@@ -76,6 +78,7 @@ const writeActiveChallengeFor = vscodeApi.writeActiveChallenge;
 
 
 export type RunMode = 'practice' | 'real_test';
+export type Topic = 'reference' | 'mathematical' | 'complexity' | 'coden' | 'career_path';
 
 
 export interface AppState {
@@ -119,8 +122,30 @@ export interface AppState {
   runResult: RunResponse | null;
   error: string | null;
 
+  // AI Tutor analysis persistence
+  aiAnalysis: string;
+  aiStatus: 'idle' | 'loading' | 'loaded' | 'error';
+  aiError: string;
+  setAiAnalysis: (analysis: string) => void;
+  setAiStatus: (status: 'idle' | 'loading' | 'loaded' | 'error') => void;
+  setAiError: (error: string) => void;
+
   // Progress
   progress: ProgressOut | null;
+  activeSet: 'gfg' | 'neetcode';
+  setActiveSet: (setVal: 'gfg' | 'neetcode') => Promise<void>;
+  activeTopic: Topic;
+  setActiveTopic: (topic: Topic) => void;
+
+  // Profiles & Settings
+  activeProfile: string;
+  profiles: ProfileSummary[];
+  loadProfiles: () => Promise<void>;
+  createProfile: (name: string, careerMode: boolean, leetcodeUsername: string) => Promise<void>;
+  selectProfile: (name: string) => Promise<void>;
+  deleteProfile: (name: string) => Promise<void>;
+  updateSettings: (careerMode: boolean, leetcodeUsername: string, geminiApiKey: string) => Promise<void>;
+  verifyLeetCode: (challengeId: string) => Promise<{ success: boolean; message: string }>;
 
   // --- Actions ---
   loadChallenges(): Promise<void>;
@@ -221,6 +246,19 @@ export const useAppStore = create<AppState>((set, get) => ({
   runResult: null,
   error: null,
   progress: null,
+  activeSet: 'neetcode',
+  activeTopic: 'reference',
+  setActiveTopic: (topic) => set({ activeTopic: topic }),
+  activeProfile: 'Default',
+  profiles: [],
+
+  // AI Tutor analysis initial state
+  aiAnalysis: '',
+  aiStatus: 'idle',
+  aiError: '',
+  setAiAnalysis: (analysis) => set({ aiAnalysis: analysis }),
+  setAiStatus: (status) => set({ aiStatus: status }),
+  setAiError: (error) => set({ aiError: error }),
 
   vscodeOpening: false,
   vscodeLastError: null,
@@ -240,6 +278,9 @@ export const useAppStore = create<AppState>((set, get) => ({
       error: null,
       runResult: null,
       openChallengeIds: isNew ? [...openChallengeIds, id] : openChallengeIds,
+      aiAnalysis: '',
+      aiStatus: 'idle',
+      aiError: '',
     });
     try {
       const detail = await challengesApi.getChallenge(id);
@@ -325,7 +366,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   async run() {
     const { currentDetail, n, seed, mode } = get();
     if (!currentDetail) return;
-    set({ isRunning: true, error: null });
+    set({ isRunning: true, error: null, aiAnalysis: '', aiStatus: 'idle', aiError: '', activeTopic: 'complexity' });
     try {
       // File on disk is the source of truth. Re-read before
       // every run so VSCode edits are picked up automatically —
@@ -364,6 +405,7 @@ export const useAppStore = create<AppState>((set, get) => ({
             result.actual_complexity,
           );
           await get().loadProgress();
+          await get().loadChallenges();
         } catch {
           // progress save is best-effort
         }
@@ -376,13 +418,16 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   reset() {
-    set({ runResult: null, error: null });
+    set({ runResult: null, error: null, aiAnalysis: '', aiStatus: 'idle', aiError: '' });
   },
 
   async loadProgress() {
     try {
       const p = await progressApi.getProgress();
-      set({ progress: p });
+      set({ 
+        progress: p,
+        activeSet: (p.active_set as 'gfg' | 'neetcode') || 'neetcode'
+      });
     } catch {
       // ignore
     }
@@ -398,10 +443,12 @@ export const useAppStore = create<AppState>((set, get) => ({
         runResult.actual_complexity,
       );
       await get().loadProgress();
+      await get().loadChallenges();
     } catch {
       // ignore
     }
   },
+
 
   async refreshSourceFromDisk() {
     const { currentDetail } = get();
@@ -520,6 +567,94 @@ export const useAppStore = create<AppState>((set, get) => ({
       set({ source: res.source, activeVersion: res.active_version, versions: res.versions, versionNames: res.version_names, modifiedVersions: res.modified_versions });
     } catch (e) {
       console.error(e);
+    }
+  },
+
+  async loadProfiles() {
+    try {
+      const res = await profilesApi.listProfiles();
+      set({ activeProfile: res.active_profile, profiles: res.profiles });
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  async createProfile(name: string, careerMode: boolean, leetcodeUsername: string) {
+    try {
+      const res = await profilesApi.createProfile(name, careerMode, leetcodeUsername);
+      set({ activeProfile: res.active_profile, profiles: res.profiles });
+      await get().loadProgress();
+      await get().loadChallenges();
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  },
+
+  async selectProfile(name: string) {
+    try {
+      const res = await profilesApi.selectProfile(name);
+      set({ activeProfile: res.active_profile, profiles: res.profiles, currentDetail: null, runResult: null });
+      await get().loadProgress();
+      await get().loadChallenges();
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  async deleteProfile(name: string) {
+    try {
+      const res = await profilesApi.deleteProfile(name);
+      set({ activeProfile: res.active_profile, profiles: res.profiles });
+      await get().loadProgress();
+      await get().loadChallenges();
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  async setActiveSet(setVal: 'gfg' | 'neetcode') {
+    const updates: Partial<AppState> = { activeSet: setVal };
+    if (setVal === 'gfg' && get().activeTopic === 'career_path') {
+      updates.activeTopic = 'reference';
+    }
+    set(updates);
+    try {
+      const p = await progressApi.updateProgressSettings(undefined, undefined, undefined, undefined, setVal);
+      set({ 
+        progress: p,
+        activeSet: (p.active_set as 'gfg' | 'neetcode') || 'neetcode'
+      });
+      await get().loadChallenges();
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  async updateSettings(careerMode: boolean, leetcodeUsername: string, geminiApiKey: string) {
+    try {
+      const activeSet = get().activeSet;
+      const p = await progressApi.updateProgressSettings(careerMode, leetcodeUsername, undefined, geminiApiKey, activeSet);
+      set({ progress: p });
+      await get().loadChallenges();
+      await get().loadProfiles();
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  async verifyLeetCode(challengeId: string) {
+    try {
+      const res = await progressApi.verifyLeetCode(challengeId);
+      if (res.success) {
+        await get().loadProgress();
+        await get().loadChallenges();
+        return { success: true, message: res.message };
+      }
+      return { success: false, message: res.message };
+    } catch (e) {
+      console.error(e);
+      return { success: false, message: e instanceof Error ? e.message : 'Unknown verification error' };
     }
   },
 }));

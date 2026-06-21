@@ -1,24 +1,38 @@
-import { useState } from 'react';
-import { useAppStore } from '../store/useAppStore';
+import { useAppStore, Topic } from '../store/useAppStore';
 import { ResultTab } from './layout/tabs/ResultTab';
 import { ComplexityAnalysis } from './ComplexityAnalysis';
 import { ReferenceTab } from './layout/tabs/ReferenceTab';
 import { MathematicalTab } from './layout/tabs/MathematicalTab';
 import { CodenTab } from './layout/tabs/CodenTab';
+import { CareerPathTab } from './layout/tabs/CareerPathTab';
 
-type Topic = 'reference' | 'mathematical' | 'complexity' | 'coden';
 
 export function Workspace() {
   const detail = useAppStore((s) => s.currentDetail);
   const language = useAppStore((s) => s.language);
-  const [activeTopic, setActiveTopic] = useState<Topic>('reference');
+  const activeSet = useAppStore((s) => s.activeSet);
+  const activeTopic = useAppStore((s) => s.activeTopic);
+  const setActiveTopic = useAppStore((s) => s.setActiveTopic);
 
   if (!detail) {
-    return (
-      <div className="flex-1 flex items-center justify-center text-coden-muted">
-        Select a challenge from the sidebar to begin.
-      </div>
-    );
+    if (activeSet === 'neetcode') {
+      return (
+        <div className="flex-1 flex flex-col min-h-0 bg-coden-bg p-6 overflow-y-auto">
+          <CareerPathTab onSelectCodenTab={() => setActiveTopic('coden')} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="flex-1 flex flex-col items-center justify-center min-h-0 bg-coden-bg p-6 text-slate-400 text-center space-y-3 select-none">
+          <span className="text-4xl">💻</span>
+          <h3 className="text-lg font-bold text-white">Welcome to cOde(n)</h3>
+          <p className="text-xs max-w-sm leading-relaxed text-slate-500 font-mono">
+            You are practicing with the <strong>GeeksforGeeks Library</strong>.
+            All 260+ challenges are unlocked. Select any challenge from the left sidebar to start practicing.
+          </p>
+        </div>
+      );
+    }
   }
 
   const topics: { id: Topic; label: string }[] = [
@@ -26,6 +40,7 @@ export function Workspace() {
     { id: 'mathematical', label: language === 'en' ? 'Mathematical' : 'Mathematische Grundlagen' },
     { id: 'complexity', label: 'Complexity Analysis' },
     { id: 'coden', label: 'COde(n)' },
+    ...(activeSet === 'neetcode' ? [{ id: 'career_path' as Topic, label: '🏆 Career Path' }] : []),
   ];
 
   return (
@@ -76,6 +91,12 @@ export function Workspace() {
                 <div className="bg-coden-surface rounded-xl p-6 shadow-lg">
                   <ComplexityAnalysis />
                 </div>
+              </div>
+            )}
+
+            {activeTopic === 'career_path' && (
+              <div className="bg-coden-surface rounded-xl p-6 shadow-lg">
+                <CareerPathTab onSelectCodenTab={() => setActiveTopic('coden')} />
               </div>
             )}
           </div>

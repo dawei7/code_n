@@ -496,8 +496,9 @@ SPECS: list[AlgorithmSpec] = [
         source_url="https://www.geeksforgeeks.org/bubble-sort/",
         source=SORT_01_SOURCE,
         hint="Move larger values toward the end of the list, one pass at a time.",
-        parents=["intro_01"],
+        parents=[],
         children=["sort_02"],
+
         complexity_notes={
             "best":     "O(n) — already-sorted input: one pass, zero swaps. With the early-exit flag this is the canonical optimal case.",
             "average":  "Θ(n²) — random input: roughly half the pairs are out of order, so about n²/4 swaps and n²/2 comparisons.",

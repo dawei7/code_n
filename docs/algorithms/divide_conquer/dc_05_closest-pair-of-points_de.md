@@ -1,46 +1,46 @@
-# Das am nächsten beieinander liegende Punktpaar
+# Closest Pair of Points
 
 | | |
 |---|---|
 | **ID** | `dc_05` |
 | **Kategorie** | divide_conquer |
-| **Komplexität (erforderlich)** | $O(N \log N)$ Zeit, $O(N)$ Speicherplatz |
-| **Schwierigkeitsgrad** | 9/10 |
+| **Komplexität (erforderlich)** | $O(N \log N)$ Zeit, $O(N)$ Platz |
+| **Schwierigkeit** | 9/10 |
 | **Relevanz für Vorstellungsgespräche** | 3/10 |
-| **GeeksForGeeks-Äquivalent** | [Nächstgelegenes Punktpaar](https://www.geeksforgeeks.org/closest-pair-of-points-using-divide-and-conquer-algorithm/) |
+| **GeeksForGeeks Äquivalent** | [Closest Pair of Points](https://www.geeksforgeeks.org/closest-pair-of-points-using-divide-and-conquer-algorithm/) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben ist ein Array mit N Punkten in einer 2D-Ebene, wobei jeder Punkt durch seine `(x, y)`-Koordinaten definiert ist. Finde das Punktpaar, zwischen dem der kleinste euklidische Abstand besteht.
-Gib diesen minimalen Abstand zurück.
+Gegeben ist ein Array von N Punkten in einer 2D-Ebene, wobei jeder Punkt durch seine `(x, y)`-Koordinaten definiert ist. Finden Sie das Punktepaar mit dem kleinsten euklidischen Abstand zueinander.
+Geben Sie diesen minimalen Abstand zurück.
 
-**Eingabe:** Ein Array von `Points`, wobei `Point` die Eigenschaften `x` und `y` aufweist.
-**Ausgabe:** Eine Gleitkommazahl, die den minimalen Abstand angibt.
+**Eingabe:** Ein Array von `Points`, wobei `Point` die Eigenschaften `x` und `y` besitzt.
+**Ausgabe:** Eine Fließkommazahl, die den minimalen Abstand repräsentiert.
 
 ## Wann man es verwendet
 
-- Das typische Problem der Computational Geometry für die „Teile und herrsche“-Strategie.
-- Zeigt, wie das Sortieren den „Herrsche“-Schritt (Zusammenführen) räumlicher Algorithmen stark optimiert, um $O(N^2)$-Prüfungen zu umgehen.
+- Das klassische Problem der Computergeometrie für Divide and Conquer.
+- Zeigt, wie Sortieren den "Conquer"-Schritt (Merge-Schritt) von räumlichen Algorithmen massiv optimiert, um $O(N^2)$-Prüfungen zu umgehen.
 
-## Vorgehensweise
+## Ansatz
 
 **1. Der naive Ansatz:**
-Berechne den euklidischen Abstand zwischen jedem möglichen Punktpaar. Bei \frac{N(N-1)}{2} Paaren handelt es sich um eine streng $O(N^2)$-Zeitaufwendung.
+Berechnen Sie den euklidischen Abstand zwischen jedem möglichen Punktepaar. \frac{N(N-1)}{2} Paare bedeuten, dass dies strikt $O(N^2)$ Zeit benötigt.
 
-**2. Teile und herrsche:**
+**2. Divide and Conquer:**
 Sortieren wir alle Punkte nach ihrer `x`-Koordinate.
-Wir können die Punkte in eine linke und eine rechte Hälfte unterteilen, indem wir eine vertikale Linie `L` genau durch die Mitte der `x`-Koordinate ziehen.
-Finde rekursiv das nächstgelegene Paar in der linken Hälfte (d_{left}) und das nächstgelegene Paar in der rechten Hälfte (d_{right}).
+Wir können die Punkte in eine linke und eine rechte Hälfte unterteilen, indem wir eine vertikale Linie `L` genau durch die mittlere `x`-Koordinate ziehen.
+Finden Sie rekursiv das nächste Paar in der linken Hälfte (d_{left}) und das nächste Paar in der rechten Hälfte (d_{right}).
 Sei d = \min(d_{left}, d_{right}).
-Ist d der absolute Mindestabstand? Nicht unbedingt! Was ist, wenn sich ein Punkt am äußersten rechten Rand der linken Hälfte und der andere Punkt am äußersten linken Rand der rechten Hälfte befindet? Sie liegen beiderseits der Trennlinie `L` und könnten näher beieinander liegen als d!
+Ist d der absolute minimale Abstand? Nicht unbedingt! Was, wenn ein Punkt am äußersten rechten Rand der linken Hälfte liegt und der andere Punkt am äußersten linken Rand der rechten Hälfte? Sie liegen beidseitig der Trennlinie `L` und könnten näher beieinander liegen als d!
 
-**3. Der „Streifen“ (Eroberungsschritt):**
-Uns interessieren nur Punkte, die näher an der Trennlinie `L` liegen als der Abstand d. Liegt ein Punkt weiter als d von der Linie entfernt, ist es mathematisch unmöglich, dass er ein Paar über die Linie hinweg bildet, dessen Abstand kleiner als d ist.
-1. Erstelle ein Array `strip`, das nur die Punkte enthält, deren `x`-Koordinate innerhalb von d zur Trennlinie `L` liegt.
-2. **Sortiere das `strip`-Array nach den `y`-Koordinaten.**
-3. Durchlaufe das `strip`. Vergleiche für jeden Punkt diesen mit den nächsten Punkten im Streifen.
-   *Die geniale Optimierung:* Da die Punkte im Streifen durch eine Breite von 2d begrenzt sind und wir sie nach `y` sortiert haben, ist mathematisch bewiesen, dass wir NUR die nächsten **7 Punkte** vor ihm im sortierten Array überprüfen müssen! Jeder Punkt, der weiter als 7 Stellen entfernt ist, hat definitiv einen `y`-Abstand, der größer als d ist.
-   Dadurch reduziert sich der Zusammenführungsschritt von einem $O(N^2)$-Quervergleich auf einen $O(N)$-linearen Scan!
+**3. Der "Streifen" (Conquer-Schritt):**
+Wir betrachten nur Punkte, die näher an der Trennlinie `L` liegen als der Abstand d. Wenn ein Punkt weiter als d von der Linie entfernt ist, ist es mathematisch unmöglich, dass er ein Paar über die Linie hinweg bildet, dessen Abstand kleiner als d ist.
+1. Erstellen Sie ein Array `strip`, das nur die Punkte enthält, deren `x`-Koordinate innerhalb von d zur Trennlinie `L` liegt.
+2. **Sortieren Sie das `strip`-Array nach den `y`-Koordinaten.**
+3. Iterieren Sie durch den `strip`. Vergleichen Sie jeden Punkt mit den nachfolgenden Punkten im Streifen.
+   *Die magische Optimierung:* Da die Punkte im Streifen durch eine Breite von 2d begrenzt sind und wir sie nach `y` sortiert haben, ist mathematisch bewiesen, dass wir NUR die nächsten **7 Punkte** im sortierten Array prüfen müssen! Jeder Punkt, der weiter als 7 Stellen entfernt ist, wird definitiv einen `y`-Abstand größer als d haben.
+   Dies reduziert den Merge-Schritt von einem $O(N^2)$-Kreuzvergleich auf einen linearen $O(N)$-Durchlauf!
 
 ## Algorithmus
 
@@ -96,19 +96,19 @@ def _closest(px, lo, hi):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Ablauf
 
 *(Konzeptionell aufgrund der räumlichen Anordnung)*
 
-1. Die Punkte werden nach X sortiert. Die linke Hälfte wird rekursiv bearbeitet, die rechte Hälfte wird rekursiv bearbeitet.
-2. Angenommen, `d_left = 5` und `d_right = 7`.
+1. Punkte werden nach X sortiert. Die linke Hälfte wird rekursiv verarbeitet, die rechte Hälfte ebenfalls.
+2. Angenommen `d_left = 5` und `d_right = 7`.
 3. Das aktuelle absolute Minimum ist `d = 5`.
 4. Die Trennlinie `L` liegt bei `X = 10`.
-5. Wir durchlaufen die Punkte. Jeder Punkt, dessen X-Koordinate zwischen `5` und `15` liegt, wird zu `strip` hinzugefügt.
-6. Wir sortieren die `strip` nach ihrer Y-Koordinate (z. B. von unten nach oben).
-7. Wir durchlaufen die `strip`. Für den Punkt P_1 prüfen wir P_2, P_3 \dots
-8. Wenn der vertikale Abstand zwischen P_1 und P_k `5` überschreitet, brechen wir die innere Schleife SOFORT ab, da kein höher gelegener Punkt näher als `5` sein kann.
-9. Die innere Schleife wird pro Punkt nie öfter als 7 Mal ausgeführt, wodurch der Vergleich blitzschnell bleibt.
+5. Wir scannen die Punkte. Jeder Punkt, dessen X-Koordinate zwischen `5` und `15` liegt, wird dem `strip` hinzugefügt.
+6. Wir sortieren den `strip` nach der Y-Koordinate (z. B. von unten nach oben).
+7. Wir iterieren durch den `strip`. Für Punkt P_1 prüfen wir P_2, P_3 \dots
+8. Wenn der vertikale Abstand zwischen P_1 und P_k `5` übersteigt, brechen wir die innere Schleife SOFORT ab, da kein weiter oben liegender Punkt näher als `5` sein kann.
+9. Die innere Schleife wird nie öfter als 7 Mal pro Punkt ausgeführt, was den Vergleich extrem schnell macht.
 
 ## Komplexität
 
@@ -116,29 +116,25 @@ def _closest(px, lo, hi):
 |---|---|---|
 | **Bestfall** | $O(N \log N)$ | $O(N)$ |
 | **Durchschnittlicher Fall** | $O(N log^2 N)$ | $O(N)$ |
-| **Schlechteste** | $O(N log^2 N)$ | $O(N)$ |
+| **Schlechtester Fall** | $O(N log^2 N)$ | $O(N)$ |
 
-Der obige Code benötigt $O(N log^2 N)$ Zeit. Warum? Die Rekursionstiefe beträgt $O(\log N)$. Auf jeder Ebene dauert das Erstellen des Streifens $O(N)$, das Sortieren des Streifens nach Y jedoch $O(k log k)$, wobei k \le N gilt. Die innere while-Schleife ist streng $O(N)$ total. Somit dominiert die Sortierung den Zusammenführungsschritt: T(N) = 2T(N/2) + $O(N \log N)$ -> $O(N log^2 N)$.
-**Optimierung auf streng $O(N \log N)$:** Wenn wir die Punkte ganz am Anfang global nach Y vorsortieren (`points_sorted_y`) und dieses nach Y sortierte Array während des Divide-Schritts sorgfältig in eine linke und eine rechte Hälfte aufteilen, müssen wir den Streifen nicht erneut sortieren! Der Merge-Schritt wird zu reinem $O(N)$, womit T(N) = 2T(N/2) + $O(N)$ -> $O(N \log N)$ erfüllt ist.
+Der obige Code benötigt $O(N log^2 N)$ Zeit. Warum? Die Rekursionstiefe beträgt $O(\log N)$. Auf jeder Ebene benötigt das Erstellen des Streifens $O(N)$, aber das Sortieren des Streifens nach Y benötigt $O(k log k)$, wobei k \le N. Die innere While-Schleife ist insgesamt strikt $O(N)$. Daher dominiert das Sortieren den Merge-Schritt: T(N) = 2T(N/2) + $O(N \log N)$ -> $O(N log^2 N)$.
+**Optimierung auf strikt $O(N \log N)$:** Wenn wir die Punkte zu Beginn global nach Y vorsortieren (`points_sorted_y`) und dieses Y-sortierte Array während des Divide-Schritts sorgfältig in linke und rechte Hälften aufteilen, müssen wir den Streifen nicht erneut sortieren! Der Merge-Schritt wird rein $O(N)$, was T(N) = 2T(N/2) + $O(N)$ -> $O(N \log N)$ erfüllt.
 Die Platzkomplexität beträgt $O(N)$, um die Arrays während der Rekursion zu speichern.
 
 ## Varianten & Optimierungen
 
-- **Sweep-Line-Algorithmus:** Ein Ansatz, der gänzlich ohne „Teile und herrsche“ auskommt und einen Binary Search Tree verwendet (wie `std::set` in C++). Man fegt eine vertikale Linie von links nach rechts und behält dabei ein „aktives Fenster“ von Punkten innerhalb der Entfernung d bei, sortiert nach Y. Er erreicht $O(N \log N)$, ist in der Praxis jedoch oft viel schneller und einfacher zu programmieren.
+- **Sweep-Line-Algorithmus:** Ein Ansatz, der vollständig ohne Divide and Conquer auskommt und einen Binary Search Tree (wie `std::set` in C++) verwendet. Man bewegt eine vertikale Linie von links nach rechts und verwaltet ein "aktives Fenster" von Punkten innerhalb des Abstands d, sortiert nach Y. Er erreicht $O(N \log N)$, ist aber in der Praxis oft viel schneller und einfacher zu implementieren.
 
-## Praktische Anwendungen
+## Anwendungen in der Praxis
 
-- **Flugsicherung:** Erkennung, ob sich zwei Flugzeuge im 3D-Radarraum auf Kollisionskurs befinden (und damit die Mindestabstände für einen sicheren Flug verstoßen).
-- **Physiksimulatoren (Kollisionserkennung):** Ermittlung, welche Partikel im aktuellen Bild miteinander interagieren oder voneinander abprallen, ohne jedes einzelne Atompaar in der Simulation zu überprüfen.
+- **Flugsicherung:** Erkennung, ob sich zwei Flugzeuge auf Kollisionskurs befinden (Verletzung der minimalen Sicherheitsabstände) im 3D-Radarraum.
+- **Physik-Simulatoren (Kollisionserkennung):** Identifizierung, welche Partikel im aktuellen Frame interagieren oder abprallen, ohne jedes einzelne Atompaar in der Simulation prüfen zu müssen.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dc_02 – Majority Element](dc_02_majority-element.md)** — Ein weiterer Algorithmus, bei dem im „Conquer“-Schritt Elemente anhand eines dynamisch abgeleiteten Schwellenwerts validiert werden müssen.
+- **[dc_02 - Majority Element](dc_02_majority-element.md)** — Ein weiterer Algorithmus, bei dem der Conquer-Schritt die Validierung von Elementen gegen einen dynamisch abgeleiteten Schwellenwert erfordert.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag für cOde(n),
-der sich an der kanonischen Struktur orientiert, die von Referenzseiten
-zum Thema Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) erstellt wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

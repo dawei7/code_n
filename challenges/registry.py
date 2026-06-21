@@ -19,7 +19,6 @@ def _collect_specs() -> list[AlgorithmSpec]:
     stable.
     """
     from challenges.algorithms import (
-        intro,
         bit_manipulation,
         sorting,
         searching,
@@ -46,9 +45,9 @@ def _collect_specs() -> list[AlgorithmSpec]:
         approximation,
         suffix_array,
         fenwick,
+        neetcode,
     )
     return [
-        *intro.SPECS,
         *bit_manipulation.SPECS,
         *sorting.SPECS,
         *searching.SPECS,
@@ -75,7 +74,9 @@ def _collect_specs() -> list[AlgorithmSpec]:
         *approximation.SPECS,
         *suffix_array.SPECS,
         *fenwick.SPECS,
+        *neetcode.SPECS,
     ]
+
 
 
 # Pre-build the registry. Each spec becomes a Challenge subclass.

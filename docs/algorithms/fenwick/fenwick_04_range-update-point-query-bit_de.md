@@ -1,49 +1,49 @@
-# Bereichsaktualisierung, Punktabfrage (BIT)
+# Bereichs-Update, Punkt-Abfrage (BIT)
 
 | | |
 |---|---|
 | **ID** | `fenwick_04` |
 | **Kategorie** | fenwick |
-| **Komplexität (erforderlich)** | $O(\log N)$ Abfrage/Aktualisierung |
-| **Schwierigkeitsgrad** | 6/10 |
-| **Relevanz für Vorstellungsgespräche** | 4/10 |
+| **Komplexität (erforderlich)** | $O(\log N)$ Abfrage/Update |
+| **Schwierigkeit** | 6/10 |
+| **Interview-Relevanz** | 4/10 |
 | **LeetCode-Äquivalent** | (Klassische BIT-Variante) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben sei ein Array der Größe N, das auf 0 initialisiert ist. Implementieren Sie einen Fenwick Tree, der ein invertiertes Paradigma unterstützt:
-1. `range_update(left, right, delta)`: Fügen Sie `delta` zu **jedem einzelnen Element** im inklusiven Bereich `[left, right]` hinzu.
-2. `point_query(index)`: Gib den aktuellen Wert des Elements an Position `index` zurück.
+Gegeben sei ein Array der Größe N, das mit 0 initialisiert ist. Implementieren Sie einen Fenwick Tree, der ein umgekehrtes Paradigma unterstützt:
+1. `range_update(left, right, delta)`: Addiere `delta` zu **jedem einzelnen Element** im inklusiven Bereich `[left, right]`.
+2. `point_query(index)`: Gib den aktuellen Wert des Elements an `index` zurück.
 
-Beide Operationen müssen in streng $O(\log N)$ Zeit ausgeführt werden.
+Beide Operationen müssen in strikter $O(\log N)$-Zeit ausgeführt werden.
 
-**Eingabe:** Eine Folge von `range_update`- und `point_query`-Operationen.
-**Ausgabe:** Die Ergebnisse der Punktabfragen.
+**Eingabe:** Eine Sequenz von `range_update`- und `point_query`-Operationen.
+**Ausgabe:** Die Ergebnisse der Punkt-Abfragen.
 
 ## Wann man es verwendet
 
-- Wenn man ein riesiges Array hat, in dem man häufig pauschale Änderungen vornimmt (z. B. „allen Einheiten im Bereich 10–50 +500 HP geben“), aber nur den Status einzelner Einheiten kennen muss, nicht die Summen für den gesamten Bereich.
-- Dies ist das perfekte Gegenstück zum Standard-Fenwick Tree (`fenwick_02`), der Punktaktualisierungen und Bereichsabfragen verarbeitet!
+- Wenn Sie ein massives Array haben, bei dem Sie häufig flächendeckende Änderungen vornehmen (z. B. „gib +500 HP an alle Einheiten im Bereich 10-50“), aber nur den Status einzelner Einheiten abfragen müssen, nicht die Summen über Bereiche.
+- Dies kehrt den Standard-Fenwick Tree (`fenwick_02`) perfekt um, welcher Punkt-Updates und Bereichs-Abfragen handhabt!
 
-## Vorgehensweise
+## Ansatz
 
-Würden wir ein Standard-BIT verwenden, würde ein `range_update` erfordern, von `left` bis `right` zu durchlaufen und für jedes Element `point_update` aufzurufen. Das dauert $O(K log N)$, wobei K die Bereichslänge ist. Ist K groß, degeneriert dies zu $O(N \log N)$.
+Würden wir einen Standard-BIT verwenden, müsste ein `range_update` von `left` bis `right` iterieren und `point_update` für jedes Element aufrufen. Das benötigt $O(K \log N)$, wobei K die Länge des Bereichs ist. Wenn K groß ist, degeneriert dies zu $O(N \log N)$.
 
 **Der Differenz-Array-Ansatz:**
-Wir ändern, was das BIT physisch speichert. Anstatt die Array-Werte zu speichern, speichert das BIT das **Differenz-Array**.
-In einem Differenzarray gilt `diff[i] = arr[i] - arr[i-1]`.
-Das bedeutet, dass der tatsächliche Wert von `arr[index]` genau der Präfixsumme des Differenzarrays von 0 bis `index` entspricht!
+Wir ändern, was der BIT physisch speichert. Anstatt die Array-Werte zu speichern, speichert der BIT das **Differenz-Array**.
+In einem Differenz-Array gilt `diff[i] = arr[i] - arr[i-1]`.
+Das bedeutet, der tatsächliche Wert von `arr[index]` entspricht exakt der Präfixsumme des Differenz-Arrays von 0 bis `index`!
 
-Wenn das BIT Differenzen speichert:
-1. **Bereichsaktualisierung von `[L, R]` mit `delta`:**
-   - Wir müssen das Differenzarray nur an zwei Stellen bearbeiten!
-   - `BIT.add(L, delta)`: Dies addiert effektiv `delta` zum Element L und *zu jedem darauf folgenden Element für immer*.
-   - `BIT.add(R + 1, -delta)`: Dies hebt das `delta` für alle Elemente, die streng nach R liegen, auf.
-   - Dies erfordert genau zwei $O(\log N)$-Operationen!
-2. **Punktabfrage bei `index`:**
-   - Der Wert ist einfach die Präfixsumme des Differenzarrays bis `index`.
+Da der BIT nun Differenzen speichert:
+1. **Bereichs-Update `[L, R]` mit `delta`:**
+   - Wir müssen das Differenz-Array nur an zwei Stellen anpassen!
+   - `BIT.add(L, delta)`: Dies addiert effektiv `delta` zum Element L und zu *jedem darauf folgenden Element*.
+   - `BIT.add(R + 1, -delta)`: Dies hebt das `delta` für alle Elemente nach R wieder auf.
+   - Dies benötigt exakt zwei $O(\log N)$-Operationen!
+2. **Punkt-Abfrage an `index`:**
+   - Der Wert ist einfach die Präfixsumme des Differenz-Arrays bis `index`.
    - `BIT.query_prefix(index)`.
-   - Dies erfordert genau eine $O(\log N)$-Operation!
+   - Dies benötigt exakt eine $O(\log N)$-Operation!
 
 ## Algorithmus
 
@@ -101,25 +101,25 @@ def solve(arr, n, range_updates, point_queries, q):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Ablaufbeispiel
 
-Array der Größe 5 (Indizes 0 bis 4). Anfangs sind alle Elemente 0.
-BIT speichert die Differenzen.
+Array der Größe 5 (Indizes 0 bis 4). Anfangs alles 0.
+Der BIT speichert Differenzen.
 
-**1. Bereich [1, 3] mit +10 aktualisieren:**
-- `_add(2, 10)`: Die Elemente 1, 2, 3, 4 haben nun logisch gesehen +10.
-- `_add(5, -10)`: Bei Element 4 wird das +10 aufgehoben.
+**1. Bereichs-Update [1, 3] mit +10:**
+- `_add(2, 10)`: Die Elemente 1, 2, 3, 4 haben nun logisch +10.
+- `_add(5, -10)`: Element 4 hat das +10 wieder aufgehoben.
 - Logischer Array-Zustand: `[0, 10, 10, 10, 0]`.
 
-**2. Bereich [2, 4] um +5 aktualisieren:**
-- `_add(3, 5)`: Die Elemente 2, 3 und 4 erhalten +5.
+**2. Bereichs-Update [2, 4] mit +5:**
+- `_add(3, 5)`: Die Elemente 2, 3, 4 erhalten +5.
 - `_add(6, -5)`: Außerhalb des Bereichs, wird ignoriert.
 - Logischer Array-Zustand: `[0, 10, 15, 15, 5]`.
 
-**3. Punktabfrage (Index 2):**
-- Präfixsumme bis zum Index 2 (1-basierter Index 3).
-- Summe = `_add(2)` + `_add(3)` Auswirkungen.
-- Das Ergebnis ergibt genau `15`. ✓
+**3. Punkt-Abfrage(index 2):**
+- Präfixsumme bis Index 2 (1-basierter Index 3).
+- Summe = `_add(2)` + `_add(3)` Effekte.
+- Ergebnis ergibt exakt `15`. ✓
 
 ## Komplexität
 
@@ -129,26 +129,22 @@ BIT speichert die Differenzen.
 | **Durchschnittlicher Fall** | $O(\log N)$ | $O(N)$ |
 | **Schlechtester Fall** | $O(\log N)$ | $O(N)$ |
 
-Beide Operationen laufen darauf hinaus, dass die Standard-BIT-Funktionen `_add` oder `_query_prefix` eine konstante Anzahl von Malen (1 oder 2) ausgeführt werden. Daher sind alle Operationen streng $O(\log N)$.
-Die Platzkomplexität beträgt $O(N)$ für die Zuweisung des Arrays.
+Beide Operationen reduzieren sich darauf, die Standard-BIT-Funktionen `_add` oder `_query_prefix` eine konstante Anzahl von Malen (1 oder 2) auszuführen. Daher sind alle Operationen strikt $O(\log N)$.
+Die Platzkomplexität beträgt $O(N)$ für die Array-Allokation.
 
 ## Varianten & Optimierungen
 
-- **Segment Tree mit Lazy Propagation:** Ein Segment Tree kann Bereichsaktualisierungen ebenfalls in $O(\log N)$-Zeit durchführen, erfordert jedoch „Lazy Propagation“ (das Speichern ausstehender Aktualisierungen in Knoten und deren Weitergabe an untergeordnete Knoten bei Abfragen). Der Fenwick-Differenz-Ansatz ist in der Programmierung etwa fünfmal kürzer und in Bezug auf die Konstanten streng genommen schneller!
+- **Segment Tree mit Lazy Propagation:** Ein Segment Tree kann Bereichs-Updates ebenfalls in $O(\log N)$-Zeit durchführen, erfordert jedoch „Lazy Propagation“ (das Speichern ausstehender Updates in Knoten und deren Weitergabe an Kinder während der Abfragen). Der Fenwick-Differenz-Ansatz ist etwa 5-mal kürzer zu implementieren und bei den Konstanten strikt schneller!
 
-## Praktische Anwendungen
+## Anwendungen in der Praxis
 
-- **Gaming:** Anwendung umfangreicher Status-Buffs/Debuffs mit Flächenwirkung (Area of Effect, AoE) auf Einheiten, die in Tower-Defense-Rastern aufgereiht sind, und anschließende sofortige Abfrage der individuellen Einheitswerte bei der Schadensberechnung.
+- **Gaming:** Anwenden massiver Area-of-Effect (AoE) Status-Buffs/Debuffs auf Einheiten, die in Tower-Defense-Gittern aufgereiht sind, und anschließendes sofortiges Abfragen individueller Einheiten-Statistiken während Schadensberechnungen.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[fenwick_02 – Range-Sum-Abfrage](fenwick_02_range-sum-query-bit.md)** — Das exakte Gegenteil dieser Struktur.
-- **[fenwick_05 – Range Update Range Query](fenwick_05_range-update-range-query-bit.md)** – Die ultimative Fusion, die diese Differenz-Array-Logik mit einem zweiten BIT kombiniert, um BEIDE Bereichsoperationen zu unterstützen!
+- **[fenwick_02 - Range Sum Query](fenwick_02_range-sum-query-bit.md)** — Das exakte Gegenstück zu dieser Struktur.
+- **[fenwick_05 - Range Update Range Query](fenwick_05_range-update-range-query-bit.md)** — Die ultimative Fusion, die diese Differenz-Array-Logik mit einem zweiten BIT kombiniert, um BEIDE Bereichsoperationen zu unterstützen!
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-in Anlehnung an die kanonische Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) verfasst wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

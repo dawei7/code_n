@@ -1,52 +1,52 @@
-# 2D-Fenwick Tree (Summe einer Teilmatrix)
+# 2D Fenwick Tree (Sub-matrix Sum)
 
 | | |
 |---|---|
 | **ID** | `fenwick_03` |
-| **Kategorie** | fenwick |
-| **Komplexität (erforderlich)** | $O(log N * log M)$ Abfrage/Aktualisierung |
-| **Schwierigkeitsgrad** | 7/10 |
-| **Relevanz für Vorstellungsgespräche** | 3/10 |
-| **LeetCode-Äquivalent** | [Range Sum Query 2D – Mutable](https://leetcode.com/problems/range-sum-query-2d-mutable/) |
+| **Category** | fenwick |
+| **Complexity (required)** | $O(log N * log M)$ Query/Update |
+| **Difficulty** | 7/10 |
+| **Interview relevance** | 3/10 |
+| **LeetCode Equivalent** | [Range Sum Query 2D - Mutable](https://leetcode.com/problems/range-sum-query-2d-mutable/) |
 
-## Aufgabenstellung
+## Problem statement
 
-Gegeben sei eine 2D-Matrix der Dimensionen N × M. Implementiere einen zweidimensionalen Fenwick Tree, der Folgendes unterstützt:
-1. `update(row, col, value)`: Aktualisiere die Matrix an der Position `(row, col)` auf den neuen Wert `value`.
-2. `query(row1, col1, row2, col2)`: Die Summe der Elemente innerhalb des Rechtecks zurückgeben, das durch seine obere linke Ecke `(row1, col1)` und seine untere rechte Ecke `(row2, col2)` definiert ist.
+Gegeben ist eine 2D-Matrix der Dimensionen N x M. Implementieren Sie einen 2-dimensionalen Fenwick Tree, der folgende Operationen unterstützt:
+1. `update(row, col, value)`: Aktualisieren Sie die Matrix an der Position `(row, col)` auf den neuen `value`.
+2. `query(row1, col1, row2, col2)`: Geben Sie die Summe der Elemente innerhalb des Rechtecks zurück, das durch die obere linke Ecke `(row1, col1)` und die untere rechte Ecke `(row2, col2)` definiert ist.
 
-Beide Operationen müssen deutlich schneller als $O(N)$ sein.
+Beide Operationen müssen strikt schneller als $O(N)$ Zeit sein.
 
-**Eingabe:** Eine 2D-Matrix sowie eine Reihe von `update`- und `query`-Operationen.
-**Ausgabe:** Die Ergebnisse der Bereichsabfragen.
+**Input:** Eine 2D-Matrix und eine Reihe von `update`- und `query`-Operationen.
+**Output:** Die Ergebnisse der Bereichsabfragen (Range Queries).
 
-## Wann sollte man es verwenden?
+## When to use it
 
-- Wenn Sie ein riesiges Raster (z. B. ein Bild, eine Spielkarte) mit sich ständig ändernden Werten haben und Bereichssummen abfragen müssen.
-- Dies ist die veränderbare Version der Standard-„2D-Präfixsummen“-Matrix. Eine Standard-2D-Präfixsumme beantwortet Abfragen in $O(1)$, benötigt jedoch $O(N \times M)$ für die Aktualisierung eines einzelnen Pixels! Ein 2D-Fenwick Tree aktualisiert sich in Bruchteilen einer Millisekunde.
+- Wenn Sie ein massives Gitter (z. B. ein Bild, eine Spielkarte) mit sich ständig ändernden Werten haben und Flächensummen abfragen müssen.
+- Dies ist die veränderbare (mutable) Version der Standard-Matrix für "2D Prefix Sum". Eine Standard-2D-Präfixsumme beantwortet Abfragen in $O(1)$, benötigt aber $O(N \times M)$, um ein einzelnes Pixel zu aktualisieren! Ein 2D-Fenwick-Baum führt Aktualisierungen in Bruchteilen einer Millisekunde durch.
 
-## Vorgehensweise
+## Approach
 
-Ein 1D-Fenwick Tree ist ein Array, in dem `BIT[x]` die Summe eines horizontalen Bereichs enthält.
-Ein 2D-Fenwick Tree ist einfach ein 2D-Array (eine Matrix), in dem `BIT[x][y]` die Summe eines **Rechtecks** enthält, das bei `(x, y)` endet. Die Breite des Rechtecks wird durch das niedrigste gesetzte Bit von `x` bestimmt, und die Höhe wird durch das niedrigste gesetzte Bit von `y` bestimmt!
+Ein 1D-Fenwick Tree ist ein Array, bei dem `BIT[x]` die Summe eines horizontalen Bereichs enthält.
+Ein 2D-Fenwick Tree ist einfach ein 2D-Array (Matrix), bei dem `BIT[x][y]` die Summe eines **Rechtecks** enthält, das bei `(x, y)` endet. Die Breite des Rechtecks wird durch das niedrigste gesetzte Bit von `x` bestimmt, und die Höhe wird durch das niedrigste gesetzte Bit von `y` bestimmt!
 
-**2D-Punktaktualisierung:**
+**2D Point Update:**
 Anstelle einer einzelnen `while`-Schleife verwenden wir zwei verschachtelte `while`-Schleifen!
-Für eine gegebene `(row, col)`-Aktualisierung mit `delta`:
-Wir durchlaufen `x` in aufsteigender Reihenfolge durch die Zeilen. Innerhalb dieser Schleife durchlaufen wir `y` in aufsteigender Reihenfolge durch die Spalten und addieren `delta` zu `BIT[x][y]`.
+Für ein gegebenes `(row, col)`-Update mit `delta`:
+Wir iterieren `x` aufwärts durch die Zeilen. Innerhalb dieser Schleife iterieren wir `y` aufwärts durch die Spalten und addieren `delta` zu `BIT[x][y]`.
 
-**2D-Präfixabfrage:**
+**2D Prefix Query:**
 Um die Summe des Rechtecks von `(0,0)` bis `(row, col)` zu erhalten:
-Wir durchlaufen `x` nach unten. Innerhalb dieser Schleife durchlaufen wir `y` nach unten und akkumulieren `BIT[x][y]`.
+Wir iterieren `x` abwärts. Innerhalb dieser Schleife iterieren wir `y` abwärts und akkumulieren `BIT[x][y]`.
 
-**2D-Bereichsabfrage:**
-Genau wie bei 2D-Präfixsummen wird bei der Abfrage einer Teilmatrix von `(r1, c1)` bis `(r2, c2)` das Inklusions-Exklusions-Prinzip angewendet:
+**2D Range Query:**
+Genau wie bei 2D-Präfixsummen verwendet die Abfrage einer Sub-Matrix `(r1, c1)` bis `(r2, c2)` das Inklusions-Exklusions-Prinzip:
 `Area = Prefix(r2, c2) - Prefix(r1-1, c2) - Prefix(r2, c1-1) + Prefix(r1-1, c1-1)`.
 
-## Algorithmus
+## Algorithm
 
 <details>
-<summary>Algorithmus anzeigen</summary>
+<summary>Show Algorithm</summary>
 
 ```python
 """Optimal solution for fenwick_03: 2D Fenwick Tree (Sub-matrix Sum).
@@ -119,54 +119,50 @@ def solve(matrix, n, updates, queries, q):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Walk-through
 
 *(Konzeptionell)*
 `matrix = [[1, 2], [3, 4]]`
 
-1. **Abfrage des Bereichs (0,0) bis (1,1):**
+1. **Query Region (0,0) to (1,1):**
    - Wir benötigen `Pref(2,2) - Pref(0,2) - Pref(2,0) + Pref(0,0)`.
-   - `Pref(0, x)` und `Pref(x, 0)` geben natürlich `0` zurück, da die `while i > 0`-Schleife sofort beendet wird.
-   - Wir berechnen `Pref(2,2)`, indem wir die `BIT`-Werte von oben nach unten akkumulieren.
+   - `Pref(0, x)` und `Pref(x, 0)` geben natürlicherweise `0` zurück, da die `while i > 0`-Schleife sofort terminiert.
+   - Wir berechnen `Pref(2,2)` durch Akkumulation der `BIT`-Werte abwärts.
    - Ergebnis: 1 + 2 + 3 + 4 = 10. ✓
 
-2. **Update(0, 1, Wert=5):**
-   - Der alte Wert ist 2. Der neue ist 5. `delta = 3`.
+2. **Update(0, 1, value=5):**
+   - Alter Wert ist 2. Neuer Wert ist 5. `delta = 3`.
    - `_add(1, 2, delta=3)`
-   - Schleife `i` von 1 bis `rows`. Darin Schleife `j` von 2 bis `cols`.
+   - Schleife `i` von 1 bis `rows`. Innerhalb davon Schleife `j` von 2 bis `cols`.
    - `BIT[1][2] += 3`.
    - `BIT[2][2] += 3`.
-   - Der Baum spiegelt die 2D-Mutation sofort wider! ✓
+   - Der Baum spiegelt sofort die 2D-Mutation wider! ✓
 
-## Komplexität
+## Complexity
 
 | | Zeit | Platz |
 |---|---|---|
 | **Bestfall** | $O(1)$ | $O(N * M)$ |
 | **Durchschnittlicher Fall** | $O(log N * log M)$ | $O(N * M)$ |
-| **Schlechteste** | $O(log N * log M)$ | $O(N * M)$ |
+| **Schlechtester Fall** | $O(log N * log M)$ | $O(N * M)$ |
 
-Aufgrund der beiden verschachtelten `while`-Schleifen, die Bits manipulieren, benötigen die Operationen $O(log N x log M)$ Zeit. Bei einer 1000 × 1000-Matrix sind das etwa 10 × 10 = 100 Operationen, was unglaublich schnell ist!
-Die Platzkomplexität beträgt $O(N \times M)$ für die Speicherung der 2D-BIT-Arrays.
+Aufgrund der zwei verschachtelten `while`-Schleifen, die die Bits manipulieren, benötigen die Operationen $O(log N \times log M)$ Zeit. Für eine 1000 x 1000 Matrix sind das etwa 10 x 10 = 100 Operationen, was unglaublich schnell ist!
+Die Platzkomplexität beträgt $O(N \times M)$, um die 2D-BIT-Arrays zu speichern.
 
-## Varianten & Optimierungen
+## Variants & optimizations
 
-- **3D-Fenwick Tree:** Die Logik lässt sich unendlich erweitern! Man kann einfach eine dritte `while`-Schleife für die Z-Achse verschachteln, um 3D-Volumina im Raum in $O(log N x log M x log Z)$ Zeit abzufragen.
+- **3D Fenwick Tree:** Die Logik lässt sich beliebig erweitern! Sie können einfach eine dritte `while`-Schleife für die Z-Achse verschachteln, um 3D-Volumina im Raum in $O(log N \times log M \times log Z)$ Zeit abzufragen.
 
-## Praktische Anwendungen
+## Real-world applications
 
-- **Computer Vision & Grafik:** Sofortige Anpassung von Helligkeits-/Kontrastbereichen in Bildbearbeitungsprogrammen und Berechnung der durchschnittlichen Leuchtdichte von begrenzten Pixelrechtecken.
-- **Räumliche Indizierung:** Schnelle Abfrage von Dichte/Bevölkerungszahlen innerhalb rechteckiger Koordinatengrenzen auf dynamischen, gitterbasierten Karten.
+- **Computer Vision & Grafik:** Sofortige Anpassung von Helligkeits-/Kontrastbereichen in Bildbearbeitungsprogrammen und Berechnung der durchschnittlichen Leuchtdichte von begrenzten Pixel-Rechtecken.
+- **Spatial Indexing:** Schnelle Abfrage von Dichte/Populationen innerhalb rechteckiger Koordinatengrenzen auf dynamischen, gitterbasierten Karten.
 
-## Verwandte Algorithmen in cOde(n)
+## Related algorithms in cOde(n)
 
-- **[fenwick_02 – Range-Sum-Abfrage](fenwick_02_range-sum-query-bit.md)** — Der 1D-Vorläufer.
-- **[dynamic_10 - Max Maximal Square](../dynamic/dp_10_unique-paths.md)** *(Konzeptioneller Zusammenhang)* — Standardmäßige 2D-DP-/Präfixmatrizen basieren auf genau derselben Inklusions-Exklusions-Geometrie.
+- **[fenwick_02 - Range Sum Query](fenwick_02_range-sum-query-bit.md)** — Der 1D-Vorläufer.
+- **[dynamic_10 - Max Maximal Square](../dynamic/dp_10_unique-paths.md)** *(Konzeptioneller Link)* — Standard 2D-DP/Präfix-Matrizen basieren auf der exakt gleichen Inklusions-Exklusions-Geometrie.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-nach dem Vorbild der kanonischen Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) verfasst wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

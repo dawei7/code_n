@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import math
 from enum import Enum
+from typing import Optional
 
 
 class ComplexityClass(Enum):
@@ -43,6 +44,25 @@ _CLASSES_IN_ORDER: tuple[ComplexityClass, ...] = (
     ComplexityClass.O_N3,
     ComplexityClass.O_2N,
 )
+
+
+def get_complexity_factor(n: int, complexity_class: ComplexityClass) -> float:
+    """Compute the base complexity factor for a given class at size n."""
+    if complexity_class == ComplexityClass.O_1:
+        return 1.0
+    elif complexity_class == ComplexityClass.O_LOG_N:
+        return math.log2(max(n, 2))
+    elif complexity_class == ComplexityClass.O_N:
+        return float(n)
+    elif complexity_class == ComplexityClass.O_N_LOG_N:
+        return n * math.log2(max(n, 2))
+    elif complexity_class == ComplexityClass.O_N2:
+        return float(n * n)
+    elif complexity_class == ComplexityClass.O_N3:
+        return float(n * n * n)
+    elif complexity_class == ComplexityClass.O_2N:
+        return float(2 ** min(n, 25))
+    return 1.0
 
 
 def limit_for(n: int, max_class: ComplexityClass) -> int:
@@ -73,7 +93,12 @@ def limit_for(n: int, max_class: ComplexityClass) -> int:
     return limits.get(max_class, 10**12)
 
 
-def classify_ast_ops(ast_ops: int, n: int) -> ComplexityClass:
+def classify_ast_ops(
+    ast_ops: int,
+    n: int,
+    reference_ast_ops: Optional[int] = None,
+    required_complexity: Optional[ComplexityClass] = None,
+) -> ComplexityClass:
     """Pick the smallest complexity class whose budget can hold
     ``ast_ops`` at input size ``n``.
 
@@ -91,7 +116,38 @@ def classify_ast_ops(ast_ops: int, n: int) -> ComplexityClass:
         return ComplexityClass.UNKNOWN
     if ast_ops <= 0:
         return ComplexityClass.O_1
+
+    if reference_ast_ops is not None and required_complexity is not None and required_complexity != ComplexityClass.UNKNOWN:
+        # If user's ast_ops are within the reference tolerance band, they match the reference complexity
+        ci_low = int(math.floor(reference_ast_ops * 0.90))
+        ci_high = int(math.ceil(reference_ast_ops * 1.05))
+        if ci_low <= ast_ops <= ci_high:
+            return required_complexity
+
+        # Dynamic threshold based on reference solution coefficient
+        factor = get_complexity_factor(n, required_complexity)
+        C_ref = (reference_ast_ops - 10) / factor if factor > 0 else 0.0
+        C_ref = max(0.1, C_ref)
+        
+        # If user's ast_ops is extremely low (e.g. <= 10), classify as O(1)
+        if ast_ops <= 10:
+            return ComplexityClass.O_1
+            
+        def limit_for_run(n: int, max_class: ComplexityClass, C_ref: float) -> int:
+            factor = get_complexity_factor(n, max_class)
+            return int(C_ref * factor) + 10
+
+        for cls in _CLASSES_IN_ORDER:
+            if cls == ComplexityClass.O_1:
+                limit = 10
+            else:
+                limit = limit_for_run(n, cls, C_ref)
+            if ast_ops <= limit:
+                return cls
+        return ComplexityClass.O_2N
+
     for cls in _CLASSES_IN_ORDER:
         if ast_ops <= limit_for(n, cls):
             return cls
     return ComplexityClass.O_2N
+

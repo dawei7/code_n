@@ -28,4 +28,26 @@ Sample 3 output: [0, 1]
 
 def solve(arr, target, n):
     # Write your code here.
-    return None
+    visited = dict()
+    for i in range(n):
+        second_el =  target - arr[i]
+        if second_el in visited:
+            return [visited[second_el], i]
+        else:
+            visited[arr[i]] = i
+
+    return [-1,-1]
+
+
+
+
+
+
+
+
+
+
+
+
+
+

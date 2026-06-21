@@ -1,60 +1,50 @@
-# Stangenschneiden
+# Rod Cutting
 
 | | |
 |---|---|
 | **ID** | `dp_09` |
-| **Kategorie** | dynamisch |
+| **Kategorie** | dynamic |
 | **Komplexität (erforderlich)** | $O(n²)$ |
-| **Schwierigkeitsgrad** | 5/10 |
+| **Schwierigkeit** | 5/10 |
 | **Relevanz für Vorstellungsgespräche** | 9/10 |
-| **Wikipedia** | [Stabschneideproblem](https://en.wikipedia.org/wiki/Cutting_stock_problem) |
+| **Wikipedia** | [Cutting stock problem](https://en.wikipedia.org/wiki/Cutting_stock_problem) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben sei ein Stab der Länge `n` und eine Preistabelle `prices[i]` für einen
-Stab der Länge `i + 1` (für `i = 0..n-1`), bestimme den
-**maximalen Erlös**, der erzielt werden kann, wenn der Stab in Stücke geschnitten
-und diese verkauft werden.
+Gegeben ist eine Stange der Länge `n` sowie eine Preistabelle `prices[i]` für ein Stangenstück der Länge `i + 1` (für `i = 0..n-1`). Bestimmen Sie den **maximalen Erlös**, der durch das Zerschneiden der Stange in Stücke und deren Verkauf erzielt werden kann.
 
-**Eingabe:** eine ganze Zahl `n` und ein Array `prices` der Länge `n`.
+**Eingabe:** eine Ganzzahl `n` und ein Array `prices` der Länge `n`.
 **Ausgabe:** der maximale Erlös.
 
 **Beispiel:**
 
 | Länge | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Preis | 1 | 5 | 8 | 9 | 10 | 17 | 17 | 20 |
+| Preis | 1 | 5 | 8 | 9 |10 |17 |17 |20 |
 
-`n = 8`. Optimal: Aufteilung in 2 + 2 + 2 + 2 (Erlös 5+5+5+5 = 20)
-ODER 6 + 2 (17+5 = 22) ODER 1+2+5+... — das beste Ergebnis ist **22** (6+2).
+`n = 8`. Bestfall: Zerschneiden in 2 + 2 + 2 + 2 (Erlös 5+5+5+5 = 20)
+ODER 6 + 2 (17+5 = 22) ODER 1+2+5+... — das Maximum ist **22** (6+2).
 
-## Wann man es anwendet
+## Anwendung
 
-- Die klassische Einführungsaufgabe zur dynamischen Programmierung (DP) für „**Aufteilung in Teile
-  zur Maximierung einer Größe**“ – in der Variante mit unbegrenztem Rucksack,
-  bei der jeder Schnitt zwischen den Teilen erfolgt und sich Teile wiederholen dürfen.
-- Eine kleine Variante („Einen Stab der Länge N zerbrechen“) wird manchmal
-  in Telefon-Vorauswahlgesprächen als Aufwärmaufgabe gestellt.
+- Der klassische Einstieg in die dynamische Programmierung für das Problem: „**Zerlegung in Teile zur Maximierung eines Wertes**“ — eine Variante des Unbounded Knapsack Problems, bei der jeder Schnitt zwischen Stücken erfolgt und Stücke wiederholt werden können.
+- Eine kleine Variante („Zerschneide einen Stab der Länge N“) wird in Telefoninterviews manchmal als Aufwärmübung verwendet.
 
-## Herangehensweise
+## Ansatz
 
-Sei `dp[i]` = der maximale Erlös für einen Stab der Länge `i`.
+Sei `dp[i]` = der maximale Erlös für eine Stange der Länge `i`.
 
-**Rekursion:** Betrachten wir den ersten Schnitt. Wenn wir ein Stück
-der Länge `j` (für `j = 1..i`) abschneiden, behalten wir `prices[j-1]` und
-haben einen verbleibenden Stab der Länge `i - j` im Wert von `dp[i - j]`.
-Man berechne das Maximum über alle ersten Schnitte:
+**Rekurrenz:** Betrachten wir den ersten Schnitt. Wenn wir ein Stück der Länge `j` abschneiden (für `j = 1..i`), behalten wir `prices[j-1]` und haben eine verbleibende Stange der Länge `i - j` mit dem Wert `dp[i - j]`. Wir wählen das Maximum über alle möglichen ersten Schnitte:
 
 ```
 dp[i] = max(prices[j-1] + dp[i - j])  for j = 1..i
 ```
 
-**Basisfall:** `dp[0] = 0` (kein Stab, kein Erlös).
+**Induktionsanfang:** `dp[0] = 0` (keine Stange, kein Erlös).
 
-**Ergebnis:** `dp[n]`.
+**Antwort:** `dp[n]`.
 
-Dies ist die Form des „unbegrenzten Rucksacks“ – wir wählen
-„Stücke“ (Längen) mit Wiederholungen aus, um den Wert zu maximieren.
+Dies entspricht der Struktur des Unbounded Knapsack Problems — wir wählen „Stücke“ (Längen) mit Wiederholung, um den Wert zu maximieren.
 
 ## Algorithmus
 
@@ -81,13 +71,13 @@ def solve(prices, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 `prices = [1, 5, 8, 9, 10, 17, 17, 20]`, `n = 8`.
 
 `dp = [0, 0, 0, 0, 0, 0, 0, 0, 0]`.
 
-| i | versuche j=1 (1+dp[i-1]) | j=2 (5+dp[i-2]) | j=3 (8+dp[i-3]) | j=4 (9+dp[i-4]) | ... | dp[i] |
+| i | try j=1 (1+dp[i-1]) | j=2 (5+dp[i-2]) | j=3 (8+dp[i-3]) | j=4 (9+dp[i-4]) | ... | dp[i] |
 |---:|---:|---:|---:|---:|---|---:|
 | 1 | 1+0=1 | — | — | — | — | 1 |
 | 2 | 1+1=2 | 5+0=5 | — | — | — | 5 |
@@ -104,57 +94,33 @@ Antwort: `dp[8] = 22`. ✓ (Schnitte: 2 + 6, Erlös 5 + 17 = 22.)
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(n²)$ | $O(n)$ |
+| **Bestfall** | $O(n²)$ | $O(n)$ |
 | **Durchschnittlicher Fall** | $O(n²)$ | $O(n)$ |
 | **Schlechtester Fall** | $O(n²)$ | $O(n)$ |
 
-Jedes `dp[i]` ist das Maximum über höchstens `i` Kandidaten, daher beträgt die
-Doppelschleife $O(n²)$. Der Speicherbedarf beträgt $O(n)$ für das DP-Array.
+Jedes `dp[i]` ist das Maximum über höchstens `i` Kandidaten, daher ist die verschachtelte Schleife $O(n²)$. Die Platzkomplexität beträgt $O(n)$ für das dp-Array.
 
 ## Varianten & Optimierungen
 
-- **Die Schnitte rekonstruieren** — ein paralleles `cut_at[i]`
-  Array führen, das aufzeichnet, welches `j` ausgewählt wurde; zurückgehen, um
-  die Schnitte auszugeben.
-- **Kosten des Schneidens** — Wenn jeder Schnitt `c` kostet, ziehe `c`
-  vom Kandidaten ab. Manche Schnitte werden unwirtschaftlich.
-- **Minimale Schnitte für einen Zielerlös** — Anstelle des maximalen
-  Erlöses die minimale Stückzahl ermitteln, sodass
-  der Erlös ≥ dem Zielwert ist. Erfordert eine andere DP-Struktur (beide
-  Metriken verfolgen).
-- **Verallgemeinertes Stabschneiden** — Stücke können sowohl eine *Breite*
-  als auch eine Länge haben (z. B. 2D-Schneidgut). Die 1D-DP
-  lässt sich zu einer 2D-DP verallgemeinern.
+- **Rekonstruktion der Schnitte** — ein paralleles Array `cut_at[i]` führen, das speichert, welches `j` gewählt wurde; anschließend zurückverfolgen, um die Schnitte auszugeben.
+- **Schnittkosten** — wenn jeder Schnitt `c` kostet, subtrahiere `c` vom Kandidatenwert. Einige Schnitte werden dadurch unwirtschaftlich.
+- **Minimale Schnitte für einen Zielerlös** — anstatt den Erlös zu maximieren, die minimale Anzahl an Stücken finden, sodass der Erlös ≥ Zielwert ist. Erfordert eine andere DP-Struktur (beide Metriken verfolgen).
+- **Generalisiertes Rod Cutting** — Stücke können neben der Länge auch eine *Breite* haben (z. B. 2D Cutting Stock). Das 1D-DP lässt sich zu einem 2D-DP verallgemeinern.
 
 ## Anwendungen in der Praxis
 
-- **Materialzerlegungsproblem** — Zerschneiden von Rohstoffen (Stahl,
-  Papier, Stoff, Bauholz) in verkaufsfähige Stücke, um
-  Abfall zu minimieren. Im Allgemeinen NP-schwer; die einfache Version ist die
-  Stabzerlegungs-DP.
-- **Logistik** — „Wie lässt sich ein 40-Fuß-Container in
-  Standardpaletten aufteilen, um den Wert zu maximieren?“
-- **Druck** — die beste Methode, eine Papier- oder Stoffrolle
-  für Druckaufträge zuzuschneiden.
-- **Registerzuordnung beim Compiler** — „Aufteilung einer langlebigen
-  Variablen auf Register, um Cache-Treffer zu maximieren.“
-- **Produktionsplanung** — Aufteilung eines langen Produktionslaufs in
-  Chargen, die der Nachfrage entsprechen.
+- **Cutting stock problem** — das Zerschneiden von Rohmaterialien (Stahl, Papier, Stoff, Holz) in verkaufbare Stücke, um Abfall zu minimieren. Allgemein NP-schwer; die einfache Version entspricht dem Rod-Cutting-DP.
+- **Logistik** — „Wie teilt man einen 40-Fuß-Container in Standardpaletten auf, um den Wert zu maximieren?“
+- **Druckwesen** — die beste Methode, um eine Papier- oder Stoffrolle in Druckaufträge zu zerschneiden.
+- **Registerallokation in Compilern** — „Aufteilen einer langlebigen Variable in Register, um Cache-Treffer zu maximieren.“
+- **Produktionsplanung** — Aufteilen einer langen Produktionsserie in Chargen, die der Nachfrage entsprechen.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dp_03 — 0/1-Rucksackproblem](dp_03_knapsack.md)** — begrenzte
-  Variante, Maximierung. (d=5/10, r=9/10)
-- **[dp_05 — Münzwechsel](dp_05_coin-change.md)** — unbegrenzt,
-  Anzahl minimieren. (d=5/10, r=9/10)
-- **[dp_07 — LIS](dp_07_longest-increasing-subsequence.md)** —
-  ein weiterer klassischer 1D-DP, der ebenfalls häufig in Vorstellungsgesprächen abgefragt wird.
-  (d=5/10, r=9/10)
+- **[dp_03 — 0/1 Knapsack](dp_03_knapsack.md)** — beschränkte Variante, Maximierung. (d=5/10, r=9/10)
+- **[dp_05 — Coin Change](dp_05_coin-change.md)** — unbeschränkt, Minimierung der Anzahl. (d=5/10, r=9/10)
+- **[dp_07 — LIS](dp_07_longest-increasing-subsequence.md)** — ein weiteres klassisches 1D-DP, das ebenfalls häufig in Interviews abgefragt wird. (d=5/10, r=9/10)
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-in Anlehnung an die kanonische Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag
-finden Sie über den Wikipedia-Link oben auf der Seite.
-Quell-Repository: <https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt für cOde(n), modelliert nach der kanonischen Struktur, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den enzyklopädischen Standardeintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

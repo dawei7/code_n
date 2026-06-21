@@ -259,8 +259,9 @@ SPECS: list[AlgorithmSpec] = [
             Sample("n = 8", "21"),
         ],
         hint="Store previously computed values in an array. Build up from fib(0) to fib(n).",
-        parents=["intro_01"],
+        parents=[],
         children=["dp_02"],
+
     ),
     AlgorithmSpec(
         id="dp_02",

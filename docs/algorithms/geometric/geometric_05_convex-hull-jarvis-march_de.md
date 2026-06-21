@@ -1,44 +1,44 @@
-# Konvexhülle (Jarvis March / Geschenkverpackung)
+# Convex Hull (Jarvis March / Gift Wrapping)
 
 | | |
 |---|---|
 | **ID** | `geometric_05` |
-| **Kategorie** | geometrisch |
-| **Komplexität (erforderlich)** | $O(N * H)$ |
-| **Schwierigkeitsgrad** | 4/10 |
-| **Relevanz für Vorstellungsgespräche** | 4/10 |
-| **Wikipedia** | [Gift-Wrapping-Algorithmus](https://en.wikipedia.org/wiki/Gift_wrapping_algorithm) |
+| **Category** | geometric |
+| **Complexity (required)** | $O(N * H)$ |
+| **Difficulty** | 4/10 |
+| **Interview relevance** | 4/10 |
+| **Wikipedia** | [Gift wrapping algorithm](https://en.wikipedia.org/wiki/Gift_wrapping_algorithm) |
 
-## Aufgabenstellung
+## Problem statement
 
-Gegeben ist ein Array mit N Punkten in einer 2D-Ebene. Bestimme die **konvexe Hülle**: das kleinste konvexe Polygon, das alle Punkte vollständig umschließt.
-Während der Graham-Scan (`geo_02`) genau $O(N \log N)$ Zeit benötigt, implementiere den **Jarvis-March**-Algorithmus (oft auch als „Gift-Wrapping“-Algorithmus bezeichnet).
-Dieser Algorithmus benötigt $O(N \cdot H)$ Zeit, wobei H die Anzahl der Punkte ist, die tatsächlich auf der Hülle liegen. Damit handelt es sich um einen ausgabeabhängigen Algorithmus!
+Gegeben ist ein Array von $N$ Punkten in einer 2D-Ebene. Gesucht ist die **Convex Hull** (konvexe Hülle): das kleinste konvexe Polygon, das alle Punkte vollständig umschließt.
+Während der Graham Scan (`geo_02`) eine strikte Zeitkomplexität von $O(N \log N)$ aufweist, implementieren wir hier den **Jarvis March** Algorithmus (oft auch als Gift Wrapping Algorithmus bezeichnet).
+Dieser Algorithmus hat eine Zeitkomplexität von $O(N \cdot H)$, wobei $H$ die Anzahl der Punkte ist, die tatsächlich auf der Hülle liegen. Dies macht ihn zu einem ausgabesensitiven Algorithmus!
 
-**Eingabe:** Eine Liste von `(x, y)` Koordinatentupeln.
-**Ausgabe:** Eine Liste von `(x, y)` Tupeln, die die Eckpunkte der konvexen Hülle darstellen.
+**Input:** Eine Liste von `(x, y)` Koordinaten-Tupeln.
+**Output:** Eine Liste von `(x, y)` Tupeln, welche die Eckpunkte der Convex Hull darstellen.
 
-## Wann man ihn verwenden sollte
+## Wann sollte man ihn verwenden?
 
-- Wenn du stark vermutest, dass die konvexe Hülle im Vergleich zur Gesamtzahl der Punkte nur sehr wenige Eckpunkte haben wird (z. B. 10^6 Punkte, die dicht in einem Quadrat gepackt sind. H wäre dann 4, sodass Jarvis-March in $O(4N)$ läuft und damit den Graham-Scan $O(N \log N)$).
-- Die Implementierung ist konzeptionell viel einfacher als beim Graham-Scan, da auf eine anfängliche Sortierung und Stack-Logik verzichtet wird.
+- Wenn Sie stark vermuten, dass die Convex Hull im Vergleich zur Gesamtzahl der Punkte nur sehr wenige Eckpunkte besitzt (z. B. $10^6$ Punkte, die dicht in einem Quadrat gepackt sind. $H$ wäre 4, also läuft der Jarvis March in $O(4N)$, was den Graham Scan mit $O(N \log N)$ massiv schlägt).
+- Er ist konzeptionell wesentlich einfacher zu implementieren als der Graham Scan, da er keine initiale Sortierung und keine Stack-Logik erfordert.
 
-## Vorgehensweise
+## Ansatz
 
-Stell dir vor, du fährst mit einem Auto um den Umfang der Punktwolke herum.
-Du startest am absolut linken Punkt (niedrigster X-Wert). Man weiß, dass dieser Punkt auf der konvexen Hülle liegen MUSS.
-Nun möchte man das Auto so lenken, dass es auf den *nächsten* Eckpunkt der Hülle zeigt. Dazu betrachtet man einfach jeden einzelnen Punkt in der Wolke und wählt denjenigen aus, der einen zu einer möglichst weiten **Rechtskurve** zwingt!
-Sobald du diesen Punkt gefunden hast, fährst du dorthin und wiederholst den Vorgang, bis du wieder an deinem Ausgangspunkt angekommen bist.
+Stellen Sie sich vor, Sie fahren mit einem Auto um den Umfang der Punktwolke herum.
+Sie beginnen am absolut linkesten Punkt (niedrigster X-Wert). Sie wissen, dass dieser Punkt zwingend auf der Convex Hull liegen MUSS.
+Nun möchten Sie Ihr Auto so drehen, dass es auf den *nächsten* Eckpunkt der Hülle zeigt. Um dies zu tun, betrachten Sie jeden einzelnen Punkt in der Wolke und wählen denjenigen aus, der Sie dazu zwingt, die größtmögliche **Rechtskurve** zu machen!
+Sobald Sie diesen Punkt gefunden haben, fahren Sie zu ihm und wiederholen den Vorgang, bis Sie wieder an Ihrem Startpunkt angekommen sind.
 
-1. **Ankerpunkt finden:** Finde den Punkt ganz links. Sei `current_point` dieser Ankerpunkt.
-2. **Hülle initialisieren:** Füge `current_point` zur Hülle hinzu.
-3. **Die Schleife:** Nehmen wir an, der nächste Punkt auf der Hülle ist `next_point = points[0]`.
-4. **Durchsuchen:** Durchlaufe jeden Punkt `p` im Array:
-   - Verwende das **Vektorprodukt**, um die Ausrichtung von `current_point -> next_point -> p` zu überprüfen.
-   - Wenn `p` weiter rechts (gegen den Uhrzeigersinn) liegt als unsere aktuelle Vermutung `next_point`, aktualisiere `next_point = p`.
-   - *(Randfall: Wenn `p` und `next_point` perfekt kollinear mit `current_point` sind, wähle den Punkt aus, der weiter entfernt ist).*
-5. **Aktualisierung:** Nachdem alle Punkte überprüft wurden, ist `next_point` mathematisch garantiert der nächste Eckpunkt auf der Hülle. Füge ihn zur Hülle hinzu.
-6. Setze `current_point = next_point`. Wiederhole die Schritte 3–6, bis `next_point` unserem ursprünglichen Anker entspricht.
+1. **Anker finden:** Finden Sie den linkesten Punkt. Sei `current_point` dieser Anker.
+2. **Hülle initialisieren:** Fügen Sie `current_point` zur Hülle hinzu.
+3. **Die Schleife:** Wir nehmen an, der nächste Punkt auf der Hülle sei `next_point = points[0]`.
+4. **Scan:** Iterieren Sie durch jeden Punkt `p` im Array:
+   - Verwenden Sie das **Kreuzprodukt** (Cross Product), um die Orientierung von `current_point -> next_point -> p` zu prüfen.
+   - Wenn `p` weiter rechts (im Gegenuhrzeigersinn) liegt als unser aktueller `next_point`-Tipp, aktualisieren Sie `next_point = p`.
+   - *(Sonderfall: Wenn `p` und `next_point` perfekt kollinear mit `current_point` sind, wählen Sie denjenigen, der weiter entfernt ist).*
+5. **Aktualisierung:** Nach der Überprüfung aller Punkte ist mathematisch garantiert, dass `next_point` der nächste Eckpunkt auf der Hülle ist. Fügen Sie ihn der Hülle hinzu.
+6. Setzen Sie `current_point = next_point`. Wiederholen Sie die Schritte 3-6, bis `next_point` unserem ursprünglichen Anker entspricht.
 
 ## Algorithmus
 
@@ -92,55 +92,51 @@ def solve(points, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Walk-through
 
 *(Konzeptionell)*
 Punkte: `A(0,0)`, `B(1,1)`, `C(2,0)`, `D(1,2)`
 
-1. **Ganz links:** `A(0,0)`. `hull = [A]`.
-2. **Aktuell:** `A`. Vermutung `next_idx = B`.
-   - Überprüfe `C`: `A -> B -> C` biegt nach rechts ab. `C` liegt „äußerer“ als `B`. Aktualisiere `next_idx = C`.
-   - Überprüfe `D`: `A -> C -> D` dreht sich nach links. Behalte `next_idx = C`.
+1. **Linkester Punkt:** `A(0,0)`. `hull = [A]`.
+2. **Aktuell:** `A`. Tipp `next_idx = B`.
+   - Prüfe `C`: `A -> B -> C` ergibt eine Rechtskurve. `C` liegt weiter "außen" als `B`. Aktualisiere `next_idx = C`.
+   - Prüfe `D`: `A -> C -> D` ergibt eine Linkskurve. Behalte `next_idx = C`.
 3. **Bewegung:** `next_idx` ist `C`. `hull = [A, C]`.
-4. **Aktuell:** `C`. Vermutung `next_idx = A`.
-   - Überprüfung `B`: `C -> A -> B` dreht sich nach links. Behalte `next_idx = A`.
-   - Überprüfung `D`: `C -> A -> D` dreht sich nach rechts. `D` ist weiter außen! Aktualisiere `next_idx = D`.
-5. **Zug:** `next_idx` ist `D`. `hull = [A, C, D]`.
-6. **Aktuell:** `D`. Vermutung `next_idx = A`.
-   - Überprüfe `B`: `D -> A -> B` dreht nach links. `A` beibehalten.
-   - `C` prüfen: `D -> A -> C` biegt nach links ab. `A` beibehalten.
-7. **Zug:** `next_idx` ist `A`. Dies ist der Startpunkt! Die Schleife wird unterbrochen!
-Ergebnis: `[A, C, D]`. ✓ (`B` befand sich streng genommen innerhalb!).
+4. **Aktuell:** `C`. Tipp `next_idx = A`.
+   - Prüfe `B`: `C -> A -> B` ergibt eine Linkskurve. Behalte `next_idx = A`.
+   - Prüfe `D`: `C -> A -> D` ergibt eine Rechtskurve. `D` liegt weiter außen! Aktualisiere `next_idx = D`.
+5. **Bewegung:** `next_idx` ist `D`. `hull = [A, C, D]`.
+6. **Aktuell:** `D`. Tipp `next_idx = A`.
+   - Prüfe `B`: `D -> A -> B` ergibt eine Linkskurve. Behalte `A`.
+   - Prüfe `C`: `D -> A -> C` ergibt eine Linkskurve. Behalte `A`.
+7. **Bewegung:** `next_idx` ist `A`. Dies ist der Startpunkt! Die Schleife bricht ab!
+Ergebnis: `[A, C, D]`. ✓ (`B` lag strikt im Inneren!).
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(N)$ | $O(1)$ |
+| **Bestfall** | $O(N)$ | $O(1)$ |
 | **Durchschnittlicher Fall** | $O(N * H)$ | $O(1)$ |
 | **Schlechtester Fall** | $O(N^2)$ | $O(1)$ |
 
-*Dabei ist H die Anzahl der Eckpunkte auf der Hülle.*
-Wenn sich jeder einzelne Punkt auf der Hülle befindet (z. B. wenn sie einen riesigen Kreis bilden), wird die Schleife N-mal durchlaufen, wobei jedes Mal N Punkte überprüft werden, was zu $O(N^2)$ führt. Dies ist schlechter als der Graham-Scan!
-Ist H jedoch klein, läuft er unglaublich schnell.
-Die Platzkomplexität beträgt streng genommen $O(1)$ Hilfsraum (ohne das Ausgabearray), was ihn äußerst speichereffizient macht.
+*Wobei H die Anzahl der Eckpunkte auf der Hülle ist.*
+Wenn jeder einzelne Punkt auf der Hülle liegt (z. B. wenn sie einen riesigen Kreis bilden), läuft die Schleife $N$-mal durch und prüft jedes Mal $N$ Punkte, was zu $O(N^2)$ führt. Dies ist schlechter als der Graham Scan!
+Wenn $H$ jedoch klein ist, läuft er unglaublich schnell.
+Die Platzkomplexität beträgt strikt $O(1)$ an zusätzlichem Speicher (exklusive des Ausgabe-Arrays), was ihn sehr speichereffizient macht.
 
 ## Varianten & Optimierungen
 
-- **Chan-Algorithmus:** Der ultimative Algorithmus für die konvexe Hülle. Er kombiniert den Graham-Scan und den Jarvis-March-Algorithmus, um eine ausgababhängige Laufzeit von genau $O(N log H)$ zu erreichen. Dabei werden die Punkte in Blöcke der Größe H aufgeteilt, auf jedem Block wird der Graham-Scan ausgeführt und anschließend wird Jarvis-March auf die resultierenden Teilhüllen angewendet!
+- **Chan's Algorithm:** Der ultimative Algorithmus für die Convex Hull. Er kombiniert den Graham Scan und den Jarvis March, um eine ausgabesensitive Zeitkomplexität von exakt $O(N \log H)$ zu erreichen. Er funktioniert, indem die Punkte in Blöcke der Größe $H$ unterteilt werden, der Graham Scan auf jedem Block ausgeführt wird und anschließend der Jarvis March auf den resultierenden Teil-Hüllen angewendet wird!
 
-## Praktische Anwendungen
+## Anwendungen in der Praxis
 
-- **Robotik:** Bestimmung der absoluten Außengrenze eines Roboterschwarms, um die minimale Größe eines Begrenzungsnetzes zu berechnen.
+- **Robotik:** Bestimmung der absoluten äußeren Begrenzung eines Schwarms von Robotern, um die Mindestgröße eines umschließenden Netzes zu berechnen.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[geometric_02 – Graham-Scan](geometric_02_convex-hull-graham-scan.md)** — Das $O(N \log N)$-Pendant.
+- **[geometric_02 - Graham Scan](geometric_02_convex-hull-graham-scan.md)** — Das $O(N \log N)$ Gegenstück.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag für cOde(n),
-der sich an der kanonischen Struktur orientiert, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) verfasst wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

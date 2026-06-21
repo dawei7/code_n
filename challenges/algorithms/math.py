@@ -176,8 +176,9 @@ SPECS: list[AlgorithmSpec] = [
             Sample("a = 17, b = 13", "1"),
         ],
         hint="a, b = b, a % b, repeat until b == 0.",
-        parents=["intro_01"],
+        parents=[],
         children=["math_02"],
+
     ),
     AlgorithmSpec(
         id="math_02",

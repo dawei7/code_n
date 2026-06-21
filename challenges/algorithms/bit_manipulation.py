@@ -476,8 +476,9 @@ SPECS.extend([
             Sample("n = 0", "0"),
         ],
         hint="Walk through the bits: while n: count += n & 1; n >>= 1.",
-        parents=["intro_01"],
+        parents=[],
         children=["bit_02"],
+
     ),
     AlgorithmSpec(
         id="bit_02",

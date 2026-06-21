@@ -1,65 +1,49 @@
-# Einbrecher
+# House Robber
 
 | | |
 |---|---|
 | **ID** | `dp_11` |
-| **Kategorie** | dynamisch |
+| **Kategorie** | dynamic |
 | **Komplexität (erforderlich)** | $O(n)$ |
-| **Schwierigkeitsgrad** | 5/10 |
+| **Schwierigkeit** | 5/10 |
 | **Relevanz für Vorstellungsgespräche** | 9/10 |
-| **Wikipedia** | [Fibonacci-Folge](https://en.wikipedia.org/wiki/Fibonacci_sequence) (gleiche Form) |
+| **Wikipedia** | [Fibonacci-Folge](https://en.wikipedia.org/wiki/Fibonacci_sequence) (gleiche Struktur) |
 
-## Aufgabenstellung
+## Problembeschreibung
 
-Du bist ein Einbrecher, der einen Raubzug entlang einer Straße plant. Die Straße
-besteht aus `n` Häusern in einer Reihe, in denen jeweils eine bestimmte Geldsumme
-`nums[i]` aufbewahrt wird. Benachbarte Häuser verfügen über miteinander verbundene Alarmanlagen –
-wenn du in derselben Nacht zwei benachbarte Häuser ausraubst, wird
-der Alarm ausgelöst. Maximiere die Gesamtsumme des Geldes, das du stehlen kannst, ohne
-zwei benachbarte Häuser auszurauben.
+Sie sind ein Einbrecher und planen einen Raubzug entlang einer Straße. Die Straße hat `n` Häuser in einer Reihe, jedes mit einem bestimmten Geldbetrag `nums[i]`. Benachbarte Häuser verfügen über verbundene Sicherheitssysteme – das Ausrauben zweier benachbarter Häuser in derselben Nacht löst den Alarm aus. Maximieren Sie den gesamten Geldbetrag, den Sie stehlen können, ohne zwei benachbarte Häuser auszurauben.
 
 **Eingabe:** `nums = [a0, a1, ..., a(n-1)]`.
-**Ausgabe:** die maximale Gesamtsumme des Geldes.
+**Ausgabe:** der maximale Gesamtbetrag.
 
 **Beispiel:**
 
-| Zahlen | Ausgeraubt | Max |
+| nums | Ausgeraubt | Max |
 |---|---|---:|
 | `[1, 2, 3, 1]` | 1+3 oder 2+1 | **4** |
 | `[2, 7, 9, 3, 1]` | 2+9+1 | **12** |
-| `[2, 1, 1, 2]` | 2+1 (mittleres Haus überspringen) oder 1+2 | **4** |
+| `[2, 1, 1, 2]` | 2+1 (mittleres überspringen) oder 1+2 | **4** |
 | `[5]` | 5 | **5** |
 | `[]` | (keine) | **0** |
 
-## Wann man es verwendet
+## Anwendung
 
-- Die klassische „**rob-skip-decide**“-1D-DP und eine der
-  bekanntesten Aufwärmaufgaben in Vorstellungsgesprächen. Die Rekursion ist
-  intuitiv: Entscheide bei jedem Haus, ob du es überspringst (behalte das
-  vorherige Maximum) oder es nimmst (addiere es zum Maximum von vor zwei Häusern
-  hinzu).
-- Grundlage für viele **2-Haus-Überspringen**-DP-Varianten: „House
-  Robber II“ (zyklisch), „House Robber III“ (Baum) und das
-  „Delete-and-Earn“-Problem (das sich über Bucket-Sort auf „House
-  Robber“ zurückführen lässt).
+- Das kanonische "**Rauben-Überspringen-Entscheiden**" 1D-DP-Problem und eines der bekanntesten Aufwärmübungen für Vorstellungsgespräche. Die Rekurrenz ist intuitiv: Entscheiden Sie bei jedem Haus, ob Sie es überspringen (das bisherige Maximum beibehalten) oder rauben (den Betrag zum Maximum von vor zwei Häusern addieren).
+- Grundlage für viele **2-Häuser-Überspringen** DP-Varianten: House Robber II (kreisförmig), House Robber III (Baum) und das "delete-and-earn"-Problem (welches sich mittels Bucket Sort auf House Robber zurückführen lässt).
 
-## Vorgehensweise
+## Ansatz
 
-Sei `dp[i]` = der maximale Raubbetrag, der unter Berücksichtigung nur der
-ersten `i+1` Häuser (Häuser `0..i`) erzielt werden kann.
+Sei `dp[i]` = der maximale Geldbetrag, der unter Berücksichtigung der ersten `i+1` Häuser (Häuser `0..i`) geraubt werden kann.
 
-**Rekursion:** Bei Haus `i` gibt es zwei Optionen:
+**Rekurrenz:** Bei Haus `i` gibt es zwei Optionen:
 - **Überspringen:** `dp[i] = dp[i-1]`.
-- **Es nehmen:** `dp[i] = nums[i] + dp[i-2]`. (Das Haus `i-1` kann noch nicht
-  ausgeraubt worden sein, daher liegt der letzte Raub bei `i-2`.)
-- Das Maximum nehmen: `dp[i] = max(dp[i-1], nums[i] + dp[i-2])`.
+- **Rauben:** `dp[i] = nums[i] + dp[i-2]`. (Da Haus `i-1` nicht ausgeraubt werden darf, wird der vorherige Wert von `i-2` genommen.)
+- Maximum wählen: `dp[i] = max(dp[i-1], nums[i] + dp[i-2])`.
 
-**Basisfall:** `dp[0] = nums[0]` (nur ein Haus, nehmen).
+**Induktionsanfang:** `dp[0] = nums[0]` (nur ein Haus, raube es).
 `dp[1] = max(nums[0], nums[1])`.
 
-**Speicherplatzoptimierung:** `dp[i]` hängt nur von den letzten beiden
-Werten ab. Würfeln mit zwei Variablen: `prev` (= `dp[i-1]`) und
-`prev2` (= `dp[i-2]`).
+**Platzoptimierung:** `dp[i]` hängt nur von den letzten beiden Werten ab. Verwenden Sie zwei Variablen: `prev` (= `dp[i-1]`) und `prev2` (= `dp[i-2]`).
 
 **Ergebnis:** `dp[n-1]` (oder `prev` am Ende der Schleife).
 
@@ -90,9 +74,9 @@ def solve(arr):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
-`nums = [2, 7, 9, 3, 1]`. Antwort: 12.
+`nums = [2, 7, 9, 3, 1]`. Ergebnis: 12.
 
 | i | nums[i] | prev2 | prev | candidate = prev | nums[i] + prev2 | curr = max |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -101,58 +85,37 @@ def solve(arr):
 | 3 | 3 | 7 | 11 | 11 | 3 + 7 = 10 | **11** |
 | 4 | 1 | 11 | 11 | 11 | 1 + 11 = 12 | **12** |
 
-Gibt 12 zurück. ✓ (Rob bewohnt die Häuser 0, 2, 4: 2 + 9 + 1 = 12.)
+Gibt 12 zurück. ✓ (Raube Häuser 0, 2, 4: 2 + 9 + 1 = 12.)
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(n)$ | $O(1)$ — rollierend |
+| **Bestfall** | $O(n)$ | $O(1)$ — rolling |
 | **Durchschnittlicher Fall** | $O(n)$ | $O(1)$ |
-| **Schlechteste** | $O(n)$ | $O(1)$ |
+| **Schlechtester Fall** | $O(n)$ | $O(1)$ |
 
-Die 2D-Tabellenversion `dp` benötigt $O(n)$ Speicherplatz, die rollende
-Implementierung hingegen $O(1)$. Beide benötigen $O(n)$ Zeit.
+Die 2D `dp`-Tabellenversion benötigt $O(n)$ Platz, aber die Rolling-Implementierung benötigt $O(1)$. Beide haben eine Zeitkomplexität von $O(n)$.
 
 ## Varianten & Optimierungen
 
-- **House Robber II (kreisförmig)** — Die Häuser stehen im Kreis, daher
-  sind Haus `0` und Haus `n-1` ebenfalls benachbart. Löse das
-  reguläre Problem zweimal: einmal für `nums[0..n-2]`, einmal für
-  `nums[1..n-1]`, nimm den Maximalwert. (Nicht direkt in cOde(n).)
-- **House Robber III (Baum)** — Häuser sind Knoten in einem binären
-  Baum, keine zwei Eltern-Kind-Paare dürfen ausgeraubt werden. Rekursion auf
-  Teilbäumen; jeder Knoten gibt `(rob_this, dont_rob_this)` zurück.
-- **Löschen und Verdienen** — bestimmte Punkte dürfen genommen werden, benachbarte
-  Punkte sind verboten, aber die Beziehung basiert auf dem Wert und nicht
-  auf der Position. Bucket-Sortierung nach Wert, anschließend „House Robber“
-  auf das Bucket-Array anwenden.
-- **Maximale Summe nicht benachbarter Elemente** — genau dasselbe
-  Problem mit anderer Formulierung.
+- **House Robber II (kreisförmig)** — die Häuser stehen in einem Kreis, daher sind Haus `0` und Haus `n-1` ebenfalls benachbart. Lösen Sie das reguläre Problem zweimal: einmal für `nums[0..n-2]` und einmal für `nums[1..n-1]`, und wählen Sie das Maximum.
+- **House Robber III (Baum)** — die Häuser sind Knoten in einem Binärbaum; kein Eltern-Kind-Paar darf ausgeraubt werden. Rekursion auf Teilbäumen; jeder Knoten gibt `(rob_this, dont_rob_this)` zurück.
+- **Delete and Earn** — gegeben sind Punkte, die man nehmen kann, wobei benachbarte Punkte verboten sind, aber die Beziehung basiert auf dem Wert und nicht auf der Position. Sortieren Sie nach Werten (Bucket Sort) und führen Sie dann House Robber auf dem Bucket-Array aus.
+- **Maximale Summe nicht benachbarter Elemente** — exakt dasselbe Problem mit anderer Formulierung.
 
 ## Anwendungen in der Praxis
 
-- **Auftragsplanung mit Konflikten** — Wähle eine Teilmenge von Aufträgen aus,
-  bei der keine zwei benachbarten (in einer bestimmten Reihenfolge) ausgewählt werden dürfen.
-- **Teilmengenauswahl mit paarweisen Ausschlüssen** – Wähle Elemente
-  aus einer Liste aus, wobei sich einige Paare gegenseitig ausschließen.
-- **Spieltheorie** – Viele DP-Probleme bei Zwei-Spieler-Spielen lassen sich
-  auf dieselbe „Entscheiden oder Überspringen“-Rekursion zurückführen.
+- **Auftragsplanung mit Konflikten** — wählen Sie eine Teilmenge von Aufträgen aus, bei denen keine zwei benachbarten (in einer bestimmten Reihenfolge) ausgewählt werden können.
+- **Teilmengenauswahl mit paarweisen Ausschlüssen** — wählen Sie Elemente aus einer Liste aus, bei der einige Paare sich gegenseitig ausschließen.
+- **Spieltheorie** — viele DP-Probleme in Zwei-Personen-Spielen lassen sich auf dieselbe "Entscheiden oder Überspringen"-Rekurrenz reduzieren.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dp_01 — Fibonacci](dp_01_fibonacci.md)** — dieselbe „rollende“ Form mit 2 Variablen,
-  Addition statt Maximalwert. (d=5/10, r=9/10)
-- **[dp_02 — Treppensteigen](dp_02_climbing-stairs.md)** —
-  dieselbe Struktur mit einem „+“ anstelle von „max“ (d=5/10, r=9/10)
-- **[dp_18 — Subarray mit maximalem Produkt](dp_18_max-product-subarray.md)** —
-  gleiche 1D-Entscheide-oder-Überspringe-Form, aber der DP-Zustand muss
-  sowohl Min als auch Max verfolgen (wegen negativer Werte). (d=5/10, r=9/10)
+- **[dp_01 — Fibonacci](dp_01_fibonacci.md)** — gleiche 2-Variablen-Rolling-Struktur, Addition statt Maximum. (d=5/10, r=9/10)
+- **[dp_02 — Climbing Stairs](dp_02_climbing-stairs.md)** — dieselbe Struktur mit einer Addition statt eines Maximums. (d=5/10, r=9/10)
+- **[dp_18 — Max Product Subarray](dp_18_max-product-subarray.md)** — dieselbe 1D-Entscheiden-oder-Überspringen-Struktur, aber der DP-Zustand muss sowohl das Minimum als auch das Maximum verfolgen (wegen negativer Zahlen). (d=5/10, r=9/10)
 
 ---
 
-*Diese Dokumentation ist Originalinhalt, der für cOde(n) verfasst wurde,
-nach dem Vorbild der kanonischen Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Für den kanonischen Enzyklopädieeintrag
-folgen Sie bitte dem Wikipedia-Link oben auf der Seite.
-Quell-Repository: <https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt für cOde(n), modelliert nach der kanonischen Struktur, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

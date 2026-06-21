@@ -25,3 +25,31 @@ export function runChallenge(args: RunArgs): Promise<RunResponse> {
     },
   );
 }
+
+export interface AnalyzeArgs {
+  challengeId: string;
+  source: string;
+  n: number;
+  seed: number | null;
+  returned: string;
+  expected: string;
+  inputs: Record<string, string>;
+}
+
+export interface AnalyzeResponse {
+  analysis: string;
+}
+
+export function analyzeChallenge(args: AnalyzeArgs): Promise<AnalyzeResponse> {
+  return apiPost<AnalyzeResponse>(
+    `/challenges/${encodeURIComponent(args.challengeId)}/analyze`,
+    {
+      source: args.source,
+      n: args.n,
+      seed: args.seed,
+      returned: args.returned,
+      expected: args.expected,
+      inputs: args.inputs,
+    },
+  );
+}

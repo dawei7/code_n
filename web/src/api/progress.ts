@@ -1,5 +1,5 @@
-import { apiGet, apiPut } from './client';
-import type { ProgressOut } from '../types/api';
+import { apiGet, apiPut, apiPost } from './client';
+import type { ProgressOut, VerifyLeetCodeResponse } from '../types/api';
 
 export function getProgress(): Promise<ProgressOut> {
   return apiGet<ProgressOut>('/progress');
@@ -21,4 +21,26 @@ export function failChallenge(challenge_id: string): Promise<ProgressOut> {
 
 export function resetProgress(): Promise<ProgressOut> {
   return apiPut<ProgressOut>('/progress', { reset: true });
+}
+
+export function updateProgressSettings(
+  career_mode?: boolean,
+  leetcode_username?: string,
+  player_name?: string,
+  gemini_api_key?: string,
+  active_set?: string,
+): Promise<ProgressOut> {
+  return apiPut<ProgressOut>('/progress', {
+    career_mode,
+    leetcode_username,
+    player_name,
+    gemini_api_key,
+    active_set,
+  });
+}
+
+export function verifyLeetCode(challenge_id: string): Promise<VerifyLeetCodeResponse> {
+  return apiPost<VerifyLeetCodeResponse>('/progress/verify-leetcode', {
+    challenge_id,
+  });
 }

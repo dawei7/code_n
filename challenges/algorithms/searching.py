@@ -807,8 +807,9 @@ SPECS: list[AlgorithmSpec] = [
             Sample("data = [4, 6, 9], target = 7", "-1"),
             Sample("data = [2, 2, 5], target = 2", "0 or 1"),
         ],
-        parents=["intro_01"],
+        parents=[],
         children=["search_02"],
+
     ),
     _flat_search_spec(
         spec_id="search_02",

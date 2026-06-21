@@ -270,8 +270,9 @@ SPECS: list[AlgorithmSpec] = [
             Sample("children = [[]], root = 0, n = 1", "[0]"),
         ],
         hint="Recurse: visit node, then recurse on each child left-to-right.",
-        parents=["intro_01"],
+        parents=[],
         children=["tree_02", "tree_04"],
+
     ),
     AlgorithmSpec(
         id="tree_02",

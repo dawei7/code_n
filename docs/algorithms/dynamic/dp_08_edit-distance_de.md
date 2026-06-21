@@ -1,67 +1,52 @@
-# Editierabstand (Levenshtein)
+# Edit Distance (Levenshtein)
 
 | | |
 |---|---|
 | **ID** | `dp_08` |
-| **Kategorie** | dynamisch |
-| **Komplexität (erforderlich)** | $O(n²)$ |
-| **Schwierigkeitsgrad** | 5/10 |
+| **Kategorie** | dynamic |
+| **Komplexität (erfordert)** | $O(n²)$ |
+| **Schwierigkeit** | 5/10 |
 | **Relevanz für Vorstellungsgespräche** | 9/10 |
-| **Wikipedia** | [Bearbeitungsabstand](https://en.wikipedia.org/wiki/Edit_distance) |
+| **Wikipedia** | [Edit distance](https://en.wikipedia.org/wiki/Edit_distance) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben seien zwei Zeichenketten `s` und `t`. Bestimme die minimale Anzahl von
-**Ein-Zeichen-Änderungen** (Einfügungen, Löschungen oder
-Ersetzungen), die erforderlich sind, um `s` in `t` umzuwandeln. Dies ist die
-**Levenshtein-Distanz**.
+Gegeben sind zwei Strings `s` und `t`. Finde die minimale Anzahl an **Einzelzeichen-Edits** (Einfügungen, Löschungen oder Ersetzungen), die erforderlich sind, um `s` in `t` umzuwandeln. Dies ist die **Levenshtein-Distanz**.
 
-**Eingabe:** zwei Zeichenketten `s`, `t`.
-**Ausgabe:** die minimale Anzahl an Bearbeitungen.
+**Eingabe:** zwei Strings `s`, `t`.
+**Ausgabe:** die minimale Anzahl an Edits.
 
 **Beispiel:**
 
-| s | t | Abstand | Eine Umwandlung |
+| s | t | Distanz | Eine Transformation |
 |---|---|---:|---|
-| "" | „abc“ | 3 | Einfügen × 3 |
-| „abc“ | „abc“ | 0 | (identisch) |
-| „kitten“ | „sitting“ | 3 | k→s, e→i, +g |
-| „sunday“ | „saturday“ | 3 | +a, +t, n→r |
-| „intention“ | „execution“ | 5 | i→e, n→x, e→c, +u, n→n (Wartezeit: 5) |
+| "" | "abc" | 3 | 3× Einfügen |
+| "abc" | "abc" | 0 | (identisch) |
+| "kitten" | "sitting" | 3 | k→s, e→i, +g |
+| "sunday" | "saturday" | 3 | +a, +t, n→r |
+| "intention" | "execution" | 5 | i→e, n→x, e→c, +u, n→n (moment, 5) |
 
-## Wann man es einsetzt
+## Wann man es verwendet
 
-- Das klassische **2D-String-DP**-Problem und eine der am häufigsten
-  gestellten Fragen bei Vorstellungsgesprächen auf FAANG-Ebene. Die Rekursion ist klein
-  (drei Operationen), aber der Zustandsraum (s-Präfix × t-Präfix)
-  ist zweidimensional und leicht zu verwechseln.
-- Grundlage für **Rechtschreibprüfungen**, **Fuzzy-Suche**,
-  **DNA-Sequenz-Alignment** (mit einer gewichteten Version
-  derselben Rekursion) und **Autokorrektur** in Texteditoren.
+- Das kanonische **2D-String-DP**-Problem und eines der am häufigsten gestellten Probleme bei FAANG-Interviews. Die Rekurrenz ist klein (drei Operationen), aber der Zustandsraum (s-Präfix × t-Präfix) ist 2D und man kann sich leicht vertun.
+- Grundlage für **Rechtschreibprüfungen**, **Fuzzy-Suche**, **DNA-Sequenz-Alignment** (mit einer gewichteten Version derselben Rekurrenz) und **Autokorrektur** in Texteditoren.
 
-## Vorgehensweise
+## Ansatz
 
-Sei `dp[i][j]` = der Bearbeitungsabstand zwischen den ersten `i`
-Zeichen von `s` und den ersten `j` Zeichen von `t`.
+Sei `dp[i][j]` = die Edit-Distanz zwischen den ersten `i` Zeichen von `s` und den ersten `j` Zeichen von `t`.
 
-**Rekursion:** Betrachte die letzten Zeichen `s[i-1]` und
-`t[j-1]`:
-- Wenn sie übereinstimmen, `dp[i][j] = dp[i-1][j-1]`. Keine Bearbeitung erforderlich.
-- Andernfalls wähle das **Minimum** aus drei Operationen:
-  - **Ersetze** `s[i-1]` durch `t[j-1]`: `1 + dp[i-1][j-1]`
-  - **Lösche** `s[i-1]`: `1 + dp[i-1][j]`
+**Rekurrenz:** Betrachte die letzten Zeichen `s[i-1]` und `t[j-1]`:
+- Wenn sie übereinstimmen, gilt `dp[i][j] = dp[i-1][j-1]`. Es ist kein Edit erforderlich.
+- Andernfalls nimm das **Minimum** aus drei Operationen:
+  - **Ersetzen** von `s[i-1]` durch `t[j-1]`: `1 + dp[i-1][j-1]`
+  - **Löschen** von `s[i-1]`: `1 + dp[i-1][j]`
   - **Einfügen** von `t[j-1]`: `1 + dp[i][j-1]`
 
-**Basisfall:** `dp[0][j] = j` (j Zeichen einfügen) und
-`dp[i][0] = i` (i Zeichen löschen). Die leere Zeichenkette ist `j`
-Einfügungen von jeder Zeichenkette der Länge `j` entfernt.
+**Basisfall:** `dp[0][j] = j` (füge j Zeichen ein) und `dp[i][0] = i` (lösche i Zeichen). Der leere String ist `j` Einfügungen von jedem String der Länge `j` entfernt.
 
 **Antwort:** `dp[len(s)][len(t)]`.
 
-**Speicheroptimierung:** Die Rekursion verwendet nur die vorherige
-Zeile und die aktuelle Zeile, also 2D → 2×(n+1) → mit einer kleinen Anpassung
-sogar 1×(n+1) (Verwendung einer `prev_row`-Variablen). Die Engine von cOde(n)
-erwartet eine Laufzeit von $O(n²)$ und akzeptiert entweder 2D oder optimierten Speicher.
+**Platzoptimierung:** Die Rekurrenz verwendet nur die vorherige Zeile und die aktuelle Zeile, daher 2D → 2×(n+1) → mit einem kleinen Trick sogar 1×(n+1) (verwende eine `prev_row`-Variable). Die Engine von cOde(n) erwartet $O(n²)$ Zeit und akzeptiert entweder 2D- oder optimierten Speicher.
 
 ## Algorithmus
 
@@ -93,7 +78,7 @@ def solve(word1, word2):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 `s = "cat"`, `t = "cars"`. Antwort: 1 (füge `s` ein).
 
@@ -105,10 +90,10 @@ def solve(word1, word2):
    t  [  3,  2,  1,  1,  1 ]
 ```
 
-Schritt-für-Schritt-Anleitung zum Ausfüllen von `dp[1][1]` = edit("c", "c"):
+Durchlauf zum Füllen von `dp[1][1]` = edit("c", "c"):
 `s[0] = t[0] = "c"`, also `dp[1][1] = dp[0][0] = 0`.
 
-`dp[1][2]` = edit("c", "ca"): `c ≠ a`. Möglichkeiten:
+`dp[1][2]` = edit("c", "ca"): `c ≠ a`. Kandidaten:
 - Ersetzen: `1 + dp[0][1] = 1 + 1 = 2`
 - Löschen `c`: `1 + dp[0][2] = 1 + 2 = 3`
 - Einfügen `a`: `1 + dp[1][1] = 1 + 0 = 1`
@@ -120,55 +105,33 @@ Schritt-für-Schritt-Anleitung zum Ausfüllen von `dp[1][1]` = edit("c", "c"):
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(m·n)$ | $O(min(m, n)$) mit rollierendem |
-| **Durchschnittlicher Fall** | $O(m·n)$ | $O(min(m, n)$) mit rollender Zeile |
-| **Schlechtester Fall** | $O(m·n)$ | $O(min(m, n)$) mit rollender Zeile |
+| **Bestfall** | $O(m·n)$ | $O(min(m, n)$) mit Rolling-Array |
+| **Durchschnittlicher Fall** | $O(m·n)$ | $O(min(m, n)$) mit Rolling-Array |
+| **Schlechtester Fall** | $O(m·n)$ | $O(min(m, n)$) mit Rolling-Array |
 
-Für die 2D-Tabelle beträgt der Speicherplatz $O(m·n)$. Die Version mit rollender Zeile
-reduziert sich auf $O(n)$ (oder $O(min(m, n)$), je nachdem, welcher Wert kleiner ist.
+Für die 2D-Tabelle beträgt der Platzbedarf $O(m·n)$. Die Rolling-Row-Version reduziert dies auf $O(n)$ (oder $O(min(m, n)$), je nachdem, was kleiner ist).
 
 ## Varianten & Optimierungen
 
-- **Damerau-Levenshtein** – zählt auch Transpositionen
-  benachbarter Zeichen als 1 Änderung. Nützlich für die Rechtschreibprüfung
-  (wo „teh“ ↔ „the“ 1 Transposition ist, nicht 2 Substitutionen).
-- **Gewichtete Bearbeitungsdistanz** — unterschiedliche Kosten für jede
-  Operation. Dies wird beim DNA-Alignment verwendet (Ersetzungsmatrix
-  BLOSUM / PAM).
-- **Hirschberg-Algorithmus** — $O(m·n)$ Zeit, $O(min(m, n)$)
-  Speicherplatz, UND rekonstruiert die tatsächliche Abfolge der Änderungen. Verwendet
-  „Teile und herrsche“ + den „Rolling-Row“-Trick.
-- **Bit-paralleler Algorithmus von Myers** — $O((m·n)$/w), wobei w die
-  Wortgröße ist, wobei w=64 effektiv $O(m·n/64)$ entspricht. Der
-  Standard für kommerzielle Diff-Tools.
+- **Damerau-Levenshtein** — zählt auch Transpositionen benachbarter Zeichen als 1 Edit. Nützlich für die Rechtschreibprüfung (wobei "teh" ↔ "the" 1 Transposition ist, nicht 2 Ersetzungen).
+- **Gewichtete Edit-Distanz** — unterschiedliche Kosten für jede Operation. DNA-Alignment verwendet dies (Substitutionsmatrix BLOSUM / PAM).
+- **Hirschberg-Algorithmus** — $O(m·n)$ Zeit, $O(min(m, n)$) Platz, UND rekonstruiert die tatsächliche Sequenz der Edits. Verwendet Divide-and-Conquer + den Rolling-Row-Trick.
+- **Myers' Bit-Parallel-Algorithmus** — $O((m·n)/w)$, wobei w die Wortgröße ist; mit w=64 effektiv $O(m·n/64)$. Der Standard für produktive Diff-Tools.
 
-## Praktische Anwendungen
+## Anwendungen in der Praxis
 
-- **Rechtschreibprüfungen und Autokorrektur** — Vorschläge sind die
-  Wörter im Wörterbuch mit dem geringsten Bearbeitungsabstand zur
-  Benutzereingabe.
-- **Plagiatserkennung** — Ein hoher Bearbeitungsabstand zwischen zwei
-  Dokumenten deutet darauf hin, dass sie unabhängig voneinander erstellt wurden.
-- **DNA-Sequenzabgleich** — die gewichtete Version mit
-  auf die Evolution abgestimmten Substitutionsmatrizen.
-- **fzf, ripgrep, ag** — Fuzzy-Finder verwenden den Edit-Abstand (oder
-  verwandte Maße), um Übereinstimmungen zu ordnen.
-- **git diff** — im Kern das Problem des Edit-Abstands.
+- **Rechtschreibprüfungen und Autokorrektur** — Vorschläge sind die Wörter im Wörterbuch mit der geringsten Edit-Distanz zur Eingabe des Benutzers.
+- **Plagiatsprüfung** — eine hohe Edit-Distanz zwischen zwei Dokumenten deutet darauf hin, dass sie unabhängig voneinander erstellt wurden.
+- **DNA-Sequenz-Alignment** — die gewichtete Version, mit Substitutionsmatrizen, die auf die Evolution abgestimmt sind.
+- **fzf, ripgrep, ag** — Fuzzy-Finder verwenden die Edit-Distanz (oder verwandte Maße), um Treffer zu bewerten.
+- **git diff** — im Kern das Edit-Distanz-Problem.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dp_04 – Längste gemeinsame Teilsequenz](dp_04_longest-common-subsequence.md)** —
-  verwandte 2D-Strings-DP, jedoch Maximierung statt
-  Minimierung. (d=5/10, r=9/10)
-- **[dp_20 — Kürzeste gemeinsame Supersequenz (Länge)](dp_20_shortest-common-supersequence.md)** —
-  baut direkt auf der LCS-Tabelle auf. (d=5/10, r=9/10)
-- **[dp_14 — Palindromische Partitionierung](dp_14_palindromic-partitioning.md)** —
-  eine weitere 2D-Strings-DP. (d=5/10, r=9/10)
+- **[dp_04 — Longest Common Subsequence](dp_04_longest-common-subsequence.md)** — verwandtes 2D-String-DP, aber Maximierung statt Minimierung. (d=5/10, r=9/10)
+- **[dp_20 — Shortest Common Supersequence (Length)](dp_20_shortest-common-supersequence.md)** — baut direkt auf der LCS-Tabelle auf. (d=5/10, r=9/10)
+- **[dp_14 — Palindromic Partitioning](dp_14_palindromic-partitioning.md)** — ein weiteres 2D-String-DP. (d=5/10, r=9/10)
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-in Anlehnung an die kanonische Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag
-finden Sie unter dem Wikipedia-Link oben auf der Seite.
-Quell-Repository: <https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) geschrieben wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folge dem Wikipedia-Link oben auf der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

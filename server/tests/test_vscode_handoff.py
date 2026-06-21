@@ -76,7 +76,7 @@ class VSCodeHandoffTest(conftest._Base):
         # it, we have to update the script.
         self.client.post(
             "/api/vscode/active",
-            json={"challenge_id": "intro_01"},
+            json={"challenge_id": "sort_01"},
         )
         handoff_path = os.path.join(
             os.environ["CODEN_SOLUTIONS_DIR"],

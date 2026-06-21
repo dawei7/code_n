@@ -1,49 +1,49 @@
-# Konvexe Hülle (Teile und herrsche)
+# Convex Hull (Divide and Conquer)
 
 | | |
 |---|---|
 | **ID** | `dc_15` |
-| **Kategorie** | divide_conquer |
-| **Komplexität (erforderlich)** | $O(N \log N)$ Zeit, $O(\log N)$ Speicherplatz |
-| **Schwierigkeitsgrad** | 9/10 |
-| **Relevanz für Vorstellungsgespräche** | 2/10 |
-| **GeeksForGeeks-Äquivalent** | [Konvexe Hülle (Teile und herrsche)](https://www.geeksforgeeks.org/convex-hull-using-divide-and-conquer-algorithm/) |
+| **Category** | divide_conquer |
+| **Complexity (required)** | $O(N \log N)$ Time, $O(\log N)$ Space |
+| **Difficulty** | 9/10 |
+| **Interview relevance** | 2/10 |
+| **GeeksForGeeks Equivalent** | [Convex Hull (Divide and Conquer)](https://www.geeksforgeeks.org/convex-hull-using-divide-and-conquer-algorithm/) |
 
-## Aufgabenstellung
+## Problem statement
 
-Gegeben sei eine Menge von N Punkten in einer 2D-Ebene. Bestimme die konvexe Hülle dieser Punkte.
-Die konvexe Hülle ist das kleinste konvexe Polygon, das alle Punkte vollständig umschließt. Stellen Sie sich vor, die Punkte seien Nägel, die in ein Brett eingeschlagen wurden; die konvexe Hülle ist die Form, die entsteht, wenn man ein Gummiband um die äußersten Nägel spannt.
-Geben Sie die Punkte zurück, die die Eckpunkte dieses Polygons bilden, entweder im Uhrzeigersinn oder gegen den Uhrzeigersinn.
+Gegeben ist eine Menge von N Punkten in einer 2D-Ebene. Gesucht ist die konvexe Hülle (Convex Hull) dieser Punkte.
+Die konvexe Hülle ist das kleinste konvexe Polygon, das alle Punkte vollständig umschließt. Man kann sich die Punkte als Nägel in einem Brett vorstellen; die konvexe Hülle ist die Form, die entsteht, wenn man ein Gummiband um die äußersten Nägel spannt.
+Geben Sie die Punkte zurück, die die Eckpunkte dieses Polygons bilden, sortiert im Uhrzeigersinn oder gegen den Uhrzeigersinn.
 
-**Eingabe:** Ein Array von `Points`, wobei `Point` die Eigenschaften `x` und `y` aufweist.
-**Ausgabe:** Ein Array von `Points`, das die konvexe Hülle darstellt.
+**Input:** Ein Array von `Points`, wobei `Point` die Eigenschaften `x` und `y` besitzt.
+**Output:** Ein Array von `Points`, das die konvexe Hülle repräsentiert.
 
 ## Wann man es verwendet
 
-- Wenn man aufgefordert wird, fortgeschrittene Methoden der rechnergestützten Geometrie zu demonstrieren.
-- *(Hinweis: Im Wettbewerbsprogrammieren werden der Graham-Scan oder die monotone Kette deutlich bevorzugt, da sie einfacher zu programmieren sind. Dieser $O(N \log N)$-Ansatz nach dem Prinzip „Teile und herrsche“ ist in der Regel eine akademische Folgefrage).*
+- Wenn man aufgefordert wird, fortgeschrittene Computational Geometry Merging-Techniken zu demonstrieren.
+- *(Hinweis: In der wettbewerbsorientierten Programmierung werden der Graham Scan oder die Monotone Chain bei weitem bevorzugt, da sie einfacher zu implementieren sind. Dieser $O(N \log N)$ Divide-and-Conquer-Ansatz ist meist eine akademische weiterführende Fragestellung).*
 
-## Vorgehensweise
+## Ansatz
 
-**1. Der Basisfall:**
-Wenn es 3 oder weniger Punkte gibt, bilden diese trivialerweise ihre eigene konvexe Hülle (ein Dreieck, ein Liniensegment oder einen Punkt). Sortiere sie einfach im Uhrzeigersinn und gib sie zurück!
+**1. Der Induktionsanfang (Base Case):**
+Wenn 3 oder weniger Punkte vorhanden sind, bilden diese trivialerweise ihre eigene konvexe Hülle (ein Dreieck, ein Liniensegment oder einen Punkt). Sortieren Sie diese einfach im Uhrzeigersinn und geben Sie sie zurück!
 
-**2. Der Teilungsschritt:**
-Ähnlich wie bei „Closest Pair of Points“ (`dc_05`) sortieren wir zunächst alle Punkte global nach ihrer X-Koordinate.
-Wir teilen die Punkte genau in zwei Hälften auf: eine linke und eine rechte Menge.
-Berechne rekursiv die konvexe Hülle der linken Menge (CH_L) und die konvexe Hülle der rechten Menge (CH_R).
+**2. Der Divide-Schritt:**
+Ähnlich wie beim Closest Pair of Points (`dc_05`) sortieren wir zunächst alle Punkte global nach ihrer X-Koordinate.
+Wir teilen die Punkte exakt in der Mitte in eine linke und eine rechte Menge auf.
+Berechnen Sie rekursiv die konvexe Hülle der linken Menge (CH_L) und der rechten Menge (CH_R).
 
-**3. Der Zusammenführungsschritt:**
-Wir haben nun zwei separate, sich nicht überlappende konvexe Polygone, die nebeneinander liegen. Wir müssen sie zu einem einzigen großen konvexen Polygon zusammenführen!
-Dazu müssen wir die **obere Tangente** und die **untere Tangente** finden, die CH_L und CH_R verbinden.
-Sobald wir diese beiden Verbindungslinien gefunden haben, löschen wir einfach die inneren, „zueinander gerichteten“ Kanten beider Polygone und verbinden sie mithilfe der Tangenten!
+**3. Der Conquer-Schritt (Merge):**
+Wir haben nun zwei separate, nicht überlappende konvexe Polygone, die nebeneinander liegen. Wir müssen sie zu einem einzigen großen konvexen Polygon verschmelzen!
+Dazu müssen wir die **obere Tangente** (Upper Tangent) und die **untere Tangente** (Lower Tangent) finden, die CH_L und CH_R verbinden.
+Sobald wir diese beiden Verbindungslinien gefunden haben, löschen wir einfach die inneren, sich gegenüberliegenden Kanten beider Polygone und verbinden sie mithilfe der Tangenten!
 
-**4. Die obere Tangente finden (die „Gummiband“-Methode):**
-- Beginne mit dem Punkt ganz rechts von CH_L (nennen wir ihn L) und dem Punkt ganz links von CH_R (nennen wir ihn R). Die Linie L-R ist unsere erste Vermutung für die Tangente.
-- Halte R fest und bewege L *gegen den Uhrzeigersinn* um CH_L herum, solange sich die Linie L-R weiter nach OBEN bewegt.
-- Sobald L den lokalen Höchstpunkt erreicht hat, halte L fest und bewege R *im Uhrzeigersinn* um CH_R herum, solange sich die Linie L-R weiter nach OBEN bewegt.
-- Wiederhole das Hin- und Herbewegen, bis WEDER L noch R sich weiter nach oben bewegen können. Du hast die obere Tangente gefunden!
-- Das Finden der unteren Tangente erfolgt genau umgekehrt (bewege L im Uhrzeigersinn, bewege R gegen den Uhrzeigersinn nach unten).
+**4. Finden der oberen Tangente (Die "Gummiband"-Methode):**
+- Beginnen Sie mit dem am weitesten rechts liegenden Punkt von CH_L (nennen wir ihn L) und dem am weitesten links liegenden Punkt von CH_R (nennen wir ihn R). Die Linie L-R ist unsere erste Schätzung für die Tangente.
+- Während R fixiert bleibt, bewegen wir L *gegen den Uhrzeigersinn* um CH_L, solange sich die Linie L-R weiter nach OBEN bewegt.
+- Sobald L den lokalen Höchstpunkt erreicht hat, fixieren wir L und bewegen R *im Uhrzeigersinn* um CH_R, solange sich die Linie L-R weiter nach OBEN bewegt.
+- Wiederholen Sie das Hin- und Herbewegen, bis weder L noch R weiter nach oben bewegt werden können. Sie haben die obere Tangente gefunden!
+- Das Finden der unteren Tangente ist das exakte Gegenstück (bewege L im Uhrzeigersinn, R gegen den Uhrzeigersinn nach unten).
 
 ## Algorithmus
 
@@ -85,52 +85,47 @@ def solve(points, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Ablauf
 
 *(Konzeptionell)*
-1. Punkte nach X sortiert. Die linke Hälfte wird rekursiv bearbeitet, die rechte Hälfte wird rekursiv bearbeitet.
+1. Punkte nach X sortiert. Linke Hälfte rekursiv, rechte Hälfte rekursiv.
 2. CH_L ist ein Polygon auf der linken Seite. CH_R ist ein Polygon auf der rechten Seite.
-3. Beginne mit einer Vermutung für die innersten gegenüberliegenden Punkte L und R.
-4. Prüfe, ob das Verschieben von L „nach oben“ im linken Polygon den Winkel der Verbindungslinie vergrößert. Das ist der Fall! Verschiebe L.
-5. Prüfe, ob das Verschieben von R „nach oben“ entlang des rechten Polygons den Winkel der Verbindungslinie vergrößert. Das ist der Fall! Verschiebe R.
-6. Irgendwann führt das Verschieben eines der beiden Punkte dazu, dass die Verbindungslinie innerhalb der Polygone abfällt. Stopp. Dies ist die obere Tangente.
-7. Wiederhole den Vorgang nach unten, um die untere Tangente zu finden.
-8. Verbinde L_{up} mit R_{up}, verfolge die äußere rechte Kante nach unten bis zu R_{down}, verbinde diese mit L_{down} und verfolge die äußere linke Kante wieder nach oben bis zu L_{up}.
+3. Starten Sie die Schätzung bei den innersten, sich gegenüberliegenden Punkten L und R.
+4. Prüfen Sie, ob das Bewegen von L "nach oben" am linken Polygon den Winkel der Verbindungslinie vergrößert. Das tut es! Bewege L.
+5. Prüfen Sie, ob das Bewegen von R "nach oben" am rechten Polygon den Winkel der Verbindungslinie vergrößert. Das tut es! Bewege R.
+6. Irgendwann führt das Bewegen eines der Punkte dazu, dass die Verbindungslinie in das Innere der Polygone abfällt. Stoppen. Dies ist die obere Tangente.
+7. Wiederholen Sie den Vorgang nach unten, um die untere Tangente zu finden.
+8. Verbinden Sie L_{up} mit R_{up}, folgen Sie der äußeren rechten Kante nach unten zu R_{down}, verbinden Sie diese mit L_{down} und folgen Sie der äußeren linken Kante zurück nach oben zu L_{up}.
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(N \log N)$ | $O(\log N)$ |
+| **Bestfall** | $O(N \log N)$ | $O(\log N)$ |
 | **Durchschnittlicher Fall** | $O(N \log N)$ | $O(\log N)$ |
-| **Schlechteste** | $O(N \log N)$ | $O(\log N)$ |
+| **Schlechtester Fall** | $O(N \log N)$ | $O(\log N)$ |
 
-Die anfängliche Sortierung der X-Koordinaten dauert $O(N \log N)$.
+Das anfängliche Sortieren nach der X-Koordinate benötigt $O(N \log N)$.
 Der Rekursionsbaum hat eine Tiefe von $O(\log N)$.
-Auf jeder Ebene nimmt das Durchlaufen der Zeiger zur Ermittlung der oberen und unteren Tangenten Zeit in Anspruch, die proportional zur Anzahl der Eckpunkte in den Hüllen ist, was im schlimmsten Fall $O(N)$ beträgt.
-Daher lautet die Rekursionsbeziehung T(N) = 2T(N/2) + $O(N)$ -> $O(N \log N)$.
-Die Platzkomplexität beträgt $O(\log N)$ für die Rekursionstiefe (sofern die Hüllen an Ort und Stelle oder über Index-Arrays zusammengefügt werden; Standardimplementierungen, die neue Arrays zurückgeben, benötigen jedoch $O(N)$ Speicherplatz).
+Auf jeder Ebene benötigt das Bewegen der Pointer zum Finden der oberen und unteren Tangenten Zeit proportional zur Anzahl der Eckpunkte in den Hüllen, was im schlechtesten Fall $O(N)$ entspricht.
+Daher lautet die Rekursionsgleichung T(N) = 2T(N/2) + $O(N)$ -> $O(N \log N)$.
+Die Platzkomplexität beträgt $O(\log N)$ für die Rekursionstiefe (sofern die Hüllen in-place oder über Index-Arrays zusammengefügt werden, obwohl Standardimplementierungen, die neue Arrays zurückgeben, $O(N)$ Platz benötigen).
 
 ## Varianten & Optimierungen
 
-- **Graham-Scan:** Ein $O(N \log N)$-Algorithmus ohne „Teile und herrsche“-Prinzip. Alle Punkte werden nach ihrem Polwinkel relativ zum untersten Punkt sortiert. Auf einen Stack schieben. Wenn ein Punkt eine „Rechtskurve“ (Konkavität) erzeugt, vom Stack abheben, bis die Form wieder konvex ist!
-- **Quickhull (`dc_16`):** Das räumlich-geometrische Äquivalent zu Quicksort! Wähle den äußersten linken und rechten Punkt aus. Finde den Punkt, der am weitesten von dieser Linie entfernt ist, um ein Dreieck zu bilden. Verwerfe alle Punkte innerhalb des Dreiecks. Baue rekursiv Dreiecke nach außen auf! $O(N \log N)$ im Durchschnittlicher Fall, $O(N^2)$ im schlimmsten Fall.
+- **Graham Scan:** Ein $O(N \log N)$ Algorithmus, der nicht auf Divide and Conquer basiert. Sortieren Sie alle Punkte nach dem Polarwinkel relativ zum untersten Punkt. Pushen Sie diese auf einen Stack. Wenn ein Punkt eine "Rechtskurve" (Konkavität) erzeugt, poppen Sie den Stack, bis er wieder konvex ist!
+- **Quickhull (`dc_16`):** Das geometrische Äquivalent zu Quicksort! Wählen Sie die extrem linken und rechten Punkte. Finden Sie den Punkt, der am weitesten von dieser Linie entfernt ist, um ein Dreieck zu bilden. Verwerfen Sie alle Punkte innerhalb des Dreiecks. Bilden Sie rekursiv Dreiecke nach außen! $O(N \log N)$ im Durchschnitt, $O(N^2)$ im schlechtesten Fall.
 
 ## Anwendungen in der Praxis
 
-- **Kollisionsvermeidung (Robotik):** Der schnellste Weg, um festzustellen, ob ein komplexer, mehrgelenkiger Roboterarm gegen eine Wand stoßen wird, besteht darin, die konvexe Hülle des Roboters zu berechnen und auf Schnittpunkte zu prüfen, anstatt jedes einzelne Gelenk und jede einzelne Leitung zu überprüfen.
-- **Bildverarbeitung:** Erkennung von Form, Umfang und Begrenzungsrahmen von Objekten in der Bildverarbeitung (z. B. Handgestenerkennung).
+- **Kollisionsvermeidung (Robotik):** Der schnellste Weg, um festzustellen, ob ein komplexer Roboterarm mit mehreren Gelenken gegen eine Wand stößt, besteht darin, die konvexe Hülle des Roboters zu berechnen und auf Schnittpunkte zu prüfen, anstatt jedes einzelne Gelenk und Kabel zu überprüfen.
+- **Bildverarbeitung:** Erkennung der Form, des Umfangs und der Bounding Boxes von Objekten in der Computer Vision (z. B. Erkennung von Handgesten).
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dc_16 – Quickhull-Konvexhülle](dc_16_quickhull-convex-hull.md)** — Der alternative rekursive Ansatz zur Berechnung der Konvexhülle.
-- **[dc_05 – Nächstgelegenes Punktpaar](dc_05_closest-pair-of-points.md)** – Der andere grundlegende räumliche „Teile und herrsche“-Algorithmus in der Geometrie.
+- **[dc_16 - Quickhull Convex Hull](dc_16_quickhull-convex-hull.md)** — Der alternative rekursive Ansatz zur Berechnung der konvexen Hülle.
+- **[dc_05 - Closest Pair of Points](dc_05_closest-pair-of-points.md)** — Der andere grundlegende räumliche Divide-and-Conquer-Algorithmus der Geometrie.
 
 ---
 
-*Diese Dokumentation ist ein für cOde(n) verfasster Originalbeitrag,
-der sich an der kanonischen Struktur orientiert, die von Referenzseiten
-zum Thema Wettbewerbsprogrammierung verwendet wird. Den kanonischen
-Enzyklopädieeintrag finden Sie unter dem Wikipedia-Link oben auf der Seite.
-Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) geschrieben wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für wettbewerbsorientierte Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

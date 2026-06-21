@@ -1,64 +1,64 @@
-# Dungeon-Spiel
+# Dungeon Game
 
 | | |
 |---|---|
 | **ID** | `dp_27` |
-| **Kategorie** | dynamisch |
-| **Komplexität (erforderlich)** | $O(M * N)$ Zeit, $O(N)$ Speicherplatz |
-| **Schwierigkeitsgrad** | 7/10 |
-| **Relevanz für Vorstellungsgespräche** | 6/10 |
-| **LeetCode-Äquivalent** | [Dungeon-Spiel](https://leetcode.com/problems/dungeon-game/) |
+| **Category** | dynamic |
+| **Complexity (required)** | $O(M * N)$ Time, $O(N)$ Space |
+| **Difficulty** | 7/10 |
+| **Interview relevance** | 6/10 |
+| **LeetCode Equivalent** | [Dungeon Game](https://leetcode.com/problems/dungeon-game/) |
 
-## Aufgabenstellung
+## Problem statement
 
-Die Dämonen hatten die Prinzessin gefangen genommen und sie in der rechten unteren Ecke eines Verlieses eingesperrt. Das Verlies besteht aus `m x n` Räumen, die in einem 2D-Raster angeordnet sind. Unser tapferer Ritter befand sich anfangs im Raum oben links.
+Die Dämonen haben die Prinzessin gefangen genommen und sie in der unteren rechten Ecke eines Dungeons eingesperrt. Der Dungeon besteht aus `m x n` Räumen, die in einem 2D-Gitter angeordnet sind. Unser tapferer Ritter startet im oberen linken Raum.
 Der Ritter kann sich nur **nach unten** oder **nach rechts** bewegen.
-In einigen Räumen befinden sich Dämonen (negative ganze Zahlen), die die Lebenspunkte des Ritters verringern. In anderen Räumen befinden sich magische Kugeln (positive ganze Zahlen), die die Lebenspunkte des Ritters erhöhen.
-Die Lebenspunkte des Ritters MÜSSEN zu jedem Zeitpunkt \ge 1 sein. Fällt seine Gesundheit auf 0 oder darunter, stirbt er sofort.
-Gib die **minimale Anfangsgesundheit** des Ritters zurück, damit er die Prinzessin erfolgreich retten kann.
+Einige Räume enthalten Dämonen (negative Ganzzahlen), die die Lebensenergie des Ritters verringern. Andere Räume enthalten magische Kugeln (positive Ganzzahlen), die die Lebensenergie des Ritters erhöhen.
+Die Lebensenergie des Ritters muss zu jedem Zeitpunkt $\ge 1$ sein. Wenn seine Lebensenergie auf 0 oder darunter fällt, stirbt er sofort.
+Geben Sie die **minimale anfängliche Lebensenergie** zurück, die der Ritter benötigt, um die Prinzessin erfolgreich zu retten.
 
-**Eingabe:** Eine `m x n` ganzzahlige Matrix `dungeon`.
-**Ausgabe:** Eine ganze Zahl, die die erforderliche minimale Anfangsgesundheit angibt.
+**Eingabe:** Eine `m x n` Ganzzahlmatrix `dungeon`.
+**Ausgabe:** Eine Ganzzahl, die die erforderliche minimale Start-Lebensenergie darstellt.
 
-## Wann man diese Methode anwendet
+## Wann man es verwendet
 
-- Um die Beherrschung der **rückwärtsgerichteten dynamischen Programmierung (Backwards DP)** zu demonstrieren.
-- Wenn ein Wegfindungsproblem eine strenge, nicht-negative Laufbedingung aufweist, versagt die vorwärtsgerichtete dynamische Programmierung (Forward DP), da lokale Maxima möglicherweise nicht zur globalen Gültigkeit führen.
+- Um die Beherrschung von **Backwards DP** (rückwärts gerichtete dynamische Programmierung) zu demonstrieren.
+- Wenn ein Pfadfindungsproblem eine strikte Nicht-Negativitäts-Bedingung hat, schlägt Forward DP fehl, da lokale Maxima möglicherweise nicht zu einer globalen Gültigkeit führen.
 
-## Vorgehensweise
+## Ansatz
 
-**1. Der Fehler der vorwärtsgerichteten DP:**
-Wenn wir bei `(0,0)` beginnen und versuchen, die „minimal erforderliche Gesundheit zum Erreichen von `(i, j)`“ zu ermitteln, stoßen wir auf ein Paradoxon.
-Wenn wir eine Zelle mit zwei Pfaden erreichen:
-- Pfad A: Erfordert `10` Startgesundheit, gewährt dir aber derzeit `50` Bonusgesundheit.
-- Weg B: Erfordert `5` Startgesundheit, gewährt dir aber derzeit `1` Bonusgesundheit.
-Welcher Weg ist „besser“? Weg B erfordert im Moment weniger Startgesundheit, aber Weg A verschafft dir einen massiven Schutzschild gegen zukünftige Dämonen! Wir können keine lokal optimierte, gierige Entscheidung für den weiteren Verlauf treffen!
+**1. Der Fehler von Forward DP:**
+Wenn wir bei `(0,0)` starten und versuchen, die "minimale Lebensenergie, die benötigt wird, um `(i, j)` zu erreichen" zu verfolgen, stehen wir vor einem Paradoxon.
+Wenn wir eine Zelle über zwei Pfade erreichen:
+- Pfad A: Erfordert `10` anfängliche Lebensenergie, gibt aber aktuell `50` Bonus-Lebensenergie.
+- Pfad B: Erfordert `5` anfängliche Lebensenergie, gibt aber aktuell `1` Bonus-Lebensenergie.
+Welcher Pfad ist "besser"? Pfad B erfordert aktuell weniger Start-Lebensenergie, aber Pfad A bietet einen massiven Schutz gegen zukünftige Dämonen! Wir können hier keine lokale gierige Entscheidung (Greedy Choice) treffen!
 
-**2. Rückwärts-DP:**
-Wir MÜSSEN bei der Prinzessin bei `(M-1, N-1)` beginnen und rückwärts zum Ritter bei `(0,0)` vorgehen!
-Sei `dp[i][j]` die **erforderliche Mindestgesundheit** beim Betreten der Zelle `(i, j)` sein, um die Prinzessin sicher zu erreichen.
+**2. Backwards DP:**
+Wir MÜSSEN bei der Prinzessin an `(M-1, N-1)` starten und uns rückwärts zum Ritter bei `(0,0)` vorarbeiten!
+Sei `dp[i][j]` die **minimale Lebensenergie, die beim Betreten der Zelle `(i, j)` benötigt wird**, um die Prinzessin sicher zu erreichen.
 
-**3. Den Basisfall finden:**
+**3. Den Induktionsanfang finden:**
 In der Zelle der Prinzessin `(M-1, N-1)`:
-- Befindet sich in ihrem Raum ein Dämon (z. B. `-5`), benötigen wir genügend Lebenspunkte, um ihn zu überleben UND mindestens `1` Lebenspunkte übrig zu haben. Wir benötigen also `6` Lebenspunkte.
-- Befindet sich in ihrem Raum eine Kugel (z. B. `+5`), benötigen wir immer noch mindestens `1` Lebenspunkte, um vor dem Betreten am Leben zu bleiben.
-Daher gilt: `dp[M-1][N-1] = max(1, 1 - dungeon[M-1][N-1])`.
+- Wenn ihr Raum einen Dämon enthält (z. B. `-5`), benötigen wir genug Lebensenergie, um diesen zu überleben UND mindestens `1` Lebensenergie übrig zu haben. Wir benötigen also `6` Lebensenergie.
+- Wenn ihr Raum eine Kugel enthält (z. B. `+5`), benötigen wir immer noch mindestens `1` Lebensenergie, um überhaupt lebend den Raum zu betreten.
+Daher: `dp[M-1][N-1] = max(1, 1 - dungeon[M-1][N-1])`.
 
-**4. Den Übergang finden (die Rekursionsrelation):**
-Von jeder inneren Zelle `(i, j)` aus wird der Springer diese Zelle unweigerlich verlassen und sich entweder nach UNTEN zu `(i+1, j)` oder nach RECHTS zu `(i, j+1)` bewegen.
-Um seine Startgesundheit zu minimieren, sollte er den Weg wählen, der WENIGER Gesundheit erfordert!
-Die Gesundheit, die er also *nach* dem Verlassen dieser Zelle benötigt, beträgt: `min_health_on_exit = min(dp[i+1][j], dp[i][j+1])`.
-Um die *vor* dem Betreten von `(i, j)` benötigte Gesundheit zu berechnen, ziehen wir die Heilung/den Schaden von `(i, j)` von `min_health_on_exit` ab.
-Wenn `dungeon[i][j]` ihn so stark heilt, dass die erforderliche Gesundheit negativ wird, begrenzen wir sie auf `1` (da er niemals eine Gesundheit von \le 0 haben kann).
+**4. Den Übergang finden (Die Rekursionsgleichung):**
+Für jede interne Zelle `(i, j)` wird der Ritter diese Zelle zwangsläufig verlassen und sich entweder NACH UNTEN zu `(i+1, j)` oder NACH RECHTS zu `(i, j+1)` bewegen.
+Um seine Start-Lebensenergie zu minimieren, sollte er den Pfad wählen, der WENIGER Lebensenergie erfordert!
+Die Lebensenergie, die er *nach* dem Verlassen dieser Zelle benötigt, ist also: `min_health_on_exit = min(dp[i+1][j], dp[i][j+1])`.
+Um die Lebensenergie zu berechnen, die *vor* dem Betreten von `(i, j)` benötigt wird, subtrahieren wir die Heilung/den Schaden von `(i, j)` von `min_health_on_exit`.
+Wenn `dungeon[i][j]` ihn so stark heilt, dass die benötigte Lebensenergie negativ wird, setzen wir sie auf `1` fest (da er niemals $\le 0$ Lebensenergie haben darf).
 `dp[i][j] = max(1, min(dp[i+1][j], dp[i][j+1]) - dungeon[i][j])`
 
-**5. Speicherplatzoptimierung:**
-Da zur Berechnung der Zeile `i` nur die Zeile `i+1` benötigt wird, können wir die M × N-Matrix in ein eindimensionales Array der Größe N+1 komprimieren.
+**5. Platzoptimierung:**
+Da die Berechnung der Zeile `i` nur die Zeile `i+1` erfordert, können wir die M x N Matrix in ein 1D-Array der Größe N+1 komprimieren.
 
 ## Algorithmus
 
 <details>
-<summary>Algorithmus anzeigen</summary>
+<summary>Show Algorithm</summary>
 
 ```python
 """Optimal solution for dp_27: Dungeon Game.
@@ -84,60 +84,55 @@ def solve(dungeon, m, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Walk-through
 
 `dungeon = [[-2, -3, 3], [-5, -10, 1], [10, 30, -5]]`.
-M=3, N=3. Ausgangszustand `dp = [inf, inf, inf, inf]`.
+M=3, N=3. Initial `dp = [inf, inf, inf, inf]`.
 Dummy setzen: `dp[2] = 1`. `dp = [inf, inf, 1, inf]`.
 
-1. **i = 2 (untere Reihe):**
-   - `j=2` (Prinzessin, `-5`): `min_exit = min(1, inf) = 1`. `dp[2] = max(1, 1 - (-5)) = 6`. (Man benötigt 6 HP, um gegen den -5-Dämon zu kämpfen). `dp = [inf, inf, 6, inf]`.
-   - `j=1`(`30`): `min_exit = min(inf, 6) = 6`. `dp[1] = max(1, 6 - 30) = 1`. (Die Kugel heilt 30, man benötigt nur 1 HP).
-   - `j=0`(`10`): `min_exit = min(inf, 1) = 1`. `dp[0] = max(1, 1 - 10) = 1`.
-   - `dp`-Zustand: `[1, 1, 6, inf]`.
+1. **i = 2 (Untere Zeile):**
+   - `j=2` (Prinzessin, `-5`): `min_exit = min(1, inf) = 1`. `dp[2] = max(1, 1 - (-5)) = 6`. (Benötige 6 HP, um den -5 Dämon zu bekämpfen). `dp = [inf, inf, 6, inf]`.
+   - `j=1` (`30`): `min_exit = min(inf, 6) = 6`. `dp[1] = max(1, 6 - 30) = 1`. (Kugel heilt 30, benötige nur 1 HP).
+   - `j=0` (`10`): `min_exit = min(inf, 1) = 1`. `dp[0] = max(1, 1 - 10) = 1`.
+   - `dp` Zustand: `[1, 1, 6, inf]`.
 
-2. **i = 1 (mittlere Reihe):**
-   - `j=2`(`1`): `min_exit = min(6(down), inf(right)) = 6`. `dp[2] = max(1, 6 - 1) = 5`.
-   - `j=1`(`-10`): `min_exit = min(1(down), 5(right)) = 1`. `dp[1] = max(1, 1 - (-10)) = 11`.
-   - `j=0`(`-5`): `min_exit = min(1(down), 11(right)) = 1`. `dp[0] = max(1, 1 - (-5)) = 6`.
+2. **i = 1 (Mittlere Zeile):**
+   - `j=2` (`1`): `min_exit = min(6(unten), inf(rechts)) = 6`. `dp[2] = max(1, 6 - 1) = 5`.
+   - `j=1` (`-10`): `min_exit = min(1(unten), 5(rechts)) = 1`. `dp[1] = max(1, 1 - (-10)) = 11`.
+   - `j=0` (`-5`): `min_exit = min(1(unten), 11(rechts)) = 1`. `dp[0] = max(1, 1 - (-5)) = 6`.
    - `dp` Zustand: `[6, 11, 5, inf]`.
 
-3. **i = 0 (oberste Zeile):**
-   - `j=2`(`3`): `min_exit = min(5, inf) = 5`. `dp[2] = max(1, 5 - 3) = 2`.
-   - `j=1`(`-3`): `min_exit = min(11, 2) = 2`. `dp[1] = max(1, 2 - (-3)) = 5`.
-   - `j=0`(`-2`): `min_exit = min(6, 5) = 5`. `dp[0] = max(1, 5 - (-2)) = 7`.
+3. **i = 0 (Obere Zeile):**
+   - `j=2` (`3`): `min_exit = min(5, inf) = 5`. `dp[2] = max(1, 5 - 3) = 2`.
+   - `j=1` (`-3`): `min_exit = min(11, 2) = 2`. `dp[1] = max(1, 2 - (-3)) = 5`.
+   - `j=0` (`-2`): `min_exit = min(6, 5) = 5`. `dp[0] = max(1, 5 - (-2)) = 7`.
 
-Das Ergebnis `dp[0]` ist 7. ✓ (Der Ritter benötigt zu Beginn 7 HP).
+Das Ergebnis `dp[0]` ist 7. ✓ (Der Ritter benötigt 7 HP als Startwert).
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
-| **Bestwert** | $O(M * N)$ | $O(N)$ |
+| **Bestfall** | $O(M * N)$ | $O(N)$ |
 | **Durchschnittlicher Fall** | $O(M * N)$ | $O(N)$ |
 | **Schlechtester Fall** | $O(M * N)$ | $O(N)$ |
 
-Die verschachtelten Schleifen durchlaufen jede Zelle der M × N-Matrix genau einmal. Die Laufzeit beträgt $O(M \times N)$.
-Durch die Verwendung des eindimensionalen rollenden Arrays beträgt der Speicherbedarf $O(N)$ (wobei N die Anzahl der Spalten ist).
+Die verschachtelten Schleifen besuchen jede Zelle in der M x N Matrix genau einmal. Die Zeitkomplexität ist $O(M \times N)$.
+Durch die Verwendung des 1D-Rolling-Arrays ist die Platzkomplexität $O(N)$ (wobei N die Anzahl der Spalten ist).
 
 ## Varianten & Optimierungen
 
-- **Binäre Suche nach der Lösung:** Wenn du Schwierigkeiten hast, die Rückwärts-DP zu verstehen, kannst du diese Aufgabe tatsächlich mit einer Vorwärts-DP in Kombination mit einer binären Suche lösen! Du führst eine binäre Suche auf die Startgesundheit `H` (von 1 bis unendlich). Für einen gegebenen `H` führst du eine standardmäßige Vorwärts-DP durch, um zu prüfen, ob du das Ziel erreichen kannst, ohne zu sterben. Dieser Ansatz benötigt $O(M x N x log(\text{MaxHealth})$) Zeit, ist aber äußerst intuitiv zu programmieren!
+- **Binäre Suche auf der Antwort:** Wenn es Ihnen schwerfällt, das Konzept der Backwards DP zu verstehen, können Sie dies tatsächlich mit Forward DP in Kombination mit Binärer Suche lösen! Sie führen eine binäre Suche auf der Start-Lebensenergie `H` durch (von 1 bis Unendlich). Für ein gegebenes `H` führen Sie eine Standard-Forward DP durch, um zu sehen, ob Sie das Ende erreichen können, ohne zu sterben. Dieser Ansatz benötigt $O(M \times N \times log(\text{MaxHealth}))$ Zeit, ist aber extrem intuitiv zu implementieren!
 
 ## Anwendungen in der Praxis
 
-- **Lieferkettenlogistik:** Berechnung des minimalen Anfangsbedarfs an Kraftstoff bzw. Kapital für eine Fahrzeugflotte, die durch ein Netzwerk von Städten fährt, wobei in einigen Städten Mautgebühren (Dämonen) anfallen und andere Städte Tankzuschüsse (Kugeln) gewähren, um sicherzustellen, dass es niemals zu einer Insolvenz kommt.
+- **Logistik der Lieferkette:** Berechnung der minimalen anfänglichen Treibstoffmenge / des Kapitals, das für eine Fahrzeugflotte erforderlich ist, die durch ein Netzwerk von Städten reist, wobei einige Städte Mautgebühren (Dämonen) erheben und andere Tankzuschüsse (Kugeln) anbieten, um sicherzustellen, dass niemals ein Konkurs eintritt.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dp_12 – Minimale Pfadsumme](dp_12_min-cost-path.md)** — Der grundlegende Forward-DP-Algorithmus, den man bei diesem Problem umkehren muss.
-- **[searching_01 – Binäre Suche](../searching/search_01_binary-search.md)** – Der alternative Ansatz $O(M x N log(\text{Health})$).
+- **[dp_12 - Minimum Path Sum](dp_12_min-cost-path.md)** — Der grundlegende Forward DP-Algorithmus, den Sie bei diesem Problem umkehren müssen.
+- **[searching_01 - Binary Search](../searching/search_01_binary-search.md)** — Der alternative $O(M \times N \times log(\text{Health}))$ Ansatz.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag für cOde(n),
-der sich an der kanonischen Struktur orientiert, die von Referenzseiten
-zum Thema Wettbewerbsprogrammierung verwendet wird. Den kanonischen
-Enzyklopädieeintrag finden Sie unter dem Wikipedia-Link oben auf der Seite.
-Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) geschrieben wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link oben auf der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

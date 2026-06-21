@@ -1,44 +1,44 @@
-# 8-Puzzle (Branch-and-Bound)
+# 8-Puzzle (Branch and Bound)
 
 | | |
 |---|---|
 | **ID** | `bb_04` |
 | **Kategorie** | branch_and_bound |
-| **Komplexität (erforderlich)** | $O(b^d)$ Worst Case |
-| **Schwierigkeitsgrad** | 8/10 |
+| **Komplexität (erforderlich)** | $O(b^d)$ Schlechtester Fall |
+| **Schwierigkeit** | 8/10 |
 | **Relevanz für Vorstellungsgespräche** | 5/10 |
 | **Wikipedia** | [15-Puzzle](https://en.wikipedia.org/wiki/15_puzzle) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben ist ein 3 × 3-Raster mit 8 nummerierten Kacheln und einem leeren Feld. Bestimme die minimale Anzahl an Zügen, um die Zielkonfiguration zu erreichen. Ein Zug besteht darin, eine benachbarte Kachel in das leere Feld zu schieben.
-Dies entspricht genau der Suche nach dem kürzesten Weg in einem ungewichteten Graphen, was man *mit* Standard-BFS lösen *könnte*. Der Zustandsraum für das 15-Puzzle beträgt jedoch 10^{13}, und BFS würde sofort an Speichergrenzen stoßen.
-Sie müssen dies mithilfe von **Branch-and-Bound** mit einer Priority Queue lösen (was in diesem spezifischen Kontext der Wegfindung mathematisch identisch mit dem **A*-Suchalgorithmus** ist).
+Gegeben ist ein 3 x 3 Gitter mit 8 nummerierten Kacheln und einem leeren Feld. Ziel ist es, die minimale Anzahl an Zügen zu finden, um die Zielkonfiguration zu erreichen. Ein Zug besteht darin, eine benachbarte Kachel in das leere Feld zu schieben.
+Dies entspricht exakt der Suche nach dem kürzesten Pfad in einem ungewichteten Graphen, was man theoretisch mit einer Standard-BFS lösen *könnte*. Der Zustandsraum des 15-Puzzles beträgt jedoch $10^{13}$, wodurch eine BFS sofort den Arbeitsspeicher erschöpfen würde.
+Sie müssen dieses Problem mittels **Branch and Bound** mit einer Priority Queue lösen (was in diesem speziellen Kontext der Pfadsuche mathematisch identisch mit dem **A*-Suchalgorithmus** ist).
 
-**Eingabe:** Eine 3 × 3-Matrix, die den Startzustand darstellt, und eine Matrix für den Zielzustand.
-**Ausgabe:** Die minimale Anzahl der erforderlichen Züge (oder die Abfolge der Züge).
+**Eingabe:** Eine 3 x 3 Matrix, die den Startzustand repräsentiert, sowie eine Matrix für den Zielzustand.
+**Ausgabe:** Die minimale Anzahl der erforderlichen Züge (oder die Sequenz der Züge).
 
-## Wann man es einsetzt
+## Wann man es verwendet
 
-- Zur Lösung von Raster-Schiebepuzzles, Rubik-Würfeln oder beliebigen deterministischen Pfadfindungsproblemen mit einem riesigen Zustandsraum, bei denen die optimale Sequenzlänge ermittelt werden muss.
+- Zur Lösung von Schiebepuzzles, Zauberwürfeln (Rubik's Cubes) oder jedem deterministischen Pfadfindungsproblem mit einem massiven Zustandsraum, bei dem die optimale Sequenzlänge erforderlich ist.
 
-## Vorgehensweise
+## Ansatz
 
-Bei „Branch and Bound“ (oder A*) legen wir den Schwerpunkt auf die Erkundung von Zuständen mit den niedrigsten **geschätzten Gesamtkosten**, bezeichnet als f(x) = g(x) + h(x).
-1. **g(x) – Die „Branch“-Kosten:** Die Anzahl der Züge, die wir bisher vom Startzustand bis zum aktuellen Zustand ausgeführt haben.
-2. **h(x) – Der „Bound“ (Heuristik):** Die geschätzte *Mindestanzahl* der verbleibenden Züge, die erforderlich sind, um das Ziel zu erreichen.
-   – Für das Puzzle verwenden wir die **Manhattan-Distanz-Heuristik**. Für jedes Spielfeld berechnen wir, wie viele Zeilen und Spalten es von seiner korrekten Zielposition entfernt ist. Die Summe dieser Abstände ist unsere absolute untere Grenze! (Da ein Spielstein jeweils nur um ein Feld verschoben werden kann, ist es physikalisch unmöglich, sein Ziel mit weniger Zügen als seiner Manhattan-Distanz zu erreichen).
-   - *Hinweis: Eine Heuristik ist für B&B/A* nur dann gültig, wenn sie „zulässig“ ist (sie überschätzt niemals die tatsächlichen Kosten).*
+Bei Branch and Bound (oder A*) priorisieren wir die Erkundung von Zuständen, die die niedrigsten **geschätzten Gesamtkosten** aufweisen, bezeichnet als f(x) = g(x) + h(x).
+1. **g(x) - Die "Branch"-Kosten:** Die Anzahl der Züge, die wir bisher vom Startzustand aus getätigt haben, um den aktuellen Zustand zu erreichen.
+2. **h(x) - Die "Bound" (Heuristik):** Die geschätzte *minimale* Anzahl an verbleibenden Zügen, die erforderlich sind, um das Ziel zu erreichen.
+   - Für das Puzzle verwenden wir die **Manhattan-Distanz-Heuristik**. Berechnen Sie für jede Kachel, wie viele Zeilen und Spalten sie von ihrer korrekten Zielposition entfernt ist. Die Summe dieser Distanzen ist unsere absolute untere Schranke! (Da eine Kachel nur um 1 Feld pro Zug verschoben werden kann, kann sie ihr Ziel physikalisch nicht in weniger Zügen erreichen als ihre Manhattan-Distanz).
+   - *Hinweis: Eine Heuristik ist für B&B/A* nur dann gültig, wenn sie "zulässig" (admissible) ist, d. h. sie darf die tatsächlichen Kosten niemals überschätzen.*
 
 **Algorithmus:**
-1. Füge den Startzustand in einen Min-Heap (Priority Queue) ein, sortiert nach f(x) = g(x) + h(x).
+1. Fügen Sie den Startzustand in einen Min-Heap (Priority Queue) ein, sortiert nach f(x) = g(x) + h(x).
 2. Solange der Heap nicht leer ist:
-   - Entnehme den Zustand mit dem niedrigsten f(x).
-   - Wenn der Zustand genau mit dem Zielzustand übereinstimmt, ist die Aufgabe gelöst! Gib g(x) zurück. (Da die Heuristik zulässig ist, ist es mathematisch garantiert, dass es sich beim ersten Mal, wenn wir den Zielzustand entnehmen, um den shortest path handelt).
-   - Erzeuge alle gültigen nächsten Züge (indem benachbarte Kacheln in die Lücke geschoben werden).
-   - Berechne für jeden Tochterzustand dessen neuen Wert g(x) = parent\_g + 1 und dessen neuen Wert h(x).
-   - Füge die Tochterzustände in den Min-Heap ein.
-   - *(Optimierung: Verfolge besuchte Zustände in einem HashSet, damit du nicht endlos in einer Schleife hängst).*
+   - Entnehmen Sie den Zustand mit dem niedrigsten f(x).
+   - Wenn der Zustand exakt dem Zielzustand entspricht, sind Sie fertig! Geben Sie g(x) zurück. (Da die Heuristik zulässig ist, ist das erste Mal, dass wir den Zielzustand entnehmen, mathematisch garantiert der kürzeste Pfad).
+   - Generieren Sie alle gültigen nächsten Züge (Verschieben benachbarter Kacheln in das leere Feld).
+   - Berechnen Sie für jeden Kindzustand das neue g(x) = parent\_g + 1 und das neue h(x).
+   - Fügen Sie die Kindzustände in den Min-Heap ein.
+   - *(Optimierung: Verfolgen Sie besuchte Zustände in einem HashSet, um Endlosschleifen zu vermeiden).*
 
 ## Algorithmus
 
@@ -117,50 +117,46 @@ def solve(start, goal):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Ablaufbeispiel
 
 *(Konzeptionell)*
 Zielzustand ist `[[1, 2, 3], [4, 5, 6], [7, 8, 0]]`.
 Aktueller Zustand: `[[1, 2, 3], [4, 5, 6], [7, 0, 8]]`.
 
-1. **Berechne h(x):** Kachel 8 befindet sich im Zielzustand bei `(2, 2)`, hier jedoch bei `(2, 1)`. Abstand = 1. Leerräume werden ignoriert. h(x) = 1.
-2. **Aktueller Knoten:** g(x) = 0, h(x) = 1 -> f(x) = 1. Vom Heap entfernen.
-3. **Leerfeld verschieben (0 bei 2,1):**
-   - **Nach rechts verschieben (mit 8 tauschen):** Der Zustand wird zum Ziel! g(x) = 1, h(x) = 0. f(x) = 1.
-   - **Nach links verschieben (mit 7 vertauschen):** h(x) steigt, da sich 7 von seinem Ziel entfernt hat!
-   - **Nach oben verschieben (mit 5 vertauschen):** h(x) steigt, da sich 5 von ihrem Ziel entfernt hat!
-4. **Nächster Heap-Pop:** Der Zustand „Nach rechts verschieben“ hat den niedrigsten Wert f(x) = 1. Er wird vom Heap entfernt.
-5. **Prüfung:** h(x) == 0. Wir haben das Ziel in genau g=1 Zügen gefunden! ✓
+1. **Berechne h(x):** Kachel 8 befindet sich im Ziel an `(2, 2)`, hier jedoch an `(2, 1)`. Distanz = 1. Das leere Feld wird ignoriert. h(x) = 1.
+2. **Aktueller Knoten:** g(x)=0, h(x)=1 -> f(x)=1. Entnahme aus dem Heap.
+3. **Verschiebe leeres Feld (0 bei 2,1):**
+   - **Nach rechts verschieben (Tausch mit 8):** Zustand wird zum Ziel! g(x)=1, h(x)=0. f(x)=1.
+   - **Nach links verschieben (Tausch mit 7):** h(x) steigt, da sich 7 von seinem Ziel entfernt hat!
+   - **Nach oben verschieben (Tausch mit 5):** h(x) steigt, da sich 5 von seinem Ziel entfernt hat!
+4. **Nächste Heap-Entnahme:** Der Zustand "Nach rechts verschieben" hat das niedrigste f(x)=1. Er wird entnommen.
+5. **Überprüfung:** h(x) == 0. Wir haben das Ziel in exakt g=1 Zug gefunden! ✓
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(d)$ | $O(d)$ |
-| **Durchschnittlicher Fall** | Deutlich schneller als BFS | $O(Nodes Generated)$ |
+| **Bestfall** | $O(d)$ | $O(d)$ |
+| **Durchschnittlicher Fall** | Viel schneller als BFS | $O(Generierte Knoten)$ |
 | **Schlechtester Fall** | $O(b^d)$ | $O(b^d)$ |
 
-*Dabei ist b der Verzweigungsfaktor (durchschnittlich ~3 Züge pro Zustand) und d die Tiefe der optimalen Lösung.*
-Im absolut schlimmsten Fall (z. B. wenn man eine nutzlose Heuristik wie h(x)=0 verwendet) degeneriert der Algorithmus zu einem Standard-Dijkstra-Verfahren bzw. BFS und erzeugt den gesamten Baum $O(b^d)$.
-Mit einer starken Heuristik wie dem Manhattan-Abstand hingegen reduziert der Algorithmus den Suchraum erheblich und steuert direkt auf die Lösung zu. Die Platzkomplexität stellt oft den Engpass dar, da die Priority Queue und die Menge der besuchten Zustände bei tiefen Rätseln (wie dem 15-Puzzle) Millionen von Zuständen im Speicher halten.
+*Wobei b der Verzweigungsfaktor (durchschnittlich ~3 Züge pro Zustand) und d die Tiefe der optimalen Lösung ist.*
+Im absoluten schlimmsten Fall (z. B. bei Verwendung einer nutzlosen Heuristik wie h(x)=0) degeneriert der Algorithmus zu einer Standard-Dijkstra-Suche bzw. BFS und generiert den gesamten Baum $O(b^d)$.
+Mit einer starken Heuristik wie der Manhattan-Distanz beschneidet der Algorithmus jedoch den Suchraum massiv und steuert direkt auf die Lösung zu. Die Platzkomplexität ist oft der Flaschenhals, da die Priority Queue und das Set der besuchten Zustände bei tiefen Puzzles (wie dem 15-Puzzle) Millionen von Zuständen im Speicher halten.
 
 ## Varianten & Optimierungen
 
-- **Heuristik für lineare Konflikte:** Die Manhattan-Distanz geht davon aus, dass sich Kacheln durcheinander verschieben lassen. Befinden sich Kachel A und Kachel B in der richtigen Reihe, A jedoch rechts von B, müssen sie sich physisch aus der Reihe bewegen, um einander zu umgehen! Man kann für jeden linearen Konflikt +2 zur Manhattan-Heuristik addieren, wodurch die Grenze deutlich enger wird und die Knotenerweiterungen drastisch reduziert werden.
-- **IDA* (Iterative Deepening A*):** Um den enormen Speicherbedarf der Priority Queue zu beheben, führt IDA* eine standardmäßige Tiefensuche durch, wobei die f(x)-Grenze streng begrenzt wird. Es benötigt $O(d)$ Speicher!
+- **Linear Conflict Heuristik:** Die Manhattan-Distanz nimmt an, dass Kacheln durcheinander gleiten können. Wenn Kachel A und Kachel B in der korrekten Zeile sind, aber A rechts von B liegt, müssen sie sich physikalisch aus der Zeile herausbewegen, um aneinander vorbeizukommen! Man kann für jeden linearen Konflikt +2 zur Manhattan-Heuristik addieren, was die Schranke deutlich verschärft und die Knotenerweiterungen drastisch reduziert.
+- **IDA* (Iterative Deepening A*):** Um den massiven Speicherverbrauch der Priority Queue zu beheben, führt IDA* eine Standard-Tiefensuche mit einem strikten Cut-off-Limit für die f(x)-Schranke durch. Dies benötigt nur $O(d)$ Speicher!
 
-## Praktische Anwendungen
+## Praxisanwendungen
 
-- **Roboter-Wegplanung:** Sichere Navigation von Drohnen um physische Hindernisse herum zu Zielkoordinaten im 3D-Raum.
+- **Roboter-Pfadplanung:** Sicheres Navigieren von Drohnen um physische Hindernisse zu Zielkoordinaten im 3D-Raum.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[bb_03 – Least Cost B&B Knapsack](bb_03_0-1-knapsack-least-cost-b-b.md)** — Genau derselbe Explorationsmechanismus mit Priority Queue, der anstelle eines Gitters auf ein Array angewendet wird.
+- **[bb_03 - Least Cost B&B Knapsack](bb_03_0-1-knapsack-least-cost-b-b.md)** — Derselbe Mechanismus der Priority-Queue-Erkundung, angewendet auf ein Array anstelle eines Gitters.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-in Anlehnung an die kanonische Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) verfasst wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

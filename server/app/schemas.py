@@ -49,6 +49,10 @@ class ChallengeSummary(BaseModel):
     parents: list[str] = Field(default_factory=list)
     children: list[str] = Field(default_factory=list)
     max_n: int
+    unlocked: bool = True
+    leetcode_title: str = ""
+    leetcode_slug: str = ""
+    leetcode_url: str = ""
 
 
 class ChallengeDetail(ChallengeSummary):
@@ -148,6 +152,8 @@ class RunResponse(BaseModel):
     too_efficient_reason: str = ""
     message: str
     return_value_repr: str
+    reference_return_value_repr: Optional[str] = None
+    setup_data_repr: Optional[dict[str, str]] = None
     # ---- AST-based op count (the "scientific" metric) -------------
     # Counted by walking the source's AST and summing each
     # operation (Compare, BinOp, Call, Subscript, Attribute,
@@ -168,6 +174,7 @@ class RunResponse(BaseModel):
     # correct but slower than optimal.
     reference_ci_low: Optional[int] = None
     reference_ci_high: Optional[int] = None
+    reference_coefficient: Optional[float] = None
     scaling_data: list[ScalingPoint] = Field(default_factory=list)
 
 
@@ -188,6 +195,13 @@ class ProgressOut(BaseModel):
     completed: list[str]
     last_status: dict[str, str]
     records: dict[str, LevelRecordOut]
+    career_mode: bool = False
+    leetcode_username: str = ""
+    leetcode_solved: list[str] = Field(default_factory=list)
+    unlocked_leetcode: list[str] = Field(default_factory=list)
+    milestones: list[str] = Field(default_factory=list)
+    gemini_api_key: str = ""
+    active_set: str = "neetcode"
 
 
 class ProgressUpdate(BaseModel):
@@ -201,6 +215,10 @@ class ProgressUpdate(BaseModel):
     mark: Optional[dict] = None  # {"challenge_id": str, "ops": int, "complexity": str}
     fail: Optional[str] = None  # challenge_id
     reset: bool = False
+    career_mode: Optional[bool] = None
+    leetcode_username: Optional[str] = None
+    gemini_api_key: Optional[str] = None
+    active_set: Optional[str] = None
 
 
 # ----------------------------------------------------------------------------
@@ -232,3 +250,46 @@ class VersionSwitchRequest(BaseModel):
 
 class VersionRenameRequest(BaseModel):
     name: str
+
+
+# ----------------------------------------------------------------------------
+# Profiles & Verification
+# ----------------------------------------------------------------------------
+
+class ProfileSummary(BaseModel):
+    name: str
+    career_mode: bool
+    leetcode_username: str
+    completed_count: int
+    verified_leetcode_count: int
+
+class ProfilesResponse(BaseModel):
+    active_profile: str
+    profiles: list[ProfileSummary]
+
+class CreateProfileRequest(BaseModel):
+    name: str
+    career_mode: bool = False
+    leetcode_username: str = ""
+
+class VerifyLeetCodeRequest(BaseModel):
+    challenge_id: str
+
+class VerifyLeetCodeResponse(BaseModel):
+    success: bool
+    message: str
+    unlocked_leetcode: list[str]
+    milestones: list[str]
+
+
+class AnalyzeRequest(BaseModel):
+    source: str
+    n: int
+    seed: Optional[int] = None
+    returned: str
+    expected: str
+    inputs: dict[str, str] = Field(default_factory=dict)
+
+
+class AnalyzeResponse(BaseModel):
+    analysis: str

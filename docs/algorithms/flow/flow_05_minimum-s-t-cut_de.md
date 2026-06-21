@@ -1,37 +1,37 @@
-# Minimaler S-T-Schnitt
+# Minimum S-T Cut
 
 | | |
 |---|---|
 | **ID** | `flow_05` |
 | **Kategorie** | flow |
 | **Komplexität (erforderlich)** | $O(Max Flow Time)$ |
-| **Schwierigkeitsgrad** | 5/10 |
+| **Schwierigkeit** | 5/10 |
 | **Relevanz für Vorstellungsgespräche** | 6/10 |
-| **Wikipedia** | [Max-Flow-Min-Cut-Theorem](https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem) |
+| **Wikipedia** | [Max-flow min-cut theorem](https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem) |
 
 ## Problemstellung
 
-Gegeben sei ein gerichteter Graph, der ein Rohrleitungsnetz mit Kapazitäten darstellt, sowie ein `source`-Knoten S und ein `sink`-Knoten T.
-Finde den **minimalen S-T-Schnitt**: Eine bestimmte Menge von Kanten, die, wenn sie vollständig durchtrennt (aus dem Graphen entfernt) würden, S vollständig von T trennen würden.
+Gegeben ist ein gerichteter Graph, der ein Netzwerk von Leitungen mit Kapazitäten darstellt, sowie ein `source`-Knoten S und ein `sink`-Knoten T.
+Finde den **Minimum S-T Cut**: Eine spezifische Menge von Kanten, die, wenn sie vollständig durchtrennt (aus dem Graphen entfernt) werden, S vollständig von T trennen.
 Unter allen möglichen Mengen von Kanten, die S von T trennen, musst du diejenige finden, bei der die Summe der Kapazitäten der durchtrennten Kanten das absolute mathematische Minimum darstellt.
 
-**Eingabe:** Ein gerichteter Graph mit Kapazitäten, einem Quellknoten `s` und einem Zielknoten `t`.
-**Ausgabe:** Eine Liste der spezifischen Kanten `(u, v)`, die den minimum cut bilden.
+**Eingabe:** Ein gerichteter Graph mit Kapazitäten, ein Quellknoten `s` und ein Senkenknoten `t`.
+**Ausgabe:** Eine Liste der spezifischen Kanten `(u, v)`, die den Minimum Cut bilden.
 
-## Wann man es einsetzt
+## Anwendung
 
-- Um die absolut anfälligsten strukturellen Engpässe in einem Netzwerk zu identifizieren.
-- Nach dem **Max-Flow-Min-Cut-Theorem** ist die Gesamtkapazität des minimalen Schnitts mathematisch genau gleich dem maximum flow! Diese tiefgreifende Dualität bedeutet, dass Sie das Min-Cut-Problem mit Ihrem bestehenden Max-Flow-Code lösen können.
+- Zur Identifizierung der absolut kritischsten strukturellen Engpässe in einem Netzwerk.
+- Nach dem **Max-Flow Min-Cut Theorem** ist die Gesamtkapazität des Minimum Cut mathematisch exakt gleich dem Maximum Flow! Diese tiefgreifende Dualität bedeutet, dass du den Min-Cut mit deinem bestehenden Max-Flow-Code lösen kannst.
 
 ## Vorgehensweise
 
-1. **Max-Flow ausführen:** Führen Sie zunächst einen beliebigen Max-Flow-Algorithmus (Ford-Fulkerson, Edmonds-Karp oder Dinic) auf dem Graphen aus, bis das Netzwerk vollständig gesättigt ist.
-2. **Der Restzustand:** Wenn der Max-Flow-Algorithmus beendet ist, bricht er ab, da er im *Restgraphen* keinen Pfad mehr von S nach T finden kann. Das bedeutet, dass der Fluss vollständig durch eine Wand aus vollständig gesättigten Leitungen blockiert ist.
-3. **Ermitteln der erreichbaren Knoten:** Führe eine einfache BFS- oder DFS-Suche ausgehend von S durch und folge dabei streng nur den Kanten, die noch `residual capacity > 0` aufweisen.
+1. **Max Flow ausführen:** Führe zunächst einen beliebigen Max-Flow-Algorithmus (Ford-Fulkerson, Edmonds-Karp oder Dinic) auf dem Graphen aus, bis das Netzwerk vollständig gesättigt ist.
+2. **Der Residualzustand:** Wenn der Max-Flow endet, terminiert der Algorithmus, weil er im *Residualgraphen* keinen Pfad mehr von S nach T finden kann. Das bedeutet, der Fluss ist vollständig durch eine Wand aus voll gesättigten Leitungen blockiert.
+3. **Erreichbare Knoten finden:** Führe eine einfache BFS oder DFS ausgehend von S durch und folge dabei strikt nur den Kanten, die noch eine `residual capacity > 0` aufweisen.
    - Die Menge aller Knoten, die du erreichen kannst, wird als Menge A bezeichnet (die Knoten, die noch mit der Quelle verbunden sind).
-   - Die Menge aller Knoten, die man nicht erreichen kann, wird als Menge B bezeichnet (die von der Quelle abgeschnittenen Knoten).
-4. **Identifiziere die Schnittkanten:** Der Minimalschnitt besteht aus allen ursprünglichen Vorwärtskanten, die in Menge A beginnen und in Menge B enden.
-   - Warum? Weil dies genau die Leitungen sind, die vollständig ausgelastet waren (keine Restkapazität mehr vorhanden), weshalb unser abschließender BFS sie nicht in Menge B überqueren konnte!
+   - Die Menge aller Knoten, die du nicht erreichen kannst, wird als Menge B bezeichnet (die Knoten, die von der Quelle abgeschnitten sind).
+4. **Cut-Kanten identifizieren:** Der Minimum Cut besteht aus allen ursprünglichen Vorwärtskanten, die in Menge A beginnen und in Menge B enden.
+   - Warum? Weil dies genau die Leitungen sind, die vollständig gesättigt waren (Restkapazität 0), weshalb unsere abschließende BFS sie nicht nach Menge B überqueren konnte!
 
 ## Algorithmus
 
@@ -108,25 +108,25 @@ def solve(n, edges):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 *(Konzeptionell)*
 Original: `S -> A (cap 10)`, `A -> T (cap 5)`, `S -> B (cap 5)`, `B -> T (cap 10)`.
 
-1. **Maximaler Durchfluss:** Der Gesamtdurchfluss beträgt 5 + 5 = 10.
-   - Die Kante `A -> T` ist vollständig ausgelastet (Restkapazität 0).
-   - Die Kante `S -> B` ist vollständig ausgelastet (Restkapazität 0).
-2. **Abschließender BFS von S:**
-   - Können wir zu `A` gehen? Ja, `S -> A` hatte ursprünglich 10, wir haben 5 verbraucht, also bleiben 5 übrig. `A` ist erreichbar.
-   - Können wir zu `A -> T` gehen? Nein, die Restkapazität beträgt 0.
-   - Können wir zu `S -> B` gehen? Nein, die Restkapazität beträgt 0.
+1. **Max Flow:** Der Gesamtfluss beträgt 5 + 5 = 10.
+   - Die Kante `A -> T` ist vollständig gesättigt (Restkapazität 0).
+   - Die Kante `S -> B` ist vollständig gesättigt (Restkapazität 0).
+2. **Abschließende BFS von S:**
+   - Können wir zu `A` gelangen? Ja, `S -> A` hatte ursprünglich 10, wir haben 5 verbraucht, also bleiben 5. `A` ist erreichbar.
+   - Können wir `A -> T` gehen? Nein, die Restkapazität ist 0.
+   - Können wir `S -> B` gehen? Nein, die Restkapazität ist 0.
    - Erreichbar (Menge A): `{S, A}`.
    - Nicht erreichbar (Menge B): `{B, T}`.
-3. **Schnittkanten finden:**
+3. **Cut-Kanten finden:**
    - Betrachte die ursprünglichen Kanten, die von `{S, A}` nach `{B, T}` führen.
-   - Die Kante `A -> T` liegt im Schnitt! (Kapazität 5).
-   - Die Kante `S -> B` liegt im Schnitt! (Kapazität 5).
-   - Gesamtschnittkapazität = 10. (Entspricht genau dem maximalen Durchfluss!) ✓
+   - Die Kante `A -> T` ist im Cut enthalten! (Kapazität 5).
+   - Die Kante `S -> B` ist im Cut enthalten! (Kapazität 5).
+   - Gesamtkapazität des Cut = 10. (Exakt gleich dem Max Flow!) ✓
 
 ## Komplexität
 
@@ -136,27 +136,23 @@ Original: `S -> A (cap 10)`, `A -> T (cap 5)`, `S -> B (cap 5)`, `B -> T (cap 10
 | **Durchschnittlicher Fall** | $O(Max Flow Time)$ | $O(V^2)$ |
 | **Schlechtester Fall** | $O(V * E^2)$ | $O(V^2)$ |
 
-Die Zeitkomplexität wird vollständig von dem anfänglichen Max-Flow-Algorithmus bestimmt, der zur Sättigung des Graphen verwendet wird. (Z. B. $O(V \cdot E^2)$, wenn Edmonds-Karp verwendet wird). Die anschließende BFS-Suche und der Kanten-Scan zur Ermittlung des Schnitts benötigen nur eine vernachlässigbare Zeit von $O(V + E)$ bzw. $O(V^2)$.
+Die Zeitkomplexität wird vollständig durch den anfänglichen Max-Flow-Algorithmus dominiert, der zur Sättigung des Graphen verwendet wird. (z. B. $O(V \cdot E^2)$ bei Verwendung von Edmonds-Karp). Die anschließende BFS und der Kanten-Scan zur Ermittlung des Cut benötigen triviale $O(V + E)$ bzw. $O(V^2)$ Zeit.
 Die Platzkomplexität beträgt $O(V^2)$ für die Matrizen.
 
 ## Varianten & Optimierungen
 
-- **Globales Minimalschnitt (Stoer-Wagner):** Was ist, wenn man einfach nur den absolut schwächsten Punkt in einem ungerichteten Graphen finden möchte, unabhängig von S und T? Man könnte den Min-S-T-Schnitt für jedes mögliche Knotenpaar ausführen ($O(V^2)$ Mal), aber der Stoer-Wagner-Algorithmus findet den globalen Minimalschnitt rein algebraisch in $O(V \cdot E + V^2 log V)$ Zeit, ohne den Netzfluss überhaupt zu verwenden!
+- **Global Minimum Cut (Stoer-Wagner):** Was ist, wenn man einfach den absolut schwächsten Punkt in einem ungerichteten Graphen finden möchte, unabhängig von S und T? Man könnte den Min S-T Cut für jedes mögliche Knotenpaar berechnen ($O(V^2)$-mal), aber der Stoer-Wagner-Algorithmus findet den Global Min Cut rein algebraisch in $O(V \cdot E + V^2 log V)$ Zeit, ganz ohne Netzwerkfluss!
 
 ## Anwendungen in der Praxis
 
-- **Militär & Infrastruktur:** Ermittlung der absolut minimalen Anzahl an Brücken oder Stromleitungen, die zerstört werden müssen, um die feindlichen Versorgungslinien von einer Hauptstadt zu einem vorgeschobenen Stützpunkt vollständig zu unterbrechen.
-- **Bildsegmentierung:** In der Bildverarbeitung werden „Graph Cuts“ verwendet, um Objekte im Vordergrund vom Hintergrund zu trennen, indem Pixel als Knoten und Kantengewichte als Farbähnlichkeiten behandelt werden.
+- **Militär & Infrastruktur:** Identifizierung der absolut minimalen Anzahl an Brücken oder Stromleitungen, die zerstört werden müssen, um die Versorgungslinien eines Gegners von einer Hauptstadt zu einer vorgeschobenen Basis perfekt zu unterbrechen.
+- **Bildsegmentierung:** In der Computer Vision werden "Graph Cuts" verwendet, um Vordergrundobjekte vom Hintergrund zu trennen, indem Pixel als Knoten und Kantengewichte als Farbähnlichkeiten behandelt werden.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[flow_02 – Edmonds-Karp](flow_02_edmonds-karp.md)** — Die Engine, die zur Sättigung des Restgraphen verwendet wird.
-- **[flow_01 – Ford-Fulkerson](flow_01_ford-fulkerson-max-flow.md)** – Der Solver für den Fundamentalsatz.
+- **[flow_02 - Edmonds-Karp](flow_02_edmonds-karp.md)** — Die Engine, die zur Sättigung des Residualgraphen verwendet wird.
+- **[flow_01 - Ford Fulkerson](flow_01_ford-fulkerson-max-flow.md)** — Der grundlegende Theorem-Löser.
 
 ---
 
-*Diese Dokumentation ist ein für cOde(n) verfasster Originalinhalt,
-der sich an der kanonischen Struktur orientiert, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) verfasst wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitive Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folge dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

@@ -24,6 +24,13 @@ class PlayerProgress:
     completed: set[str] = field(default_factory=set)
     records: dict[str, LevelRecord] = field(default_factory=dict)
     last_status: dict[str, str] = field(default_factory=dict)
+    career_mode: bool = False
+    leetcode_username: str = ""
+    leetcode_solved: list[str] = field(default_factory=list)
+    unlocked_leetcode: list[str] = field(default_factory=list)
+    milestones: list[str] = field(default_factory=list)
+    gemini_api_key: str = ""
+    active_set: str = "gfg"
 
     def complete(self, challenge_id: str, ops: int, complexity: str):
         self.completed.add(challenge_id)
@@ -50,6 +57,9 @@ class PlayerProgress:
         self.completed.clear()
         self.records.clear()
         self.last_status.clear()
+        self.leetcode_solved.clear()
+        self.unlocked_leetcode.clear()
+        self.milestones.clear()
 
     def status_for(self, challenge_id: str) -> str:
         status = self.last_status.get(challenge_id)
@@ -72,7 +82,14 @@ class PlayerProgress:
                     "attempts": v.attempts,
                 }
                 for k, v in self.records.items()
-            }
+            },
+            "career_mode": self.career_mode,
+            "leetcode_username": self.leetcode_username,
+            "leetcode_solved": list(self.leetcode_solved),
+            "unlocked_leetcode": list(self.unlocked_leetcode),
+            "milestones": list(self.milestones),
+            "gemini_api_key": self.gemini_api_key,
+            "active_set": self.active_set
         }
 
     @classmethod
@@ -86,6 +103,13 @@ class PlayerProgress:
         for challenge_id in old_completed:
             progress.last_status.setdefault(challenge_id, "done")
         progress.completed = {challenge_id for challenge_id, status in progress.last_status.items() if status == "done"}
+        progress.career_mode = bool(data.get("career_mode", False))
+        progress.leetcode_username = str(data.get("leetcode_username", ""))
+        progress.leetcode_solved = list(data.get("leetcode_solved", []))
+        progress.unlocked_leetcode = list(data.get("unlocked_leetcode", []))
+        progress.milestones = list(data.get("milestones", []))
+        progress.gemini_api_key = str(data.get("gemini_api_key", ""))
+        progress.active_set = str(data.get("active_set", "neetcode"))
         return progress
 
 

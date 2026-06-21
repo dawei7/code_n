@@ -23,7 +23,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from server.app.config import CORS_ORIGINS, WEB_DIST, ensure_data_dirs
-from server.app.routes import challenges, docs, health, progress, run, solutions, vscode
+from server.app.routes import challenges, docs, health, progress, run, solutions, vscode, profiles
 from server.app import error_handlers
 
 
@@ -71,6 +71,7 @@ def create_app() -> FastAPI:
     # id to solutions/.vscode-active so the next F5 in VSCode
     # defaults to the right challenge).
     app.include_router(vscode.router, prefix="/api")
+    app.include_router(profiles.router, prefix="/api")
 
     # Exception handlers
     error_handlers.register(app)

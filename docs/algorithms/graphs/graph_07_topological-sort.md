@@ -170,7 +170,7 @@ complexity is $O(V²)$.
 - **Build systems** — Make, CMake, Bazel, npm, cargo all
   use topo sort to determine build order.
 - **Task scheduling** — "do A before B" with constraints.
-- **Course prerequisite planning** — "take intro_01 before
+- **Course prerequisite planning** — "take recursion_01 before
   dp_01".
 - **Spreadsheet recalc** — which cells depend on which
   others.

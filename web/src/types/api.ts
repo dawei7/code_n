@@ -33,6 +33,10 @@ export interface ChallengeSummary {
   parents: string[];
   children: string[];
   max_n: number;
+  unlocked: boolean;
+  leetcode_title: string;
+  leetcode_slug: string;
+  leetcode_url: string;
 }
 
 export interface ChallengeDetail extends ChallengeSummary {
@@ -78,6 +82,8 @@ export interface RunResponse {
    *  doesn't blow up the response. The Result tab renders this
    *  as the "what my code produced" line. */
   return_value_repr: string;
+  reference_return_value_repr?: string | null;
+  setup_data_repr?: Record<string, string> | null;
   // ---- AST-derived op counts (the "scientific" metric) ----
   // Counted statically by walking the source's AST. This is
   // the SINGLE source of truth for "how many ops does your
@@ -85,9 +91,10 @@ export interface RunResponse {
   // (within_threshold), and the progress-best-ops recording.
   user_ast_ops: number | null;
   reference_ast_ops: number | null;
-  /** ±5% tolerance band around the reference's AST op count. */
+  /** -10% / +5% tolerance band around the reference's AST op count. */
   reference_ci_low: number | null;
   reference_ci_high: number | null;
+  reference_coefficient?: number | null;
   scaling_data: ScalingPoint[];
 }
 
@@ -103,6 +110,13 @@ export interface ProgressOut {
   completed: string[];
   last_status: Record<string, string>;
   records: Record<string, LevelRecordOut>;
+  career_mode: boolean;
+  leetcode_username: string;
+  leetcode_solved: string[];
+  unlocked_leetcode: string[];
+  milestones: string[];
+  gemini_api_key: string;
+  active_set: string;
 }
 
 export interface SolutionGet {
@@ -122,4 +136,24 @@ export interface SolutionVersionsGet {
 
 export interface VersionSwitchRequest {
   version: number;
+}
+
+export interface VerifyLeetCodeResponse {
+  success: boolean;
+  message: string;
+  unlocked_leetcode: string[];
+  milestones: string[];
+}
+
+export interface ProfileSummary {
+  name: string;
+  career_mode: boolean;
+  leetcode_username: string;
+  completed_count: number;
+  verified_leetcode_count: number;
+}
+
+export interface ProfilesResponse {
+  active_profile: string;
+  profiles: ProfileSummary[];
 }

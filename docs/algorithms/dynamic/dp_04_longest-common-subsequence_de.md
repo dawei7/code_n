@@ -1,23 +1,19 @@
-# Längste gemeinsame Teilfolge (LCS)
+# Longest Common Subsequence (LCS)
 
 | | |
 |---|---|
 | **ID** | `dp_04` |
-| **Kategorie** | dynamisch |
+| **Kategorie** | dynamic |
 | **Komplexität (erforderlich)** | $O(n²)$ |
-| **Schwierigkeitsgrad** | 5/10 |
+| **Schwierigkeit** | 5/10 |
 | **Relevanz für Vorstellungsgespräche** | 9/10 |
-| **Wikipedia** | [Problem der längsten gemeinsamen Teilfolge](https://en.wikipedia.org/wiki/Longest_common_subsequence_problem) |
+| **Wikipedia** | [Longest common subsequence problem](https://en.wikipedia.org/wiki/Longest_common_subsequence_problem) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben sind zwei Sequenzen `s` und `t`. Bestimme die Länge der
-**längsten Teilsequenz**, die beiden gemeinsam ist. Eine Teilsequenz behält
-die relative Reihenfolge der Elemente bei, muss aber nicht
-zusammenhängend sein.
+Gegeben sind zwei Sequenzen `s` und `t`. Gesucht ist die Länge der **längsten gemeinsamen Teilsequenz** (Longest Common Subsequence, LCS). Eine Teilsequenz behält die relative Reihenfolge der Elemente bei, muss aber nicht zusammenhängend sein.
 
-**Eingabe:** zwei Sequenzen (typischerweise Zeichenketten, funktioniert aber auch mit
-Arrays beliebiger vergleichbarer Typen).
+**Eingabe:** zwei Sequenzen (typischerweise Strings, funktioniert aber auch mit Arrays beliebiger vergleichbarer Typen).
 **Ausgabe:** die Länge der LCS.
 
 **Beispiel:**
@@ -30,37 +26,27 @@ Arrays beliebiger vergleichbarer Typen).
 | `"abc"` | `"abc"` | `"abc"` | 3 |
 | `""` | `"anything"` | `""` | 0 |
 
-## Wann man es verwendet
+## Anwendung
 
-- Die am häufigsten gestellte Aufgabe zum **2D-String-DP** (zusammen mit der Editierdistanz).
-  Die Rekursion ist einfacher als bei der Editierdistanz: Es handelt sich um ein
-  „Max-and-Skip“-Verfahren statt um ein „Min-and-Three-Choices“-Verfahren.
-- Grundlage für **Diff-Tools** (der LCS zweier Zeilen ist der
-  gemeinsame Block), **Versionskontrolle** (`git diff`), **Plagiatserkennung**
-  ** sowie **Bioinformatik** (DNA-Alignment – wobei
-  der gewichtete LCS die Produktionsversion ist).
+- Das am häufigsten abgefragte **2D-String-DP** (neben der Edit-Distanz).
+  Die Rekursionsgleichung ist einfacher als bei der Edit-Distanz: Es handelt sich um ein "Max-und-Überspringen" anstelle eines "Min-und-drei-Optionen"-Problems.
+- Grundlage für **Diff-Tools** (die LCS zweier Zeilen ist der gemeinsame Block), **Versionsverwaltung** (`git diff`), **Plagiatserkennung** und **Bioinformatik** (DNA-Alignment — wobei die gewichtete LCS die produktive Version darstellt).
 
-## Vorgehensweise
+## Ansatz
 
-Sei `dp[i][j]` = die Länge des LCS der ersten `i`
-Zeichen von `s` und der ersten `j` Zeichen von `t`.
+Sei `dp[i][j]` = die Länge der LCS der ersten `i` Zeichen von `s` und der ersten `j` Zeichen von `t`.
 
-**Rekursion:** Betrachte die letzten Zeichen `s[i-1]` und
-`t[j-1]`:
+**Rekursionsgleichung:** Betrachte die letzten Zeichen `s[i-1]` und `t[j-1]`:
 - Wenn sie übereinstimmen (`s[i-1] == t[j-1]`), verlängere die LCS um 1:
   `dp[i][j] = 1 + dp[i-1][j-1]`.
-- Andernfalls wähle die bessere der beiden Möglichkeiten, eines der Zeichen zu überspringen:
+- Andernfalls wähle das Maximum aus dem Überspringen eines der beiden Zeichen:
   `dp[i][j] = max(dp[i-1][j], dp[i][j-1])`.
 
-**Basisfall:** `dp[0][j] = dp[i][0] = 0` (eine der Sequenzen
-ist leer, daher ist die LCS leer).
+**Induktionsanfang:** `dp[0][j] = dp[i][0] = 0` (eine der Sequenzen ist leer, daher ist die LCS leer).
 
 **Antwort:** `dp[len(s)][len(t)]`.
 
-**Rekonstruktion:** Um die tatsächliche LCS zu erhalten, gehe von
-`dp[m][n]` aus zurück: Wenn `s[i-1] == t[j-1]`, ist dies Teil der LCS,
-gehe diagonal weiter; andernfalls gehe zum größeren der beiden
-Nachbarn.
+**Rekonstruktion:** Um die tatsächliche LCS zu erhalten, gehe von `dp[m][n]` rückwärts: Wenn `s[i-1] == t[j-1]`, ist dies Teil der LCS, gehe diagonal zurück; andernfalls gehe zum größeren der beiden Nachbarn.
 
 ## Algorithmus
 
@@ -110,56 +96,33 @@ def solve(seq_a, seq_b):
 
 | | Zeit | Platz |
 |---|---|---|
-| **Bestfall** | $O(m·n)$ | $O(m·n)$ — 2D-Tabelle; $O(min(m,n)$) mit rollendem |
+| **Bestfall** | $O(m·n)$ | $O(m·n)$ — 2D-Tabelle; $O(min(m,n)$) mit Rolling-Array |
 | **Durchschnittlicher Fall** | $O(m·n)$ | $O(m·n)$ |
 | **Schlechtester Fall** | $O(m·n)$ | $O(m·n)$ |
 
-Standard-DP. Die Version mit rollender Zeile (nur die vorherige
-Zeile wird beibehalten) reduziert den Speicherbedarf auf $O(n)$, verliert jedoch die Möglichkeit,
-die LCS ohne erneuten Durchlauf zu rekonstruieren.
+Standard-DP. Die Rolling-Row-Version (nur die vorherige Zeile speichern) reduziert den Platzbedarf auf $O(n)$, verliert jedoch die Möglichkeit, die LCS ohne erneute Ausführung zu rekonstruieren.
 
 ## Varianten & Optimierungen
 
-- **Hunt-Szymanski-Algorithmus** — $O((r + n)$ log n), wobei `r` die
-  Anzahl der übereinstimmenden Paare ist. Schneller, wenn die Sequenzen
-  sehr ähnlich sind (die meisten Zeichen stimmen überein).
-- **Bit-parallele LCS** — $O(n · ⌈m/w⌉)$, wobei w die Wortgröße ist.
-  Hervorragend geeignet für kurze s und lange t.
-- **Diff mit Zeilengranularität** — git, diff und
-  ähnliche Tools arbeiten auf Zeilenebene, nicht auf Zeichenebene, und verwenden eine
-  ähnliche dynamische Programmierung (die „Patience-Diff“-Variante ist in der
-  Praxis sogar noch schneller).
-- **Mehrere LCS** — es kann viele LCS gleicher
-  Länge geben. Um sie zu zählen: `count[i][j] = 0`, wenn `s[i-1] != t[j-1]`,
-  sonst `count[i][j] = count[i-1][j-1] + count[i-1][j] + count[i][j-1] - count[i-1][j-1]` (wobei darauf zu achten ist, dass keine Doppelzählungen auftreten).
+- **Hunt-Szymanski-Algorithmus** — $O((r + n)$ log n), wobei `r` die Anzahl der übereinstimmenden Paare ist. Schneller, wenn die Sequenzen sehr ähnlich sind (die meisten Zeichen stimmen überein).
+- **Bit-parallele LCS** — $O(n · ⌈m/w⌉)$, wobei w die Wortgröße ist. Exzellent für kurzes s und langes t.
+- **Diff mit zeilenweiser Granularität** — git, diff und ähnliche Tools arbeiten auf Zeilen- statt auf Zeichenebene und verwenden ein ähnliches DP (die "Patience Diff"-Variante ist in der Praxis sogar noch schneller).
+- **Mehrfache LCS** — es kann viele LCSs derselben Länge geben. Um diese zu zählen: `count[i][j] = 0` wenn `s[i-1] != t[j-1]`, ansonsten `count[i][j] = count[i-1][j-1] + count[i-1][j] + count[i][j-1] - count[i-1][j-1]` (wobei darauf zu achten ist, Doppelzählungen zu vermeiden).
 
-## Anwendungen in der Praxis
+## Praxisanwendungen
 
-- **Versionskontrolle** — `git diff` und `git merge` finden LCS, um
-  unveränderte Bereiche zu identifizieren.
-- **Bioinformatik** — Alignment von DNA- und Proteinsequenzen
-  (die gewichtete Variante).
-- **Plagiatserkennung** — Ein hoher LCS-Wert zwischen zwei Aufsätzen ist
-  verdächtig.
-- **Screen-Diff-Tools** — Der Vim-Befehl `diff` verwendet einen
-  LCS-basierten Algorithmus.
-- **Fuzzy-String-Abgleich** — Ein hoher LCS-Wert ist ein Anzeichen für
-  Ähnlichkeit.
+- **Versionsverwaltung** — `git diff` und `git merge` finden die LCS, um unveränderte Bereiche zu identifizieren.
+- **Bioinformatik** — DNA- und Protein-Sequenz-Alignment (die gewichtete Version).
+- **Plagiatserkennung** — eine hohe LCS zwischen zwei Aufsätzen ist verdächtig.
+- **Screen-Diff-Tools** — der Vim `diff`-Befehl verwendet einen LCS-basierten Algorithmus.
+- **Fuzzy String Matching** — ein hohes LCS-Verhältnis ist ein Indikator für Ähnlichkeit.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dp_08 — Edit Distance](dp_08_edit-distance.md)** —
-  Minimierungsversion derselben 2D-Tabellenstruktur.
-  (d=5/10, r=9/10)
-- **[dp_20 — Kürzeste gemeinsame Supersequenz (Länge)](dp_20_shortest-common-supersequence.md)** —
-  Erstellung der SCS mithilfe der LCS-Tabelle. (d=5/10, r=9/10)
-- **[dp_19 — Längste palindromische Teilsequenz](dp_19_longest-palindromic-subsequence.md)** —
-  LCS einer Zeichenkette mit ihrer Umkehrung. (d=5/10, r=9/10)
+- **[dp_08 — Edit Distance](dp_08_edit-distance.md)** — die Minimierungsversion derselben 2D-Tabellenstruktur. (d=5/10, r=9/10)
+- **[dp_20 — Shortest Common Supersequence (Length)](dp_20_shortest-common-supersequence.md)** — Konstruktion der SCS unter Verwendung der LCS-Tabelle. (d=5/10, r=9/10)
+- **[dp_19 — Longest Palindromic Subsequence](dp_19_longest-palindromic-subsequence.md)** — LCS eines Strings mit seiner Umkehrung. (d=5/10, r=9/10)
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde
-und sich an der kanonischen Struktur orientiert, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag
-finden Sie über den Wikipedia-Link oben auf der Seite.
-Quell-Repository: <https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt für cOde(n), modelliert nach der kanonischen Struktur, die von Referenzseiten für kompetitive Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

@@ -1,45 +1,45 @@
-# Inversionen zählen
+# Count Inversions
 
 | | |
 |---|---|
 | **ID** | `dc_08` |
 | **Kategorie** | divide_conquer |
-| **Komplexität (erforderlich)** | $O(N \log N)$ Zeit, $O(N)$ Speicherplatz |
-| **Schwierigkeitsgrad** | 6/10 |
+| **Komplexität (erforderlich)** | $O(N \log N)$ Zeit, $O(N)$ Platz |
+| **Schwierigkeit** | 6/10 |
 | **Relevanz für Vorstellungsgespräche** | 7/10 |
-| **GeeksForGeeks-Äquivalent** | [Anzahl der Inversionen in einem Array](https://www.geeksforgeeks.org/inversion-count-in-array-using-merge-sort/) |
+| **GeeksForGeeks Äquivalent** | [Count Inversions in an array](https://www.geeksforgeeks.org/inversion-count-in-array-using-merge-sort/) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben ist ein Array aus ganzen Zahlen. Ermitteln Sie die Anzahl der Inversionen im Array.
-Zwei Elemente `a[i]` und `a[j]` bilden eine Inversion, wenn `a[i] > a[j]` und `i < j`.
-Einfacher ausgedrückt: Es misst, wie weit (oder nah) das Array davon entfernt ist, vollständig sortiert zu sein. Ist das Array bereits sortiert, beträgt die Anzahl der Inversionen 0. Ist das Array in umgekehrter Reihenfolge sortiert, ist die Anzahl der Inversionen maximal.
+Gegeben ist ein Array von Ganzzahlen; finden Sie die Anzahl der Inversionen (Inversion Count) in diesem Array.
+Zwei Elemente `a[i]` und `a[j]` bilden eine Inversion, wenn `a[i] > a[j]` und `i < j` gilt.
+Einfacher ausgedrückt misst dies, wie weit (oder nah) das Array davon entfernt ist, vollständig sortiert zu sein. Wenn das Array bereits sortiert ist, beträgt die Anzahl der Inversionen 0. Wenn das Array in umgekehrter Reihenfolge sortiert ist, ist die Anzahl der Inversionen maximal.
 
-**Eingabe:** Ein Array aus ganzen Zahlen `arr`.
-**Ausgabe:** Eine Ganzzahl, die die Gesamtzahl der Inversionen angibt.
+**Eingabe:** Ein Integer-Array `arr`.
+**Ausgabe:** Eine Ganzzahl, die die Gesamtzahl der Inversionen darstellt.
 
 ## Wann man es verwendet
 
-- Um dein tiefgreifendes Verständnis von **Merge Sort** zu testen.
-- Wenn du den Grad der „Unsortiertheit“ quantifizieren oder den Kendall-Rangkorrelationskoeffizienten eines Datensatzes berechnen musst.
+- Um Ihr tiefgreifendes Verständnis von **Merge Sort** zu testen.
+- Wenn Sie die "Unsortiertheit" quantifizieren oder den Kendall-Rangkorrelationskoeffizienten eines Datensatzes berechnen müssen.
 
-## Vorgehensweise
+## Ansatz
 
-**1. Der Fehler bei den $O(N^2)$-Prüfungen:**
-Der naive Ansatz besteht darin, zwei verschachtelte `for`-Schleifen zu verwenden. Für jedes Element `i` werden alle Elemente `j` rechts davon überprüft. Ist `arr[i] > arr[j]`, wird ein Zähler erhöht. Dies dauert $O(N^2)$ Zeit.
+**1. Der Fehler bei $O(N^2)$-Prüfungen:**
+Der naive Ansatz besteht darin, zwei verschachtelte `for`-Schleifen zu verwenden. Für jedes Element `i` werden alle Elemente `j` rechts davon überprüft. Wenn `arr[i] > arr[j]` gilt, wird ein Zähler erhöht. Dies benötigt $O(N^2)$ Zeit.
 
-**2. Auf dem Merge-Sort „mitreiten“:**
-Eine Inversion liegt vor, wenn ein größeres Element *vor* einem kleineren Element auftritt.
-Welcher Algorithmus ist ausdrücklich darauf ausgelegt, Elemente in falscher Reihenfolge zu finden und sie physisch auszutauschen, bis sie in der richtigen Reihenfolge sind? Der Mergesort!
-Wir können einen Standard-Mergesort verwenden und einfach einen Zähler in die Funktion `merge` einfügen!
+**2. Nutzung von Merge Sort:**
+Eine Inversion tritt auf, wenn ein größeres Element *vor* einem kleineren Element erscheint.
+Welcher Algorithmus ist explizit darauf ausgelegt, Elemente in der falschen Reihenfolge zu finden und sie physisch zu tauschen, bis sie sortiert sind? Merge Sort!
+Wir können einen Standard-Merge Sort verwenden und einfach einen Zähler innerhalb der `merge`-Funktion hinzufügen!
 
 **3. Der magische Zählschritt:**
 Während des `merge`-Schritts haben wir ein `left_half`-Array und ein `right_half`-Array. Beide Hälften sind intern sortiert.
-Wir verwenden zwei Zeiger: `i` für `left_half` und `j` für `right_half`.
+Wir verwenden zwei Pointer, `i` für `left_half` und `j` für `right_half`.
 - Wenn `left_half[i] <= right_half[j]`: Sie sind in der richtigen Reihenfolge. Keine Inversion!
-- Wenn `left_half[i] > right_half[j]`: Wir haben eine Inversion gefunden! Moment, wir haben nicht nur EINE Inversion gefunden … wir haben eine ganze Menge davon gefunden!
-  Da `left_half` streng sortiert ist, gilt: Wenn `left_half[i]` streng größer als `right_half[j]` ist, MUSS JEDES EINZELNE ELEMENT rechts von `i` in `left_half` ebenfalls größer als `right_half[j]` sein!
-  Daher haben wir sofort `len(left_half) - i` Inversionen gefunden! Wir addieren dies direkt zu unserem Gesamtzähler hinzu.
+- Wenn `left_half[i] > right_half[j]`: Wir haben eine Inversion gefunden! Moment, wir haben nicht nur EINE Inversion gefunden... wir haben eine ganze Menge davon gefunden!
+  Da `left_half` strikt sortiert ist, gilt: Wenn `left_half[i]` strikt größer als `right_half[j]` ist, dann MUSS JEDES EINZELNE ELEMENT rechts von `i` in der `left_half` ebenfalls größer als `right_half[j]` sein!
+  Daher haben wir sofort `len(left_half) - i` Inversionen gefunden! Wir addieren dies direkt zu unserem Gesamtzähler.
 
 ## Algorithmus
 
@@ -92,33 +92,33 @@ def solve(arr, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 `arr = [2, 4, 1, 3]`.
 
 1. Aufteilen in `[2, 4]` und `[1, 3]`.
 2. **Linke Hälfte `[2, 4]`:**
    - Aufteilen in `[2]` und `[4]`.
-   - `[2]` und `[4]` zusammenführen:
- - `2 <= 4`. 2 hinzufügen.
- - 4 hinzufügen. `split_inv = 0`. Gibt `[2, 4]` zurück, inv=0.
+   - Merge `[2]` und `[4]`:
+     - `2 <= 4`. Addiere 2.
+     - Addiere 4. `split_inv = 0`. Gibt `[2, 4]` zurück, inv=0.
 3. **Rechte Hälfte `[1, 3]`:**
    - Aufteilen in `[1]` und `[3]`.
-   - Zusammenführen von `[1]` und `[3]`:
- - `1 <= 3`. Add 1.
- - Add 3. `split_inv = 0`. Gibt `[1, 3]` zurück, inv=0.
-4. **Globale Zusammenführung von `[2, 4]` und `[1, 3]`:**
+   - Merge `[1]` und `[3]`:
+     - `1 <= 3`. Addiere 1.
+     - Addiere 3. `split_inv = 0`. Gibt `[1, 3]` zurück, inv=0.
+4. **Globaler Merge `[2, 4]` und `[1, 3]`:**
    - `i=0` (Wert 2), `j=0` (Wert 1).
    - `2 > 1`! INVERSION!
    - `split_inv += (len(left) - i)` -> `split_inv += (2 - 0)` -> `2` Inversionen gefunden! (Sowohl 2 als auch 4 sind > 1).
-   - 1 addieren. `j` wird zu 1.
+   - Addiere 1. `j` wird 1.
    - `i=0` (Wert 2), `j=1` (Wert 3).
-   - `2 <= 3`. 2 addieren. `i` wird zu 1.
+   - `2 <= 3`. Addiere 2. `i` wird 1.
    - `i=1` (Wert 4), `j=1` (Wert 3).
    - `4 > 3`! INVERSION!
    - `split_inv += (len(left) - i)` -> `split_inv += (2 - 1)` -> `1` Inversion gefunden! (4 > 3).
-   - 3 hinzufügen. `j` wird zu 2.
-   - `j` erschöpft. Verbleibendes `[4]` hinzufügen.
+   - Addiere 3. `j` wird 2.
+   - `j` erschöpft. Addiere verbleibendes `[4]`.
    - Gesamt `split_inv = 3`.
 
 Ergebnis `total_inversions = 0 + 0 + 3 = 3`. ✓
@@ -128,31 +128,27 @@ Ergebnis `total_inversions = 0 + 0 + 3 = 3`. ✓
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(N \log N)$ | $O(N)$ |
+| **Bestfall** | $O(N \log N)$ | $O(N)$ |
 | **Durchschnittlicher Fall** | $O(N \log N)$ | $O(N)$ |
 | **Schlechtester Fall** | $O(N \log N)$ | $O(N)$ |
 
-Da wir buchstäblich nur ein Standard-Merge-Sort ausführen, ist die Zeitkomplexität in allen Fällen streng auf $O(N \log N)$ begrenzt.
+Da wir buchstäblich nur einen Standard-Merge Sort ausführen, ist die Zeitkomplexität in allen Fällen strikt auf $O(N \log N)$ begrenzt.
 Die Platzkomplexität beträgt $O(N)$, da die Merge-Arrays auf jeder Ebene temporäre Kopien erstellen.
 
 ## Varianten & Optimierungen
 
-- **Fenwick Tree / Binärindizierter Baum (BIT):** Man kann diese Aufgabe auch iterativ mithilfe eines Fenwick-Baums in $O(N \log N)$ Zeit lösen. Man durchläuft das Array von rechts nach links. Für jedes Element fragt man den Fenwick Tree ab, um zu sehen, wie viele Elemente, die streng kleiner als das aktuelle Element sind, man *bereits verarbeitet* hat. Anschließend fügen Sie das aktuelle Element in den Fenwick Tree ein. Dies ist äußerst elegant und erfordert $O(\text{Max\_Value})$ Speicherplatz oder Koordinatenkompression.
-- **Reverse Pairs (LeetCode 493):** Eine schwierigere Variante, bei der eine Inversion wie in `nums[i] > 2 * nums[j]` definiert ist. Du kannst TROTZDEM Merge-Sort verwenden! Du musst lediglich *vor* der Ausführung der Standardlogik für den Merge-Zeiger eine kurze $O(N)$ Zählschleife durchführen.
+- **Fenwick Tree / Binary Indexed Tree (BIT):** Sie können dies auch iterativ mit einem Fenwick Tree in $O(N \log N)$ Zeit lösen. Sie iterieren von rechts nach links durch das Array. Für jedes Element fragen Sie den Fenwick Tree ab, wie viele Elemente Sie *bereits verarbeitet* haben, die strikt kleiner als das aktuelle Element sind. Dann fügen Sie das aktuelle Element in den Fenwick Tree ein. Dies ist extrem elegant und erfordert $O(\text{Max\_Value})$ Platz oder eine Koordinatenkompression.
+- **Reverse Pairs (LeetCode 493):** Eine schwierigere Variante, bei der eine Inversion als `nums[i] > 2 * nums[j]` definiert ist. Sie können IMMER NOCH Merge Sort verwenden! Sie müssen lediglich eine schnelle $O(N)$-Zählschleife *vor* der Standard-Merge-Pointer-Logik ausführen.
 
 ## Anwendungen in der Praxis
 
-- **Kollaboratives Filtern / Empfehlungssysteme:** Berechnung des Kendall-Tau-Abstands zwischen den bewerteten Präferenzlisten zweier Nutzer. Wenn Nutzer A 5 Filme bewertet und Nutzer B diese anders bewertet, quantifiziert die Anzahl der Inversionen direkt, wie unterschiedlich ihre Vorlieben sind!
+- **Collaborative Filtering / Empfehlungssysteme:** Berechnung der Kendall-Tau-Distanz zwischen den Ranglisten-Präferenzlisten zweier Benutzer. Wenn Benutzer A 5 Filme bewertet und Benutzer B sie anders einstuft, quantifiziert die Anzahl der Inversionen direkt, wie unterschiedlich ihre Geschmäcker sind!
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[sort_01 – Merge-Sort](../sorting/sort_01_merge-sort.md)** — Der reine Sortieralgorithmus ohne interne Zähler.
-- **[fenwick_01 – Binärindizierter Baum](../fenwick/fenwick_01_binary-indexed-tree.md)** — Die alternative Datenstruktur, mit der sich die Zählung von Vertauschungen lösen lässt.
+- **[sort_01 - Merge Sort](../sorting/sort_01_merge-sort.md)** — Der reine Sortieralgorithmus ohne interne Zähler.
+- **[fenwick_01 - Binary Indexed Tree](../fenwick/fenwick_01_binary-indexed-tree.md)** — Die alternative Datenstruktur, die in der Lage ist, Inversionen zu zählen.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-nach dem Vorbild der kanonischen Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) geschrieben wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitive Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

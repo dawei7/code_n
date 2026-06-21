@@ -3,43 +3,43 @@
 | | |
 |---|---|
 | **ID** | `flow_06` |
-| **Kategorie** | Durchfluss |
+| **Kategorie** | flow |
 | **Komplexität (erforderlich)** | $O(V^3)$ |
-| **Schwierigkeitsgrad** | 9/10 |
-| **Relevanz für Vorstellungsgespräche** | 2/10 |
-| **Wikipedia** | [Push–Relabel-Algorithmus für den maximum flow](https://en.wikipedia.org/wiki/Push%E2%80%93relabel_maximum_flow_algorithm) |
+| **Schwierigkeit** | 9/10 |
+| **Interview-Relevanz** | 2/10 |
+| **Wikipedia** | [Push–relabel maximum flow algorithm](https://en.wikipedia.org/wiki/Push%E2%80%93relabel_maximum_flow_algorithm) |
 
 ## Problemstellung
 
-Gegeben sei ein gerichteter Graph, der ein Rohrleitungsnetz mit Kapazitäten darstellt. Finden Sie den maximal möglichen Fluss von einem Quellknoten S zu einem Senkenknoten T.
-Sie müssen diese Aufgabe unter Verwendung des **Push-Relabel**-Ansatzes lösen. Anstatt augmentierende Pfade von S nach T zu finden (wie bei Ford-Fulkerson oder Dinic), ignoriert dieser Algorithmus Pfade vollständig. Er arbeitet ausschließlich lokal und schiebt „überschüssiges Wasser“ wie bei einer Reihe von ineinanderfließenden Wasserfällen zwischen benachbarten Knoten hin und her.
+Gegeben ist ein gerichteter Graph, der ein Netzwerk aus Rohren mit Kapazitäten darstellt. Finden Sie den maximal möglichen Fluss von einem Quellknoten S zu einem Senkenknoten T.
+Sie müssen dies unter Verwendung des **Push-Relabel**-Frameworks lösen. Anstatt augmentierende Pfade von S nach T zu finden (wie bei Ford-Fulkerson oder Dinic), ignoriert dieser Algorithmus Pfade vollständig. Er arbeitet rein lokal und schiebt "überschüssiges Wasser" zwischen benachbarten Knoten wie eine Reihe kaskadierender Wasserfälle hin und her.
 
-**Eingabe:** Ein gerichteter Graph mit Kapazitäten, einem Quellknoten `s` und einem Senkenknoten `t`.
-**Ausgabe:** Eine ganze Zahl, die den maximalen Gesamtfluss angibt.
+**Eingabe:** Ein gerichteter Graph mit Kapazitäten, ein Quellknoten `s` und ein Senkenknoten `t`.
+**Ausgabe:** Eine Ganzzahl, die den maximalen Gesamtfluss repräsentiert.
 
-## Wann sollte man es verwenden?
+## Wann man es verwendet
 
-- „Push-Relabel“-Algorithmen (insbesondere die Variante „Highest-Label Preflow Push“) sind empirisch gesehen die schnellsten Max-Flow-Algorithmen, die es für dichte Graphen gibt, und übertreffen den Dinic-Algorithmus bei extremen realen Arbeitslasten.
-- Der grundlegende Mechanismus wird häufig bei verteilten Netzwerkflussberechnungen eingesetzt, da Knoten nur mit ihren unmittelbaren Nachbarn kommunizieren müssen.
+- Push-Relabel-Algorithmen (insbesondere die Variante "Highest-Label Preflow Push") sind empirisch die schnellsten existierenden Max-Flow-Algorithmen für dichte Graphen und übertreffen Dinic bei extremen realen Arbeitslasten.
+- Der grundlegende Mechanismus wird häufig in verteilten Netzwerkflussberechnungen eingesetzt, da Knoten nur mit ihren unmittelbaren Nachbarn kommunizieren müssen.
 
-## Vorgehensweise
+## Ansatz
 
-Stellen Sie sich die Knoten als Eimer mit Wasser vor, die in unterschiedlichen Höhen aufgehängt sind. Wasser fließt naturgemäß bergab.
+Stellen Sie sich die Knoten als Wassereimer vor, die in unterschiedlichen Höhen aufgehängt sind. Wasser fließt natürlicherweise bergab.
 
-1. **Initialisierung (Höhen & Vorfluss):**
+1. **Initialisierung (Höhen & Preflow):**
    - Jeder Knoten beginnt bei `height = 0`. Die Quelle S wird auf `height = V` (den höchsten Punkt) angehoben.
-   - S überflutet sofort alle seine Nachbarn mit so viel Wasser, wie deren Leitungen aufnehmen können (wodurch die ausgehenden Kanten gesättigt werden).
-   - Diese Nachbarn haben nun einen „Überschussfluss“ (sie haben Wasser in ihren Eimern, haben es aber noch nirgendwohin weitergeleitet).
+   - S flutet sofort alle ihre Nachbarn mit so viel Wasser, wie deren Rohre aufnehmen können (Sättigung der ausgehenden Kanten).
+   - Diese Nachbarn haben nun einen "Überschuss" (Excess Flow) (sie haben Wasser in ihren Eimern, haben es aber noch nirgendwohin weitergeleitet).
 
 2. **Die Operationen:**
-   Wir bearbeiten jeden Knoten (außer S oder T), der derzeit `excess > 0` aufweist. Wir haben zwei Möglichkeiten:
-   - **PUSH:** Wenn der Knoten überschüssiges Wasser hat, einen Nachbarn, der streng *unterhalb* liegt (`height[u] == height[v] + 1`), und die Leitung zwischen ihnen noch Restkapazität besitzt, „schieben“ wir so viel Wasser wie möglich durch die Leitung.
-   - **UMBENENNEN:** Wenn der Knoten überschüssiges Wasser hat, aber ALLE seine Nachbarn mit verfügbarer Rohrkapazität auf derselben Höhe oder streng *höher* liegen, ist das Wasser eingeschlossen! Wir müssen den Knoten „umbenennen“ (anheben). Wir erhöhen seine Höhe so, dass sie genau 1 höher ist als die des niedrigsten verfügbaren Nachbarn.
+   Wir verarbeiten jeden Knoten (außer S oder T), der aktuell einen `excess > 0` aufweist. Wir können zwei Dinge tun:
+   - **PUSH:** Wenn der Knoten überschüssiges Wasser hat und einen Nachbarn besitzt, der strikt *bergab* liegt (`height[u] == height[v] + 1`), und das Rohr zwischen ihnen noch Restkapazität besitzt, "schieben" (Push) wir so viel Wasser wie möglich durch das Rohr.
+   - **RELABEL:** Wenn der Knoten überschüssiges Wasser hat, aber ALLE seine Nachbarn mit verfügbarer Rohrkapazität auf der gleichen Höhe oder strikt *höher* liegen, ist das Wasser gefangen! Wir müssen den Knoten "umetikettieren" (Relabel/anheben). Wir erhöhen seine Höhe so, dass sie genau 1 über der des niedrigsten verfügbaren Nachbarn liegt.
 
-3. **Beendigung:**
-   Wir fahren mit dem „Push“ und dem „Relabel“ fort, bis absolut kein Knoten mehr überschüssiges Wasser hat.
-   - Jegliches Wasser, das es bis nach T schafft, bleibt in T. Das ist unser Maximalfluss!
-   - Jegliches im Netzwerk eingeschlossene Wasser wird schließlich so hoch angehoben, dass es *rückwärts* über die verbleibenden Kanten den ganzen Weg zurück zur Quelle S fließt!
+3. **Terminierung:**
+   Wir fahren mit dem Pushen und Relabeln fort, bis absolut kein Knoten mehr überschüssiges Wasser besitzt.
+   - Alles Wasser, das T erreicht, bleibt in T. Das ist unser Max Flow!
+   - Alles Wasser, das im Netzwerk gefangen bleibt, wird schließlich so hoch angehoben, dass es über die residualen Kanten den ganzen Weg zurück zur Quelle S fließt!
 
 ## Algorithmus
 
@@ -124,48 +124,44 @@ def solve(n, edges):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 *(Konzeptionell)*
 `S -> A (cap 10)`. `A -> T (cap 5)`.
-1. **Initialisierung:** `height[S] = 4`. Alle anderen 0. `S` schiebt 10 auf `A`. `excess[A] = 10`.
-2. **Einfügen:** `A` ist aktiv. Der Nachbar `T` liegt tiefer (`height[A]=0`, `height[T]=0` … Moment! Sie befinden sich auf derselben Höhe!). `A` kann nicht schieben!
-3. **Neu kennzeichnen:** `A` ist eingeklemmt. Der niedrigste Nachbar mit Kapazität ist `T` (Höhe 0). `A` wird auf `height = 1` angehoben.
-4. **Schieben:** Jetzt `height[A]=1` und `height[T]=0`. `A` schiebt 5 Einheiten zu `T`.
+1. **Initialisierung:** `height[S] = 4`. Alle anderen 0. `S` schiebt 10 zu `A`. `excess[A] = 10`.
+2. **Push:** `A` ist aktiv. Nachbar `T` liegt bergab (`height[A]=0`, `height[T]=0` ... Moment! Sie sind auf der gleichen Höhe!). `A` kann nicht pushen!
+3. **Relabel:** `A` ist gefangen. Der niedrigste Nachbar mit Kapazität ist `T` (Höhe 0). `A` wird auf `height = 1` angehoben.
+4. **Push:** Jetzt ist `height[A]=1` und `height[T]=0`. `A` schiebt 5 Einheiten zu `T`.
    - `excess[T] = 5`.
-   - `excess[A] = 5`. `A` ist noch aktiv!
-5. **Umbenennung:** `A` versucht, nach `T` zu schieben, aber die Leitung ist vollständig ausgelastet. Der einzige Nachbar mit Restkapazität ist S (über die rückwärts gerichtete „Undo“-Kante). `height[S] = 4`.
-   - `A` wird nach `height = 4 + 1 = 5` verschoben!
-6. **Schieben:** Nun `height[A]=5` und `height[S]=4`. `A` schiebt seine verbleibenden 5 Überschüsse zurück in S.
-7. **Abgleich:** Keine aktiven Knoten. Der Senke `T` liegen genau 5 Einheiten vor. Maximum Flow = 5. ✓
+   - `excess[A] = 5`. `A` ist immer noch aktiv!
+5. **Relabel:** `A` versucht zu `T` zu pushen, aber das Rohr ist vollständig gesättigt. Der einzige Nachbar mit Restkapazität ist S (über die rückwärtige "Undo"-Kante). `height[S] = 4`.
+   - `A` wird auf `height = 4 + 1 = 5` angehoben!
+6. **Push:** Jetzt ist `height[A]=5` und `height[S]=4`. `A` schiebt seine verbleibenden 5 Einheiten Überschuss zurück zu S.
+7. **Abschluss:** Keine aktiven Knoten mehr. Die Senke `T` hat genau 5 Einheiten. Max Flow = 5. ✓
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
 | **Bestfall** | $O(V^2)$ | $O(V^2)$ |
-| **Durchschnittlicher Fall** | Deutlich schneller als V^3 | $O(V^2)$ |
+| **Durchschnittlicher Fall** | Viel schneller als V^3 | $O(V^2)$ |
 | **Schlechtester Fall** | $O(V^3)$ | $O(V^2)$ |
 
-Die theoretische Laufzeit im schlimmsten Fall für den generischen FIFO-Push-Relabel-Algorithmus ist mathematisch genau auf $O(V^3)$ begrenzt (bzw. auf $O(V^2 \sqrt{E})$, wenn der Knoten mit der höchsten Aktivität ausgewählt wird). Dadurch ist er bei dichten Graphen, bei denen E ~= V^2 gilt, dem Edmonds-Karp-Algorithmus ($O(V \cdot E^2)$) streng überlegen.
-Die Platzkomplexität beträgt $O(V^2)$ für die Speicherung der Kapazitäts- und Flussmatrizen.
+Die theoretische Zeitkomplexität im schlechtesten Fall für den generischen FIFO Push-Relabel-Algorithmus ist mathematisch auf genau $O(V^3)$ begrenzt (oder $O(V^2 \sqrt{E})$, wenn der Knoten mit dem höchsten Label ausgewählt wird). Dies macht ihn bei dichten Graphen, bei denen E ~= V^2 gilt, Edmonds-Karp ($O(V \cdot E^2)$) strikt überlegen.
+Die Platzkomplexität beträgt $O(V^2)$, um die Kapazitäts- und Flussmatrizen zu speichern.
 
 ## Varianten & Optimierungen
 
-- **Gap-Heuristik:** Die entscheidende Optimierung im Produktionscode. Wenn du während einer Relabel-Operation feststellst, dass *kein Knoten* im gesamten Graphen bei `height = X` liegt, dann ist mathematisch bewiesen, dass jeder Knoten mit einer Höhe > X vollständig vom Sink getrennt ist! Sie können all diese Knoten sofort auf `height = V` anheben und so erzwingen, dass sie sofort zurück nach S fließen, wodurch Tausende nutzloser zwischengeschalteter „Relabel“-Operationen übersprungen werden.
+- **Gap-Heuristik:** Die wichtigste Optimierung in produktivem Code. Wenn Sie während einer Relabel-Operation bemerken, dass *kein Knoten* im gesamten Graphen auf der `height = X` existiert, dann ist mathematisch bewiesen, dass jeder Knoten mit einer Höhe > X vollständig von der Senke getrennt ist! Sie können all diese Knoten sofort auf `height = V` anheben, was sie dazu zwingt, sofort zurück zu S abzufließen, wodurch Tausende nutzloser Zwischen-Relabel-Operationen übersprungen werden.
 
-## Praktische Anwendungen
+## Praxisanwendungen
 
-- **Verteilte Systeme:** Berechnung aggregierter Datenflussdurchsätze in riesigen Peer-to-Peer-Torrent-Schwärmen, in denen eine globale Pfadfindung unmöglich, lokales „Pushing“ jedoch trivial ist.
+- **Verteilte Systeme:** Berechnung von aggregierten Datendurchsätzen in massiven Peer-to-Peer-Torrent-Schwärmen, bei denen globales Pfadfinden unmöglich ist, lokales "Pushen" jedoch trivial ist.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[flow_04 – Dinics Algorithmus](flow_04_dinic-s-max-flow.md)** — Der Konkurrent des Augmenting-Path-Algorithmus, der im Allgemeinen einfacher zu programmieren ist und bei Standard-Algorithmuswettbewerben bevorzugt wird.
+- **[flow_04 - Dinic's Algorithm](flow_04_dinic-s-max-flow.md)** — Der Rivale der augmentierenden Pfade, der im Allgemeinen einfacher zu implementieren ist und in Standard-Programmierwettbewerben bevorzugt wird.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-nach dem Vorbild der kanonischen Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) geschrieben wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

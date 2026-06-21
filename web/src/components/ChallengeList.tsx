@@ -2,6 +2,34 @@ import { useState, useMemo } from 'react';
 import { useAppStore } from '../store/useAppStore';
 import type { ChallengeSummary } from '../types/api';
 
+const CATEGORY_DISPLAY_NAMES: Record<string, string> = {
+  neetcode_arrays: 'Arrays & Hashing',
+  neetcode_two_pointers: 'Two Pointers',
+  neetcode_sliding_window: 'Sliding Window',
+  neetcode_stack: 'Stack',
+  neetcode_binary_search: 'Binary Search',
+  neetcode_linked_list: 'Linked List',
+  neetcode_trees: 'Trees',
+  neetcode_heap: 'Heap / Priority Queue',
+  neetcode_backtracking: 'Backtracking',
+  neetcode_tries: 'Tries',
+  neetcode_graphs: 'Graphs',
+  neetcode_advanced_graphs: 'Advanced Graphs',
+  neetcode_dp1: '1-D Dynamic Programming',
+  neetcode_dp2: '2-D Dynamic Programming',
+  neetcode_greedy: 'Greedy',
+  neetcode_intervals: 'Intervals',
+  neetcode_math: 'Math & Geometry',
+  neetcode_bit: 'Bit Manipulation',
+};
+
+function formatCategory(category: string): string {
+  if (category in CATEGORY_DISPLAY_NAMES) {
+    return CATEGORY_DISPLAY_NAMES[category];
+  }
+  return category.replace(/_/g, ' ');
+}
+
 /**
  * ChallengeList — left rail with one row per challenge.
  *
@@ -18,6 +46,8 @@ export function ChallengeList() {
   const currentId = useAppStore((s) => s.currentDetail?.id ?? null);
   const selectChallenge = useAppStore((s) => s.selectChallenge);
   const completed = useAppStore((s) => s.progress?.completed ?? []);
+  const unlockedLeetcode = useAppStore((s) => s.progress?.unlocked_leetcode ?? []);
+  const activeSet = useAppStore((s) => s.activeSet);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
@@ -27,14 +57,19 @@ export function ChallengeList() {
   };
 
   const filteredChallenges = useMemo(() => {
-    if (!searchQuery.trim()) return challenges;
+    const isLockedSet = activeSet === 'neetcode';
+    const baseList = isLockedSet 
+      ? challenges.filter(c => c.unlocked)
+      : challenges;
+
+    if (!searchQuery.trim()) return baseList;
     const lowerQ = searchQuery.toLowerCase();
-    return challenges.filter(c => 
+    return baseList.filter(c => 
       c.name.toLowerCase().includes(lowerQ) || 
       c.id.toLowerCase().includes(lowerQ) ||
       c.category.toLowerCase().includes(lowerQ)
     );
-  }, [challenges, searchQuery]);
+  }, [challenges, searchQuery, activeSet]);
 
   // Group by category
   const grouped = useMemo(() => {
@@ -67,7 +102,7 @@ export function ChallengeList() {
                 onClick={() => toggleCategory(category)}
                 className="w-full flex items-center justify-between px-2 py-1.5 text-xs uppercase tracking-wider text-coden-muted font-semibold hover:text-coden-text transition-colors group select-none"
               >
-                <span>{category} <span className="ml-1 opacity-60">({items.length})</span></span>
+                <span>{formatCategory(category)} <span className="ml-1 opacity-60">({items.length})</span></span>
                 <span 
                   className="transform transition-transform duration-200 group-hover:text-coden-accent text-[10px]" 
                   style={{ transform: isCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)' }}
@@ -81,24 +116,35 @@ export function ChallengeList() {
                   {items.map((c) => {
                     const isCurrent = c.id === currentId;
                     const isDone = completed.includes(c.id);
+                    const isLeetcodeVerified = unlockedLeetcode.includes(c.id);
+                    const isLocked = !c.unlocked;
+
+                    let statusIndicator = <span className="w-3 shrink-0" />;
+                    if (isLocked) {
+                      statusIndicator = <span className="text-coden-muted shrink-0 text-xs" title="Locked in Career Mode">🔒</span>;
+                    } else if (isDone && isLeetcodeVerified) {
+                      statusIndicator = <span className="text-green-400 shrink-0 text-xs font-bold" title="Verified on LeetCode">✓✓</span>;
+                    } else if (isDone) {
+                      statusIndicator = <span className="text-yellow-500 shrink-0 text-xs font-bold" title="Completed locally, LeetCode pending">✓</span>;
+                    }
+
                     return (
                       <li key={c.id}>
                         <button
                           type="button"
-                          onClick={() => selectChallenge(c.id)}
+                          onClick={() => !isLocked && selectChallenge(c.id)}
+                          disabled={isLocked}
                           className={[
                             'w-full text-left px-2 py-1.5 rounded text-sm',
                             'flex items-center gap-2',
-                            'hover:bg-coden-border transition-colors duration-150',
+                            isLocked
+                              ? 'opacity-40 cursor-not-allowed'
+                              : 'hover:bg-coden-border transition-colors duration-150',
                             isCurrent ? 'bg-coden-border text-white' : 'text-coden-text',
                           ].join(' ')}
-                          title={`${c.name} · ${c.required_complexity} · ${c.id}`}
+                          title={isLocked ? "Locked in Career Mode (Complete parent nodes first)" : `${c.name} · ${c.required_complexity} · ${c.id}`}
                         >
-                          {isDone ? (
-                            <span className="text-coden-accent shrink-0 text-xs" aria-label="completed">✓</span>
-                          ) : (
-                            <span className="w-3 shrink-0" aria-hidden="true" />
-                          )}
+                          {statusIndicator}
                           <div className="flex-1 min-w-0">
                             <div className="truncate">{c.name}</div>
                             <div className="text-[11px] text-coden-muted font-mono truncate mt-0.5 opacity-80">

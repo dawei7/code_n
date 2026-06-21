@@ -72,3 +72,10 @@ Builds the complete Windows `.exe`:
 - Always ensure `tests` (engine tests) stay green; there are currently 102 tests (83 engine + 19 server).
 - For UI changes, remember the app uses Tailwind and standard React hooks/Zustand. Avoid breaking the Monaco editor integration.
 - Desktop releases are packaged as directory (`dir` target) to avoid NSIS installer overhead. The `coden-server.exe` runs in GUI subsystem mode (`console=False`) to allow Electron to parse stdout port bindings.
+
+## 7. Documentation Translation Progress (June 20, 2026)
+- **Script:** `translate_gemini.py` translates documents using the Gemini API. It handles rate limits and supports target specification (`--target`) and custom models (`--model`). It includes auto-fallback across models on 429 quota exhaustion (trying `gemini-3.1-flash-lite`, then `gemini-2.5-flash`, then `gemini-2.0-flash`).
+- **Algorithms:** Translated **269 / 269** files (**100% complete**) under `docs/algorithms/` to German using the Gemini API (overwriting the old DeepL translations to ensure consistent terminology).
+- **Mathematics:** Translated **269 / 269** files (**100% complete**) under `docs/mathematical/` to German using the Gemini API.
+- **Status:** All documentation under `docs/algorithms/` and `docs/mathematical/` has been fully translated (100% complete).
+

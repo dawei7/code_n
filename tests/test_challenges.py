@@ -24,18 +24,15 @@ class RegistryTests(unittest.TestCase):
         for cid in ids:
             self.assertIsNotNone(get_challenge(cid), msg=f"missing: {cid}")
 
-    def test_intro_01_present(self):
-        self.assertIn("intro_01", list_challenges())
-
-
 class MaxNCapTests(unittest.TestCase):
     """1D challenges accept up to 50; 2D grid challenges (BFS, DFS)
     cap at 35 because a 50x50 grid is too dense to be useful even at
     the smallest zoom."""
 
     def test_1d_challenges_default_to_50(self):
-        for cid in ("intro_01", "sort_01", "search_01", "search_02",
+        for cid in ("sort_01", "search_01", "search_02",
                     "dp_01", "dp_02"):
+
             ch = get_challenge(cid)
             self.assertIsNotNone(ch, msg=f"missing: {cid}")
             self.assertEqual(ch.max_n, 50, msg=f"{cid} should cap at 50")

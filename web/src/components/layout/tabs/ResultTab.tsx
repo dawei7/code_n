@@ -12,7 +12,7 @@
  *   - Big status banner (emerald/amber/rose) with the
  *     pass/fail/error message + the actual complexity.
  *   - Compact two-card metric row: your ops vs reference.
- *   - Inline ±5% tolerance band (the simpler one from
+ *   - Inline -10% / +5% tolerance band (the simpler one from
  *     ComplexityAnalysis, not the full scientific panel).
  *   - The ``return_value_repr`` as a code-styled block
  *     (so the player can confirm "yes, that's what my
@@ -20,7 +20,16 @@
  *   - Re-run button + a hint pointing to VSCode for
  *     debugging.
  */
+
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import rehypeRaw from 'rehype-raw';
+import 'katex/dist/katex.min.css';
 import { useAppStore } from '../../../store/useAppStore';
+import { analyzeChallenge } from '../../../api/run';
+import { ApiError } from '../../../api/client';
 
 
 export function ResultTab() {
@@ -30,6 +39,48 @@ export function ResultTab() {
   const run = useAppStore((s) => s.run);
   const reset = useAppStore((s) => s.reset);
   const isRunning = useAppStore((s) => s.isRunning);
+
+  const aiStatus = useAppStore((s) => s.aiStatus);
+  const aiAnalysis = useAppStore((s) => s.aiAnalysis);
+  const aiError = useAppStore((s) => s.aiError);
+  const setAiStatus = useAppStore((s) => s.setAiStatus);
+  const setAiAnalysis = useAppStore((s) => s.setAiAnalysis);
+  const setAiError = useAppStore((s) => s.setAiError);
+
+  const handleAnalyze = async () => {
+    if (!detail || !result) return;
+
+    const apiKey = useAppStore.getState().progress?.gemini_api_key;
+    if (!apiKey || !apiKey.trim()) {
+      setAiStatus('error');
+      setAiError('Please configure your Gemini API Key in the Profile settings first (click on your profile name/avatar at the top of the screen).');
+      return;
+    }
+
+    setAiStatus('loading');
+    setAiError('');
+    try {
+      const res = await analyzeChallenge({
+        challengeId: detail.id,
+        source: useAppStore.getState().source,
+        n: result.n,
+        seed: result.seed,
+        returned: result.return_value_repr,
+        expected: result.reference_return_value_repr || '',
+        inputs: result.setup_data_repr || {},
+      });
+      setAiAnalysis(res.analysis);
+      setAiStatus('loaded');
+    } catch (e) {
+      setAiStatus('error');
+      if (e instanceof ApiError && e.detail && typeof e.detail === 'object' && 'detail' in e.detail) {
+        setAiError(String((e.detail as any).detail));
+      } else {
+        setAiError(e instanceof Error ? e.message : String(e));
+      }
+    }
+  };
+
 
   if (!detail) {
     return (
@@ -94,8 +145,22 @@ export function ResultTab() {
     <div className="space-y-4 p-4">
       <VerdictCard result={result} variant={variant} />
       <ComplexityCard result={result} requiredComplexity={detail.required_complexity} />
+      {!result.passed && (
+        <AITutorCard
+          status={aiStatus}
+          analysis={aiAnalysis}
+          error={aiError}
+          onAnalyze={handleAnalyze}
+        />
+      )}
+      {result.setup_data_repr && !result.passed && (
+        <InputsCard inputs={result.setup_data_repr} />
+      )}
       {result.return_value_repr && (
-        <ReturnValueCard value={result.return_value_repr} />
+        <ReturnValueCard
+          value={result.return_value_repr}
+          expected={!result.correct ? result.reference_return_value_repr : undefined}
+        />
       )}
       <ActionRow
         onRun={run}
@@ -187,7 +252,7 @@ function ComplexityCard({
       {ciLow !== null && ciHigh !== null && ref !== null && ref > 0 && (
         <div className="mt-3">
           <div className="text-xs uppercase text-coden-muted font-semibold mb-1">
-            ±5% tolerance band around the reference
+            -10% / +5% tolerance band around the reference
           </div>
           <div className="flex items-center gap-2 text-xs font-mono">
             <span className="text-rose-300">{ciLow.toLocaleString()}</span>
@@ -260,18 +325,51 @@ function Metric({
 }
 
 
-function ReturnValueCard({ value }: { value: string }) {
+function ReturnValueCard({ value, expected }: { value: string; expected?: string | null }) {
   return (
     <div className="bg-coden-surface rounded-lg p-5 shadow-md mt-4">
-      <div className="text-xs uppercase text-coden-muted font-semibold mb-2">
-        Returned
-      </div>
-      <pre className="bg-coden-inner rounded-lg p-4 text-[11px] font-mono overflow-x-auto whitespace-pre-wrap break-words max-h-64 overflow-y-auto shadow-inner">
+      {expected ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <div className="text-xs uppercase text-rose-300 font-semibold mb-2 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+              Returned (Your Solution)
+            </div>
+            <pre className="bg-coden-inner rounded-lg p-4 text-[11px] font-mono overflow-x-auto whitespace-pre-wrap break-words max-h-64 overflow-y-auto shadow-inner border border-rose-500/20">
 {value}
-      </pre>
-      <div className="mt-1 text-xs text-coden-muted">
-        What <span className="font-mono text-coden-text">solve()</span> returned.
-        Capped server-side; long lists are truncated with a trailing ellipsis.
+            </pre>
+            <div className="mt-1 text-[10px] text-coden-muted">
+              What your code's <code className="font-mono text-rose-300">solve()</code> function returned.
+            </div>
+          </div>
+          <div>
+            <div className="text-xs uppercase text-emerald-300 font-semibold mb-2 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              Expected (Reference Solution)
+            </div>
+            <pre className="bg-coden-inner rounded-lg p-4 text-[11px] font-mono overflow-x-auto whitespace-pre-wrap break-words max-h-64 overflow-y-auto shadow-inner border border-emerald-500/20">
+{expected}
+            </pre>
+            <div className="mt-1 text-[10px] text-coden-muted">
+              What the canonical reference solution returned.
+            </div>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className="text-xs uppercase text-coden-muted font-semibold mb-2">
+            Returned
+          </div>
+          <pre className="bg-coden-inner rounded-lg p-4 text-[11px] font-mono overflow-x-auto whitespace-pre-wrap break-words max-h-64 overflow-y-auto shadow-inner">
+{value}
+          </pre>
+          <div className="mt-1 text-xs text-coden-muted">
+            What <span className="font-mono text-coden-text">solve()</span> returned.
+          </div>
+        </>
+      )}
+      <div className="mt-3 text-[10px] text-coden-muted border-t border-coden-border/50 pt-2">
+        Return values are capped server-side; long lists are truncated with a trailing ellipsis.
       </div>
     </div>
   );
@@ -323,6 +421,134 @@ function ActionRow({
           Reset
         </button>
       </div>
+    </div>
+  );
+}
+
+
+function InputsCard({ inputs }: { inputs: Record<string, string> }) {
+  return (
+    <div className="bg-coden-surface rounded-lg p-5 shadow-md mt-4">
+      <div className="text-xs uppercase text-coden-muted font-semibold mb-2">
+        Input Variables
+      </div>
+      <div className="space-y-3">
+        {Object.entries(inputs).map(([name, val]) => (
+          <div key={name} className="space-y-1">
+            <div className="text-xs font-mono text-coden-accent">{name}</div>
+            <pre className="bg-coden-inner rounded-lg p-3 text-[11px] font-mono overflow-x-auto whitespace-pre-wrap break-words max-h-40 overflow-y-auto shadow-inner border border-coden-border/30">
+{val}
+            </pre>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+interface AITutorCardProps {
+  status: 'idle' | 'loading' | 'loaded' | 'error';
+  analysis: string;
+  error: string;
+  onAnalyze: () => void;
+}
+
+function AITutorCard({ status, analysis, error, onAnalyze }: AITutorCardProps) {
+  if (status === 'idle') {
+    return (
+      <div className="bg-gradient-to-r from-indigo-950/40 to-purple-950/40 border border-indigo-500/30 rounded-xl p-5 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4 mt-4">
+        <div className="space-y-1 text-center sm:text-left">
+          <div className="text-sm font-bold text-white flex items-center justify-center sm:justify-start gap-1.5">
+            <span>🤖</span> Gemini AI Tutor
+          </div>
+          <p className="text-xs text-indigo-200/80 leading-relaxed">
+            Stuck? Let Gemini analyze your code, logic, and output mismatch to pinpoint the exact bug.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={onAnalyze}
+          className="px-4 py-2 text-xs font-bold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white shadow-md hover:shadow-indigo-500/20 active:scale-95 transition-all shrink-0"
+        >
+          Analyze Solution
+        </button>
+      </div>
+    );
+  }
+
+  if (status === 'loading') {
+    return (
+      <div className="bg-coden-surface border border-indigo-500/30 rounded-xl p-6 shadow-md mt-4 flex flex-col items-center justify-center gap-3 text-xs text-indigo-300">
+        <div className="w-5 h-5 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin"></div>
+        <span>Gemini is analyzing your execution bug...</span>
+      </div>
+    );
+  }
+
+  if (status === 'error') {
+    return (
+      <div className="bg-coden-surface border border-rose-500/30 rounded-xl p-5 shadow-md mt-4 space-y-3">
+        <div className="text-xs font-bold text-rose-300 flex items-center gap-1.5">
+          <span>⚠️</span> AI Analysis Failed
+        </div>
+        <p className="text-xs text-coden-text whitespace-pre-wrap font-mono leading-relaxed bg-rose-950/20 border border-rose-900/30 rounded-lg p-3">
+          {error}
+        </p>
+        <button
+          type="button"
+          onClick={onAnalyze}
+          className="px-3 py-1.5 text-xs rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all"
+        >
+          Try Again
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-coden-surface border border-indigo-500/30 rounded-xl p-5 shadow-md mt-4 space-y-3">
+      <div className="text-xs font-bold text-indigo-300 flex items-center gap-1.5 border-b border-coden-border/60 pb-2">
+        <span>🤖</span> Gemini AI Debug Analysis
+      </div>
+      <article className="prose prose-invert prose-xs max-w-none
+                          prose-headings:text-indigo-200 prose-headings:font-bold prose-headings:my-2
+                          prose-p:text-coden-text prose-p:leading-relaxed prose-p:my-1.5
+                          prose-strong:text-indigo-300
+                          prose-code:text-indigo-300 prose-code:before:content-none prose-code:after:content-none
+                          prose-ul:list-disc prose-ul:pl-4 prose-ul:my-2
+                          prose-li:my-0.5">
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm, remarkMath]}
+          rehypePlugins={[rehypeRaw, rehypeKatex]}
+          components={{
+            pre: ({ children, ...props }) => (
+              <pre
+                {...props}
+                className="bg-coden-bg border border-coden-border rounded p-3 text-xs overflow-x-auto my-3 font-mono"
+              >
+                {children}
+              </pre>
+            ),
+            code: ({ className, children, ...props }) => {
+              const isBlock = String(children).includes('\n');
+              if (isBlock) {
+                return <code {...props} className={className}>{children}</code>;
+              }
+              return (
+                <code
+                  {...props}
+                  className="bg-coden-bg border border-coden-border rounded px-1 py-0.5 text-indigo-300 text-xs font-mono"
+                >
+                  {children}
+                </code>
+              );
+            },
+          }}
+        >
+          {analysis}
+        </ReactMarkdown>
+      </article>
     </div>
   );
 }

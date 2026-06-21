@@ -1,44 +1,44 @@
-# Christofides-TSP (1,5-Approximation)
+# Christofides TSP (1,5-Approximation)
 
 | | |
 |---|---|
 | **ID** | `approx_04` |
 | **Kategorie** | Approximation |
 | **Komplexität (erforderlich)** | $O(V^3)$ |
-| **Schwierigkeitsgrad** | 9/10 |
+| **Schwierigkeit** | 9/10 |
 | **Relevanz für Vorstellungsgespräche** | 2/10 |
 | **Wikipedia** | [Christofides-Algorithmus](https://en.wikipedia.org/wiki/Christofides_algorithm) |
 
 ## Problemstellung
 
-Gegeben sei ein vollständig verbundener Graph von Städten, der die Dreiecksungleichung erfüllt. Lösen Sie das Handlungsreisendenproblem (TSP) mit einer strengeren mathematischen Garantie.
-Anstelle der üblichen MST-2-Approximation implementiere den **Christofides-Algorithmus**, der garantiert, dass die erzeugte Tour höchstens das **1,5-Fache** der Länge der optimalen Tour beträgt.
+Gegeben sei ein vollständig zusammenhängender Graph von Städten, der die Dreiecksungleichung erfüllt. Lösen Sie das Problem des Handlungsreisenden (Travelling Salesman Problem, TSP) mit einer präziseren mathematischen Garantie.
+Anstatt der standardmäßigen 2-Approximation mittels MST implementieren Sie den **Christofides-Algorithmus**, der garantiert, dass die erzeugte Tour höchstens **1,5-mal** so lang ist wie die optimale Tour.
 
-**Eingabe:** Eine Adjacency Matrix, die die Entfernungen zwischen den Knoten darstellt.
-**Ausgabe:** Eine Liste von Knoten, die die Route darstellt.
+**Eingabe:** Eine Adjazenzmatrix, die die Distanzen zwischen den Knoten repräsentiert.
+**Ausgabe:** Eine Liste von Knoten, die die Tour repräsentiert.
 
-## Wann sollte man ihn verwenden?
+## Wann man ihn verwendet
 
-- Dies ist das beste bekannte Approximationsverhältnis für das metrische TSP. Es wird in der Operationsforschung und in Logistik-Engines häufig verwendet, wenn Routen mit mehr als 500 Knoten berechnet werden.
-- Ein unglaublich komplexer Algorithmus, der Ihre Fähigkeit auf die Probe stellt, mehrere umfangreiche graphtheoretische Konzepte (MST, perfekte Paarung, eulersche Kreise) miteinander zu verknüpfen.
+- Dies ist das beste bekannte Approximationsverhältnis für das metrische TSP. Er wird intensiv in der Operations Research und in Logistik-Engines eingesetzt, wenn Routen mit mehr als 500 Knoten berechnet werden.
+- Ein unglaublich komplexer Algorithmus, der Ihre Fähigkeit testet, mehrere massive graphentheoretische Konzepte (MST, Perfektes Matching, Eulersche Kreise) miteinander zu verknüpfen.
 
-## Vorgehensweise
+## Ansatz
 
-Die 2-Approximation (`approx_03`) basierte darauf, *jede einzelne Kante* des MST zu duplizieren, um für jeden Knoten einen geraden Grad zu gewährleisten (was erforderlich ist, um einen eulerschen Kreis zu bilden).
+Die 2-Approximation (`approx_03`) basierte darauf, *jede einzelne Kante* des MST zu duplizieren, um einen geraden Grad für jeden Knoten zu garantieren (was für das Zeichnen eines Eulerschen Kreises erforderlich ist).
 Christofides erkannte, dass wir nicht *jede* Kante duplizieren müssen!
 
 **Die Schritte:**
-1. **Den MST finden:** Berechne den minimalen Spanning Tree des Graphen.
-2. **Knoten mit ungeradem Grad finden:** In jedem Graphen ist die Anzahl der Knoten mit ungeradem Grad immer gerade. Extrahiere alle Knoten aus dem MST, die einen ungeraden Grad haben.
-3. **Perfekte Paarung mit minimalem Gewicht (MWPM):** Betrachte den ursprünglichen vollständigen Graphen, jedoch NUR hinsichtlich der Knoten mit ungeradem Grad. Finde eine Paarung dieser Knoten (eine perfekte Paarung), sodass die Gesamtdistanz der Paarungen absolut minimiert wird.
-4. **Kombinieren:** Füge die Kanten aus der perfekten Paarung direkt in den MST ein. Da wir jedem Knoten, der zuvor einen ungeraden Grad hatte, genau eine Kante hinzugefügt haben, **hat nun jeder einzelne Knoten im kombinierten Graphen einen geraden Grad!**
-5. **Eulerscher Kreis:** Da jeder Knoten einen geraden Grad hat, können wir mithilfe des Hierholzer-Algorithmus einen perfekten Eulerschen Kreis (eine Schleife, die jede Kante genau einmal durchläuft) verfolgen.
-6. **Abkürzung (Hamilton-Zyklus):** Genau wie bei der 2-Approximation verfolgen wir den eulerschen Kreis, überspringen dabei jedoch bereits besuchte Knoten, um ihn in eine gültige TSP-Tour umzuwandeln.
+1. **MST finden:** Berechnen Sie den Minimal aufspannenden Baum (Minimum Spanning Tree, MST) des Graphen.
+2. **Knoten mit ungeradem Grad finden:** In jedem Graphen ist die Anzahl der Knoten mit einem ungeraden Grad immer gerade. Extrahieren Sie alle Knoten aus dem MST, die einen ungeraden Grad haben.
+3. **Minimum-Weight Perfect Matching (MWPM):** Betrachten Sie den ursprünglichen vollständigen Graphen, aber NUR für diese Knoten mit ungeradem Grad. Finden Sie eine Paarung dieser Knoten (ein perfektes Matching), sodass die Gesamtdistanz der Paarungen absolut minimiert wird.
+4. **Kombinieren:** Fügen Sie die Kanten aus dem perfekten Matching direkt zum MST hinzu. Da wir genau eine Kante zu jedem Knoten hinzugefügt haben, der zuvor einen ungeraden Grad hatte, **hat nun jeder einzelne Knoten im kombinierten Graphen einen geraden Grad!**
+5. **Eulerscher Kreis:** Da jeder Knoten einen geraden Grad hat, können wir einen perfekten Eulerschen Kreis (einen Zyklus, der jede Kante genau einmal besucht) mittels des Hierholzer-Algorithmus finden.
+6. **Abkürzung (Hamiltonkreis):** Genau wie bei der 2-Approximation durchlaufen wir den Eulerschen Kreis, überspringen jedoch bereits besuchte Knoten, um ihn in eine gültige TSP-Tour umzuwandeln.
 
-**Warum handelt es sich um eine 1,5-Approximation?**
-- Der MST hat ein Gewicht von \le 1,0 × OPT.
-- Die perfekte Zuordnung mit minimalem Gewicht der ungeraden Knoten hat ein Gewicht von \le 0,5 × OPT.
-- Das Gesamtgewicht beträgt \le 1,5 × OPT!
+**Warum ist es eine 1,5-Approximation?**
+- Der MST wiegt \le 1,0 x OPT.
+- Das Minimum-Weight Perfect Matching der Knoten mit ungeradem Grad wiegt \le 0,5 x OPT.
+- Gesamtgewicht \le 1,5 x OPT!
 
 ## Algorithmus
 
@@ -181,15 +181,15 @@ def solve(cost, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Walk-through
 
 *(Konzeptionell)*
-1. **MST:** Bildet einen Baum. Nehmen wir an, die Knoten `A`, `B`, `C`, `D` sind Blätter (Grad 1, also ungerade).
+1. **MST:** Bildet einen Baum. Nehmen wir an, die Knoten `A`, `B`, `C`, `D` sind Blätter (Grad 1, was ungerade ist).
 2. **Ungerade Knoten:** `[A, B, C, D]`.
-3. **MWPM:** Wir betrachten die Abstände zwischen ihnen im ursprünglichen Graphen. Nehmen wir an, `dist(A, B) = 5` und `dist(C, D) = 6` sind die günstigste Paarung.
-4. **Kombinieren:** Wir zeichnen eine Kante von `A` zu `B` und von `C` zu `D` direkt über den MST!
+3. **MWPM:** Wir betrachten die Distanzen zwischen ihnen im ursprünglichen Graphen. Nehmen wir an, `dist(A, B) = 5` und `dist(C, D) = 6` ist die günstigste Paarung.
+4. **Kombinieren:** Wir zeichnen eine Kante von `A` nach `B` und von `C` nach `D` direkt über den MST!
 5. Nun haben `A`, `B`, `C` und `D` einen Grad von 2! Jeder Knoten ist gerade!
-6. Verfolge die Linien, ohne den Stift abzusetzen (Eulerscher Kreis), und überspringe dabei Knoten, die wir bereits gesehen haben, um Abkürzungen zu nehmen.
+6. Zeichnen Sie die Linien nach, ohne den Stift abzusetzen (Eulerscher Kreis), und überspringen Sie Knoten, falls wir sie bereits gesehen haben, um Abkürzungen zu nehmen.
 
 ## Komplexität
 
@@ -197,28 +197,24 @@ def solve(cost, n):
 |---|---|---|
 | **Bestfall** | $O(V^3)$ | $O(V^2)$ |
 | **Durchschnittlicher Fall** | $O(V^3)$ | $O(V^2)$ |
-| **Schlechteste** | $O(V^3)$ | $O(V^2)$ |
+| **Schlechtester Fall** | $O(V^3)$ | $O(V^2)$ |
 
-Um die perfekte Zuordnung mit absolut minimalem Gewicht in einem allgemeinen Graphen zu finden, ist der Blossom-Algorithmus von Edmonds erforderlich, der $O(V^3)$ benötigt. Alles andere (MST, Euler-Kreis) benötigt $O(V^2)$. Somit ist die streng optimale Implementierung durch $O(V^3)$ begrenzt.
-Die Platzkomplexität beträgt $O(V^2)$ für die Speicherung der dichten Graphen.
+Das Finden des absoluten Minimum Weight Perfect Matching in einem allgemeinen Graphen erfordert Edmonds' Blossom-Algorithmus, der $O(V^3)$ benötigt. Alles andere (MST, Eulerscher Kreis) benötigt $O(V^2)$. Daher ist die strikt optimale Implementierung durch $O(V^3)$ begrenzt.
+Die Platzkomplexität beträgt $O(V^2)$, um die dichten Graphen zu speichern.
 
-## Varianten und Optimierungen
+## Varianten & Optimierungen
 
-- **Asymmetrisches TSP (ATSP):** Christofides versagt vollständig, wenn die Entfernungen asymmetrisch sind (die Fahrt von A nach B hat aufgrund von Einbahnstraßen eine andere Entfernung als die von B nach A). Die Approximation des ATSP ist wesentlich schwieriger und stützt sich auf völlig andere Algorithmen (wie die $O(log V / log log V)$-Approximation von Asadpour et al.).
+- **Asymmetrisches TSP (ATSP):** Christofides versagt vollständig, wenn die Distanzen asymmetrisch sind (die Fahrt von A nach B ist aufgrund von Einbahnstraßen eine andere Distanz als von B nach A). Die Approximation von ATSP ist weitaus schwieriger und basiert auf völlig anderen Algorithmen (wie der $O(log V / log log V)$-Approximation von Asadpour et al.).
 
-## Praktische Anwendungen
+## Anwendungen in der Praxis
 
-- **Mikrochip-Fertigung:** Optimierung der Bewegungen von Roboterarmen, die oberflächenmontierte Bauteile auf Leiterplatten platzieren, um den Fertigungsdurchsatz zu maximieren.
+- **Mikrochip-Fertigung:** Optimierung der Bewegungen von Roboterarmen, die oberflächenmontierte Komponenten auf PCBs platzieren, um den Fertigungsdurchsatz zu maximieren.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[approx_03 – TSP über MST](approx_03_tsp-via-mst-2-approx.md)** — Die einfachere Voraussetzung für die 2-Approximation.
-- **[graph_21 – Hamilton-Pfad](../graphs/graph_21_hamiltonian-path-existence.md)** — Die exakte NP-vollständige Formulierung des zugrunde liegenden Problems.
+- **[approx_03 - TSP via MST](approx_03_tsp-via-mst-2-approx.md)** — Die einfachere 2-Approximations-Voraussetzung.
+- **[graph_21 - Hamiltonpfad](../graphs/graph_21_hamiltonian-path-existence.md)** — Die exakte NP-vollständige Formulierung des zugrunde liegenden Problems.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-nach dem Vorbild der kanonischen Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) geschrieben wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

@@ -1,38 +1,38 @@
-# Das am nächsten beieinanderliegende Punktpaar
+# Closest Pair of Points
 
 | | |
 |---|---|
 | **ID** | `geometric_01` |
-| **Kategorie** | Geometrie |
+| **Kategorie** | geometric |
 | **Komplexität (erforderlich)** | $O(N \log N)$ |
-| **Schwierigkeitsgrad** | 7/10 |
+| **Schwierigkeit** | 7/10 |
 | **Relevanz für Vorstellungsgespräche** | 4/10 |
-| **Wikipedia** | [Problem des nächstgelegenen Punktpaares](https://en.wikipedia.org/wiki/Closest_pair_of_points_problem) |
+| **Wikipedia** | [Closest pair of points problem](https://en.wikipedia.org/wiki/Closest_pair_of_points_problem) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben ist ein Array mit N Punkten in einer 2D-Ebene. Finde die beiden Punkte, die einander am nächsten liegen, und gib den euklidischen Abstand zwischen ihnen zurück.
-Ein naiver Ansatz vergleicht jedes Punktpaar, was $O(N^2)$ Zeit in Anspruch nimmt. Sie müssen einen **Divide-and-Conquer**-Algorithmus implementieren, der die Zeitkomplexität auf streng $O(N \log N)$ senkt.
+Gegeben ist ein Array von $N$ Punkten in einer 2D-Ebene. Finden Sie die zwei Punkte, die am nächsten beieinander liegen, und geben Sie den euklidischen Abstand zwischen ihnen zurück.
+Ein naiver Ansatz vergleicht jedes Punktepaar, was eine Zeitkomplexität von $O(N^2)$ erfordert. Sie müssen einen **Divide and Conquer**-Algorithmus implementieren, der die Zeitkomplexität auf strikt $O(N \log N)$ reduziert.
 
-**Eingabe:** Eine Liste von `(x, y)` Koordinatentupeln.
-**Ausgabe:** Ein Float-Wert, der den minimalen euklidischen Abstand angibt.
+**Input:** Eine Liste von `(x, y)`-Koordinatentupeln.
+**Output:** Ein `float`, der den minimalen euklidischen Abstand repräsentiert.
 
-## Wann man ihn einsetzt
+## Anwendungsbereiche
 
-- In räumlichen Clustering-Algorithmen, Kollisionserkennungs-Engines oder Flugsicherungssimulationen, bei denen N \ge 10^5 gilt.
-- Eine klassische, wunderbar elegante Anwendung des „Teile und herrsche“-Prinzips in der computergestützten Geometrie.
+- In räumlichen Clustering-Algorithmen, Kollisionserkennungs-Engines oder Simulationen der Flugverkehrskontrolle, bei denen $N \ge 10^5$ gilt.
+- Eine klassische, elegant formulierte Anwendung des Divide and Conquer-Paradigmas in der Computergeometrie.
 
 ## Vorgehensweise
 
-1. **Nach X sortieren:** Sortiere zunächst alle Punkte nach ihrer X-Koordinate.
-2. **Teilen:** Das Punkte-Array wird rekursiv in zwei Hälften geteilt (durch Ziehen einer vertikalen Trennlinie). Der Basisfall liegt vor, wenn die Teilmenge \le 3 Punkte enthält (in diesem Fall wird der Abstand einfach mit Brute-Force berechnet).
-3. **Beherrschen:** Die rekursiven Aufrufe geben `min_left` und `min_right` zurück. Der bisher gefundene minimale Abstand ist `d = min(min_left, min_right)`.
-4. **Das grenzüberschreitende Problem:** Das absolut nächstgelegene Punktpaar könnte einen Punkt auf der linken Seite der Trennlinie und einen Punkt auf der rechten Seite haben! Dies MUSS überprüft werden.
-5. **Der Streifen (die $O(N)$-Magie):**
-   - Uns interessieren nur grenzüberschreitende Punkte, die *näher* als `d` liegen. Daher müssen wir nur Punkte betrachten, deren X-Koordinate streng innerhalb des Abstands `d` zur vertikalen Trennlinie liegt. Dies bildet einen vertikalen „Streifen“ der Breite `2d`.
-   - **Sortiere den Streifen nach der Y-Koordinate.**
-   - Durchlaufe für jeden Punkt im Streifen die *nächsten* paar Punkte im sortierten Streifen.
-   - **Die geometrische Garantie:** Mathematisch gesehen kann ein Punkt in diesem Streifen aufgrund der Herleitung von `d` höchstens **7** andere Punkte haben, die sich in einem Abstand von `d` zu ihm befinden! Daher wird die innere Schleife höchstens 7 Mal durchlaufen, wodurch diese Grenzüberschreitungsprüfung streng $O(N)$ ist!
+1. **Sortierung nach X:** Sortieren Sie zunächst alle Punkte nach ihrer X-Koordinate.
+2. **Divide:** Teilen Sie das Array von Punkten rekursiv in zwei Hälften (durch Ziehen einer vertikalen Trennlinie). Der Induktionsanfang (Basis) ist erreicht, wenn die Teilmenge $\le 3$ Punkte enthält (hier wird der Abstand per Brute-Force berechnet).
+3. **Conquer:** Die rekursiven Aufrufe liefern `min_left` und `min_right` zurück. Der bisher gefundene minimale Abstand ist `d = min(min_left, min_right)`.
+4. **Das Problem der Trennlinien-Überschreitung:** Das absolut nächste Punktepaar könnte einen Punkt auf der linken Seite der Trennlinie und einen Punkt auf der rechten Seite haben! Dies MÜSSEN wir überprüfen.
+5. **Der Streifen (Die $O(N)$-Magie):**
+   - Wir interessieren uns nur für Punkte, die die Trennlinie überschreiten und *näher* als `d` beieinander liegen. Daher müssen wir nur Punkte betrachten, deren X-Koordinate innerhalb des Abstands `d` von der vertikalen Trennlinie liegt. Dies bildet einen vertikalen "Streifen" der Breite `2d`.
+   - **Sortieren Sie den Streifen nach der Y-Koordinate.**
+   - Iterieren Sie für jeden Punkt im Streifen durch die *nächsten* paar Punkte im sortierten Streifen.
+   - **Die geometrische Garantie:** Mathematisch gesehen kann aufgrund der Herleitung von `d` ein Punkt in diesem Streifen höchstens **7** andere Punkte haben, die innerhalb des Abstands `d` von ihm liegen! Daher läuft die innere Schleife maximal 7-mal, was diese Überprüfung der Trennlinien-Überschreitung auf strikt $O(N)$ begrenzt!
 
 ## Algorithmus
 
@@ -65,51 +65,47 @@ def solve(points, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 *(Konzeptionell)*
 Punkte: `(2,3), (12,30), (40,50), (5,1), (12,10), (3,4)`
 
-1. **Nach X sortieren:** `(2,3), (3,4), (5,1), (12,10), (12,30), (40,50)`.
-2. **Teilen:** In der Mitte teilen `(5,1)`.
-   - Links: `(2,3), (3,4), (5,1)`. Das Minimum bei der Brute-Force-Methode liegt bei `d = 1.41` (zwischen `2,3` und `3,4`).
-   - Rechts: `(12,10), (12,30), (40,50)`. Brute-Force-Methode `d = 20`.
-3. **Erobern:** Das beste `d` ist `1.41`.
-4. **Entfernen:** Die Linie liegt bei `X = 5`.
-   - Gibt es Punkte mit `X` zwischen `5 - 1.41` und `5 + 1.41`? (Bereich von `3.59` bis `6.41`).
+1. **Sortierung nach X:** `(2,3), (3,4), (5,1), (12,10), (12,30), (40,50)`.
+2. **Divide:** Teilen bei Mitte `(5,1)`.
+   - Links: `(2,3), (3,4), (5,1)`. Brute-Force-Minimum ist `d = 1.41` (zwischen `2,3` und `3,4`).
+   - Rechts: `(12,10), (12,30), (40,50)`. Brute-Force `d = 20`.
+3. **Conquer:** Bestes `d` ist `1.41`.
+4. **Streifen:** Linie liegt bei `X = 5`.
+   - Gibt es Punkte mit `X` zwischen `5 - 1.41` und `5 + 1.41`? (Bereich `3.59` bis `6.41`).
    - Nur `(5,1)` liegt im Streifen.
-   - Da es nur einen Punkt gibt, kann kein grenzüberschreitendes Paar `1.41` übertreffen.
-5. Gib `1.41` zurück. ✓
+   - Da nur 1 Punkt vorhanden ist, können keine Paare über die Trennlinie hinweg `1.41` unterbieten.
+5. Rückgabe `1.41`. ✓
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(N \log N)$ | $O(\log N)$ |
+| **Bestfall** | $O(N \log N)$ | $O(\log N)$ |
 | **Durchschnittlicher Fall** | $O(N \log N)$ | $O(\log N)$ |
-| **Schlechteste** | $O(N log^2 N)$ | $O(N)$ |
+| **Schlechtester Fall** | $O(N log^2 N)$ | $O(N)$ |
 
-*Hinweis: Der obige Pseudocode verwendet innerhalb der Rekursion ein Python-`sort()`. Pythons Timsort ist bei nahezu sortierten Daten schnell, aber theoretisch dauert das Sortieren des Streifens auf jeder Ebene $O(N \log N)$ innerhalb eines $O(\log N)$-Baums, was im schlimmsten Fall eine Laufzeit von $O(N log^2 N)$ ergibt.*
-Um striktes $O(N \log N)$ zu erreichen, musst du alle Punkte zu Beginn einmal nach ihrer Y-Koordinate vorsortieren und sie sorgfältig in die linken und rechten rekursiven Aufrufe filtern.
-Die Platzkomplexität ist durch $O(N)$ für das Array-Slicing bzw. die Zuweisung des Streifens begrenzt.
+*Hinweis: Der obige Pseudocode verwendet ein `sort()` innerhalb der Rekursion. Pythons Timsort ist bei nahezu sortierten Daten schnell, aber theoretisch benötigt das Sortieren des Streifens auf jeder Ebene $O(N \log N)$ innerhalb eines $O(\log N)$-Baums, was im schlechtesten Fall zu $O(N log^2 N)$ führt.*
+Um strikt $O(N \log N)$ zu erreichen, müssen alle Punkte zu Beginn einmal nach der Y-Koordinate vorsortiert und sorgfältig in die linken und rechten rekursiven Aufrufe gefiltert werden.
+Die Platzkomplexität ist durch $O(N)$ für das Slicing des Arrays bzw. die Allokation des Streifens begrenzt.
 
 ## Varianten & Optimierungen
 
-- **Sweep-Line-Algorithmus:** Sie können diese Aufgabe ohne „Teile und herrsche“ lösen! Verwalten Sie ein aktives Fenster mit Punkten, die nach ihrer Y-Koordinate in einem ausgeglichenen BST sortiert sind. Während eine vertikale Linie nach rechts verläuft, entfernen Sie Punkte, die weiter als `d` hinter der Linie liegen, und überprüfen Sie den neuen Punkt anhand des BST. Auch hier gilt striktes $O(N \log N)$.
+- **Sweep-Line-Algorithmus:** Sie können dies ohne Divide and Conquer lösen! Verwalten Sie ein aktives Fenster von Punkten, die nach der Y-Koordinate in einem balancierten BST sortiert sind. Während eine vertikale Linie nach rechts wandert, entfernen Sie Punkte, die weiter als `d` hinter der Linie liegen, und vergleichen Sie den neuen Punkt mit dem BST. Dies ist ebenfalls strikt $O(N \log N)$.
 
-## Praktische Anwendungen
+## Praxisanwendungen
 
-- **LIDAR-Verarbeitung:** Schnelles Auffinden der nächstgelegenen physischen Hindernisse durch Analyse umfangreicher Punktwolken, die von Sensoren autonomer Fahrzeuge erzeugt werden.
+- **LIDAR-Verarbeitung:** Schnelles Finden der nächsten physischen Hindernisse durch Analyse massiver Punktwolken, die von Sensoren autonomer Fahrzeuge erzeugt werden.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[sort_03 – Merge-Sort](../sorting/sort_03_merge-sort.md)** — Die Partitionierungslogik von „Teile und herrsche“ ist mathematisch identisch mit dem Merge-Sort!
-- **[geometric_06 – Rechtecküberlappung](geometric_06_rectangle-overlap-axis-aligned.md)** — Eine weitere räumliche Abfrage, die durch Sweep-Line-Algorithmen stark optimiert wurde.
+- **[sort_03 - Merge Sort](../sorting/sort_03_merge-sort.md)** — Die Divide and Conquer-Partitionierungslogik ist mathematisch identisch mit Merge Sort!
+- **[geometric_06 - Rectangle Overlap](geometric_06_rectangle-overlap-axis-aligned.md)** — Eine weitere räumliche Abfrage, die durch Sweep-Line-Algorithmen stark optimiert wird.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde
-und sich an der kanonischen Struktur orientiert, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt für cOde(n), modelliert nach der kanonischen Struktur, die von Referenzseiten für kompetitive Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

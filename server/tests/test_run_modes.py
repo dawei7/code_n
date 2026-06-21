@@ -186,29 +186,12 @@ class RunResponseFieldsTest(conftest._Base):
         self.assertFalse(body["passed"])
 
     def test_correct_cheap_solution_is_flagged(self) -> None:
-        # Force a hardcoded return that DOES pass verify. We
-        # use a challenge where verify is `result == expected`
-        # and we return the expected value. Easiest is intro_01
-        # (Hello, World! style: just return "Hello, World!").
-        # The intro_01 challenge has setup data and verify that
-        # compares the result to a string. We can hardcode
-        # the expected string.
-
-        # First fetch the intro_01 detail to learn the expected
-        # output. The challenge's verify compares result to
-        # challenge._expected which is a fixed string. Looking
-        # at intro.py: setup sets challenge._data and the
-        # verify checks the solve() return matches. The exact
-        # expected is implementation-specific; rather than
-        # hardcoding the string here, we just assert the
-        # response shape and the too_efficient boolean exists.
+        # Verify the response contains the too_efficient key when running
+        # a cheap/incorrect solution.
         r = self.client.post(
-            "/api/challenges/intro_01/run",
+            "/api/challenges/sort_01/run",
             json={"source": SORT_01_SOURCE, "n": 4, "seed": 1},
         )
-        # This will likely fail verify (sort_01's solve has the
-        # wrong signature for intro_01), but we just want the
-        # response shape.
         self.assertIn("too_efficient", r.json())
 
     def test_too_efficient_message_format(self) -> None:

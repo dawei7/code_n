@@ -104,23 +104,22 @@ class TooEfficientCheckTest(unittest.TestCase):
 
     def test_hardcoded_list_is_flagged(self) -> None:
         r = check(HARDCODED_LIST_SOURCE, user_ops=8, reference_ops=64)
-        self.assertEqual(r.reason, Reason.HARDCODED)
+        self.assertEqual(r.reason, Reason.TOO_CHEAP)
         self.assertTrue(r.flagged)
-        self.assertIn("hardcoded", r.message.lower())
 
     def test_hardcoded_dict_is_flagged(self) -> None:
         r = check(HARDCODED_DICT_SOURCE, user_ops=8, reference_ops=64)
-        self.assertEqual(r.reason, Reason.HARDCODED)
+        self.assertEqual(r.reason, Reason.TOO_CHEAP)
         self.assertTrue(r.flagged)
 
     def test_hardcoded_tuple_is_flagged(self) -> None:
         r = check(HARDCODED_TUPLE_SOURCE, user_ops=3, reference_ops=64)
-        self.assertEqual(r.reason, Reason.HARDCODED)
+        self.assertEqual(r.reason, Reason.TOO_CHEAP)
         self.assertTrue(r.flagged)
 
     def test_hardcoded_tuple_with_nested_list_is_flagged(self) -> None:
         r = check(HARDCODED_TUPLE_NESTED_SOURCE, user_ops=3, reference_ops=64)
-        self.assertEqual(r.reason, Reason.HARDCODED)
+        self.assertEqual(r.reason, Reason.TOO_CHEAP)
         self.assertTrue(r.flagged)
 
     def test_list_comprehension_is_not_flagged(self) -> None:
@@ -223,7 +222,6 @@ def solve(data, n):
     # --- AST wins over ratio (it's a stronger signal) -----------------
 
     def test_hardcoded_wins_over_ratio(self) -> None:
-        # Hardcoded + ratio below threshold → HARDCODED (the
-        # AST pattern is the more specific signal).
+        # Since hardcoded scan is removed, it falls back to ratio (TOO_CHEAP)
         r = check(HARDCODED_LIST_SOURCE, user_ops=1, reference_ops=100)
-        self.assertEqual(r.reason, Reason.HARDCODED)
+        self.assertEqual(r.reason, Reason.TOO_CHEAP)

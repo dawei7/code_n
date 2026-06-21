@@ -1,43 +1,43 @@
-# Punkt im Polygon (Ray-Casting)
+# Point in Polygon (Ray-Casting)
 
 | | |
 |---|---|
 | **ID** | `geometric_04` |
-| **Kategorie** | Geometrie |
+| **Kategorie** | geometric |
 | **Komplexität (erforderlich)** | $O(V)$ |
-| **Schwierigkeitsgrad** | 5/10 |
+| **Schwierigkeit** | 5/10 |
 | **Relevanz für Vorstellungsgespräche** | 4/10 |
-| **Wikipedia** | [Punkt in einem Polygon](https://en.wikipedia.org/wiki/Point_in_polygon#Ray_casting_algorithm) |
+| **Wikipedia** | [Point in polygon](https://en.wikipedia.org/wiki/Point_in_polygon#Ray_casting_algorithm) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben sei ein Polygon, das durch ein Array von V Knoten in der Reihenfolge ihrer Anordnung dargestellt wird, sowie ein einzelner Testpunkt P.
-Bestimme, ob der Punkt P streng innerhalb des Polygons, auf der Grenze oder außerhalb des Polygons liegt. Das Polygon kann konvex oder sehr komplex/konkav sein.
-Implementiere den **Ray-Casting-Algorithmus (Even-Odd)**.
+Gegeben ist ein Polygon, das durch ein Array von $V$ Eckpunkten in der richtigen Reihenfolge repräsentiert wird, sowie ein einzelner Testpunkt $P$.
+Bestimmen Sie, ob der Punkt $P$ strikt innerhalb des Polygons, auf dem Rand oder außerhalb des Polygons liegt. Das Polygon kann konvex oder hochkomplex/konkav sein.
+Implementieren Sie den **Ray-Casting-Algorithmus (Even-Odd-Algorithmus)**.
 
-**Eingabe:** Eine Liste von `(x, y)` Koordinatentupeln, die die Polygonkanten definieren, und ein `(x, y)` Testpunkt.
-**Ausgabe:** Ein Boolescher Wert: `True`, wenn der Punkt innerhalb des Polygons oder auf der Grenze liegt, andernfalls `False`.
+**Eingabe:** Eine Liste von `(x, y)`-Koordinatentupeln, die die Kanten des Polygons definieren, und ein `(x, y)`-Testpunkt.
+**Ausgabe:** Ein Boolean: `True`, falls der Punkt innerhalb oder auf dem Rand liegt, andernfalls `False`.
 
-## Wann wird es verwendet?
+## Anwendungsbereiche
 
-- Um festzustellen, ob der Mausklick eines Benutzers innerhalb eines bestimmten UI-Elements oder eines geografischen Kartenbereichs gelandet ist.
-- Ray-Casting funktioniert bei *jedem* Polygon (konvex oder konkav), während einfachere mathematische Verfahren (wie die Überprüfung, ob der Punkt „links“ von jeder Kante liegt) NUR bei streng konvexen Polygonen funktionieren.
+- Um zu bestimmen, ob ein Mausklick eines Benutzers innerhalb eines bestimmten UI-Elements oder eines geografischen Gebiets gelandet ist.
+- Ray-Casting funktioniert bei *jedem* Polygon (konvex oder konkav), während einfachere mathematische Ansätze (wie die Prüfung, ob der Punkt links von jeder Kante liegt) NUR bei strikt konvexen Polygonen funktionieren.
 
-## Vorgehensweise
+## Ansatz
 
-Stellen Sie sich vor, Sie stehen am Testpunkt P. Sie feuern einen Laserstrahl (einen Strahl) direkt horizontal nach rechts ab, der sich bis ins Unendliche erstreckt.
-- Wenn Sie außerhalb eines Polygons stehen, wird der Strahl das Polygon entweder vollständig verfehlen (0 Schnittpunkte) oder es durchdringen, also eintreten und wieder austreten. (2, 4 oder 6 Schnittpunkte).
-- Wenn du INNERHALB des Polygons stehst, MUSS der Strahl die Polygongrenze durchdringen, um hinauszugelangen! (1, 3 oder 5 Schnittpunkte).
+Stellen Sie sich vor, Sie stehen am Testpunkt $P$. Sie feuern einen Laserstrahl (einen Strahl) direkt horizontal nach rechts, der sich bis ins Unendliche erstreckt.
+- Wenn Sie außerhalb eines Polygons stehen, wird der Strahl das Polygon entweder komplett verfehlen (0 Schnittpunkte) oder es durchdringen, wobei er hinein- und wieder herausgeht (2, 4 oder 6 Schnittpunkte).
+- Wenn Sie INNERHALB des Polygons stehen, MUSS der Strahl den Rand des Polygons durchdringen, um zu entkommen! (1, 3 oder 5 Schnittpunkte).
 
-**Die Gerade-Ungerade-Regel:**
-Zähle, wie oft der von P ausgehende horizontale Strahl die Kanten des Polygons schneidet.
-- Ist die Anzahl der Schnittpunkte **UNGERADE**, befindet sich der Punkt INNERHALB.
-- Ist die Anzahl der Schnittpunkte **GERADE**, befindet sich der Punkt AUSSERHALB.
+**Die Even-Odd-Regel:**
+Zählen Sie, wie oft der horizontale Strahl, der bei $P$ beginnt, die Kanten des Polygons schneidet.
+- Wenn die Anzahl der Schnittpunkte **ungerade** (ODD) ist, liegt der Punkt INNERHALB.
+- Wenn die Anzahl der Schnittpunkte **gerade** (EVEN) ist, liegt der Punkt AUSSERHALB.
 
-**Grenzfälle & mathematische Tricks:**
-1. Um Fließkommaarithmetik und komplexe Gleichungen für unendliche Strahlen zu vermeiden, erstellen wir einfach ein endliches Liniensegment von P=(x, y) zu einem Extrempunkt weit außerhalb des Begrenzungsrahmens des Polygons, z. B. Extreme=(1000000, y).
-2. Anschließend durchlaufen wir alle benachbarten Eckpunktpaare im Polygon-Array (die dessen Kanten bilden) und verwenden unsere `do_intersect()`-Funktion aus `geometric_03`!
-3. Liegt der Punkt genau auf einer Kante, versagt die „Even-Odd“-Logik. Wir müssen explizit prüfen, ob P kollinear zur Kante und innerhalb ihres Begrenzungsraums liegt (`on_segment`), um sofort „True“ zurückzugeben.
+**Spezialfälle & mathematische Tricks:**
+1. Um Fließkomma-Arithmetik und komplexe Gleichungen für unendliche Strahlen zu vermeiden, erstellen wir einfach ein endliches Liniensegment von $P=(x, y)$ zu einem extremen Punkt weit außerhalb der Bounding Box des Polygons, z. B. Extreme=(1000000, y).
+2. Wir iterieren dann durch alle benachbarten Paare von Eckpunkten im Polygon-Array (die die Kanten bilden) und verwenden unsere `do_intersect()`-Funktion aus `geometric_03`!
+3. Wenn der Punkt exakt auf einer Kante liegt, versagt die Even-Odd-Logik. Wir müssen explizit prüfen, ob $P$ kollinear mit der Kante ist und innerhalb ihrer Bounding Box liegt (`on_segment`), um sofort `True` zurückzugeben.
 
 ## Algorithmus
 
@@ -86,58 +86,54 @@ def solve(polygon, point, m):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 *(Konzeptionell)*
 Quadratisches Polygon: `(0,0)`, `(10,0)`, `(10,10)`, `(0,10)`.
 
 **Testpunkt P(5, 5):**
-- Strahl: `(5,5)` nach `(INF, 5)`.
-- Kante 1 `(0,0)->(10,0)`: Der Strahl verfehlt die Kante.
-- Kante 2 `(10,0)->(10,10)`: Der Strahl kreuzt die Kante! (Schneidet genau bei `10,5`). `count = 1`.
+- Strahl: `(5,5)` bis `(INF, 5)`.
+- Kante 1 `(0,0)->(10,0)`: Strahl verfehlt.
+- Kante 2 `(10,0)->(10,10)`: Strahl schneidet! (Schnittpunkt exakt bei `10,5`). `count = 1`.
 - Kante 3 `(10,10)->(0,10)`: Strahl verfehlt.
 - Kante 4 `(0,10)->(0,0)`: Strahl verfehlt.
-- Anzahl ist 1 (UNGERADE). True zurückgeben! ✓
+- Anzahl ist 1 (ungerade). Rückgabe True! ✓
 
 **Testpunkt P(15, 5):**
-- Strahl: `(15,5)` nach `(INF, 5)`.
+- Strahl: `(15,5)` bis `(INF, 5)`.
 - Verfehlt alle Kanten (da alle X-Koordinaten des Polygons \le 10 sind).
-- Zählstand ist 0 (GERADE). „False“ zurückgeben! ✓
+- Anzahl ist 0 (gerade). Rückgabe False! ✓
 
-*(Hinweis: Der oben gezeigte naive Ray-Casting-Algorithmus weist einen bekannten Randfall auf: Wenn der Strahl genau durch einen Scheitelpunkt verläuft, könnte dies als Schnitt mit ZWEI Kanten gewertet werden! Im Produktionscode wird der Strahl oft leicht geneigt (z. B. unter einem epsilon-Winkel abgefeuert), um Knoten-Treffer zu vermeiden, oder es werden explizite Ausschlussregeln für `y`-Koordinaten-Endpunkte hinzugefügt).*
+*(Hinweis: Der oben gezeigte naive Ray-Casting-Algorithmus hat einen bekannten Spezialfall: Wenn der Strahl exakt durch einen Eckpunkt verläuft, könnte dies als Schnitt mit ZWEI Kanten gezählt werden! In produktivem Code wird der Strahl oft leicht geneigt (z. B. in einem Epsilon-Winkel abgefeuert), um Treffer an Eckpunkten zu verhindern, oder es werden explizite Regeln zum Ausschluss von Endpunkten der `y`-Koordinate hinzugefügt).*
 
 ## Komplexität
 
-| | Zeit | Speicher |
+| | Zeitkomplexität | Platzkomplexität |
 |---|---|---|
 | **Bestfall** | $O(V)$ | $O(1)$ |
 | **Durchschnittlicher Fall** | $O(V)$ | $O(1)$ |
 | **Schlechtester Fall** | $O(V)$ | $O(1)$ |
 
-Der Algorithmus durchläuft jede Kante des Polygons genau einmal.
-Innerhalb der Schleife benötigt die `do_intersect`-Prüfung streng $O(1)$ Zeit.
-Die gesamte Zeitkomplexität beträgt $O(V)$, wobei V die Anzahl der Eckpunkte ist.
-Die Platzkomplexität beträgt $O(1)$, da wir lediglich Schnittpunktzähler verwalten.
+Der Algorithmus iteriert genau einmal durch jede Kante des Polygons.
+Innerhalb der Schleife benötigt die `do_intersect`-Prüfung strikt $O(1)$ Zeit.
+Die gesamte Zeitkomplexität beträgt $O(V)$, wobei $V$ die Anzahl der Eckpunkte ist.
+Die Platzkomplexität ist $O(1)$, da wir lediglich Schnittpunktzähler verwalten.
 
 ## Varianten & Optimierungen
 
-- **Winding-Number-Algorithmus:** Eine Alternative zum Ray-Casting. Stellen Sie sich eine Schnur vor, die an P befestigt ist und sich bis zu einem Punkt erstreckt, der den Umfang des Polygons durchläuft. Die „Winding-Number“ zählt, wie viele vollständige 360-Grad-Umwicklungen die Schnur um P vollführt. Ist W = 0, liegt der Punkt außerhalb. Ist W ≠ 0, liegt der Punkt innerhalb. Die Winding-Number behandelt den Randfall „Strahl trifft einen Eckpunkt“ einwandfrei und ist der Industriestandard für GIS-Kartierungs-Engines.
-- **Binary-Search nur für konvexe Polygone:** Ist das Polygon streng konvex, kann man einen Mittelpunkt ermitteln, die Eckpunkte nach dem Winkel sortieren und mithilfe der binären Suche herausfinden, in welchen „Schnitt“ des Polygons P der Punkt fällt, wodurch sich die Abfragezeit auf $O(log V)$ reduziert!
+- **Winding-Number-Algorithmus:** Eine Alternative zum Ray-Casting. Stellen Sie sich eine Schnur vor, die an $P$ befestigt ist und zu einem Punkt führt, der den Umfang des Polygons abläuft. Die "Winding Number" zählt, wie viele volle 360-Grad-Umdrehungen die Schnur um $P$ macht. Wenn $W=0$, liegt der Punkt außerhalb. Wenn $W \neq 0$, liegt der Punkt innerhalb. Die Winding Number behandelt den Spezialfall "Strahl trifft Eckpunkt" fehlerfrei und ist der Industriestandard für GIS-Mapping-Engines.
+- **Binäre Suche für konvexe Polygone:** Wenn das Polygon strikt konvex ist, können Sie einen Mittelpunkt finden, die Eckpunkte nach Winkel sortieren und eine binäre Suche verwenden, um herauszufinden, in welches "Segment" des Polygons $P$ fällt, wodurch die Abfragezeit auf $O(log V)$ reduziert wird!
 
-## Praktische Anwendungen
+## Praxisanwendungen
 
-- **Computergrafik:** Rendern von Vektorgrafiken (SVG) durch Ermittlung der Pixel, die innerhalb der Pfadbefehle liegen.
-- **Geofencing:** Auslösen einer mobilen Benachrichtigung, wenn eine GPS-Koordinate eine vorab festgelegte geometrische Zone überschreitet (z. B. beim Betreten eines Flughafens).
+- **Computergrafik:** Rendern von Vektorgrafiken (SVG) durch Bestimmung, welche Pixel innerhalb der Pfadbefehle liegen.
+- **Geofencing:** Auslösen einer mobilen Benachrichtigung, wenn eine GPS-Koordinate in eine vordefinierte geometrische Zone eintritt (z. B. Betreten eines Flughafengeländes).
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[geometric_03 – Linienschnitt](geometric_03_line-segment-intersection.md)** — Die Engine, die die Ray-Casting-Prüfungen unterstützt.
-- **[geometric_02 – Konvexhülle](geometric_02_convex-hull-graham-scan.md)** — Ein Konvexhüllen-Algorithmus wird häufig verwendet, um schnell eine „Bounding Box / Bounding Hull“ um ein komplexes Polygon zu berechnen. Befindet sich ein Punkt außerhalb der Hülle, weiß man sofort, dass er außerhalb des Polygons liegt, ohne Ray-Casting ausführen zu müssen!
+- **[geometric_03 - Line Intersection](geometric_03_line-segment-intersection.md)** — Die Engine, die die Ray-Casting-Prüfungen antreibt.
+- **[geometric_02 - Convex Hull](geometric_02_convex-hull-graham-scan.md)** — Ein Algorithmus für die konvexe Hülle wird oft verwendet, um eine schnelle "Bounding Box / Bounding Hull" um ein komplexes Polygon zu berechnen. Wenn ein Punkt außerhalb der Hülle liegt, wissen Sie sofort, dass er außerhalb des Polygons liegt, ohne Ray-Casting ausführen zu müssen!
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde
-und sich an der kanonischen Struktur orientiert, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) erstellt wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitive Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

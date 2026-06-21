@@ -5,41 +5,41 @@
 | **ID** | `fenwick_06` |
 | **Kategorie** | fenwick |
 | **Komplexität (erforderlich)** | $O(N \log N)$ |
-| **Schwierigkeitsgrad** | 6/10 |
-| **Relevanz für Vorstellungsgespräche** | 7/10 |
-| **LeetCode-Äquivalent** | [Globale und lokale Inversionen](https://leetcode.com/problems/global-and-local-inversions/) |
+| **Schwierigkeit** | 6/10 |
+| **Interview-Relevanz** | 7/10 |
+| **LeetCode-Äquivalent** | [Global and Local Inversions](https://leetcode.com/problems/global-and-local-inversions/) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben ist ein Array von Ganzzahlen `arr`. Bestimme die Gesamtzahl der **Inversionen**.
-Eine Inversion ist definiert als ein Paar von Indizes `(i, j)`, für das `i < j` gilt, aber `arr[i] > arr[j]`.
-Während dies klassischerweise mit einem modifizierten Merge-Sort gelöst wird, musst du es elegant mithilfe eines **Fenwick-Baums (BIT)** lösen.
+Gegeben ist ein Array von Ganzzahlen `arr`. Finde die Gesamtzahl der **Inversionen**.
+Eine Inversion ist definiert als ein Paar von Indizes `(i, j)`, sodass `i < j`, aber `arr[i] > arr[j]` gilt.
+Während dies klassischerweise mit einem modifizierten Merge Sort gelöst wird, musst du es hier elegant mithilfe eines **Fenwick Tree (BIT)** lösen.
 
-**Eingabe:** Ein Array von ganzen Zahlen `arr`.
-**Ausgabe:** Eine ganze Zahl, die die Gesamtanzahl der Inversionen angibt.
+**Eingabe:** Ein Array von Ganzzahlen `arr`.
+**Ausgabe:** Eine Ganzzahl, die die Gesamtzahl der Inversionen repräsentiert.
 
 ## Wann man es verwendet
 
-- Immer dann, wenn man messen muss, wie „unsortiert“ ein Array ist.
-- Der BIT-Ansatz lässt sich in einem Vorstellungsgespräch oft leichter von Grund auf neu implementieren als die Modifikation eines komplexen rekursiven Merge-Sorts, vorausgesetzt, man versteht die Koordinatenkompression.
+- Immer dann, wenn du messen musst, wie „unsortiert“ ein Array ist.
+- Der BIT-Ansatz ist in einem Interview oft einfacher von Grund auf zu implementieren als ein komplexer rekursiver Merge Sort, vorausgesetzt, man versteht die Koordinatenkompression.
 
-## Vorgehensweise
+## Ansatz
 
-Stellen wir uns vor, wir durchlaufen das Array von rechts nach links.
-Für das aktuelle Element `arr[i]` tritt bei jedem Element, das wir *bereits gesehen* haben (das heißt, das sich rechts von `i` befindet) und das streng *kleiner* als `arr[i]` ist, eine Inversion auf.
-Wenn wir irgendwie eine dynamische „Häufigkeitskarte“ der Elemente führen könnten, die wir bereits gesehen haben, müssten wir nur fragen: **„Wie viele Elemente in der Karte sind kleiner als `arr[i]`?“**
+Stell dir vor, wir iterieren von rechts nach links durch das Array.
+Für das aktuelle Element `arr[i]` tritt eine Inversion für jedes Element auf, das wir *bereits gesehen haben* (was bedeutet, dass sie rechts von `i` liegen) und das strikt *kleiner* als `arr[i]` ist.
+Wenn wir irgendwie eine dynamische „Häufigkeitskarte“ der bereits gesehenen Elemente pflegen könnten, müssten wir nur fragen: **„Wie viele Elemente in der Karte sind kleiner als `arr[i]`?“**
 
-Das ist eine **Prefix-Summen-Abfrage**!
-1. Wir können einen Fenwick Tree als Häufigkeitsarray verwenden. `BIT[val]` speichert, wie oft wir `val` gesehen haben.
-2. Wenn wir `arr[i]` sehen, fragen wir das BIT nach der Summe aller Häufigkeiten von `1` bis `arr[i] - 1`. Dadurch erfahren wir sofort, wie viele Elemente rechts davon kleiner sind!
-3. Wir addieren diese Anzahl zu unserer globalen Gesamtzahl der Umkehrungen.
-4. Anschließend aktualisieren wir das BIT `update`, indem wir +1 zur Häufigkeit von `arr[i]` hinzufügen.
+Dies ist eine **Präfixsummen-Abfrage (Prefix Sum Query)**!
+1. Wir können einen Fenwick Tree als Häufigkeits-Array verwenden. `BIT[val]` speichert, wie oft wir `val` bereits gesehen haben.
+2. Wenn wir `arr[i]` sehen, fragen wir den BIT nach der Summe aller Häufigkeiten von `1` bis `arr[i] - 1`. Dies sagt uns sofort, wie viele Elemente rechts davon kleiner sind!
+3. Wir addieren diese Anzahl zu unserer globalen Gesamtzahl der Inversionen.
+4. Dann führen wir ein `update` auf dem BIT durch, indem wir die Häufigkeit von `arr[i]` um +1 erhöhen.
 
 **Koordinatenkompression:**
-Was ist, wenn die Zahlen im Array negativ oder sehr groß sind (z. B. 10^9)? Ein BIT-Array der Größe 10^9 würde den Speicher zum Absturz bringen!
-Da uns nur die *relative* Reihenfolge (`<` oder `>`) interessiert, können wir die Werte auf dichte Ränge von 1 bis N abbilden.
+Was ist, wenn die Zahlen im Array negativ oder extrem groß sind (z. B. 10^9)? Ein BIT-Array der Größe 10^9 würde den Speicher sprengen!
+Da uns nur die *relative* Ordnung (`<` oder `>`) interessiert, können wir die Werte auf dichte Ränge von 1 bis N abbilden.
 `[100, -5, 4000, 100]` wird zu `[2, 1, 3, 2]`.
-Nun beträgt der Maximalwert N, und unser BIT-Array passt perfekt in den Speicher!
+Nun ist der Maximalwert N, und unser BIT-Array passt perfekt in den Speicher!
 
 ## Algorithmus
 
@@ -83,59 +83,55 @@ def solve(arr, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 `arr = [8, 4, 2, 1]`
 
-1. **Koordinatenkomprimierung:**
-   - Sortiert und eindeutig: `[1, 2, 4, 8]`.
+1. **Koordinatenkompression:**
+   - Sortierte eindeutige Werte: `[1, 2, 4, 8]`.
    - Ränge: `{1:1, 2:2, 4:3, 8:4}`.
-   - Das Array sieht nun so aus: `[4, 3, 2, 1]`.
-2. **BIT auf Größe 5 initialisiert:** `[0, 0, 0, 0, 0]`.
+   - Array wird zu: `[4, 3, 2, 1]`.
+2. **BIT initialisiert auf Größe 5:** `[0, 0, 0, 0, 0]`.
 3. **Iteration von rechts nach links:**
    - **i = 3 (`val=1, rank=1`):**
- - Abfrage `Prefix(1 - 1) = Prefix(0) = 0`. `inversions = 0`.
-     - +1 zum Rang 1 hinzufügen. `BIT` hat `1` auf Rang 1.
+     - Abfrage `Prefix(1 - 1) = Prefix(0) = 0`. `inversions = 0`.
+     - Addiere +1 zu Rang 1. `BIT` hat `1` an Rang 1.
    - **i = 2 (`val=2, rank=2`):**
-     - Abfrage von `Prefix(2 - 1) = Prefix(1) = 1`. `inversions = 0 + 1 = 1`.
- - +1 zum Rang 2 hinzufügen. `BIT` hat `1` auf Rang 2.
+     - Abfrage `Prefix(2 - 1) = Prefix(1) = 1`. `inversions = 0 + 1 = 1`.
+     - Addiere +1 zu Rang 2. `BIT` hat `1` an Rang 2.
    - **i = 1 (`val=4, rank=3`):**
- - Abfrage von `Prefix(3 - 1) = Prefix(2) = 2`. `inversions = 1 + 2 = 3`.
- - +1 zum Rang 3 hinzufügen.
+     - Abfrage `Prefix(3 - 1) = Prefix(2) = 2`. `inversions = 1 + 2 = 3`.
+     - Addiere +1 zu Rang 3.
    - **i = 0 (`val=8, rank=4`):**
- - Abfrage `Prefix(4 - 1) = Prefix(3) = 3`. `inversions = 3 + 3 = 6`.
- - +1 zu Rang 4 hinzufügen.
+     - Abfrage `Prefix(4 - 1) = Prefix(3) = 3`. `inversions = 3 + 3 = 6`.
+     - Addiere +1 zu Rang 4.
 
-Gesamtzahl der Umkehrungen = 6. ✓ (Das Array ist vollständig umgekehrt, daher gilt (N × (N-1))/2 = 6).
+Gesamtzahl der Inversionen = 6. ✓ (Das Array ist perfekt umgekehrt, daher gilt (N x (N-1))/2 = 6).
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(N \log N)$ | $O(N)$ |
+| **Bestfall** | $O(N \log N)$ | $O(N)$ |
 | **Durchschnittlicher Fall** | $O(N \log N)$ | $O(N)$ |
-| **Schlechteste** | $O(N \log N)$ | $O(N)$ |
+| **Schlechtester Fall** | $O(N \log N)$ | $O(N)$ |
 
-Die Koordinatenkomprimierung erfordert das Sortieren der eindeutigen Elemente, was $O(N \log N)$ Zeit in Anspruch nimmt.
-Die Rückwärtsiteration wird N-mal durchlaufen. Innerhalb der Schleife werden eine BIT-Abfrage und eine BIT-Aktualisierung durchgeführt, die jeweils $O(\log N)$ Zeit in Anspruch nehmen. Die Gesamtzeit beträgt $O(N \log N)$.
-Die Platzkomplexität beträgt $O(N)$ für das Koordinatenkomprimierungs-Wörterbuch und das BIT-Array.
+Die Koordinatenkompression erfordert das Sortieren der eindeutigen Elemente, was $O(N \log N)$ Zeit in Anspruch nimmt.
+Die Rückwärtsiteration läuft N-mal durch. Innerhalb der Schleife führt sie eine BIT-Abfrage und ein BIT-Update durch, was jeweils $O(\log N)$ Zeit benötigt. Die Gesamtzeit beträgt $O(N \log N)$.
+Die Platzkomplexität beträgt $O(N)$ für das Dictionary der Koordinatenkompression und das BIT-Array.
 
-## Varianten und Optimierungen
+## Varianten & Optimierungen
 
-- **Inversionen beim Mergesort:** Der klassische Ansatz. Wenn während des Zusammenführungsschritts beim Mergesort ein Element aus dem rechten Array vor einem Element im linken Array herangezogen wird, bedeutet dies, dass das rechte Element kleiner ist als *alle verbleibenden Elemente* im linken Array! Man addiert einfach `len(left) - left_ptr` zur Inversionsanzahl hinzu. Dies benötigt ebenfalls $O(N \log N)$ und vermeidet die Koordinatenkomprimierung vollständig.
+- **Merge Sort Inversionen:** Der klassische Ansatz. Während des Merge-Schritts von Merge Sort gilt: Wenn ein Element aus dem rechten Array vor einem Element aus dem linken Array gezogen wird, bedeutet dies, dass das rechte Element kleiner ist als *alle verbleibenden Elemente* im linken Array! Man addiert einfach `len(left) - left_ptr` zur Inversionsanzahl. Dies benötigt ebenfalls $O(N \log N)$ und vermeidet die Koordinatenkompression vollständig.
 
-## Praktische Anwendungen
+## Anwendungen in der Praxis
 
-- **Kollaboratives Filtern:** Messung des „Kendall-Tau-Abstands“ (der mathematisch aus der Inversionsanzahl abgeleitet wird) zwischen den Ranglisten zweier Nutzer, um Filme/Produkte zu empfehlen.
+- **Collaborative Filtering:** Messung der „Kendall-Tau-Distanz“ (die mathematisch aus der Inversionsanzahl abgeleitet ist) zwischen den bewerteten Präferenzlisten zweier Benutzer, um Filme oder Produkte zu empfehlen.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[sort_03 – Merge-Sort](../sorting/sort_03_merge-sort.md)** — Die Grundlage für die alternative, nicht-BIT-basierte Methode zur Zählung von Inversionen.
+- **[sort_03 - Merge Sort](../sorting/sort_03_merge-sort.md)** — Die Grundlage für die alternative, nicht-BIT-basierte Methode zum Zählen von Inversionen.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-in Anlehnung an die kanonische Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) verfasst wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitive Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folge dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

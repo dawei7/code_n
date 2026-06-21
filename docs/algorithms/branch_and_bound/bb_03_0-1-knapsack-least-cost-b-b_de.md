@@ -1,42 +1,42 @@
-# 0-1 Rucksackproblem (Branch-and-Bound-Verfahren mit minimalen Kosten)
+# 0-1 Knapsack (Least Cost Branch & Bound)
 
 | | |
 |---|---|
 | **ID** | `bb_03` |
 | **Kategorie** | branch_and_bound |
-| **Komplexität (erforderlich)** | $O(2^N)$ Worst Case |
-| **Schwierigkeitsgrad** | 8/10 |
+| **Komplexität (erforderlich)** | $O(2^N)$ Schlechtester Fall |
+| **Schwierigkeit** | 8/10 |
 | **Relevanz für Vorstellungsgespräche** | 3/10 |
-| **Wikipedia** | [Best-First-Suche](https://en.wikipedia.org/wiki/Best-first_search) |
+| **Wikipedia** | [Best-first search](https://en.wikipedia.org/wiki/Best-first_search) |
 
 ## Problemstellung
 
-Lösen Sie das 0-1-Rucksackproblem mit der **Least-Cost-Branch-and-Bound-Methode (Best-First)**.
-In `bb_01` haben wir den Zustandsraumbaum mithilfe einer Standard-FIFO-Queue (Breitensuche) untersucht. Dabei werden zunächst alle Knoten auf Ebene 1, dann alle Knoten auf Ebene 2 usw. ausgewertet.
-Bei „Least Cost B&B“ musst du eine Priority Queue verwenden, um stets den Knoten mit der vielversprechendsten mathematischen Schranke zu erweitern, unabhängig von seiner Tiefe im Baum.
+Lösen Sie das 0-1 Knapsack Problem mittels **Least Cost (Best-First) Branch and Bound**.
+In `bb_01` haben wir den Zustandsraum-Baum mithilfe einer Standard-FIFO-Queue (Breitensuche) durchsucht. Dies evaluiert alle Knoten auf Ebene 1, dann alle Knoten auf Ebene 2 usw.
+Beim Least Cost B&B müssen Sie eine Priority Queue verwenden, um immer den Knoten mit der vielversprechendsten mathematischen Schranke zu expandieren, unabhängig von seiner Tiefe im Baum.
 
-**Eingabe:** Eine Liste von `(value, weight)`-Paaren und ein `capacity`.
+**Eingabe:** Eine Liste von `(value, weight)`-Paaren und eine `capacity`.
 **Ausgabe:** Der maximal mögliche Wert.
 
-## Wann man es einsetzt
+## Wann man es verwendet
 
-- Dies ist die standardmäßige, vollständig optimierte Version von „Branch and Bound“. Eine einfache FIFO-Queue wird in Produktions-Engines selten verwendet, da sie enorm viel Zeit damit verschwendet, mathematisch schlechte Verzweigungen zu untersuchen, nur weil diese im Baum flach liegen.
-- Durch die Verwendung der Best-First-Suche taucht der Algorithmus direkt in den mathematisch profitabelsten Pfad ein und ermittelt frühzeitig einen massiven `max_profit`, wodurch alles andere sofort ausgemerzt wird.
+- Dies ist die standardmäßige, vollständig optimierte Version von Branch and Bound. Eine einfache FIFO-Queue wird in produktiven Systemen selten verwendet, da sie enorme Mengen an Zeit damit verschwendet, mathematisch schlechte Zweige zu untersuchen, nur weil sie flach im Baum liegen.
+- Durch die Verwendung der Best-First-Suche taucht der Algorithmus direkt in den profitabelsten mathematischen Pfad ein und etabliert frühzeitig einen massiven `max_profit`, wodurch sofort alles andere abgeschnitten (pruned) wird.
 
-## Vorgehensweise
+## Ansatz
 
-Alles aus `bb_01` gilt (die Knotenstruktur, der Zustand, die Begrenzungsfunktion des Fractional Knapsack). Der einzige Unterschied besteht in der Durchlaufreihenfolge.
+Alles aus `bb_01` findet Anwendung (die Knotenstruktur, der Zustand, die Bounding-Funktion des Fractional Knapsack). Der einzige Unterschied ist die Reihenfolge der Traversierung.
 
-Da Pythons `heapq` ein Min-Heap ist und wir den Knoten mit der *höchstmöglichen* Gewinn-Obergrenze erweitern wollen, können wir Knoten einfach mit ihren durch `-1` multiplizierten Obergrenzen in die Priority Queue einfügen!
+Da Pythons `heapq` ein Min-Heap ist und wir den Knoten mit der *höchsten* möglichen Profit-Schranke expandieren wollen, können wir die Knoten einfach mit ihren Schranken multipliziert mit `-1` in die Priority Queue einfügen!
 
-1. Erstelle eine Priority Queue.
-2. Füge den Wurzelknoten in die Priority Queue ein, priorisiert nach seiner Obergrenze.
-3. Solange die Priority Queue nicht leer ist:
-   - Entnehme den Knoten mit der **höchsten Obergrenze**.
-   - **Entscheidende Überprüfung:** Wenn die höchstmögliche Obergrenze des besten Knotens in der Queue NOCH IMMER schlechter ist als unser aktuelles `max_profit`, können wir **den gesamten Algorithmus sofort beenden!** Da es sich um eine Priority Queue handelt, ist mathematisch garantiert, dass auch kein anderer in der Queue verbleibender Knoten `max_profit` übertreffen kann.
-   - Erweitere den Knoten (Zweige „Take“ und „Skip“).
-   - Wenn ein Zweig gültig ist, aktualisiere `max_profit`.
-   - Berechne die Grenzen für die neuen Zweige. Wenn ihre Grenzen > max\_profit sind, füge sie in die PQ ein.
+1. Erstellen Sie eine Priority Queue.
+2. Fügen Sie den Wurzelknoten in die PQ ein, priorisiert nach seiner oberen Schranke.
+3. Solange die PQ nicht leer ist:
+   - Entnehmen Sie den Knoten mit der **höchsten Schranke**.
+   - **Entscheidende Prüfung:** Wenn die höchstmögliche Schranke des besten Knotens in der Queue IMMER NOCH schlechter ist als unser aktueller `max_profit`, können wir **den gesamten Algorithmus sofort beenden!** Da es sich um eine Priority Queue handelt, garantieren wir mathematisch, dass kein anderer verbleibender Knoten in der Queue den `max_profit` übertreffen kann.
+   - Expandieren Sie den Knoten (Zweige für "Nehmen" und "Überspringen").
+   - Wenn ein Zweig gültig ist, aktualisieren Sie `max_profit`.
+   - Berechnen Sie die Schranken für die neuen Zweige. Wenn deren Schranken > max\_profit sind, fügen Sie sie in die PQ ein.
 
 ## Algorithmus
 
@@ -154,60 +154,56 @@ def solve(values, weights, capacity, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 *(Konzeptionell)*
 `capacity = 10`
 `Items: I0(40,4), I1(50,5), I2(20,5)`
 
-1. **Wurzel:** `profit=0`. Grenze = 94. `PQ = [Root(94)]`.
-2. **Pop Root (94):**
-   - I0 nehmen: `profit=40`. Grenze=94. `max_profit=40`.
-   - I0 überspringen: `profit=0`. Bound=70.
+1. **Wurzel:** `profit=0`. Schranke=94. `PQ = [Root(94)]`.
+2. **Pop Wurzel (94):**
+   - Nehme I0: `profit=40`. Schranke=94. `max_profit=40`.
+   - Überspringe I0: `profit=0`. Schranke=70.
    - `PQ = [Take(94), Skip(70)]`.
-3. **Take (94) vom Stack entfernen:** *(Beachten Sie, dass der „Skip“-Zweig vollständig ignoriert wird!)*
-   - I1 ausführen: `profit=90, w=9`. Grenze = 94 (40 + 50 + 1/5 * 20). `max_profit=90`.
-   - I1 überspringen: `profit=40, w=4`. Grenzwert=60 (40+20).
+3. **Pop Take (94):** *(Beachten Sie, dass der Skip-Zweig komplett ignoriert wird!)*
+   - Nehme I1: `profit=90, w=9`. Schranke=94 (40+50 + 1/5*20). `max_profit=90`.
+   - Überspringe I1: `profit=40, w=4`. Schranke=60 (40+20).
    - `PQ = [Take-Take(94), Skip(70), Take-Skip(60)]`.
 4. **Pop Take-Take (94):**
-   - Take I2: Überkapazität! (w=14 > 10). Ungültig.
-   - I2 überspringen: `profit=90`. Grenzwert=90.
+   - Nehme I2: Über Kapazität! (w=14 > 10). Ungültig.
+   - Überspringe I2: `profit=90`. Schranke=90.
    - `PQ = [Skip-I2(90), Skip(70), Take-Skip(60)]`.
 5. **Pop Skip-I2 (90):**
-   - Das Ende ist erreicht. `max_profit` ist bereits 90.
+   - Ende erreicht. `max_profit` ist bereits 90.
    - `PQ = [Skip(70), Take-Skip(60)]`.
 6. **Pop Skip (70):**
-   - Moment! `u.bound (70) <= max_profit (90)`. **SCHLEIFE UNTERBRECHEN!**
+   - Moment! `u.bound (70) <= max_profit (90)`. **SCHLEIFE ABBRECHEN!**
 
-Der Algorithmus bricht sofort ab! Er hat die Knoten unterhalb des Zweigs `Skip(70)` gar nicht erst generiert! ✓
+Der Algorithmus terminiert sofort! Er hat nicht einmal die Knoten unterhalb des `Skip(70)`-Zweigs generiert! ✓
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
 | **Bestfall** | $O(N \log N)$ | $O(N)$ |
-| **Durchschnittlicher Fall** | Deutlich schneller als FIFO-B&B | $O(Nodes Generated)$ |
-| **Schlimmster Fall** | $O(2^N)$ | $O(2^N)$ |
+| **Durchschnittlicher Fall** | Viel schneller als FIFO B&B | $O(Generierte Knoten)$ |
+| **Schlechtester Fall** | $O(2^N)$ | $O(2^N)$ |
 
-Die „Best-First“-Heuristik führt im Allgemeinen dazu, dass weitaus weniger Knoten generiert werden als beim FIFO-Ansatz, da sie fast sofort die optimale Lösung (oder eine sehr nahe liegende) findet, wodurch die Grenzen aller anderen ausstehenden Knoten hinfällig werden. Im mathematisch ungünstigsten Fall muss jedoch dennoch der gesamte $O(2^N)$ Raum durchsucht werden.
-Die Platzkomplexität wird in durchschnittlichen Fällen erheblich verbessert, da sich weniger Knoten gleichzeitig in der Priority Queue befinden.
+Die Best-First-Heuristik führt im Allgemeinen dazu, dass weit weniger Knoten generiert werden als beim FIFO-Ansatz, da sie die optimale Lösung (oder eine sehr nahe liegende) fast sofort findet, wodurch die Schranken aller anderen ausstehenden Knoten obsolet werden. Im mathematischen Schlechtesten Fall degradiert sie jedoch dazu, den gesamten $O(2^N)$-Raum zu untersuchen.
+Die Platzkomplexität ist in durchschnittlichen Fällen stark verbessert, da weniger Knoten gleichzeitig in der Priority Queue liegen.
 
 ## Varianten & Optimierungen
 
-- **A*-Suche:** Die LC-Suche ist mathematisch identisch mit dem A*-Suchalgorithmus auf Graphen! Die Pfadkosten `g(x)` entsprechen dem bisher erzielten Gewinn, und die Heuristik `h(x)` ist die fraktionale Obergrenze der verbleibenden Elemente. Da der fraktionale Rucksack eine zulässige Heuristik ist (sie unterschätzt niemals den maximalen Gewinn), garantiert A* die Optimalität!
+- **A* Suche:** LC-Suche ist mathematisch identisch mit dem A*-Suchalgorithmus auf Graphen! Die Pfadkosten `g(x)` sind der bisher gesammelte Profit, und die Heuristik `h(x)` ist die obere Schranke des Fractional Knapsack für die verbleibenden Items. Da der Fractional Knapsack eine zulässige Heuristik ist (er unterschätzt den maximalen Profit nie), garantiert A* Optimalität!
 
-## Praktische Anwendungen
+## Anwendungen in der Praxis
 
-- **KI-Planer:** Die Best-First-Suche bildet die Grundlage fast aller modernen KI-Aktionsplanungs- und Routing-Logiken.
+- **KI-Planer:** Best-First-Suche ist das Fundament fast aller modernen KI-Aktionsplanungs- und Routing-Logiken.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[bb_01 – 0-1-Rucksack-FIFO](bb_01_0-1-knapsack.md)** — Die Breiten-Erste-Suche-Variante desselben Algorithmus.
+- **[bb_01 - 0-1 Knapsack FIFO](bb_01_0-1-knapsack.md)** — Die Breitensuche-Variante desselben Algorithmus.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-nach dem Vorbild der kanonischen Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) verfasst wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

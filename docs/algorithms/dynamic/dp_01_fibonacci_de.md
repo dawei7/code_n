@@ -3,25 +3,24 @@
 | | |
 |---|---|
 | **ID** | `dp_01` |
-| **Kategorie** | dynamisch |
+| **Kategorie** | dynamic |
 | **Komplexität (erforderlich)** | $O(n)$ |
-| **Schwierigkeitsgrad** | 5/10 |
+| **Schwierigkeit** | 5/10 |
 | **Relevanz für Vorstellungsgespräche** | 9/10 |
 | **Wikipedia** | [Fibonacci-Folge](https://en.wikipedia.org/wiki/Fibonacci_sequence) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Berechne die *n*-te Fibonacci-Zahl. Die Fibonacci-Folge ist
-definiert durch:
+Berechne die *n*-te Fibonacci-Zahl. Die Fibonacci-Folge ist wie folgt definiert:
 
 ```
 F(0) = 0,  F(1) = 1
 F(n) = F(n-1) + F(n-2)   for n >= 2
 ```
 
-Die ersten paar Werte sind `0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...`.
+Die ersten Werte lauten `0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...`.
 
-**Eingabe:** eine nicht-negative ganze Zahl `n`.
+**Eingabe:** eine nicht-negative Ganzzahl `n`.
 **Ausgabe:** `F(n)`.
 
 **Beispiel:**
@@ -36,43 +35,21 @@ Die ersten paar Werte sind `0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...`.
 
 ## Wann man es verwendet
 
-- Als **pädagogische Einführung in die dynamische Programmierung**: Es
-  hat den kleinstmöglichen Zustand (`prev`, `curr`) und die
-  am leichtesten erkennbare Rekursion. Interviewer nutzen es, um zu prüfen, ob
-  Sie die richtige DP-Form erkennen können (Top-Down-Memoisation
-  vs. Bottom-Up-Tabellierung vs. $O(1)$-Space-Rolling).
-- Zur Einführung des **Kontrasts zwischen naiver und zwischengespeicherter Variante**: Die wörtliche
-  rekursive Formulierung lautet $O(2^n)$ und erschöpft den Aufrufstapel
-  etwa bei `n=50`; der gleiche Code mit Memoisation lautet $O(n)$.
-- Als **Quelle großer Zahlen für Testzwecke**: Bei `n=1000`
-  ist `F(n)` eine 209-stellige Ganzzahl, sodass sie sich ideal für
-  Folgeuntersuchungen zu „big-int“ oder modularer Arithmetik eignet.
+- Als **pädagogische Einführung in die dynamische Programmierung**: Sie besitzt den kleinstmöglichen Zustand (`prev`, `curr`) und die am leichtesten erkennbare Rekurrenz. Interviewer nutzen sie, um zu prüfen, ob man die richtige DP-Struktur erkennt (Top-Down-Memoization vs. Bottom-Up-Tabulation vs. $O(1)$-Platzkomplexität durch Rolling-Technik).
+- Um den **Kontrast zwischen naiv und zwischengespeichert (cached)** zu verdeutlichen: Die wörtliche rekursive Formulierung ist $O(2^n)$ und erschöpft den Call Stack bei etwa `n=50`; derselbe Code mit Memoization ist $O(n)$.
+- Als **Erzeuger großer Zahlen für Tests**: Bei `n=1000` ist `F(n)` eine 209-stellige Ganzzahl, daher eignet es sich hervorragend für Aufgaben zu Big-Int oder modularer Arithmetik.
 
-Verwende sie nicht in Produktionscode – die naive Rekursion ist
-katastrophal langsam, und die geschlossene Form (Binetsche Formel)
-verliert bei `n > 70` an Genauigkeit.
+Verwenden Sie es nicht in Produktivcode — die naive Rekursion ist katastrophal langsam, und die geschlossene Form (Binet-Formel) verliert bei `n > 70` an Präzision.
 
-## Vorgehensweise
+## Ansatz
 
-Die naive rekursive Definition `F(n) = F(n-1) + F(n-2)`
-berechnet dasselbe Teilproblem exponentiell oft neu:
-`F(2)` wird für jedes Blatt im Rekursionsbaum einmal neu berechnet.
+Die naive rekursive Definition `F(n) = F(n-1) + F(n-2)` berechnet dasselbe Teilproblem exponentiell oft neu: `F(2)` wird für jedes Blatt im Rekursionsbaum einmal neu berechnet.
 
-**Memoisation** (Top-Down-DP) speichert jeden berechneten Wert in einer
-Tabelle, die nach `n` indiziert ist. Der erste Aufruf von `F(k)` berechnet diesen Wert; alle
-folgenden Aufrufe sind $O(1)$-Nachschläge. Dadurch wird die Rekursion
-von $O(2^n)$ in $O(n)$ Zeit und $O(n)$ Speicherplatz umgewandelt.
+**Memoization** (Top-Down-DP) speichert jeden berechneten Wert in einer Tabelle, die mit `n` indiziert ist. Der erste Aufruf von `F(k)` berechnet den Wert; alle nachfolgenden Aufrufe sind $O(1)$-Zugriffe. Dies reduziert die Rekursion von $O(2^n)$ auf $O(n)$ Zeitkomplexität und $O(n)$ Platzkomplexität.
 
-**Tabellierung** (Bottom-up-DP) beginnt mit den kleinsten
-Teilproblemen (`F(0)`, `F(1)`) und arbeitet sich bis zu `F(n)` vor, wobei
-eine Tabelle gefüllt wird. Gleiche $O(n)$-Zeit, $O(n)$-Speicherplatz.
+**Tabulation** (Bottom-Up-DP) beginnt bei den kleinsten Teilproblemen (`F(0)`, `F(1)`) und arbeitet sich bis `F(n)` hoch, wobei eine Tabelle gefüllt wird. Dies ergibt ebenfalls $O(n)$ Zeitkomplexität und $O(n)$ Platzkomplexität.
 
-**Rolling / $O(1)$-Raum** berücksichtigt, dass `F(n)` nur von
-den beiden vorherigen Werten abhängt, sodass sich die gesamte Tabelle auf
-zwei Variablen `prev` und `curr` reduzieren lässt. Jede Iteration:
-`prev, curr = curr, prev + curr`. Dies ist die Produktionsimplementierung
-und diejenige, gegen die die Engine von cOde(n) prüft
-(die erforderliche Komplexität beträgt $O(n)$).
+**Rolling / $O(1)$-Platzkomplexität** nutzt die Beobachtung, dass `F(n)` nur von den zwei vorherigen Werten abhängt, sodass die gesamte Tabelle auf zwei Variablen `prev` und `curr` reduziert werden kann. In jeder Iteration gilt: `prev, curr = curr, prev + curr`. Dies ist die Implementierung für den Produktionseinsatz und diejenige, gegen die die Engine von cOde(n) prüft (die erforderliche Komplexität ist $O(n)$).
 
 ## Algorithmus
 
@@ -98,7 +75,7 @@ def solve(n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 Berechne `F(6)`:
 
@@ -111,67 +88,42 @@ Berechne `F(6)`:
 | 4 | 5 | 2 | 3 | 5 |
 | 5 | 6 | 3 | 5 | 8 |
 
-Nach `i = 6` folgt `curr = 8`, was `F(6)` ist. ✓
+Nach `i = 6` ist `curr = 8`, was `F(6)` entspricht. ✓
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(1)$ | $O(1)$ — `n < 2` Kurzschluss |
+| **Bestfall** | $O(1)$ | $O(1)$ — `n < 2` Short-Circuit |
 | **Durchschnittlicher Fall** | $O(n)$ | $O(1)$ |
 | **Schlechtester Fall** | $O(n)$ | $O(1)$ |
 
-Die Rekursionsformel lautet `T(n) = T(n-1) + O(1)`, was zu
-$O(n)$ führt. Der Speicherbedarf beträgt $O(1)$ in der „Rolling“-Implementierung; $O(n)$ in
-den memoisierten/tabellierten Varianten.
+Die Rekurrenz lautet `T(n) = T(n-1) + O(1)`, was zu $O(n)$ führt. Die Platzkomplexität beträgt $O(1)$ bei der Rolling-Implementierung; $O(n)$ bei den memoisierten/tabulierten Varianten.
 
 ## Varianten & Optimierungen
 
 - **Naive Rekursion** — `def f(n): return f(n-1) + f(n-2) if n > 1 else n`.
-  $O(2^n)$ Zeit, $O(n)$ Stapelplatz. **Reichen Sie dies nicht in
-  Vorstellungsgesprächen ein**, aber erwähnen Sie es als Gegenbeispiel, um zu zeigen, dass Sie
-  die Optimierung verstehen.
-- **Memoized Rekursion** — Top-Down mit einem Dict. $O(n)$ Zeit, $O(n)$
-  Speicherplatz. Nützlich, wenn nicht alle Teilprobleme benötigt werden.
-- **Matrixpotenzierung** — `[[1,1],[1,0]]^n` ergibt
-  `F(n+1)` in $O(log n)$ Zeit. Die richtige Lösung, wenn das Problem
-  viele Abfragen erfordert und `n` groß ist.
+  $O(2^n)$ Zeitkomplexität, $O(n)$ Stack-Platzkomplexität. **Reichen Sie dies nicht in Vorstellungsgesprächen ein**, aber erwähnen Sie es als Kontrast, um zu zeigen, dass Sie die Optimierung verstehen.
+- **Memoized Rekursion** — Top-Down mit einem Dictionary. $O(n)$ Zeitkomplexität, $O(n)$ Platzkomplexität. Nützlich, wenn nicht alle Teilprobleme benötigt werden.
+- **Matrix-Exponentiation** — `[[1,1],[1,0]]^n` ergibt `F(n+1)` in $O(log n)$ Zeitkomplexität. Die richtige Antwort, wenn das Problem viele Anfragen stellt und `n` groß ist.
 - **Verdopplungsidentitäten** — `F(2k) = F(k) * (2*F(k+1) - F(k))`,
-  `F(2k+1) = F(k+1)^2 + F(k)^2`. In Kombination mit schneller Potenzierung
-  ergibt dies eine Laufzeit von $O(log n)$ und ist der Standard für sehr große `n`
-  (z. B. `n = 10^18`).
+  `F(2k+1) = F(k+1)^2 + F(k)^2`. In Kombination mit schneller Exponentiation ergibt dies $O(log n)$ Zeitkomplexität und ist der Standard für sehr große `n` (z. B. `n = 10^18`).
 
-## Praktische Anwendungen
+## Anwendungen in der Praxis
 
-- **Fibonacci-Suche** — ein Suchalgorithmus für sortierte Arrays,
-  der anstelle der Halbierung bei der binären Suche Fibonacci-Zahlen verwendet.
-  Auf manchen Hardwareplattformen geringfügig schneller als die binäre Suche, da
-  er den `(low+high)//2`-Überlauf vermeidet.
-- **Fibonacci-Heap** – eine Priority Queue mit $O(1)$ amortisiertem
-  Einfügen und $O(log n)$ Extrahieren des Minimalwerts. Wird in einigen Implementierungen von
-  Kürzestweg- und Minimal-Spanning Tree-Algorithmen verwendet.
-- **Finanzkennzahlen** — Fibonacci-Retracement-Niveaus (23,6 %,
-  38,2 %, 61,8 %) werden in der technischen Aktienanalyse verwendet. (Es lohnt sich,
-  zu wissen, dass es sie gibt; wissenschaftlich nicht fundiert.)
-- **Rätsel zur modularen Arithmetik** — `F(n) mod m` ist eine klassische
-  Aufwärmübung bei Programmierwettbewerben, die den sorgfältigen Umgang
-  mit großen `n` und Periodizität (Pisano-Periode) erfordert.
+- **Fibonacci-Suche** — ein Suchalgorithmus auf sortierten Arrays, der Fibonacci-Zahlen anstelle der Halbierung der binären Suche verwendet. Auf mancher Hardware geringfügig schneller als die binäre Suche, da ein Überlauf bei `(low+high)//2` vermieden wird.
+- **Fibonacci-Heap** — eine Priority Queue mit $O(1)$ amortisiertem Einfügen und $O(log n)$ für `extract-min`. Wird in einigen Implementierungen für kürzeste Pfade und minimale Spannbäume verwendet.
+- **Finanzkennzahlen** — Fibonacci-Retracement-Level (23,6 %, 38,2 %, 61,8 %) werden in der technischen Aktienanalyse verwendet. (Gut zu wissen, dass es sie gibt; wissenschaftlich nicht robust.)
+- **Rätsel zur modularen Arithmetik** — `F(n) mod m` ist ein Standard-Aufwärmtraining bei Programmierwettbewerben, das einen sorgfältigen Umgang mit großen `n` und Periodizität (Pisano-Periode) erfordert.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dp_02 — Treppensteigen](dp_02_climbing-stairs.md)** — gleiche
-  Rekursionsform (`F(n) = F(n-1) + F(n-2)`), andere
-  Rahmung. (d=5/10, r=9/10)
-- **[dp_11 – Einbrecher](dp_11_house-robber.md)** – Ausschluss
-  benachbarter Elemente, ebenfalls eine rollierende DP mit zwei Zuständen. (d=5/10, r=9/10)
-- **[dp_23 – Treppensteigen mit minimalen Kosten](dp_23_min-cost-climbing-stairs.md)** –
-  gleiche Fibonacci-förmige Rekursion mit einer Kostendimension.
+- **[dp_02 — Climbing Stairs](dp_02_climbing-stairs.md)** — gleiche Rekurrenzform (`F(n) = F(n-1) + F(n-2)`), anderer Kontext. (d=5/10, r=9/10)
+- **[dp_11 — House Robber](dp_11_house-robber.md)** — Ausschluss benachbarter Elemente, ebenfalls eine 2-Zustands-Rolling-DP. (d=5/10, r=9/10)
+- **[dp_23 — Min Cost Climbing Stairs](dp_23_min-cost-climbing-stairs.md)** —
+  gleiche Fibonacci-artige Rekurrenz mit einer Kostendimension.
   (d=3/10, r=9/10)
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag für cOde(n),
-der sich an der kanonischen Struktur orientiert, die von Referenzseiten
-zum Thema Wettbewerbsprogrammierung verwendet wird. Den kanonischen
-Enzyklopädieeintrag finden Sie über den Wikipedia-Link oben auf der Seite.
-Quell-Repository: <https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt für cOde(n), modelliert nach der kanonischen Struktur, die von Referenzseiten für Wettbewerbsprogrammierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

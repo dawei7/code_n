@@ -1,49 +1,49 @@
-# Min und Max in einem Array (Turniermethode)
+# Min und Max in einem Array (Turnier-Methode)
 
 | | |
 |---|---|
 | **ID** | `dc_17` |
 | **Kategorie** | divide_conquer |
-| **Komplexität (erforderlich)** | $O(N)$ Zeit, $O(\log N)$ Speicherplatz |
-| **Schwierigkeitsgrad** | 2/10 |
+| **Komplexität (erforderlich)** | $O(N)$ Zeit, $O(\log N)$ Platz |
+| **Schwierigkeit** | 2/10 |
 | **Relevanz für Vorstellungsgespräche** | 4/10 |
-| **GeeksForGeeks-Äquivalent** | [Maximum und Minimum eines Arrays mit minimaler Anzahl an Vergleichen](https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/) |
+| **GeeksForGeeks Äquivalent** | [Maximum and minimum of an array using minimum number of comparisons](https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben ist ein Array der Größe `N`. Finde sowohl das größte als auch das kleinste Element im Array.
-*Einschränkung:* Du musst die absolute Anzahl der durchgeführten Vergleichsoperationen minimieren.
+Gegeben ist ein Array der Größe `N`. Finden Sie sowohl das Maximum als auch das Minimum der Elemente im Array.
+*Bedingung:* Sie müssen die absolute Anzahl der durchgeführten Vergleichsoperationen minimieren.
 
-**Eingabe:** Ein Array aus ganzen Zahlen `nums`.
+**Eingabe:** Ein Integer-Array `nums`.
 **Ausgabe:** Ein Tupel `(min_val, max_val)`.
 
-## Wann man es verwendet
+## Wann ist dies zu verwenden?
 
-- Wenn man aufgefordert wird, den theoretischen konstanten Faktor eines linearen Scan-Algorithmus zu optimieren.
-- Ein einführender „Teile und herrsche“-Algorithmus, der leichter zu verstehen ist als der Mergesort.
+- Wenn Sie aufgefordert werden, den theoretischen konstanten Faktor eines linearen Suchalgorithmus zu optimieren.
+- Als einführender Divide-and-Conquer-Algorithmus, der leichter zu verstehen ist als Merge Sort.
 
-## Vorgehensweise
+## Ansatz
 
-**1. Der naive lineare Scan:**
+**1. Die naive lineare Suche:**
 Sie initialisieren `min_val = nums[0]` und `max_val = nums[0]`.
 Für jedes Element prüfen Sie `if nums[i] < min_val` und anschließend `if nums[i] > max_val`.
-Da jedes Element zweimal anhand zweier Grenzen überprüft wird, führt man 2N Vergleiche durch.
-Können wir die Anzahl reduzieren?
+Da Sie jedes Element zweimal gegen zwei Schranken prüfen, führen Sie 2N Vergleiche durch.
+Geht das auch mit weniger?
 
-**2. Die „Teile und herrsche“-Methode (Turnier):**
-Stellen Sie sich ein Armdrück-Turnier vor, bei dem die stärkste und die schwächste Person ermittelt werden sollen.
-Wenn wir das Array genau in der Mitte teilen, können wir rekursiv den `(min, max)` der linken Hälfte und den `(min, max)` der rechten Hälfte ermitteln.
-Wenn die rekursiven Aufrufe zurückkehren, haben wir einfach ein „Finale“:
-- Das globale `min` ist der kleinere der beiden linken/rechten `min`-Werte.
-- Das globale `max` ist der größere der beiden linken/rechten `max`-Werte.
+**2. Die Divide-and-Conquer (Turnier-) Methode:**
+Stellen Sie sich ein Armdrück-Turnier vor, um die stärkste und die schwächste Person zu finden.
+Wenn wir das Array exakt in der Mitte teilen, können wir rekursiv das `(min, max)` der linken Hälfte und das `(min, max)` der rechten Hälfte finden.
+Wenn die rekursiven Aufrufe zurückkehren, führen wir ein "Finale" durch:
+- Das globale `min` ist das kleinere der beiden `min`-Werte aus links/rechts.
+- Das globale `max` ist das größere der beiden `max`-Werte aus links/rechts.
 
 Dies erfordert genau 2 Vergleiche, um die Hälften zusammenzuführen.
 
 **3. Basisfälle:**
-- Wenn der Array-Ausschnitt 1 Element enthält, gib `(nums[0], nums[0])` zurück. (0 Vergleiche).
-- Wenn der Array-Ausschnitt 2 Elemente enthält, vergleiche sie! Gib das kleinere als `min` und das größere als `max` zurück. (1 Vergleich).
+- Wenn der Array-Ausschnitt 1 Element enthält, geben Sie `(nums[0], nums[0])` zurück. (0 Vergleiche).
+- Wenn der Array-Ausschnitt 2 Elemente enthält, vergleichen Sie diese! Geben Sie das kleinere als `min` und das größere als `max` zurück. (1 Vergleich).
 
-*Mathematische Magie:* Indem im Basisfall Elemente zu Paaren gruppiert und nur die Gewinner im Baum weiterverarbeitet werden, sinkt die Gesamtzahl der Vergleiche mathematisch von 2N auf \frac{3N}{2} - 2.
+*Mathematische Magie:* Durch die Gruppierung der Elemente in Paare im Basisfall und das Weiterreichen nur der Gewinner den Baum hinauf, sinkt die Gesamtzahl der Vergleiche mathematisch von 2N auf \frac{3N}{2} - 2.
 
 ## Algorithmus
 
@@ -75,29 +75,29 @@ def solve(arr, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 `nums = [1000, 11, 445, 1, 330, 3000]`. N = 6.
 
 1. Aufteilen in `[1000, 11, 445]` und `[1, 330, 3000]`.
 2. **Linke Hälfte `[1000, 11, 445]`:**
    - Aufteilen in `[1000, 11]` und `[445]`.
-   - `[1000, 11]` löst den Basisfall 2 aus. (1 Vergleich). Gibt `(11, 1000)` zurück.
-   - `[445]` löst den Basisfall 1 aus. Gibt `(445, 445)` zurück.
+   - `[1000, 11]` löst Basisfall 2 aus. (1 Vergleich). Gibt `(11, 1000)` zurück.
+   - `[445]` löst Basisfall 1 aus. Gibt `(445, 445)` zurück.
    - Zusammenführen! `min(11, 445)` ist 11. `max(1000, 445)` ist 1000. (2 Vergleiche).
-   - Die linke Hälfte gibt `(11, 1000)` zurück.
+   - Linke Hälfte gibt `(11, 1000)` zurück.
 3. **Rechte Hälfte `[1, 330, 3000]`:**
-   - Aufteilung in `[1, 330]` und `[3000]`.
+   - Aufteilen in `[1, 330]` und `[3000]`.
    - `[1, 330]` gibt `(1, 330)` zurück. (1 Vergleich).
    - `[3000]` gibt `(3000, 3000)` zurück.
    - Zusammenführen! `min(1, 3000)` ist 1. `max(330, 3000)` ist 3000. (2 Vergleiche).
-   - Die rechte Hälfte gibt `(1, 3000)` zurück.
+   - Rechte Hälfte gibt `(1, 3000)` zurück.
 4. **Globales Zusammenführen:**
    - `min(11, 1)` ist 1.
    - `max(1000, 3000)` ist 3000. (2 Vergleiche).
 
 Gesamtzahl der Vergleiche: 8.
-Vergleiche beim naiven linearen Durchlauf: 2 × 6 = 12.
+Vergleiche bei naiver linearer Suche: 2 x 6 = 12.
 Wir haben den konstanten Faktor erfolgreich minimiert!
 
 ## Komplexität
@@ -108,28 +108,24 @@ Wir haben den konstanten Faktor erfolgreich minimiert!
 | **Durchschnittlicher Fall** | $O(N)$ | $O(\log N)$ |
 | **Schlechtester Fall** | $O(N)$ | $O(\log N)$ |
 
-Die Zeitkomplexität beträgt streng $O(N)$, da wir jedes Element verarbeiten. Die spezifische Rekursionsbeziehung lautet T(N) = 2T(N/2) + 2 Vergleiche. Gemäß dem Master-Theorem ist dies $O(N)$.
-Die Platzkomplexität beträgt $O(\log N)$ aufgrund der Tiefe des rekursiven Aufrufstapels.
+Die Zeitkomplexität ist strikt $O(N)$, da wir jedes Element verarbeiten. Die spezifische Rekurrenz lautet T(N) = 2T(N/2) + 2 Vergleiche. Gemäß dem Master-Theorem ergibt dies $O(N)$.
+Die Platzkomplexität beträgt $O(\log N)$ aufgrund der Tiefe des rekursiven Aufruf-Stacks.
 
 ## Varianten & Optimierungen
 
-- **Iterativer Paarvergleich:** Man kann genau dieselbe Vergleichsgrenze von \frac{3N}{2} erreichen, OHNE den Speicherplatzaufwand des $O(\log N)$-Rekursionsstapels!
-  Initialisiere `global_min` und `global_max`. Durchlaufen Sie das Array in Schritten von 2. Vergleichen Sie für jedes Paar `(arr[i], arr[i+1])` zunächst die beiden Elemente UNTEREINANDER!
-  Nehmen Sie das kleinere Element und vergleichen Sie es nur mit `global_min`. Nimm den größeren Wert und vergleiche ihn nur mit `global_max`.
-  Das sind 3 Vergleiche pro Elementepaar, was genau \frac{3N}{2} Vergleiche auf dem $O(1)$-Speicherplatz ergibt.
+- **Iterativer Paarvergleich:** Sie können die exakte Schranke von \frac{3N}{2} Vergleichen OHNE die Kosten für den $O(\log N)$ Rekursions-Stack erreichen!
+  Initialisieren Sie `global_min` und `global_max`. Iterieren Sie in 2er-Schritten durch das Array. Vergleichen Sie für jedes Paar `(arr[i], arr[i+1])` diese zuerst miteinander!
+  Nehmen Sie das kleinere Element und vergleichen Sie es nur mit `global_min`. Nehmen Sie das größere Element und vergleichen Sie es nur mit `global_max`.
+  Dies sind 3 Vergleiche pro Elementpaar, was zu exakt \frac{3N}{2} Vergleichen bei $O(1)$ Platzbedarf führt.
 
 ## Anwendungen in der Praxis
 
-- **Hardwarearchitektur:** Physikalische Silizium-ALUs (Arithmetic Logic Units), die Vektor-/SIMD-Befehle verarbeiten, implementieren genau diese baumstrukturierte Reduktion, um Min-/Max-Werte über Hardware-Register hinweg zu ermitteln, da die Vergleiche in einer Binärbaumschaltung vollständig parallel ausgeführt werden können.
+- **Hardware-Architektur:** Physische Silizium-ALUs (Arithmetic Logic Units), die Vektor-/SIMD-Instruktionen verarbeiten, implementieren genau diese baumstrukturierte Reduktion, um Min/Max-Werte über Hardware-Register hinweg zu finden, da die Vergleiche in einer Binärbaum-Schaltung vollständig parallel ausgeführt werden können.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dc_02 – Majority Element](dc_02_majority-element.md)** — Ein weiterer Algorithmus, bei dem grundlegende Array-Eigenschaften über einen binären Rekursionsbaum wieder zusammengeführt werden.
+- **[dc_02 - Majority Element](dc_02_majority-element.md)** — Ein weiterer Algorithmus, bei dem grundlegende Array-Eigenschaften in einem binären Rekursionsbaum zusammengeführt werden.
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-nach dem Vorbild der kanonischen Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) verfasst wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitive Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

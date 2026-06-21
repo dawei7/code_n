@@ -21,6 +21,8 @@ export function CodenTab() {
   const saveSource = useAppStore((s) => s.saveSource);
   const modifiedVersions = useAppStore((s) => s.modifiedVersions);
 
+
+
   const [contextMenu, setContextMenu] = useState<{ visible: boolean; x: number; y: number; version: number | null }>({
     visible: false,
     x: 0,
@@ -224,6 +226,8 @@ export function CodenTab() {
           })}
         </div>
       </div>
+
+
 
       {/* Code Preview */}
       {!isMaximized && (

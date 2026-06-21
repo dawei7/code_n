@@ -1,45 +1,45 @@
-# Das Skyline-Problem
+# The Skyline Problem
 
 | | |
 |---|---|
 | **ID** | `dc_07` |
 | **Kategorie** | divide_conquer |
-| **Komplexität (erforderlich)** | $O(N \log N)$ Zeit, $O(N)$ Speicherplatz |
-| **Schwierigkeitsgrad** | 9/10 |
+| **Komplexität (erforderlich)** | $O(N \log N)$ Zeit, $O(N)$ Platz |
+| **Schwierigkeit** | 9/10 |
 | **Relevanz für Vorstellungsgespräche** | 6/10 |
-| **LeetCode-Äquivalent** | [Das Skyline-Problem](https://leetcode.com/problems/the-skyline-problem/) |
+| **LeetCode-Äquivalent** | [The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Die Skyline einer Stadt ist die äußere Kontur der Silhouette, die alle Gebäude dieser Stadt aus der Ferne bilden. Gegeben sind die Standorte und Höhen aller Gebäude. Geben Sie die Skyline zurück, die diese Gebäude gemeinsam bilden.
-Die Gebäude werden als Array von `buildings` angegeben, wobei `buildings[i] = [left_i, right_i, height_i]`.
-Die Skyline soll als Liste von „Schlüsselpunkten“ `[x_i, y_i]` zurückgegeben werden, sortiert nach ihrer x-Koordinate. Ein Schlüsselpunkt ist der linke Endpunkt eines horizontalen Liniensegments, das die Oberkante eines Gebäudes darstellt.
+Die Skyline einer Stadt ist die äußere Kontur der Silhouette, die von allen Gebäuden der Stadt aus der Ferne betrachtet gebildet wird. Gegeben sind die Positionen und Höhen aller Gebäude; berechnen Sie die Skyline, die von diesen Gebäuden gemeinsam gebildet wird.
+Die Gebäude sind als Array `buildings` gegeben, wobei `buildings[i] = [left_i, right_i, height_i]`.
+Die Skyline sollte als eine Liste von "Schlüsselpunkten" `[x_i, y_i]` zurückgegeben werden, sortiert nach ihrer x-Koordinate. Ein Schlüsselpunkt ist der linke Endpunkt eines horizontalen Liniensegments, das die Oberkante eines Gebäudes repräsentiert.
 
-**Eingabe:** Ein zweidimensionales Ganzzahl-Array `buildings`.
-**Ausgabe:** Ein zweidimensionales Ganzzahl-Array mit Schlüsselpunkten, die die Skyline-Kontur bilden.
+**Eingabe:** Ein 2D-Integer-Array `buildings`.
+**Ausgabe:** Ein 2D-Integer-Array von Schlüsselpunkten, die die Skyline-Kontur bilden.
 
 ## Wann man es verwendet
 
-- Zur Veranschaulichung fortgeschrittener „Divide-and-Conquer“-Zusammenführung, insbesondere wie man zwei separate Listen überlappender Intervalle/Koordinaten zusammenführt.
-- Hinweis: Dieses Problem ist ebenso bekannt für seine Lösung mit einer Priority Queue (Max-Heap). Beide Lösungen sind zulässig und $O(N \log N)$.
+- Zur Demonstration von fortgeschrittenem Divide and Conquer beim Mergen, insbesondere wie man zwei separate Listen von überlappenden Intervallen/Koordinaten zusammenführt.
+- Hinweis: Dieses Problem ist ebenso bekannt für seine Lösung mittels Priority Queue (Max-Heap). Beide Ansätze sind akzeptabel und liegen bei $O(N \log N)$.
 
-## Vorgehensweise
+## Ansatz
 
-**1. Der Teilungsschritt:**
-Wenn wir nur EIN Gebäude `[L, R, H]` haben, ist die Skyline trivial! Es gibt nur zwei Schlüsselpunkte: die obere linke Ecke `[L, H]` und die untere rechte Ecke, an der das Gebäude wieder auf den Boden trifft `[R, 0]`.
-Wir können das Array mit N Gebäuden rekursiv genau in zwei Hälften teilen, bis jeder Teil genau ein Gebäude enthält!
+**1. Der Divide-Schritt:**
+Wenn wir nur EIN Gebäude `[L, R, H]` haben, ist die Skyline trivial! Es sind lediglich zwei Schlüsselpunkte: die obere linke Ecke `[L, H]` und die untere rechte Ecke, an der das Gebäude wieder auf den Boden abfällt `[R, 0]`.
+Wir können das Array von N Gebäuden rekursiv exakt in der Mitte teilen, bis jedes Segment genau ein Gebäude enthält!
 
-**2. Der Zusammenführungsschritt:**
-Der absolut schwierigste Teil des Problems. Wir haben zwei Skylines, `left_skyline` und `right_skyline`, die beide nach ihren X-Koordinaten sortiert sind. Wir müssen sie zu einer einzigen `merged_skyline` zusammenführen.
-Wir verwenden zwei Zeiger: `i` für die linke Skyline und `j` für die rechte Skyline.
-Außerdem müssen wir die *aktuelle Höhe* beider Skylines im Auge behalten, während wir sie abtasten. Nennen wir sie `h1` (links) und `h2` (rechts).
+**2. Der Conquer-Schritt (Merge):**
+Dies ist der schwierigste Teil des Problems. Wir haben zwei Skylines, `left_skyline` und `right_skyline`, beide sortiert nach ihren X-Koordinaten. Wir müssen sie zu einer einzigen `merged_skyline` zusammenführen.
+Wir verwenden zwei Pointer, `i` für die linke Skyline und `j` für die rechte Skyline.
+Zudem müssen wir die *aktuelle Höhe* beider Skylines verfolgen, während wir über sie hinwegstreichen. Nennen wir sie `h1` (links) und `h2` (rechts).
 
-- Wir wählen den Schlüsselpunkt mit der KLEINEREN X-Koordinate aus. Nehmen wir an, `left_skyline[i]` liegt weiter links.
-- Wir aktualisieren unseren aktuellen `h1` auf `left_skyline[i].y`.
-- Wie hoch ist die Gesamt-Höhe der zusammengeführten Skyline an dieser X-Koordinate? Da sich die Gebäude überlappen, ist die tatsächliche Höhe einfach das MAXIMUM der aktuellen Höhen beider Skylines! `max_h = max(h1, h2)`.
-- Wenn sich dieser `max_h` von der Höhe des letzten Punktes unterscheidet, den wir zu `merged_skyline` hinzugefügt haben, bedeutet dies, dass sich die Höhe der Skyline gerade geändert hat! Wir addieren `[x, max_h]` zu unserem `merged_skyline`.
-- Wir erhöhen `i`.
-*(Wenn die X-Koordinaten exakt identisch sind, aktualisieren wir SOWOHL `h1` als auch `h2`, wählen den Maximalwert aus und erhöhen SOWOHL `i` als auch `j`)*.
+- Wir wählen den Schlüsselpunkt mit der KLEINEREN X-Koordinate. Nehmen wir an, `left_skyline[i]` liegt weiter links.
+- Wir aktualisieren unsere aktuelle `h1` auf `left_skyline[i].y`.
+- Was ist die globale Höhe der zusammengeführten Skyline an dieser X-Koordinate? Da sich die Gebäude überlappen, ist die tatsächliche Höhe einfach das MAXIMUM der aktuellen Höhen beider Skylines! `max_h = max(h1, h2)`.
+- Wenn sich diese `max_h` von der Höhe des letzten Punktes unterscheidet, den wir zu `merged_skyline` hinzugefügt haben, bedeutet dies, dass sich die Skyline gerade in der Höhe verändert hat! Wir fügen `[x, max_h]` zu unserer `merged_skyline` hinzu.
+- Wir inkrementieren `i`.
+*(Wenn die X-Koordinaten exakt identisch sind, aktualisieren wir SOWOHL `h1` ALS AUCH `h2`, wählen das Maximum und inkrementieren SOWOHL `i` ALS AUCH `j`)*.
 
 ## Algorithmus
 
@@ -96,7 +96,7 @@ def _merge(left, right):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Walk-through
 
 *(Konzeptionell)*
 `sk1 = [[2, 10], [9, 0]]` (Gebäude 1)
@@ -104,48 +104,44 @@ def _merge(left, right):
 
 1. `i=0`, `j=0`. `x1=2`, `x2=3`. `x1 < x2`.
    `x=2`, `h1=10`. `max_h = max(10, 0) = 10`.
-   `[2, 10]` hinzufügen. `i=1`.
+   Füge `[2, 10]` hinzu. `i=1`.
 2. `i=1`, `j=0`. `x1=9`, `x2=3`. `x2 < x1`.
    `x=3`, `h2=15`. `max_h = max(10, 15) = 15`.
-   `[3, 15]` hinzufügen. `j=1`.
+   Füge `[3, 15]` hinzu. `j=1`.
 3. `i=1`, `j=1`. `x1=9`, `x2=7`. `x2 < x1`.
    `x=7`, `h2=0`. `max_h = max(10, 0) = 10`.
-   `[7, 10]` hinzufügen. `j=2`.
-4. `j` ist erschöpft. Den Rest von `sk1` anhängen.
-   `[9, 0]` hinzufügen. `i=2`.
+   Füge `[7, 10]` hinzu. `j=2`.
+4. `j` ist erschöpft. Hänge den Rest von `sk1` an.
+   Füge `[9, 0]` hinzu. `i=2`.
 
-Zusammengeführtes Ergebnis: `[[2, 10], [3, 15], [7, 10], [9, 0]]`. ✓ (Die Skyline springt bei 2 nach oben, springt bei 3 noch höher, fällt bei 7 wieder auf das Dach des ersten Gebäudes zurück und fällt bei 9 auf den Boden).
+Zusammengeführtes Ergebnis: `[[2, 10], [3, 15], [7, 10], [9, 0]]`. ✓ (Die Skyline springt bei 2 nach oben, bei 3 noch höher, fällt bei 7 auf das Dach des ersten Gebäudes zurück und bei 9 auf den Boden).
 
 ## Komplexität
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(N \log N)$ | $O(N)$ |
+| **Bestfall** | $O(N \log N)$ | $O(N)$ |
 | **Durchschnittlicher Fall** | $O(N \log N)$ | $O(N)$ |
-| **Schlechteste** | $O(N \log N)$ | $O(N)$ |
+| **Schlechtester Fall** | $O(N \log N)$ | $O(N)$ |
 
-Der Rekursionsbaum teilt sich genau wie beim Merge-Sort ($O(\log N)$ Tiefe) in zwei Hälften.
-Auf jeder Ebene durchläuft die Funktion `merge_skylines` die Teil-Skylines linear. Der gesamte Aufwand für das Zusammenführen auf einer bestimmten Ebene des Baums beläuft sich auf $O(N)$.
-Daher gilt: T(N) = 2T(N/2) + $O(N)$ -> $O(N \log N)$.
-Die Platzkomplexität beträgt $O(N)$, da die neu zusammengeführten Arrays auf der obersten Ebene bis zu 2N Punkte enthalten.
+Der Rekursionsbaum teilt sich exakt wie bei Merge Sort in zwei Hälften ($O(\log N)$ Tiefe).
+Auf jeder Ebene iteriert die Funktion `merge_skylines` linear durch die Teil-Skylines. Der gesamte Merge-Aufwand auf einer bestimmten Ebene des Baums summiert sich zu $O(N)$.
+Daher gilt T(N) = 2T(N/2) + $O(N)$ -> $O(N \log N)$.
+Die Platzkomplexität beträgt $O(N)$, da die neu zusammengeführten Arrays auf der obersten Ebene bis zu 2N Punkte enthalten können.
 
 ## Varianten & Optimierungen
 
-- **Sweep Line + Max-Heap:** Der gängigere Ansatz. Anstatt die Gebäude aufzuteilen, zerlegt man jedes Gebäude in zwei „Ereignisse“: `(Left, Height, ENTER)` und `(Right, Height, EXIT)`. Man sortiert alle 2N Ereignisse nach ihrer X-Koordinate. Beim Durchlaufen von links nach rechts wird die Höhe in einen Max-Heap verschoben, sobald man auf ein ENTER-Ereignis stößt. Triffst du auf ein EXIT-Ereignis, entfernst du diese Höhe verzögert aus dem Max-Heap. Die aktuelle Spitze des Heaps ist IMMER die aktuelle Skyline-Höhe! Auch streng $O(N \log N)$.
+- **Sweep Line + Max-Heap:** Der gebräuchlichere Ansatz. Anstatt die Gebäude zu teilen, zerlegt man jedes Gebäude in zwei "Ereignisse": `(Left, Height, ENTER)` und `(Right, Height, EXIT)`. Man sortiert alle 2N Ereignisse nach ihrer X-Koordinate. Während man von links nach rechts streicht, fügt man bei einem ENTER-Ereignis die Höhe in einen Max-Heap ein. Bei einem EXIT-Ereignis entfernt man diese Höhe "lazy" aus dem Max-Heap. Das aktuelle Maximum des Heaps ist IMMER die aktuelle Skyline-Höhe! Ebenfalls strikt $O(N \log N)$.
 
 ## Anwendungen in der Praxis
 
-- **Computergrafik (Ermittlung verdeckter Flächen):** In 2D-Rendering-Engines bestimmt genau dieser Algorithmus, welche Sprites (wie Berge oder Parallax-Hintergrundebenen) die dahinter liegenden Ebenen visuell verdecken, sodass die Engine das Rendern der verdeckten Pixel komplett überspringen kann.
+- **Computergrafik (Verdeckungsberechnung):** In 2D-Rendering-Engines bestimmt dieser Algorithmus exakt, welche Sprites (wie Berge oder Parallax-Hintergrundebenen) die dahinter liegenden Ebenen visuell verdecken, wodurch die Engine das Rendern der verdeckten Pixel komplett überspringen kann.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[sort_01 – Merge-Sort](../sorting/sort_01_merge-sort.md)** — Das buchstäblich exakt identische Architekturmuster „Teile und herrsche“.
-- **[heap_03 – Sweep-Line-Skyline](../heap/heap_03_sweep-line-skyline.md)** – Die Priority Queues-Variante genau dieses Problems.
+- **[sort_01 - Merge Sort](../sorting/sort_01_merge-sort.md)** — Das buchstäblich identische Divide and Conquer-Architekturmuster.
+- **[heap_03 - Sweep Line Skyline](../heap/heap_03_sweep-line-skyline.md)** — Die Priority-Queue-Variante dieses exakten Problems.
 
 ---
 
-*Diese Dokumentation ist ein für cOde(n) verfasster Originalinhalt,
-der sich an der kanonischen Struktur orientiert, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) verfasst wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

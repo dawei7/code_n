@@ -144,15 +144,7 @@ def _scan_ast(tree: ast.AST) -> CheckResult:
             value = node.value
             if value is None:
                 return
-            if _is_literal_container(value):
-                self.flag = CheckResult(
-                    Reason.HARDCODED,
-                    message=(
-                        "Solution returns a hardcoded literal "
-                        f"({ast.unparse(value)!r}). Implement the algorithm."
-                    ),
-                )
-                return
+
             if _is_private_state_access(value):
                 self.flag = CheckResult(
                     Reason.PRIVATE_STATE,

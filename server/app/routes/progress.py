@@ -40,10 +40,46 @@ def update_progress(body: ProgressUpdate) -> ProgressOut:
     elif body.reset:
         progress = progress_store.reset()
     else:
-        # No-op update (or a player_name change alone). Still persist
-        # player_name if provided.
+        # No-op update (or a player_name/settings change). Still persist if changed.
         progress = progress_store.load()
+        changed = False
         if body.player_name is not None:
             progress.player_name = body.player_name
+            changed = True
+        if body.career_mode is not None:
+            progress.career_mode = body.career_mode
+            changed = True
+        if body.leetcode_username is not None:
+            progress.leetcode_username = body.leetcode_username
+            changed = True
+        if body.gemini_api_key is not None:
+            progress.gemini_api_key = body.gemini_api_key
+            changed = True
+        if body.active_set is not None:
+            progress.active_set = body.active_set
+            changed = True
+        if changed:
             progress_store.save(progress)
     return _to_out(progress)
+
+
+from server.app.schemas import VerifyLeetCodeRequest, VerifyLeetCodeResponse
+from server.app.leetcode_verification import check_leetcode_solved
+from server.app.leetcode_mapping import LEETCODE_MAPPING
+
+@router.post("/progress/verify-leetcode")
+def verify_leetcode(body: VerifyLeetCodeRequest) -> VerifyLeetCodeResponse:
+    """Auto-verify LeetCode for any challenge since LeetCode integration is disabled."""
+    challenge_id = body.challenge_id
+    progress = progress_store.load()
+    
+    if challenge_id not in progress.unlocked_leetcode:
+        progress.unlocked_leetcode.append(challenge_id)
+        progress_store.save(progress)
+        
+    return VerifyLeetCodeResponse(
+        success=True,
+        message="LeetCode verification is disabled. Auto-verified!",
+        unlocked_leetcode=list(progress.unlocked_leetcode),
+        milestones=list(progress.milestones),
+    )

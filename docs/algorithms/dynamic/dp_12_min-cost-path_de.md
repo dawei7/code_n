@@ -1,24 +1,20 @@
-# Weg mit minimalen Kosten
+# Min Cost Path
 
 | | |
 |---|---|
 | **ID** | `dp_12` |
-| **Kategorie** | dynamisch |
+| **Kategorie** | dynamic |
 | **Komplexität (erforderlich)** | $O(n²)$ |
-| **Schwierigkeitsgrad** | 4/10 |
+| **Schwierigkeit** | 4/10 |
 | **Relevanz für Vorstellungsgespräche** | 9/10 |
-| **Wikipedia** | [Kürzester-Weg-Problem](https://en.wikipedia.org/wiki/Shortest_path_problem) |
+| **Wikipedia** | [Shortest path problem](https://en.wikipedia.org/wiki/Shortest_path_problem) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben ist ein `m × n`-Gitter aus **nicht-negativen** ganzen Zahlen (die
-„Kosten“ jeder Zelle). Finde einen Weg von links oben nach
-rechts unten, der **die Gesamtkosten minimiert**. Man darf sich nur
-**nach rechts oder nach unten** bewegen.
+Gegeben ist ein `m × n` Grid aus **nicht-negativen** Ganzzahlen (die "Kosten" jeder Zelle). Finde einen Pfad von oben links nach unten rechts, der die **Gesamtkosten minimiert**. Man darf sich nur **nach rechts oder nach unten** bewegen.
 
-**Eingabe:** ein zweidimensionales Gitter aus nicht-negativen ganzen Zahlen.
-**Ausgabe:** die minimalen Gesamtkosten eines Weges von
-`grid[0][0]` nach `grid[m-1][n-1]`.
+**Eingabe:** Ein 2D-Grid aus nicht-negativen Ganzzahlen.
+**Ausgabe:** Die minimalen Gesamtkosten eines Pfades von `grid[0][0]` nach `grid[m-1][n-1]`.
 
 **Beispiel:**
 
@@ -47,44 +43,33 @@ Min-cost path: 1 → 1 → 1 → 1 → 1 = 5
    So the answer is 7.
 ```
 
-| Gitter | Min. Kosten |
+| Grid | Min cost |
 |---|---:|
 | `[[1, 3, 1], [1, 5, 1], [4, 2, 1]]` | 7 |
 | `[[1, 2, 3], [4, 5, 6]]` | 12 (1+2+3+6) |
 | `[[1]]` | 1 |
 
-## Wann man es einsetzt
+## Anwendung
 
-- Die klassische DP „**Anzahl der Pfade mit bestimmten Kosten**“. Wird in
-  Telefon-Vorstellungsgesprächen abgefragt, oft mit einer kleinen Besonderheit (Hindernisse, mit
-  Diagonalen, mit Auf/Ab/Links/Rechts).
-- Grundlage für die **Bewegungsplanung von Robotern** auf gewichteten
-  Gittern, für **Routen mit minimalem Aufwand** in der Geländebewertung und
-  viele Varianten der **kostengünstigsten Pfade**.
+- Das klassische DP-Problem zum "**Zählen von Pfaden mit Kosten**". Wird häufig in Telefoninterviews abgefragt, oft mit kleinen Variationen (Hindernisse, mit Diagonalen, mit Bewegungen nach oben/unten/links/rechts).
+- Grundlage für die **Roboter-Bewegungsplanung** auf gewichteten Grids, **Routen mit geringstem Aufwand** in der Geländeanalyse und viele Varianten des **kostengünstigsten Pfades**.
 
-## Vorgehensweise
+## Ansatz
 
-Sei `dp[i][j]` = die minimalen Kosten, um die Zelle `(i, j)`
-von `(0, 0)` aus zu erreichen.
+Sei `dp[i][j]` = die minimalen Kosten, um die Zelle `(i, j)` von `(0, 0)` aus zu erreichen.
 
-**Rekursion:** Um `(i, j)` zu erreichen, müssen wir entweder von
-`(i-1, j)` (nach unten) oder von `(i, j-1)` (nach rechts) gekommen sein. Man nehme den
-günstigeren dieser beiden Wege und addiere die Kosten der aktuellen Zelle hinzu:
+**Rekurrenz:** Um `(i, j)` zu erreichen, müssen wir entweder von `(i-1, j)` (unten) oder von `(i, j-1)` (rechts) gekommen sein. Wir wählen das Minimum der beiden und addieren die Kosten der aktuellen Zelle:
 ```
 dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])
 ```
 
-**Basisfall:** `dp[0][0] = grid[0][0]`.
+**Induktionsanfang:** `dp[0][0] = grid[0][0]`.
 `dp[0][j] = grid[0][j] + dp[0][j-1]` (nur Bewegungen nach rechts).
-`dp[i][0] = grid[i][0] + dp[i-1][0]` (nur Züge nach unten).
+`dp[i][0] = grid[i][0] + dp[i-1][0]` (nur Bewegungen nach unten).
 
 **Antwort:** `dp[m-1][n-1]`.
 
-**Speicheroptimierung:** `dp[i][j]` hängt nur von der Zelle
-oberhalb und der Zelle links davon ab, sodass sich die 2D-Tabelle
-auf ein 1D-Array der Größe `n` reduzieren lässt. Iteriere von links nach rechts, und
-die „obere“ Zelle ist `dp[j]` (aktuell), während die „linke“ Zelle
-`dp[j-1]` (gerade aktualisiert) ist:
+**Platzoptimierung:** `dp[i][j]` hängt nur von der Zelle darüber und der Zelle links davon ab, daher kann die 2D-Tabelle auf ein 1D-Array der Größe `n` reduziert werden. Wir iterieren von links nach rechts; die Zelle "darüber" ist `dp[j]` (aktuell), während die Zelle "links" `dp[j-1]` (gerade aktualisiert) ist:
 ```
 dp[j] = grid[i][j] + min(dp[j], dp[j-1])
 ```
@@ -116,9 +101,9 @@ def solve(grid, m, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
-Raster: `[[1, 3, 1], [1, 5, 1], [4, 2, 1]]`.
+Grid: `[[1, 3, 1], [1, 5, 1], [4, 2, 1]]`.
 
 Nach Zeile 0: `dp = [1, 4, 5]`.
 
@@ -142,51 +127,36 @@ Antwort: `dp[2] = 7`. ✓
 
 | | Zeit | Platz |
 |---|---|---|
-| **Bestfall** | $O(m·n)$ | $O(n)$ mit rollendem |
+| **Bestfall** | $O(m·n)$ | $O(n)$ mit Rolling Array |
 | **Durchschnittlicher Fall** | $O(m·n)$ | $O(n)$ |
-| **Schlechteste** | $O(m·n)$ | $O(n)$ |
+| **Schlechtester Fall** | $O(m·n)$ | $O(n)$ |
 
-Die erforderliche Komplexität beträgt $O(n²)$ für die cOde(n)-Engine,
-wobei `n = max(m, n)`.
+Die erforderliche Komplexität ist $O(n²)$ für die cOde(n)-Engine, wobei `n = max(m, n)`.
 
 ## Varianten & Optimierungen
 
-- **Mit Hindernissen** — behandle blockierte Zellen als Unendlichkeit.
-- **Mit Diagonalen** — füge `(i-1, j-1)` zu den Kandidaten hinzu.
+- **Mit Hindernissen** — blockierte Zellen als unendlich behandeln.
+- **Mit Diagonalen** — `(i-1, j-1)` zu den Kandidaten hinzufügen.
 - **Pfad mit maximalen Kosten** — `min` durch `max` ersetzen.
-- **Mit Auf/Ab/Links/Rechts** — wandle es in Dijkstra um
-  auf dem Gittergraphen um (da alle Kosten nicht-negativ sind).
-- **Den Pfad rekonstruieren** — speichere ein `parent[i][j]` (oder
-  `parent[j]` in der „Rolling“-Version) und gehe den Weg zurück.
-- **Pfad mit minimalen Kosten und K Richtungswechseln** — die Anzahl der
-  Richtungswechsel ist begrenzt. Füge eine Zustandsdimension hinzu.
+- **Mit Bewegungen nach oben/unten/links/rechts** — in Dijkstra auf dem Grid-Graphen umwandeln (da alle Kosten nicht-negativ sind).
+- **Pfad rekonstruieren** — ein `parent[i][j]` (oder `parent[j]` in der Rolling-Version) speichern und zurückverfolgen.
+- **Min-Cost-Pfad mit K Kurven** — die Anzahl der Richtungswechsel ist begrenzt. Eine Zustandsdimension hinzufügen.
 
 ## Anwendungen in der Praxis
 
-- **Bewegungsplanung für Roboter** — finde den kostengünstigsten Pfad
-  durch ein gewichtetes Gelände.
-- **Route mit dem geringsten Energieaufwand** in einem Straßennetz (wobei die Gewichte
-  Kraftstoff oder Zeit sind).
-- **Spiel-KI** – Wegfindung auf einem Kostenraster.
-- **Bildverarbeitung** – Seam Carving (Finde den kostengünstigsten
-  Pfad von oben nach unten).
-- **Logistik** – kostengünstigste Lieferroute.
-- **Bioinformatik** – Sequenzabgleich mit nicht-negativen
-  Werten (der gewichtete Editierabstand für Proteine).
+- **Roboter-Bewegungsplanung** — den günstigsten Pfad durch ein gewichtetes Gelände finden.
+- **Routen mit geringstem Energieverbrauch** in einem Straßennetz (wobei die Gewichte Treibstoff oder Zeit sind).
+- **Game AI** — Pfadfindung auf einem Kostengrid.
+- **Bildverarbeitung** — Seam Carving (den Pfad mit den geringsten Kosten von oben nach unten finden).
+- **Logistik** — günstigste Lieferroute.
+- **Bioinformatik** — Sequenzalignment mit nicht-negativen Scores (die gewichtete Editierdistanz für Proteine).
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dp_10 — Eindeutige Pfade](dp_10_unique-paths.md)** —
-  *zählt* alle Pfade; dieser Algorithmus findet den *kostengünstigsten*. (d=4/10, r=9/10)
-- **[dp_23 — Treppensteigen mit minimalen Kosten](dp_23_min-cost-climbing-stairs.md)** —
-  1D-Version. (d=3/10, r=9/10)
-- **[graph_04 — Dijkstra](graph_04_dijkstra.md)** — Weg mit minimalen Kosten
-  in einem allgemeinen Graphen mit gewichteten Kanten. (d=5/10, r=8/10)
+- **[dp_10 — Unique Paths](dp_10_unique-paths.md)** — *zählt* alle Pfade; dieses Problem findet den *günstigsten*. (d=4/10, r=9/10)
+- **[dp_23 — Min Cost Climbing Stairs](dp_23_min-cost-climbing-stairs.md)** — 1D-Version. (d=3/10, r=9/10)
+- **[graph_04 — Dijkstra](graph_04_dijkstra.md)** — Min-Cost-Pfad auf einem allgemeinen Graphen mit gewichteten Kanten. (d=5/10, r=8/10)
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde
-und sich an der kanonischen Struktur orientiert, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag
-finden Sie über den Wikipedia-Link oben auf der Seite.
-Quell-Repository: <https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt für cOde(n), modelliert nach der kanonischen Struktur, die von Referenzseiten für kompetitives Programmieren verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Anfang der Seite. Quell-Repository: <https://github.com/dawei7/code_n>.*

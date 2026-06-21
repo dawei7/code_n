@@ -220,8 +220,9 @@ SPECS: list[AlgorithmSpec] = [
             Sample("num_nodes = 3, edges = [(0, 2)]", "{0: [2], 1: [], 2: [0]}"),
         ],
         hint="For each edge (u, v), add v to u's list and u to v's list.",
-        parents=["intro_01"],
+        parents=[],
         children=[],
+
     ),
     AlgorithmSpec(
         id="graph_04",

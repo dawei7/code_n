@@ -1,48 +1,48 @@
-# Teilmengen (Potenzmenge)
+# Subsets (Potenzmenge)
 
 | | |
 |---|---|
 | **ID** | `backtrack_01` |
 | **Kategorie** | Backtracking |
-| **Komplexität (erforderlich)** | $O(N * 2^N)$ Zeit, $O(N)$ Speicherplatz |
-| **Schwierigkeitsgrad** | 3/10 |
+| **Komplexität (erforderlich)** | $O(N * 2^N)$ Zeit, $O(N)$ Platz |
+| **Schwierigkeit** | 3/10 |
 | **Relevanz für Vorstellungsgespräche** | 9/10 |
 | **LeetCode-Äquivalent** | [Subsets](https://leetcode.com/problems/subsets/) |
 
-## Aufgabenstellung
+## Problemstellung
 
-Gegeben ist ein Array `nums` aus **eindeutigen** ganzen Zahlen. Gib alle möglichen Teilmengen (die Potenzmenge) zurück.
-Die Lösungsmenge darf keine doppelten Teilmengen enthalten. Geben Sie die Lösung in beliebiger Reihenfolge zurück.
+Gegeben ist ein Array `nums` von **eindeutigen** Ganzzahlen. Geben Sie alle möglichen Teilmengen (die Potenzmenge) zurück.
+Die Lösungsmenge darf keine doppelten Teilmengen enthalten. Die Lösung kann in einer beliebigen Reihenfolge zurückgegeben werden.
 
-**Eingabe:** Ein Array von Ganzzahlen `nums`.
-**Ausgabe:** Eine Liste von Listen, wobei jede innere Liste eine gültige Teilmenge ist.
+**Eingabe:** Ein Array `nums` von Ganzzahlen.
+**Ausgabe:** Eine Liste von Listen, wobei jede innere Liste eine gültige Teilmenge darstellt.
 
-## Anwendungsfälle
+## Wann man es verwendet
 
-- Die absolute Grundlage von Backtracking-Algorithmen.
-- Verwende diesen Algorithmus, um jede mögliche Kombination oder Gruppierung von Elementen zu generieren, ohne dabei auf Permutationen (Reihenfolge) zu achten.
+- Das absolute Fundament von Backtracking-Algorithmen.
+- Verwenden Sie es, um jede mögliche Kombination oder Gruppierung von Elementen zu generieren, ohne Permutationen (Reihenfolge) zu berücksichtigen.
 
-## Vorgehensweise
+## Ansatz
 
 **1. Der Entscheidungsbaum:**
 Für jedes Element im Array haben wir genau zwei Möglichkeiten:
-1. Das Element in unsere aktuelle Teilmenge **aufnehmen**.
-2. Das Element aus unserer aktuellen Teilmenge **ausschließen**.
-Da es N Elemente gibt und für jedes zwei Möglichkeiten bestehen, wird unser Entscheidungsbaum genau 2^N Blätter haben (die Gesamtzahl der Teilmengen).
+1. **Einschließen:** Das Element in unsere aktuelle Teilmenge aufnehmen.
+2. **Ausschließen:** Das Element aus unserer aktuellen Teilmenge weglassen.
+Da es N Elemente gibt und für jedes 2 Möglichkeiten bestehen, wird unser Entscheidungsbaum genau 2^N Blätter haben (die Gesamtzahl der Teilmengen).
 
 **2. Der Backtracking-Zustand:**
 Wir definieren eine rekursive Funktion `backtrack(index, current_subset)`:
-- `index`: Über welches Element aus `nums` treffen wir gerade eine Entscheidung?
-- `current_subset`: Eine Liste, in der die bisher getroffenen Entscheidungen gesammelt werden.
+- `index`: Für welches Element aus `nums` treffen wir gerade eine Entscheidung?
+- `current_subset`: Eine Liste, die die bisher getroffenen Entscheidungen sammelt.
 
 **3. Basisfall:**
-Wenn `index == len(nums)`, bedeutet dies, dass wir für JEDES Element im Array eine Entscheidung (Aufnehmen/Ausschließen) getroffen haben. Wir haben einen Blattknoten erreicht!
-Wir erstellen einen *Snapshot* (eine Kopie) von `current_subset` und fügen ihn unserer globalen Liste `result` hinzu. Anschließend kehren wir zurück, damit der Baum die Suche fortsetzen kann.
+Wenn `index == len(nums)`, bedeutet dies, dass wir für JEDES Element im Array eine Entscheidung (Einschließen/Ausschließen) getroffen haben. Wir haben einen Blattknoten erreicht!
+Wir erstellen einen *Snapshot* (Kopie) von `current_subset` und fügen ihn unserer globalen `result`-Liste hinzu. Danach kehren wir zurück, um dem Baum zu ermöglichen, weiter zu explorieren.
 
 **4. Der rekursive Schritt (Backtracking):**
-Innerhalb unserer Funktion führen wir unsere beiden Optionen aus:
-- **Option 1 (Aufnehmen):** Füge `nums[index]` zu `current_subset` hinzu. Führe eine Rekursion zu `index + 1` durch.
-- **Option 2 (Ausschluss):** Bevor wir rekursiv fortfahren können, MÜSSEN wir die gerade getroffene Entscheidung „rückgängig machen“! Wir entfernen `nums[index]` aus `current_subset` (dies ist die charakteristische Aktion des Backtracking). Anschließend führen wir eine rekursive Suche nach `index + 1` durch.
+Innerhalb unserer Funktion führen wir unsere zwei Entscheidungen aus:
+- **Entscheidung 1 (Einschließen):** Füge `nums[index]` zu `current_subset` hinzu. Rekursion mit `index + 1`.
+- **Entscheidung 2 (Ausschließen):** Bevor wir die Rekursion fortsetzen, MÜSSEN wir die gerade getroffene Entscheidung "rückgängig machen"! Wir entfernen `nums[index]` mittels `pop` aus `current_subset` (dies ist die definierende Aktion des Backtrackings). Danach führen wir die Rekursion mit `index + 1` aus.
 
 ## Algorithmus
 
@@ -75,24 +75,24 @@ def solve(arr, target, n):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 `nums = [1, 2]`. N=2.
 
 1. `backtrack(0, [])`:
-   - 1 einfügen -> `subset = [1]`. `backtrack(1, [1])` aufrufen.
- - 2 einfügen -> `subset = [1, 2]`. `backtrack(2, [1, 2])` aufrufen.
- - Basisfall! `[1, 2]` an das Ergebnis anhängen. Zurückkehren.
- - Backtracking -> `2` entfernen. `subset = [1]`.
-     - 2 ausschließen -> `backtrack(2, [1])` aufrufen.
- - Basisfall! `[1]` an das Ergebnis anhängen. Zurückkehren.
-   - Zurückverfolgen -> `1` entfernen. `subset = []`.
-   - 1 ausschließen -> `backtrack(1, [])` aufrufen.
- - 2 einbeziehen -> `subset = [2]`. `backtrack(2, [2])` aufrufen.
-       - Basisfall! `[2]` an das Ergebnis anhängen. Zurückkehren.
- - Rückverfolgung -> `2` vom Stack nehmen. `subset = []`.
-     - 2 ausschließen -> `backtrack(2, [])` aufrufen.
- - Basisfall! `[]` an das Ergebnis anhängen. Zurückkehren.
+   - Einschließen 1 -> `subset = [1]`. Aufruf `backtrack(1, [1])`.
+     - Einschließen 2 -> `subset = [1, 2]`. Aufruf `backtrack(2, [1, 2])`.
+       - Basisfall! Füge `[1, 2]` zum Ergebnis hinzu. Rückkehr.
+     - Backtrack -> `pop 2`. `subset = [1]`.
+     - Ausschließen 2 -> Aufruf `backtrack(2, [1])`.
+       - Basisfall! Füge `[1]` zum Ergebnis hinzu. Rückkehr.
+   - Backtrack -> `pop 1`. `subset = []`.
+   - Ausschließen 1 -> Aufruf `backtrack(1, [])`.
+     - Einschließen 2 -> `subset = [2]`. Aufruf `backtrack(2, [2])`.
+       - Basisfall! Füge `[2]` zum Ergebnis hinzu. Rückkehr.
+   - Backtrack -> `pop 2`. `subset = []`.
+   - Ausschließen 2 -> Aufruf `backtrack(2, [])`.
+       - Basisfall! Füge `[]` zum Ergebnis hinzu. Rückkehr.
 
 Ergebnis: `[[1, 2], [1], [2], []]`. ✓
 
@@ -104,28 +104,24 @@ Ergebnis: `[[1, 2], [1], [2], []]`. ✓
 | **Durchschnittlicher Fall** | $O(N * 2^N)$ | $O(N)$ |
 | **Schlechtester Fall** | $O(N * 2^N)$ | $O(N)$ |
 
-Es gibt genau 2^N Knoten/Blätter. An jedem Blatt dauert das Kopieren des `current_subset` $O(N)$ Zeit. Die gesamte Zeitkomplexität beträgt streng $O(N x 2^N)$.
-Die Platzkomplexität beträgt $O(N)$ für den Rekursionsaufrufstapel und die `current_subset`-Liste. (Das Ausgabearray, das $O(N x 2^N)$ Speicherplatz beansprucht, wird bei der Analyse des Hilfsraums in der Regel nicht berücksichtigt).
+Es gibt genau 2^N Knoten/Blätter. An jedem Blatt benötigt das Kopieren von `current_subset` $O(N)$ Zeit. Die gesamte Zeitkomplexität beträgt strikt $O(N * 2^N)$.
+Die Platzkomplexität beträgt $O(N)$ für den Rekursions-Stack und die `current_subset`-Liste. (Das Ergebnis-Array, das $O(N * 2^N)$ Platz beansprucht, wird bei der Analyse des zusätzlichen Speicherbedarfs üblicherweise nicht mitgezählt).
 
 ## Varianten & Optimierungen
 
-- **Teilmengen II (mit Duplikaten):** Was ist, wenn `nums = [1, 2, 2]`? Der Standardalgorithmus erzeugt doppelte Teilmengen `[1, 2]` zweimal! Um dies zu beheben: 1. Sortiere das Array zunächst. 2. Verwende bei der Ausführung des „Exclude“-Zweigs eine `while`-Schleife, um alle nachfolgenden Elemente zu überspringen, die mit `nums[index]` identisch sind.
-- **Bitmasken-Iteration:** Du kannst Rekursion komplett vermeiden! Eine Binärzahl von `0` bis `2^N - 1` stellt jede „Include“- bzw. „Exclude“-Entscheidung perfekt dar. Das i-te Bit der Zahl bestimmt, ob `nums[i]` in der Teilmenge enthalten ist. Dies erfordert $O(N x 2^N)$ Zeit und $O(1)$ Speicherplatz, was diese Methode für den Programmierwettbewerb deutlich überlegen macht.
+- **Subsets II (Mit Duplikaten):** Was, wenn `nums = [1, 2, 2]`? Der Standardalgorithmus würde die Teilmenge `[1, 2]` doppelt generieren! Um dies zu beheben: 1. Sortieren Sie das Array zuerst. 2. Wenn Sie den "Ausschließen"-Zweig ausführen, verwenden Sie eine `while`-Schleife, um alle nachfolgenden Elemente zu überspringen, die identisch mit `nums[index]` sind.
+- **Bitmask-Iteration:** Sie können die Rekursion komplett vermeiden! Eine Binärzahl von `0` bis `2^N - 1` repräsentiert perfekt jede Einschließen/Ausschließen-Entscheidung. Das i-te Bit der Zahl bestimmt, ob `nums[i]` in der Teilmenge enthalten ist. Dies erfordert $O(N * 2^N)$ Zeit und $O(1)$ Platz, was es für die wettbewerbsorientierte Programmierung deutlich überlegen macht.
 
 ## Anwendungen in der Praxis
 
-- **Optimierung von Datenbankabfragen:** Erzeugung der Potenzmenge der Join-Bedingungen, um die Kosten aller möglichen Ausführungspläne für Unterabfragen zu bewerten.
-- **Merkmalsauswahl (Maschinelles Lernen):** Testen aller möglichen Teilmengen von Variablen, um das Modell mit der höchsten Vorhersagegenauigkeit zu finden.
+- **Datenbank-Abfrageoptimierung:** Generierung der Potenzmenge von Join-Bedingungen, um die Kosten aller möglichen Ausführungspläne für Unterabfragen zu bewerten.
+- **Merkmalsauswahl (Machine Learning):** Testen aller möglichen Teilmengen von Variablen, um das Modell mit der höchsten Vorhersagegenauigkeit zu finden.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[backtrack_02 – Permutationen](backtrack_02_permutations.md)** — Der Unterschied zwischen Teilmengen (Reihenfolge spielt keine Rolle) und Permutationen (Reihenfolge spielt eine Rolle).
-- **[dp_06 – Teilmenge-Summe](../dynamic/dp_06_subset-sum.md)** — Wenn man nur wissen muss, OB eine Teilmenge existiert, deren Summe einem Zielwert entspricht, ist ein $O(N^2)$ DP-Array unendlich viel schneller als $O(2^N)$ Backtracking!
+- **[backtrack_02 - Permutations](backtrack_02_permutations.md)** — Der Unterschied zwischen Teilmengen (Reihenfolge spielt keine Rolle) und Permutationen (Reihenfolge spielt eine Rolle).
+- **[dp_06 - Subset Sum](../dynamic/dp_06_subset-sum.md)** — Wenn Sie nur wissen müssen, OB eine Teilmenge existiert, die eine Zielsumme ergibt, ist ein $O(N^2)$ DP-Array unendlich viel schneller als $O(2^N)$ Backtracking!
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-in Anlehnung an die kanonische Struktur, die von Referenzseiten zum Thema
-Wettbewerbsprogrammierung verwendet wird. Den kanonischen Enzyklopädieeintrag finden Sie unter dem
-Wikipedia-Link oben auf der Seite. Quell-Repository:
-<https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt, der für cOde(n) geschrieben wurde und sich an der kanonischen Struktur orientiert, die von Referenzseiten für wettbewerbsorientierte Programmierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folgen Sie dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*

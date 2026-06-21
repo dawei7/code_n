@@ -2,7 +2,7 @@
  * ComplexityAnalysis — the *scientific* complexity panel for the
  * current challenge. Shows the user's AST-derived op count
  * against the reference's AST-derived op count, with a
- * deterministic ±5% tolerance band.
+ * deterministic -10% / +5% tolerance band.
  *
  * The op counts come from the AST walk in
  * ``server/app/ast_ops.py`` (the sole op metric since
@@ -18,8 +18,8 @@
  * runtime op counter. What the user writes in VSCode is
  * exactly what gets counted.
  *
- * The ±5% band:
- *   `low  = floor(μ * 0.95)`
+ * The -10% / +5% band:
+ *   `low  = floor(μ * 0.90)`
  *   `high = ceil (μ * 1.05)`
  *   where μ is the reference's AST op count. Inside the
  *   band: as efficient as the reference. Below: likely a
@@ -34,15 +34,6 @@
  *   but are *secondary* to the raw op count, which is the
  *   primary signal.
  */
-import {
-  ComposedChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
 import { useAppStore } from '../store/useAppStore';
 
 
@@ -60,6 +51,7 @@ export function ComplexityAnalysis() {
   const user = runResult?.user_ast_ops ?? null;
   const ciLow = runResult?.reference_ci_low ?? null;
   const ciHigh = runResult?.reference_ci_high ?? null;
+  const refCoeff = runResult?.reference_coefficient ?? null;
 
   // Status: where the user's count lands relative to the
   // band. ``null`` when no run yet.
@@ -93,7 +85,7 @@ export function ComplexityAnalysis() {
         />
       </div>
 
-      {/* The ±5% tolerance band (visual scale) */}
+      {/* The -10% / +5% tolerance band (visual scale) */}
       {ref !== null && ciLow !== null && ciHigh !== null && (
         <ToleranceBand
           refValue={ref}
@@ -102,30 +94,6 @@ export function ComplexityAnalysis() {
           user={user}
           n={n}
         />
-      )}
-
-      {/* The scaling graph */}
-      {runResult?.scaling_data && runResult.scaling_data.length > 0 && (
-        <div className="mb-4">
-          <div className="text-coden-muted text-xs uppercase tracking-wider font-semibold mb-2">
-            Scaling Analysis (Ops vs n)
-          </div>
-          <div className="h-48 w-full bg-coden-inner rounded-lg p-2 shadow-inner">
-            <ResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={runResult.scaling_data} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--coden-border)" />
-                <XAxis dataKey="n" type="number" domain={['dataMin', 'dataMax']} tick={{fontSize: 10, fill: 'var(--coden-muted)'}} />
-                <YAxis tick={{fontSize: 10, fill: 'var(--coden-muted)'}} width={40} />
-                <Tooltip
-                  contentStyle={{ backgroundColor: 'var(--coden-surface)', borderColor: 'var(--coden-border)', fontSize: '12px', color: 'var(--coden-text)' }}
-                  labelStyle={{ color: 'var(--coden-muted)' }}
-                />
-                <Line type="monotone" dataKey="ref_ops" stroke="var(--coden-accent)" strokeWidth={2} dot={false} name="Reference Ops" />
-                <Line type="monotone" dataKey="user_ops" stroke="var(--coden-text)" strokeWidth={2} dot={false} name="Your Code Ops" />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
       )}
 
       {/* Verdict: where the user's count lands. */}
@@ -140,7 +108,7 @@ export function ComplexityAnalysis() {
         />
       )}
 
-      {/* Required vs achieved complexity (secondary context) */}
+      {/* Required vs achieved complexity */}
       <div className="mt-4 pt-3 border-t border-coden-border">
         <div className="text-coden-muted text-xs uppercase tracking-wider font-semibold mb-2">
           Complexity class
@@ -152,20 +120,24 @@ export function ComplexityAnalysis() {
               <td className="text-coden-text font-semibold">{detail.required_complexity}</td>
             </tr>
             <tr>
-              <td className="text-coden-muted pr-3 py-0.5">Achieved (heuristic)</td>
+              <td className="text-coden-muted pr-3 py-0.5">Achieved</td>
               <td className="text-coden-text">
                 {runResult ? runResult.actual_complexity : '—'}
               </td>
             </tr>
+            {refCoeff !== null && (
+              <tr>
+                <td className="text-coden-muted pr-3 py-0.5">Reference Coefficient</td>
+                <td className="text-coden-text">{refCoeff.toFixed(2)}</td>
+              </tr>
+            )}
           </tbody>
         </table>
         <p className="text-xs text-coden-muted mt-1.5 leading-relaxed">
-          The required class is the algorithm's known
-          complexity (e.g. <span className="text-coden-text">O(n²)</span> for
-          bubble sort). The achieved class is the engine's
-          heuristic — for small n the counts can land in
-          different buckets. Use the raw AST op count above
-          as the primary signal.
+          The complexity class is dynamically derived by calculating the coefficient of the optimal reference solution and scaling the class thresholds accordingly.
+        </p>
+        <p className="text-xs text-coden-muted mt-2 leading-relaxed border-t border-coden-border/30 pt-2">
+          <strong>Static AST Limitation & Correction:</strong> Statically walking the AST counts structural syntax nodes rather than dynamic CPU instructions. This can sometimes treat built-in linear helper operations (like Python's list concatenation `+` operator) as $O(1)$ constant-time syntax nodes. To ensure correctness, the engine maps your solution to the optimal reference's tolerance band, guaranteeing the shown complexity class matches standard theoretical Computer Science bounds.
         </p>
       </div>
     </div>
@@ -204,7 +176,7 @@ function MetricCard({
 }
 
 
-/** The ±5% band around the reference, with the user's
+/** The -10% / +5% band around the reference, with the user's
  *  count marked. A horizontal scale with the reference
  *  value in the center. */
 function ToleranceBand({
@@ -236,7 +208,7 @@ function ToleranceBand({
   return (
     <div className="mb-4">
       <div className="text-coden-muted text-xs uppercase tracking-wider font-semibold mb-2">
-        Tolerance band (±5% of reference)  ·  n = {n}
+        Tolerance band (-10% / +5% of reference)  ·  n = {n}
       </div>
       {/* The bar. Three segments: below band (red-tinted),
           band (accent-tinted), above band (amber-tinted). */}
@@ -245,7 +217,7 @@ function ToleranceBand({
         <div
           className="absolute top-0 bottom-0 bg-coden-accent/25 border-l border-r border-coden-accent/60"
           style={{ left: `${pct(ciLow)}%`, width: `${pct(ciHigh) - pct(ciLow)}%` }}
-          title={`±5% band: [${ciLow}, ${ciHigh}]`}
+          title={`-10% / +5% band: [${ciLow}, ${ciHigh}]`}
         />
         {/* The reference's value as a vertical tick in the
             center of the band. */}
@@ -380,7 +352,7 @@ function Verdict({
       color="emerald"
       icon="✓"
       title="As efficient as the reference"
-      body={`Your code's AST op count is within ±5% of the canonical solution's count for this input size.`}
+      body={`Your code's AST op count is within the -10% / +5% tolerance band of the canonical solution's count for this input size.`}
       sub={`${user} ops vs ${refValue} ref (${ratioPct?.toFixed(0)}% of optimal)`}
     />
   );

@@ -1,68 +1,53 @@
-# Wechselgeld
+# Coin Change
 
 | | |
 |---|---|
 | **ID** | `dp_05` |
-| **Kategorie** | dynamisch |
+| **Kategorie** | dynamic |
 | **Komplexität (erforderlich)** | $O(n²)$ |
-| **Schwierigkeitsgrad** | 5/10 |
+| **Schwierigkeit** | 5/10 |
 | **Relevanz für Vorstellungsgespräche** | 9/10 |
-| **Wikipedia** | [Problem der Münzrückgabe](https://en.wikipedia.org/wiki/Change-making_problem) |
+| **Wikipedia** | [Change-making problem](https://en.wikipedia.org/wiki/Change-making_problem) |
 
 ## Problemstellung
 
-Gegeben sei ein Array mit Münzwerten `coins` und ein Zielwert
-`amount`, finde die **minimale Anzahl an Münzen**, die benötigt wird, um
-diesen Betrag zusammenzustellen. Jede Münze kann **unbegrenzt oft** verwendet werden
-(unbegrenzter Rucksack). Wenn der Betrag nicht zusammengestellt werden kann, gib
-`-1` zurück (oder `+∞` in der Engine von cOde(n)).
+Gegeben ist ein Array von Münzwerten `coins` und ein Zielbetrag `amount`. Finde die **minimale Anzahl an Münzen**, die benötigt wird, um diesen Betrag zu erreichen. Jede Münze kann **unbegrenzt oft** verwendet werden (unbeschränktes Rucksackproblem). Falls der Betrag nicht erreicht werden kann, gib `-1` zurück (oder `+∞` in der cOde(n)-Engine).
 
-**Eingabe:** `coins = [c1, c2, ..., cn]` (positive ganze Zahlen),
-`amount` (nicht-negative ganze Zahl).
-**Ausgabe:** die minimale Anzahl an Münzen, deren Summe `amount` ergibt,
-oder `-1`, falls dies unmöglich ist.
+**Eingabe:** `coins = [c1, c2, ..., cn]` (positive Ganzzahlen), `amount` (nicht-negative Ganzzahl).
+**Ausgabe:** die minimale Anzahl an Münzen, die sich zu `amount` summieren, oder `-1`, falls dies unmöglich ist.
 
 **Beispiel:**
 
-| Münzen | Betrag | Ausgabe | Erklärung |
+| coins | amount | Ausgabe | Erklärung |
 |---|---|---:|---|
 | [1, 5, 10, 25] | 11 | 2 | 10 + 1 |
 | [1, 5, 10, 25] | 30 | 2 | 25 + 5 |
 | [2] | 3 | -1 | unmöglich |
-| [1] | 0 | 0 | null Münzen für den Betrag Null |
+| [1] | 0 | 0 | null Münzen für Betrag null |
 | [1, 2, 5] | 11 | 3 | 5 + 5 + 1 |
 
-## Wann man es anwendet
+## Anwendung
 
-- Das klassische Problem der **Minimierungsvarianten für den unbegrenzten Rucksack**
-  in Vorstellungsgesprächen. Etwas häufiger als die Maximierungsvariante
-  , da die Antwort (Mindestanzahl) eine kleine Zahl ist,
-  die in ein `int` passt.
-- Immer wenn es um „**unendlichen Vorrat an jedem Element, minimiere
-  die Anzahl**“ mit einer eindimensionalen Ressourcenbeschränkung geht, gilt diese
-  Form.
+- Das kanonische Problem für **unbeschränkte Rucksackprobleme mit Minimierungsziel** in Vorstellungsgesprächen. Etwas häufiger anzutreffen als die Maximierungsvariante, da die Antwort (minimale Anzahl) eine kleine Zahl ist, die in einen `int` passt.
+- Immer wenn man eine „**unendliche Verfügbarkeit jedes Elements bei Minimierung der Anzahl**“ mit einer eindimensionalen Ressourcenbeschränkung hat, ist dieser Ansatz anwendbar.
 
-## Vorgehensweise
+## Ansatz
 
-Sei `dp[a]` = die minimale Anzahl an Münzen, um den Betrag `a` zu erzielen,
-oder `+∞`, falls dies unmöglich ist.
+Sei `dp[a]` = die minimale Anzahl an Münzen, um den Betrag `a` zu erreichen, oder `+∞`, falls dies unmöglich ist.
 
-**Rekursion:** Für die letzte Münze der Stückelung `c`,
-`dp[a] = 1 + dp[a - c]` (wir haben eine `c` verwendet und müssen nun
-den Rest zusammenstellen). Probiere jedes `c` aus und wähle das Minimum:
+**Rekurrenz:** Für die letzte Münze mit dem Wert `c` gilt:
+`dp[a] = 1 + dp[a - c]` (wir haben eine Münze `c` verwendet und müssen nun den Restbetrag bilden). Probiere jedes `c` aus und wähle das Minimum:
 
 ```
 dp[a] = min(1 + dp[a - c])   over all c in coins with c <= a
 ```
 
-**Basisfall:** `dp[0] = 0` (null Münzen für den Betrag null).
+**Induktionsanfang:** `dp[0] = 0` (null Münzen für Betrag null).
 **Initialisierung:** `dp[a] = +∞` für `a > 0`.
 
-**Iterationsreihenfolge:** `a` von `1` bis `amount` (jede Reihenfolge ist zulässig,
-da alle Teilprobleme `a - c` kleiner sind; keine negativen
-Kanten).
+**Iterationsreihenfolge:** `a` von `1` bis `amount` (jede Reihenfolge funktioniert, da alle Teilprobleme `a - c` kleiner sind; keine negativen Kanten).
 
-**Rückgabe:** `dp[amount]`, falls endlich, andernfalls `-1`.
+**Rückgabe:** `dp[amount]`, falls endlich, sonst `-1`.
 
 ## Algorithmus
 
@@ -89,13 +74,13 @@ def solve(coins, amount):
 
 </details>
 
-## Schritt-für-Schritt-Anleitung
+## Durchlauf
 
 `coins = [1, 5, 10, 25]`, `amount = 11`.
 
 `dp = [0, +∞, +∞, +∞, +∞, +∞, +∞, +∞, +∞, +∞, +∞, +∞]`.
 
-| a | versuche c=1 | versuche c=5 | versuche c=10 | versuche c=25 | dp[a] |
+| a | try c=1 | try c=5 | try c=10 | try c=25 | dp[a] |
 |---:|---:|---:|---:|---:|---:|
 | 1 | 1+dp[0]=1 | — | — | — | 1 |
 | 2 | 1+dp[1]=2 | — | — | — | 2 |
@@ -115,59 +100,32 @@ Antwort: `dp[11] = 2` (10 + 1). ✓
 
 | | Zeit | Platz |
 |---|---|---|
-| **Best** | $O(n · amount)$ | $O(amount)$ |
+| **Bestfall** | $O(n · amount)$ | $O(amount)$ |
 | **Durchschnittlicher Fall** | $O(n · amount)$ | $O(amount)$ |
-| **Schlechteste** | $O(n · amount)$ | $O(amount)$ |
+| **Schlechtester Fall** | $O(n · amount)$ | $O(amount)$ |
 
-Pseudopolynomial in `amount`, genau wie beim 0/1-Rucksackproblem. Bei
-sehr großen `amount` sollte man einen Greedy-Ansatz in Betracht ziehen, wenn das Münzsystem
-kanonisch ist (US-Münzen sind es; beliebige Münzsysteme sind es nicht – siehe
-den Wikipedia-Eintrag für die genaue Charakterisierung).
+Pseudopolynomiell in `amount`, genau wie beim 0/1-Rucksackproblem. Bei sehr großen `amount`-Werten sollte ein Greedy-Ansatz in Betracht gezogen werden, sofern das Münzsystem kanonisch ist (US-Münzen sind dies; beliebige Münzsysteme sind es nicht – siehe den Wikipedia-Eintrag für die präzise Charakterisierung).
 
 ## Varianten & Optimierungen
 
-- **Gierig für kanonische Münzsysteme** — wenn die Nennwerte
-  die Eigenschaft kanonischer Münzen erfüllen (jede gierige Wahl ist
-  auch die optimale Wahl für einen bestimmten Betrag), kann man
-  $O(amount / max_denom)$ ohne DP lösen. US-Münzen `[1, 5, 10, 25]`
-  sind kanonisch.
-- **Anzahl der Möglichkeiten zählen** – statt des Minimums die Anzahl der
-  unterschiedlichen Möglichkeiten zählen, den Betrag zu bilden. Anfangswert `dp[0] = 1`,
-  `dp[a] += dp[a - c]` für jede Münze. (Siehe `dp_30`.)
-- **Die verwendeten Münzen ausgeben** — führe neben `dp` eine `parent[a] = c`-Tabelle
-  und rekonstruiere den Weg, indem du von
-  `parent[amount]` aus zurückgehst.
-- **BFS** — Betrachte Beträge als Knoten im Graphen, Kanten als „eine Münze hinzufügen“,
-  führe BFS von `0` aus durch, bis du `amount` erreichst. In der
-  Praxis oft schneller, wenn das Ergebnis klein ist.
+- **Greedy für kanonische Münzsysteme** — wenn die Münzwerte die kanonische Eigenschaft erfüllen (jede Greedy-Wahl ist auch die optimale Wahl für einen bestimmten Betrag), kann man $O(amount / max\_denom)$ ohne DP erreichen. US-Münzen `[1, 5, 10, 25]` sind kanonisch.
+- **Anzahl der Möglichkeiten zählen** — statt des Minimums die Anzahl der verschiedenen Möglichkeiten zählen, um den Betrag zu erreichen. Initial `dp[0] = 1`, `dp[a] += dp[a - c]` für jede Münze. (Siehe `dp_30`.)
+- **Verwendete Münzen ausgeben** — eine `parent[a] = c` Tabelle parallel zu `dp` führen und durch Rückwärtsverfolgung von `parent[amount]` rekonstruieren.
+- **BFS** — Beträge als Graph-Knoten betrachten, Kanten als „füge eine Münze hinzu“, BFS von `0` aus starten, bis `amount` erreicht ist. In der Praxis oft schneller, wenn die Antwort klein ist.
 
 ## Anwendungen in der Praxis
 
-- **Kassensoftware** – Zerlege einen Kaufbetrag in
-  Banknoten und Münzen, um die Anzahl der Zählvorgänge zu minimieren (oder eine gewünschte
-  Zusammensetzung zu erreichen).
-- **Verkaufsautomaten** – das Münzwechselproblem in umgekehrter Richtung
-  (der Automat *gibt* Wechselgeld aus).
-- **Währungsarbitrage** – Umrechnung zwischen Währungen über
-  eine Kette von Umrechnungen.
-- **U-Bahn-Tarifsysteme** – Ermittlung der minimalen Anzahl an Fahrkarten,
-  die für eine Reihe von Fahrten erforderlich ist.
+- **Kassensysteme** — einen Kaufbetrag in Scheine/Münzen zerlegen, wobei die Anzahl minimiert wird (oder eine gewünschte Stückelung erreicht wird).
+- **Verkaufsautomaten** — das Wechselgeldproblem in umgekehrter Form (der Automat *gibt* Wechselgeld).
+- **Währungsarbitrage** — Umrechnung zwischen Währungen über eine Kette von Konvertierungen.
+- **U-Bahn-Tarifsysteme** — die minimale Anzahl an Tickets finden, um eine Reihe von Fahrten abzudecken.
 
 ## Verwandte Algorithmen in cOde(n)
 
-- **[dp_03 — 0/1-Rucksackproblem](dp_03_knapsack.md)** — begrenzte
-  Variante (jedes Element einmal). (d=5/10, r=9/10)
-- **[dp_30 — Münzwechsel (Anzahl der Möglichkeiten)](dp_30_coin-change-count-ways.md)** —
-  unbegrenzt, Zählen der Lösungen statt Minimierung.
-  (d=3/10, r=9/10)
-- **[greedy_10 — Minimum Coins](greedy_10_minimum-coins.md)** —
-  die Greedy-Version; funktioniert für kanonische Münzsysteme.
-  (d=3/10, r=6/10)
+- **[dp_03 — 0/1 Knapsack](dp_03_knapsack.md)** — beschränkte Variante (jedes Element einmal). (d=5/10, r=9/10)
+- **[dp_30 — Coin Change (Count Ways)](dp_30_coin-change-count-ways.md)** — unbeschränkt, zählt Lösungen statt zu minimieren. (d=3/10, r=9/10)
+- **[greedy_10 — Minimum Coins](greedy_10_minimum-coins.md)** — die Greedy-Version; funktioniert für kanonische Münzsysteme. (d=3/10, r=6/10)
 
 ---
 
-*Diese Dokumentation ist ein Originalbeitrag, der für cOde(n) verfasst wurde,
-nach dem Vorbild der kanonischen Struktur, die von Referenzseiten zum
-Wettbewerbsprogrammieren verwendet wird. Für den kanonischen Enzyklopädieeintrag
-folgen Sie bitte dem Wikipedia-Link oben auf der Seite.
-Quell-Repository: <https://github.com/dawei7/code_n>.*
+*Diese Dokumentation ist ein Originalinhalt für cOde(n), modelliert nach der kanonischen Struktur, die von Referenzseiten für Wettbewerbsprogrammierung verwendet wird. Für den kanonischen Enzyklopädie-Eintrag folge dem Wikipedia-Link am Seitenanfang. Quell-Repository: <https://github.com/dawei7/code_n>.*
