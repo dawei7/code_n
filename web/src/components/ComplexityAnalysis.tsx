@@ -15,7 +15,7 @@
  *
  * The player's input is a plain list / dict / set — no
  * runtime instrumentation, no ``TrackedList`` wrapper, no
- * runtime op counter. What the user writes in VSCode is
+ * runtime op counter. What the user writes in the editor is
  * exactly what gets counted.
  *
  * The -10% / +5% band:
@@ -301,14 +301,14 @@ function Verdict({
 
   if (status === 'no-run') {
     return (
-      <div className="rounded-lg p-4 bg-[#181818] shadow-inner text-coden-muted">
+      <div className="rounded-lg p-4 bg-coden-inner shadow-inner text-coden-muted">
         Run the challenge to see the analysis.
       </div>
     );
   }
   if (status === 'no-ref') {
     return (
-      <div className="rounded-lg p-4 bg-[#181818] shadow-inner text-coden-muted">
+      <div className="rounded-lg p-4 bg-coden-inner shadow-inner text-coden-muted">
         No reference comparison available for this run.
       </div>
     );

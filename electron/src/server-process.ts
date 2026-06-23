@@ -69,6 +69,42 @@ function findPythonExe(repoRoot: string): string {
 }
 
 
+function findDebugPythonExe(repoRoot: string): string | null {
+  try {
+    return findPythonExe(repoRoot);
+  } catch {
+    // Packaged installs may not have the dev venv. Fall through to
+    // a system Python; the debug route will report a clear debugpy
+    // install error if that interpreter is missing the module.
+  }
+  const names = process.platform === 'win32' ? ['python.exe', 'python3.exe', 'py.exe'] : ['python3', 'python'];
+  for (const name of names) {
+    const found = findOnPath(name);
+    if (found) return found;
+  }
+  return null;
+}
+
+
+function findOnPath(name: string): string | null {
+  const pathValue = process.env.PATH ?? '';
+  const pathExt = process.platform === 'win32'
+    ? (process.env.PATHEXT ?? '.EXE;.CMD;.BAT').split(';')
+    : [''];
+  for (const dir of pathValue.split(path.delimiter)) {
+    if (!dir) continue;
+    for (const ext of pathExt) {
+      const lowerName = name.toLowerCase();
+      const lowerExt = ext.toLowerCase();
+      const candidateName = lowerExt && lowerName.endsWith(lowerExt) ? name : name + ext;
+      const candidate = path.join(dir, candidateName);
+      if (fs.existsSync(candidate)) return candidate;
+    }
+  }
+  return null;
+}
+
+
 /**
  * Spawn the FastAPI server (bundled or dev) and wait until it's
  * ready to accept requests. On any failure, the child process is
@@ -107,6 +143,7 @@ export async function startServer(
     // server reads them via CODEN_DOCS_DIR. (In dev, the server
     // falls back to <repo>/docs automatically.)
     const docsDir = path.join(process.resourcesPath, 'docs');
+    const debugPython = findDebugPythonExe(repoRoot);
     child = spawn(bundled, [], {
       env: {
         ...process.env,
@@ -114,6 +151,7 @@ export async function startServer(
         CODEN_PORT_FILE: portFile,
         CODEN_WEB_DIST: webDist,
         CODEN_DOCS_DIR: docsDir,
+        ...(debugPython ? { CODEN_DEBUG_PYTHON: debugPython } : {}),
       },
       stdio: ['ignore', 'pipe', 'pipe'],
       windowsHide: true,
@@ -128,7 +166,12 @@ export async function startServer(
       ],
       {
         cwd: repoRoot,
-        env: { ...process.env, CODEN_HOME: codenHome, CODEN_PORT_FILE: portFile },
+        env: {
+          ...process.env,
+          CODEN_HOME: codenHome,
+          CODEN_PORT_FILE: portFile,
+          CODEN_DEBUG_PYTHON: pythonExe,
+        },
         stdio: ['ignore', 'pipe', 'pipe'],
         windowsHide: true,
       },

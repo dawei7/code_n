@@ -26,4 +26,8 @@ Sample 1 output: [1,2,1,1,2,1]
 
 def solve(nums):
     # Write your code here.
+    print("Hello")
     return nums+nums
+
+
+

@@ -20,15 +20,13 @@
  * The v0.9.0 transport bar is much smaller than the old one:
  *   - challenge title (left)
  *   - practice / real-test toggle
- *   - Run / Reset / Open in VSCode buttons
+ *   - Run / Reset buttons
  *   - n + seed inputs
  *   - a compact "n=… | req: … | ops: …" result line (when
  *     a run is available)
  *
- * No editor pop-out, no AI mode toggle, no debug pop-out,
- * no step controls. The "Open in VSCode" button writes the
- * active challenge id to solutions/.vscode-active and calls
- * Electron's shell.openPath(repoRoot).
+ * No editor pop-out, no AI mode toggle, no external IDE handoff.
+ * Debugging now happens inside the cOde(n) editor.
  */
 import { useEffect, useState } from 'react';
 import { useAppStore } from '../store/useAppStore';
@@ -119,30 +117,40 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
   })();
 
   return (
-    <header className="h-10 flex items-center justify-between px-4 border-b border-coden-border bg-coden-surface shrink-0 select-none">
-      <div className="flex items-center gap-2">
+    <header className="h-10 flex items-center justify-between gap-3 px-3 border-b border-coden-border bg-coden-surface shrink-0 select-none">
+      <div className="flex items-center gap-2 min-w-0">
         <button
           onClick={onOpenProfiles}
-          className="text-base p-1 hover:bg-slate-800 rounded transition-all cursor-pointer flex items-center justify-center h-7 w-7"
+          className="text-sm p-1 hover:bg-coden-border rounded transition-all cursor-pointer flex items-center justify-center h-7 w-7"
           title="Open Settings"
+          aria-label="Open Settings"
         >
-          ⚙️
+          ⚙
         </button>
         <button
           onClick={onOpenInfo}
-          className="text-base p-1 hover:bg-slate-800 rounded transition-all cursor-pointer flex items-center justify-center h-7 w-7"
+          className="text-sm p-1 hover:bg-coden-border rounded transition-all cursor-pointer flex items-center justify-center h-7 w-7"
           title="Open System Documentation & Help"
+          aria-label="Open System Documentation & Help"
         >
-          ℹ️
+          i
         </button>
-        <h1 className="text-sm font-bold tracking-tight text-white ml-1">cOde(n)</h1>
+        <button
+          type="button"
+          onClick={onOpenInfo}
+          className="text-sm font-bold tracking-tight text-coden-text ml-1 shrink-0 hover:text-coden-accent transition-colors"
+          title="About cOde(n)"
+          aria-label="About cOde(n)"
+        >
+          cOde(n)
+        </button>
         {challenges.length > 0 && (
-          <span className="text-[11px] text-slate-500 font-mono">
+          <span className="text-[11px] text-slate-500 font-mono shrink-0">
             {challenges.length} challenges
           </span>
         )}
-        <span className="ml-3 px-2 py-0.5 rounded bg-slate-950 border border-slate-850 text-slate-400 text-[10.5px] font-medium select-none">
-          👤 User: {activeProfile} ({progress?.active_set === 'neetcode' ? 'NeetCode 250' : 'GeeksforGeeks'})
+        <span className="ml-2 px-2 py-0.5 rounded bg-coden-bg border border-coden-border text-coden-muted text-[10.5px] font-medium select-none truncate max-w-[260px]">
+          {activeProfile} · {progress?.active_set === 'neetcode' ? 'NeetCode 250' : 'GeeksforGeeks'}
         </span>
         {updater.state.appVersion && (
           <span
@@ -153,8 +161,8 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
           </span>
         )}
       </div>
-      <div className="flex items-center gap-2 text-xs">
-        <div className="flex items-center rounded border border-coden-border bg-coden-bg overflow-hidden mr-2">
+      <div className="flex items-center gap-1 text-xs shrink-0">
+        <div className="flex items-center rounded border border-coden-border bg-coden-bg overflow-hidden mr-1">
           <button
             type="button"
             onClick={decreaseFontSize}
@@ -178,15 +186,16 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
           className="px-2 py-1 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border mr-1"
           title={`Switch to ${language === 'en' ? 'German' : 'English'}`}
         >
-          {language === 'en' ? '🇩🇪 DE' : '🇬🇧 EN'}
+          {language === 'en' ? 'DE' : 'EN'}
         </button>
         <button
           type="button"
           onClick={toggleTheme}
-          className="px-2 py-1 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border"
+          className="h-7 w-7 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border flex items-center justify-center text-sm"
           title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >
-          {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+          {theme === 'dark' ? '☀' : '☾'}
         </button>
         <button
           type="button"
@@ -195,7 +204,7 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
           className="px-2 py-1 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border disabled:opacity-50 disabled:cursor-not-allowed"
           title={updateButtonTitle}
         >
-          {updater.state.checking ? 'Checking…' : '↻ Check for updates'}
+          {updater.state.checking ? 'Checking...' : 'Updates'}
         </button>
       </div>
     </header>
@@ -205,7 +214,7 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
 
 /**
  * TransportBar — challenge title, mode toggle, Run, Reset,
- * Open in VSCode, n/seed inputs, compact result line.
+ * n/seed inputs, compact result line.
  *
  * Carved out of the old ChallengeView so it lives at the
  * same level as the pane tree (the panes never own the
@@ -223,20 +232,10 @@ function TransportBar() {
   const setSeed = useAppStore((s) => s.setSeed);
   const mode = useAppStore((s) => s.mode);
   const setMode = useAppStore((s) => s.setMode);
-  const openInVSCode = useAppStore((s) => s.openInVSCode);
-
-  async function handleOpenInVSCode() {
-    if (!detail) return;
-    // The store action handles: handoff-file write, on-demand
-    // starter creation, the IPC call, the v0.9.2-vs-v0.9.3
-    // boolean vs object return shape, and shared error state
-    // (so VSCodeTab sees the same error the TransportBar set).
-    await openInVSCode(detail);
-  }
 
   return (
-    <div className="h-12 px-4 py-2 border-b border-coden-border bg-coden-surface shrink-0 flex items-center gap-3 overflow-x-auto">
-      <div className="min-w-0">
+    <div className="min-h-12 px-3 py-2 border-b border-coden-border bg-coden-surface shrink-0 flex items-center gap-3 overflow-x-auto">
+      <div className="min-w-[220px] max-w-[380px]">
         {detail ? (
           <>
             <h2 className="text-sm font-semibold truncate leading-tight">{detail.name}</h2>
@@ -251,7 +250,7 @@ function TransportBar() {
 
       {/* Mode toggle: practice (user picks n/seed) vs real_test
           (server picks n/seed, fresh every run). */}
-      <div className="flex items-center text-xs shrink-0">
+      <div className="flex items-center text-xs shrink-0 ml-auto">
         <div
           className="inline-flex rounded border border-coden-border overflow-hidden"
           title="Practice: you pick n + seed. Real test: server picks both, fresh every run."
@@ -259,26 +258,30 @@ function TransportBar() {
           <button
             type="button"
             onClick={() => setMode('practice')}
+            title="Practice mode"
+            aria-label="Practice mode"
             className={[
-              'px-2 py-1 font-semibold',
+              'h-7 w-8 font-semibold flex items-center justify-center text-sm',
               mode === 'practice'
                 ? 'bg-coden-accent text-coden-bg'
                 : 'text-coden-muted hover:text-coden-text hover:bg-coden-border',
             ].join(' ')}
           >
-            Practice
+            ⚙
           </button>
           <button
             type="button"
             onClick={() => setMode('real_test')}
+            title="Real test mode"
+            aria-label="Real test mode"
             className={[
-              'px-2 py-1 font-semibold border-l border-coden-border',
+              'h-7 w-8 font-semibold border-l border-coden-border flex items-center justify-center text-sm',
               mode === 'real_test'
                 ? 'bg-coden-accent text-coden-bg'
                 : 'text-coden-muted hover:text-coden-text hover:bg-coden-border',
             ].join(' ')}
           >
-            Real test
+            ✓
           </button>
         </div>
       </div>
@@ -288,8 +291,9 @@ function TransportBar() {
           type="button"
           onClick={() => void run()}
           disabled={isRunning || !detail}
-          className="px-3 py-1.5 text-sm font-semibold rounded bg-coden-accent text-coden-bg hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="coden-transport-run h-8 w-9 text-sm font-semibold rounded bg-coden-accent text-coden-bg hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           title="Run the solution from solutions/<id>.py (re-reads the file on every click)"
+          aria-label="Run solution"
         >
           {isRunning ? 'Running…' : '▶ Run'}
         </button>
@@ -297,18 +301,11 @@ function TransportBar() {
           type="button"
           onClick={reset}
           disabled={isRunning}
-          className="px-2 py-1.5 text-sm rounded border border-coden-border text-coden-text hover:bg-coden-border disabled:opacity-50"
+          className="coden-transport-reset h-8 w-9 text-sm rounded border border-coden-border text-coden-text hover:bg-coden-border disabled:opacity-50 flex items-center justify-center"
+          title="Reset current solution"
+          aria-label="Reset current solution"
         >
           Reset
-        </button>
-        <button
-          type="button"
-          onClick={() => void handleOpenInVSCode()}
-          disabled={!detail}
-          className="px-2 py-1.5 text-sm rounded border border-coden-accent text-coden-accent hover:bg-coden-accent hover:text-coden-bg disabled:opacity-50 disabled:cursor-not-allowed"
-          title="Open solutions/<id>.py in Antigravity (writes the active challenge id to solutions/.vscode-active first)"
-        >
-          {'</>'} Antigravity
         </button>
       </div>
 
@@ -329,7 +326,7 @@ function TransportBar() {
             value={n}
             disabled={mode === 'real_test'}
             onChange={(e) => setN(Math.max(2, Math.min(detail.max_n, Number(e.target.value) || 16)))}
-            className="w-16 bg-coden-bg border border-coden-border rounded px-2 py-1 font-mono text-coden-text disabled:opacity-50 disabled:cursor-not-allowed"
+            className="h-7 w-16 bg-coden-bg border border-coden-border rounded px-2 font-mono text-coden-text disabled:opacity-50 disabled:cursor-not-allowed"
           />
           <label className="text-coden-muted ml-1">seed</label>
           <input
@@ -337,7 +334,7 @@ function TransportBar() {
             value={seed ?? ''}
             disabled={mode === 'real_test'}
             onChange={(e) => setSeed(e.target.value === '' ? null : Number(e.target.value))}
-            className="w-16 bg-coden-bg border border-coden-border rounded px-2 py-1 font-mono text-coden-text disabled:opacity-50 disabled:cursor-not-allowed"
+            className="h-7 w-16 bg-coden-bg border border-coden-border rounded px-2 font-mono text-coden-text disabled:opacity-50 disabled:cursor-not-allowed"
           />
         </div>
       )}

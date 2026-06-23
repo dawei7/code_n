@@ -7,6 +7,10 @@ module-level list so the request is a constant-time dict lookup.
 """
 from __future__ import annotations
 
+import json
+import urllib.error
+import urllib.request
+
 from fastapi import APIRouter, HTTPException
 
 from challenges.registry import CHALLENGE_REGISTRY
@@ -20,6 +24,8 @@ from server.app.schemas import (
 
 
 router = APIRouter()
+
+_LEETCODE_QUESTION_CACHE: dict[str, dict[str, str]] = {}
 
 
 def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
@@ -64,6 +70,54 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
         leetcode_slug=lc.get("slug", ""),
         leetcode_url=lc.get("url", ""),
     )
+
+
+@router.get("/leetcode/questions/{title_slug}")
+def get_leetcode_question(title_slug: str) -> dict[str, str]:
+    """Fetch LeetCode's public frontend problem id for one title slug.
+
+    The local registry stores stable LeetCode URLs. The numeric id is
+    owned by LeetCode, so we resolve it from their public GraphQL API
+    and cache it for the current server process.
+    """
+    if title_slug in _LEETCODE_QUESTION_CACHE:
+        return _LEETCODE_QUESTION_CACHE[title_slug]
+
+    body = json.dumps({
+        "query": (
+            "query questionTitle($titleSlug: String!) { "
+            "question(titleSlug: $titleSlug) { questionFrontendId title titleSlug } "
+            "}"
+        ),
+        "variables": {"titleSlug": title_slug},
+    }).encode("utf-8")
+    request = urllib.request.Request(
+        "https://leetcode.com/graphql",
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "User-Agent": "Mozilla/5.0",
+            "Referer": f"https://leetcode.com/problems/{title_slug}/",
+        },
+    )
+
+    try:
+        with urllib.request.urlopen(request, timeout=8) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
+        raise HTTPException(status_code=502, detail=f"LeetCode lookup failed: {exc}") from exc
+
+    question = (payload.get("data") or {}).get("question")
+    if not question:
+        raise HTTPException(status_code=404, detail=f"LeetCode question '{title_slug}' not found")
+
+    result = {
+        "frontend_id": str(question.get("questionFrontendId") or ""),
+        "title": str(question.get("title") or ""),
+        "slug": str(question.get("titleSlug") or title_slug),
+    }
+    _LEETCODE_QUESTION_CACHE[title_slug] = result
+    return result
 
 
 def get_unlocked_challenges(progress, all_challenges) -> set[str]:

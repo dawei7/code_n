@@ -3,11 +3,9 @@
  * `server/app/schemas.py`. The shapes are the same; we redeclare
  * them in TypeScript so the frontend has type-safety end to end.
  *
- * The per-step trace, the AI report, and the in-app debug surface
- * were all removed in the v0.9.0 pivot (the player edits + debugs
- * in VSCode). The remaining surface is the verdict + complexity
- * numbers + the ``solve()`` return value (rendered as a compact
- * string for the Result tab).
+ * The remaining run surface is the verdict + complexity numbers
+ * + the ``solve()`` return value. Debug state is streamed through
+ * the debugger WebSocket, not this REST payload.
  */
 
 export interface ParamDoc {

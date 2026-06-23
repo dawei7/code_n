@@ -2,11 +2,9 @@
  * ResultTab — the verdict + complexity band + return value,
  * rendered as a single card.
  *
- * Replaces the old in-app debug surface + step player. The
- * player runs the challenge in cOde(n), sees the verdict
- * here, then opens VSCode to fix the code (or to read the
- * result more carefully via the breakpoints / locals
- * view in VSCode's debug panel).
+ * Shows the run verdict and points the player back to the
+ * in-app editor/debugger when they need breakpoints, locals,
+ * and step controls.
  *
  * Layout:
  *   - Big status banner (emerald/amber/rose) with the
@@ -14,14 +12,12 @@
  *   - Compact two-card metric row: your ops vs reference.
  *   - Inline -10% / +5% tolerance band (the simpler one from
  *     ComplexityAnalysis, not the full scientific panel).
- *   - The ``return_value_repr`` as a code-styled block
- *     (so the player can confirm "yes, that's what my
- *     code produced").
- *   - Re-run button + a hint pointing to VSCode for
- *     debugging.
+ *   - The ``return_value_repr`` in an expandable structured viewer.
+ *   - Re-run button + a hint pointing to the in-app debugger.
  */
 
 import ReactMarkdown from 'react-markdown';
+import { useState } from 'react';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -123,9 +119,8 @@ export function ResultTab() {
             <span className="font-mono text-coden-text">solutions/{detail.id}.py</span>.
           </p>
           <p className="mt-2 text-xs">
-            To edit the code, click the{' '}
-            <span className="font-mono text-coden-accent">&lt;/&gt;</span> button
-            to open the project in VSCode.
+            To debug the code, open the cOde(n) editor tab, set breakpoints in
+            the gutter, and click <span className="font-mono text-coden-accent">Debug</span>.
           </p>
         </div>
       </div>
@@ -335,9 +330,7 @@ function ReturnValueCard({ value, expected }: { value: string; expected?: string
               <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
               Returned (Your Solution)
             </div>
-            <pre className="bg-coden-inner rounded-lg p-4 text-[11px] font-mono overflow-x-auto whitespace-pre-wrap break-words max-h-64 overflow-y-auto shadow-inner border border-rose-500/20">
-{value}
-            </pre>
+            <StructuredValueViewer value={value} borderClass="border-rose-500/20" />
             <div className="mt-1 text-[10px] text-coden-muted">
               What your code's <code className="font-mono text-rose-300">solve()</code> function returned.
             </div>
@@ -347,9 +340,7 @@ function ReturnValueCard({ value, expected }: { value: string; expected?: string
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               Expected (Reference Solution)
             </div>
-            <pre className="bg-coden-inner rounded-lg p-4 text-[11px] font-mono overflow-x-auto whitespace-pre-wrap break-words max-h-64 overflow-y-auto shadow-inner border border-emerald-500/20">
-{expected}
-            </pre>
+            <StructuredValueViewer value={expected} borderClass="border-emerald-500/20" />
             <div className="mt-1 text-[10px] text-coden-muted">
               What the canonical reference solution returned.
             </div>
@@ -360,9 +351,7 @@ function ReturnValueCard({ value, expected }: { value: string; expected?: string
           <div className="text-xs uppercase text-coden-muted font-semibold mb-2">
             Returned
           </div>
-          <pre className="bg-coden-inner rounded-lg p-4 text-[11px] font-mono overflow-x-auto whitespace-pre-wrap break-words max-h-64 overflow-y-auto shadow-inner">
-{value}
-          </pre>
+          <StructuredValueViewer value={value} />
           <div className="mt-1 text-xs text-coden-muted">
             What <span className="font-mono text-coden-text">solve()</span> returned.
           </div>
@@ -373,6 +362,86 @@ function ReturnValueCard({ value, expected }: { value: string; expected?: string
       </div>
     </div>
   );
+}
+
+
+function StructuredValueViewer({
+  value,
+  borderClass = 'border-coden-border/30',
+}: {
+  value: string;
+  borderClass?: string;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const items = splitTopLevelItems(value);
+  const hasItems = items.length > 0;
+  return (
+    <div className={`bg-coden-inner rounded-lg text-[11px] font-mono shadow-inner border ${borderClass} max-h-64 overflow-y-auto`}>
+      <button
+        type="button"
+        onClick={() => hasItems && setExpanded((v) => !v)}
+        className="w-full flex items-start gap-2 p-3 text-left hover:bg-coden-border/30"
+      >
+        <span className="w-3 text-coden-muted pt-0.5">{hasItems ? (expanded ? '▾' : '▸') : ''}</span>
+        <span className="break-words text-coden-text">{compactValue(value)}</span>
+      </button>
+      {expanded && (
+        <div className="border-t border-coden-border/50 px-3 py-2">
+          {items.map((item, index) => (
+            <div key={`${index}-${item}`} className="grid grid-cols-[48px_minmax(0,1fr)] gap-3 py-1">
+              <span className="text-coden-muted text-right select-none">{index}</span>
+              <span className="text-coden-text break-words">{item}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+function compactValue(value: string): string {
+  const trimmed = value.trim();
+  if (trimmed.length <= 220) return trimmed;
+  return `${trimmed.slice(0, 217)}...`;
+}
+
+
+function splitTopLevelItems(value: string): string[] {
+  const trimmed = value.trim();
+  const open = trimmed[0];
+  const close = open === '[' ? ']' : open === '(' ? ')' : open === '{' ? '}' : '';
+  if (!close || trimmed[trimmed.length - 1] !== close) return [];
+  const inner = trimmed.slice(1, -1).trim();
+  if (!inner) return [];
+  const items: string[] = [];
+  let depth = 0;
+  let quote = '';
+  let current = '';
+  for (let i = 0; i < inner.length; i += 1) {
+    const ch = inner[i]!;
+    const prev = inner[i - 1];
+    if (quote) {
+      current += ch;
+      if (ch === quote && prev !== '\\') quote = '';
+      continue;
+    }
+    if (ch === '"' || ch === "'") {
+      quote = ch;
+      current += ch;
+      continue;
+    }
+    if (ch === '[' || ch === '(' || ch === '{') depth += 1;
+    if (ch === ']' || ch === ')' || ch === '}') depth -= 1;
+    if (ch === ',' && depth === 0) {
+      if (current.trim()) items.push(current.trim());
+      current = '';
+      continue;
+    }
+    current += ch;
+  }
+  if (current.trim()) items.push(current.trim());
+  return items.length > 1 ? items : [];
 }
 
 
@@ -392,9 +461,8 @@ function ActionRow({
   return (
     <div className="bg-coden-surface rounded-lg p-5 shadow-md text-xs space-y-3 mt-4">
       <div className="text-coden-muted">
-        To debug, click the{' '}
-        <span className="font-mono text-coden-accent">&lt;/&gt;</span>{' '}
-        button to open the project in VSCode and press F5 — breakpoints in{' '}
+        To debug, open the cOde(n) editor tab and click{' '}
+        <span className="font-mono text-coden-accent">Debug</span> — breakpoints in{' '}
         <span className="font-mono text-coden-text">solutions/&lt;id&gt;.py</span>{' '}
         will hit normally. The verdict above is what cOde(n) computed for
         the latest run.

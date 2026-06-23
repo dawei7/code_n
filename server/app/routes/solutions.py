@@ -100,7 +100,7 @@ def _set_version_name(challenge_id: str, version: int, name: str) -> None:
     state_path.write_text(json.dumps(data), encoding="utf-8")
 
 def _get_existing_versions(challenge_id: str) -> list[int]:
-    return list(range(1, 10))
+    return list(range(1, 4))
 
 def _clear_version_name(challenge_id: str, version: int) -> None:
     state_path = _versions_state_path()
@@ -118,7 +118,7 @@ def _get_modified_versions(challenge_id: str, starter: str) -> list[int]:
     modified = []
     active = _get_active_version(challenge_id)
     main_path = _solution_path(challenge_id)
-    for i in range(1, 10):
+    for i in range(1, 4):
         if i == active:
             if main_path.exists() and main_path.read_text(encoding="utf-8") != starter:
                 modified.append(i)
@@ -173,8 +173,8 @@ def put_solution(challenge_id: str, body: SolutionPut) -> SolutionGet:
 def switch_version(challenge_id: str, body: VersionSwitchRequest) -> SolutionVersionsGet:
     if challenge_id not in CHALLENGE_REGISTRY:
         raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
-    if body.version < 1 or body.version > 9:
-        raise HTTPException(status_code=400, detail="Version must be between 1 and 9")
+    if body.version < 1 or body.version > 3:
+        raise HTTPException(status_code=400, detail="Version must be between 1 and 3")
         
     current_active = _get_active_version(challenge_id)
     main_path = _solution_path(challenge_id)

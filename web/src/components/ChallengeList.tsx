@@ -15,8 +15,8 @@ const CATEGORY_DISPLAY_NAMES: Record<string, string> = {
   neetcode_tries: 'Tries',
   neetcode_graphs: 'Graphs',
   neetcode_advanced_graphs: 'Advanced Graphs',
-  neetcode_dp1: '1-D Dynamic Programming',
-  neetcode_dp2: '2-D Dynamic Programming',
+  neetcode_dp1: '1-D Dynamic',
+  neetcode_dp2: '2-D Dynamic',
   neetcode_greedy: 'Greedy',
   neetcode_intervals: 'Intervals',
   neetcode_math: 'Math & Geometry',
@@ -84,10 +84,10 @@ export function ChallengeList() {
       <div className="p-3 shrink-0 border-b border-coden-border bg-coden-surface">
         <input 
           type="text" 
-          placeholder="Search algorithms..." 
+          placeholder="Search challenges"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-[#1e1e1e] border border-coden-border rounded px-3 py-1.5 text-sm text-coden-text placeholder-coden-muted focus:outline-none focus:border-coden-accent transition-colors"
+          className="w-full bg-coden-bg border border-coden-border rounded px-3 py-1.5 text-sm text-coden-text placeholder-coden-muted focus:outline-none focus:border-coden-accent transition-colors"
         />
       </div>
       
@@ -107,7 +107,7 @@ export function ChallengeList() {
                   className="transform transition-transform duration-200 group-hover:text-coden-accent text-[10px]" 
                   style={{ transform: isCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)' }}
                 >
-                  ▼
+                  ▾
                 </span>
               </button>
               
@@ -121,11 +121,11 @@ export function ChallengeList() {
 
                     let statusIndicator = <span className="w-3 shrink-0" />;
                     if (isLocked) {
-                      statusIndicator = <span className="text-coden-muted shrink-0 text-xs" title="Locked in Career Mode">🔒</span>;
+                      statusIndicator = <span className="text-coden-muted shrink-0 text-xs" title="Locked in Career Mode">◆</span>;
                     } else if (isDone && isLeetcodeVerified) {
-                      statusIndicator = <span className="text-green-400 shrink-0 text-xs font-bold" title="Verified on LeetCode">✓✓</span>;
+                      statusIndicator = <span className="text-green-400 shrink-0 text-xs font-bold" title="Verified on LeetCode">●</span>;
                     } else if (isDone) {
-                      statusIndicator = <span className="text-yellow-500 shrink-0 text-xs font-bold" title="Completed locally, LeetCode pending">✓</span>;
+                      statusIndicator = <span className="text-yellow-500 shrink-0 text-xs font-bold" title="Completed locally, LeetCode pending">●</span>;
                     }
 
                     return (
@@ -140,14 +140,23 @@ export function ChallengeList() {
                             isLocked
                               ? 'opacity-40 cursor-not-allowed'
                               : 'hover:bg-coden-border transition-colors duration-150',
-                            isCurrent ? 'bg-coden-border text-white' : 'text-coden-text',
+                            isCurrent
+                              ? 'bg-sky-100 text-slate-950 ring-1 ring-sky-300 shadow-inner dark:bg-coden-border dark:text-coden-text dark:ring-0'
+                              : 'text-coden-text',
                           ].join(' ')}
-                          title={isLocked ? "Locked in Career Mode (Complete parent nodes first)" : `${c.name} · ${c.required_complexity} · ${c.id}`}
+                          title={isLocked ? "Locked in Career Mode (complete parent nodes first)" : `${c.name} · ${c.required_complexity} · ${c.id}`}
                         >
                           {statusIndicator}
                           <div className="flex-1 min-w-0">
                             <div className="truncate">{c.name}</div>
-                            <div className="text-[11px] text-coden-muted font-mono truncate mt-0.5 opacity-80">
+                            <div
+                              className={[
+                                'text-[11px] font-mono truncate mt-0.5',
+                                isCurrent
+                                  ? 'text-slate-600 dark:text-coden-muted'
+                                  : 'text-coden-muted opacity-80',
+                              ].join(' ')}
+                            >
                               {c.required_complexity}
                             </div>
                           </div>
@@ -163,8 +172,8 @@ export function ChallengeList() {
         
         {Object.keys(grouped).length === 0 && (
           <div className="flex flex-col items-center justify-center p-8 text-coden-muted space-y-2">
-            <span className="text-2xl">🔍</span>
             <span className="text-sm">No algorithms found</span>
+            <span className="text-xs">Try a name, id, or category.</span>
           </div>
         )}
       </div>

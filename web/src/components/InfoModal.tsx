@@ -16,124 +16,116 @@ export function InfoModal({ onClose }: InfoModalProps) {
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-      <div className="w-full max-w-3xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] text-slate-200">
-        
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950">
-          <h2 className="text-base font-bold text-white flex items-center gap-2">
-            📖 System Glossary & Documentation
-          </h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+      <div className="w-full max-w-3xl bg-coden-surface border border-coden-border rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] text-coden-text">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-coden-border bg-coden-bg">
+          <div>
+            <h2 className="text-base font-bold text-coden-text">About cOde(n)</h2>
+            <p className="text-xs text-coden-muted font-mono mt-0.5">Algorithms, debugging, and complexity in one workspace</p>
+          </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white transition-colors text-sm px-2.5 py-1 rounded bg-slate-800 border border-slate-700 font-bold"
+            className="text-coden-muted hover:text-coden-text transition-colors text-sm px-2.5 py-1 rounded bg-coden-surface border border-coden-border font-bold"
             title="Close (ESC)"
           >
-            ✕ ESC
+            x ESC
           </button>
         </div>
 
-        {/* Content */}
         <div className="flex-grow overflow-y-auto p-6 space-y-6 scrollbar-thin text-sm leading-relaxed">
-          
-          {/* Section 1 */}
           <section className="space-y-2">
-            <h3 className="text-sm font-bold text-indigo-400 border-b border-indigo-950 pb-1 uppercase tracking-wide">
-              🚀 How It Works
+            <h3 className="text-sm font-bold text-coden-accent border-b border-coden-border pb-1 uppercase tracking-wide">
+              The Goal
             </h3>
             <p>
-              cOde(n) is an automated algorithm checker that evaluates implementation correctness and performance scaling. 
-              Write your solutions locally in your preferred editor (VSCode, Cursor, or the Antigravity desktop app).
+              cOde(n) is a focused practice environment for learning algorithms by writing real code, running deterministic tests, and inspecting performance behavior directly.
+              The goal is to keep the full learning loop inside one app: read the problem, implement a solution, run it, debug it, and understand whether it scales.
             </p>
-            <ul className="list-disc pl-5 space-y-1 text-slate-300">
-              <li><strong>Local Editing:</strong> Open challenges directly in Antigravity. The files are located in <code className="bg-slate-950 px-1 py-0.5 rounded text-indigo-300 text-xs">solutions/&lt;challenge_id&gt;.py</code>.</li>
-              <li><strong>Hot-Reload Runs:</strong> Clicking the <span className="font-semibold text-white">Run</span> button reads your solution directly from disk and compiles/runs it instantly.</li>
-              <li><strong>AST Op Counts:</strong> Performance is measured by counting exact operations in the Python Abstract Syntax Tree (AST) rather than raw execution wall-clock time, ensuring absolute determinism regardless of system hardware.</li>
-            </ul>
+            <p>
+              It is built for people who want the power of an editor and debugger without switching to a separate desktop IDE while solving interview-style challenges.
+            </p>
           </section>
 
-          {/* Section 2 */}
           <section className="space-y-2">
-            <h3 className="text-sm font-bold text-indigo-400 border-b border-indigo-950 pb-1 uppercase tracking-wide">
-              🛣️ Algorithm Sets & Career Mode
+            <h3 className="text-sm font-bold text-coden-accent border-b border-coden-border pb-1 uppercase tracking-wide">
+              Why The Name cOde(n)
             </h3>
             <p>
-              Switch between available problem sets in Settings depending on your goals:
+              The name combines <strong>code</strong> with <strong>O(n)</strong>, the notation used to describe algorithmic complexity.
+              That is the core idea of the app: code is not only about producing the right output, but also about understanding how the solution behaves as the input grows.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-              <div className="bg-slate-950 p-3 rounded-lg border border-slate-850">
-                <h4 className="text-xs font-bold text-white mb-1">NeetCode 250 (Career Mode)</h4>
-                <p className="text-xs text-slate-400">
-                  Focus on 250 core interview preparation challenges mapped directly to LeetCode. 
-                  Problems within each topic are locked sequentially: solve the first challenge in a topic to unlock the next harder one.
-                </p>
-              </div>
-              <div className="bg-slate-950 p-3 rounded-lg border border-slate-850">
-                <h4 className="text-xs font-bold text-white mb-1">GeeksforGeeks Library (Free Mode)</h4>
-                <p className="text-xs text-slate-400">
-                  Access the complete registry of 260+ challenges covering specialized computer science topics. 
-                  All challenges are fully unlocked and available for practice at any time.
-                </p>
-              </div>
+            <p>
+              The capital <strong>O</strong> is intentional. It points to Big-O thinking while still reading naturally as cOde(n).
+            </p>
+          </section>
+
+          <section className="space-y-2">
+            <h3 className="text-sm font-bold text-coden-accent border-b border-coden-border pb-1 uppercase tracking-wide">
+              What The App Does
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <InfoCard
+                title="Practice"
+                body="Work through NeetCode-style career paths or an unlocked algorithm library with deterministic generated inputs."
+              />
+              <InfoCard
+                title="Debug"
+                body="Set breakpoints in the built-in Python editor and step through code with locals visible beside the solution."
+              />
+              <InfoCard
+                title="Analyze"
+                body="Compare your solution against reference behavior using AST operation counts and complexity guidance."
+              />
+              <InfoCard
+                title="Learn"
+                body="Use reference notes, mathematical explanations, and result feedback to understand the underlying pattern."
+              />
             </div>
           </section>
 
-          {/* Section 3 */}
-          <section className="space-y-2">
-            <h3 className="text-sm font-bold text-indigo-400 border-b border-indigo-950 pb-1 uppercase tracking-wide">
-              🧪 Practice vs Real Test Mode
+          <section className="space-y-3">
+            <h3 className="text-sm font-bold text-coden-accent border-b border-coden-border pb-1 uppercase tracking-wide">
+              Contact
             </h3>
-            <ul className="space-y-3">
-              <li>
-                <strong>Practice Mode:</strong> Allows you to pick the input size (<code className="text-indigo-300">n</code>) and a seed. Ideal for testing boundaries, debugging exceptions, and checking intermediate step counts.
-              </li>
-              <li>
-                <strong>Real Test Mode:</strong> The server overrides your <code className="text-indigo-300">n</code> and generates a random seed to run a verification suite. Your solution must pass this test to be marked as completed.
-              </li>
-            </ul>
-          </section>
-
-          {/* Section 4 */}
-          <section className="space-y-2">
-            <h3 className="text-sm font-bold text-indigo-400 border-b border-indigo-950 pb-1 uppercase tracking-wide">
-              🤖 Gemini AI Tutor
-            </h3>
-            <p>
-              When your solution fails verification or throws an exception, the integrated AI Tutor uses your Gemini API Key to inspect your code, trace AST executions, and provide high-quality hints. 
-              Configure your API key in the <span className="font-semibold text-white">Settings Modal</span> to enable tutoring.
-            </p>
-          </section>
-
-          {/* Section 5 */}
-          <section className="space-y-2">
-            <h3 className="text-sm font-bold text-indigo-400 border-b border-indigo-950 pb-1 uppercase tracking-wide">
-              ⌨️ Keyboard Shortcuts
-            </h3>
-            <div className="grid grid-cols-2 gap-2 font-mono text-xs">
-              <div className="bg-slate-950 p-2 rounded flex justify-between border border-slate-850">
-                <span className="text-slate-400">Run Code</span>
-                <span className="text-white bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800">Ctrl + Enter</span>
-              </div>
-              <div className="bg-slate-950 p-2 rounded flex justify-between border border-slate-850">
-                <span className="text-slate-400">Close Overlay</span>
-                <span className="text-white bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800">Esc</span>
-              </div>
+            <div className="flex flex-wrap gap-2">
+              <a
+                href="https://github.com/dawei7"
+                target="_blank"
+                rel="noreferrer"
+                className="px-3 py-2 rounded border border-coden-border bg-coden-bg text-coden-text hover:border-coden-accent hover:text-coden-accent transition-colors font-mono text-xs"
+              >
+                GitHub: dawei7
+              </a>
+              <a
+                href="https://www.linkedin.com/in/david-schmid-56194772/"
+                target="_blank"
+                rel="noreferrer"
+                className="px-3 py-2 rounded border border-coden-border bg-coden-bg text-coden-text hover:border-coden-accent hover:text-coden-accent transition-colors font-mono text-xs"
+              >
+                LinkedIn: David Schmid
+              </a>
             </div>
           </section>
-
         </div>
 
-        {/* Footer */}
-        <div className="px-6 py-4 border-t border-slate-800 bg-slate-950 flex justify-end">
+        <div className="px-6 py-4 border-t border-coden-border bg-coden-bg flex justify-end">
           <button
             onClick={onClose}
-            className="px-5 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-bold transition-all"
+            className="px-5 py-1.5 bg-coden-accent hover:opacity-90 text-coden-bg rounded-lg text-xs font-bold transition-all"
           >
-            Close Guide
+            Close
           </button>
         </div>
-
       </div>
+    </div>
+  );
+}
+
+function InfoCard({ title, body }: { title: string; body: string }) {
+  return (
+    <div className="bg-coden-bg p-3 rounded-lg border border-coden-border">
+      <h4 className="text-xs font-bold text-coden-text mb-1">{title}</h4>
+      <p className="text-xs text-coden-muted">{body}</p>
     </div>
   );
 }

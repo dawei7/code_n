@@ -127,8 +127,15 @@ export function MathematicalTab() {
 
   return (
     <div>
-      <article className="prose prose-invert prose-sm max-w-none p-4
+      <article className="prose prose-sm max-w-none p-4 text-coden-text
                           prose-headings:text-coden-text
+                          prose-p:text-coden-text
+                          prose-li:text-coden-text
+                          prose-strong:text-coden-text
+                          prose-em:text-coden-text
+                          prose-hr:border-coden-border
+                          prose-blockquote:text-coden-text
+                          prose-blockquote:border-coden-accent
                           prose-a:text-coden-accent
                           prose-code:text-coden-accent
                           prose-code:before:content-none
@@ -141,18 +148,18 @@ export function MathematicalTab() {
           components={{
             a: ({ node, ...props }) => <a {...props} target="_blank" rel="noreferrer" />,
             table: ({ node, ...props }) => (
-              <table {...props} className="border-collapse border border-coden-border text-xs" />
+              <table {...props} className="border-collapse border border-coden-border text-xs text-coden-text" />
             ),
             th: ({ node, ...props }) => (
-              <th {...props} className="border border-coden-border px-2 py-1 bg-coden-surface font-semibold" />
+              <th {...props} className="border border-coden-border px-2 py-1 bg-coden-bg text-coden-text font-semibold" />
             ),
             td: ({ node, ...props }) => (
-              <td {...props} className="border border-coden-border px-2 py-1" />
+              <td {...props} className="border border-coden-border px-2 py-1 text-coden-text" />
             ),
             pre: ({ children, ...props }) => (
               <pre
                 {...props}
-                className="bg-coden-bg border border-coden-border rounded p-3 text-xs overflow-x-auto my-3"
+                className="bg-white border border-slate-300 rounded p-3 text-xs text-slate-950 shadow-sm overflow-x-auto my-3 dark:bg-coden-bg dark:border-coden-border dark:text-coden-text"
               >
                 {children}
               </pre>
@@ -165,7 +172,7 @@ export function MathematicalTab() {
               return (
                 <code
                   {...props}
-                  className="bg-coden-bg border border-coden-border rounded px-1 py-0.5 text-coden-accent text-xs"
+                  className="bg-sky-50 border border-sky-200 rounded px-1 py-0.5 text-sky-800 text-xs dark:bg-coden-bg dark:border-coden-border dark:text-coden-accent"
                 >
                   {children}
                 </code>

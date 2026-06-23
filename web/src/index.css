@@ -59,3 +59,53 @@ body,
 ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
+
+.coden-debug-breakpoint::before {
+  content: "";
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin: 3px 0 0 auto;
+  border-radius: 999px;
+  background: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25);
+  transform: translateX(-2px);
+}
+
+.coden-debug-current-line {
+  background: rgba(251, 191, 36, 0.18);
+}
+
+.coden-debug-current-glyph::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 3px auto 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 9px solid #fbbf24;
+}
+
+.coden-transport-run,
+.coden-transport-reset {
+  font-size: 0;
+}
+
+.coden-transport-run::before,
+.coden-transport-reset::before {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.coden-transport-run::before {
+  content: "▶";
+}
+
+.coden-transport-run:disabled::before {
+  content: "▶";
+}
+
+.coden-transport-reset::before {
+  content: "↺";
+}

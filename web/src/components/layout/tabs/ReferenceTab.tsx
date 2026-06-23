@@ -37,19 +37,29 @@ type LoadState =
   | { kind: 'missing'; challengeId: string; challengeName: string; category: string }
   | { kind: 'error'; message: string };
 
+type LeetCodeQuestion = {
+  frontend_id: string;
+  title: string;
+  slug: string;
+};
+
 
 const CACHE: Map<string, string> = new Map();
+const LEETCODE_CACHE: Map<string, LeetCodeQuestion | null> = new Map();
 let OVERVIEW_CACHE: string | null = null;
 
 
 export function ReferenceTab() {
   const detail = useAppStore((s) => s.currentDetail);
   const language = useAppStore((s) => s.language);
+  const activeSet = useAppStore((s) => s.activeSet);
   const [state, setState] = useState<LoadState>({ kind: 'idle' });
+  const [leetcodeQuestion, setLeetcodeQuestion] = useState<LeetCodeQuestion | null>(null);
 
   const challengeId = detail?.id ?? null;
   const challengeName = detail?.name ?? null;
   const category = detail?.category ?? null;
+  const shouldShowLeetcodeReference = activeSet === 'neetcode' && !!detail?.leetcode_url;
 
   const load = useCallback(async (which: 'overview' | 'by-id', id?: string) => {
     setState({ kind: 'loading' });
@@ -117,6 +127,38 @@ export function ReferenceTab() {
     });
   }, [challengeId, challengeName, category, language, load]);
 
+  useEffect(() => {
+    const slug = detail?.leetcode_slug;
+    if (!shouldShowLeetcodeReference || !slug) {
+      setLeetcodeQuestion(null);
+      return;
+    }
+
+    const cached = LEETCODE_CACHE.get(slug);
+    if (cached !== undefined) {
+      setLeetcodeQuestion(cached);
+      return;
+    }
+
+    let cancelled = false;
+    void fetch(`/api/leetcode/questions/${encodeURIComponent(slug)}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((payload: LeetCodeQuestion | null) => {
+        if (cancelled) return;
+        LEETCODE_CACHE.set(slug, payload);
+        setLeetcodeQuestion(payload);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        LEETCODE_CACHE.set(slug, null);
+        setLeetcodeQuestion(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [detail?.leetcode_slug, shouldShowLeetcodeReference]);
+
   if (state.kind === 'idle' || state.kind === 'loading') {
     return (
       <div className="flex items-center justify-center text-xs text-coden-muted">
@@ -168,10 +210,24 @@ export function ReferenceTab() {
   }
 
   // Loaded: render the markdown.
+  const markdown = shouldShowLeetcodeReference
+    ? removeGeeksforGeeksReference(state.markdown)
+    : state.markdown;
+
   return (
     <div>
-      <article className="prose prose-invert prose-sm max-w-none p-4
+      {shouldShowLeetcodeReference && detail && (
+        <LeetCodeReference detail={detail} question={leetcodeQuestion} />
+      )}
+      <article className="prose prose-sm max-w-none p-4 text-coden-text
                           prose-headings:text-coden-text
+                          prose-p:text-coden-text
+                          prose-li:text-coden-text
+                          prose-strong:text-coden-text
+                          prose-em:text-coden-text
+                          prose-hr:border-coden-border
+                          prose-blockquote:text-coden-text
+                          prose-blockquote:border-coden-accent
                           prose-a:text-coden-accent
                           prose-code:text-coden-accent
                           prose-code:before:content-none
@@ -203,18 +259,18 @@ export function ReferenceTab() {
               return <a {...props} target="_blank" rel="noreferrer" />;
             },
             table: ({ node, ...props }) => (
-              <table {...props} className="border-collapse border border-coden-border text-xs" />
+              <table {...props} className="border-collapse border border-coden-border text-xs text-coden-text" />
             ),
             th: ({ node, ...props }) => (
-              <th {...props} className="border border-coden-border px-2 py-1 bg-coden-surface font-semibold" />
+              <th {...props} className="border border-coden-border px-2 py-1 bg-coden-bg text-coden-text font-semibold" />
             ),
             td: ({ node, ...props }) => (
-              <td {...props} className="border border-coden-border px-2 py-1" />
+              <td {...props} className="border border-coden-border px-2 py-1 text-coden-text" />
             ),
             pre: ({ children, ...props }) => (
               <pre
                 {...props}
-                className="bg-coden-bg border border-coden-border rounded p-3 text-xs overflow-x-auto my-3"
+                className="bg-white border border-slate-300 rounded p-3 text-xs text-slate-950 shadow-sm overflow-x-auto my-3 dark:bg-coden-bg dark:border-coden-border dark:text-coden-text"
               >
                 {children}
               </pre>
@@ -239,7 +295,7 @@ export function ReferenceTab() {
               return (
                 <code
                   {...props}
-                  className="bg-coden-bg border border-coden-border rounded px-1 py-0.5 text-coden-accent text-xs"
+                  className="bg-sky-50 border border-sky-200 rounded px-1 py-0.5 text-sky-800 text-xs dark:bg-coden-bg dark:border-coden-border dark:text-coden-accent"
                 >
                   {children}
                 </code>
@@ -247,9 +303,43 @@ export function ReferenceTab() {
             },
           }}
         >
-          {state.markdown}
+          {markdown}
         </ReactMarkdown>
       </article>
     </div>
+  );
+}
+
+function removeGeeksforGeeksReference(markdown: string): string {
+  return markdown
+    .replace(/\n?##\s+GeeksforGeeks Reference\s*\n[\s\S]*?(?=\n##\s+|\n#\s+|$)/gi, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+function LeetCodeReference({
+  detail,
+  question,
+}: {
+  detail: NonNullable<ReturnType<typeof useAppStore.getState>['currentDetail']>;
+  question: LeetCodeQuestion | null;
+}) {
+  const title = question?.title || detail.leetcode_title || detail.name;
+  const idPrefix = question?.frontend_id ? `${question.frontend_id}. ` : '';
+
+  return (
+    <section className="mx-4 mt-4 rounded-lg border border-coden-border bg-coden-bg p-4 shadow-sm">
+      <div className="text-xs uppercase tracking-wide text-coden-muted font-semibold">
+        LeetCode Reference
+      </div>
+      <a
+        href={detail.leetcode_url}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-coden-accent hover:underline"
+      >
+        {idPrefix}{title} ↗
+      </a>
+    </section>
   );
 }
