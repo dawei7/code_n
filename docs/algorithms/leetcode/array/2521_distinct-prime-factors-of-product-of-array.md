@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, calculate the total number of unique prime factors present across the prime factorization of the product of all elements in the array. Essentially, you need to find the size of the union of prime factor sets for every number in the input array.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of positive integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the count of distinct prime factors found across all numbers in the input array.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 4, 3, 7, 10, 6]`
+- Output: `4`
+- Explanation: The product is 10080. The prime factors are 2, 3, 5, and 7.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 4, 8, 16]`
+- Output: `1`
+- Explanation: The only prime factor is 2.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3, 7, 11]`
+- Output: `3`
+- Explanation: The prime factors are 3, 7, and 11.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The solution utilizes trial division to perform prime factorization on each number in the input array. By maintaining a global `set` data structure, we collect all unique prime factors encountered. Since the maximum value of an element is typically small (up to 1000 in this problem context), trial division up to the square root of each number is highly efficient.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(N \cdot \sqrt{M})$, where $N$ is the number of elements in the array and $M$ is the maximum value in the array. For each number, we perform trial division up to its square root.
+- **Space Complexity**: $O(P)$, where $P$ is the number of distinct prime factors across all elements. In the worst case, this is bounded by the number of primes up to $M$.

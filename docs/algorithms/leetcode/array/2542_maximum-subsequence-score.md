@@ -10,40 +10,44 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given two integer arrays of equal length, `nums1` and `nums2`, select a subsequence of length `k`. The score of this subsequence is calculated as the sum of elements from `nums1` at the chosen indices multiplied by the minimum value among the elements from `nums2` at those same indices. The objective is to maximize this score.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums1`: A list of integers representing the primary values.
+- `nums2`: A list of integers representing the values used to determine the multiplier.
+- `k`: An integer representing the required length of the subsequence.
 
 **Return value**
 
-TODO
+- An integer representing the maximum possible score achievable.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [1,3,3,2], nums2 = [2,1,3,4], k = 3`
+- Output: `12`
+- Explanation: Select indices 0, 2, and 3. Sum of `nums1` is 1+3+2=6. Min of `nums2` is min(2,3,4)=2. Score = 6 * 2 = 12.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [4,2,3,1,1], nums2 = [7,5,10,9,6], k = 1`
+- Output: `30`
+- Explanation: Select index 2. Sum of `nums1` is 3. Min of `nums2` is 10. Score = 3 * 10 = 30.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [2,1,14,12], nums2 = [11,7,13,6], k = 3`
+- Output: `168`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Greedy approach combined with a Min-Heap**. By sorting the pairs based on `nums2` in descending order, we can iterate through the array and treat each `nums2[i]` as the potential minimum of the subsequence. For each step, we maintain a running sum of the largest `k` elements from `nums1` encountered so far using a min-heap. This ensures that for every possible minimum from `nums2`, we have the largest possible sum from `nums1`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n log n)` due to sorting the pairs, where `n` is the length of the arrays. The heap operations take `O(n log k)`.
+- **Space Complexity**: `O(n)` to store the pairs and `O(k)` for the min-heap.

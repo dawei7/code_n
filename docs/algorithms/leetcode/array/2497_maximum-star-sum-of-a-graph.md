@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an undirected graph represented by node values and a list of edges, identify the "star graph" (a center node and a subset of its adjacent edges) that yields the maximum possible sum of node values. You are constrained to select at most `k` edges connected to the chosen center node.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `vals`: A list of integers representing the value of each node.
+- `edges`: A list of pairs `[u, v]` representing undirected edges between nodes.
+- `k`: An integer representing the maximum number of edges allowed in the star.
 
 **Return value**
 
-TODO
+- An integer representing the maximum star sum possible.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `vals = [1, 2, 3, 4, 10, -10, -20]`, `edges = [[0, 1], [1, 2], [1, 3], [3, 4], [3, 5], [3, 6]]`, `k = 2`
+- Output: `16`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `vals = [-5]`, `edges = []`, `k = 0`
+- Output: `-5`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `vals = [1, 2, 3, 4, 5, 6]`, `edges = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5]]`, `k = 2`
+- Output: `11`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Greedy approach**. For each node, we collect the values of all its neighbors. To maximize the sum, we sort the neighbor values in descending order and select up to `k` positive values. If a neighbor's value is negative, it is only included if we have not yet reached the `k` limit and the inclusion is necessary (though optimally, we only pick positive values unless forced, but here we can pick *at most* `k`, so we simply pick the top `k` positive values).
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(E log E + V)`, where `E` is the number of edges and `V` is the number of nodes. We iterate over all edges to build adjacency lists, and for each node, we sort its neighbors.
+- **Space Complexity**: `O(V + E)` to store the adjacency list representation of the graph.

@@ -10,40 +10,37 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given two binary arrays of equal length and a series of queries. The queries involve either flipping the bits in a range of the first array or calculating the total sum of the first array. The second array acts as a multiplier for the first array's values during sum calculations. Specifically, the sum is defined as the sum of `nums1[i] * nums2[i]` for all indices `i`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums1`: List[int] (Initial binary array)
+- `nums2`: List[int] (Binary array used for weighted sum)
+- `queries`: List[List[int]] (List of queries where each query is `[type, l, r]`)
 
 **Return value**
 
-TODO
+- List[int]: A list containing the results of all type-3 (sum) queries.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [1,0,1], nums2 = [0,0,0], queries = [[1,1,1],[2,1,0],[3,0,0]]`
+- Output: `[0]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [1], nums2 = [5], queries = [[2,0,0],[3,0,0]]`
+- Output: `[5]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem requires efficient range updates (flipping bits) and range sum queries. A **Segment Tree with Lazy Propagation** is the optimal data structure. Each node in the tree stores the count of `1`s in its range. When a flip operation occurs, the count of `1`s becomes `(range_length - current_count_of_1s)`. The weighted sum is calculated by maintaining the sum of `nums2` for indices where `nums1` is `1`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O((n + q) log n)`, where `n` is the length of the arrays and `q` is the number of queries. Each segment tree operation takes logarithmic time.
+- **Space Complexity**: `O(n)`, required to store the segment tree nodes (typically 4n nodes).

@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of strings, determine the "value" of each string. If a string consists entirely of digits, its value is its integer representation. Otherwise, its value is the length of the string. The objective is to return the maximum value found among all strings in the array.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `strs`: A list of strings (`List[str]`) where each string contains lowercase English letters and/or digits.
 
 **Return value**
 
-TODO
+- An integer representing the maximum value calculated across all strings in the input list.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `strs = ["alic3","bob","3","4","00000"]`
+- Output: `5`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `strs = ["1","01","001","0001"]`
+- Output: `1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `strs = ["abcde","abc","ab","a"]`
+- Output: `5`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The solution utilizes a linear scan (iteration) over the array. For each string, we perform a membership check (or regex/type conversion check) to determine if it is numeric. If numeric, we convert it to an integer; otherwise, we calculate its length. We maintain a running maximum of these values.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: O(N * L), where N is the number of strings in the array and L is the maximum length of a string. We iterate through each string once and perform a check that takes time proportional to the string's length.
+- **Space Complexity**: O(1), as we only store the current maximum value and temporary variables, excluding the space required for the input itself.

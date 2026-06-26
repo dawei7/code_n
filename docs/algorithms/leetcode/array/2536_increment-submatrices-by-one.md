@@ -10,40 +10,39 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an $n \times n$ grid initialized with zeros, process a series of queries. Each query specifies a submatrix defined by its top-left $(r1, c1)$ and bottom-right $(r2, c2)$ coordinates. For every query, increment all cells within the specified rectangular region by 1. Return the final state of the grid after all queries have been applied.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: An integer representing the dimensions of the $n \times n$ grid.
+- `queries`: A list of lists, where each inner list contains four integers `[r1, c1, r2, c2]` representing the bounds of the submatrix to increment.
 
 **Return value**
 
-TODO
+- A 2D list of integers (size $n \times n$) representing the grid after all increments.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 3, queries = [[1,1,2,2],[0,0,1,1]]`
+- Output: `[[1,1,0],[1,2,1],[0,1,1]]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 2, queries = [[0,0,1,1]]`
+- Output: `[[1,1],[1,1]]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 1, queries = [[0,0,0,0]]`
+- Output: `[[1]]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
-
----
+The problem is solved using a **2D Difference Array** (a variation of the prefix sum technique). Instead of updating every cell in the submatrix (which would be $O(n^2)$ per query), we mark the boundaries of the increment. For a submatrix defined by $(r1, c1)$ to $(r2, c2)$, we increment `grid[r1][c1]`, decrement `grid[r1][c2+1]`, decrement `grid[r2+1][c1]`, and increment `grid[r2+1][c2+1]`. After processing all queries, we compute the 2D prefix sum to reconstruct the final grid values.
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(q + n^2)$, where $q$ is the number of queries and $n$ is the grid dimension. We process each query in $O(1)$ and perform a prefix sum pass over the $n \times n$ grid.
+- **Space Complexity**: $O(n^2)$ to store the grid.

@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers and two boundary values, identify the total number of index pairs (i, j) such that i < j and the sum of the elements at these indices falls within the inclusive range [lower, upper].
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers.
+- `lower`: An integer representing the minimum inclusive sum.
+- `upper`: An integer representing the maximum inclusive sum.
 
 **Return value**
 
-TODO
+- An integer representing the count of pairs (i, j) where i < j and lower <= nums[i] + nums[j] <= upper.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0,1,7,4,4,5], lower = 3, upper = 6`
+- Output: `6`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,7,9,2,5], lower = 11, upper = 11`
+- Output: `1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,2,3], lower = 1, upper = 1`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved by sorting the array first, which allows us to use the Two Pointers technique. Since the order of elements does not matter for the sum, sorting enables us to efficiently count pairs that satisfy the condition `sum <= target` by using two pointers moving inward. We calculate the count of pairs with sum <= upper and subtract the count of pairs with sum < lower.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: O(n log n), where n is the length of the array, due to the sorting step. The two-pointer traversal takes O(n).
+- **Space Complexity**: O(1) or O(n) depending on the sorting implementation's space requirements (Python's Timsort is O(n)).

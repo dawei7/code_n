@@ -10,40 +10,45 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers and an integer `k`, determine the number of ways to partition the array into two non-empty subsets such that the sum of elements in each subset is at least `k`. Since the result can be very large, return it modulo 10^9 + 7.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the elements to be partitioned.
+- `k`: An integer representing the minimum sum threshold for each subset.
 
 **Return value**
 
-TODO
+- An integer representing the total count of valid partitions modulo 10^9 + 7.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,2,3,4], k = 4`
+- Output: `6`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3,3,3], k = 4`
+- Output: `0`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [6,6], k = 2`
+- Output: `2`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using the Principle of Inclusion-Exclusion combined with 0/1 Knapsack Dynamic Programming. 
+1. Total ways to partition a set into two subsets is 2^n.
+2. A partition is "bad" if at least one subset has a sum strictly less than `k`.
+3. We calculate the number of subsets with sum `s < k` using DP.
+4. The final answer is (Total - 2 * (subsets with sum < k)) % MOD, accounting for the fact that both subsets must be non-empty and satisfy the condition.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: O(n * k), where n is the length of the array and k is the threshold. We iterate through the array and update a DP table of size k.
+- **Space Complexity**: O(k), as we only need the current and previous states of the DP table to calculate the number of subsets with a specific sum.

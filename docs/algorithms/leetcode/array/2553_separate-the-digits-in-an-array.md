@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of positive integers, decompose each integer into its constituent decimal digits and return a new array containing all these digits in the order they appeared within the original sequence.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of positive integers (`List[int]`).
 
 **Return value**
 
-TODO
+- A list of integers (`List[int]`) representing the flattened sequence of all digits extracted from the input numbers.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [13, 25, 83, 77]`
+- Output: `[1, 3, 2, 5, 8, 3, 7, 7]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [7, 1, 3, 9]`
+- Output: `[7, 1, 3, 9]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [10, 20, 30]`
+- Output: `[1, 0, 2, 0, 3, 0]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is a straightforward simulation. It involves iterating through each integer in the input array, converting the integer into its individual digits (either via string conversion or mathematical modulo/division operations), and appending these digits to a result list.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N * K)`, where `N` is the number of elements in the input array and `K` is the average number of digits per integer. Since `K` is bounded by the maximum value of the integers (log10(max_val)), this is effectively linear relative to the total number of digits.
+- **Space Complexity**: `O(N * K)` to store the resulting list of digits.

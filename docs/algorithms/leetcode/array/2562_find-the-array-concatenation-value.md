@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+The objective is to calculate the "concatenation value" of an array by repeatedly pairing the first and last elements. If the array has more than one element, the first and last are concatenated as strings and converted back to an integer. If only one element remains, that element is added to the total as-is. This process continues until the array is empty.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the total sum of all concatenation values calculated during the process.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [7,52,2,4]`
+- Output: `596`
+- Explanation: (7 concatenated with 4 = 74) + (52 concatenated with 2 = 522) = 596.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [5,14,13,8,12]`
+- Output: `673`
+- Explanation: (5 concatenated with 12 = 512) + (14 concatenated with 8 = 148) + (13) = 673.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1]`
+- Output: `1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Two Pointers** approach. By maintaining a pointer at the start (`left`) and the end (`right`) of the array, we can simulate the pairing process in a single pass. String conversion is used to perform the concatenation, followed by integer casting.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N)`, where `N` is the number of elements in the array. We iterate through the array once, processing each element exactly once.
+- **Space Complexity**: `O(K)`, where `K` is the number of digits in the integers, as string concatenation and conversion create temporary objects proportional to the number of digits.

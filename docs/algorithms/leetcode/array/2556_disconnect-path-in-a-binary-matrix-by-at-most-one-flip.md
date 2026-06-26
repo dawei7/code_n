@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Determine if it is possible to disconnect all paths from the top-left cell (0, 0) to the bottom-right cell (m-1, n-1) of a binary grid by flipping at most one cell (changing a 1 to a 0). The start and end cells cannot be flipped.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `grid`: A 2D list of integers (0 or 1) representing the binary matrix.
 
 **Return value**
 
-TODO
+- `bool`: Returns `True` if the path can be disconnected by flipping at most one cell, otherwise `False`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,1,1],[1,0,0],[1,1,1]]`
+- Output: `True`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,1,1],[1,0,1],[1,1,1]]`
+- Output: `False`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,1,1,1],[1,1,1,1],[1,1,1,1]]`
+- Output: `False`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem relies on two passes of Depth-First Search (DFS). First, we check if a path exists from start to end. If no path exists, we return `True`. If a path exists, we mark the cells visited during the first DFS as 0 (to "remove" them). Then, we perform a second DFS to see if another path still exists. If no path exists after the first removal, it implies that the path was a "bottleneck" (an articulation point), and we return `True`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: O(m * n), where m is the number of rows and n is the number of columns, as we traverse the grid at most twice.
+- **Space Complexity**: O(m * n) in the worst case for the recursion stack of the DFS.

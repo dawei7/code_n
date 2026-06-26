@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a range of integers from 1 to `n` and a list of "banned" integers, determine the maximum count of unique integers you can select from the range such that no selected integer is in the banned list and the total sum of the selected integers does not exceed a specified limit `maxSum`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `banned`: A list of integers that cannot be chosen.
+- `n`: An integer representing the upper bound of the range [1, n].
+- `maxSum`: An integer representing the maximum allowable sum of chosen integers.
 
 **Return value**
 
-TODO
+- An integer representing the maximum number of integers that can be picked under the given constraints.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `banned = [1, 6, 5], n = 5, maxSum = 6`
+- Output: `2` (We can choose 2 and 4, which sum to 6.)
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `banned = [1, 2, 3, 4, 5, 6, 7], n = 8, maxSum = 1`
+- Output: `0` (No integers can be chosen without exceeding the sum.)
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `banned = [11], n = 7, maxSum = 50`
+- Output: `7` (We can choose all integers from 1 to 7, as their sum is 28, which is less than 50.)
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Greedy approach**. By iterating through the range [1, n] in ascending order and skipping any numbers present in the banned set, we maximize the count of integers chosen while keeping the running sum as small as possible. A Hash Set is used for O(1) average-time lookups of banned numbers.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: O(n + m), where n is the upper bound of the range and m is the number of elements in the banned list. We iterate up to n times and perform constant-time set lookups.
+- **Space Complexity**: O(m), required to store the banned integers in a hash set for efficient lookup.
