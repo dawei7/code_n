@@ -1,28 +1,25 @@
-"""Solution for string_01: Anagram Check.
-
+"""
+Description
+-----------
 Return True iff the two input strings are anagrams of each other.
 Two strings are anagrams if they contain exactly the same
 characters the same number of times (case-sensitive).
 Requirement: O(n) where n is the length of the strings.
 Source: https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/
 
-Inputs passed to solve():
-    s: first string.
-    t: second string.
+Examples
+--------
+Example 1:
+Input:  s = 'listen', t = 'silent'
+Output: True
 
-Goal:
-    True iff s and t are anagrams.
+Example 2:
+Input:  s = 'hello', t = 'world'
+Output: False
 
-Samples:
-Sample 1 input:  s = 'listen', t = 'silent'
-Sample 1 output: True
-
-Sample 2 input:  s = 'hello', t = 'world'
-Sample 2 output: False
-
-Sample 3 input:  s = 'anagram', t = 'nagaram'
-Sample 3 output: True
-
+Example 3:
+Input:  s = 'anagram', t = 'nagaram'
+Output: True
 """
 
 def solve(s, t):

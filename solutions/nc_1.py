@@ -1,27 +1,21 @@
-"""Solution for nc_1: Concatenation of Array.
+"""
+Description
+-----------
+Given an integer array nums of length n, return the concatenation of nums with itself.
 
-Given an integer array `nums` of length `n`, return the concatenation of `nums` with itself.
-
-## Example
-```
+Examples
+--------
+Example 1:
 Input:  nums = [1, 2, 1]
 Output: [1, 2, 1, 1, 2, 1]
-```
 
-## GeeksforGeeks Reference
-[Python list concatenation](https://www.geeksforgeeks.org/python-list-operations/)
+Example 2:
+Input:  nums = [4, 5]
+Output: [4, 5, 4, 5]
 
-Inputs passed to solve():
-    nums: List[int]
-
-Goal:
-    List[int] of length 2n
-
-Samples:
-Sample 1 input:  nums = [1,2,1]
-Sample 1 output: [1,2,1,1,2,1]
-
-
+Example 3:
+Input:  nums = [0]
+Output: [0, 0]
 """
 
 def solve(nums):

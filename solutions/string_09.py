@@ -1,5 +1,6 @@
-"""Solution for string_09: Run-Length Encoding.
-
+"""
+Description
+-----------
 Encode a string by collapsing consecutive identical
 characters into <char><count> pairs. For example,
 'aaabbc' becomes 'a3b2c1' and '' becomes ''.
@@ -8,22 +9,19 @@ in the alphabet so there's no ambiguity).
 Requirement: O(n).
 Source: https://www.geeksforgeeks.org/run-length-encoding/
 
-Inputs passed to solve():
-    s: the input string (lowercase letters).
+Examples
+--------
+Example 1:
+Input:  s = 'aaabbc'
+Output: 'a3b2c1'
 
-Goal:
-    the run-length encoded string.
+Example 2:
+Input:  s = 'abcd'
+Output: 'a1b1c1d1'
 
-Samples:
-Sample 1 input:  s = 'aaabbc'
-Sample 1 output: 'a3b2c1'
-
-Sample 2 input:  s = 'abcd'
-Sample 2 output: 'a1b1c1d1'
-
-Sample 3 input:  s = ''
-Sample 3 output: ''
-
+Example 3:
+Input:  s = ''
+Output: ''
 """
 
 def solve(s):

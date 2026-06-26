@@ -1,5 +1,6 @@
-"""Solution for greedy_13: Stable Marriage (Gale-Shapley).
-
+"""
+Description
+-----------
 Find a stable matching between n men and n women, given
 each side's preference list. Gale-Shapley: while any
 man is free, he proposes to his next-best unproposed
@@ -8,19 +9,11 @@ match (or is free). O(n^2) total.
 Returns the men's matched partners.
 Source: https://www.geeksforgeeks.org/stable-marriage-problem/
 
-Inputs passed to solve():
-    n: number of men (= number of women).
-    men_prefs: list of n lists; men_prefs[i] is man's preference order.
-    women_prefs: list of n lists; women_prefs[i] is woman's preference order.
-
-Goal:
-    a list of n women indices (one per man), the men's matches.
-
-Samples:
-Sample 1 input:  n = 4, men_prefs = [[0, 1, 2, 3], ...], women_prefs = [[0, 1, 2, 3], ...]
-Sample 1 output: [0, 1, 2, 3] (identity match)
-
-
+Examples
+--------
+Example 1:
+Input:  n = 4, men_prefs = [[0, 1, 2, 3], ...], women_prefs = [[0, 1, 2, 3], ...]
+Output: [0, 1, 2, 3] (identity match)
 """
 
 def solve(n, men_prefs, women_prefs):

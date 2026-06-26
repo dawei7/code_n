@@ -1,27 +1,24 @@
-"""Solution for dp_04: Longest Common Subsequence.
-
+"""
+Description
+-----------
 Find the length of the longest common subsequence of two strings.
 A subsequence is a sequence that appears in the same order but not necessarily contiguous.
 Requirement: O(n * m) where n, m are string lengths.
 Source: https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
 
-Inputs passed to solve():
-    seq_a: first string (or list-like of characters).
-    seq_b: second string (or list-like of characters).
+Examples
+--------
+Example 1:
+Input:  seq_a = "ABC", seq_b = "AC"
+Output: 2
 
-Goal:
-    the length of the longest common subsequence of seq_a and seq_b.
+Example 2:
+Input:  seq_a = "ABC", seq_b = "DEF"
+Output: 0
 
-Samples:
-Sample 1 input:  seq_a = "ABC", seq_b = "AC"
-Sample 1 output: 2
-
-Sample 2 input:  seq_a = "ABC", seq_b = "DEF"
-Sample 2 output: 0
-
-Sample 3 input:  seq_a = "AAB", seq_b = "AB"
-Sample 3 output: 2
-
+Example 3:
+Input:  seq_a = "AAB", seq_b = "AB"
+Output: 2
 """
 
 def solve(seq_a, seq_b):

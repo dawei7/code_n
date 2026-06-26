@@ -36,6 +36,12 @@ WEB_DIST = Path(os.environ.get("CODEN_WEB_DIST", str(PROJECT_ROOT / "web" / "dis
 # of ``resources/docs/`` (the extraResource).
 DOCS_ROOT = Path(os.environ.get("CODEN_DOCS_DIR", str(PROJECT_ROOT / "docs")))
 
+# Optional reference implementations, organized to mirror docs/algorithms:
+# optimal_solutions/<dataset>/<category>/<doc-stem>.py.
+OPTIMAL_SOLUTIONS_ROOT = Path(
+    os.environ.get("CODEN_OPTIMAL_SOLUTIONS_DIR", str(PROJECT_ROOT / "optimal_solutions"))
+)
+
 # Server config.
 CODEN_HOST = os.environ.get("CODEN_HOST", "127.0.0.1")
 CODEN_PORT = int(os.environ.get("CODEN_PORT", "8000"))

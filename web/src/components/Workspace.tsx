@@ -6,6 +6,7 @@ import { ReferenceTab } from './layout/tabs/ReferenceTab';
 import { MathematicalTab } from './layout/tabs/MathematicalTab';
 import { CodenTab } from './layout/tabs/CodenTab';
 import { CareerPathTab } from './layout/tabs/CareerPathTab';
+import { getAlgorithmSetLabel, getAlgorithmSetOption } from '../lib/algorithmSets';
 
 export function Workspace() {
   const detail = useAppStore((s) => s.currentDetail);
@@ -20,6 +21,7 @@ export function Workspace() {
   const switchVersion = useAppStore((s) => s.switchVersion);
   const resetVersion = useAppStore((s) => s.resetVersion);
   const renameVersion = useAppStore((s) => s.renameVersion);
+  const activeSetOption = getAlgorithmSetOption(activeSet);
   const [contextMenu, setContextMenu] = useState<{ visible: boolean; x: number; y: number; version: number | null }>(
     {
       visible: false,
@@ -37,8 +39,17 @@ export function Workspace() {
     return () => window.removeEventListener('click', handleWindowClick);
   }, []);
 
+  useEffect(() => {
+    if (!activeSetOption.hasMathematical && activeTopic === 'mathematical') {
+      setActiveTopic('reference');
+    }
+    if (!activeSetOption.hasCareerPath && activeTopic === 'career_path') {
+      setActiveTopic('reference');
+    }
+  }, [activeSetOption.hasCareerPath, activeSetOption.hasMathematical, activeTopic, setActiveTopic]);
+
   if (!detail) {
-    if (activeSet === 'neetcode') {
+    if (activeSetOption.hasCareerPath) {
       return (
         <div className="flex-1 flex flex-col min-h-0 bg-coden-bg p-6 overflow-y-auto">
           <CareerPathTab onSelectCodenTab={() => setActiveTopic('coden')} />
@@ -51,8 +62,8 @@ export function Workspace() {
         <span className="text-4xl">⌘</span>
         <h3 className="text-lg font-bold text-coden-text">Welcome to cOde(n)</h3>
         <p className="text-xs max-w-sm leading-relaxed text-coden-muted font-mono">
-          You are practicing with the <strong>GeeksforGeeks Library</strong>.
-          All 260+ challenges are unlocked. Select any challenge from the left sidebar to start practicing.
+          You are practicing with the <strong>{getAlgorithmSetLabel(activeSet)}</strong> dataset.
+          Select any available challenge from the left sidebar to start practicing.
         </p>
       </div>
     );
@@ -60,10 +71,12 @@ export function Workspace() {
 
   const topics: { id: Topic; label: string; title: string; className?: string }[] = [
     { id: 'reference', label: '≡', title: language === 'en' ? 'Reference' : 'Referenz', className: 'font-serif text-lg' },
-    { id: 'mathematical', label: 'π', title: language === 'en' ? 'Mathematical' : 'Mathematische Grundlagen' },
+    ...(activeSetOption.hasMathematical
+      ? [{ id: 'mathematical' as Topic, label: 'π', title: language === 'en' ? 'Mathematical' : 'Mathematische Grundlagen' }]
+      : []),
     { id: 'complexity', label: 'O', title: 'Complexity Analysis', className: 'font-serif italic text-lg' },
     { id: 'coden', label: '</>', title: 'cOde(n)', className: 'font-mono text-sm tracking-tight' },
-    ...(activeSet === 'neetcode'
+    ...(activeSetOption.hasCareerPath
       ? [{ id: 'career_path' as Topic, label: '∴', title: 'Career Path', className: 'font-serif text-lg' }]
       : []),
   ];

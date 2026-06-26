@@ -8,14 +8,21 @@ Three endpoints:
   263 challenges, with a ``has_doc`` flag for whether a
   per-algorithm doc exists yet.
 * ``GET /api/docs/{path:path}`` - returns the raw text of a
-  single per-algorithm markdown file. Path-traversal safe.
+  single markdown file. Path-traversal safe.
 
 The docs are static markdown files in ``DOCS_ROOT`` (see
 ``server.app.config``). In dev, ``DOCS_ROOT = <repo>/docs``;
-in the packaged Electron app it's ``resources/docs/``.
+in the packaged Electron app it's ``resources/docs/``. Challenge docs
+are grouped by source family first so large corpora stay easy to load
+selectively:
+
+* ``docs/algorithms/neetcode/{category}/...``
+* ``docs/algorithms/geeksforgeeks/{category}/...``
+* ``docs/mathematical/geeksforgeeks/{category}/...``
 """
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Optional
 
@@ -31,7 +38,7 @@ from server.app.config import DOCS_ROOT
 router = APIRouter()
 
 
-# --- NeetCode Category Pedagogic Data -----------------------------
+# --- NeetCode Category Learning Data -----------------------------
 
 NEETCODE_CATEGORY_INFO = {
     "neetcode_arrays": {
@@ -253,6 +260,129 @@ NEETCODE_CATEGORY_INFO = {
 }
 
 
+def _clean_problem_description(description: str) -> str:
+    """Keep the generated goal text focused.
+
+    Some imported NeetCode specs still contain old inline example or
+    external-reference sections. The dynamic reference view renders examples
+    from structured samples below, so those embedded blocks would otherwise
+    duplicate content and occasionally mention the wrong source family.
+    """
+    text = re.sub(
+        r"\n+##\s+GeeksforGeeks Reference\s*\n[\s\S]*?(?=\n+##\s+|$)",
+        "",
+        description,
+        flags=re.IGNORECASE,
+    )
+    text = re.sub(
+        r"\n+##\s+Example\s*\n[\s\S]*?(?=\n+##\s+|$)",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    )
+    return text.strip()
+
+
+def _format_problem_examples(spec, lang: str) -> str:
+    if not spec.samples:
+        return (
+            "_Keine Beispiele in dieser lokalen Spezifikation._"
+            if lang == "de"
+            else "_No examples are included in this local specification._"
+        )
+
+    lines = []
+    for i, sample in enumerate(spec.samples, start=1):
+        if lang == "de":
+            lines.append(
+                f"**Beispiel {i}**\n\n"
+                f"- Eingabe: `{sample.input_repr}`\n"
+                f"- Ausgabe: `{sample.output_repr}`"
+            )
+        else:
+            lines.append(
+                f"**Example {i}**\n\n"
+                f"- Input: `{sample.input_repr}`\n"
+                f"- Output: `{sample.output_repr}`"
+            )
+    return "\n\n".join(lines)
+
+
+def _format_parameter_contract(spec, lang: str) -> str:
+    if lang == "de":
+        input_lines = "\n".join(
+            f"- `{name}`: {spec.inputs.get(name, 'Eingabewert')}"
+            for name in spec.params
+        )
+        return f"**Eingaben**\n\n{input_lines}\n\n**Rueckgabe**\n\n{spec.returns}"
+
+    input_lines = "\n".join(
+        f"- `{name}`: {spec.inputs.get(name, 'input value')}"
+        for name in spec.params
+    )
+    return f"**Inputs**\n\n{input_lines}\n\n**Return value**\n\n{spec.returns}"
+
+
+def _format_learning_steps(spec, cat_info: dict, lang: str) -> str:
+    hint = spec.hint.strip() if spec.hint else ""
+    if lang == "de":
+        steps = [
+            "Lies zuerst den Rueckgabewert: Welche Form muss die Antwort haben, "
+            "und muss sie eindeutig sein?",
+            "Bestimme den Zustand, den du behalten musst. Bei dieser Kategorie ist "
+            f"das meistens: {cat_info['concept']}",
+            f"Wende das Standardmuster an: {cat_info['walkthrough']}",
+        ]
+        if hint:
+            steps.append(f"Nutze diesen lokalen Hinweis beim Debuggen: {hint}")
+        steps.append(
+            "Pruefe deine Idee an einem kleinen Beispiel, bevor du Code schreibst. "
+            "Wenn sich ein Zwischenergebnis nicht leicht erklaeren laesst, ist der "
+            "Zustand wahrscheinlich noch nicht praezise genug."
+        )
+        return "\n".join(f"{i}. {step}" for i, step in enumerate(steps, start=1))
+
+    steps = [
+        "Start from the return value. Decide exactly what shape the answer must "
+        "have and whether multiple valid answers are possible.",
+        "Name the state you need to carry while scanning, recursing, or expanding "
+        f"the search space. In this category, the core idea is: {cat_info['concept']}",
+        f"Apply the reusable pattern: {cat_info['walkthrough']}",
+    ]
+    if hint:
+        steps.append(f"Use this local debugging clue when you get stuck: {hint}")
+    steps.append(
+        "Trace one small example by hand before coding. If you cannot explain each "
+        "state update in plain language, tighten the invariant before moving on."
+    )
+    return "\n".join(f"{i}. {step}" for i, step in enumerate(steps, start=1))
+
+
+def _space_complexity_label(spec, cat_info: dict) -> str:
+    category = spec.category.lower()
+    if any(
+        token in category
+        for token in (
+            "arrays",
+            "stack",
+            "heap",
+            "trees",
+            "graphs",
+            "tries",
+            "dp",
+            "backtracking",
+            "intervals",
+        )
+    ):
+        return "O(N)"
+    if any(
+        token in cat_info["space_explain"].lower()
+        for token in ("store", "stack", "heap", "grid", "array", "map", "set")
+    ):
+        return "O(N)"
+    return "O(1)"
+
+
 def generate_dynamic_reference(challenge_id: str, spec, lang: str) -> str:
     cat_info = NEETCODE_CATEGORY_INFO.get(spec.category, {
         "name": spec.category,
@@ -266,10 +396,9 @@ def generate_dynamic_reference(challenge_id: str, spec, lang: str) -> str:
         "math_equations": "",
         "pedagogic_insights": "Break down the inputs into simple steps."
     })
-    
+
     difficulty_str = "Easy" if spec.difficulty <= 3 else "Medium" if spec.difficulty <= 7 else "Hard"
-    
-    # German translations for headers
+
     if lang == "de":
         title_ref = "Referenz"
         cat_lbl = "Kategorie"
@@ -277,11 +406,14 @@ def generate_dynamic_reference(challenge_id: str, spec, lang: str) -> str:
         desc_lbl = "Problembeschreibung & Beispiele"
         algo_lbl = "Unterliegende Basisalgorithmen"
         concept_lbl = "Kernkonzept"
-        walkthrough_lbl = "Lösungsstrategie & Ablauf"
-        impl_lbl = "Kanonische Implementierung"
-        complexity_lbl = "Komplexitätsanalyse"
-        time_lbl = "Zeitkomplexität"
-        space_lbl = "Platzkomplexität"
+        complexity_lbl = "Komplexitaetsanalyse"
+        time_lbl = "Zeitkomplexitaet"
+        space_lbl = "Platzkomplexitaet"
+        goal_lbl = "Ziel"
+        contract_lbl = "Funktionsvertrag"
+        examples_lbl = "Beispiele"
+        why_lbl = "Warum diese Algorithmusfamilie passt"
+        pattern_lbl = "Wiederverwendbares Muster"
     else:
         title_ref = "Reference"
         cat_lbl = "Category"
@@ -289,18 +421,23 @@ def generate_dynamic_reference(challenge_id: str, spec, lang: str) -> str:
         desc_lbl = "Problem Description & Examples"
         algo_lbl = "Underlying Base Algorithm(s)"
         concept_lbl = "Core Concept"
-        walkthrough_lbl = "Strategy & Walkthrough"
-        impl_lbl = "Canonical Implementation"
         complexity_lbl = "Complexity Analysis"
         time_lbl = "Time Complexity"
         space_lbl = "Space Complexity"
+        goal_lbl = "Goal"
+        contract_lbl = "Function Contract"
+        examples_lbl = "Examples"
+        why_lbl = "Why this algorithm family fits"
+        pattern_lbl = "Reusable pattern"
 
-    # Identify base vs derived
     is_base = any(x in spec.name.lower() for x in ["binary search", "bubble sort", "quick sort", "heap sort", "merge sort", "bfs", "dfs", "trie prefix tree", "lru cache", "union find"])
     algo_type = "Base Algorithm" if is_base else "Derived Challenge"
 
-    # Extract time complexity
     time_comp = spec.required_complexity.value if hasattr(spec, "required_complexity") and hasattr(spec.required_complexity, "value") else "O(N)"
+    space_comp = _space_complexity_label(spec, cat_info)
+    description = _clean_problem_description(spec.description)
+    contract = _format_parameter_contract(spec, lang)
+    examples = _format_problem_examples(spec, lang)
 
     markdown = f"""# {title_ref}: {spec.name}
 
@@ -309,26 +446,29 @@ def generate_dynamic_reference(challenge_id: str, spec, lang: str) -> str:
 ---
 
 ## {desc_lbl}
-{spec.description}
+### {goal_lbl}
+{description}
+
+### {contract_lbl}
+{contract}
+
+### {examples_lbl}
+{examples}
 
 ---
 
 ## {algo_lbl}
-This challenge is classified as a **{algo_type}** built upon **{cat_info['base_algo']}**.
+### {why_lbl}
+This challenge is a **{algo_type}** built on **{cat_info['base_algo']}**.
 
-* **{concept_lbl}**: {cat_info['concept']}
-
----
-
-## {walkthrough_lbl}
-1. **Pedagogic Hint**: {spec.hint}
-2. **Standard Approach**: {cat_info['walkthrough']}
+- **{concept_lbl}**: {cat_info['concept']}
+- **{pattern_lbl}**: Learn the category pattern, not just this one answer. The same idea should transfer to nearby NeetCode problems in this section.
 
 ---
 
 ## {complexity_lbl}
 - **{time_lbl}**: `{time_comp}` — {cat_info['time_explain']}
-- **{space_lbl}**: `O(N)` if hash/stack is used, otherwise `O(1)` — {cat_info['space_explain']}
+- **{space_lbl}**: `{space_comp}` — {cat_info['space_explain']}
 """
     return markdown
 
@@ -346,13 +486,13 @@ def generate_dynamic_mathematical(challenge_id: str, spec, lang: str) -> str:
         cat_lbl = "Kategorie"
         core_lbl = "Mathematischer Kern"
         eq_lbl = "Formeln & Gleichungen"
-        insights_lbl = "Pädagogische Einblicke"
+        insights_lbl = "Lernperspektive"
     else:
         title_lbl = "Mathematical Foundation"
         cat_lbl = "Category"
         core_lbl = "Mathematical Core"
         eq_lbl = "Recurrence & Equations"
-        insights_lbl = "Pedagogic Insights"
+        insights_lbl = "Learning Lens"
         
     markdown = f"""# {title_lbl}: {spec.name}
 
@@ -390,7 +530,7 @@ class DocIndexEntry(BaseModel):
     difficulty_existing: int
     difficulty_mine: int
     relevance_mine: int
-    path: Optional[str]  # relative to DOCS_ROOT/algorithms/, or null if no doc
+    path: Optional[str]  # relative to DOCS_ROOT, or null if no doc
     has_doc: bool
 
 
@@ -414,14 +554,43 @@ def _slugify(name: str) -> str:
     return s.strip("-").strip(".")
 
 
-def _category_dir(category: str) -> Path:
-    """Map a category name to a docs/algorithms/{dir}/ path.
+def _doc_family(category: str) -> str:
+    """Return the source-family folder for a registry category."""
+    if category.startswith("neetcode_"):
+        return "neetcode"
+    if category.startswith("leetcode_"):
+        return "leetcode"
+    return "geeksforgeeks"
 
-    The category names in the registry match the dir names 1:1
-    (both are lowercase with underscores). This helper is here
-    for the day they diverge - just edit the dict.
+
+def _doc_category_folder(category: str) -> str:
+    """Return the category folder name inside the source-family folder."""
+    for prefix in ("neetcode_", "leetcode_"):
+        if category.startswith(prefix):
+            return category.removeprefix(prefix)
+    return category
+
+
+def _category_dirs(category: str) -> list[Path]:
+    """Map a category name to docs/algorithms/{family}/{category}/.
+
+    The legacy flat path is checked as a fallback so older packaged docs keep
+    resolving even if they have not been migrated yet.
     """
-    return DOCS_ROOT / "algorithms" / category
+    return [
+        DOCS_ROOT / "algorithms" / _doc_family(category) / _doc_category_folder(category),
+        DOCS_ROOT / "algorithms" / _doc_family(category) / category,
+        DOCS_ROOT / "algorithms" / category,
+    ]
+
+
+def _math_category_dirs(category: str) -> list[Path]:
+    """Map a category name to docs/mathematical/{family}/{category}/."""
+    return [
+        DOCS_ROOT / "mathematical" / _doc_family(category) / _doc_category_folder(category),
+        DOCS_ROOT / "mathematical" / _doc_family(category) / category,
+        DOCS_ROOT / "mathematical" / category,
+    ]
 
 
 def _find_doc_path(challenge_id: str, name: str, category: str, lang: str = "en") -> Optional[Path]:
@@ -430,22 +599,30 @@ def _find_doc_path(challenge_id: str, name: str, category: str, lang: str = "en"
     Uses a prefix search on the challenge ID to resolve mismatches between
     registry names and disk filenames (e.g. 'graph_02_bfs.md' vs 'graph_02_breadth-first-search.md').
     """
-    cat_dir = _category_dir(category)
-    if not cat_dir.is_dir():
-        return None
-    
-    # Try finding files starting with challenge_id
-    files = list(cat_dir.glob(f"{challenge_id}_*.md"))
-    if not files:
-        return None
-        
-    if lang == "de":
-        de_files = [f for f in files if f.name.endswith("_de.md")]
-        if de_files:
-            return de_files[0]
-            
-    en_files = [f for f in files if not f.name.endswith("_de.md")]
-    return en_files[0] if en_files else None
+    prefixes = [challenge_id]
+    if category.startswith("leetcode_") and challenge_id.startswith("lc_"):
+        prefixes.append(challenge_id.removeprefix("lc_"))
+
+    for cat_dir in _category_dirs(category):
+        if not cat_dir.is_dir():
+            continue
+
+        # Try finding files starting with challenge_id
+        files = []
+        for prefix in prefixes:
+            files.extend(cat_dir.glob(f"{prefix}_*.md"))
+        if not files:
+            continue
+
+        if lang == "de":
+            de_files = [f for f in files if f.name.endswith("_de.md")]
+            if de_files:
+                return de_files[0]
+
+        en_files = [f for f in files if not f.name.endswith("_de.md")]
+        return en_files[0] if en_files else None
+
+    return None
 
 
 def _find_math_path(challenge_id: str, name: str, category: str, lang: str = "en") -> Optional[Path]:
@@ -453,21 +630,23 @@ def _find_math_path(challenge_id: str, name: str, category: str, lang: str = "en
     
     Uses a prefix search on the challenge ID to resolve mismatches.
     """
-    cat_dir = DOCS_ROOT / "mathematical" / category
-    if not cat_dir.is_dir():
-        return None
-        
-    files = list(cat_dir.glob(f"{challenge_id}_*.md"))
-    if not files:
-        return None
-        
-    if lang == "de":
-        de_files = [f for f in files if f.name.endswith("_de.md")]
-        if de_files:
-            return de_files[0]
-            
-    en_files = [f for f in files if not f.name.endswith("_de.md")]
-    return en_files[0] if en_files else None
+    for cat_dir in _math_category_dirs(category):
+        if not cat_dir.is_dir():
+            continue
+
+        files = list(cat_dir.glob(f"{challenge_id}_*.md"))
+        if not files:
+            continue
+
+        if lang == "de":
+            de_files = [f for f in files if f.name.endswith("_de.md")]
+            if de_files:
+                return de_files[0]
+
+        en_files = [f for f in files if not f.name.endswith("_de.md")]
+        return en_files[0] if en_files else None
+
+    return None
 
 # --- Endpoints ---------------------------------------------------
 
@@ -486,7 +665,7 @@ def docs_index() -> list[DocIndexEntry]:
             except ValueError:
                 rel = None
         
-        has_doc = (doc is not None) or cid.startswith("nc_")
+        has_doc = doc is not None
         out.append(
             DocIndexEntry(
                 id=cid,
@@ -535,19 +714,13 @@ def docs_by_id(challenge_id: str, lang: str = "en") -> Response:
         raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
     spec = cls()._spec
     
-    if challenge_id.startswith("nc_"):
-        content = generate_dynamic_reference(challenge_id, spec, lang)
-        return Response(
-            content=content,
-            media_type="text/markdown; charset=utf-8",
-        )
-        
     doc = _find_doc_path(challenge_id, spec.name, spec.category, lang)
     if doc is None:
         raise HTTPException(
             status_code=404,
             detail=f"No doc yet for {challenge_id} ({spec.name}). "
-                   f"Contribute at docs/algorithms/{spec.category}/{challenge_id}_*.md",
+                   f"Contribute at docs/algorithms/{_doc_family(spec.category)}/"
+                   f"{spec.category}/{challenge_id}_*.md",
         )
     return Response(
         content=doc.read_text(encoding="utf-8"),
@@ -562,20 +735,20 @@ def math_by_id(challenge_id: str, lang: str = "en") -> Response:
     if cls is None:
         raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
     spec = cls()._spec
-    
+
     if challenge_id.startswith("nc_"):
-        content = generate_dynamic_mathematical(challenge_id, spec, lang)
-        return Response(
-            content=content,
-            media_type="text/markdown; charset=utf-8",
+        raise HTTPException(
+            status_code=404,
+            detail=f"NeetCode challenge '{challenge_id}' does not have a separate mathematical reference.",
         )
-        
+
     doc = _find_math_path(challenge_id, spec.name, spec.category, lang)
     if doc is None:
         raise HTTPException(
             status_code=404,
             detail=f"No mathematical doc yet for {challenge_id} ({spec.name}). "
-                   f"Contribute at docs/mathematical/{spec.category}/{challenge_id}_*.md",
+                   f"Contribute at docs/mathematical/{_doc_family(spec.category)}/"
+                   f"{spec.category}/{challenge_id}_*.md",
         )
     return Response(
         content=doc.read_text(encoding="utf-8"),

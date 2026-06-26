@@ -1,5 +1,6 @@
-"""Solution for string_08: Smallest Window.
-
+"""
+Description
+-----------
 Given a string s and a pattern p (with distinct chars),
 find the smallest substring of s that contains every
 character of p at least once. Returns the smallest such
@@ -7,23 +8,19 @@ substring, or "" if no such substring exists.
 Requirement: O(n) sliding window.
 Source: https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
 
-Inputs passed to solve():
-    s: the string to search in.
-    p: the pattern (distinct characters).
+Examples
+--------
+Example 1:
+Input:  s = 'timetopractice', p = 'toc'
+Output: 'toprac' (smallest window containing t, o, c)
 
-Goal:
-    the smallest substring of s containing all of p, or '' if none.
+Example 2:
+Input:  s = 'zoomlazapop', p = 'oza'
+Output: 'oza'
 
-Samples:
-Sample 1 input:  s = 'timetopractice', p = 'toc'
-Sample 1 output: 'toprac' (smallest window containing t, o, c)
-
-Sample 2 input:  s = 'zoomlazapop', p = 'oza'
-Sample 2 output: 'oza'
-
-Sample 3 input:  s = 'abc', p = 'xyz'
-Sample 3 output: '' (no window contains all of p)
-
+Example 3:
+Input:  s = 'abc', p = 'xyz'
+Output: '' (no window contains all of p)
 """
 
 def solve(s, p):

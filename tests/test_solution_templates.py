@@ -3,7 +3,7 @@
 Every challenge's auto-generated starter file must:
   * have EXPLICIT parameter names (no `**kwargs`)
   * show the function signature as `def solve(arg1, arg2, ...):`
-  * document the inputs and the return value in a docstring
+  * use a clean triple-quoted header with underlined section titles
 
 These properties were added after the user reported the
 `**kwargs` template was misleading. The check is purely textual
@@ -12,78 +12,82 @@ on the generated template; we don't write the file to disk.
 from __future__ import annotations
 
 import re
-import unittest
 
 from code_n import solutions
 from challenges.registry import get_challenge
 
 
-class TemplateShapeTests(unittest.TestCase):
-    """Every registered challenge's template must look like:
+def test_all_registered_challenges_have_explicit_templates():
+    registered = set(__import__("challenges.registry", fromlist=["list_challenges"]).list_challenges())
+    templated = set(solutions._CHALLENGE_TEMPLATES.keys())
+    missing = registered - templated
+    assert not missing, f"Missing explicit templates for: {sorted(missing)}"
 
-        def solve(arg1, arg2, ...):
-            return None
 
-    with the arg names spelled out (not **kwargs)."""
+def test_no_template_uses_kwargs():
+    for cid, info in solutions._CHALLENGE_TEMPLATES.items():
+        params = info["params"]
+        assert "**kwargs" not in params, f"{cid} still uses **kwargs"
+        assert all(re.match(r"^[a-z_][a-z0-9_]*$", p) for p in params), (
+            f"{cid} has invalid parameter names: {params}"
+        )
 
-    def test_all_registered_challenges_have_explicit_templates(self):
-        registered = set(__import__("challenges.registry", fromlist=["list_challenges"]).list_challenges())
-        templated = set(solutions._CHALLENGE_TEMPLATES.keys())
-        missing = registered - templated
-        self.assertFalse(missing, msg=f"Missing explicit templates for: {sorted(missing)}")
 
-    def test_no_template_uses_kwargs(self):
-        for cid, info in solutions._CHALLENGE_TEMPLATES.items():
-            params = info["params"]
-            self.assertNotIn("**kwargs", params, msg=f"{cid} still uses **kwargs")
-            self.assertTrue(all(re.match(r"^[a-z_][a-z0-9_]*$", p) for p in params),
-                            msg=f"{cid} has invalid parameter names: {params}")
+def test_template_signature_matches_param_list():
+    for cid, info in solutions._CHALLENGE_TEMPLATES.items():
+        template = solutions._solution_template(
+            cid, f"{cid}: {cid.title()}", "test description",
+        )
+        expected_sig = "def solve(" + ", ".join(info["params"]) + "):"
+        assert expected_sig in template, f"{cid} template missing signature: {expected_sig}"
 
-    def test_template_signature_matches_param_list(self):
-        for cid, info in solutions._CHALLENGE_TEMPLATES.items():
-            template = solutions._solution_template(
-                cid, f"{cid}: {cid.title()}", "test description",
+
+def test_template_docstring_is_uncluttered():
+    for cid, info in solutions._CHALLENGE_TEMPLATES.items():
+        template = solutions._solution_template(
+            cid, f"{cid}: {cid.title()}", "test description",
+        )
+        assert template.startswith('"""\nDescription\n-----------\n')
+        assert "test description" in template
+        assert "\nExamples\n--------\n" in template
+        assert "1. Description" not in template
+        assert "2. Examples" not in template
+        assert "Inputs passed to solve():" not in template
+        assert "\nGoal:\n" not in template
+        assert "##" not in template
+        assert "```" not in template
+        assert "GeeksforGeeks Reference" not in template
+        for name in info["params"]:
+            assert f"    {name}:" not in template, (
+                f"{cid} template still includes input metadata for '{name}'"
             )
-            expected_sig = "def solve(" + ", ".join(info["params"]) + "):"
-            self.assertIn(expected_sig, template,
-                          msg=f"{cid} template missing signature: {expected_sig}")
-
-    def test_template_documents_inputs(self):
-        for cid, info in solutions._CHALLENGE_TEMPLATES.items():
-            template = solutions._solution_template(
-                cid, f"{cid}: {cid.title()}", "test description",
-            )
-            self.assertIn("Inputs passed to solve():", template,
-                          msg=f"{cid} template missing 'Inputs passed to solve():' line")
-            for name in info["params"]:
-                self.assertIn(f"{name}:", template,
-                              msg=f"{cid} template missing input description for '{name}'")
-
-    def test_template_documents_return(self):
-        for cid, info in solutions._CHALLENGE_TEMPLATES.items():
-            template = solutions._solution_template(
-                cid, f"{cid}: {cid.title()}", "test description",
-            )
-            self.assertIn(info["returns"], template,
-                          msg=f"{cid} template missing return description")
-
-    def test_template_starts_with_solve_call(self):
-        """The starter file must be a valid Python file with a
-        solve() function, not a stub."""
-        for cid, info in solutions._CHALLENGE_TEMPLATES.items():
-            template = solutions._solution_template(
-                cid, f"{cid}: {cid.title()}", "test description",
-            )
-            self.assertIn("def solve(", template)
-            self.assertIn("return None", template)
-            # The sample I/O should be in the docstring if available.
-            ch = get_challenge(cid)
-            if ch is not None:
-                # Sample lines exist for the registered challenges that
-                # have a sample set. We just check the template is
-                # importable as Python.
-                compile(template, f"{cid}_template.py", "exec")
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_neetcode_template_uses_three_examples_from_docs():
+    template = solutions._solution_template(
+        "nc_1",
+        "nc_1: Concatenation of Array",
+        "Given an integer array `nums` of length `n`, return the concatenation of `nums` with itself.\n\n"
+        "## Example\n```\nInput: nums = [1, 2, 1]\nOutput: [1, 2, 1, 1, 2, 1]\n```\n\n"
+        "## GeeksforGeeks Reference\n"
+        "[Python list concatenation](https://www.geeksforgeeks.org/python-list-operations/)",
+    )
+    assert "Given an integer array nums of length n" in template
+    assert template.count("Example ") == 3
+    assert "Input:  nums = [1, 2, 1]" in template
+    assert "Output: [1, 2, 1, 1, 2, 1]" in template
+    assert "## Example" not in template
+    assert "GeeksforGeeks Reference" not in template
+
+
+def test_template_starts_with_solve_call():
+    """Every starter file must be valid Python with an explicit solve() stub."""
+    for cid in solutions._CHALLENGE_TEMPLATES:
+        template = solutions._solution_template(
+            cid, f"{cid}: {cid.title()}", "test description",
+        )
+        assert "def solve(" in template
+        assert "return None" in template
+        ch = get_challenge(cid)
+        if ch is not None:
+            compile(template, f"{cid}_template.py", "exec")

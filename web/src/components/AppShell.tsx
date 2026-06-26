@@ -38,6 +38,7 @@ import { TabBar } from './TabBar';
 import { Workspace } from './Workspace';
 import { ProfileModal } from './ProfileModal';
 import { InfoModal } from './InfoModal';
+import { ALGORITHM_SETS } from '../lib/algorithmSets';
 
 
 export function AppShell() {
@@ -100,7 +101,8 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
   const increaseFontSize = useAppStore((s) => s.increaseFontSize);
   const decreaseFontSize = useAppStore((s) => s.decreaseFontSize);
   const activeProfile = useAppStore((s) => s.activeProfile);
-  const progress = useAppStore((s) => s.progress);
+  const activeSet = useAppStore((s) => s.activeSet);
+  const setActiveSet = useAppStore((s) => s.setActiveSet);
 
   // Tooltip describing the last update action for the "Check for
   // updates" button. Changes when the state changes.
@@ -149,9 +151,25 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
             {challenges.length} challenges
           </span>
         )}
-        <span className="ml-2 px-2 py-0.5 rounded bg-coden-bg border border-coden-border text-coden-muted text-[10.5px] font-medium select-none truncate max-w-[260px]">
-          {activeProfile} · {progress?.active_set === 'neetcode' ? 'NeetCode 250' : 'GeeksforGeeks'}
-        </span>
+        <div className="ml-2 flex items-center gap-1 rounded bg-coden-bg border border-coden-border px-2 py-0.5 max-w-[300px]">
+          <span className="text-coden-muted text-[10.5px] font-medium truncate max-w-[110px]">
+            {activeProfile}
+          </span>
+          <span className="text-coden-muted/60 text-[10.5px]">·</span>
+          <select
+            value={activeSet}
+            onChange={(event) => void setActiveSet(event.target.value as typeof activeSet)}
+            className="bg-transparent text-coden-text text-[10.5px] font-medium outline-none cursor-pointer max-w-[145px]"
+            title="Select algorithm set"
+            aria-label="Select algorithm set"
+          >
+            {ALGORITHM_SETS.map((setOption) => (
+              <option key={setOption.id} value={setOption.id}>
+                {setOption.label}
+              </option>
+            ))}
+          </select>
+        </div>
         {updater.state.appVersion && (
           <span
             className="text-[10px] text-slate-500 font-mono"

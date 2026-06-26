@@ -1,7 +1,7 @@
-"""Solution for bb_06: TSP via Reduced Matrix (B&B).
-
-
-            Solve the traveling salesman problem using the
+"""
+Description
+-----------
+Solve the traveling salesman problem using the
             reduced-matrix branch-and-bound method. Each node
             in the search tree is a state (current path, cost
             so far, the reduced cost matrix). Branching:
@@ -14,20 +14,12 @@
             tour with the minimum total cost. Return the
             minimum tour cost.
             Source: https://www.geeksforgeeks.org/dsa/travelling-salesman-problem-tsp-using-reduced-matrix-method/
-            
 
-Inputs passed to solve():
-    cost: n x n cost matrix (cost[i][j] is the cost from i to j).
-    n: number of cities.
-
-Goal:
-    the minimum TSP tour cost (int).
-
-Samples:
-Sample 1 input:  cost = [[INF, 10, 15, 20], [10, INF, 35, 25], [15, 35, INF, 30], [20, 25, 30, INF]], n = 4
-Sample 1 output: 80 (the optimal tour)
-
-
+Examples
+--------
+Example 1:
+Input:  cost = [[INF, 10, 15, 20], [10, INF, 35, 25], [15, 35, INF, 30], [20, 25, 30, INF]], n = 4
+Output: 80 (the optimal tour)
 """
 
 def solve(cost, n):

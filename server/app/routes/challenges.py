@@ -15,6 +15,8 @@ from fastapi import APIRouter, HTTPException
 
 from challenges.registry import CHALLENGE_REGISTRY
 from code_n.solutions import _solution_template
+from server.app.optimal_sources import load_optimal_source
+from server.app.challenge_sets import challenge_set_id, challenge_set_label, normalize_algorithm_set
 from server.app.schemas import (
     ChallengeDetail,
     ChallengeSummary,
@@ -121,8 +123,8 @@ def get_leetcode_question(title_slug: str) -> dict[str, str]:
 
 
 def get_unlocked_challenges(progress, all_challenges) -> set[str]:
-    from server.app.leetcode_mapping import LEETCODE_MAPPING
-    if progress.active_set == "gfg":
+    active_set = normalize_algorithm_set(progress.active_set)
+    if active_set != "neetcode":
         return {c.info.id for c in all_challenges}
         
     completed = set(progress.completed)
@@ -187,7 +189,7 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
     )
     complexity_notes = getattr(spec, "complexity_notes", {}) or {}
 
-    optimal_source = "" if spec.id.startswith("nc_") else (spec.source or "")
+    optimal_source = load_optimal_source(spec.id, spec)
 
     return ChallengeDetail(
         **summary.model_dump(),
@@ -204,15 +206,14 @@ def list_challenges() -> list[ChallengeSummary]:
     """List all challenges. Order matches registry insertion order."""
     from server.app import progress_store
     progress = progress_store.load()
+    active_set = normalize_algorithm_set(progress.active_set)
     
     all_challenges = [cls() for cls in CHALLENGE_REGISTRY.values()]
     unlocked_set = get_unlocked_challenges(progress, all_challenges)
     
     summaries = []
     for c in all_challenges:
-        if progress.active_set == "neetcode" and not c.info.id.startswith("nc_"):
-            continue
-        if progress.active_set == "gfg" and c.info.id.startswith("nc_"):
+        if challenge_set_id(c.info.id) != active_set:
             continue
         summary = _spec_to_summary(c.info.id, c)
         summary.unlocked = c.info.id in unlocked_set
@@ -225,6 +226,7 @@ def get_challenge_detail(challenge_id: str) -> ChallengeDetail:
     """Full detail (params, samples, starter source) for one challenge."""
     from server.app import progress_store
     progress = progress_store.load()
+    active_set = normalize_algorithm_set(progress.active_set)
     
     cls = CHALLENGE_REGISTRY.get(challenge_id)
     if cls is None:
@@ -234,7 +236,14 @@ def get_challenge_detail(challenge_id: str) -> ChallengeDetail:
     all_challenges = [cls() for cls in CHALLENGE_REGISTRY.values()]
     unlocked_set = get_unlocked_challenges(progress, all_challenges)
     
-    if progress.active_set == "neetcode":
+    challenge_set = challenge_set_id(challenge_id)
+    if challenge_set != active_set:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Challenge '{challenge_id}' is not in the {challenge_set_label(active_set)} set."
+        )
+
+    if active_set == "neetcode":
         if not challenge_id.startswith("nc_"):
             raise HTTPException(
                 status_code=404,
@@ -244,12 +253,6 @@ def get_challenge_detail(challenge_id: str) -> ChallengeDetail:
             raise HTTPException(
                 status_code=403,
                 detail="Challenge is locked. Complete parent challenges first."
-            )
-    elif progress.active_set == "gfg":
-        if challenge_id.startswith("nc_"):
-            raise HTTPException(
-                status_code=404,
-                detail=f"Challenge '{challenge_id}' is not in the GeeksforGeeks set."
             )
         
     return _spec_to_detail(c)

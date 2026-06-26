@@ -1,5 +1,6 @@
-"""Solution for trie_01: Trie Insert and Search.
-
+"""
+Description
+-----------
 Build a trie from a list of words, then return True iff
 a given target word is in the trie. To insert, walk from
 the root creating nodes as needed. To search, walk from
@@ -7,22 +8,15 @@ the root and check that every character exists, and that
 the final node is marked as a word end. O(total chars).
 Source: https://www.geeksforgeeks.org/trie-insert-and-search/
 
-Inputs passed to solve():
-    words: list of n words (single lower-case ASCII each).
-    n: number of words.
-    target: the word to search for.
+Examples
+--------
+Example 1:
+Input:  words = ["cat", "car", "dog"], n = 3, target = "car"
+Output: True
 
-Goal:
-    True iff target is in the trie (the setup guarantees True).
-
-Samples:
-Sample 1 input:  words = ["cat", "car", "dog"], n = 3, target = "car"
-Sample 1 output: True
-
-Sample 2 input:  words = ["cat", "car", "dog"], n = 3, target = "cap"
-Sample 2 output: True (setup only tests positive cases)
-
-
+Example 2:
+Input:  words = ["cat", "car", "dog"], n = 3, target = "cap"
+Output: True (setup only tests positive cases)
 """
 
 def solve(words, n, target):

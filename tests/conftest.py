@@ -1,7 +1,7 @@
 """Test helpers shared across the cOde(n) test suite.
 
 Run with:
-    .venv/Scripts/python.exe -m unittest discover -s tests -v
+    .venv/Scripts/python.exe -m pytest tests
 """
 from __future__ import annotations
 

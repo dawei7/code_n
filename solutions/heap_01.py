@@ -1,5 +1,6 @@
-"""Solution for heap_01: Build Max Heap.
-
+"""
+Description
+-----------
 Rearrange an array into a 0-indexed binary max-heap: for every
 node i, data[i] >= data[2i+1] and data[i] >= data[2i+2].
 Bottom-up heapify: sift-down from the last non-leaf to the root.
@@ -8,21 +9,15 @@ property and be a permutation of the input.
 Requirement: O(n) time, O(1) extra space.
 Source: https://www.geeksforgeeks.org/building-heap-from-array/
 
-Inputs passed to solve():
-    data: list-like of n random integers (mutated in place).
-    n: length of data.
+Examples
+--------
+Example 1:
+Input:  data = [1, 3, 5, 7, 9, 11], n = 6
+Output: [11, 9, 5, 7, 3, 1]  (one valid max-heap)
 
-Goal:
-    the same list, now in max-heap order.
-
-Samples:
-Sample 1 input:  data = [1, 3, 5, 7, 9, 11], n = 6
-Sample 1 output: [11, 9, 5, 7, 3, 1]  (one valid max-heap)
-
-Sample 2 input:  data = [5, 5, 5, 5], n = 4
-Sample 2 output: [5, 5, 5, 5]
-
-
+Example 2:
+Input:  data = [5, 5, 5, 5], n = 4
+Output: [5, 5, 5, 5]
 """
 
 def solve(data, n):

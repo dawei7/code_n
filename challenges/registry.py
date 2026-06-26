@@ -46,6 +46,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
         suffix_array,
         fenwick,
         neetcode,
+        leetcode,
     )
     return [
         *bit_manipulation.SPECS,
@@ -75,6 +76,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
         *suffix_array.SPECS,
         *fenwick.SPECS,
         *neetcode.SPECS,
+        *leetcode.SPECS,
     ]
 
 

@@ -1,7 +1,7 @@
-"""Solution for approx_04: Christofides TSP (3/2-Approx).
-
-
-            Given a complete metric graph, return the cost of
+"""
+Description
+-----------
+Given a complete metric graph, return the cost of
             a TSP tour produced by the Christofides 1.5-approx
             algorithm: (1) build an MST, (2) find the odd-
             degree vertices of the MST, (3) compute a minimum-
@@ -10,23 +10,16 @@
             and (6) shortcut to a Hamiltonian tour. The result
             is at most 1.5x the optimal tour cost.
             Source: https://www.geeksforgeeks.org/dsa/approximate-solution-for-travelling-salesman-problem-using-mst/
-            
 
-Inputs passed to solve():
-    cost: n x n cost matrix satisfying the triangle inequality.
-    n: number of cities.
+Examples
+--------
+Example 1:
+Input:  cost = [[0, 111], [112, 0]], n = 2
+Output: 223
 
-Goal:
-    the total cost of the Christofides 1.5-approximate TSP tour as a non-negative int.
-
-Samples:
-Sample 1 input:  cost = [[0, 111], [112, 0]], n = 2
-Sample 1 output: 223
-
-Sample 2 input:  cost = [[0, 1000, 5000], [5000, 0, 1000], [1000, 5000, 0]], n = 3
-Sample 2 output: 3000 (Christofides is optimal for n=3)
-
-
+Example 2:
+Input:  cost = [[0, 1000, 5000], [5000, 0, 1000], [1000, 5000, 0]], n = 3
+Output: 3000 (Christofides is optimal for n = 3)
 """
 
 def solve(cost, n):

@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useAppStore } from '../store/useAppStore';
+import { ALGORITHM_SETS, normalizeAlgorithmSet } from '../lib/algorithmSets';
+import type { AlgorithmSetId } from '../lib/algorithmSets';
 
 interface ProfileModalProps {
   onClose: () => void;
@@ -12,7 +14,8 @@ export function ProfileModal({ onClose }: ProfileModalProps) {
   const updateSettings = useAppStore((s) => s.updateSettings);
 
   const [apiKey, setApiKey] = useState('');
-  const [selectedSet, setSelectedSet] = useState<'gfg' | 'neetcode'>('neetcode');
+  const [selectedSet, setSelectedSet] = useState<AlgorithmSetId>('neetcode');
+  const [setQuery, setSetQuery] = useState('');
   const [saving, setSaving] = useState(false);
 
   // Esc key closure
@@ -29,19 +32,27 @@ export function ProfileModal({ onClose }: ProfileModalProps) {
   useEffect(() => {
     if (progress) {
       setApiKey(progress.gemini_api_key || '');
-      setSelectedSet((progress.active_set as 'gfg' | 'neetcode') || 'neetcode');
+      setSelectedSet(normalizeAlgorithmSet(progress.active_set));
     }
   }, [progress]);
+
+  const filteredSets = useMemo(() => {
+    const query = setQuery.trim().toLowerCase();
+    if (!query) return ALGORITHM_SETS;
+    return ALGORITHM_SETS.filter((setOption) => (
+      setOption.label.toLowerCase().includes(query) ||
+      setOption.shortLabel.toLowerCase().includes(query) ||
+      setOption.description.toLowerCase().includes(query)
+    ));
+  }, [setQuery]);
 
   const handleSave = async () => {
     setSaving(true);
     try {
-      // Save Gemini key
-      await updateSettings(false, progress?.leetcode_username || '', apiKey.trim());
-      // Sync active set
       if (selectedSet !== progress?.active_set) {
         await setActiveSet(selectedSet);
       }
+      await updateSettings(false, progress?.leetcode_username || '', apiKey.trim());
       onClose();
     } catch (e) {
       console.error('Failed to save settings:', e);
@@ -92,39 +103,54 @@ export function ProfileModal({ onClose }: ProfileModalProps) {
 
           {/* Active Set Configuration */}
           <div className="space-y-2">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-              Selected Algorithm Set
-            </h3>
-            <div className="grid grid-cols-2 gap-3 mt-1">
-              <button
-                type="button"
-                onClick={() => setSelectedSet('neetcode')}
-                className={`p-3 rounded-xl border text-left transition-all ${
-                  selectedSet === 'neetcode'
-                    ? 'bg-indigo-950/40 border-indigo-500 text-white shadow-sm'
-                    : 'bg-slate-950/40 border-slate-850 text-slate-400 hover:border-slate-800 hover:text-slate-300'
-                }`}
-              >
-                <div className="font-bold text-xs">NeetCode 250</div>
-                <div className="text-[10px] text-slate-500 mt-0.5 leading-snug">
-                  Curated core challenges with roadmap & dependency locking.
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                Selected Algorithm Set
+              </h3>
+              <input
+                type="search"
+                value={setQuery}
+                onChange={(e) => setSetQuery(e.target.value)}
+                placeholder="Filter sets"
+                className="w-36 text-[11px] bg-slate-950 border border-slate-800 rounded-lg px-2 py-1.5 text-white outline-none focus:border-indigo-500"
+              />
+            </div>
+            <div className="mt-1 max-h-44 overflow-y-auto rounded-xl border border-slate-850 bg-slate-950/30 p-1.5 space-y-1.5">
+              {filteredSets.map((setOption) => {
+                const isSelected = selectedSet === setOption.id;
+                return (
+                  <button
+                    key={setOption.id}
+                    type="button"
+                    onClick={() => setSelectedSet(setOption.id)}
+                    className={`w-full p-3 rounded-lg border text-left transition-all flex items-center gap-3 ${
+                      isSelected
+                        ? 'bg-indigo-950/40 border-indigo-500 text-white shadow-sm'
+                        : 'bg-slate-950/40 border-slate-850 text-slate-400 hover:border-slate-700 hover:text-slate-300'
+                    }`}
+                  >
+                    <span
+                      className={`h-4 w-4 rounded-full border flex items-center justify-center shrink-0 ${
+                        isSelected ? 'border-indigo-400' : 'border-slate-700'
+                      }`}
+                      aria-hidden="true"
+                    >
+                      {isSelected && <span className="h-2 w-2 rounded-full bg-indigo-400" />}
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block font-bold text-xs">{setOption.label}</span>
+                      <span className="block text-[10px] text-slate-500 mt-0.5 leading-snug">
+                        {setOption.description}
+                      </span>
+                    </span>
+                  </button>
+                );
+              })}
+              {filteredSets.length === 0 && (
+                <div className="px-3 py-5 text-center text-xs text-slate-500">
+                  No matching sets.
                 </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setSelectedSet('gfg')}
-                className={`p-3 rounded-xl border text-left transition-all ${
-                  selectedSet === 'gfg'
-                    ? 'bg-indigo-950/40 border-indigo-500 text-white shadow-sm'
-                    : 'bg-slate-950/40 border-slate-850 text-slate-400 hover:border-slate-800 hover:text-slate-300'
-                }`}
-              >
-                <div className="font-bold text-xs">GeeksforGeeks</div>
-                <div className="text-[10px] text-slate-500 mt-0.5 leading-snug">
-                  260+ standard algorithms library, fully unlocked.
-                </div>
-              </button>
+              )}
             </div>
           </div>
 

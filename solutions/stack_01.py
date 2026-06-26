@@ -1,27 +1,24 @@
-"""Solution for stack_01: Balanced Parentheses.
-
+"""
+Description
+-----------
 Return True iff the input string of ()[]{} characters is
 well-balanced. Push each opener; on a closer, pop and check
 the pair. The string is balanced iff the stack ends empty.
 Source: https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/
 
-Inputs passed to solve():
-    s: string of n characters in ()[]{}.
-    n: length of s.
+Examples
+--------
+Example 1:
+Input:  s = "{([])}", n = 6
+Output: True
 
-Goal:
-    True iff s is well-balanced.
+Example 2:
+Input:  s = "([)]", n = 4
+Output: False
 
-Samples:
-Sample 1 input:  s = "{([])}", n = 6
-Sample 1 output: True
-
-Sample 2 input:  s = "([)]", n = 4
-Sample 2 output: False
-
-Sample 3 input:  s = "((()))", n = 6
-Sample 3 output: True
-
+Example 3:
+Input:  s = "((()))", n = 6
+Output: True
 """
 
 def solve(s, n):

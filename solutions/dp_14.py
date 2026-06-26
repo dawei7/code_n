@@ -1,24 +1,20 @@
-"""Solution for dp_14: Palindromic Partitioning.
-
+"""
+Description
+-----------
 Given a string, partition it into substrings that are all
 palindromes. Return the minimum number of cuts needed.
 Requirement: O(n^2).
 Source: https://www.geeksforgeeks.org/palindromic-partitioning-dp-17/
 
-Inputs passed to solve():
-    s: the input string (lowercase letters).
+Examples
+--------
+Example 1:
+Input:  s = 'aaaa'
+Output: 0
 
-Goal:
-    the minimum number of cuts to make every substring a palindrome.
-
-Samples:
-Sample 1 input:  s = 'aaaa'
-Sample 1 output: 0
-
-Sample 2 input:  s = 'abacd'
-Sample 2 output: 2
-
-
+Example 2:
+Input:  s = 'abacd'
+Output: 2
 """
 
 def solve(s):

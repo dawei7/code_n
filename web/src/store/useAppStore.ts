@@ -40,6 +40,8 @@ import * as runApi from '../api/run';
 import * as progressApi from '../api/progress';
 import * as solutionsApi from '../api/solutions';
 import * as profilesApi from '../api/profiles';
+import type { AlgorithmSetId } from '../lib/algorithmSets';
+import { getAlgorithmSetOption, normalizeAlgorithmSet } from '../lib/algorithmSets';
 
 
 // Re-export so the inline ``import('...')`` in the action
@@ -102,8 +104,8 @@ export interface AppState {
 
   // Progress
   progress: ProgressOut | null;
-  activeSet: 'gfg' | 'neetcode';
-  setActiveSet: (setVal: 'gfg' | 'neetcode') => Promise<void>;
+  activeSet: AlgorithmSetId;
+  setActiveSet: (setVal: AlgorithmSetId) => Promise<void>;
   activeTopic: Topic;
   setActiveTopic: (topic: Topic) => void;
 
@@ -373,7 +375,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       const p = await progressApi.getProgress();
       set({ 
         progress: p,
-        activeSet: (p.active_set as 'gfg' | 'neetcode') || 'neetcode'
+        activeSet: normalizeAlgorithmSet(p.active_set)
       });
     } catch {
       // ignore
@@ -492,9 +494,20 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
   },
 
-  async setActiveSet(setVal: 'gfg' | 'neetcode') {
-    const updates: Partial<AppState> = { activeSet: setVal };
-    if (setVal === 'gfg' && get().activeTopic === 'career_path') {
+  async setActiveSet(setVal: AlgorithmSetId) {
+    const updates: Partial<AppState> = {
+      activeSet: setVal,
+      currentDetail: null,
+      openChallengeIds: [],
+      source: '',
+      runResult: null,
+      error: null,
+    };
+    const setOption = getAlgorithmSetOption(setVal);
+    if (!setOption.hasCareerPath && get().activeTopic === 'career_path') {
+      updates.activeTopic = 'reference';
+    }
+    if (!setOption.hasMathematical && get().activeTopic === 'mathematical') {
       updates.activeTopic = 'reference';
     }
     set(updates);
@@ -502,7 +515,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       const p = await progressApi.updateProgressSettings(undefined, undefined, undefined, undefined, setVal);
       set({ 
         progress: p,
-        activeSet: (p.active_set as 'gfg' | 'neetcode') || 'neetcode'
+        activeSet: normalizeAlgorithmSet(p.active_set)
       });
       await get().loadChallenges();
     } catch (e) {

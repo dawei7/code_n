@@ -14,9 +14,16 @@ algorithms you can practice next.
   algorithm renders inline (powered by the same markdown engine
   this README uses).
 - **On disk:** every per-algorithm doc is a plain `.md` file
-  under `docs/algorithms/{category}/{id}_{slug}.md`. You can
-  read them in any editor, search them with `grep`, or open
-  them in a browser.
+  grouped first by source family, then category. NeetCode docs live
+  under `docs/algorithms/neetcode/{category}/{id}_{slug}.md`, and
+  GeeksforGeeks-style algorithm docs live under
+  `docs/algorithms/geeksforgeeks/{category}/{id}_{slug}.md`.
+  LeetCode metadata and original local writeup scaffolds live under
+  `docs/algorithms/leetcode/{topic}/{frontend_id}_{slug}.md`.
+  Mathematical references are grouped the same way under
+  `docs/mathematical/{source}/{category}/{id}_{slug}.md`.
+  You can read one source folder at a time in any editor, search it
+  with `grep`, or open files in a browser.
 - **Editing:** copy `docs/_template.md` into the right
   category folder, fill in the sections, and the new doc
   will appear in the app on the next launch.

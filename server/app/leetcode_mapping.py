@@ -1,5 +1,8 @@
 # Mapping from cOde(n) challenge IDs to LeetCode details.
 # This powers the LeetCode verification process and gamification nodes.
+from __future__ import annotations
+
+import re
 
 LEETCODE_MAPPING = {
     # Phase 1
@@ -310,6 +313,20 @@ LEETCODE_MAPPING = {
     "nc_250": {"title": "Minimum Array End", "slug": "minimum-array-end", "url": "https://leetcode.com/problems/minimum-array-end/"},
 
 }
+
+
+def _leetcode_slug_from_url(url: str) -> str:
+    match = re.search(r"leetcode\.com/problems/([^/?#]+)/?", url)
+    return match.group(1) if match else ""
+
+
+for _challenge_id, _leetcode in LEETCODE_MAPPING.items():
+    if not _challenge_id.startswith("nc_"):
+        continue
+    _url_slug = _leetcode_slug_from_url(_leetcode.get("url", ""))
+    if _url_slug:
+        _leetcode["slug"] = _url_slug
+
 
 MILESTONES = [
     {

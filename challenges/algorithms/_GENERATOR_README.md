@@ -38,8 +38,10 @@ The generator:
   `challenges/algorithms/<module>.py`.
 - Appends the AlgorithmSpec block(s) to that module's
   `SPECS.extend([...])` at the end.
-- Writes a standalone `optimal_solutions/<id>.py` for each
-  record (so the "Solve" button keeps working).
+- Writes a standalone organized optimal solution file for each
+  record, preferring the matching
+  `optimal_solutions/geeksforgeeks/<category>/<doc-stem>.py`
+  path when the English doc already exists.
 - Does **not** register new modules — that's still a one-line
   edit to `challenges/registry.py` if you're creating a new
   category file (not needed for the existing 8 categories).

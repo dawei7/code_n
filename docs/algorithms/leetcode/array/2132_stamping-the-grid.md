@@ -1,0 +1,51 @@
+# Stamping the Grid
+
+| Field | Value |
+|---|---|
+| Source | LeetCode |
+| Frontend ID | 2132 |
+| Difficulty | Hard |
+| Topics | Array, Greedy, Matrix, Prefix Sum |
+| Official Link | [stamping-the-grid](https://leetcode.com/problems/stamping-the-grid/) |
+
+## Problem Description & Examples
+### Goal
+Determine whether rectangular stamps of one fixed size can cover every empty cell in a binary grid. A stamp must stay inside the grid and may not cover an occupied cell; stamps may overlap and any number may be used.
+
+### Function Contract
+**Inputs**
+
+- `grid`: a binary matrix where `0` is empty and `1` is occupied.
+- `stampHeight`: the stamp's height.
+- `stampWidth`: the stamp's width.
+
+**Return value**
+
+`true` if all empty cells can be covered by valid stamp placements; otherwise `false`.
+
+### Examples
+**Example 1**
+
+- Input: `grid = [[0, 0], [0, 0]]`, `stampHeight = 2`, `stampWidth = 2`
+- Output: `true`
+
+**Example 2**
+
+- Input: `grid = [[0, 1], [0, 0]]`, `stampHeight = 2`, `stampWidth = 2`
+- Output: `false`
+
+**Example 3**
+
+- Input: `grid = [[0, 0, 0], [0, 0, 0]]`, `stampHeight = 2`, `stampWidth = 2`
+- Output: `true`
+
+---
+
+## Underlying Base Algorithm(s)
+Build a two-dimensional prefix sum of occupied cells so each candidate stamp rectangle can be checked in constant time. Mark every valid placement in a two-dimensional difference array, then prefix-sum those marks into coverage counts. The arrangement succeeds exactly when every empty cell has positive coverage.
+
+---
+
+## Complexity Analysis
+- **Time Complexity**: `O(mn)`
+- **Space Complexity**: `O(mn)`

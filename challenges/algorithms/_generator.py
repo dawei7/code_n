@@ -38,7 +38,7 @@ Where `specs_to_add.py` defines SPECS_TO_ADD = [
 
 The generator appends each new spec to the target module's
 SPECS list, using a closing `SPECS.extend([...])` pattern.
-It also writes the matching `optimal_solutions/<id>.py` files
+It also writes the matching organized `optimal_solutions/...` files
 so the Solve button keeps working.
 
 Why a generator at all?
@@ -67,6 +67,7 @@ from typing import Any
 CHALLENGES_DIR = Path(__file__).resolve().parent.parent.parent
 ALGORITHMS_DIR = CHALLENGES_DIR / "challenges" / "algorithms"
 OPTIMAL_DIR = CHALLENGES_DIR / "optimal_solutions"
+DOCS_ALGORITHMS_DIR = CHALLENGES_DIR / "docs" / "algorithms"
 
 
 def _indent_block(text: str, spaces: int) -> str:
@@ -282,7 +283,7 @@ def render_module_extension(records: list[dict[str, Any]], complexity_map: dict[
 
 
 def render_optimal_solution(record: dict[str, Any]) -> str:
-    """Render the standalone optimal_solutions/<id>.py file."""
+    """Render the standalone optimal solution file."""
     name = record["name"]
     description = record["description"].splitlines()[0] if record.get("description") else name
     # The solve() body in the record is already a complete def
@@ -293,6 +294,22 @@ def render_optimal_solution(record: dict[str, Any]) -> str:
         f"{description}\n\"\"\"\n\n\n"
         f"{body}\n"
     )
+
+
+def optimal_solution_path(record: dict[str, Any], module_name: str) -> Path:
+    """Return the organized path for a generated optimal solution."""
+    challenge_id = record["id"]
+    docs_root = DOCS_ALGORITHMS_DIR / "geeksforgeeks"
+    if docs_root.exists():
+        matches = sorted(
+            path
+            for path in docs_root.rglob(f"{challenge_id}*.md")
+            if not path.stem.endswith("_de")
+            and (path.stem == challenge_id or path.stem.startswith(f"{challenge_id}_"))
+        )
+        if matches:
+            return (OPTIMAL_DIR / matches[0].relative_to(DOCS_ALGORITHMS_DIR)).with_suffix(".py")
+    return OPTIMAL_DIR / "geeksforgeeks" / module_name / f"{challenge_id}.py"
 
 
 def main() -> int:
@@ -346,13 +363,14 @@ def main() -> int:
             f.write(extension_text)
         print(f"Appended to {module_path}")
 
-    # Render each optimal_solutions/<id>.py.
+    # Render each organized optimal solution file.
     for rec in records:
         opt_text = render_optimal_solution(rec)
-        opt_path = OPTIMAL_DIR / f"{rec['id']}.py"
+        opt_path = optimal_solution_path(rec, args.module)
         if args.dry_run:
             print(f"\n--- {opt_path} ---\n{opt_text}")
         else:
+            opt_path.parent.mkdir(parents=True, exist_ok=True)
             with open(opt_path, "w", encoding="utf-8") as f:
                 f.write(opt_text)
             print(f"Wrote {opt_path}")

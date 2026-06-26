@@ -1,24 +1,19 @@
-"""Solution for bit_09: Multiply Without *.
-
+"""
+Description
+-----------
 Compute a * b using only addition and shifts. For
 each set bit of b, add (a << k) to the result. O(log b).
 Source: https://www.geeksforgeeks.org/multiply-two-numbers-without-using/
 
-Inputs passed to solve():
-    a: first factor (can be negative).
-    b: second factor (can be negative).
+Examples
+--------
+Example 1:
+Input:  a = 3, b = 5
+Output: 15
 
-Goal:
-    a * b.
-
-Samples:
-Sample 1 input:  a = 3, b = 5
-Sample 1 output: 15
-
-Sample 2 input:  a = -4, b = 6
-Sample 2 output: -24
-
-
+Example 2:
+Input:  a = -4, b = 6
+Output: -24
 """
 
 def solve(a, b):

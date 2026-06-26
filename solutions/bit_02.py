@@ -1,5 +1,6 @@
-"""Solution for bit_02: Power of Two Check.
-
+"""
+Description
+-----------
 Return True iff the input n is a power of two.
 A single bitwise trick covers the whole problem:
 n is a power of two iff n > 0 and (n & (n - 1)) == 0.
@@ -8,22 +9,19 @@ n - 1 clears that bit and only that bit, and the
 AND with n is 0. O(1).
 Source: https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/
 
-Inputs passed to solve():
-    n: non-negative integer.
+Examples
+--------
+Example 1:
+Input:  n = 1
+Output: True
 
-Goal:
-    True iff n is a power of two (1, 2, 4, 8, ...).
+Example 2:
+Input:  n = 16
+Output: True
 
-Samples:
-Sample 1 input:  n = 1
-Sample 1 output: True
-
-Sample 2 input:  n = 16
-Sample 2 output: True
-
-Sample 3 input:  n = 6
-Sample 3 output: False
-
+Example 3:
+Input:  n = 6
+Output: False
 """
 
 def solve(n):

@@ -1,5 +1,6 @@
-"""Solution for greedy_05: Optimal Merge Pattern.
-
+"""
+Description
+-----------
 Merging two files of sizes a and b costs a + b. Total cost of
 merging n files into one is the sum of pairwise merge costs.
 Greedy: always merge the two smallest remaining files. Same shape
@@ -7,23 +8,19 @@ as Huffman but with a single weight per file.
 Requirement: O(n log n) using a min-heap.
 Source: https://www.geeksforgeeks.org/optimal-file-merge-pattern/
 
-Inputs passed to solve():
-    sizes: list of n file sizes.
-    n: number of files.
+Examples
+--------
+Example 1:
+Input:  sizes = [5, 2, 4, 7], n = 4
+Output: 44
 
-Goal:
-    the minimum total cost of merging all files into one.
+Example 2:
+Input:  sizes = [20, 30, 10, 5, 30], n = 5
+Output: 205
 
-Samples:
-Sample 1 input:  sizes = [5, 2, 4, 7], n = 4
-Sample 1 output: 44
-
-Sample 2 input:  sizes = [20, 30, 10, 5, 30], n = 5
-Sample 2 output: 205
-
-Sample 3 input:  sizes = [10, 20], n = 2
-Sample 3 output: 30
-
+Example 3:
+Input:  sizes = [10, 20], n = 2
+Output: 30
 """
 
 def solve(sizes, n):

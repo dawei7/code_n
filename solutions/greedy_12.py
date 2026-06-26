@@ -1,5 +1,6 @@
-"""Solution for greedy_12: Max Trains for Stoppage.
-
+"""
+Description
+-----------
 A single platform can hold one train at a time. Given arrival and
 departure times for n trains, find the maximum number that can be
 served without overlap. Greedy: sort by departure, accept a train
@@ -7,22 +8,15 @@ iff its arrival is >= the last accepted departure.
 Requirement: O(n log n).
 Source: https://www.geeksforgeeks.org/maximum-trains-stoppage-can-use/
 
-Inputs passed to solve():
-    arrivals: list of n arrival times.
-    departures: list of n departure times (parallel to arrivals).
-    n: number of trains.
+Examples
+--------
+Example 1:
+Input:  arrivals = [100, 120, 150, 200], departures = [110, 130, 210, 220], n = 4
+Output: 3
 
-Goal:
-    the maximum number of trains that can be served without conflict.
-
-Samples:
-Sample 1 input:  arrivals = [100, 120, 150, 200], departures = [110, 130, 210, 220], n = 4
-Sample 1 output: 3
-
-Sample 2 input:  arrivals = [900, 1000, 1100], departures = [1000, 1100, 1200], n = 3
-Sample 2 output: 3
-
-
+Example 2:
+Input:  arrivals = [900, 1000, 1100], departures = [1000, 1100, 1200], n = 3
+Output: 3
 """
 
 def solve(arrivals, departures, n):

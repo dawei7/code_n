@@ -1,5 +1,6 @@
-"""Solution for bit_11: Bitwise AND of Range.
-
+"""
+Description
+-----------
 Given two non-negative integers left and right
 with left <= right, return the bitwise AND of all
 integers in the inclusive range [left, right].
@@ -9,25 +10,23 @@ find it: keep clearing the lowest differing bit of
 left while left > right; that's the common prefix.
 Source: https://www.geeksforgeeks.org/bitwise-and-of-numbers-range/
 
-Inputs passed to solve():
-    left: left bound of the range (inclusive).
-    right: right bound of the range (inclusive, >= left).
+Examples
+--------
+Example 1:
+Input:  left = 5, right = 7
+Output: 4 (binary 101 AND 110 AND 111 = 100)
 
-Goal:
-    the bitwise AND of all integers in [left, right].
+Example 2:
+Input:  left = 0, right = 0
+Output: 0
 
-Samples:
-Sample 1 input:  left = 5, right = 7
-Sample 1 output: 4 (binary 101 AND 110 AND 111 = 100)
+Example 3:
+Input:  left = 1, right = 1
+Output: 1
 
-Sample 2 input:  left = 0, right = 0
-Sample 2 output: 0
-
-Sample 3 input:  left = 1, right = 1
-Sample 3 output: 1
-Sample 4 input:  left = 12, right = 15
-Sample 4 output: 12 (all 1100..1111 share 1100)
-
+Example 4:
+Input:  left = 12, right = 15
+Output: 12 (all 1100..1111 share 1100)
 """
 
 def solve(left, right):

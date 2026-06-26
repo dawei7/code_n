@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import re
 import sys
 from dataclasses import dataclass
 from typing import Optional
@@ -89,54 +90,71 @@ def _iter_registered_ids():
 _CHALLENGE_TEMPLATES: dict[str, dict] = _build_templates()
 
 
+def _clean_template_description(description: str) -> str:
+    """Remove embedded markdown sections from imported challenge text."""
+    text = re.sub(
+        r"\n+##\s+GeeksforGeeks Reference\s*\n[\s\S]*?(?=\n+##\s+|$)",
+        "",
+        description,
+        flags=re.IGNORECASE,
+    )
+    text = re.sub(
+        r"\n+##\s+Example\s*\n[\s\S]*?(?=\n+##\s+|$)",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    )
+    text = re.sub(r"```[\s\S]*?```", "", text)
+    text = re.sub(r"^#{1,6}\s+", "", text, flags=re.MULTILINE)
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+    text = text.replace("`", "").replace("**", "")
+    return text.strip()
+
+
+def _section_block(title: str, body: str) -> str:
+    lines = [title, "-" * len(title)]
+    if body:
+        lines.extend(body.splitlines())
+    return "\n".join(lines)
+
+
+def _solution_header(challenge_id: str, description: str) -> str:
+    clean_description = _clean_template_description(description)
+    samples = sample_doc(challenge_id)
+    blocks = [_section_block("Description", clean_description)]
+    if samples:
+        blocks.append(_section_block("Examples", samples))
+    body = "\n\n".join(blocks).rstrip()
+    return f'"""\n{body}\n"""\n\n'
+
+
 def _solution_template(challenge_id: str, heading: str, description: str) -> str:
     """Build a starter file for the player.
 
     Every challenge now has a template with EXPLICIT parameter
     names (no more ``def solve(**kwargs):``). The data comes from
-    the registered ``AlgorithmSpec``; the starter file is the
-    same shape so the player can read the docstring, fill in the
-    body, and not have to guess.
+    the registered ``AlgorithmSpec`` while the docstring contains
+    only the challenge description and examples.
     """
-    safe_description = description.replace('"""', "'''")
-    samples = sample_doc(challenge_id)
-    sample_section = f"\n{samples}" if samples else ""
+    header = _solution_header(challenge_id, description)
+
     info = _CHALLENGE_TEMPLATES.get(challenge_id)
     if info is None:
         # Unknown challenge - fall back to a generic stub. Shouldn't
         # happen in practice; registry.py enumerates the supported
         # IDs.
         return (
-            f'"""Solution for {heading}.\n\n'
-            f'{safe_description}\n'
-            f'{sample_section}'
-            f'"""\n\n'
+            header +
             'def solve():\n'
             '    # Write your code here.\n'
             '    return None\n'
         )
 
     params = info["params"]
-    inputs = info["inputs"]
-    returns = info["returns"]
-
     sig = "def solve(" + ", ".join(params) + "):"
-    input_lines = []
-    for name in params:
-        if name in inputs:
-            input_lines.append(f"    {name}: {inputs[name]}")
-        else:
-            input_lines.append(f"    {name}: (see description above)")
 
     return (
-        f'"""Solution for {heading}.\n\n'
-        f'{safe_description}\n\n'
-        f'Inputs passed to solve():\n'
-        + "\n".join(input_lines) + "\n\n"
-        f'Goal:\n'
-        f'    {returns}\n\n'
-        f'{samples}'
-        '"""\n\n'
+        header +
         f'{sig}\n'
         f'    # Write your code here.\n'
         f'    return None\n'

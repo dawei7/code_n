@@ -1,27 +1,21 @@
-"""Solution for nc_2: Contains Duplicate.
+"""
+Description
+-----------
+Given an integer array nums, return True if any value appears at least twice in the array, or False if every element is distinct.
 
-Given an integer array `nums`, return `True` if any value appears **at least twice** in the array, or `False` if every element is distinct.
-
-## Example
-```
+Examples
+--------
+Example 1:
 Input:  nums = [1, 2, 3, 1]
 Output: True
-```
 
-## GeeksforGeeks Reference
-[Find duplicates in an array](https://www.geeksforgeeks.org/find-duplicates-in-on-time-and-constant-extra-space/)
+Example 2:
+Input:  nums = [1, 2, 3, 4]
+Output: False
 
-Inputs passed to solve():
-    nums: List[int]
-
-Goal:
-    bool — True if there is a duplicate
-
-Samples:
-Sample 1 input:  nums = [1,2,3,1]
-Sample 1 output: True
-
-
+Example 3:
+Input:  nums = [4, 5, 6, 4]
+Output: True
 """
 
 def solve(nums):

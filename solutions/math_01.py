@@ -1,27 +1,24 @@
-"""Solution for math_01: GCD (Euclidean).
-
+"""
+Description
+-----------
 Greatest common divisor of two positive integers a and b.
 Repeatedly replace (a, b) with (b, a mod b) until b is 0.
 Requirement: O(log min(a, b)).
 Source: https://www.geeksforgeeks.org/euclidean-algorithms-basic-and-extended/
 
-Inputs passed to solve():
-    a: first non-negative integer.
-    b: second non-negative integer.
+Examples
+--------
+Example 1:
+Input:  a = 12, b = 18
+Output: 6
 
-Goal:
-    gcd(a, b).
+Example 2:
+Input:  a = 100, b = 75
+Output: 25
 
-Samples:
-Sample 1 input:  a = 12, b = 18
-Sample 1 output: 6
-
-Sample 2 input:  a = 100, b = 75
-Sample 2 output: 25
-
-Sample 3 input:  a = 17, b = 13
-Sample 3 output: 1
-
+Example 3:
+Input:  a = 17, b = 13
+Output: 1
 """
 
 def solve(a, b):

@@ -1,27 +1,24 @@
-"""Solution for sort_07: Counting Sort.
-
+"""
+Description
+-----------
 A non-comparison sort that works when the value range is bounded.
 Count how many times each value appears, then walk the counts and write each value the right number of times.
 Requirement: O(n + k) time and O(k) extra space, where k = max - min + 1.
 Source: https://www.geeksforgeeks.org/counting-sort/
 
-Inputs passed to solve():
-    data: list-like of n random integers. Mutate in place.
-    n: length of data.
+Examples
+--------
+Example 1:
+Input:  data = [3, 1, 2], n = 3
+Output: [1, 2, 3]
 
-Goal:
-    the same data object, sorted in place (in ascending order).
+Example 2:
+Input:  data = [5, 5, 2, 9], n = 4
+Output: [2, 5, 5, 9]
 
-Samples:
-Sample 1 input:  data = [3, 1, 2], n = 3
-Sample 1 output: [1, 2, 3]
-
-Sample 2 input:  data = [5, 5, 2, 9], n = 4
-Sample 2 output: [2, 5, 5, 9]
-
-Sample 3 input:  data = [8, 4, 7, 1, 3], n = 5
-Sample 3 output: [1, 3, 4, 7, 8]
-
+Example 3:
+Input:  data = [8, 4, 7, 1, 3], n = 5
+Output: [1, 3, 4, 7, 8]
 """
 
 def solve(data, n):

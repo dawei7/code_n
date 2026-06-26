@@ -1,5 +1,6 @@
-"""Solution for trie_03: Longest Common Prefix.
-
+"""
+Description
+-----------
 Return the longest common prefix of all words in the
 trie. Walk from the root; while the current node has
 exactly one child and is not a word end, descend and
@@ -7,21 +8,15 @@ append the edge character. Stop when the node branches
 or terminates.
 Source: https://www.geeksforgeeks.org/longest-common-prefix-using-trie/
 
-Inputs passed to solve():
-    words: list of n words (always >= 2).
-    n: number of words.
+Examples
+--------
+Example 1:
+Input:  words = ["apple", "applet", "apply"], n = 3
+Output: "appl"
 
-Goal:
-    the longest common prefix (possibly empty).
-
-Samples:
-Sample 1 input:  words = ["apple", "applet", "apply"], n = 3
-Sample 1 output: "appl"
-
-Sample 2 input:  words = ["a", "b"], n = 2
-Sample 2 output: ''
-
-
+Example 2:
+Input:  words = ["a", "b"], n = 2
+Output: ''
 """
 
 def solve(words, n):

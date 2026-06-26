@@ -2,6 +2,9 @@ import sys, os, glob, re
 sys.path.insert(0, 'c:/dawei7/code_n')
 from challenges.registry import CHALLENGE_REGISTRY
 
+def doc_family(category):
+    return 'neetcode' if category.startswith('neetcode_') else 'geeksforgeeks'
+
 TEMPLATE_PATH = 'c:/dawei7/code_n/docs/_template.md'
 with open(TEMPLATE_PATH, 'r', encoding='utf-8') as f:
     template = f.read()
@@ -33,8 +36,8 @@ for ch_id, cls in CHALLENGE_REGISTRY.items():
     slug = re.sub(r'[^a-z0-9]+', '-', info.name.lower()).strip('-')
     filename = f"{ch_id}_{slug}.md"
     
-    # Create category directory
-    cat_dir = f"c:/dawei7/code_n/docs/algorithms/{info.category}"
+    # Create source-family/category directory
+    cat_dir = f"c:/dawei7/code_n/docs/algorithms/{doc_family(info.category)}/{info.category}"
     os.makedirs(cat_dir, exist_ok=True)
     
     # Inject data into template

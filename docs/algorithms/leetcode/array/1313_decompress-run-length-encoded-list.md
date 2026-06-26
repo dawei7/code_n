@@ -1,0 +1,49 @@
+# Decompress Run-Length Encoded List
+
+| Field | Value |
+|---|---|
+| Source | LeetCode |
+| Frontend ID | 1313 |
+| Difficulty | Easy |
+| Topics | Array |
+| Official Link | [decompress-run-length-encoded-list](https://leetcode.com/problems/decompress-run-length-encoded-list/) |
+
+## Problem Description & Examples
+### Goal
+Decode a run-length encoded list where each pair `[freq, value]` expands to `freq` copies of `value`.
+
+### Function Contract
+**Inputs**
+
+- `nums`: even-length encoded integer array.
+
+**Return value**
+
+The decompressed array.
+
+### Examples
+**Example 1**
+
+- Input: `nums = [1,2,3,4]`
+- Output: `[2,4,4,4]`
+
+**Example 2**
+
+- Input: `nums = [1,1,2,3]`
+- Output: `[1,3,3]`
+
+**Example 3**
+
+- Input: `nums = [2,5,1,9]`
+- Output: `[5,5,9]`
+
+---
+
+## Underlying Base Algorithm(s)
+Run-length expansion.
+
+---
+
+## Complexity Analysis
+- **Time Complexity**: `O(output length)`
+- **Space Complexity**: `O(output length)`

@@ -9,6 +9,7 @@ from __future__ import annotations
 from fastapi import APIRouter
 
 from server.app import progress_store
+from server.app.challenge_sets import normalize_algorithm_set
 from server.app.schemas import ProgressOut, ProgressUpdate
 
 
@@ -56,7 +57,7 @@ def update_progress(body: ProgressUpdate) -> ProgressOut:
             progress.gemini_api_key = body.gemini_api_key
             changed = True
         if body.active_set is not None:
-            progress.active_set = body.active_set
+            progress.active_set = normalize_algorithm_set(body.active_set)
             changed = True
         if changed:
             progress_store.save(progress)
