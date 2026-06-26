@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an undirected tree structure represented by edges, determine the total number of nodes reachable from the root (node 0) without passing through any of the nodes specified in a restricted set.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n` (int): The total number of nodes in the tree, labeled from 0 to n-1.
+- `edges` (List[List[int]]): A list of pairs representing undirected connections between nodes.
+- `restricted` (List[int]): A list of nodes that cannot be visited.
 
 **Return value**
 
-TODO
+- `int`: The count of unique nodes reachable starting from node 0, excluding any restricted nodes.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 7, edges = [[0,1],[1,2],[3,1],[4,0],[0,5],[5,6]], restricted = [4,5]`
+- Output: `4`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 7, edges = [[0,1],[0,2],[0,5],[0,4],[3,2],[6,5]], restricted = [4,2,1]`
+- Output: `3`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 10, edges = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9]], restricted = [3,6,9]`
+- Output: `3`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a Graph Traversal algorithm, specifically Depth-First Search (DFS) or Breadth-First Search (BFS). By representing the tree as an adjacency list, we can traverse the graph starting from node 0 while maintaining a set of restricted nodes to prune the search space.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: O(n), where n is the number of nodes. We visit each node and edge at most once during the traversal.
+- **Space Complexity**: O(n), required to store the adjacency list representation of the tree and the recursion stack (or queue) during traversal.

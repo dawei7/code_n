@@ -10,40 +10,59 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Design a system that tracks food items, their cuisines, and their ratings. The system must support updating a food's rating and querying the highest-rated food for a given cuisine. If there is a tie in ratings, the food with the lexicographically smaller name should be prioritized.
 
 ### Function Contract
 **Inputs**
-
-- TODO
+- `commands`: `List[str]` - A list of method names to execute: `"FoodRatings"` (constructor), `"changeRating"`, or `"highestRated"`.
+- `inputs`: `List[List[Any]]` - A list of arguments corresponding to each command.
+  - For `"FoodRatings"`, the arguments are `[foods, cuisines, ratings]`, where:
+    - `foods` is a list of strings representing food names.
+    - `cuisines` is a list of strings representing the cuisine of each food.
+    - `ratings` is a list of integers representing the initial rating of each food.
+  - For `"changeRating"`, the arguments are `[food, newRating]`.
+  - For `"highestRated"`, the arguments are `[cuisine]`.
 
 **Return value**
-
-TODO
+- `List[Union[None, str]]` - A list of return values from each method call. The constructor and `"changeRating"` return `None`, while `"highestRated"` returns the name of the highest-rated food as a string.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 2**
-
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- **Input**: 
+  - `commands = ["FoodRatings", "highestRated", "highestRated", "changeRating", "highestRated", "changeRating", "highestRated"]`
+  - `inputs = [[["kimchi", "miso", "sushi", "moussaka", "ramen", "bulgogi"], ["korean", "japanese", "japanese", "greek", "japanese", "korean"], [9, 12, 8, 15, 14, 7]], ["korean"], ["japanese"], ["sushi", 16], ["japanese"], ["ramen", 16], ["japanese"]]`
+- **Output**: `[None, "kimchi", "ramen", None, "sushi", None, "ramen"]`
+- **Explanation**:
+  1. Initialize foods with their cuisines and ratings.
+  2. `highestRated("korean")` returns `"kimchi"` (rating 9 is higher than bulgogi's 7).
+  3. `highestRated("japanese")` returns `"ramen"` (rating 14 is higher than miso's 12 and sushi's 8).
+  4. `changeRating("sushi", 16)` updates sushi's rating to 16.
+  5. `highestRated("japanese")` returns `"sushi"` (rating 16 is now the highest).
+  6. `changeRating("ramen", 16)` updates ramen's rating to 16.
+  7. `highestRated("japanese")` returns `"ramen"` (both sushi and ramen have rating 16, but `"ramen"` is lexicographically smaller than `"sushi"`).
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+To implement this system efficiently, we use a combination of **Hash Maps** and **Priority Queues (Heaps)**:
+1. **Hash Maps**:
+   - `food_to_cuisine`: Maps each food name to its cuisine for $O(1)$ lookup.
+   - `food_to_rating`: Maps each food name to its current rating.
+2. **Priority Queues (Heaps)**:
+   - For each cuisine, we maintain a min-heap storing tuples of `(-rating, food)`. 
+   - Negating the rating allows us to use Python's built-in min-heap as a max-heap.
+   - If ratings are equal, Python compares the second element of the tuple (`food`), which naturally sorts them lexicographically in ascending order. This perfectly satisfies the tie-breaking condition.
+3. **Lazy Deletion**:
+   - Instead of searching and updating elements inside the heap (which is an expensive $O(N)$ operation), we perform **lazy deletion**.
+   - When `changeRating` is called, we simply push the new `(-newRating, food)` tuple onto the heap and update the `food_to_rating` map.
+   - When `highestRated` is called, we peek at the top of the heap. If the rating in the heap entry does not match the current rating in `food_to_rating`, it is a stale entry. We pop it and continue checking until we find a valid entry.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**:
+  - **Initialization**: $O(N \log N)$ where $N$ is the number of foods, as we push each food into its cuisine's heap.
+  - **`changeRating`**: $O(\log(N + M))$ where $M$ is the number of rating updates, to push the new rating into the heap.
+  - **`highestRated`**: $O(K \log(N + M))$ amortized, where $K$ is the number of stale entries popped. Since each update adds at most one stale entry, the total time spent popping stale entries across all operations is bounded by $O(M \log(N + M))$. Thus, the amortized time complexity per query is $O(\log(N + M))$.
+- **Space Complexity**: $O(N + M)$ to store the mappings and the heap elements (including stale entries).
