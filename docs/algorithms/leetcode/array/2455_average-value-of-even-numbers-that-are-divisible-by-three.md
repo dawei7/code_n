@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, identify all elements that are both even and divisible by three (i.e., divisible by six). Calculate the integer average of these specific elements by summing them and dividing by the count of such elements. If no such numbers exist, return zero.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the floor average of the filtered numbers, or `0` if the filtered set is empty.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3, 6, 10, 12, 15]`
+- Output: `9`
+- Explanation: The numbers divisible by 6 are 6 and 12. (6 + 12) / 2 = 9.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 4, 7, 10]`
+- Output: `0`
+- Explanation: No numbers are divisible by 6.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [6, 12, 18, 24]`
+- Output: `15`
+- Explanation: (6 + 12 + 18 + 24) / 4 = 15.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem utilizes a linear scan (filtering) approach. We iterate through the array once, maintaining a running sum and a counter for elements that satisfy the condition `x % 6 == 0`. Finally, we perform integer division.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single pass over the data.
+- **Space Complexity**: `O(1)`, as we only store a few integer variables regardless of the input size.

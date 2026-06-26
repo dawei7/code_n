@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of even length, repeatedly remove the minimum and maximum elements from the current array, calculate their average, and store it. The objective is to determine how many unique average values are generated through this process until the array is empty.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers where the length is always even.
 
 **Return value**
 
-TODO
+- An integer representing the count of unique averages calculated.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4,1,4,0,3,5]`
+- Output: `2`
+- Explanation: Averages are (0+5)/2=2.5, (1+4)/2=2.5, (3+4)/2=3.5. Unique values: {2.5, 3.5}. Count: 2.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,100]`
+- Output: `1`
+- Explanation: Average is (1+100)/2=50.5. Unique values: {50.5}. Count: 1.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,1,0,0]`
+- Output: `1`
+- Explanation: Averages are (0+1)/2=0.5, (0+1)/2=0.5. Unique values: {0.5}. Count: 1.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Sorting + Two Pointers** approach. By sorting the array first, the minimum and maximum elements at any step are always located at the current left and right pointers. A **Hash Set** is then used to store the calculated averages to ensure only unique values are counted.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n log n)` due to the initial sorting of the array, where `n` is the number of elements. The two-pointer traversal takes `O(n)`.
+- **Space Complexity**: `O(n)` to store the unique averages in a set.

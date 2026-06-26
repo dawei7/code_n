@@ -10,40 +10,32 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Calculate the total time required for three distinct garbage trucks (Metal, Paper, and Glass) to collect all garbage units distributed across a series of houses. Each truck takes 1 minute to pick up a unit of its specific type and a variable amount of time to travel between houses based on the provided travel distances. Each truck only travels as far as the last house containing its specific type of garbage.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `garbage`: A list of strings where each string represents the garbage units at a specific house (e.g., "MP" means one Metal and one Paper unit).
+- `travel`: A list of integers where `travel[i]` represents the time taken to travel from house `i` to house `i + 1`.
 
 **Return value**
 
-TODO
+- An integer representing the total time (pickup time + travel time) spent by all three trucks.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `garbage = ["G","P","GP","GG"], travel = [2,4,3]`
+- Output: `21`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
+- Input: `garbage = ["MMM","PGM","GP"], travel = [3,10]`
+- Output: `37`
 
 ## Underlying Base Algorithm(s)
-TODO
-
----
+The problem is solved using a linear scan combined with prefix sums. We track the total count of each garbage type (pickup time) and identify the index of the last house containing each type (travel time). The travel time for a specific truck is the sum of the `travel` array up to the index of the last house containing that truck's garbage.
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N + M)`, where `N` is the number of houses and `M` is the total number of garbage units across all houses, as we iterate through the houses and the characters within them.
+- **Space Complexity**: `O(1)`, as we only store a constant number of variables to track counts and last indices, regardless of the input size.

@@ -10,40 +10,37 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given two integer arrays `nums1` and `nums2` of the same length and an integer `diff`, count the number of index pairs `(i, j)` such that `0 <= i < j < n` and the inequality `nums1[i] - nums1[j] <= nums2[i] - nums2[j] + diff` holds true.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums1`: A list of integers.
+- `nums2`: A list of integers.
+- `diff`: An integer representing the allowed tolerance.
 
 **Return value**
 
-TODO
+- An integer representing the total count of valid pairs `(i, j)` that satisfy the given inequality.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [3, 2, 5], nums2 = [2, 2, 1], diff = 1`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [3, -1], nums2 = [-2, 2], diff = -1`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The inequality `nums1[i] - nums1[j] <= nums2[i] - nums2[j] + diff` can be rearranged to `(nums1[i] - nums2[i]) - (nums1[j] - nums2[j]) <= diff`. By defining a new array `arr` where `arr[k] = nums1[k] - nums2[k]`, the problem reduces to finding pairs `(i, j)` such that `i < j` and `arr[i] - arr[j] <= diff`, or `arr[i] - diff <= arr[j]`. This is a classic variation of the "Count Inversions" problem, which can be solved efficiently using a modified Merge Sort or a Binary Indexed Tree (Fenwick Tree) with coordinate compression.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n log n)`, where `n` is the length of the input arrays. This is achieved by the divide-and-conquer approach of Merge Sort.
+- **Space Complexity**: `O(n)` to store the auxiliary array used during the merge process.

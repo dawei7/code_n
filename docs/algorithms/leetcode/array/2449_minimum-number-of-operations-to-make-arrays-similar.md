@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given two arrays of equal length, transform the first array into the second by repeatedly choosing two indices and adding 2 to one element while subtracting 2 from the other. Determine the minimum number of operations required to make the arrays identical, noting that the order of elements in the arrays does not matter.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the initial array.
+- `target`: A list of integers representing the desired final state.
 
 **Return value**
 
-TODO
+- An integer representing the minimum number of operations required to make `nums` equal to `target`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [8,12,6], target = [2,14,10]`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,2,5], target = [4,1,3]`
+- Output: `1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,1,1,1,1], target = [1,1,1,1,1]`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem relies on the observation that adding/subtracting 2 preserves the parity of each number. Therefore, we must sort the odd and even numbers of both arrays separately. Once sorted, the difference between corresponding elements in `nums` and `target` represents the total displacement needed. Since each operation reduces the total positive difference by 2 (by moving 2 from one index to another), the total number of operations is the sum of all positive differences divided by 2.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N log N)` due to the sorting of the arrays, where N is the length of the input arrays.
+- **Space Complexity**: `O(N)` to store the partitioned odd and even elements.

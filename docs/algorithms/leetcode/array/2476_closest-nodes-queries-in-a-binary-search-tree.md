@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given the root of a binary search tree (BST) and a list of integer queries, determine for each query the largest value in the tree that is less than or equal to the query (the floor) and the smallest value in the tree that is greater than or equal to the query (the ceiling). If no such value exists for a specific bound, return -1.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `root`: The root node of a Binary Search Tree.
+- `queries`: A list of integers representing the values to search for in the BST.
 
 **Return value**
 
-TODO
+- A list of lists, where each inner list contains two integers `[min_val, max_val]` corresponding to the floor and ceiling for the respective query.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [6,2,13,1,4,9,15,null,null,null,null,null,null,14], queries = [2,5,16]`
+- Output: `[[2,2],[4,6],[15,-1]]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [4,null,9], queries = [3]`
+- Output: `[[-1,4]]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [1], queries = [1]`
+- Output: `[[1,1]]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The solution utilizes an In-order Traversal to extract the BST values into a sorted array. Once the values are sorted, the problem reduces to performing Binary Search (specifically `bisect_left` and `bisect_right`) on the array for each query to efficiently locate the floor and ceiling values.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: O(N + Q log N), where N is the number of nodes in the BST and Q is the number of queries. The in-order traversal takes O(N), and each of the Q queries takes O(log N) using binary search.
+- **Space Complexity**: O(N), required to store the sorted list of node values extracted from the BST.

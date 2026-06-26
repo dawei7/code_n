@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a list of query words and a dictionary of reference words, identify which query words can be transformed into at least one dictionary word by changing at most two characters. All words in both lists have the same length.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `queries`: A list of strings representing the words to check.
+- `dictionary`: A list of strings representing the reference vocabulary.
 
 **Return value**
 
-TODO
+- A list of strings containing all words from `queries` that satisfy the "two-edit" condition.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `queries = ["word","note","ants","wood"], dictionary = ["wood","joke","moat"]`
+- Output: `["word","note","wood"]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `queries = ["yes"], dictionary = ["not"]`
+- Output: `[]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `queries = ["ac","ab"], dictionary = ["ac","ab"]`
+- Output: `["ac","ab"]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a brute-force comparison approach. Since the constraints on word length and list sizes are relatively small (typically $N, M \le 100$ and length $L \le 100$), we can iterate through each query word and compare it against every dictionary word. For each pair, we count the number of differing characters. If the count is $\le 2$, the query word is valid.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(Q \cdot D \cdot L)$, where $Q$ is the number of queries, $D$ is the number of dictionary words, and $L$ is the length of the words.
+- **Space Complexity**: $O(R \cdot L)$, where $R$ is the number of resulting words, to store the output list.

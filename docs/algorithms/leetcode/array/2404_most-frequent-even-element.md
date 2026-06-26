@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, identify the even number that appears most frequently. If multiple even numbers share the same maximum frequency, return the smallest one among them. If no even numbers exist in the input array, return -1.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the most frequent even element, or -1 if none exist.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0, 1, 2, 2, 4, 4, 1]`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, 4, 4, 9, 2, 4]`
+- Output: `4`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [29, 47, 21, 41, 13, 37, 25, 7]`
+- Output: `-1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a Frequency Map (Hash Table). We iterate through the array once to count the occurrences of all even numbers. We then iterate through the map to find the key with the highest frequency, applying a tie-breaking rule (choosing the smaller key) when frequencies are equal.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N)`, where `N` is the length of the input array, as we perform a single pass to count elements and a single pass over the unique even elements.
+- **Space Complexity**: `O(K)`, where `K` is the number of unique even elements in the array, used to store the frequency map.

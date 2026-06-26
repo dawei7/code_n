@@ -10,40 +10,61 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of positive integers `nums` and an array of positive integers `queries`, your task is to determine, for each query, the maximum possible length of a subsequence from `nums` such that the sum of its elements does not exceed the given query value. The result should be an array containing the answer for each query in the order they appear in the input `queries` array.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: `List[int]` - An array of positive integers.
+- `queries`: `List[int]` - An array of positive integers representing the sum limits.
 
 **Return value**
 
-TODO
+`List[int]` - An array `answer` where `answer[i]` is the maximum length of a subsequence from `nums` whose sum is less than or equal to `queries[i]`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4,5,2,1]`, `queries = [3,10,21]`
+- Output: `[2,3,4]`
+- Explanation:
+    - For `queries[0] = 3`: The sorted `nums` is `[1,2,4,5]`. The subsequence `[1,2]` has sum `3` and length `2`. This is the longest possible.
+    - For `queries[1] = 10`: The subsequence `[1,2,4]` has sum `7` and length `3`. Adding `5` would make the sum `12`, exceeding `10`.
+    - For `queries[2] = 21`: The subsequence `[1,2,4,5]` has sum `12` and length `4`. This is the longest possible (all elements).
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2,3,4,5]`, `queries = [1]`
+- Output: `[0]`
+- Explanation:
+    - For `queries[0] = 1`: No element in `nums` is less than or equal to `1`. Thus, no subsequence can be formed, and the length is `0`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1]`, `queries = [100]`
+- Output: `[1]`
+- Explanation:
+    - For `queries[0] = 100`: The subsequence `[1]` has sum `1` and length `1`. This is the longest possible.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be efficiently solved by combining **Sorting**, **Prefix Sums**, and **Binary Search**.
 
----
+1.  **Greedy Choice (Sorting):** To maximize the length of a subsequence given a sum limit, we should always prioritize picking the smallest numbers first. This is a greedy approach. Therefore, the first step is to sort the `nums` array in non-decreasing order.
+
+2.  **Prefix Sums:** After sorting `nums`, we can compute a prefix sum array. Each element `prefix_sums[i]` will store the sum of the first `i+1` elements of the sorted `nums` array (i.e., `nums[0] + nums[1] + ... + nums[i]`). This array allows us to quickly find the sum of any initial segment of the sorted `nums`.
+
+3.  **Binary Search:** For each query `q`, we need to find the largest index `k` such that `prefix_sums[k] <= q`. The value `k+1` will then be the maximum length of the subsequence. This search for an upper bound in a sorted array (the prefix sums array) is a classic application of binary search. Specifically, we are looking for the "insertion point" where `q` would be placed to maintain sorted order, such that all elements to its left are less than or equal to `q`. The `bisect_right` function from Python's `bisect` module is ideal for this. The index returned by `bisect_right` directly corresponds to the count of elements (length) whose sum is less than or equal to the query.
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**:
+    - Sorting `nums`: `O(N log N)`, where `N` is the length of `nums`.
+    - Calculating prefix sums: `O(N)`.
+    - For each query, performing a binary search on the `prefix_sums` array: `O(log N)`. Since there are `M` queries, this step takes `O(M log N)`.
+    - Total time complexity: `O(N log N + M log N)`.
+
+- **Space Complexity**:
+    - Storing the `prefix_sums` array: `O(N)`.
+    - Storing the `answer` array: `O(M)`.
+    - Total space complexity: `O(N + M)`.

@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an undirected tree represented by node values and edges, determine the maximum number of components the tree can be partitioned into by removing edges such that the sum of node values in every resulting component is identical.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the value of each node.
+- `edges`: A list of pairs representing the undirected connections between nodes.
 
 **Return value**
 
-TODO
+- An integer representing the maximum number of components (k) such that the total sum of the tree is divisible by k, and each component sums to `total_sum / k`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [6,2,2,2,6], edges = [[0,1],[1,2],[1,3],[3,4]]`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2], edges = []`
+- Output: `1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,2,1,2,1], edges = [[0,1],[1,2],[2,3],[3,4]]`
+- Output: `5`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem relies on **DFS (Depth-First Search)** for tree traversal and **Divisor Enumeration**. Since the total sum of the tree must be partitioned into $k$ equal parts, $k$ must be a divisor of the total sum. We iterate through possible values of $k$ (starting from the largest possible) and use a post-order DFS to check if the tree can be partitioned into components of size `total_sum / k`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(N \cdot d(S))$, where $N$ is the number of nodes and $d(S)$ is the number of divisors of the total sum $S$. For each divisor, we perform a linear time DFS traversal.
+- **Space Complexity**: $O(N)$ to store the adjacency list and the recursion stack.

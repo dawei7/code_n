@@ -10,40 +10,44 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an integer array and a window size `k`, identify all contiguous subarrays of length exactly `k` that contain only unique elements. Among these valid subarrays, calculate the sum of their elements and return the maximum sum found. If no such subarray exists, return 0.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the input sequence.
+- `k`: An integer representing the required length of the contiguous subarray.
 
 **Return value**
 
-TODO
+- An integer representing the maximum sum of any valid subarray of length `k` with all distinct elements.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,5,4,2,9,9,9], k = 3`
+- Output: `15`
+- Explanation: Valid subarrays of length 3 are [1,5,4], [5,4,2], [4,2,9]. The sums are 10, 11, and 15 respectively. The maximum is 15.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4,4,4], k = 3`
+- Output: `0`
+- Explanation: No subarray of length 3 has distinct elements.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,1,1,7,8,9], k = 3`
+- Output: `24`
+- Explanation: The only valid subarray is [7,8,9] with sum 24.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using the **Sliding Window** technique combined with a **Hash Map** (or frequency array) to maintain the count of elements within the current window. This allows for $O(1)$ updates to the window sum and $O(1)$ checks for uniqueness, ensuring the window remains valid as it traverses the array.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array. We traverse the array once, and each element is added and removed from the window at most once.
+- **Space Complexity**: `O(min(n, m))`, where `m` is the range of values in the array, as the hash map stores at most `k` distinct elements at any given time.

@@ -10,40 +10,47 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an integer array and two boundary values, determine the total number of contiguous subarrays where the minimum element is exactly equal to `minK` and the maximum element is exactly equal to `maxK`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers.
+- `minK`: The required minimum value for the subarray.
+- `maxK`: The required maximum value for the subarray.
 
 **Return value**
 
-TODO
+- An integer representing the count of valid subarrays.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3, 5, 2, 7, 5]`, `minK = 1`, `maxK = 5`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1, 1]`, `minK = 1`, `maxK = 1`
+- Output: `10`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3]`, `minK = 1`, `maxK = 3`
+- Output: `1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Single-Pass Sliding Window** approach. We maintain three pointers (or indices) to track the state:
+1. `bad_idx`: The index of the most recent element that falls outside the range `[minK, maxK]`.
+2. `min_idx`: The index of the most recent occurrence of `minK`.
+3. `max_idx`: The index of the most recent occurrence of `maxK`.
+
+For every index `i` in the array, if `nums[i]` is within `[minK, maxK]`, the number of valid subarrays ending at `i` is `max(0, min(min_idx, max_idx) - bad_idx)`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we iterate through the array exactly once.
+- **Space Complexity**: `O(1)`, as we only store a few integer pointers regardless of the input size.

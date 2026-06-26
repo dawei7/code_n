@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given two parallel arrays representing names and heights of individuals, return a list of names sorted in descending order based on their corresponding heights.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `names`: A list of strings where `names[i]` is the name of the i-th person.
+- `heights`: A list of integers where `heights[i]` is the height of the i-th person.
 
 **Return value**
 
-TODO
+- A list of strings containing the names sorted by height from tallest to shortest.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `names = ["Mary","John","Emma"], heights = [180,165,170]`
+- Output: `["Mary","Emma","John"]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `names = ["Alice","Bob","Bob"], heights = [155,185,150]`
+- Output: `["Bob","Alice","Bob"]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `names = ["Alex"], heights = [100]`
+- Output: `["Alex"]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved by creating pairs of (height, name) and applying a sorting algorithm. Since we need to sort by height in descending order, we can use Python's built-in Timsort (via `sort` or `sorted`), which provides an efficient $O(N \log N)$ performance.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(N \log N)$, where $N$ is the number of people, due to the sorting operation.
+- **Space Complexity**: $O(N)$ to store the zipped list of pairs and the resulting list of names.

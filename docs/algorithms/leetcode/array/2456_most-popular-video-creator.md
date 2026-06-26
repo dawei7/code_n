@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given three arrays representing video creators, IDs, and view counts, identify the most popular creator(s) based on the total sum of views across all their videos. Among the most popular creators, return the creator name and the ID of their most-viewed video. If a creator has multiple videos with the same maximum view count, choose the one that is lexicographically smallest.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `creators`: A list of strings where `creators[i]` is the name of the creator of the i-th video.
+- `ids`: A list of strings where `ids[i]` is the unique identifier of the i-th video.
+- `views`: A list of integers where `views[i]` is the number of views for the i-th video.
 
 **Return value**
 
-TODO
+- A list of lists, where each inner list contains `[creator_name, video_id]` for all creators tied for the highest total view count.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `creators = ["alice","bob","alice","chris"], ids = ["one","two","three","four"], views = [5,10,5,4]`
+- Output: `[["alice","one"],["bob","two"]]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `creators = ["alice","alice","alice"], ids = ["a","b","c"], views = [1,2,2]`
+- Output: `[["alice","b"]]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `creators = ["a","a"], ids = ["b","c"], views = [1,1]`
+- Output: `[["a","b"]]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a Hash Map (dictionary) to aggregate data. We maintain two mappings: one for the total views per creator and another to track the "best" video (highest views, then lexicographically smallest ID) for each creator. After a single pass, we determine the maximum total views and filter the creators who reached that threshold.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N log K)` or `O(N)` depending on implementation, where `N` is the number of videos and `K` is the number of unique creators. Since we iterate through the input once and perform constant-time dictionary updates, the complexity is effectively `O(N)`.
+- **Space Complexity**: `O(N)` to store the creator statistics and video mappings in hash tables.
