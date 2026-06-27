@@ -10,40 +10,39 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an undirected tree structure defined by edges and a set of directed "guesses" (parent-child relationships), determine how many nodes in the tree could serve as the root such that at least `k` of the provided guesses are satisfied.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `edges`: A list of lists where each inner list `[u, v]` represents an undirected edge between nodes `u` and `v`.
+- `guesses`: A list of lists where each inner list `[u, v]` represents a guess that `u` is the parent of `v`.
+- `k`: An integer representing the minimum number of satisfied guesses required.
 
 **Return value**
 
-TODO
+- An integer representing the count of nodes that, when chosen as the root, satisfy at least `k` guesses.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `edges = [[0,1],[1,2],[1,3],[4,2]], guesses = [[1,3],[0,1],[1,0],[2,4]], k = 3`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: `edges = [[0,1],[1,2],[2,3],[3,4]], guesses = [[1,0],[3,4],[2,1],[3,2]], k = 1`
+- Output: `5`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using the **Re-rooting Technique** (a form of Dynamic Programming on Trees). 
+1. First, perform a DFS to calculate the number of satisfied guesses when node `0` is the root.
+2. Perform a second DFS to propagate the count of satisfied guesses as the root moves from a parent to its child. When moving from `u` to `v`, if `(u, v)` was a guess, it becomes unsatisfied, and if `(v, u)` was a guess, it becomes satisfied.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N + G)`, where `N` is the number of nodes and `G` is the number of guesses. We traverse the tree twice and perform constant-time lookups using a hash set for guesses.
+- **Space Complexity**: `O(N + G)` to store the adjacency list and the set of guesses.

@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, rearrange its elements to form a permutation such that the number of indices `i` where the new element is strictly greater than the original element at that index is maximized. Return this maximum count.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the maximum number of indices where the permuted array elements are strictly greater than the original elements.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,3,5,2,1,3,1]`
+- Output: `4`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,2,3,4]`
+- Output: `3`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [10,10,10]`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Greedy approach combined with Sorting**. By sorting the array, we can efficiently pair the smallest available elements with the smallest possible elements that are strictly greater than them. A **Two Pointers** technique is used to traverse the sorted array: one pointer tracks the "target" (the element we want to beat) and the other tracks the "candidate" (the element we use to beat the target).
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N log N)` due to the sorting step, where `N` is the length of the input array. The subsequent two-pointer traversal is `O(N)`.
+- **Space Complexity**: `O(1)` or `O(N)` depending on the sorting implementation's space requirements (Python's Timsort is `O(N)`).

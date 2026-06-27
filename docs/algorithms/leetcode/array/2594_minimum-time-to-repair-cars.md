@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers representing the rank of each mechanic and the total number of cars to be repaired, determine the minimum time required to complete all repairs. Each mechanic with rank `r` can repair `n` cars in `r * n^2` time. Mechanics work simultaneously.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `ranks`: A list of integers where `ranks[i]` is the rank of the i-th mechanic.
+- `cars`: An integer representing the total number of cars that need to be repaired.
 
 **Return value**
 
-TODO
+- An integer representing the minimum time required to repair all cars.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `ranks = [4, 2, 3, 1], cars = 10`
+- Output: `16`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `ranks = [5, 1, 8], cars = 6`
+- Output: `16`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `ranks = [1], cars = 1`
+- Output: `1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem exhibits a monotonic property: if it is possible to repair all cars within time `T`, it is also possible to repair them in any time `T' > T`. This allows us to use **Binary Search on the Answer**. We define the search space between 1 and the worst-case scenario (the fastest mechanic repairing all cars alone). For a given time `t`, the number of cars a mechanic with rank `r` can repair is `floor(sqrt(t / r))`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N * log(M))`, where `N` is the number of mechanics and `M` is the maximum possible time (rank of the fastest mechanic * cars^2).
+- **Space Complexity**: `O(1)`, as we only use a few variables for the binary search bounds.

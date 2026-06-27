@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, determine the minimum number of operations required to transform every element in the array to 1. In one operation, you can select any two adjacent elements and replace one of them with their greatest common divisor (GCD).
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the minimum operations needed, or -1 if it is impossible to make all elements 1.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 6, 3, 4]`
+- Output: `4`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 10, 6, 14]`
+- Output: `-1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1]`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem relies on the property that if the GCD of the entire array is greater than 1, it is impossible to create a 1, returning -1. If there is already a 1 in the array, the answer is `(n - count_of_ones)`. If no 1 exists, we must find the shortest subarray whose GCD is 1. The length of this subarray `L` allows us to create a 1 in `L-1` operations, and then we use that 1 to convert the remaining `n-1` elements, resulting in `(L-1) + (n-1)` operations.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n^2 + n * log(max(nums)))`, where `n` is the length of the array. We iterate through all possible subarrays to find the shortest one with a GCD of 1.
+- **Space Complexity**: `O(1)`, as we only use a few variables for tracking the minimum length and GCD calculations.
