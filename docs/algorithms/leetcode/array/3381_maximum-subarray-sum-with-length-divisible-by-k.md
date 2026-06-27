@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an integer array `nums` and a positive integer `k`, identify the contiguous subarray whose length is a multiple of `k` and whose sum is the largest possible among all such subarrays.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers.
+- `k`: A positive integer representing the divisor for the subarray length.
 
 **Return value**
 
-TODO
+- An integer representing the maximum sum found among all subarrays with length $L$ where $L \equiv 0 \pmod k$.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2], k = 1`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [-1, -1, -1, -1, 1, 1, 1, 1], k = 4`
+- Output: `4`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, -3, 4, 5], k = 3`
+- Output: `6`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using the **Prefix Sum** technique combined with a **Hash Map (or Array)** to track the minimum prefix sum encountered at each index modulo `k`. By maintaining `min_prefix_sum[i % k]`, we can calculate the sum of any subarray ending at index `j` with length divisible by `k` as `prefix_sum[j] - min_prefix_sum[j % k]`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(n)$, where $n$ is the length of the input array, as we perform a single pass over the array.
+- **Space Complexity**: $O(k)$, as we only store the minimum prefix sum for each of the $k$ possible remainders.

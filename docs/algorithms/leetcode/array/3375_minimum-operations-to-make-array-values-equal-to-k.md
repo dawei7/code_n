@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers and a target value `k`, determine the minimum number of operations required to make every element in the array equal to `k`. In one operation, you can choose any value `x` present in the array and replace all occurrences of `x` with any value `y` that is strictly less than `x`. If it is impossible to transform all elements to `k`, return -1.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the initial array.
+- `k`: An integer representing the target value that all elements must eventually become.
 
 **Return value**
 
-TODO
+- An integer representing the minimum number of operations, or -1 if the transformation is impossible.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [5, 2, 5, 4, 5], k = 2`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 1, 2], k = 2`
+- Output: `-1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [9, 7, 5, 3], k = 2`
+- Output: `-1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem relies on set theory and greedy logic. First, any element smaller than `k` cannot be transformed into `k` because operations only allow decreasing values. If any element in the array is less than `k`, the task is impossible. If the array contains elements greater than `k`, each unique value greater than `k` must be reduced. Since we can reduce any value `x` to any `y < x`, we can greedily reduce the largest unique values down to the next largest unique values until we reach `k`. Thus, the number of operations is simply the count of unique values in the array that are greater than `k`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the array, as we iterate through the array once to identify unique elements and check against `k`.
+- **Space Complexity**: `O(u)`, where `u` is the number of unique elements in the array, used to store the set of unique values.

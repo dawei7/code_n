@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a collection of unique strings, identify all distinct pairs of indices `(i, j)` such that the concatenation of the strings at these indices, `words[i] + words[j]`, forms a valid palindrome.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `words`: A list of unique strings consisting of lowercase English letters.
 
 **Return value**
 
-TODO
+- A list of lists, where each inner list contains two integers representing the indices `[i, j]` that satisfy the palindrome condition.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["abcd","dcba","lls","s","sssll"]`
+- Output: `[[0,1],[1,0],[3,2],[2,4]]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["bat","tab","cat"]`
+- Output: `[[0,1],[1,0]]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["a",""]`
+- Output: `[[0,1],[1,0]]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The optimal approach utilizes a Hash Map (dictionary) to store the indices of all words for $O(1)$ lookup. For each word, we split it into two parts at every possible position. If the left part is a palindrome, we check if the reverse of the right part exists in our map. If the right part is a palindrome, we check if the reverse of the left part exists. This covers all cases where one word is a prefix or suffix of the other to form a palindrome.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(n \cdot k^2)$, where $n$ is the number of words and $k$ is the maximum length of a word. We iterate through each word ($n$) and perform string slicing and palindrome checking for each character position ($k^2$).
+- **Space Complexity**: $O(n \cdot k)$ to store the words in the hash map.

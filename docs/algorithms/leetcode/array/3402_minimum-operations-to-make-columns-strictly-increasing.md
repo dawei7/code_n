@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a 2D array of integers, `grid`, where each row represents a list of numbers and each column represents a sequence of numbers. The objective is to determine the minimum number of operations required to make every column strictly increasing. An operation consists of incrementing any element in the grid by one.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `grid`: A list of lists of integers, representing the 2D grid. `grid[i][j]` is the element at the i-th row and j-th column.
 
 **Return value**
 
-TODO
+- An integer representing the minimum total number of increments needed across all elements to ensure that for every column `j`, `grid[i][j] < grid[i+1][j]` for all valid `i`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,2,3],[4,5,6],[7,8,9]]`
+- Output: `0`
+- Explanation: The columns are already strictly increasing.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,1,1],[2,2,2],[3,3,3]]`
+- Output: `3`
+- Explanation: To make the first column strictly increasing, we need to increment the second `1` to `2` (1 operation) and the third `1` to `3` (2 operations). Total operations for the first column: 1 + 2 = 3. The other columns also require 3 operations each. The total minimum operations is 3.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,2,3],[1,2,3],[1,2,3]]`
+- Output: `3`
+- Explanation: For the first column, we need to increment the second `1` to `2` (1 operation) and the third `1` to `3` (2 operations). Total operations for the first column: 1 + 2 = 3. The other columns also require 3 operations each. The total minimum operations is 3.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved by iterating through each column independently. For each column, we need to ensure that each element is strictly greater than the element above it. If an element `grid[i][j]` is not strictly greater than `grid[i-1][j]`, we must increment `grid[i][j]` until it is. The minimum number of increments required for `grid[i][j]` is `grid[i-1][j] + 1 - grid[i][j]`. We accumulate these increments for each column and sum them up to get the total minimum operations. This approach is greedy because at each step, we make the locally optimal choice (incrementing the current element just enough to satisfy the condition) which leads to the globally optimal solution.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(R * C)`, where `R` is the number of rows and `C` is the number of columns in the grid. We iterate through each element of the grid once to calculate the necessary increments.
+- **Space Complexity**: `O(1)`. We only use a few variables to store the total operations and intermediate calculations, not dependent on the input size.

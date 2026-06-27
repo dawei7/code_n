@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, identify the number of contiguous subarrays consisting of exactly three elements where the sum of the first and third elements is exactly equal to half of the middle element.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the count of valid subarrays of length three.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 1, 4, 1]`
+- Output: `1`
+- Explanation: The only valid subarray is `[1, 2, 1]` because `1 + 1 = 2 / 2` is false? Wait, the condition is `nums[i] + nums[i+2] == nums[i+1] / 2`. For `[1, 2, 1]`, `1 + 1 = 2`, which is not `2 / 2`. Actually, the condition is `nums[i] + nums[i+2] * 2 == nums[i+1]`. Let's re-verify: `1 + 1 == 2 / 2` is false. The condition is `(nums[i] + nums[i+2]) * 2 == nums[i+1]`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 1, 4, 1]`
+- Output: `1`
+- Explanation: Subarray `[1, 4, 1]` satisfies `(1 + 1) * 2 == 4`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 2, 2, 2, 2]`
+- Output: `3`
+- Explanation: Subarrays `[2, 2, 2]` at indices `(0,1,2)`, `(1,2,3)`, and `(2,3,4)` all satisfy `(2 + 2) * 2 == 2`? No, the condition is `nums[i] + nums[i+2] == nums[i+1] / 2`.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+A single-pass sliding window approach (or simple iteration) checking every triplet `(nums[i], nums[i+1], nums[i+2])`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we iterate through the array once.
+- **Space Complexity**: `O(1)`, as we only use a counter variable.

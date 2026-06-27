@@ -67,7 +67,7 @@ def call_gemini(prompt: str, api_key: str) -> str:
         }
 
         try:
-            response = requests.post(url, headers=headers, json=payload, timeout=90)
+            response = requests.post(url, headers=headers, json=payload, timeout=(15, 30))
             if response.status_code == 200:
                 data = response.json()
                 try:
