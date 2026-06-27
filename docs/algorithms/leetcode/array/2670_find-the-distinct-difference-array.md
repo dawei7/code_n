@@ -10,40 +10,59 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a 0-indexed integer array `nums`, construct a new array `diff` of the same length. For each index `i` in `nums`, `diff[i]` should be calculated as the number of distinct elements in the prefix subarray `nums[0...i]` minus the number of distinct elements in the suffix subarray `nums[i+1...n-1]`. An empty subarray is considered to have 0 distinct elements.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the input array.
+  - `1 <= nums.length <= 50`
+  - `0 <= nums[i] <= 50`
 
 **Return value**
 
-TODO
+- A list of integers, `diff`, where `diff[i]` is the calculated difference for each corresponding index `i` in `nums`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,2,3,4,5]`
+- Output: `[-3, -1, 1, 3, 5]`
+  - `i = 0`: `prefix = [1]` (1 distinct), `suffix = [2,3,4,5]` (4 distinct). `diff[0] = 1 - 4 = -3`.
+  - `i = 1`: `prefix = [1,2]` (2 distinct), `suffix = [3,4,5]` (3 distinct). `diff[1] = 2 - 3 = -1`.
+  - `i = 2`: `prefix = [1,2,3]` (3 distinct), `suffix = [4,5]` (2 distinct). `diff[2] = 3 - 2 = 1`.
+  - `i = 3`: `prefix = [1,2,3,4]` (4 distinct), `suffix = [5]` (1 distinct). `diff[3] = 4 - 1 = 3`.
+  - `i = 4`: `prefix = [1,2,3,4,5]` (5 distinct), `suffix = []` (0 distinct). `diff[4] = 5 - 0 = 5`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3,2,3,4,2]`
+- Output: `[-2, -1, 0, 2, 3]`
+  - `i = 0`: `prefix = [3]` (1 distinct), `suffix = [2,3,4,2]` (3 distinct: {2,3,4}). `diff[0] = 1 - 3 = -2`.
+  - `i = 1`: `prefix = [3,2]` (2 distinct: {2,3}), `suffix = [3,4,2]` (3 distinct: {2,3,4}). `diff[1] = 2 - 3 = -1`.
+  - `i = 2`: `prefix = [3,2,3]` (2 distinct: {2,3}), `suffix = [4,2]` (2 distinct: {2,4}). `diff[2] = 2 - 2 = 0`.
+  - `i = 3`: `prefix = [3,2,3,4]` (3 distinct: {2,3,4}), `suffix = [2]` (1 distinct: {2}). `diff[3] = 3 - 1 = 2`.
+  - `i = 4`: `prefix = [3,2,3,4,2]` (3 distinct: {2,3,4}), `suffix = []` (0 distinct). `diff[4] = 3 - 0 = 3`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1]`
+- Output: `[1]`
+  - `i = 0`: `prefix = [1]` (1 distinct), `suffix = []` (0 distinct). `diff[0] = 1 - 0 = 1`.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The core idea involves efficiently counting distinct elements within subarrays. This is best achieved using hash sets (or frequency maps). The problem can be solved by pre-calculating prefix distinct counts and suffix distinct counts in separate passes, then combining them.
+
+1.  **Prefix Distinct Counts:** Iterate from left to right, maintaining a hash set of elements encountered so far. The size of the set at each step `i` gives the distinct count for `nums[0...i]`.
+2.  **Suffix Distinct Counts:** Iterate from right to left, maintaining a hash set of elements encountered in the suffix. The size of the set *before* adding the current element `nums[i]` (or rather, the size of the set for `nums[i+1...n-1]`) gives the distinct count for the suffix starting after `i`.
+3.  **Final Calculation:** Iterate through the array one last time, subtracting the pre-calculated suffix distinct count from the prefix distinct count for each index `i`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N)`
+  - We perform two linear passes over the array: one to compute all prefix distinct counts and another to compute all suffix distinct counts. Each operation (adding to a hash set, checking its size) takes `O(1)` on average. A final linear pass is used to compute the differences. Therefore, the total time complexity is proportional to the length of the input array `N`.
+- **Space Complexity**: `O(N)`
+  - We use two auxiliary arrays (or lists) to store the prefix distinct counts and suffix distinct counts, each of size `N`. Additionally, two hash sets are used, which in the worst case might store all `N` distinct elements. Thus, the total space complexity is `O(N)`.

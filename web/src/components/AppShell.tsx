@@ -164,7 +164,11 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
             aria-label="Select algorithm set"
           >
             {ALGORITHM_SETS.map((setOption) => (
-              <option key={setOption.id} value={setOption.id}>
+              <option
+                key={setOption.id}
+                value={setOption.id}
+                className="bg-coden-surface text-coden-text"
+              >
                 {setOption.label}
               </option>
             ))}

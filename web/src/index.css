@@ -109,3 +109,8 @@ body,
 .coden-transport-reset::before {
   content: "↺";
 }
+
+select option {
+  background-color: var(--coden-surface);
+  color: var(--coden-text);
+}

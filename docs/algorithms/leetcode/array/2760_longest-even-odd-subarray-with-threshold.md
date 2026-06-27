@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an integer array and a threshold value, identify the length of the longest contiguous subarray that satisfies three conditions: every element is at most the threshold, the first element is even, and adjacent elements alternate between even and odd parity.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers.
+- `threshold`: An integer representing the upper bound for elements in the subarray.
 
 **Return value**
 
-TODO
+- An integer representing the length of the longest valid subarray found. If no such subarray exists, return 0.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3, 2, 5, 4], threshold = 5`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2], threshold = 2`
+- Output: `1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 3, 4, 5], threshold = 4`
+- Output: `3`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Linear Scan (Single Pass)** approach. We iterate through the array while maintaining a running count of the current valid subarray length. We reset the counter whenever an element violates the threshold or the parity alternation rule, ensuring we only start counting when an even number is encountered.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we traverse the list exactly once.
+- **Space Complexity**: `O(1)`, as we only use a few integer variables to track the current and maximum lengths.

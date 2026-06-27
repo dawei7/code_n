@@ -27,7 +27,8 @@ function formatCategory(category: string): string {
   if (category in CATEGORY_DISPLAY_NAMES) {
     return CATEGORY_DISPLAY_NAMES[category];
   }
-  return category.replace(/_/g, ' ');
+  const cleaned = category.replace(/^(leetcode|neetcode|gfg)_/i, '');
+  return cleaned.replace(/_/g, ' ');
 }
 
 /**

@@ -10,40 +10,35 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an integer array, identify the total count of contiguous subarrays where the absolute difference between any two elements within that subarray is at most 2.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers where 1 <= nums.length <= 10^5 and 1 <= nums[i] <= 10^9.
 
 **Return value**
 
-TODO
+- An integer representing the total number of valid continuous subarrays.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [5, 4, 2, 4]`
+- Output: `8`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3]`
+- Output: `6`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Sliding Window** approach combined with two **Monotonic Deques**. The deques maintain the indices of the maximum and minimum elements within the current window `[left, right]`. As we expand the window by moving `right`, we check if the condition `max_val - min_val <= 2` is violated. If it is, we increment `left` until the condition is restored. The number of valid subarrays ending at `right` is simply `right - left + 1`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array. Each element is added and removed from the deques at most once.
+- **Space Complexity**: `O(n)` in the worst case to store the indices in the deques, though practically `O(1)` since the window size is constrained by the value difference condition.
