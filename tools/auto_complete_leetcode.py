@@ -106,6 +106,9 @@ def call_gemini(prompt: str, api_key: str) -> str:
                         time.sleep(2)
                         retries_for_current_model = 0
                         continue
+                    else:
+                        print(f"Quota exhausted for the last available model {model}. Skipping file.")
+                        return ""
                 print(f"Rate limited (429) on {model}. Retrying in {backoff:.1f}s...")
                 time.sleep(backoff)
                 backoff *= 2.0
