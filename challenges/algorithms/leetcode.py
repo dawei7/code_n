@@ -287,25 +287,35 @@ def _parse_complexity(text: str) -> ComplexityClass:
     if not tc_match:
         return ComplexityClass.UNKNOWN
     raw = tc_match.group(1).strip().lower()
-    # Normalize superscript/exponent notations
-    raw = raw.replace("^2", "2").replace("²", "2")
-    raw = raw.replace("^3", "3").replace("³", "3")
-    raw = raw.replace("^n", "n").replace("ⁿ", "n")
     
-    if "o(n log n)" in raw or "o(nlogn)" in raw or "n log n" in raw:
-        return ComplexityClass.O_N_LOG_N
-    if "o(log n)" in raw or "o(logn)" in raw or "log n" in raw:
-        return ComplexityClass.O_LOG_N
-    if "o(n2)" in raw or "o(n^2)" in raw or "o(n\u00b2)" in raw or "n2" in raw or "n²" in raw:
-        return ComplexityClass.O_N2
-    if "o(n3)" in raw or "o(n^3)" in raw or "o(n\u00b3)" in raw or "n3" in raw or "n³" in raw:
-        return ComplexityClass.O_N3
-    if "o(2n)" in raw or "o(2^n)" in raw or "o(2\u207f)" in raw or "2n" in raw or "2^n" in raw:
+    # Check exponential first
+    if "o(2" in raw or "2^" in raw or "2\u207f" in raw or "exponential" in raw:
         return ComplexityClass.O_2N
-    if "o(n)" in raw or "linear" in raw:
-        return ComplexityClass.O_N
-    if "o(1)" in raw or "constant" in raw:
+        
+    # Check cubic
+    if "o(n3)" in raw or "o(n^3)" in raw or "o(n\u00b3)" in raw or "n^3" in raw or "n³" in raw or "3" in raw:
+        return ComplexityClass.O_N3
+        
+    # Check quadratic
+    if "o(n2)" in raw or "o(n^2)" in raw or "o(n\u00b2)" in raw or "n^2" in raw or "n²" in raw or "n2" in raw or "quadratic" in raw or "*" in raw or "^2" in raw or "²" in raw or "2" in raw:
+        return ComplexityClass.O_N2
+        
+    # Check n log n
+    if "n log" in raw or "nlog" in raw:
+        return ComplexityClass.O_N_LOG_N
+        
+    # Check log n
+    if "log" in raw:
+        return ComplexityClass.O_LOG_N
+        
+    # Check constant
+    if "o(1)" in raw or "constant" in raw or raw == "1":
         return ComplexityClass.O_1
+        
+    # Check linear (default fallback for most single/addition/total loops or variables)
+    if any(c.isalpha() for c in raw):
+        return ComplexityClass.O_N
+        
     return ComplexityClass.UNKNOWN
 
 
