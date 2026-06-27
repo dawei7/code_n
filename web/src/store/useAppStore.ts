@@ -144,6 +144,12 @@ export interface AppState {
   renameVersion(version: number, name: string): Promise<void>;
   resetVersion(version: number): Promise<void>;
 
+  sidebarWidth: number;
+  sidebarPosition: 'left' | 'right';
+  sidebarCollapsed: boolean;
+  setSidebarWidth: (width: number) => void;
+  setSidebarPosition: (pos: 'left' | 'right') => void;
+  setSidebarCollapsed: (collapsed: boolean) => void;
 }
 
 
@@ -212,6 +218,22 @@ export const useAppStore = create<AppState>((set, get) => ({
   setAiAnalysis: (analysis) => set({ aiAnalysis: analysis }),
   setAiStatus: (status) => set({ aiStatus: status }),
   setAiError: (error) => set({ aiError: error }),
+
+  sidebarWidth: Number(localStorage.getItem('coden-sidebar-width')) || 256,
+  sidebarPosition: (localStorage.getItem('coden-sidebar-position') as 'left' | 'right') || 'left',
+  sidebarCollapsed: localStorage.getItem('coden-sidebar-collapsed') === 'true',
+  setSidebarWidth: (width) => set(() => {
+    localStorage.setItem('coden-sidebar-width', width.toString());
+    return { sidebarWidth: width };
+  }),
+  setSidebarPosition: (pos) => set(() => {
+    localStorage.setItem('coden-sidebar-position', pos);
+    return { sidebarPosition: pos };
+  }),
+  setSidebarCollapsed: (collapsed) => set(() => {
+    localStorage.setItem('coden-sidebar-collapsed', collapsed ? 'true' : 'false');
+    return { sidebarCollapsed: collapsed };
+  }),
 
   async loadChallenges() {
     const list = await challengesApi.listChallenges();

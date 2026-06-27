@@ -50,6 +50,11 @@ export function AppShell() {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false);
 
+  const sidebarWidth = useAppStore((s) => s.sidebarWidth);
+  const setSidebarWidth = useAppStore((s) => s.setSidebarWidth);
+  const sidebarPosition = useAppStore((s) => s.sidebarPosition);
+  const sidebarCollapsed = useAppStore((s) => s.sidebarCollapsed);
+
   useEffect(() => {
     document.documentElement.style.fontSize = `${baseFontSize}px`;
   }, [baseFontSize]);
@@ -70,18 +75,77 @@ export function AppShell() {
 
   useKeyboardShortcuts();
 
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const startX = e.clientX;
+    const startWidth = sidebarWidth;
+
+    const handleMouseMove = (moveEvent: MouseEvent) => {
+      const deltaX = moveEvent.clientX - startX;
+      const newWidth = sidebarPosition === 'left' 
+        ? startWidth + deltaX 
+        : startWidth - deltaX;
+      setSidebarWidth(Math.max(160, Math.min(600, newWidth)));
+    };
+
+    const handleMouseUp = () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  };
+
+  const handleDoubleClick = () => {
+    setSidebarWidth(256);
+  };
+
   return (
     <div className="h-full flex flex-col bg-coden-bg text-coden-text">
       <TopHeader onOpenProfiles={() => setShowProfileModal(true)} onOpenInfo={() => setShowInfoModal(true)} />
       <div className="flex-1 flex overflow-hidden">
-        <aside className="w-64 border-r border-coden-border bg-coden-surface shrink-0 overflow-y-auto">
-          <ChallengeList />
-        </aside>
+        {!sidebarCollapsed && sidebarPosition === 'left' && (
+          <aside 
+            style={{ width: `${sidebarWidth}px` }}
+            className="border-r border-coden-border bg-coden-surface shrink-0 overflow-y-auto"
+          >
+            <ChallengeList />
+          </aside>
+        )}
+        
+        {!sidebarCollapsed && sidebarPosition === 'left' && (
+          <div
+            onMouseDown={handleMouseDown}
+            onDoubleClick={handleDoubleClick}
+            className="w-1 hover:w-1.5 active:w-1.5 bg-coden-border hover:bg-coden-accent active:bg-coden-accent cursor-col-resize shrink-0 transition-colors z-20"
+            title="Drag to resize, double-click to reset"
+          />
+        )}
+
         <main className="flex-1 flex flex-col min-w-0 bg-coden-bg">
           <TabBar />
           <TransportBar />
           <Workspace />
         </main>
+
+        {!sidebarCollapsed && sidebarPosition === 'right' && (
+          <div
+            onMouseDown={handleMouseDown}
+            onDoubleClick={handleDoubleClick}
+            className="w-1 hover:w-1.5 active:w-1.5 bg-coden-border hover:bg-coden-accent active:bg-coden-accent cursor-col-resize shrink-0 transition-colors z-20"
+            title="Drag to resize, double-click to reset"
+          />
+        )}
+
+        {!sidebarCollapsed && sidebarPosition === 'right' && (
+          <aside 
+            style={{ width: `${sidebarWidth}px` }}
+            className="border-l border-coden-border bg-coden-surface shrink-0 overflow-y-auto"
+          >
+            <ChallengeList />
+          </aside>
+        )}
       </div>
       <UpdateToast />
       {showProfileModal && <ProfileModal onClose={() => setShowProfileModal(false)} />}
@@ -103,6 +167,11 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
   const activeProfile = useAppStore((s) => s.activeProfile);
   const activeSet = useAppStore((s) => s.activeSet);
   const setActiveSet = useAppStore((s) => s.setActiveSet);
+
+  const sidebarCollapsed = useAppStore((s) => s.sidebarCollapsed);
+  const setSidebarCollapsed = useAppStore((s) => s.setSidebarCollapsed);
+  const sidebarPosition = useAppStore((s) => s.sidebarPosition);
+  const setSidebarPosition = useAppStore((s) => s.setSidebarPosition);
 
   // Tooltip describing the last update action for the "Check for
   // updates" button. Changes when the state changes.
@@ -173,6 +242,27 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
               </option>
             ))}
           </select>
+        </div>
+        <div className="ml-2 flex items-center gap-1 rounded bg-coden-bg border border-coden-border px-1 py-0.5 shrink-0">
+          <button
+            type="button"
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className="px-2 py-0.5 rounded text-[10.5px] font-medium text-coden-muted hover:text-coden-text hover:bg-coden-surface transition-colors"
+            title="Toggle Sidebar (Show / Hide)"
+            aria-label={sidebarCollapsed ? "Show Sidebar" : "Hide Sidebar"}
+          >
+            {sidebarCollapsed ? 'Show Sidebar' : 'Hide Sidebar'}
+          </button>
+          <span className="text-coden-muted/40 text-[10.5px]">|</span>
+          <button
+            type="button"
+            onClick={() => setSidebarPosition(sidebarPosition === 'left' ? 'right' : 'left')}
+            className="px-2 py-0.5 rounded text-[10.5px] font-medium text-coden-muted hover:text-coden-text hover:bg-coden-surface transition-colors"
+            title="Toggle Sidebar position (Left / Right)"
+            aria-label={sidebarPosition === 'left' ? "Move Sidebar to Right" : "Move Sidebar to Left"}
+          >
+            Position: {sidebarPosition === 'left' ? 'Left' : 'Right'}
+          </button>
         </div>
         {updater.state.appVersion && (
           <span

@@ -282,13 +282,40 @@ def _examples(text: str) -> list[Sample]:
     return examples[:3]
 
 
+def _parse_complexity(text: str) -> ComplexityClass:
+    tc_match = re.search(r"-\s*\*\*Time Complexity\*\*:\s*`?([^\n`]+)`?", text, re.IGNORECASE)
+    if not tc_match:
+        return ComplexityClass.UNKNOWN
+    raw = tc_match.group(1).strip().lower()
+    # Normalize superscript/exponent notations
+    raw = raw.replace("^2", "2").replace("²", "2")
+    raw = raw.replace("^3", "3").replace("³", "3")
+    raw = raw.replace("^n", "n").replace("ⁿ", "n")
+    
+    if "o(n log n)" in raw or "o(nlogn)" in raw or "n log n" in raw:
+        return ComplexityClass.O_N_LOG_N
+    if "o(log n)" in raw or "o(logn)" in raw or "log n" in raw:
+        return ComplexityClass.O_LOG_N
+    if "o(n2)" in raw or "o(n^2)" in raw or "o(n\u00b2)" in raw or "n2" in raw or "n²" in raw:
+        return ComplexityClass.O_N2
+    if "o(n3)" in raw or "o(n^3)" in raw or "o(n\u00b3)" in raw or "n3" in raw or "n³" in raw:
+        return ComplexityClass.O_N3
+    if "o(2n)" in raw or "o(2^n)" in raw or "o(2\u207f)" in raw or "2n" in raw or "2^n" in raw:
+        return ComplexityClass.O_2N
+    if "o(n)" in raw or "linear" in raw:
+        return ComplexityClass.O_N
+    if "o(1)" in raw or "constant" in raw:
+        return ComplexityClass.O_1
+    return ComplexityClass.UNKNOWN
+
+
 def _build_spec(path: Path) -> AlgorithmSpec | None:
     text = path.read_text(encoding="utf-8")
     title_match = re.search(r"^#\s+(.+)$", text, flags=re.MULTILINE)
     frontend_id = _read_field(text, "Frontend ID")
     if not title_match or not frontend_id:
         return None
-
+ 
     slug, url = _read_link_slug_and_url(text)
     inputs = _inputs(text)
     params = []
@@ -304,7 +331,7 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
     if not params:
         params = ["value"]
         input_docs = {"value": "Input value."}
-
+ 
     category = path.parent.name.replace("-", "_")
     difficulty = _DIFFICULTY_SCORE.get(_read_field(text, "Difficulty"), 5)
     description = _goal(text) or f"Solve the LeetCode problem {title_match.group(1).strip()}."
@@ -314,16 +341,17 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
         source_url = f"https://leetcode.com/problems/{slug}/"
     else:
         source_url = ""
-
+ 
     samples = _examples(text)
     source = _load_solution_source(path, params)
-
+    required_complexity = _parse_complexity(text)
+ 
     return AlgorithmSpec(
         id=f"lc_{frontend_id}",
         name=title_match.group(1).strip(),
         category=f"leetcode_{category}",
         difficulty=difficulty,
-        required_complexity=ComplexityClass.UNKNOWN,
+        required_complexity=required_complexity,
         description=description,
         source_url=source_url,
         params=params,
