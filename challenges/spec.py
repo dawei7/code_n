@@ -97,6 +97,13 @@ class AlgorithmSpec:
     # "worst", "space"); values are short strings describing the
     # behavior. Empty dict → hide the panel for that algorithm.
     complexity_notes: dict[str, str] = field(default_factory=dict)
+    # Optional source-native difficulty metadata. LeetCode uses these to keep
+    # its official Easy/Medium/Hard tier alongside cOde(n)'s 1-10 rating.
+    difficulty_label: str = ""
+    acceptance_rate: Optional[float] = None
+    # All source-native topic memberships. ``category`` remains the primary
+    # category used for document lookup and backward compatibility.
+    categories: list[str] = field(default_factory=list)
 
 
 def make_challenge(spec: AlgorithmSpec) -> type[Challenge]:

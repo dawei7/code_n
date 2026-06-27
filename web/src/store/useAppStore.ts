@@ -150,6 +150,7 @@ export interface AppState {
   setSidebarWidth: (width: number) => void;
   setSidebarPosition: (pos: 'left' | 'right') => void;
   setSidebarCollapsed: (collapsed: boolean) => void;
+  saveSidebarWidthToBackend: (width: number) => Promise<void>;
 }
 
 
@@ -228,12 +229,30 @@ export const useAppStore = create<AppState>((set, get) => ({
   }),
   setSidebarPosition: (pos) => set(() => {
     localStorage.setItem('coden-sidebar-position', pos);
+    void progressApi.updateProgressSettings(
+      undefined, undefined, undefined, undefined, undefined,
+      undefined, pos
+    );
     return { sidebarPosition: pos };
   }),
   setSidebarCollapsed: (collapsed) => set(() => {
     localStorage.setItem('coden-sidebar-collapsed', collapsed ? 'true' : 'false');
+    void progressApi.updateProgressSettings(
+      undefined, undefined, undefined, undefined, undefined,
+      undefined, undefined, collapsed
+    );
     return { sidebarCollapsed: collapsed };
   }),
+  saveSidebarWidthToBackend: async (width) => {
+    try {
+      await progressApi.updateProgressSettings(
+        undefined, undefined, undefined, undefined, undefined,
+        width
+      );
+    } catch {
+      // ignore
+    }
+  },
 
   async loadChallenges() {
     const list = await challengesApi.listChallenges();
@@ -399,6 +418,15 @@ export const useAppStore = create<AppState>((set, get) => ({
         progress: p,
         activeSet: normalizeAlgorithmSet(p.active_set)
       });
+      if (p.sidebar_width) {
+        set({ sidebarWidth: p.sidebar_width });
+      }
+      if (p.sidebar_position) {
+        set({ sidebarPosition: p.sidebar_position });
+      }
+      if (p.sidebar_collapsed !== undefined) {
+        set({ sidebarCollapsed: p.sidebar_collapsed });
+      }
     } catch {
       // ignore
     }

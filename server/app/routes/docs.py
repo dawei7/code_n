@@ -397,7 +397,9 @@ def generate_dynamic_reference(challenge_id: str, spec, lang: str) -> str:
         "pedagogic_insights": "Break down the inputs into simple steps."
     })
 
-    difficulty_str = "Easy" if spec.difficulty <= 3 else "Medium" if spec.difficulty <= 7 else "Hard"
+    difficulty_str = spec.difficulty_label or (
+        "Easy" if spec.difficulty <= 3 else "Medium" if spec.difficulty <= 7 else "Hard"
+    )
 
     if lang == "de":
         title_ref = "Referenz"

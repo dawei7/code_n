@@ -8,6 +8,7 @@ open them by dataset while the richer runnable specs are filled in over time.
 from __future__ import annotations
 
 import ast
+import json
 import keyword
 import random
 import re
@@ -22,11 +23,51 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DOCS_ROOT = PROJECT_ROOT / "docs" / "algorithms" / "leetcode"
 
 
-_DIFFICULTY_SCORE = {
-    "Easy": 2,
-    "Medium": 5,
-    "Hard": 8,
-}
+INDEX_PATH = DOCS_ROOT / "index.json"
+
+
+def _load_difficulty_metadata() -> dict[str, tuple[int, str, float, list[str]]]:
+    """Build the 10-level rating from official tier + acceptance percentile.
+
+    Easy and Medium are divided into three equally populated acceptance bands;
+    Hard is divided into four. Within a tier, a higher acceptance rate means an
+    easier sublevel. This always maps Easy -> 1..3, Medium -> 4..6, and Hard ->
+    7..10 while adapting to the actual LeetCode corpus distribution.
+    """
+    if not INDEX_PATH.is_file():
+        return {}
+    try:
+        questions = json.loads(INDEX_PATH.read_text(encoding="utf-8")).get("questions", [])
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+    configuration = {"Easy": (1, 3), "Medium": (4, 3), "Hard": (7, 4)}
+    grouped: dict[str, list[dict[str, Any]]] = {label: [] for label in configuration}
+    for question in questions:
+        label = str(question.get("difficulty", ""))
+        if label in grouped and question.get("acceptance_rate") is not None:
+            grouped[label].append(question)
+
+    result: dict[str, tuple[int, str, float, list[str]]] = {}
+    for label, entries in grouped.items():
+        base, band_count = configuration[label]
+        entries.sort(key=lambda item: float(item["acceptance_rate"]), reverse=True)
+        total = len(entries)
+        for rank, question in enumerate(entries):
+            band = min(band_count - 1, rank * band_count // max(total, 1))
+            frontend_id = str(question.get("frontend_id", ""))
+            acceptance = float(question["acceptance_rate"])
+            categories = [
+                f"leetcode_{str(topic.get('slug', '')).replace('-', '_')}"
+                for topic in question.get("topics", [])
+                if topic.get("slug")
+            ]
+            result[frontend_id] = (base + band, label, acceptance, categories)
+    return result
+
+
+_DIFFICULTY_METADATA = _load_difficulty_metadata()
+_DIFFICULTY_FALLBACK = {"Easy": 2, "Medium": 5, "Hard": 8}
 
 
 def _noop_source(params: list[str]) -> str:
@@ -343,7 +384,10 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
         input_docs = {"value": "Input value."}
  
     category = path.parent.name.replace("-", "_")
-    difficulty = _DIFFICULTY_SCORE.get(_read_field(text, "Difficulty"), 5)
+    difficulty_label = _read_field(text, "Difficulty")
+    metadata = _DIFFICULTY_METADATA.get(frontend_id)
+    difficulty = metadata[0] if metadata else _DIFFICULTY_FALLBACK.get(difficulty_label, 5)
+    acceptance_rate = metadata[2] if metadata else None
     description = _goal(text) or f"Solve the LeetCode problem {title_match.group(1).strip()}."
     if url:
         source_url = url
@@ -373,6 +417,9 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
         samples=samples,
         hint="Use the Reference tab for the problem statement and algorithm outline.",
         max_n=50,
+        difficulty_label=metadata[1] if metadata else difficulty_label,
+        acceptance_rate=acceptance_rate,
+        categories=metadata[3] if metadata else [f"leetcode_{category}"],
     )
 
 

@@ -59,6 +59,35 @@ class ListChallengesTest(conftest._Base):
         self.assertTrue(all(isinstance(word, str) and word for word in setup["words"]))
         self.assertNotEqual(setup["words"], [])
 
+    def test_leetcode_difficulty_uses_ten_level_acceptance_bands(self) -> None:
+        self.client.put("/api/progress", json={"active_set": "leetcode"})
+        response = self.client.get("/api/challenges")
+        self.assertEqual(response.status_code, 200, response.text)
+
+        summaries = response.json()
+        expected_ranges = {"Easy": range(1, 4), "Medium": range(4, 7), "Hard": range(7, 11)}
+        seen_levels: set[int] = set()
+        for summary in summaries:
+            label = summary["difficulty_label"]
+            self.assertIn(label, expected_ranges)
+            self.assertIn(summary["difficulty"], expected_ranges[label])
+            self.assertIsInstance(summary["acceptance_rate"], float)
+            seen_levels.add(summary["difficulty"])
+
+        self.assertEqual(seen_levels, set(range(1, 11)))
+
+    def test_leetcode_summary_preserves_all_topic_categories(self) -> None:
+        self.client.put("/api/progress", json={"active_set": "leetcode"})
+        response = self.client.get("/api/challenges")
+        self.assertEqual(response.status_code, 200, response.text)
+
+        two_sum = next(item for item in response.json() if item["id"] == "lc_1")
+        self.assertEqual(two_sum["category"], "leetcode_array")
+        self.assertEqual(
+            two_sum["categories"],
+            ["leetcode_array", "leetcode_hash_table"],
+        )
+
     def test_unknown_algorithm_set_falls_back_to_neetcode(self) -> None:
         progress = self.client.put("/api/progress", json={"active_set": "mystery"})
         self.assertEqual(progress.status_code, 200, progress.text)

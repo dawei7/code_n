@@ -59,6 +59,15 @@ def update_progress(body: ProgressUpdate) -> ProgressOut:
         if body.active_set is not None:
             progress.active_set = normalize_algorithm_set(body.active_set)
             changed = True
+        if body.sidebar_width is not None:
+            progress.sidebar_width = body.sidebar_width
+            changed = True
+        if body.sidebar_position is not None:
+            progress.sidebar_position = body.sidebar_position
+            changed = True
+        if body.sidebar_collapsed is not None:
+            progress.sidebar_collapsed = body.sidebar_collapsed
+            changed = True
         if changed:
             progress_store.save(progress)
     return _to_out(progress)

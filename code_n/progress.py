@@ -31,6 +31,9 @@ class PlayerProgress:
     milestones: list[str] = field(default_factory=list)
     gemini_api_key: str = ""
     active_set: str = "gfg"
+    sidebar_width: int = 256
+    sidebar_position: str = "left"
+    sidebar_collapsed: bool = False
 
     def complete(self, challenge_id: str, ops: int, complexity: str):
         self.completed.add(challenge_id)
@@ -89,7 +92,10 @@ class PlayerProgress:
             "unlocked_leetcode": list(self.unlocked_leetcode),
             "milestones": list(self.milestones),
             "gemini_api_key": self.gemini_api_key,
-            "active_set": self.active_set
+            "active_set": self.active_set,
+            "sidebar_width": self.sidebar_width,
+            "sidebar_position": self.sidebar_position,
+            "sidebar_collapsed": self.sidebar_collapsed,
         }
 
     @classmethod
@@ -110,6 +116,9 @@ class PlayerProgress:
         progress.milestones = list(data.get("milestones", []))
         progress.gemini_api_key = str(data.get("gemini_api_key", ""))
         progress.active_set = str(data.get("active_set", "neetcode"))
+        progress.sidebar_width = int(data.get("sidebar_width", 256))
+        progress.sidebar_position = str(data.get("sidebar_position", "left"))
+        progress.sidebar_collapsed = bool(data.get("sidebar_collapsed", False))
         return progress
 
 

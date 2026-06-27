@@ -29,6 +29,9 @@ export function updateProgressSettings(
   player_name?: string,
   gemini_api_key?: string,
   active_set?: string,
+  sidebar_width?: number,
+  sidebar_position?: string,
+  sidebar_collapsed?: boolean,
 ): Promise<ProgressOut> {
   return apiPut<ProgressOut>('/progress', {
     career_mode,
@@ -36,6 +39,9 @@ export function updateProgressSettings(
     player_name,
     gemini_api_key,
     active_set,
+    sidebar_width,
+    sidebar_position,
+    sidebar_collapsed,
   });
 }
 

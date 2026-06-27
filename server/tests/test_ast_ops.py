@@ -98,6 +98,46 @@ class CountOpsTest(unittest.TestCase):
         # fallback applies).
         self.assertEqual(count_ops(source, 16), 1 + 16)
 
+    def test_counter_charges_for_hidden_iteration(self) -> None:
+        source = "from collections import Counter\ncounts = Counter(data)\n"
+        # assignment (1) + Counter's n-element construction
+        self.assertEqual(count_ops(source, 16), 1 + 16)
+
+    def test_qualified_counter_charges_for_hidden_iteration(self) -> None:
+        source = "import collections\ncounts = collections.Counter(data)\n"
+        # assignment + attribute lookup + n-element construction
+        self.assertEqual(count_ops(source, 10), 1 + 1 + 10)
+
+    def test_sorted_is_n_log_n(self) -> None:
+        source = "result = sorted(data)\n"
+        self.assertEqual(count_ops(source, 16), 1 + 64)
+
+    def test_eager_work_in_for_iterable_is_counted_once(self) -> None:
+        source = "for value in sorted(data):\n    consume(value)\n"
+        # sorted: 64; for bookkeeping: 1; body call: 16
+        self.assertEqual(count_ops(source, 16), 64 + 1 + 16)
+
+    def test_linear_builtin_distinguishes_scalar_min(self) -> None:
+        self.assertEqual(count_ops("result = sum(data)", 10), 1 + 10)
+        self.assertEqual(count_ops("result = max(data)", 10), 1 + 10)
+        # max(a, b) compares a fixed number of arguments; it does not scan n.
+        self.assertEqual(count_ops("result = max(a, b)", 10), 1 + 1)
+
+    def test_sort_and_heap_operations_include_hidden_cost(self) -> None:
+        self.assertEqual(count_ops("data.sort()", 8), 1 + 24)
+        # Attribute lookup (1) + logarithmic heap call (3).
+        self.assertEqual(count_ops("heapq.heappush(heap, value)", 8), 1 + 3)
+
+    def test_literal_counter_uses_literal_size(self) -> None:
+        self.assertEqual(count_ops("counts = Counter([1, 2, 3])", 100), 1 + 3)
+
+    def test_counter_most_common_includes_scan(self) -> None:
+        # assignment + subscript + attribute + n-element most_common(1)
+        self.assertEqual(
+            count_ops("item = counts.most_common(1)[0]", 10),
+            1 + 1 + 1 + 10,
+        )
+
     def test_range_with_start_stop(self) -> None:
         # ``range(1, n)`` iterates n-1 times.
         # 1 (for) + (n-1) × (1 assign) = 1 + (n-1) = n

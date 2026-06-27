@@ -41,7 +41,10 @@ class ChallengeSummary(BaseModel):
     id: str
     name: str
     category: str
+    categories: list[str] = Field(default_factory=list)
     difficulty: int
+    difficulty_label: str = ""
+    acceptance_rate: float | None = None
     required_complexity: str
     description: str
     hint: str = ""
@@ -202,6 +205,9 @@ class ProgressOut(BaseModel):
     milestones: list[str] = Field(default_factory=list)
     gemini_api_key: str = ""
     active_set: str = "neetcode"
+    sidebar_width: int = 256
+    sidebar_position: str = "left"
+    sidebar_collapsed: bool = False
 
 
 class ProgressUpdate(BaseModel):
@@ -218,6 +224,9 @@ class ProgressUpdate(BaseModel):
     career_mode: Optional[bool] = None
     leetcode_username: Optional[str] = None
     gemini_api_key: Optional[str] = None
+    sidebar_width: Optional[int] = None
+    sidebar_position: Optional[str] = None
+    sidebar_collapsed: Optional[bool] = None
     active_set: Optional[str] = None
 
 

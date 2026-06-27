@@ -31,14 +31,21 @@ function formatCategory(category: string): string {
   return cleaned.replace(/_/g, ' ');
 }
 
+function formatChallengeTitle(challenge: ChallengeSummary, activeSet: string): string {
+  if (activeSet !== 'leetcode') return challenge.name;
+  const match = /^lc_(\d+)$/.exec(challenge.id);
+  return match ? `${match[1]}. ${challenge.name}` : challenge.name;
+}
+
 /**
  * ChallengeList — left rail with one row per challenge.
  *
  * Each row shows the human title (e.g. "Bubble Sort") as the
  * primary label, full-width. The complexity class sits in a
  * tooltip / on a second line below the title for narrow panes.
- * The machine id is intentionally NOT shown in the rail (it
- * is in the detail panel header and URL slug for power users).
+ * LeetCode rows prefix the human title with their numeric problem id;
+ * other datasets keep showing only the human title. The internal machine
+ * id remains available in the detail panel header and tooltip.
  * The engine runner and verifier handle every spec the
  * registry exposes, so all challenges are clickable.
  */
@@ -51,6 +58,7 @@ export function ChallengeList() {
   const activeSet = useAppStore((s) => s.activeSet);
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [difficultyFilter, setDifficultyFilter] = useState('all');
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   const toggleCategory = (category: string) => {
@@ -59,26 +67,52 @@ export function ChallengeList() {
 
   const filteredChallenges = useMemo(() => {
     const isLockedSet = activeSet === 'neetcode';
-    const baseList = isLockedSet 
+    let baseList = isLockedSet
       ? challenges.filter(c => c.unlocked)
       : challenges;
+
+    if (activeSet === 'leetcode' && difficultyFilter !== 'all') {
+      const selectedDifficulty = Number(difficultyFilter);
+      baseList = baseList.filter((challenge) => challenge.difficulty === selectedDifficulty);
+    }
 
     if (!searchQuery.trim()) return baseList;
     const lowerQ = searchQuery.toLowerCase();
     return baseList.filter(c => 
       c.name.toLowerCase().includes(lowerQ) || 
       c.id.toLowerCase().includes(lowerQ) ||
-      c.category.toLowerCase().includes(lowerQ)
+      c.category.toLowerCase().includes(lowerQ) ||
+      c.categories.some((category) => category.toLowerCase().includes(lowerQ)) ||
+      c.difficulty.toString() === lowerQ ||
+      `difficulty ${c.difficulty}`.includes(lowerQ) ||
+      c.difficulty_label.toLowerCase().includes(lowerQ)
     );
-  }, [challenges, searchQuery, activeSet]);
+  }, [challenges, searchQuery, activeSet, difficultyFilter]);
 
   // Group by category
   const grouped = useMemo(() => {
-    return filteredChallenges.reduce<Record<string, ChallengeSummary[]>>((acc, c) => {
-      (acc[c.category] ??= []).push(c);
+    const result = filteredChallenges.reduce<Record<string, ChallengeSummary[]>>((acc, c) => {
+      const categories = c.categories.length > 0 ? c.categories : [c.category];
+      for (const category of new Set(categories)) {
+        (acc[category] ??= []).push(c);
+      }
       return acc;
     }, {});
-  }, [filteredChallenges]);
+
+    if (activeSet === 'leetcode') {
+      for (const items of Object.values(result)) {
+        items.sort((left, right) => {
+          const difficultyOrder = left.difficulty - right.difficulty;
+          if (difficultyOrder !== 0) return difficultyOrder;
+
+          const leftId = Number(left.id.replace(/^lc_/, ''));
+          const rightId = Number(right.id.replace(/^lc_/, ''));
+          return leftId - rightId;
+        });
+      }
+    }
+    return result;
+  }, [filteredChallenges, activeSet]);
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
@@ -90,6 +124,38 @@ export function ChallengeList() {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full bg-coden-bg border border-coden-border rounded px-3 py-1.5 text-sm text-coden-text placeholder-coden-muted focus:outline-none focus:border-coden-accent transition-colors"
         />
+        {activeSet === 'leetcode' && (
+          <select
+            aria-label="Filter by difficulty"
+            value={difficultyFilter}
+            onChange={(event) => {
+              setDifficultyFilter(event.target.value);
+              setExpanded({});
+            }}
+            className="mt-2 w-full bg-coden-bg border border-coden-border rounded px-3 py-1.5 text-sm text-coden-text focus:outline-none focus:border-coden-accent transition-colors"
+          >
+            <option value="all">All difficulty levels</option>
+            <optgroup label="Easy">
+              <option value="1">Level 1 — Easy</option>
+              <option value="2">Level 2 — Easy</option>
+              <option value="3">Level 3 — Easy</option>
+            </optgroup>
+            <optgroup label="Medium">
+              <option value="4">Level 4 — Medium</option>
+              <option value="5">Level 5 — Medium</option>
+              <option value="6">Level 6 — Medium</option>
+            </optgroup>
+            <optgroup label="Hard">
+              <option value="7">Level 7 — Hard</option>
+              <option value="8">Level 8 — Hard</option>
+              <option value="9">Level 9 — Hard</option>
+              <option value="10">Level 10 — Hard</option>
+            </optgroup>
+          </select>
+        )}
+        <div className="mt-2 text-[11px] font-mono text-coden-muted">
+          {filteredChallenges.length} of {challenges.length} unique challenges
+        </div>
       </div>
       
       <div className="flex-1 overflow-y-auto p-2 scrollbar-hide">
@@ -119,6 +185,7 @@ export function ChallengeList() {
                     const isDone = completed.includes(c.id);
                     const isLeetcodeVerified = unlockedLeetcode.includes(c.id);
                     const isLocked = !c.unlocked;
+                    const displayTitle = formatChallengeTitle(c, activeSet);
 
                     let statusIndicator = <span className="w-3 shrink-0" />;
                     if (isLocked) {
@@ -149,7 +216,7 @@ export function ChallengeList() {
                         >
                           {statusIndicator}
                           <div className="flex-1 min-w-0">
-                            <div className="truncate">{c.name}</div>
+                            <div className="truncate">{displayTitle}</div>
                             <div
                               className={[
                                 'text-[11px] font-mono truncate mt-0.5',
@@ -158,7 +225,9 @@ export function ChallengeList() {
                                   : 'text-coden-muted opacity-80',
                               ].join(' ')}
                             >
-                              {c.required_complexity}
+                              {activeSet === 'leetcode'
+                                ? `Difficulty ${c.difficulty}/10 · ${c.difficulty_label}`
+                                : c.required_complexity}
                             </div>
                           </div>
                         </button>

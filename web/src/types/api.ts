@@ -23,7 +23,10 @@ export interface ChallengeSummary {
   id: string;
   name: string;
   category: string;
+  categories: string[];
   difficulty: number;
+  difficulty_label: string;
+  acceptance_rate: number | null;
   required_complexity: string;
   description: string;
   hint: string;
@@ -115,6 +118,9 @@ export interface ProgressOut {
   milestones: string[];
   gemini_api_key: string;
   active_set: string;
+  sidebar_width: number;
+  sidebar_position: 'left' | 'right';
+  sidebar_collapsed: boolean;
 }
 
 export interface SolutionGet {

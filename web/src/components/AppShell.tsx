@@ -91,6 +91,8 @@ export function AppShell() {
     const handleMouseUp = () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
+      const finalWidth = useAppStore.getState().sidebarWidth;
+      void useAppStore.getState().saveSidebarWidthToBackend(finalWidth);
     };
 
     document.addEventListener('mousemove', handleMouseMove);
@@ -99,6 +101,7 @@ export function AppShell() {
 
   const handleDoubleClick = () => {
     setSidebarWidth(256);
+    void useAppStore.getState().saveSidebarWidthToBackend(256);
   };
 
   return (
