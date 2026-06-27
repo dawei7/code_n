@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, you are permitted to increment each element by at most 1. The objective is to select a subset of these modified elements such that they form the longest possible sequence of consecutive integers (e.g., `x, x+1, x+2, ...`). Determine the maximum length of such a sequence.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the maximum length of a consecutive sequence that can be formed after modifying each element by at most 1.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 1, 5, 1, 1]`
+- Output: `3`
+- Explanation: We can modify the array to `[2, 1, 6, 2, 2]`. Selecting `[1, 2, 2]` (or similar) allows forming a sequence of length 3.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 4, 7, 10]`
+- Output: `1`
+- Explanation: No consecutive sequence longer than 1 can be formed.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [8, 4, 5, 10, 7]`
+- Output: `4`
+- Explanation: By modifying elements, we can form the sequence `[4, 5, 7, 8]` (after adjustments).
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using **Sorting** combined with **Dynamic Programming**. By sorting the array first, we can process elements in increasing order. We maintain a dictionary (or hash map) to store the length of the longest consecutive sequence ending at a specific value `v`. For each number `x` in the sorted array, we can either use `x` or `x+1`. We update the DP state based on the values `x` and `x+1` to track the maximum sequence length found so far.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N log N)` due to the initial sorting of the input array, where `N` is the length of the array. The subsequent linear scan and dictionary lookups take `O(N)`.
+- **Space Complexity**: `O(N)` to store the DP state in a dictionary.

@@ -10,40 +10,45 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a string `s`, repeatedly remove the first occurrence of every character that appears at least once in the current string until the string becomes empty. The task is to return the string formed by the characters removed in the very last operation.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A string consisting of lowercase English letters.
 
 **Return value**
 
-TODO
+- A string representing the characters removed during the final pass of the deletion process.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aabcbbca"`
+- Output: `"ba"`
+- Explanation: 
+  1. First pass: remove 'a', 'b', 'c' -> remaining "abca"
+  2. Second pass: remove 'a', 'b', 'c' -> remaining "a"
+  3. Third pass: remove 'a' -> remaining ""
+  The last characters removed were 'b' and 'a'.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcd"`
+- Output: `"abcd"`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aaa"`
+- Output: `"a"`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem relies on frequency counting and tracking the last index of occurrence. Since we remove the first occurrence of every character in each pass, the characters removed in the final pass are exactly those that have the maximum frequency in the original string, appearing in the order of their last occurrence in the original string.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the string. We iterate through the string once to count frequencies and once more to identify the last indices.
+- **Space Complexity**: `O(k)`, where `k` is the size of the alphabet (at most 26), used to store frequency counts and last indices.

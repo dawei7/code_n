@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of strings, identify all pairs of indices (i, j) such that i < j and the string at index i is both a prefix and a suffix of the string at index j. The objective is to return the total count of such valid pairs.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `words`: A list of strings consisting of lowercase English letters.
 
 **Return value**
 
-TODO
+- An integer representing the total number of pairs (i, j) where 0 <= i < j < len(words) and `words[i]` is both a prefix and a suffix of `words[j]`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["a","aba","ababa","aa"]`
+- Output: `4`
+- Explanation: Valid pairs are (0,1), (0,2), (1,2), (0,3).
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["pa","papa","ma","mama"]`
+- Output: `2`
+- Explanation: Valid pairs are (0,1), (2,3).
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["abab","ab"]`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem utilizes a brute-force comparison approach. For each pair of indices (i, j) where i < j, we verify the prefix and suffix condition using string slicing or built-in methods like `startswith()` and `endswith()`. Given the constraints of this specific problem (N <= 50), an O(N^2 * L) approach is efficient enough.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: O(N^2 * L), where N is the number of strings in the array and L is the maximum length of a string. We iterate through all pairs and perform string matching operations.
+- **Space Complexity**: O(1), as we only use a counter variable and do not allocate extra space proportional to the input size.

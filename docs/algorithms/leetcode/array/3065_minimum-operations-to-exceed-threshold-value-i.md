@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a collection of integers and a target threshold, determine the minimum number of operations required to ensure that every element in the collection is at least as large as the threshold. An operation consists of removing any single element from the collection.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the current collection.
+- `k`: An integer representing the minimum value threshold.
 
 **Return value**
 
-TODO
+- An integer representing the count of elements that are strictly less than `k`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 11, 10, 1, 3]`, `k = 10`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 2, 4, 9]`, `k = 1`
+- Output: `0`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 2, 4, 9]`, `k = 9`
+- Output: `4`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a linear scan (filtering). We iterate through the array once and count how many elements fail to meet the condition `x >= k`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the number of elements in the input list, as we must inspect each element exactly once.
+- **Space Complexity**: `O(1)`, as we only use a single counter variable regardless of the input size.

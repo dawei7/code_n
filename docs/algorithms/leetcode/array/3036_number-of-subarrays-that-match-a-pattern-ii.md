@@ -10,40 +10,44 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers `nums` and a pattern array `pattern` consisting of values -1, 0, and 1, determine how many contiguous subarrays of `nums` of length `len(pattern) + 1` follow the relative order defined by `pattern`. Specifically, for a subarray `nums[i...i+m]`, the pattern matches if for all `j` in `[0, m-1]`:
+- `pattern[j] == 1` implies `nums[i+j+1] > nums[i+j]`
+- `pattern[j] == 0` implies `nums[i+j+1] == nums[i+j]`
+- `pattern[j] == -1` implies `nums[i+j+1] < nums[i+j]`
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers.
+- `pattern`: A list of integers containing only -1, 0, or 1.
 
 **Return value**
 
-TODO
+- An integer representing the total count of subarrays in `nums` that satisfy the pattern.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 4, 5, 6]`, `pattern = [1, 1]`
+- Output: `4`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 4, 4, 1, 3, 5, 5, 3]`, `pattern = [1, 0, -1]`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 2, 1]`, `pattern = [1, 1, -1, -1]`
+- Output: `1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is equivalent to finding occurrences of a pattern string within a target string. Since the constraints are large, a naive $O(N \cdot M)$ approach is insufficient. We use the **Knuth-Morris-Pratt (KMP)** algorithm. We first transform `nums` into a sequence of relations (1, 0, -1) of length `len(nums) - 1`, then perform string matching to find the occurrences of the `pattern` array within this transformed sequence.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(N + M)$, where $N$ is the length of `nums` and $M$ is the length of `pattern`. The KMP preprocessing takes $O(M)$ and the search takes $O(N)$.
+- **Space Complexity**: $O(N + M)$ to store the transformed relation array and the KMP failure function (pi table).

@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+An ant starts at the origin (position 0) on a 1D line. Given a sequence of moves represented by an array of integers, where positive values indicate movement to the right and negative values indicate movement to the left, determine how many times the ant returns to the origin (position 0) after completing each move.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the sequence of moves.
 
 **Return value**
 
-TODO
+- An integer representing the total count of times the ant lands back on 0 during its journey.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 3, -5]`
+- Output: `1`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3, 2, -3, -4]`
+- Output: `0`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0, 0, 0]`
+- Output: `3`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Prefix Sum** approach. By maintaining a running total of the moves, we can track the ant's current position. Every time the running sum equals zero, we increment a counter.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we iterate through the list exactly once.
+- **Space Complexity**: `O(1)`, as we only store the current position and the count of returns, requiring constant extra space.

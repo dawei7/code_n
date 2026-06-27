@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, perform a series of operations where each operation involves removing two elements from either the beginning, the end, or one from each end. The constraint is that every operation must result in the same sum as the first operation. The objective is to maximize the total number of operations performed.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the sequence to be processed.
 
 **Return value**
 
-TODO
+- An integer representing the maximum number of operations possible under the constraint that all operations must yield the same sum as the initial operation.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3, 2, 1, 2, 3, 4]`
+- Output: `3`
+- Explanation: The first operation can remove the first two elements (3+2=5). Subsequent operations must also sum to 5.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3, 2, 6, 1, 4]`
+- Output: `2`
+- Explanation: The first operation can remove the first and last elements (3+4=7). Subsequent operations must also sum to 7.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 2, 2, 2]`
+- Output: `2`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using Dynamic Programming with Memoization. Since we need to explore different ways to remove elements (front-front, back-back, or front-back) while maintaining a fixed target sum, we define a recursive function `dp(i, j, target)` that returns the maximum operations possible for the subarray `nums[i...j]` given a required `target` sum.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n^2)`, where `n` is the length of the array. There are `O(n^2)` possible states for the subarray boundaries `(i, j)`, and each state takes constant time to compute.
+- **Space Complexity**: `O(n^2)` to store the memoization table for the states.

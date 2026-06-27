@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, identify the frequency of each unique element. Determine the highest frequency present in the array, and return the total count of all elements that appear with that specific maximum frequency.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers where 1 ≤ nums[i] ≤ 100.
 
 **Return value**
 
-TODO
+- An integer representing the sum of the counts of all elements that share the maximum frequency.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 2, 3, 1, 4]`
+- Output: `4`
+- Explanation: The frequencies are: 1: 2, 2: 2, 3: 1, 4: 1. The max frequency is 2. Elements 1 and 2 both appear 2 times, so 2 + 2 = 4.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 4, 5]`
+- Output: `5`
+- Explanation: All elements appear once. The max frequency is 1. There are 5 such elements, so 1 * 5 = 5.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [10, 12, 11, 10, 12, 11]`
+- Output: `6`
+- Explanation: All elements appear twice. The max frequency is 2. There are 3 such elements, so 2 * 3 = 6.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem utilizes a Frequency Map (Hash Table) to perform a single-pass counting operation. By tracking the maximum frequency encountered during the counting process, we can calculate the final result in a second pass or by maintaining a running sum of elements that match the current maximum.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the number of elements in the input array, as we iterate through the list once to count frequencies and once through the frequency map.
+- **Space Complexity**: `O(k)`, where `k` is the number of unique elements in the array, used to store the frequency map.

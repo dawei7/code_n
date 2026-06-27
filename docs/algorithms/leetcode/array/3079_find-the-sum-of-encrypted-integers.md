@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, "encrypt" each integer by replacing every digit in the number with the largest digit present in that same number. After transforming all integers in the array according to this rule, return the sum of the resulting encrypted values.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of positive integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the sum of all encrypted values in the array.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3]`
+- Output: `6`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [10, 21, 31]`
+- Output: `66`
+*(Explanation: 10 becomes 11, 21 becomes 22, 31 becomes 33. 11 + 22 + 33 = 66)*
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [5, 9, 12]`
+- Output: `32`
+*(Explanation: 5 becomes 5, 9 becomes 9, 12 becomes 22. 5 + 9 + 22 = 36)*
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The solution utilizes digit extraction and transformation. For each number, we determine the maximum digit by repeatedly applying the modulo operator (`% 10`) and integer division (`// 10`). Once the maximum digit is found, we reconstruct the encrypted number by calculating the number of digits (or converting to string) and creating a value consisting of the maximum digit repeated that many times.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n * d)`, where `n` is the number of elements in the array and `d` is the average number of digits in the integers. We iterate through each number and process each digit once.
+- **Space Complexity**: `O(1)` (excluding the space required for input/output), as we only use a few integer variables to track the maximum digit and the running sum.

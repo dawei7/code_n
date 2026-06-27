@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a 2D integer matrix, replace every occurrence of -1 with the maximum value found in its respective column. The transformation should be performed in-place or returned as a new matrix, ensuring that the original -1 values are updated based on the column-wise maximums calculated from the original matrix state.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `matrix`: A list of lists of integers (`List[List[int]]`) representing the grid.
 
 **Return value**
 
-TODO
+- A list of lists of integers (`List[List[int]]`) where all -1s have been replaced by the maximum value of their column.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `matrix = [[1,2,-1],[4,-1,6],[7,8,9]]`
+- Output: `[[1,2,9],[4,8,6],[7,8,9]]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `matrix = [[3,-1],[5,2]]`
+- Output: `[[3,2],[5,2]]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `matrix = [[-1]]`
+- Output: `[[0]]` (Note: If the max is -1, it remains -1 unless specified otherwise; however, per problem constraints, -1 is replaced by the max of the column).
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The algorithm utilizes a two-pass approach:
+1. **Column Maximum Calculation**: Iterate through each column to determine the maximum value present in that column.
+2. **Matrix Transformation**: Iterate through the matrix again, replacing any -1 with the pre-calculated maximum for that specific column.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(m * n)`, where `m` is the number of rows and `n` is the number of columns, as we traverse the matrix twice.
+- **Space Complexity**: `O(n)` to store the maximum values for each of the `n` columns.
