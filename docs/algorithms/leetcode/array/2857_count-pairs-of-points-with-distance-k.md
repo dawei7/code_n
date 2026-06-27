@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a list of 2D coordinates and an integer `k`, determine the number of pairs of points `(i, j)` such that `i < j` and the bitwise XOR sum of their coordinates `(x1 ^ x2) + (y1 ^ y2)` equals exactly `k`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `coordinates`: A list of lists, where each inner list contains two integers `[x, y]` representing a point.
+- `k`: An integer representing the target sum of the XORed coordinates.
 
 **Return value**
 
-TODO
+- An integer representing the total count of unique pairs `(i, j)` that satisfy the condition.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `coordinates = [[1,2],[4,2],[1,3],[5,2]], k = 5`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `coordinates = [[1,3],[1,3],[1,3],[1,3],[1,3]], k = 0`
+- Output: `10`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `coordinates = [[6,2],[1,3]], k = 1`
+- Output: `1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem relies on the properties of the XOR operation. Since `(x1 ^ x2) + (y1 ^ y2) = k`, we can iterate through all possible values `i` from `0` to `k`. For a fixed point `(x1, y1)` and a chosen `i`, we know that `x1 ^ x2 = i` and `y1 ^ y2 = k - i`. This implies `x2 = x1 ^ i` and `y2 = y1 ^ (k - i)`. By using a hash map to store the frequency of points encountered so far, we can count valid pairs in a single pass.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n * k)`, where `n` is the number of points. For each point, we iterate `k+1` times to check potential XOR combinations.
+- **Space Complexity**: `O(n)`, as we store the frequency of points in a hash map.

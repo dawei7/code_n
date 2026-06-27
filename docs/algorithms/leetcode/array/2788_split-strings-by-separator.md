@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a list of strings and a specific character separator, decompose each string in the list into smaller substrings based on the occurrences of the separator. The final result should be a flattened list containing all non-empty substrings extracted from the original strings, preserving their relative order.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `words`: A list of strings (`List[str]`) to be processed.
+- `separator`: A single character (`str`) used as the delimiter for splitting.
 
 **Return value**
 
-TODO
+- A list of strings (`List[str]`) containing all non-empty segments resulting from the split operations.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["one.two.three","four.five","six"], separator = "."`
+- Output: `["one","two","three","four","five","six"]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["$easy$","$problem$"], separator = "$"`
+- Output: `["easy","problem"]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["|||"], separator = "|"`
+- Output: `[]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The solution utilizes string traversal and the standard library's string splitting mechanism. By iterating through each word in the input list and applying a split operation, we filter out empty strings (which occur when the separator appears at the start, end, or consecutively) to produce the final flattened collection.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N)`, where `N` is the total number of characters across all strings in the input list. Each character is visited once during the split and filtering process.
+- **Space Complexity**: `O(N)`, as the output list stores the resulting substrings, which in the worst case (no separators) occupies space proportional to the input size.

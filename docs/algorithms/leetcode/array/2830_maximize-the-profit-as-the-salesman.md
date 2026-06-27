@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a set of potential sales offers, each defined by a start house, an end house, and a gold profit, determine the maximum total gold you can earn. You can only accept offers that do not overlap; specifically, if you accept an offer ending at house `i`, the next offer must start at house `i + 1` or later.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n` (int): The total number of houses, indexed from 0 to n-1.
+- `offers` (List[List[int]]): A list of offers where each offer is represented as `[start, end, gold]`.
 
 **Return value**
 
-TODO
+- `int`: The maximum possible gold profit achievable.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5, offers = [[0,0,1],[0,2,2],[1,3,2]]`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5, offers = [[0,0,1],[1,2,2],[2,4,3],[3,5,2]]`
+- Output: `6`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 1, offers = [[0,0,1]]`
+- Output: `1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using Dynamic Programming combined with Sorting and Binary Search. We define `dp[i]` as the maximum profit achievable using houses up to index `i`. For each house, we have two choices: either skip the house (inheriting the profit from `dp[i-1]`) or accept an offer that ends at `i`. To efficiently find the best previous state when accepting an offer `[start, end, gold]`, we sort offers by their end house and use binary search to find the optimal profit from `dp[start - 1]`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(M log M + M log N)`, where `M` is the number of offers and `N` is the number of houses. Sorting the offers takes `O(M log M)`, and iterating through the offers while performing binary search takes `O(M log M)`.
+- **Space Complexity**: `O(N + M)` to store the DP array and the grouped offers.

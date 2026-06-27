@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an integer array, rearrange its elements such that all occurrences of zero are shifted to the end of the array while maintaining the relative order of the non-zero elements. This operation must be performed in-place, modifying the original array without creating a copy.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- `None`: The function modifies the input list `nums` in-place.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `[0, 1, 0, 3, 12]`
+- Output: `[1, 3, 12, 0, 0]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `[0]`
+- Output: `[0]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `[1, 2, 3]`
+- Output: `[1, 2, 3]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The Two-Pointer technique is used here. One pointer (`last_non_zero_index`) tracks the position where the next non-zero element should be placed, while the second pointer iterates through the array. By swapping elements, we effectively "bubble" the zeros to the back while preserving the sequence of non-zero integers.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the array, as we perform a single pass through the list.
+- **Space Complexity**: `O(1)`, as the transformation is performed in-place using only a constant amount of extra space.

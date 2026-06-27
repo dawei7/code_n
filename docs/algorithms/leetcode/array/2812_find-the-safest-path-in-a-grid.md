@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an $n \times n$ grid containing some cells occupied by thieves (represented by 1) and others empty (represented by 0), find a path from the top-left corner $(0, 0)$ to the bottom-right corner $(n-1, n-1)$. The "safeness factor" of a path is defined as the minimum Manhattan distance from any cell in the path to the nearest thief. The objective is to maximize this safeness factor across all possible paths.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `grid`: A list of lists of integers (size $n \times n$) where 0 represents an empty cell and 1 represents a thief.
 
 **Return value**
 
-TODO
+- An integer representing the maximum possible safeness factor for a path from $(0, 0)$ to $(n-1, n-1)$.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,0,0],[0,0,0],[0,0,1]]`
+- Output: `0`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[0,0,1],[0,0,0],[0,0,0]]`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[0,0,0,1],[0,0,0,0],[0,0,0,0],[1,0,0,0]]`
+- Output: `2`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+1. **Multi-Source Breadth-First Search (BFS)**: Used to calculate the minimum Manhattan distance from every cell to the nearest thief.
+2. **Dijkstra's Algorithm (or Max-Heap BFS)**: Used to find the path that maximizes the minimum safeness factor along the route.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(n^2 \log n)$, where $n$ is the side length of the grid. The multi-source BFS takes $O(n^2)$, and the priority queue-based pathfinding takes $O(n^2 \log n)$.
+- **Space Complexity**: $O(n^2)$ to store the distance grid and the priority queue.

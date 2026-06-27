@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Determine if a given array of integers represents a "good" array. An array is considered good if it contains exactly one instance of every integer from 1 to $n-1$, and exactly two instances of the integer $n$, where $n$ is the maximum value present in the array.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the array to be evaluated.
 
 **Return value**
 
-TODO
+- `bool`: Returns `True` if the array satisfies the "good" criteria, otherwise `False`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 1, 3]`
+- Output: `False`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3, 3, 2]`
+- Output: `True`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1]`
+- Output: `True`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved by counting the frequency of each element. By identifying the maximum value $n$ in the array, we can verify the required counts: the frequency of $n$ must be exactly 2, and the frequency of every integer from 1 to $n-1$ must be exactly 1. Alternatively, sorting the array allows for a direct comparison against the expected sequence `[1, 2, ..., n-1, n, n]`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(N \log N)$ if sorting is used, or $O(N)$ if using a frequency map (hash table or array), where $N$ is the length of the input array.
+- **Space Complexity**: $O(N)$ to store the frequency counts or the sorted copy of the array.

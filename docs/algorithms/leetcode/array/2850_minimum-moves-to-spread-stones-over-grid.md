@@ -10,40 +10,35 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a 3x3 grid where each cell contains a non-negative number of stones, calculate the minimum total Manhattan distance required to redistribute the stones such that every cell contains exactly one stone. A move consists of shifting one stone to an adjacent cell (up, down, left, or right).
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `grid`: A list of lists of integers (3x3 matrix) where the sum of all elements is exactly 9.
 
 **Return value**
 
-TODO
+- An integer representing the minimum total moves required to reach a state where every cell has exactly one stone.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,1,0],[1,1,0],[1,1,0]]`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,3,0],[1,0,0],[1,0,3]]`
+- Output: `4`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using **Backtracking**. We identify all cells with zero stones (targets) and all cells with more than one stone (sources). We then recursively attempt to match every source stone to a target cell, calculating the Manhattan distance for each assignment and keeping track of the minimum total distance found across all permutations.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(N!)$, where $N$ is the number of cells with excess stones. In the worst case, we are permuting the distribution of stones, but since the grid is fixed at 3x3, the search space is small and manageable.
+- **Space Complexity**: $O(N)$, where $N$ is the number of cells with excess stones, due to the recursion stack depth.

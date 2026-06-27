@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, identify three indices (i, j, k) such that i < j < k, and calculate the value defined by the expression (nums[i] - nums[j]) * nums[k]. The objective is to find the maximum possible value resulting from this calculation. If all possible results are negative, the function should return 0.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers where 1 <= nums.length <= 100 and 1 <= nums[i] <= 10^6.
 
 **Return value**
 
-TODO
+- An integer representing the maximum value of (nums[i] - nums[j]) * nums[k] for any valid triplet, or 0 if no positive value can be formed.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [12, 6, 1, 2, 7]`
+- Output: `77`
+- Explanation: Choosing indices (0, 1, 4) gives (12 - 6) * 7 = 42. Choosing (0, 2, 4) gives (12 - 1) * 7 = 77.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 10, 3, 4, 19]`
+- Output: `133`
+- Explanation: Choosing indices (1, 2, 4) gives (10 - 3) * 19 = 133.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3]`
+- Output: `0`
+- Explanation: The result is (1 - 2) * 3 = -3. Since the result is negative, return 0.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+Brute force iteration using three nested loops to evaluate every possible triplet (i, j, k) where 0 <= i < j < k < n.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: O(n^3), where n is the length of the input array, due to the three nested loops.
+- **Space Complexity**: O(1), as we only use a few variables to track the maximum value.
