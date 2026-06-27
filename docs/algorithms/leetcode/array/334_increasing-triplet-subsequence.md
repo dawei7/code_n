@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Determine if there exists a triplet of indices $(i, j, k)$ such that $i < j < k$ and the values at these indices satisfy $nums[i] < nums[j] < nums[k]$. The function should return a boolean indicating whether such a subsequence exists in the given array.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- `bool`: `True` if an increasing triplet exists, `False` otherwise.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `[1, 2, 3, 4, 5]`
+- Output: `True`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `[5, 4, 3, 2, 1]`
+- Output: `False`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `[2, 1, 5, 0, 4, 6]`
+- Output: `True`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Greedy approach**. We maintain two variables, `first` and `second`, representing the smallest and second-smallest values encountered so far that could potentially form the first two elements of an increasing triplet. As we iterate through the array, if we find a number greater than `second`, we have successfully found a triplet.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(n)$, where $n$ is the length of the input array, as we perform a single pass through the data.
+- **Space Complexity**: $O(1)$, as we only use two variables to track the state regardless of the input size.

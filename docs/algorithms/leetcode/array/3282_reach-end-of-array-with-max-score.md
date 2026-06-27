@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, you start at the first index and must reach the last index. From any current index `i`, you can jump to any index `j > i`. The score gained from a jump is calculated as `(j - i) * nums[i]`. The objective is to maximize the total score accumulated by the time you reach the final index.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of non-negative integers representing the values at each position.
 
 **Return value**
 
-TODO
+- An integer representing the maximum possible score to reach the last index.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3, 1, 5]`
+- Output: `7`
+- Explanation: Jump from index 0 to 1 (score: 1*1=1), then from 1 to 3 (score: 2*3=6). Total = 7.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, 3, 1, 3, 2]`
+- Output: `16`
+- Explanation: Jump from index 0 to 3 (score: 3*4=12), then from 3 to 4 (score: 1*2=2). Total = 14? No, jump 0 to 4 (score: 4*4=16).
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1]`
+- Output: `2`
+- Explanation: Jump from 0 to 1 (1*1=1), then 1 to 2 (1*1=1). Total = 2.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Greedy approach**. Since we want to maximize `(j - i) * nums[i]`, we should always aim to jump to the furthest possible index that has a value greater than or equal to our current position's value, or simply keep track of the "best" value seen so far to maximize the jump distance. By iterating through the array and maintaining the maximum value encountered, we can greedily accumulate the score.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the array, as we perform a single pass through the input.
+- **Space Complexity**: `O(1)`, as we only use a few variables to track the current score and the maximum value.

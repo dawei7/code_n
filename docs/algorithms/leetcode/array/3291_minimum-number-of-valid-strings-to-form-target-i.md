@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a list of available strings and a target string, determine the minimum number of concatenated substrings (each taken from the available list) required to construct the target string exactly. If it is impossible to form the target, return -1.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `words`: A list of strings representing the available building blocks.
+- `target`: The string that needs to be constructed.
 
 **Return value**
 
-TODO
+- An integer representing the minimum number of concatenated substrings needed, or -1 if the target cannot be formed.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["abc","aaaaa","bcfg"], target = "abcdabc"`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["ab","abab"], target = "ababa"`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["ax","ay","bx","by"], target = "axby"`
+- Output: `2`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a Trie (Prefix Tree) to store all available words, combined with Dynamic Programming. The DP state `dp[i]` represents the minimum number of substrings needed to form the prefix of `target` of length `i`. For each position `i`, we traverse the Trie to find the longest prefix of `target[i:]` that exists as a substring in any of the `words`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N * L + M * L)`, where `N` is the number of words, `L` is the average length of words, and `M` is the length of the target. We build the Trie in `O(N * L)` and perform DP with Trie traversal in `O(M * L)`.
+- **Space Complexity**: `O(N * L)` to store the Trie structure.

@@ -1,35 +1,55 @@
-def solve(board: list[list[int]]) -> int:
+from typing import List
+
+def solve(board: List[List[int]]) -> int:
     m = len(board)
     n = len(board[0])
     
-    # Precompute top 3 values for each row
-    row_tops = []
+    # For each row, find the top 3 elements (val, row, col)
+    row_best = []
     for r in range(m):
-        # Get top 3 values with their column indices
-        row_vals = sorted([(board[r][c], c) for c in range(n)], reverse=True)
-        row_tops.append(row_vals[:3])
+        best_in_row = []
+        for c in range(n):
+            best_in_row.append((board[r][c], r, c))
+        best_in_row.sort(key=lambda x: x[0], reverse=True)
+        row_best.append(best_in_row[:3])
         
-    max_sum = -float('inf')
+    def merge_best(list1, list2):
+        combined = list1 + list2
+        combined.sort(key=lambda x: x[0], reverse=True)
+        res = []
+        seen_cols = set()
+        for val, r, c in combined:
+            if c not in seen_cols:
+                seen_cols.add(c)
+                res.append((val, r, c))
+                if len(res) == 3:
+                    break
+        return res
+
+    # prefix[i] stores the top 3 elements with distinct columns from rows 0..i
+    prefix = [[] for _ in range(m)]
+    prefix[0] = row_best[0]
+    for i in range(1, m):
+        prefix[i] = merge_best(prefix[i-1], row_best[i])
+        
+    # suffix[i] stores the top 3 elements with distinct columns from rows i..m-1
+    suffix = [[] for _ in range(m)]
+    suffix[m-1] = row_best[m-1]
+    for i in range(m-2, -1, -1):
+        suffix[i] = merge_best(suffix[i+1], row_best[i])
+        
+    max_sum = -10**18
     
-    # Iterate over all pairs of rows (r1, r2)
-    for r1 in range(m):
-        for r2 in range(r1 + 1, m):
-            # Try all combinations of top 3 from r1 and r2
-            for val1, c1 in row_tops[r1]:
-                for val2, c2 in row_tops[r2]:
-                    if c1 == c2:
+    # Iterate over the middle row i
+    for i in range(1, m-1):
+        # We choose one from prefix[i-1], one from row_best[i], one from suffix[i+1]
+        for p_val, p_r, p_c in prefix[i-1]:
+            for curr_val, curr_r, curr_c in row_best[i]:
+                if curr_c == p_c:
+                    continue
+                for s_val, s_r, s_c in suffix[i+1]:
+                    if s_c == p_c or s_c == curr_c:
                         continue
+                    max_sum = max(max_sum, p_val + curr_val + s_val)
                     
-                    # Find the best r3 that doesn't conflict with c1 and c2
-                    for r3 in range(m):
-                        if r3 == r1 or r3 == r2:
-                            continue
-                        
-                        for val3, c3 in row_tops[r3]:
-                            if c3 != c1 and c3 != c2:
-                                current_sum = val1 + val2 + val3
-                                if current_sum > max_sum:
-                                    max_sum = current_sum
-                                # Since row_tops is sorted, we can break early
-                                break
     return max_sum

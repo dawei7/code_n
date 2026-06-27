@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, transform each element by replacing it with the sum of its individual digits. After performing this transformation on every element in the array, return the smallest value present in the resulting collection.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of positive integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the minimum value found after replacing each element with its digit sum.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [10, 12, 13, 14]`
+- Output: `1`
+- Explanation: Digit sums are [1, 3, 4, 5]. The minimum is 1.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 4]`
+- Output: `1`
+- Explanation: Digit sums are [1, 2, 3, 4]. The minimum is 1.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [999, 19, 199]`
+- Output: `10`
+- Explanation: Digit sums are [27, 10, 19]. The minimum is 10.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The solution utilizes a simple iterative transformation approach. For each integer, we compute the sum of its digits using the modulo operator (`% 10`) to extract the last digit and integer division (`// 10`) to shift the number until it reaches zero. We then track the minimum value encountered during this process.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n * d)`, where `n` is the number of elements in the array and `d` is the average number of digits in the integers. Since the numbers are typically bounded (e.g., 32-bit integers), `d` is effectively constant, making the complexity `O(n)`.
+- **Space Complexity**: `O(1)`, as we only store the running minimum and temporary variables for digit summation, requiring no additional data structures proportional to the input size.

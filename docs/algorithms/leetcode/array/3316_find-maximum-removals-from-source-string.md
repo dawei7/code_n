@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a source string `source`, a target string `pattern`, and an array of indices `targetIndices`, determine the maximum number of characters that can be removed from `source` such that `pattern` remains a subsequence of the modified `source`. A removal is only valid if the index of the character being removed is present in `targetIndices`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `source` (str): The original string.
+- `pattern` (str): The string that must remain a subsequence.
+- `targetIndices` (List[int]): A list of indices in `source` that are eligible for removal.
 
 **Return value**
 
-TODO
+- `int`: The maximum number of characters that can be removed from `source` while keeping `pattern` as a subsequence.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `source = "abbaac", pattern = "aba", targetIndices = [0, 1, 2, 3, 4, 5]`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `source = "bcda", pattern = "d", targetIndices = [0, 3]`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `source = "dda", pattern = "dda", targetIndices = [0, 1, 2]`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using Dynamic Programming. We define `dp[i][j]` as the maximum number of removals possible using the first `i` characters of `source` to form the first `j` characters of `pattern`. For each character in `source`, we have two choices: either keep it (if it matches the current character in `pattern`) or remove it (if its index is in `targetIndices`).
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N * M)`, where `N` is the length of `source` and `M` is the length of `pattern`.
+- **Space Complexity**: `O(N * M)` (can be optimized to `O(M)`), where `N` is the length of `source` and `M` is the length of `pattern`.

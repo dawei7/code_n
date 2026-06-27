@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Determine if there exist two contiguous, non-overlapping subarrays of length `k` that are both strictly increasing and positioned immediately adjacent to each other in the input array.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers.
+- `k`: An integer representing the required length of each subarray.
 
 **Return value**
 
-TODO
+- A boolean: `True` if two adjacent strictly increasing subarrays of length `k` exist, `False` otherwise.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 5, 7, 8, 9, 2, 3, 4, 3, 1], k = 3`
+- Output: `True`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 4, 4, 4, 4, 5, 6, 7], k = 2`
+- Output: `True`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 1, 2], k = 2`
+- Output: `False`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved using a sliding window or a linear scan approach. We pre-calculate the length of the strictly increasing sequence ending at each index. Then, we iterate through the array to check if there exists an index `i` such that the increasing sequence ending at `i` has length at least `k`, and the increasing sequence starting at `i + 1` also has length at least `k`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a constant number of linear passes.
+- **Space Complexity**: `O(n)` to store the lengths of increasing sequences, though this can be optimized to `O(1)` by tracking the current and previous increasing run lengths.

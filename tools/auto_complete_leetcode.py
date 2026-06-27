@@ -50,10 +50,11 @@ def get_api_key() -> str:
 
 
 def call_gemini(prompt: str, api_key: str) -> str:
-    """Send prompt to Gemini API with model rotation on 429 quota failure."""
+    """Send prompt to Gemini API with model rotation on 429 quota failure or safety block."""
     global current_model_idx
     headers = {"Content-Type": "application/json"}
     backoff = 5.0
+    retries_for_current_model = 0
 
     while True:
         model = MODELS_POOL[current_model_idx]
@@ -69,7 +70,11 @@ def call_gemini(prompt: str, api_key: str) -> str:
             response = requests.post(url, headers=headers, json=payload, timeout=90)
             if response.status_code == 200:
                 data = response.json()
-                return data["candidates"][0]["content"]["parts"][0]["text"]
+                try:
+                    return data["candidates"][0]["content"]["parts"][0]["text"]
+                except (KeyError, IndexError) as e:
+                    print(f"Format error in response for {model} (possibly safety blocked): {e}")
+                    raise RuntimeError(f"Safety blocked or invalid response structure: {response.text}")
             elif response.status_code == 429:
                 # Rotate model if daily limit hit
                 resp_text = response.text
@@ -80,6 +85,7 @@ def call_gemini(prompt: str, api_key: str) -> str:
                         new_model = MODELS_POOL[current_model_idx]
                         print(f"Quota exhausted for {old_model}. Falling back to {new_model}...")
                         time.sleep(2)
+                        retries_for_current_model = 0
                         continue
                 print(f"Rate limited (429) on {model}. Retrying in {backoff:.1f}s...")
                 time.sleep(backoff)
@@ -88,7 +94,21 @@ def call_gemini(prompt: str, api_key: str) -> str:
             else:
                 raise RuntimeError(f"HTTP {response.status_code}: {response.text}")
         except Exception as e:
-            print(f"Error during API call: {e}")
+            print(f"Error during API call on {model}: {e}")
+            retries_for_current_model += 1
+            if retries_for_current_model >= 3:
+                # Rotate model if we failed multiple times on this model
+                if current_model_idx < len(MODELS_POOL) - 1:
+                    old_model = MODELS_POOL[current_model_idx]
+                    current_model_idx += 1
+                    new_model = MODELS_POOL[current_model_idx]
+                    print(f"Failed {retries_for_current_model} times on {old_model}. Falling back to {new_model}...")
+                    retries_for_current_model = 0
+                    time.sleep(2)
+                    continue
+                else:
+                    print(f"Failed {retries_for_current_model} times on the last available model {model}. Skipping file.")
+                    return ""
             time.sleep(5)
 
 

@@ -10,40 +10,36 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given two arrays representing energy boosts from two different drinks over a series of hours, determine the maximum total energy you can accumulate. You can consume one drink per hour, but switching drinks requires skipping the current hour (i.e., you cannot consume a drink in the hour immediately following a switch).
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `energyA`: A list of integers representing energy gains from drink A at each hour.
+- `energyB`: A list of integers representing energy gains from drink B at each hour.
 
 **Return value**
 
-TODO
+- An integer representing the maximum total energy boost achievable.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `energyA = [1, 3, 1], energyB = [3, 1, 1]`
+- Output: `5`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: `energyA = [4, 1, 1], energyB = [1, 1, 3]`
+- Output: `7`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+Dynamic Programming. We maintain two state arrays (or variables) representing the maximum energy accumulated up to hour `i` ending with drink A or drink B. The transition depends on whether we continue the same drink (from `i-1`) or switch (from `i-2`).
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the number of hours, as we iterate through the arrays once.
+- **Space Complexity**: `O(1)` if we optimize the DP state to only track the last two hours, or `O(n)` if using full DP tables.
