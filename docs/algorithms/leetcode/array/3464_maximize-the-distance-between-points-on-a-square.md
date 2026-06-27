@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a square with side length `side` and a set of points located on its perimeter, you must select `k` points from the given set such that the minimum Manhattan distance between any two selected points is maximized. The perimeter is defined by coordinates (0,0) to (side, side).
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `side`: An integer representing the side length of the square.
+- `points`: A list of lists, where each inner list `[x, y]` represents the coordinates of a point on the perimeter.
+- `k`: An integer representing the number of points to select.
 
 **Return value**
 
-TODO
+- An integer representing the maximum possible value of the minimum Manhattan distance between any two selected points.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `side = 4, points = [[0,0],[0,1],[0,2],[0,3],[0,4],[1,4],[2,4],[3,4],[4,4],[4,3],[4,2],[4,1],[4,0],[3,0],[2,0],[1,0]], k = 4`
+- Output: `4`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `side = 3, points = [[0,0],[1,0],[2,0],[3,0],[3,1],[3,2],[3,3],[2,3],[1,3],[0,3],[0,2],[0,1]], k = 3`
+- Output: `4`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `side = 2, points = [[0,0],[1,0],[2,0],[2,1],[2,2],[1,2],[0,2],[0,1]], k = 4`
+- Output: `2`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using **Binary Search on the Answer**. Since the minimum distance is monotonic (if a distance `d` is achievable, any distance `d' < d` is also achievable), we search for the largest `d` in the range `[0, 4 * side]`. For a fixed distance `d`, we use a **Greedy approach** to check if it is possible to pick `k` points such that every pair is at least distance `d` apart. We map the 2D perimeter points to a 1D linear scale `[0, 4 * side)` to simplify distance calculations.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N log N + N log(4 * side))`, where `N` is the number of points. Sorting the points takes `O(N log N)`, and the binary search performs `O(log(4 * side))` iterations, each taking `O(N)` to verify the greedy condition.
+- **Space Complexity**: `O(N)` to store the linearized coordinates of the points.

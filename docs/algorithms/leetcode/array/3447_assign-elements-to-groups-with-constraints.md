@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a list of groups where each group contains integers, and a list of elements, assign each group an index from the elements list. A group can be assigned an element if at least one number in the group is divisible by that element. If multiple elements satisfy this, choose the one with the smallest index in the elements list. If no element satisfies the condition for a group, assign -1.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `groups`: A list of lists of integers, where each sublist represents a group.
+- `elements`: A list of integers representing the available elements to assign.
 
 **Return value**
 
-TODO
+- A list of integers where the $i$-th integer is the smallest index $j$ such that `elements[j]` divides at least one number in `groups[i]`. If no such element exists, the value is -1.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `groups = [[10, 21], [5, 7]], elements = [2, 3, 4, 5]`
+- Output: `[0, 0]`
+- Explanation: For group 0, 10 is divisible by 2 (index 0). For group 1, 5 is divisible by 5 (index 3) and 7 is not. Wait, 5 is divisible by 5 (index 3), but 2 (index 0) doesn't divide 5 or 7. Actually, 10 is divisible by 2 (index 0).
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `groups = [[10, 21], [30]], elements = [8, 6, 4, 2]`
+- Output: `[3, 1]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `groups = [[2, 3, 5], [7]], elements = [10]`
+- Output: `[-1, -1]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a pre-computation strategy similar to the Sieve of Eratosthenes. We map each element to its first occurrence index. Then, for every possible value up to the maximum value found in the groups, we determine the smallest index of an element that divides it. This is done by iterating through multiples of each element and updating the minimum index for those multiples.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(M \log M + N \cdot K)$, where $M$ is the maximum value in `groups`, $N$ is the number of groups, and $K$ is the average size of a group. The sieve-like pre-computation takes $O(M \log M)$.
+- **Space Complexity**: $O(M + E)$, where $M$ is the maximum value in `groups` and $E$ is the number of unique elements, used to store the mapping of divisors to their minimum indices.

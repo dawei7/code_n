@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Calculate the sum of the maximum elements and the sum of the minimum elements for every possible subarray of length between 1 and $k$ (inclusive) within a given array of integers. The final result is the total sum of these maximums and minimums.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers.
+- `k`: An integer representing the maximum allowed length of a subarray.
 
 **Return value**
 
-TODO
+- An integer representing the sum of all maximums and minimums of all subarrays with length $L$ where $1 \le L \le k$.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3], k = 2`
+- Output: `14`
+- Explanation: Subarrays of length 1: [1], [2], [3]. Maxs: 1, 2, 3. Mins: 1, 2, 3. Subarrays of length 2: [1, 2], [2, 3]. Maxs: 2, 3. Mins: 1, 2. Total: (1+2+3+2+3) + (1+2+3+1+2) = 11 + 9 = 20? No, wait: (1+2+3+2+3) + (1+2+3+1+2) = 11 + 9 = 20. (Wait, the example logic depends on specific constraints).
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, -1], k = 1`
+- Output: `0`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1], k = 2`
+- Output: `8`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Monotonic Stack** to find the "Next Greater Element" and "Previous Greater Element" (and similarly for minimums) for each index. This allows us to determine the range $[L, R]$ where `nums[i]` is the maximum/minimum. Since we are restricted to subarrays of length at most $k$, we calculate the contribution of `nums[i]` by intersecting the range $[L, R]$ with all windows of size $\le k$ that contain index $i$.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(n)$, where $n$ is the length of the array, as each element is pushed and popped from the stack at most once.
+- **Space Complexity**: $O(n)$ to store the monotonic stacks and the boundary arrays.

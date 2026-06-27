@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Design a spreadsheet system that supports setting values in specific cells (identified by row and column) and evaluating formulas. Formulas can involve simple arithmetic or references to other cells (e.g., "A1:B2" representing a range sum). The system must handle dynamic updates where changing a cell's value automatically propagates to any dependent formulas.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `rows`: Integer representing the number of rows.
+- `cols`: Integer representing the number of columns.
+- `operations`: A list of commands, where each command is either `set(r, c, val)`, `get(r, c)`, or `sum(r, c, r1, c1, r2, c2)`.
 
 **Return value**
 
-TODO
+- A list of integers representing the results of all `get` and `sum` operations.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `rows=3, cols=3, ops=[set(1, 1, 5), get(1, 1)]`
+- Output: `[5]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `rows=3, cols=3, ops=[set(1, 1, 1), set(1, 2, 2), sum(2, 2, 1, 1, 1, 2)]`
+- Output: `[3]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `rows=3, cols=3, ops=[set(1, 1, 1), sum(1, 2, 1, 1, 1, 1), set(1, 1, 2), get(1, 2)]`
+- Output: `[1, 2]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The system utilizes a **Directed Acyclic Graph (DAG)** to track cell dependencies. Each cell maintains a list of formulas that depend on it. When a cell's value is updated, we perform a topological update or re-evaluation of dependent cells. A **Hash Map** is used to store current cell values and their associated formula definitions.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(K * (N + M))` where `K` is the number of operations, `N` is the number of cells in a range, and `M` is the number of dependencies.
+- **Space Complexity**: `O(R * C + D)` where `R*C` is the grid size and `D` is the total number of dependencies stored.

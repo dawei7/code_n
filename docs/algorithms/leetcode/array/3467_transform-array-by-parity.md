@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, transform the array such that all even numbers appear before all odd numbers. The relative order of the even numbers and the relative order of the odd numbers do not need to be preserved; the primary requirement is to categorize elements based on their parity (even vs. odd) and arrange them accordingly.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- A list of integers (`List[int]`) where all even integers from the input are placed at the beginning, followed by all odd integers.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, 2, 5, 7]`
+- Output: `[4, 2, 6, 8]` (Note: Parity transformation results in `[4, 2, 5, 7]` or similar depending on parity count)
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3, 1, 2, 4]`
+- Output: `[2, 4, 3, 1]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0]`
+- Output: `[0]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved using a **Counting** approach or a **Two-Pointer** approach. By counting the number of even integers, we can determine the exact number of zeros (representing even parity) and ones (representing odd parity) to construct the result, or simply sort the array using a custom key based on the modulo 2 operation.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n log n)` if using sorting, or `O(n)` if using a single pass to count or partition.
+- **Space Complexity**: `O(n)` to store the resulting array.

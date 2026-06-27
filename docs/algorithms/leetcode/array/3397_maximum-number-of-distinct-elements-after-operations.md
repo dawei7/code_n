@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers and a range parameter `k`, you are allowed to modify each element `nums[i]` by replacing it with any value in the range `[nums[i] - k, nums[i] + k]`. The objective is to maximize the total number of unique elements in the resulting array.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the initial values.
+- `k`: An integer representing the maximum allowed deviation for each element.
 
 **Return value**
 
-TODO
+- An integer representing the maximum possible count of distinct elements achievable after performing the allowed operations on each element.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 2, 3, 3, 4], k = 2`
+- Output: `6`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, 4, 4, 4], k = 1`
+- Output: `3`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1, 1], k = 0`
+- Output: `1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Greedy approach combined with Sorting**. By sorting the input array, we can process elements in non-decreasing order. We maintain a variable `last_used` to track the smallest value assigned to the previous element. For each current element `nums[i]`, we attempt to pick the smallest possible value in its valid range `[nums[i] - k, nums[i] + k]` that is strictly greater than `last_used`. If the lower bound of the range is less than or equal to `last_used`, we pick `last_used + 1` (provided it is within the valid range). If `last_used + 1` exceeds the upper bound, we cannot make this element distinct from the previous ones, so we effectively "skip" it or assign it a value that doesn't contribute to the count.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N log N)` due to the sorting step, where `N` is the length of the input array. The subsequent linear scan takes `O(N)`.
+- **Space Complexity**: `O(1)` or `O(N)` depending on the sorting implementation's space requirements (Python's Timsort uses `O(N)`).

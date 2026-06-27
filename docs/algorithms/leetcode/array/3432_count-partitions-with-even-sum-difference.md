@@ -10,40 +10,45 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, determine how many ways the array can be split into two non-empty contiguous subarrays (a left part and a right part) such that the difference between the sum of the left part and the sum of the right part is an even number.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the count of valid partitions where `(sum(left) - sum(right))` is even.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [10, 10, 3, 7, 6]`
+- Output: `4`
+- Explanation: The partitions are:
+  - [10] and [10, 3, 7, 6] (sum 10, sum 26, diff -16, even)
+  - [10, 10] and [3, 7, 6] (sum 20, sum 16, diff 4, even)
+  - [10, 10, 3] and [7, 6] (sum 23, sum 13, diff 10, even)
+  - [10, 10, 3, 7] and [6] (sum 30, sum 6, diff 24, even)
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 2]`
+- Output: `0`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 4, 6]`
+- Output: `2`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved using a Prefix Sum approach. By calculating the total sum of the array first, we can determine the sum of the right partition in constant time as we iterate through the array: `right_sum = total_sum - left_sum`. The condition `(left_sum - right_sum) % 2 == 0` is mathematically equivalent to checking if `(left_sum - (total_sum - left_sum))` is even, which simplifies to `(2 * left_sum - total_sum)` being even. Since `2 * left_sum` is always even, the condition is satisfied if and only if `total_sum` is even.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the array, as we perform a single pass to calculate the total sum and another pass to evaluate the partitions.
+- **Space Complexity**: `O(1)`, as we only store a few integer variables regardless of the input size.

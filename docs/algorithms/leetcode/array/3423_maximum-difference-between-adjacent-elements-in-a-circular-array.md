@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, calculate the maximum absolute difference between any two adjacent elements. Because the array is circular, the last element is considered adjacent to the first element.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`) where the length is at least 2.
 
 **Return value**
 
-TODO
+- An integer representing the maximum absolute difference found between any two adjacent elements in the circular arrangement.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 4]`
+- Output: `3`
+- Explanation: The differences are |1-2|=1, |2-4|=2, and |4-1|=3. The maximum is 3.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3, 9, 1]`
+- Output: `8`
+- Explanation: The differences are |1-3|=2, |3-9|=6, |9-1|=8, and |1-1|=0. The maximum is 8.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [5, 5]`
+- Output: `0`
+- Explanation: The differences are |5-5|=0 and |5-5|=0. The maximum is 0.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+Linear scan (iteration). We iterate through the array once, calculating the absolute difference between `nums[i]` and `nums[i+1]` for all indices, including the wrap-around case where we compare the last element with the first.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the number of elements in the array, as we perform a single pass over the input.
+- **Space Complexity**: `O(1)`, as we only store the running maximum and a few index pointers.

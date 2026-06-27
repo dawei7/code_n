@@ -10,40 +10,44 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers and a target integer `k`, you are allowed to perform exactly one operation: choose a single subarray and replace all its elements with a chosen integer `x`. The objective is to maximize the total frequency of `k` in the array after performing this operation optimally.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the input array.
+- `k`: An integer representing the target value whose frequency we want to maximize.
 
 **Return value**
 
-TODO
+- An integer representing the maximum possible frequency of `k` after replacing one subarray with some value `x`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 4], k = 2`
+- Output: `2`
+- Explanation: Replace the subarray `[1]` with `2` to get `[2, 2, 3, 4]`. The frequency of 2 becomes 2.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1, 1], k = 1`
+- Output: `4`
+- Explanation: No operation needed, the frequency is already 4.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 1, 2], k = 1`
+- Output: `3`
+- Explanation: Replace the subarray `[2]` with `1` to get `[1, 1, 1, 2]`. The frequency of 1 becomes 3.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved using a variation of Kadane's Algorithm. For every distinct integer `x` present in the array (other than `k`), we want to find a subarray where the net gain of replacing `x` with `k` is maximized. The gain for each element is `+1` if the element is `x` (because it becomes `k`) and `-1` if the element is `k` (because it is overwritten). We calculate the maximum subarray sum of these gains for each `x` and add it to the initial frequency of `k`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N * U)`, where `N` is the length of the array and `U` is the number of unique elements in the array. In the worst case, this is `O(N^2)` if all elements are unique, but practically efficient for typical constraints.
+- **Space Complexity**: `O(N)` to store the frequency map or the unique elements.

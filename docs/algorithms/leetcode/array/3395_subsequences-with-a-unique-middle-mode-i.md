@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, identify the number of subsequences of length 5 such that the middle element (the third element) is the unique mode of the subsequence. A unique mode is defined as the element that appears more frequently than any other element in the subsequence.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers where the length is at least 5.
 
 **Return value**
 
-TODO
+- An integer representing the total count of subsequences of length 5 that satisfy the unique middle mode condition, modulo 10^9 + 7.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1, 1, 1, 1]`
+- Output: `6`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 2, 3, 3, 4]`
+- Output: `0`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 4, 3, 2, 1]`
+- Output: `1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using combinatorics and prefix/suffix frequency tracking. For each element `nums[i]` acting as the potential middle element, we calculate the number of ways to choose two elements from the left (indices `0` to `i-1`) and two elements from the right (indices `i+1` to `n-1`) such that `nums[i]` appears more times than any other value in the 5-element subsequence. We use inclusion-exclusion to subtract cases where other elements appear with equal or greater frequency than the middle element.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we iterate through the array a constant number of times using precomputed frequency maps.
+- **Space Complexity**: `O(n)` to store frequency counts and prefix/suffix arrays.

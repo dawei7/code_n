@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, you must remove all elements by repeatedly performing an operation: select two elements from the current array, remove them, and incur a cost equal to the maximum of the two values. The process continues until the array has either zero or one element remaining. If one element remains, it is removed at no additional cost. The objective is to minimize the total cost incurred across all operations.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the array elements.
 
 **Return value**
 
-TODO
+- An integer representing the minimum total cost to remove all elements from the array.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [6, 2, 8, 4]`
+- Output: `12`
+- Explanation: Remove (6, 8) cost 8, then (2, 4) cost 4. Total = 12.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1, 1]`
+- Output: `2`
+- Explanation: Remove (1, 1) cost 1, then (1, 1) cost 1. Total = 2.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 5, 6, 2]`
+- Output: `8`
+- Explanation: Remove (1, 5) cost 5, then (6, 2) cost 6. Total = 11. Wait, optimal is (1, 6) cost 6, (5, 2) cost 5 = 11. Actually, (5, 6) cost 6, (1, 2) cost 2 = 8.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using Dynamic Programming with memoization. Since we always remove two elements at a time, the state can be defined by the index of the first element currently being considered and the index of the "last remaining" element from the previous operation. We explore all valid pairings to find the minimum cost recursively.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n^2)`, where `n` is the length of the array, as there are `n^2` possible states in our memoization table.
+- **Space Complexity**: `O(n^2)` to store the memoization table.

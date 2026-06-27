@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a list of strings and an integer `k`, determine the length of the longest common prefix that can be formed by at least `k` strings after removing at most one character from each string.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `strs`: A list of strings consisting of lowercase English letters.
+- `k`: An integer representing the minimum number of strings that must share the resulting prefix.
 
 **Return value**
 
-TODO
+- An integer representing the maximum possible length of a common prefix shared by at least `k` strings, where each string is allowed to have one character deleted.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `strs = ["flower","flow","flight"], k = 3`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `strs = ["apple","apply","ape"], k = 2`
+- Output: `4`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `strs = ["dog","racecar","car"], k = 1`
+- Output: `3`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a Trie (Prefix Tree) combined with a depth-first search (DFS) or a greedy approach. Since we can remove at most one character, for each string, we consider two states: "no character removed yet" and "one character already removed". We traverse the Trie while tracking how many strings reach each node under these two states.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N * L)`, where `N` is the number of strings and `L` is the maximum length of a string. We process each character of each string to build/traverse the state-space.
+- **Space Complexity**: `O(N * L)` to store the Trie structure representing the prefixes.

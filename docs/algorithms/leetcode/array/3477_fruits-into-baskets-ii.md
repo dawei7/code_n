@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given a sequence of fruits with specific sizes and a sequence of baskets with specific capacities. Each fruit must be placed into a basket sequentially. For each fruit, you must find the first available basket that has a capacity greater than or equal to the fruit's size. Once a basket is used, it cannot be used again. The goal is to determine how many fruits can be successfully placed into baskets.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `fruits`: A list of integers representing the sizes of the fruits in the order they appear.
+- `baskets`: A list of integers representing the capacities of the baskets in the order they appear.
 
 **Return value**
 
-TODO
+- An integer representing the total count of fruits that were successfully placed into a basket.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `fruits = [4, 2, 5], baskets = [3, 5, 4]`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `fruits = [3, 6, 1], baskets = [6, 4, 7]`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `fruits = [1, 2, 3], baskets = [1, 2, 3]`
+- Output: `3`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is a greedy simulation. For each fruit in the input order, we iterate through the available baskets from left to right. The first basket that satisfies the capacity requirement is marked as "used" (e.g., by setting its capacity to -1 or using a boolean tracking array) and the fruit is considered placed.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N * M)`, where `N` is the number of fruits and `M` is the number of baskets. In the worst case, for each fruit, we may scan all baskets.
+- **Space Complexity**: `O(1)` if we modify the input array in-place, or `O(M)` if we use an auxiliary boolean array to track basket availability.
