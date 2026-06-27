@@ -10,40 +10,35 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a tree rooted at node 0, each node contains a specific number of coins. When visiting a node, you can collect its coins using one of two strategies: either take half the coins (integer division) or take all coins and then halve the coins of all its descendants. Because the halving effect compounds as you move deeper into the tree, the number of coins at any node depends on how many times its ancestors were halved. You must determine the maximum total coins collectable by traversing the tree optimally.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `edges`: A list of lists representing the tree structure (undirected edges).
+- `coins`: A list of integers where `coins[i]` is the initial value at node `i`.
+- `k`: An integer representing the penalty reduction factor.
 
 **Return value**
 
-TODO
+- An integer representing the maximum total coins that can be collected.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `edges = [[0,1],[1,2],[2,3]], coins = [10,10,3,3], k = 5`
+- Output: `11`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: `edges = [[0,1],[0,2]], coins = [8,4,4], k = 0`
+- Output: `16`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
-
----
+The problem is solved using Tree Dynamic Programming with Memoization. Since the halving effect only matters up to a certain depth (because `coins[i] // 2^14` eventually becomes 0), we can track the state as `(current_node, parent_node, halving_count)`. The `halving_count` is capped at 13 to prevent redundant states.
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N * K)`, where `N` is the number of nodes and `K` is the maximum number of effective halving operations (typically 14).
+- **Space Complexity**: `O(N * K)` to store the memoization table.

@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers representing the battery percentages of a sequence of devices, simulate a testing process. For each device, if its battery percentage is greater than the number of devices already tested, it is considered "tested" and the count of tested devices increases. Crucially, every time a device is successfully tested, the battery percentage of all subsequent, untested devices is reduced by 1. Determine the total number of devices that pass the test.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `batteryPercentages`: A list of integers where `batteryPercentages[i]` represents the initial battery level of the i-th device.
 
 **Return value**
 
-TODO
+- An integer representing the total count of devices that were successfully tested.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `batteryPercentages = [1, 1, 2, 1, 3]`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `batteryPercentages = [0, 1, 2]`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `batteryPercentages = [0, 0, 0]`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved using a **Greedy Simulation** approach. By maintaining a running counter of how many devices have been successfully tested, we can determine if the current device's effective battery level (initial level minus the number of previously tested devices) is greater than zero.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we iterate through the list exactly once.
+- **Space Complexity**: `O(1)`, as we only use a single integer variable to track the number of tested devices.

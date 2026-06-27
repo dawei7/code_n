@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an integer array `nums` and two integers `indexDifference` and `valueDifference`, determine if there exists a pair of indices `(i, j)` such that the absolute difference between the indices is at least `indexDifference` and the absolute difference between the values at those indices is at least `valueDifference`. If such a pair exists, return the indices; otherwise, return `[-1, -1]`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers.
+- `indexDifference`: An integer representing the minimum required distance between indices.
+- `valueDifference`: An integer representing the minimum required absolute difference between values.
 
 **Return value**
 
-TODO
+- A list of two integers `[i, j]` satisfying the conditions, or `[-1, -1]` if no such pair exists.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [5, 1, 4, 1], indexDifference = 2, valueDifference = 4`
+- Output: `[0, 3]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 1], indexDifference = 0, valueDifference = 0`
+- Output: `[0, 0]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3], indexDifference = 2, valueDifference = 4`
+- Output: `[-1, -1]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved using a **Min-Max Tracking** approach. As we iterate through the array with index `j`, we maintain the indices of the minimum and maximum values encountered so far in the range `[0, j - indexDifference]`. By comparing the current value `nums[j]` against the historical minimum and maximum, we can determine in constant time if a valid pair exists.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single pass through the array.
+- **Space Complexity**: `O(1)`, as we only store a few variables to track the indices of the minimum and maximum values.

@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of non-negative integers and a threshold `k`, determine the minimum total increment operations required such that every contiguous subarray of length 3 contains at least one element greater than or equal to `k`. An increment operation consists of increasing any element in the array by 1.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of non-negative integers.
+- `k`: An integer representing the minimum threshold value.
 
 **Return value**
 
-TODO
+- An integer representing the minimum total increments needed to satisfy the condition.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 3, 0, 0, 2], k = 4`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0, 1, 3, 3], k = 5`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 2], k = 1`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+Dynamic Programming. We maintain a state representing the minimum cost to satisfy the condition up to index `i`, considering the "distance" to the last element that was made $\ge k$. Specifically, we track the minimum cost to have the last element $\ge k$ at index `i`, `i-1`, or `i-2`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we iterate through the array once with constant time transitions.
+- **Space Complexity**: `O(1)`, as we only store the costs for the last three positions.

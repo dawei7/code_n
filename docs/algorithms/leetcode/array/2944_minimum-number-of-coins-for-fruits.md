@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of fruit prices where the $i$-th fruit costs `prices[i]`, purchasing the $i$-th fruit allows you to acquire the next $i+1$ fruits for free. Determine the minimum total cost required to acquire all $n$ fruits, indexed from 1 to $n$.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `prices`: A list of integers where `prices[i]` represents the cost of the fruit at index `i` (0-indexed).
 
 **Return value**
 
-TODO
+- An integer representing the minimum cost to collect all fruits.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `prices = [3, 1, 2]`
+- Output: `4`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `prices = [1, 10, 1, 1]`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `prices = [26, 18, 6, 12, 49, 7, 45, 45]`
+- Output: `39`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+Dynamic Programming with a Monotonic Queue (or Sliding Window Minimum). The state `dp[i]` represents the minimum cost to acquire all fruits up to index `i`. The transition is `dp[i] = prices[i-1] + min(dp[j])` for all `j` such that the fruit at `j` can cover the remaining fruits up to `i`. Specifically, if we buy fruit `i`, we cover up to `2*i` fruits.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the number of fruits, as each element is added and removed from the deque at most once.
+- **Space Complexity**: `O(n)` to store the DP array and the deque.

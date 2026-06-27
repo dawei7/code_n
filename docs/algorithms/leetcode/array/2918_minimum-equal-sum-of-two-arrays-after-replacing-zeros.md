@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given two integer arrays containing non-negative integers and zeros, replace every zero with a positive integer (at least 1) such that the sum of elements in both arrays becomes equal. Determine the minimum possible sum that can be achieved. If it is impossible to make the sums equal, return -1.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums1`: A list of non-negative integers.
+- `nums2`: A list of non-negative integers.
 
 **Return value**
 
-TODO
+- An integer representing the minimum equal sum, or -1 if no such sum exists.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [3,2,0,1], nums2 = [2,0,0,0]`
+- Output: `7`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [2,0,2,0], nums2 = [1,4]`
+- Output: `-1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [1,0,0], nums2 = [1]`
+- Output: `3`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a Greedy approach. Since each zero must be replaced by at least 1, the minimum sum for an array is its current sum plus the count of zeros. If an array has no zeros, its sum is fixed. By comparing the minimum possible sums and the presence of zeros, we can determine if the arrays can be balanced. If one array has no zeros, its sum must be exactly equal to the other array's potential range. If both have zeros, we can always increase the smaller sum to match the larger one.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: O(N + M), where N and M are the lengths of `nums1` and `nums2` respectively, as we iterate through each array once to calculate sums and zero counts.
+- **Space Complexity**: O(1), as we only use a few variables to store sums and counts.

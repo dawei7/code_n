@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a collection of strings and a target character, identify the indices of all strings in the collection that contain the specified character at least once. The result should be a list of these indices in the order they appear in the input array.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `words`: A list of strings (`List[str]`).
+- `x`: A single character (`str`).
 
 **Return value**
 
-TODO
+- A list of integers (`List[int]`) representing the indices of the strings that contain the character `x`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["leet","code"], x = "e"`
+- Output: `[0, 1]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["abc","bcd","aaaa","cbc"], x = "a"`
+- Output: `[0, 2]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `words = ["abc","bcd","aaaa","cbc"], x = "z"`
+- Output: `[]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem utilizes a linear scan (iteration) over the input array. For each string, we perform a membership check (substring search) to determine if the target character exists within the string.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n * m)`, where `n` is the number of words in the list and `m` is the average length of each word. We must inspect each character of every word in the worst case.
+- **Space Complexity**: `O(k)`, where `k` is the number of indices returned. In the worst case, this is `O(n)` if all words contain the character.

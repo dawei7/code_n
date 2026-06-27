@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an integer array and an integer `k`, determine the length of the longest contiguous subarray where no element appears more than `k` times.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers.
+- `k`: An integer representing the maximum allowed frequency of any element within the subarray.
 
 **Return value**
 
-TODO
+- An integer representing the maximum length of a valid subarray.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 1, 2, 3, 1, 2], k = 2`
+- Output: `6`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 1, 2, 1, 2, 1], k = 1`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [5, 5, 5, 5, 5, 5, 5], k = 4`
+- Output: `4`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using the **Sliding Window** technique combined with a **Hash Map** (or frequency array) to track the counts of elements within the current window. By expanding the right boundary and shrinking the left boundary whenever a frequency exceeds `k`, we maintain a valid window state efficiently.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array. Each element is visited at most twice (once by the right pointer and once by the left pointer).
+- **Space Complexity**: `O(m)`, where `m` is the number of unique elements in the array, as the hash map stores the frequency of each distinct integer.

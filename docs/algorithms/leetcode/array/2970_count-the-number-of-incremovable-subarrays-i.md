@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, determine the total number of subarrays that, when removed, leave the remaining elements in a strictly increasing order. A subarray is defined as a contiguous sequence of elements within the array.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the count of all possible subarrays whose removal results in a strictly increasing sequence.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 4]`
+- Output: `10`
+- Explanation: All subarrays are incremovable because removing any contiguous part leaves the remaining elements sorted.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [6, 5, 7, 8]`
+- Output: `7`
+- Explanation: The subarrays that can be removed are [6], [5], [6, 5], [5, 7], [6, 5, 7], [5, 7, 8], and [6, 5, 7, 8].
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [8, 7, 6, 6]`
+- Output: `3`
+- Explanation: The valid subarrays to remove are [8, 7, 6], [7, 6, 6], and [8, 7, 6, 6].
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved using a brute-force enumeration approach. Since the constraints for this version (Part I) are small ($N \le 50$), we can iterate through all possible start and end indices of subarrays, remove the subarray, and verify if the remaining elements form a strictly increasing sequence.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(N^3)$, where $N$ is the length of the array. We have $O(N^2)$ subarrays, and for each, we perform an $O(N)$ check to verify if the remaining sequence is strictly increasing.
+- **Space Complexity**: $O(N)$ to store the remaining elements during the verification process.
