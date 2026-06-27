@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given two integer arrays, identify the elements that appear in both arrays. The result must include each element as many times as it appears in both arrays, and the order of the output elements does not matter.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums1`: A list of integers.
+- `nums2`: A list of integers.
 
 **Return value**
 
-TODO
+- A list of integers representing the intersection of the two input arrays, where each element is repeated according to its minimum frequency in both arrays.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [1, 2, 2, 1], nums2 = [2, 2]`
+- Output: `[2, 2]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [4, 9, 5], nums2 = [9, 4, 9, 8, 4]`
+- Output: `[4, 9]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [1, 2], nums2 = [1, 1]`
+- Output: `[1]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The optimal approach utilizes a Hash Map (Frequency Counter) to store the occurrences of elements in the first array. We then iterate through the second array, checking if the current element exists in the map with a count greater than zero. If it does, we add it to the result and decrement its count in the map.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n + m)`, where `n` and `m` are the lengths of the two input arrays. We traverse each array exactly once.
+- **Space Complexity**: `O(min(n, m))`, as we store the frequency counts of the smaller array in a hash map.

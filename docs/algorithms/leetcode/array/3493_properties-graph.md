@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a directed graph represented by an adjacency list, determine the properties of the graph's components. Specifically, identify if each connected component is a simple cycle, a tree, or a more complex structure (like a functional graph component), and calculate the total number of nodes involved in cycles versus those in tree-like structures attached to cycles.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: An integer representing the number of nodes (labeled 0 to n-1).
+- `edges`: A list of lists where each `[u, v]` represents a directed edge from node `u` to node `v`.
 
 **Return value**
 
-TODO
+- A list of integers or a structured object representing the classification of each component (e.g., count of cyclic nodes and count of tree nodes).
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 3, edges = [[0, 1], [1, 2], [2, 0]]`
+- Output: `[3, 0]` (A single cycle of 3 nodes, 0 tree nodes)
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4, edges = [[0, 1], [1, 2], [2, 1]]`
+- Output: `[2, 2]` (A cycle of 2 nodes, 2 nodes forming a path leading into the cycle)
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5, edges = [[0, 1], [1, 2], [2, 3], [3, 4]]`
+- Output: `[0, 5]` (No cycles, 5 nodes forming a directed path/tree)
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using Kahn's Algorithm (Topological Sort) to peel away the "tree" parts of the graph. Nodes that remain after the topological sort are part of cycles. We use an in-degree array to identify nodes with no incoming edges, iteratively removing them to isolate the cyclic components.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(V + E)`, where V is the number of vertices and E is the number of edges, as we traverse each node and edge a constant number of times.
+- **Space Complexity**: `O(V + E)` to store the adjacency list and the in-degree array.

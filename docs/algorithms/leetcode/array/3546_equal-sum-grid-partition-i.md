@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a 2D grid of integers, determine if it is possible to partition the grid into four rectangular sub-grids by drawing one horizontal line and one vertical line. The goal is to check if there exists a configuration where the sum of elements in each of the four resulting quadrants is equal.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `grid`: A list of lists of integers representing the 2D matrix.
 
 **Return value**
 
-TODO
+- `bool`: Returns `True` if there exists a horizontal cut at row `i` and a vertical cut at column `j` such that the four resulting rectangular regions have identical sums, otherwise `False`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1, 2], [3, 4]]`
+- Output: `False`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1, 1], [1, 1]]`
+- Output: `True`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]`
+- Output: `False`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using 2D Prefix Sums (or Summed-Area Table). By precomputing the prefix sums, we can calculate the sum of any rectangular sub-grid in $O(1)$ time. We then iterate through all possible horizontal cut positions (between rows) and vertical cut positions (between columns), checking if the four resulting quadrants have equal sums.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(M \times N)$, where $M$ is the number of rows and $N$ is the number of columns. We perform a single pass to build the prefix sum table and a nested loop to check all possible cut combinations.
+- **Space Complexity**: $O(M \times N)$ to store the 2D prefix sum table.

@@ -10,40 +10,44 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a 2D grid of characters, identify all cells that are simultaneously part of at least one horizontal substring matching a specific pattern and at least one vertical substring matching the same pattern. The goal is to return the total count of such unique cells.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `grid`: A 2D list of characters (List[List[str]]).
+- `pattern`: A string representing the sequence to search for (str).
 
 **Return value**
 
-TODO
+- `int`: The count of unique cells `(r, c)` that belong to both a horizontal occurrence and a vertical occurrence of the `pattern`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [["a","b","a"],["b","a","b"],["a","b","a"]], pattern = "aba"`
+- Output: `5`
+- Explanation: The center cell (1,1) and the four corner cells are part of both horizontal and vertical "aba" patterns.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [["x","y"],["y","x"]], pattern = "xy"`
+- Output: `0`
+- Explanation: No cell is part of both a horizontal and vertical "xy" pattern.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [["a","a","a"],["a","a","a"],["a","a","a"]], pattern = "aa"`
+- Output: `9`
+- Explanation: Every cell in the 3x3 grid is part of at least one horizontal and one vertical "aa" pattern.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a 2D prefix-marking approach or a sliding window/rolling hash technique. We first identify all horizontal segments that match the pattern and mark the corresponding cells in a boolean matrix. We repeat this for vertical segments. Finally, we perform a bitwise AND operation on the two boolean matrices to count the cells that are marked in both.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(R * C * L)`, where `R` is the number of rows, `C` is the number of columns, and `L` is the length of the pattern. This accounts for checking every possible starting position for the pattern.
+- **Space Complexity**: `O(R * C)` to store the boolean masks for horizontal and vertical matches.

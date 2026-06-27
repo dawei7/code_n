@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a sequence of potions to brew, where each potion $i$ requires a specific amount of time `brewTime[i]` and can only be started after a certain number of previous potions have been completed, determine the earliest possible time to finish brewing all potions. You are allowed to brew at most one potion at any given time.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `brewTime`: A list of integers where `brewTime[i]` represents the time required to brew the $i$-th potion.
+- `prevAction`: A list of integers where `prevAction[i]` represents the index of the potion that must be completed before potion $i$ can begin. If `prevAction[i] == -1`, the potion has no dependencies.
 
 **Return value**
 
-TODO
+- An integer representing the minimum total time required to complete all potions in the sequence.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `brewTime = [2, 3], prevAction = [-1, 0]`
+- Output: `5`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `brewTime = [1, 2, 3], prevAction = [-1, 0, 1]`
+- Output: `6`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `brewTime = [5, 2, 3], prevAction = [-1, -1, -1]`
+- Output: `10`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is modeled as a Directed Acyclic Graph (DAG) where potions are nodes and dependencies are edges. Since we must brew potions sequentially and respect dependencies, the total time is the sum of the `brewTime` of all potions, provided there are no constraints on parallel processing. If the problem implies a dependency chain, we use topological sorting or simple iterative accumulation to calculate the completion time.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(N)$, where $N$ is the number of potions, as we iterate through the lists once to calculate the total duration.
+- **Space Complexity**: $O(1)$ (excluding input storage), as we only maintain a running sum of the brew times.

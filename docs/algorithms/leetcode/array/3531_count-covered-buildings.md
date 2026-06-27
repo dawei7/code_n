@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a list of buildings represented by their start and end coordinates, determine how many buildings are "covered" by at least one other building. A building A is considered covered if there exists another building B such that the interval of A is entirely contained within the interval of B (i.e., `B.start <= A.start` and `A.end <= B.end`).
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `buildings`: A list of lists, where each sub-list `[start, end]` represents the inclusive range of a building.
 
 **Return value**
 
-TODO
+- An integer representing the total count of buildings that are fully contained within the range of at least one other building.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `buildings = [[1,4],[3,6],[2,8]]`
+- Output: `2`
+- Explanation: [1,4] is covered by [2,8]. [3,6] is covered by [2,8].
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `buildings = [[1,4],[2,3]]`
+- Output: `1`
+- Explanation: [2,3] is covered by [1,4].
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `buildings = [[1,2],[3,4]]`
+- Output: `0`
+- Explanation: Neither building is contained within the other.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Sorting and Sweep-line** approach. By sorting the buildings primarily by their start coordinates in ascending order and secondarily by their end coordinates in descending order, we can process buildings such that if a building `i` could potentially cover building `j`, it appears earlier in the sorted list. We then maintain the maximum end coordinate encountered so far to check if the current building's end coordinate is less than or equal to that maximum.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N log N)`, where `N` is the number of buildings, due to the sorting step. The subsequent linear scan takes `O(N)`.
+- **Space Complexity**: `O(1)` or `O(N)` depending on the sorting implementation's space requirements.

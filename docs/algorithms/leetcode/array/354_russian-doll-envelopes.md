@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a collection of envelopes represented by pairs of integers `(width, height)`, determine the maximum number of envelopes you can nest inside one another. An envelope can fit into another if and only if both its width and height are strictly greater than the width and height of the inner envelope. You may rotate an envelope (not applicable here as dimensions are fixed) but you cannot rotate them to change their orientation; you must fit them based on the provided dimensions.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `envelopes`: A list of lists, where each inner list contains two integers `[width, height]`.
 
 **Return value**
 
-TODO
+- An integer representing the maximum number of envelopes that can be nested.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `[[5,4],[6,4],[6,7],[2,3]]`
+- Output: `3`
+- Explanation: The envelopes can be nested as `[2,3] => [5,4] => [6,7]`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `[[1,1],[1,1],[1,1]]`
+- Output: `1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `[[4,5],[4,6],[6,7],[2,3],[1,1]]`
+- Output: `4`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is a variation of the "Longest Increasing Subsequence" (LIS) problem. By sorting the envelopes primarily by width in ascending order and secondarily by height in descending order, we reduce the problem to finding the LIS of the heights. The descending sort on height ensures that for envelopes with the same width, we cannot pick more than one, as their heights will be in non-increasing order, preventing a strictly increasing sequence.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N log N)`, where `N` is the number of envelopes. Sorting takes `O(N log N)`, and the LIS algorithm using binary search takes `O(N log N)`.
+- **Space Complexity**: `O(N)` to store the auxiliary array used for the binary search approach to LIS.

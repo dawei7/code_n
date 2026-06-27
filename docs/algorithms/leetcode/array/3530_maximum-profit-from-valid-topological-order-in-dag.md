@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a Directed Acyclic Graph (DAG) represented by nodes and directed edges, and a profit value associated with each node, find the maximum total profit obtainable by selecting a valid topological ordering of the graph. Specifically, you must select a sequence of nodes such that for every edge (u, v), node u appears before node v in the sequence, and the sum of profits of the selected nodes is maximized.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: An integer representing the number of nodes (0 to n-1).
+- `edges`: A list of pairs `[u, v]` representing directed edges from `u` to `v`.
+- `values`: A list of integers where `values[i]` is the profit associated with node `i`.
 
 **Return value**
 
-TODO
+- An integer representing the maximum profit achievable under the topological constraints.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 3, edges = [[0, 1], [1, 2]], values = [1, 2, 3]`
+- Output: `6`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 2, edges = [[0, 1]], values = [10, 5]`
+- Output: `15`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4, edges = [[0, 2], [1, 2], [2, 3]], values = [5, 10, 2, 8]`
+- Output: `25`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using Dynamic Programming combined with Topological Sort principles. Since we are dealing with a DAG, we can utilize the property that any valid topological order respects the dependency constraints. The state is defined by the set of visited nodes (using a bitmask for efficiency if n is small, or DP on the DAG structure). For larger constraints, we use the property that the maximum profit is simply the sum of all positive node values, as we can always include all nodes in a valid topological sort of a DAG.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(V + E)`, where V is the number of nodes and E is the number of edges, as we traverse the graph to verify the DAG structure and sum the values.
+- **Space Complexity**: `O(V + E)` to store the adjacency list and auxiliary structures for the graph traversal.

@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, determine the minimum number of swaps required to sort the array such that elements are ordered primarily by the sum of their digits (in non-decreasing order). If two numbers have the same digit sum, their relative order should be preserved based on their original indices (stable sort behavior).
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the minimum number of swaps required to reach the target sorted state.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [13, 22, 31]`
+- Output: `0`
+- Explanation: Digit sums are 4, 4, 4. They are already in stable order.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [15, 8, 2]`
+- Output: `1`
+- Explanation: Digit sums are 6, 8, 2. Sorted order of sums: 2, 6, 8. Target array: [2, 15, 8]. One swap (15 and 2) achieves this.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [10, 20, 30]`
+- Output: `0`
+- Explanation: Digit sums are 1, 2, 3. Already sorted.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved by first determining the target permutation of the array indices based on the custom sorting criteria (digit sum, then original index). Once the target positions are known, the problem reduces to finding the minimum number of swaps to transform the current permutation into the target permutation. This is equivalent to counting the number of cycles in the permutation graph: `swaps = N - number_of_cycles`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N log N)` due to the sorting step, where `N` is the length of the array. The cycle decomposition takes `O(N)`.
+- **Space Complexity**: `O(N)` to store the target indices and the visited array for cycle detection.

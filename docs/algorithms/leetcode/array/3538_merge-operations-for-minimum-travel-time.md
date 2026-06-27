@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers representing travel times between consecutive points, you are allowed to merge adjacent elements into their sum. The objective is to perform the minimum number of merge operations such that the resulting array becomes non-decreasing.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of positive integers representing the travel times.
 
 **Return value**
 
-TODO
+- An integer representing the minimum number of merge operations required to make the array non-decreasing.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 4]`
+- Output: `0`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, 3, 2, 1]`
+- Output: `3`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 1]`
+- Output: `1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a Greedy approach combined with a backward traversal. By iterating from the end of the array to the beginning, we maintain the value of the "current segment" that must be less than or equal to the next segment to the right. If the current segment is too large, we merge it with its left neighbor until the condition is satisfied.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we traverse the array once.
+- **Space Complexity**: `O(1)`, as we only use a few variables to track the current state.

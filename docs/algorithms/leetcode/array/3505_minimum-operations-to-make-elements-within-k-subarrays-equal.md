@@ -10,40 +10,44 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers and an integer `k`, determine the minimum number of operations required to make all elements within every possible subarray of length `k` equal to the same value. An operation consists of incrementing or decrementing any element in the array by 1. Since every element must eventually belong to a subarray of length `k` where all elements are equal, this effectively implies that the entire array must be transformed into a sequence where every window of size `k` has identical elements.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the input array.
+- `k`: An integer representing the size of the sliding window.
 
 **Return value**
 
-TODO
+- An integer representing the minimum total operations (sum of absolute differences) to satisfy the condition.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3], k = 2`
+- Output: `2`
+- Explanation: We can change the array to `[2, 2, 2]`. Operations: |1-2| + |3-2| = 2.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1], k = 2`
+- Output: `0`
+- Explanation: The array already satisfies the condition.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 10, 1], k = 2`
+- Output: `9`
+- Explanation: We can change the array to `[1, 1, 1]`. Operations: |10-1| = 9.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem relies on the property that to minimize the sum of absolute differences $\sum |x_i - target|$, the optimal `target` is the **median** of the set of numbers. Since the constraint requires every window of size `k` to have equal elements, this implies that $nums[i] = nums[i+k]$ for all valid $i$. We can decompose the array into $k$ independent groups based on indices modulo $k$. For each group, we find the median and calculate the cost to transform all elements in that group to the median.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(n \log n)$, where $n$ is the length of the array, due to sorting each of the $k$ groups.
+- **Space Complexity**: $O(n)$ to store the partitioned groups.

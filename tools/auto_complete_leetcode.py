@@ -14,6 +14,7 @@ import sys
 import time
 from pathlib import Path
 import requests
+import threading
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DOCS_ROOT = REPO_ROOT / "docs" / "algorithms" / "leetcode"
@@ -67,7 +68,25 @@ def call_gemini(prompt: str, api_key: str) -> str:
         }
 
         try:
-            response = requests.post(url, headers=headers, json=payload, timeout=(15, 30))
+            result = [None]
+            exception = [None]
+            def do_post():
+                try:
+                    result[0] = requests.post(url, headers=headers, json=payload, timeout=(15, 30))
+                except Exception as ex:
+                    exception[0] = ex
+
+            t = threading.Thread(target=do_post)
+            t.daemon = True
+            t.start()
+            t.join(timeout=60)
+
+            if t.is_alive():
+                raise RuntimeError("Request timed out (hard 60s limit reached)")
+            if exception[0] is not None:
+                raise exception[0]
+
+            response = result[0]
             if response.status_code == 200:
                 data = response.json()
                 try:

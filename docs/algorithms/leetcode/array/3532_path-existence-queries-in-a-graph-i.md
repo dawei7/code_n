@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an undirected graph with $n$ nodes labeled from $0$ to $n-1$ and a list of edges, determine for several query pairs $(u, v)$ whether there exists a path between node $u$ and node $v$. Since the graph is undirected, a path exists if and only if both nodes belong to the same connected component.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: An integer representing the number of nodes in the graph.
+- `edges`: A list of lists, where each inner list `[u, v]` represents an undirected edge between nodes `u` and `v`.
+- `queries`: A list of lists, where each inner list `[u, v]` represents a query to check if a path exists between `u` and `v`.
 
 **Return value**
 
-TODO
+- A list of booleans where the $i$-th element is `True` if a path exists between the $i$-th query nodes, and `False` otherwise.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 3, edges = [[0, 1], [1, 2]], queries = [[0, 2]]`
+- Output: `[True]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4, edges = [[0, 1], [2, 3]], queries = [[0, 3], [1, 2]]`
+- Output: `[False, False]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5, edges = [[0, 1], [1, 2], [3, 4]], queries = [[0, 2], [0, 4]]`
+- Output: `[True, False]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using the **Disjoint Set Union (DSU)** (also known as Union-Find) data structure. By iterating through all edges and performing `union` operations, we group all connected nodes into the same set. For each query, we perform a `find` operation on both nodes; if they share the same root representative, they are connected.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O((E + Q) \cdot \alpha(n))$, where $E$ is the number of edges, $Q$ is the number of queries, and $\alpha$ is the inverse Ackermann function, which is nearly constant.
+- **Space Complexity**: $O(n)$ to store the parent array for the DSU structure.

@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a sorted array of integers and a target value, identify the starting and ending indices of the target's occurrences. If the target is not present in the array, return `[-1, -1]`. The solution must execute in logarithmic time complexity.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers sorted in non-decreasing order.
+- `target`: An integer representing the value to search for.
 
 **Return value**
 
-TODO
+- A list of two integers `[start, end]` representing the first and last indices of the target.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [5,7,7,8,8,10], target = 8`
+- Output: `[3,4]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [5,7,7,8,8,10], target = 6`
+- Output: `[-1,-1]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [], target = 0`
+- Output: `[-1,-1]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+Binary Search. Specifically, two modified binary search passes are used: one to find the leftmost insertion point (or occurrence) and one to find the rightmost insertion point (or occurrence).
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(log n)`, where `n` is the number of elements in the array, as we perform two binary searches.
+- **Space Complexity**: `O(1)`, as we only use a constant amount of extra space for pointers.
