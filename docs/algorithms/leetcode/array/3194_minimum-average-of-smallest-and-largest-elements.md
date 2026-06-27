@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, repeatedly remove the current smallest and largest elements from the collection. Calculate the average of these two values for each pair removed. The objective is to return the minimum average value obtained across all such pairs.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers where the length is always even.
 
 **Return value**
 
-TODO
+- A float representing the minimum average found among all pairs.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [7, 8, 3, 4, 15, 13, 4, 1]`
+- Output: `5.5`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 9, 8, 3, 10, 5]`
+- Output: `5.5`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 7, 8, 9]`
+- Output: `5.0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Sorting and Two-Pointer** approach. By sorting the array, the smallest and largest elements are guaranteed to be at the current boundaries (left and right pointers). We iteratively compute the average of the elements at these pointers, move the pointers inward, and track the minimum average encountered.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n log n)` due to the sorting step, where `n` is the number of elements in the array. The subsequent two-pointer traversal takes `O(n)`.
+- **Space Complexity**: `O(1)` or `O(n)` depending on the sorting implementation's space requirements (Python's Timsort uses `O(n)`).

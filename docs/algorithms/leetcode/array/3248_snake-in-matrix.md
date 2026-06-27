@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an $n \times n$ grid where cells are numbered from $0$ to $n^2 - 1$ in row-major order, simulate the movement of a snake starting at position $0$. You are provided with a sequence of directional commands ("UP", "DOWN", "LEFT", "RIGHT"). The goal is to determine the final cell number occupied by the snake after executing all commands.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: An integer representing the dimensions of the $n \times n$ grid.
+- `commands`: A list of strings representing the sequence of moves.
 
 **Return value**
 
-TODO
+- An integer representing the final cell index after all moves are processed.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 2, commands = ["RIGHT", "DOWN"]`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 3, commands = ["DOWN", "RIGHT", "UP"]`
+- Output: `1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 2, commands = ["UP", "DOWN"]`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is a direct simulation. Since the grid is indexed row-major, a cell at `(row, col)` corresponds to the value `row * n + col`. We maintain the current `(r, c)` coordinates, update them based on the command, and calculate the final index using the formula `r * n + c`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(k)$, where $k$ is the number of commands, as we process each command exactly once.
+- **Space Complexity**: $O(1)$, as we only store the current row and column indices regardless of the grid size.

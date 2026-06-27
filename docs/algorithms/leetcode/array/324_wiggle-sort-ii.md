@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an integer array, rearrange the elements such that the sequence follows a "wiggle" pattern where `nums[0] < nums[1] > nums[2] < nums[3]...`. You are guaranteed that a valid wiggle sort arrangement always exists for any given input.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- `None`: The function should modify the input list `nums` in-place.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 5, 1, 1, 6, 4]`
+- Output: `[1, 4, 1, 5, 1, 6]` (Note: `[1, 6, 1, 5, 1, 4]` is also valid)
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3, 2, 2, 3, 1]`
+- Output: `[2, 3, 1, 3, 1, 2]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 2, 2, 2, 1]`
+- Output: `[1, 2, 1, 2, 1, 2]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The optimal approach involves sorting the array and then partitioning it into two halves: the smaller half and the larger half. To satisfy the wiggle condition without collisions (especially with duplicate values), we fill the odd indices with the larger half and the even indices with the smaller half, both in reverse order. This ensures that the largest elements are placed far apart from each other.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n log n)` due to the sorting step. While `O(n)` is possible using the Quickselect algorithm (Median of Medians), `O(n log n)` is the standard efficient approach.
+- **Space Complexity**: `O(n)` to store the sorted copy of the array before rearranging it in-place.

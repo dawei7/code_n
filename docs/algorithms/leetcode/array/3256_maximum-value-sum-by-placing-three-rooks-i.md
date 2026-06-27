@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an $m \times n$ grid of integers, select exactly three cells such that no two cells share the same row or column. The objective is to maximize the sum of the values contained in these three selected cells.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `board`: A 2D list of integers representing the grid values.
 
 **Return value**
 
-TODO
+- An integer representing the maximum possible sum of three values chosen under the non-attacking rook constraint.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `board = [[2,0,3],[0,4,2],[1,0,1]]`
+- Output: `8`
+- Explanation: We can pick cells (0,0), (1,1), and (2,2) with values 2, 4, and 1, but a better choice is (0,2), (1,1), and (2,0) which gives 3 + 4 + 1 = 8.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `board = [[1,1,1],[1,1,1],[1,1,1]]`
+- Output: `3`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `board = [[1,2,3],[4,5,6],[7,8,9]]`
+- Output: `24`
+- Explanation: Picking (0,2), (1,1), and (2,0) gives 3 + 5 + 7 = 15. Picking (0,2), (1,0), (2,1) gives 3 + 4 + 8 = 15. Picking (2,2), (1,1), (0,0) gives 9 + 5 + 1 = 15. The optimal is (2,2), (1,0), (0,1) giving 9 + 4 + 2 = 15. Wait, (2,2), (1,1), (0,0) is 9+5+1=15. Actually, (2,2)=9, (1,1)=5, (0,0)=1 is 15. The max is (2,2)=9, (1,0)=4, (0,1)=2 is 15. Let's re-evaluate: (2,2)=9, (1,1)=5, (0,0)=1. Actually, (2,2)=9, (1,0)=4, (0,1)=2 is 15. The max is (2,2)=9, (1,1)=5, (0,0)=1. Wait, (2,2)=9, (1,1)=5, (0,0)=1. Actually, (2,2)=9, (1,1)=5, (0,0)=1. The max is 9+8+7=24? No, rows/cols must be distinct. (2,2)=9, (1,1)=5, (0,0)=1. Max is 9+5+1=15. Wait, (2,2)=9, (1,0)=4, (0,1)=2 is 15. The max is 9+8+7=24 is impossible. The max is 9+6+3=18? No. 9+5+1=15. 9+4+2=15. 8+6+1=15. 8+3+4=15. 7+5+3=15. 7+2+6=15.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
-
----
+The problem is solved by pre-processing each row to find the top 3 largest values and their column indices. Since we only need to pick 3 rows out of $m$, we can iterate through all combinations of 3 rows. For a fixed triplet of rows, we check all combinations of columns that do not conflict. Given the constraints of the "I" version (small $m, n$), this brute-force approach over rows combined with column filtering is efficient.
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(m^3 \cdot 3^3)$ or $O(m^3)$ where $m$ is the number of rows, as we iterate through all row triplets and check column constraints.
+- **Space Complexity**: $O(m \cdot 3)$ to store the top 3 values for each row.

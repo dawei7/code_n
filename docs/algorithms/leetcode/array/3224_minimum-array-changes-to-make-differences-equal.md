@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of even length `nums` and an integer `k`, we want to make all pairs `(nums[i], nums[n-1-i])` have the same absolute difference `x` by modifying elements in the array. Each modification allows changing an element to any integer between `0` and `k` (inclusive). We need to find the minimum number of modifications required to achieve this target difference `x` for all pairs.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers where the length is even.
+- `k`: An integer representing the upper bound for any element in the array.
 
 **Return value**
 
-TODO
+- An integer representing the minimum number of modifications required to make all pairs have the same absolute difference.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 0, 1, 2, 4, 3], k = 4`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0, 1, 2, 3], k = 3`
+- Output: `1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1, 1], k = 0`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a difference array (or sweep-line) technique combined with frequency counting. For each pair `(a, b)`, the maximum possible difference we can achieve with one change is `max(max(a, b), k - min(a, b))`. We count the occurrences of each possible difference `d = abs(a - b)`. Then, we use a difference array to track how many operations are needed for any target difference `x`. Specifically, for each pair, 0 changes are needed if `x == abs(a - b)`, 1 change is needed if `x <= max_diff`, and 2 changes are needed otherwise.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n + k)`, where `n` is the length of the array and `k` is the maximum value allowed. We iterate through the array once and then iterate through the difference array of size `k`.
+- **Space Complexity**: `O(k)`, used to store the frequency counts and the difference array.

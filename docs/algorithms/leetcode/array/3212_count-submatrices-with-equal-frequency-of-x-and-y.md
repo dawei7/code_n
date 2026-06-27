@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a 2D grid containing characters 'X', 'Y', and '.', count the number of submatrices starting from the top-left corner (0, 0) and ending at any coordinate (i, j) such that the submatrix contains at least one 'X', and the total count of 'X's equals the total count of 'Y's within that submatrix.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `grid`: A 2D list of characters (List[List[str]]) representing the matrix.
 
 **Return value**
 
-TODO
+- An integer representing the total count of valid submatrices.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [["X","Y","."],["X",".","."]]`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [["X","X"],["X","Y"]]`
+- Output: `0`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [["."],["Y"]]`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using 2D Prefix Sums. By maintaining two separate 2D arrays (or updating in-place) to track the cumulative counts of 'X' and 'Y' for every sub-rectangle starting at (0,0) and ending at (i, j), we can determine the frequency of both characters in constant time for any given cell.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(M * N)`, where M is the number of rows and N is the number of columns, as we iterate through the grid exactly once to compute prefix sums and count valid submatrices.
+- **Space Complexity**: `O(M * N)` to store the prefix sum matrices. This can be optimized to `O(N)` if we only store the current and previous row, but `O(M * N)` is standard for clarity.

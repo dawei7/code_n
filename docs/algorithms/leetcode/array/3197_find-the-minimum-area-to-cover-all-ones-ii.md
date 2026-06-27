@@ -10,40 +10,37 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a binary matrix, determine the minimum total area required to cover all '1's in the grid using exactly three non-overlapping rectangles. The rectangles must be axis-aligned and can be placed anywhere as long as they cover all existing '1's in the matrix.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `grid`: A 2D list of integers (0 or 1) representing the binary matrix.
 
 **Return value**
 
-TODO
+- An integer representing the minimum combined area of three rectangles that cover all '1's.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[0,1,0],[1,0,1]]`
+- Output: `6`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,0,1,0],[0,1,0,1]]`
+- Output: `5`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved by partitioning the grid into three regions using two cuts. There are two primary ways to partition the grid:
+1. **Three parallel cuts**: Either three horizontal cuts or three vertical cuts.
+2. **One cut followed by a perpendicular cut**: One horizontal cut splitting the grid into two, then one of those halves is split by a vertical cut (or vice versa).
 
----
+For any defined sub-rectangle, the minimum area to cover all '1's is the area of the bounding box of all '1's contained within that sub-rectangle. We iterate through all possible cut positions to find the minimum sum of areas.
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(M \cdot N \cdot (M + N))$, where $M$ is the number of rows and $N$ is the number of columns. We iterate through all possible cut combinations, and calculating the bounding box takes $O(M \cdot N)$.
+- **Space Complexity**: $O(M \cdot N)$ to store the grid and potentially $O(1)$ auxiliary space if we optimize bounding box calculations.

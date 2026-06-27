@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a circular array of binary values (0s and 1s), identify the number of "alternating groups" of size 3. An alternating group is defined as a triplet of consecutive elements where the middle element differs from both its left and right neighbors (i.e., the pattern is either `0, 1, 0` or `1, 0, 1`).
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `colors`: A list of integers where each element is either 0 or 1.
 
 **Return value**
 
-TODO
+- An integer representing the total count of triplets `(colors[i-1], colors[i], colors[i+1])` that satisfy the alternating condition, accounting for the circular nature of the array.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `colors = [1, 1, 1]`
+- Output: `0`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `colors = [0, 1, 0, 0, 1]`
+- Output: `3`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `colors = [1, 0, 1, 0, 1]`
+- Output: `5`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem utilizes a **Sliding Window** approach with a fixed window size of 3. Because the array is circular, the indices are handled using modulo arithmetic (`i % n`) to ensure that the last elements wrap around to the beginning of the array.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we iterate through the array exactly once.
+- **Space Complexity**: `O(1)`, as we only use a constant amount of extra space for counters and index tracking.

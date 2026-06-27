@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a binary array, you can perform an operation where you select an index `i` and flip all elements from `i` to the end of the array (0 becomes 1, 1 becomes 0). Determine the minimum number of operations required to make every element in the array equal to 1.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`) containing only 0s and 1s.
 
 **Return value**
 
-TODO
+- An integer representing the minimum number of operations needed to transform the entire array into 1s.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0, 1, 1, 0, 1]`
+- Output: `4`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 0, 0, 0]`
+- Output: `1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0, 1, 0]`
+- Output: `3`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved using a **Greedy** approach. Since an operation at index `i` affects all subsequent elements, we can iterate through the array from left to right. We maintain a state variable representing the current "flip count" (or parity of flips). If the current element, after accounting for the total number of flips performed so far, is 0, we must perform an operation to flip it to 1. This operation increments our total flip count, which effectively toggles the state for all remaining elements.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single linear pass.
+- **Space Complexity**: `O(1)`, as we only store a single integer to track the number of flips.
