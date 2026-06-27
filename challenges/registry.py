@@ -47,6 +47,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
         fenwick,
         neetcode,
         leetcode,
+        codechef,
     )
     return [
         *bit_manipulation.SPECS,
@@ -77,6 +78,7 @@ def _collect_specs() -> list[AlgorithmSpec]:
         *fenwick.SPECS,
         *neetcode.SPECS,
         *leetcode.SPECS,
+        *codechef.SPECS,
     ]
 
 

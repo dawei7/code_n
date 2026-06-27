@@ -3,9 +3,9 @@ from __future__ import annotations
 from typing import Literal
 
 
-AlgorithmSetId = Literal["neetcode", "leetcode", "gfg"]
+AlgorithmSetId = Literal["neetcode", "leetcode", "gfg", "codechef"]
 
-KNOWN_ALGORITHM_SETS: set[str] = {"neetcode", "leetcode", "gfg"}
+KNOWN_ALGORITHM_SETS: set[str] = {"neetcode", "leetcode", "gfg", "codechef"}
 
 
 def normalize_algorithm_set(value: str | None) -> AlgorithmSetId:
@@ -19,6 +19,8 @@ def challenge_set_id(challenge_id: str) -> AlgorithmSetId:
         return "neetcode"
     if challenge_id.startswith(("lc_", "leetcode_")):
         return "leetcode"
+    if challenge_id.startswith("cc_"):
+        return "codechef"
     return "gfg"
 
 
@@ -27,5 +29,6 @@ def challenge_set_label(set_id: str) -> str:
         "neetcode": "NeetCode 250",
         "leetcode": "LeetCode",
         "gfg": "GeeksforGeeks",
+        "codechef": "CodeChef",
     }
     return labels.get(set_id, set_id)

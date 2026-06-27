@@ -1,4 +1,4 @@
-export type AlgorithmSetId = 'neetcode' | 'leetcode' | 'gfg';
+export type AlgorithmSetId = 'neetcode' | 'leetcode' | 'gfg' | 'codechef';
 
 export interface AlgorithmSetOption {
   id: AlgorithmSetId;
@@ -33,6 +33,14 @@ export const ALGORITHM_SETS: AlgorithmSetOption[] = [
     description: 'Standard algorithms library, fully unlocked.',
     hasCareerPath: false,
     hasMathematical: true,
+  },
+  {
+    id: 'codechef',
+    label: 'CodeChef',
+    shortLabel: 'CodeChef',
+    description: 'Python practice course with 14 lessons, 182 problems.',
+    hasCareerPath: false,
+    hasMathematical: false,
   },
 ];
 

@@ -37,7 +37,7 @@ class EverySpecRoundTripTests(unittest.TestCase):
         for cid, cls in CHALLENGE_REGISTRY.items():
             spec_inst = cls()
             spec = spec_inst._spec
-            if cid.startswith("lc_"):
+            if cid.startswith(("lc_", "cc_")):
                 continue
             with self.subTest(challenge=cid, name=spec.name):
                 for n in TEST_SIZES:
