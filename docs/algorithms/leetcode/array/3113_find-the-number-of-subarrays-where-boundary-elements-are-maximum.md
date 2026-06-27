@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers, identify the total count of contiguous subarrays where both the first and last elements are equal to the maximum value present within that specific subarray.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- An integer representing the total count of valid subarrays.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 4, 3, 3, 2]`
+- Output: `6`
+- Explanation: The valid subarrays are [1], [4], [3], [3], [2], and [3, 3].
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3, 3, 3]`
+- Output: `6`
+- Explanation: All subarrays [3], [3], [3], [3, 3], [3, 3], and [3, 3, 3] are valid.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1]`
+- Output: `1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Monotonic Decreasing Stack**. By maintaining a stack of pairs `(value, count)`, we can track the occurrences of the current maximum value. As we iterate through the array, if we encounter a value smaller than the stack top, it cannot be the maximum for any subarray extending past it. If we encounter a value equal to the stack top, we increment the count of that value. If we encounter a larger value, we pop smaller elements from the stack because they can no longer be the maximum for any subarray including the new, larger element.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the array. Each element is pushed onto and popped from the stack at most once.
+- **Space Complexity**: `O(n)` in the worst case (e.g., a strictly decreasing array) to store the stack elements.

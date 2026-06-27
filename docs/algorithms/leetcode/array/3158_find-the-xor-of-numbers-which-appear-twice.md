@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers where each number appears either once or twice, identify all numbers that occur exactly twice and compute their bitwise XOR sum. If no numbers appear twice, the result should be zero.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`) where each element is between 1 and 50.
 
 **Return value**
 
-TODO
+- An integer representing the XOR sum of all elements that appear exactly twice in the input array.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 1, 3]`
+- Output: `1`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 4]`
+- Output: `0`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 2, 1]`
+- Output: `3`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem utilizes a frequency tracking mechanism, typically implemented via a Hash Set or a frequency array. By iterating through the input, we track seen elements; when an element is encountered for the second time, it is identified as a duplicate and included in the running XOR calculation.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single pass over the data.
+- **Space Complexity**: `O(n)` in the worst case to store the set of seen numbers, or `O(1)` if considering the fixed constraint (numbers are between 1 and 50).

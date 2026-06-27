@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an integer array, identify the indices of the first and last prime numbers present in the array. The objective is to calculate the absolute difference between these two indices.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers where each element is between 1 and 100.
 
 **Return value**
 
-TODO
+- An integer representing the maximum distance (difference in indices) between any two prime numbers found in the array.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, 2, 9, 5, 3]`
+- Output: `3`
+- Explanation: The prime numbers are 2, 5, and 3 at indices 1, 3, and 4. The maximum difference is 4 - 1 = 3.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, 8, 1, 2]`
+- Output: `0`
+- Explanation: The only prime number is 2 at index 3. The difference is 3 - 3 = 0.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [10, 12, 14]`
+- Output: `0`
+- Explanation: No prime numbers exist; the logic handles this by returning 0.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The solution utilizes a primality test (specifically a helper function or precomputed sieve) to identify prime numbers. Since the constraints are small (numbers up to 100), a simple trial division or a boolean lookup table is efficient. We perform a single linear scan to find the index of the first prime and the index of the last prime, then return their difference.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N * sqrt(M))`, where `N` is the length of the array and `M` is the maximum value in the array (100). Given the constraints, this is effectively `O(N)`.
+- **Space Complexity**: `O(1)` (excluding the input array), as we only store two integer pointers for the indices.

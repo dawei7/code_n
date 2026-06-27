@@ -10,40 +10,41 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given two arrays of equal length, where the second array is formed by adding a constant integer `x` to every element of the first array, determine the value of `x`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums1`: A list of integers.
+- `nums2`: A list of integers, which is a permutation of `nums1` with each element incremented by `x`.
 
 **Return value**
 
-TODO
+- An integer representing the constant value `x` added to each element of `nums1`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [2, 6, 4], nums2 = [9, 7, 5]`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [10], nums2 = [5]`
+- Output: `-5`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [1, 1, 1, 1], nums2 = [1, 1, 1, 1]`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem relies on the property of linear shifts: if every element in a set is increased by a constant `x`, the difference between the minimum (or maximum) values of the two sets will also be exactly `x`. Thus, `x = min(nums2) - min(nums1)`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the arrays, as we need to traverse the arrays to find the minimum values.
+- **Space Complexity**: `O(1)`, as we only store the minimum values regardless of input size.

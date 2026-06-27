@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a 2D grid of integers, determine the minimum number of cell modifications required to ensure that every column contains only one unique value, and that no two adjacent columns contain the same unique value.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `grid`: A list of lists of integers representing the input matrix of dimensions `m x n`.
 
 **Return value**
 
-TODO
+- An integer representing the minimum number of operations (changing a cell's value) to satisfy the column constraints.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,0,2],[1,0,2]]`
+- Output: `0`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,1,1],[0,0,0]]`
+- Output: `3`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1],[2],[3]]`
+- Output: `0`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+Dynamic Programming. We first pre-calculate the cost to make each column consist entirely of a specific digit (0-9). Then, we define `dp[col][val]` as the minimum cost to satisfy the conditions for all columns up to `col`, where `col` is assigned the digit `val`. The transition is `dp[col][val] = cost[col][val] + min(dp[col-1][prev_val])` for all `prev_val != val`.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n * 10^2)`, where `n` is the number of columns. Since the number of possible values is fixed at 10, this simplifies to `O(n)`.
+- **Space Complexity**: `O(n * 10)`, which simplifies to `O(n)` to store the DP table.

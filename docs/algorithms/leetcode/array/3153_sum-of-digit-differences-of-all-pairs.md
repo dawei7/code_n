@@ -10,40 +10,46 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of integers of equal length (when represented as strings), calculate the total sum of digit differences across all possible pairs of numbers in the array. A "digit difference" for a pair is defined as the count of positions where the digits at that position differ.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers where every integer has the same number of digits.
 
 **Return value**
 
-TODO
+- An integer representing the sum of digit differences for all unique pairs $(i, j)$ where $0 \le i < j < n$.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [13, 23, 12]`
+- Output: `4`
+- Explanation: 
+  - (13, 23): diff at index 0 (1 vs 2) = 1
+  - (13, 12): diff at index 1 (3 vs 2) = 1
+  - (23, 12): diff at index 0 (2 vs 1), index 1 (3 vs 2) = 2
+  - Total = 1 + 1 + 2 = 4.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [10, 10, 10, 10]`
+- Output: `0`
+- Explanation: All pairs are identical, so there are no digit differences.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3]`
+- Output: `3`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using **Combinatorial Counting**. Instead of iterating through all $O(n^2)$ pairs, we observe that the total sum is the sum of differences at each digit position independently. For a specific position, if we have counts of each digit (0-9), the number of pairs that *do not* differ is the sum of $\binom{count[d]}{2}$ for all digits $d \in [0, 9]$. The number of pairs that *do* differ is the total number of pairs $\binom{n}{2}$ minus the number of pairs that match.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(n \cdot d)$, where $n$ is the number of elements in `nums` and $d$ is the number of digits in each integer. We iterate through each number once to populate the frequency counts.
+- **Space Complexity**: $O(d)$, as we maintain a frequency table of size $10 \times d$ to store the counts of each digit at each position.

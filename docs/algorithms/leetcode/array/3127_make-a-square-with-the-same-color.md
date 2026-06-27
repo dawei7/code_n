@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a 3x3 grid containing characters 'B' (black) and 'W' (white), determine if it is possible to form a 2x2 square consisting of cells of the same color by changing at most one cell's color.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `grid`: A list of lists of characters (3x3 matrix) where each element is either 'B' or 'W'.
 
 **Return value**
 
-TODO
+- `bool`: Returns `True` if a monochromatic 2x2 square can be formed, otherwise `False`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [["B","W","B"],["B","W","W"],["B","W","B"]]`
+- Output: `True`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [["B","W","B"],["W","B","W"],["B","W","B"]]`
+- Output: `False`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [["B","W","B"],["B","W","W"],["W","W","B"]]`
+- Output: `True`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using **Brute Force Enumeration**. Since the grid is fixed at 3x3, there are exactly four possible 2x2 sub-grids. For each sub-grid, we count the occurrences of 'B' and 'W'. If either color appears 3 or 4 times, it implies that with at most one change, we can make all four cells the same color.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: O(1). The grid size is constant (3x3), and we perform a fixed number of operations (checking 4 sub-grids).
+- **Space Complexity**: O(1). We only use a constant amount of extra space for counters.

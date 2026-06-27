@@ -10,40 +10,42 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an integer array `nums`, a target integer `x`, and an array of queries `queries`, determine the original index of the $k$-th occurrence of `x` in `nums` for each query $k$. If the $k$-th occurrence does not exist, return -1 for that query.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers representing the source array.
+- `x`: An integer representing the target element to search for.
+- `queries`: A list of integers where each element represents the $k$-th occurrence to locate.
 
 **Return value**
 
-TODO
+- A list of integers containing the indices corresponding to each query, or -1 if the occurrence is out of bounds.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3, 1, 7], x = 1, queries = [1, 3, 2]`
+- Output: `[0, -1, 2]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3], x = 10, queries = [1]`
+- Output: `[-1]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 1, 2, 1, 2], x = 1, queries = [1, 2, 3]`
+- Output: `[0, 2, 4]`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is solved using a **Precomputation/Indexing** strategy. We first perform a single linear scan of the array to store the indices of all occurrences of `x` in a list. Once this mapping is established, each query can be answered in $O(1)$ time by accessing the precomputed list using the query value as an index.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(N + Q)$, where $N$ is the length of `nums` and $Q$ is the number of queries. We traverse the array once to build the index list and then iterate through the queries.
+- **Space Complexity**: $O(N)$ in the worst case, as we store the indices of all occurrences of `x` in a separate list.

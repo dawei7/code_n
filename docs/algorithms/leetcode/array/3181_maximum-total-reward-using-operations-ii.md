@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given an array of reward values, you start with a current total reward of 0. You can select a reward value `x` from the array if `x` is strictly greater than your current total reward. Upon selection, your total reward increases by `x`. The objective is to determine the maximum possible total reward you can achieve by performing this operation any number of times.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `rewardValues`: A list of integers representing the available rewards.
 
 **Return value**
 
-TODO
+- An integer representing the maximum total reward achievable.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `rewardValues = [1, 1, 3, 3]`
+- Output: `4`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `rewardValues = [1, 6, 4, 3, 2]`
+- Output: `11`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `[1, 5, 10]`
+- Output: `15`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem is a variation of the subset sum problem. Since the constraints on the values are large, we use bit manipulation to represent the set of reachable total rewards. By sorting the unique reward values, we can maintain a bitmask `bits` where the $i$-th bit is set if a total reward of $i$ is achievable. For each reward `x`, we update the bitmask using `bits |= (bits & ((1 << x) - 1)) << x`. This efficiently computes all reachable states in $O(N \log N + \frac{M \cdot N}{W})$ time, where $M$ is the maximum reward and $W$ is the word size.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: $O(N \log N + \frac{M \cdot N}{W})$, where $N$ is the number of rewards, $M$ is the maximum possible reward, and $W$ is the word size (typically 64). The sorting takes $O(N \log N)$, and the bitwise operations take $O(M/W)$ per unique reward.
+- **Space Complexity**: $O(M/W)$ to store the bitmask representing reachable states.

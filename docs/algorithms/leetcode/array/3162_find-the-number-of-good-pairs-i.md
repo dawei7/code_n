@@ -10,40 +10,44 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given two integer arrays `nums1` and `nums2` and an integer `k`, identify the total count of "good" index pairs `(i, j)`. A pair is considered good if the element at `nums1[i]` is perfectly divisible by the product of `nums2[j]` and `k` (i.e., `nums1[i] % (nums2[j] * k) == 0`).
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums1`: A list of integers.
+- `nums2`: A list of integers.
+- `k`: A positive integer multiplier.
 
 **Return value**
 
-TODO
+- An integer representing the total count of pairs `(i, j)` that satisfy the divisibility condition.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [1, 3, 4], nums2 = [1, 3, 4], k = 3`
+- Output: `1`
+- Explanation: Only the pair (1, 0) is good because 3 % (1 * 3) == 0.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [1, 2, 4, 12], nums2 = [2, 4], k = 3`
+- Output: `2`
+- Explanation: Pairs (3, 0) and (3, 1) are good because 12 % (2 * 3) == 0 and 12 % (4 * 3) == 0.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums1 = [10], nums2 = [2], k = 1`
+- Output: `1`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved using a brute-force approach with nested loops, which is efficient given the constraints of this specific version (I). For larger constraints, one could optimize by using a frequency map (Hash Table) to count occurrences of `nums2[j] * k` and iterating through `nums1` to check divisors.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(N * M)`, where `N` is the length of `nums1` and `M` is the length of `nums2`.
+- **Space Complexity**: `O(1)`, as we only use a counter variable to track the number of good pairs.

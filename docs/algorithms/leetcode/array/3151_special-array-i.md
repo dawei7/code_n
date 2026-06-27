@@ -10,40 +10,40 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Determine if a given array of integers is "special." An array is defined as special if every pair of adjacent elements has different parity (i.e., one is even and the other is odd). If the array contains only one element, it is considered special by default.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers (`List[int]`).
 
 **Return value**
 
-TODO
+- `bool`: Returns `True` if all adjacent elements have different parity, otherwise `False`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1]`
+- Output: `True`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 1, 4]`
+- Output: `True`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, 3, 1, 6]`
+- Output: `False`
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+Linear scan (Iteration). The algorithm iterates through the array once, comparing the parity of each element with its immediate successor using the modulo operator (`% 2`).
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single pass through the list.
+- **Space Complexity**: `O(1)`, as we only use a constant amount of extra space for iteration variables.

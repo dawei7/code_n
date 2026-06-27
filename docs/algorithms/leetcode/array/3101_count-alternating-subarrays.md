@@ -10,40 +10,43 @@
 
 ## Problem Description & Examples
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a binary array, identify the total number of contiguous subarrays where no two adjacent elements are identical (i.e., the values alternate between 0 and 1).
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of integers containing only 0s and 1s.
 
 **Return value**
 
-TODO
+- An integer representing the total count of alternating subarrays.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0, 1, 1, 1]`
+- Output: `5`
+- Explanation: The alternating subarrays are [0], [1], [1], [1], and [0, 1].
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 0, 1, 0]`
+- Output: `10`
+- Explanation: Every contiguous subarray is alternating. For an array of length 4, the number of subarrays is 4*(4+1)/2 = 10.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1]`
+- Output: `3`
+- Explanation: Only subarrays of length 1 are alternating.
 
 ---
 
 ## Underlying Base Algorithm(s)
-TODO
+The problem can be solved using a **Dynamic Programming** approach or a **Sliding Window/Greedy** counting technique. By iterating through the array, we maintain the length of the current "alternating chain" ending at the current index. If `nums[i] != nums[i-1]`, the chain length increases by 1; otherwise, it resets to 1. The total count is the sum of these chain lengths at each position.
 
 ---
 
 ## Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single pass through the data.
+- **Space Complexity**: `O(1)`, as we only store a few integer variables regardless of input size.
