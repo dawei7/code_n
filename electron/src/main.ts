@@ -14,6 +14,7 @@
  *      the app.
  */
 
+import { execFile } from 'node:child_process';
 import { app, BrowserWindow, dialog, shell } from 'electron';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -23,6 +24,69 @@ import { initAutoUpdater, runAutoCheckOnLaunch } from './updater';
 
 let mainWindow: BrowserWindow | null = null;
 let server: ServerHandle | null = null;
+
+
+function waitForProcessExit(child: ServerHandle['process'], timeoutMs: number): Promise<boolean> {
+  if (child.exitCode !== null || child.signalCode !== null) return Promise.resolve(true);
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => {
+      child.off('exit', onExit);
+      resolve(false);
+    }, timeoutMs);
+    const onExit = () => {
+      clearTimeout(timer);
+      resolve(true);
+    };
+    child.once('exit', onExit);
+  });
+}
+
+
+function taskkillProcessTree(pid: number): Promise<void> {
+  return new Promise((resolve) => {
+    execFile(
+      'taskkill',
+      ['/PID', String(pid), '/T', '/F'],
+      { windowsHide: true },
+      (error) => {
+        if (error) {
+          console.warn(`[coden-electron] taskkill failed for server pid ${pid}: ${error.message}`);
+        }
+        resolve();
+      },
+    );
+  });
+}
+
+
+async function stopServer(reason: string): Promise<void> {
+  const handle = server;
+  if (!handle) return;
+  server = null;
+
+  const child = handle.process;
+  const pid = child.pid;
+  console.log(`[coden-electron] stopping server for ${reason} (pid=${pid ?? 'unknown'})`);
+
+  if (child.exitCode !== null || child.signalCode !== null) return;
+
+  try {
+    child.kill();
+  } catch (e) {
+    console.warn(`[coden-electron] failed to signal server shutdown: ${e instanceof Error ? e.message : String(e)}`);
+  }
+
+  if (await waitForProcessExit(child, 2_500)) {
+    console.log(`[coden-electron] server stopped for ${reason}`);
+    return;
+  }
+
+  if (process.platform === 'win32' && pid) {
+    console.warn(`[coden-electron] server did not stop promptly; killing process tree for ${reason}`);
+    await taskkillProcessTree(pid);
+    await waitForProcessExit(child, 2_500);
+  }
+}
 
 
 function isInternalAppUrl(rawUrl: string, appOrigin: string): boolean {
@@ -320,7 +384,9 @@ app.whenReady().then(() => {
   // Wire the auto-updater event listeners + IPC handlers before
   // createWindow() so the renderer can call 'update:check' as soon
   // as it boots, even before the first auto-check on launch fires.
-  initAutoUpdater();
+  initAutoUpdater({
+    beforeInstallAndQuit: () => stopServer('auto-update install'),
+  });
 
   void createWindow();
 
@@ -343,17 +409,11 @@ app.on('window-all-closed', () => {
   // Quit on all platforms (the macOS convention is to keep the
   // app alive, but the cOde(n) launcher is single-window; quit
   // is the right behavior for a learning app).
-  if (server) {
-    server.kill();
-    server = null;
-  }
+  void stopServer('window-all-closed');
   app.quit();
 });
 
 
 app.on('before-quit', () => {
-  if (server) {
-    server.kill();
-    server = null;
-  }
+  void stopServer('before-quit');
 });

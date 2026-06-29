@@ -90,6 +90,11 @@ function broadcastToRenderers(channel: string, payload: unknown): void {
  *  `updateInfoAndProvider` is protected, so we capture the version
  *  string here on the `update-available` event. */
 let latestKnownVersion: string | undefined;
+let installRequested = false;
+
+export interface AutoUpdaterOptions {
+  beforeInstallAndQuit?: () => Promise<void> | void;
+}
 
 
 /**
@@ -100,7 +105,7 @@ let latestKnownVersion: string | undefined;
  * the renderer can call them, but the updater itself is a no-op
  * (it would fail to find a feed in dev anyway).
  */
-export function initAutoUpdater(): void {
+export function initAutoUpdater(options: AutoUpdaterOptions = {}): void {
   const isPackaged = app.isPackaged;
 
   // --- Configuration ---
@@ -197,8 +202,25 @@ export function initAutoUpdater(): void {
     }
   });
 
-  ipcMain.handle('update:install-and-quit', (): void => {
+  ipcMain.handle('update:install-and-quit', async (): Promise<void> => {
     if (!isPackaged) return;
+    if (installRequested) {
+      log.info('[updater] install already requested; ignoring duplicate restart click');
+      return;
+    }
+    installRequested = true;
+    try {
+      await options.beforeInstallAndQuit?.();
+    } catch (e) {
+      installRequested = false;
+      const err = e instanceof Error ? e : new Error(String(e));
+      broadcastToRenderers('update:status', {
+        state: 'error' as UpdateState,
+        message: `Could not prepare for update install: ${err.message}`,
+      } satisfies UpdateStatusPayload);
+      log.error('[updater] beforeInstallAndQuit failed:', err);
+      return;
+    }
     // isForceRunAfter = true: even if other windows are open, quit
     // and apply the update. The user has explicitly asked.
     autoUpdater.quitAndInstall(true, true);
