@@ -1,3 +1,5 @@
+import { apiFetch } from './client';
+
 export interface PracticeExportEntry {
   id: string;
   path: string[];
@@ -84,10 +86,7 @@ export async function downloadChallengePracticeFile(
   if (seed !== null) params.set('seed', String(seed));
   params.set('test_count', String(testCount));
   if (filenamePrefix) params.set('filename_prefix', filenamePrefix);
-  const response = await fetch(`/api/practice-export/challenges/${encodeURIComponent(challengeId)}?${params}`);
-  if (!response.ok) {
-    throw new Error(`Download failed (${response.status})`);
-  }
+  const response = await apiFetch(`/practice-export/challenges/${encodeURIComponent(challengeId)}?${params}`);
   downloadBlob(
     await responseToBlob(response, onProgress),
     `${challengeId}.py`,
@@ -102,14 +101,11 @@ export async function downloadPracticeBundle(
   testCount: number,
   onProgress?: (progress: DownloadProgress) => void,
 ) {
-  const response = await fetch('/api/practice-export/bundle', {
+  const response = await apiFetch('/practice-export/bundle', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ entries, n, seed, test_count: testCount }),
   });
-  if (!response.ok) {
-    throw new Error(`Download failed (${response.status})`);
-  }
   downloadBlob(
     await responseToBlob(response, onProgress),
     'coden-practice-export.zip',

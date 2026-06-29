@@ -28,6 +28,7 @@ import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import 'katex/dist/katex.min.css';
 
+import { ApiError, apiGet, apiText } from '../../../api/client';
 import { useAppStore } from '../../../store/useAppStore';
 
 
@@ -47,7 +48,11 @@ type LeetCodeQuestion = {
 
 const CACHE: Map<string, string> = new Map();
 const LEETCODE_CACHE: Map<string, LeetCodeQuestion | null> = new Map();
-let OVERVIEW_CACHE: string | null = null;
+const OVERVIEW_CACHE: Map<string, string> = new Map();
+
+function localizedCacheKey(language: string, id: string): string {
+  return `${language}:${id}`;
+}
 
 
 export function ReferenceTab() {
@@ -66,39 +71,41 @@ export function ReferenceTab() {
     setState({ kind: 'loading' });
     try {
       if (which === 'overview') {
-        if (OVERVIEW_CACHE !== null) {
-          setState({ kind: 'loaded', markdown: OVERVIEW_CACHE });
+        const cached = OVERVIEW_CACHE.get(language);
+        if (cached !== undefined) {
+          setState({ kind: 'loaded', markdown: cached });
           return;
         }
-        const res = await fetch(`/api/docs/overview?lang=${language}`);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const text = await res.text();
-        OVERVIEW_CACHE = text;
+        const text = await apiText(`/docs/overview?lang=${language}`);
+        OVERVIEW_CACHE.set(language, text);
         setState({ kind: 'loaded', markdown: text });
       } else {
         if (!id) {
           setState({ kind: 'idle' });
           return;
         }
-        const cached = CACHE.get(id);
+        const key = localizedCacheKey(language, id);
+        const cached = CACHE.get(key);
         if (cached !== undefined) {
           setState({ kind: 'loaded', markdown: cached });
           return;
         }
-        const res = await fetch(`/api/docs/by-id/${encodeURIComponent(id)}?lang=${language}`);
-        if (res.status === 404) {
-          setState({
-            kind: 'missing',
-            challengeId: id,
-            challengeName: '?',
-            category: '?',
-          });
-          return;
+        try {
+          const text = await apiText(`/docs/by-id/${encodeURIComponent(id)}?lang=${language}`);
+          CACHE.set(key, text);
+          setState({ kind: 'loaded', markdown: text });
+        } catch (e) {
+          if (e instanceof ApiError && e.status === 404) {
+            setState({
+              kind: 'missing',
+              challengeId: id,
+              challengeName: '?',
+              category: '?',
+            });
+            return;
+          }
+          throw e;
         }
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const text = await res.text();
-        CACHE.set(id, text);
-        setState({ kind: 'loaded', markdown: text });
       }
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
@@ -108,13 +115,12 @@ export function ReferenceTab() {
 
   useEffect(() => {
     if (!challengeId) {
-      // No challenge → render the overview
+      // No challenge: render the overview.
       void load('overview');
       return;
     }
-    // Challenge changed → drop the previous state and re-fetch.
+    // Challenge changed: drop the previous state and re-fetch.
     setState({ kind: 'loading' });
-    CACHE.delete('__last_loaded__'); // force a refetch when the user clicks Retry
     void load('by-id', challengeId).then(() => {
       // If the load completed with a 404, the state is already 'missing'.
       // Enrich it with the current challenge's name + category.
@@ -142,17 +148,12 @@ export function ReferenceTab() {
     }
 
     let cancelled = false;
-    void fetch(`/api/leetcode/questions/${encodeURIComponent(slug)}`)
-      .then((res) => (res.ok ? res.json() : null))
-      .then((payload: LeetCodeQuestion | null) => {
+    void apiGet<LeetCodeQuestion>(`/leetcode/questions/${encodeURIComponent(slug)}`)
+      .catch(() => null)
+      .then((payload) => {
         if (cancelled) return;
         LEETCODE_CACHE.set(slug, payload);
         setLeetcodeQuestion(payload);
-      })
-      .catch(() => {
-        if (cancelled) return;
-        LEETCODE_CACHE.set(slug, null);
-        setLeetcodeQuestion(null);
       });
 
     return () => {
@@ -163,7 +164,7 @@ export function ReferenceTab() {
   if (state.kind === 'idle' || state.kind === 'loading') {
     return (
       <div className="flex items-center justify-center text-xs text-coden-muted">
-        Loading reference…
+        Loading reference...
       </div>
     );
   }

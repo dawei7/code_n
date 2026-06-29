@@ -43,10 +43,10 @@ range(10**9):`` would trip the cap, but a correct but
 sloppy O(n²) solution that just barely exceeds the budget
 would still be evaluated end-to-end.
 
-**The trace is internal-only.** The per-step trace frames
-are no longer shipped to the frontend (the player debugs in
-VSCode). The engine still uses the tracer for the step
-limit; the trace exists only as a local variable in
+**The trace is internal-only.** Per-step trace frames are no
+longer shipped to the frontend; the in-app debugger streams
+through DAP instead. The engine still uses the tracer for the
+step limit; the trace exists only as a local variable in
 ``run_player_code`` and is discarded after the run.
 """
 from __future__ import annotations
@@ -181,19 +181,19 @@ def run_player_code(
         Optional workspace path to execute from. When provided,
         ``runpy.run_path`` runs this exact path instead of a
         tempfile copy, so debugpy breakpoints in the player's
-        ``solutions/<id>.py`` hit normally. Used by the VSCode
-        F5 entry point (``tools/run_solution.py``); the FastAPI
-        route (which receives only the source text from the
-        renderer) leaves this ``None`` and gets the temp-file
+        ``solutions/<id>.py`` hit normally. Used by direct debug
+        entry points such as ``tools/run_solution.py``; the
+        FastAPI route (which receives only the source text from
+        the renderer) leaves this ``None`` and gets the temp-file
         behaviour.
 
     Returns
     -------
     :class:`RunResponse`
         All the data the frontend needs: the pass/fail verdict
-        (derived from the AST op count), the trace for the
-        visualizer, and the ±5% tolerance band numbers for the
-        Complexity tab.
+        (derived from the AST op count), the compact return-value
+        representation, scaling data, and the tolerance band
+        numbers for the Complexity tab.
 
     Raises
     ------
@@ -212,8 +212,8 @@ def run_player_code(
     #        temp dir so the tracer sees a unique ``co_filename``
     #        per run (avoids cache collisions between concurrent
     #        runs of the same challenge). When ``execution_path``
-    #        is given (VSCode debug entry point) we skip the temp
-    #        file and run from that exact path so debugpy hits
+    #        is given by a direct debug entry point, we skip the
+    #        temp file and run from that exact path so debugpy hits
     #        breakpoints in the player's open editor file.
     # NOTE: No source wrapping / AST rewriting is performed here. The
     # player source is exec'd verbatim via ``runpy.run_path``. The

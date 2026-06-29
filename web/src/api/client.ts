@@ -10,68 +10,62 @@ export class ApiError extends Error {
   }
 }
 
-export async function apiGet<T>(path: string): Promise<T> {
-  const res = await fetch(`/api${path}`);
-  if (!res.ok) {
-    let detail: unknown = null;
-    try {
-      detail = await res.json();
-    } catch {
-      // ignore
-    }
-    throw new ApiError(res.status, detail, `GET ${path} → ${res.status}`);
+async function readErrorDetail(res: Response): Promise<unknown> {
+  let text = '';
+  try {
+    text = await res.text();
+  } catch {
+    return null;
   }
+  if (!text) return null;
+  try {
+    return JSON.parse(text);
+  } catch {
+    return text;
+  }
+}
+
+export async function apiFetch(path: string, init: RequestInit = {}): Promise<Response> {
+  const method = init.method?.toUpperCase() ?? 'GET';
+  const res = await fetch(`/api${path}`, init);
+  if (!res.ok) {
+    const detail = await readErrorDetail(res);
+    throw new ApiError(res.status, detail, `${method} ${path} -> ${res.status}`);
+  }
+  return res;
+}
+
+export async function apiGet<T>(path: string): Promise<T> {
+  const res = await apiFetch(path);
   return res.json() as Promise<T>;
 }
 
+export async function apiText(path: string): Promise<string> {
+  const res = await apiFetch(path);
+  return res.text();
+}
+
 export async function apiPost<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(`/api${path}`, {
+  const res = await apiFetch(path, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
-  if (!res.ok) {
-    let detail: unknown = null;
-    try {
-      detail = await res.json();
-    } catch {
-      // ignore
-    }
-    throw new ApiError(res.status, detail, `POST ${path} → ${res.status}`);
-  }
   return res.json() as Promise<T>;
 }
 
 export async function apiPut<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(`/api${path}`, {
+  const res = await apiFetch(path, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
-  if (!res.ok) {
-    let detail: unknown = null;
-    try {
-      detail = await res.json();
-    } catch {
-      // ignore
-    }
-    throw new ApiError(res.status, detail, `PUT ${path} → ${res.status}`);
-  }
   return res.json() as Promise<T>;
 }
 
 export async function apiDelete<T>(path: string): Promise<T> {
-  const res = await fetch(`/api${path}`, {
+  const res = await apiFetch(path, {
     method: 'DELETE',
   });
-  if (!res.ok) {
-    let detail: unknown = null;
-    try {
-      detail = await res.json();
-    } catch {
-      // ignore
-    }
-    throw new ApiError(res.status, detail, `DELETE ${path} → ${res.status}`);
-  }
   return res.json() as Promise<T>;
 }

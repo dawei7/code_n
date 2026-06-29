@@ -283,12 +283,21 @@ def _inputs(text: str) -> list[tuple[str, str]]:
 
 
 def _safe_param_name(name: str) -> str:
-    cleaned = re.sub(r"\W+", "_", name).strip("_") or "value"
+    snake = re.sub(r"(?<=[a-z0-9])([A-Z])", r"_\1", name)
+    cleaned = re.sub(r"\W+", "_", snake).strip("_").lower() or "value"
     if cleaned[0].isdigit():
         cleaned = f"arg_{cleaned}"
     if keyword.iskeyword(cleaned):
         cleaned = f"{cleaned}_"
     return cleaned
+
+
+def _normalize_sample_input_names(raw: str) -> str:
+    return re.sub(
+        r"\b([A-Za-z_][A-Za-z0-9_]*)\s*=",
+        lambda match: f"{_safe_param_name(match.group(1))} =",
+        raw,
+    )
 
 
 def _return_value(text: str) -> str:
@@ -312,7 +321,7 @@ def _examples(text: str) -> list[Sample]:
         if not in_examples:
             continue
         if line.startswith("- Input: `") and line.endswith("`"):
-            pending_input = line.removeprefix("- Input: `")[:-1]
+            pending_input = _normalize_sample_input_names(line.removeprefix("- Input: `")[:-1])
         elif line.startswith("- Output: `") and line.endswith("`") and pending_input is not None:
             examples.append(Sample(pending_input, line.removeprefix("- Output: `")[:-1]))
             pending_input = None

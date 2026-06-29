@@ -15,6 +15,8 @@ from challenges.spec import Sample
 
 
 _PARAM_ALIASES = {
+    "cCenter": "c_center",
+    "rCenter": "r_center",
     "subRoot": "sub_root",
 }
 
@@ -180,7 +182,7 @@ def _examples_from_markdown_doc(challenge_id: str) -> list[tuple[str, str]]:
         return []
 
     docs_root = PROJECT_ROOT / "docs" / "algorithms"
-    matches = sorted(docs_root.glob(f"neetcode_*/{challenge_id}_*.md"))
+    matches = sorted(docs_root.rglob(f"{challenge_id}_*.md"))
     if not matches:
         return []
 

@@ -69,7 +69,7 @@ def _build_templates() -> dict[str, dict]:
         if spec is None:
             continue
         templates[spec.id] = {
-            "params": list(spec.params),
+            "params": [] if spec.id.startswith("cc_") else list(spec.params),
             "inputs": dict(spec.inputs),
             "returns": spec.returns,
         }
@@ -122,8 +122,7 @@ def _solution_header(challenge_id: str, description: str) -> str:
     clean_description = _clean_template_description(description)
     samples = sample_doc(challenge_id)
     blocks = [_section_block("Description", clean_description)]
-    if samples:
-        blocks.append(_section_block("Examples", samples))
+    blocks.append(_section_block("Examples", samples or "No examples registered."))
     body = "\n\n".join(blocks).rstrip()
     return f'"""\n{body}\n"""\n\n'
 
@@ -156,7 +155,7 @@ def _solution_template(challenge_id: str, heading: str, description: str) -> str
             'def solve():\n'
             '    # Read stdin with input(), just like on CodeChef.\n'
             '    # Print the answer with print().\n'
-            '    pass\n'
+            '    return None\n'
             '\n\n'
             'if __name__ == "__main__":\n'
             '    solve()\n'

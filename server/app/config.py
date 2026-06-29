@@ -63,9 +63,9 @@ CORS_ORIGINS = [
 def ensure_data_dirs() -> None:
     """Create the user-writable directories if missing.
 
-    Called once at server startup. The solutions directory is the
-    file the player edits in VSCode (``PUT /api/solutions/{id}``
-    or direct file edits); cOde(n) reads it back on every Run.
+    Called once at server startup. The solutions directory stores
+    the files edited from the in-app editor (``PUT /api/solutions/{id}``)
+    or by direct file edits; cOde(n) reads them back on every Run.
     """
     CODEN_HOME.mkdir(parents=True, exist_ok=True)
     SOLUTIONS_DIR.mkdir(parents=True, exist_ok=True)

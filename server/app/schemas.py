@@ -61,9 +61,9 @@ class ChallengeSummary(BaseModel):
 class ChallengeDetail(ChallengeSummary):
     """Full data for the challenge view, including the starter code.
 
-    The player writes their solution in ``solutions/<id>.py`` (edited
-    in VSCode or any external editor). The starter source ships with
-    the challenge and is what the player sees on first open.
+    The player writes their solution in ``solutions/<id>.py`` through
+    the in-app editor. Direct file edits also work because the server
+    re-reads the file-backed source model when needed.
     """
 
     params: list[ParamDoc]
@@ -84,9 +84,8 @@ class ChallengeDetail(ChallengeSummary):
 class RunRequest(BaseModel):
     """Body for ``POST /api/challenges/{id}/run``.
 
-    The player writes their solution in ``solutions/<id>.py`` (via
-    VSCode or any external editor); the server reads that file at
-    run time, exec's it, and runs it against the engine.
+    The player edits in the cOde(n) tab; the route receives the current
+    source, exec's it, and runs it against the engine.
 
     ``mode`` controls how ``n`` and ``seed`` are interpreted:
       - ``"practice"`` (default): use the player-supplied ``n`` /
@@ -135,12 +134,10 @@ class RunResponse(BaseModel):
     ``solve()`` returned (capped at a few hundred chars so a
     10,000-element list doesn't blow up the response).
 
-    The runtime op counter, the per-step trace, the AI report
-    tab, and the in-app debug surface were all removed in the
-    v0.9.0 pivot (the player edits + debugs in VSCode). The
-    engine still runs the player's source under a tracer for
-    the step-limit guard (catches infinite loops), but the
-    trace is not serialized into the response.
+    The runtime op counter and per-step trace are not serialized into
+    this REST response. The in-app debugger streams through DAP, while
+    the engine still runs the player's source under a tracer for the
+    step-limit guard that catches infinite loops.
     """
 
     passed: bool

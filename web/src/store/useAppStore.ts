@@ -5,15 +5,12 @@
  * display-only copy of the player's source, the run arguments
  * (n, seed), the last run result, and progress.
  *
- * The v0.9.0 pivot removed:
- *   - The per-step trace + step player (the player debugs in
- *     external IDEs; the in-app debugger owns this now.
- *   - The in-app debug surface (debug session state, breakpoints,
- *     pop-out debug window).
- *   - The AI report tab + Ollama hint endpoint.
- *   - The editor (Monaco) + editor pop-out window.
+ * The current app is intentionally single-window:
+ *   - Monaco editing and Python debugging live in the cOde(n) tab.
+ *   - Detached editor/debug pop-outs are gone.
+ *   - The AI tutor report is shown from the Result tab when configured.
  *
- * What stays:
+ * Core state:
  *   - Challenge selection (left rail, current detail).
  *   - Source-of-truth model: ``source`` is a display-only
  *     copy of ``solutions/<id>.py`` on disk. The ``run()``
@@ -168,8 +165,7 @@ export interface AppState {
  * integration (the main window and any future detached
  * surfaces may still need to suppress echo broadcasts).
  * Currently a no-op because there are no detached windows —
- * the v0.9.0 pivot removed the editor pop-out + the
- * debug pop-out + the detached-pane host.
+ * detached editor/debug pop-outs were removed.
  */
 export const applyingRemoteRef = { current: false };
 

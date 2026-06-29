@@ -1,7 +1,8 @@
 """JSON-safe conversion for ``solve()`` return values.
 
-The per-step trace was removed from the API in the v0.9.0 pivot
-(player edits + debugs in VSCode). What's left is :func:`to_json_safe`,
+The per-step trace is no longer serialized into the REST API; the
+in-app debugger streams live state through DAP. What's left here is
+:func:`to_json_safe`,
 which the engine runner uses to render the return value of
 ``solve()`` as a compact string for the ``RunResponse.return_value_repr``
 field. The recursion handles the common structured types

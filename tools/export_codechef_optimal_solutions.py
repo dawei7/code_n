@@ -130,24 +130,6 @@ def _visible_questions() -> dict[str, dict[str, Any]]:
 def _baseline_sources() -> dict[str, dict[str, str]]:
     sources: dict[str, dict[str, str]] = {}
 
-    community = _load_json(COMMUNITY_PATH).get("solutions", {})
-    for code, row in community.items():
-        source = str(row.get("source") or "")
-        if source.strip():
-            sources[str(code).upper()] = {
-                "source": source,
-                "kind": "community",
-            }
-
-    translations = _load_json(TRANSLATIONS_PATH).get("translations", {})
-    for code, row in translations.items():
-        source = str(row.get("source") or "")
-        if source.strip():
-            sources.setdefault(str(code).upper(), {
-                "source": source,
-                "kind": "translation",
-            })
-
     problems = _load_json(DETAILS_PATH).get("problems", {})
     for code, problem in problems.items():
         if not isinstance(problem, dict):
@@ -160,6 +142,24 @@ def _baseline_sources() -> dict[str, dict[str, str]]:
             sources.setdefault(str(code).upper(), {
                 "source": source,
                 "kind": "official_python",
+            })
+
+    translations = _load_json(TRANSLATIONS_PATH).get("translations", {})
+    for code, row in translations.items():
+        source = str(row.get("source") or "")
+        if source.strip():
+            sources.setdefault(str(code).upper(), {
+                "source": source,
+                "kind": "translation",
+            })
+
+    community = _load_json(COMMUNITY_PATH).get("solutions", {})
+    for code, row in community.items():
+        source = str(row.get("source") or "")
+        if source.strip():
+            sources.setdefault(str(code).upper(), {
+                "source": source,
+                "kind": "community",
             })
 
     return sources

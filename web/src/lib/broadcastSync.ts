@@ -9,8 +9,7 @@
  * architecture isn't ripped out (a future pop-out surface
  * would just re-enable it), but there's nothing to broadcast
  * in the current UI. The channel types and helpers are kept
- * in case a single-window + VSCode round-trip ever needs
- * them.
+ * in case a future auxiliary in-app surface needs them.
  */
 import { useAppStore, applyingRemoteRef } from '../store/useAppStore';
 import type { AppState } from '../store/useAppStore';

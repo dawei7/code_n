@@ -178,10 +178,14 @@ def _build_spec(question: dict, detail: dict[str, Any] | None = None) -> Algorit
         if codechef_solution and is_python_language(codechef_solution.get("language", ""))
         else _TRANSLATIONS.get(code, {})
     )
-    samples = [
-        Sample(str(sample.get("input") or ""), str(sample.get("output") or ""))
-        for sample in list(detail.get("samples") or [])[:3]
-    ]
+    samples = []
+    for sample in list(detail.get("samples") or []):
+        sample_input = str(sample.get("input") or "")
+        sample_output = str(sample.get("output") or "")
+        if sample_input.strip() and sample_output.strip():
+            samples.append(Sample(sample_input, sample_output))
+        if len(samples) >= 3:
+            break
 
     return AlgorithmSpec(
         id=f"cc_{code}",

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "cOde(n) web frontend — React + Vite + Tailwind. Editing + debugging happens in VSCode (see .vscode/); cOde(n) is the results viewer.",
+  "description": "cOde(n) web frontend - React + Vite + Tailwind with in-app editing, debugging, reference docs, and progress tracking.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

@@ -17,6 +17,8 @@ without binding to a port.
 from __future__ import annotations
 
 import logging
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -41,11 +43,26 @@ logging.basicConfig(
 # extraResource path) or falls back to <PROJECT_ROOT>/web/dist.
 
 
+def warm_registry() -> None:
+    """Prepare writable data dirs and load the challenge registry."""
+    ensure_data_dirs()
+    from challenges.registry import CHALLENGE_REGISTRY
+
+    logging.info("Loaded %d challenges", len(CHALLENGE_REGISTRY))
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+    warm_registry()
+    yield
+
+
 def create_app() -> FastAPI:
     app = FastAPI(
         title="cOde(n) server",
         version="0.1.0",
         description="HTTP API wrapping the cOde(n) Python engine.",
+        lifespan=lifespan,
     )
 
     # CORS — dev: Vite on 5173, prod: Electron's app:// scheme.
@@ -85,15 +102,6 @@ def create_app() -> FastAPI:
             "web/dist not found at %s; UI served separately (run `npm run build` in web/ for Electron, or `npm run dev` for Vite HMR)",
             WEB_DIST,
         )
-
-    # Warm the registry at startup so the first request is fast.
-    @app.on_event("startup")
-    def _startup() -> None:
-        ensure_data_dirs()
-        # Import the registry so the spec framework runs at startup,
-        # not at first request.
-        from challenges.registry import CHALLENGE_REGISTRY
-        logging.info("Loaded %d challenges", len(CHALLENGE_REGISTRY))
 
     return app
 

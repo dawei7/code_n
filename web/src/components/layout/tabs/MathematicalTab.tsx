@@ -6,6 +6,7 @@ import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import 'katex/dist/katex.min.css';
 
+import { ApiError, apiText } from '../../../api/client';
 import { useAppStore } from '../../../store/useAppStore';
 
 type LoadState =
@@ -16,6 +17,10 @@ type LoadState =
   | { kind: 'error'; message: string };
 
 const CACHE: Map<string, string> = new Map();
+
+function localizedCacheKey(language: string, id: string): string {
+  return `${language}:${id}`;
+}
 
 export function MathematicalTab() {
   const detail = useAppStore((s) => s.currentDetail);
@@ -33,25 +38,28 @@ export function MathematicalTab() {
         setState({ kind: 'idle' });
         return;
       }
-      const cached = CACHE.get(id);
+      const key = localizedCacheKey(language, id);
+      const cached = CACHE.get(key);
       if (cached !== undefined) {
         setState({ kind: 'loaded', markdown: cached });
         return;
       }
-      const res = await fetch(`/api/math/by-id/${encodeURIComponent(id)}?lang=${language}`);
-      if (res.status === 404) {
-        setState({
-          kind: 'missing',
-          challengeId: id,
-          challengeName: '?',
-          category: '?',
-        });
-        return;
+      try {
+        const text = await apiText(`/math/by-id/${encodeURIComponent(id)}?lang=${language}`);
+        CACHE.set(key, text);
+        setState({ kind: 'loaded', markdown: text });
+      } catch (e) {
+        if (e instanceof ApiError && e.status === 404) {
+          setState({
+            kind: 'missing',
+            challengeId: id,
+            challengeName: '?',
+            category: '?',
+          });
+          return;
+        }
+        throw e;
       }
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const text = await res.text();
-      CACHE.set(id, text);
-      setState({ kind: 'loaded', markdown: text });
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
       setState({ kind: 'error', message });

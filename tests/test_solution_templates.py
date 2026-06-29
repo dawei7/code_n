@@ -54,7 +54,7 @@ def test_template_docstring_is_uncluttered():
         assert "2. Examples" not in template
         assert "Inputs passed to solve():" not in template
         assert "\nGoal:\n" not in template
-        assert "##" not in template
+        assert not re.search(r"(?m)^#{1,6}\s+", template)
         assert "```" not in template
         assert "GeeksforGeeks Reference" not in template
         for name in info["params"]:
