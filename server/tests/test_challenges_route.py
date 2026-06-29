@@ -1,7 +1,13 @@
 """Tests for ``GET /api/challenges`` and ``GET /api/challenges/{id}``."""
 from __future__ import annotations
 
+import json
 import math
+import os
+import subprocess
+import sys
+import tempfile
+import textwrap
 from unittest.mock import patch
 
 from . import conftest  # noqa: F401
@@ -126,6 +132,59 @@ class ListChallengesTest(conftest._Base):
             if "codechef_become_5_star" in category and "2000_to_2500_difficulty_problems" in category
         ]
         self.assertEqual(len(become_5_star_2500), 1)
+
+    def test_codechef_loader_honors_packaged_docs_dir_env(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            docs_root = os.path.join(tmp, "docs")
+            codechef_root = os.path.join(docs_root, "algorithms", "codechef")
+            os.makedirs(codechef_root, exist_ok=True)
+            with open(os.path.join(codechef_root, "index.json"), "w", encoding="utf-8") as fh:
+                json.dump(
+                    {
+                        "questions": [
+                            {
+                                "code": "PACKAGEDONLY",
+                                "name": "Packaged Only",
+                                "category": "codechef_packaged",
+                                "categories": ["codechef_packaged"],
+                                "url": "https://www.codechef.com/problems/PACKAGEDONLY",
+                                "difficulty_level": 1,
+                                "difficulty_rating": 321,
+                                "lesson": "Packaged",
+                                "lesson_num": 1,
+                            }
+                        ]
+                    },
+                    fh,
+                )
+            with open(os.path.join(codechef_root, "problem_details.json"), "w", encoding="utf-8") as fh:
+                json.dump({"problems": {"PACKAGEDONLY": {"statement": "Packaged statement.", "samples": []}}}, fh)
+            with open(os.path.join(codechef_root, "translated_solutions.json"), "w", encoding="utf-8") as fh:
+                json.dump({"translations": {}}, fh)
+
+            env = os.environ.copy()
+            env["CODEN_DOCS_DIR"] = docs_root
+            script = textwrap.dedent(
+                """
+                import json
+                from challenges.algorithms import codechef
+                print(json.dumps({
+                    "docs_root": str(codechef.DOCS_ROOT),
+                    "ids": [spec.id for spec in codechef.SPECS],
+                }))
+                """
+            )
+            result = subprocess.run(
+                [sys.executable, "-c", script],
+                cwd=os.getcwd(),
+                env=env,
+                text=True,
+                capture_output=True,
+                check=True,
+            )
+            payload = json.loads(result.stdout)
+            self.assertEqual(payload["docs_root"], os.path.join(codechef_root))
+            self.assertEqual(payload["ids"], ["cc_PACKAGEDONLY"])
 
     def test_codechef_career_mode_gates_become_5_star_by_rating(self) -> None:
         progress = self.client.put(

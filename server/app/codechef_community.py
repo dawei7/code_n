@@ -14,17 +14,18 @@ import re
 import time
 import threading
 from functools import lru_cache
-from pathlib import Path
 from typing import Any
 
 import requests
 
+from server.app.config import DOCS_ROOT, OPTIMAL_SOLUTIONS_ROOT
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-CACHE_PATH = PROJECT_ROOT / "docs" / "algorithms" / "codechef" / "community_optimal_solutions.json"
-COOKIE_PATH = PROJECT_ROOT / "docs" / "algorithms" / "codechef" / ".codechef_cookie"
-INDEX_PATH = PROJECT_ROOT / "docs" / "algorithms" / "codechef" / "index.json"
-OPTIMAL_CODECHEF_ROOT = PROJECT_ROOT / "optimal_solutions" / "codechef"
+
+CODECHEF_DOCS_ROOT = DOCS_ROOT / "algorithms" / "codechef"
+CACHE_PATH = CODECHEF_DOCS_ROOT / "community_optimal_solutions.json"
+COOKIE_PATH = CODECHEF_DOCS_ROOT / ".codechef_cookie"
+INDEX_PATH = CODECHEF_DOCS_ROOT / "index.json"
+OPTIMAL_CODECHEF_ROOT = OPTIMAL_SOLUTIONS_ROOT / "codechef"
 BASE_URL = "https://www.codechef.com"
 PYTHON_LANGUAGE_TOKENS = ("PYTH", "PYPY", "PYTHON")
 _LOCK = threading.Lock()

@@ -13,16 +13,15 @@ import json
 import io
 import re
 import sys
-from pathlib import Path
 from typing import Any
 
 from code_n.counter import ComplexityClass
 from challenges.spec import AlgorithmSpec, Sample
+from server.app.config import DOCS_ROOT as CONFIGURED_DOCS_ROOT
 from server.app.codechef_sources import best_codechef_source, is_python_language
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-DOCS_ROOT = PROJECT_ROOT / "docs" / "algorithms" / "codechef"
+DOCS_ROOT = CONFIGURED_DOCS_ROOT / "algorithms" / "codechef"
 INDEX_PATH = DOCS_ROOT / "index.json"
 DETAILS_PATH = DOCS_ROOT / "problem_details.json"
 TRANSLATIONS_PATH = DOCS_ROOT / "translated_solutions.json"

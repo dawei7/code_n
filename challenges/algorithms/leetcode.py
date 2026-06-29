@@ -17,10 +17,10 @@ from typing import Any
 
 from code_n.counter import ComplexityClass
 from challenges.spec import AlgorithmSpec, Sample
+from server.app.config import DOCS_ROOT as CONFIGURED_DOCS_ROOT, OPTIMAL_SOLUTIONS_ROOT
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-DOCS_ROOT = PROJECT_ROOT / "docs" / "algorithms" / "leetcode"
+DOCS_ROOT = CONFIGURED_DOCS_ROOT / "algorithms" / "leetcode"
 
 
 INDEX_PATH = DOCS_ROOT / "index.json"
@@ -106,7 +106,7 @@ def _source_matches_contract(source: str, params: list[str]) -> bool:
 
 def _load_solution_source(doc_path: Path, params: list[str]) -> str:
     relative_doc = doc_path.relative_to(DOCS_ROOT)
-    solution_path = (PROJECT_ROOT / "optimal_solutions" / "leetcode" / relative_doc).with_suffix(".py")
+    solution_path = (OPTIMAL_SOLUTIONS_ROOT / "leetcode" / relative_doc).with_suffix(".py")
     if solution_path.is_file():
         source = solution_path.read_text(encoding="utf-8")
         if _source_matches_contract(source, params):
