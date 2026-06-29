@@ -52,6 +52,9 @@ export type { ChallengeDetail } from '../types/api';
 export type RunMode = 'practice' | 'real_test';
 export type Topic = 'reference' | 'mathematical' | 'complexity' | 'coden' | 'career_path';
 
+const clampPracticeN = (value: number, max = 100) => Math.max(2, Math.min(max, value || 16));
+const clampExportTestCount = (value: number) => Math.max(1, Math.min(9, value || 3));
+
 
 export interface AppState {
   theme: 'light' | 'dark';
@@ -83,6 +86,9 @@ export interface AppState {
   // Run args
   n: number;
   seed: number | null;
+  exportN: number;
+  exportSeed: number | null;
+  exportTestCount: number;
   /** Practice = the user picks n + seed (default). Real-test = the
    *  server picks a "reasonable" n and a random seed; the UI
    *  disables the n / seed inputs and shows the actual values the
@@ -127,6 +133,9 @@ export interface AppState {
   saveSource(s: string): Promise<void>;
   setN(n: number): void;
   setSeed(s: number | null): void;
+  setExportN(n: number): void;
+  setExportSeed(s: number | null): void;
+  setExportTestCount(count: number): void;
   setMode(m: RunMode): void;
   run(): Promise<void>;
   reset(): void;
@@ -201,6 +210,9 @@ export const useAppStore = create<AppState>((set, get) => ({
   modifiedVersions: [],
   n: 16,
   seed: 1,
+  exportN: 16,
+  exportSeed: 1,
+  exportTestCount: 3,
   mode: 'practice',
   isRunning: false,
   runResult: null,
@@ -229,26 +241,17 @@ export const useAppStore = create<AppState>((set, get) => ({
   }),
   setSidebarPosition: (pos) => set(() => {
     localStorage.setItem('coden-sidebar-position', pos);
-    void progressApi.updateProgressSettings(
-      undefined, undefined, undefined, undefined, undefined,
-      undefined, pos
-    );
+    void progressApi.updateProgressSettings({ sidebar_position: pos });
     return { sidebarPosition: pos };
   }),
   setSidebarCollapsed: (collapsed) => set(() => {
     localStorage.setItem('coden-sidebar-collapsed', collapsed ? 'true' : 'false');
-    void progressApi.updateProgressSettings(
-      undefined, undefined, undefined, undefined, undefined,
-      undefined, undefined, collapsed
-    );
+    void progressApi.updateProgressSettings({ sidebar_collapsed: collapsed });
     return { sidebarCollapsed: collapsed };
   }),
   saveSidebarWidthToBackend: async (width) => {
     try {
-      await progressApi.updateProgressSettings(
-        undefined, undefined, undefined, undefined, undefined,
-        width
-      );
+      await progressApi.updateProgressSettings({ sidebar_width: width });
     } catch {
       // ignore
     }
@@ -294,11 +297,13 @@ export const useAppStore = create<AppState>((set, get) => ({
         // ignore — use starter
         set({ activeVersion: 1, versions: [], versionNames: {}, modifiedVersions: [] });
       }
+      const preferredN = clampPracticeN(get().n ?? 16, detail.max_n);
+      const preferredSeed = get().seed ?? 1;
       set({
         currentDetail: detail,
         source,
-        n: Math.min(16, detail.max_n),
-        seed: 1,
+        n: preferredN,
+        seed: preferredSeed,
       });
     } catch (e) {
       set({ error: (e as Error).message });
@@ -343,10 +348,23 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
   },
   setN(n: number) {
-    set({ n });
+    const maxN = get().currentDetail?.max_n ?? 100;
+    const next = clampPracticeN(n, maxN);
+    set({ n: next });
   },
   setSeed(s: number | null) {
     set({ seed: s });
+  },
+  setExportN(n: number) {
+    const next = clampPracticeN(n);
+    set({ exportN: next });
+  },
+  setExportSeed(s: number | null) {
+    set({ exportSeed: s });
+  },
+  setExportTestCount(count: number) {
+    const next = clampExportTestCount(count);
+    set({ exportTestCount: next });
   },
 
   setMode(m: RunMode) {
@@ -416,7 +434,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       const p = await progressApi.getProgress();
       set({ 
         progress: p,
-        activeSet: normalizeAlgorithmSet(p.active_set)
+        activeSet: normalizeAlgorithmSet(p.active_set),
       });
       if (p.sidebar_width) {
         set({ sidebarWidth: p.sidebar_width });
@@ -562,7 +580,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
     set(updates);
     try {
-      const p = await progressApi.updateProgressSettings(undefined, undefined, undefined, undefined, setVal);
+      const p = await progressApi.updateProgressSettings({ active_set: setVal });
       set({ 
         progress: p,
         activeSet: normalizeAlgorithmSet(p.active_set)
@@ -576,7 +594,12 @@ export const useAppStore = create<AppState>((set, get) => ({
   async updateSettings(careerMode: boolean, leetcodeUsername: string, geminiApiKey: string) {
     try {
       const activeSet = get().activeSet;
-      const p = await progressApi.updateProgressSettings(careerMode, leetcodeUsername, undefined, geminiApiKey, activeSet);
+      const p = await progressApi.updateProgressSettings({
+        career_mode: careerMode,
+        leetcode_username: leetcodeUsername,
+        gemini_api_key: geminiApiKey,
+        active_set: activeSet,
+      });
       set({ progress: p });
       await get().loadChallenges();
       await get().loadProfiles();

@@ -86,6 +86,9 @@ def sample_lines(challenge_id: str) -> list[str]:
 
     Returns an empty list when no samples are registered.
     """
+    if challenge_id.startswith("cc_"):
+        return _codechef_sample_lines(challenge_id)
+
     doc_examples = _examples_from_markdown_doc(challenge_id)
     if doc_examples:
         return _format_example_blocks(doc_examples)
@@ -95,6 +98,70 @@ def sample_lines(challenge_id: str) -> list[str]:
         for sample in samples_for(challenge_id)
     ]
     return _format_example_blocks(examples)
+
+
+def _codechef_sample_lines(challenge_id: str) -> list[str]:
+    samples = samples_for(challenge_id)
+    if not samples:
+        return []
+
+    lines: list[str] = []
+    for index, sample in enumerate(samples, start=1):
+        if index > 1:
+            lines.append("")
+        lines.append(f"Example {index} (official combined stdin/stdout):")
+        lines.append("Input:")
+        lines.extend(_indent_code_block(sample.input_repr))
+        lines.append("Output:")
+        lines.extend(_indent_code_block(sample.output_repr))
+
+        separated = _split_codechef_sample_cases(sample.input_repr, sample.output_repr)
+        if separated:
+            lines.append("Separated test cases:")
+            for case_index, (case_input, case_output) in enumerate(separated, start=1):
+                lines.append(f"  Test case {case_index}:")
+                lines.append("    Input:")
+                lines.extend(_indent_code_block(case_input, indent="      "))
+                lines.append("    Output:")
+                lines.extend(_indent_code_block(case_output, indent="      "))
+    return lines
+
+
+def _indent_code_block(value: str, indent: str = "  ") -> list[str]:
+    text = str(value or "").strip()
+    if not text:
+        return [f"{indent}<empty>"]
+    return [f"{indent}{line.rstrip()}" for line in text.splitlines()]
+
+
+def _split_codechef_sample_cases(input_text: str, output_text: str) -> list[tuple[str, str]]:
+    input_lines = [line.rstrip() for line in input_text.strip().splitlines() if line.strip()]
+    output_lines = [line.rstrip() for line in output_text.strip().splitlines() if line.strip()]
+    if len(input_lines) < 3:
+        return []
+    try:
+        test_count = int(input_lines[0].strip())
+    except ValueError:
+        return []
+    if test_count <= 1:
+        return []
+
+    payload_lines = input_lines[1:]
+    if len(payload_lines) % test_count != 0:
+        return []
+    block_size = len(payload_lines) // test_count
+    if block_size <= 0 or len(output_lines) != test_count:
+        return []
+
+    cases: list[tuple[str, str]] = []
+    for index in range(test_count):
+        start = index * block_size
+        case_input = "\n".join(payload_lines[start:start + block_size]).strip()
+        case_output = output_lines[index].strip()
+        if not case_input or not case_output:
+            return []
+        cases.append((case_input, case_output))
+    return cases
 
 
 def _format_example_blocks(examples: list[tuple[str, str]]) -> list[str]:

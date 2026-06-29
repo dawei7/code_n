@@ -84,4 +84,13 @@ debug.log
 *.log
 *.main.js
 
+# Resumable CodeChef API import scratch data (the normalized aggregate is kept).
+docs/algorithms/codechef/.problem_cache/
+docs/algorithms/codechef/problem_import.out
+docs/algorithms/codechef/problem_import.err
+docs/algorithms/codechef/translation_import.out
+docs/algorithms/codechef/translation_import.err
+docs/algorithms/codechef/community_optimal_solutions.json
+docs/algorithms/codechef/.codechef_cookie
+
 # Stray main.js in electron/ from asar extraction (electron/main.js is not a real source file)

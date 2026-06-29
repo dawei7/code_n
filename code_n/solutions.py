@@ -150,6 +150,18 @@ def _solution_template(challenge_id: str, heading: str, description: str) -> str
             '    return None\n'
         )
 
+    if challenge_id.startswith("cc_"):
+        return (
+            header +
+            'def solve():\n'
+            '    # Read stdin with input(), just like on CodeChef.\n'
+            '    # Print the answer with print().\n'
+            '    pass\n'
+            '\n\n'
+            'if __name__ == "__main__":\n'
+            '    solve()\n'
+        )
+
     params = info["params"]
     sig = "def solve(" + ", ".join(params) + "):"
 

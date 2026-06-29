@@ -1,0 +1,10 @@
+{
+  "source": "CodeChef course items that do not have a normal accepted Python baseline workflow",
+  "exemptions": {
+    "CANDY1C": "Dynamic Programming course concept/MCQ page; CodeChef problem API exposes no coding languages and normal Python source submissions return result_code 14 without a submission id.",
+    "CNTWAYC": "Dynamic Programming course concept/MCQ page; CodeChef problem API exposes no coding languages and normal Python source submissions return result_code 14 without a submission id.",
+    "MATDEF": "Matrix course reading page; CodeChef IDE language API advertises no Python submission language.",
+    "MATMCQ1": "Matrix multiple-choice course checkpoint; Python submissions are rejected as normal code answers.",
+    "MATTYPES": "Matrix course reading page; CodeChef IDE language API advertises no Python submission language."
+  }
+}

@@ -1,0 +1,190 @@
+# The Lost Arithmetic Sequences
+
+---
+
+| Field | Value |
+|---|---|
+| Source | CodeChef |
+| Code | TAASEQ |
+| Difficulty Rating | 2012 |
+| Difficulty Band | Rise from 3* to 4* |
+| Path | Become 5 star |
+| Lesson | Dynamic Programming |
+| Official Link | [TAASEQ](https://www.codechef.com/practice/course/3to4stars/LP3TO406/problems/TAASEQ) |
+
+---
+
+## Problem Statement
+
+Jem couldn't even finish half of the homework exercises in "Advanced topics in algorithm" class. The teacher is really upset and gives him one final problem to solve - if he can't solve it, he is gonna fail the course.
+
+Jem is given an array **A** consisting of **N** integers. The teacher asks him to remove exactly one number in the array to make the array become an arithmetic progressions.
+
+Jem wanted to ask the teacher about the definition of arithmetic progressions but he remembered that he had heard this term in last week's lesson just before falling asleep. Now his life is in your hands again!
+
+Anyways, we provide you the definition of arithmetic progression. Arithmetic progression is a sequence of numbers, where the difference between any two adjacent numbers is same.
+
+### Input
+
+Input contains mutilpe test cases. The first line of the input contains a single integer **T** represents the number of tests. It is followed by T group of line represent the test cases.
+
+Each test case consists of two lines where the first line contains a single integer **N**.
+
+The second line contains **N** space separated integers denoting the array **A**.
+
+### Output
+
+For each test case print out single integer which is the number you will remove from the array. If there is more than one solution take the smallest one. If there is no solution print out -1.
+
+### Constraints
+
+- **1 ≤ T ≤ 10 **
+
+- **2 ≤ N ≤ 105**
+
+- **0 ≤ Ai ≤ 109**
+
+---
+
+## Examples
+
+**Example 1**
+
+**Input**
+
+```text
+3
+2
+3 4
+4
+1 5 3 4
+6
+2 4 6 7 8 10
+```
+
+**Output**
+
+```text
+3
+-1
+7
+```
+
+**Explanation**
+
+**test 1:** an array contain a single integer is considered to be an arithmetic progression so you can remove any number in the array. But note that we must print out the **smallest result** which is 3.
+
+**test 2:** there is no solution since none of [1, 3, 4], [1, 5, 3], [1, 5, 4], [5, 3, 4] is an arithmetic progressions.
+
+**test 3:** the only way to archive an airthmetic progressions is remove the number 7 which will give us [2, 4, 6, 8, 10].
+
+**Separated test cases**
+
+#### Test case 1
+
+**Input for this case**
+
+```text
+2
+3 4
+```
+
+**Output for this case**
+
+```text
+3
+```
+
+
+
+#### Test case 2
+
+**Input for this case**
+
+```text
+4
+1 5 3 4
+```
+
+**Output for this case**
+
+```text
+-1
+```
+
+
+
+#### Test case 3
+
+**Input for this case**
+
+```text
+6
+2 4 6 7 8 10
+```
+
+**Output for this case**
+
+```text
+7
+```
+
+
+
+---
+
+<details class="codechef-official-editorial">
+<summary>Official Editorial</summary>
+
+### PROBLEM LINK:
+
+[Practice](http://www.codechef.com/problems/TAASEQ)
+
+[Contest](http://www.codechef.com/COOK74/problems/TAASEQ)
+
+**Author:** [Tu?n Anh Tr?n ??ng](https://www.codechef.com/users/tuananh93)
+
+**Tester:** [Kamil D?bowski](http://www.codechef.com/users/errichto)
+
+**Editorialist:** [Tu?n Anh Tr?n ??ng](http://www.codechef.com/users/tuananh93)
+
+### DIFFICULTY:
+
+Easy
+
+### PREREQUISITES:
+
+Dynamic Programming
+
+#
+[]Problem
+
+Remove a single number in the sequence to make it an arithmetic progression.
+
+#
+[]Solution
+
+The number at position **i** can be removed if the sub-sequence on its left and right are both arithmetic progression and when when we concat that two parts they still make an arithmetic progression.
+
+The first condition can be handled by precalculate **f[i]** = whether the prefix of **i** characters of the sequence is arithmetic progression and similarly **g[]** for the suffixes. Put all the corner cases aside the whole conditions can be represented as **f[i] and g[i] and a[i - 2] - a[i - 1] = a[i - 1] - a[i + 1] = a[i + 1] - a[i + 2]** (1).
+
+###
+[]details
+
+We will use dynamic programming (dp) to calculate **f** and **g**. Since they are similar let’s just discuss how to calculate **f**.
+
+Initialize the dp with **f[0] = f[1](http://www.codechef.com/problems/TAASEQ) = f[2](http://www.codechef.com/COOK74/problems/TAASEQ) = true**. We’ll have that
+
+- f[i] = (a[i - 1] - a[i] = a[i - 2] - a[i - 1] and f[i - 1]).
+
+Before using the formula (1) some corner cases we need to consider is when **N ? 3**, **i ? 2** and **N - 2** ? **i**.
+
+Complexity is O(N).
+
+### Author’s/Tester’s Solutions:
+
+[Setter’s solution](https://codechef_shared.s3.amazonaws.com/download/Solutions/COOK74/Setter/TAASEQ.cpp)
+
+[Tester’s solution](https://codechef_shared.s3.amazonaws.com/download/Solutions/COOK74/Tester/TAASEQ.cpp)
+
+</details>

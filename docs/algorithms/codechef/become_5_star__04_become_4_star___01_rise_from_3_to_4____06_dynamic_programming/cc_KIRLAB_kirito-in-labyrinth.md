@@ -1,0 +1,114 @@
+# Kirito in labyrinth
+
+---
+
+| Field | Value |
+|---|---|
+| Source | CodeChef |
+| Code | KIRLAB |
+| Difficulty Rating | 2047 |
+| Difficulty Band | Rise from 3* to 4* |
+| Path | Become 5 star |
+| Lesson | Dynamic Programming |
+| Official Link | [KIRLAB](https://www.codechef.com/practice/course/3to4stars/LP3TO406/problems/KIRLAB) |
+
+---
+
+## Problem Statement
+
+Kirito faced a dangerous labyrinth, and now he requires your help.
+
+He's in a tunnel which contains **N** different rooms. Each room contains **Ai** monsters inside it. He starts from room **1**. Every time he stays near a room **X**, he may go in and clear it from monsters, or just leave the room locked and move to the room **X+1**. However, if he clears a room with **K** monsters, and the next room he clears consists of **L** monsters, then the greatest common divisor of **K** and **L** must be greater than **1**, otherwise he will die (awful curse). Formally, let us say that the order of rooms he visited is **i1**,  **i2**, , ..., **it**. Then gcd(**Aij**, **Aij + 1**) **> 1** for all **j < t**. Help him cross all the rooms by clearing the maximum number of rooms.
+
+### Input
+
+The first line of input contains an integer **T** denoting the number of test cases.
+
+The first line of each test case contains one integer **N** denoting the number elements in sequence.
+
+The second line of each test case contains **N** integers where **i-th** integer is number of monsters in room **Ai**.
+
+### Output
+
+For each test case, output the maximum number of rooms he could clear. (Kirito should survive.)
+
+### Constraints
+
+- **1** ≤ **T** ≤ **10**
+
+- **1** ≤ **N** ≤ **105**
+
+- **1** ≤ **ai** ≤ **107**
+
+### Subtasks
+
+- **Subtask 1:** **1** ≤ **N** ≤ **103** - **30 points**
+
+- **Subtask 2:** **Original constraints** - **70 points**
+
+---
+
+## Examples
+
+**Example 1**
+
+**Input**
+
+```text
+2
+7
+13 2 8 6 3 1 9
+6
+1 2 2 3 3 1
+```
+
+**Output**
+
+```text
+5
+2
+```
+
+**Explanation**
+
+**Example 1**. Kirito can clear the monsters in the rooms 2, 3, 4, 5, 7 in that order. These rooms consist of 2, 8, 6, 3, and 9 monsters, respectively. You can check that gcd(2, 8), gcd(8, 6), gcd(6, 3) and gcd(3, 9), all are greater than 1.
+
+**Example 2**. Kirito can clear the monsters in the rooms numbered 2, 3. Each of these two rooms contains two monsters. And we know that gcd(2, 2) = 2 > 1.
+
+There is one more possible solution: Kirito can clear the monsters in the rooms numbered 4, 5. These rooms contains 3 monsters each, and he can clear these rooms as gcd(3, 3) = 3 > 1.
+
+**Separated test cases**
+
+#### Test case 1
+
+**Input for this case**
+
+```text
+7
+13 2 8 6 3 1 9
+```
+
+**Output for this case**
+
+```text
+5
+```
+
+
+
+#### Test case 2
+
+**Input for this case**
+
+```text
+6
+1 2 2 3 3 1
+```
+
+**Output for this case**
+
+```text
+2
+```
+
+

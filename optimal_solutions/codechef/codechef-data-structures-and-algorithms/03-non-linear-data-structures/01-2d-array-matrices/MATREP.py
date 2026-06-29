@@ -1,0 +1,21 @@
+
+
+
+def solve():
+    n = int(input())
+
+    assert 1 <= n <= 100
+
+    mat = [[0]*n for _ in range(n)]
+    val = 1
+    for i in range(n):
+        for j in range(n):
+            mat[i][j] = val
+            val += 1
+
+    for row in mat:
+        print(*row)
+
+
+if __name__ == "__main__":
+    solve()

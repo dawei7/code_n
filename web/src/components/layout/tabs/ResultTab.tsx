@@ -244,21 +244,21 @@ function ComplexityCard({
         <Metric label="Your code (AST)" value={user} />
         <Metric label="Reference (AST)" value={ref} accent="text-coden-accent" />
       </div>
-      {ciLow !== null && ciHigh !== null && ref !== null && ref > 0 && (
+      {ciHigh !== null && ref !== null && ref > 0 && (
         <div className="mt-3">
           <div className="text-xs uppercase text-coden-muted font-semibold mb-1">
-            -10% / +5% tolerance band around the reference
+            {ciLow !== null ? 'Tolerance band around the reference' : 'Upper bound vs reference'}
           </div>
           <div className="flex items-center gap-2 text-xs font-mono">
-            <span className="text-rose-300">{ciLow.toLocaleString()}</span>
+            <span className="text-rose-300">{ciLow !== null ? ciLow.toLocaleString() : '—'}</span>
             <div className="flex-1 h-2 rounded bg-coden-bg border border-coden-border relative overflow-hidden">
               {/* The band itself */}
               {user !== null && (
                 <div
                   className="absolute top-0 bottom-0 bg-coden-accent/25 border-l border-r border-coden-accent/60"
                   style={{
-                    left: `${(ciLow / Math.max(ref * 1.5, user * 1.1)) * 100}%`,
-                    width: `${((ciHigh - ciLow) / Math.max(ref * 1.5, user * 1.1)) * 100}%`,
+                    left: `${ciLow !== null ? (ciLow / Math.max(ref * 1.5, user * 1.1)) * 100 : 0}%`,
+                    width: `${((ciHigh - (ciLow ?? 0)) / Math.max(ref * 1.5, user * 1.1)) * 100}%`,
                   }}
                 />
               )}
@@ -268,7 +268,7 @@ function ComplexityCard({
                   style={{
                     left: `${(user / Math.max(ref * 1.5, user * 1.1)) * 100}%`,
                     backgroundColor:
-                      user < ciLow ? '#f87171' : user > ciHigh ? '#fbbf24' : '#22c55e',
+                      ciLow !== null && user < ciLow ? '#f87171' : user > ciHigh ? '#fbbf24' : '#22c55e',
                   }}
                 />
               )}
@@ -276,8 +276,8 @@ function ComplexityCard({
             <span className="text-rose-300">{ciHigh.toLocaleString()}</span>
           </div>
           <div className="mt-1 text-xs text-coden-muted">
-            Green dot = within the band (as efficient as the reference).
-            Red = too cheap (likely a cheat). Amber = too slow.
+            Green dot = within the allowed bound.
+            {ciLow !== null ? ' Red = too cheap (likely a cheat).' : ''} Amber = too slow.
             See the <span className="text-coden-accent">Complexity</span> tab
             for the full analysis.
           </div>

@@ -22,6 +22,7 @@ selectively:
 """
 from __future__ import annotations
 
+import html
 import re
 from pathlib import Path
 from typing import Optional
@@ -475,6 +476,309 @@ This challenge is a **{algo_type}** built on **{cat_info['base_algo']}**.
     return markdown
 
 
+def generate_codechef_reference(spec) -> str:
+    metadata = spec.reference_metadata or {}
+    title = spec.name
+    code = str(metadata.get("code") or "").strip()
+    url = str(metadata.get("url") or getattr(spec, "source_url", "") or "").strip()
+    difficulty_label = str(metadata.get("difficulty") or getattr(spec, "difficulty_label", "") or "").strip()
+    difficulty_rating = _codechef_difficulty_rating(metadata, spec)
+    path_group = str(metadata.get("path_group") or "").strip()
+    lesson = str(metadata.get("lesson") or "").strip()
+    statement = str(metadata.get("statement") or spec.description)
+    input_format = str(metadata.get("input_format") or spec.inputs.get("input_data", ""))
+    output_format = str(metadata.get("output_format") or spec.returns)
+    constraints = str(metadata.get("constraints") or "")
+    examples = list(metadata.get("samples") or [])[:3]
+    example_parts = []
+    for number, sample in enumerate(examples, start=1):
+        block = (
+            f"**Example {number}**\n\n"
+            f"**Input**\n\n```text\n{str(sample.get('input') or '').strip()}\n```\n\n"
+            f"**Output**\n\n```text\n{str(sample.get('output') or '').strip()}\n```"
+        )
+        explanation = str(sample.get("explanation") or "")
+        if explanation:
+            block += f"\n\n**Explanation**\n\n{explanation}"
+        separated_cases = _format_codechef_separated_cases(
+            str(sample.get("input") or ""),
+            str(sample.get("output") or ""),
+        )
+        if separated_cases:
+            block += f"\n\n**Separated test cases**\n\n{separated_cases}"
+        example_parts.append(block)
+    editorial = str(metadata.get("editorial") or "").strip()
+    fields = [
+        ("Source", "CodeChef"),
+        ("Code", code),
+        ("Difficulty Rating", difficulty_rating),
+        ("Difficulty Band", difficulty_label),
+        ("Path", path_group),
+        ("Lesson", lesson),
+    ]
+    table_rows = [
+        "| Field | Value |",
+        "|---|---|",
+        *[f"| {label} | {value} |" for label, value in fields if value],
+    ]
+    if url:
+        link_label = code or "Problem"
+        table_rows.append(f"| Official Link | [{link_label}]({url}) |")
+    sections = [f"# {title}", "\n".join(table_rows), f"## Problem Statement\n\n{statement}"]
+    if input_format:
+        sections.append(f"## Input Format\n\n{input_format}")
+    if output_format:
+        sections.append(f"## Output Format\n\n{output_format}")
+    if constraints:
+        sections.append(f"## Constraints\n\n{constraints}")
+    if example_parts:
+        sections.append("## Examples\n\n" + "\n\n".join(example_parts))
+    if editorial:
+        sections.append(_codechef_collapsible_editorial(editorial))
+    return "\n\n---\n\n".join(sections) + "\n"
+
+
+def _codechef_difficulty_rating(metadata: dict, spec) -> str:
+    rating = str(metadata.get("difficulty_rating") or getattr(spec, "difficulty_label", "") or "").strip()
+    if rating and rating not in {"-1", "0", "None", "none"}:
+        return rating
+    return ""
+
+
+def _format_codechef_separated_cases(input_text: str, output_text: str) -> str:
+    cases = _split_codechef_sample_cases(input_text, output_text)
+    if not cases:
+        return ""
+    parts = []
+    for index, (case_input, case_output) in enumerate(cases, start=1):
+        parts.append(
+            f"#### Test case {index}\n\n"
+            f"**Input for this case**\n\n"
+            f"```text\n{case_input}\n```\n\n"
+            f"**Output for this case**\n\n"
+            f"```text\n{case_output}\n```\n\n"
+        )
+    return "\n\n".join(parts)
+
+
+def _split_codechef_sample_cases(input_text: str, output_text: str) -> list[tuple[str, str]]:
+    input_lines = [line.rstrip() for line in input_text.strip().splitlines() if line.strip()]
+    output_lines = [line.rstrip() for line in output_text.strip().splitlines() if line.strip()]
+    if len(input_lines) < 3:
+        return []
+    try:
+        test_count = int(input_lines[0].strip())
+    except ValueError:
+        return []
+    if test_count <= 1:
+        return []
+
+    payload_lines = input_lines[1:]
+    if len(payload_lines) % test_count != 0:
+        return []
+    block_size = len(payload_lines) // test_count
+    if block_size <= 0:
+        return []
+    if len(output_lines) != test_count:
+        return []
+
+    cases: list[tuple[str, str]] = []
+    for index in range(test_count):
+        start = index * block_size
+        case_input = "\n".join(payload_lines[start:start + block_size]).strip()
+        case_output = output_lines[index].strip()
+        if not case_input or not case_output:
+            return []
+        cases.append((case_input, case_output))
+    return cases
+
+
+def _codechef_collapsible_editorial(editorial: str) -> str:
+    return (
+        '<details class="codechef-official-editorial">\n'
+        '<summary>Official Editorial</summary>\n\n'
+        f"{editorial.strip()}\n\n"
+        "</details>"
+    )
+
+
+def _visible_codechef_editorial(editorial: str) -> str:
+    """Return the explanation portion of a CodeChef editorial for display.
+
+    CodeChef editorial payloads often append official/setter/editorialist code.
+    We keep that raw text in the dataset for internal baseline work, but the
+    visible Reference page should show only the explanation and complexity
+    notes, not the official solution source.
+    """
+    if not editorial.strip():
+        return ""
+    lines = editorial.splitlines()
+    for index, line in enumerate(lines):
+        normalized = re.sub(r"\s+", " ", line).strip().lower()
+        if re.match(r"^(?:#+\s*)?(?:\[\]\([^)]+\))?\s*(?:code|solutions?|author'?s and tester'?s solutions?|author'?s solution|setter'?s solution|tester'?s solution|editorialist'?s solution)\s*:?\s*$", normalized):
+            cut_index = index - 1 if index > 0 and lines[index - 1].strip() == "#" else index
+            return _clean_codechef_editorial_text("\n".join(lines[:cut_index]))
+    return _clean_codechef_editorial_text(editorial)
+
+
+def _clean_codechef_editorial_text(editorial: str) -> str:
+    """Remove CodeChef editorial front matter/noise before display."""
+    text = editorial.strip()
+    if not text:
+        return ""
+
+    text = re.sub(r"\\mathcal\{O\}\s*\(([^)]+)\)", r"O(\1)", text)
+    text = re.sub(r"\$\\mathcal\{O\}\s*\(([^)]+)\)\$", r"`O(\1)`", text)
+
+    front_matter_markers = {
+        "problem link",
+        "difficulty",
+    }
+    keep_headings = {
+        "prerequisites": "Prerequisites",
+        "pre-requisites": "Prerequisites",
+        "problem": "Problem",
+        "explanation": "Explanation",
+        "time complexity": "Time Complexity",
+        "complexity": "Complexity",
+        "super quick explanation": "Quick Explanation",
+        "quick explanation": "Quick Explanation",
+        "approach": "Approach",
+    }
+    removable_people = re.compile(
+        r"^\s*(?:[*_]*\s*)?(?:author|setter|tester|testers|editorialist|editorialists)\b.*$",
+        flags=re.IGNORECASE,
+    )
+
+    cleaned: list[str] = []
+    skip_until_next_heading = False
+    explanation_details_open = False
+    for raw_line in text.splitlines():
+        line = raw_line.rstrip()
+        normalized = _normalise_codechef_editorial_heading(line)
+
+        is_heading = (
+            bool(re.match(r"^\s*#{1,6}\s+", line))
+            or bool(re.match(r"^\s*\[\]\(#[^)]+\)", line))
+            or line.strip() == "#"
+        )
+        if skip_until_next_heading:
+            if is_heading:
+                skip_until_next_heading = False
+            else:
+                continue
+
+        if normalized in front_matter_markers:
+            skip_until_next_heading = True
+            continue
+        if is_heading and normalized in keep_headings:
+            if explanation_details_open:
+                cleaned.append("")
+                cleaned.append("</details>")
+                cleaned.append("")
+                explanation_details_open = False
+            if normalized == "explanation":
+                cleaned.append("__CODECHEF_EXPLANATION_DETAILS_START__")
+                explanation_details_open = True
+                continue
+            cleaned.append(f"### {keep_headings[normalized]}")
+            continue
+        if is_heading and not normalized:
+            continue
+        if normalized in {"tbd", "to be calculated"}:
+            continue
+        if removable_people.match(line):
+            continue
+        if removable_people.match(re.sub(r"[*_:]", "", line).strip()):
+            continue
+        if re.match(r"^\s*\[(?:practice|contest:[^\]]+|div\d*)\]\([^)]+\)\s*$", line, flags=re.IGNORECASE):
+            continue
+        cleaned.append(line)
+
+    if explanation_details_open:
+        cleaned.append("")
+        cleaned.append("</details>")
+
+    result = "\n".join(cleaned)
+    result = _render_codechef_explanation_details(result)
+    result = re.sub(r"\n{3,}", "\n\n", result).strip()
+    return result
+
+
+def _render_codechef_explanation_details(text: str) -> str:
+    marker = "__CODECHEF_EXPLANATION_DETAILS_START__"
+    if marker not in text:
+        return text
+    start = text.find(marker)
+    end = text.find("</details>", start)
+    if end == -1:
+        body = text[start + len(marker):]
+        suffix = ""
+    else:
+        body = text[start + len(marker):end]
+        suffix = text[end + len("</details>"):]
+    return text[:start] + _html_details("Explanation", body.strip()) + suffix
+
+
+def _html_details(title: str, body: str) -> str:
+    lines: list[str] = [
+        '<details class="codechef-explanation">',
+        f"<summary>{html.escape(title)}</summary>",
+        '<div class="codechef-explanation-body">',
+    ]
+    in_code = False
+    code_lines: list[str] = []
+    paragraph: list[str] = []
+
+    def flush_paragraph() -> None:
+        if paragraph:
+            lines.append("<p>" + "<br />".join(paragraph) + "</p>")
+            paragraph.clear()
+
+    def flush_code() -> None:
+        if code_lines:
+            lines.append("<pre><code>" + html.escape("\n".join(code_lines)) + "</code></pre>")
+            code_lines.clear()
+
+    for raw_line in body.splitlines():
+        stripped = raw_line.strip()
+        if stripped.startswith("```") or stripped.startswith("``"):
+            inline_code = stripped.lstrip("`")
+            if in_code:
+                if inline_code:
+                    code_lines.append(inline_code)
+                flush_code()
+                in_code = False
+            else:
+                flush_paragraph()
+                in_code = True
+                if inline_code:
+                    code_lines.append(inline_code)
+            continue
+        if in_code:
+            code_lines.append(raw_line)
+            continue
+        if not stripped:
+            flush_paragraph()
+            continue
+        paragraph.append(html.escape(raw_line))
+    flush_code()
+    flush_paragraph()
+    lines.extend(["</div>", "</details>"])
+    return "\n".join(lines)
+
+
+def _normalise_codechef_editorial_heading(line: str) -> str:
+    text = line.strip()
+    text = re.sub(r"^#{1,6}\s*", "", text)
+    text = re.sub(r"^\[\]\(#[^)]+\)\s*", "", text)
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"[*_`]", "", text)
+    text = re.sub(r"^\s*[-–—]+\s*", "", text)
+    text = re.sub(r"\s+", " ", text).strip().rstrip(":")
+    return text.lower()
+
+
 def generate_dynamic_mathematical(challenge_id: str, spec, lang: str) -> str:
     cat_info = NEETCODE_CATEGORY_INFO.get(spec.category, {
         "name": spec.category,
@@ -562,12 +866,14 @@ def _doc_family(category: str) -> str:
         return "neetcode"
     if category.startswith("leetcode_"):
         return "leetcode"
+    if category.startswith("codechef_"):
+        return "codechef"
     return "geeksforgeeks"
 
 
 def _doc_category_folder(category: str) -> str:
     """Return the category folder name inside the source-family folder."""
-    for prefix in ("neetcode_", "leetcode_"):
+    for prefix in ("neetcode_", "leetcode_", "codechef_"):
         if category.startswith(prefix):
             return category.removeprefix(prefix)
     return category
@@ -715,7 +1021,7 @@ def docs_by_id(challenge_id: str, lang: str = "en") -> Response:
     if cls is None:
         raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
     spec = cls()._spec
-    
+
     doc = _find_doc_path(challenge_id, spec.name, spec.category, lang)
     if doc is None:
         raise HTTPException(

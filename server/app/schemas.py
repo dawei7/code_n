@@ -103,7 +103,10 @@ class RunRequest(BaseModel):
 
     source: str = Field(
         ...,
-        description="Full Python source; must define `def solve(**kwargs)`",
+        description=(
+            "Full Python source. Most challenges define `solve(...)`; "
+            "CodeChef challenges may use normal stdin/stdout with input() and print()."
+        ),
     )
     n: int = Field(16, ge=2, le=100)
     seed: Optional[int] = None

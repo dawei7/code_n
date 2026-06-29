@@ -85,8 +85,8 @@ export function ComplexityAnalysis() {
         />
       </div>
 
-      {/* The -10% / +5% tolerance band (visual scale) */}
-      {ref !== null && ciLow !== null && ciHigh !== null && (
+      {/* The dataset-aware tolerance band / upper bound (visual scale) */}
+      {ref !== null && ciHigh !== null && (
         <ToleranceBand
           refValue={ref}
           ciLow={ciLow}
@@ -187,11 +187,12 @@ function ToleranceBand({
   n,
 }: {
   refValue: number;
-  ciLow: number;
+  ciLow: number | null;
   ciHigh: number;
   user: number | null;
   n: number;
 }) {
+  const hasLowerBound = ciLow !== null;
   // Choose a scale that includes the reference and a
   // little padding. The lower bound is 0; the upper is
   // max(reference * 1.5, user * 1.1) — this gives a
@@ -208,7 +209,7 @@ function ToleranceBand({
   return (
     <div className="mb-4">
       <div className="text-coden-muted text-xs uppercase tracking-wider font-semibold mb-2">
-        Tolerance band (-10% / +5% of reference)  ·  n = {n}
+        {hasLowerBound ? 'Tolerance band' : 'Upper bound'}  ·  n = {n}
       </div>
       {/* The bar. Three segments: below band (red-tinted),
           band (accent-tinted), above band (amber-tinted). */}
@@ -216,8 +217,11 @@ function ToleranceBand({
         {/* The band itself (drawn first, on top of the bg) */}
         <div
           className="absolute top-0 bottom-0 bg-coden-accent/25 border-l border-r border-coden-accent/60"
-          style={{ left: `${pct(ciLow)}%`, width: `${pct(ciHigh) - pct(ciLow)}%` }}
-          title={`-10% / +5% band: [${ciLow}, ${ciHigh}]`}
+          style={{
+            left: `${hasLowerBound ? pct(ciLow) : 0}%`,
+            width: `${pct(ciHigh) - (hasLowerBound ? pct(ciLow) : 0)}%`,
+          }}
+          title={hasLowerBound ? `Tolerance band: [${ciLow}, ${ciHigh}]` : `Upper bound: ${ciHigh}`}
         />
         {/* The reference's value as a vertical tick in the
             center of the band. */}
@@ -235,7 +239,7 @@ function ToleranceBand({
               left: `calc(${userPct}% - 0.375rem)`,
               backgroundColor: userWithinBand(user, ciLow, ciHigh)
                 ? '#22c55e'   // green: inside band
-                : user < ciLow
+                : hasLowerBound && user < ciLow
                 ? '#f87171'   // red: too cheap (cheat?)
                 : '#fbbf24',  // amber: too slow
             }}
@@ -251,15 +255,15 @@ function ToleranceBand({
       {/* Numeric scale with the three key values. */}
       <div className="grid grid-cols-3 mt-2 text-xs tabular-nums">
         <div className="text-left">
-          <div className="text-coden-muted">CI low</div>
-          <div className="text-rose-300 font-semibold">{ciLow.toLocaleString()}</div>
+          <div className="text-coden-muted">Lower bound</div>
+          <div className="text-rose-300 font-semibold">{hasLowerBound ? ciLow.toLocaleString() : '—'}</div>
         </div>
         <div className="text-center">
           <div className="text-coden-muted">Reference</div>
           <div className="text-coden-accent font-semibold">{refValue.toLocaleString()}</div>
         </div>
         <div className="text-right">
-          <div className="text-coden-muted">CI high</div>
+          <div className="text-coden-muted">Upper bound</div>
           <div className="text-rose-300 font-semibold">{ciHigh.toLocaleString()}</div>
         </div>
       </div>
@@ -273,8 +277,8 @@ function ToleranceBand({
 }
 
 
-function userWithinBand(user: number, lo: number, hi: number): boolean {
-  return user >= lo && user <= hi;
+function userWithinBand(user: number, lo: number | null, hi: number): boolean {
+  return (lo === null || user >= lo) && user <= hi;
 }
 
 

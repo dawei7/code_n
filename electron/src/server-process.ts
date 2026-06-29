@@ -27,8 +27,8 @@ import * as fs from 'node:fs';
 
 
 /** How long to wait for the server to log its port, then for /api/health. */
-const PORT_TIMEOUT_MS = 15_000;
-const HEALTH_TIMEOUT_MS = 10_000;
+const PORT_TIMEOUT_MS = 60_000;
+const HEALTH_TIMEOUT_MS = 20_000;
 const HEALTH_POLL_INTERVAL_MS = 100;
 
 export interface ServerHandle {
@@ -189,11 +189,13 @@ export async function startServer(
   // Stream stdout (for diagnostics) and poll the port file. The
   // port file is the canonical signal; stdout is best-effort.
   let stdoutBuffer = '';
+  let stderrBuffer = '';
   child.stdout?.on('data', (chunk: Buffer) => {
     stdoutBuffer += chunk.toString();
     process.stdout.write(`[server] ${chunk.toString()}`);
   });
   child.stderr?.on('data', (chunk: Buffer) => {
+    stderrBuffer += chunk.toString();
     process.stderr.write(`[server] ${chunk.toString()}`);
   });
 
@@ -202,7 +204,8 @@ export async function startServer(
     const timer = setTimeout(() => {
       reject(new Error(
         `Timeout (${PORT_TIMEOUT_MS}ms) waiting for server to write ${portFile}. ` +
-        `Last stdout: ${stdoutBuffer.slice(-200)}`,
+        `Last stdout: ${stdoutBuffer.slice(-500)}\n` +
+        `Last stderr: ${stderrBuffer.slice(-1000)}`,
       ));
     }, PORT_TIMEOUT_MS);
 

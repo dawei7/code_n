@@ -15,6 +15,8 @@ should return ``passed=False`` with a useful message.
 """
 from __future__ import annotations
 
+import math
+
 from challenges.algorithms.sorting import SORT_01_SOURCE
 
 from . import conftest  # noqa: F401
@@ -43,6 +45,11 @@ class RunSort01Test(conftest._Base):
         # The AST op count must be positive (a working bubble
         # sort does many ops).
         self.assertGreater(body["user_ast_ops"], 0)
+        self.assertIsNotNone(body["reference_ci_low"])
+        self.assertEqual(
+            body["reference_ci_high"],
+            max(math.ceil(body["reference_ast_ops"] * 1.5), body["reference_ast_ops"] + 20),
+        )
         # The return value is rendered as a compact string.
         # A sort of [3, 1, 2] returns something like "[1, 2, 3]".
         self.assertIn("return_value_repr", body)

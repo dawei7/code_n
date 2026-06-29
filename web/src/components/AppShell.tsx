@@ -337,6 +337,7 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
  */
 function TransportBar() {
   const detail = useAppStore((s) => s.currentDetail);
+  const activeSet = useAppStore((s) => s.activeSet);
   const isRunning = useAppStore((s) => s.isRunning);
   const run = useAppStore((s) => s.run);
   const reset = useAppStore((s) => s.reset);
@@ -347,6 +348,11 @@ function TransportBar() {
   const setSeed = useAppStore((s) => s.setSeed);
   const mode = useAppStore((s) => s.mode);
   const setMode = useAppStore((s) => s.setMode);
+  const difficultyDisplay = detail
+    ? activeSet === 'codechef'
+      ? `CodeChef rating ${detail.difficulty_label || 'unrated'}`
+      : `difficulty ${detail.difficulty}/10`
+    : '';
 
   return (
     <div className="min-h-12 px-3 py-2 border-b border-coden-border bg-coden-surface shrink-0 flex items-center gap-3 overflow-x-auto">
@@ -355,7 +361,7 @@ function TransportBar() {
           <>
             <h2 className="text-sm font-semibold truncate leading-tight">{detail.name}</h2>
             <div className="text-xs text-coden-muted font-mono truncate leading-tight">
-              {detail.id} · {detail.category} · difficulty {detail.difficulty}/10
+              {detail.id} · {detail.category} · {difficultyDisplay}
             </div>
           </>
         ) : (

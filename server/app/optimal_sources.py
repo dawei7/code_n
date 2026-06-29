@@ -10,6 +10,7 @@ from server.app.config import DOCS_ROOT, OPTIMAL_SOLUTIONS_ROOT
 
 
 DATASET_PREFIXES = (
+    ("cc_", "codechef"),
     ("nc_", "neetcode"),
     ("lc_", "leetcode"),
     ("leetcode_", "leetcode"),
@@ -59,6 +60,11 @@ def load_optimal_source(challenge_id: str, spec: AlgorithmSpec) -> str:
     GeeksforGeeks-style challenges, fall back to ``spec.source`` so old
     challenge registrations continue to work even before a file exists.
     """
+    # CodeChef reference programs are an internal complexity baseline only.
+    # They must never be exposed through ChallengeDetail/"optimal source".
+    if challenge_id.startswith("cc_"):
+        return ""
+
     organized_path = organized_solution_path(challenge_id)
     if organized_path is not None and organized_path.exists():
         return organized_path.read_text(encoding="utf-8")

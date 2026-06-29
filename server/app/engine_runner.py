@@ -54,6 +54,9 @@ from __future__ import annotations
 import logging
 import runpy
 import shutil
+import io
+import inspect
+import sys
 import tempfile
 from pathlib import Path
 from typing import Any, Optional
@@ -69,6 +72,7 @@ from code_n.execution_trace import (
     ExecutionTrace,
     run_with_trace,
 )
+from server.app.optimal_sources import dataset_for_challenge
 
 from .ast_ops import count_ops as ast_count_ops
 from .schemas import RunResponse
@@ -84,6 +88,27 @@ log = logging.getLogger(__name__)
 # events is plenty for any correct algorithm up to the max
 # input size; an infinite loop is caught quickly.
 _STEP_LIMIT = 100_000
+
+
+def _reference_tolerance_bounds(challenge_id: str, reference_ast_ops: Optional[int]) -> tuple[Optional[int], Optional[int]]:
+    """Return dataset-aware AST tolerance bounds around the reference.
+
+    GeeksforGeeks keeps a lower bound because those challenges often teach an
+    exact algorithmic pattern. LeetCode, NeetCode, and CodeChef only enforce an
+    upper bound: multiple accepted optimal implementations may legitimately use
+    fewer AST operations than our chosen baseline.
+    """
+    if reference_ast_ops is None or reference_ast_ops <= 0:
+        return None, None
+    import math
+
+    high = max(int(math.ceil(reference_ast_ops * 1.5)), reference_ast_ops + 20)
+    low = int(math.floor(reference_ast_ops * 0.90)) if dataset_for_challenge(challenge_id) == "geeksforgeeks" else None
+    return low, high
+
+
+def _uses_lower_bound(challenge_id: str) -> bool:
+    return dataset_for_challenge(challenge_id) == "geeksforgeeks"
 
 
 # ----------------------------------------------------------------------------
@@ -216,6 +241,16 @@ def run_player_code(
         solution_path.write_text(source, encoding="utf-8")
 
     try:
+        if challenge_id.startswith("cc_"):
+            return _run_codechef_player_program(
+                challenge=challenge,
+                solution_path=solution_path,
+                source=source,
+                n=n,
+                seed=seed,
+                mode=mode,
+            )
+
         # --- 3. Exec the source in a fresh namespace ---
         try:
             namespace = runpy.run_path(str(solution_path), run_name="player_solution")
@@ -290,6 +325,29 @@ def run_player_code(
         user_ast_ops = ast_count_ops(source, n)
         spec = getattr(challenge, "_spec", None)
         reference_source = (spec.source if spec is not None else None) or ""
+        if spec is not None and challenge.info.id.startswith("cc_"):
+            reference_source = ""
+        if (
+            spec is not None
+            and challenge.info.id.startswith("cc_")
+            and spec.reference_source
+            and any(
+                token in spec.reference_language.upper()
+                for token in ("PYTH", "PYTHON", "PYPY")
+            )
+        ):
+            # CodeChef's official stdin/stdout program is not executed by the
+            # function harness, but its Python AST is the authoritative
+            # heuristic baseline for comparing the player's implementation.
+            reference_source = spec.reference_source
+        if spec is not None and challenge.info.id.startswith("cc_"):
+            try:
+                from server.app.codechef_community import load_cached_source
+                community_source = load_cached_source(challenge.info.id)
+                if community_source:
+                    reference_source = community_source
+            except Exception as exc:
+                log.debug("Could not load CodeChef community AST baseline: %s", exc)
         reference_ast_ops = (
             ast_count_ops(reference_source, n) if reference_source else None
         )
@@ -305,12 +363,10 @@ def run_player_code(
         # Below the band: likely a cheat. Above the band:
         # correct but slower than optimal. The band is the
         # "as good as the canonical solution" range.
-        reference_ci_low: Optional[int] = None
-        reference_ci_high: Optional[int] = None
-        if reference_ast_ops is not None and reference_ast_ops > 0:
-            import math
-            reference_ci_low = int(math.floor(reference_ast_ops * 0.90))
-            reference_ci_high = int(math.ceil(reference_ast_ops * 1.05))
+        reference_ci_low, reference_ci_high = _reference_tolerance_bounds(
+            challenge.info.id,
+            reference_ast_ops,
+        )
 
         # Check if the required complexity is fulfilled. If the user's solution
         # falls within the tolerance band (<= reference_ci_high), it is automatically
@@ -341,7 +397,7 @@ def run_player_code(
             te_result = check_too_efficient(
                 user_source=source,
                 user_ops=user_ast_ops,
-                reference_ops=reference_ast_ops,
+                reference_ops=reference_ast_ops if _uses_lower_bound(challenge.info.id) else None,
             )
             if te_result.flagged:
                 too_efficient = True
@@ -405,6 +461,193 @@ def run_player_code(
         # temp dir was created).
         if tmpdir is not None:
             shutil.rmtree(tmpdir, ignore_errors=True)
+
+
+def _run_codechef_player_program(
+    *,
+    challenge: Any,
+    solution_path: Path,
+    source: str,
+    n: int,
+    seed: Optional[int],
+    mode: str,
+) -> RunResponse:
+    """Run a CodeChef stdin/stdout program with real ``input()`` semantics.
+
+    CodeChef problems are not function-call challenges. The player should be
+    able to write the same shape they would submit on CodeChef:
+
+    ``x = int(input())`` at top level, or ``def solve(): ...`` plus a main
+    guard. For compatibility with older generated cOde(n) stubs, a
+    one-argument ``solve(input_data)`` function is still accepted.
+    """
+    challenge._n = n
+    challenge._seed = seed
+    setup_data = challenge.setup(n, seed)
+    input_data = str(setup_data.get("input_data") or "")
+    setup_data_repr = {k: _format_return_value(v) for k, v in setup_data.items()}
+
+    reference_return_value_repr: Optional[str] = None
+    expected_output = getattr(challenge, "_expected_output", None)
+    if expected_output is not None:
+        reference_return_value_repr = str(expected_output)
+
+    stdout_capture = io.StringIO()
+    error_message = ""
+    result: Any = None
+    namespace: dict[str, Any] = {}
+    old_stdin, old_stdout = sys.stdin, sys.stdout
+    try:
+        sys.stdin = io.StringIO(input_data)
+        sys.stdout = stdout_capture
+        try:
+            namespace = runpy.run_path(str(solution_path), run_name="__main__")
+        except SyntaxError as exc:
+            raise PlayerSyntaxError(exc) from exc
+
+        solve_fn = namespace.get("solve")
+        if callable(solve_fn) and not stdout_capture.getvalue().strip():
+            try:
+                signature = inspect.signature(solve_fn)
+                positional = [
+                    parameter
+                    for parameter in signature.parameters.values()
+                    if parameter.kind in (
+                        inspect.Parameter.POSITIONAL_ONLY,
+                        inspect.Parameter.POSITIONAL_OR_KEYWORD,
+                    )
+                    and parameter.default is inspect.Parameter.empty
+                ]
+                # Rewind stdin for the explicit solve() call. The initial module
+                # execution only defined the function in this common pattern.
+                sys.stdin = io.StringIO(input_data)
+                if len(positional) == 0:
+                    result = solve_fn()
+                elif len(positional) == 1:
+                    result = solve_fn(input_data)
+                else:
+                    raise TypeError(
+                        "CodeChef solve() should take no arguments and read input(), "
+                        "or accept one legacy input_data argument."
+                    )
+            except Exception as exc:
+                error_message = f"{type(exc).__name__}: {exc}"
+    except PlayerSyntaxError:
+        raise
+    except Exception as exc:
+        error_message = f"{type(exc).__name__}: {exc}"
+    finally:
+        sys.stdin = old_stdin
+        sys.stdout = old_stdout
+
+    stdout_text = stdout_capture.getvalue().strip()
+    if result is None:
+        result = stdout_text
+    elif stdout_text:
+        result = stdout_text
+
+    correct = False
+    if not error_message:
+        try:
+            correct = challenge.verify(result)
+        except Exception as exc:
+            error_message = f"Could not verify: {type(exc).__name__}: {exc}"
+            correct = False
+
+    user_ast_ops = ast_count_ops(source, n)
+    reference_source = ""
+    spec = getattr(challenge, "_spec", None)
+    if (
+        spec is not None
+        and spec.reference_source
+        and any(
+            token in spec.reference_language.upper()
+            for token in ("PYTH", "PYTHON", "PYPY")
+        )
+    ):
+        reference_source = spec.reference_source
+    try:
+        from server.app.codechef_community import load_cached_source
+        community_source = load_cached_source(challenge.info.id)
+        if community_source:
+            reference_source = community_source
+    except Exception as exc:
+        log.debug("Could not load CodeChef community AST baseline: %s", exc)
+
+    reference_ast_ops = ast_count_ops(reference_source, n) if reference_source else None
+
+    reference_ci_low, reference_ci_high = _reference_tolerance_bounds(
+        challenge.info.id,
+        reference_ast_ops,
+    )
+
+    required_complexity = challenge.info.required_complexity
+    if reference_ci_high is not None:
+        within_threshold = user_ast_ops <= reference_ci_high
+    else:
+        within_threshold = user_ast_ops <= limit_for(n, required_complexity)
+
+    actual_complexity = classify_ast_ops(
+        user_ast_ops,
+        n,
+        reference_ast_ops=reference_ast_ops,
+        required_complexity=required_complexity,
+    )
+    passed = correct and within_threshold
+
+    too_efficient = False
+    too_efficient_reason = ""
+    if correct:
+        te_result = check_too_efficient(
+            user_source=source,
+            user_ops=user_ast_ops,
+            reference_ops=reference_ast_ops if _uses_lower_bound(challenge.info.id) else None,
+        )
+        if te_result.flagged:
+            too_efficient = True
+            too_efficient_reason = te_result.message
+            passed = False
+
+    reference_coefficient: Optional[float] = None
+    if reference_ast_ops is not None and reference_ast_ops > 0:
+        from code_n.counter import get_complexity_factor
+        ref_factor = get_complexity_factor(n, required_complexity)
+        reference_coefficient = (reference_ast_ops - 10) / ref_factor if ref_factor > 0 else 0.0
+        reference_coefficient = max(0.0, reference_coefficient)
+
+    message = _build_message(
+        error_message=error_message,
+        correct=correct,
+        within_threshold=within_threshold,
+        user_ast_ops=user_ast_ops,
+        actual_complexity=actual_complexity,
+        required_complexity=required_complexity,
+        too_efficient=too_efficient,
+        too_efficient_reason=too_efficient_reason,
+    )
+
+    return RunResponse(
+        passed=passed,
+        correct=correct,
+        within_threshold=within_threshold,
+        actual_complexity=actual_complexity.value,
+        required_complexity=required_complexity.value,
+        n=n,
+        seed=seed,
+        mode=mode,
+        too_efficient=too_efficient,
+        too_efficient_reason=too_efficient_reason,
+        user_ast_ops=user_ast_ops,
+        reference_ast_ops=reference_ast_ops,
+        reference_ci_low=reference_ci_low,
+        reference_ci_high=reference_ci_high,
+        reference_coefficient=reference_coefficient,
+        scaling_data=[],
+        message=message,
+        return_value_repr=_format_return_value(result),
+        reference_return_value_repr=reference_return_value_repr,
+        setup_data_repr=setup_data_repr,
+    )
 
 
 def _build_message(

@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import random
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, BackgroundTasks, HTTPException
 
 from challenges.registry import CHALLENGE_REGISTRY
 
@@ -36,7 +36,7 @@ _REAL_TEST_N_CAP = 64
 
 
 @router.post("/challenges/{challenge_id}/run")
-def run_challenge(challenge_id: str, body: RunRequest) -> RunResponse:
+def run_challenge(challenge_id: str, body: RunRequest, background_tasks: BackgroundTasks) -> RunResponse:
     """Run the player's source against the named challenge.
 
     In ``real_test`` mode, ``body.n`` and ``body.seed`` are ignored
@@ -49,12 +49,15 @@ def run_challenge(challenge_id: str, body: RunRequest) -> RunResponse:
     """
     from server.app import progress_store
     progress = progress_store.load()
-    if progress.active_set == "neetcode":
-        from server.app.routes.challenges import get_unlocked_challenges
+    if progress.active_set in {"neetcode", "codechef"}:
+        from server.app.routes.challenges import codechef_has_practice_track, get_unlocked_challenges
         all_challenges = [cls() for cls in CHALLENGE_REGISTRY.values()]
         unlocked_set = get_unlocked_challenges(progress, all_challenges)
         if challenge_id not in unlocked_set:
-            raise HTTPException(status_code=403, detail="Challenge is locked in Career Mode.")
+            if progress.active_set == "codechef" and codechef_has_practice_track(challenge_id):
+                pass
+            else:
+                raise HTTPException(status_code=403, detail="Challenge is locked in Career Mode.")
 
     n = body.n
     seed = body.seed
@@ -69,13 +72,17 @@ def run_challenge(challenge_id: str, body: RunRequest) -> RunResponse:
             n = min(_REAL_TEST_N_CAP, max_n)
         seed = random.randint(0, (1 << 30) - 1)
     try:
-        return run_player_code(
+        result = run_player_code(
             challenge_id=challenge_id,
             source=body.source,
             n=n,
             seed=seed,
             mode=body.mode,
         )
+        if result.passed and challenge_id.startswith("cc_"):
+            from server.app.codechef_community import refresh_best_python3_solution
+            background_tasks.add_task(refresh_best_python3_solution, challenge_id)
+        return result
     except ChallengeNotFound as exc:
         raise HTTPException(status_code=404, detail=str(exc))
     except NTooLarge as exc:
@@ -219,4 +226,3 @@ Be extremely concise, structured, and helpful. Use markdown.
         status_code=last_status_code,
         detail=f"Gemini API returned an error: {last_error_msg}"
     )
-

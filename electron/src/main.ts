@@ -14,7 +14,7 @@
  *      the app.
  */
 
-import { app, BrowserWindow, dialog } from 'electron';
+import { app, BrowserWindow, dialog, shell } from 'electron';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { startServer, ServerHandle } from './server-process';
@@ -23,6 +23,30 @@ import { initAutoUpdater, runAutoCheckOnLaunch } from './updater';
 
 let mainWindow: BrowserWindow | null = null;
 let server: ServerHandle | null = null;
+
+
+function isInternalAppUrl(rawUrl: string, appOrigin: string): boolean {
+  try {
+    const url = new URL(rawUrl);
+    return url.origin === appOrigin;
+  } catch {
+    return false;
+  }
+}
+
+
+function openExternalUrl(rawUrl: string): void {
+  try {
+    const url = new URL(rawUrl);
+    if (!['http:', 'https:', 'mailto:'].includes(url.protocol)) {
+      console.warn(`[coden-electron] blocked external navigation to unsupported URL: ${rawUrl}`);
+      return;
+    }
+    void shell.openExternal(rawUrl);
+  } catch {
+    console.warn(`[coden-electron] blocked malformed external URL: ${rawUrl}`);
+  }
+}
 
 
 // --- Diagnostic log file -------------------------------------------
@@ -261,6 +285,21 @@ async function createWindow(): Promise<void> {
 
   mainWindow.once('ready-to-show', () => {
     mainWindow?.show();
+  });
+
+  const appOrigin = new URL(mainUrl).origin;
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    if (!isInternalAppUrl(url, appOrigin)) {
+      openExternalUrl(url);
+      return { action: 'deny' };
+    }
+    return { action: 'allow' };
+  });
+  mainWindow.webContents.on('will-navigate', (event, url) => {
+    if (!isInternalAppUrl(url, appOrigin)) {
+      event.preventDefault();
+      openExternalUrl(url);
+    }
   });
 
   await mainWindow.loadURL(mainUrl);

@@ -130,6 +130,27 @@ def get_leetcode_question(title_slug: str) -> dict[str, str]:
 
 def get_unlocked_challenges(progress, all_challenges) -> set[str]:
     active_set = normalize_algorithm_set(progress.active_set)
+    if active_set == "codechef":
+        all_codechef = {c.info.id for c in all_challenges if c.info.id.startswith("cc_")}
+
+        from challenges.algorithms.codechef import CODECHEF_CAREER_PATHS
+
+        completed = set(progress.completed)
+        career_challenges = {
+            challenge_id
+            for path in CODECHEF_CAREER_PATHS
+            for challenge_id in path
+        }
+        unlocked = (all_codechef - career_challenges) | (completed & all_codechef)
+        for path in CODECHEF_CAREER_PATHS:
+            if not path:
+                continue
+            unlocked.add(path[0])
+            for previous, current in zip(path, path[1:]):
+                if previous in completed:
+                    unlocked.add(current)
+        return unlocked
+
     if active_set != "neetcode":
         return {c.info.id for c in all_challenges}
         
@@ -167,6 +188,27 @@ def get_unlocked_challenges(progress, all_challenges) -> set[str]:
                     unlocked_challenges.add(cids[i])
             
     return unlocked_challenges
+
+
+def codechef_has_practice_track(challenge_id: str) -> bool:
+    """Return True when a CodeChef id also appears outside Career Mode.
+
+    Some CodeChef problems are reused in both the strict Become-5-star ladder
+    and the Data Structures and Algorithms practice track. The sidebar locks
+    the Career Mode row contextually, but the same id must remain open from the
+    practice track.
+    """
+    if not challenge_id.startswith("cc_"):
+        return False
+    cls = CHALLENGE_REGISTRY.get(challenge_id)
+    if cls is None:
+        return False
+    spec = getattr(cls(), "_spec", None)
+    categories = list(getattr(spec, "categories", []) or [])
+    return any(
+        str(category).startswith("codechef_data_structures_and_algorithms")
+        for category in categories
+    )
 
 
 def _spec_to_detail(challenge) -> ChallengeDetail:
@@ -255,10 +297,13 @@ def get_challenge_detail(challenge_id: str) -> ChallengeDetail:
                 status_code=404,
                 detail=f"Challenge '{challenge_id}' is not in the NeetCode 250 set."
             )
+    if active_set in {"neetcode", "codechef"}:
         if challenge_id not in unlocked_set:
+            if active_set == "codechef" and codechef_has_practice_track(challenge_id):
+                return _spec_to_detail(c)
             raise HTTPException(
                 status_code=403,
-                detail="Challenge is locked. Complete parent challenges first."
+                detail="Challenge is locked. Complete the preceding challenge first."
             )
         
     return _spec_to_detail(c)

@@ -104,6 +104,12 @@ class AlgorithmSpec:
     # All source-native topic memberships. ``category`` remains the primary
     # category used for document lookup and backward compatibility.
     categories: list[str] = field(default_factory=list)
+    # Source-native reference material used by imported challenge families.
+    # ``source`` remains the executable cOde(n) harness implementation, while
+    # this may be a complete stdin/stdout program in another language.
+    reference_source: str = ""
+    reference_language: str = ""
+    reference_metadata: dict[str, Any] = field(default_factory=dict)
 
 
 def make_challenge(spec: AlgorithmSpec) -> type[Challenge]:

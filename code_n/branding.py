@@ -1,5 +1,6 @@
 """Player-facing identity and story text for cOde(n)."""
 
+
 GAME_TITLE = "cOde(n)"
 GAME_SUBTITLE = "Algorithms and Data Structures, one measured operation at a time."
 APP_EXE_NAME = "cOde(n)"

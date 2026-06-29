@@ -19,7 +19,8 @@
  *
  * The tab is lazy-loaded by the registry.
  */
-import { useEffect, useState, useCallback } from 'react';
+import { Children, isValidElement, useEffect, useState, useCallback } from 'react';
+import type { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
@@ -213,6 +214,7 @@ export function ReferenceTab() {
   const markdown = shouldShowLeetcodeReference
     ? removeGeeksforGeeksReference(state.markdown)
     : state.markdown;
+  const officialEditorial = splitCodeChefOfficialEditorial(markdown);
 
   return (
     <div>
@@ -238,6 +240,22 @@ export function ReferenceTab() {
           remarkPlugins={[remarkGfm, remarkMath]}
           rehypePlugins={[rehypeRaw, rehypeKatex]}
           components={{
+            h1: ({ node, ...props }) => (
+              <h1 {...props} className="text-xl font-semibold mt-0 mb-4 text-coden-text" />
+            ),
+            h2: ({ node, ...props }) => (
+              <h2 {...props} className="text-lg font-semibold mt-6 mb-3 text-coden-text" />
+            ),
+            h3: ({ node, ...props }) => (
+              <h3 {...props} className="text-base font-semibold mt-4 mb-2 text-coden-text" />
+            ),
+            details: ({ node, ...props }) => <CollapsibleDetails node={node} {...props} />,
+            summary: ({ node, ...props }) => (
+              <summary
+                {...props}
+                className="cursor-pointer select-none text-sm font-semibold text-coden-accent"
+              />
+            ),
             a: ({ node, ...props }) => {
               if (props.href?.endsWith('.md')) {
                 // Extract the challenge ID (e.g. "dp_02_climbing-stairs.md" -> "dp_02")
@@ -303,8 +321,11 @@ export function ReferenceTab() {
             },
           }}
         >
-          {markdown}
+          {officialEditorial?.before ?? markdown}
         </ReactMarkdown>
+        {officialEditorial && (
+          <OfficialEditorialSection markdown={officialEditorial.editorial} />
+        )}
       </article>
     </div>
   );
@@ -315,6 +336,157 @@ function removeGeeksforGeeksReference(markdown: string): string {
     .replace(/\n?##\s+GeeksforGeeks Reference\s*\n[\s\S]*?(?=\n##\s+|\n#\s+|$)/gi, '\n')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
+}
+
+type OfficialEditorialSplit = {
+  before: string;
+  editorial: string;
+};
+
+function splitCodeChefOfficialEditorial(markdown: string): OfficialEditorialSplit | null {
+  const match = markdown.match(
+    /<details\s+class="codechef-official-editorial">\s*<summary>\s*Official Editorial\s*<\/summary>\s*([\s\S]*?)\s*<\/details>/i,
+  );
+  if (!match || match.index === undefined) return null;
+  return {
+    before: markdown.slice(0, match.index).trim(),
+    editorial: match[1].trim(),
+  };
+}
+
+function OfficialEditorialSection({ markdown }: { markdown: string }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <section className="my-6 text-coden-text">
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        className="flex w-full items-center gap-2 border-b border-coden-border pb-2 text-left text-lg font-semibold text-coden-text hover:text-coden-accent transition-colors"
+        aria-expanded={open}
+      >
+        <span className="text-[10px]">{open ? '▼' : '▶'}</span>
+        <span>Official Editorial</span>
+      </button>
+      {open && (
+        <div className="pt-4 text-sm text-coden-text">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeRaw, rehypeKatex]}
+            components={{
+              pre: ({ children, ...props }) => (
+                <pre
+                  {...props}
+                  className="bg-white border border-slate-300 rounded p-3 text-xs text-slate-950 shadow-sm overflow-x-auto my-3 dark:bg-coden-bg dark:border-coden-border dark:text-coden-text"
+                >
+                  {children}
+                </pre>
+              ),
+              code: ({ className, children, ...props }) => {
+                const isBlock = String(children).includes('\n');
+                return isBlock ? (
+                  <code {...props} className={className}>
+                    {children}
+                  </code>
+                ) : (
+                  <code
+                    {...props}
+                    className="bg-sky-50 border border-sky-200 rounded px-1 py-0.5 text-sky-800 text-xs dark:bg-coden-bg dark:border-coden-border dark:text-coden-accent"
+                  >
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          >
+            {markdown}
+          </ReactMarkdown>
+        </div>
+      )}
+    </section>
+  );
+}
+
+type MarkdownAstNode = {
+  type?: string;
+  tagName?: string;
+  value?: string;
+  children?: MarkdownAstNode[];
+};
+
+function isSummaryElement(child: ReactNode): boolean {
+  return (
+    isValidElement(child) &&
+    (
+      child.type === 'summary' ||
+      (child.props as { node?: MarkdownAstNode }).node?.tagName === 'summary'
+    )
+  );
+}
+
+function textFromAst(node?: MarkdownAstNode): string {
+  if (!node) return '';
+  if (typeof node.value === 'string') return node.value;
+  return (node.children ?? []).map(textFromAst).join('');
+}
+
+function textFromReactNode(node: ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') return String(node);
+  if (Array.isArray(node)) return node.map(textFromReactNode).join('');
+  if (isValidElement(node)) {
+    return textFromReactNode((node.props as { children?: ReactNode }).children);
+  }
+  return '';
+}
+
+function CollapsibleDetails({
+  children,
+  node,
+}: {
+  children?: ReactNode;
+  node?: MarkdownAstNode;
+}) {
+  const childArray = Children.toArray(children);
+  const summaryIndex = childArray.findIndex(isSummaryElement);
+  const astSummary = node?.children?.find((child) => child.tagName === 'summary');
+  const summaryText =
+    summaryIndex >= 0 && isValidElement(childArray[summaryIndex])
+      ? textFromReactNode((childArray[summaryIndex].props as { children?: ReactNode }).children).trim()
+      : textFromAst(astSummary).trim();
+  const summary = summaryText || 'Official Editorial';
+  const body = summaryIndex >= 0
+    ? childArray.filter((_, index) => index !== summaryIndex)
+    : childArray;
+  const isOfficialEditorial = summary.toLowerCase() === 'official editorial';
+
+  return (
+    <details
+      className={
+        isOfficialEditorial
+          ? 'my-6 text-coden-text'
+          : 'my-3 rounded border border-coden-border bg-coden-bg/40 text-coden-text'
+      }
+    >
+      <summary
+        className={
+          isOfficialEditorial
+            ? 'cursor-pointer select-none border-b border-coden-border pb-2 text-lg font-semibold text-coden-text hover:text-coden-accent transition-colors'
+            : 'cursor-pointer select-none px-3 py-2 text-sm font-semibold text-coden-accent hover:bg-coden-border/40 transition-colors'
+        }
+      >
+        {summary}
+      </summary>
+      <div
+        className={
+          isOfficialEditorial
+            ? 'pt-4 text-sm text-coden-text'
+            : 'border-t border-coden-border px-3 py-2 text-sm text-coden-text'
+        }
+      >
+        {body}
+      </div>
+    </details>
+  );
 }
 
 function LeetCodeReference({
