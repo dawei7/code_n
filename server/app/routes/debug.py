@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import asyncio
 import os
-import shutil
 import sys
 from pathlib import Path
 from typing import Any
@@ -18,17 +17,32 @@ from server.app.dap_client import DAPClient, DAPError
 router = APIRouter()
 
 
+class DebugPythonUnavailable(RuntimeError):
+    """Raised when a packaged build is missing its bundled debug runtime."""
+
+
+def _is_packaged_server() -> bool:
+    executable_name = Path(sys.executable).name.lower()
+    return (
+        os.environ.get("CODEN_PACKAGED_SERVER") == "1"
+        or executable_name in {"coden-server.exe", "coden-server"}
+    )
+
+
 def _debug_python_exe() -> str:
     configured = os.environ.get("CODEN_DEBUG_PYTHON") or os.environ.get("CODEN_PYTHON_EXE")
     if configured and Path(configured).is_file():
         return configured
+    if _is_packaged_server():
+        expected = configured or "<missing CODEN_DEBUG_PYTHON>"
+        raise DebugPythonUnavailable(
+            "The bundled debug Python runtime is missing or invalid "
+            f"({expected}). Rebuild the Windows app so resources/debug-python/python.exe "
+            "is included."
+        )
     if Path(sys.executable).name.lower() not in {"coden-server.exe", "coden-server"}:
         return sys.executable
-    for name in ("python", "python3", "py"):
-        candidate = shutil.which(name)
-        if candidate:
-            return candidate
-    return sys.executable
+    raise DebugPythonUnavailable("No usable Python interpreter is available for debugging.")
 
 
 def _solution_path(challenge_id: str) -> Path:
@@ -78,7 +92,11 @@ async def debug_ws(websocket: WebSocket) -> None:
             await send({"type": "error", "message": f"Solution file not found: {solution_path}"})
             return
 
-        python_exe = _debug_python_exe()
+        try:
+            python_exe = _debug_python_exe()
+        except DebugPythonUnavailable as exc:
+            await send({"type": "error", "message": str(exc)})
+            return
         project_path = _project_path()
         runner = _runner_path()
         if not runner.is_file():
@@ -86,9 +104,13 @@ async def debug_ws(websocket: WebSocket) -> None:
             return
 
         env = os.environ.copy()
+        for key in list(env):
+            if key.upper() == "PYTHONHOME":
+                env.pop(key, None)
         env["CODEN_HOME"] = str(CODEN_HOME)
+        existing_pythonpath = "" if _is_packaged_server() else env.get("PYTHONPATH", "")
         env["PYTHONPATH"] = os.pathsep.join(
-            p for p in [str(project_path), env.get("PYTHONPATH", "")] if p
+            p for p in [str(project_path), existing_pythonpath] if p
         )
 
         try:
@@ -119,6 +141,8 @@ async def debug_ws(websocket: WebSocket) -> None:
                         "type": "python",
                         "request": "launch",
                         "program": str(runner),
+                        "python": [python_exe],
+                        "debugLauncherPython": python_exe,
                         "cwd": str(project_path),
                         "args": [
                             challenge_id,
@@ -270,6 +294,12 @@ async def _paused_payload(dap: DAPClient, body: dict[str, Any]) -> dict[str, Any
 def _debug_start_error(exc: Exception, python_exe: str) -> str:
     message = str(exc)
     if "No module named debugpy" in message or "debug adapter exited" in message:
+        if _is_packaged_server():
+            return (
+                f"Could not start the bundled debugger with {python_exe}. "
+                "Rebuild the Windows app so resources/debug-python contains "
+                "python.exe and debugpy."
+            )
         return (
             f"Could not start debugpy with {python_exe}. Install debugpy in that Python "
             "environment (`python -m pip install debugpy`) and try again."

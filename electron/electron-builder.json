@@ -15,6 +15,10 @@
       "to": "coden-server"
     },
     {
+      "from": "../server/dist/debug-python",
+      "to": "debug-python"
+    },
+    {
       "from": "../web/dist",
       "to": "web-dist"
     },

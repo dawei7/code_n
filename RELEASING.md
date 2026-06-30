@@ -98,6 +98,91 @@ cutting a real release.
 
 ---
 
+### 2.4 Windows trust and code signing
+
+Windows SmartScreen warnings are not controlled by an app setting.
+For installers distributed outside the Microsoft Store, Windows looks
+at the file's reputation and the publisher reputation. Unsigned
+installers start from zero reputation for every new version.
+
+The practical fix is:
+
+1. Sign every Windows release with an Authenticode code-signing
+   identity.
+2. Keep the same publisher identity across releases so reputation can
+   accumulate.
+3. Do not modify installers after signing.
+4. Optionally publish through the Microsoft Store if you want the most
+   reliable first-install path.
+
+Microsoft's current SmartScreen guidance says even a valid OV or EV
+certificate can still show an "unrecognized app" warning for early
+downloads until enough clean reputation accumulates. The difference is
+that signed builds show a verified publisher and can transfer publisher
+reputation across releases; unsigned builds cannot. EV certificates no
+longer automatically bypass SmartScreen.
+
+Useful references:
+
+- SmartScreen reputation:
+  <https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation>
+- Microsoft Artifact Signing:
+  <https://learn.microsoft.com/en-us/azure/artifact-signing/>
+- electron-builder Windows signing:
+  <https://www.electron.build/code-signing-win>
+
+#### Standard PFX certificate flow
+
+If you buy or receive a normal code-signing certificate as a `.pfx`,
+set these environment variables before building:
+
+```powershell
+$env:WIN_CSC_LINK = "C:\secure\coden-code-signing.pfx"
+$env:WIN_CSC_KEY_PASSWORD = "..."
+```
+
+`electron-builder` will sign the Windows executable and NSIS
+installer automatically when those values are available.
+
+After the certificate is configured, make public releases fail if the
+installer is not signed:
+
+```powershell
+$env:CODEN_REQUIRE_CODE_SIGNING = "1"
+.\.venv\Scripts\python.exe release.py --patch --cleanup-old
+```
+
+or pass it explicitly:
+
+```powershell
+.\.venv\Scripts\python.exe release.py --patch --cleanup-old --require-code-signing
+```
+
+Verify the result:
+
+```powershell
+Get-AuthenticodeSignature "electron\release\cOde(n)-Setup-0.10.4.exe"
+```
+
+The status should be `Valid`, and the signer should match the
+publisher identity users expect.
+
+#### Microsoft Artifact Signing flow
+
+Microsoft Artifact Signing, formerly Trusted Signing, is the clean
+cloud-hosted route for non-Store Windows signing. It avoids managing a
+local PFX file, but requires Microsoft identity validation and
+`win.azureSignOptions` in `electron/electron-builder.json`. The
+publisher name in that config must match the certificate profile's
+Common Name exactly.
+
+When moving to Artifact Signing, keep certificate/account names out of
+source until the real Microsoft profile exists, then add the minimal
+`win.azureSignOptions` block and store authentication values in the
+environment or CI secrets.
+
+---
+
 ## 3. Cutting a real release (one command)
 
 ```bash

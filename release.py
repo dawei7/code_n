@@ -22,6 +22,7 @@ Usage:
     .venv/Scripts/python.exe release.py --set 1.0.0  # explicit
     .venv/Scripts/python.exe release.py --dry-run    # don't push/publish
     .venv/Scripts/python.exe release.py --no-build   # tag+push only
+    .venv/Scripts/python.exe release.py --require-code-signing
 
 Prereqs:
     - ``$GH_TOKEN`` must be set in the shell (see RELEASING.md
@@ -88,6 +89,10 @@ def working_tree_clean() -> bool:
     return (res.stdout or "").strip() == ""
 
 
+def truthy_env(name: str) -> bool:
+    return os.environ.get(name, "").strip().lower() in {"1", "true", "yes", "on"}
+
+
 def tag_exists_remote(tag: str) -> bool:
     """True iff ``git ls-remote --tags origin <tag>`` returns a SHA."""
     res = _run(
@@ -152,7 +157,7 @@ def compute_new_version(
 # Build steps (delegate to build_app.py to keep one source of truth)
 # ---------------------------------------------------------------------------
 
-def run_build(venv_python: str) -> None:
+def run_build(venv_python: str, require_code_signing: bool = False) -> None:
     """Run web + server + electron-build + electron-dist steps.
 
     The electron-dist step is invoked with ``--publish always``
@@ -170,9 +175,19 @@ def run_build(venv_python: str) -> None:
     """
     _run([venv_python, "build_app.py", "--step", "web"])
     _run([venv_python, "build_app.py", "--step", "server"])
+    _run([venv_python, "build_app.py", "--step", "stage-workspace"])
     _run([venv_python, "build_app.py", "--step", "electron-build"])
-    _run([venv_python, "build_app.py", "--step", "electron-dist",
-          "--publish", "always"])
+    electron_dist_cmd = [
+        venv_python,
+        "build_app.py",
+        "--step",
+        "electron-dist",
+        "--publish",
+        "always",
+    ]
+    if require_code_signing:
+        electron_dist_cmd.append("--require-code-signing")
+    _run(electron_dist_cmd)
 
 
 # ---------------------------------------------------------------------------
@@ -209,6 +224,16 @@ def main() -> None:
              "version history stays visible); only the installers "
              "and blockmaps are removed. The script "
              "``release_cleanup.py`` does the same thing standalone.",
+    )
+    parser.add_argument(
+        "--require-code-signing",
+        action="store_true",
+        default=truthy_env("CODEN_REQUIRE_CODE_SIGNING"),
+        help=(
+            "Fail the Electron packaging step unless Windows "
+            "Authenticode signing succeeds. Can also be enabled with "
+            "CODEN_REQUIRE_CODE_SIGNING=1."
+        ),
     )
     args = parser.parse_args()
 
@@ -270,7 +295,7 @@ def main() -> None:
         if not Path(venv_python).is_file():
             print(f"FATAL: venv python not found at {venv_python}")
             sys.exit(1)
-        run_build(venv_python)
+        run_build(venv_python, args.require_code_signing)
     else:
         print("(skipping build; assuming it's already done)")
 

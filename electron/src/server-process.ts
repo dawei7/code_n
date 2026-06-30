@@ -51,6 +51,13 @@ function bundledServerPath(): string | null {
 }
 
 
+function bundledDebugPythonPath(): string | null {
+  if (!process.resourcesPath || process.platform !== 'win32') return null;
+  const candidate = path.join(process.resourcesPath, 'debug-python', 'python.exe');
+  return fs.existsSync(candidate) ? candidate : null;
+}
+
+
 function findPythonExe(repoRoot: string): string {
   const candidates = process.platform === 'win32'
     ? [path.join(repoRoot, '.venv', 'Scripts', 'python.exe')]
@@ -66,42 +73,6 @@ function findPythonExe(repoRoot: string): string {
     `Run: cd "${repoRoot}" && python -m venv .venv && ` +
     `.venv/Scripts/pip install -r requirements.txt`,
   );
-}
-
-
-function findDebugPythonExe(repoRoot: string): string | null {
-  try {
-    return findPythonExe(repoRoot);
-  } catch {
-    // Packaged installs may not have the dev venv. Fall through to
-    // a system Python; the debug route will report a clear debugpy
-    // install error if that interpreter is missing the module.
-  }
-  const names = process.platform === 'win32' ? ['python.exe', 'python3.exe', 'py.exe'] : ['python3', 'python'];
-  for (const name of names) {
-    const found = findOnPath(name);
-    if (found) return found;
-  }
-  return null;
-}
-
-
-function findOnPath(name: string): string | null {
-  const pathValue = process.env.PATH ?? '';
-  const pathExt = process.platform === 'win32'
-    ? (process.env.PATHEXT ?? '.EXE;.CMD;.BAT').split(';')
-    : [''];
-  for (const dir of pathValue.split(path.delimiter)) {
-    if (!dir) continue;
-    for (const ext of pathExt) {
-      const lowerName = name.toLowerCase();
-      const lowerExt = ext.toLowerCase();
-      const candidateName = lowerExt && lowerName.endsWith(lowerExt) ? name : name + ext;
-      const candidate = path.join(dir, candidateName);
-      if (fs.existsSync(candidate)) return candidate;
-    }
-  }
-  return null;
 }
 
 
@@ -143,7 +114,13 @@ export async function startServer(
     // server reads them via CODEN_DOCS_DIR. (In dev, the server
     // falls back to <repo>/docs automatically.)
     const docsDir = path.join(process.resourcesPath, 'docs');
-    const debugPython = findDebugPythonExe(repoRoot);
+    const debugPython = bundledDebugPythonPath();
+    if (!debugPython) {
+      console.warn(
+        '[coden-electron] bundled debug Python missing; ' +
+        'in-app debugging is disabled for this packaged build.',
+      );
+    }
     child = spawn(bundled, [], {
       env: {
         ...process.env,
@@ -151,6 +128,7 @@ export async function startServer(
         CODEN_PORT_FILE: portFile,
         CODEN_WEB_DIST: webDist,
         CODEN_DOCS_DIR: docsDir,
+        CODEN_PACKAGED_SERVER: '1',
         ...(debugPython ? { CODEN_DEBUG_PYTHON: debugPython } : {}),
       },
       stdio: ['ignore', 'pipe', 'pipe'],
