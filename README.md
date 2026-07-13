@@ -1,154 +1,213 @@
-# cOde(n) - The Interactive Algorithms Arena
+# cOde(n)
 
-**cOde(n)** is a desktop learning environment for practicing Python algorithms and data structures. It brings together an in-app Monaco editor, Python debugging, challenge reference material, progress tracking, and complexity feedback in one focused workspace.
+**A free, offline-first learning environment for LeetCode-indexed algorithm
+problems.**
 
-cOde(n) judges correctness separately from complexity. Authored benchmark tiers
-compare how the user/reference runtime ratio changes as the workload grows,
-using paired measurements designed to reduce ordinary timing noise.
+cOde(n) exists to give every student and working professional a practical way
+to study algorithms, prepare for interviews, and improve implementation skills
+without placing essential explanations behind another learning platform.
 
----
+For each completed problem, the goal is to provide:
 
-## Key Features
+- the exact LeetCode frontend ID, title, difficulty, and official problem link;
+- an independently written, concise explanation of the problem and its
+  important boundary conditions;
+- correctness cases and three complexity-sensitive benchmark tiers;
+- an optimal app-local reference implementation;
+- a platform-native submission artifact; and
+- remote verification that the exact artifact was **Accepted by LeetCode's
+  judge**.
 
-* **In-app coding and debugging**: Write solutions in the cOde(n) editor, set breakpoints, inspect locals, and step through Python without leaving the app.
-* **Complexity scaling**: Multi-size benchmarks compare the growth of a solution against the package's optimal same-language reference while tolerating reasonable constant-factor implementation differences.
-* **Reference and analysis tabs**: Challenge documentation, formal notes, examples, source links, and runtime analysis stay next to the coding surface.
-* **Progress tracking**: Completion records, solution versions, profiles, and career-mode unlocks are persisted locally.
-* **LeetCode practice views**: Browse the canonical problem library through official study plans, company tags, NeetCode subsets, or the AlgoMaster 600, 300, 150, and 75 lists without duplicating challenge data.
-* **Local desktop packaging**: Electron hosts the React frontend and launches a local FastAPI server for the Python engine.
+“Accepted” describes a recorded judge result. It does not mean that LeetCode
+approved, sponsored, or endorsed cOde(n).
 
----
+> cOde(n) is an independent open-source project created and maintained by
+> **David Schmid**. It is not affiliated with, sponsored by, or endorsed by
+> LeetCode LLC.
 
-## How It Works
+## What learners get
 
-1. **Select a challenge** from the sidebar.
-2. **Edit the solution** in the cOde(n) tab. The app keeps three explicit versions in the writable user profile, for example `dsa/leetcode/1_two-sum/user_solutions/python_v1.py`. Bundled challenge data stays read-only.
-3. **Run or debug** the solution. Practice mode uses your chosen `n` and seed; real-test mode lets the server pick fresh inputs.
-4. **Review the verdict** in the result and complexity tabs, including correctness, per-tier runtime ratios, scaling behavior, and return values.
-5. **Use references** when you want the official problem link, explanation, mathematical notes, or a stronger solution strategy.
+- **One focused desktop workspace:** read, code, run, debug, and review results
+  without switching to an external IDE.
+- **Original explanations:** every migrated package restates the task in
+  independent language and teaches the reasoning behind the selected method.
+- **Verified solutions:** a native submission is marked verified only after the
+  exact stored source receives an Accepted result from LeetCode.
+- **Correctness and complexity as separate skills:** ordinary cases check the
+  answer, while authored benchmark tiers test whether runtime growth matches
+  the required complexity class.
+- **Useful learning paths:** browse the same canonical packages through
+  LeetCode categories and study plans, company and topic views, NeetCode views,
+  or AlgoMaster collections. These are views, never duplicate problem roots.
+- **Local progress and solutions:** profiles, progress, and three personal
+  solution versions per language stay in the writable local user-data
+  directory. Bundled learning resources remain read-only.
 
----
+## Project status
 
-## Project Architecture
+Version `0.1.0` is an active corpus migration, not a claim that every package is
+finished. The repository indexes 3,985 canonical frontend IDs. At this version,
+819 packages are locally complete and remotely verified, and documentation has
+been authored through frontend ID 822. The generated migration reports in
+[`dsa/leetcode/_reports/`](dsa/leetcode/_reports/) are the current source of
+truth.
 
-The codebase is split into a client-server desktop app:
+The long-term objective is one complete educational package for every indexed
+problem through frontend ID 3985.
 
-* **Frontend (`web/`)**: React, Vite, TypeScript, TailwindCSS, Zustand, Monaco, markdown rendering, and the in-app debugger UI.
-* **Backend (`server/`)**: FastAPI routes, debugpy/DAP bridge, challenge registry access, progress persistence, solution storage, and run orchestration.
-* **Core engine (`engine/` and `challenges/`)**: Challenge specs, input generation, verification functions, runtime measurement, and complexity classification.
-* **Desktop wrapper (`electron/`)**: Electron shell, packaged server launch, app updates, and desktop resource staging.
+## How a problem package is organized
 
----
+Each problem has one canonical home:
 
-## Developer Guide
+```text
+dsa/leetcode/<frontend_id>_<slug>/
+  metadata.json
+  doc.md
+  cases.json
+  benchmark.json
+  submission.json                 # present after reviewed remote verification
+  solutions/
+    python.py                     # app-local solve(...) implementation
+    leetcode_python3.py           # native submission candidate when available
+```
+
+The package document contains the goal, function contract, examples, required
+complexity, and an educational approach explanation. Implementations remain in
+`solutions/` so the problem statement and the answer are intentionally
+separate.
+
+## Copyright, attribution, and LeetCode
+
+This repository is **not a mirror of LeetCode**. Its copyright rule is simple:
+preserve the meaning of an algorithmic task, but do not copy LeetCode's
+protected expression.
+
+### What cOde(n) publishes
+
+- factual identifiers needed to identify a problem, such as its frontend ID,
+  title, slug, difficulty, topics, and official URL;
+- original problem narratives, explanations, mathematical reasoning, cases,
+  and benchmarks written for cOde(n);
+- independently written source code implementing the underlying algorithms;
+  and
+- third-party material only when its license permits redistribution, with the
+  required notice kept beside it.
+
+### What cOde(n) does not claim
+
+- It does not claim ownership of LeetCode's website, branding, problem
+  statements, editorials, illustrations, or proprietary solution text.
+- It does not treat attribution, a hyperlink, or an educational purpose as
+  permission to reproduce protected material.
+- It does not intentionally publish verbatim full LeetCode statements or
+  editorials. The official link is provided for readers who want the source
+  presentation.
+- It does not bypass LeetCode account or Premium controls for official pages or
+  submissions.
+
+### Why the project uses independent explanations and implementations
+
+Copyright protects an author's particular expression. It does not protect the
+underlying idea, procedure, method of operation, system, process, or
+mathematical concept as such. This idea-expression distinction is explained by
+the [World Intellectual Property Organization](https://www.wipo.int/en/web/copyright/protection)
+and the [U.S. Copyright Office](https://www.copyright.gov/what-is-copyright/).
+
+That distinction does **not** make LeetCode's prose or source code free to copy.
+Those are concrete expressions and may be protected. cOde(n) therefore teaches
+the same algorithmic concepts through newly written prose and independently
+implemented code instead of reproducing LeetCode's wording, editorials, or
+solutions.
+
+LeetCode's current [Terms of Service](https://leetcode.com/terms/) describe its
+questions, solutions, and related platform material as protected content and
+also impose restrictions separate from copyright, including restrictions on
+automated access. Anyone using optional synchronization or submission tools is
+responsible for complying with those current Terms and applicable law.
+
+This section documents the project's copyright-respect policy; it is not a
+legal opinion or a guarantee about every jurisdiction. If a rights holder
+identifies material that should be removed, relicensed, or rewritten, please
+open an issue with the exact file and basis for the request so it can be
+reviewed promptly.
+
+## Product architecture
+
+- **`web/`:** React, TypeScript, Vite, Zustand, Monaco, reference rendering,
+  career views, and the in-app debugger interface.
+- **`server/`:** FastAPI routes, execution harnesses, validation, benchmark
+  analysis, DAP integration, progress storage, and user-solution storage.
+- **`engine/` and `challenges/`:** language contracts, challenge types,
+  complexity logic, tracing, starter generation, and the canonical registry.
+- **`electron/`:** Windows desktop shell, local server lifecycle, secure
+  credential storage, updates, and packaging.
+- **`dsa/leetcode/`:** the canonical problem packages and generated migration
+  reports.
+
+## Local development
 
 ### Prerequisites
 
-* Python 3.12+
-* Node.js 18+
-* Project dependencies installed in `.venv`, `web/node_modules`, and `electron/node_modules`
+- Python 3.12 or newer
+- Node.js 18 or newer
+- dependencies installed in `.venv`, `web/node_modules`, and
+  `electron/node_modules`
 
-### Local Development
-
-For the normal desktop workflow, use the fast development launcher:
+Start the normal desktop development workflow:
 
 ```powershell
 npm.cmd run dev
 ```
 
-It starts Vite and Electron together, assigns free local ports, and lets Vite
-serve the UI directly with hot reload. It does not run a production web build
-before opening the app.
+This launches Vite and Electron together with hot reload. It does not put a
+production web build on the interactive startup path.
 
-For a browser-only workflow, run the backend and frontend separately.
-
-Run the backend:
+For a browser-only workflow, run the backend and frontend separately:
 
 ```powershell
 .\.venv\Scripts\python.exe -m uvicorn server.app.main:app --port 8000 --reload
+npm.cmd run dev --prefix web
 ```
 
-Run the frontend:
+Then open `http://localhost:5173`.
+
+## Validation
+
+Run the complete repository checks with:
 
 ```powershell
-cd web
-npm.cmd install
-npm.cmd run dev
-```
-
-Open `http://localhost:5173`.
-
-### Desktop Shell
-
-```powershell
-cd electron
-npm.cmd install
-npm.cmd start
-```
-
-Set `CODEN_DEVTOOLS=1` to open Chromium DevTools with the desktop window.
-
-### Validation
-
-```powershell
-.\.venv\Scripts\python.exe -m pytest tests server/tests
-npm.cmd run typecheck --prefix web
+.\.venv\Scripts\python.exe -m pytest -q
+npm.cmd run build --prefix web
 npm.cmd run build --prefix electron
 ```
 
-### Documentation Sources
+For canonical dataset documentation work, also run:
+
+```powershell
+.\.venv\Scripts\python.exe tools\check_leetcode_dataset.py
+.\.venv\Scripts\python.exe -m pytest server\tests\test_dynamic_docs.py -q
+```
+
+## Maintainer documentation
 
 - [`AGENTS.md`](AGENTS.md): authoritative architecture, invariants, storage
-  rules, and verification workflow for coding agents and maintainers.
-- [`BENCHMARKING.md`](BENCHMARKING.md): Two Sum exemplar, benchmark-tier
-  contract, complexity verdict semantics, and corpus migration checklist.
-- [`LEETCODE_SUBMISSIONS.md`](LEETCODE_SUBMISSIONS.md): secure account
-  connection, platform-native verified artifacts, one-click submission, and
-  the long-term per-problem verification workflow.
-- `dsa/leetcode/<frontend_id>_<slug>/doc.md`: canonical per-problem reference.
+  boundaries, documentation style, and verification workflow.
+- [`BENCHMARKING.md`](BENCHMARKING.md): benchmark-tier and complexity-verdict
+  specification.
+- [`LEETCODE_SUBMISSIONS.md`](LEETCODE_SUBMISSIONS.md): native candidate,
+  remote verification, and submission-manifest rules.
 - [`RELEASING.md`](RELEASING.md): Windows packaging, signing, publishing, and
   updater procedures.
-
-There is intentionally no parallel `docs/` tree. The app serves this README as
-its overview and reads challenge documentation directly from each LeetCode
-package.
-
-### Difficulty metadata
-
-The app always preserves LeetCode's official `Easy`, `Medium`, or `Hard` tier.
-Where available, it adds the contest Elo calculated by the
-[ZeroTrac LeetCode Problem Rating project](https://zerotrac.github.io/leetcode_problem_rating/#/).
-ZeroTrac does not cover every problem, including problems from Weekly Contests
-1–62. Only for those legacy contest problems, the app retains the former
-acceptance-percentile sublevel and labels it explicitly as
-`Legacy estimate n/10`; it is never presented as an Elo. Other unrated or
-non-contest problems show only LeetCode's official tier.
-
-Refresh the bundled sparse rating map with:
-
-```powershell
-.\.venv\Scripts\python.exe tools\sync_zerotrac_ratings.py
-```
-
-The pinned upstream revision and update timestamp are stored in
-`dsa/leetcode/_meta/zerotrac-ratings.json`. ZeroTrac's required MIT notice is
-bundled beside it as `zerotrac-LICENSE.txt`. The same metadata file records the
-fixed Weekly Contest 1–62 membership and the revision used to verify it.
-
----
-
-## Release Pipeline
-
-1. Ensure the intended branch and working tree state are ready.
-2. Set `GH_TOKEN` in the shell.
-3. Run:
-
-```powershell
-.\.venv\Scripts\python.exe release.py --patch --cleanup-old
-```
-
----
+- [`dsa/leetcode/_template.md`](dsa/leetcode/_template.md): canonical
+  per-problem documentation contract.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+The original cOde(n) source code and documentation are released under the
+[MIT License](LICENSE), copyright © 2026 David Schmid. That license applies only
+to material David Schmid has the right to license; it does not relicense
+LeetCode's website or any separately identified third-party work.
+
+LeetCode is a trademark of LeetCode LLC. All third-party names and marks remain
+the property of their respective owners and are used only to identify the
+corresponding source or compatibility target.
