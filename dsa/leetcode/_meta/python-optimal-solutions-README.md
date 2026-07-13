@@ -6,8 +6,8 @@ the owning LeetCode challenge package.
 Example:
 
 ```text
-dsa/leetcode/1_two-sum/doc.md
-dsa/leetcode/1_two-sum/solutions/python.py
+dsa/leetcode/0001_two-sum/doc.md
+dsa/leetcode/0001_two-sum/solutions/python.py
 ```
 
 Use cOde(n)'s project-native interface:

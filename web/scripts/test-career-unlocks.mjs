@@ -24,9 +24,9 @@ assert.equal(resolveCareerSequenceOrder(null, 217), 217);
 assert.equal(resolveCareerSequenceOrder(undefined, 217), 217);
 
 const fixtures = [
-  ['lc_217', '../../dsa/leetcode/217_contains-duplicate/metadata.json'],
-  ['lc_242', '../../dsa/leetcode/242_valid-anagram/metadata.json'],
-  ['lc_1', '../../dsa/leetcode/1_two-sum/metadata.json'],
+  ['lc_217', '../../dsa/leetcode/0217_contains-duplicate/metadata.json'],
+  ['lc_242', '../../dsa/leetcode/0242_valid-anagram/metadata.json'],
+  ['lc_1', '../../dsa/leetcode/0001_two-sum/metadata.json'],
 ];
 const entries = [];
 for (const [challengeId, relativePath] of fixtures) {

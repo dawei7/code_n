@@ -125,7 +125,7 @@ For each package in numeric order:
 - Problem 820 was remotely Accepted as submission `2066596479`, problem 821 as
   `2066598728`, and problem 822 as `2066603979`.
 - The next actionable package is
-  `dsa/leetcode/823_binary-trees-with-factors` after the 1-through-822
+  `dsa/leetcode/0823_binary-trees-with-factors` after the 1-through-822
   mathematical-notation review and its regression gates complete.
 
 ## Restart sequence

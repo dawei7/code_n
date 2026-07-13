@@ -260,7 +260,7 @@ def build_report() -> dict[str, Any]:
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "scope": "All canonical packages in ascending numeric LeetCode frontend-ID order; IDs are sparse.",
-        "exemplar": "dsa/leetcode/1_two-sum",
+        "exemplar": "dsa/leetcode/0001_two-sum",
         "counts": counts,
         "first_actionable_incomplete": None if first_incomplete is None else {
             "frontend_id": first_incomplete["frontend_id"],

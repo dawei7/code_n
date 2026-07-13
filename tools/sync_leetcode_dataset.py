@@ -30,6 +30,7 @@ TEMPLATE_PATH = LEETCODE_ROOT / "_template.md"
 COOKIE_PATH = LEETCODE_ROOT / "_local" / ".leetcode_cookie"
 REPORT_PATH = LEETCODE_ROOT / "_reports" / "sync_report.json"
 GRAPHQL_URL = "https://leetcode.com/graphql"
+PACKAGE_ID_WIDTH = 4
 
 
 PROBLEMSET_QUERY = """
@@ -130,7 +131,8 @@ def slugify(value: str) -> str:
 
 
 def package_dir(question: dict[str, Any]) -> Path:
-    return LEETCODE_ROOT / f"{question['frontend_id']}_{slugify(question['slug'])}"
+    frontend_id = str(question["frontend_id"]).zfill(PACKAGE_ID_WIDTH)
+    return LEETCODE_ROOT / f"{frontend_id}_{slugify(question['slug'])}"
 
 
 def cookie_header() -> str:

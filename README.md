@@ -60,7 +60,7 @@ problem through frontend ID 3985.
 Each problem has one canonical home:
 
 ```text
-dsa/leetcode/<frontend_id>_<slug>/
+dsa/leetcode/<frontend_id:04d>_<slug>/
   metadata.json
   doc.md
   cases.json
@@ -70,6 +70,11 @@ dsa/leetcode/<frontend_id>_<slug>/
     python.py                     # app-local solve(...) implementation
     leetcode_python3.py           # native submission candidate when available
 ```
+
+The directory prefix is the four-digit, zero-padded frontend ID, so `lc_1`
+lives in `0001_two-sum` and repository listings remain in numeric order. The
+padding is a path-formatting detail; metadata and challenge IDs remain `1` and
+`lc_1`.
 
 The package document contains the goal, function contract, examples, required
 complexity, and an educational approach explanation. Implementations remain in

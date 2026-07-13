@@ -31,7 +31,7 @@ Failures must remain explicit, conservative, and non-destructive.
 A submission-enabled package contains both artifacts:
 
 ```text
-dsa/leetcode/<frontend_id>_<slug>/
+dsa/leetcode/<frontend_id:04d>_<slug>/
   submission.json
   solutions/
     leetcode_python3.py

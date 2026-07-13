@@ -3,8 +3,8 @@
   "recovered_count": 0,
   "updated": [
     {
-      "package": "dsa/leetcode/2_add-two-numbers",
-      "doc": "dsa/leetcode/2_add-two-numbers/doc.md"
+      "package": "dsa/leetcode/0002_add-two-numbers",
+      "doc": "dsa/leetcode/0002_add-two-numbers/doc.md"
     }
   ],
   "recovered": []

@@ -4,10 +4,11 @@ This folder is reserved for LeetCode-sourced challenge metadata and original cOd
 
 Do not copy LeetCode problem statements, editorials, or solution text here. Store stable facts such as title, slug, difficulty, tags, paid/free status, and the official URL, then write local summaries, examples, and canonical solution notes in original wording.
 
-Suggested layout:
+Canonical layout:
 
 - `index.json`: generated metadata for free LeetCode problems.
-- `{topic}/{frontend_id}_{slug}.md`: local reference docs in the same compact style as the NeetCode references.
+- `<frontend_id:04d>_<slug>/`: one package per problem, with a four-digit,
+  zero-padded directory prefix for numeric repository ordering.
 
 Use `tools/import_leetcode_free_dataset.py` to refresh metadata and scaffold missing reference files.
 

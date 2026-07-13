@@ -26,8 +26,9 @@ CODEN_HOME = Path(os.environ.get("CODEN_HOME", str(PROJECT_ROOT / ".coden-data")
 # Server / data paths.
 PROGRESS_FILE = Path(os.environ.get("CODEN_PROGRESS_FILE", str(CODEN_HOME / "progress.json")))
 
-# Writable overlay for per-user LeetCode work. It mirrors canonical package
-# names while remaining physically separate from the read-only DSA resources:
+# Writable overlay for per-user LeetCode work. It retains stable, unpadded
+# logical problem names while remaining physically separate from the read-only,
+# zero-padded canonical DSA resources:
 #   <user-data>/dsa/leetcode/1_two-sum/user_solutions/python_v1.py
 USER_DSA_ROOT = Path(os.environ.get("CODEN_USER_DSA_DIR", str(CODEN_HOME / "dsa")))
 USER_LEETCODE_ROOT = Path(
