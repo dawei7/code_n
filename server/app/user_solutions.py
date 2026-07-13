@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from engine.languages import SupportedLanguage, language_extension, normalize_language
-from server.app.challenge_packages import leetcode_package_name
+from server.app.challenge_packages import leetcode_user_package_name
 from server.app.config import LEGACY_SOLUTIONS_DIR, PROJECT_ROOT, USER_LEETCODE_ROOT
 
 
@@ -34,7 +34,7 @@ def _require_version(version: int) -> int:
 
 
 def user_problem_dir(challenge_id: str, *, create: bool = False) -> Path:
-    package_name = leetcode_package_name(challenge_id)
+    package_name = leetcode_user_package_name(challenge_id)
     if package_name is None:
         raise ValueError(f"Unknown LeetCode challenge: {challenge_id}")
     path = USER_LEETCODE_ROOT / package_name
@@ -260,7 +260,7 @@ def migrate_legacy_solutions(roots: Iterable[Path] | None = None) -> int:
                 if not match or match.group(3).lower() != expected_extension.lower():
                     continue
                 challenge_id = match.group(1)
-                if leetcode_package_name(challenge_id) is None:
+                if leetcode_user_package_name(challenge_id) is None:
                     continue
                 version = int(match.group(2)) if match.group(2) else None
                 grouped.setdefault((challenge_id, language_id), {})[version] = source_path

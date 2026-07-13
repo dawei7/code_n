@@ -1,8 +1,10 @@
 """Canonical challenge package paths.
 
-LeetCode is stored as one folder per challenge under the DSA root:
+LeetCode is stored as one folder per challenge under the DSA root. The numeric
+prefix is zero-padded to four digits so filesystem and GitHub ordering match
+frontend-ID order:
 
-``dsa/leetcode/<frontend_id>_<slug>/``
+``dsa/leetcode/<frontend_id:04d>_<slug>/``
     ``metadata.json``
     ``doc.md``
     ``doc_de.md`` (optional)
@@ -26,6 +28,7 @@ from server.app.config import LEETCODE_ROOT
 
 
 LEETCODE_ID_PREFIX = "lc_"
+LEETCODE_PACKAGE_ID_WIDTH = 4
 
 
 def is_leetcode_id(challenge_id: str) -> bool:
@@ -73,7 +76,7 @@ def leetcode_question(challenge_id: str) -> dict[str, Any] | None:
     return leetcode_questions_by_frontend_id().get(leetcode_frontend_id(challenge_id))
 
 
-def leetcode_package_name(challenge_id: str) -> str | None:
+def _leetcode_problem_name(challenge_id: str, *, pad_frontend_id: bool) -> str | None:
     frontend_id = leetcode_frontend_id(challenge_id)
     question = leetcode_question(challenge_id)
     slug = ""
@@ -81,7 +84,22 @@ def leetcode_package_name(challenge_id: str) -> str | None:
         slug = str(question.get("slug") or question.get("title_slug") or "")
     if not slug:
         return None
-    return f"{frontend_id}_{_safe_slug(slug)}"
+    directory_id = (
+        frontend_id.zfill(LEETCODE_PACKAGE_ID_WIDTH)
+        if pad_frontend_id
+        else frontend_id
+    )
+    return f"{directory_id}_{_safe_slug(slug)}"
+
+
+def leetcode_package_name(challenge_id: str) -> str | None:
+    """Return the zero-padded canonical resource-package name."""
+    return _leetcode_problem_name(challenge_id, pad_frontend_id=True)
+
+
+def leetcode_user_package_name(challenge_id: str) -> str | None:
+    """Return the stable, unpadded package name used by existing user data."""
+    return _leetcode_problem_name(challenge_id, pad_frontend_id=False)
 
 
 def leetcode_package_dir(challenge_id: str) -> Path | None:
@@ -184,5 +202,5 @@ def leetcode_package_id(package_dir: Path) -> str | None:
             return challenge_id
     match = re.match(r"^(\d+)_", package_dir.name)
     if match:
-        return f"lc_{match.group(1)}"
+        return f"lc_{int(match.group(1))}"
     return None

@@ -2,7 +2,7 @@
 
 The repository has no parallel algorithm-doc tree. Product overview content is
 the root README, and every problem owns its reference at
-``dsa/leetcode/<frontend_id>_<slug>/doc.md``.
+``dsa/leetcode/<frontend_id:04d>_<slug>/doc.md``.
 """
 from __future__ import annotations
 
@@ -94,7 +94,13 @@ def docs_by_id(challenge_id: str, lang: str = "en") -> Response:
         raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
     doc = _find_doc_path(challenge_id, lang)
     if doc is None:
-        package_hint = f"dsa/leetcode/{challenge_id.removeprefix('lc_')}_<slug>/doc.md"
+        package_dir = leetcode_package_dir(challenge_id)
+        package_name = (
+            package_dir.name
+            if package_dir is not None
+            else "<frontend_id:04d>_<slug>"
+        )
+        package_hint = f"dsa/leetcode/{package_name}/doc.md"
         raise HTTPException(
             status_code=404,
             detail=f"No canonical doc for {challenge_id}. Contribute at {package_hint}",

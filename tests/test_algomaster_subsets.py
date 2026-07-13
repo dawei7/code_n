@@ -26,7 +26,8 @@ def test_algomaster_manifest_maps_to_canonical_leetcode_packages() -> None:
     for record in records:
         canonical = canonical_by_id[record["challenge_id"]]
         assert record["leetcode_slug"] == canonical["slug"]
-        package = LEETCODE_ROOT / f"{canonical['frontend_id']}_{canonical['slug']}"
+        frontend_id = str(canonical["frontend_id"]).zfill(4)
+        package = LEETCODE_ROOT / f"{frontend_id}_{canonical['slug']}"
         assert (package / "metadata.json").is_file()
 
 

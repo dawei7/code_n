@@ -1,6 +1,10 @@
 """Tests for canonical LeetCode package documentation."""
 from __future__ import annotations
 
+from pathlib import Path
+
+from server.app.challenge_packages import leetcode_package_dir, leetcode_package_id
+
 from . import conftest
 
 
@@ -29,9 +33,16 @@ class DynamicDocsTest(conftest._Base):
         self.assertTrue(all(entry["id"].startswith("lc_") for entry in entries))
 
     def test_raw_docs_are_restricted_to_canonical_dsa(self) -> None:
-        response = self.client.get("/api/docs/dsa/leetcode/1_two-sum/doc.md")
+        response = self.client.get("/api/docs/dsa/leetcode/0001_two-sum/doc.md")
         self.assertEqual(response.status_code, 200, response.text)
         self.assertIn("# Two Sum", response.text)
 
         legacy = self.client.get("/api/docs/algorithms/README.md")
         self.assertEqual(legacy.status_code, 404)
+
+    def test_canonical_paths_are_padded_without_changing_challenge_ids(self) -> None:
+        package = leetcode_package_dir("lc_1")
+        self.assertIsNotNone(package)
+        assert package is not None
+        self.assertEqual(package.name, "0001_two-sum")
+        self.assertEqual(leetcode_package_id(Path("0001_two-sum")), "lc_1")

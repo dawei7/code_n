@@ -3,10 +3,10 @@
 This document defines the benchmark standard for cOde(n). The canonical,
 reviewed example is the Two Sum package:
 
-- `dsa/leetcode/1_two-sum/cases.json`
-- `dsa/leetcode/1_two-sum/benchmark.json`
-- `dsa/leetcode/1_two-sum/solutions/python.py`
-- `dsa/leetcode/1_two-sum/doc.md`
+- `dsa/leetcode/0001_two-sum/cases.json`
+- `dsa/leetcode/0001_two-sum/benchmark.json`
+- `dsa/leetcode/0001_two-sum/solutions/python.py`
+- `dsa/leetcode/0001_two-sum/doc.md`
 
 Future corpus migrations should reproduce the behavior described here, adapted
 to each problem's actual inputs and required complexity.

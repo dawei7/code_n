@@ -6,1327 +6,1327 @@
       "slug": "two-sum",
       "title": "Two Sum",
       "challenge_id": "nc_4",
-      "path": "dsa/leetcode/1_two-sum/doc.md"
+      "path": "dsa/leetcode/0001_two-sum/doc.md"
     },
     {
       "slug": "add-two-numbers",
       "title": "Add Two Numbers",
       "challenge_id": "nc_80",
-      "path": "dsa/leetcode/2_add-two-numbers/doc.md"
+      "path": "dsa/leetcode/0002_add-two-numbers/doc.md"
     },
     {
       "slug": "longest-substring-without-repeating-characters",
       "title": "Longest Substring Without Repeating Characters",
       "challenge_id": "nc_38",
-      "path": "dsa/leetcode/3_longest-substring-without-repeating-characters/doc.md"
+      "path": "dsa/leetcode/0003_longest-substring-without-repeating-characters/doc.md"
     },
     {
       "slug": "median-of-two-sorted-arrays",
       "title": "Median of Two Sorted Arrays",
       "challenge_id": "nc_72",
-      "path": "dsa/leetcode/4_median-of-two-sorted-arrays/doc.md"
+      "path": "dsa/leetcode/0004_median-of-two-sorted-arrays/doc.md"
     },
     {
       "slug": "longest-palindromic-substring",
       "title": "Longest Palindromic Substring",
       "challenge_id": "nc_179",
-      "path": "dsa/leetcode/5_longest-palindromic-substring/doc.md"
+      "path": "dsa/leetcode/0005_longest-palindromic-substring/doc.md"
     },
     {
       "slug": "reverse-integer",
       "title": "Reverse Integer",
       "challenge_id": "nc_248",
-      "path": "dsa/leetcode/7_reverse-integer/doc.md"
+      "path": "dsa/leetcode/0007_reverse-integer/doc.md"
     },
     {
       "slug": "regular-expression-matching",
       "title": "Regular Expression Matching",
       "challenge_id": "nc_206",
-      "path": "dsa/leetcode/10_regular-expression-matching/doc.md"
+      "path": "dsa/leetcode/0010_regular-expression-matching/doc.md"
     },
     {
       "slug": "container-with-most-water",
       "title": "Container With Most Water",
       "challenge_id": "nc_33",
-      "path": "dsa/leetcode/11_container-with-most-water/doc.md"
+      "path": "dsa/leetcode/0011_container-with-most-water/doc.md"
     },
     {
       "slug": "roman-to-integer",
       "title": "Roman to Integer",
       "challenge_id": "nc_237",
-      "path": "dsa/leetcode/13_roman-to-integer/doc.md"
+      "path": "dsa/leetcode/0013_roman-to-integer/doc.md"
     },
     {
       "slug": "longest-common-prefix",
       "title": "Longest Common Prefix",
       "challenge_id": "nc_5",
-      "path": "dsa/leetcode/14_longest-common-prefix/doc.md"
+      "path": "dsa/leetcode/0014_longest-common-prefix/doc.md"
     },
     {
       "slug": "3sum",
       "title": "3Sum",
       "challenge_id": "nc_30",
-      "path": "dsa/leetcode/15_3sum/doc.md"
+      "path": "dsa/leetcode/0015_3sum/doc.md"
     },
     {
       "slug": "letter-combinations-of-a-phone-number",
       "title": "Letter Combinations of a Phone Number",
       "challenge_id": "nc_133",
-      "path": "dsa/leetcode/17_letter-combinations-of-a-phone-number/doc.md"
+      "path": "dsa/leetcode/0017_letter-combinations-of-a-phone-number/doc.md"
     },
     {
       "slug": "4sum",
       "title": "4Sum",
       "challenge_id": "nc_31",
-      "path": "dsa/leetcode/18_4sum/doc.md"
+      "path": "dsa/leetcode/0018_4sum/doc.md"
     },
     {
       "slug": "remove-nth-node-from-end-of-list",
       "title": "Remove Nth Node From End of List",
       "challenge_id": "nc_78",
-      "path": "dsa/leetcode/19_remove-nth-node-from-end-of-list/doc.md"
+      "path": "dsa/leetcode/0019_remove-nth-node-from-end-of-list/doc.md"
     },
     {
       "slug": "valid-parentheses",
       "title": "Valid Parentheses",
       "challenge_id": "nc_46",
-      "path": "dsa/leetcode/20_valid-parentheses/doc.md"
+      "path": "dsa/leetcode/0020_valid-parentheses/doc.md"
     },
     {
       "slug": "merge-two-sorted-lists",
       "title": "Merge Two Sorted Lists",
       "challenge_id": "nc_75",
-      "path": "dsa/leetcode/21_merge-two-sorted-lists/doc.md"
+      "path": "dsa/leetcode/0021_merge-two-sorted-lists/doc.md"
     },
     {
       "slug": "generate-parentheses",
       "title": "Generate Parentheses",
       "challenge_id": "nc_51",
-      "path": "dsa/leetcode/22_generate-parentheses/doc.md"
+      "path": "dsa/leetcode/0022_generate-parentheses/doc.md"
     },
     {
       "slug": "merge-k-sorted-lists",
       "title": "Merge k Sorted Lists",
       "challenge_id": "nc_86",
-      "path": "dsa/leetcode/23_merge-k-sorted-lists/doc.md"
+      "path": "dsa/leetcode/0023_merge-k-sorted-lists/doc.md"
     },
     {
       "slug": "reverse-nodes-in-k-group",
       "title": "Reverse Nodes in k-Group",
       "challenge_id": "nc_87",
-      "path": "dsa/leetcode/25_reverse-nodes-in-k-group/doc.md"
+      "path": "dsa/leetcode/0025_reverse-nodes-in-k-group/doc.md"
     },
     {
       "slug": "remove-duplicates-from-sorted-array",
       "title": "Remove Duplicates from Sorted Array",
       "challenge_id": "nc_28",
-      "path": "dsa/leetcode/26_remove-duplicates-from-sorted-array/doc.md"
+      "path": "dsa/leetcode/0026_remove-duplicates-from-sorted-array/doc.md"
     },
     {
       "slug": "remove-element",
       "title": "Remove Element",
       "challenge_id": "nc_7",
-      "path": "dsa/leetcode/27_remove-element/doc.md"
+      "path": "dsa/leetcode/0027_remove-element/doc.md"
     },
     {
       "slug": "find-the-index-of-the-first-occurrence-in-a-string",
       "title": "Find the Index of the First Occurrence in a String",
       "challenge_id": "string_04",
-      "path": "dsa/leetcode/28_find-the-index-of-the-first-occurrence-in-a-string/doc.md"
+      "path": "dsa/leetcode/0028_find-the-index-of-the-first-occurrence-in-a-string/doc.md"
     },
     {
       "slug": "search-in-rotated-sorted-array",
       "title": "Search in Rotated Sorted Array",
       "challenge_id": "nc_68",
-      "path": "dsa/leetcode/33_search-in-rotated-sorted-array/doc.md"
+      "path": "dsa/leetcode/0033_search-in-rotated-sorted-array/doc.md"
     },
     {
       "slug": "search-insert-position",
       "title": "Search Insert Position",
       "challenge_id": "nc_61",
-      "path": "dsa/leetcode/35_search-insert-position/doc.md"
+      "path": "dsa/leetcode/0035_search-insert-position/doc.md"
     },
     {
       "slug": "valid-sudoku",
       "title": "Valid Sudoku",
       "challenge_id": "nc_17",
-      "path": "dsa/leetcode/36_valid-sudoku/doc.md"
+      "path": "dsa/leetcode/0036_valid-sudoku/doc.md"
     },
     {
       "slug": "combination-sum",
       "title": "Combination Sum",
       "challenge_id": "nc_125",
-      "path": "dsa/leetcode/39_combination-sum/doc.md"
+      "path": "dsa/leetcode/0039_combination-sum/doc.md"
     },
     {
       "slug": "combination-sum-ii",
       "title": "Combination Sum II",
       "challenge_id": "nc_126",
-      "path": "dsa/leetcode/40_combination-sum-ii/doc.md"
+      "path": "dsa/leetcode/0040_combination-sum-ii/doc.md"
     },
     {
       "slug": "first-missing-positive",
       "title": "First Missing Positive",
       "challenge_id": "nc_22",
-      "path": "dsa/leetcode/41_first-missing-positive/doc.md"
+      "path": "dsa/leetcode/0041_first-missing-positive/doc.md"
     },
     {
       "slug": "trapping-rain-water",
       "title": "Trapping Rain Water",
       "challenge_id": "nc_35",
-      "path": "dsa/leetcode/42_trapping-rain-water/doc.md"
+      "path": "dsa/leetcode/0042_trapping-rain-water/doc.md"
     },
     {
       "slug": "multiply-strings",
       "title": "Multiply Strings",
       "challenge_id": "nc_239",
-      "path": "dsa/leetcode/43_multiply-strings/doc.md"
+      "path": "dsa/leetcode/0043_multiply-strings/doc.md"
     },
     {
       "slug": "jump-game-ii",
       "title": "Jump Game II",
       "challenge_id": "nc_212",
-      "path": "dsa/leetcode/45_jump-game-ii/doc.md"
+      "path": "dsa/leetcode/0045_jump-game-ii/doc.md"
     },
     {
       "slug": "permutations",
       "title": "Permutations",
       "challenge_id": "nc_128",
-      "path": "dsa/leetcode/46_permutations/doc.md"
+      "path": "dsa/leetcode/0046_permutations/doc.md"
     },
     {
       "slug": "permutations-ii",
       "title": "Permutations II",
       "challenge_id": "nc_130",
-      "path": "dsa/leetcode/47_permutations-ii/doc.md"
+      "path": "dsa/leetcode/0047_permutations-ii/doc.md"
     },
     {
       "slug": "rotate-image",
       "title": "Rotate Image",
       "challenge_id": "nc_232",
-      "path": "dsa/leetcode/48_rotate-image/doc.md"
+      "path": "dsa/leetcode/0048_rotate-image/doc.md"
     },
     {
       "slug": "group-anagrams",
       "title": "Group Anagrams",
       "challenge_id": "nc_6",
-      "path": "dsa/leetcode/49_group-anagrams/doc.md"
+      "path": "dsa/leetcode/0049_group-anagrams/doc.md"
     },
     {
       "slug": "powx-n",
       "title": "Pow(x, n)",
       "challenge_id": "nc_238",
-      "path": "dsa/leetcode/50_powx-n/doc.md"
+      "path": "dsa/leetcode/0050_powx-n/doc.md"
     },
     {
       "slug": "n-queens",
       "title": "N-Queens",
       "challenge_id": "nc_136",
-      "path": "dsa/leetcode/51_n-queens/doc.md"
+      "path": "dsa/leetcode/0051_n-queens/doc.md"
     },
     {
       "slug": "n-queens-ii",
       "title": "N-Queens II",
       "challenge_id": "nc_137",
-      "path": "dsa/leetcode/52_n-queens-ii/doc.md"
+      "path": "dsa/leetcode/0052_n-queens-ii/doc.md"
     },
     {
       "slug": "maximum-subarray",
       "title": "Maximum Subarray",
       "challenge_id": "nc_208",
-      "path": "dsa/leetcode/53_maximum-subarray/doc.md"
+      "path": "dsa/leetcode/0053_maximum-subarray/doc.md"
     },
     {
       "slug": "spiral-matrix",
       "title": "Spiral Matrix",
       "challenge_id": "nc_233",
-      "path": "dsa/leetcode/54_spiral-matrix/doc.md"
+      "path": "dsa/leetcode/0054_spiral-matrix/doc.md"
     },
     {
       "slug": "jump-game",
       "title": "Jump Game",
       "challenge_id": "nc_211",
-      "path": "dsa/leetcode/55_jump-game/doc.md"
+      "path": "dsa/leetcode/0055_jump-game/doc.md"
     },
     {
       "slug": "merge-intervals",
       "title": "Merge Intervals",
       "challenge_id": "nc_222",
-      "path": "dsa/leetcode/56_merge-intervals/doc.md"
+      "path": "dsa/leetcode/0056_merge-intervals/doc.md"
     },
     {
       "slug": "insert-interval",
       "title": "Insert Interval",
       "challenge_id": "nc_221",
-      "path": "dsa/leetcode/57_insert-interval/doc.md"
+      "path": "dsa/leetcode/0057_insert-interval/doc.md"
     },
     {
       "slug": "unique-paths",
       "title": "Unique Paths",
       "challenge_id": "nc_191",
-      "path": "dsa/leetcode/62_unique-paths/doc.md"
+      "path": "dsa/leetcode/0062_unique-paths/doc.md"
     },
     {
       "slug": "unique-paths-ii",
       "title": "Unique Paths II",
       "challenge_id": "nc_192",
-      "path": "dsa/leetcode/63_unique-paths-ii/doc.md"
+      "path": "dsa/leetcode/0063_unique-paths-ii/doc.md"
     },
     {
       "slug": "minimum-path-sum",
       "title": "Minimum Path Sum",
       "challenge_id": "nc_193",
-      "path": "dsa/leetcode/64_minimum-path-sum/doc.md"
+      "path": "dsa/leetcode/0064_minimum-path-sum/doc.md"
     },
     {
       "slug": "plus-one",
       "title": "Plus One",
       "challenge_id": "nc_236",
-      "path": "dsa/leetcode/66_plus-one/doc.md"
+      "path": "dsa/leetcode/0066_plus-one/doc.md"
     },
     {
       "slug": "add-binary",
       "title": "Add Binary",
       "challenge_id": "nc_244",
-      "path": "dsa/leetcode/67_add-binary/doc.md"
+      "path": "dsa/leetcode/0067_add-binary/doc.md"
     },
     {
       "slug": "sqrtx",
       "title": "Sqrt(x)",
       "challenge_id": "nc_63",
-      "path": "dsa/leetcode/69_sqrtx/doc.md"
+      "path": "dsa/leetcode/0069_sqrtx/doc.md"
     },
     {
       "slug": "climbing-stairs",
       "title": "Climbing Stairs",
       "challenge_id": "nc_174",
-      "path": "dsa/leetcode/70_climbing-stairs/doc.md"
+      "path": "dsa/leetcode/0070_climbing-stairs/doc.md"
     },
     {
       "slug": "simplify-path",
       "title": "Simplify Path",
       "challenge_id": "nc_56",
-      "path": "dsa/leetcode/71_simplify-path/doc.md"
+      "path": "dsa/leetcode/0071_simplify-path/doc.md"
     },
     {
       "slug": "edit-distance",
       "title": "Edit Distance",
       "challenge_id": "nc_204",
-      "path": "dsa/leetcode/72_edit-distance/doc.md"
+      "path": "dsa/leetcode/0072_edit-distance/doc.md"
     },
     {
       "slug": "set-matrix-zeroes",
       "title": "Set Matrix Zeroes",
       "challenge_id": "nc_234",
-      "path": "dsa/leetcode/73_set-matrix-zeroes/doc.md"
+      "path": "dsa/leetcode/0073_set-matrix-zeroes/doc.md"
     },
     {
       "slug": "search-a-2d-matrix",
       "title": "Search a 2D Matrix",
       "challenge_id": "nc_64",
-      "path": "dsa/leetcode/74_search-a-2d-matrix/doc.md"
+      "path": "dsa/leetcode/0074_search-a-2d-matrix/doc.md"
     },
     {
       "slug": "sort-colors",
       "title": "Sort Colors",
       "challenge_id": "nc_12",
-      "path": "dsa/leetcode/75_sort-colors/doc.md"
+      "path": "dsa/leetcode/0075_sort-colors/doc.md"
     },
     {
       "slug": "minimum-window-substring",
       "title": "Minimum Window Substring",
       "challenge_id": "nc_43",
-      "path": "dsa/leetcode/76_minimum-window-substring/doc.md"
+      "path": "dsa/leetcode/0076_minimum-window-substring/doc.md"
     },
     {
       "slug": "combinations",
       "title": "Combinations",
       "challenge_id": "nc_127",
-      "path": "dsa/leetcode/77_combinations/doc.md"
+      "path": "dsa/leetcode/0077_combinations/doc.md"
     },
     {
       "slug": "subsets",
       "title": "Subsets",
       "challenge_id": "nc_124",
-      "path": "dsa/leetcode/78_subsets/doc.md"
+      "path": "dsa/leetcode/0078_subsets/doc.md"
     },
     {
       "slug": "word-search",
       "title": "Word Search",
       "challenge_id": "nc_131",
-      "path": "dsa/leetcode/79_word-search/doc.md"
+      "path": "dsa/leetcode/0079_word-search/doc.md"
     },
     {
       "slug": "search-in-rotated-sorted-array-ii",
       "title": "Search in Rotated Sorted Array II",
       "challenge_id": "nc_69",
-      "path": "dsa/leetcode/81_search-in-rotated-sorted-array-ii/doc.md"
+      "path": "dsa/leetcode/0081_search-in-rotated-sorted-array-ii/doc.md"
     },
     {
       "slug": "largest-rectangle-in-histogram",
       "title": "Largest Rectangle in Histogram",
       "challenge_id": "nc_59",
-      "path": "dsa/leetcode/84_largest-rectangle-in-histogram/doc.md"
+      "path": "dsa/leetcode/0084_largest-rectangle-in-histogram/doc.md"
     },
     {
       "slug": "merge-sorted-array",
       "title": "Merge Sorted Array",
       "challenge_id": "nc_27",
-      "path": "dsa/leetcode/88_merge-sorted-array/doc.md"
+      "path": "dsa/leetcode/0088_merge-sorted-array/doc.md"
     },
     {
       "slug": "subsets-ii",
       "title": "Subsets II",
       "challenge_id": "nc_129",
-      "path": "dsa/leetcode/90_subsets-ii/doc.md"
+      "path": "dsa/leetcode/0090_subsets-ii/doc.md"
     },
     {
       "slug": "decode-ways",
       "title": "Decode Ways",
       "challenge_id": "nc_181",
-      "path": "dsa/leetcode/91_decode-ways/doc.md"
+      "path": "dsa/leetcode/0091_decode-ways/doc.md"
     },
     {
       "slug": "reverse-linked-list-ii",
       "title": "Reverse Linked List II",
       "challenge_id": "nc_82",
-      "path": "dsa/leetcode/92_reverse-linked-list-ii/doc.md"
+      "path": "dsa/leetcode/0092_reverse-linked-list-ii/doc.md"
     },
     {
       "slug": "binary-tree-inorder-traversal",
       "title": "Binary Tree Inorder Traversal",
       "challenge_id": "nc_88",
-      "path": "dsa/leetcode/94_binary-tree-inorder-traversal/doc.md"
+      "path": "dsa/leetcode/0094_binary-tree-inorder-traversal/doc.md"
     },
     {
       "slug": "interleaving-string",
       "title": "Interleaving String",
       "challenge_id": "nc_199",
-      "path": "dsa/leetcode/97_interleaving-string/doc.md"
+      "path": "dsa/leetcode/0097_interleaving-string/doc.md"
     },
     {
       "slug": "validate-binary-search-tree",
       "title": "Validate Binary Search Tree",
       "challenge_id": "nc_104",
-      "path": "dsa/leetcode/98_validate-binary-search-tree/doc.md"
+      "path": "dsa/leetcode/0098_validate-binary-search-tree/doc.md"
     },
     {
       "slug": "same-tree",
       "title": "Same Tree",
       "challenge_id": "nc_95",
-      "path": "dsa/leetcode/100_same-tree/doc.md"
+      "path": "dsa/leetcode/0100_same-tree/doc.md"
     },
     {
       "slug": "binary-tree-level-order-traversal",
       "title": "Binary Tree Level Order Traversal",
       "challenge_id": "nc_100",
-      "path": "dsa/leetcode/102_binary-tree-level-order-traversal/doc.md"
+      "path": "dsa/leetcode/0102_binary-tree-level-order-traversal/doc.md"
     },
     {
       "slug": "maximum-depth-of-binary-tree",
       "title": "Maximum Depth of Binary Tree",
       "challenge_id": "nc_92",
-      "path": "dsa/leetcode/104_maximum-depth-of-binary-tree/doc.md"
+      "path": "dsa/leetcode/0104_maximum-depth-of-binary-tree/doc.md"
     },
     {
       "slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
       "title": "Construct Binary Tree from Preorder and Inorder Traversal",
       "challenge_id": "nc_106",
-      "path": "dsa/leetcode/105_construct-binary-tree-from-preorder-and-inorder-traversal/doc.md"
+      "path": "dsa/leetcode/0105_construct-binary-tree-from-preorder-and-inorder-traversal/doc.md"
     },
     {
       "slug": "convert-sorted-array-to-binary-search-tree",
       "title": "Convert Sorted Array to Binary Search Tree",
       "challenge_id": "tree_22",
-      "path": "dsa/leetcode/108_convert-sorted-array-to-binary-search-tree/doc.md"
+      "path": "dsa/leetcode/0108_convert-sorted-array-to-binary-search-tree/doc.md"
     },
     {
       "slug": "balanced-binary-tree",
       "title": "Balanced Binary Tree",
       "challenge_id": "nc_94",
-      "path": "dsa/leetcode/110_balanced-binary-tree/doc.md"
+      "path": "dsa/leetcode/0110_balanced-binary-tree/doc.md"
     },
     {
       "slug": "distinct-subsequences",
       "title": "Distinct Subsequences",
       "challenge_id": "nc_203",
-      "path": "dsa/leetcode/115_distinct-subsequences/doc.md"
+      "path": "dsa/leetcode/0115_distinct-subsequences/doc.md"
     },
     {
       "slug": "best-time-to-buy-and-sell-stock",
       "title": "Best Time to Buy and Sell Stock",
       "challenge_id": "nc_37",
-      "path": "dsa/leetcode/121_best-time-to-buy-and-sell-stock/doc.md"
+      "path": "dsa/leetcode/0121_best-time-to-buy-and-sell-stock/doc.md"
     },
     {
       "slug": "best-time-to-buy-and-sell-stock-ii",
       "title": "Best Time to Buy and Sell Stock II",
       "challenge_id": "nc_19",
-      "path": "dsa/leetcode/122_best-time-to-buy-and-sell-stock-ii/doc.md"
+      "path": "dsa/leetcode/0122_best-time-to-buy-and-sell-stock-ii/doc.md"
     },
     {
       "slug": "binary-tree-maximum-path-sum",
       "title": "Binary Tree Maximum Path Sum",
       "challenge_id": "nc_109",
-      "path": "dsa/leetcode/124_binary-tree-maximum-path-sum/doc.md"
+      "path": "dsa/leetcode/0124_binary-tree-maximum-path-sum/doc.md"
     },
     {
       "slug": "valid-palindrome",
       "title": "Valid Palindrome",
       "challenge_id": "nc_24",
-      "path": "dsa/leetcode/125_valid-palindrome/doc.md"
+      "path": "dsa/leetcode/0125_valid-palindrome/doc.md"
     },
     {
       "slug": "word-ladder",
       "title": "Word Ladder",
       "challenge_id": "nc_163",
-      "path": "dsa/leetcode/127_word-ladder/doc.md"
+      "path": "dsa/leetcode/0127_word-ladder/doc.md"
     },
     {
       "slug": "longest-consecutive-sequence",
       "title": "Longest Consecutive Sequence",
       "challenge_id": "nc_18",
-      "path": "dsa/leetcode/128_longest-consecutive-sequence/doc.md"
+      "path": "dsa/leetcode/0128_longest-consecutive-sequence/doc.md"
     },
     {
       "slug": "surrounded-regions",
       "title": "Surrounded Regions",
       "challenge_id": "nc_152",
-      "path": "dsa/leetcode/130_surrounded-regions/doc.md"
+      "path": "dsa/leetcode/0130_surrounded-regions/doc.md"
     },
     {
       "slug": "palindrome-partitioning",
       "title": "Palindrome Partitioning",
       "challenge_id": "nc_132",
-      "path": "dsa/leetcode/131_palindrome-partitioning/doc.md"
+      "path": "dsa/leetcode/0131_palindrome-partitioning/doc.md"
     },
     {
       "slug": "clone-graph",
       "title": "Clone Graph",
       "challenge_id": "nc_148",
-      "path": "dsa/leetcode/133_clone-graph/doc.md"
+      "path": "dsa/leetcode/0133_clone-graph/doc.md"
     },
     {
       "slug": "gas-station",
       "title": "Gas Station",
       "challenge_id": "nc_214",
-      "path": "dsa/leetcode/134_gas-station/doc.md"
+      "path": "dsa/leetcode/0134_gas-station/doc.md"
     },
     {
       "slug": "candy",
       "title": "Candy",
       "challenge_id": "nc_220",
-      "path": "dsa/leetcode/135_candy/doc.md"
+      "path": "dsa/leetcode/0135_candy/doc.md"
     },
     {
       "slug": "single-number",
       "title": "Single Number",
       "challenge_id": "nc_241",
-      "path": "dsa/leetcode/136_single-number/doc.md"
+      "path": "dsa/leetcode/0136_single-number/doc.md"
     },
     {
       "slug": "copy-list-with-random-pointer",
       "title": "Copy List with Random Pointer",
       "challenge_id": "nc_79",
-      "path": "dsa/leetcode/138_copy-list-with-random-pointer/doc.md"
+      "path": "dsa/leetcode/0138_copy-list-with-random-pointer/doc.md"
     },
     {
       "slug": "word-break",
       "title": "Word Break",
       "challenge_id": "nc_184",
-      "path": "dsa/leetcode/139_word-break/doc.md"
+      "path": "dsa/leetcode/0139_word-break/doc.md"
     },
     {
       "slug": "word-break-ii",
       "title": "Word Break II",
       "challenge_id": "nc_138",
-      "path": "dsa/leetcode/140_word-break-ii/doc.md"
+      "path": "dsa/leetcode/0140_word-break-ii/doc.md"
     },
     {
       "slug": "linked-list-cycle",
       "title": "Linked List Cycle",
       "challenge_id": "nc_76",
-      "path": "dsa/leetcode/141_linked-list-cycle/doc.md"
+      "path": "dsa/leetcode/0141_linked-list-cycle/doc.md"
     },
     {
       "slug": "reorder-list",
       "title": "Reorder List",
       "challenge_id": "nc_77",
-      "path": "dsa/leetcode/143_reorder-list/doc.md"
+      "path": "dsa/leetcode/0143_reorder-list/doc.md"
     },
     {
       "slug": "binary-tree-preorder-traversal",
       "title": "Binary Tree Preorder Traversal",
       "challenge_id": "nc_89",
-      "path": "dsa/leetcode/144_binary-tree-preorder-traversal/doc.md"
+      "path": "dsa/leetcode/0144_binary-tree-preorder-traversal/doc.md"
     },
     {
       "slug": "binary-tree-postorder-traversal",
       "title": "Binary Tree Postorder Traversal",
       "challenge_id": "nc_90",
-      "path": "dsa/leetcode/145_binary-tree-postorder-traversal/doc.md"
+      "path": "dsa/leetcode/0145_binary-tree-postorder-traversal/doc.md"
     },
     {
       "slug": "lru-cache",
       "title": "LRU Cache",
       "challenge_id": "nc_84",
-      "path": "dsa/leetcode/146_lru-cache/doc.md"
+      "path": "dsa/leetcode/0146_lru-cache/doc.md"
     },
     {
       "slug": "sort-list",
       "title": "Sort List",
       "challenge_id": "sort_04",
-      "path": "dsa/leetcode/148_sort-list/doc.md"
+      "path": "dsa/leetcode/0148_sort-list/doc.md"
     },
     {
       "slug": "evaluate-reverse-polish-notation",
       "title": "Evaluate Reverse Polish Notation",
       "challenge_id": "nc_50",
-      "path": "dsa/leetcode/150_evaluate-reverse-polish-notation/doc.md"
+      "path": "dsa/leetcode/0150_evaluate-reverse-polish-notation/doc.md"
     },
     {
       "slug": "maximum-product-subarray",
       "title": "Maximum Product Subarray",
       "challenge_id": "nc_183",
-      "path": "dsa/leetcode/152_maximum-product-subarray/doc.md"
+      "path": "dsa/leetcode/0152_maximum-product-subarray/doc.md"
     },
     {
       "slug": "find-minimum-in-rotated-sorted-array",
       "title": "Find Minimum in Rotated Sorted Array",
       "challenge_id": "nc_67",
-      "path": "dsa/leetcode/153_find-minimum-in-rotated-sorted-array/doc.md"
+      "path": "dsa/leetcode/0153_find-minimum-in-rotated-sorted-array/doc.md"
     },
     {
       "slug": "min-stack",
       "title": "Min Stack",
       "challenge_id": "nc_49",
-      "path": "dsa/leetcode/155_min-stack/doc.md"
+      "path": "dsa/leetcode/0155_min-stack/doc.md"
     },
     {
       "slug": "two-sum-ii-input-array-is-sorted",
       "title": "Two Sum II - Input Array Is Sorted",
       "challenge_id": "nc_29",
-      "path": "dsa/leetcode/167_two-sum-ii-input-array-is-sorted/doc.md"
+      "path": "dsa/leetcode/0167_two-sum-ii-input-array-is-sorted/doc.md"
     },
     {
       "slug": "excel-sheet-column-title",
       "title": "Excel Sheet Column Title",
       "challenge_id": "nc_228",
-      "path": "dsa/leetcode/168_excel-sheet-column-title/doc.md"
+      "path": "dsa/leetcode/0168_excel-sheet-column-title/doc.md"
     },
     {
       "slug": "majority-element",
       "title": "Majority Element",
       "challenge_id": "nc_8",
-      "path": "dsa/leetcode/169_majority-element/doc.md"
+      "path": "dsa/leetcode/0169_majority-element/doc.md"
     },
     {
       "slug": "repeated-dna-sequences",
       "title": "Repeated DNA Sequences",
       "challenge_id": "string_06",
-      "path": "dsa/leetcode/187_repeated-dna-sequences/doc.md"
+      "path": "dsa/leetcode/0187_repeated-dna-sequences/doc.md"
     },
     {
       "slug": "rotate-array",
       "title": "Rotate Array",
       "challenge_id": "nc_32",
-      "path": "dsa/leetcode/189_rotate-array/doc.md"
+      "path": "dsa/leetcode/0189_rotate-array/doc.md"
     },
     {
       "slug": "reverse-bits",
       "title": "Reverse Bits",
       "challenge_id": "nc_245",
-      "path": "dsa/leetcode/190_reverse-bits/doc.md"
+      "path": "dsa/leetcode/0190_reverse-bits/doc.md"
     },
     {
       "slug": "number-of-1-bits",
       "title": "Number of 1 Bits",
       "challenge_id": "nc_242",
-      "path": "dsa/leetcode/191_number-of-1-bits/doc.md"
+      "path": "dsa/leetcode/0191_number-of-1-bits/doc.md"
     },
     {
       "slug": "house-robber",
       "title": "House Robber",
       "challenge_id": "nc_177",
-      "path": "dsa/leetcode/198_house-robber/doc.md"
+      "path": "dsa/leetcode/0198_house-robber/doc.md"
     },
     {
       "slug": "binary-tree-right-side-view",
       "title": "Binary Tree Right Side View",
       "challenge_id": "nc_101",
-      "path": "dsa/leetcode/199_binary-tree-right-side-view/doc.md"
+      "path": "dsa/leetcode/0199_binary-tree-right-side-view/doc.md"
     },
     {
       "slug": "number-of-islands",
       "title": "Number of Islands",
       "challenge_id": "nc_146",
-      "path": "dsa/leetcode/200_number-of-islands/doc.md"
+      "path": "dsa/leetcode/0200_number-of-islands/doc.md"
     },
     {
       "slug": "bitwise-and-of-numbers-range",
       "title": "Bitwise AND of Numbers Range",
       "challenge_id": "nc_249",
-      "path": "dsa/leetcode/201_bitwise-and-of-numbers-range/doc.md"
+      "path": "dsa/leetcode/0201_bitwise-and-of-numbers-range/doc.md"
     },
     {
       "slug": "happy-number",
       "title": "Happy Number",
       "challenge_id": "nc_235",
-      "path": "dsa/leetcode/202_happy-number/doc.md"
+      "path": "dsa/leetcode/0202_happy-number/doc.md"
     },
     {
       "slug": "reverse-linked-list",
       "title": "Reverse Linked List",
       "challenge_id": "nc_74",
-      "path": "dsa/leetcode/206_reverse-linked-list/doc.md"
+      "path": "dsa/leetcode/0206_reverse-linked-list/doc.md"
     },
     {
       "slug": "course-schedule",
       "title": "Course Schedule",
       "challenge_id": "nc_154",
-      "path": "dsa/leetcode/207_course-schedule/doc.md"
+      "path": "dsa/leetcode/0207_course-schedule/doc.md"
     },
     {
       "slug": "implement-trie-prefix-tree",
       "title": "Implement Trie (Prefix Tree)",
       "challenge_id": "nc_139",
-      "path": "dsa/leetcode/208_implement-trie-prefix-tree/doc.md"
+      "path": "dsa/leetcode/0208_implement-trie-prefix-tree/doc.md"
     },
     {
       "slug": "minimum-size-subarray-sum",
       "title": "Minimum Size Subarray Sum",
       "challenge_id": "nc_41",
-      "path": "dsa/leetcode/209_minimum-size-subarray-sum/doc.md"
+      "path": "dsa/leetcode/0209_minimum-size-subarray-sum/doc.md"
     },
     {
       "slug": "course-schedule-ii",
       "title": "Course Schedule II",
       "challenge_id": "nc_155",
-      "path": "dsa/leetcode/210_course-schedule-ii/doc.md"
+      "path": "dsa/leetcode/0210_course-schedule-ii/doc.md"
     },
     {
       "slug": "design-add-and-search-words-data-structure",
       "title": "Design Add and Search Words Data Structure",
       "challenge_id": "nc_140",
-      "path": "dsa/leetcode/211_design-add-and-search-words-data-structure/doc.md"
+      "path": "dsa/leetcode/0211_design-add-and-search-words-data-structure/doc.md"
     },
     {
       "slug": "word-search-ii",
       "title": "Word Search II",
       "challenge_id": "nc_142",
-      "path": "dsa/leetcode/212_word-search-ii/doc.md"
+      "path": "dsa/leetcode/0212_word-search-ii/doc.md"
     },
     {
       "slug": "house-robber-ii",
       "title": "House Robber II",
       "challenge_id": "nc_178",
-      "path": "dsa/leetcode/213_house-robber-ii/doc.md"
+      "path": "dsa/leetcode/0213_house-robber-ii/doc.md"
     },
     {
       "slug": "kth-largest-element-in-an-array",
       "title": "Kth Largest Element in an Array",
       "challenge_id": "nc_114",
-      "path": "dsa/leetcode/215_kth-largest-element-in-an-array/doc.md"
+      "path": "dsa/leetcode/0215_kth-largest-element-in-an-array/doc.md"
     },
     {
       "slug": "contains-duplicate",
       "title": "Contains Duplicate",
       "challenge_id": "nc_2",
-      "path": "dsa/leetcode/217_contains-duplicate/doc.md"
+      "path": "dsa/leetcode/0217_contains-duplicate/doc.md"
     },
     {
       "slug": "contains-duplicate-ii",
       "title": "Contains Duplicate II",
       "challenge_id": "nc_36",
-      "path": "dsa/leetcode/219_contains-duplicate-ii/doc.md"
+      "path": "dsa/leetcode/0219_contains-duplicate-ii/doc.md"
     },
     {
       "slug": "implement-stack-using-queues",
       "title": "Implement Stack using Queues",
       "challenge_id": "nc_47",
-      "path": "dsa/leetcode/225_implement-stack-using-queues/doc.md"
+      "path": "dsa/leetcode/0225_implement-stack-using-queues/doc.md"
     },
     {
       "slug": "invert-binary-tree",
       "title": "Invert Binary Tree",
       "challenge_id": "nc_91",
-      "path": "dsa/leetcode/226_invert-binary-tree/doc.md"
+      "path": "dsa/leetcode/0226_invert-binary-tree/doc.md"
     },
     {
       "slug": "majority-element-ii",
       "title": "Majority Element II",
       "challenge_id": "nc_20",
-      "path": "dsa/leetcode/229_majority-element-ii/doc.md"
+      "path": "dsa/leetcode/0229_majority-element-ii/doc.md"
     },
     {
       "slug": "kth-smallest-element-in-a-bst",
       "title": "Kth Smallest Element in a BST",
       "challenge_id": "nc_105",
-      "path": "dsa/leetcode/230_kth-smallest-element-in-a-bst/doc.md"
+      "path": "dsa/leetcode/0230_kth-smallest-element-in-a-bst/doc.md"
     },
     {
       "slug": "power-of-two",
       "title": "Power of Two",
       "challenge_id": "bit_02",
-      "path": "dsa/leetcode/231_power-of-two/doc.md"
+      "path": "dsa/leetcode/0231_power-of-two/doc.md"
     },
     {
       "slug": "implement-queue-using-stacks",
       "title": "Implement Queue using Stacks",
       "challenge_id": "nc_48",
-      "path": "dsa/leetcode/232_implement-queue-using-stacks/doc.md"
+      "path": "dsa/leetcode/0232_implement-queue-using-stacks/doc.md"
     },
     {
       "slug": "lowest-common-ancestor-of-a-binary-search-tree",
       "title": "Lowest Common Ancestor of a Binary Search Tree",
       "challenge_id": "nc_97",
-      "path": "dsa/leetcode/235_lowest-common-ancestor-of-a-binary-search-tree/doc.md"
+      "path": "dsa/leetcode/0235_lowest-common-ancestor-of-a-binary-search-tree/doc.md"
     },
     {
       "slug": "product-of-array-except-self",
       "title": "Product of Array Except Self",
       "challenge_id": "nc_16",
-      "path": "dsa/leetcode/238_product-of-array-except-self/doc.md"
+      "path": "dsa/leetcode/0238_product-of-array-except-self/doc.md"
     },
     {
       "slug": "sliding-window-maximum",
       "title": "Sliding Window Maximum",
       "challenge_id": "nc_44",
-      "path": "dsa/leetcode/239_sliding-window-maximum/doc.md"
+      "path": "dsa/leetcode/0239_sliding-window-maximum/doc.md"
     },
     {
       "slug": "valid-anagram",
       "title": "Valid Anagram",
       "challenge_id": "nc_3",
-      "path": "dsa/leetcode/242_valid-anagram/doc.md"
+      "path": "dsa/leetcode/0242_valid-anagram/doc.md"
     },
     {
       "slug": "missing-number",
       "title": "Missing Number",
       "challenge_id": "nc_246",
-      "path": "dsa/leetcode/268_missing-number/doc.md"
+      "path": "dsa/leetcode/0268_missing-number/doc.md"
     },
     {
       "slug": "perfect-squares",
       "title": "Perfect Squares",
       "challenge_id": "nc_188",
-      "path": "dsa/leetcode/279_perfect-squares/doc.md"
+      "path": "dsa/leetcode/0279_perfect-squares/doc.md"
     },
     {
       "slug": "find-the-duplicate-number",
       "title": "Find the Duplicate Number",
       "challenge_id": "nc_81",
-      "path": "dsa/leetcode/287_find-the-duplicate-number/doc.md"
+      "path": "dsa/leetcode/0287_find-the-duplicate-number/doc.md"
     },
     {
       "slug": "find-median-from-data-stream",
       "title": "Find Median from Data Stream",
       "challenge_id": "nc_121",
-      "path": "dsa/leetcode/295_find-median-from-data-stream/doc.md"
+      "path": "dsa/leetcode/0295_find-median-from-data-stream/doc.md"
     },
     {
       "slug": "serialize-and-deserialize-binary-tree",
       "title": "Serialize and Deserialize Binary Tree",
       "challenge_id": "nc_110",
-      "path": "dsa/leetcode/297_serialize-and-deserialize-binary-tree/doc.md"
+      "path": "dsa/leetcode/0297_serialize-and-deserialize-binary-tree/doc.md"
     },
     {
       "slug": "longest-increasing-subsequence",
       "title": "Longest Increasing Subsequence",
       "challenge_id": "nc_185",
-      "path": "dsa/leetcode/300_longest-increasing-subsequence/doc.md"
+      "path": "dsa/leetcode/0300_longest-increasing-subsequence/doc.md"
     },
     {
       "slug": "range-sum-query-2d-immutable",
       "title": "Range Sum Query 2D - Immutable",
       "challenge_id": "nc_15",
-      "path": "dsa/leetcode/304_range-sum-query-2d-immutable/doc.md"
+      "path": "dsa/leetcode/0304_range-sum-query-2d-immutable/doc.md"
     },
     {
       "slug": "range-sum-query-mutable",
       "title": "Range Sum Query - Mutable",
       "challenge_id": "segtree_02",
-      "path": "dsa/leetcode/307_range-sum-query-mutable/doc.md"
+      "path": "dsa/leetcode/0307_range-sum-query-mutable/doc.md"
     },
     {
       "slug": "best-time-to-buy-and-sell-stock-with-cooldown",
       "title": "Best Time to Buy and Sell Stock with Cooldown",
       "challenge_id": "nc_196",
-      "path": "dsa/leetcode/309_best-time-to-buy-and-sell-stock-with-cooldown/doc.md"
+      "path": "dsa/leetcode/0309_best-time-to-buy-and-sell-stock-with-cooldown/doc.md"
     },
     {
       "slug": "minimum-height-trees",
       "title": "Minimum Height Trees",
       "challenge_id": "nc_162",
-      "path": "dsa/leetcode/310_minimum-height-trees/doc.md"
+      "path": "dsa/leetcode/0310_minimum-height-trees/doc.md"
     },
     {
       "slug": "burst-balloons",
       "title": "Burst Balloons",
       "challenge_id": "nc_205",
-      "path": "dsa/leetcode/312_burst-balloons/doc.md"
+      "path": "dsa/leetcode/0312_burst-balloons/doc.md"
     },
     {
       "slug": "coin-change",
       "title": "Coin Change",
       "challenge_id": "nc_182",
-      "path": "dsa/leetcode/322_coin-change/doc.md"
+      "path": "dsa/leetcode/0322_coin-change/doc.md"
     },
     {
       "slug": "longest-increasing-path-in-a-matrix",
       "title": "Longest Increasing Path in a Matrix",
       "challenge_id": "nc_202",
-      "path": "dsa/leetcode/329_longest-increasing-path-in-a-matrix/doc.md"
+      "path": "dsa/leetcode/0329_longest-increasing-path-in-a-matrix/doc.md"
     },
     {
       "slug": "reconstruct-itinerary",
       "title": "Reconstruct Itinerary",
       "challenge_id": "nc_166",
-      "path": "dsa/leetcode/332_reconstruct-itinerary/doc.md"
+      "path": "dsa/leetcode/0332_reconstruct-itinerary/doc.md"
     },
     {
       "slug": "house-robber-iii",
       "title": "House Robber III",
       "challenge_id": "nc_107",
-      "path": "dsa/leetcode/337_house-robber-iii/doc.md"
+      "path": "dsa/leetcode/0337_house-robber-iii/doc.md"
     },
     {
       "slug": "counting-bits",
       "title": "Counting Bits",
       "challenge_id": "nc_243",
-      "path": "dsa/leetcode/338_counting-bits/doc.md"
+      "path": "dsa/leetcode/0338_counting-bits/doc.md"
     },
     {
       "slug": "integer-break",
       "title": "Integer Break",
       "challenge_id": "nc_189",
-      "path": "dsa/leetcode/343_integer-break/doc.md"
+      "path": "dsa/leetcode/0343_integer-break/doc.md"
     },
     {
       "slug": "reverse-string",
       "title": "Reverse String",
       "challenge_id": "nc_23",
-      "path": "dsa/leetcode/344_reverse-string/doc.md"
+      "path": "dsa/leetcode/0344_reverse-string/doc.md"
     },
     {
       "slug": "top-k-frequent-elements",
       "title": "Top K Frequent Elements",
       "challenge_id": "nc_13",
-      "path": "dsa/leetcode/347_top-k-frequent-elements/doc.md"
+      "path": "dsa/leetcode/0347_top-k-frequent-elements/doc.md"
     },
     {
       "slug": "design-twitter",
       "title": "Design Twitter",
       "challenge_id": "nc_116",
-      "path": "dsa/leetcode/355_design-twitter/doc.md"
+      "path": "dsa/leetcode/0355_design-twitter/doc.md"
     },
     {
       "slug": "sum-of-two-integers",
       "title": "Sum of Two Integers",
       "challenge_id": "nc_247",
-      "path": "dsa/leetcode/371_sum-of-two-integers/doc.md"
+      "path": "dsa/leetcode/0371_sum-of-two-integers/doc.md"
     },
     {
       "slug": "guess-number-higher-or-lower",
       "title": "Guess Number Higher or Lower",
       "challenge_id": "nc_62",
-      "path": "dsa/leetcode/374_guess-number-higher-or-lower/doc.md"
+      "path": "dsa/leetcode/0374_guess-number-higher-or-lower/doc.md"
     },
     {
       "slug": "combination-sum-iv",
       "title": "Combination Sum IV",
       "challenge_id": "nc_187",
-      "path": "dsa/leetcode/377_combination-sum-iv/doc.md"
+      "path": "dsa/leetcode/0377_combination-sum-iv/doc.md"
     },
     {
       "slug": "decode-string",
       "title": "Decode String",
       "challenge_id": "nc_57",
-      "path": "dsa/leetcode/394_decode-string/doc.md"
+      "path": "dsa/leetcode/0394_decode-string/doc.md"
     },
     {
       "slug": "evaluate-division",
       "title": "Evaluate Division",
       "challenge_id": "nc_161",
-      "path": "dsa/leetcode/399_evaluate-division/doc.md"
+      "path": "dsa/leetcode/0399_evaluate-division/doc.md"
     },
     {
       "slug": "split-array-largest-sum",
       "title": "Split Array Largest Sum",
       "challenge_id": "nc_71",
-      "path": "dsa/leetcode/410_split-array-largest-sum/doc.md"
+      "path": "dsa/leetcode/0410_split-array-largest-sum/doc.md"
     },
     {
       "slug": "partition-equal-subset-sum",
       "title": "Partition Equal Subset Sum",
       "challenge_id": "nc_186",
-      "path": "dsa/leetcode/416_partition-equal-subset-sum/doc.md"
+      "path": "dsa/leetcode/0416_partition-equal-subset-sum/doc.md"
     },
     {
       "slug": "pacific-atlantic-water-flow",
       "title": "Pacific Atlantic Water Flow",
       "challenge_id": "nc_151",
-      "path": "dsa/leetcode/417_pacific-atlantic-water-flow/doc.md"
+      "path": "dsa/leetcode/0417_pacific-atlantic-water-flow/doc.md"
     },
     {
       "slug": "longest-repeating-character-replacement",
       "title": "Longest Repeating Character Replacement",
       "challenge_id": "nc_39",
-      "path": "dsa/leetcode/424_longest-repeating-character-replacement/doc.md"
+      "path": "dsa/leetcode/0424_longest-repeating-character-replacement/doc.md"
     },
     {
       "slug": "construct-quad-tree",
       "title": "Construct Quad Tree",
       "challenge_id": "nc_102",
-      "path": "dsa/leetcode/427_construct-quad-tree/doc.md"
+      "path": "dsa/leetcode/0427_construct-quad-tree/doc.md"
     },
     {
       "slug": "non-overlapping-intervals",
       "title": "Non-overlapping Intervals",
       "challenge_id": "nc_223",
-      "path": "dsa/leetcode/435_non-overlapping-intervals/doc.md"
+      "path": "dsa/leetcode/0435_non-overlapping-intervals/doc.md"
     },
     {
       "slug": "delete-node-in-a-bst",
       "title": "Delete Node in a BST",
       "challenge_id": "nc_99",
-      "path": "dsa/leetcode/450_delete-node-in-a-bst/doc.md"
+      "path": "dsa/leetcode/0450_delete-node-in-a-bst/doc.md"
     },
     {
       "slug": "lfu-cache",
       "title": "LFU Cache",
       "challenge_id": "nc_85",
-      "path": "dsa/leetcode/460_lfu-cache/doc.md"
+      "path": "dsa/leetcode/0460_lfu-cache/doc.md"
     },
     {
       "slug": "island-perimeter",
       "title": "Island Perimeter",
       "challenge_id": "nc_143",
-      "path": "dsa/leetcode/463_island-perimeter/doc.md"
+      "path": "dsa/leetcode/0463_island-perimeter/doc.md"
     },
     {
       "slug": "matchsticks-to-square",
       "title": "Matchsticks to Square",
       "challenge_id": "nc_134",
-      "path": "dsa/leetcode/473_matchsticks-to-square/doc.md"
+      "path": "dsa/leetcode/0473_matchsticks-to-square/doc.md"
     },
     {
       "slug": "target-sum",
       "title": "Target Sum",
       "challenge_id": "nc_198",
-      "path": "dsa/leetcode/494_target-sum/doc.md"
+      "path": "dsa/leetcode/0494_target-sum/doc.md"
     },
     {
       "slug": "next-greater-element-i",
       "title": "Next Greater Element I",
       "challenge_id": "stack_02",
-      "path": "dsa/leetcode/496_next-greater-element-i/doc.md"
+      "path": "dsa/leetcode/0496_next-greater-element-i/doc.md"
     },
     {
       "slug": "ipo",
       "title": "IPO",
       "challenge_id": "nc_122",
-      "path": "dsa/leetcode/502_ipo/doc.md"
+      "path": "dsa/leetcode/0502_ipo/doc.md"
     },
     {
       "slug": "fibonacci-number",
       "title": "Fibonacci Number",
       "challenge_id": "dp_01",
-      "path": "dsa/leetcode/509_fibonacci-number/doc.md"
+      "path": "dsa/leetcode/0509_fibonacci-number/doc.md"
     },
     {
       "slug": "coin-change-ii",
       "title": "Coin Change II",
       "challenge_id": "nc_197",
-      "path": "dsa/leetcode/518_coin-change-ii/doc.md"
+      "path": "dsa/leetcode/0518_coin-change-ii/doc.md"
     },
     {
       "slug": "diameter-of-binary-tree",
       "title": "Diameter of Binary Tree",
       "challenge_id": "nc_93",
-      "path": "dsa/leetcode/543_diameter-of-binary-tree/doc.md"
+      "path": "dsa/leetcode/0543_diameter-of-binary-tree/doc.md"
     },
     {
       "slug": "number-of-provinces",
       "title": "Number of Provinces",
       "challenge_id": "graph_09",
-      "path": "dsa/leetcode/547_number-of-provinces/doc.md"
+      "path": "dsa/leetcode/0547_number-of-provinces/doc.md"
     },
     {
       "slug": "subarray-sum-equals-k",
       "title": "Subarray Sum Equals K",
       "challenge_id": "nc_21",
-      "path": "dsa/leetcode/560_subarray-sum-equals-k/doc.md"
+      "path": "dsa/leetcode/0560_subarray-sum-equals-k/doc.md"
     },
     {
       "slug": "permutation-in-string",
       "title": "Permutation in String",
       "challenge_id": "nc_40",
-      "path": "dsa/leetcode/567_permutation-in-string/doc.md"
+      "path": "dsa/leetcode/0567_permutation-in-string/doc.md"
     },
     {
       "slug": "subtree-of-another-tree",
       "title": "Subtree of Another Tree",
       "challenge_id": "nc_96",
-      "path": "dsa/leetcode/572_subtree-of-another-tree/doc.md"
+      "path": "dsa/leetcode/0572_subtree-of-another-tree/doc.md"
     },
     {
       "slug": "task-scheduler",
       "title": "Task Scheduler",
       "challenge_id": "nc_115",
-      "path": "dsa/leetcode/621_task-scheduler/doc.md"
+      "path": "dsa/leetcode/0621_task-scheduler/doc.md"
     },
     {
       "slug": "design-circular-queue",
       "title": "Design Circular Queue",
       "challenge_id": "nc_83",
-      "path": "dsa/leetcode/622_design-circular-queue/doc.md"
+      "path": "dsa/leetcode/0622_design-circular-queue/doc.md"
     },
     {
       "slug": "palindromic-substrings",
       "title": "Palindromic Substrings",
       "challenge_id": "nc_180",
-      "path": "dsa/leetcode/647_palindromic-substrings/doc.md"
+      "path": "dsa/leetcode/0647_palindromic-substrings/doc.md"
     },
     {
       "slug": "dota2-senate",
       "title": "Dota2 Senate",
       "challenge_id": "nc_216",
-      "path": "dsa/leetcode/649_dota2-senate/doc.md"
+      "path": "dsa/leetcode/0649_dota2-senate/doc.md"
     },
     {
       "slug": "find-k-closest-elements",
       "title": "Find K Closest Elements",
       "challenge_id": "nc_42",
-      "path": "dsa/leetcode/658_find-k-closest-elements/doc.md"
+      "path": "dsa/leetcode/0658_find-k-closest-elements/doc.md"
     },
     {
       "slug": "valid-parenthesis-string",
       "title": "Valid Parenthesis String",
       "challenge_id": "nc_219",
-      "path": "dsa/leetcode/678_valid-parenthesis-string/doc.md"
+      "path": "dsa/leetcode/0678_valid-parenthesis-string/doc.md"
     },
     {
       "slug": "valid-palindrome-ii",
       "title": "Valid Palindrome II",
       "challenge_id": "nc_25",
-      "path": "dsa/leetcode/680_valid-palindrome-ii/doc.md"
+      "path": "dsa/leetcode/0680_valid-palindrome-ii/doc.md"
     },
     {
       "slug": "baseball-game",
       "title": "Baseball Game",
       "challenge_id": "nc_45",
-      "path": "dsa/leetcode/682_baseball-game/doc.md"
+      "path": "dsa/leetcode/0682_baseball-game/doc.md"
     },
     {
       "slug": "redundant-connection",
       "title": "Redundant Connection",
       "challenge_id": "nc_159",
-      "path": "dsa/leetcode/684_redundant-connection/doc.md"
+      "path": "dsa/leetcode/0684_redundant-connection/doc.md"
     },
     {
       "slug": "max-area-of-island",
       "title": "Max Area of Island",
       "challenge_id": "nc_147",
-      "path": "dsa/leetcode/695_max-area-of-island/doc.md"
+      "path": "dsa/leetcode/0695_max-area-of-island/doc.md"
     },
     {
       "slug": "partition-to-k-equal-sum-subsets",
       "title": "Partition to K Equal Sum Subsets",
       "challenge_id": "nc_135",
-      "path": "dsa/leetcode/698_partition-to-k-equal-sum-subsets/doc.md"
+      "path": "dsa/leetcode/0698_partition-to-k-equal-sum-subsets/doc.md"
     },
     {
       "slug": "insert-into-a-binary-search-tree",
       "title": "Insert into a Binary Search Tree",
       "challenge_id": "nc_98",
-      "path": "dsa/leetcode/701_insert-into-a-binary-search-tree/doc.md"
+      "path": "dsa/leetcode/0701_insert-into-a-binary-search-tree/doc.md"
     },
     {
       "slug": "kth-largest-element-in-a-stream",
       "title": "Kth Largest Element in a Stream",
       "challenge_id": "nc_111",
-      "path": "dsa/leetcode/703_kth-largest-element-in-a-stream/doc.md"
+      "path": "dsa/leetcode/0703_kth-largest-element-in-a-stream/doc.md"
     },
     {
       "slug": "binary-search",
       "title": "Binary Search",
       "challenge_id": "nc_60",
-      "path": "dsa/leetcode/704_binary-search/doc.md"
+      "path": "dsa/leetcode/0704_binary-search/doc.md"
     },
     {
       "slug": "design-hashset",
       "title": "Design HashSet",
       "challenge_id": "nc_9",
-      "path": "dsa/leetcode/705_design-hashset/doc.md"
+      "path": "dsa/leetcode/0705_design-hashset/doc.md"
     },
     {
       "slug": "design-hashmap",
       "title": "Design HashMap",
       "challenge_id": "nc_10",
-      "path": "dsa/leetcode/706_design-hashmap/doc.md"
+      "path": "dsa/leetcode/0706_design-hashmap/doc.md"
     },
     {
       "slug": "accounts-merge",
       "title": "Accounts Merge",
       "challenge_id": "nc_160",
-      "path": "dsa/leetcode/721_accounts-merge/doc.md"
+      "path": "dsa/leetcode/0721_accounts-merge/doc.md"
     },
     {
       "slug": "asteroid-collision",
       "title": "Asteroid Collision",
       "challenge_id": "nc_52",
-      "path": "dsa/leetcode/735_asteroid-collision/doc.md"
+      "path": "dsa/leetcode/0735_asteroid-collision/doc.md"
     },
     {
       "slug": "daily-temperatures",
       "title": "Daily Temperatures",
       "challenge_id": "nc_53",
-      "path": "dsa/leetcode/739_daily-temperatures/doc.md"
+      "path": "dsa/leetcode/0739_daily-temperatures/doc.md"
     },
     {
       "slug": "network-delay-time",
       "title": "Network Delay Time",
       "challenge_id": "nc_165",
-      "path": "dsa/leetcode/743_network-delay-time/doc.md"
+      "path": "dsa/leetcode/0743_network-delay-time/doc.md"
     },
     {
       "slug": "min-cost-climbing-stairs",
       "title": "Min Cost Climbing Stairs",
       "challenge_id": "nc_175",
-      "path": "dsa/leetcode/746_min-cost-climbing-stairs/doc.md"
+      "path": "dsa/leetcode/0746_min-cost-climbing-stairs/doc.md"
     },
     {
       "slug": "open-the-lock",
       "title": "Open the Lock",
       "challenge_id": "nc_153",
-      "path": "dsa/leetcode/752_open-the-lock/doc.md"
+      "path": "dsa/leetcode/0752_open-the-lock/doc.md"
     },
     {
       "slug": "partition-labels",
       "title": "Partition Labels",
       "challenge_id": "nc_218",
-      "path": "dsa/leetcode/763_partition-labels/doc.md"
+      "path": "dsa/leetcode/0763_partition-labels/doc.md"
     },
     {
       "slug": "reorganize-string",
       "title": "Reorganize String",
       "challenge_id": "nc_118",
-      "path": "dsa/leetcode/767_reorganize-string/doc.md"
+      "path": "dsa/leetcode/0767_reorganize-string/doc.md"
     },
     {
       "slug": "swim-in-rising-water",
       "title": "Swim in Rising Water",
       "challenge_id": "nc_168",
-      "path": "dsa/leetcode/778_swim-in-rising-water/doc.md"
+      "path": "dsa/leetcode/0778_swim-in-rising-water/doc.md"
     },
     {
       "slug": "cheapest-flights-within-k-stops",
       "title": "Cheapest Flights Within K Stops",
       "challenge_id": "nc_170",
-      "path": "dsa/leetcode/787_cheapest-flights-within-k-stops/doc.md"
+      "path": "dsa/leetcode/0787_cheapest-flights-within-k-stops/doc.md"
     },
     {
       "slug": "hand-of-straights",
       "title": "Hand of Straights",
       "challenge_id": "nc_215",
-      "path": "dsa/leetcode/846_hand-of-straights/doc.md"
+      "path": "dsa/leetcode/0846_hand-of-straights/doc.md"
     },
     {
       "slug": "car-fleet",
       "title": "Car Fleet",
       "challenge_id": "nc_55",
-      "path": "dsa/leetcode/853_car-fleet/doc.md"
+      "path": "dsa/leetcode/0853_car-fleet/doc.md"
     },
     {
       "slug": "lemonade-change",
       "title": "Lemonade Change",
       "challenge_id": "nc_207",
-      "path": "dsa/leetcode/860_lemonade-change/doc.md"
+      "path": "dsa/leetcode/0860_lemonade-change/doc.md"
     },
     {
       "slug": "transpose-matrix",
       "title": "Transpose Matrix",
       "challenge_id": "nc_231",
-      "path": "dsa/leetcode/867_transpose-matrix/doc.md"
+      "path": "dsa/leetcode/0867_transpose-matrix/doc.md"
     },
     {
       "slug": "koko-eating-bananas",
       "title": "Koko Eating Bananas",
       "challenge_id": "nc_65",
-      "path": "dsa/leetcode/875_koko-eating-bananas/doc.md"
+      "path": "dsa/leetcode/0875_koko-eating-bananas/doc.md"
     },
     {
       "slug": "stone-game",
       "title": "Stone Game",
       "challenge_id": "nc_200",
-      "path": "dsa/leetcode/877_stone-game/doc.md"
+      "path": "dsa/leetcode/0877_stone-game/doc.md"
     },
     {
       "slug": "boats-to-save-people",
       "title": "Boats to Save People",
       "challenge_id": "nc_34",
-      "path": "dsa/leetcode/881_boats-to-save-people/doc.md"
+      "path": "dsa/leetcode/0881_boats-to-save-people/doc.md"
     },
     {
       "slug": "maximum-frequency-stack",
       "title": "Maximum Frequency Stack",
       "challenge_id": "nc_58",
-      "path": "dsa/leetcode/895_maximum-frequency-stack/doc.md"
+      "path": "dsa/leetcode/0895_maximum-frequency-stack/doc.md"
     },
     {
       "slug": "online-stock-span",
       "title": "Online Stock Span",
       "challenge_id": "nc_54",
-      "path": "dsa/leetcode/901_online-stock-span/doc.md"
+      "path": "dsa/leetcode/0901_online-stock-span/doc.md"
     },
     {
       "slug": "sort-an-array",
       "title": "Sort an Array",
       "challenge_id": "nc_11",
-      "path": "dsa/leetcode/912_sort-an-array/doc.md"
+      "path": "dsa/leetcode/0912_sort-an-array/doc.md"
     },
     {
       "slug": "maximum-sum-circular-subarray",
       "title": "Maximum Sum Circular Subarray",
       "challenge_id": "nc_209",
-      "path": "dsa/leetcode/918_maximum-sum-circular-subarray/doc.md"
+      "path": "dsa/leetcode/0918_maximum-sum-circular-subarray/doc.md"
     },
     {
       "slug": "verifying-an-alien-dictionary",
       "title": "Verifying an Alien Dictionary",
       "challenge_id": "nc_144",
-      "path": "dsa/leetcode/953_verifying-an-alien-dictionary/doc.md"
+      "path": "dsa/leetcode/0953_verifying-an-alien-dictionary/doc.md"
     },
     {
       "slug": "k-closest-points-to-origin",
       "title": "K Closest Points to Origin",
       "challenge_id": "nc_113",
-      "path": "dsa/leetcode/973_k-closest-points-to-origin/doc.md"
+      "path": "dsa/leetcode/0973_k-closest-points-to-origin/doc.md"
     },
     {
       "slug": "longest-turbulent-subarray",
       "title": "Longest Turbulent Subarray",
       "challenge_id": "nc_210",
-      "path": "dsa/leetcode/978_longest-turbulent-subarray/doc.md"
+      "path": "dsa/leetcode/0978_longest-turbulent-subarray/doc.md"
     },
     {
       "slug": "time-based-key-value-store",
       "title": "Time Based Key-Value Store",
       "challenge_id": "nc_70",
-      "path": "dsa/leetcode/981_time-based-key-value-store/doc.md"
+      "path": "dsa/leetcode/0981_time-based-key-value-store/doc.md"
     },
     {
       "slug": "rotting-oranges",
       "title": "Rotting Oranges",
       "challenge_id": "nc_150",
-      "path": "dsa/leetcode/994_rotting-oranges/doc.md"
+      "path": "dsa/leetcode/0994_rotting-oranges/doc.md"
     },
     {
       "slug": "find-the-town-judge",
       "title": "Find the Town Judge",
       "challenge_id": "nc_145",
-      "path": "dsa/leetcode/997_find-the-town-judge/doc.md"
+      "path": "dsa/leetcode/0997_find-the-town-judge/doc.md"
     },
     {
       "slug": "capacity-to-ship-packages-within-d-days",

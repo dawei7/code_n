@@ -62,7 +62,7 @@ inner-package namespace.
 Each problem is stored once:
 
 ```text
-dsa/leetcode/<frontend_id>_<slug>/
+dsa/leetcode/<frontend_id:04d>_<slug>/
   metadata.json
   doc.md
   doc_de.md                 # optional translation
@@ -77,6 +77,9 @@ dsa/leetcode/<frontend_id>_<slug>/
 ```
 
 - `server/app/challenge_packages.py` is the path API for these packages.
+- Canonical package prefixes are zero-padded to four digits for numeric
+  filesystem ordering. This formatting does not change metadata frontend IDs,
+  challenge IDs such as `lc_1`, official URLs, or user-data identities.
 - `challenges/algorithms/leetcode.py` loads packages into the registry.
 - External practice lists remain views: AlgoMaster membership and pattern order
   live in `dsa/leetcode/_meta/algomaster-subsets.json` and are refreshed with
@@ -95,7 +98,7 @@ dsa/leetcode/<frontend_id>_<slug>/
 
 - `README.md` is served by `/api/docs/overview` and packaged with the app.
 - Per-problem documentation exists only at
-  `dsa/leetcode/<frontend_id>_<slug>/doc.md`.
+  `dsa/leetcode/<frontend_id:04d>_<slug>/doc.md`.
 - Mathematical explanation belongs in the canonical problem document; there
   is no separate mathematical-doc tree or tab.
 - Do not create a parallel `docs/algorithms`, `docs/mathematical`, provider, or
@@ -161,7 +164,7 @@ dsa/leetcode/<frontend_id>_<slug>/
   correctness proof, or fixed number of points when that structure does not
   improve the explanation. Explain why the method is correct within the
   derivation; never use `Correctness`, `Correctness argument`, or comparable
-  generic proof slots. `1_two-sum/doc.md` is a
+  generic proof slots. `0001_two-sum/doc.md` is a
   quality exemplar, not a mandatory prose schema. Match depth to difficulty: concise reasoning is
   appropriate for a genuinely simple observation, while complex algorithms
   must receive longer derivations, state definitions, transitions, examples,
@@ -186,7 +189,7 @@ Always reopen the refreshed completion report before selecting the next batch.
 ## Runtime benchmark authoring
 
 `BENCHMARKING.md` is the benchmark and complexity-verdict specification.
-`dsa/leetcode/1_two-sum/benchmark.json` is the reviewed package exemplar.
+`dsa/leetcode/0001_two-sum/benchmark.json` is the reviewed package exemplar.
 
 - Keep runtime workloads in `benchmark.json`, never in the ordinary case file.
 - Two tiers are the minimum for scaling; author three when migrating a package.
@@ -220,6 +223,9 @@ lives under Electron `app.getPath('userData')`.
 ```
 
 - Every supported language uses exactly v1, v2, and v3 files.
+- User-data problem folders intentionally retain unpadded logical frontend IDs
+  for compatibility with existing profiles; only canonical repository package
+  folders use four-digit prefixes.
 - There is no unversioned active alias. `versions.json` selects the active
   file and stores optional display names.
 - `server/app/user_solutions.py` owns path resolution and legacy migration.

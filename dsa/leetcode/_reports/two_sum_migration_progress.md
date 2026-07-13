@@ -1,6 +1,6 @@
 # Two Sum Migration Progress
 
-Generated: 2026-07-13T20:32:22.524871+00:00
+Generated: 2026-07-13T21:05:27.557436+00:00
 
 All canonical packages in ascending numeric LeetCode frontend-ID order; IDs are sparse.
 
@@ -24,7 +24,7 @@ A package is locally complete only when its canonical document (including a sour
 
 ## Next package
 
-- 823 — Binary Trees With Factors (`dsa/leetcode/823_binary-trees-with-factors`)
+- 823 — Binary Trees With Factors (`dsa/leetcode/0823_binary-trees-with-factors`)
 
 ## Recorded blockers
 

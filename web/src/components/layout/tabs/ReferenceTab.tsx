@@ -154,7 +154,7 @@ export function ReferenceTab() {
     const issueTitle = encodeURIComponent(`Docs: add reference for ${state.challengeId}`);
     const issueBody = encodeURIComponent(
       `The reference doc for **${state.challengeId}** (\`${state.challengeName}\`, category: ${state.category}) doesn't exist yet.\n\n` +
-      `Please complete the canonical package document at \`dsa/leetcode/<frontend_id>_<slug>/doc.md\`.`,
+      `Please complete the canonical package document at \`dsa/leetcode/<frontend_id:04d>_<slug>/doc.md\`.`,
     );
     return (
       <div className="flex flex-col items-center justify-center gap-3 text-xs text-coden-muted">
