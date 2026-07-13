@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_3201",
+  "cases": [
+    {
+      "id": "sample-alternating-four",
+      "name": "sample: fully alternating parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "parity"
+      ]
+    },
+    {
+      "id": "sample-mixed-long",
+      "name": "sample: choose the best parity pattern",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "trial-two-mixed",
+      "name": "trial: two mixed elements are valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          10
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-all-even",
+      "name": "trial: all even subsequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8,
+          10
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "same-parity"
+      ]
+    },
+    {
+      "id": "real-noisy-parity",
+      "name": "real: noisy parity sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          8,
+          11,
+          13,
+          16,
+          18,
+          21,
+          22,
+          24,
+          27
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "parity"
+      ]
+    }
+  ]
+}

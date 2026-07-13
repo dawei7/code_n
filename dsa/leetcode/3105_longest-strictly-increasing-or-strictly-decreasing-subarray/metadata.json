@@ -1,0 +1,135 @@
+{
+  "challenge_id": "lc_3105",
+  "source": "leetcode",
+  "frontend_id": "3105",
+  "slug": "longest-strictly-increasing-or-strictly-decreasing-subarray",
+  "title": "Longest Strictly Increasing or Strictly Decreasing Subarray",
+  "difficulty": "Easy",
+  "acceptance_rate": 64.91777488407172,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    }
+  ],
+  "url": "https://leetcode.com/problems/longest-strictly-increasing-or-strictly-decreasing-subarray/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:bloomberg",
+    "leetcode_company:facebook",
+    "leetcode_company:larsen-toubro",
+    "leetcode_company:microsoft",
+    "leetcode_company:yandex",
+    "leetcode_topic:array",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:bloomberg",
+    "company:facebook",
+    "company:larsen-toubro",
+    "company:microsoft",
+    "company:yandex",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array"
+  ],
+  "company_tags": [
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Larsen & Toubro",
+      "slug": "larsen-toubro"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Larsen & Toubro",
+        "slug": "larsen-toubro",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 48,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "longest-strictly-increasing-or-strictly-decreasing-subarray",
+      "leetcode_slug": "longest-strictly-increasing-or-strictly-decreasing-subarray",
+      "difficulty": "Easy",
+      "problem_order": 48
+    }
+  ]
+}

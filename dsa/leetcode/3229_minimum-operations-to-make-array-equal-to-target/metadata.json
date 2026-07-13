@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_3229",
+  "source": "leetcode",
+  "frontend_id": "3229",
+  "slug": "minimum-operations-to-make-array-equal-to-target",
+  "title": "Minimum Operations to Make Array Equal to Target",
+  "difficulty": "Hard",
+  "acceptance_rate": 41.7985853822836,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-array-equal-to-target/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:microsoft",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:greedy",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:stack"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:dynamic-programming",
+    "topic:greedy",
+    "topic:monotonic-stack",
+    "topic:stack"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

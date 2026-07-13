@@ -1,0 +1,502 @@
+{
+  "challenge_id": "lc_76",
+  "source": "leetcode",
+  "frontend_id": "76",
+  "slug": "minimum-window-substring",
+  "title": "Minimum Window Substring",
+  "difficulty": "Hard",
+  "acceptance_rate": 47.9087132982772,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-window-substring/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_company:airbnb",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:dp-world",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:ibm",
+    "leetcode_company:infosys",
+    "leetcode_company:linkedin",
+    "leetcode_company:lyft",
+    "leetcode_company:meesho",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:salesforce",
+    "leetcode_company:sap",
+    "leetcode_company:snapchat",
+    "leetcode_company:snowflake",
+    "leetcode_company:sofi",
+    "leetcode_company:swiggy",
+    "leetcode_company:thoughtspot",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_company:yandex",
+    "leetcode_company:zeta",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-56-z8is",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-3-h81e",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:sliding-window",
+    "leetcode_topic:string",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "company:airbnb",
+    "company:amazon",
+    "company:bloomberg",
+    "company:dp-world",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:ibm",
+    "company:infosys",
+    "company:linkedin",
+    "company:lyft",
+    "company:meesho",
+    "company:microsoft",
+    "company:oracle",
+    "company:salesforce",
+    "company:sap",
+    "company:snapchat",
+    "company:snowflake",
+    "company:sofi",
+    "company:swiggy",
+    "company:thoughtspot",
+    "company:tiktok",
+    "company:uber",
+    "company:yandex",
+    "company:zeta",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:top-100-liked:top-100-liked-56-z8is",
+    "study_plan_section:top-interview-150:top-interview-150-3-h81e",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:hash-table",
+    "topic:sliding-window",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Lyft",
+      "slug": "lyft"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "Swiggy",
+      "slug": "swiggy"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Airbnb",
+      "slug": "airbnb"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "SoFi",
+      "slug": "sofi"
+    },
+    {
+      "name": "Zeta Global",
+      "slug": "zeta"
+    },
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "Snap",
+      "slug": "snapchat"
+    },
+    {
+      "name": "SAP",
+      "slug": "sap"
+    },
+    {
+      "name": "DP world",
+      "slug": "dp-world"
+    },
+    {
+      "name": "thoughtspot",
+      "slug": "thoughtspot"
+    },
+    {
+      "name": "Meesho",
+      "slug": "meesho"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 13
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Lyft",
+        "slug": "lyft",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Airbnb",
+        "slug": "airbnb",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "SoFi",
+        "slug": "sofi",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zeta Global",
+        "slug": "zeta",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Snap",
+        "slug": "snapchat",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "SAP",
+        "slug": "sap",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DP world",
+        "slug": "dp-world",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "thoughtspot",
+        "slug": "thoughtspot",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meesho",
+        "slug": "meesho",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Swiggy",
+        "slug": "swiggy",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-3-h81e",
+      "section_name": "Sliding Window",
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 33,
+      "section_order": 3,
+      "problem_order": 4,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-56-z8is",
+      "section_name": "Sliding Window",
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 78,
+      "section_order": 11,
+      "problem_order": 2,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 14,
+      "section_order": 2,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "minimum-window-with-characters",
+      "leetcode_slug": "minimum-window-substring",
+      "difficulty": "Hard",
+      "problem_order": 3
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 18,
+      "section_order": 2,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "minimum-window-with-characters",
+      "leetcode_slug": "minimum-window-substring",
+      "difficulty": "Hard",
+      "problem_order": 4
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 42,
+      "section_order": 2,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "minimum-window-with-characters",
+      "leetcode_slug": "minimum-window-substring",
+      "difficulty": "Hard",
+      "problem_order": 7
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 253,
+      "section_order": 2,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "minimum-window-with-characters",
+      "leetcode_slug": "minimum-window-substring",
+      "difficulty": "Hard",
+      "problem_order": 35
+    }
+  ]
+}

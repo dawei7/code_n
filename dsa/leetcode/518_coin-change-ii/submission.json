@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "518",
+  "frontend_id": "518",
+  "title_slug": "coin-change-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065195118",
+  "verified_at": "2026-07-12T16:18:40.400061+00:00"
+}

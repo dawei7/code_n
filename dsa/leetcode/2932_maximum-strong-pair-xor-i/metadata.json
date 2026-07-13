@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2932",
+  "source": "leetcode",
+  "frontend_id": "2932",
+  "slug": "maximum-strong-pair-xor-i",
+  "title": "Maximum Strong Pair XOR I",
+  "difficulty": "Easy",
+  "acceptance_rate": 76.29258342557928,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Trie",
+      "slug": "trie"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-strong-pair-xor-i/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:zscaler",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:sliding-window",
+    "leetcode_topic:trie"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:zscaler",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:hash-table",
+    "topic:sliding-window",
+    "topic:trie"
+  ],
+  "company_tags": [
+    {
+      "name": "ZScaler",
+      "slug": "zscaler"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "ZScaler",
+        "slug": "zscaler",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

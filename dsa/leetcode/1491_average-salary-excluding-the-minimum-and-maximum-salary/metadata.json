@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_1491",
+  "source": "leetcode",
+  "frontend_id": "1491",
+  "slug": "average-salary-excluding-the-minimum-and-maximum-salary",
+  "title": "Average Salary Excluding the Minimum and Maximum Salary",
+  "difficulty": "Easy",
+  "acceptance_rate": 63.55663634510523,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:netsuite",
+    "leetcode_studyplan:programming-skills",
+    "leetcode_studyplan:programming-skills:programming-skills-103-2w7s",
+    "leetcode_topic:array",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:netsuite",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:programming-skills",
+    "study_plan_section:programming-skills:programming-skills-103-2w7s",
+    "topic:array",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Netsuite",
+      "slug": "netsuite"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Netsuite",
+        "slug": "netsuite",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "programming-skills",
+      "plan_name": "Programming Skills",
+      "section_slug": "programming-skills-103-2w7s",
+      "section_name": "Math",
+      "path": [
+        "Math"
+      ],
+      "order": 23,
+      "section_order": 5,
+      "problem_order": 2,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/programming-skills/"
+    }
+  ],
+  "neetcode_subsets": []
+}

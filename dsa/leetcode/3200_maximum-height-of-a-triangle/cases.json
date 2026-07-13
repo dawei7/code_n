@@ -1,0 +1,78 @@
+{
+  "challenge_id": "lc_3200",
+  "cases": [
+    {
+      "id": "sample-more-blue",
+      "name": "sample: start with blue to reach height three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "red": 2,
+        "blue": 4
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "simulation"
+      ]
+    },
+    {
+      "id": "sample-two-rows",
+      "name": "sample: two rows from small piles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "red": 2,
+        "blue": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-equal-one",
+      "name": "trial: one ball of each color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "red": 1,
+        "blue": 1
+      },
+      "expected": 1,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-lopsided",
+      "name": "trial: lopsided colors limit alternation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "red": 10,
+        "blue": 1
+      },
+      "expected": 2,
+      "tags": [
+        "lopsided"
+      ]
+    },
+    {
+      "id": "real-balanced-large",
+      "name": "real: balanced larger piles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "red": 120,
+        "blue": 135
+      },
+      "expected": 21,
+      "tags": [
+        "real",
+        "height"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_3145",
+  "source": "leetcode",
+  "frontend_id": "3145",
+  "slug": "find-products-of-elements-of-big-array",
+  "title": "Find Products of Elements of Big Array",
+  "difficulty": "Hard",
+  "acceptance_rate": 25.067364693201938,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-products-of-elements-of-big-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:ibm",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:bit-manipulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:ibm",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search",
+    "topic:bit-manipulation"
+  ],
+  "company_tags": [
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

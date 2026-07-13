@@ -1,0 +1,152 @@
+{
+  "challenge_id": "lc_3027",
+  "cases": [
+    {
+      "id": "sample-diagonal-none",
+      "name": "sample: diagonal points leave no valid pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-points",
+      "name": "sample: one top-left pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-shared-x",
+      "name": "sample: shared coordinate rectangles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-blocked-rectangle",
+      "name": "trial: an interior point blocks the larger rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-frontier",
+      "name": "real: descending frontier with blockers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            7,
+            1
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "geometry"
+      ]
+    }
+  ]
+}

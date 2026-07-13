@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_2567",
+  "cases": [
+    {
+      "id": "benchmark-five-values",
+      "name": "benchmark: changing two values leaves a middle range",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          10,
+          20,
+          30,
+          40
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

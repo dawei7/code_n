@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_1037",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: non-collinear",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "geometry"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: collinear",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-axis-aligned",
+      "name": "axis-aligned right angle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-duplicate-point",
+      "name": "hidden: duplicate point",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

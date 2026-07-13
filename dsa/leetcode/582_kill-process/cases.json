@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_582",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: kill an internal process",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "pid": [
+          1,
+          3,
+          10,
+          5
+        ],
+        "ppid": [
+          3,
+          0,
+          5,
+          3
+        ],
+        "kill": 5
+      },
+      "expected": [
+        5,
+        10
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "subtree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: kill the root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "pid": [
+          1,
+          3,
+          10,
+          5
+        ],
+        "ppid": [
+          3,
+          0,
+          5,
+          3
+        ],
+        "kill": 3
+      },
+      "expected": [
+        3,
+        1,
+        5,
+        10
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "root"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one process",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "pid": [
+          1
+        ],
+        "ppid": [
+          0
+        ],
+        "kill": 1
+      },
+      "expected": [
+        1
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: kill a leaf",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pid": [
+          8,
+          2,
+          14,
+          6
+        ],
+        "ppid": [
+          2,
+          0,
+          2,
+          8
+        ],
+        "kill": 14
+      },
+      "expected": [
+        14
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "leaf"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: several sibling subtrees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pid": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "ppid": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "kill": 1
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "branching"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: nonconsecutive identifiers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "pid": [
+          100,
+          7,
+          42,
+          900,
+          13
+        ],
+        "ppid": [
+          0,
+          100,
+          7,
+          42,
+          100
+        ],
+        "kill": 7
+      },
+      "expected": [
+        7,
+        42,
+        900
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "identifiers"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: deep chain starts in the middle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "pid": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "ppid": [
+          0,
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "kill": 30
+      },
+      "expected": [
+        30,
+        40,
+        50,
+        60
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "chain"
+      ]
+    }
+  ]
+}

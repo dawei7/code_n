@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_1497",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: pair complements modulo five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          10,
+          6,
+          7,
+          8,
+          9
+        ],
+        "k": 5
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "modulo"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: pair complements modulo seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 7
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: unmatched remainder",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 10
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-negative-values",
+      "name": "hidden: negative values normalize by remainder",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          -1,
+          1,
+          -2,
+          2,
+          -3,
+          3
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

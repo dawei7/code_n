@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_866",
+  "source": "leetcode",
+  "frontend_id": "866",
+  "slug": "prime-palindrome",
+  "title": "Prime Palindrome",
+  "difficulty": "Medium",
+  "acceptance_rate": 28.320575821442525,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Number Theory",
+      "slug": "number-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/prime-palindrome/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_topic:math",
+    "leetcode_topic:number-theory"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:math",
+    "topic:number-theory"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

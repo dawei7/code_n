@@ -1,0 +1,71 @@
+{
+  "challenge_id": "lc_1034",
+  "cases": [
+    {
+      "id": "benchmark-enclosed-block",
+      "name": "benchmark: enclosed block",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            3,
+            2
+          ],
+          [
+            2,
+            3,
+            3,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "row": 1,
+        "col": 1,
+        "color": 5
+      },
+      "expected": [
+        [
+          2,
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          5,
+          5,
+          2
+        ],
+        [
+          2,
+          5,
+          5,
+          2
+        ],
+        [
+          2,
+          2,
+          2,
+          2
+        ]
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_3779",
+  "source": "leetcode",
+  "frontend_id": "3779",
+  "slug": "minimum-number-of-operations-to-have-distinct-elements",
+  "title": "Minimum Number of Operations to Have Distinct Elements",
+  "difficulty": "Medium",
+  "acceptance_rate": 42.488525361892435,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-number-of-operations-to-have-distinct-elements/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

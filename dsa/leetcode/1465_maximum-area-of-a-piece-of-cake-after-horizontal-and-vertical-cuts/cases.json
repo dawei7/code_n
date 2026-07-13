@@ -1,0 +1,93 @@
+{
+  "challenge_id": "lc_1465",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several cuts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "h": 5,
+        "w": 4,
+        "horizontal_cuts": [
+          1,
+          2,
+          4
+        ],
+        "vertical_cuts": [
+          1,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: unsorted horizontal cuts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "h": 5,
+        "w": 4,
+        "horizontal_cuts": [
+          3,
+          1
+        ],
+        "vertical_cuts": [
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one horizontal cut",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "h": 6,
+        "w": 7,
+        "horizontal_cuts": [
+          2
+        ],
+        "vertical_cuts": [
+          2,
+          5
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-large-bottom-strip",
+      "name": "hidden: largest height gap touches border",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "h": 10,
+        "w": 10,
+        "horizontal_cuts": [
+          2,
+          3
+        ],
+        "vertical_cuts": [
+          4,
+          7
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

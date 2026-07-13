@@ -1,0 +1,155 @@
+{
+  "challenge_id": "lc_2906",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two by two product matrix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "matrix"
+      ],
+      "expected": [
+        [
+          24,
+          12
+        ],
+        [
+          8,
+          6
+        ]
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: value divisible by the modulus",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            12345
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "modulo"
+      ],
+      "expected": [
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: product of all other cells is the empty product",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "single-cell"
+      ],
+      "expected": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "id": "trial-one-zero",
+      "name": "trial: one zero affects every nonzero position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero"
+      ],
+      "expected": [
+        [
+          24,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "real-rectangular-grid",
+      "name": "hidden: rectangular grid with mixed residues",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            5,
+            7,
+            11
+          ],
+          [
+            13,
+            17,
+            19
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "rectangular"
+      ],
+      "expected": [
+        [
+          2353,
+          8735,
+          11170
+        ],
+        [
+          905,
+          8680,
+          11015
+        ]
+      ]
+    }
+  ]
+}

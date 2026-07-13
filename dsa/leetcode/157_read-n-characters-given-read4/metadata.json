@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_157",
+  "source": "leetcode",
+  "frontend_id": "157",
+  "slug": "read-n-characters-given-read4",
+  "title": "Read N Characters Given Read4",
+  "difficulty": "Easy",
+  "acceptance_rate": 42.58167793037265,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    },
+    {
+      "name": "Interactive",
+      "slug": "interactive"
+    }
+  ],
+  "url": "https://leetcode.com/problems/read-n-characters-given-read4/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:apple",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_topic:array",
+    "leetcode_topic:interactive",
+    "leetcode_topic:simulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:apple",
+    "company:facebook",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:interactive",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

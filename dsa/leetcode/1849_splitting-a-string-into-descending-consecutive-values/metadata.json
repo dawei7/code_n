@@ -1,0 +1,84 @@
+{
+  "challenge_id": "lc_1849",
+  "source": "leetcode",
+  "frontend_id": "1849",
+  "slug": "splitting-a-string-into-descending-consecutive-values",
+  "title": "Splitting a String Into Descending Consecutive Values",
+  "difficulty": "Medium",
+  "acceptance_rate": 37.71172966441246,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    }
+  ],
+  "url": "https://leetcode.com/problems/splitting-a-string-into-descending-consecutive-values/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:enumeration",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:backtracking",
+    "topic:enumeration",
+    "topic:string"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Backtracking"
+      ],
+      "order": 523,
+      "section_order": 9,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "splitting-a-string-into-descending-consecutive-values",
+      "leetcode_slug": "splitting-a-string-into-descending-consecutive-values",
+      "difficulty": "Medium",
+      "problem_order": 16
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "865",
+  "frontend_id": "489",
+  "title_slug": "robot-room-cleaner",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065034505",
+  "verified_at": "2026-07-12T13:34:21.389858+00:00"
+}

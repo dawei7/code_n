@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_40",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 duplicate candidates",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "candidates": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "target": 2
+      },
+      "expected": [
+        [
+          1,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 duplicate candidates",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "candidates": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "target": 4
+      },
+      "expected": [
+        [
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 duplicate candidates",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "candidates": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "target": 8
+      },
+      "expected": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "duplicates"
+      ]
+    }
+  ]
+}
+

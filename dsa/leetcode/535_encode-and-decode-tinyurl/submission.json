@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "535",
+  "frontend_id": "535",
+  "title_slug": "encode-and-decode-tinyurl",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065285697",
+  "verified_at": "2026-07-12T17:36:43.588429+00:00"
+}

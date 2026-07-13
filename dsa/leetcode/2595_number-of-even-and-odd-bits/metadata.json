@@ -1,0 +1,53 @@
+{
+  "challenge_id": "lc_2595",
+  "source": "leetcode",
+  "frontend_id": "2595",
+  "slug": "number-of-even-and-odd-bits",
+  "title": "Number of Even and Odd Bits",
+  "difficulty": "Easy",
+  "acceptance_rate": 73.64148225743092,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-even-and-odd-bits/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:bit-manipulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:bit-manipulation"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,160 @@
+{
+  "challenge_id": "lc_896",
+  "source": "leetcode",
+  "frontend_id": "896",
+  "slug": "monotonic-array",
+  "title": "Monotonic Array",
+  "difficulty": "Easy",
+  "acceptance_rate": 62.4310823935398,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    }
+  ],
+  "url": "https://leetcode.com/problems/monotonic-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:capital-one",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:ozon",
+    "leetcode_studyplan:programming-skills",
+    "leetcode_studyplan:programming-skills:programming-skills-99-cqq6",
+    "leetcode_topic:array",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:capital-one",
+    "company:facebook",
+    "company:google",
+    "company:ozon",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:programming-skills",
+    "study_plan_section:programming-skills:programming-skills-99-cqq6",
+    "subset:neetcode:allNC",
+    "topic:array"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Capital One",
+      "slug": "capital-one"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Ozon",
+      "slug": "ozon"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Capital One",
+        "slug": "capital-one",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Ozon",
+        "slug": "ozon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "programming-skills",
+      "plan_name": "Programming Skills",
+      "section_slug": "programming-skills-99-cqq6",
+      "section_name": "Basic Implementation",
+      "path": [
+        "Basic Implementation"
+      ],
+      "order": 10,
+      "section_order": 1,
+      "problem_order": 10,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/programming-skills/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 63,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "monotonic-array",
+      "leetcode_slug": "monotonic-array",
+      "difficulty": "Easy",
+      "problem_order": 63
+    }
+  ]
+}

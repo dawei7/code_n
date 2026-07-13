@@ -1,0 +1,121 @@
+# Divide an Array Into Subarrays With Minimum Cost II
+
+| Field | Value |
+|---|---|
+| Source | LeetCode |
+| Frontend ID | 3013 |
+| Difficulty | Hard |
+| Category | Algorithms |
+| Topics | Array, Hash Table, Sliding Window, Heap (Priority Queue) |
+| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
+| Official Link | [divide-an-array-into-subarrays-with-minimum-cost-ii](https://leetcode.com/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/) |
+
+## Problem Description
+[Open the original LeetCode problem](https://leetcode.com/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/).
+
+### Goal
+Given an array of integers, partition it into exactly `k` contiguous subarrays such that the sum of the first elements of each subarray is minimized. The first element of the first subarray is always the first element of the array.
+
+### Function Contract
+**Inputs**
+
+- `nums`: A list of integers.
+- `k`: An integer representing the number of subarrays required.
+- `dist`: An integer representing the maximum distance between the starting indices of any two adjacent subarrays.
+
+**Return value**
+
+- An integer representing the minimum possible sum of the first elements of the `k` subarrays.
+
+### Examples
+**Example 1**
+
+- Input: `nums = [1, 3, 2, 6, 4, 2]`, `k = 3`, `dist = 3`
+- Output: `5`
+- Explanation: We can partition the array into `[1]`, `[3, 2, 6]`, and `[4, 2]`. The first elements are 1, 3, and 4. Sum = 8. Alternatively, `[1]`, `[3, 2]`, `[6, 4, 2]` gives 1+3+6=10. The optimal is `[1]`, `[3]`, `[2]` is not possible due to `dist`. The optimal is 1+3+1=5 (if indices allow).
+
+**Example 2**
+
+- Input: `nums = [10, 8, 3, 7, 15]`, `k = 3`, `dist = 1`
+- Output: `21`
+
+**Example 3**
+
+- Input: `nums = [10, 8, 3, 7, 15]`, `k = 3`, `dist = 2`
+- Output: `18`
+
+---
+
+## Solution
+### Approach
+The problem is solved using a sliding window combined with a dynamic data structure to maintain the smallest `k-1` elements in a range of size `dist`. We use two balanced BSTs (or a SortedList) to track the smallest `k-1` elements and the remaining elements, allowing for efficient insertion, deletion, and sum retrieval.
+
+### Complexity Analysis
+- **Time Complexity**: `O(n log(dist))`, where `n` is the length of the array. Each element is added and removed from the sorted structures at most once.
+- **Space Complexity**: `O(n)`, required to store the elements in the sliding window and the sorted structures.
+
+### Reference Implementations
+<details>
+<summary>python</summary>
+
+```python
+def solve(nums: list[int], k: int, dist: int) -> int:
+    values = sorted(set(nums))
+    index = {value: i + 1 for i, value in enumerate(values)}
+
+    class Fenwick:
+        def __init__(self, size: int):
+            self.bit = [0] * (size + 1)
+
+        def add(self, pos: int, delta: int) -> None:
+            while pos < len(self.bit):
+                self.bit[pos] += delta
+                pos += pos & -pos
+
+        def prefix_sum(self, pos: int) -> int:
+            total = 0
+            while pos > 0:
+                total += self.bit[pos]
+                pos -= pos & -pos
+            return total
+
+        def lower_bound(self, target: int) -> int:
+            pos = 0
+            bit_mask = 1 << (len(self.bit).bit_length() - 1)
+            while bit_mask:
+                nxt = pos + bit_mask
+                if nxt < len(self.bit) and self.bit[nxt] < target:
+                    target -= self.bit[nxt]
+                    pos = nxt
+                bit_mask >>= 1
+            return pos + 1
+
+    counts = Fenwick(len(values))
+    sums = Fenwick(len(values))
+
+    def add_value(value: int, delta: int) -> None:
+        pos = index[value]
+        counts.add(pos, delta)
+        sums.add(pos, delta * value)
+
+    def smallest_sum(amount: int) -> int:
+        if amount <= 0:
+            return 0
+        pos = counts.lower_bound(amount)
+        before_count = counts.prefix_sum(pos - 1)
+        before_sum = sums.prefix_sum(pos - 1)
+        return before_sum + (amount - before_count) * values[pos - 1]
+
+    choose = k - 1
+    for i in range(1, dist + 2):
+        add_value(nums[i], 1)
+
+    ans = nums[0] + smallest_sum(choose)
+    for right in range(dist + 2, len(nums)):
+        add_value(nums[right - dist - 1], -1)
+        add_value(nums[right], 1)
+        ans = min(ans, nums[0] + smallest_sum(choose))
+
+    return ans
+```
+</details>

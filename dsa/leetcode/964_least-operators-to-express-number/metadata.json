@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_964",
+  "source": "leetcode",
+  "frontend_id": "964",
+  "slug": "least-operators-to-express-number",
+  "title": "Least Operators to Express Number",
+  "difficulty": "Hard",
+  "acceptance_rate": 48.620187460323386,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Memoization",
+      "slug": "memoization"
+    }
+  ],
+  "url": "https://leetcode.com/problems/least-operators-to-express-number/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:snapchat",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math",
+    "leetcode_topic:memoization"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:snapchat",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:dynamic-programming",
+    "topic:math",
+    "topic:memoization"
+  ],
+  "company_tags": [
+    {
+      "name": "Snap",
+      "slug": "snapchat"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Snap",
+        "slug": "snapchat",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

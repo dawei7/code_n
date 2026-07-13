@@ -1,0 +1,147 @@
+{
+  "challenge_id": "lc_2929",
+  "source": "leetcode",
+  "frontend_id": "2929",
+  "slug": "distribute-candies-among-children-ii",
+  "title": "Distribute Candies Among Children II",
+  "difficulty": "Medium",
+  "acceptance_rate": 55.6423327680819,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    }
+  ],
+  "url": "https://leetcode.com/problems/distribute-candies-among-children-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:phonepe",
+    "leetcode_company:rubrik",
+    "leetcode_topic:combinatorics",
+    "leetcode_topic:enumeration",
+    "leetcode_topic:math",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "company:phonepe",
+    "company:rubrik",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:combinatorics",
+    "topic:enumeration",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Rubrik",
+      "slug": "rubrik"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Rubrik",
+        "slug": "rubrik",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 4
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Math & Geometry"
+      ],
+      "order": 905,
+      "section_order": 16,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "distribute-candies-among-children-ii",
+      "leetcode_slug": "distribute-candies-among-children-ii",
+      "difficulty": "Medium",
+      "problem_order": 56
+    }
+  ]
+}

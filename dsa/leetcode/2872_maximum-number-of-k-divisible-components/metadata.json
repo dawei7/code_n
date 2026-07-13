@@ -1,0 +1,117 @@
+{
+  "challenge_id": "lc_2872",
+  "source": "leetcode",
+  "frontend_id": "2872",
+  "slug": "maximum-number-of-k-divisible-components",
+  "title": "Maximum Number of K-Divisible Components",
+  "difficulty": "Hard",
+  "acceptance_rate": 73.98812708861271,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-number-of-k-divisible-components/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:infosys",
+    "leetcode_company:microsoft",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:tree",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:infosys",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:depth-first-search",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Graphs"
+      ],
+      "order": 617,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "maximum-number-of-k-divisible-components",
+      "leetcode_slug": "maximum-number-of-k-divisible-components",
+      "difficulty": "Hard",
+      "problem_order": 62
+    }
+  ]
+}

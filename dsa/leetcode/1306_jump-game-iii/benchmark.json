@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1306",
+  "cases": [
+    {
+      "id": "benchmark-chain-to-zero",
+      "name": "benchmark: chain to zero",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "start": 0
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

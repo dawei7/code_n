@@ -1,0 +1,115 @@
+{
+  "challenge_id": "lc_3620",
+  "source": "leetcode",
+  "frontend_id": "3620",
+  "slug": "network-recovery-pathways",
+  "title": "Network Recovery Pathways",
+  "difficulty": "Hard",
+  "acceptance_rate": 50.90076698971402,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Topological Sort",
+      "slug": "topological-sort"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
+  "url": "https://leetcode.com/problems/network-recovery-pathways/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:graph",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:shortest-path",
+    "leetcode_topic:topological-sort"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search",
+    "topic:dynamic-programming",
+    "topic:graph",
+    "topic:heap-priority-queue",
+    "topic:shortest-path",
+    "topic:topological-sort"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

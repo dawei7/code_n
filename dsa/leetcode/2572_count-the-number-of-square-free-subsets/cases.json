@@ -1,0 +1,87 @@
+{
+  "challenge_id": "lc_2572",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: square values are ignored",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single one forms one square-free subset",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all non-empty subsets of three primes are valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-with-prime",
+      "name": "trial: one doubles every non-one choice and can stand alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-only-square-value",
+      "name": "hidden: square value cannot appear in a square-free product",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

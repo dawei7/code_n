@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_884",
+  "source": "leetcode",
+  "frontend_id": "884",
+  "slug": "uncommon-words-from-two-sentences",
+  "title": "Uncommon Words from Two Sentences",
+  "difficulty": "Easy",
+  "acceptance_rate": 75.75525216084509,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/uncommon-words-from-two-sentences/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_topic:counting",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:counting",
+    "topic:hash-table",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 132,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "uncommon-words-from-two-sentences",
+      "leetcode_slug": "uncommon-words-from-two-sentences",
+      "difficulty": "Easy",
+      "problem_order": 132
+    }
+  ]
+}

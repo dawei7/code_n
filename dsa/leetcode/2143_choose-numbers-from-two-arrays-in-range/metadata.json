@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2143",
+  "source": "leetcode",
+  "frontend_id": "2143",
+  "slug": "choose-numbers-from-two-arrays-in-range",
+  "title": "Choose Numbers From Two Arrays in Range",
+  "difficulty": "Hard",
+  "acceptance_rate": 52.932330827067666,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    }
+  ],
+  "url": "https://leetcode.com/problems/choose-numbers-from-two-arrays-in-range/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:dynamic-programming"
+  ],
+  "company_tags": [
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,65 @@
+{
+  "challenge_id": "lc_3424",
+  "source": "leetcode",
+  "frontend_id": "3424",
+  "slug": "minimum-cost-to-make-arrays-identical",
+  "title": "Minimum Cost to Make Arrays Identical",
+  "difficulty": "Medium",
+  "acceptance_rate": 38.02237480762401,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-cost-to-make-arrays-identical/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy",
+    "topic:sorting"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

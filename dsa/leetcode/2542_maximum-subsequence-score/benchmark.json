@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_2542",
+  "cases": [
+    {
+      "id": "benchmark-heap-replacement",
+      "name": "benchmark: heap replacement improves the sum under a lower multiplier",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          9,
+          1,
+          5,
+          3
+        ],
+        "nums2": [
+          2,
+          10,
+          4,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 32,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

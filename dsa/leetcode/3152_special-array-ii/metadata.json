@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_3152",
+  "source": "leetcode",
+  "frontend_id": "3152",
+  "slug": "special-array-ii",
+  "title": "Special Array II",
+  "difficulty": "Medium",
+  "acceptance_rate": 45.80746057353571,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/special-array-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:microsoft",
+    "leetcode_company:national-payments-coorperation-india",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:prefix-sum"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:microsoft",
+    "company:national-payments-coorperation-india",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search",
+    "topic:prefix-sum"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "National Payments Corporation of India",
+      "slug": "national-payments-coorperation-india"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "National Payments Corporation of India",
+        "slug": "national-payments-coorperation-india",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

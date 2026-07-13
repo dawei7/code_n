@@ -1,0 +1,244 @@
+{
+  "challenge_id": "lc_96",
+  "source": "leetcode",
+  "frontend_id": "96",
+  "slug": "unique-binary-search-trees",
+  "title": "Unique Binary Search Trees",
+  "difficulty": "Medium",
+  "acceptance_rate": 63.87883381655322,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Binary Search Tree",
+      "slug": "binary-search-tree"
+    },
+    {
+      "name": "Binary Tree",
+      "slug": "binary-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/unique-binary-search-trees/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:clari",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:snapchat",
+    "leetcode_company:swiggy",
+    "leetcode_company:tiktok",
+    "leetcode_studyplan:dynamic-programming",
+    "leetcode_studyplan:dynamic-programming:dynamic-programming-87-bi3l",
+    "leetcode_topic:binary-search-tree",
+    "leetcode_topic:binary-tree",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math",
+    "leetcode_topic:tree",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:clari",
+    "company:facebook",
+    "company:google",
+    "company:microsoft",
+    "company:oracle",
+    "company:snapchat",
+    "company:swiggy",
+    "company:tiktok",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming",
+    "study_plan_section:dynamic-programming:dynamic-programming-87-bi3l",
+    "subset:neetcode:allNC",
+    "topic:binary-search-tree",
+    "topic:binary-tree",
+    "topic:dynamic-programming",
+    "topic:math",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Clari",
+      "slug": "clari"
+    },
+    {
+      "name": "Swiggy",
+      "slug": "swiggy"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Snap",
+      "slug": "snapchat"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Snap",
+        "slug": "snapchat",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Clari",
+        "slug": "clari",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Swiggy",
+        "slug": "swiggy",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "dynamic-programming",
+      "plan_name": "Dynamic Programming",
+      "section_slug": "dynamic-programming-87-bi3l",
+      "section_name": "On Trees",
+      "path": [
+        "On Trees"
+      ],
+      "order": 33,
+      "section_order": 7,
+      "problem_order": 1,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Trees"
+      ],
+      "order": 446,
+      "section_order": 6,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "unique-binary-search-trees",
+      "leetcode_slug": "unique-binary-search-trees",
+      "difficulty": "Medium",
+      "problem_order": 65
+    }
+  ]
+}

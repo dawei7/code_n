@@ -1,0 +1,129 @@
+{
+  "challenge_id": "lc_449",
+  "source": "leetcode",
+  "frontend_id": "449",
+  "slug": "serialize-and-deserialize-bst",
+  "title": "Serialize and Deserialize BST",
+  "difficulty": "Medium",
+  "acceptance_rate": 59.78688238275976,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Binary Search Tree",
+      "slug": "binary-search-tree"
+    },
+    {
+      "name": "Binary Tree",
+      "slug": "binary-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/serialize-and-deserialize-bst/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_topic:binary-search-tree",
+    "leetcode_topic:binary-tree",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:design",
+    "leetcode_topic:string",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:google",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:binary-search-tree",
+    "topic:binary-tree",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:design",
+    "topic:string",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

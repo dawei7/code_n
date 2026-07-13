@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "443",
+  "frontend_id": "443",
+  "title_slug": "string-compression",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064829055",
+  "verified_at": "2026-07-12T09:35:22.749934+00:00"
+}

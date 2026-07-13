@@ -1,0 +1,207 @@
+{
+  "challenge_id": "lc_631",
+  "source": "leetcode",
+  "frontend_id": "631",
+  "slug": "design-excel-sum-formula",
+  "title": "Design Excel Sum Formula",
+  "difficulty": "Hard",
+  "acceptance_rate": 39.60725541621669,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Topological Sort",
+      "slug": "topological-sort"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-excel-sum-formula/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:airbnb",
+    "leetcode_company:amazon",
+    "leetcode_company:citadel",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:openai",
+    "leetcode_company:rippling",
+    "leetcode_company:waymo",
+    "leetcode_topic:array",
+    "leetcode_topic:design",
+    "leetcode_topic:graph",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:matrix",
+    "leetcode_topic:string",
+    "leetcode_topic:topological-sort",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:airbnb",
+    "company:amazon",
+    "company:citadel",
+    "company:google",
+    "company:microsoft",
+    "company:openai",
+    "company:rippling",
+    "company:waymo",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:design",
+    "topic:graph",
+    "topic:hash-table",
+    "topic:matrix",
+    "topic:string",
+    "topic:topological-sort"
+  ],
+  "company_tags": [
+    {
+      "name": "Airbnb",
+      "slug": "airbnb"
+    },
+    {
+      "name": "Rippling",
+      "slug": "rippling"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Citadel",
+      "slug": "citadel"
+    },
+    {
+      "name": "Waymo",
+      "slug": "waymo"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Rippling",
+        "slug": "rippling",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "OpenAI",
+        "slug": "openai",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Citadel",
+        "slug": "citadel",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Waymo",
+        "slug": "waymo",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Airbnb",
+        "slug": "airbnb",
+        "timesEncountered": 7
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 174,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "design-excel-sum-formula",
+      "leetcode_slug": "design-excel-sum-formula",
+      "difficulty": "Hard",
+      "problem_order": 174
+    }
+  ]
+}

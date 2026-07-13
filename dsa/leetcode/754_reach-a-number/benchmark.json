@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_754",
+  "measurement_note": "Size is the absolute target magnitude. The integer-square-root method uses a constant number of corrections, while accumulating consecutive steps performs work proportional to the square root of size.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: target magnitude 100", "kind": "benchmark", "visible": false, "size": 100, "input": {"target": 100}, "expected": 15, "tags": ["benchmark", "scaling", "positive"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: target magnitude 1600", "kind": "benchmark", "visible": false, "size": 1600, "input": {"target": 1600}, "expected": 59, "tags": ["benchmark", "scaling", "positive"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: target magnitude 25600", "kind": "benchmark", "visible": false, "size": 25600, "input": {"target": 25600}, "expected": 227, "tags": ["benchmark", "scaling", "positive"]}
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_6",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef",
+        "numRows": 2
+      },
+      "expected": "ACEGIKMOQSUWYaceBDFHJLNPRTVXZbdf",
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCD",
+        "numRows": 2
+      },
+      "expected": "ACEGIKMOQSUWYacegikmoqsuwy02468ACEGIKMOQSUWYacegikmoqsuwy02468ACBDFHJLNPRTVXZbdfhjlnprtvxz13579BDFHJLNPRTVXZbdfhjlnprtvxz13579BD",
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOP",
+        "numRows": 2
+      },
+      "expected": "ACEGIKMOQSUWYacegikmoqsuwy02468ACEGIKMOQSUWYacegikmoqsuwy02468ACEGIKMOQSUWYacegikmoqsuwy02468ACEGIKMOQSUWYacegikmoqsuwy02468ACEGIKMOQSUWYacegikmoqsuwy02468ACEGIKMOQSUWYacegikmoqsuwy02468ACEGIKMOQSUWYacegikmoqsuwy02468ACEGIKMOQSUWYacegikmoqsuwy02468ACEGIKMOBDFHJLNPRTVXZbdfhjlnprtvxz13579BDFHJLNPRTVXZbdfhjlnprtvxz13579BDFHJLNPRTVXZbdfhjlnprtvxz13579BDFHJLNPRTVXZbdfhjlnprtvxz13579BDFHJLNPRTVXZbdfhjlnprtvxz13579BDFHJLNPRTVXZbdfhjlnprtvxz13579BDFHJLNPRTVXZbdfhjlnprtvxz13579BDFHJLNPRTVXZbdfhjlnprtvxz13579BDFHJLNP",
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}
+

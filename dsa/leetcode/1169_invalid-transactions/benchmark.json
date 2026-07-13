@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_1169",
+  "cases": [
+    {
+      "id": "benchmark-overlapping-windows",
+      "name": "benchmark: overlapping windows",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "transactions": [
+          "lee,10,500,seoul",
+          "lee,65,600,busan",
+          "lee,70,1300,seoul",
+          "kim,20,900,seoul",
+          "kim,40,1000,tokyo"
+        ]
+      },
+      "expected": [
+        "lee,10,500,seoul",
+        "lee,65,600,busan",
+        "lee,70,1300,seoul",
+        "kim,20,900,seoul",
+        "kim,40,1000,tokyo"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

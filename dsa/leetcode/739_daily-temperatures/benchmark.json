@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_739",
+  "measurement_note": "Size is the number of days. Constant temperatures have no warmer future day, so a forward scan revisits every remaining suffix while a monotonic stack pushes each index once and finishes in linear time.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 8 constant days", "kind": "benchmark", "visible": false, "size": 8, "input": {"temperatures": [70,70,70,70,70,70,70,70]}, "expected": [0,0,0,0,0,0,0,0], "tags": ["benchmark", "scaling", "constant"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 24 constant days", "kind": "benchmark", "visible": false, "size": 24, "input": {"temperatures": [70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70]}, "expected": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "tags": ["benchmark", "scaling", "constant"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 64 constant days", "kind": "benchmark", "visible": false, "size": 64, "input": {"temperatures": [70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70]}, "expected": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "tags": ["benchmark", "scaling", "constant"]}
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "challenge_id": "lc_473",
+  "source": "leetcode",
+  "frontend_id": "473",
+  "slug": "matchsticks-to-square",
+  "title": "Matchsticks to Square",
+  "difficulty": "Medium",
+  "acceptance_rate": 42.038715729981426,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Bitmask",
+      "slug": "bitmask"
+    }
+  ],
+  "url": "https://leetcode.com/problems/matchsticks-to-square/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:ebay",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:phonepe",
+    "leetcode_company:rackspace",
+    "leetcode_company:tiktok",
+    "leetcode_topic:array",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:bitmask",
+    "leetcode_topic:dynamic-programming",
+    "neetcode:allNC",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:ebay",
+    "company:facebook",
+    "company:google",
+    "company:phonepe",
+    "company:rackspace",
+    "company:tiktok",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:backtracking",
+    "topic:bit-manipulation",
+    "topic:bitmask",
+    "topic:dynamic-programming"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "eBay",
+      "slug": "ebay"
+    },
+    {
+      "name": "Rackspace",
+      "slug": "rackspace"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "eBay",
+        "slug": "ebay",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Rackspace",
+        "slug": "rackspace",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Backtracking"
+      ],
+      "order": 133,
+      "section_order": 9,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "matchsticks-to-square",
+      "leetcode_slug": "matchsticks-to-square",
+      "difficulty": "Medium",
+      "problem_order": 12
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Backtracking"
+      ],
+      "order": 522,
+      "section_order": 9,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "matchsticks-to-square",
+      "leetcode_slug": "matchsticks-to-square",
+      "difficulty": "Medium",
+      "problem_order": 15
+    }
+  ]
+}

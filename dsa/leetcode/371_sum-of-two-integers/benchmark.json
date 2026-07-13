@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_371",
+  "measurement_note": "Size is the positive operand bit width, capped by the legal input range. Carry-mask addition grows with word width, while repeatedly applying a bitwise unit increment once per operand unit grows with the numeric magnitude and therefore exponentially in bit width.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: add positive 2-bit magnitude",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "a": 0,
+        "b": 3
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "positive"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: add positive 5-bit magnitude",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "a": 0,
+        "b": 31
+      },
+      "expected": 31,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "positive"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: add positive 10-bit magnitude",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "a": 0,
+        "b": 999
+      },
+      "expected": 999,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "positive"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2811",
+  "source": "leetcode",
+  "frontend_id": "2811",
+  "slug": "check-if-it-is-possible-to-split-array",
+  "title": "Check if it is Possible to Split Array",
+  "difficulty": "Medium",
+  "acceptance_rate": 34.660105519480524,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/check-if-it-is-possible-to-split-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:moneylion",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:greedy"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:moneylion",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:dynamic-programming",
+    "topic:greedy"
+  ],
+  "company_tags": [
+    {
+      "name": "MoneyLion",
+      "slug": "moneylion"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "MoneyLion",
+        "slug": "moneylion",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

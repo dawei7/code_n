@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_2334",
+  "source": "leetcode",
+  "frontend_id": "2334",
+  "slug": "subarray-with-elements-greater-than-varying-threshold",
+  "title": "Subarray With Elements Greater Than Varying Threshold",
+  "difficulty": "Hard",
+  "acceptance_rate": 45.746818486269255,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_company:tiktok",
+    "leetcode_topic:array",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:stack",
+    "leetcode_topic:union-find"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:google",
+    "company:tiktok",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:monotonic-stack",
+    "topic:stack",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 25
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

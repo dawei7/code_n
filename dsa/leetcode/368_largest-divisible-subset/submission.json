@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "368",
+  "frontend_id": "368",
+  "title_slug": "largest-divisible-subset",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064618341",
+  "verified_at": "2026-07-12T05:35:08.722799+00:00"
+}

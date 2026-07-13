@@ -1,0 +1,44 @@
+{
+  "challenge_id": "lc_1453",
+  "cases": [
+    {
+      "id": "benchmark-square-with-center",
+      "name": "benchmark: square corners and center point",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "darts": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "r": 2
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

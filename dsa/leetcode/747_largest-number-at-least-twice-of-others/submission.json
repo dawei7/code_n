@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "748",
+  "frontend_id": "747",
+  "title_slug": "largest-number-at-least-twice-of-others",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.dominantIndex",
+  "verified_submission_id": "2065893211",
+  "verified_at": "2026-07-13T08:43:55.778478+00:00"
+}

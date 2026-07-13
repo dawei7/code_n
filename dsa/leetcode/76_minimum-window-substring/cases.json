@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_76",
+  "cases": [
+    {"id": "sample-standard", "name": "sample: shrink across surplus characters", "kind": "sample", "visible": true, "input": {"s": "ADOBECODEBANC", "t": "ABC"}, "expected": "BANC", "tags": ["sample"]},
+    {"id": "sample-single", "name": "sample: exact one-character window", "kind": "sample", "visible": true, "input": {"s": "a", "t": "a"}, "expected": "a", "tags": ["sample", "boundary"]},
+    {"id": "trial-impossible", "name": "insufficient multiplicity", "kind": "trial", "visible": true, "input": {"s": "a", "t": "aa"}, "expected": "", "tags": ["duplicates", "impossible"]},
+    {"id": "trial-exact", "name": "minimum window appears internally", "kind": "trial", "visible": true, "input": {"s": "aaabdabcefaecbef", "t": "abc"}, "expected": "abc", "tags": ["internal"]},
+    {"id": "real-duplicate", "name": "hidden: duplicate pattern character", "kind": "real", "visible": false, "input": {"s": "AAABBC", "t": "AABC"}, "expected": "AABBC", "tags": ["hidden", "duplicates"]}
+  ]
+}

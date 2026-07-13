@@ -1,0 +1,134 @@
+{
+  "challenge_id": "lc_1672",
+  "source": "leetcode",
+  "frontend_id": "1672",
+  "slug": "richest-customer-wealth",
+  "title": "Richest Customer Wealth",
+  "difficulty": "Easy",
+  "acceptance_rate": 88.76374368731948,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/richest-customer-wealth/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_studyplan:programming-skills",
+    "leetcode_studyplan:programming-skills:programming-skills-102-27ta",
+    "leetcode_topic:array",
+    "leetcode_topic:matrix"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:google",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:programming-skills",
+    "study_plan_section:programming-skills:programming-skills-102-27ta",
+    "topic:array",
+    "topic:matrix"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 3
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "programming-skills",
+      "plan_name": "Programming Skills",
+      "section_slug": "programming-skills-102-27ta",
+      "section_name": "Matrix",
+      "path": [
+        "Matrix"
+      ],
+      "order": 18,
+      "section_order": 4,
+      "problem_order": 1,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/programming-skills/"
+    }
+  ],
+  "neetcode_subsets": []
+}

@@ -1,0 +1,6 @@
+{"challenge_id":"lc_266","cases":[
+{"id":"sample-code","name":"sample: multiple odd counts","kind":"sample","visible":true,"input":{"s":"code"},"expected":false,"tags":["sample","odd-counts"]},
+{"id":"sample-aab","name":"sample: one odd count","kind":"sample","visible":true,"input":{"s":"aab"},"expected":true,"tags":["sample","palindrome"]},
+{"id":"trial-carerac","name":"rearrangeable longer string","kind":"trial","visible":true,"input":{"s":"carerac"},"expected":true,"tags":["permutation"]},
+{"id":"real-empty","name":"hidden: empty string","kind":"real","visible":false,"input":{"s":""},"expected":true,"tags":["hidden","boundary"]}
+]}

@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_677",
+  "source": "leetcode",
+  "frontend_id": "677",
+  "slug": "map-sum-pairs",
+  "title": "Map Sum Pairs",
+  "difficulty": "Medium",
+  "acceptance_rate": 57.2558348615824,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Trie",
+      "slug": "trie"
+    }
+  ],
+  "url": "https://leetcode.com/problems/map-sum-pairs/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:akuna-capital",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:string",
+    "leetcode_topic:trie"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:akuna-capital",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:design",
+    "topic:hash-table",
+    "topic:string",
+    "topic:trie"
+  ],
+  "company_tags": [
+    {
+      "name": "Akuna Capital",
+      "slug": "akuna-capital"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Akuna Capital",
+        "slug": "akuna-capital",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

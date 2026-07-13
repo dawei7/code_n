@@ -1,0 +1,135 @@
+{
+  "challenge_id": "lc_2275",
+  "source": "leetcode",
+  "frontend_id": "2275",
+  "slug": "largest-combination-with-bitwise-and-greater-than-zero",
+  "title": "Largest Combination With Bitwise AND Greater Than Zero",
+  "difficulty": "Medium",
+  "acceptance_rate": 80.76201095601738,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:counting",
+    "leetcode_topic:hash-table",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "company:amazon",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:counting",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Hudson River Trading",
+        "slug": "hudson-river-trading",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Bit Manipulation"
+      ],
+      "order": 928,
+      "section_order": 17,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "largest-combination-with-bitwise-and-greater-than-zero",
+      "leetcode_slug": "largest-combination-with-bitwise-and-greater-than-zero",
+      "difficulty": "Medium",
+      "problem_order": 16
+    }
+  ]
+}

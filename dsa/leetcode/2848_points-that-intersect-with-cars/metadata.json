@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2848",
+  "source": "leetcode",
+  "frontend_id": "2848",
+  "slug": "points-that-intersect-with-cars",
+  "title": "Points That Intersect With Cars",
+  "difficulty": "Easy",
+  "acceptance_rate": 73.48782147484596,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/points-that-intersect-with-cars/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:uber",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:prefix-sum"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:prefix-sum"
+  ],
+  "company_tags": [
+    {
+      "name": "Uber",
+      "slug": "uber"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

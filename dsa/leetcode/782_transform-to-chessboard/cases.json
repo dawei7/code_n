@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_782",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one row and one column swap", "kind": "sample", "visible": true, "input": {"board": [[0, 1, 1, 0], [0, 1, 1, 0], [1, 0, 0, 1], [1, 0, 0, 1]]}, "expected": 2, "tags": ["sample", "transformable"]},
+    {"id": "sample-2", "name": "sample: already a chessboard", "kind": "sample", "visible": true, "input": {"board": [[0, 1], [1, 0]]}, "expected": 0, "tags": ["sample", "zero-moves"]},
+    {"id": "sample-3", "name": "sample: duplicate rows cannot alternate", "kind": "sample", "visible": true, "input": {"board": [[1, 0], [1, 0]]}, "expected": -1, "tags": ["sample", "impossible"]},
+    {"id": "trial-1", "name": "trial: odd board already alternating", "kind": "trial", "visible": true, "input": {"board": [[0, 1, 0], [1, 0, 1], [0, 1, 0]]}, "expected": 0, "tags": ["trial", "odd-side"]},
+    {"id": "trial-2", "name": "trial: one row swap on odd board", "kind": "trial", "visible": true, "input": {"board": [[1, 0, 1], [0, 1, 0], [0, 1, 0]]}, "expected": 1, "tags": ["trial", "odd-side", "row-swap"]},
+    {"id": "trial-3", "name": "trial: rectangle parity violation", "kind": "trial", "visible": true, "input": {"board": [[0, 1], [1, 1]]}, "expected": -1, "tags": ["trial", "impossible"]},
+    {"id": "hidden-1", "name": "hidden: single one", "kind": "real", "visible": false, "input": {"board": [[1]]}, "expected": 0, "tags": ["hidden", "singleton"]},
+    {"id": "hidden-2", "name": "hidden: grouped row and column patterns", "kind": "real", "visible": false, "input": {"board": [[0, 0, 1, 1], [0, 0, 1, 1], [1, 1, 0, 0], [1, 1, 0, 0]]}, "expected": 2, "tags": ["hidden", "transformable"]},
+    {"id": "hidden-3", "name": "hidden: odd pattern count imbalance", "kind": "real", "visible": false, "input": {"board": [[0, 1, 0], [0, 1, 0], [0, 1, 0]]}, "expected": -1, "tags": ["hidden", "impossible", "odd-side"]}
+  ]
+}

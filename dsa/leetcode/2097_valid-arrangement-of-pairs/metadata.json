@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_2097",
+  "source": "leetcode",
+  "frontend_id": "2097",
+  "slug": "valid-arrangement-of-pairs",
+  "title": "Valid Arrangement of Pairs",
+  "difficulty": "Hard",
+  "acceptance_rate": 66.63039535727239,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Eulerian Circuit",
+      "slug": "eulerian-circuit"
+    }
+  ],
+  "url": "https://leetcode.com/problems/valid-arrangement-of-pairs/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:goldman-sachs",
+    "leetcode_topic:array",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:eulerian-circuit",
+    "leetcode_topic:graph"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:goldman-sachs",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:depth-first-search",
+    "topic:eulerian-circuit",
+    "topic:graph"
+  ],
+  "company_tags": [
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

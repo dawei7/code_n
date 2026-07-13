@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2757",
+  "source": "leetcode",
+  "frontend_id": "2757",
+  "slug": "generate-circular-array-values",
+  "title": "Generate Circular Array Values",
+  "difficulty": "Medium",
+  "acceptance_rate": 76.02880658436214,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/generate-circular-array-values/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

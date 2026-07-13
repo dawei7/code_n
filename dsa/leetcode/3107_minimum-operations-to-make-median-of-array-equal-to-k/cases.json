@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_3107",
+  "cases": [
+    {
+      "id": "sample-increase-median",
+      "name": "sample: increase right half to make median k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          6,
+          8,
+          5
+        ],
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-decrease-median",
+      "name": "sample: decrease left half to make median k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          6,
+          8,
+          5
+        ],
+        "k": 7
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-already-median",
+      "name": "trial: median already equals k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-negative-values",
+      "name": "trial: negative values around target median",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -2,
+          4,
+          9,
+          10
+        ],
+        "k": 0
+      },
+      "expected": 4,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-many-adjustments",
+      "name": "real: several elements must move to k",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          1,
+          2,
+          2,
+          8,
+          9,
+          3
+        ],
+        "k": 6
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "sort"
+      ]
+    }
+  ]
+}

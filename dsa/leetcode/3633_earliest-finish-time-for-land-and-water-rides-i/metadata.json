@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_3633",
+  "source": "leetcode",
+  "frontend_id": "3633",
+  "slug": "earliest-finish-time-for-land-and-water-rides-i",
+  "title": "Earliest Finish Time for Land and Water Rides I",
+  "difficulty": "Easy",
+  "acceptance_rate": 72.96904187422167,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/earliest-finish-time-for-land-and-water-rides-i/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:greedy",
+    "leetcode_topic:sorting",
+    "leetcode_topic:two-pointers"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search",
+    "topic:greedy",
+    "topic:sorting",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 3
+      }
+    ],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_2706",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: exact money remains zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          2,
+          2
+        ],
+        "money": 3
+      },
+      "tags": [
+        "sample",
+        "buy"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: cannot afford two cheapest",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          3,
+          2,
+          3
+        ],
+        "money": 3
+      },
+      "tags": [
+        "sample",
+        "cannot-buy"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate cheapest prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          5,
+          5,
+          10,
+          1,
+          1
+        ],
+        "money": 7
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "trial-leftover",
+      "name": "trial: leaves money after purchase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          4,
+          9,
+          2,
+          6
+        ],
+        "money": 10
+      },
+      "tags": [
+        "trial",
+        "leftover"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "real-two-expensive",
+      "name": "hidden: only two chocolates too expensive",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          8,
+          9
+        ],
+        "money": 10
+      },
+      "tags": [
+        "hidden",
+        "edge"
+      ],
+      "expected": 10
+    }
+  ]
+}

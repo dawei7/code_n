@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1076",
+  "source": "leetcode",
+  "frontend_id": "1076",
+  "slug": "project-employees-ii",
+  "title": "Project Employees II",
+  "difficulty": "Easy",
+  "acceptance_rate": 50.4489783680873,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/project-employees-ii/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:facebook",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:facebook",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,121 @@
+{
+  "challenge_id": "lc_1810",
+  "source": "leetcode",
+  "frontend_id": "1810",
+  "slug": "minimum-path-cost-in-a-hidden-grid",
+  "title": "Minimum Path Cost in a Hidden Grid",
+  "difficulty": "Medium",
+  "acceptance_rate": 59.04039879530585,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Interactive",
+      "slug": "interactive"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-path-cost-in-a-hidden-grid/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_topic:array",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:graph",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:interactive",
+    "leetcode_topic:matrix",
+    "leetcode_topic:shortest-path"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:facebook",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:graph",
+    "topic:heap-priority-queue",
+    "topic:interactive",
+    "topic:matrix",
+    "topic:shortest-path"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

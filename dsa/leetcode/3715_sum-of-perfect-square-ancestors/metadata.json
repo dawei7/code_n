@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_3715",
+  "source": "leetcode",
+  "frontend_id": "3715",
+  "slug": "sum-of-perfect-square-ancestors",
+  "title": "Sum of Perfect Square Ancestors",
+  "difficulty": "Hard",
+  "acceptance_rate": 42.76912544925552,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    },
+    {
+      "name": "Number Theory",
+      "slug": "number-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/sum-of-perfect-square-ancestors/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:meesho",
+    "leetcode_topic:array",
+    "leetcode_topic:counting",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:math",
+    "leetcode_topic:number-theory",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:meesho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:counting",
+    "topic:depth-first-search",
+    "topic:hash-table",
+    "topic:math",
+    "topic:number-theory",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Meesho",
+      "slug": "meesho"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meesho",
+        "slug": "meesho",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

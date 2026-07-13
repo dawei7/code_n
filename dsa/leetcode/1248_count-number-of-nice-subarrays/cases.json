@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_1248",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two nice subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no odds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: sparse odds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 16,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-single-odd",
+      "name": "hidden: single odd value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

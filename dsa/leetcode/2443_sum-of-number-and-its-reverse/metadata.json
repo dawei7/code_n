@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2443",
+  "source": "leetcode",
+  "frontend_id": "2443",
+  "slug": "sum-of-number-and-its-reverse",
+  "title": "Sum of Number and Its Reverse",
+  "difficulty": "Medium",
+  "acceptance_rate": 49.84359243481303,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    }
+  ],
+  "url": "https://leetcode.com/problems/sum-of-number-and-its-reverse/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_topic:enumeration",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:enumeration",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

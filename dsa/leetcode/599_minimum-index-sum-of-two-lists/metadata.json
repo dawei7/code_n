@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_599",
+  "source": "leetcode",
+  "frontend_id": "599",
+  "slug": "minimum-index-sum-of-two-lists",
+  "title": "Minimum Index Sum of Two Lists",
+  "difficulty": "Easy",
+  "acceptance_rate": 60.109411633359386,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-index-sum-of-two-lists/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:yelp",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:yelp",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Yelp",
+      "slug": "yelp"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Yelp",
+        "slug": "yelp",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

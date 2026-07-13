@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_671",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: second value begins a subtree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          2,
+          2,
+          5,
+          null,
+          null,
+          5,
+          7
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "candidate-subtree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all values equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "no-candidate"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated minimum branch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          1,
+          3,
+          1,
+          1,
+          3,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "repeated-minimum"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: single node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: immediate second value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "two-values"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: candidate repeated in both branches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "repeated-candidate"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: large second value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          1,
+          2147483647
+        ]
+      },
+      "expected": 2147483647,
+      "tags": [
+        "hidden",
+        "large-value"
+      ]
+    }
+  ]
+}
+

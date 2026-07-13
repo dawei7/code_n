@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_397",
+  "source": "leetcode",
+  "frontend_id": "397",
+  "slug": "integer-replacement",
+  "title": "Integer Replacement",
+  "difficulty": "Medium",
+  "acceptance_rate": 37.70328841881473,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Memoization",
+      "slug": "memoization"
+    }
+  ],
+  "url": "https://leetcode.com/problems/integer-replacement/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:baidu",
+    "leetcode_company:google",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:greedy",
+    "leetcode_topic:memoization"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:baidu",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:bit-manipulation",
+    "topic:dynamic-programming",
+    "topic:greedy",
+    "topic:memoization"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Baidu",
+      "slug": "baidu"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Baidu",
+        "slug": "baidu",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

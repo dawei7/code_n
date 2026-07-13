@@ -1,0 +1,178 @@
+{
+  "challenge_id": "lc_455",
+  "source": "leetcode",
+  "frontend_id": "455",
+  "slug": "assign-cookies",
+  "title": "Assign Cookies",
+  "difficulty": "Easy",
+  "acceptance_rate": 55.23389011538301,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/assign-cookies/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:tcs",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:sorting",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:amazon",
+    "company:bloomberg",
+    "company:facebook",
+    "company:google",
+    "company:microsoft",
+    "company:tcs",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:greedy",
+    "topic:sorting",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Two Pointers"
+      ],
+      "order": 185,
+      "section_order": 1,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "assign-cookies",
+      "leetcode_slug": "assign-cookies",
+      "difficulty": "Easy",
+      "problem_order": 10
+    }
+  ]
+}

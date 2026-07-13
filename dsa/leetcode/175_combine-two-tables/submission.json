@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "175",
+  "frontend_id": "175",
+  "title_slug": "combine-two-tables",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2064190315",
+  "verified_at": "2026-07-11T18:22:08.067177+00:00"
+}

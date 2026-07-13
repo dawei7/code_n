@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_675",
+  "measurement_note": "Size is the total number of passable grid cells, all of which contain uniquely ordered trees. Heights alternate between opposite ends of row-major order so consecutive targets are far apart; repeated BFS is quadratic in cell count across all trees, while precomputing every pair with Floyd-Warshall adds another factor of the cell count.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 by 4 alternating targets",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "forest": [
+          [
+            2,
+            4,
+            6,
+            8
+          ],
+          [
+            10,
+            12,
+            14,
+            16
+          ],
+          [
+            17,
+            15,
+            13,
+            11
+          ],
+          [
+            9,
+            7,
+            5,
+            3
+          ]
+        ]
+      },
+      "expected": 54,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "distant-targets"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6 by 6 alternating targets",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36,
+      "input": {
+        "forest": [
+          [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12
+          ],
+          [
+            14,
+            16,
+            18,
+            20,
+            22,
+            24
+          ],
+          [
+            26,
+            28,
+            30,
+            32,
+            34,
+            36
+          ],
+          [
+            37,
+            35,
+            33,
+            31,
+            29,
+            27
+          ],
+          [
+            25,
+            23,
+            21,
+            19,
+            17,
+            15
+          ],
+          [
+            13,
+            11,
+            9,
+            7,
+            5,
+            3
+          ]
+        ]
+      },
+      "expected": 195,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "distant-targets"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 8 by 8 alternating targets",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "forest": [
+          [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16
+          ],
+          [
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32
+          ],
+          [
+            34,
+            36,
+            38,
+            40,
+            42,
+            44,
+            46,
+            48
+          ],
+          [
+            50,
+            52,
+            54,
+            56,
+            58,
+            60,
+            62,
+            64
+          ],
+          [
+            65,
+            63,
+            61,
+            59,
+            57,
+            55,
+            53,
+            51
+          ],
+          [
+            49,
+            47,
+            45,
+            43,
+            41,
+            39,
+            37,
+            35
+          ],
+          [
+            33,
+            31,
+            29,
+            27,
+            25,
+            23,
+            21,
+            19
+          ],
+          [
+            17,
+            15,
+            13,
+            11,
+            9,
+            7,
+            5,
+            3
+          ]
+        ]
+      },
+      "expected": 476,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "distant-targets"
+      ]
+    }
+  ]
+}
+

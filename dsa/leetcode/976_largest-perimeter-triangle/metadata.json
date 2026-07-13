@@ -1,0 +1,122 @@
+{
+  "challenge_id": "lc_976",
+  "source": "leetcode",
+  "frontend_id": "976",
+  "slug": "largest-perimeter-triangle",
+  "title": "Largest Perimeter Triangle",
+  "difficulty": "Easy",
+  "acceptance_rate": 62.30384164306759,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/largest-perimeter-triangle/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:c3-iot",
+    "leetcode_company:google",
+    "leetcode_studyplan:programming-skills",
+    "leetcode_studyplan:programming-skills:programming-skills-103-2w7s",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:math",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:c3-iot",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:programming-skills",
+    "study_plan_section:programming-skills:programming-skills-103-2w7s",
+    "topic:array",
+    "topic:greedy",
+    "topic:math",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "C3 IoT",
+      "slug": "c3-iot"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "C3 IoT",
+        "slug": "c3-iot",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "programming-skills",
+      "plan_name": "Programming Skills",
+      "section_slug": "programming-skills-103-2w7s",
+      "section_name": "Math",
+      "path": [
+        "Math"
+      ],
+      "order": 25,
+      "section_order": 5,
+      "problem_order": 4,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/programming-skills/"
+    }
+  ],
+  "neetcode_subsets": []
+}

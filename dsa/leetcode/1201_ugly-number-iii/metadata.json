@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_1201",
+  "source": "leetcode",
+  "frontend_id": "1201",
+  "slug": "ugly-number-iii",
+  "title": "Ugly Number III",
+  "difficulty": "Medium",
+  "acceptance_rate": 31.660845157180756,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Number Theory",
+      "slug": "number-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/ugly-number-iii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:american-express",
+    "leetcode_company:facebook",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:combinatorics",
+    "leetcode_topic:math",
+    "leetcode_topic:number-theory"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:american-express",
+    "company:facebook",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:binary-search",
+    "topic:combinatorics",
+    "topic:math",
+    "topic:number-theory"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "American Express",
+      "slug": "american-express"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "American Express",
+        "slug": "american-express",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

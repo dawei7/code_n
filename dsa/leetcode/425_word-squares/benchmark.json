@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_425",
+  "measurement_note": "Size is the number of input words of fixed length four. Every possible first row requires a prefix absent from the dictionary, so indexed lookup rejects each state directly while rescanning all words performs quadratic prefix checks.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: reject 64 first-row candidates by prefix",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"words": ["azaa", "azab", "azac", "azad", "azae", "azaf", "azag", "azah", "azai", "azaj", "azak", "azal", "azam", "azan", "azao", "azap", "azaq", "azar", "azas", "azat", "azau", "azav", "azaw", "azax", "azay", "azaz", "azba", "azbb", "azbc", "azbd", "azbe", "azbf", "azbg", "azbh", "azbi", "azbj", "azbk", "azbl", "azbm", "azbn", "azbo", "azbp", "azbq", "azbr", "azbs", "azbt", "azbu", "azbv", "azbw", "azbx", "azby", "azbz", "azca", "azcb", "azcc", "azcd", "azce", "azcf", "azcg", "azch", "azci", "azcj", "azck", "azcl"]},
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["benchmark", "scaling", "missing-prefix"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: reject 192 first-row candidates by prefix",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 192,
+      "input": {"words": ["azaa", "azab", "azac", "azad", "azae", "azaf", "azag", "azah", "azai", "azaj", "azak", "azal", "azam", "azan", "azao", "azap", "azaq", "azar", "azas", "azat", "azau", "azav", "azaw", "azax", "azay", "azaz", "azba", "azbb", "azbc", "azbd", "azbe", "azbf", "azbg", "azbh", "azbi", "azbj", "azbk", "azbl", "azbm", "azbn", "azbo", "azbp", "azbq", "azbr", "azbs", "azbt", "azbu", "azbv", "azbw", "azbx", "azby", "azbz", "azca", "azcb", "azcc", "azcd", "azce", "azcf", "azcg", "azch", "azci", "azcj", "azck", "azcl", "azcm", "azcn", "azco", "azcp", "azcq", "azcr", "azcs", "azct", "azcu", "azcv", "azcw", "azcx", "azcy", "azcz", "azda", "azdb", "azdc", "azdd", "azde", "azdf", "azdg", "azdh", "azdi", "azdj", "azdk", "azdl", "azdm", "azdn", "azdo", "azdp", "azdq", "azdr", "azds", "azdt", "azdu", "azdv", "azdw", "azdx", "azdy", "azdz", "azea", "azeb", "azec", "azed", "azee", "azef", "azeg", "azeh", "azei", "azej", "azek", "azel", "azem", "azen", "azeo", "azep", "azeq", "azer", "azes", "azet", "azeu", "azev", "azew", "azex", "azey", "azez", "azfa", "azfb", "azfc", "azfd", "azfe", "azff", "azfg", "azfh", "azfi", "azfj", "azfk", "azfl", "azfm", "azfn", "azfo", "azfp", "azfq", "azfr", "azfs", "azft", "azfu", "azfv", "azfw", "azfx", "azfy", "azfz", "azga", "azgb", "azgc", "azgd", "azge", "azgf", "azgg", "azgh", "azgi", "azgj", "azgk", "azgl", "azgm", "azgn", "azgo", "azgp", "azgq", "azgr", "azgs", "azgt", "azgu", "azgv", "azgw", "azgx", "azgy", "azgz", "azha", "azhb", "azhc", "azhd", "azhe", "azhf", "azhg", "azhh", "azhi", "azhj"]},
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["benchmark", "scaling", "missing-prefix"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: reject 512 first-row candidates by prefix",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {"words": ["azaa", "azab", "azac", "azad", "azae", "azaf", "azag", "azah", "azai", "azaj", "azak", "azal", "azam", "azan", "azao", "azap", "azaq", "azar", "azas", "azat", "azau", "azav", "azaw", "azax", "azay", "azaz", "azba", "azbb", "azbc", "azbd", "azbe", "azbf", "azbg", "azbh", "azbi", "azbj", "azbk", "azbl", "azbm", "azbn", "azbo", "azbp", "azbq", "azbr", "azbs", "azbt", "azbu", "azbv", "azbw", "azbx", "azby", "azbz", "azca", "azcb", "azcc", "azcd", "azce", "azcf", "azcg", "azch", "azci", "azcj", "azck", "azcl", "azcm", "azcn", "azco", "azcp", "azcq", "azcr", "azcs", "azct", "azcu", "azcv", "azcw", "azcx", "azcy", "azcz", "azda", "azdb", "azdc", "azdd", "azde", "azdf", "azdg", "azdh", "azdi", "azdj", "azdk", "azdl", "azdm", "azdn", "azdo", "azdp", "azdq", "azdr", "azds", "azdt", "azdu", "azdv", "azdw", "azdx", "azdy", "azdz", "azea", "azeb", "azec", "azed", "azee", "azef", "azeg", "azeh", "azei", "azej", "azek", "azel", "azem", "azen", "azeo", "azep", "azeq", "azer", "azes", "azet", "azeu", "azev", "azew", "azex", "azey", "azez", "azfa", "azfb", "azfc", "azfd", "azfe", "azff", "azfg", "azfh", "azfi", "azfj", "azfk", "azfl", "azfm", "azfn", "azfo", "azfp", "azfq", "azfr", "azfs", "azft", "azfu", "azfv", "azfw", "azfx", "azfy", "azfz", "azga", "azgb", "azgc", "azgd", "azge", "azgf", "azgg", "azgh", "azgi", "azgj", "azgk", "azgl", "azgm", "azgn", "azgo", "azgp", "azgq", "azgr", "azgs", "azgt", "azgu", "azgv", "azgw", "azgx", "azgy", "azgz", "azha", "azhb", "azhc", "azhd", "azhe", "azhf", "azhg", "azhh", "azhi", "azhj", "azhk", "azhl", "azhm", "azhn", "azho", "azhp", "azhq", "azhr", "azhs", "azht", "azhu", "azhv", "azhw", "azhx", "azhy", "azhz", "azia", "azib", "azic", "azid", "azie", "azif", "azig", "azih", "azii", "azij", "azik", "azil", "azim", "azin", "azio", "azip", "aziq", "azir", "azis", "azit", "aziu", "aziv", "aziw", "azix", "aziy", "aziz", "azja", "azjb", "azjc", "azjd", "azje", "azjf", "azjg", "azjh", "azji", "azjj", "azjk", "azjl", "azjm", "azjn", "azjo", "azjp", "azjq", "azjr", "azjs", "azjt", "azju", "azjv", "azjw", "azjx", "azjy", "azjz", "azka", "azkb", "azkc", "azkd", "azke", "azkf", "azkg", "azkh", "azki", "azkj", "azkk", "azkl", "azkm", "azkn", "azko", "azkp", "azkq", "azkr", "azks", "azkt", "azku", "azkv", "azkw", "azkx", "azky", "azkz", "azla", "azlb", "azlc", "azld", "azle", "azlf", "azlg", "azlh", "azli", "azlj", "azlk", "azll", "azlm", "azln", "azlo", "azlp", "azlq", "azlr", "azls", "azlt", "azlu", "azlv", "azlw", "azlx", "azly", "azlz", "azma", "azmb", "azmc", "azmd", "azme", "azmf", "azmg", "azmh", "azmi", "azmj", "azmk", "azml", "azmm", "azmn", "azmo", "azmp", "azmq", "azmr", "azms", "azmt", "azmu", "azmv", "azmw", "azmx", "azmy", "azmz", "azna", "aznb", "aznc", "aznd", "azne", "aznf", "azng", "aznh", "azni", "aznj", "aznk", "aznl", "aznm", "aznn", "azno", "aznp", "aznq", "aznr", "azns", "aznt", "aznu", "aznv", "aznw", "aznx", "azny", "aznz", "azoa", "azob", "azoc", "azod", "azoe", "azof", "azog", "azoh", "azoi", "azoj", "azok", "azol", "azom", "azon", "azoo", "azop", "azoq", "azor", "azos", "azot", "azou", "azov", "azow", "azox", "azoy", "azoz", "azpa", "azpb", "azpc", "azpd", "azpe", "azpf", "azpg", "azph", "azpi", "azpj", "azpk", "azpl", "azpm", "azpn", "azpo", "azpp", "azpq", "azpr", "azps", "azpt", "azpu", "azpv", "azpw", "azpx", "azpy", "azpz", "azqa", "azqb", "azqc", "azqd", "azqe", "azqf", "azqg", "azqh", "azqi", "azqj", "azqk", "azql", "azqm", "azqn", "azqo", "azqp", "azqq", "azqr", "azqs", "azqt", "azqu", "azqv", "azqw", "azqx", "azqy", "azqz", "azra", "azrb", "azrc", "azrd", "azre", "azrf", "azrg", "azrh", "azri", "azrj", "azrk", "azrl", "azrm", "azrn", "azro", "azrp", "azrq", "azrr", "azrs", "azrt", "azru", "azrv", "azrw", "azrx", "azry", "azrz", "azsa", "azsb", "azsc", "azsd", "azse", "azsf", "azsg", "azsh", "azsi", "azsj", "azsk", "azsl", "azsm", "azsn", "azso", "azsp", "azsq", "azsr", "azss", "azst", "azsu", "azsv", "azsw", "azsx", "azsy", "azsz", "azta", "aztb", "aztc", "aztd", "azte", "aztf", "aztg", "azth", "azti", "aztj", "aztk", "aztl", "aztm", "aztn", "azto", "aztp", "aztq", "aztr"]},
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["benchmark", "scaling", "missing-prefix"]
+    }
+  ]
+}

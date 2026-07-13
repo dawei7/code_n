@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_98",
+  "cases": [
+    {"id": "sample-valid", "name": "sample: valid three-node tree", "kind": "sample", "visible": true, "input": {"root": [2, 1, 3]}, "expected": true, "tags": ["sample", "valid"]},
+    {"id": "sample-invalid", "name": "sample: right subtree violates root", "kind": "sample", "visible": true, "input": {"root": [5, 1, 4, null, null, 3, 6]}, "expected": false, "tags": ["sample", "ancestor-bound"]},
+    {"id": "trial-duplicate", "name": "duplicate keys are invalid", "kind": "trial", "visible": true, "input": {"root": [2, 2, 2]}, "expected": false, "tags": ["strict", "duplicate"]},
+    {"id": "trial-single", "name": "single node", "kind": "trial", "visible": true, "input": {"root": [50]}, "expected": true, "tags": ["boundary"]},
+    {"id": "real-deep-violation", "name": "hidden: distant ancestor violation", "kind": "real", "visible": false, "input": {"root": [5, 4, 6, null, null, 3, 7]}, "expected": false, "tags": ["hidden", "ancestor-bound"]},
+    {"id": "real-extremes", "name": "hidden: integer extremes", "kind": "real", "visible": false, "input": {"root": [0, -2147483648, 2147483647]}, "expected": true, "tags": ["hidden", "boundary"]}
+  ]
+}

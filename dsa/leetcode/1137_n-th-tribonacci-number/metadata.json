@@ -1,0 +1,214 @@
+{
+  "challenge_id": "lc_1137",
+  "source": "leetcode",
+  "frontend_id": "1137",
+  "slug": "n-th-tribonacci-number",
+  "title": "N-th Tribonacci Number",
+  "difficulty": "Easy",
+  "acceptance_rate": 63.13511345476155,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Memoization",
+      "slug": "memoization"
+    }
+  ],
+  "url": "https://leetcode.com/problems/n-th-tribonacci-number/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:amazon",
+    "leetcode_company:coursera",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_studyplan:dynamic-programming",
+    "leetcode_studyplan:dynamic-programming:dynamic-programming-81-vlln",
+    "leetcode_studyplan:leetcode-75",
+    "leetcode_studyplan:leetcode-75:leetcode-75-40-yz6i",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math",
+    "leetcode_topic:memoization",
+    "neetcode:allNC",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:amazon",
+    "company:coursera",
+    "company:facebook",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming",
+    "study_plan:leetcode-75",
+    "study_plan_section:dynamic-programming:dynamic-programming-81-vlln",
+    "study_plan_section:leetcode-75:leetcode-75-40-yz6i",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:dynamic-programming",
+    "topic:math",
+    "topic:memoization"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "Coursera",
+      "slug": "coursera"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Coursera",
+        "slug": "coursera",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "leetcode-75",
+      "plan_name": "LeetCode 75",
+      "section_slug": "leetcode-75-40-yz6i",
+      "section_name": "DP - 1D",
+      "path": [
+        "DP - 1D"
+      ],
+      "order": 59,
+      "section_order": 17,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/leetcode-75/"
+    },
+    {
+      "plan_slug": "dynamic-programming",
+      "plan_name": "Dynamic Programming",
+      "section_slug": "dynamic-programming-81-vlln",
+      "section_name": "Fibonacci style",
+      "path": [
+        "Fibonacci style"
+      ],
+      "order": 3,
+      "section_order": 1,
+      "problem_order": 3,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 175,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "n-th-tribonacci-number",
+      "leetcode_slug": "n-th-tribonacci-number",
+      "difficulty": "Easy",
+      "problem_order": 2
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 658,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "n-th-tribonacci-number",
+      "leetcode_slug": "n-th-tribonacci-number",
+      "difficulty": "Easy",
+      "problem_order": 2
+    }
+  ]
+}

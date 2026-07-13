@@ -1,0 +1,6 @@
+{"challenge_id":"lc_281","cases":[
+{"id":"sample-unequal","name":"sample: alternate then drain longer vector","kind":"sample","visible":true,"input":{"v1":[1,2],"v2":[3,4,5,6]},"expected":[1,3,2,4,5,6],"tags":["sample","round-robin"]},
+{"id":"sample-second-empty","name":"sample: second vector empty","kind":"sample","visible":true,"input":{"v1":[1],"v2":[]},"expected":[1],"tags":["sample","boundary"]},
+{"id":"trial-first-empty","name":"first vector empty","kind":"trial","visible":true,"input":{"v1":[],"v2":[7,8]},"expected":[7,8],"tags":["boundary"]},
+{"id":"real-both-empty","name":"hidden: both vectors empty","kind":"real","visible":false,"input":{"v1":[],"v2":[]},"expected":[],"tags":["hidden","empty"]}
+]}

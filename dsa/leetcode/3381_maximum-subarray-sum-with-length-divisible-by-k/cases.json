@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_3381",
+  "cases": [
+    {
+      "id": "sample-k-one",
+      "name": "sample: any length works when k is one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-all-negative",
+      "name": "sample: best length four negative subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3,
+          -4,
+          -5
+        ],
+        "k": 4
+      },
+      "expected": -10,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "sample-length-four",
+      "name": "sample: best subarray length divisible by two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          1,
+          2,
+          -3,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "trial-single-divisible-length",
+      "name": "trial: k equals array length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -2,
+          7,
+          -1
+        ],
+        "k": 4
+      },
+      "expected": 9,
+      "tags": [
+        "edge",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "real-mixed-prefix-remainders",
+      "name": "real: mixed signs across prefix remainders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          -9,
+          4,
+          5,
+          -2,
+          7,
+          -6,
+          3,
+          1,
+          -4
+        ],
+        "k": 3
+      },
+      "expected": 13,
+      "tags": [
+        "real",
+        "prefix-sum"
+      ]
+    }
+  ]
+}

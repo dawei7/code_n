@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_763",
+  "measurement_note": "Size is the string length. Precomputing final positions and scanning once costs O(size); rescanning the remaining suffix for every encountered character costs O(size^2) on these repeated-character workloads.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 8-character linked partition", "kind": "benchmark", "visible": false, "size": 8, "input": {"s": "abcdabcd"}, "expected": [8], "tags": ["benchmark", "scaling", "linked"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 32-character linked partition", "kind": "benchmark", "visible": false, "size": 32, "input": {"s": "abcdabcdabcdabcdabcdabcdabcdabcd"}, "expected": [32], "tags": ["benchmark", "scaling", "linked"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 48-character linked partition", "kind": "benchmark", "visible": false, "size": 48, "input": {"s": "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"}, "expected": [48], "tags": ["benchmark", "scaling", "linked"]}
+  ]
+}

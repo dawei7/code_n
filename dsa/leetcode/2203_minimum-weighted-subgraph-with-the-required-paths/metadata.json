@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2203",
+  "source": "leetcode",
+  "frontend_id": "2203",
+  "slug": "minimum-weighted-subgraph-with-the-required-paths",
+  "title": "Minimum Weighted Subgraph With the Required Paths",
+  "difficulty": "Hard",
+  "acceptance_rate": 42.66678590592023,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-weighted-subgraph-with-the-required-paths/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_topic:graph",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:shortest-path"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:graph",
+    "topic:heap-priority-queue",
+    "topic:shortest-path"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 13
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

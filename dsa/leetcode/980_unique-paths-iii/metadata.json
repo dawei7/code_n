@@ -1,0 +1,153 @@
+{
+  "challenge_id": "lc_980",
+  "source": "leetcode",
+  "frontend_id": "980",
+  "slug": "unique-paths-iii",
+  "title": "Unique Paths III",
+  "difficulty": "Hard",
+  "acceptance_rate": 82.88817563551501,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/unique-paths-iii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:databricks",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_topic:array",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:matrix"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:databricks",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:backtracking",
+    "topic:bit-manipulation",
+    "topic:matrix"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Databricks",
+      "slug": "databricks"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "LimeBike",
+        "slug": "limebike",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Databricks",
+        "slug": "databricks",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

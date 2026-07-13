@@ -1,0 +1,141 @@
+{
+  "challenge_id": "lc_966",
+  "source": "leetcode",
+  "frontend_id": "966",
+  "slug": "vowel-spellchecker",
+  "title": "Vowel Spellchecker",
+  "difficulty": "Medium",
+  "acceptance_rate": 61.43651818284219,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    }
+  ],
+  "url": "https://leetcode.com/problems/vowel-spellchecker/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:google",
+    "leetcode_company:grammarly",
+    "leetcode_company:microsoft",
+    "leetcode_company:thumbtack",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:google",
+    "company:grammarly",
+    "company:microsoft",
+    "company:thumbtack",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Grammarly",
+      "slug": "grammarly"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Thumbtack",
+      "slug": "thumbtack"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Thumbtack",
+        "slug": "thumbtack",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Grammarly",
+        "slug": "grammarly",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

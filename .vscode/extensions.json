@@ -1,0 +1,9 @@
+{
+  "_comment": "Recommended VSCode extensions for cOde(n) development. VSCode shows this list as a popup the first time a developer opens the project, so the right tooling is one click away. The Python extension is required (the engine + tools/run_solution.py are Python). Pylance gives proper intellisense for the engine package. The Debugpy extension is what powers the 'Run current challenge (debug)' launch config.",
+
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.debugpy"
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_565",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: longest cycle has four members",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          0,
+          3,
+          1,
+          6,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "cycle"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: identity permutation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "cycle"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two-cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "cycle"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: single element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one full cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: cycles of lengths two and three",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          3,
+          4,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "multiple-cycles"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: mixed cycle sizes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          0,
+          1,
+          4,
+          3,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "multiple-cycles"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: two equal cycles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "multiple-cycles"
+      ]
+    }
+  ]
+}
+

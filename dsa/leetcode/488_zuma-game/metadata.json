@@ -1,0 +1,140 @@
+{
+  "challenge_id": "lc_488",
+  "source": "leetcode",
+  "frontend_id": "488",
+  "slug": "zuma-game",
+  "title": "Zuma Game",
+  "difficulty": "Hard",
+  "acceptance_rate": 29.50604410458425,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Memoization",
+      "slug": "memoization"
+    }
+  ],
+  "url": "https://leetcode.com/problems/zuma-game/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:baidu",
+    "leetcode_company:google",
+    "leetcode_company:inmobi",
+    "leetcode_company:phonepe",
+    "leetcode_company:zoho",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:memoization",
+    "leetcode_topic:stack",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:baidu",
+    "company:google",
+    "company:inmobi",
+    "company:phonepe",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:breadth-first-search",
+    "topic:dynamic-programming",
+    "topic:memoization",
+    "topic:stack",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "InMobi",
+      "slug": "inmobi"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "Baidu",
+      "slug": "baidu"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Baidu",
+        "slug": "baidu",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "InMobi",
+        "slug": "inmobi",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

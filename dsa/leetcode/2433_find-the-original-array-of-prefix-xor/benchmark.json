@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_2433",
+  "cases": [
+    {
+      "id": "benchmark-mixed-prefixes",
+      "name": "benchmark: mixed prefix xor values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "pref": [
+          10,
+          5,
+          12,
+          12,
+          7
+        ]
+      },
+      "expected": [
+        10,
+        15,
+        9,
+        0,
+        11
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

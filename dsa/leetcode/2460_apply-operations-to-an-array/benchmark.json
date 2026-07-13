@@ -1,0 +1,32 @@
+{
+  "challenge_id": "lc_2460",
+  "cases": [
+    {
+      "id": "benchmark-several-merges",
+      "name": "benchmark: several independent merges",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          3,
+          0,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": [
+        6,
+        8,
+        4,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

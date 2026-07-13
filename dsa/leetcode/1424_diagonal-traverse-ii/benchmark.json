@@ -1,0 +1,42 @@
+{
+  "challenge_id": "lc_1424",
+  "cases": [
+    {
+      "id": "benchmark-short-and-long-rows",
+      "name": "benchmark: short rows around a long row",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          [
+            10
+          ],
+          [
+            20,
+            21,
+            22
+          ],
+          [
+            30
+          ],
+          [
+            40,
+            41
+          ]
+        ]
+      },
+      "expected": [
+        10,
+        20,
+        30,
+        21,
+        40,
+        22,
+        41
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

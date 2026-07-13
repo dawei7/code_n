@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_738",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two-digit descent",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 10},
+      "expected": 9,
+      "tags": ["sample", "leading-zero"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already monotone",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 1234},
+      "expected": 1234,
+      "tags": ["sample", "unchanged"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: decrement propagates left",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 332},
+      "expected": 299,
+      "tags": ["sample", "cascade"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 0},
+      "expected": 0,
+      "tags": ["trial", "zero"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one suffix digit changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 120},
+      "expected": 119,
+      "tags": ["trial", "suffix"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: long cascading prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 11110},
+      "expected": 9999,
+      "tags": ["hidden", "cascade"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: upper constraint boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000000000},
+      "expected": 999999999,
+      "tags": ["hidden", "upper-boundary"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: first descent inside mixed prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 135432},
+      "expected": 134999,
+      "tags": ["hidden", "internal-descent"]
+    }
+  ]
+}

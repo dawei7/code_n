@@ -1,0 +1,96 @@
+{
+  // VSCode tasks for cOde(n).
+  //
+  // "Run current challenge (no debug)" mirrors the launch.json
+  // config but runs without the debugger. Useful for fast
+  // "is my solution passing?" iteration when you don't need
+  // breakpoints.
+  //
+  // "Start cOde(n) server" starts the FastAPI server in the
+  // integrated terminal, so you can poke the API directly
+  // (e.g. `curl http://127.0.0.1:8000/api/health`) or just
+  // see the server's logs while you develop.
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run current challenge (no debug)",
+      "type": "shell",
+      "command": ".venv/Scripts/python.exe",
+      "args": [
+        "tools/run_solution.py",
+        "${input:challengeId}",
+        "--n", "${input:n}",
+        "--seed", "${input:seed}",
+        "--no-ansi"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Start cOde(n) server",
+      "type": "shell",
+      "command": ".venv/Scripts/python.exe",
+      "args": [
+        "-m", "uvicorn",
+        "server.app.main:app",
+        "--host", "127.0.0.1",
+        "--port", "8000"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "Run engine tests",
+      "type": "shell",
+      "command": ".venv/Scripts/python.exe",
+      "args": ["-m", "unittest", "discover", "-s", "tests", "-t", ".", "-v"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run server tests",
+      "type": "shell",
+      "command": ".venv/Scripts/python.exe",
+      "args": ["-m", "unittest", "discover", "-s", "server/tests", "-t", ".", "-v"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "challengeId",
+      "type": "command",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe ${workspaceFolder}/.vscode/get_active_challenge.py",
+      "description": "Active challenge id from .coden-data; falls back to the most recently modified python_vN.py"
+    },
+    {
+      "id": "n",
+      "type": "promptString",
+      "description": "Input size n (max depends on the challenge - see the description in cOde(n))",
+      "default": "16"
+    },
+    {
+      "id": "seed",
+      "type": "promptString",
+      "description": "Random seed (any integer)",
+      "default": "1"
+    }
+  ]
+}

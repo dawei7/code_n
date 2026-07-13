@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_541",
+  "cases": [
+    {"id":"sample-tail","name":"sample: short tail is fully reversed","kind":"sample","visible":true,"input":{"s":"abcdefg","k":2},"expected":"bacdfeg","tags":["sample","tail"]},
+    {"id":"sample-block","name":"sample: one complete block","kind":"sample","visible":true,"input":{"s":"abcd","k":2},"expected":"bacd","tags":["sample","block"]},
+    {"id":"sample-partial","name":"sample: final tail has at most k characters","kind":"sample","visible":true,"input":{"s":"abcdef","k":2},"expected":"bacdfe","tags":["sample","partial"]},
+    {"id":"trial-one","name":"trial: reversing groups of one changes nothing","kind":"trial","visible":true,"input":{"s":"abcdef","k":1},"expected":"abcdef","tags":["trial","k-one"]},
+    {"id":"trial-large-k","name":"trial: k exceeds string length","kind":"trial","visible":true,"input":{"s":"abc","k":4},"expected":"cba","tags":["trial","large-k"]},
+    {"id":"hidden-between","name":"hidden: between k and 2k characters remain","kind":"real","visible":false,"input":{"s":"abcdefg","k":3},"expected":"cbadefg","tags":["hidden","between"]},
+    {"id":"hidden-repeated","name":"hidden: repeated letters retain positions correctly","kind":"real","visible":false,"input":{"s":"abbaccddee","k":2},"expected":"babaccddee","tags":["hidden","repeated"]}
+  ]
+}

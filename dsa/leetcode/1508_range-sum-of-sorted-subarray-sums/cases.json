@@ -1,0 +1,88 @@
+{
+  "challenge_id": "lc_1508",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first five sorted sums",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "n": 4,
+        "left": 1,
+        "right": 5
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "subarray-sums"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: middle range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "n": 4,
+        "left": 3,
+        "right": 4
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all sorted sums",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "n": 4,
+        "left": 1,
+        "right": 10
+      },
+      "expected": 50,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-single-element",
+      "name": "hidden: single subarray sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5
+        ],
+        "n": 1,
+        "left": 1,
+        "right": 1
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

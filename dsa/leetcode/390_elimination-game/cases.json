@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_390",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several alternating rounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 9
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one initial value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: even initial count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "even"
+      ]
+    },
+    {
+      "id": "trial-two",
+      "name": "trial: first elimination leaves one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-ten",
+      "name": "trial: odd count on later round",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "odd-round"
+      ]
+    },
+    {
+      "id": "hidden-power-related",
+      "name": "hidden: multiple complete halvings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 24
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "halving"
+      ]
+    },
+    {
+      "id": "hidden-hundred",
+      "name": "hidden: larger even count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 100
+      },
+      "expected": 54,
+      "tags": [
+        "hidden",
+        "even"
+      ]
+    },
+    {
+      "id": "hidden-odd-large",
+      "name": "hidden: large odd count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 999
+      },
+      "expected": 504,
+      "tags": [
+        "hidden",
+        "odd"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_2799",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: complete subarrays contain all distinct values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          1,
+          2,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "window"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all values equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ],
+      "expected": 10
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "trial: all distinct values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "trial",
+        "distinct"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-repeated-pattern",
+      "name": "trial: repeated complete pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "trial",
+        "pattern"
+      ],
+      "expected": 8
+    },
+    {
+      "id": "real-larger-mixed",
+      "name": "hidden: larger mixed array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          1,
+          2,
+          4,
+          3,
+          2,
+          1,
+          3
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 12
+    }
+  ]
+}

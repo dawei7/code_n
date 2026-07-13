@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_1170",
+  "cases": [
+    {
+      "id": "benchmark-repeated-letters",
+      "name": "benchmark: repeated letters",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "queries": [
+          "kkkk",
+          "abc",
+          "mm"
+        ],
+        "words": [
+          "lllll",
+          "aabb",
+          "zz",
+          "yyyyy",
+          "n"
+        ]
+      },
+      "expected": [
+        2,
+        4,
+        2
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_3092",
+  "source": "leetcode",
+  "frontend_id": "3092",
+  "slug": "most-frequent-ids",
+  "title": "Most Frequent IDs",
+  "difficulty": "Medium",
+  "acceptance_rate": 43.17267752357091,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/most-frequent-ids/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:snowflake",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:ordered-set"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:snowflake",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:heap-priority-queue",
+    "topic:ordered-set"
+  ],
+  "company_tags": [
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

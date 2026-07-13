@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_1425",
+  "source": "leetcode",
+  "frontend_id": "1425",
+  "slug": "constrained-subsequence-sum",
+  "title": "Constrained Subsequence Sum",
+  "difficulty": "Hard",
+  "acceptance_rate": 56.45570227227773,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Queue",
+      "slug": "queue"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Monotonic Queue",
+      "slug": "monotonic-queue"
+    }
+  ],
+  "url": "https://leetcode.com/problems/constrained-subsequence-sum/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:akuna-capital",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:monotonic-queue",
+    "leetcode_topic:queue",
+    "leetcode_topic:sliding-window",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:akuna-capital",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:dynamic-programming",
+    "topic:heap-priority-queue",
+    "topic:monotonic-queue",
+    "topic:queue",
+    "topic:sliding-window"
+  ],
+  "company_tags": [
+    {
+      "name": "Akuna Capital",
+      "slug": "akuna-capital"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Akuna Capital",
+        "slug": "akuna-capital",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 505,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "constrained-subsequence-sum",
+      "leetcode_slug": "constrained-subsequence-sum",
+      "difficulty": "Hard",
+      "problem_order": 31
+    }
+  ]
+}

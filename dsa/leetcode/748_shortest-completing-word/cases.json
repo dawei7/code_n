@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_748",
+  "cases": [
+    {"id": "sample-1", "name": "sample: repeated plate letter", "kind": "sample", "visible": true, "input": {"licensePlate": "1s3 PSt", "words": ["step", "steps", "stripe", "stepple"]}, "expected": "steps", "tags": ["sample", "multiplicity"]},
+    {"id": "sample-2", "name": "sample: first shortest completion", "kind": "sample", "visible": true, "input": {"licensePlate": "1s3 456", "words": ["looks", "pest", "stew", "show"]}, "expected": "pest", "tags": ["sample", "tie-order"]},
+    {"id": "trial-1", "name": "trial: mixed-case plate", "kind": "trial", "visible": true, "input": {"licensePlate": "GrC8950", "words": ["measure", "other", "every", "base", "according", "level", "meeting"]}, "expected": "according", "tags": ["trial", "case-insensitive"]},
+    {"id": "trial-2", "name": "trial: three copies required", "kind": "trial", "visible": true, "input": {"licensePlate": "Aaa 12", "words": ["aba", "caa", "aaaa"]}, "expected": "aaaa", "tags": ["trial", "multiplicity"]},
+    {"id": "trial-3", "name": "trial: preserve earliest equal length", "kind": "trial", "visible": true, "input": {"licensePlate": "ab", "words": ["baba", "baab", "aabb"]}, "expected": "baba", "tags": ["trial", "tie-order"]},
+    {"id": "hidden-1", "name": "hidden: shortest appears last", "kind": "real", "visible": false, "input": {"licensePlate": "C2d", "words": ["decoded", "accede", "cad"]}, "expected": "cad", "tags": ["hidden", "late-answer"]},
+    {"id": "hidden-2", "name": "hidden: irrelevant plate characters", "kind": "real", "visible": false, "input": {"licensePlate": " 9 Z-9 ", "words": ["fizz", "zoo", "quiz"]}, "expected": "zoo", "tags": ["hidden", "nonletters"]},
+    {"id": "hidden-3", "name": "hidden: duplicate requirement rejects shorter words", "kind": "real", "visible": false, "input": {"licensePlate": "BbB", "words": ["cab", "bubble", "bobble"]}, "expected": "bubble", "tags": ["hidden", "multiplicity"]}
+  ]
+}

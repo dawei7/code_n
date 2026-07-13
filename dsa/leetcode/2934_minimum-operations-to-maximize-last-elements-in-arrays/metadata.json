@@ -1,0 +1,59 @@
+{
+  "challenge_id": "lc_2934",
+  "source": "leetcode",
+  "frontend_id": "2934",
+  "slug": "minimum-operations-to-maximize-last-elements-in-arrays",
+  "title": "Minimum Operations to Maximize Last Elements in Arrays",
+  "difficulty": "Medium",
+  "acceptance_rate": 44.152072009892734,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-operations-to-maximize-last-elements-in-arrays/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:enumeration"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:enumeration"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

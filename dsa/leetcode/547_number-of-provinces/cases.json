@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_547",
+  "cases": [
+    {
+      "id": "sample-two",
+      "name": "sample: one pair and one isolated city",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "isConnected": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "two-provinces"
+      ]
+    },
+    {
+      "id": "sample-isolated",
+      "name": "sample: every city is isolated",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "isConnected": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "isolated"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one city",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "isConnected": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-city"
+      ]
+    },
+    {
+      "id": "trial-chain",
+      "name": "trial: indirect links join a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "isConnected": [
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "transitive"
+      ]
+    },
+    {
+      "id": "trial-pairs",
+      "name": "trial: two separate pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "isConnected": [
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "pairs"
+      ]
+    },
+    {
+      "id": "hidden-interleaved",
+      "name": "hidden: component indices are interleaved",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "isConnected": [
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "interleaved"
+      ]
+    },
+    {
+      "id": "hidden-star",
+      "name": "hidden: one hub connects every city",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "isConnected": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "star"
+      ]
+    },
+    {
+      "id": "hidden-mixed",
+      "name": "hidden: components have different sizes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "isConnected": [
+          [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "mixed-sizes"
+      ]
+    }
+  ]
+}
+

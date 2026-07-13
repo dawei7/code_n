@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_685",
+  "source": "leetcode",
+  "frontend_id": "685",
+  "slug": "redundant-connection-ii",
+  "title": "Redundant Connection II",
+  "difficulty": "Hard",
+  "acceptance_rate": 36.357105891258506,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    }
+  ],
+  "url": "https://leetcode.com/problems/redundant-connection-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:graph",
+    "leetcode_topic:union-find"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:graph",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

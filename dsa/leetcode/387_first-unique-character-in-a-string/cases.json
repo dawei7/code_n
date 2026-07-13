@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_387",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first character is unique",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcode"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "first"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: unique character follows duplicates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "loveleetcode"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "middle"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no unique character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aabb"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-last",
+      "name": "trial: only final character is unique",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaab"
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "last"
+      ]
+    },
+    {
+      "id": "hidden-late-duplicate",
+      "name": "hidden: later occurrence invalidates prefix candidate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abacbd"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "late-duplicate"
+      ]
+    },
+    {
+      "id": "hidden-many-groups",
+      "name": "hidden: unique among repeated groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzxxyyqmmnn"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "groups"
+      ]
+    },
+    {
+      "id": "hidden-all-same",
+      "name": "hidden: one repeated character kind",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaaa"
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "all-same"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "752",
+  "frontend_id": "751",
+  "title_slug": "ip-to-cidr",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.ipToCIDR",
+  "verified_submission_id": "2065917992",
+  "verified_at": "2026-07-13T09:07:26.253265+00:00"
+}

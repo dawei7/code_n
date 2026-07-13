@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_2587",
+  "source": "leetcode",
+  "frontend_id": "2587",
+  "slug": "rearrange-array-to-maximize-prefix-score",
+  "title": "Rearrange Array to Maximize Prefix Score",
+  "difficulty": "Medium",
+  "acceptance_rate": 42.939929623790086,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/rearrange-array-to-maximize-prefix-score/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:ibm",
+    "leetcode_company:jpmorgan",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:ibm",
+    "company:jpmorgan",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy",
+    "topic:prefix-sum",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "JPMorgan Chase",
+      "slug": "jpmorgan"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "JPMorgan Chase",
+        "slug": "jpmorgan",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

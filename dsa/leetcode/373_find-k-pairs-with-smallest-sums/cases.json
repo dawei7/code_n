@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_373",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first row supplies three pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          7,
+          11
+        ],
+        "nums2": [
+          2,
+          4,
+          6
+        ],
+        "k": 3
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "validator": {
+        "kind": "k_smallest_pairs",
+        "left_param": "nums1",
+        "right_param": "nums2",
+        "k_param": "k"
+      },
+      "tags": [
+        "sample",
+        "merge"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate values preserve multiplicity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "k_smallest_pairs",
+        "left_param": "nums1",
+        "right_param": "nums2",
+        "k_param": "k"
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: k exceeds available pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          3
+        ],
+        "k": 3
+      },
+      "expected": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "k_smallest_pairs",
+        "left_param": "nums1",
+        "right_param": "nums2",
+        "k_param": "k"
+      },
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: empty first array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [],
+        "nums2": [
+          1,
+          2
+        ],
+        "k": 3
+      },
+      "expected": [],
+      "validator": {
+        "kind": "k_smallest_pairs",
+        "left_param": "nums1",
+        "right_param": "nums2",
+        "k_param": "k"
+      },
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-negative",
+      "name": "trial: negative values across rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          -2,
+          0
+        ],
+        "nums2": [
+          -1,
+          3
+        ],
+        "k": 3
+      },
+      "expected": [
+        [
+          -2,
+          -1
+        ],
+        [
+          0,
+          -1
+        ],
+        [
+          -2,
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "k_smallest_pairs",
+        "left_param": "nums1",
+        "right_param": "nums2",
+        "k_param": "k"
+      },
+      "tags": [
+        "trial",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-cutoff-tie",
+      "name": "hidden: several valid pairs share cutoff sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          1,
+          2
+        ],
+        "k": 3
+      },
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "k_smallest_pairs",
+        "left_param": "nums1",
+        "right_param": "nums2",
+        "k_param": "k"
+      },
+      "tags": [
+        "hidden",
+        "tie"
+      ]
+    },
+    {
+      "id": "hidden-duplicate-grid",
+      "name": "hidden: multiplicity from both arrays",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "k": 3
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "validator": {
+        "kind": "k_smallest_pairs",
+        "left_param": "nums1",
+        "right_param": "nums2",
+        "k_param": "k"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-zero-k",
+      "name": "hidden: request no pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          2
+        ],
+        "k": 0
+      },
+      "expected": [],
+      "validator": {
+        "kind": "k_smallest_pairs",
+        "left_param": "nums1",
+        "right_param": "nums2",
+        "k_param": "k"
+      },
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_3144",
+  "source": "leetcode",
+  "frontend_id": "3144",
+  "slug": "minimum-substring-partition-of-equal-character-frequency",
+  "title": "Minimum Substring Partition of Equal Character Frequency",
+  "difficulty": "Medium",
+  "acceptance_rate": 40.509423039814756,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-substring-partition-of-equal-character-frequency/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:grammarly",
+    "leetcode_company:mitsogo",
+    "leetcode_company:morgan-stanley",
+    "leetcode_topic:counting",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:grammarly",
+    "company:mitsogo",
+    "company:morgan-stanley",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:counting",
+    "topic:dynamic-programming",
+    "topic:hash-table",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Grammarly",
+      "slug": "grammarly"
+    },
+    {
+      "name": "Morgan Stanley",
+      "slug": "morgan-stanley"
+    },
+    {
+      "name": "Mitsogo",
+      "slug": "mitsogo"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Mitsogo",
+        "slug": "mitsogo",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Morgan Stanley",
+        "slug": "morgan-stanley",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Grammarly",
+        "slug": "grammarly",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

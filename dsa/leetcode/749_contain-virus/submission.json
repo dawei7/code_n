@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "750",
+  "frontend_id": "749",
+  "title_slug": "contain-virus",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.containVirus",
+  "verified_submission_id": "2065907068",
+  "verified_at": "2026-07-13T08:57:09.133181+00:00"
+}

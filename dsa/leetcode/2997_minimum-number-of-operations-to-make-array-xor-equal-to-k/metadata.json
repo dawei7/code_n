@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_2997",
+  "source": "leetcode",
+  "frontend_id": "2997",
+  "slug": "minimum-number-of-operations-to-make-array-xor-equal-to-k",
+  "title": "Minimum Number of Operations to Make Array XOR Equal to K",
+  "difficulty": "Medium",
+  "acceptance_rate": 85.48398086698191,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-number-of-operations-to-make-array-xor-equal-to-k/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:auriga",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:auriga",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Auriga",
+      "slug": "auriga"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Auriga",
+        "slug": "auriga",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

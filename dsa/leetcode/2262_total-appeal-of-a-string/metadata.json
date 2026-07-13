@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2262",
+  "source": "leetcode",
+  "frontend_id": "2262",
+  "slug": "total-appeal-of-a-string",
+  "title": "Total Appeal of A String",
+  "difficulty": "Hard",
+  "acceptance_rate": 56.6280702996825,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    }
+  ],
+  "url": "https://leetcode.com/problems/total-appeal-of-a-string/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:dynamic-programming",
+    "topic:hash-table",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_739",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed temperatures",
+      "kind": "sample",
+      "visible": true,
+      "input": {"temperatures": [73,74,75,71,69,72,76,73]},
+      "expected": [1,1,4,2,1,1,0,0],
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: strictly increasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {"temperatures": [30,40,50,60]},
+      "expected": [1,1,1,0],
+      "tags": ["sample", "increasing"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three increasing values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"temperatures": [30,60,90]},
+      "expected": [1,1,0],
+      "tags": ["sample", "increasing"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: equal plateau waits for warmer day",
+      "kind": "trial",
+      "visible": true,
+      "input": {"temperatures": [70,70,71]},
+      "expected": [2,1,0],
+      "tags": ["trial", "equal"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: strictly decreasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {"temperatures": [90,80,70,60]},
+      "expected": [0,0,0,0],
+      "tags": ["trial", "decreasing"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: one hot day resolves several waits",
+      "kind": "real",
+      "visible": false,
+      "input": {"temperatures": [80,70,70,75,74,76]},
+      "expected": [0,2,1,2,1,0],
+      "tags": ["hidden", "multiple-pops"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: one day",
+      "kind": "real",
+      "visible": false,
+      "input": {"temperatures": [55]},
+      "expected": [0],
+      "tags": ["hidden", "singleton"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: strict comparison across duplicates",
+      "kind": "real",
+      "visible": false,
+      "input": {"temperatures": [70,71,71,72]},
+      "expected": [1,2,1,0],
+      "tags": ["hidden", "duplicates"]
+    }
+  ]
+}

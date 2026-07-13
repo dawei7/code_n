@@ -1,0 +1,96 @@
+{
+  "challenge_id": "lc_3045",
+  "cases": [
+    {
+      "id": "sample-nested-prefix-suffix",
+      "name": "sample: trie counts nested prefix-suffix words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "aba",
+          "ababa",
+          "aa",
+          "a"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-identical",
+      "name": "sample: identical words pair by earlier occurrence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "abc",
+          "abc"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-pal-like",
+      "name": "trial: prefix and suffix pair paths share characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "abab",
+          "abxxab",
+          "baab"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-no-pairs",
+      "name": "trial: no pair satisfies both sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "bc",
+          "ca"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-many-overlaps",
+      "name": "real: multiple overlapping pair paths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "x",
+          "xyx",
+          "xyzyx",
+          "xx",
+          "x"
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "trie"
+      ]
+    }
+  ]
+}

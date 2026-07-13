@@ -1,0 +1,207 @@
+{
+  "challenge_id": "lc_1639",
+  "source": "leetcode",
+  "frontend_id": "1639",
+  "slug": "number-of-ways-to-form-a-target-string-given-a-dictionary",
+  "title": "Number of Ways to Form a Target String Given a Dictionary",
+  "difficulty": "Hard",
+  "acceptance_rate": 56.42388363782105,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:dunzo",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:meesho",
+    "leetcode_company:snowflake",
+    "leetcode_company:uber",
+    "leetcode_studyplan:dynamic-programming-grandmaster",
+    "leetcode_studyplan:dynamic-programming-grandmaster:dynamic-programming-grandmaster-92-477u",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:dunzo",
+    "company:facebook",
+    "company:google",
+    "company:meesho",
+    "company:snowflake",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming-grandmaster",
+    "study_plan_section:dynamic-programming-grandmaster:dynamic-programming-grandmaster-92-477u",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:dynamic-programming",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Meesho",
+      "slug": "meesho"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Dunzo",
+      "slug": "dunzo"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meesho",
+        "slug": "meesho",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Dunzo",
+        "slug": "dunzo",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "dynamic-programming-grandmaster",
+      "plan_name": "Dynamic Programming Grandmaster",
+      "section_slug": "dynamic-programming-grandmaster-92-477u",
+      "section_name": "General Multidimensional",
+      "path": [
+        "General Multidimensional"
+      ],
+      "order": 16,
+      "section_order": 2,
+      "problem_order": 9,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": true,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming-grandmaster/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "2-D Dynamic Programming"
+      ],
+      "order": 746,
+      "section_order": 13,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "number-of-ways-to-form-a-target-string-given-a-dictionary",
+      "leetcode_slug": "number-of-ways-to-form-a-target-string-given-a-dictionary",
+      "difficulty": "Hard",
+      "problem_order": 35
+    }
+  ]
+}

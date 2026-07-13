@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_2527",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: xor of two values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "bit-manipulation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: official larger xor-beauty example",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          15,
+          45,
+          20,
+          2,
+          34,
+          35,
+          5,
+          44,
+          32,
+          30
+        ]
+      },
+      "expected": 34,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three values cancel to zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-zero-values",
+      "name": "trial: xor of zero values remains zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-value",
+      "name": "hidden: one value is its own xor-beauty",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

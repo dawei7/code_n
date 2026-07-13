@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_2791",
+  "source": "leetcode",
+  "frontend_id": "2791",
+  "slug": "count-paths-that-can-form-a-palindrome-in-a-tree",
+  "title": "Count Paths That Can Form a Palindrome in a Tree",
+  "difficulty": "Hard",
+  "acceptance_rate": 52.64499898007752,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-paths-that-can-form-a-palindrome-in-a-tree/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:thoughtspot",
+    "leetcode_company:uber",
+    "leetcode_company:weride",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:thoughtspot",
+    "company:uber",
+    "company:weride",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:bit-manipulation",
+    "topic:depth-first-search",
+    "topic:hash-table",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "WeRide",
+      "slug": "weride"
+    },
+    {
+      "name": "thoughtspot",
+      "slug": "thoughtspot"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "thoughtspot",
+        "slug": "thoughtspot",
+        "timesEncountered": 4
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "WeRide",
+        "slug": "weride",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 17
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

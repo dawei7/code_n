@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "176",
+  "frontend_id": "176",
+  "title_slug": "second-highest-salary",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2064191910",
+  "verified_at": "2026-07-11T18:23:31.883720+00:00"
+}

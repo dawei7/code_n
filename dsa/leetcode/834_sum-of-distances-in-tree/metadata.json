@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_834",
+  "source": "leetcode",
+  "frontend_id": "834",
+  "slug": "sum-of-distances-in-tree",
+  "title": "Sum of Distances in Tree",
+  "difficulty": "Hard",
+  "acceptance_rate": 65.67597757513593,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    }
+  ],
+  "url": "https://leetcode.com/problems/sum-of-distances-in-tree/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_company:phonepe",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:graph",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:google",
+    "company:phonepe",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:depth-first-search",
+    "topic:dynamic-programming",
+    "topic:graph",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,152 @@
+{
+  "challenge_id": "lc_259",
+  "source": "leetcode",
+  "frontend_id": "259",
+  "slug": "3sum-smaller",
+  "title": "3Sum Smaller",
+  "difficulty": "Medium",
+  "acceptance_rate": 51.37347177392313,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/3sum-smaller/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:oracle",
+    "leetcode_company:paypal",
+    "leetcode_company:tiktok",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:sorting",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:facebook",
+    "company:google",
+    "company:oracle",
+    "company:paypal",
+    "company:tiktok",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:binary-search",
+    "topic:sorting",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Two Pointers"
+      ],
+      "order": 216,
+      "section_order": 1,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "3sum-smaller",
+      "leetcode_slug": "3sum-smaller",
+      "difficulty": "Medium",
+      "problem_order": 41
+    }
+  ]
+}

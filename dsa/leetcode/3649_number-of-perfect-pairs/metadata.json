@@ -1,0 +1,123 @@
+{
+  "challenge_id": "lc_3649",
+  "source": "leetcode",
+  "frontend_id": "3649",
+  "slug": "number-of-perfect-pairs",
+  "title": "Number of Perfect Pairs",
+  "difficulty": "Medium",
+  "acceptance_rate": 34.39398451459202,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-perfect-pairs/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:atlassian",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:squarepoint-capital",
+    "leetcode_company:visa",
+    "leetcode_topic:array",
+    "leetcode_topic:math",
+    "leetcode_topic:sorting",
+    "leetcode_topic:two-pointers"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:atlassian",
+    "company:goldman-sachs",
+    "company:squarepoint-capital",
+    "company:visa",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:math",
+    "topic:sorting",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Squarepoint Capital",
+      "slug": "squarepoint-capital"
+    },
+    {
+      "name": "Atlassian",
+      "slug": "atlassian"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Squarepoint Capital",
+        "slug": "squarepoint-capital",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Atlassian",
+        "slug": "atlassian",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 4
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

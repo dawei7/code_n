@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_85",
+  "cases": [
+    {"id": "sample-standard", "name": "sample: interior rectangle", "kind": "sample", "visible": true, "input": {"matrix": [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]}, "expected": 6, "tags": ["sample"]},
+    {"id": "sample-zero", "name": "sample: no one cell", "kind": "sample", "visible": true, "input": {"matrix": [["0"]]}, "expected": 0, "tags": ["sample", "boundary"]},
+    {"id": "trial-single-one", "name": "single one cell", "kind": "trial", "visible": true, "input": {"matrix": [["1"]]}, "expected": 1, "tags": ["boundary"]},
+    {"id": "trial-square", "name": "all-one square", "kind": "trial", "visible": true, "input": {"matrix": [["1","1"],["1","1"]]}, "expected": 4, "tags": ["full-matrix"]},
+    {"id": "real-separated", "name": "hidden: zero splits wide rectangles", "kind": "real", "visible": false, "input": {"matrix": [["1","1","0","1"],["1","1","0","1"],["1","1","1","1"]]}, "expected": 6, "tags": ["hidden", "split"]}
+  ]
+}

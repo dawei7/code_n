@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_1178",
+  "cases": [
+    {
+      "id": "benchmark-anagram-heavy",
+      "name": "benchmark: anagram-heavy words",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "team",
+          "meat",
+          "mate",
+          "meta",
+          "tame",
+          "steam",
+          "same"
+        ],
+        "puzzles": [
+          "teamxyz",
+          "aemstxy",
+          "abcdefm"
+        ]
+      },
+      "expected": [
+        5,
+        7,
+        0
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

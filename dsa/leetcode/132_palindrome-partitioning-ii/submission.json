@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "132",
+  "frontend_id": "132",
+  "title_slug": "palindrome-partitioning-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064160432",
+  "verified_at": "2026-07-11T17:56:14.054599+00:00"
+}

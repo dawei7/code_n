@@ -1,0 +1,46 @@
+{
+  "challenge_id": "lc_3964",
+  "source": "leetcode",
+  "frontend_id": "3964",
+  "slug": "minimum-lights-to-illuminate-a-road",
+  "title": "Minimum Lights to Illuminate a Road",
+  "difficulty": "Medium",
+  "acceptance_rate": 37.88052758640994,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/minimum-lights-to-illuminate-a-road/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

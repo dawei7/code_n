@@ -1,0 +1,71 @@
+{
+  "challenge_id": "lc_3359",
+  "source": "leetcode",
+  "frontend_id": "3359",
+  "slug": "find-sorted-submatrices-with-maximum-element-at-most-k",
+  "title": "Find Sorted Submatrices With Maximum Element at Most K",
+  "difficulty": "Hard",
+  "acceptance_rate": 51.84357541899441,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-sorted-submatrices-with-maximum-element-at-most-k/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:matrix",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:stack"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:matrix",
+    "topic:monotonic-stack",
+    "topic:stack"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

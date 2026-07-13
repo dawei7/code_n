@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2828",
+  "source": "leetcode",
+  "frontend_id": "2828",
+  "slug": "check-if-a-string-is-an-acronym-of-words",
+  "title": "Check if a String Is an Acronym of Words",
+  "difficulty": "Easy",
+  "acceptance_rate": 83.07741603106192,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    }
+  ],
+  "url": "https://leetcode.com/problems/check-if-a-string-is-an-acronym-of-words/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:uber",
+    "leetcode_topic:array",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Uber",
+      "slug": "uber"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

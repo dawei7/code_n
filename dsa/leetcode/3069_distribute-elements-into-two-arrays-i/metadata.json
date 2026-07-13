@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_3069",
+  "source": "leetcode",
+  "frontend_id": "3069",
+  "slug": "distribute-elements-into-two-arrays-i",
+  "title": "Distribute Elements Into Two Arrays I",
+  "difficulty": "Easy",
+  "acceptance_rate": 74.19485096177377,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/distribute-elements-into-two-arrays-i/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:autodesk",
+    "leetcode_topic:array",
+    "leetcode_topic:simulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:autodesk",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Autodesk",
+      "slug": "autodesk"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Autodesk",
+        "slug": "autodesk",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

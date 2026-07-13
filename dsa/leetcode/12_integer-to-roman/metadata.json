@@ -1,0 +1,448 @@
+{
+  "challenge_id": "lc_12",
+  "source": "leetcode",
+  "frontend_id": "12",
+  "slug": "integer-to-roman",
+  "title": "Integer to Roman",
+  "difficulty": "Medium",
+  "acceptance_rate": 71.19510744377155,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    }
+  ],
+  "url": "https://leetcode.com/problems/integer-to-roman/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:adobe",
+    "leetcode_company:amazon",
+    "leetcode_company:amd",
+    "leetcode_company:blackrock",
+    "leetcode_company:bloomberg",
+    "leetcode_company:bookingcom",
+    "leetcode_company:docusign",
+    "leetcode_company:doordash",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:ibm",
+    "leetcode_company:infosys",
+    "leetcode_company:jpmorgan",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:palo-alto-networks",
+    "leetcode_company:salesforce",
+    "leetcode_company:swiggy",
+    "leetcode_company:tcs",
+    "leetcode_company:tiktok",
+    "leetcode_company:twitter",
+    "leetcode_company:uipath",
+    "leetcode_company:verkada",
+    "leetcode_company:walmart-labs",
+    "leetcode_company:wix",
+    "leetcode_company:zoho",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-1-yf91",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:math",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:adobe",
+    "company:amazon",
+    "company:amd",
+    "company:blackrock",
+    "company:bloomberg",
+    "company:bookingcom",
+    "company:docusign",
+    "company:doordash",
+    "company:facebook",
+    "company:google",
+    "company:ibm",
+    "company:infosys",
+    "company:jpmorgan",
+    "company:linkedin",
+    "company:microsoft",
+    "company:oracle",
+    "company:palo-alto-networks",
+    "company:salesforce",
+    "company:swiggy",
+    "company:tcs",
+    "company:tiktok",
+    "company:twitter",
+    "company:uipath",
+    "company:verkada",
+    "company:walmart-labs",
+    "company:wix",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:top-interview-150",
+    "study_plan_section:top-interview-150:top-interview-150-1-yf91",
+    "subset:neetcode:allNC",
+    "topic:hash-table",
+    "topic:math",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Verkada",
+      "slug": "verkada"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "UiPath",
+      "slug": "uipath"
+    },
+    {
+      "name": "AMD",
+      "slug": "amd"
+    },
+    {
+      "name": "Wix",
+      "slug": "wix"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Docusign",
+      "slug": "docusign"
+    },
+    {
+      "name": "Palo Alto Networks",
+      "slug": "palo-alto-networks"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "BlackRock",
+      "slug": "blackrock"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "JPMorgan Chase",
+      "slug": "jpmorgan"
+    },
+    {
+      "name": "Swiggy",
+      "slug": "swiggy"
+    },
+    {
+      "name": "Booking.com",
+      "slug": "bookingcom"
+    },
+    {
+      "name": "DoorDash",
+      "slug": "doordash"
+    },
+    {
+      "name": "X",
+      "slug": "twitter"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Wix",
+        "slug": "wix",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Docusign",
+        "slug": "docusign",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Palo Alto Networks",
+        "slug": "palo-alto-networks",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "BlackRock",
+        "slug": "blackrock",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "JPMorgan Chase",
+        "slug": "jpmorgan",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Swiggy",
+        "slug": "swiggy",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Booking.com",
+        "slug": "bookingcom",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DoorDash",
+        "slug": "doordash",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "X",
+        "slug": "twitter",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Verkada",
+        "slug": "verkada",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "UiPath",
+        "slug": "uipath",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "AMD",
+        "slug": "amd",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-1-yf91",
+      "section_name": "Array / String",
+      "path": [
+        "Array / String"
+      ],
+      "order": 18,
+      "section_order": 1,
+      "problem_order": 18,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Math & Geometry"
+      ],
+      "order": 882,
+      "section_order": 16,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "integer-to-roman",
+      "leetcode_slug": "integer-to-roman",
+      "difficulty": "Medium",
+      "problem_order": 33
+    }
+  ]
+}

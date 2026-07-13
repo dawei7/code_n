@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_1301",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one best path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "board": [
+          "E23",
+          "2X2",
+          "12S"
+        ]
+      },
+      "expected": [
+        7,
+        1
+      ],
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two best paths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "board": [
+          "E12",
+          "1X1",
+          "21S"
+        ]
+      },
+      "expected": [
+        4,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: blocked path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "board": [
+          "E11",
+          "XXX",
+          "11S"
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-adjacent-start-end",
+      "name": "hidden: adjacent start and end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "board": [
+          "ES"
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

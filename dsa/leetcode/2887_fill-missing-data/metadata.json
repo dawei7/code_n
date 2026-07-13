@@ -1,0 +1,58 @@
+{
+  "challenge_id": "lc_2887",
+  "source": "leetcode",
+  "frontend_id": "2887",
+  "slug": "fill-missing-data",
+  "title": "Fill Missing Data",
+  "difficulty": "Easy",
+  "acceptance_rate": 72.60827099909476,
+  "category": "pandas",
+  "category_title": "pandas",
+  "topics": [],
+  "url": "https://leetcode.com/problems/fill-missing-data/",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:pandas",
+    "leetcode_studyplan:introduction-to-pandas",
+    "leetcode_studyplan:introduction-to-pandas:introduction-to-pandas-172-9vva"
+  ],
+  "tags": [
+    "category:pandas",
+    "language:python",
+    "leetcode",
+    "study_plan:introduction-to-pandas",
+    "study_plan_section:introduction-to-pandas:introduction-to-pandas-172-9vva"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "introduction-to-pandas",
+      "plan_name": "Introduction to Pandas",
+      "section_slug": "introduction-to-pandas-172-9vva",
+      "section_name": "Data Cleaning",
+      "path": [
+        "Data Cleaning"
+      ],
+      "order": 11,
+      "section_order": 4,
+      "problem_order": 6,
+      "catalog_slug": "introduction-to",
+      "catalog_name": "Introduction To",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/introduction-to-pandas/"
+    }
+  ],
+  "neetcode_subsets": []
+}

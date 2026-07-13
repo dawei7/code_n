@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_3287",
+  "source": "leetcode",
+  "frontend_id": "3287",
+  "slug": "find-the-maximum-sequence-value-of-array",
+  "title": "Find the Maximum Sequence Value of Array",
+  "difficulty": "Hard",
+  "acceptance_rate": 22.083392326206994,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-the-maximum-sequence-value-of-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:dynamic-programming"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:dynamic-programming"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 10
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_94",
+  "measurement_note": "The tiers are complete trees with increasing node counts; traversal must process every node, while repeated subtree rescanning exhibits superlinear growth.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one node", "kind": "benchmark", "visible": false, "size": 1, "input": {"root": [1]}, "expected": [1], "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: seven nodes", "kind": "benchmark", "visible": false, "size": 7, "input": {"root": [1, 2, 3, 4, 5, 6, 7]}, "expected": [4, 2, 5, 1, 6, 3, 7], "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: thirty-one nodes", "kind": "benchmark", "visible": false, "size": 31, "input": {"root": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]}, "expected": [16, 8, 17, 4, 18, 9, 19, 2, 20, 10, 21, 5, 22, 11, 23, 1, 24, 12, 25, 6, 26, 13, 27, 3, 28, 14, 29, 7, 30, 15, 31], "tags": ["benchmark", "scale-large"]}
+  ]
+}

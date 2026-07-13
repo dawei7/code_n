@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_2851",
+  "source": "leetcode",
+  "frontend_id": "2851",
+  "slug": "string-transformation",
+  "title": "String Transformation",
+  "difficulty": "Hard",
+  "acceptance_rate": 27.488384391644317,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "String Matching",
+      "slug": "string-matching"
+    }
+  ],
+  "url": "https://leetcode.com/problems/string-transformation/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:mathworks",
+    "leetcode_company:snowflake",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math",
+    "leetcode_topic:string",
+    "leetcode_topic:string-matching"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:mathworks",
+    "company:snowflake",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:dynamic-programming",
+    "topic:math",
+    "topic:string",
+    "topic:string-matching"
+  ],
+  "company_tags": [
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "MathWorks",
+      "slug": "mathworks"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 11
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "MathWorks",
+        "slug": "mathworks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

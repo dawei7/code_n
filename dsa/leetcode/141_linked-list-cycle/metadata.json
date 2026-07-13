@@ -1,0 +1,370 @@
+{
+  "challenge_id": "lc_141",
+  "source": "leetcode",
+  "frontend_id": "141",
+  "slug": "linked-list-cycle",
+  "title": "Linked List Cycle",
+  "difficulty": "Easy",
+  "acceptance_rate": 54.637336760291966,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Linked List",
+      "slug": "linked-list"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    }
+  ],
+  "url": "https://leetcode.com/problems/linked-list-cycle/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:cisco",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:ibm",
+    "leetcode_company:microsoft",
+    "leetcode_company:nvidia",
+    "leetcode_company:oracle",
+    "leetcode_company:palo-alto-networks",
+    "leetcode_company:qualcomm",
+    "leetcode_company:tcs",
+    "leetcode_company:yahoo",
+    "leetcode_company:yandex",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-54-h0tv",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-8-rvcb",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:linked-list",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:cisco",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:ibm",
+    "company:microsoft",
+    "company:nvidia",
+    "company:oracle",
+    "company:palo-alto-networks",
+    "company:qualcomm",
+    "company:tcs",
+    "company:yahoo",
+    "company:yandex",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:top-100-liked:top-100-liked-54-h0tv",
+    "study_plan_section:top-interview-150:top-interview-150-8-rvcb",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:hash-table",
+    "topic:linked-list",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Palo Alto Networks",
+      "slug": "palo-alto-networks"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Qualcomm",
+      "slug": "qualcomm"
+    },
+    {
+      "name": "Cisco",
+      "slug": "cisco"
+    },
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Yahoo",
+      "slug": "yahoo"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Qualcomm",
+        "slug": "qualcomm",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Cisco",
+        "slug": "cisco",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Yahoo",
+        "slug": "yahoo",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Palo Alto Networks",
+        "slug": "palo-alto-networks",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-8-rvcb",
+      "section_name": "Linked List",
+      "path": [
+        "Linked List"
+      ],
+      "order": 57,
+      "section_order": 8,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-54-h0tv",
+      "section_name": "Linked Lists",
+      "path": [
+        "Linked Lists"
+      ],
+      "order": 66,
+      "section_order": 9,
+      "problem_order": 8,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "Linked List"
+      ],
+      "order": 20,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "linked-list-cycle-detection",
+      "leetcode_slug": "linked-list-cycle",
+      "difficulty": "Easy",
+      "problem_order": 2
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Linked List"
+      ],
+      "order": 35,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "linked-list-cycle-detection",
+      "leetcode_slug": "linked-list-cycle",
+      "difficulty": "Easy",
+      "problem_order": 2
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Linked List"
+      ],
+      "order": 74,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "linked-list-cycle-detection",
+      "leetcode_slug": "linked-list-cycle",
+      "difficulty": "Easy",
+      "problem_order": 2
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Linked List"
+      ],
+      "order": 343,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "linked-list-cycle-detection",
+      "leetcode_slug": "linked-list-cycle",
+      "difficulty": "Easy",
+      "problem_order": 2
+    }
+  ]
+}

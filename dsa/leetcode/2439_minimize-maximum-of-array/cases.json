@@ -1,0 +1,90 @@
+{
+  "challenge_id": "lc_2439",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: prefix average determines five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          7,
+          1,
+          6
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: first value cannot move left",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: already flat",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          13,
+          13,
+          13,
+          13
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-heavy-tail",
+      "name": "trial: large value can spread left",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          10
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-zero",
+      "name": "hidden: one zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

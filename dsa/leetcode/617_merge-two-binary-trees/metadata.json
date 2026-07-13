@@ -1,0 +1,154 @@
+{
+  "challenge_id": "lc_617",
+  "source": "leetcode",
+  "frontend_id": "617",
+  "slug": "merge-two-binary-trees",
+  "title": "Merge Two Binary Trees",
+  "difficulty": "Easy",
+  "acceptance_rate": 79.10757800399956,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Binary Tree",
+      "slug": "binary-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/merge-two-binary-trees/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:josh-technology",
+    "leetcode_company:linkedin",
+    "leetcode_topic:binary-tree",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:tree",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "company:josh-technology",
+    "company:linkedin",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:binary-tree",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Josh Technology",
+      "slug": "josh-technology"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 5
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Josh Technology",
+        "slug": "josh-technology",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 3
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Trees"
+      ],
+      "order": 392,
+      "section_order": 6,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "merge-two-binary-trees",
+      "leetcode_slug": "merge-two-binary-trees",
+      "difficulty": "Easy",
+      "problem_order": 11
+    }
+  ]
+}

@@ -1,0 +1,518 @@
+{
+  "challenge_id": "lc_139",
+  "source": "leetcode",
+  "frontend_id": "139",
+  "slug": "word-break",
+  "title": "Word Break",
+  "difficulty": "Medium",
+  "acceptance_rate": 49.6268773050803,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Trie",
+      "slug": "trie"
+    },
+    {
+      "name": "Memoization",
+      "slug": "memoization"
+    }
+  ],
+  "url": "https://leetcode.com/problems/word-break/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:arista-networks",
+    "leetcode_company:autodesk",
+    "leetcode_company:bloomberg",
+    "leetcode_company:buyhatke",
+    "leetcode_company:coupang",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:grammarly",
+    "leetcode_company:intuit",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:millennium",
+    "leetcode_company:mongodb",
+    "leetcode_company:netflix",
+    "leetcode_company:oracle",
+    "leetcode_company:palo-alto-networks",
+    "leetcode_company:pocket-gems",
+    "leetcode_company:salesforce",
+    "leetcode_company:square",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_company:walmart-labs",
+    "leetcode_company:yahoo",
+    "leetcode_studyplan:dynamic-programming",
+    "leetcode_studyplan:dynamic-programming:dynamic-programming-83-1tbs",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-49-slv5",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-22-p3qn",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:memoization",
+    "leetcode_topic:string",
+    "leetcode_topic:trie",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:arista-networks",
+    "company:autodesk",
+    "company:bloomberg",
+    "company:buyhatke",
+    "company:coupang",
+    "company:facebook",
+    "company:google",
+    "company:grammarly",
+    "company:intuit",
+    "company:linkedin",
+    "company:microsoft",
+    "company:millennium",
+    "company:mongodb",
+    "company:netflix",
+    "company:oracle",
+    "company:palo-alto-networks",
+    "company:pocket-gems",
+    "company:salesforce",
+    "company:square",
+    "company:tiktok",
+    "company:uber",
+    "company:walmart-labs",
+    "company:yahoo",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:dynamic-programming:dynamic-programming-83-1tbs",
+    "study_plan_section:top-100-liked:top-100-liked-49-slv5",
+    "study_plan_section:top-interview-150:top-interview-150-22-p3qn",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:dynamic-programming",
+    "topic:hash-table",
+    "topic:memoization",
+    "topic:string",
+    "topic:trie"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Intuit",
+      "slug": "intuit"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "MongoDB",
+      "slug": "mongodb"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Netflix",
+      "slug": "netflix"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Grammarly",
+      "slug": "grammarly"
+    },
+    {
+      "name": "Palo Alto Networks",
+      "slug": "palo-alto-networks"
+    },
+    {
+      "name": "BuyHatke",
+      "slug": "buyhatke"
+    },
+    {
+      "name": "Autodesk",
+      "slug": "autodesk"
+    },
+    {
+      "name": "Arista Networks",
+      "slug": "arista-networks"
+    },
+    {
+      "name": "Millennium",
+      "slug": "millennium"
+    },
+    {
+      "name": "Pocket Gems",
+      "slug": "pocket-gems"
+    },
+    {
+      "name": "Yahoo",
+      "slug": "yahoo"
+    },
+    {
+      "name": "Square",
+      "slug": "square"
+    },
+    {
+      "name": "Coupang",
+      "slug": "coupang"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Netflix",
+        "slug": "netflix",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Grammarly",
+        "slug": "grammarly",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Palo Alto Networks",
+        "slug": "palo-alto-networks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "BuyHatke",
+        "slug": "buyhatke",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Autodesk",
+        "slug": "autodesk",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Arista Networks",
+        "slug": "arista-networks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Millennium",
+        "slug": "millennium",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Pocket Gems",
+        "slug": "pocket-gems",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Yahoo",
+        "slug": "yahoo",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Square",
+        "slug": "square",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Coupang",
+        "slug": "coupang",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Intuit",
+        "slug": "intuit",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "MongoDB",
+        "slug": "mongodb",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-22-p3qn",
+      "section_name": "1D DP",
+      "path": [
+        "1D DP"
+      ],
+      "order": 139,
+      "section_order": 22,
+      "problem_order": 3,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-49-slv5",
+      "section_name": "Dynamic Programming",
+      "path": [
+        "Dynamic Programming"
+      ],
+      "order": 37,
+      "section_order": 4,
+      "problem_order": 8,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    },
+    {
+      "plan_slug": "dynamic-programming",
+      "plan_name": "Dynamic Programming",
+      "section_slug": "dynamic-programming-83-1tbs",
+      "section_name": "On Strings",
+      "path": [
+        "On Strings"
+      ],
+      "order": 14,
+      "section_order": 3,
+      "problem_order": 2,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 56,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "word-break",
+      "leetcode_slug": "word-break",
+      "difficulty": "Medium",
+      "problem_order": 8
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 107,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "word-break",
+      "leetcode_slug": "word-break",
+      "difficulty": "Medium",
+      "problem_order": 9
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 183,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "word-break",
+      "leetcode_slug": "word-break",
+      "difficulty": "Medium",
+      "problem_order": 10
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 670,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "word-break",
+      "leetcode_slug": "word-break",
+      "difficulty": "Medium",
+      "problem_order": 14
+    }
+  ]
+}

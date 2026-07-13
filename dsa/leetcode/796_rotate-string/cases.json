@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_796",
+  "cases": [
+    {"id": "sample-1", "name": "sample: rotation after two shifts", "kind": "sample", "visible": true, "input": {"s": "abcde", "goal": "cdeab"}, "expected": true, "tags": ["sample", "rotation"]},
+    {"id": "sample-2", "name": "sample: circular order changed", "kind": "sample", "visible": true, "input": {"s": "abcde", "goal": "abced"}, "expected": false, "tags": ["sample", "not-rotation"]},
+    {"id": "sample-3", "name": "sample: single character unchanged", "kind": "sample", "visible": true, "input": {"s": "a", "goal": "a"}, "expected": true, "tags": ["sample", "singleton"]},
+    {"id": "trial-1", "name": "trial: unequal lengths", "kind": "trial", "visible": true, "input": {"s": "abc", "goal": "ab"}, "expected": false, "tags": ["trial", "length"]},
+    {"id": "trial-2", "name": "trial: repeated characters rotate", "kind": "trial", "visible": true, "input": {"s": "aaab", "goal": "abaa"}, "expected": true, "tags": ["trial", "repeated"]},
+    {"id": "trial-3", "name": "trial: same multiset but wrong order", "kind": "trial", "visible": true, "input": {"s": "abcd", "goal": "acbd"}, "expected": false, "tags": ["trial", "not-rotation"]},
+    {"id": "hidden-1", "name": "hidden: unchanged multi-character string", "kind": "real", "visible": false, "input": {"s": "rotation", "goal": "rotation"}, "expected": true, "tags": ["hidden", "zero-shifts"]},
+    {"id": "hidden-2", "name": "hidden: periodic string rotated once", "kind": "real", "visible": false, "input": {"s": "abab", "goal": "baba"}, "expected": true, "tags": ["hidden", "periodic"]},
+    {"id": "hidden-3", "name": "hidden: matching counts without a rotation", "kind": "real", "visible": false, "input": {"s": "aabbcc", "goal": "abacbc"}, "expected": false, "tags": ["hidden", "repeated", "not-rotation"]}
+  ]
+}

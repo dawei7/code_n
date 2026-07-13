@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_672",
+  "source": "leetcode",
+  "frontend_id": "672",
+  "slug": "bulb-switcher-ii",
+  "title": "Bulb Switcher II",
+  "difficulty": "Medium",
+  "acceptance_rate": 50.33316741863489,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/bulb-switcher-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:microsoft",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:bit-manipulation",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

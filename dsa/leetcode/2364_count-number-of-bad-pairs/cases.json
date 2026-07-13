@@ -1,0 +1,78 @@
+{
+  "challenge_id": "lc_2364",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: five bad pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "hash-table"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all pairs are good",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "trial: one bad pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: all equal values are all bad",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

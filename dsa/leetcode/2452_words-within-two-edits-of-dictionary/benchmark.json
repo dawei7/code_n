@@ -1,0 +1,32 @@
+{
+  "challenge_id": "lc_2452",
+  "cases": [
+    {
+      "id": "benchmark-multiple-dictionary-words",
+      "name": "benchmark: multiple dictionary words are checked",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "queries": [
+          "aaaa",
+          "aaab",
+          "bbbb",
+          "bbbc"
+        ],
+        "dictionary": [
+          "aabb",
+          "bbdd"
+        ]
+      },
+      "expected": [
+        "aaaa",
+        "aaab",
+        "bbbb",
+        "bbbc"
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{"challenge_id":"lc_191","cases":[
+{"id":"sample-three","name":"sample: three set bits","kind":"sample","visible":true,"input":{"n":11},"expected":3,"tags":["sample","bit-manipulation"]},
+{"id":"trial-power-two","name":"one isolated set bit","kind":"trial","visible":true,"input":{"n":128},"expected":1,"tags":["boundary"]},
+{"id":"trial-zero","name":"zero has no set bits","kind":"trial","visible":true,"input":{"n":0},"expected":0,"tags":["zero"]},
+{"id":"real-all-ones","name":"hidden: all 32 bits are set","kind":"real","visible":false,"input":{"n":4294967295},"expected":32,"tags":["hidden","bit-width"]}
+]}

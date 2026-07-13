@@ -1,0 +1,89 @@
+{
+  "challenge_id": "lc_3841",
+  "source": "leetcode",
+  "frontend_id": "3841",
+  "slug": "palindromic-path-queries-in-a-tree",
+  "title": "Palindromic Path Queries in a Tree",
+  "difficulty": "Hard",
+  "acceptance_rate": 36.71115953872696,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Divide and Conquer",
+      "slug": "divide-and-conquer"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Segment Tree",
+      "slug": "segment-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/palindromic-path-queries-in-a-tree/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:divide-and-conquer",
+    "leetcode_topic:segment-tree",
+    "leetcode_topic:string",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:depth-first-search",
+    "topic:divide-and-conquer",
+    "topic:segment-tree",
+    "topic:string",
+    "topic:tree"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

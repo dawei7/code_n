@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_2963",
+  "cases": [
+    {
+      "id": "sample-all-distinct",
+      "name": "sample: all values distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-single-block",
+      "name": "sample: one repeated value block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-overlap-prefix",
+      "name": "sample: overlapping first and third",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-independent-blocks",
+      "name": "trial: two independent blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          4,
+          3,
+          5
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "partitions"
+      ]
+    },
+    {
+      "id": "real-nested-intervals",
+      "name": "real: nested value intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          2,
+          4,
+          1,
+          5,
+          6
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

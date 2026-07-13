@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_1534",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four good triplets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          0,
+          1,
+          1,
+          9,
+          7
+        ],
+        "a": 7,
+        "b": 2,
+        "c": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "bruteforce"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: equal thresholds reject values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "a": 0,
+        "b": 0,
+        "c": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one increasing triplet",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3
+        ],
+        "a": 1,
+        "b": 1,
+        "c": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-two-valid-triplets",
+      "name": "hidden: endpoint condition filters half the triplets",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "a": 1,
+        "b": 1,
+        "c": 0
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,348 @@
+{
+  "challenge_id": "lc_217",
+  "source": "leetcode",
+  "frontend_id": "217",
+  "slug": "contains-duplicate",
+  "title": "Contains Duplicate",
+  "difficulty": "Easy",
+  "acceptance_rate": 64.50779712083134,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/contains-duplicate/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:airbnb",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:capgemini",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:ibm",
+    "leetcode_company:microsoft",
+    "leetcode_company:netflix",
+    "leetcode_company:nvidia",
+    "leetcode_company:oracle",
+    "leetcode_company:palantir",
+    "leetcode_company:tcs",
+    "leetcode_company:visa",
+    "leetcode_company:yahoo",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:sorting",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:airbnb",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:capgemini",
+    "company:facebook",
+    "company:google",
+    "company:ibm",
+    "company:microsoft",
+    "company:netflix",
+    "company:nvidia",
+    "company:oracle",
+    "company:palantir",
+    "company:tcs",
+    "company:visa",
+    "company:yahoo",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:hash-table",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Netflix",
+      "slug": "netflix"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "Capgemini",
+      "slug": "capgemini"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Yahoo",
+      "slug": "yahoo"
+    },
+    {
+      "name": "Airbnb",
+      "slug": "airbnb"
+    },
+    {
+      "name": "Palantir",
+      "slug": "palantir"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 13
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 12
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 4
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Netflix",
+        "slug": "netflix",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Capgemini",
+        "slug": "capgemini",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Yahoo",
+        "slug": "yahoo",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Airbnb",
+        "slug": "airbnb",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Palantir",
+        "slug": "palantir",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 0,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "duplicate-integer",
+      "leetcode_slug": "contains-duplicate",
+      "difficulty": "Easy",
+      "problem_order": 0
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 0,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "duplicate-integer",
+      "leetcode_slug": "contains-duplicate",
+      "difficulty": "Easy",
+      "problem_order": 0
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 1,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "duplicate-integer",
+      "leetcode_slug": "contains-duplicate",
+      "difficulty": "Easy",
+      "problem_order": 1
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 1,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "duplicate-integer",
+      "leetcode_slug": "contains-duplicate",
+      "difficulty": "Easy",
+      "problem_order": 1
+    }
+  ]
+}

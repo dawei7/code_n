@@ -1,0 +1,267 @@
+{
+  "challenge_id": "lc_696",
+  "source": "leetcode",
+  "frontend_id": "696",
+  "slug": "count-binary-substrings",
+  "title": "Count Binary Substrings",
+  "difficulty": "Easy",
+  "acceptance_rate": 70.48732639275921,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-binary-substrings/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:de-shaw",
+    "leetcode_company:dell",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:helix",
+    "leetcode_company:ibm",
+    "leetcode_company:jpmorgan",
+    "leetcode_company:meesho",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:salesforce",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_company:wells-fargo",
+    "leetcode_company:weride",
+    "leetcode_topic:string",
+    "leetcode_topic:two-pointers"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:de-shaw",
+    "company:dell",
+    "company:facebook",
+    "company:google",
+    "company:helix",
+    "company:ibm",
+    "company:jpmorgan",
+    "company:meesho",
+    "company:microsoft",
+    "company:oracle",
+    "company:salesforce",
+    "company:tiktok",
+    "company:uber",
+    "company:wells-fargo",
+    "company:weride",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:string",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "JPMorgan Chase",
+      "slug": "jpmorgan"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Wells Fargo",
+      "slug": "wells-fargo"
+    },
+    {
+      "name": "Dell",
+      "slug": "dell"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "WeRide",
+      "slug": "weride"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    },
+    {
+      "name": "Meesho",
+      "slug": "meesho"
+    },
+    {
+      "name": "Helix",
+      "slug": "helix"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meesho",
+        "slug": "meesho",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Helix",
+        "slug": "helix",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "JPMorgan Chase",
+        "slug": "jpmorgan",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Wells Fargo",
+        "slug": "wells-fargo",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Dell",
+        "slug": "dell",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "WeRide",
+        "slug": "weride",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

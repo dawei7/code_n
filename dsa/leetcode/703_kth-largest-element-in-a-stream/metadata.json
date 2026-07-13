@@ -1,0 +1,240 @@
+{
+  "challenge_id": "lc_703",
+  "source": "leetcode",
+  "frontend_id": "703",
+  "slug": "kth-largest-element-in-a-stream",
+  "title": "Kth Largest Element in a Stream",
+  "difficulty": "Easy",
+  "acceptance_rate": 61.25040886723706,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Binary Search Tree",
+      "slug": "binary-search-tree"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Binary Tree",
+      "slug": "binary-tree"
+    },
+    {
+      "name": "Data Stream",
+      "slug": "data-stream"
+    }
+  ],
+  "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:salesforce",
+    "leetcode_company:tinder",
+    "leetcode_topic:binary-search-tree",
+    "leetcode_topic:binary-tree",
+    "leetcode_topic:data-stream",
+    "leetcode_topic:design",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:tree",
+    "neetcode:allNC",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "company:amazon",
+    "company:bloomberg",
+    "company:facebook",
+    "company:google",
+    "company:microsoft",
+    "company:salesforce",
+    "company:tinder",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:binary-search-tree",
+    "topic:binary-tree",
+    "topic:data-stream",
+    "topic:design",
+    "topic:heap-priority-queue",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Tinder",
+      "slug": "tinder"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tinder",
+        "slug": "tinder",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 8
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 59,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "kth-largest-integer-in-a-stream",
+      "leetcode_slug": "kth-largest-element-in-a-stream",
+      "difficulty": "Easy",
+      "problem_order": 0
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 109,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "kth-largest-integer-in-a-stream",
+      "leetcode_slug": "kth-largest-element-in-a-stream",
+      "difficulty": "Easy",
+      "problem_order": 0
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 474,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "kth-largest-integer-in-a-stream",
+      "leetcode_slug": "kth-largest-element-in-a-stream",
+      "difficulty": "Easy",
+      "problem_order": 0
+    }
+  ]
+}

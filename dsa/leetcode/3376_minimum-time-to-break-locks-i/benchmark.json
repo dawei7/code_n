@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_3376",
+  "cases": [
+    {
+      "id": "benchmark-lock-order-bitmask",
+      "name": "benchmark: eight locks for bitmask ordering DP",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "locks": [
+          999983,
+          450001,
+          720337,
+          120011,
+          880003,
+          650009,
+          330017,
+          510031
+        ],
+        "k": 7
+      },
+      "expected": 297340,
+      "tags": [
+        "benchmark",
+        "bitmask-dp"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2910",
+  "source": "leetcode",
+  "frontend_id": "2910",
+  "slug": "minimum-number-of-groups-to-create-a-valid-assignment",
+  "title": "Minimum Number of Groups to Create a Valid Assignment",
+  "difficulty": "Medium",
+  "acceptance_rate": 25.380756003513525,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-number-of-groups-to-create-a-valid-assignment/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:hash-table"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 5
+      }
+    ],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

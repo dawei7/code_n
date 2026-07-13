@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2957",
+  "source": "leetcode",
+  "frontend_id": "2957",
+  "slug": "remove-adjacent-almost-equal-characters",
+  "title": "Remove Adjacent Almost-Equal Characters",
+  "difficulty": "Medium",
+  "acceptance_rate": 53.82717327535632,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/remove-adjacent-almost-equal-characters/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:salesforce",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:greedy",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:salesforce",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:dynamic-programming",
+    "topic:greedy",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 4
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

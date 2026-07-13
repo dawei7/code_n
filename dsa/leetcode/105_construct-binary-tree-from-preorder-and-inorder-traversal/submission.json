@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "105",
+  "frontend_id": "105",
+  "title_slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064147039",
+  "verified_at": "2026-07-11T17:44:30.457538+00:00"
+}

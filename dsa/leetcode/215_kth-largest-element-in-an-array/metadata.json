@@ -1,0 +1,566 @@
+{
+  "challenge_id": "lc_215",
+  "source": "leetcode",
+  "frontend_id": "215",
+  "slug": "kth-largest-element-in-an-array",
+  "title": "Kth Largest Element in an Array",
+  "difficulty": "Medium",
+  "acceptance_rate": 69.08928172598304,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Divide and Conquer",
+      "slug": "divide-and-conquer"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Quickselect",
+      "slug": "quickselect"
+    }
+  ],
+  "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:autodesk",
+    "leetcode_company:bloomberg",
+    "leetcode_company:bytedance",
+    "leetcode_company:coupang",
+    "leetcode_company:ebay",
+    "leetcode_company:epam-systems",
+    "leetcode_company:facebook",
+    "leetcode_company:flipkart",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:ibm",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:morgan-stanley",
+    "leetcode_company:nvidia",
+    "leetcode_company:oracle",
+    "leetcode_company:paypal",
+    "leetcode_company:pocket-gems",
+    "leetcode_company:salesforce",
+    "leetcode_company:servicenow",
+    "leetcode_company:spotify",
+    "leetcode_company:tiktok",
+    "leetcode_company:turing",
+    "leetcode_company:uber",
+    "leetcode_company:visa",
+    "leetcode_company:walmart-labs",
+    "leetcode_company:zoho",
+    "leetcode_studyplan:leetcode-75",
+    "leetcode_studyplan:leetcode-75:leetcode-75-37-s8hv",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-53-tlit",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-19-w23l",
+    "leetcode_topic:array",
+    "leetcode_topic:divide-and-conquer",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:quickselect",
+    "leetcode_topic:sorting",
+    "neetcode:allNC",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "company:amazon",
+    "company:apple",
+    "company:autodesk",
+    "company:bloomberg",
+    "company:bytedance",
+    "company:coupang",
+    "company:ebay",
+    "company:epam-systems",
+    "company:facebook",
+    "company:flipkart",
+    "company:goldman-sachs",
+    "company:google",
+    "company:ibm",
+    "company:linkedin",
+    "company:microsoft",
+    "company:morgan-stanley",
+    "company:nvidia",
+    "company:oracle",
+    "company:paypal",
+    "company:pocket-gems",
+    "company:salesforce",
+    "company:servicenow",
+    "company:spotify",
+    "company:tiktok",
+    "company:turing",
+    "company:uber",
+    "company:visa",
+    "company:walmart-labs",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:leetcode-75",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:leetcode-75:leetcode-75-37-s8hv",
+    "study_plan_section:top-100-liked:top-100-liked-53-tlit",
+    "study_plan_section:top-interview-150:top-interview-150-19-w23l",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:divide-and-conquer",
+    "topic:heap-priority-queue",
+    "topic:quickselect",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Spotify",
+      "slug": "spotify"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "Flipkart",
+      "slug": "flipkart"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "ServiceNow",
+      "slug": "servicenow"
+    },
+    {
+      "name": "Morgan Stanley",
+      "slug": "morgan-stanley"
+    },
+    {
+      "name": "eBay",
+      "slug": "ebay"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "ByteDance",
+      "slug": "bytedance"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "EPAM Systems",
+      "slug": "epam-systems"
+    },
+    {
+      "name": "Coupang",
+      "slug": "coupang"
+    },
+    {
+      "name": "Turing",
+      "slug": "turing"
+    },
+    {
+      "name": "Autodesk",
+      "slug": "autodesk"
+    },
+    {
+      "name": "Pocket Gems",
+      "slug": "pocket-gems"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ServiceNow",
+        "slug": "servicenow",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Morgan Stanley",
+        "slug": "morgan-stanley",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "eBay",
+        "slug": "ebay",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ByteDance",
+        "slug": "bytedance",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "EPAM Systems",
+        "slug": "epam-systems",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Coupang",
+        "slug": "coupang",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Turing",
+        "slug": "turing",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Autodesk",
+        "slug": "autodesk",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Pocket Gems",
+        "slug": "pocket-gems",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 18
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 13
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 11
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Spotify",
+        "slug": "spotify",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Flipkart",
+        "slug": "flipkart",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-19-w23l",
+      "section_name": "Heap",
+      "path": [
+        "Heap"
+      ],
+      "order": 121,
+      "section_order": 19,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "leetcode-75",
+      "plan_name": "LeetCode 75",
+      "section_slug": "leetcode-75-37-s8hv",
+      "section_name": "Heap / Priority Queue",
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 49,
+      "section_order": 14,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/leetcode-75/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-53-tlit",
+      "section_name": "Heap",
+      "path": [
+        "Heap"
+      ],
+      "order": 56,
+      "section_order": 8,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 62,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "kth-largest-element-in-an-array",
+      "leetcode_slug": "kth-largest-element-in-an-array",
+      "difficulty": "Medium",
+      "problem_order": 3
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 112,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "kth-largest-element-in-an-array",
+      "leetcode_slug": "kth-largest-element-in-an-array",
+      "difficulty": "Medium",
+      "problem_order": 3
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 483,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "kth-largest-element-in-an-array",
+      "leetcode_slug": "kth-largest-element-in-an-array",
+      "difficulty": "Medium",
+      "problem_order": 9
+    }
+  ]
+}

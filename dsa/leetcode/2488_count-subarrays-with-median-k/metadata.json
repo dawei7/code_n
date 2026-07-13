@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_2488",
+  "source": "leetcode",
+  "frontend_id": "2488",
+  "slug": "count-subarrays-with-median-k",
+  "title": "Count Subarrays With Median K",
+  "difficulty": "Hard",
+  "acceptance_rate": 49.03937866194305,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-subarrays-with-median-k/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_company:salesforce",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:prefix-sum"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:google",
+    "company:salesforce",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:prefix-sum"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 8
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

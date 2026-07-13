@@ -1,0 +1,125 @@
+{
+  "challenge_id": "lc_2574",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed prefix and suffix sums",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          4,
+          8,
+          3
+        ]
+      },
+      "expected": [
+        15,
+        1,
+        11,
+        22
+      ],
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one element",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-uneven-totals",
+      "name": "trial: uneven totals across the array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          1,
+          6,
+          1
+        ]
+      },
+      "expected": [
+        13,
+        6,
+        0,
+        7,
+        14
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-zero-values",
+      "name": "trial: all sums remain zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-increasing-values",
+      "name": "hidden: increasing values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": [
+        27,
+        24,
+        19,
+        12,
+        3,
+        8,
+        21
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

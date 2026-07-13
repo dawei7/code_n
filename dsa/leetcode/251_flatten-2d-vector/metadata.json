@@ -1,0 +1,122 @@
+{
+  "challenge_id": "lc_251",
+  "source": "leetcode",
+  "frontend_id": "251",
+  "slug": "flatten-2d-vector",
+  "title": "Flatten 2D Vector",
+  "difficulty": "Medium",
+  "acceptance_rate": 50.52346936321249,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Iterator",
+      "slug": "iterator"
+    }
+  ],
+  "url": "https://leetcode.com/problems/flatten-2d-vector/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:airbnb",
+    "leetcode_company:google",
+    "leetcode_company:twitter",
+    "leetcode_company:zenefits",
+    "leetcode_topic:array",
+    "leetcode_topic:design",
+    "leetcode_topic:iterator",
+    "leetcode_topic:two-pointers"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:airbnb",
+    "company:google",
+    "company:twitter",
+    "company:zenefits",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:design",
+    "topic:iterator",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Airbnb",
+      "slug": "airbnb"
+    },
+    {
+      "name": "X",
+      "slug": "twitter"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Zenefits",
+      "slug": "zenefits"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Airbnb",
+        "slug": "airbnb",
+        "timesEncountered": 4
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "X",
+        "slug": "twitter",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Zenefits",
+        "slug": "zenefits",
+        "timesEncountered": 0
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

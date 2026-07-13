@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_3705",
+  "source": "leetcode",
+  "frontend_id": "3705",
+  "slug": "find-golden-hour-customers",
+  "title": "Find Golden Hour Customers",
+  "difficulty": "Medium",
+  "acceptance_rate": 34.15645912417329,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [],
+  "url": "https://leetcode.com/problems/find-golden-hour-customers/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

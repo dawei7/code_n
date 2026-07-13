@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1645",
+  "source": "leetcode",
+  "frontend_id": "1645",
+  "slug": "hopper-company-queries-ii",
+  "title": "Hopper Company Queries II",
+  "difficulty": "Hard",
+  "acceptance_rate": 39.970824215900805,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/hopper-company-queries-ii/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:uber",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:uber",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Uber",
+      "slug": "uber"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

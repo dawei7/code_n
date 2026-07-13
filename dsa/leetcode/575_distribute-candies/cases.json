@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_575",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three paired types",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "candyType": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "distinct-types"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: capacity limits distinct types",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "candyType": [
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "capacity"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one repeated type",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "candyType": [
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: all candies are distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candyType": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: negative and zero type identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candyType": [
+          -1,
+          -1,
+          0,
+          0,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "values"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: exactly two candies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "candyType": [
+          9,
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "minimum"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: distinct count below capacity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "candyType": [
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "type-limit"
+      ]
+    }
+  ]
+}

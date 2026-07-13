@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_2357",
+  "cases": [
+    {
+      "id": "benchmark-single-positive-value",
+      "name": "benchmark: one unique positive value",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          10,
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

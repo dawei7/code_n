@@ -1,0 +1,78 @@
+{
+  "challenge_id": "lc_1444",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three valid cuts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "pizza": [
+          "A..",
+          "AAA",
+          "..."
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one valid cut sequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "pizza": [
+          "A..",
+          "AA.",
+          "..."
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no cuts needed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "pizza": [
+          "A..",
+          "A..",
+          "..."
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-full-two-by-two",
+      "name": "hidden: all cells have apples",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "pizza": [
+          "AA",
+          "AA"
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

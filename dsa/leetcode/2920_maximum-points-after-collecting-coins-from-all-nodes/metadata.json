@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2920",
+  "source": "leetcode",
+  "frontend_id": "2920",
+  "slug": "maximum-points-after-collecting-coins-from-all-nodes",
+  "title": "Maximum Points After Collecting Coins From All Nodes",
+  "difficulty": "Hard",
+  "acceptance_rate": 36.8332646658004,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Memoization",
+      "slug": "memoization"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-points-after-collecting-coins-from-all-nodes/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:de-shaw",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:memoization",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:de-shaw",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:depth-first-search",
+    "topic:dynamic-programming",
+    "topic:memoization",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

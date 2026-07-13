@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_429",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three levels with uneven branching",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [1, [[3, [[5, []], [6, []]]], [2, []], [4, []]]]},
+      "expected": [[1], [3, 2, 4], [5, 6]],
+      "tags": ["sample", "branching"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one node",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [7, []]},
+      "expected": [[7]],
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: empty tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": null},
+      "expected": [],
+      "tags": ["sample", "empty"]
+    },
+    {
+      "id": "trial-chain",
+      "name": "trial: one node at every depth",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1, [[2, [[3, [[4, []]]]]]]]},
+      "expected": [[1], [2], [3], [4]],
+      "tags": ["trial", "chain"]
+    },
+    {
+      "id": "trial-wide",
+      "name": "trial: one wide child level",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [10, [[1, []], [2, []], [3, []], [4, []]]]},
+      "expected": [[10], [1, 2, 3, 4]],
+      "tags": ["trial", "wide"]
+    },
+    {
+      "id": "hidden-child-order",
+      "name": "hidden: sibling order is not sorted",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [5, [[9, []], [1, []], [8, []], [2, []]]]},
+      "expected": [[5], [9, 1, 8, 2]],
+      "tags": ["hidden", "order"]
+    },
+    {
+      "id": "hidden-multiple-parents",
+      "name": "hidden: next level combines children from several parents",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [0, [[1, [[3, []], [4, []]]], [2, [[5, []]]]]]},
+      "expected": [[0], [1, 2], [3, 4, 5]],
+      "tags": ["hidden", "frontier"]
+    }
+  ]
+}

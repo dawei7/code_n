@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_471",
+  "cases": [
+    {
+      "id": "sample-too-short",
+      "name": "sample: repetition syntax would be longer",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aaa"},
+      "expected": "aaa",
+      "tags": ["sample", "literal"]
+    },
+    {
+      "id": "sample-single-repeat",
+      "name": "sample: one-character unit compresses",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aaaaa"},
+      "expected": "5[a]",
+      "tags": ["sample", "repeat"]
+    },
+    {
+      "id": "sample-prefix-repeat",
+      "name": "sample: compressed prefix plus literal suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aabcaabcd"},
+      "expected": "2[aabc]d",
+      "tags": ["sample", "split"]
+    },
+    {
+      "id": "trial-multi-character-unit",
+      "name": "trial: repeated three-character unit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcabcabc"},
+      "expected": "3[abc]",
+      "tags": ["trial", "repeat"]
+    },
+    {
+      "id": "trial-ten-copies",
+      "name": "trial: multi-digit repeat count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aaaaaaaaaa"},
+      "expected": "a9[a]",
+      "tags": ["trial", "multi-digit"]
+    },
+    {
+      "id": "hidden-nested",
+      "name": "hidden: repeated unit benefits from nested encoding",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abbbabbbcabbbabbbc"},
+      "expected": "2[2[abbb]c]",
+      "tags": ["hidden", "nested"]
+    },
+    {
+      "id": "hidden-no-repeat",
+      "name": "hidden: distinct letters remain literal",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdefgh"},
+      "expected": "abcdefgh",
+      "tags": ["hidden", "literal"]
+    }
+  ]
+}

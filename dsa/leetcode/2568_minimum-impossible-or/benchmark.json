@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_2568",
+  "cases": [
+    {
+      "id": "benchmark-missing-four",
+      "name": "benchmark: larger powers do not replace missing four",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          8,
+          16
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_2281",
+  "source": "leetcode",
+  "frontend_id": "2281",
+  "slug": "sum-of-total-strength-of-wizards",
+  "title": "Sum of Total Strength of Wizards",
+  "difficulty": "Hard",
+  "acceptance_rate": 29.605071570977355,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/sum-of-total-strength-of-wizards/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_topic:array",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:stack"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:monotonic-stack",
+    "topic:prefix-sum",
+    "topic:stack"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 6
+      }
+    ],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,213 @@
+{
+  "challenge_id": "lc_1166",
+  "source": "leetcode",
+  "frontend_id": "1166",
+  "slug": "design-file-system",
+  "title": "Design File System",
+  "difficulty": "Medium",
+  "acceptance_rate": 65.15908269749846,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Trie",
+      "slug": "trie"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-file-system/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:airbnb",
+    "leetcode_company:amazon",
+    "leetcode_company:atlassian",
+    "leetcode_company:capital-one",
+    "leetcode_company:coinbase",
+    "leetcode_company:doordash",
+    "leetcode_company:facebook",
+    "leetcode_company:oracle",
+    "leetcode_company:snowflake",
+    "leetcode_company:uber",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:string",
+    "leetcode_topic:trie",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:airbnb",
+    "company:amazon",
+    "company:atlassian",
+    "company:capital-one",
+    "company:coinbase",
+    "company:doordash",
+    "company:facebook",
+    "company:oracle",
+    "company:snowflake",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:design",
+    "topic:hash-table",
+    "topic:string",
+    "topic:trie"
+  ],
+  "company_tags": [
+    {
+      "name": "DoorDash",
+      "slug": "doordash"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Capital One",
+      "slug": "capital-one"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Coinbase",
+      "slug": "coinbase"
+    },
+    {
+      "name": "Atlassian",
+      "slug": "atlassian"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Airbnb",
+      "slug": "airbnb"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Capital One",
+        "slug": "capital-one",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Coinbase",
+        "slug": "coinbase",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Atlassian",
+        "slug": "atlassian",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Airbnb",
+        "slug": "airbnb",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "DoorDash",
+        "slug": "doordash",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Tries"
+      ],
+      "order": 549,
+      "section_order": 7,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "design-file-system",
+      "leetcode_slug": "design-file-system",
+      "difficulty": "Medium",
+      "problem_order": 6
+    }
+  ]
+}

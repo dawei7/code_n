@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_1463",
+  "cases": [
+    {
+      "id": "benchmark-crossing-high-values",
+      "name": "benchmark: high values require coordinated paths",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            0,
+            10,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            9,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 29,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_782",
+  "measurement_note": "Size is the board side length. Anchored rectangle parity checks take O(size^2); comparing every pair of rows across all columns takes O(size^3) on these valid chessboards.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: alternating board of side 2", "kind": "benchmark", "visible": false, "size": 2, "input": {"board": [[0, 1], [1, 0]]}, "expected": 0, "tags": ["benchmark", "scaling", "already-alternating"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: alternating board of side 4", "kind": "benchmark", "visible": false, "size": 4, "input": {"board": [[0, 1, 0, 1], [1, 0, 1, 0], [0, 1, 0, 1], [1, 0, 1, 0]]}, "expected": 0, "tags": ["benchmark", "scaling", "already-alternating"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: alternating board of side 8", "kind": "benchmark", "visible": false, "size": 8, "input": {"board": [[0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0]]}, "expected": 0, "tags": ["benchmark", "scaling", "already-alternating"]}
+  ]
+}

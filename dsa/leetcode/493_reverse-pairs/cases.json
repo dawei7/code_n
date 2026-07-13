@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_493",
+  "cases": [
+    {"id": "sample-one", "name": "sample: two reverse pairs", "kind": "sample", "visible": true, "input": {"nums": [1, 3, 2, 3, 1]}, "expected": 2, "tags": ["sample", "duplicates"]},
+    {"id": "sample-two", "name": "sample: three reverse pairs", "kind": "sample", "visible": true, "input": {"nums": [2, 4, 3, 5, 1]}, "expected": 3, "tags": ["sample", "mixed"]},
+    {"id": "sample-descending", "name": "sample: descending values", "kind": "sample", "visible": true, "input": {"nums": [5, 4, 3, 2, 1]}, "expected": 4, "tags": ["sample", "descending"]},
+    {"id": "trial-equality", "name": "trial: equality does not count", "kind": "trial", "visible": true, "input": {"nums": [2, 1]}, "expected": 0, "tags": ["trial", "strict"]},
+    {"id": "trial-negative", "name": "trial: negative values can form a pair", "kind": "trial", "visible": true, "input": {"nums": [-5, -5]}, "expected": 1, "tags": ["trial", "negative"]},
+    {"id": "hidden-increasing", "name": "hidden: increasing positives", "kind": "real", "visible": false, "input": {"nums": [1, 2, 3, 4]}, "expected": 0, "tags": ["hidden", "none"]},
+    {"id": "hidden-extremes", "name": "hidden: signed integer extremes", "kind": "real", "visible": false, "input": {"nums": [2147483647, -2147483648]}, "expected": 1, "tags": ["hidden", "overflow"]}
+  ]
+}

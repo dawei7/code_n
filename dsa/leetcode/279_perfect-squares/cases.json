@@ -1,0 +1,6 @@
+{"challenge_id":"lc_279","cases":[
+{"id":"sample-twelve","name":"sample: three squares","kind":"sample","visible":true,"input":{"n":12},"expected":3,"tags":["sample","three"]},
+{"id":"sample-thirteen","name":"sample: two squares","kind":"sample","visible":true,"input":{"n":13},"expected":2,"tags":["sample","two"]},
+{"id":"trial-one","name":"one is already square","kind":"trial","visible":true,"input":{"n":1},"expected":1,"tags":["boundary"]},
+{"id":"real-forty-three","name":"hidden: requires three squares","kind":"real","visible":false,"input":{"n":43},"expected":3,"tags":["hidden","classification"]}
+]}

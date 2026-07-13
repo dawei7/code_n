@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2168",
+  "source": "leetcode",
+  "frontend_id": "2168",
+  "slug": "unique-substrings-with-equal-digit-frequency",
+  "title": "Unique Substrings With Equal Digit Frequency",
+  "difficulty": "Medium",
+  "acceptance_rate": 64.54096362353243,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Rolling Hash",
+      "slug": "rolling-hash"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    },
+    {
+      "name": "Hash Function",
+      "slug": "hash-function"
+    }
+  ],
+  "url": "https://leetcode.com/problems/unique-substrings-with-equal-digit-frequency/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:expedia",
+    "leetcode_topic:counting",
+    "leetcode_topic:hash-function",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:rolling-hash",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:expedia",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:counting",
+    "topic:hash-function",
+    "topic:hash-table",
+    "topic:rolling-hash",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Expedia",
+      "slug": "expedia"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Expedia",
+        "slug": "expedia",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

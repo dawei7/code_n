@@ -1,0 +1,214 @@
+{
+  "challenge_id": "lc_3160",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: recolor one ball and add another color",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "limit": 4,
+        "queries": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "recolor"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: several balls share a color",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "limit": 4,
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "sample",
+        "shared-color"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated assignment to same color",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "limit": 1,
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "sample",
+        "overwrite"
+      ]
+    },
+    {
+      "id": "trial-color-disappears",
+      "name": "trial: a color disappears after overwrite",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "limit": 3,
+        "queries": [
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            1,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "frequency"
+      ]
+    },
+    {
+      "id": "real-many-overwrites",
+      "name": "real: many overwrites of the same ball",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "limit": 5,
+        "queries": [
+          [
+            2,
+            10
+          ],
+          [
+            2,
+            11
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            5,
+            10
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      "tags": [
+        "real",
+        "overwrite"
+      ]
+    }
+  ]
+}

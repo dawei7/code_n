@@ -1,0 +1,196 @@
+{
+  "challenge_id": "lc_231",
+  "source": "leetcode",
+  "frontend_id": "231",
+  "slug": "power-of-two",
+  "title": "Power of Two",
+  "difficulty": "Easy",
+  "acceptance_rate": 50.260455087596725,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    }
+  ],
+  "url": "https://leetcode.com/problems/power-of-two/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:infosys",
+    "leetcode_company:microsoft",
+    "leetcode_company:nvidia",
+    "leetcode_company:qualcomm",
+    "leetcode_company:snapchat",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:math",
+    "leetcode_topic:recursion",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:facebook",
+    "company:google",
+    "company:infosys",
+    "company:microsoft",
+    "company:nvidia",
+    "company:qualcomm",
+    "company:snapchat",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:bit-manipulation",
+    "topic:math",
+    "topic:recursion"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Qualcomm",
+      "slug": "qualcomm"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Snap",
+      "slug": "snapchat"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 11
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Qualcomm",
+        "slug": "qualcomm",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snap",
+        "slug": "snapchat",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Bit Manipulation"
+      ],
+      "order": 924,
+      "section_order": 17,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "power-of-two",
+      "leetcode_slug": "power-of-two",
+      "difficulty": "Easy",
+      "problem_order": 12
+    }
+  ]
+}

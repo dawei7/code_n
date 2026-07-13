@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_769",
+  "cases": [
+    {"id": "sample-1", "name": "sample: descending permutation", "kind": "sample", "visible": true, "input": {"arr": [4, 3, 2, 1, 0]}, "expected": 1, "tags": ["sample", "descending"]},
+    {"id": "sample-2", "name": "sample: swapped first pair", "kind": "sample", "visible": true, "input": {"arr": [1, 0, 2, 3, 4]}, "expected": 4, "tags": ["sample", "mixed"]},
+    {"id": "sample-3", "name": "sample: two swapped pairs", "kind": "sample", "visible": true, "input": {"arr": [0, 2, 1, 4, 3]}, "expected": 3, "tags": ["sample", "chunks"]},
+    {"id": "trial-1", "name": "trial: one value", "kind": "trial", "visible": true, "input": {"arr": [0]}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: increasing permutation", "kind": "trial", "visible": true, "input": {"arr": [0, 1, 2, 3]}, "expected": 4, "tags": ["trial", "sorted"]},
+    {"id": "trial-3", "name": "trial: one three-value cycle", "kind": "trial", "visible": true, "input": {"arr": [2, 0, 1]}, "expected": 1, "tags": ["trial", "cycle"]},
+    {"id": "hidden-1", "name": "hidden: cycle followed by singleton chunks", "kind": "real", "visible": false, "input": {"arr": [2, 1, 0, 3, 4]}, "expected": 3, "tags": ["hidden", "suffix"]},
+    {"id": "hidden-2", "name": "hidden: delayed first boundary", "kind": "real", "visible": false, "input": {"arr": [1, 2, 0, 3]}, "expected": 2, "tags": ["hidden", "cycle"]},
+    {"id": "hidden-3", "name": "hidden: one leading fixed value", "kind": "real", "visible": false, "input": {"arr": [0, 3, 2, 1, 4]}, "expected": 3, "tags": ["hidden", "mixed"]}
+  ]
+}

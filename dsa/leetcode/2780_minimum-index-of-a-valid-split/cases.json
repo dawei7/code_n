@@ -1,0 +1,112 @@
+{
+  "challenge_id": "lc_2780",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: earliest valid split is index two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "dominant"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no valid split despite global dominant",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          1,
+          1,
+          1,
+          7,
+          1,
+          2,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "none"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "trial-first-index",
+      "name": "trial: split immediately after first element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          1,
+          5
+        ]
+      },
+      "tags": [
+        "trial",
+        "early"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-no-global-dominant",
+      "name": "trial: no global dominant value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "trial",
+        "none"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "real-late-valid-split",
+      "name": "hidden: valid split appears after several values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          1,
+          9,
+          2,
+          9,
+          9,
+          3,
+          9,
+          9
+        ]
+      },
+      "tags": [
+        "hidden",
+        "late"
+      ],
+      "expected": 0
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_3392",
+  "source": "leetcode",
+  "frontend_id": "3392",
+  "slug": "count-subarrays-of-length-three-with-a-condition",
+  "title": "Count Subarrays of Length Three With a Condition",
+  "difficulty": "Easy",
+  "acceptance_rate": 61.3783754516979,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-subarrays-of-length-three-with-a-condition/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:cognizant",
+    "leetcode_topic:array"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:cognizant",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Cognizant",
+      "slug": "cognizant"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Cognizant",
+        "slug": "cognizant",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

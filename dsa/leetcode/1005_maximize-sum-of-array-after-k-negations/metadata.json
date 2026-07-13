@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_1005",
+  "source": "leetcode",
+  "frontend_id": "1005",
+  "slug": "maximize-sum-of-array-after-k-negations",
+  "title": "Maximize Sum Of Array After K Negations",
+  "difficulty": "Easy",
+  "acceptance_rate": 54.052448949863106,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:druva",
+    "leetcode_company:google",
+    "leetcode_company:uber",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:druva",
+    "company:google",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Druva",
+      "slug": "druva"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Druva",
+        "slug": "druva",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

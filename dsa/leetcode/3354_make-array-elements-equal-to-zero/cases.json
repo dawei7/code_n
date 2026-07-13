@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_3354",
+  "cases": [
+    {
+      "id": "sample-two-valid-starts",
+      "name": "sample: two valid choices at the right zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          2,
+          0,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-no-valid-start",
+      "name": "sample: no zero start can clear the array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          0,
+          4,
+          1,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "simulation"
+      ]
+    },
+    {
+      "id": "trial-balanced-zero",
+      "name": "trial: balanced zero allows both directions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          0,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-one-off-zero",
+      "name": "trial: one-off side difference allows one direction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "real-multiple-zeroes",
+      "name": "real: several zero starts with different side sums",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          0,
+          1,
+          0,
+          2,
+          0,
+          2,
+          0,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "prefix-sum"
+      ]
+    }
+  ]
+}

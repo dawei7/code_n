@@ -1,0 +1,165 @@
+{
+  "challenge_id": "lc_1743",
+  "source": "leetcode",
+  "frontend_id": "1743",
+  "slug": "restore-the-array-from-adjacent-pairs",
+  "title": "Restore the Array From Adjacent Pairs",
+  "difficulty": "Medium",
+  "acceptance_rate": 75.09035066449594,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:capital-one",
+    "leetcode_company:ebay",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:robinhood",
+    "leetcode_company:roblox",
+    "leetcode_company:sig",
+    "leetcode_company:visa",
+    "leetcode_topic:array",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:hash-table"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:capital-one",
+    "company:ebay",
+    "company:facebook",
+    "company:google",
+    "company:robinhood",
+    "company:roblox",
+    "company:sig",
+    "company:visa",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:depth-first-search",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Capital One",
+      "slug": "capital-one"
+    },
+    {
+      "name": "SIG",
+      "slug": "sig"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "eBay",
+      "slug": "ebay"
+    },
+    {
+      "name": "Roblox",
+      "slug": "roblox"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Robinhood",
+      "slug": "robinhood"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Robinhood",
+        "slug": "robinhood",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "SIG",
+        "slug": "sig",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "eBay",
+        "slug": "ebay",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Roblox",
+        "slug": "roblox",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Capital One",
+        "slug": "capital-one",
+        "timesEncountered": 9
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

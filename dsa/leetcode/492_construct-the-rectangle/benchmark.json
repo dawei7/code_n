@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_492",
+  "measurement_note": "Size is the area value. Searching widths downward from the integer square root takes square-root time, while scanning candidate lengths upward from the square root takes linear time on primes whose only pair is area by one.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: factor prime area 101", "kind": "benchmark", "visible": false, "size": 101, "input": {"area": 101}, "expected": [101, 1], "tags": ["benchmark", "scaling", "prime"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: factor prime area 1009", "kind": "benchmark", "visible": false, "size": 1009, "input": {"area": 1009}, "expected": [1009, 1], "tags": ["benchmark", "scaling", "prime"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: factor prime area 10007", "kind": "benchmark", "visible": false, "size": 10007, "input": {"area": 10007}, "expected": [10007, 1], "tags": ["benchmark", "scaling", "prime"]}
+  ]
+}

@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_349","cases":[
+{"id":"sample-1","name":"sample: repeated shared value","kind":"sample","visible":true,"input":{"nums1":[1,2,2,1],"nums2":[2,2]},"expected":[2],"validator":{"kind":"unordered_list"},"tags":["sample","duplicates"]},
+{"id":"sample-2","name":"sample: two shared values","kind":"sample","visible":true,"input":{"nums1":[4,9,5],"nums2":[9,4,9,8,4]},"expected":[4,9],"validator":{"kind":"unordered_list"},"tags":["sample"]},
+{"id":"sample-3","name":"sample: disjoint arrays","kind":"sample","visible":true,"input":{"nums1":[1,2,3],"nums2":[4,5,6]},"expected":[],"validator":{"kind":"unordered_list"},"tags":["sample","disjoint"]},
+{"id":"trial-empty","name":"trial: one empty input","kind":"trial","visible":false,"input":{"nums1":[],"nums2":[1,2]},"expected":[],"validator":{"kind":"unordered_list"},"tags":["trial","empty"]},
+{"id":"trial-identical","name":"trial: identical duplicate-heavy arrays","kind":"trial","visible":false,"input":{"nums1":[3,3,3],"nums2":[3,3]},"expected":[3],"validator":{"kind":"unordered_list"},"tags":["trial","duplicates"]},
+{"id":"hidden-negative","name":"hidden: negative values and zero","kind":"real","visible":false,"input":{"nums1":[-2,-1,0,1],"nums2":[-3,-2,0,2]},"expected":[-2,0],"validator":{"kind":"unordered_list"},"tags":["hidden","negative"]},
+{"id":"hidden-smaller-second","name":"hidden: second input is shorter","kind":"real","visible":false,"input":{"nums1":[1,2,3,4,5],"nums2":[2,5]},"expected":[2,5],"validator":{"kind":"unordered_list"},"tags":["hidden","size-order"]},
+{"id":"hidden-all-common","name":"hidden: all distinct values are shared","kind":"real","visible":false,"input":{"nums1":[7,8,9],"nums2":[9,8,7]},"expected":[7,8,9],"validator":{"kind":"unordered_list"},"tags":["hidden","all-common"]}
+]}

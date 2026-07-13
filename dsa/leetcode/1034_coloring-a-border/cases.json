@@ -1,0 +1,181 @@
+{
+  "challenge_id": "lc_1034",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: top-left component",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "row": 0,
+        "col": 0,
+        "color": 3
+      },
+      "expected": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "tags": [
+        "sample",
+        "dfs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: middle top component",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            2
+          ]
+        ],
+        "row": 0,
+        "col": 1,
+        "color": 3
+      },
+      "expected": [
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          2,
+          3,
+          3
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-interior-preserved",
+      "name": "interior cell is not border",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "row": 1,
+        "col": 1,
+        "color": 2
+      },
+      "expected": [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "tags": [
+        "trial",
+        "border"
+      ]
+    },
+    {
+      "id": "real-rectangle-component",
+      "name": "hidden: rectangle component with interior",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1,
+            2
+          ]
+        ],
+        "row": 1,
+        "col": 1,
+        "color": 9
+      },
+      "expected": [
+        [
+          9,
+          9,
+          9,
+          2
+        ],
+        [
+          9,
+          1,
+          9,
+          2
+        ],
+        [
+          9,
+          9,
+          9,
+          2
+        ]
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

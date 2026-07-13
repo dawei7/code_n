@@ -1,0 +1,133 @@
+{
+  "challenge_id": "lc_2463",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: robots assigned to two factories",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "robot": [
+          0,
+          4,
+          6
+        ],
+        "factory": [
+          [
+            2,
+            2
+          ],
+          [
+            6,
+            2
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: factories on both sides",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "robot": [
+          1,
+          -1
+        ],
+        "factory": [
+          [
+            -2,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every robot already at a factory",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "robot": [
+          1,
+          2,
+          3
+        ],
+        "factory": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-robot-one-factory",
+      "name": "trial: one robot travels to the only factory",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "robot": [
+          5
+        ],
+        "factory": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-factory-capacity-two",
+      "name": "hidden: two robots share one factory",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "robot": [
+          1,
+          5
+        ],
+        "factory": [
+          [
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

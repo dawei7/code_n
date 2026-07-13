@@ -1,0 +1,173 @@
+{
+  "challenge_id": "lc_1462",
+  "source": "leetcode",
+  "frontend_id": "1462",
+  "slug": "course-schedule-iv",
+  "title": "Course Schedule IV",
+  "difficulty": "Medium",
+  "acceptance_rate": 60.02777785683588,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Topological Sort",
+      "slug": "topological-sort"
+    }
+  ],
+  "url": "https://leetcode.com/problems/course-schedule-iv/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:graph",
+    "leetcode_topic:topological-sort",
+    "neetcode:allNC",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "company:tiktok",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:graph",
+    "topic:topological-sort"
+  ],
+  "company_tags": [
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 5
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Graphs"
+      ],
+      "order": 156,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "course-schedule-iv",
+      "leetcode_slug": "course-schedule-iv",
+      "difficulty": "Medium",
+      "problem_order": 14
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Graphs"
+      ],
+      "order": 577,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "course-schedule-iv",
+      "leetcode_slug": "course-schedule-iv",
+      "difficulty": "Medium",
+      "problem_order": 22
+    }
+  ]
+}

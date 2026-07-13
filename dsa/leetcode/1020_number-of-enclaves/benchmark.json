@@ -1,0 +1,54 @@
+{
+  "challenge_id": "lc_1020",
+  "cases": [
+    {
+      "id": "benchmark-mixed-islands",
+      "name": "benchmark: mixed islands",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

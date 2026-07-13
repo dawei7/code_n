@@ -1,0 +1,151 @@
+{
+  "challenge_id": "lc_3312",
+  "cases": [
+    {
+      "id": "sample-three-values",
+      "name": "sample: sorted gcds from three values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4
+        ],
+        "queries": [
+          0,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        2
+      ],
+      "tags": [
+        "sample",
+        "gcd"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate values affect pair gcds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          2,
+          1
+        ],
+        "queries": [
+          5,
+          3,
+          1,
+          0
+        ]
+      },
+      "expected": [
+        4,
+        2,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single-pair",
+      "name": "trial: only one pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "queries": [
+          0
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-rich-divisors",
+      "name": "trial: many shared divisors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          18,
+          24,
+          30,
+          42,
+          48,
+          60
+        ],
+        "queries": [
+          0,
+          3,
+          10,
+          20
+        ]
+      },
+      "expected": [
+        6,
+        6,
+        6,
+        30
+      ],
+      "tags": [
+        "divisors"
+      ]
+    },
+    {
+      "id": "real-mixed-gcds",
+      "name": "real: hidden mixed gcd distribution",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15,
+          21,
+          35,
+          14,
+          28,
+          49
+        ],
+        "queries": [
+          0,
+          4,
+          9,
+          15,
+          27
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        5,
+        14
+      ],
+      "tags": [
+        "real",
+        "number-theory"
+      ]
+    }
+  ]
+}

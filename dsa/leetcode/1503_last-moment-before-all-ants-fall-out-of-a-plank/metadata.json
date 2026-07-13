@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1503",
+  "source": "leetcode",
+  "frontend_id": "1503",
+  "slug": "last-moment-before-all-ants-fall-out-of-a-plank",
+  "title": "Last Moment Before All Ants Fall Out of a Plank",
+  "difficulty": "Medium",
+  "acceptance_rate": 68.16567645561025,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Brainteaser",
+      "slug": "brainteaser"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_topic:array",
+    "leetcode_topic:brainteaser",
+    "leetcode_topic:simulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:brainteaser",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

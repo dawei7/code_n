@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_882",
+  "source": "leetcode",
+  "frontend_id": "882",
+  "slug": "reachable-nodes-in-subdivided-graph",
+  "title": "Reachable Nodes In Subdivided Graph",
+  "difficulty": "Hard",
+  "acceptance_rate": 52.42456896551724,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
+  "url": "https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:phonepe",
+    "leetcode_topic:graph",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:shortest-path"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:phonepe",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:graph",
+    "topic:heap-priority-queue",
+    "topic:shortest-path"
+  ],
+  "company_tags": [
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

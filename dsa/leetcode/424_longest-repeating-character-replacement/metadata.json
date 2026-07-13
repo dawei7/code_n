@@ -1,0 +1,372 @@
+{
+  "challenge_id": "lc_424",
+  "source": "leetcode",
+  "frontend_id": "424",
+  "slug": "longest-repeating-character-replacement",
+  "title": "Longest Repeating Character Replacement",
+  "difficulty": "Medium",
+  "acceptance_rate": 60.05163997403115,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    }
+  ],
+  "url": "https://leetcode.com/problems/longest-repeating-character-replacement/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:bytedance",
+    "leetcode_company:de-shaw",
+    "leetcode_company:docusign",
+    "leetcode_company:facebook",
+    "leetcode_company:flipkart",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:pocket-gems",
+    "leetcode_company:publicis-sapient",
+    "leetcode_company:servicenow",
+    "leetcode_company:uber",
+    "leetcode_company:uipath",
+    "leetcode_company:yahoo",
+    "leetcode_company:yandex",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:sliding-window",
+    "leetcode_topic:string",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:bytedance",
+    "company:de-shaw",
+    "company:docusign",
+    "company:facebook",
+    "company:flipkart",
+    "company:goldman-sachs",
+    "company:google",
+    "company:microsoft",
+    "company:pocket-gems",
+    "company:publicis-sapient",
+    "company:servicenow",
+    "company:uber",
+    "company:uipath",
+    "company:yahoo",
+    "company:yandex",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:hash-table",
+    "topic:sliding-window",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "ServiceNow",
+      "slug": "servicenow"
+    },
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "Flipkart",
+      "slug": "flipkart"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Yahoo",
+      "slug": "yahoo"
+    },
+    {
+      "name": "Docusign",
+      "slug": "docusign"
+    },
+    {
+      "name": "ByteDance",
+      "slug": "bytedance"
+    },
+    {
+      "name": "UiPath",
+      "slug": "uipath"
+    },
+    {
+      "name": "Publicis Sapient",
+      "slug": "publicis-sapient"
+    },
+    {
+      "name": "Pocket Gems",
+      "slug": "pocket-gems"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 19
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 12
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 9
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Flipkart",
+        "slug": "flipkart",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Yahoo",
+        "slug": "yahoo",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Docusign",
+        "slug": "docusign",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ByteDance",
+        "slug": "bytedance",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "UiPath",
+        "slug": "uipath",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Publicis Sapient",
+        "slug": "publicis-sapient",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Pocket Gems",
+        "slug": "pocket-gems",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ServiceNow",
+        "slug": "servicenow",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 13,
+      "section_order": 2,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "longest-repeating-substring-with-replacement",
+      "leetcode_slug": "longest-repeating-character-replacement",
+      "difficulty": "Medium",
+      "problem_order": 2
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 16,
+      "section_order": 2,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "longest-repeating-substring-with-replacement",
+      "leetcode_slug": "longest-repeating-character-replacement",
+      "difficulty": "Medium",
+      "problem_order": 2
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 38,
+      "section_order": 2,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "longest-repeating-substring-with-replacement",
+      "leetcode_slug": "longest-repeating-character-replacement",
+      "difficulty": "Medium",
+      "problem_order": 3
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 230,
+      "section_order": 2,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "longest-repeating-substring-with-replacement",
+      "leetcode_slug": "longest-repeating-character-replacement",
+      "difficulty": "Medium",
+      "problem_order": 12
+    }
+  ]
+}

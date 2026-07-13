@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1559",
+  "cases": [
+    {
+      "id": "benchmark-small-square-cycle",
+      "name": "benchmark: two by two square is a cycle",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "x",
+            "x"
+          ],
+          [
+            "x",
+            "x"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

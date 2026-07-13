@@ -1,0 +1,173 @@
+{
+  "challenge_id": "lc_3145",
+  "cases": [
+    {
+      "id": "sample-first-element",
+      "name": "sample: first powerful-array element",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            0,
+            0,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "small"
+      ]
+    },
+    {
+      "id": "sample-short-prefix",
+      "name": "sample: short prefix product",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            0,
+            3,
+            100
+          ],
+          [
+            1,
+            4,
+            1000
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        16
+      ],
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-multiple-moduli",
+      "name": "trial: several ranges with different moduli",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            2,
+            7,
+            101
+          ],
+          [
+            5,
+            12,
+            97
+          ],
+          [
+            10,
+            25,
+            1000000007
+          ]
+        ]
+      },
+      "expected": [
+        64,
+        11,
+        268435456
+      ],
+      "tags": [
+        "range",
+        "modulo"
+      ]
+    },
+    {
+      "id": "trial-mod-one",
+      "name": "trial: modulo one always collapses",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            0,
+            20,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "edge",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-midrange-overlap",
+      "name": "real: overlapping midrange queries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queries": [
+          [
+            30,
+            80,
+            99991
+          ],
+          [
+            70,
+            130,
+            12345
+          ],
+          [
+            0,
+            150,
+            65537
+          ]
+        ]
+      },
+      "expected": [
+        28937,
+        10142,
+        256
+      ],
+      "tags": [
+        "real",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-large-indexes",
+      "name": "real: large indexes exercise binary search on position",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queries": [
+          [
+            1000000,
+            1000120,
+            1000000007
+          ],
+          [
+            100000000,
+            100000300,
+            998244353
+          ]
+        ]
+      },
+      "expected": [
+        200137868,
+        434285762
+      ],
+      "tags": [
+        "real",
+        "large-index"
+      ]
+    }
+  ]
+}

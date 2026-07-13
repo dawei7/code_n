@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_2744",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two reversed string pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "cd",
+          "ac",
+          "dc",
+          "ca",
+          "zz"
+        ]
+      },
+      "tags": [
+        "sample",
+        "strings"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one reversed string pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ba",
+          "cc"
+        ]
+      },
+      "tags": [
+        "sample",
+        "strings"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no reversed pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "ab"
+        ]
+      },
+      "tags": [
+        "sample",
+        "none"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-several-pairs",
+      "name": "trial: three independent reverse pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ba",
+          "xy",
+          "yx",
+          "mn",
+          "nm",
+          "qq"
+        ]
+      },
+      "tags": [
+        "trial",
+        "pairs"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "real-palindrome-and-pairs",
+      "name": "hidden: palindromic word does not pair alone",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aa",
+          "bc",
+          "cb",
+          "de",
+          "ed",
+          "fg"
+        ]
+      },
+      "tags": [
+        "hidden",
+        "palindrome"
+      ],
+      "expected": 2
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "challenge_id": "lc_2549",
+  "cases": [
+    {
+      "id": "benchmark-mid-range-number",
+      "name": "benchmark: mid-range value follows the same invariant",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 7
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

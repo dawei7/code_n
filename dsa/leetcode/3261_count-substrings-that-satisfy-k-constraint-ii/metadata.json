@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_3261",
+  "source": "leetcode",
+  "frontend_id": "3261",
+  "slug": "count-substrings-that-satisfy-k-constraint-ii",
+  "title": "Count Substrings That Satisfy K-Constraint II",
+  "difficulty": "Hard",
+  "acceptance_rate": 23.836241922377432,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:sliding-window",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search",
+    "topic:prefix-sum",
+    "topic:sliding-window",
+    "topic:string"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

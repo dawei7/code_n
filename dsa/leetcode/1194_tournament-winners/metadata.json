@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1194",
+  "source": "leetcode",
+  "frontend_id": "1194",
+  "slug": "tournament-winners",
+  "title": "Tournament Winners",
+  "difficulty": "Hard",
+  "acceptance_rate": 50.123427533226696,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/tournament-winners/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:wayfair",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:wayfair",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Wayfair",
+      "slug": "wayfair"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Wayfair",
+        "slug": "wayfair",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

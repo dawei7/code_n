@@ -1,0 +1,83 @@
+{
+  "challenge_id": "lc_1509",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four values can all match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          3,
+          2,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: trim high values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          0,
+          10,
+          14
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate middle values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6,
+          0,
+          1,
+          1,
+          4,
+          6
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-five-values",
+      "name": "hidden: five values leave closest pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          5,
+          6,
+          14,
+          15
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

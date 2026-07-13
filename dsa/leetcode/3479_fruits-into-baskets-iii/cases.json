@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_3479",
+  "cases": [
+    {
+      "id": "sample-one-unplaced",
+      "name": "sample: one fruit remains unplaced",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "fruits": [
+          4,
+          2,
+          5
+        ],
+        "baskets": [
+          3,
+          5,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "segment-tree"
+      ]
+    },
+    {
+      "id": "sample-all-placed",
+      "name": "sample: all fruits can be placed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "fruits": [
+          3,
+          6,
+          1
+        ],
+        "baskets": [
+          6,
+          4,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "all-placed"
+      ]
+    },
+    {
+      "id": "trial-leftmost-matters",
+      "name": "trial: leftmost basket choice matters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          5,
+          4,
+          3
+        ],
+        "baskets": [
+          4,
+          5,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "leftmost"
+      ]
+    },
+    {
+      "id": "real-mixed-capacities",
+      "name": "real: mixed capacities",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          7,
+          2,
+          6,
+          4,
+          5
+        ],
+        "baskets": [
+          3,
+          8,
+          5,
+          6,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "segment-tree"
+      ]
+    }
+  ]
+}

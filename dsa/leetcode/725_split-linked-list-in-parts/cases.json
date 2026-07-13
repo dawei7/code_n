@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_725",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: more parts than nodes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"head": [1, 2, 3], "k": 5},
+      "expected": [[1], [2], [3], [], []],
+      "tags": ["sample", "empty-parts"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: uneven three-way split",
+      "kind": "sample",
+      "visible": true,
+      "input": {"head": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "k": 3},
+      "expected": [[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]],
+      "tags": ["sample", "remainder"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: empty input",
+      "kind": "sample",
+      "visible": true,
+      "input": {"head": [], "k": 3},
+      "expected": [[], [], []],
+      "tags": ["sample", "empty-input"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one requested part",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": [4, 5, 6], "k": 1},
+      "expected": [[4, 5, 6]],
+      "tags": ["trial", "single-part"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: equal-size parts",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": [1, 2, 3, 4, 5, 6], "k": 3},
+      "expected": [[1, 2], [3, 4], [5, 6]],
+      "tags": ["trial", "even-split"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: larger parts must come first",
+      "kind": "real",
+      "visible": false,
+      "input": {"head": [1, 2, 3, 4, 5, 6, 7], "k": 3},
+      "expected": [[1, 2, 3], [4, 5], [6, 7]],
+      "tags": ["hidden", "front-loaded-remainder"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: one node per part",
+      "kind": "real",
+      "visible": false,
+      "input": {"head": [9, 8, 7, 6], "k": 4},
+      "expected": [[9], [8], [7], [6]],
+      "tags": ["hidden", "singleton-parts"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: duplicate values preserve positions",
+      "kind": "real",
+      "visible": false,
+      "input": {"head": [4, 4, 5, 5, 6], "k": 2},
+      "expected": [[4, 4, 5], [5, 6]],
+      "tags": ["hidden", "duplicates"]
+    }
+  ]
+}

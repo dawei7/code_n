@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_799",
+  "measurement_note": "Size is the queried row. Bottom-up dynamic programming processes O(size^2) glasses; recursive memoization with linear per-row cache lookups adds another size factor on these saturated towers.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: saturated row 2", "kind": "benchmark", "visible": false, "size": 2, "input": {"poured": 1000000000, "query_row": 2, "query_glass": 1}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "saturated"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: saturated row 5", "kind": "benchmark", "visible": false, "size": 5, "input": {"poured": 1000000000, "query_row": 5, "query_glass": 2}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "saturated"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: saturated row 8", "kind": "benchmark", "visible": false, "size": 8, "input": {"poured": 1000000000, "query_row": 8, "query_glass": 4}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "saturated"]}
+  ]
+}

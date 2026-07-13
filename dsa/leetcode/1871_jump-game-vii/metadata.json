@@ -1,0 +1,161 @@
+{
+  "challenge_id": "lc_1871",
+  "source": "leetcode",
+  "frontend_id": "1871",
+  "slug": "jump-game-vii",
+  "title": "Jump Game VII",
+  "difficulty": "Medium",
+  "acceptance_rate": 35.60072666804439,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/jump-game-vii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:sliding-window",
+    "leetcode_topic:string",
+    "neetcode:allNC",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:facebook",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:dynamic-programming",
+    "topic:prefix-sum",
+    "topic:sliding-window",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Greedy"
+      ],
+      "order": 212,
+      "section_order": 14,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "jump-game-vii",
+      "leetcode_slug": "jump-game-vii",
+      "difficulty": "Medium",
+      "problem_order": 6
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Greedy"
+      ],
+      "order": 781,
+      "section_order": 14,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "jump-game-vii",
+      "leetcode_slug": "jump-game-vii",
+      "difficulty": "Medium",
+      "problem_order": 20
+    }
+  ]
+}

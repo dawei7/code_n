@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_389",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: new distinct final letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "t": "abcde"
+      },
+      "expected": "e",
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: empty original",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "",
+        "t": "y"
+      },
+      "expected": "y",
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: extra duplicate occurrence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aabb",
+        "t": "ababa"
+      },
+      "expected": "a",
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-extra-first",
+      "name": "trial: extra occurrence shuffled first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xyz",
+        "t": "zxyz"
+      },
+      "expected": "z",
+      "tags": [
+        "trial",
+        "shuffled"
+      ]
+    },
+    {
+      "id": "trial-all-same",
+      "name": "trial: every character has one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "t": "aaaaa"
+      },
+      "expected": "a",
+      "tags": [
+        "trial",
+        "all-same"
+      ]
+    },
+    {
+      "id": "hidden-middle-alphabet",
+      "name": "hidden: added middle alphabet letter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "leetcode",
+        "t": "teelcodqe"
+      },
+      "expected": "q",
+      "tags": [
+        "hidden",
+        "distinct"
+      ]
+    },
+    {
+      "id": "hidden-many-duplicates",
+      "name": "hidden: multiplicities cancel",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "mmnnoopp",
+        "t": "pomnopmno"
+      },
+      "expected": "o",
+      "tags": [
+        "hidden",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "hidden-extra-z",
+      "name": "hidden: extra letter after repeated groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aabbccddeeff",
+        "t": "fedcbazfedcba"
+      },
+      "expected": "z",
+      "tags": [
+        "hidden",
+        "groups"
+      ]
+    }
+  ]
+}

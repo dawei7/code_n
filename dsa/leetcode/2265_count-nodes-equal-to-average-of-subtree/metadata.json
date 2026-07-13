@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_2265",
+  "source": "leetcode",
+  "frontend_id": "2265",
+  "slug": "count-nodes-equal-to-average-of-subtree",
+  "title": "Count Nodes Equal to Average of Subtree",
+  "difficulty": "Medium",
+  "acceptance_rate": 86.8194386511114,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Binary Tree",
+      "slug": "binary-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-nodes-equal-to-average-of-subtree/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:snowflake",
+    "leetcode_topic:binary-tree",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "company:snowflake",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:binary-tree",
+    "topic:depth-first-search",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

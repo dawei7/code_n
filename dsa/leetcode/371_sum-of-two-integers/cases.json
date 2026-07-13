@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_371",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two positive values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "positive"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negative plus positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": -1,
+        "b": 47
+      },
+      "expected": 46,
+      "tags": [
+        "sample",
+        "mixed-sign"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: negative result",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": -33,
+        "b": 22
+      },
+      "expected": -11,
+      "tags": [
+        "sample",
+        "mixed-sign"
+      ]
+    },
+    {
+      "id": "trial-zero",
+      "name": "trial: additive identity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 0,
+        "b": 0
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-cancel",
+      "name": "trial: opposite values cancel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 57,
+        "b": -57
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "cancel"
+      ]
+    },
+    {
+      "id": "hidden-two-negative",
+      "name": "hidden: carry between negative operands",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": -400,
+        "b": -500
+      },
+      "expected": -900,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-positive-bound",
+      "name": "hidden: large positive allowed sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": 999,
+        "b": 1
+      },
+      "expected": 1000,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-mixed-bound",
+      "name": "hidden: subtract magnitude through bit addition",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": 1000,
+        "b": -999
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "mixed-sign"
+      ]
+    }
+  ]
+}
+

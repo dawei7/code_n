@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_70",
+  "measurement_note": "Tiers span the full legal stair count, keeping linear dynamic programming immediate while exposing exponential recursion at the upper boundary.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one stair", "kind": "benchmark", "visible": false, "size": 1, "input": {"n": 1}, "expected": 1, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: ten stairs", "kind": "benchmark", "visible": false, "size": 10, "input": {"n": 10}, "expected": 89, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: forty-five stairs", "kind": "benchmark", "visible": false, "size": 45, "input": {"n": 45}, "expected": 1836311903, "tags": ["benchmark", "scale-large"]}
+  ]
+}

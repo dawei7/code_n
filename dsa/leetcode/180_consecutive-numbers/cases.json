@@ -1,0 +1,9 @@
+{
+  "challenge_id": "lc_180",
+  "cases": [
+    {"id": "sample-one-run", "name": "sample: one qualifying run", "kind": "sample", "visible": true, "input": {"tables": {"Logs": [{"id": 1, "num": 1}, {"id": 2, "num": 1}, {"id": 3, "num": 1}, {"id": 4, "num": 2}, {"id": 5, "num": 1}, {"id": 6, "num": 2}, {"id": 7, "num": 2}]}}, "expected": {"columns": ["ConsecutiveNums"], "rows": [[1]]}, "tags": ["sample", "window-function"]},
+    {"id": "trial-too-short", "name": "two equal rows are insufficient", "kind": "trial", "visible": true, "input": {"tables": {"Logs": [{"id": 1, "num": 5}, {"id": 2, "num": 5}]}}, "expected": {"columns": ["ConsecutiveNums"], "rows": []}, "tags": ["boundary"]},
+    {"id": "trial-long-run", "name": "long run returns one distinct row", "kind": "trial", "visible": true, "input": {"tables": {"Logs": [{"id": 1, "num": 2}, {"id": 2, "num": 2}, {"id": 3, "num": 2}, {"id": 4, "num": 2}]}}, "expected": {"columns": ["ConsecutiveNums"], "rows": [[2]]}, "tags": ["deduplication"]},
+    {"id": "real-two-values", "name": "hidden: two distinct qualifying runs", "kind": "real", "visible": false, "input": {"tables": {"Logs": [{"id": 1, "num": 3}, {"id": 2, "num": 3}, {"id": 3, "num": 3}, {"id": 4, "num": 0}, {"id": 5, "num": 4}, {"id": 6, "num": 4}, {"id": 7, "num": 4}]}}, "expected": {"columns": ["ConsecutiveNums"], "rows": [[3], [4]]}, "tags": ["hidden", "multiple"]}
+  ]
+}

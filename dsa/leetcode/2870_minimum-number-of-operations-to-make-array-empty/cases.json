@@ -1,0 +1,140 @@
+{
+  "challenge_id": "lc_2870",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: groups of two and three empty the array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          3,
+          2,
+          2,
+          4,
+          2,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "counting"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: a singleton value makes it impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: larger repeated values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          14,
+          12,
+          14,
+          14,
+          12,
+          14,
+          14,
+          12,
+          12,
+          12,
+          12,
+          14,
+          14,
+          12,
+          14,
+          14,
+          14,
+          12,
+          12
+        ]
+      },
+      "tags": [
+        "sample",
+        "frequency"
+      ],
+      "expected": 7
+    },
+    {
+      "id": "trial-count-four-uses-two-pairs",
+      "name": "trial: frequency four takes two operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          6,
+          6
+        ]
+      },
+      "tags": [
+        "trial",
+        "remainder-one"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "real-many-frequencies",
+      "name": "hidden: several frequency remainders combine",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          4,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "tags": [
+        "hidden",
+        "frequency"
+      ],
+      "expected": 8
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2082",
+  "source": "leetcode",
+  "frontend_id": "2082",
+  "slug": "the-number-of-rich-customers",
+  "title": "The Number of Rich Customers",
+  "difficulty": "Easy",
+  "acceptance_rate": 77.32146370253787,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/the-number-of-rich-customers/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:athenahealth",
+    "leetcode_studyplan:30-days-of-pandas",
+    "leetcode_studyplan:30-days-of-pandas:30-days-of-pandas-162-5n66",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:athenahealth",
+    "language:sql",
+    "leetcode",
+    "study_plan:30-days-of-pandas",
+    "study_plan_section:30-days-of-pandas:30-days-of-pandas-162-5n66",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "athenahealth",
+      "slug": "athenahealth"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "athenahealth",
+        "slug": "athenahealth",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-pandas",
+      "plan_name": "30 Days of Pandas",
+      "section_slug": "30-days-of-pandas-162-5n66",
+      "section_name": "Statistics",
+      "path": [
+        "Statistics"
+      ],
+      "order": 17,
+      "section_order": 5,
+      "problem_order": 1,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-pandas/"
+    }
+  ],
+  "neetcode_subsets": []
+}

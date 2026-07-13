@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_3409",
+  "cases": [
+    {
+      "id": "sample-descending-diffs",
+      "name": "sample: decreasing differences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          16,
+          6,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-four-length",
+      "name": "sample: length four subsequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          5,
+          3,
+          4,
+          2,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-repeated-tens",
+      "name": "sample: equal and decreasing differences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          20,
+          10,
+          19,
+          10,
+          20
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-equal-diffs",
+      "name": "trial: equal adjacent differences are allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          1,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "equal-diff"
+      ]
+    },
+    {
+      "id": "real-zigzag-values",
+      "name": "real: choose a long non-increasing diff chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          9,
+          2,
+          8,
+          3,
+          7,
+          4,
+          6,
+          5
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

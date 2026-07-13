@@ -1,0 +1,314 @@
+{
+  "challenge_id": "lc_588",
+  "source": "leetcode",
+  "frontend_id": "588",
+  "slug": "design-in-memory-file-system",
+  "title": "Design In-Memory File System",
+  "difficulty": "Hard",
+  "acceptance_rate": 48.331266929908494,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Trie",
+      "slug": "trie"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-in-memory-file-system/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:baidu",
+    "leetcode_company:citadel",
+    "leetcode_company:coinbase",
+    "leetcode_company:coupang",
+    "leetcode_company:doordash",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:observeai",
+    "leetcode_company:oracle",
+    "leetcode_company:shopify",
+    "leetcode_company:snowflake",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-74-6c0k",
+    "leetcode_studyplan:tiktok-spring-23-high-frequency",
+    "leetcode_studyplan:tiktok-spring-23-high-frequency:tiktok-spring-23-high-frequency-147-v6lb",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:sorting",
+    "leetcode_topic:string",
+    "leetcode_topic:trie",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:baidu",
+    "company:citadel",
+    "company:coinbase",
+    "company:coupang",
+    "company:doordash",
+    "company:google",
+    "company:microsoft",
+    "company:observeai",
+    "company:oracle",
+    "company:shopify",
+    "company:snowflake",
+    "company:tiktok",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan:tiktok-spring-23-high-frequency",
+    "study_plan_section:premium-algo-100:premium-algo-100-74-6c0k",
+    "study_plan_section:tiktok-spring-23-high-frequency:tiktok-spring-23-high-frequency-147-v6lb",
+    "subset:neetcode:allNC",
+    "topic:design",
+    "topic:hash-table",
+    "topic:sorting",
+    "topic:string",
+    "topic:trie"
+  ],
+  "company_tags": [
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Coinbase",
+      "slug": "coinbase"
+    },
+    {
+      "name": "Citadel",
+      "slug": "citadel"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "DoorDash",
+      "slug": "doordash"
+    },
+    {
+      "name": "Coupang",
+      "slug": "coupang"
+    },
+    {
+      "name": "Shopify",
+      "slug": "shopify"
+    },
+    {
+      "name": "observe.ai",
+      "slug": "observeai"
+    },
+    {
+      "name": "Baidu",
+      "slug": "baidu"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "DoorDash",
+        "slug": "doordash",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Coupang",
+        "slug": "coupang",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Shopify",
+        "slug": "shopify",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "observe.ai",
+        "slug": "observeai",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Baidu",
+        "slug": "baidu",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Coinbase",
+        "slug": "coinbase",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Citadel",
+        "slug": "citadel",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-74-6c0k",
+      "section_name": "Trie",
+      "path": [
+        "Trie"
+      ],
+      "order": 68,
+      "section_order": 14,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    },
+    {
+      "plan_slug": "tiktok-spring-23-high-frequency",
+      "plan_name": "TikTok Spring '23 High Frequency",
+      "section_slug": "tiktok-spring-23-high-frequency-147-v6lb",
+      "section_name": "March Interview Questions",
+      "path": [
+        "March Interview Questions"
+      ],
+      "order": 18,
+      "section_order": 2,
+      "problem_order": 8,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/tiktok-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Tries"
+      ],
+      "order": 553,
+      "section_order": 7,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "design-in-memory-file-system",
+      "leetcode_slug": "design-in-memory-file-system",
+      "difficulty": "Hard",
+      "problem_order": 10
+    }
+  ]
+}

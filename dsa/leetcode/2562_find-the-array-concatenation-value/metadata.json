@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2562",
+  "source": "leetcode",
+  "frontend_id": "2562",
+  "slug": "find-the-array-concatenation-value",
+  "title": "Find the Array Concatenation Value",
+  "difficulty": "Easy",
+  "acceptance_rate": 72.08320252767173,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-the-array-concatenation-value/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:ibm",
+    "leetcode_topic:array",
+    "leetcode_topic:simulation",
+    "leetcode_topic:two-pointers"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:ibm",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:simulation",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

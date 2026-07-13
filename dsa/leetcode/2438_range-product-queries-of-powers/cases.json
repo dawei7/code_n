@@ -1,0 +1,131 @@
+{
+  "challenge_id": "lc_2438",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all powers from fifteen",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 15,
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        4,
+        64
+      ],
+      "tags": [
+        "sample",
+        "bitmask"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one set bit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "queries": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: first two powers from seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-high-single-power",
+      "name": "trial: single high power",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "queries": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        8
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-two-set-bits",
+      "name": "hidden: two set bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        16,
+        8
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

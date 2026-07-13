@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "613",
+  "frontend_id": "613",
+  "title_slug": "shortest-distance-in-a-line",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065473514",
+  "verified_at": "2026-07-12T22:22:06.754344+00:00"
+}

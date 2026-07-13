@@ -1,0 +1,90 @@
+{
+  "challenge_id": "lc_1095",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: target on increasing side",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 3,
+        "mountain_arr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          3,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: target missing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 3,
+        "mountain_arr": [
+          0,
+          1,
+          2,
+          4,
+          2,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: target absent in tiny mountain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 4,
+        "mountain_arr": [
+          1,
+          5,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-target-before-peak",
+      "name": "hidden: target before peak",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": 5,
+        "mountain_arr": [
+          1,
+          3,
+          5,
+          7,
+          6,
+          4,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

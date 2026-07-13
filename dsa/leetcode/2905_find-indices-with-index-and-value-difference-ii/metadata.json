@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2905",
+  "source": "leetcode",
+  "frontend_id": "2905",
+  "slug": "find-indices-with-index-and-value-difference-ii",
+  "title": "Find Indices With Index and Value Difference II",
+  "difficulty": "Medium",
+  "acceptance_rate": 32.803827751196174,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-indices-with-index-and-value-difference-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:paytm",
+    "leetcode_topic:array",
+    "leetcode_topic:two-pointers"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:paytm",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Paytm",
+      "slug": "paytm"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Paytm",
+        "slug": "paytm",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

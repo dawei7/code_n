@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "45",
+  "frontend_id": "45",
+  "title_slug": "jump-game-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064126444",
+  "verified_at": "2026-07-11T17:26:19.035431+00:00"
+}

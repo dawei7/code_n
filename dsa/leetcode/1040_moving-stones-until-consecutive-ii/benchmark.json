@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1040",
+  "cases": [
+    {
+      "id": "benchmark-wide-gaps",
+      "name": "benchmark: wide gaps",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "stones": [
+          8,
+          3,
+          5,
+          20,
+          12,
+          15
+        ]
+      },
+      "expected": [
+        3,
+        11
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "challenge_id": "lc_181",
+  "cases": [
+    {"id": "sample-one-employee", "name": "sample: one employee exceeds manager", "kind": "sample", "visible": true, "input": {"tables": {"Employee": [{"id": 1, "name": "Joe", "salary": 70000, "managerId": 3}, {"id": 2, "name": "Henry", "salary": 80000, "managerId": 4}, {"id": 3, "name": "Sam", "salary": 60000, "managerId": null}, {"id": 4, "name": "Max", "salary": 90000, "managerId": null}]}}, "expected": {"columns": ["Employee"], "rows": [["Joe"]]}, "tags": ["sample", "self-join"]},
+    {"id": "trial-equal", "name": "equal salary does not qualify", "kind": "trial", "visible": true, "input": {"tables": {"Employee": [{"id": 1, "name": "Worker", "salary": 50, "managerId": 2}, {"id": 2, "name": "Manager", "salary": 50, "managerId": null}]}}, "expected": {"columns": ["Employee"], "rows": []}, "tags": ["strict"]},
+    {"id": "trial-no-managers", "name": "top-level employees are excluded", "kind": "trial", "visible": true, "input": {"tables": {"Employee": [{"id": 1, "name": "Owner", "salary": 100, "managerId": null}]}}, "expected": {"columns": ["Employee"], "rows": []}, "tags": ["boundary", "null"]},
+    {"id": "real-several", "name": "hidden: several manager relationships", "kind": "real", "visible": false, "input": {"tables": {"Employee": [{"id": 1, "name": "Boss", "salary": 100, "managerId": null}, {"id": 2, "name": "High", "salary": 120, "managerId": 1}, {"id": 3, "name": "Low", "salary": 80, "managerId": 1}, {"id": 4, "name": "Higher", "salary": 130, "managerId": 2}]}}, "expected": {"columns": ["Employee"], "rows": [["High"], ["Higher"]]}, "tags": ["hidden", "multiple"]}
+  ]
+}

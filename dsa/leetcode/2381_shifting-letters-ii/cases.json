@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_2381",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed forward and backward ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "shifts": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": "ace",
+      "tags": [
+        "sample",
+        "difference-array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: wrap around z to a",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "dztz",
+        "shifts": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": "catz",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single character backward",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "x",
+        "shifts": [
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": "w",
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-overlapping-ranges",
+      "name": "hidden: overlapping shifts cancel in the middle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaa",
+        "shifts": [
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": "bab",
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

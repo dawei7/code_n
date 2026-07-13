@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1747",
+  "source": "leetcode",
+  "frontend_id": "1747",
+  "slug": "leetflex-banned-accounts",
+  "title": "Leetflex Banned Accounts",
+  "difficulty": "Medium",
+  "acceptance_rate": 61.748698767044665,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/leetflex-banned-accounts/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:audible",
+    "leetcode_studyplan:premium-sql-50",
+    "leetcode_studyplan:premium-sql-50:premium-sql-50-125-thzz",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:audible",
+    "language:sql",
+    "leetcode",
+    "study_plan:premium-sql-50",
+    "study_plan_section:premium-sql-50:premium-sql-50-125-thzz",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Audible",
+      "slug": "audible"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Audible",
+        "slug": "audible",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-sql-50",
+      "plan_name": "Advanced SQL 50",
+      "section_slug": "premium-sql-50-125-thzz",
+      "section_name": "Advanced Select and Joins",
+      "path": [
+        "Advanced Select and Joins"
+      ],
+      "order": 35,
+      "section_order": 5,
+      "problem_order": 9,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2465",
+  "cases": [
+    {
+      "id": "benchmark-all-pairs-same-average",
+      "name": "benchmark: several pairs collapse to one average",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          8,
+          9,
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

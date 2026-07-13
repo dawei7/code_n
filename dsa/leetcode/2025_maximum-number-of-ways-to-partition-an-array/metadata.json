@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_2025",
+  "source": "leetcode",
+  "frontend_id": "2025",
+  "slug": "maximum-number-of-ways-to-partition-an-array",
+  "title": "Maximum Number of Ways to Partition an Array",
+  "difficulty": "Hard",
+  "acceptance_rate": 35.92814371257485,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:salesforce",
+    "leetcode_topic:array",
+    "leetcode_topic:counting",
+    "leetcode_topic:enumeration",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:prefix-sum"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:salesforce",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:counting",
+    "topic:enumeration",
+    "topic:hash-table",
+    "topic:prefix-sum"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,134 @@
+{
+  "challenge_id": "lc_1029",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four people",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "costs": [
+          [
+            10,
+            20
+          ],
+          [
+            30,
+            200
+          ],
+          [
+            400,
+            50
+          ],
+          [
+            30,
+            20
+          ]
+        ]
+      },
+      "expected": 110,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: six people",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "costs": [
+          [
+            259,
+            770
+          ],
+          [
+            448,
+            54
+          ],
+          [
+            926,
+            667
+          ],
+          [
+            184,
+            139
+          ],
+          [
+            840,
+            118
+          ],
+          [
+            577,
+            469
+          ]
+        ]
+      },
+      "expected": 1859,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-tied-cost",
+      "name": "tied cost still needs balanced cities",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          [
+            50,
+            50
+          ],
+          [
+            20,
+            100
+          ]
+        ]
+      },
+      "expected": 70,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-mixed-preferences",
+      "name": "hidden: mixed city preferences",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "costs": [
+          [
+            40,
+            300
+          ],
+          [
+            200,
+            50
+          ],
+          [
+            30,
+            20
+          ],
+          [
+            400,
+            30
+          ],
+          [
+            25,
+            60
+          ],
+          [
+            80,
+            20
+          ]
+        ]
+      },
+      "expected": 195,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

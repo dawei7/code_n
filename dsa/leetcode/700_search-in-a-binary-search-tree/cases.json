@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_700",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: internal node with two children",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [4,2,7,1,3], "val": 2},
+      "expected": [2,1,3],
+      "tags": ["sample", "subtree"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: value is absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [4,2,7,1,3], "val": 5},
+      "expected": [],
+      "tags": ["sample", "not-found"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: interior leaf",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [8,4,12,2,6,10,14], "val": 10},
+      "expected": [10],
+      "tags": ["sample", "leaf"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: match at root",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [5,3,8,2,4,7,9], "val": 5},
+      "expected": [5,3,8,2,4,7,9],
+      "tags": ["trial", "root"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one-node tree miss",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1], "val": 0},
+      "expected": [],
+      "tags": ["trial", "single-node", "not-found"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: right-skewed deepest match",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [1,null,2,null,3,null,4], "val": 4},
+      "expected": [4],
+      "tags": ["hidden", "skewed"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: return nontrivial right subtree",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [10,5,15,3,7,12,18,2,4,6,8], "val": 5},
+      "expected": [5,3,7,2,4,6,8],
+      "tags": ["hidden", "descendants"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: absent beyond maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [6,3,9,1,4,8,11], "val": 12},
+      "expected": [],
+      "tags": ["hidden", "upper-bound", "not-found"]
+    }
+  ]
+}

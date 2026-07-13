@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_1130",
+  "source": "leetcode",
+  "frontend_id": "1130",
+  "slug": "minimum-cost-tree-from-leaf-values",
+  "title": "Minimum Cost Tree From Leaf Values",
+  "difficulty": "Medium",
+  "acceptance_rate": 67.93964099263391,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:mathworks",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:greedy",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:stack"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:mathworks",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:dynamic-programming",
+    "topic:greedy",
+    "topic:monotonic-stack",
+    "topic:stack"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "MathWorks",
+      "slug": "mathworks"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "MathWorks",
+        "slug": "mathworks",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

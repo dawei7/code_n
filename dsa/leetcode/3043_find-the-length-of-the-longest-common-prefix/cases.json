@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_3043",
+  "cases": [
+    {
+      "id": "sample-common-three",
+      "name": "sample: common numeric prefix of length three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr1": [
+          12345,
+          678
+        ],
+        "arr2": [
+          12399,
+          12000
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-common-prefix",
+      "name": "sample: no matching first digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr1": [
+          1,
+          2,
+          3
+        ],
+        "arr2": [
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-full-number-prefix",
+      "name": "trial: full number appears as a prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr1": [
+          987,
+          98
+        ],
+        "arr2": [
+          98765,
+          981
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-different-lengths",
+      "name": "trial: different digit lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr1": [
+          1000,
+          100,
+          10
+        ],
+        "arr2": [
+          1099,
+          11,
+          999
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-many-prefixes",
+      "name": "real: multiple candidate prefixes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr1": [
+          45678,
+          456,
+          123456,
+          88
+        ],
+        "arr2": [
+          45699,
+          123499,
+          8700
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "strings"
+      ]
+    }
+  ]
+}

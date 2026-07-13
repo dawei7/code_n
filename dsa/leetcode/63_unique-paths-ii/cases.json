@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_63",
+  "cases": [
+    {"id": "sample-center", "name": "sample: center obstacle", "kind": "sample", "visible": true, "input": {"obstacle_grid": [[0,0,0],[0,1,0],[0,0,0]]}, "expected": 2, "tags": ["sample"]},
+    {"id": "sample-corner-route", "name": "sample: one route around obstacle", "kind": "sample", "visible": true, "input": {"obstacle_grid": [[0,1],[0,0]]}, "expected": 1, "tags": ["sample"]},
+    {"id": "trial-blocked-start", "name": "blocked starting cell", "kind": "trial", "visible": true, "input": {"obstacle_grid": [[1,0],[0,0]]}, "expected": 0, "tags": ["boundary", "blocked"]},
+    {"id": "trial-blocked-end", "name": "blocked destination", "kind": "trial", "visible": true, "input": {"obstacle_grid": [[0,0],[0,1]]}, "expected": 0, "tags": ["boundary", "blocked"]},
+    {"id": "real-corridor", "name": "hidden: narrow winding corridor", "kind": "real", "visible": false, "input": {"obstacle_grid": [[0,0,1,0],[1,0,0,0],[0,0,1,0],[0,0,0,0]]}, "expected": 2, "tags": ["hidden", "obstacles"]}
+  ]
+}

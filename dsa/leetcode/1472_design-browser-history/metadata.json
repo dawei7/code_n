@@ -1,0 +1,238 @@
+{
+  "challenge_id": "lc_1472",
+  "source": "leetcode",
+  "frontend_id": "1472",
+  "slug": "design-browser-history",
+  "title": "Design Browser History",
+  "difficulty": "Medium",
+  "acceptance_rate": 78.37292863075331,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Linked List",
+      "slug": "linked-list"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Doubly-Linked List",
+      "slug": "doubly-linked-list"
+    },
+    {
+      "name": "Data Stream",
+      "slug": "data-stream"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-browser-history/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:chime",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:snowflake",
+    "leetcode_company:uber",
+    "leetcode_studyplan:programming-skills",
+    "leetcode_studyplan:programming-skills:programming-skills-136-0np8",
+    "leetcode_topic:array",
+    "leetcode_topic:data-stream",
+    "leetcode_topic:design",
+    "leetcode_topic:doubly-linked-list",
+    "leetcode_topic:linked-list",
+    "leetcode_topic:stack",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:chime",
+    "company:goldman-sachs",
+    "company:google",
+    "company:microsoft",
+    "company:snowflake",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:programming-skills",
+    "study_plan_section:programming-skills:programming-skills-136-0np8",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:data-stream",
+    "topic:design",
+    "topic:doubly-linked-list",
+    "topic:linked-list",
+    "topic:stack"
+  ],
+  "company_tags": [
+    {
+      "name": "Chime",
+      "slug": "chime"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Chime",
+        "slug": "chime",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "programming-skills",
+      "plan_name": "Programming Skills",
+      "section_slug": "programming-skills-136-0np8",
+      "section_name": "Design",
+      "path": [
+        "Design"
+      ],
+      "order": 41,
+      "section_order": 8,
+      "problem_order": 4,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/programming-skills/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Linked List"
+      ],
+      "order": 364,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "design-browser-history",
+      "leetcode_slug": "design-browser-history",
+      "difficulty": "Medium",
+      "problem_order": 23
+    }
+  ]
+}

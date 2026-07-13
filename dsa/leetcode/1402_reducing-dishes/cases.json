@@ -1,0 +1,80 @@
+{
+  "challenge_id": "lc_1402",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: skip very negative dishes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "satisfaction": [
+          -1,
+          -8,
+          0,
+          5,
+          -9
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "satisfaction": [
+          4,
+          3,
+          2
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "satisfaction": [
+          -1,
+          -4,
+          -5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-mixed-values",
+      "name": "hidden: mixed positive and negative values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "satisfaction": [
+          -2,
+          5,
+          -1,
+          0,
+          3,
+          -3
+        ]
+      },
+      "expected": 35,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

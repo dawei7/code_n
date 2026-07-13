@@ -1,0 +1,6 @@
+{"challenge_id":"lc_273","cases":[
+{"id":"sample-hundreds","name":"sample: three-digit number","kind":"sample","visible":true,"input":{"num":123},"expected":"One Hundred Twenty Three","tags":["sample","hundreds"]},
+{"id":"sample-thousands","name":"sample: five-digit number","kind":"sample","visible":true,"input":{"num":12345},"expected":"Twelve Thousand Three Hundred Forty Five","tags":["sample","thousands"]},
+{"id":"trial-million","name":"multiple nonzero chunks","kind":"trial","visible":true,"input":{"num":1234567},"expected":"One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven","tags":["millions"]},
+{"id":"real-zero-chunks","name":"hidden: skip internal zero chunks","kind":"real","visible":false,"input":{"num":1000010},"expected":"One Million Ten","tags":["hidden","zero-chunks"]}
+]}

@@ -1,0 +1,124 @@
+{
+  "challenge_id": "lc_17",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two three-letter keys",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "digits": "23"
+      },
+      "expected": [
+        "ad",
+        "ae",
+        "af",
+        "bd",
+        "be",
+        "bf",
+        "cd",
+        "ce",
+        "cf"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: empty input",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "digits": ""
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-single-key",
+      "name": "one three-letter key",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": "2"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-four-letter-key",
+      "name": "one four-letter key",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": "7"
+      },
+      "expected": [
+        "p",
+        "q",
+        "r",
+        "s"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "four-way"
+      ]
+    },
+    {
+      "id": "real-two-four-letter-keys",
+      "name": "hidden: two four-letter keys",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "digits": "79"
+      },
+      "expected": [
+        "pw",
+        "px",
+        "py",
+        "pz",
+        "qw",
+        "qx",
+        "qy",
+        "qz",
+        "rw",
+        "rx",
+        "ry",
+        "rz",
+        "sw",
+        "sx",
+        "sy",
+        "sz"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "four-way"
+      ]
+    }
+  ]
+}
+

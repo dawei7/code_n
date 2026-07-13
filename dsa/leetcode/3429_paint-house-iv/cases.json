@@ -1,0 +1,167 @@
+{
+  "challenge_id": "lc_3429",
+  "cases": [
+    {
+      "id": "sample-four-houses",
+      "name": "sample: four houses with mirror constraints",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "cost": [
+          [
+            3,
+            5,
+            7
+          ],
+          [
+            6,
+            2,
+            9
+          ],
+          [
+            4,
+            8,
+            1
+          ],
+          [
+            7,
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-six-houses",
+      "name": "sample: six houses",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "cost": [
+          [
+            2,
+            4,
+            6
+          ],
+          [
+            5,
+            3,
+            8
+          ],
+          [
+            7,
+            1,
+            9
+          ],
+          [
+            4,
+            6,
+            2
+          ],
+          [
+            3,
+            5,
+            7
+          ],
+          [
+            8,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-houses",
+      "name": "trial: only one mirrored pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "cost": [
+          [
+            1,
+            100,
+            100
+          ],
+          [
+            100,
+            1,
+            100
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-eight-houses",
+      "name": "real: eight houses with alternating cheap colors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 8,
+        "cost": [
+          [
+            5,
+            1,
+            9
+          ],
+          [
+            4,
+            6,
+            2
+          ],
+          [
+            7,
+            3,
+            8
+          ],
+          [
+            6,
+            5,
+            1
+          ],
+          [
+            2,
+            8,
+            4
+          ],
+          [
+            9,
+            1,
+            6
+          ],
+          [
+            3,
+            7,
+            5
+          ],
+          [
+            8,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

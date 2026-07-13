@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1620",
+  "source": "leetcode",
+  "frontend_id": "1620",
+  "slug": "coordinate-with-maximum-network-quality",
+  "title": "Coordinate With Maximum Network Quality",
+  "difficulty": "Medium",
+  "acceptance_rate": 39.784194225197325,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    }
+  ],
+  "url": "https://leetcode.com/problems/coordinate-with-maximum-network-quality/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:lyft",
+    "leetcode_topic:array",
+    "leetcode_topic:enumeration"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:lyft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:enumeration"
+  ],
+  "company_tags": [
+    {
+      "name": "Lyft",
+      "slug": "lyft"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Lyft",
+        "slug": "lyft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "peak6",
+        "slug": "peak6",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

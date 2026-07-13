@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2969",
+  "source": "leetcode",
+  "frontend_id": "2969",
+  "slug": "minimum-number-of-coins-for-fruits-ii",
+  "title": "Minimum Number of Coins for Fruits II",
+  "difficulty": "Hard",
+  "acceptance_rate": 47.977684797768475,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Queue",
+      "slug": "queue"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Monotonic Queue",
+      "slug": "monotonic-queue"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-number-of-coins-for-fruits-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:monotonic-queue",
+    "leetcode_topic:queue"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:dynamic-programming",
+    "topic:heap-priority-queue",
+    "topic:monotonic-queue",
+    "topic:queue"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

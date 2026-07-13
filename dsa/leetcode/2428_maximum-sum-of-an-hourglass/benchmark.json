@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_2428",
+  "cases": [
+    {
+      "id": "benchmark-corner-maximum",
+      "name": "benchmark: maximum hourglass at the bottom-right",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            9,
+            2
+          ],
+          [
+            1,
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

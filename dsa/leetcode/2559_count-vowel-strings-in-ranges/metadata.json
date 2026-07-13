@@ -1,0 +1,171 @@
+{
+  "challenge_id": "lc_2559",
+  "source": "leetcode",
+  "frontend_id": "2559",
+  "slug": "count-vowel-strings-in-ranges",
+  "title": "Count Vowel Strings in Ranges",
+  "difficulty": "Medium",
+  "acceptance_rate": 67.86118681781676,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-vowel-strings-in-ranges/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:atlassian",
+    "leetcode_company:ibm",
+    "leetcode_company:mathworks",
+    "leetcode_company:microsoft",
+    "leetcode_company:paypal",
+    "leetcode_company:twilio",
+    "leetcode_topic:array",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:atlassian",
+    "company:ibm",
+    "company:mathworks",
+    "company:microsoft",
+    "company:paypal",
+    "company:twilio",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:prefix-sum",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "Twilio",
+      "slug": "twilio"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "MathWorks",
+      "slug": "mathworks"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Atlassian",
+      "slug": "atlassian"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Twilio",
+        "slug": "twilio",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "MathWorks",
+        "slug": "mathworks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Atlassian",
+        "slug": "atlassian",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 89,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "count-vowel-strings-in-ranges",
+      "leetcode_slug": "count-vowel-strings-in-ranges",
+      "difficulty": "Medium",
+      "problem_order": 89
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_497",
+  "source": "leetcode",
+  "frontend_id": "497",
+  "slug": "random-point-in-non-overlapping-rectangles",
+  "title": "Random Point in Non-overlapping Rectangles",
+  "difficulty": "Medium",
+  "acceptance_rate": 40.09103436144013,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Reservoir Sampling",
+      "slug": "reservoir-sampling"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    },
+    {
+      "name": "Randomized",
+      "slug": "randomized"
+    }
+  ],
+  "url": "https://leetcode.com/problems/random-point-in-non-overlapping-rectangles/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:uber",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:math",
+    "leetcode_topic:ordered-set",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:randomized",
+    "leetcode_topic:reservoir-sampling"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search",
+    "topic:math",
+    "topic:ordered-set",
+    "topic:prefix-sum",
+    "topic:randomized",
+    "topic:reservoir-sampling"
+  ],
+  "company_tags": [
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 3
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

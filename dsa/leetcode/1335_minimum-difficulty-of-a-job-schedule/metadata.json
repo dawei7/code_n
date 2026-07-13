@@ -1,0 +1,178 @@
+{
+  "challenge_id": "lc_1335",
+  "source": "leetcode",
+  "frontend_id": "1335",
+  "slug": "minimum-difficulty-of-a-job-schedule",
+  "title": "Minimum Difficulty of a Job Schedule",
+  "difficulty": "Hard",
+  "acceptance_rate": 59.773247800358575,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:mathworks",
+    "leetcode_company:microsoft",
+    "leetcode_company:salesforce",
+    "leetcode_company:tiktok",
+    "leetcode_company:turvo",
+    "leetcode_studyplan:dynamic-programming-grandmaster",
+    "leetcode_studyplan:dynamic-programming-grandmaster:dynamic-programming-grandmaster-92-477u",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:mathworks",
+    "company:microsoft",
+    "company:salesforce",
+    "company:tiktok",
+    "company:turvo",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming-grandmaster",
+    "study_plan_section:dynamic-programming-grandmaster:dynamic-programming-grandmaster-92-477u",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:dynamic-programming"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "MathWorks",
+      "slug": "mathworks"
+    },
+    {
+      "name": "Turvo",
+      "slug": "turvo"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "MathWorks",
+        "slug": "mathworks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Turvo",
+        "slug": "turvo",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 4
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "dynamic-programming-grandmaster",
+      "plan_name": "Dynamic Programming Grandmaster",
+      "section_slug": "dynamic-programming-grandmaster-92-477u",
+      "section_name": "General Multidimensional",
+      "path": [
+        "General Multidimensional"
+      ],
+      "order": 12,
+      "section_order": 2,
+      "problem_order": 5,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": true,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming-grandmaster/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "2-D Dynamic Programming"
+      ],
+      "order": 752,
+      "section_order": 13,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "minimum-difficulty-of-a-job-schedule",
+      "leetcode_slug": "minimum-difficulty-of-a-job-schedule",
+      "difficulty": "Hard",
+      "problem_order": 41
+    }
+  ]
+}

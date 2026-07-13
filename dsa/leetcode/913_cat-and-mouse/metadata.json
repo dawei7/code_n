@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_913",
+  "source": "leetcode",
+  "frontend_id": "913",
+  "slug": "cat-and-mouse",
+  "title": "Cat and Mouse",
+  "difficulty": "Hard",
+  "acceptance_rate": 35.545808364737134,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Topological Sort",
+      "slug": "topological-sort"
+    },
+    {
+      "name": "Memoization",
+      "slug": "memoization"
+    },
+    {
+      "name": "Game Theory",
+      "slug": "game-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/cat-and-mouse/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:game-theory",
+    "leetcode_topic:graph",
+    "leetcode_topic:math",
+    "leetcode_topic:memoization",
+    "leetcode_topic:topological-sort"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:dynamic-programming",
+    "topic:game-theory",
+    "topic:graph",
+    "topic:math",
+    "topic:memoization",
+    "topic:topological-sort"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

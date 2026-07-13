@@ -1,0 +1,6 @@
+{"challenge_id":"lc_254","cases":[
+{"id":"sample-twelve","name":"sample: factor combinations of twelve","kind":"sample","visible":true,"input":{"n":12},"expected":[[2,6],[2,2,3],[3,4]],"validator":{"kind":"unordered_nested_list"},"tags":["sample","composite"]},
+{"id":"sample-prime","name":"sample: prime has no combinations","kind":"sample","visible":true,"input":{"n":37},"expected":[],"validator":{"kind":"unordered_nested_list"},"tags":["sample","prime"]},
+{"id":"trial-power-two","name":"power of two with repeated factors","kind":"trial","visible":true,"input":{"n":16},"expected":[[2,8],[2,2,4],[2,2,2,2],[4,4]],"validator":{"kind":"unordered_nested_list"},"tags":["repeated"]},
+{"id":"real-mixed","name":"hidden: several factor depths","kind":"real","visible":false,"input":{"n":32},"expected":[[2,16],[2,2,8],[2,2,2,4],[2,2,2,2,2],[2,4,4],[4,8]],"validator":{"kind":"unordered_nested_list"},"tags":["hidden","backtracking"]}
+]}

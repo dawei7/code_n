@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_3423",
+  "cases": [
+    {
+      "id": "sample-wrap-max",
+      "name": "sample: circular wrap gives maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "wrap"
+      ]
+    },
+    {
+      "id": "sample-negative-values",
+      "name": "sample: negative adjacent values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -10,
+          -5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "trial: two elements are adjacent both ways",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          -100
+        ]
+      },
+      "expected": 200,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-circular-mixed",
+      "name": "real: mixed circular differences",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          -3,
+          12,
+          12,
+          -8,
+          0
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

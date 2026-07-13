@@ -1,0 +1,93 @@
+{
+  "challenge_id": "lc_193",
+  "source": "leetcode",
+  "frontend_id": "193",
+  "slug": "valid-phone-numbers",
+  "title": "Valid Phone Numbers",
+  "difficulty": "Easy",
+  "acceptance_rate": 30.111810000110157,
+  "category": "shell",
+  "category_title": "Shell",
+  "topics": [
+    {
+      "name": "Shell",
+      "slug": "shell"
+    }
+  ],
+  "url": "https://leetcode.com/problems/valid-phone-numbers/",
+  "supported_languages": [
+    "bash"
+  ],
+  "primary_language": "bash",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:shell",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_topic:shell"
+  ],
+  "tags": [
+    "category:shell",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "company:microsoft",
+    "language:bash",
+    "leetcode",
+    "topic:shell"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

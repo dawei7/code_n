@@ -1,0 +1,250 @@
+{
+  "challenge_id": "lc_516",
+  "source": "leetcode",
+  "frontend_id": "516",
+  "slug": "longest-palindromic-subsequence",
+  "title": "Longest Palindromic Subsequence",
+  "difficulty": "Medium",
+  "acceptance_rate": 65.65685815902998,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    }
+  ],
+  "url": "https://leetcode.com/problems/longest-palindromic-subsequence/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:jpmorgan",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:tcs",
+    "leetcode_company:uber",
+    "leetcode_company:zoho",
+    "leetcode_studyplan:dynamic-programming",
+    "leetcode_studyplan:dynamic-programming:dynamic-programming-83-1tbs",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:amazon",
+    "company:bloomberg",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:jpmorgan",
+    "company:linkedin",
+    "company:microsoft",
+    "company:tcs",
+    "company:uber",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming",
+    "study_plan_section:dynamic-programming:dynamic-programming-83-1tbs",
+    "subset:neetcode:allNC",
+    "topic:dynamic-programming",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "JPMorgan Chase",
+      "slug": "jpmorgan"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "JPMorgan Chase",
+        "slug": "jpmorgan",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "dynamic-programming",
+      "plan_name": "Dynamic Programming",
+      "section_slug": "dynamic-programming-83-1tbs",
+      "section_name": "On Strings",
+      "path": [
+        "On Strings"
+      ],
+      "order": 15,
+      "section_order": 3,
+      "problem_order": 3,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "2-D Dynamic Programming"
+      ],
+      "order": 716,
+      "section_order": 13,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "longest-palindromic-subsequence",
+      "leetcode_slug": "longest-palindromic-subsequence",
+      "difficulty": "Medium",
+      "problem_order": 5
+    }
+  ]
+}

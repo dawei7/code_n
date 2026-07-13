@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_462",
+  "cases": [
+    {
+      "id": "sample-three-values",
+      "name": "sample: move two extremes to the median",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3]},
+      "expected": 2,
+      "tags": ["sample", "odd"]
+    },
+    {
+      "id": "sample-even",
+      "name": "sample: any target between two medians is optimal",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 10, 2, 9]},
+      "expected": 16,
+      "tags": ["sample", "even"]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate values around the median",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 0, 0, 8, 6]},
+      "expected": 14,
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [42]},
+      "expected": 0,
+      "tags": ["trial", "single"]
+    },
+    {
+      "id": "trial-negative",
+      "name": "trial: signed values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [-5, -1, 4]},
+      "expected": 9,
+      "tags": ["trial", "negative"]
+    },
+    {
+      "id": "hidden-all-equal",
+      "name": "hidden: no movement required",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 7, 7, 7]},
+      "expected": 0,
+      "tags": ["hidden", "equal"]
+    },
+    {
+      "id": "hidden-wide-range",
+      "name": "hidden: wide signed range",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-1000000000, 0, 1000000000]},
+      "expected": 2000000000,
+      "tags": ["hidden", "large"]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_1019",
+  "cases": [
+    {
+      "id": "benchmark-duplicates",
+      "name": "benchmark: duplicates and late peak",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "head": [
+          2,
+          2,
+          3,
+          1,
+          4,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        4,
+        4,
+        5,
+        5,
+        0
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_1464",
+  "cases": [
+    {
+      "id": "benchmark-large-values",
+      "name": "benchmark: large top two values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          99,
+          1,
+          1
+        ]
+      },
+      "expected": 9702,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "challenge_id": "lc_1537",
+  "cases": [
+    {
+      "id": "benchmark-multiple-switches",
+      "name": "benchmark: multiple common values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          10,
+          20
+        ],
+        "nums2": [
+          1,
+          5,
+          10,
+          15,
+          20
+        ]
+      },
+      "expected": 51,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

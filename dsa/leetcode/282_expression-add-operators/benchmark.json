@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_282",
+  "measurement_note": "Size is 2^digit-count, a monotonic search-space scale; immediate leading-zero pruning avoids exploring invalid multi-digit zero operands.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 zero digits with impossible target",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "num": "0000",
+        "target": 1
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "leading-zero-pruning"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6 zero digits with impossible target",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "num": "000000",
+        "target": 1
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "leading-zero-pruning"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 8 zero digits with impossible target",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "num": "00000000",
+        "target": 1
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "leading-zero-pruning"
+      ]
+    }
+  ]
+}

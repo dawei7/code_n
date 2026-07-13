@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_1406",
+  "cases": [
+    {
+      "id": "benchmark-all-negative",
+      "name": "benchmark: all negative stones",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "stone_value": [
+          -1,
+          -2,
+          -3
+        ]
+      },
+      "expected": "Tie",
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

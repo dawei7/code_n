@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1013",
+  "cases": [
+    {
+      "id": "benchmark-negative-mix",
+      "name": "benchmark: negative mix",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          -1,
+          1,
+          -1,
+          1,
+          -1,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

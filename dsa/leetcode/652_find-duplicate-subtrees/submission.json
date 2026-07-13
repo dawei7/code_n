@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "652",
+  "frontend_id": "652",
+  "title_slug": "find-duplicate-subtrees",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065520946",
+  "verified_at": "2026-07-13T01:04:49.349515+00:00"
+}

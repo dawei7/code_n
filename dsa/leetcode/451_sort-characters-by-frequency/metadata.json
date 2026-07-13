@@ -1,0 +1,250 @@
+{
+  "challenge_id": "lc_451",
+  "source": "leetcode",
+  "frontend_id": "451",
+  "slug": "sort-characters-by-frequency",
+  "title": "Sort Characters By Frequency",
+  "difficulty": "Medium",
+  "acceptance_rate": 75.52082483112575,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Bucket Sort",
+      "slug": "bucket-sort"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/sort-characters-by-frequency/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:epam-systems",
+    "leetcode_company:facebook",
+    "leetcode_company:flipkart",
+    "leetcode_company:google",
+    "leetcode_company:ibm",
+    "leetcode_company:microsoft",
+    "leetcode_company:salesforce",
+    "leetcode_company:walmart-labs",
+    "leetcode_company:zoho",
+    "leetcode_topic:bucket-sort",
+    "leetcode_topic:counting",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:sorting",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:amazon",
+    "company:bloomberg",
+    "company:epam-systems",
+    "company:facebook",
+    "company:flipkart",
+    "company:google",
+    "company:ibm",
+    "company:microsoft",
+    "company:salesforce",
+    "company:walmart-labs",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:bucket-sort",
+    "topic:counting",
+    "topic:hash-table",
+    "topic:heap-priority-queue",
+    "topic:sorting",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "Flipkart",
+      "slug": "flipkart"
+    },
+    {
+      "name": "EPAM Systems",
+      "slug": "epam-systems"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Flipkart",
+        "slug": "flipkart",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "EPAM Systems",
+        "slug": "epam-systems",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 147,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "sort-characters-by-frequency",
+      "leetcode_slug": "sort-characters-by-frequency",
+      "difficulty": "Medium",
+      "problem_order": 147
+    }
+  ]
+}

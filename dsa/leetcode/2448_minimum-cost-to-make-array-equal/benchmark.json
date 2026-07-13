@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_2448",
+  "cases": [
+    {
+      "id": "benchmark-mixed-weights",
+      "name": "benchmark: mixed values and weights",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          8,
+          1,
+          10
+        ],
+        "cost": [
+          5,
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

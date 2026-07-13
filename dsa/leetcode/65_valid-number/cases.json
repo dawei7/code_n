@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_65",
+  "cases": [
+    {"id": "sample-integer", "name": "sample: plain integer", "kind": "sample", "visible": true, "input": {"s": "2"}, "expected": true, "tags": ["sample"]},
+    {"id": "sample-exponent", "name": "sample: signed scientific notation", "kind": "sample", "visible": true, "input": {"s": "-90E3"}, "expected": true, "tags": ["sample", "exponent"]},
+    {"id": "sample-invalid-letter", "name": "sample: exponent marker without mantissa", "kind": "sample", "visible": true, "input": {"s": "e"}, "expected": false, "tags": ["sample", "invalid"]},
+    {"id": "trial-leading-point", "name": "decimal without integer part", "kind": "trial", "visible": true, "input": {"s": ".1"}, "expected": true, "tags": ["decimal"]},
+    {"id": "trial-trailing-point", "name": "decimal without fractional digits", "kind": "trial", "visible": true, "input": {"s": "46.e3"}, "expected": true, "tags": ["decimal", "exponent"]},
+    {"id": "trial-missing-exponent", "name": "exponent requires digits", "kind": "trial", "visible": true, "input": {"s": "2e-"}, "expected": false, "tags": ["invalid", "exponent"]},
+    {"id": "real-point-after-exponent", "name": "hidden: decimal point in exponent", "kind": "real", "visible": false, "input": {"s": "99e2.5"}, "expected": false, "tags": ["hidden", "invalid"]},
+    {"id": "real-double-sign", "name": "hidden: misplaced second sign", "kind": "real", "visible": false, "input": {"s": "6e--1"}, "expected": false, "tags": ["hidden", "invalid"]}
+  ]
+}

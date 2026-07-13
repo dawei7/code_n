@@ -1,0 +1,176 @@
+{
+  "challenge_id": "lc_3161",
+  "source": "leetcode",
+  "frontend_id": "3161",
+  "slug": "block-placement-queries",
+  "title": "Block Placement Queries",
+  "difficulty": "Hard",
+  "acceptance_rate": 41.47106119345308,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Binary Indexed Tree",
+      "slug": "binary-indexed-tree"
+    },
+    {
+      "name": "Segment Tree",
+      "slug": "segment-tree"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/block-placement-queries/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:capital-one",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:paypay",
+    "leetcode_company:roblox",
+    "leetcode_company:sig",
+    "leetcode_company:uber",
+    "leetcode_company:visa",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-indexed-tree",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:ordered-set",
+    "leetcode_topic:segment-tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:capital-one",
+    "company:facebook",
+    "company:google",
+    "company:paypay",
+    "company:roblox",
+    "company:sig",
+    "company:uber",
+    "company:visa",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-indexed-tree",
+    "topic:binary-search",
+    "topic:ordered-set",
+    "topic:segment-tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Capital One",
+      "slug": "capital-one"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Roblox",
+      "slug": "roblox"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "SIG",
+      "slug": "sig"
+    },
+    {
+      "name": "PayPay",
+      "slug": "paypay"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 18
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Roblox",
+        "slug": "roblox",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "SIG",
+        "slug": "sig",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PayPay",
+        "slug": "paypay",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Capital One",
+        "slug": "capital-one",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

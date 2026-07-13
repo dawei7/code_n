@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_2455",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: average of six and twelve",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          6,
+          10,
+          12,
+          15
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no divisible-by-six values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          7,
+          10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all values qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          12,
+          18,
+          24
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-floor-average",
+      "name": "trial: integer average floors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          7,
+          12,
+          18,
+          5
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-only-odds",
+      "name": "hidden: only odd values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          5,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

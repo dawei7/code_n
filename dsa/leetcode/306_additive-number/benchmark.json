@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_306",
+  "measurement_note": "Near-uniform false strings require exhausting initial boundary pairs; size is the digit-string length.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: exhaustive false candidate at n=16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "num": "1111111111111112"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "all-boundaries"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: exhaustive false candidate at n=32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "num": "11111111111111111111111111111112"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "all-boundaries"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: exhaustive false candidate at n=64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "num": "1111111111111111111111111111111111111111111111111111111111111112"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "all-boundaries"
+      ]
+    }
+  ]
+}

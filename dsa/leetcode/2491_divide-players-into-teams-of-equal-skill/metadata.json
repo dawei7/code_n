@@ -1,0 +1,142 @@
+{
+  "challenge_id": "lc_2491",
+  "source": "leetcode",
+  "frontend_id": "2491",
+  "slug": "divide-players-into-teams-of-equal-skill",
+  "title": "Divide Players Into Teams of Equal Skill",
+  "difficulty": "Medium",
+  "acceptance_rate": 68.93507171842982,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/divide-players-into-teams-of-equal-skill/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:expedia",
+    "leetcode_company:jpmorgan",
+    "leetcode_company:visa",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:sorting",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:expedia",
+    "company:jpmorgan",
+    "company:visa",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:hash-table",
+    "topic:sorting",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "JPMorgan Chase",
+      "slug": "jpmorgan"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Expedia",
+      "slug": "expedia"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Expedia",
+        "slug": "expedia",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "JPMorgan Chase",
+        "slug": "jpmorgan",
+        "timesEncountered": 11
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 5
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Two Pointers"
+      ],
+      "order": 205,
+      "section_order": 1,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "divide-players-into-teams-of-equal-skill",
+      "leetcode_slug": "divide-players-into-teams-of-equal-skill",
+      "difficulty": "Medium",
+      "problem_order": 30
+    }
+  ]
+}

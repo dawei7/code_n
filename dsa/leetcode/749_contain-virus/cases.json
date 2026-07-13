@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_749",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two separated outbreaks", "kind": "sample", "visible": true, "input": {"isInfected": [[0,1,0,0,0,0,0,1],[0,1,0,0,0,0,0,1],[0,0,0,0,0,0,0,1],[0,0,0,0,0,0,0,0]]}, "expected": 10, "tags": ["sample", "multiple-days"]},
+    {"id": "sample-2", "name": "sample: healthy center surrounded", "kind": "sample", "visible": true, "input": {"isInfected": [[1,1,1],[1,0,1],[1,1,1]]}, "expected": 4, "tags": ["sample", "shared-frontier-cell"]},
+    {"id": "sample-3", "name": "sample: separated central outbreak", "kind": "sample", "visible": true, "input": {"isInfected": [[1,1,1,0,0,0,0,0,0],[1,0,1,0,1,1,1,1,1],[1,1,1,0,0,0,0,0,0]]}, "expected": 13, "tags": ["sample", "multiple-regions"]},
+    {"id": "trial-1", "name": "trial: entirely healthy grid", "kind": "trial", "visible": true, "input": {"isInfected": [[0,0],[0,0]]}, "expected": 0, "tags": ["trial", "no-infection"]},
+    {"id": "trial-2", "name": "trial: entirely infected grid", "kind": "trial", "visible": true, "input": {"isInfected": [[1,1],[1,1]]}, "expected": 0, "tags": ["trial", "no-frontier"]},
+    {"id": "hidden-1", "name": "hidden: infected corner", "kind": "real", "visible": false, "input": {"isInfected": [[1,0,0],[0,0,0]]}, "expected": 2, "tags": ["hidden", "boundary"]},
+    {"id": "hidden-2", "name": "hidden: two-cell edge region", "kind": "real", "visible": false, "input": {"isInfected": [[1,1,0],[0,0,0]]}, "expected": 3, "tags": ["hidden", "wall-edges"]},
+    {"id": "hidden-3", "name": "hidden: one cell has four wall edges", "kind": "real", "visible": false, "input": {"isInfected": [[0,0,0],[0,1,0],[0,0,0]]}, "expected": 4, "tags": ["hidden", "interior"]}
+  ]
+}

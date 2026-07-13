@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_632",
+  "cases": [
+    {"id": "sample-1", "name": "sample: later range is shortest", "kind": "sample", "visible": true, "input": {"nums": [[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]}, "expected": [20,24], "tags": ["sample", "heap-sweep"]},
+    {"id": "sample-2", "name": "sample: common value gives zero width", "kind": "sample", "visible": true, "input": {"nums": [[1,2,3],[1,2,3],[1,2,3]]}, "expected": [1,1], "tags": ["sample", "duplicates"]},
+    {"id": "trial-1", "name": "trial: one list prefers smallest singleton", "kind": "trial", "visible": true, "input": {"nums": [[-5,-2,7]]}, "expected": [-5,-5], "tags": ["trial", "single-list", "tie"]},
+    {"id": "trial-2", "name": "trial: overlapping duplicate references", "kind": "trial", "visible": true, "input": {"nums": [[1,5],[5,8],[0,5,9]]}, "expected": [5,5], "tags": ["trial", "zero-width"]},
+    {"id": "hidden-1", "name": "hidden: equal widths choose smaller left", "kind": "real", "visible": false, "input": {"nums": [[1,4],[2,5],[3,6]]}, "expected": [1,3], "tags": ["hidden", "tie-breaking"]},
+    {"id": "hidden-2", "name": "hidden: negative optimum crosses lists", "kind": "real", "visible": false, "input": {"nums": [[-10,-5],[-6,-2],[-4,0]]}, "expected": [-6,-4], "tags": ["hidden", "negative"]},
+    {"id": "hidden-3", "name": "hidden: all singleton lists", "kind": "real", "visible": false, "input": {"nums": [[-2],[4],[10]]}, "expected": [-2,10], "tags": ["hidden", "singletons"]}
+  ]
+}

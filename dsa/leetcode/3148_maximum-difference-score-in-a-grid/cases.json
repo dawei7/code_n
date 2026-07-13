@@ -1,0 +1,171 @@
+{
+  "challenge_id": "lc_3148",
+  "cases": [
+    {
+      "id": "sample-mixed-grid",
+      "name": "sample: best score after moving down and right",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            9,
+            5,
+            7,
+            3
+          ],
+          [
+            8,
+            9,
+            6,
+            1
+          ],
+          [
+            6,
+            7,
+            14,
+            3
+          ],
+          [
+            2,
+            5,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-negative-score",
+      "name": "sample: all reachable differences are negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            3,
+            2
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-same-row-best",
+      "name": "trial: best pair lies in the same row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            100,
+            2
+          ],
+          [
+            50,
+            40,
+            30
+          ]
+        ]
+      },
+      "expected": 99,
+      "tags": [
+        "same-row"
+      ]
+    },
+    {
+      "id": "trial-same-column-best",
+      "name": "trial: best pair lies in the same column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            5
+          ],
+          [
+            100,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 99,
+      "tags": [
+        "same-column"
+      ]
+    },
+    {
+      "id": "real-single-row",
+      "name": "real: single row still has valid right moves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            10,
+            1,
+            20,
+            3,
+            30
+          ]
+        ]
+      },
+      "expected": 29,
+      "tags": [
+        "real",
+        "single-row"
+      ]
+    },
+    {
+      "id": "real-single-column",
+      "name": "real: single column still has valid down moves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            10
+          ],
+          [
+            1
+          ],
+          [
+            20
+          ],
+          [
+            3
+          ],
+          [
+            30
+          ]
+        ]
+      },
+      "expected": 29,
+      "tags": [
+        "real",
+        "single-column"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_2451",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: abc has a different difference vector",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "adc",
+          "wzy",
+          "abc"
+        ]
+      },
+      "expected": "abc",
+      "tags": [
+        "sample",
+        "string"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: bob is the outlier",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "aaa",
+          "bob",
+          "ccc",
+          "ddd"
+        ]
+      },
+      "expected": "bob",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: alm differs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abm",
+          "bcn",
+          "alm"
+        ]
+      },
+      "expected": "alm",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-flat-then-odd",
+      "name": "trial: flat strings and one changing string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aaa",
+          "bbb",
+          "abd"
+        ]
+      },
+      "expected": "abd",
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-two-letter-words",
+      "name": "hidden: two-letter words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "az",
+          "ba",
+          "cz"
+        ]
+      },
+      "expected": "az",
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

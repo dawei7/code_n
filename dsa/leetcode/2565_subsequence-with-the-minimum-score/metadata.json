@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2565",
+  "source": "leetcode",
+  "frontend_id": "2565",
+  "slug": "subsequence-with-the-minimum-score",
+  "title": "Subsequence With the Minimum Score",
+  "difficulty": "Hard",
+  "acceptance_rate": 33.54119717222857,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/subsequence-with-the-minimum-score/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:doordash",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:string",
+    "leetcode_topic:two-pointers"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:doordash",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:binary-search",
+    "topic:string",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "DoorDash",
+      "slug": "doordash"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "DoorDash",
+        "slug": "doordash",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

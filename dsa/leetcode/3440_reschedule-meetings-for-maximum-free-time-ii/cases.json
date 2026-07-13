@@ -1,0 +1,129 @@
+{
+  "challenge_id": "lc_3440",
+  "cases": [
+    {
+      "id": "sample-leading-gap",
+      "name": "sample: move first meeting style gap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "eventTime": 5,
+        "startTime": [
+          1,
+          3
+        ],
+        "endTime": [
+          2,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-reorder-first",
+      "name": "sample: relative order may change",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "eventTime": 10,
+        "startTime": [
+          0,
+          7,
+          9
+        ],
+        "endTime": [
+          1,
+          8,
+          10
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-move-middle",
+      "name": "sample: move middle meeting elsewhere",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "eventTime": 10,
+        "startTime": [
+          0,
+          3,
+          7,
+          9
+        ],
+        "endTime": [
+          1,
+          4,
+          8,
+          10
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-packed",
+      "name": "sample: packed schedule has no free time",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "eventTime": 5,
+        "startTime": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "endTime": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-large-other-gap",
+      "name": "real: moved meeting fits in non-adjacent gap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "eventTime": 40,
+        "startTime": [
+          0,
+          5,
+          12,
+          25,
+          31
+        ],
+        "endTime": [
+          2,
+          6,
+          14,
+          27,
+          35
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

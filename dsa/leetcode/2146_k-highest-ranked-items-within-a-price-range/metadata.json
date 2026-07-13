@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2146",
+  "source": "leetcode",
+  "frontend_id": "2146",
+  "slug": "k-highest-ranked-items-within-a-price-range",
+  "title": "K Highest Ranked Items Within a Price Range",
+  "difficulty": "Medium",
+  "acceptance_rate": 46.93800640663275,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/k-highest-ranked-items-within-a-price-range/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:bookingcom",
+    "leetcode_topic:array",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:matrix",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:bookingcom",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:breadth-first-search",
+    "topic:heap-priority-queue",
+    "topic:matrix",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Booking.com",
+      "slug": "bookingcom"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Booking.com",
+        "slug": "bookingcom",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

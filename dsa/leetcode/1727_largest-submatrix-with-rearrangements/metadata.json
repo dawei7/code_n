@@ -1,0 +1,117 @@
+{
+  "challenge_id": "lc_1727",
+  "source": "leetcode",
+  "frontend_id": "1727",
+  "slug": "largest-submatrix-with-rearrangements",
+  "title": "Largest Submatrix With Rearrangements",
+  "difficulty": "Medium",
+  "acceptance_rate": 80.18970462436471,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/largest-submatrix-with-rearrangements/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:directi",
+    "leetcode_company:google",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:matrix",
+    "leetcode_topic:sorting",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:directi",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:greedy",
+    "topic:matrix",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Directi",
+      "slug": "directi"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Directi",
+        "slug": "directi",
+        "timesEncountered": 0
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Math & Geometry"
+      ],
+      "order": 896,
+      "section_order": 16,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "largest-submatrix-with-rearrangements",
+      "leetcode_slug": "largest-submatrix-with-rearrangements",
+      "difficulty": "Medium",
+      "problem_order": 47
+    }
+  ]
+}

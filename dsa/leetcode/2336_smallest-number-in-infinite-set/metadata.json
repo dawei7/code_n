@@ -1,0 +1,134 @@
+{
+  "challenge_id": "lc_2336",
+  "source": "leetcode",
+  "frontend_id": "2336",
+  "slug": "smallest-number-in-infinite-set",
+  "title": "Smallest Number in Infinite Set",
+  "difficulty": "Medium",
+  "acceptance_rate": 70.64249486151981,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/smallest-number-in-infinite-set/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_studyplan:leetcode-75",
+    "leetcode_studyplan:leetcode-75:leetcode-75-37-s8hv",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:ordered-set"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:leetcode-75",
+    "study_plan_section:leetcode-75:leetcode-75-37-s8hv",
+    "topic:design",
+    "topic:hash-table",
+    "topic:heap-priority-queue",
+    "topic:ordered-set"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 6
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "leetcode-75",
+      "plan_name": "LeetCode 75",
+      "section_slug": "leetcode-75-37-s8hv",
+      "section_name": "Heap / Priority Queue",
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 50,
+      "section_order": 14,
+      "problem_order": 2,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/leetcode-75/"
+    }
+  ],
+  "neetcode_subsets": []
+}

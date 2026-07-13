@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_3515",
+  "source": "leetcode",
+  "frontend_id": "3515",
+  "slug": "shortest-path-in-a-weighted-tree",
+  "title": "Shortest Path in a Weighted Tree",
+  "difficulty": "Hard",
+  "acceptance_rate": 42.591213700670146,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Binary Indexed Tree",
+      "slug": "binary-indexed-tree"
+    },
+    {
+      "name": "Segment Tree",
+      "slug": "segment-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/shortest-path-in-a-weighted-tree/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:juspay",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-indexed-tree",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:segment-tree",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:juspay",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-indexed-tree",
+    "topic:depth-first-search",
+    "topic:segment-tree",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Juspay",
+      "slug": "juspay"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Juspay",
+        "slug": "juspay",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

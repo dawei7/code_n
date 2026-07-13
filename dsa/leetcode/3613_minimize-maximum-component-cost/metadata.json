@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_3613",
+  "source": "leetcode",
+  "frontend_id": "3613",
+  "slug": "minimize-maximum-component-cost",
+  "title": "Minimize Maximum Component Cost",
+  "difficulty": "Medium",
+  "acceptance_rate": 43.70717760072525,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimize-maximum-component-cost/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:apple",
+    "leetcode_company:microsoft",
+    "leetcode_company:salesforce",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:graph",
+    "leetcode_topic:sorting",
+    "leetcode_topic:union-find"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:apple",
+    "company:microsoft",
+    "company:salesforce",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:binary-search",
+    "topic:graph",
+    "topic:sorting",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

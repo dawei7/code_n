@@ -1,0 +1,6 @@
+{"challenge_id":"lc_284","cases":[
+{"id":"sample-next-peek","name":"sample: next and peek sequence","kind":"sample","visible":true,"input":{"iterator_data":[1,2,3],"operations":["next","peek","next","next","hasNext"]},"expected":[1,2,2,3,false],"tags":["sample","design"]},
+{"id":"sample-has-next","name":"sample: inspect before consuming","kind":"sample","visible":true,"input":{"iterator_data":[1,2,3],"operations":["hasNext","peek","next","next","hasNext"]},"expected":[true,1,1,2,true],"tags":["sample"]},
+{"id":"trial-single","name":"single value with repeated peek","kind":"trial","visible":true,"input":{"iterator_data":[1],"operations":["peek","peek","next","hasNext"]},"expected":[1,1,1,false],"tags":["boundary","peek"]},
+{"id":"real-repeat","name":"hidden: repeated peek does not advance","kind":"real","visible":false,"input":{"iterator_data":[5,6],"operations":["peek","peek","next","hasNext","next","hasNext"]},"expected":[5,5,5,true,6,false],"tags":["hidden","idempotent"]}
+]}

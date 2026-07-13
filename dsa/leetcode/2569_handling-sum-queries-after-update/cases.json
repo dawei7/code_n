@@ -1,0 +1,189 @@
+{
+  "challenge_id": "lc_2569",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: flip then add count of active bits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          0,
+          1
+        ],
+        "nums2": [
+          0,
+          0,
+          0
+        ],
+        "queries": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "sample",
+        "segment-tree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: adding zero leaves nums2 sum unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          5
+        ],
+        "queries": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-report-before-and-after-update",
+      "name": "trial: report before and after a flip/add sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0,
+          1
+        ],
+        "nums2": [
+          2,
+          3
+        ],
+        "queries": [
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        7
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-single-bit-flip",
+      "name": "trial: flipping one bit enables a later add",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0
+        ],
+        "nums2": [
+          0
+        ],
+        "queries": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            5,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "trial",
+        "regression"
+      ]
+    },
+    {
+      "id": "real-report-initial-sum",
+      "name": "hidden: reporting without updates returns the nums2 sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          0
+        ],
+        "queries": [
+          [
+            3,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

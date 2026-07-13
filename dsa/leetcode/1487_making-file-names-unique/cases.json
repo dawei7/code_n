@@ -1,0 +1,96 @@
+{
+  "challenge_id": "lc_1487",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: already unique names",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "names": [
+          "pes",
+          "fifa",
+          "gta",
+          "pes(2019)"
+        ]
+      },
+      "expected": [
+        "pes",
+        "fifa",
+        "gta",
+        "pes(2019)"
+      ],
+      "tags": [
+        "sample",
+        "hash-map"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: suffix collision",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "names": [
+          "gta",
+          "gta(1)",
+          "gta",
+          "avalon"
+        ]
+      },
+      "expected": [
+        "gta",
+        "gta(1)",
+        "gta(2)",
+        "avalon"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated base name",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "names": [
+          "onepiece",
+          "onepiece(1)",
+          "onepiece"
+        ]
+      },
+      "expected": [
+        "onepiece",
+        "onepiece(1)",
+        "onepiece(2)"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-existing-suffix-reused",
+      "name": "hidden: requested suffix already exists",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "names": [
+          "kaido",
+          "kaido(1)",
+          "kaido",
+          "kaido(1)"
+        ]
+      },
+      "expected": [
+        "kaido",
+        "kaido(1)",
+        "kaido(2)",
+        "kaido(1)(1)"
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

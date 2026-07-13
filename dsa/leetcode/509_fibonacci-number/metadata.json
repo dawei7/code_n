@@ -1,0 +1,255 @@
+{
+  "challenge_id": "lc_509",
+  "source": "leetcode",
+  "frontend_id": "509",
+  "slug": "fibonacci-number",
+  "title": "Fibonacci Number",
+  "difficulty": "Easy",
+  "acceptance_rate": 74.32640381847897,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    },
+    {
+      "name": "Memoization",
+      "slug": "memoization"
+    }
+  ],
+  "url": "https://leetcode.com/problems/fibonacci-number/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:cognizant",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:infosys",
+    "leetcode_company:microsoft",
+    "leetcode_company:nvidia",
+    "leetcode_company:spotify",
+    "leetcode_company:tcs",
+    "leetcode_company:wix",
+    "leetcode_studyplan:dynamic-programming",
+    "leetcode_studyplan:dynamic-programming:dynamic-programming-81-vlln",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math",
+    "leetcode_topic:memoization",
+    "leetcode_topic:recursion"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:cognizant",
+    "company:facebook",
+    "company:google",
+    "company:infosys",
+    "company:microsoft",
+    "company:nvidia",
+    "company:spotify",
+    "company:tcs",
+    "company:wix",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming",
+    "study_plan_section:dynamic-programming:dynamic-programming-81-vlln",
+    "topic:dynamic-programming",
+    "topic:math",
+    "topic:memoization",
+    "topic:recursion"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Spotify",
+      "slug": "spotify"
+    },
+    {
+      "name": "Cognizant",
+      "slug": "cognizant"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "Wix",
+      "slug": "wix"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 11
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 9
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 3
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Wix",
+        "slug": "wix",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Spotify",
+        "slug": "spotify",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Cognizant",
+        "slug": "cognizant",
+        "timesEncountered": 3
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "dynamic-programming",
+      "plan_name": "Dynamic Programming",
+      "section_slug": "dynamic-programming-81-vlln",
+      "section_name": "Fibonacci style",
+      "path": [
+        "Fibonacci style"
+      ],
+      "order": 2,
+      "section_order": 1,
+      "problem_order": 2,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming/"
+    }
+  ],
+  "neetcode_subsets": []
+}

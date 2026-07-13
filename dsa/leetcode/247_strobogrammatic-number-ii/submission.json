@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "247",
+  "frontend_id": "247",
+  "title_slug": "strobogrammatic-number-ii",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064266853",
+  "verified_at": "2026-07-11T20:01:32.249234+00:00"
+}

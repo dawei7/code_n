@@ -1,0 +1,227 @@
+{
+  "challenge_id": "lc_1631",
+  "source": "leetcode",
+  "frontend_id": "1631",
+  "slug": "path-with-minimum-effort",
+  "title": "Path With Minimum Effort",
+  "difficulty": "Medium",
+  "acceptance_rate": 63.59748989388908,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/path-with-minimum-effort/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:nutanix",
+    "leetcode_company:snowflake",
+    "leetcode_company:waymo",
+    "leetcode_studyplan:binary-search",
+    "leetcode_studyplan:binary-search:binary-search-119-7k2x",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:matrix",
+    "leetcode_topic:union-find",
+    "neetcode:allNC",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:facebook",
+    "company:google",
+    "company:microsoft",
+    "company:nutanix",
+    "company:snowflake",
+    "company:waymo",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:binary-search",
+    "study_plan_section:binary-search:binary-search-119-7k2x",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:binary-search",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:heap-priority-queue",
+    "topic:matrix",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Nutanix",
+      "slug": "nutanix"
+    },
+    {
+      "name": "Waymo",
+      "slug": "waymo"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nutanix",
+        "slug": "nutanix",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Waymo",
+        "slug": "waymo",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "binary-search",
+      "plan_name": "Binary Search",
+      "section_slug": "binary-search-119-7k2x",
+      "section_name": "On Solution Space",
+      "path": [
+        "On Solution Space"
+      ],
+      "order": 39,
+      "section_order": 7,
+      "problem_order": 7,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/binary-search/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Advanced Graphs"
+      ],
+      "order": 163,
+      "section_order": 11,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "path-with-minimum-effort",
+      "leetcode_slug": "path-with-minimum-effort",
+      "difficulty": "Medium",
+      "problem_order": 0
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Advanced Graphs"
+      ],
+      "order": 626,
+      "section_order": 11,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "path-with-minimum-effort",
+      "leetcode_slug": "path-with-minimum-effort",
+      "difficulty": "Medium",
+      "problem_order": 0
+    }
+  ]
+}

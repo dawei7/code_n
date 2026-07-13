@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_1558",
+  "cases": [
+    {
+      "id": "benchmark-many-set-bits",
+      "name": "benchmark: several binary set bits and doubles",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          3,
+          5
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

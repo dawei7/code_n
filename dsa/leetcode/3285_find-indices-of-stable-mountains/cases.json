@@ -1,0 +1,121 @@
+{
+  "challenge_id": "lc_3285",
+  "cases": [
+    {
+      "id": "sample-increasing",
+      "name": "sample: increasing heights",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "height": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "threshold": 2
+      },
+      "expected": [
+        3,
+        4
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-alternating-highs",
+      "name": "sample: alternating stable predecessors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "height": [
+          10,
+          1,
+          10,
+          1,
+          10
+        ],
+        "threshold": 3
+      },
+      "expected": [
+        1,
+        3
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-threshold-equal",
+      "name": "trial: equal to threshold is not stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": [
+          5,
+          5,
+          6,
+          4
+        ],
+        "threshold": 5
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-first-index-never-tested",
+      "name": "trial: index zero is never returned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": [
+          100,
+          1,
+          1
+        ],
+        "threshold": 50
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "indexing"
+      ]
+    },
+    {
+      "id": "real-mixed-heights",
+      "name": "real: mixed hidden heights",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": [
+          3,
+          9,
+          2,
+          10,
+          10,
+          1,
+          8,
+          7,
+          12
+        ],
+        "threshold": 8
+      },
+      "expected": [
+        2,
+        4,
+        5
+      ],
+      "tags": [
+        "real",
+        "linear"
+      ]
+    }
+  ]
+}

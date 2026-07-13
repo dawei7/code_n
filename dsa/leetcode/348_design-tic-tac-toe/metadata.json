@@ -1,0 +1,220 @@
+{
+  "challenge_id": "lc_348",
+  "source": "leetcode",
+  "frontend_id": "348",
+  "slug": "design-tic-tac-toe",
+  "title": "Design Tic-Tac-Toe",
+  "difficulty": "Medium",
+  "acceptance_rate": 58.75446920008925,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-tic-tac-toe/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:airbnb",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:databricks",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:tiktok",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-77-h64t",
+    "leetcode_topic:array",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:matrix",
+    "leetcode_topic:simulation",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:airbnb",
+    "company:amazon",
+    "company:apple",
+    "company:databricks",
+    "company:facebook",
+    "company:google",
+    "company:microsoft",
+    "company:tiktok",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan_section:premium-algo-100:premium-algo-100-77-h64t",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:design",
+    "topic:hash-table",
+    "topic:matrix",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Databricks",
+      "slug": "databricks"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Airbnb",
+      "slug": "airbnb"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Databricks",
+        "slug": "databricks",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Airbnb",
+        "slug": "airbnb",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-77-h64t",
+      "section_name": "Design",
+      "path": [
+        "Design"
+      ],
+      "order": 80,
+      "section_order": 17,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 30,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "design-tic-tac-toe",
+      "leetcode_slug": "design-tic-tac-toe",
+      "difficulty": "Medium",
+      "problem_order": 30
+    }
+  ]
+}

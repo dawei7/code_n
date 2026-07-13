@@ -1,0 +1,134 @@
+{
+  "challenge_id": "lc_3408",
+  "source": "leetcode",
+  "frontend_id": "3408",
+  "slug": "design-task-manager",
+  "title": "Design Task Manager",
+  "difficulty": "Medium",
+  "acceptance_rate": 48.90666035726961,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-task-manager/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:ordered-set"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:google",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:design",
+    "topic:hash-table",
+    "topic:heap-priority-queue",
+    "topic:ordered-set"
+  ],
+  "company_tags": [
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      }
+    ],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

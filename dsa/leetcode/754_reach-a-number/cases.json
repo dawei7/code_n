@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_754",
+  "cases": [
+    {"id": "sample-1", "name": "sample: parity requires a third move", "kind": "sample", "visible": true, "input": {"target": 2}, "expected": 3, "tags": ["sample", "parity"]},
+    {"id": "sample-2", "name": "sample: exact triangular target", "kind": "sample", "visible": true, "input": {"target": 3}, "expected": 2, "tags": ["sample", "triangular"]},
+    {"id": "trial-1", "name": "trial: zero target", "kind": "trial", "visible": true, "input": {"target": 0}, "expected": 0, "tags": ["trial", "zero"]},
+    {"id": "trial-2", "name": "trial: negative symmetry", "kind": "trial", "visible": true, "input": {"target": -2}, "expected": 3, "tags": ["trial", "negative"]},
+    {"id": "trial-3", "name": "trial: reverse the first move", "kind": "trial", "visible": true, "input": {"target": 4}, "expected": 3, "tags": ["trial", "signed-sum"]},
+    {"id": "hidden-1", "name": "hidden: two parity corrections", "kind": "real", "visible": false, "input": {"target": 5}, "expected": 5, "tags": ["hidden", "parity"]},
+    {"id": "hidden-2", "name": "hidden: even excess", "kind": "real", "visible": false, "input": {"target": 8}, "expected": 4, "tags": ["hidden", "even-excess"]},
+    {"id": "hidden-3", "name": "hidden: larger negative target", "kind": "real", "visible": false, "input": {"target": -100}, "expected": 15, "tags": ["hidden", "negative"]}
+  ]
+}

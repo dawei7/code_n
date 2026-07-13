@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_1953",
+  "source": "leetcode",
+  "frontend_id": "1953",
+  "slug": "maximum-number-of-weeks-for-which-you-can-work",
+  "title": "Maximum Number of Weeks for Which You Can Work",
+  "difficulty": "Medium",
+  "acceptance_rate": 42.57922046252015,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-number-of-weeks-for-which-you-can-work/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:wells-fargo",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:wells-fargo",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy"
+  ],
+  "company_tags": [
+    {
+      "name": "Wells Fargo",
+      "slug": "wells-fargo"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Wells Fargo",
+        "slug": "wells-fargo",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

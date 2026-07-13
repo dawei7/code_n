@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_3077",
+  "cases": [
+    {
+      "id": "sample-three-subarrays",
+      "name": "sample: three weighted disjoint subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          -1,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 22,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-elements",
+      "name": "sample: k equals n so every subarray has length one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        "k": 5
+      },
+      "expected": 64,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-subarray",
+      "name": "trial: k one chooses the maximum subarray sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3
+        ],
+        "k": 1
+      },
+      "expected": -1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-negative-middle",
+      "name": "trial: negative middle can help the even weighted segment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          -5,
+          6,
+          -2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 29,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-strength",
+      "name": "real: mixed signs and five subarrays",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          -1,
+          2,
+          -4,
+          5,
+          -2,
+          6,
+          -3
+        ],
+        "k": 5
+      },
+      "expected": 61,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

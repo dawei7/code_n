@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_2016",
+  "source": "leetcode",
+  "frontend_id": "2016",
+  "slug": "maximum-difference-between-increasing-elements",
+  "title": "Maximum Difference Between Increasing Elements",
+  "difficulty": "Easy",
+  "acceptance_rate": 66.63201663201663,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-difference-between-increasing-elements/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:cisco",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_topic:array"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:cisco",
+    "company:facebook",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Cisco",
+      "slug": "cisco"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Cisco",
+        "slug": "cisco",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

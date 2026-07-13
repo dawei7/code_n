@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_2470",
+  "cases": [
+    {
+      "id": "benchmark-repeated-divisors",
+      "name": "benchmark: repeated divisors create overlapping lcm matches",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          6
+        ],
+        "k": 6
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

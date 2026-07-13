@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_3251",
+  "cases": [
+    {
+      "id": "sample-short",
+      "name": "sample: short monotonic pair count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-constant",
+      "name": "sample: constant values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 126,
+      "tags": [
+        "sample",
+        "flat"
+      ]
+    },
+    {
+      "id": "trial-single-large",
+      "name": "trial: single large value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          50
+        ]
+      },
+      "expected": 51,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-valley",
+      "name": "trial: valley profile",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          3,
+          3,
+          6,
+          2,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "valley"
+      ]
+    },
+    {
+      "id": "real-medium-wave",
+      "name": "real: longer wave values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          20,
+          18,
+          21,
+          19,
+          24,
+          23,
+          25,
+          17,
+          30,
+          28,
+          31,
+          29,
+          33
+        ]
+      },
+      "expected": 560,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

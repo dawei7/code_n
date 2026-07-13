@@ -1,0 +1,53 @@
+{
+  "challenge_id": "lc_3560",
+  "source": "leetcode",
+  "frontend_id": "3560",
+  "slug": "find-minimum-log-transportation-cost",
+  "title": "Find Minimum Log Transportation Cost",
+  "difficulty": "Easy",
+  "acceptance_rate": 42.53035471065529,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-minimum-log-transportation-cost/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:math"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

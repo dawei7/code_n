@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_267",
+  "measurement_note": "Size is string length; repeated half characters make duplicate-aware backtracking output only distinct palindromes while raw half permutations grow factorially.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "s": "aabb"
+      },
+      "expected": [
+        "abba",
+        "baab"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "duplicate-halves"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "aaaabbbb"
+      },
+      "expected": [
+        "aabbbbaa",
+        "ababbaba",
+        "abbaabba",
+        "baabbaab",
+        "babaabab",
+        "bbaaaabb"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "duplicate-halves"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "aaaaaaaabbbbbbbb"
+      },
+      "expected": [
+        "aaaabbbbbbbbaaaa",
+        "aaababbbbbbabaaa",
+        "aaabbabbbbabbaaa",
+        "aaabbbabbabbbaaa",
+        "aaabbbbaabbbbaaa",
+        "aabaabbbbbbaabaa",
+        "aabababbbbababaa",
+        "aababbabbabbabaa",
+        "aababbbaabbbabaa",
+        "aabbaabbbbaabbaa",
+        "aabbababbababbaa",
+        "aabbabbaabbabbaa",
+        "aabbbaabbaabbbaa",
+        "aabbbabaababbbaa",
+        "aabbbbaaaabbbbaa",
+        "abaaabbbbbbaaaba",
+        "abaababbbbabaaba",
+        "abaabbabbabbaaba",
+        "abaabbbaabbbaaba",
+        "ababaabbbbaababa",
+        "ababababbabababa",
+        "abababbaabbababa",
+        "ababbaabbaabbaba",
+        "ababbabaababbaba",
+        "ababbbaaaabbbaba",
+        "abbaaabbbbaaabba",
+        "abbaababbabaabba",
+        "abbaabbaabbaabba",
+        "abbabaabbaababba",
+        "abbababaabababba",
+        "abbabbaaaabbabba",
+        "abbbaaabbaaabbba",
+        "abbbaabaabaabbba",
+        "abbbabaaaababbba",
+        "abbbbaaaaaabbbba",
+        "baaaabbbbbbaaaab",
+        "baaababbbbabaaab",
+        "baaabbabbabbaaab",
+        "baaabbbaabbbaaab",
+        "baabaabbbbaabaab",
+        "baabababbababaab",
+        "baababbaabbabaab",
+        "baabbaabbaabbaab",
+        "baabbabaababbaab",
+        "baabbbaaaabbbaab",
+        "babaaabbbbaaabab",
+        "babaababbabaabab",
+        "babaabbaabbaabab",
+        "bababaabbaababab",
+        "babababaabababab",
+        "bababbaaaabbabab",
+        "babbaaabbaaabbab",
+        "babbaabaabaabbab",
+        "babbabaaaababbab",
+        "babbbaaaaaabbbab",
+        "bbaaaabbbbaaaabb",
+        "bbaaababbabaaabb",
+        "bbaaabbaabbaaabb",
+        "bbaabaabbaabaabb",
+        "bbaababaababaabb",
+        "bbaabbaaaabbaabb",
+        "bbabaaabbaaababb",
+        "bbabaabaabaababb",
+        "bbababaaaabababb",
+        "bbabbaaaaaabbabb",
+        "bbbaaaabbaaaabbb",
+        "bbbaaabaabaaabbb",
+        "bbbaabaaaabaabbb",
+        "bbbabaaaaaababbb",
+        "bbbbaaaaaaaabbbb"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "duplicate-halves"
+      ]
+    }
+  ]
+}

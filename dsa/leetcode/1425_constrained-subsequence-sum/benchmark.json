@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1425",
+  "cases": [
+    {
+      "id": "benchmark-wide-window",
+      "name": "benchmark: wide window with a large gap",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          -20,
+          4,
+          3,
+          -2,
+          10,
+          -100,
+          8
+        ],
+        "k": 3
+      },
+      "expected": 30,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

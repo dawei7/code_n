@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_432",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one key becomes maximum and another minimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["inc", "hello"], ["inc", "hello"], ["getMaxKey"], ["getMinKey"], ["inc", "leet"], ["getMaxKey"], ["getMinKey"]]},
+      "expected": ["hello", "hello", "hello", "leet"],
+      "validator": {"kind": "all_one_trace"},
+      "tags": ["sample", "mixed-counts"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: queries on an empty structure",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["getMaxKey"], ["getMinKey"]]},
+      "expected": ["", ""],
+      "validator": {"kind": "all_one_trace"},
+      "tags": ["sample", "empty"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two keys tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["inc", "a"], ["inc", "b"], ["getMaxKey"], ["getMinKey"]]},
+      "expected": ["a", "b"],
+      "validator": {"kind": "all_one_trace"},
+      "tags": ["sample", "tie"]
+    },
+    {
+      "id": "trial-delete-last",
+      "name": "trial: decrement removes the sole key",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["inc", "x"], ["dec", "x"], ["getMaxKey"], ["getMinKey"]]},
+      "expected": ["", ""],
+      "validator": {"kind": "all_one_trace"},
+      "tags": ["trial", "delete"]
+    },
+    {
+      "id": "trial-move-down",
+      "name": "trial: decrement changes both extrema",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["inc", "a"], ["inc", "a"], ["inc", "b"], ["inc", "b"], ["inc", "b"], ["dec", "b"], ["dec", "a"], ["getMaxKey"], ["getMinKey"]]},
+      "expected": ["b", "a"],
+      "validator": {"kind": "all_one_trace"},
+      "tags": ["trial", "decrement"]
+    },
+    {
+      "id": "hidden-bucket-removal",
+      "name": "hidden: empty middle buckets are removed",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["inc", "a"], ["inc", "b"], ["inc", "b"], ["inc", "c"], ["inc", "c"], ["inc", "c"], ["dec", "c"], ["dec", "b"], ["getMaxKey"], ["getMinKey"]]},
+      "expected": ["c", "a"],
+      "validator": {"kind": "all_one_trace"},
+      "tags": ["hidden", "bucket-removal"]
+    },
+    {
+      "id": "hidden-reinsert",
+      "name": "hidden: removed key can be inserted again",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["inc", "z"], ["dec", "z"], ["inc", "z"], ["inc", "y"], ["getMaxKey"], ["getMinKey"]]},
+      "expected": ["z", "y"],
+      "validator": {"kind": "all_one_trace"},
+      "tags": ["hidden", "reinsert"]
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "challenge_id": "lc_3255",
+  "cases": [
+    {
+      "id": "sample-mixed-ii",
+      "name": "sample: mixed consecutive windows II",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          3,
+          2,
+          5
+        ],
+        "k": 3
+      },
+      "expected": [
+        3,
+        4,
+        -1,
+        -1,
+        -1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-large-k",
+      "name": "sample: k spans whole array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "k": 4
+      },
+      "expected": [
+        7
+      ],
+      "tags": [
+        "sample",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "trial-k-one",
+      "name": "trial: k one returns original values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          7,
+          3
+        ],
+        "k": 1
+      },
+      "expected": [
+        9,
+        1,
+        7,
+        3
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-reset-after-drop",
+      "name": "trial: drop resets consecutive count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 4
+      },
+      "expected": [
+        -1,
+        -1,
+        -1,
+        4,
+        5
+      ],
+      "tags": [
+        "reset"
+      ]
+    },
+    {
+      "id": "real-longer-pattern",
+      "name": "real: longer patterned streaks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          8,
+          9,
+          10,
+          4,
+          5,
+          6,
+          7,
+          8,
+          12,
+          13
+        ],
+        "k": 5
+      },
+      "expected": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        8,
+        -1,
+        -1
+      ],
+      "tags": [
+        "real",
+        "pattern"
+      ]
+    }
+  ]
+}

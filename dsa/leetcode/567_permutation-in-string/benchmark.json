@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_567",
+  "measurement_note": "Size is the length of s2; s1 is half as long and requires one absent letter, forcing every window to be checked. Sliding frequency updates are linear, while sorting each full window is quadratic-logarithmic in this scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32-character exhaustive miss",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s1": "aaaaaaaaaaaaaaab",
+        "s2": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "missing-letter"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128-character exhaustive miss",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "s2": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "missing-letter"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256-character exhaustive miss",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "s2": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "missing-letter"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_2610",
+  "source": "leetcode",
+  "frontend_id": "2610",
+  "slug": "convert-an-array-into-a-2d-array-with-conditions",
+  "title": "Convert an Array Into a 2D Array With Conditions",
+  "difficulty": "Medium",
+  "acceptance_rate": 86.12747219660902,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    }
+  ],
+  "url": "https://leetcode.com/problems/convert-an-array-into-a-2d-array-with-conditions/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 143,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "convert-an-array-into-a-2d-array-with-conditions",
+      "leetcode_slug": "convert-an-array-into-a-2d-array-with-conditions",
+      "difficulty": "Medium",
+      "problem_order": 143
+    }
+  ]
+}

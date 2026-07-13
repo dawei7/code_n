@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_2763",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated two creates imbalance only in longer subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          1,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "imbalance"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicates suppress new imbalance",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          3,
+          3,
+          5
+        ]
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ],
+      "expected": 8
+    },
+    {
+      "id": "trial-sorted-consecutive",
+      "name": "trial: consecutive sorted values have zero imbalance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-gap-values",
+      "name": "trial: gaps create imbalance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2
+        ]
+      },
+      "tags": [
+        "trial",
+        "gaps"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "real-mixed-duplicates",
+      "name": "hidden: mixed duplicate and gap values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          1,
+          3,
+          3,
+          2,
+          6
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 10
+    }
+  ]
+}

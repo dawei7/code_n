@@ -1,0 +1,298 @@
+{
+  "challenge_id": "lc_402",
+  "source": "leetcode",
+  "frontend_id": "402",
+  "slug": "remove-k-digits",
+  "title": "Remove K Digits",
+  "difficulty": "Medium",
+  "acceptance_rate": 37.18969600496953,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/remove-k-digits/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:coupang",
+    "leetcode_company:deloitte",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:josh-technology",
+    "leetcode_company:microsoft",
+    "leetcode_company:phonepe",
+    "leetcode_company:snapchat",
+    "leetcode_company:snowflake",
+    "leetcode_company:tiktok",
+    "leetcode_company:walmart-labs",
+    "leetcode_company:zopsmart",
+    "leetcode_studyplan:google-spring-23-high-frequency",
+    "leetcode_studyplan:google-spring-23-high-frequency:google-spring-23-high-frequency-145-39sx",
+    "leetcode_topic:greedy",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:stack",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "company:amazon",
+    "company:bloomberg",
+    "company:coupang",
+    "company:deloitte",
+    "company:facebook",
+    "company:google",
+    "company:josh-technology",
+    "company:microsoft",
+    "company:phonepe",
+    "company:snapchat",
+    "company:snowflake",
+    "company:tiktok",
+    "company:walmart-labs",
+    "company:zopsmart",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:google-spring-23-high-frequency",
+    "study_plan_section:google-spring-23-high-frequency:google-spring-23-high-frequency-145-39sx",
+    "subset:neetcode:allNC",
+    "topic:greedy",
+    "topic:monotonic-stack",
+    "topic:stack",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Deloitte",
+      "slug": "deloitte"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Zopsmart",
+      "slug": "zopsmart"
+    },
+    {
+      "name": "Coupang",
+      "slug": "coupang"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Josh Technology",
+      "slug": "josh-technology"
+    },
+    {
+      "name": "Snap",
+      "slug": "snapchat"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Deloitte",
+        "slug": "deloitte",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zopsmart",
+        "slug": "zopsmart",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Coupang",
+        "slug": "coupang",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Josh Technology",
+        "slug": "josh-technology",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Snap",
+        "slug": "snapchat",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "google-spring-23-high-frequency",
+      "plan_name": "Google Spring' 23 High Frequency",
+      "section_slug": "google-spring-23-high-frequency-145-39sx",
+      "section_name": "February Interview Questions",
+      "path": [
+        "February Interview Questions"
+      ],
+      "order": 22,
+      "section_order": 4,
+      "problem_order": 2,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/google-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Stack"
+      ],
+      "order": 276,
+      "section_order": 3,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "remove-k-digits",
+      "leetcode_slug": "remove-k-digits",
+      "difficulty": "Medium",
+      "problem_order": 17
+    }
+  ]
+}

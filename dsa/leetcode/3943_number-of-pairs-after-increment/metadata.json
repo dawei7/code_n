@@ -1,0 +1,71 @@
+{
+  "challenge_id": "lc_3943",
+  "source": "leetcode",
+  "frontend_id": "3943",
+  "slug": "number-of-pairs-after-increment",
+  "title": "Number of Pairs After Increment",
+  "difficulty": "Hard",
+  "acceptance_rate": 20.737274157044766,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Divide and Conquer",
+      "slug": "divide-and-conquer"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-pairs-after-increment/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:counting",
+    "leetcode_topic:divide-and-conquer",
+    "leetcode_topic:hash-table"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:counting",
+    "topic:divide-and-conquer",
+    "topic:hash-table"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

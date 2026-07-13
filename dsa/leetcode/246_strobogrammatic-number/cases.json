@@ -1,0 +1,6 @@
+{"challenge_id":"lc_246","cases":[
+{"id":"sample-six-nine","name":"sample: rotating pair","kind":"sample","visible":true,"input":{"num":"69"},"expected":true,"tags":["sample","pair"]},
+{"id":"sample-eights","name":"sample: symmetric eights","kind":"sample","visible":true,"input":{"num":"88"},"expected":true,"tags":["sample","symmetric"]},
+{"id":"trial-invalid-digit","name":"invalid rotation digit","kind":"trial","visible":true,"input":{"num":"962"},"expected":false,"tags":["invalid-digit"]},
+{"id":"real-invalid-middle","name":"hidden: middle digit cannot rotate","kind":"real","visible":false,"input":{"num":"629"},"expected":false,"tags":["hidden","middle"]}
+]}

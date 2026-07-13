@@ -1,0 +1,6 @@
+{"challenge_id":"lc_212","cases":[
+{"id":"sample-board","name":"sample: two words found","kind":"sample","visible":true,"input":{"board":[["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]],"words":["oath","pea","eat","rain"]},"expected":["oath","eat"],"tags":["sample","trie"]},
+{"id":"trial-none","name":"no word can be formed","kind":"trial","visible":true,"input":{"board":[["a","b"],["c","d"]],"words":["ef","ace"]},"expected":[],"tags":["boundary"]},
+{"id":"trial-no-reuse","name":"one cell cannot be reused","kind":"trial","visible":true,"input":{"board":[["a","b"]],"words":["aba","ab"]},"expected":["ab"],"tags":["backtracking"]},
+{"id":"real-prefixes","name":"hidden: several word prefixes","kind":"real","visible":false,"input":{"board":[["a","b"],["c","d"]],"words":["a","ab","abc","abd","ac"]},"expected":["a","ab","abd","ac"],"tags":["hidden","prefix"]}
+]}

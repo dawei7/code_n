@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "324",
+  "frontend_id": "324",
+  "title_slug": "wiggle-sort-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064384828",
+  "verified_at": "2026-07-12T02:23:40.040734+00:00"
+}

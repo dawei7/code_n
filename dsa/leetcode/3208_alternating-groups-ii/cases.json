@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_3208",
+  "cases": [
+    {
+      "id": "sample-wrap-groups",
+      "name": "sample: alternating groups wrap around",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "circular"
+      ]
+    },
+    {
+      "id": "sample-no-groups",
+      "name": "sample: repeated colors break every long group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "colors": [
+          0,
+          1,
+          1,
+          0,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "breaks"
+      ]
+    },
+    {
+      "id": "trial-full-cycle",
+      "name": "trial: entire circular array alternates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "k": 6
+      },
+      "expected": 6,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-short-window",
+      "name": "trial: length three windows only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "window"
+      ]
+    },
+    {
+      "id": "real-mixed-cycle",
+      "name": "real: mixed cycle with several windows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "circular"
+      ]
+    }
+  ]
+}

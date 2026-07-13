@@ -1,0 +1,148 @@
+{
+  "challenge_id": "lc_2946",
+  "cases": [
+    {
+      "id": "sample-not-similar",
+      "name": "sample: one-step shift changes rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ],
+        "k": 1
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-period-two",
+      "name": "sample: period-two rows survive shift",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            5,
+            5,
+            5,
+            5
+          ],
+          [
+            6,
+            3,
+            6,
+            3
+          ]
+        ],
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-constant",
+      "name": "sample: constant matrix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-large-k-modulo",
+      "name": "trial: k larger than row length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ]
+        ],
+        "k": 14
+      },
+      "expected": true,
+      "tags": [
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-single-column",
+      "name": "real: single column always similar",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "k": 100
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

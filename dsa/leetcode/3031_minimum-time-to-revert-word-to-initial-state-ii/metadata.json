@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_3031",
+  "source": "leetcode",
+  "frontend_id": "3031",
+  "slug": "minimum-time-to-revert-word-to-initial-state-ii",
+  "title": "Minimum Time to Revert Word to Initial State II",
+  "difficulty": "Hard",
+  "acceptance_rate": 35.58717955245538,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Rolling Hash",
+      "slug": "rolling-hash"
+    },
+    {
+      "name": "String Matching",
+      "slug": "string-matching"
+    },
+    {
+      "name": "Hash Function",
+      "slug": "hash-function"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-time-to-revert-word-to-initial-state-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:sprinklr",
+    "leetcode_topic:hash-function",
+    "leetcode_topic:rolling-hash",
+    "leetcode_topic:string",
+    "leetcode_topic:string-matching"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:sprinklr",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:hash-function",
+    "topic:rolling-hash",
+    "topic:string",
+    "topic:string-matching"
+  ],
+  "company_tags": [
+    {
+      "name": "Sprinklr",
+      "slug": "sprinklr"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Sprinklr",
+        "slug": "sprinklr",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,89 @@
+{
+  "challenge_id": "lc_1575",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four routes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "locations": [
+          2,
+          3,
+          6,
+          8,
+          4
+        ],
+        "start": 1,
+        "finish": 3,
+        "fuel": 5
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: revisits allowed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "locations": [
+          4,
+          3,
+          1
+        ],
+        "start": 1,
+        "finish": 0,
+        "fuel": 6
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: not enough fuel",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "locations": [
+          5,
+          2,
+          1
+        ],
+        "start": 0,
+        "finish": 2,
+        "fuel": 3
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-three-cities",
+      "name": "hidden: simple three-city route count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "locations": [
+          1,
+          2,
+          3
+        ],
+        "start": 0,
+        "finish": 2,
+        "fuel": 4
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

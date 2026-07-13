@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_1299",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: replace by suffix maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          17,
+          18,
+          5,
+          4,
+          6,
+          1
+        ]
+      },
+      "expected": [
+        18,
+        6,
+        6,
+        6,
+        1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          400
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-increasing",
+      "name": "increasing array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        4,
+        4,
+        4,
+        -1
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-decreasing",
+      "name": "hidden: decreasing array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          9,
+          8,
+          7
+        ]
+      },
+      "expected": [
+        8,
+        7,
+        -1
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

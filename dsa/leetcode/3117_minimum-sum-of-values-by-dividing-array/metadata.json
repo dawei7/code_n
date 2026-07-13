@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_3117",
+  "source": "leetcode",
+  "frontend_id": "3117",
+  "slug": "minimum-sum-of-values-by-dividing-array",
+  "title": "Minimum Sum of Values by Dividing Array",
+  "difficulty": "Hard",
+  "acceptance_rate": 27.8480536104209,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Segment Tree",
+      "slug": "segment-tree"
+    },
+    {
+      "name": "Queue",
+      "slug": "queue"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-sum-of-values-by-dividing-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:queue",
+    "leetcode_topic:segment-tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search",
+    "topic:bit-manipulation",
+    "topic:dynamic-programming",
+    "topic:queue",
+    "topic:segment-tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

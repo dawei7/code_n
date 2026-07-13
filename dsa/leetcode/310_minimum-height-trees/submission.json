@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "310",
+  "frontend_id": "310",
+  "title_slug": "minimum-height-trees",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064368278",
+  "verified_at": "2026-07-12T01:27:49.764369+00:00"
+}

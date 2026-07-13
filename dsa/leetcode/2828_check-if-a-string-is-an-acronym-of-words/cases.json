@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_2828",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: acronym matches first letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "alice",
+          "bob",
+          "charlie"
+        ],
+        "s": "abc"
+      },
+      "tags": [
+        "sample",
+        "acronym"
+      ],
+      "expected": true
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: acronym length mismatch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "an",
+          "apple"
+        ],
+        "s": "a"
+      },
+      "tags": [
+        "sample",
+        "length"
+      ],
+      "expected": false
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: first letter mismatch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "never",
+          "gonna",
+          "give",
+          "up",
+          "on",
+          "you"
+        ],
+        "s": "ngguoy"
+      },
+      "tags": [
+        "sample",
+        "mismatch"
+      ],
+      "expected": true
+    },
+    {
+      "id": "trial-single-word",
+      "name": "trial: one word acronym",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "codex"
+        ],
+        "s": "c"
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": true
+    },
+    {
+      "id": "real-case-sensitive",
+      "name": "hidden: case-sensitive first letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "Open",
+          "AI",
+          "Tutor"
+        ],
+        "s": "OAT"
+      },
+      "tags": [
+        "hidden",
+        "case"
+      ],
+      "expected": true
+    }
+  ]
+}

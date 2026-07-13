@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_542",
+  "cases": [
+    {"id":"sample-center","name":"sample: one surrounded center cell","kind":"sample","visible":true,"input":{"mat":[[0,0,0],[0,1,0],[0,0,0]]},"expected":[[0,0,0],[0,1,0],[0,0,0]],"tags":["sample","center"]},
+    {"id":"sample-bottom","name":"sample: bottom middle is two steps away","kind":"sample","visible":true,"input":{"mat":[[0,0,0],[0,1,0],[1,1,1]]},"expected":[[0,0,0],[0,1,0],[1,2,1]],"tags":["sample","layers"]},
+    {"id":"sample-row","name":"sample: one-row distances","kind":"sample","visible":true,"input":{"mat":[[1,1,0,1]]},"expected":[[2,1,0,1]],"tags":["sample","row"]},
+    {"id":"trial-single","name":"trial: one zero cell","kind":"trial","visible":true,"input":{"mat":[[0]]},"expected":[[0]],"tags":["trial","singleton"]},
+    {"id":"trial-corners","name":"trial: multiple corner sources","kind":"trial","visible":true,"input":{"mat":[[0,1,1],[1,1,1],[1,1,0]]},"expected":[[0,1,2],[1,2,1],[2,1,0]],"tags":["trial","multiple-sources"]},
+    {"id":"hidden-column","name":"hidden: one-column distances","kind":"real","visible":false,"input":{"mat":[[1],[1],[0],[1],[1]]},"expected":[[2],[1],[0],[1],[2]],"tags":["hidden","column"]},
+    {"id":"hidden-rectangle","name":"hidden: rectangular grid with separated zeros","kind":"real","visible":false,"input":{"mat":[[1,0,1,1],[1,1,1,0]]},"expected":[[1,0,1,1],[2,1,1,0]],"tags":["hidden","rectangular"]}
+  ]
+}

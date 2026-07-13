@@ -1,0 +1,252 @@
+{
+  "challenge_id": "lc_312",
+  "source": "leetcode",
+  "frontend_id": "312",
+  "slug": "burst-balloons",
+  "title": "Burst Balloons",
+  "difficulty": "Hard",
+  "acceptance_rate": 63.872468369256374,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    }
+  ],
+  "url": "https://leetcode.com/problems/burst-balloons/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:paytm",
+    "leetcode_company:phonepe",
+    "leetcode_company:salesforce",
+    "leetcode_company:samsung",
+    "leetcode_company:snapchat",
+    "leetcode_company:tcs",
+    "leetcode_company:uber",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "neetcode:allNC",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "company:microsoft",
+    "company:paytm",
+    "company:phonepe",
+    "company:salesforce",
+    "company:samsung",
+    "company:snapchat",
+    "company:tcs",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:dynamic-programming"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Samsung",
+      "slug": "samsung"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Paytm",
+      "slug": "paytm"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "Snap",
+      "slug": "snapchat"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Samsung",
+        "slug": "samsung",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Paytm",
+        "slug": "paytm",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Snap",
+        "slug": "snapchat",
+        "timesEncountered": 0
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "2-D Dynamic Programming"
+      ],
+      "order": 119,
+      "section_order": 13,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "burst-balloons",
+      "leetcode_slug": "burst-balloons",
+      "difficulty": "Hard",
+      "problem_order": 9
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "2-D Dynamic Programming"
+      ],
+      "order": 204,
+      "section_order": 13,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "burst-balloons",
+      "leetcode_slug": "burst-balloons",
+      "difficulty": "Hard",
+      "problem_order": 14
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "2-D Dynamic Programming"
+      ],
+      "order": 740,
+      "section_order": 13,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "burst-balloons",
+      "leetcode_slug": "burst-balloons",
+      "difficulty": "Hard",
+      "problem_order": 29
+    }
+  ]
+}

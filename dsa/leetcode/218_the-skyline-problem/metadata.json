@@ -1,0 +1,242 @@
+{
+  "challenge_id": "lc_218",
+  "source": "leetcode",
+  "frontend_id": "218",
+  "slug": "the-skyline-problem",
+  "title": "The Skyline Problem",
+  "difficulty": "Hard",
+  "acceptance_rate": 45.54594252755332,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Divide and Conquer",
+      "slug": "divide-and-conquer"
+    },
+    {
+      "name": "Binary Indexed Tree",
+      "slug": "binary-indexed-tree"
+    },
+    {
+      "name": "Segment Tree",
+      "slug": "segment-tree"
+    },
+    {
+      "name": "Sweep Line",
+      "slug": "line-sweep"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/the-skyline-problem/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:siemens",
+    "leetcode_company:twitter",
+    "leetcode_company:uber",
+    "leetcode_company:yelp",
+    "leetcode_company:zomato",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-indexed-tree",
+    "leetcode_topic:divide-and-conquer",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:line-sweep",
+    "leetcode_topic:ordered-set",
+    "leetcode_topic:segment-tree",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:microsoft",
+    "company:siemens",
+    "company:twitter",
+    "company:uber",
+    "company:yelp",
+    "company:zomato",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-indexed-tree",
+    "topic:divide-and-conquer",
+    "topic:heap-priority-queue",
+    "topic:line-sweep",
+    "topic:ordered-set",
+    "topic:segment-tree",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Zomato",
+      "slug": "zomato"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Siemens",
+      "slug": "siemens"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Yelp",
+      "slug": "yelp"
+    },
+    {
+      "name": "X",
+      "slug": "twitter"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Siemens",
+        "slug": "siemens",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Yelp",
+        "slug": "yelp",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "X",
+        "slug": "twitter",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zomato",
+        "slug": "zomato",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

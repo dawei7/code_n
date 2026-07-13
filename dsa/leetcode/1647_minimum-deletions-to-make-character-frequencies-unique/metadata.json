@@ -1,0 +1,141 @@
+{
+  "challenge_id": "lc_1647",
+  "source": "leetcode",
+  "frontend_id": "1647",
+  "slug": "minimum-deletions-to-make-character-frequencies-unique",
+  "title": "Minimum Deletions to Make Character Frequencies Unique",
+  "difficulty": "Medium",
+  "acceptance_rate": 61.51559305066095,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:american-express",
+    "leetcode_company:general-motors",
+    "leetcode_company:intuit",
+    "leetcode_company:microsoft",
+    "leetcode_topic:greedy",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:sorting",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:american-express",
+    "company:general-motors",
+    "company:intuit",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:greedy",
+    "topic:hash-table",
+    "topic:sorting",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "General Motors",
+      "slug": "general-motors"
+    },
+    {
+      "name": "Intuit",
+      "slug": "intuit"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "American Express",
+      "slug": "american-express"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Intuit",
+        "slug": "intuit",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "American Express",
+        "slug": "american-express",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "General Motors",
+        "slug": "general-motors",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Greedy"
+      ],
+      "order": 801,
+      "section_order": 14,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "minimum-deletions-to-make-character-frequencies-unique",
+      "leetcode_slug": "minimum-deletions-to-make-character-frequencies-unique",
+      "difficulty": "Medium",
+      "problem_order": 40
+    }
+  ]
+}

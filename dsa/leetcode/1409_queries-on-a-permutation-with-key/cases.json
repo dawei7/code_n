@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_1409",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated front move",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          3,
+          1,
+          2,
+          1
+        ],
+        "m": 5
+      },
+      "expected": [
+        2,
+        1,
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "fenwick"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated same value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          4,
+          1,
+          2,
+          2
+        ],
+        "m": 4
+      },
+      "expected": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: larger permutation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          7,
+          5,
+          5,
+          8,
+          3
+        ],
+        "m": 8
+      },
+      "expected": [
+        6,
+        5,
+        0,
+        7,
+        5
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-alternating-front",
+      "name": "hidden: alternating values already near front",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queries": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "m": 3
+      },
+      "expected": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

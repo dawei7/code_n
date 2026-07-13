@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1394",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: lucky two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: largest lucky value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no lucky integer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-single-non-lucky",
+      "name": "hidden: single non-lucky value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          5
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

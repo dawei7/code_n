@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_2341",
+  "cases": [
+    {
+      "id": "benchmark-large-groups",
+      "name": "benchmark: several groups with leftovers",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          5,
+          5,
+          6
+        ]
+      },
+      "expected": [
+        3,
+        1
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

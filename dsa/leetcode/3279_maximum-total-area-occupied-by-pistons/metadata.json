@@ -1,0 +1,83 @@
+{
+  "challenge_id": "lc_3279",
+  "source": "leetcode",
+  "frontend_id": "3279",
+  "slug": "maximum-total-area-occupied-by-pistons",
+  "title": "Maximum Total Area Occupied by Pistons",
+  "difficulty": "Hard",
+  "acceptance_rate": 40.60836501901141,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-total-area-occupied-by-pistons/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:counting",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:simulation",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:counting",
+    "topic:hash-table",
+    "topic:prefix-sum",
+    "topic:simulation",
+    "topic:string"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

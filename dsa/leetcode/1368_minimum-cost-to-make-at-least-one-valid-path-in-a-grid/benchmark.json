@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_1368",
+  "cases": [
+    {
+      "id": "benchmark-left-arrows",
+      "name": "benchmark: all left arrows",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

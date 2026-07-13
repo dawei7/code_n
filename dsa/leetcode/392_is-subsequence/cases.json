@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_392",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: characters appear in order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "ahbgdc"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "true"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: missing middle character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "axc",
+        "t": "ahbgdc"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "false"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: empty candidate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "",
+        "t": "ahbgdc"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-equal",
+      "name": "trial: equal strings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "algorithm",
+        "t": "algorithm"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "equal"
+      ]
+    },
+    {
+      "id": "trial-empty-source",
+      "name": "trial: nonempty candidate and empty source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": ""
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "empty-source"
+      ]
+    },
+    {
+      "id": "hidden-repeated-true",
+      "name": "hidden: repeated characters use separate positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaa",
+        "t": "baacada"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-repeated-false",
+      "name": "hidden: insufficient repeated positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaa",
+        "t": "baacada"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "hidden-order",
+      "name": "hidden: all characters exist in wrong order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ace",
+        "t": "aec"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "order"
+      ]
+    }
+  ]
+}

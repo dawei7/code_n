@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_126",
+  "cases": [
+    {"id": "sample-two-paths", "name": "sample: two shortest ladders", "kind": "sample", "visible": true, "input": {"beginWord": "hit", "endWord": "cog", "wordList": ["hot", "dot", "dog", "lot", "log", "cog"]}, "expected": [["hit", "hot", "dot", "dog", "cog"], ["hit", "hot", "lot", "log", "cog"]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "multiple"]},
+    {"id": "sample-missing-end", "name": "sample: end word unavailable", "kind": "sample", "visible": true, "input": {"beginWord": "hit", "endWord": "cog", "wordList": ["hot", "dot", "dog", "lot", "log"]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["sample", "impossible"]},
+    {"id": "sample-direct", "name": "sample: direct transformation", "kind": "sample", "visible": true, "input": {"beginWord": "a", "endWord": "c", "wordList": ["a", "b", "c"]}, "expected": [["a", "c"]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "boundary"]},
+    {"id": "trial-three-paths", "name": "three converging shortest ladders", "kind": "trial", "visible": true, "input": {"beginWord": "red", "endWord": "tax", "wordList": ["ted", "tex", "red", "tax", "tad", "den", "rex", "pee"]}, "expected": [["red", "ted", "tad", "tax"], ["red", "ted", "tex", "tax"], ["red", "rex", "tex", "tax"]], "validator": {"kind": "unordered_list"}, "tags": ["multiple", "convergence"]},
+    {"id": "real-disconnected", "name": "hidden: disconnected end", "kind": "real", "visible": false, "input": {"beginWord": "abc", "endWord": "xyz", "wordList": ["xbc", "xya", "ayz", "xyz"]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "disconnected"]}
+  ]
+}

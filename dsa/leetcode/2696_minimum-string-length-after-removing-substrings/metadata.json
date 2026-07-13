@@ -1,0 +1,148 @@
+{
+  "challenge_id": "lc_2696",
+  "source": "leetcode",
+  "frontend_id": "2696",
+  "slug": "minimum-string-length-after-removing-substrings",
+  "title": "Minimum String Length After Removing Substrings",
+  "difficulty": "Easy",
+  "acceptance_rate": 77.20163457913236,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-string-length-after-removing-substrings/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bolt",
+    "leetcode_company:google",
+    "leetcode_company:ibm",
+    "leetcode_company:wells-fargo",
+    "leetcode_topic:simulation",
+    "leetcode_topic:stack",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bolt",
+    "company:google",
+    "company:ibm",
+    "company:wells-fargo",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:simulation",
+    "topic:stack",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Wells Fargo",
+      "slug": "wells-fargo"
+    },
+    {
+      "name": "Bolt",
+      "slug": "bolt"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Wells Fargo",
+        "slug": "wells-fargo",
+        "timesEncountered": 3
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Bolt",
+        "slug": "bolt",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Stack"
+      ],
+      "order": 283,
+      "section_order": 3,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "minimum-string-length-after-removing-substrings",
+      "leetcode_slug": "minimum-string-length-after-removing-substrings",
+      "difficulty": "Easy",
+      "problem_order": 24
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "challenge_id": "lc_1055",
+  "source": "leetcode",
+  "frontend_id": "1055",
+  "slug": "shortest-way-to-form-string",
+  "title": "Shortest Way to Form String",
+  "difficulty": "Medium",
+  "acceptance_rate": 61.71162811009094,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/shortest-way-to-form-string/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:pinterest",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-61-sl7s",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:greedy",
+    "leetcode_topic:string",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:facebook",
+    "company:google",
+    "company:pinterest",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan_section:premium-algo-100:premium-algo-100-61-sl7s",
+    "subset:neetcode:allNC",
+    "topic:binary-search",
+    "topic:greedy",
+    "topic:string",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Pinterest",
+      "slug": "pinterest"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Pinterest",
+        "slug": "pinterest",
+        "timesEncountered": 5
+      }
+    ],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-61-sl7s",
+      "section_name": "Array / String",
+      "path": [
+        "Array / String"
+      ],
+      "order": 7,
+      "section_order": 1,
+      "problem_order": 7,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 28,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "shortest-way-to-form-string",
+      "leetcode_slug": "shortest-way-to-form-string",
+      "difficulty": "Medium",
+      "problem_order": 28
+    }
+  ]
+}

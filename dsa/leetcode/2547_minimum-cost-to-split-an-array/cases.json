@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_2547",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated values make trimming expensive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          3,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: lower base cost favors more splits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: higher base cost favors fewer splits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "k": 5
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "trial: one distinct subarray has only the base cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-element",
+      "name": "hidden: one element costs one partition",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 5
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

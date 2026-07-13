@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "762",
+  "frontend_id": "760",
+  "title_slug": "find-anagram-mappings",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.anagramMappings",
+  "verified_submission_id": "2065993222",
+  "verified_at": "2026-07-13T10:16:23.318159+00:00"
+}

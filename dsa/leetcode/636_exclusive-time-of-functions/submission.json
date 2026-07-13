@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "636",
+  "frontend_id": "636",
+  "title_slug": "exclusive-time-of-functions",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065500304",
+  "verified_at": "2026-07-12T23:56:10.019672+00:00"
+}

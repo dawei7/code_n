@@ -1,0 +1,6 @@
+{"challenge_id":"lc_189","cases":[
+{"id":"sample-seven","name":"sample: rotate seven values","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5,6,7],"k":3},"expected":[5,6,7,1,2,3,4],"tags":["sample","in-place"]},
+{"id":"sample-negative","name":"sample: rotate mixed values","kind":"sample","visible":true,"input":{"nums":[-1,-100,3,99],"k":2},"expected":[3,99,-1,-100],"tags":["sample"]},
+{"id":"trial-full-cycles","name":"multiple full rotations","kind":"trial","visible":true,"input":{"nums":[1,2],"k":4},"expected":[1,2],"tags":["boundary"]},
+{"id":"real-large-k","name":"hidden: rotation exceeds length","kind":"real","visible":false,"input":{"nums":[0,1,2,3,4],"k":12},"expected":[3,4,0,1,2],"tags":["hidden","modulo"]}
+]}

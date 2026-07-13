@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "177",
+  "frontend_id": "177",
+  "title_slug": "nth-highest-salary",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2064192247",
+  "verified_at": "2026-07-11T18:23:52.400871+00:00"
+}

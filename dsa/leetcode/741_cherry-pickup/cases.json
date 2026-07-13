@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_741",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one viable round trip", "kind": "sample", "visible": true, "input": {"grid": [[0,1,-1],[1,0,-1],[1,1,1]]}, "expected": 5, "tags": ["sample", "thorns"]},
+    {"id": "sample-2", "name": "sample: destination is unreachable", "kind": "sample", "visible": true, "input": {"grid": [[1,1,-1],[1,-1,1],[-1,1,1]]}, "expected": 0, "tags": ["sample", "unreachable"]},
+    {"id": "sample-3", "name": "sample: full three-by-three grid", "kind": "sample", "visible": true, "input": {"grid": [[1,1,1],[1,1,1],[1,1,1]]}, "expected": 8, "tags": ["sample", "full-grid"]},
+    {"id": "trial-1", "name": "trial: one cherry cell", "kind": "trial", "visible": true, "input": {"grid": [[1]]}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: boundary paths around center thorn", "kind": "trial", "visible": true, "input": {"grid": [[1,1,1],[1,-1,1],[1,1,1]]}, "expected": 8, "tags": ["trial", "boundary-paths"]},
+    {"id": "hidden-1", "name": "hidden: zero-valued valid path", "kind": "real", "visible": false, "input": {"grid": [[0,0],[0,0]]}, "expected": 0, "tags": ["hidden", "empty-cells"]},
+    {"id": "hidden-2", "name": "hidden: narrow shared corridor", "kind": "real", "visible": false, "input": {"grid": [[1,-1,-1],[1,1,-1],[-1,1,1]]}, "expected": 5, "tags": ["hidden", "shared-path"]},
+    {"id": "hidden-3", "name": "hidden: asymmetric cherries and obstacles", "kind": "real", "visible": false, "input": {"grid": [[0,1,1,0],[1,-1,1,1],[1,1,-1,1],[0,1,1,1]]}, "expected": 11, "tags": ["hidden", "asymmetric"]}
+  ]
+}

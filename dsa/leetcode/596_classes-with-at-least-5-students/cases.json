@@ -1,0 +1,421 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_596",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: exactly five students",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Courses": [
+            {
+              "student": "s1",
+              "class": "Math"
+            },
+            {
+              "student": "s2",
+              "class": "Math"
+            },
+            {
+              "student": "s3",
+              "class": "Math"
+            },
+            {
+              "student": "s4",
+              "class": "Math"
+            },
+            {
+              "student": "s5",
+              "class": "Math"
+            },
+            {
+              "student": "s1",
+              "class": "Art"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "class"
+        ],
+        "rows": [
+          [
+            "Math"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four students do not qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Courses": [
+            {
+              "student": "a",
+              "class": "Art"
+            },
+            {
+              "student": "b",
+              "class": "Art"
+            },
+            {
+              "student": "c",
+              "class": "Art"
+            },
+            {
+              "student": "d",
+              "class": "Art"
+            },
+            {
+              "student": "z",
+              "class": "Music"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "class"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "sample",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one student may attend two classes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Courses": [
+            {
+              "student": "x",
+              "class": "Physics"
+            },
+            {
+              "student": "a",
+              "class": "Physics"
+            },
+            {
+              "student": "b",
+              "class": "Physics"
+            },
+            {
+              "student": "c",
+              "class": "Physics"
+            },
+            {
+              "student": "d",
+              "class": "Physics"
+            },
+            {
+              "student": "x",
+              "class": "Music"
+            },
+            {
+              "student": "e",
+              "class": "Music"
+            },
+            {
+              "student": "f",
+              "class": "Music"
+            },
+            {
+              "student": "g",
+              "class": "Music"
+            },
+            {
+              "student": "h",
+              "class": "Music"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "class"
+        ],
+        "rows": [
+          [
+            "Music"
+          ],
+          [
+            "Physics"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one class qualifies and one misses",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Courses": [
+            {
+              "student": "1",
+              "class": "A"
+            },
+            {
+              "student": "2",
+              "class": "A"
+            },
+            {
+              "student": "3",
+              "class": "A"
+            },
+            {
+              "student": "4",
+              "class": "A"
+            },
+            {
+              "student": "5",
+              "class": "A"
+            },
+            {
+              "student": "1",
+              "class": "B"
+            },
+            {
+              "student": "2",
+              "class": "B"
+            },
+            {
+              "student": "3",
+              "class": "B"
+            },
+            {
+              "student": "4",
+              "class": "B"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "class"
+        ],
+        "rows": [
+          [
+            "A"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: two qualifying classes sort by name",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Courses": [
+            {
+              "student": "u1",
+              "class": "Z"
+            },
+            {
+              "student": "u2",
+              "class": "Z"
+            },
+            {
+              "student": "u3",
+              "class": "Z"
+            },
+            {
+              "student": "u4",
+              "class": "Z"
+            },
+            {
+              "student": "u5",
+              "class": "Z"
+            },
+            {
+              "student": "a1",
+              "class": "Alpha"
+            },
+            {
+              "student": "a2",
+              "class": "Alpha"
+            },
+            {
+              "student": "a3",
+              "class": "Alpha"
+            },
+            {
+              "student": "a4",
+              "class": "Alpha"
+            },
+            {
+              "student": "a5",
+              "class": "Alpha"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "class"
+        ],
+        "rows": [
+          [
+            "Alpha"
+          ],
+          [
+            "Z"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: more than five students",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Courses": [
+            {
+              "student": "1",
+              "class": "Solo"
+            },
+            {
+              "student": "2",
+              "class": "Solo"
+            },
+            {
+              "student": "3",
+              "class": "Solo"
+            },
+            {
+              "student": "4",
+              "class": "Solo"
+            },
+            {
+              "student": "5",
+              "class": "Solo"
+            },
+            {
+              "student": "6",
+              "class": "Solo"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "class"
+        ],
+        "rows": [
+          [
+            "Solo"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: multiple qualifying and nonqualifying classes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Courses": [
+            {
+              "student": "s1",
+              "class": "C1"
+            },
+            {
+              "student": "s2",
+              "class": "C1"
+            },
+            {
+              "student": "s3",
+              "class": "C1"
+            },
+            {
+              "student": "s4",
+              "class": "C1"
+            },
+            {
+              "student": "s5",
+              "class": "C1"
+            },
+            {
+              "student": "s1",
+              "class": "C2"
+            },
+            {
+              "student": "s2",
+              "class": "C2"
+            },
+            {
+              "student": "s3",
+              "class": "C2"
+            },
+            {
+              "student": "s4",
+              "class": "C2"
+            },
+            {
+              "student": "s5",
+              "class": "C2"
+            },
+            {
+              "student": "s6",
+              "class": "C3"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "class"
+        ],
+        "rows": [
+          [
+            "C1"
+          ],
+          [
+            "C2"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "aggregation"
+      ]
+    }
+  ]
+}

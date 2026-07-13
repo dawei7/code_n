@@ -1,0 +1,93 @@
+{
+  "challenge_id": "lc_2496",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: alphanumeric strings use length",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "strs": [
+          "alic3",
+          "bob",
+          "3",
+          "4",
+          "00000"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "strings"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: numeric strings with leading zeroes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "strs": [
+          "1",
+          "01",
+          "001",
+          "0001"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: longest alphabetic string wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "strs": [
+          "abcde",
+          "abc",
+          "ab",
+          "a"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-large-numeric-string",
+      "name": "trial: numeric value beats string length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "000",
+          "00a",
+          "1234"
+        ]
+      },
+      "expected": 1234,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-letter",
+      "name": "hidden: one nonnumeric string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "strs": [
+          "a"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

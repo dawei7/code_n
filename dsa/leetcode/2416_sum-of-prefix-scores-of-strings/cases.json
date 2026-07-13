@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_2416",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: shared abc prefixes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "ab",
+          "bc",
+          "b"
+        ]
+      },
+      "expected": [
+        5,
+        4,
+        3,
+        2
+      ],
+      "tags": [
+        "sample",
+        "trie"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd"
+        ]
+      },
+      "expected": [
+        4
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: disjoint first letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "z",
+          "x",
+          "y"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-nested-prefixes",
+      "name": "trial: every word is a prefix of a later word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "aa",
+          "aaa"
+        ]
+      },
+      "expected": [
+        3,
+        5,
+        6
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-two-disjoint-words",
+      "name": "hidden: two disjoint three-letter words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "dog",
+          "cat"
+        ]
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_2474",
+  "source": "leetcode",
+  "frontend_id": "2474",
+  "slug": "customers-with-strictly-increasing-purchases",
+  "title": "Customers With Strictly Increasing Purchases",
+  "difficulty": "Hard",
+  "acceptance_rate": 50.36454957874271,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/customers-with-strictly-increasing-purchases/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:amazon",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:amazon",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

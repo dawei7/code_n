@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "646",
+  "frontend_id": "646",
+  "title_slug": "maximum-length-of-pair-chain",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065511989",
+  "verified_at": "2026-07-13T00:35:33.612207+00:00"
+}

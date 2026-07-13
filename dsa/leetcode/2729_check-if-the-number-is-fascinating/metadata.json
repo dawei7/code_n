@@ -1,0 +1,59 @@
+{
+  "challenge_id": "lc_2729",
+  "source": "leetcode",
+  "frontend_id": "2729",
+  "slug": "check-if-the-number-is-fascinating",
+  "title": "Check if The Number is Fascinating",
+  "difficulty": "Easy",
+  "acceptance_rate": 53.260131498319005,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    }
+  ],
+  "url": "https://leetcode.com/problems/check-if-the-number-is-fascinating/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:hash-table",
+    "topic:math"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

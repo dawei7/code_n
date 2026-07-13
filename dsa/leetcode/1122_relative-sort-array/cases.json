@@ -1,0 +1,143 @@
+{
+  "challenge_id": "lc_1122",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: priority order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr1": [
+          2,
+          3,
+          1,
+          3,
+          2,
+          4,
+          6,
+          7,
+          9,
+          2,
+          19
+        ],
+        "arr2": [
+          2,
+          1,
+          4,
+          3,
+          9,
+          6
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        1,
+        4,
+        3,
+        3,
+        9,
+        6,
+        7,
+        19
+      ],
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: leftover sorted values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr1": [
+          28,
+          6,
+          22,
+          8,
+          44,
+          17
+        ],
+        "arr2": [
+          22,
+          28,
+          8,
+          6
+        ]
+      },
+      "expected": [
+        22,
+        28,
+        8,
+        6,
+        17,
+        44
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-prioritized",
+      "name": "all values are prioritized",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr1": [
+          1,
+          2,
+          3
+        ],
+        "arr2": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-leftovers",
+      "name": "hidden: mixed leftovers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr1": [
+          5,
+          3,
+          5,
+          2,
+          1,
+          4,
+          2
+        ],
+        "arr2": [
+          2,
+          5
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        5,
+        5,
+        1,
+        3,
+        4
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "challenge_id": "lc_441",
+  "source": "leetcode",
+  "frontend_id": "441",
+  "slug": "arranging-coins",
+  "title": "Arranging Coins",
+  "difficulty": "Easy",
+  "acceptance_rate": 48.375960341176764,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/arranging-coins/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:facebook",
+    "leetcode_company:godaddy",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_studyplan:binary-search",
+    "leetcode_studyplan:binary-search:binary-search-116-typ3",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:math",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:facebook",
+    "company:godaddy",
+    "company:google",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:binary-search",
+    "study_plan_section:binary-search:binary-search-116-typ3",
+    "subset:neetcode:allNC",
+    "topic:binary-search",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "GoDaddy",
+      "slug": "godaddy"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "GoDaddy",
+        "slug": "godaddy",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "binary-search",
+      "plan_name": "Binary Search",
+      "section_slug": "binary-search-116-typ3",
+      "section_name": "Math",
+      "path": [
+        "Math"
+      ],
+      "order": 19,
+      "section_order": 4,
+      "problem_order": 3,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/binary-search/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Binary Search"
+      ],
+      "order": 301,
+      "section_order": 4,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "arranging-coins",
+      "leetcode_slug": "arranging-coins",
+      "difficulty": "Easy",
+      "problem_order": 3
+    }
+  ]
+}

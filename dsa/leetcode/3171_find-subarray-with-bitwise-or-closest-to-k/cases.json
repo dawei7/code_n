@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_3171",
+  "cases": [
+    {
+      "id": "sample-exact-contiguous-or",
+      "name": "sample: contiguous subarray has exact OR",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "k": 6
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "exact"
+      ]
+    },
+    {
+      "id": "sample-nearest-high-target",
+      "name": "sample: high target chooses maximum available OR",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "k": 100
+      },
+      "expected": 85,
+      "tags": [
+        "sample",
+        "high-target"
+      ]
+    },
+    {
+      "id": "trial-single-element-best",
+      "name": "trial: single element is closest",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          10,
+          2
+        ],
+        "k": 9
+      },
+      "expected": 1,
+      "tags": [
+        "or"
+      ]
+    },
+    {
+      "id": "trial-zero-target",
+      "name": "trial: target zero with positive values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          3,
+          12
+        ],
+        "k": 0
+      },
+      "expected": 3,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-many-overlapping-ors",
+      "name": "real: overlapping OR states collapse quickly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          5,
+          6,
+          9,
+          12,
+          10,
+          7
+        ],
+        "k": 14
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "bitset"
+      ]
+    }
+  ]
+}

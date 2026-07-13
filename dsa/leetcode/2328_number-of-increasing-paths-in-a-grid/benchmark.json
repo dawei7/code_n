@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_2328",
+  "cases": [
+    {
+      "id": "benchmark-serpentine-grid",
+      "name": "benchmark: many increasing turns",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            6,
+            5,
+            4
+          ]
+        ]
+      },
+      "expected": 26,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

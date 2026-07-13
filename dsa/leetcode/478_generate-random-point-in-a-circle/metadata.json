@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_478",
+  "source": "leetcode",
+  "frontend_id": "478",
+  "slug": "generate-random-point-in-a-circle",
+  "title": "Generate Random Point in a Circle",
+  "difficulty": "Medium",
+  "acceptance_rate": 43.184245970925645,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Rejection Sampling",
+      "slug": "rejection-sampling"
+    },
+    {
+      "name": "Randomized",
+      "slug": "randomized"
+    }
+  ],
+  "url": "https://leetcode.com/problems/generate-random-point-in-a-circle/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:leap-motion",
+    "leetcode_topic:geometry",
+    "leetcode_topic:math",
+    "leetcode_topic:randomized",
+    "leetcode_topic:rejection-sampling"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:leap-motion",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:geometry",
+    "topic:math",
+    "topic:randomized",
+    "topic:rejection-sampling"
+  ],
+  "company_tags": [
+    {
+      "name": "Ultraleap",
+      "slug": "leap-motion"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Ultraleap",
+        "slug": "leap-motion",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,196 @@
+{
+  "challenge_id": "lc_1574",
+  "source": "leetcode",
+  "frontend_id": "1574",
+  "slug": "shortest-subarray-to-be-removed-to-make-array-sorted",
+  "title": "Shortest Subarray to be Removed to Make Array Sorted",
+  "difficulty": "Medium",
+  "acceptance_rate": 51.35010576320859,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:de-shaw",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:razorpay",
+    "leetcode_company:tekion",
+    "leetcode_company:tiktok",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:stack",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:de-shaw",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:razorpay",
+    "company:tekion",
+    "company:tiktok",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:binary-search",
+    "topic:monotonic-stack",
+    "topic:stack",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Tekion",
+      "slug": "tekion"
+    },
+    {
+      "name": "razorpay",
+      "slug": "razorpay"
+    },
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "razorpay",
+        "slug": "razorpay",
+        "timesEncountered": 4
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Tekion",
+        "slug": "tekion",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Greedy"
+      ],
+      "order": 815,
+      "section_order": 14,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "shortest-subarray-to-be-removed-to-make-array-sorted",
+      "leetcode_slug": "shortest-subarray-to-be-removed-to-make-array-sorted",
+      "difficulty": "Medium",
+      "problem_order": 54
+    }
+  ]
+}

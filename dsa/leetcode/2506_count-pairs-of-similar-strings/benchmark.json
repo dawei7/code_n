@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_2506",
+  "cases": [
+    {
+      "id": "benchmark-two-mask-groups",
+      "name": "benchmark: two groups of similar words",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "abc",
+          "bca",
+          "cab",
+          "abcd",
+          "bcad"
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

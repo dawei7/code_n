@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_1219",
+  "source": "leetcode",
+  "frontend_id": "1219",
+  "slug": "path-with-maximum-gold",
+  "title": "Path with Maximum Gold",
+  "difficulty": "Medium",
+  "acceptance_rate": 68.50530284428885,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/path-with-maximum-gold/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:salesforce",
+    "leetcode_topic:array",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:matrix",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:salesforce",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:backtracking",
+    "topic:matrix"
+  ],
+  "company_tags": [
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Graphs"
+      ],
+      "order": 601,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "path-with-maximum-gold",
+      "leetcode_slug": "path-with-maximum-gold",
+      "difficulty": "Medium",
+      "problem_order": 46
+    }
+  ]
+}

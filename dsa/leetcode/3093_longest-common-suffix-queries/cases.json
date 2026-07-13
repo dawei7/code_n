@@ -1,0 +1,132 @@
+{
+  "challenge_id": "lc_3093",
+  "cases": [
+    {
+      "id": "sample-bcd-suffix",
+      "name": "sample: longest suffix with shortest-container tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "wordsContainer": [
+          "abcd",
+          "bcd",
+          "xbcd"
+        ],
+        "wordsQuery": [
+          "cd",
+          "bcd",
+          "xyz"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-suffix-fallback",
+      "name": "sample: fallback to shortest container at root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "wordsContainer": [
+          "abcdef",
+          "bcd",
+          "xyz"
+        ],
+        "wordsQuery": [
+          "xyz",
+          "abc"
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-index-tie",
+      "name": "trial: equal length and suffix uses smallest index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "wordsContainer": [
+          "aa",
+          "ba",
+          "ca"
+        ],
+        "wordsQuery": [
+          "za",
+          "qa"
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-shortest-length-tie",
+      "name": "trial: shorter container wins for same suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "wordsContainer": [
+          "testing",
+          "ing",
+          "sing"
+        ],
+        "wordsQuery": [
+          "ring",
+          "thing"
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-varied-suffixes",
+      "name": "real: varied common suffix depths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "wordsContainer": [
+          "container",
+          "trainer",
+          "inner",
+          "winner",
+          "tone"
+        ],
+        "wordsQuery": [
+          "dinner",
+          "stone",
+          "plain"
+        ]
+      },
+      "expected": [
+        2,
+        4,
+        4
+      ],
+      "tags": [
+        "real",
+        "trie"
+      ]
+    }
+  ]
+}

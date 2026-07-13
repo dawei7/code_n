@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1835",
+  "source": "leetcode",
+  "frontend_id": "1835",
+  "slug": "find-xor-sum-of-all-pairs-bitwise-and",
+  "title": "Find XOR Sum of All Pairs Bitwise AND",
+  "difficulty": "Hard",
+  "acceptance_rate": 62.73965691220988,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-xor-sum-of-all-pairs-bitwise-and/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:mobisy",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:mobisy",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Mobisy",
+      "slug": "mobisy"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Mobisy",
+        "slug": "mobisy",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

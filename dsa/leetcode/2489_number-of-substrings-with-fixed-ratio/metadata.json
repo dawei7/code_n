@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_2489",
+  "source": "leetcode",
+  "frontend_id": "2489",
+  "slug": "number-of-substrings-with-fixed-ratio",
+  "title": "Number of Substrings With Fixed Ratio",
+  "difficulty": "Medium",
+  "acceptance_rate": 57.17517776341305,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-substrings-with-fixed-ratio/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:intuit",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:math",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:intuit",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:hash-table",
+    "topic:math",
+    "topic:prefix-sum",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Intuit",
+      "slug": "intuit"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Intuit",
+        "slug": "intuit",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

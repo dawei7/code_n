@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "408",
+  "frontend_id": "408",
+  "title_slug": "valid-word-abbreviation",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064730826",
+  "verified_at": "2026-07-12T07:32:51.867131+00:00"
+}

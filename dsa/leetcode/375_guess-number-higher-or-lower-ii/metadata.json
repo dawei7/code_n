@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_375",
+  "source": "leetcode",
+  "frontend_id": "375",
+  "slug": "guess-number-higher-or-lower-ii",
+  "title": "Guess Number Higher or Lower II",
+  "difficulty": "Medium",
+  "acceptance_rate": 53.02130937431223,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Game Theory",
+      "slug": "game-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/guess-number-higher-or-lower-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:bloomberg",
+    "leetcode_company:google",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:game-theory",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:bloomberg",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:dynamic-programming",
+    "topic:game-theory",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

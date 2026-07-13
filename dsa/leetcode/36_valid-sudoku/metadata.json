@@ -1,0 +1,412 @@
+{
+  "challenge_id": "lc_36",
+  "source": "leetcode",
+  "frontend_id": "36",
+  "slug": "valid-sudoku",
+  "title": "Valid Sudoku",
+  "difficulty": "Medium",
+  "acceptance_rate": 64.72703827104543,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/valid-sudoku/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:confluent",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:karat",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:paypal",
+    "leetcode_company:quince",
+    "leetcode_company:riot-games",
+    "leetcode_company:samsara",
+    "leetcode_company:snapchat",
+    "leetcode_company:uber",
+    "leetcode_company:upstart",
+    "leetcode_company:verkada",
+    "leetcode_company:walmart-labs",
+    "leetcode_company:zoho",
+    "leetcode_studyplan:apple-spring-23-high-frequency",
+    "leetcode_studyplan:apple-spring-23-high-frequency:apple-spring-23-high-frequency-151-8z9e",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-4-ukui",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:matrix",
+    "neetcode:allNC",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:confluent",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:karat",
+    "company:microsoft",
+    "company:oracle",
+    "company:paypal",
+    "company:quince",
+    "company:riot-games",
+    "company:samsara",
+    "company:snapchat",
+    "company:uber",
+    "company:upstart",
+    "company:verkada",
+    "company:walmart-labs",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:apple-spring-23-high-frequency",
+    "study_plan:top-interview-150",
+    "study_plan_section:apple-spring-23-high-frequency:apple-spring-23-high-frequency-151-8z9e",
+    "study_plan_section:top-interview-150:top-interview-150-4-ukui",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:hash-table",
+    "topic:matrix"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Confluent",
+      "slug": "confluent"
+    },
+    {
+      "name": "Upstart",
+      "slug": "upstart"
+    },
+    {
+      "name": "Quince",
+      "slug": "quince"
+    },
+    {
+      "name": "Samsara",
+      "slug": "samsara"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Verkada",
+      "slug": "verkada"
+    },
+    {
+      "name": "Karat",
+      "slug": "karat"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "Riot Games",
+      "slug": "riot-games"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Snap",
+      "slug": "snapchat"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Confluent",
+        "slug": "confluent",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Upstart",
+        "slug": "upstart",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Quince",
+        "slug": "quince",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Riot Games",
+        "slug": "riot-games",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Snap",
+        "slug": "snapchat",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Samsara",
+        "slug": "samsara",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Verkada",
+        "slug": "verkada",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Karat",
+        "slug": "karat",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-4-ukui",
+      "section_name": "Matrix",
+      "path": [
+        "Matrix"
+      ],
+      "order": 34,
+      "section_order": 4,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "apple-spring-23-high-frequency",
+      "plan_name": "Apple Spring '23 High Frequency",
+      "section_slug": "apple-spring-23-high-frequency-151-8z9e",
+      "section_name": "February Interview Questions",
+      "path": [
+        "February Interview Questions"
+      ],
+      "order": 22,
+      "section_order": 3,
+      "problem_order": 5,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/apple-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 7,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "valid-sudoku",
+      "leetcode_slug": "valid-sudoku",
+      "difficulty": "Medium",
+      "problem_order": 7
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 16,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "valid-sudoku",
+      "leetcode_slug": "valid-sudoku",
+      "difficulty": "Medium",
+      "problem_order": 16
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 103,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "valid-sudoku",
+      "leetcode_slug": "valid-sudoku",
+      "difficulty": "Medium",
+      "problem_order": 103
+    }
+  ]
+}

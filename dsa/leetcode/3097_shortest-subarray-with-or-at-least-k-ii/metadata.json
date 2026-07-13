@@ -1,0 +1,122 @@
+{
+  "challenge_id": "lc_3097",
+  "source": "leetcode",
+  "frontend_id": "3097",
+  "slug": "shortest-subarray-with-or-at-least-k-ii",
+  "title": "Shortest Subarray With OR at Least K II",
+  "difficulty": "Medium",
+  "acceptance_rate": 50.24306390826718,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    }
+  ],
+  "url": "https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:mitsogo",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:sliding-window",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:facebook",
+    "company:google",
+    "company:mitsogo",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:sliding-window"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Mitsogo",
+      "slug": "mitsogo"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Mitsogo",
+        "slug": "mitsogo",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Bit Manipulation"
+      ],
+      "order": 932,
+      "section_order": 17,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "shortest-subarray-with-or-at-least-k-ii",
+      "leetcode_slug": "shortest-subarray-with-or-at-least-k-ii",
+      "difficulty": "Medium",
+      "problem_order": 20
+    }
+  ]
+}

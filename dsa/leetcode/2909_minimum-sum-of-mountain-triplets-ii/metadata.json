@@ -1,0 +1,67 @@
+{
+  "challenge_id": "lc_2909",
+  "source": "leetcode",
+  "frontend_id": "2909",
+  "slug": "minimum-sum-of-mountain-triplets-ii",
+  "title": "Minimum Sum of Mountain Triplets II",
+  "difficulty": "Medium",
+  "acceptance_rate": 54.837534364545725,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-sum-of-mountain-triplets-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:ion-2",
+    "leetcode_topic:array"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:ion-2",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array"
+  ],
+  "company_tags": [
+    {
+      "name": "ION",
+      "slug": "ion-2"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "ION",
+        "slug": "ion-2",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

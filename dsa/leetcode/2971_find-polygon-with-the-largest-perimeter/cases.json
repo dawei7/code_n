@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_2971",
+  "cases": [
+    {
+      "id": "sample-triangle",
+      "name": "sample: all three sides form a polygon",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-ignore-largest",
+      "name": "sample: ignore very large side",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          12,
+          1,
+          2,
+          5,
+          50,
+          3
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: no polygon possible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          50
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-four-sides",
+      "name": "trial: four sides needed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          20,
+          21
+        ]
+      },
+      "expected": 50,
+      "tags": [
+        "polygon"
+      ]
+    },
+    {
+      "id": "real-many-small-sides",
+      "name": "real: many small sides beat one huge side",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          3,
+          3,
+          4,
+          20
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_3901",
+  "source": "leetcode",
+  "frontend_id": "3901",
+  "slug": "good-subsequence-queries",
+  "title": "Good Subsequence Queries",
+  "difficulty": "Hard",
+  "acceptance_rate": 20.138972809667674,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Segment Tree",
+      "slug": "segment-tree"
+    },
+    {
+      "name": "Number Theory",
+      "slug": "number-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/good-subsequence-queries/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:infosys",
+    "leetcode_topic:array",
+    "leetcode_topic:math",
+    "leetcode_topic:number-theory",
+    "leetcode_topic:segment-tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:infosys",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:math",
+    "topic:number-theory",
+    "topic:segment-tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 0
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_385",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: scalar integer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "324"
+      },
+      "expected": 324,
+      "tags": [
+        "sample",
+        "scalar"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: nested positive integers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "[123,[456,[789]]]"
+      },
+      "expected": [
+        123,
+        [
+          456,
+          [
+            789
+          ]
+        ]
+      ],
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: negative scalar",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "-7"
+      },
+      "expected": -7,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-empty-list",
+      "name": "trial: empty outer list",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "[]"
+      },
+      "expected": [],
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-empty-nested",
+      "name": "trial: empty and signed nested values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "[-1,[],[2,-30]]"
+      },
+      "expected": [
+        -1,
+        [],
+        [
+          2,
+          -30
+        ]
+      ],
+      "tags": [
+        "trial",
+        "empty",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-zeroes",
+      "name": "hidden: zero at several depths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "[0,[0],[[0]],10]"
+      },
+      "expected": [
+        0,
+        [
+          0
+        ],
+        [
+          [
+            0
+          ]
+        ],
+        10
+      ],
+      "tags": [
+        "hidden",
+        "zero"
+      ]
+    },
+    {
+      "id": "hidden-siblings",
+      "name": "hidden: nested sibling lists",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "[[1,2],[3,[4,5]],6]"
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          [
+            4,
+            5
+          ]
+        ],
+        6
+      ],
+      "tags": [
+        "hidden",
+        "siblings"
+      ]
+    },
+    {
+      "id": "hidden-multi-digit",
+      "name": "hidden: signed multi-digit limits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "[-12345,[67890,-42]]"
+      },
+      "expected": [
+        -12345,
+        [
+          67890,
+          -42
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "multi-digit"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "challenge_id": "lc_1276",
+  "source": "leetcode",
+  "frontend_id": "1276",
+  "slug": "number-of-burgers-with-no-waste-of-ingredients",
+  "title": "Number of Burgers with No Waste of Ingredients",
+  "difficulty": "Medium",
+  "acceptance_rate": 51.106097542510184,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-burgers-with-no-waste-of-ingredients/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:math"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Delivery Hero",
+        "slug": "deliveryhero",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "764",
+  "frontend_id": "429",
+  "title_slug": "n-ary-tree-level-order-traversal",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064792086",
+  "verified_at": "2026-07-12T08:47:47.440311+00:00"
+}

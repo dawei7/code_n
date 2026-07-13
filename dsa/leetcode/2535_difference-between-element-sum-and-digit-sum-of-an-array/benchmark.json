@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_2535",
+  "cases": [
+    {
+      "id": "benchmark-hundreds",
+      "name": "benchmark: hundreds place dominates element sum",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          200,
+          300
+        ]
+      },
+      "expected": 594,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

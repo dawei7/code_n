@@ -1,0 +1,58 @@
+{
+  "challenge_id": "lc_2886",
+  "source": "leetcode",
+  "frontend_id": "2886",
+  "slug": "change-data-type",
+  "title": "Change Data Type",
+  "difficulty": "Easy",
+  "acceptance_rate": 87.32162383816294,
+  "category": "pandas",
+  "category_title": "pandas",
+  "topics": [],
+  "url": "https://leetcode.com/problems/change-data-type/",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:pandas",
+    "leetcode_studyplan:introduction-to-pandas",
+    "leetcode_studyplan:introduction-to-pandas:introduction-to-pandas-172-9vva"
+  ],
+  "tags": [
+    "category:pandas",
+    "language:python",
+    "leetcode",
+    "study_plan:introduction-to-pandas",
+    "study_plan_section:introduction-to-pandas:introduction-to-pandas-172-9vva"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "introduction-to-pandas",
+      "plan_name": "Introduction to Pandas",
+      "section_slug": "introduction-to-pandas-172-9vva",
+      "section_name": "Data Cleaning",
+      "path": [
+        "Data Cleaning"
+      ],
+      "order": 10,
+      "section_order": 4,
+      "problem_order": 5,
+      "catalog_slug": "introduction-to",
+      "catalog_name": "Introduction To",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/introduction-to-pandas/"
+    }
+  ],
+  "neetcode_subsets": []
+}

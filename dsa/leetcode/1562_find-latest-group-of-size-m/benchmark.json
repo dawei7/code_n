@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_1562",
+  "cases": [
+    {
+      "id": "benchmark-reverse-singletons",
+      "name": "benchmark: singleton group disappears after the first step",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "m": 1
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

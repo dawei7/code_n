@@ -1,0 +1,121 @@
+{
+  "challenge_id": "lc_3386",
+  "cases": [
+    {
+      "id": "sample-longest-repeat",
+      "name": "sample: repeated button has longest final duration",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "events": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            1,
+            15
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "scan"
+      ]
+    },
+    {
+      "id": "sample-first-button",
+      "name": "sample: first duration wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "events": [
+          [
+            10,
+            5
+          ],
+          [
+            1,
+            7
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-tie-smallest-index",
+      "name": "trial: equal duration chooses smallest index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "events": [
+          [
+            5,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            9
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-varied-events",
+      "name": "real: varied sorted press times",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "events": [
+          [
+            8,
+            4
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            9,
+            11
+          ],
+          [
+            2,
+            20
+          ],
+          [
+            1,
+            27
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "scan"
+      ]
+    }
+  ]
+}

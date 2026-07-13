@@ -1,0 +1,153 @@
+{
+  "challenge_id": "lc_1493",
+  "source": "leetcode",
+  "frontend_id": "1493",
+  "slug": "longest-subarray-of-1s-after-deleting-one-element",
+  "title": "Longest Subarray of 1's After Deleting One Element",
+  "difficulty": "Medium",
+  "acceptance_rate": 71.33033691011266,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    }
+  ],
+  "url": "https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:yandex",
+    "leetcode_studyplan:leetcode-75",
+    "leetcode_studyplan:leetcode-75:leetcode-75-26-43fm",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:sliding-window"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "company:microsoft",
+    "company:yandex",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:leetcode-75",
+    "study_plan_section:leetcode-75:leetcode-75-26-43fm",
+    "topic:array",
+    "topic:dynamic-programming",
+    "topic:sliding-window"
+  ],
+  "company_tags": [
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "leetcode-75",
+      "plan_name": "LeetCode 75",
+      "section_slug": "leetcode-75-26-43fm",
+      "section_name": "Sliding Window",
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 17,
+      "section_order": 3,
+      "problem_order": 4,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/leetcode-75/"
+    }
+  ],
+  "neetcode_subsets": []
+}

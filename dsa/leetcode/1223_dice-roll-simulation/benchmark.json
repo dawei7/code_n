@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1223",
+  "cases": [
+    {
+      "id": "benchmark-length-five",
+      "name": "benchmark: length five",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "roll_max": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 6721,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

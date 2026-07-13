@@ -1,0 +1,119 @@
+{
+  "challenge_id": "lc_1024",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: stitched with three clips",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "clips": [
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "time": 10
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: impossible gap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "clips": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "time": 5
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-exact-one-clip",
+      "name": "one clip covers target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "clips": [
+          [
+            0,
+            5
+          ]
+        ],
+        "time": 5
+      },
+      "expected": 1,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-overlap-choice",
+      "name": "hidden: choose farthest overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "clips": [
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            8,
+            12
+          ]
+        ],
+        "time": 10
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

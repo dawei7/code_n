@@ -1,0 +1,80 @@
+{
+  "challenge_id": "lc_601",
+  "source": "leetcode",
+  "frontend_id": "601",
+  "slug": "human-traffic-of-stadium",
+  "title": "Human Traffic of Stadium",
+  "difficulty": "Hard",
+  "acceptance_rate": 51.61151495923969,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/human-traffic-of-stadium/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

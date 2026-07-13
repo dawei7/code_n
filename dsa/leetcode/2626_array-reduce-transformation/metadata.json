@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2626",
+  "source": "leetcode",
+  "frontend_id": "2626",
+  "slug": "array-reduce-transformation",
+  "title": "Array Reduce Transformation",
+  "difficulty": "Easy",
+  "acceptance_rate": 85.53326323486482,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/array-reduce-transformation/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript",
+    "leetcode_company:microsoft",
+    "leetcode_studyplan:30-days-of-javascript",
+    "leetcode_studyplan:30-days-of-javascript:30-days-of-javascript-153-sj7w",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:javascript",
+    "company:microsoft",
+    "language:javascript",
+    "leetcode",
+    "study_plan:30-days-of-javascript",
+    "study_plan_section:30-days-of-javascript:30-days-of-javascript-153-sj7w",
+    "subset:neetcode:allNC"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-javascript",
+      "plan_name": "30 Days of JavaScript",
+      "section_slug": "30-days-of-javascript-153-sj7w",
+      "section_name": "Basic Array Transformations",
+      "path": [
+        "Basic Array Transformations"
+      ],
+      "order": 7,
+      "section_order": 2,
+      "problem_order": 3,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-javascript/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "JavaScript"
+      ],
+      "order": 948,
+      "section_order": 18,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "array-reduce-transformation",
+      "leetcode_slug": "array-reduce-transformation",
+      "difficulty": "Easy",
+      "problem_order": 5
+    }
+  ]
+}

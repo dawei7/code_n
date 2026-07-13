@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_3434",
+  "source": "leetcode",
+  "frontend_id": "3434",
+  "slug": "maximum-frequency-after-subarray-operation",
+  "title": "Maximum Frequency After Subarray Operation",
+  "difficulty": "Medium",
+  "acceptance_rate": 31.40918843115868,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-frequency-after-subarray-operation/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:enumeration",
+    "leetcode_topic:greedy",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:prefix-sum",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:dynamic-programming",
+    "topic:enumeration",
+    "topic:greedy",
+    "topic:hash-table",
+    "topic:prefix-sum"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 5
+      }
+    ],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Greedy"
+      ],
+      "order": 820,
+      "section_order": 14,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "maximum-frequency-after-subarray-operation",
+      "leetcode_slug": "maximum-frequency-after-subarray-operation",
+      "difficulty": "Medium",
+      "problem_order": 59
+    }
+  ]
+}

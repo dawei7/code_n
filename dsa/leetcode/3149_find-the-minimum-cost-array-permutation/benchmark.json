@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_3149",
+  "cases": [
+    {
+      "id": "benchmark-permutation-11",
+      "name": "benchmark: 11-index permutation DP",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          1,
+          10,
+          3,
+          8,
+          2,
+          6,
+          0,
+          9,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        3,
+        4,
+        8,
+        9,
+        5,
+        1,
+        2,
+        10,
+        6,
+        7
+      ],
+      "tags": [
+        "benchmark",
+        "bitmask-dp"
+      ]
+    }
+  ]
+}

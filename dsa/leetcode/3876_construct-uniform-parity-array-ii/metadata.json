@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_3876",
+  "source": "leetcode",
+  "frontend_id": "3876",
+  "slug": "construct-uniform-parity-array-ii",
+  "title": "Construct Uniform Parity Array II",
+  "difficulty": "Medium",
+  "acceptance_rate": 50.18345257750872,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    }
+  ],
+  "url": "https://leetcode.com/problems/construct-uniform-parity-array-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amdocs",
+    "leetcode_topic:array",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amdocs",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Amdocs",
+      "slug": "amdocs"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amdocs",
+        "slug": "amdocs",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

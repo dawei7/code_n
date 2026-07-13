@@ -1,0 +1,133 @@
+{
+  "challenge_id": "lc_2352",
+  "source": "leetcode",
+  "frontend_id": "2352",
+  "slug": "equal-row-and-column-pairs",
+  "title": "Equal Row and Column Pairs",
+  "difficulty": "Medium",
+  "acceptance_rate": 71.04642617830149,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/equal-row-and-column-pairs/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:de-shaw",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_studyplan:leetcode-75",
+    "leetcode_studyplan:leetcode-75:leetcode-75-28-j7cd",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:matrix",
+    "leetcode_topic:simulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:de-shaw",
+    "company:google",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:leetcode-75",
+    "study_plan_section:leetcode-75:leetcode-75-28-j7cd",
+    "topic:array",
+    "topic:hash-table",
+    "topic:matrix",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "leetcode-75",
+      "plan_name": "LeetCode 75",
+      "section_slug": "leetcode-75-28-j7cd",
+      "section_name": "Hash Map / Set",
+      "path": [
+        "Hash Map / Set"
+      ],
+      "order": 23,
+      "section_order": 5,
+      "problem_order": 4,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/leetcode-75/"
+    }
+  ],
+  "neetcode_subsets": []
+}

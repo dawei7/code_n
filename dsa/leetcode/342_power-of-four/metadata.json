@@ -1,0 +1,159 @@
+{
+  "challenge_id": "lc_342",
+  "source": "leetcode",
+  "frontend_id": "342",
+  "slug": "power-of-four",
+  "title": "Power of Four",
+  "difficulty": "Easy",
+  "acceptance_rate": 52.25409011922609,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    }
+  ],
+  "url": "https://leetcode.com/problems/power-of-four/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:qualcomm",
+    "leetcode_company:two-sigma",
+    "leetcode_company:wix",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:math",
+    "leetcode_topic:recursion",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "company:qualcomm",
+    "company:two-sigma",
+    "company:wix",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:bit-manipulation",
+    "topic:math",
+    "topic:recursion"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Qualcomm",
+      "slug": "qualcomm"
+    },
+    {
+      "name": "Two Sigma",
+      "slug": "two-sigma"
+    },
+    {
+      "name": "Wix",
+      "slug": "wix"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Qualcomm",
+        "slug": "qualcomm",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Two Sigma",
+        "slug": "two-sigma",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Wix",
+        "slug": "wix",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Math & Geometry"
+      ],
+      "order": 861,
+      "section_order": 16,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "power-of-four",
+      "leetcode_slug": "power-of-four",
+      "difficulty": "Easy",
+      "problem_order": 12
+    }
+  ]
+}

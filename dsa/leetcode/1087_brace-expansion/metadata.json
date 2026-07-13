@@ -1,0 +1,196 @@
+{
+  "challenge_id": "lc_1087",
+  "source": "leetcode",
+  "frontend_id": "1087",
+  "slug": "brace-expansion",
+  "title": "Brace Expansion",
+  "difficulty": "Medium",
+  "acceptance_rate": 66.87876625436093,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/brace-expansion/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:anduril",
+    "leetcode_company:apple",
+    "leetcode_company:doordash",
+    "leetcode_company:google",
+    "leetcode_company:niantic",
+    "leetcode_company:stripe",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-78-wscs",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:sorting",
+    "leetcode_topic:stack",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:anduril",
+    "company:apple",
+    "company:doordash",
+    "company:google",
+    "company:niantic",
+    "company:stripe",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan_section:premium-algo-100:premium-algo-100-78-wscs",
+    "subset:neetcode:allNC",
+    "topic:backtracking",
+    "topic:breadth-first-search",
+    "topic:sorting",
+    "topic:stack",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Stripe",
+      "slug": "stripe"
+    },
+    {
+      "name": "Niantic",
+      "slug": "niantic"
+    },
+    {
+      "name": "DoorDash",
+      "slug": "doordash"
+    },
+    {
+      "name": "Anduril",
+      "slug": "anduril"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Niantic",
+        "slug": "niantic",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DoorDash",
+        "slug": "doordash",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Anduril",
+        "slug": "anduril",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Stripe",
+        "slug": "stripe",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 3
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-78-wscs",
+      "section_name": "Backtracking",
+      "path": [
+        "Backtracking"
+      ],
+      "order": 91,
+      "section_order": 18,
+      "problem_order": 3,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Backtracking"
+      ],
+      "order": 535,
+      "section_order": 9,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "brace-expansion",
+      "leetcode_slug": "brace-expansion",
+      "difficulty": "Medium",
+      "problem_order": 28
+    }
+  ]
+}

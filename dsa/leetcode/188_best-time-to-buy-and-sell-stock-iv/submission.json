@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "188",
+  "frontend_id": "188",
+  "title_slug": "best-time-to-buy-and-sell-stock-iv",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064195731",
+  "verified_at": "2026-07-11T18:26:50.562080+00:00"
+}

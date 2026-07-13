@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_1018",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: prefixes 0,1,3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false
+      ],
+      "tags": [
+        "sample",
+        "modulo"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-leading-zeroes",
+      "name": "leading zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-mixed-prefixes",
+      "name": "hidden: mixed divisible prefixes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

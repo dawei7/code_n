@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "56",
+  "frontend_id": "56",
+  "title_slug": "merge-intervals",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064131326",
+  "verified_at": "2026-07-11T17:30:36.520691+00:00"
+}

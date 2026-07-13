@@ -1,0 +1,123 @@
+{
+  "challenge_id": "lc_958",
+  "source": "leetcode",
+  "frontend_id": "958",
+  "slug": "check-completeness-of-a-binary-tree",
+  "title": "Check Completeness of a Binary Tree",
+  "difficulty": "Medium",
+  "acceptance_rate": 59.309781573001075,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Binary Tree",
+      "slug": "binary-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/check-completeness-of-a-binary-tree/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:microsoft",
+    "leetcode_topic:binary-tree",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:tree",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:binary-tree",
+    "topic:breadth-first-search",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 6
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Trees"
+      ],
+      "order": 436,
+      "section_order": 6,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "check-completeness-of-a-binary-tree",
+      "leetcode_slug": "check-completeness-of-a-binary-tree",
+      "difficulty": "Medium",
+      "problem_order": 55
+    }
+  ]
+}

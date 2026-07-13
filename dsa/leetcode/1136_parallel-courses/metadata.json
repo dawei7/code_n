@@ -1,0 +1,189 @@
+{
+  "challenge_id": "lc_1136",
+  "source": "leetcode",
+  "frontend_id": "1136",
+  "slug": "parallel-courses",
+  "title": "Parallel Courses",
+  "difficulty": "Medium",
+  "acceptance_rate": 62.3110175005238,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Topological Sort",
+      "slug": "topological-sort"
+    }
+  ],
+  "url": "https://leetcode.com/problems/parallel-courses/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:netflix",
+    "leetcode_company:snowflake",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-72-slk0",
+    "leetcode_topic:graph",
+    "leetcode_topic:topological-sort",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "company:netflix",
+    "company:snowflake",
+    "company:tiktok",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan_section:premium-algo-100:premium-algo-100-72-slk0",
+    "subset:neetcode:allNC",
+    "topic:graph",
+    "topic:topological-sort"
+  ],
+  "company_tags": [
+    {
+      "name": "Netflix",
+      "slug": "netflix"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Netflix",
+        "slug": "netflix",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-72-slk0",
+      "section_name": "Graph - General",
+      "path": [
+        "Graph - General"
+      ],
+      "order": 60,
+      "section_order": 12,
+      "problem_order": 8,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Graphs"
+      ],
+      "order": 608,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "parallel-courses",
+      "leetcode_slug": "parallel-courses",
+      "difficulty": "Medium",
+      "problem_order": 53
+    }
+  ]
+}

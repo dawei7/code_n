@@ -1,0 +1,76 @@
+{
+  "challenge_id": "lc_1117",
+  "source": "leetcode",
+  "frontend_id": "1117",
+  "slug": "building-h2o",
+  "title": "Building H2O",
+  "difficulty": "Medium",
+  "acceptance_rate": 58.37825438697099,
+  "category": "concurrency",
+  "category_title": "Concurrency",
+  "topics": [
+    {
+      "name": "Concurrency",
+      "slug": "concurrency"
+    }
+  ],
+  "url": "https://leetcode.com/problems/building-h2o/",
+  "supported_languages": [],
+  "primary_language": "",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:concurrency",
+    "leetcode_company:google",
+    "leetcode_company:linkedin",
+    "leetcode_company:tesla",
+    "leetcode_topic:concurrency"
+  ],
+  "tags": [
+    "category:concurrency",
+    "company:google",
+    "company:linkedin",
+    "company:tesla",
+    "leetcode",
+    "topic:concurrency"
+  ],
+  "company_tags": [
+    {
+      "name": "Tesla",
+      "slug": "tesla"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Tesla",
+        "slug": "tesla",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

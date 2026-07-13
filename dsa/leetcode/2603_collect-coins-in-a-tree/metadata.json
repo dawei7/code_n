@@ -1,0 +1,183 @@
+{
+  "challenge_id": "lc_2603",
+  "source": "leetcode",
+  "frontend_id": "2603",
+  "slug": "collect-coins-in-a-tree",
+  "title": "Collect Coins in a Tree",
+  "difficulty": "Hard",
+  "acceptance_rate": 39.46385789212407,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Topological Sort",
+      "slug": "topological-sort"
+    }
+  ],
+  "url": "https://leetcode.com/problems/collect-coins-in-a-tree/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:cisco",
+    "leetcode_company:facebook",
+    "leetcode_company:lucid",
+    "leetcode_company:meesho",
+    "leetcode_company:millennium",
+    "leetcode_company:oracle",
+    "leetcode_company:phonepe",
+    "leetcode_company:salesforce",
+    "leetcode_company:uber",
+    "leetcode_topic:array",
+    "leetcode_topic:graph",
+    "leetcode_topic:topological-sort",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:cisco",
+    "company:facebook",
+    "company:lucid",
+    "company:meesho",
+    "company:millennium",
+    "company:oracle",
+    "company:phonepe",
+    "company:salesforce",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:graph",
+    "topic:topological-sort",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Cisco",
+      "slug": "cisco"
+    },
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "Millennium",
+      "slug": "millennium"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Meesho",
+      "slug": "meesho"
+    },
+    {
+      "name": "Lucid",
+      "slug": "lucid"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meesho",
+        "slug": "meesho",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Lucid",
+        "slug": "lucid",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Cisco",
+        "slug": "cisco",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Millennium",
+        "slug": "millennium",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 3
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,140 @@
+{
+  "challenge_id": "lc_1110",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: delete internal nodes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "to_delete": [
+          3,
+          5
+        ]
+      },
+      "expected": [
+        [
+          1,
+          2,
+          null,
+          4
+        ],
+        [
+          6
+        ],
+        [
+          7
+        ]
+      ],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "sample",
+        "tree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: delete left child",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          4,
+          null,
+          3
+        ],
+        "to_delete": [
+          2
+        ]
+      },
+      "expected": [
+        [
+          1,
+          null,
+          4
+        ],
+        [
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: delete only node",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ],
+        "to_delete": [
+          1
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-delete-root",
+      "name": "hidden: deleting root creates child roots",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          null,
+          null,
+          5
+        ],
+        "to_delete": [
+          1
+        ]
+      },
+      "expected": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          null,
+          5
+        ]
+      ],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

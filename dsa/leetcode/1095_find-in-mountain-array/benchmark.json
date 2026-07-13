@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_1095",
+  "cases": [
+    {
+      "id": "benchmark-target-before-peak",
+      "name": "benchmark: larger mountain",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "target": 8,
+        "mountain_arr": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          9,
+          7,
+          5,
+          3,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

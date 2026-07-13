@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_668",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated middle product",
+      "kind": "sample",
+      "visible": true,
+      "input": {"m": 3, "n": 3, "k": 5},
+      "expected": 3,
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: largest entry",
+      "kind": "sample",
+      "visible": true,
+      "input": {"m": 2, "n": 3, "k": 6},
+      "expected": 6,
+      "tags": ["sample", "maximum-rank"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate spans requested rank",
+      "kind": "sample",
+      "visible": true,
+      "input": {"m": 2, "n": 2, "k": 3},
+      "expected": 2,
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one-row table",
+      "kind": "trial",
+      "visible": true,
+      "input": {"m": 1, "n": 10, "k": 7},
+      "expected": 7,
+      "tags": ["trial", "single-row"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: rectangular table",
+      "kind": "trial",
+      "visible": true,
+      "input": {"m": 3, "n": 5, "k": 8},
+      "expected": 5,
+      "tags": ["trial", "rectangular"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: first rank",
+      "kind": "real",
+      "visible": false,
+      "input": {"m": 2, "n": 2, "k": 1},
+      "expected": 1,
+      "tags": ["hidden", "minimum-rank"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: asymmetric dimensions",
+      "kind": "real",
+      "visible": false,
+      "input": {"m": 4, "n": 5, "k": 13},
+      "expected": 8,
+      "tags": ["hidden", "rectangular"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: interior duplicate ranks",
+      "kind": "real",
+      "visible": false,
+      "input": {"m": 5, "n": 5, "k": 17},
+      "expected": 10,
+      "tags": ["hidden", "duplicates"]
+    }
+  ]
+}

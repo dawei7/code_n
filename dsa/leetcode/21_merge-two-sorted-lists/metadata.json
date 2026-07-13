@@ -1,0 +1,542 @@
+{
+  "challenge_id": "lc_21",
+  "source": "leetcode",
+  "frontend_id": "21",
+  "slug": "merge-two-sorted-lists",
+  "title": "Merge Two Sorted Lists",
+  "difficulty": "Easy",
+  "acceptance_rate": 68.52121509758375,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Linked List",
+      "slug": "linked-list"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    }
+  ],
+  "url": "https://leetcode.com/problems/merge-two-sorted-lists/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:epam-systems",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:hpe",
+    "leetcode_company:huawei",
+    "leetcode_company:hubspot",
+    "leetcode_company:josh-technology",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:nvidia",
+    "leetcode_company:oracle",
+    "leetcode_company:palo-alto-networks",
+    "leetcode_company:qualcomm",
+    "leetcode_company:rippling",
+    "leetcode_company:salesforce",
+    "leetcode_company:servicenow",
+    "leetcode_company:snowflake",
+    "leetcode_company:squarespace",
+    "leetcode_company:tcs",
+    "leetcode_company:tiktok",
+    "leetcode_company:visa",
+    "leetcode_company:wix",
+    "leetcode_company:yandex",
+    "leetcode_company:zoho",
+    "leetcode_studyplan:programming-skills",
+    "leetcode_studyplan:programming-skills:programming-skills-104-7t17",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-54-h0tv",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-8-rvcb",
+    "leetcode_topic:linked-list",
+    "leetcode_topic:recursion",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:epam-systems",
+    "company:facebook",
+    "company:google",
+    "company:hpe",
+    "company:huawei",
+    "company:hubspot",
+    "company:josh-technology",
+    "company:linkedin",
+    "company:microsoft",
+    "company:nvidia",
+    "company:oracle",
+    "company:palo-alto-networks",
+    "company:qualcomm",
+    "company:rippling",
+    "company:salesforce",
+    "company:servicenow",
+    "company:snowflake",
+    "company:squarespace",
+    "company:tcs",
+    "company:tiktok",
+    "company:visa",
+    "company:wix",
+    "company:yandex",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:programming-skills",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:programming-skills:programming-skills-104-7t17",
+    "study_plan_section:top-100-liked:top-100-liked-54-h0tv",
+    "study_plan_section:top-interview-150:top-interview-150-8-rvcb",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:linked-list",
+    "topic:recursion"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Rippling",
+      "slug": "rippling"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "ServiceNow",
+      "slug": "servicenow"
+    },
+    {
+      "name": "Squarespace",
+      "slug": "squarespace"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Hubspot",
+      "slug": "hubspot"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "Qualcomm",
+      "slug": "qualcomm"
+    },
+    {
+      "name": "Huawei",
+      "slug": "huawei"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "EPAM Systems",
+      "slug": "epam-systems"
+    },
+    {
+      "name": "HPE",
+      "slug": "hpe"
+    },
+    {
+      "name": "Palo Alto Networks",
+      "slug": "palo-alto-networks"
+    },
+    {
+      "name": "Josh Technology",
+      "slug": "josh-technology"
+    },
+    {
+      "name": "Wix",
+      "slug": "wix"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Hubspot",
+        "slug": "hubspot",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Qualcomm",
+        "slug": "qualcomm",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Huawei",
+        "slug": "huawei",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "EPAM Systems",
+        "slug": "epam-systems",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "HPE",
+        "slug": "hpe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Palo Alto Networks",
+        "slug": "palo-alto-networks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Josh Technology",
+        "slug": "josh-technology",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Wix",
+        "slug": "wix",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Rippling",
+        "slug": "rippling",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ServiceNow",
+        "slug": "servicenow",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Squarespace",
+        "slug": "squarespace",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 22
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 19
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 11
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 9
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 7
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-8-rvcb",
+      "section_name": "Linked List",
+      "path": [
+        "Linked List"
+      ],
+      "order": 59,
+      "section_order": 8,
+      "problem_order": 3,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-54-h0tv",
+      "section_name": "Linked Lists",
+      "path": [
+        "Linked Lists"
+      ],
+      "order": 61,
+      "section_order": 9,
+      "problem_order": 3,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    },
+    {
+      "plan_slug": "programming-skills",
+      "plan_name": "Programming Skills",
+      "section_slug": "programming-skills-104-7t17",
+      "section_name": "Linked List",
+      "path": [
+        "Linked List"
+      ],
+      "order": 30,
+      "section_order": 6,
+      "problem_order": 1,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/programming-skills/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "Linked List"
+      ],
+      "order": 19,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "merge-two-sorted-linked-lists",
+      "leetcode_slug": "merge-two-sorted-lists",
+      "difficulty": "Easy",
+      "problem_order": 1
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Linked List"
+      ],
+      "order": 34,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "merge-two-sorted-linked-lists",
+      "leetcode_slug": "merge-two-sorted-lists",
+      "difficulty": "Easy",
+      "problem_order": 1
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Linked List"
+      ],
+      "order": 73,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "merge-two-sorted-linked-lists",
+      "leetcode_slug": "merge-two-sorted-lists",
+      "difficulty": "Easy",
+      "problem_order": 1
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Linked List"
+      ],
+      "order": 342,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "merge-two-sorted-linked-lists",
+      "leetcode_slug": "merge-two-sorted-lists",
+      "difficulty": "Easy",
+      "problem_order": 1
+    }
+  ]
+}

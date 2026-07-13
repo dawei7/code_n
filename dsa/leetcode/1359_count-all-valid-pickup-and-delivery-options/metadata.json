@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_1359",
+  "source": "leetcode",
+  "frontend_id": "1359",
+  "slug": "count-all-valid-pickup-and-delivery-options",
+  "title": "Count All Valid Pickup and Delivery Options",
+  "difficulty": "Hard",
+  "acceptance_rate": 64.8861977359213,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:acko",
+    "leetcode_company:doordash",
+    "leetcode_topic:combinatorics",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:acko",
+    "company:doordash",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:combinatorics",
+    "topic:dynamic-programming",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "DoorDash",
+      "slug": "doordash"
+    },
+    {
+      "name": "Acko",
+      "slug": "acko"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "DoorDash",
+        "slug": "doordash",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Acko",
+        "slug": "acko",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 702,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "count-all-valid-pickup-and-delivery-options",
+      "leetcode_slug": "count-all-valid-pickup-and-delivery-options",
+      "difficulty": "Hard",
+      "problem_order": 46
+    }
+  ]
+}

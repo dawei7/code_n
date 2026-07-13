@@ -1,0 +1,76 @@
+{
+  "challenge_id": "lc_1390",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one value has four divisors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          21,
+          4,
+          7
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "sample",
+        "math"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate four-divisor values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          21,
+          21
+        ]
+      },
+      "expected": 64,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-four-divisors",
+      "name": "no qualifying values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-mixed-values",
+      "name": "hidden: primes and composites",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          15,
+          16,
+          17
+        ]
+      },
+      "expected": 42,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

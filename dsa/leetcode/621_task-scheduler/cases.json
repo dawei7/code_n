@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_621",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two leaders require idles", "kind": "sample", "visible": true, "input": {"tasks": ["A","A","A","B","B","B"], "n": 2}, "expected": 8, "tags": ["sample", "idle"]},
+    {"id": "sample-2", "name": "sample: zero cooldown", "kind": "sample", "visible": true, "input": {"tasks": ["A","A","A","B","B","B"], "n": 0}, "expected": 6, "tags": ["sample", "zero-cooldown"]},
+    {"id": "sample-3", "name": "sample: other leader fills cooldown", "kind": "sample", "visible": true, "input": {"tasks": ["A","A","A","B","B","B"], "n": 1}, "expected": 6, "tags": ["sample", "no-idle"]},
+    {"id": "trial-1", "name": "trial: one repeated type", "kind": "trial", "visible": true, "input": {"tasks": ["A","A","A","A"], "n": 3}, "expected": 13, "tags": ["trial", "single-type"]},
+    {"id": "trial-2", "name": "trial: enough varied work fills every gap", "kind": "trial", "visible": true, "input": {"tasks": ["A","A","A","B","B","B","C","C","D","D"], "n": 2}, "expected": 10, "tags": ["trial", "gap-fillers"]},
+    {"id": "hidden-1", "name": "hidden: three types tie for maximum", "kind": "real", "visible": false, "input": {"tasks": ["A","A","A","B","B","B","C","C","C"], "n": 3}, "expected": 11, "tags": ["hidden", "three-leaders"]},
+    {"id": "hidden-2", "name": "hidden: skewed frequency with forced idles", "kind": "real", "visible": false, "input": {"tasks": ["A","A","A","A","B"], "n": 2}, "expected": 10, "tags": ["hidden", "skewed"]}
+  ]
+}

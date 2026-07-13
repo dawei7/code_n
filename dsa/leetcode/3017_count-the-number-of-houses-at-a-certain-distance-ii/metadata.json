@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_3017",
+  "source": "leetcode",
+  "frontend_id": "3017",
+  "slug": "count-the-number-of-houses-at-a-certain-distance-ii",
+  "title": "Count the Number of Houses at a Certain Distance II",
+  "difficulty": "Hard",
+  "acceptance_rate": 23.803777544596013,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:oracle",
+    "leetcode_topic:graph",
+    "leetcode_topic:prefix-sum"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:oracle",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:graph",
+    "topic:prefix-sum"
+  ],
+  "company_tags": [
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

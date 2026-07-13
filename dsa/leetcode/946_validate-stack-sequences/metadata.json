@@ -1,0 +1,205 @@
+{
+  "challenge_id": "lc_946",
+  "source": "leetcode",
+  "frontend_id": "946",
+  "slug": "validate-stack-sequences",
+  "title": "Validate Stack Sequences",
+  "difficulty": "Medium",
+  "acceptance_rate": 70.5247512075457,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/validate-stack-sequences/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:sprinklr",
+    "leetcode_studyplan:google-spring-23-high-frequency",
+    "leetcode_studyplan:google-spring-23-high-frequency:google-spring-23-high-frequency-143-kvk3",
+    "leetcode_studyplan:tiktok-spring-23-high-frequency",
+    "leetcode_studyplan:tiktok-spring-23-high-frequency:tiktok-spring-23-high-frequency-147-v6lb",
+    "leetcode_topic:array",
+    "leetcode_topic:simulation",
+    "leetcode_topic:stack",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:google",
+    "company:linkedin",
+    "company:microsoft",
+    "company:sprinklr",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:google-spring-23-high-frequency",
+    "study_plan:tiktok-spring-23-high-frequency",
+    "study_plan_section:google-spring-23-high-frequency:google-spring-23-high-frequency-143-kvk3",
+    "study_plan_section:tiktok-spring-23-high-frequency:tiktok-spring-23-high-frequency-147-v6lb",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:simulation",
+    "topic:stack"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Sprinklr",
+      "slug": "sprinklr"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Sprinklr",
+        "slug": "sprinklr",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "google-spring-23-high-frequency",
+      "plan_name": "Google Spring' 23 High Frequency",
+      "section_slug": "google-spring-23-high-frequency-143-kvk3",
+      "section_name": "April Interview Questions",
+      "path": [
+        "April Interview Questions"
+      ],
+      "order": 12,
+      "section_order": 2,
+      "problem_order": 10,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/google-spring-23-high-frequency/"
+    },
+    {
+      "plan_slug": "tiktok-spring-23-high-frequency",
+      "plan_name": "TikTok Spring '23 High Frequency",
+      "section_slug": "tiktok-spring-23-high-frequency-147-v6lb",
+      "section_name": "March Interview Questions",
+      "path": [
+        "March Interview Questions"
+      ],
+      "order": 15,
+      "section_order": 2,
+      "problem_order": 5,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/tiktok-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Stack"
+      ],
+      "order": 269,
+      "section_order": 3,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "validate-stack-sequences",
+      "leetcode_slug": "validate-stack-sequences",
+      "difficulty": "Medium",
+      "problem_order": 10
+    }
+  ]
+}

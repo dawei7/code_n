@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "418",
+  "frontend_id": "418",
+  "title_slug": "sentence-screen-fitting",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064754722",
+  "verified_at": "2026-07-12T08:01:13.401078+00:00"
+}

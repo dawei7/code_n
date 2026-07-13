@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_2086",
+  "source": "leetcode",
+  "frontend_id": "2086",
+  "slug": "minimum-number-of-food-buckets-to-feed-the-hamsters",
+  "title": "Minimum Number of Food Buckets to Feed the Hamsters",
+  "difficulty": "Medium",
+  "acceptance_rate": 48.47360248447205,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-number-of-food-buckets-to-feed-the-hamsters/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:grab",
+    "leetcode_company:palo-alto-networks",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:greedy",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:grab",
+    "company:palo-alto-networks",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:dynamic-programming",
+    "topic:greedy",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Palo Alto Networks",
+      "slug": "palo-alto-networks"
+    },
+    {
+      "name": "Grab",
+      "slug": "grab"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Grab",
+        "slug": "grab",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Palo Alto Networks",
+        "slug": "palo-alto-networks",
+        "timesEncountered": 3
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

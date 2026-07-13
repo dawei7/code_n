@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "277",
+  "frontend_id": "277",
+  "title_slug": "find-the-celebrity",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064301091",
+  "verified_at": "2026-07-11T21:10:12.999170+00:00"
+}

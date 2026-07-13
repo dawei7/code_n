@@ -1,0 +1,142 @@
+{
+  "challenge_id": "lc_2564",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two substrings satisfy xor targets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "101101",
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "tags": [
+        "sample",
+        "bit-manipulation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: zero substring answers zero target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "queries": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one-character substring answers target one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "queries": [
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-repeated-target",
+      "name": "trial: two queries share the same shortest substring",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10",
+        "queries": [
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-zero-target-from-single-zero",
+      "name": "hidden: xor target zero maps to the first zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "0",
+        "queries": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

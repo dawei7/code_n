@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_3012",
+  "cases": [
+    {
+      "id": "sample-can-create-smaller",
+      "name": "sample: a smaller positive remainder can be created",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          3,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-divisible",
+      "name": "sample: all values divisible by the minimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          10,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-common-divisibility",
+      "name": "sample: mixed small values reduce to one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-many-minimums",
+      "name": "trial: many copies of the minimum remain as zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          12,
+          1,
+          9,
+          5,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-large-min-frequency",
+      "name": "real: divisible values with four minima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          6,
+          6,
+          6,
+          12,
+          18,
+          24,
+          30
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "number-theory"
+      ]
+    }
+  ]
+}

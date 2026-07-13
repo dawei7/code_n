@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_1019",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one greater value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          2,
+          1,
+          5
+        ]
+      },
+      "expected": [
+        5,
+        5,
+        0
+      ],
+      "tags": [
+        "sample",
+        "linked-list",
+        "stack"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: mixed next greater values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          2,
+          7,
+          4,
+          3,
+          5
+        ]
+      },
+      "expected": [
+        7,
+        0,
+        5,
+        5,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "decreasing list",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          5,
+          4,
+          3
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-longer-list",
+      "name": "hidden: longer mixed list",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          1,
+          7,
+          5,
+          1,
+          9,
+          2,
+          5,
+          1
+        ]
+      },
+      "expected": [
+        7,
+        9,
+        9,
+        9,
+        0,
+        5,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

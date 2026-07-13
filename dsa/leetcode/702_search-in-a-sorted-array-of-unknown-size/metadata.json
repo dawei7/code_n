@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_702",
+  "source": "leetcode",
+  "frontend_id": "702",
+  "slug": "search-in-a-sorted-array-of-unknown-size",
+  "title": "Search in a Sorted Array of Unknown Size",
+  "difficulty": "Medium",
+  "acceptance_rate": 73.1404349192302,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Interactive",
+      "slug": "interactive"
+    }
+  ],
+  "url": "https://leetcode.com/problems/search-in-a-sorted-array-of-unknown-size/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_studyplan:binary-search",
+    "leetcode_studyplan:binary-search:binary-search-115-cb76",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:interactive"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:binary-search",
+    "study_plan_section:binary-search:binary-search-115-cb76",
+    "topic:array",
+    "topic:binary-search",
+    "topic:interactive"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "binary-search",
+      "plan_name": "Binary Search",
+      "section_slug": "binary-search-115-cb76",
+      "section_name": "Standard Search",
+      "path": [
+        "Standard Search"
+      ],
+      "order": 15,
+      "section_order": 3,
+      "problem_order": 4,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/binary-search/"
+    }
+  ],
+  "neetcode_subsets": []
+}

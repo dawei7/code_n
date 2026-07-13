@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1391",
+  "cases": [
+    {
+      "id": "benchmark-corner-turn",
+      "name": "benchmark: corner turn",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

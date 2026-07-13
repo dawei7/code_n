@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_331",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: complete mixed tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "preorder": "9,3,4,#,#,1,#,#,2,#,6,#,#"
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: missing right child",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "preorder": "1,#"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "missing-token"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: token after completed tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "preorder": "9,#,#,1"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "extra-token"
+      ]
+    },
+    {
+      "id": "trial-null-root",
+      "name": "trial: null tree",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "preorder": "#"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-leaf",
+      "name": "trial: one non-null node",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "preorder": "1,#,#"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "leaf"
+      ]
+    },
+    {
+      "id": "hidden-extra-null",
+      "name": "hidden: extra null after leaf",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "preorder": "1,#,#,#"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "extra-token"
+      ]
+    },
+    {
+      "id": "hidden-left-child",
+      "name": "hidden: root with left leaf",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "preorder": "1,2,#,#,#"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "skewed"
+      ]
+    },
+    {
+      "id": "hidden-negative",
+      "name": "hidden: negative node token",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "preorder": "-1,#,#"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    }
+  ]
+}

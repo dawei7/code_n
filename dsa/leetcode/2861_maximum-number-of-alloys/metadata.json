@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_2861",
+  "source": "leetcode",
+  "frontend_id": "2861",
+  "slug": "maximum-number-of-alloys",
+  "title": "Maximum Number of Alloys",
+  "difficulty": "Medium",
+  "acceptance_rate": 41.27788058829259,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-number-of-alloys/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:mathworks",
+    "leetcode_company:microsoft",
+    "leetcode_company:sofi",
+    "leetcode_company:uber",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:mathworks",
+    "company:microsoft",
+    "company:sofi",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search"
+  ],
+  "company_tags": [
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "SoFi",
+      "slug": "sofi"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "MathWorks",
+      "slug": "mathworks"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "MathWorks",
+        "slug": "mathworks",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 5
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "SoFi",
+        "slug": "sofi",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

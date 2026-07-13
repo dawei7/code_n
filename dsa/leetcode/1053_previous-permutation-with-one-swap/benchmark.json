@@ -1,0 +1,32 @@
+{
+  "challenge_id": "lc_1053",
+  "cases": [
+    {
+      "id": "benchmark-tail-drop",
+      "name": "benchmark: tail drop",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          3,
+          4,
+          9,
+          7,
+          6
+        ]
+      },
+      "expected": [
+        5,
+        3,
+        4,
+        9,
+        6,
+        7
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_93",
+  "cases": [
+    {"id": "sample-standard", "name": "sample: two restorations", "kind": "sample", "visible": true, "input": {"s": "25525511135"}, "expected": ["255.255.11.135","255.255.111.35"], "validator": {"kind": "unordered_list"}, "tags": ["sample"]},
+    {"id": "sample-zero", "name": "sample: all zero segments", "kind": "sample", "visible": true, "input": {"s": "0000"}, "expected": ["0.0.0.0"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "zero"]},
+    {"id": "trial-many", "name": "multiple segment layouts", "kind": "trial", "visible": true, "input": {"s": "101023"}, "expected": ["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"], "validator": {"kind": "unordered_list"}, "tags": ["branching"]},
+    {"id": "trial-short", "name": "too few digits", "kind": "trial", "visible": true, "input": {"s": "111"}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["boundary", "impossible"]},
+    {"id": "real-leading-zero", "name": "hidden: leading-zero constraints", "kind": "real", "visible": false, "input": {"s": "010010"}, "expected": ["0.10.0.10","0.100.1.0"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "zero"]}
+  ]
+}

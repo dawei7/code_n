@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_2282",
+  "source": "leetcode",
+  "frontend_id": "2282",
+  "slug": "number-of-people-that-can-be-seen-in-a-grid",
+  "title": "Number of People That Can Be Seen in a Grid",
+  "difficulty": "Medium",
+  "acceptance_rate": 47.391228982492635,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:uber",
+    "leetcode_topic:array",
+    "leetcode_topic:matrix",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:stack"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:matrix",
+    "topic:monotonic-stack",
+    "topic:stack"
+  ],
+  "company_tags": [
+    {
+      "name": "Uber",
+      "slug": "uber"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

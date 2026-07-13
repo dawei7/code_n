@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_612",
+  "cases": [
+    {"id": "sample-1", "name": "sample: diagonal nearest pair", "kind": "sample", "visible": true, "input": {"tables": {"Point2D": [{"x": 0, "y": 0}, {"x": -1, "y": -1}, {"x": 100, "y": 100}]}}, "expected": {"columns": ["shortest"], "rows": [[1.41]]}, "tags": ["sample", "rounding"]},
+    {"id": "sample-2", "name": "sample: three-four-five distance", "kind": "sample", "visible": true, "input": {"tables": {"Point2D": [{"x": 0, "y": 0}, {"x": 3, "y": 4}]}}, "expected": {"columns": ["shortest"], "rows": [[5.0]]}, "tags": ["sample", "two-points"]},
+    {"id": "sample-3", "name": "sample: closest vertical neighbors", "kind": "sample", "visible": true, "input": {"tables": {"Point2D": [{"x": 2, "y": -3}, {"x": 2, "y": 5}, {"x": 2, "y": 6}]}}, "expected": {"columns": ["shortest"], "rows": [[1.0]]}, "tags": ["sample", "equal-x"]},
+    {"id": "trial-1", "name": "trial: closest horizontal neighbors", "kind": "trial", "visible": true, "input": {"tables": {"Point2D": [{"x": -10, "y": 7}, {"x": -4, "y": 7}, {"x": 8, "y": 7}]}}, "expected": {"columns": ["shortest"], "rows": [[6.0]]}, "tags": ["trial", "equal-y"]},
+    {"id": "trial-2", "name": "trial: several equal minimum distances", "kind": "trial", "visible": true, "input": {"tables": {"Point2D": [{"x": 0, "y": 0}, {"x": 0, "y": 2}, {"x": 2, "y": 0}, {"x": 2, "y": 2}]}}, "expected": {"columns": ["shortest"], "rows": [[2.0]]}, "tags": ["trial", "ties"]},
+    {"id": "hidden-1", "name": "hidden: nearest pair is not adjacent in input", "kind": "real", "visible": false, "input": {"tables": {"Point2D": [{"x": 50, "y": 50}, {"x": -100, "y": -100}, {"x": 4, "y": 5}, {"x": 3, "y": 4}, {"x": 90, "y": -90}]}}, "expected": {"columns": ["shortest"], "rows": [[1.41]]}, "tags": ["hidden", "input-order"]},
+    {"id": "hidden-2", "name": "hidden: large coordinate range", "kind": "real", "visible": false, "input": {"tables": {"Point2D": [{"x": -10000, "y": -10000}, {"x": 10000, "y": 10000}, {"x": 9997, "y": 9996}, {"x": 0, "y": 1}]}}, "expected": {"columns": ["shortest"], "rows": [[5.0]]}, "tags": ["hidden", "large-coordinates"]}
+  ]
+}

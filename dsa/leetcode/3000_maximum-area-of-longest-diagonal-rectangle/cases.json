@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_3000",
+  "cases": [
+    {
+      "id": "sample-longer-diagonal",
+      "name": "sample: longer diagonal wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "dimensions": [
+          [
+            9,
+            3
+          ],
+          [
+            8,
+            6
+          ]
+        ]
+      },
+      "expected": 48,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-tied-diagonal",
+      "name": "sample: tied diagonal and area",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "dimensions": [
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-simple-growth",
+      "name": "sample: larger square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "dimensions": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-area-breaks-tie",
+      "name": "trial: area breaks diagonal tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dimensions": [
+          [
+            1,
+            7
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            7,
+            1
+          ]
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-single-rectangle",
+      "name": "real: one rectangle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "dimensions": [
+          [
+            11,
+            13
+          ]
+        ]
+      },
+      "expected": 143,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

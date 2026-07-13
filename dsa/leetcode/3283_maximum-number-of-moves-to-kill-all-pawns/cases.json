@@ -1,0 +1,144 @@
+{
+  "challenge_id": "lc_3283",
+  "cases": [
+    {
+      "id": "sample-one-pawn",
+      "name": "sample: one pawn from knight start",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "kx": 1,
+        "ky": 1,
+        "positions": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-three-pawns",
+      "name": "sample: alternating optimal play",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "kx": 0,
+        "ky": 2,
+        "positions": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "game"
+      ]
+    },
+    {
+      "id": "trial-two-pawns",
+      "name": "trial: two reachable pawns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "kx": 0,
+        "ky": 0,
+        "positions": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "trial-corner-cluster",
+      "name": "trial: pawns near board corners",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "kx": 7,
+        "ky": 7,
+        "positions": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            8,
+            9
+          ]
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "corners"
+      ]
+    },
+    {
+      "id": "real-four-pawns",
+      "name": "real: four-pawn minimax state",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "kx": 12,
+        "ky": 11,
+        "positions": [
+          [
+            4,
+            5
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            18,
+            17
+          ],
+          [
+            7,
+            22
+          ]
+        ]
+      },
+      "expected": 26,
+      "tags": [
+        "real",
+        "minimax"
+      ]
+    }
+  ]
+}

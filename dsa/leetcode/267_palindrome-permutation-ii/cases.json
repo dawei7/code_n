@@ -1,0 +1,6 @@
+{"challenge_id":"lc_267","cases":[
+{"id":"sample-aabb","name":"sample: two palindromic permutations","kind":"sample","visible":true,"input":{"s":"aabb"},"expected":["abba","baab"],"validator":{"kind":"unordered_list"},"tags":["sample","backtracking"]},
+{"id":"sample-impossible","name":"sample: multiple odd counts","kind":"sample","visible":true,"input":{"s":"abc"},"expected":[],"validator":{"kind":"unordered_list"},"tags":["sample","impossible"]},
+{"id":"trial-odd-center","name":"one forced center character","kind":"trial","visible":true,"input":{"s":"aaa"},"expected":["aaa"],"validator":{"kind":"unordered_list"},"tags":["center"]},
+{"id":"real-empty","name":"hidden: empty string has one permutation","kind":"real","visible":false,"input":{"s":""},"expected":[""],"validator":{"kind":"unordered_list"},"tags":["hidden","boundary"]}
+]}

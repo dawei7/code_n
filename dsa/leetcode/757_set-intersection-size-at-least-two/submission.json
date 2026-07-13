@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "759",
+  "frontend_id": "757",
+  "title_slug": "set-intersection-size-at-least-two",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.intersectionSizeTwo",
+  "verified_submission_id": "2065968485",
+  "verified_at": "2026-07-13T09:53:40.723502+00:00"
+}

@@ -1,0 +1,127 @@
+{
+  "challenge_id": "lc_2418",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: sort three people",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "names": [
+          "Mary",
+          "John",
+          "Emma"
+        ],
+        "heights": [
+          180,
+          165,
+          170
+        ]
+      },
+      "expected": [
+        "Mary",
+        "Emma",
+        "John"
+      ],
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated names with distinct heights",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "names": [
+          "Alice",
+          "Bob",
+          "Bob"
+        ],
+        "heights": [
+          155,
+          185,
+          150
+        ]
+      },
+      "expected": [
+        "Bob",
+        "Alice",
+        "Bob"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one person",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "names": [
+          "Alex"
+        ],
+        "heights": [
+          100
+        ]
+      },
+      "expected": [
+        "Alex"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-unsorted-heights",
+      "name": "trial: heights are not initially ordered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "names": [
+          "A",
+          "B",
+          "C"
+        ],
+        "heights": [
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        "A",
+        "C",
+        "B"
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-two-people",
+      "name": "hidden: two people",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "names": [
+          "Kai",
+          "Noa"
+        ],
+        "heights": [
+          160,
+          175
+        ]
+      },
+      "expected": [
+        "Noa",
+        "Kai"
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "challenge_id": "lc_1493",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: delete the middle zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: best window spans one zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all ones still delete one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-all-zeros",
+      "name": "hidden: deleting from all zeros leaves no ones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

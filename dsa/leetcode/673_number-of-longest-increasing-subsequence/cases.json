@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_673",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two choices near the end",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          4,
+          7
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "branching"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all values equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: several longest paths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          3,
+          5,
+          4,
+          7,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "multiple-paths"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: single value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: strictly decreasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: repeated increasing layers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: repeated ordered run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "index-distinct"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: negative predecessors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -2,
+          -1,
+          -1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "negative-values"
+      ]
+    }
+  ]
+}
+

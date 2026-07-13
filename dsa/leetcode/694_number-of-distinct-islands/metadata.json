@@ -1,0 +1,274 @@
+{
+  "challenge_id": "lc_694",
+  "source": "leetcode",
+  "frontend_id": "694",
+  "slug": "number-of-distinct-islands",
+  "title": "Number of Distinct Islands",
+  "difficulty": "Medium",
+  "acceptance_rate": 62.888338957630296,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Hash Function",
+      "slug": "hash-function"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-distinct-islands/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:anduril",
+    "leetcode_company:bloomberg",
+    "leetcode_company:coupang",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:snapchat",
+    "leetcode_company:splunk",
+    "leetcode_company:tiktok",
+    "leetcode_company:walmart-labs",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-72-slk0",
+    "leetcode_topic:array",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:hash-function",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:matrix",
+    "leetcode_topic:sorting",
+    "leetcode_topic:union-find",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:anduril",
+    "company:bloomberg",
+    "company:coupang",
+    "company:google",
+    "company:microsoft",
+    "company:oracle",
+    "company:snapchat",
+    "company:splunk",
+    "company:tiktok",
+    "company:walmart-labs",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan_section:premium-algo-100:premium-algo-100-72-slk0",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:hash-function",
+    "topic:hash-table",
+    "topic:matrix",
+    "topic:sorting",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Snap",
+      "slug": "snapchat"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Coupang",
+      "slug": "coupang"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "Splunk",
+      "slug": "splunk"
+    },
+    {
+      "name": "Anduril",
+      "slug": "anduril"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Coupang",
+        "slug": "coupang",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Splunk",
+        "slug": "splunk",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Anduril",
+        "slug": "anduril",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snap",
+        "slug": "snapchat",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-72-slk0",
+      "section_name": "Graph - General",
+      "path": [
+        "Graph - General"
+      ],
+      "order": 59,
+      "section_order": 12,
+      "problem_order": 7,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Graphs"
+      ],
+      "order": 607,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "number-of-distinct-islands",
+      "leetcode_slug": "number-of-distinct-islands",
+      "difficulty": "Medium",
+      "problem_order": 52
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "challenge_id": "lc_458",
+  "source": "leetcode",
+  "frontend_id": "458",
+  "slug": "poor-pigs",
+  "title": "Poor Pigs",
+  "difficulty": "Hard",
+  "acceptance_rate": 59.12597075491499,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    }
+  ],
+  "url": "https://leetcode.com/problems/poor-pigs/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:combinatorics",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:combinatorics",
+    "topic:dynamic-programming",
+    "topic:math"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

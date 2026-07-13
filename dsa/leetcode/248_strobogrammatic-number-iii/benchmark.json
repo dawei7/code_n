@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_248",
+  "measurement_note": "Size is maximum bound digit length; all-nines upper bounds require enumeration of every valid shorter and equal-length structure.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: bounds through 1 digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1,
+      "input": {
+        "low": "0",
+        "high": "9"
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: bounds through 3 digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "low": "0",
+        "high": "999"
+      },
+      "expected": 19,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: bounds through 6 digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "low": "0",
+        "high": "999999"
+      },
+      "expected": 199,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

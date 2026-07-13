@@ -1,0 +1,141 @@
+{
+  "challenge_id": "lc_855",
+  "source": "leetcode",
+  "frontend_id": "855",
+  "slug": "exam-room",
+  "title": "Exam Room",
+  "difficulty": "Medium",
+  "acceptance_rate": 43.63531494037084,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/exam-room/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:apple",
+    "leetcode_company:google",
+    "leetcode_company:quip",
+    "leetcode_company:quora",
+    "leetcode_company:samsung",
+    "leetcode_company:uber",
+    "leetcode_topic:design",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:ordered-set"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:apple",
+    "company:google",
+    "company:quip",
+    "company:quora",
+    "company:samsung",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:design",
+    "topic:heap-priority-queue",
+    "topic:ordered-set"
+  ],
+  "company_tags": [
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Samsung",
+      "slug": "samsung"
+    },
+    {
+      "name": "Quip (Salesforce)",
+      "slug": "quip"
+    },
+    {
+      "name": "Quora",
+      "slug": "quora"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Samsung",
+        "slug": "samsung",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Quip (Salesforce)",
+        "slug": "quip",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Quora",
+        "slug": "quora",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 4
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

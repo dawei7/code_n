@@ -1,0 +1,146 @@
+{
+  "challenge_id": "lc_2931",
+  "cases": [
+    {
+      "id": "sample-three-shops",
+      "name": "sample: three shops",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "values": [
+          [
+            8,
+            5,
+            2
+          ],
+          [
+            6,
+            4,
+            1
+          ],
+          [
+            9,
+            7,
+            3
+          ]
+        ]
+      },
+      "expected": 285,
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-two-shops",
+      "name": "sample: two longer shops",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "values": [
+          [
+            10,
+            8,
+            6,
+            4,
+            2
+          ],
+          [
+            9,
+            7,
+            5,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 385,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-shop",
+      "name": "trial: single shop",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          [
+            9,
+            7,
+            1
+          ]
+        ]
+      },
+      "expected": 42,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-tie-prices",
+      "name": "trial: tied exposed prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          [
+            6,
+            3
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            8,
+            1
+          ]
+        ]
+      },
+      "expected": 114,
+      "tags": [
+        "tie"
+      ]
+    },
+    {
+      "id": "real-four-by-four",
+      "name": "real: four shops with dense prices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "values": [
+          [
+            20,
+            15,
+            11,
+            4
+          ],
+          [
+            19,
+            18,
+            7,
+            2
+          ],
+          [
+            16,
+            14,
+            10,
+            1
+          ],
+          [
+            13,
+            12,
+            9,
+            3
+          ]
+        ]
+      },
+      "expected": 1914,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

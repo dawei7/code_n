@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2418",
+  "cases": [
+    {
+      "id": "benchmark-four-people",
+      "name": "benchmark: four distinct heights",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "names": [
+          "Zed",
+          "Ana",
+          "Mia",
+          "Leo"
+        ],
+        "heights": [
+          150,
+          172,
+          168,
+          190
+        ]
+      },
+      "expected": [
+        "Leo",
+        "Ana",
+        "Mia",
+        "Zed"
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

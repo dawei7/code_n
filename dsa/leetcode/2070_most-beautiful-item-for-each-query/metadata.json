@@ -1,0 +1,135 @@
+{
+  "challenge_id": "lc_2070",
+  "source": "leetcode",
+  "frontend_id": "2070",
+  "slug": "most-beautiful-item-for-each-query",
+  "title": "Most Beautiful Item for Each Query",
+  "difficulty": "Medium",
+  "acceptance_rate": 62.013703130132804,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/most-beautiful-item-for-each-query/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_company:postmates",
+    "leetcode_company:razorpay",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:sorting",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:google",
+    "company:postmates",
+    "company:razorpay",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:binary-search",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Postmates",
+      "slug": "postmates"
+    },
+    {
+      "name": "razorpay",
+      "slug": "razorpay"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Postmates",
+        "slug": "postmates",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "razorpay",
+        "slug": "razorpay",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Binary Search"
+      ],
+      "order": 328,
+      "section_order": 4,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "most-beautiful-item-for-each-query",
+      "leetcode_slug": "most-beautiful-item-for-each-query",
+      "difficulty": "Medium",
+      "problem_order": 30
+    }
+  ]
+}

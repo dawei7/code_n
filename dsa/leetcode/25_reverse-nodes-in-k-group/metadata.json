@@ -1,0 +1,382 @@
+{
+  "challenge_id": "lc_25",
+  "source": "leetcode",
+  "frontend_id": "25",
+  "slug": "reverse-nodes-in-k-group",
+  "title": "Reverse Nodes in k-Group",
+  "difficulty": "Hard",
+  "acceptance_rate": 66.54676945625481,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Linked List",
+      "slug": "linked-list"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    }
+  ],
+  "url": "https://leetcode.com/problems/reverse-nodes-in-k-group/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:arista-networks",
+    "leetcode_company:bloomberg",
+    "leetcode_company:cadence",
+    "leetcode_company:cisco",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:infosys",
+    "leetcode_company:josh-technology",
+    "leetcode_company:mathworks",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:salesforce",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_company:visa",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-54-h0tv",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-8-rvcb",
+    "leetcode_topic:linked-list",
+    "leetcode_topic:recursion",
+    "neetcode:allNC",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:apple",
+    "company:arista-networks",
+    "company:bloomberg",
+    "company:cadence",
+    "company:cisco",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:infosys",
+    "company:josh-technology",
+    "company:mathworks",
+    "company:microsoft",
+    "company:oracle",
+    "company:salesforce",
+    "company:tiktok",
+    "company:uber",
+    "company:visa",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:top-100-liked:top-100-liked-54-h0tv",
+    "study_plan_section:top-interview-150:top-interview-150-8-rvcb",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:linked-list",
+    "topic:recursion"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "MathWorks",
+      "slug": "mathworks"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Arista Networks",
+      "slug": "arista-networks"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Cisco",
+      "slug": "cisco"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Josh Technology",
+      "slug": "josh-technology"
+    },
+    {
+      "name": "Cadence",
+      "slug": "cadence"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Arista Networks",
+        "slug": "arista-networks",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Cisco",
+        "slug": "cisco",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Josh Technology",
+        "slug": "josh-technology",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Cadence",
+        "slug": "cadence",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "MathWorks",
+        "slug": "mathworks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-8-rvcb",
+      "section_name": "Linked List",
+      "path": [
+        "Linked List"
+      ],
+      "order": 62,
+      "section_order": 8,
+      "problem_order": 6,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-54-h0tv",
+      "section_name": "Linked Lists",
+      "path": [
+        "Linked Lists"
+      ],
+      "order": 64,
+      "section_order": 9,
+      "problem_order": 6,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Linked List"
+      ],
+      "order": 43,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "reverse-nodes-in-k-group",
+      "leetcode_slug": "reverse-nodes-in-k-group",
+      "difficulty": "Hard",
+      "problem_order": 10
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Linked List"
+      ],
+      "order": 85,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "reverse-nodes-in-k-group",
+      "leetcode_slug": "reverse-nodes-in-k-group",
+      "difficulty": "Hard",
+      "problem_order": 13
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Linked List"
+      ],
+      "order": 380,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "reverse-nodes-in-k-group",
+      "leetcode_slug": "reverse-nodes-in-k-group",
+      "difficulty": "Hard",
+      "problem_order": 39
+    }
+  ]
+}

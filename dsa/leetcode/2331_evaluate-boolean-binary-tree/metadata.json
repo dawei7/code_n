@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2331",
+  "source": "leetcode",
+  "frontend_id": "2331",
+  "slug": "evaluate-boolean-binary-tree",
+  "title": "Evaluate Boolean Binary Tree",
+  "difficulty": "Easy",
+  "acceptance_rate": 82.41095338189986,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Binary Tree",
+      "slug": "binary-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/evaluate-boolean-binary-tree/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_topic:binary-tree",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:tree",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:binary-tree",
+    "topic:depth-first-search",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Trees"
+      ],
+      "order": 396,
+      "section_order": 6,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "evaluate-boolean-binary-tree",
+      "leetcode_slug": "evaluate-boolean-binary-tree",
+      "difficulty": "Easy",
+      "problem_order": 15
+    }
+  ]
+}

@@ -1,0 +1,349 @@
+{
+  "challenge_id": "lc_3435",
+  "cases": [
+    {
+      "id": "sample-two-cycle",
+      "name": "sample: two possible SCS frequency arrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ba"
+        ]
+      },
+      "expected": [
+        [
+          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "sample",
+        "cycle"
+      ]
+    },
+    {
+      "id": "sample-same-letter",
+      "name": "sample: duplicated a and c once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "ac"
+        ]
+      },
+      "expected": [
+        [
+          2,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three-self-loops",
+      "name": "sample: self loops for three letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "bb",
+          "cc"
+        ]
+      },
+      "expected": [
+        [
+          2,
+          2,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-acyclic-chain",
+      "name": "trial: chain needs one of each letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "bc",
+          "cd"
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "trial",
+        "dag"
+      ]
+    },
+    {
+      "id": "real-four-cycle",
+      "name": "real: minimum feedback vertices in a cycle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "ab",
+          "bc",
+          "cd",
+          "da"
+        ]
+      },
+      "expected": [
+        [
+          2,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "real",
+        "cycle"
+      ]
+    }
+  ]
+}

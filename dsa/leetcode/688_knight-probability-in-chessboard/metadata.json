@@ -1,0 +1,128 @@
+{
+  "challenge_id": "lc_688",
+  "source": "leetcode",
+  "frontend_id": "688",
+  "slug": "knight-probability-in-chessboard",
+  "title": "Knight Probability in Chessboard",
+  "difficulty": "Medium",
+  "acceptance_rate": 57.14442049713797,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    }
+  ],
+  "url": "https://leetcode.com/problems/knight-probability-in-chessboard/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:apple",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:spinny",
+    "leetcode_studyplan:dynamic-programming-grandmaster",
+    "leetcode_studyplan:dynamic-programming-grandmaster:dynamic-programming-grandmaster-93-s9jj",
+    "leetcode_topic:dynamic-programming"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:apple",
+    "company:goldman-sachs",
+    "company:google",
+    "company:spinny",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming-grandmaster",
+    "study_plan_section:dynamic-programming-grandmaster:dynamic-programming-grandmaster-93-s9jj",
+    "topic:dynamic-programming"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "spinny",
+      "slug": "spinny"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "spinny",
+        "slug": "spinny",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "dynamic-programming-grandmaster",
+      "plan_name": "Dynamic Programming Grandmaster",
+      "section_slug": "dynamic-programming-grandmaster-93-s9jj",
+      "section_name": "Probability",
+      "path": [
+        "Probability"
+      ],
+      "order": 22,
+      "section_order": 3,
+      "problem_order": 2,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": true,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming-grandmaster/"
+    }
+  ],
+  "neetcode_subsets": []
+}

@@ -1,0 +1,115 @@
+{
+  "challenge_id": "lc_808",
+  "source": "leetcode",
+  "frontend_id": "808",
+  "slug": "soup-servings",
+  "title": "Soup Servings",
+  "difficulty": "Medium",
+  "acceptance_rate": 59.56518847960697,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Probability and Statistics",
+      "slug": "probability-and-statistics"
+    }
+  ],
+  "url": "https://leetcode.com/problems/soup-servings/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_studyplan:dynamic-programming-grandmaster",
+    "leetcode_studyplan:dynamic-programming-grandmaster:dynamic-programming-grandmaster-93-s9jj",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math",
+    "leetcode_topic:probability-and-statistics"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming-grandmaster",
+    "study_plan_section:dynamic-programming-grandmaster:dynamic-programming-grandmaster-93-s9jj",
+    "topic:dynamic-programming",
+    "topic:math",
+    "topic:probability-and-statistics"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "dynamic-programming-grandmaster",
+      "plan_name": "Dynamic Programming Grandmaster",
+      "section_slug": "dynamic-programming-grandmaster-93-s9jj",
+      "section_name": "Probability",
+      "path": [
+        "Probability"
+      ],
+      "order": 23,
+      "section_order": 3,
+      "problem_order": 3,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": true,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming-grandmaster/"
+    }
+  ],
+  "neetcode_subsets": []
+}

@@ -1,0 +1,112 @@
+{
+  "challenge_id": "lc_2786",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: pay parity penalty once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          6,
+          1,
+          9,
+          2
+        ],
+        "x": 5
+      },
+      "tags": [
+        "sample",
+        "dp"
+      ],
+      "expected": 13
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: stay on odd parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8
+        ],
+        "x": 3
+      },
+      "tags": [
+        "sample",
+        "same-parity"
+      ],
+      "expected": 20
+    },
+    {
+      "id": "trial-zero-penalty",
+      "name": "trial: zero penalty can take all values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          7,
+          4
+        ],
+        "x": 0
+      },
+      "tags": [
+        "trial",
+        "zero-penalty"
+      ],
+      "expected": 18
+    },
+    {
+      "id": "trial-expensive-switch",
+      "name": "trial: expensive switch skips tempting value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          10,
+          1,
+          10
+        ],
+        "x": 9
+      },
+      "tags": [
+        "trial",
+        "penalty"
+      ],
+      "expected": 28
+    },
+    {
+      "id": "real-mixed-longer",
+      "name": "hidden: longer mixed parity sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          6,
+          5,
+          20,
+          3,
+          30,
+          1,
+          40
+        ],
+        "x": 8
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 95
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "challenge_id": "lc_2614",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: largest prime on secondary diagonal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            5,
+            6,
+            7
+          ],
+          [
+            9,
+            10,
+            11
+          ]
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: center prime is largest",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            5,
+            17,
+            7
+          ],
+          [
+            9,
+            11,
+            1
+          ]
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "sample",
+        "prime"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no prime on either diagonal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-single-prime-cell",
+      "name": "trial: one-by-one prime matrix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            2
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "small"
+      ]
+    },
+    {
+      "id": "real-primary-diagonal-prime",
+      "name": "hidden: largest prime on primary diagonal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          [
+            13,
+            4,
+            6
+          ],
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            5,
+            12,
+            7
+          ]
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

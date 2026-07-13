@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_504",
+  "cases": [
+    {"id": "sample-positive", "name": "sample: positive multi-digit conversion", "kind": "sample", "visible": true, "input": {"num": 100}, "expected": "202", "tags": ["sample", "positive"]},
+    {"id": "sample-negative", "name": "sample: negative power of seven", "kind": "sample", "visible": true, "input": {"num": -7}, "expected": "-10", "tags": ["sample", "negative"]},
+    {"id": "sample-zero", "name": "sample: zero has one digit", "kind": "sample", "visible": true, "input": {"num": 0}, "expected": "0", "tags": ["sample", "zero"]},
+    {"id": "trial-power", "name": "trial: exact square of seven", "kind": "trial", "visible": true, "input": {"num": 49}, "expected": "100", "tags": ["trial", "power"]},
+    {"id": "trial-negative-one", "name": "trial: negative single digit", "kind": "trial", "visible": true, "input": {"num": -1}, "expected": "-1", "tags": ["trial", "negative"]},
+    {"id": "hidden-single-positive", "name": "hidden: positive single digit", "kind": "real", "visible": false, "input": {"num": 6}, "expected": "6", "tags": ["hidden", "single-digit"]},
+    {"id": "hidden-large-power", "name": "hidden: a large exact power of seven", "kind": "real", "visible": false, "input": {"num": 117649}, "expected": "1000000", "tags": ["hidden", "power"]}
+  ]
+}

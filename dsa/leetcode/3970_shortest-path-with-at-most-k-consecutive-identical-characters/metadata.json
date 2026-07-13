@@ -1,0 +1,71 @@
+{
+  "challenge_id": "lc_3970",
+  "source": "leetcode",
+  "frontend_id": "3970",
+  "slug": "shortest-path-with-at-most-k-consecutive-identical-characters",
+  "title": "Shortest Path With At Most K Consecutive Identical Characters",
+  "difficulty": "Medium",
+  "acceptance_rate": 45.29054958905549,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
+  "url": "https://leetcode.com/problems/shortest-path-with-at-most-k-consecutive-identical-characters/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:graph",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:shortest-path",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:graph",
+    "topic:heap-priority-queue",
+    "topic:shortest-path",
+    "topic:string"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

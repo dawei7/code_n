@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_3291",
+  "cases": [
+    {
+      "id": "sample-prefix-composition",
+      "name": "sample: prefixes compose target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "aaaaa",
+          "bcfg"
+        ],
+        "target": "abcdabc"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "trie"
+      ]
+    },
+    {
+      "id": "sample-reuse-prefixes",
+      "name": "sample: reuse prefixes of longer words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "abab"
+        ],
+        "target": "ababa"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-impossible",
+      "name": "trial: impossible character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "def"
+        ],
+        "target": "abcz"
+      },
+      "expected": -1,
+      "tags": [
+        "edge",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-prefix-not-whole-word",
+      "name": "trial: prefix valid even when not whole word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "hello",
+          "world"
+        ],
+        "target": "hewor"
+      },
+      "expected": 2,
+      "tags": [
+        "prefix"
+      ]
+    },
+    {
+      "id": "real-overlapping-prefixes",
+      "name": "real: overlapping prefix dictionary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abca",
+          "abcde",
+          "bcfg",
+          "aaaaa",
+          "dab",
+          "cad"
+        ],
+        "target": "abcdabcadabca"
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

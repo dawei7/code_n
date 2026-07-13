@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_3173",
+  "source": "leetcode",
+  "frontend_id": "3173",
+  "slug": "bitwise-or-of-adjacent-elements",
+  "title": "Bitwise OR of Adjacent Elements",
+  "difficulty": "Easy",
+  "acceptance_rate": 94.74414089585356,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/bitwise-or-of-adjacent-elements/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

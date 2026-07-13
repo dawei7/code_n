@@ -1,0 +1,129 @@
+{
+  "challenge_id": "lc_3208",
+  "source": "leetcode",
+  "frontend_id": "3208",
+  "slug": "alternating-groups-ii",
+  "title": "Alternating Groups II",
+  "difficulty": "Medium",
+  "acceptance_rate": 60.0402927543666,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    }
+  ],
+  "url": "https://leetcode.com/problems/alternating-groups-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:ebay",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:samsara",
+    "leetcode_topic:array",
+    "leetcode_topic:sliding-window",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:ebay",
+    "company:google",
+    "company:microsoft",
+    "company:samsara",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:sliding-window"
+  ],
+  "company_tags": [
+    {
+      "name": "eBay",
+      "slug": "ebay"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Samsara",
+      "slug": "samsara"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 9
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Samsara",
+        "slug": "samsara",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "eBay",
+        "slug": "ebay",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Sliding Window"
+      ],
+      "order": 228,
+      "section_order": 2,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "alternating-groups-ii",
+      "leetcode_slug": "alternating-groups-ii",
+      "difficulty": "Medium",
+      "problem_order": 10
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "challenge_id": "lc_1368",
+  "source": "leetcode",
+  "frontend_id": "1368",
+  "slug": "minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
+  "title": "Minimum Cost to Make at Least One Valid Path in a Grid",
+  "difficulty": "Hard",
+  "acceptance_rate": 71.07235964025995,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:docusign",
+    "leetcode_company:google",
+    "leetcode_company:uber",
+    "leetcode_topic:array",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:graph",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:matrix",
+    "leetcode_topic:shortest-path",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:docusign",
+    "company:google",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:breadth-first-search",
+    "topic:graph",
+    "topic:heap-priority-queue",
+    "topic:matrix",
+    "topic:shortest-path"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Docusign",
+      "slug": "docusign"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 4
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Docusign",
+        "slug": "docusign",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Advanced Graphs"
+      ],
+      "order": 636,
+      "section_order": 11,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
+      "leetcode_slug": "minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
+      "difficulty": "Hard",
+      "problem_order": 10
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_439",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: true condition selects the first digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {"expression": "T?2:3"},
+      "expected": "2",
+      "tags": ["sample", "true"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: false branch contains another ternary",
+      "kind": "sample",
+      "visible": true,
+      "input": {"expression": "F?1:T?4:5"},
+      "expected": "4",
+      "tags": ["sample", "false-branch"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: true branch contains another ternary",
+      "kind": "sample",
+      "visible": true,
+      "input": {"expression": "T?T?F:5:3"},
+      "expected": "F",
+      "tags": ["sample", "true-branch"]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one terminal operand",
+      "kind": "trial",
+      "visible": true,
+      "input": {"expression": "7"},
+      "expected": "7",
+      "tags": ["trial", "single"]
+    },
+    {
+      "id": "trial-right-associative",
+      "name": "trial: nested false branch is evaluated first",
+      "kind": "trial",
+      "visible": true,
+      "input": {"expression": "F?0:F?1:2"},
+      "expected": "2",
+      "tags": ["trial", "associativity"]
+    },
+    {
+      "id": "hidden-boolean-value",
+      "name": "hidden: selected branch is a Boolean terminal",
+      "kind": "real",
+      "visible": false,
+      "input": {"expression": "F?9:T"},
+      "expected": "T",
+      "tags": ["hidden", "boolean"]
+    },
+    {
+      "id": "hidden-mixed-nesting",
+      "name": "hidden: both branches contain nested expressions",
+      "kind": "real",
+      "visible": false,
+      "input": {"expression": "T?F?1:2:T?3:4"},
+      "expected": "2",
+      "tags": ["hidden", "mixed"]
+    },
+    {
+      "id": "hidden-deep-false",
+      "name": "hidden: several false choices descend right",
+      "kind": "real",
+      "visible": false,
+      "input": {"expression": "F?1:F?2:F?3:4"},
+      "expected": "4",
+      "tags": ["hidden", "deep"]
+    }
+  ]
+}

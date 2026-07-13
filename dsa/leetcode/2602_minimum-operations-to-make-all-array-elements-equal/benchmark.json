@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_2602",
+  "cases": [
+    {
+      "id": "benchmark-spread-values",
+      "name": "benchmark: spread values with repeated queries",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          4,
+          9,
+          16,
+          25
+        ],
+        "queries": [
+          7,
+          30,
+          1
+        ]
+      },
+      "expected": [
+        38,
+        95,
+        50
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

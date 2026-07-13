@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_1260",
+  "source": "leetcode",
+  "frontend_id": "1260",
+  "slug": "shift-2d-grid",
+  "title": "Shift 2D Grid",
+  "difficulty": "Easy",
+  "acceptance_rate": 68.12964177369737,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/shift-2d-grid/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_topic:array",
+    "leetcode_topic:matrix",
+    "leetcode_topic:simulation",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:matrix",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Math & Geometry"
+      ],
+      "order": 880,
+      "section_order": 16,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "shift-2d-grid",
+      "leetcode_slug": "shift-2d-grid",
+      "difficulty": "Easy",
+      "problem_order": 31
+    }
+  ]
+}

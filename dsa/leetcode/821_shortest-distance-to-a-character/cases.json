@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_821",
+  "cases": [
+    {"id": "sample-1", "name": "sample: several separated occurrences", "kind": "sample", "visible": true, "input": {"s": "loveleetcode", "c": "e"}, "expected": [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0], "tags": ["sample", "multiple"]},
+    {"id": "sample-2", "name": "sample: occurrence only at the end", "kind": "sample", "visible": true, "input": {"s": "aaab", "c": "b"}, "expected": [3, 2, 1, 0], "tags": ["sample", "right-end"]},
+    {"id": "sample-3", "name": "sample: matching endpoints", "kind": "sample", "visible": true, "input": {"s": "baaaab", "c": "b"}, "expected": [0, 1, 2, 2, 1, 0], "tags": ["sample", "tie"]},
+    {"id": "trial-1", "name": "trial: one-character string", "kind": "trial", "visible": true, "input": {"s": "a", "c": "a"}, "expected": [0], "tags": ["trial", "single"]},
+    {"id": "trial-2", "name": "trial: every position matches", "kind": "trial", "visible": true, "input": {"s": "zzzzz", "c": "z"}, "expected": [0, 0, 0, 0, 0], "tags": ["trial", "all-match"]},
+    {"id": "trial-3", "name": "trial: alternating matches", "kind": "trial", "visible": true, "input": {"s": "abaca", "c": "a"}, "expected": [0, 1, 0, 1, 0], "tags": ["trial", "alternating"]},
+    {"id": "hidden-1", "name": "hidden: occurrence only at the start", "kind": "real", "visible": false, "input": {"s": "caaaaaa", "c": "c"}, "expected": [0, 1, 2, 3, 4, 5, 6], "tags": ["hidden", "left-end"]},
+    {"id": "hidden-2", "name": "hidden: uneven gaps choose both directions", "kind": "real", "visible": false, "input": {"s": "xabcxxdefx", "c": "x"}, "expected": [0, 1, 2, 1, 0, 0, 1, 2, 1, 0], "tags": ["hidden", "uneven-gaps"]},
+    {"id": "hidden-3", "name": "hidden: adjacent central occurrences", "kind": "real", "visible": false, "input": {"s": "aaaqqaaa", "c": "q"}, "expected": [3, 2, 1, 0, 0, 1, 2, 3], "tags": ["hidden", "adjacent"]}
+  ]
+}

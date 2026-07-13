@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_104",
+  "cases": [
+    {"id": "sample-balanced", "name": "sample: three levels", "kind": "sample", "visible": true, "input": {"root": [3, 9, 20, null, null, 15, 7]}, "expected": 3, "tags": ["sample", "depth"]},
+    {"id": "sample-right", "name": "sample: right child", "kind": "sample", "visible": true, "input": {"root": [1, null, 2]}, "expected": 2, "tags": ["sample", "skewed"]},
+    {"id": "sample-empty", "name": "sample: empty tree", "kind": "sample", "visible": true, "input": {"root": []}, "expected": 0, "tags": ["sample", "boundary"]},
+    {"id": "trial-single", "name": "single node", "kind": "trial", "visible": true, "input": {"root": [7]}, "expected": 1, "tags": ["boundary"]},
+    {"id": "real-sparse", "name": "hidden: sparse deepest branch", "kind": "real", "visible": false, "input": {"root": [1, 2, 3, null, 4, null, null, 5]}, "expected": 4, "tags": ["hidden", "sparse"]}
+  ]
+}

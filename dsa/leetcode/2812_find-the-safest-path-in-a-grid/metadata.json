@@ -1,0 +1,142 @@
+{
+  "challenge_id": "lc_2812",
+  "source": "leetcode",
+  "frontend_id": "2812",
+  "slug": "find-the-safest-path-in-a-grid",
+  "title": "Find the Safest Path in a Grid",
+  "difficulty": "Medium",
+  "acceptance_rate": 57.138119525192685,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-the-safest-path-in-a-grid/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:intuit",
+    "leetcode_company:uber",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:matrix",
+    "leetcode_topic:union-find",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:intuit",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:binary-search",
+    "topic:breadth-first-search",
+    "topic:heap-priority-queue",
+    "topic:matrix",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "Intuit",
+      "slug": "intuit"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 11
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Intuit",
+        "slug": "intuit",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Advanced Graphs"
+      ],
+      "order": 631,
+      "section_order": 11,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "find-the-safest-path-in-a-grid",
+      "leetcode_slug": "find-the-safest-path-in-a-grid",
+      "difficulty": "Medium",
+      "problem_order": 5
+    }
+  ]
+}

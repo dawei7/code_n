@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "166",
+  "frontend_id": "166",
+  "title_slug": "fraction-to-recurring-decimal",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064183002",
+  "verified_at": "2026-07-11T18:15:42.029766+00:00"
+}

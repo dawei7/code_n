@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_133",
+  "cases": [
+    {"id": "sample-square", "name": "sample: four-node cycle", "kind": "sample", "visible": true, "input": {"adj_list": [[2, 4], [1, 3], [2, 4], [1, 3]]}, "expected": [[2, 4], [1, 3], [2, 4], [1, 3]], "tags": ["sample", "cycle"]},
+    {"id": "sample-single", "name": "sample: isolated root", "kind": "sample", "visible": true, "input": {"adj_list": [[]]}, "expected": [[]], "tags": ["sample", "boundary"]},
+    {"id": "sample-null", "name": "sample: null graph", "kind": "sample", "visible": true, "input": {"adj_list": []}, "expected": [], "tags": ["sample", "boundary"]},
+    {"id": "trial-edge", "name": "two-node edge", "kind": "trial", "visible": true, "input": {"adj_list": [[2], [1]]}, "expected": [[2], [1]], "tags": ["edge"]},
+    {"id": "real-triangle", "name": "hidden: triangle graph", "kind": "real", "visible": false, "input": {"adj_list": [[2, 3], [1, 3], [1, 2]]}, "expected": [[2, 3], [1, 3], [1, 2]], "tags": ["hidden", "cycle"]}
+  ]
+}

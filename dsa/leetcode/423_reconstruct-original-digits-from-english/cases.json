@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_423",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: zero one and two shuffled",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "owoztneoer"},
+      "expected": "012",
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four and five shuffled",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "fviefuro"},
+      "expected": "45",
+      "tags": ["sample", "residual"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "zerozero"},
+      "expected": "00",
+      "tags": ["sample", "repeated"]
+    },
+    {
+      "id": "trial-nine",
+      "name": "trial: one shuffled nine",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "nnei"},
+      "expected": "9",
+      "tags": ["trial", "nine"]
+    },
+    {
+      "id": "trial-all",
+      "name": "trial: one copy of every digit name",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "zeroonetwothreefourfivesixseveneightnine"},
+      "expected": "0123456789",
+      "tags": ["trial", "all-digits"]
+    },
+    {
+      "id": "hidden-derived",
+      "name": "hidden: digits determined after unique-letter subtraction",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "oneonethreethreefivefivesevensevenninenine"},
+      "expected": "1133557799",
+      "tags": ["hidden", "derived"]
+    },
+    {
+      "id": "hidden-unique",
+      "name": "hidden: only uniquely identified even digits",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zerotwofoursixeight"},
+      "expected": "02468",
+      "tags": ["hidden", "unique-letters"]
+    },
+    {
+      "id": "hidden-many-ones",
+      "name": "hidden: repeated residual digit",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "oneoneoneoneone"},
+      "expected": "11111",
+      "tags": ["hidden", "multiplicity"]
+    }
+  ]
+}

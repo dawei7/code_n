@@ -1,0 +1,71 @@
+{
+  "challenge_id": "lc_3879",
+  "source": "leetcode",
+  "frontend_id": "3879",
+  "slug": "maximum-distinct-path-sum-in-a-binary-tree",
+  "title": "Maximum Distinct Path Sum in a Binary Tree",
+  "difficulty": "Medium",
+  "acceptance_rate": 51.87165775401069,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Binary Tree",
+      "slug": "binary-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-distinct-path-sum-in-a-binary-tree/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:binary-tree",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:binary-tree",
+    "topic:depth-first-search",
+    "topic:hash-table",
+    "topic:tree"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

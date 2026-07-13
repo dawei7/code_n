@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_1580",
+  "source": "leetcode",
+  "frontend_id": "1580",
+  "slug": "put-boxes-into-the-warehouse-ii",
+  "title": "Put Boxes Into the Warehouse II",
+  "difficulty": "Medium",
+  "acceptance_rate": 66.26561246705627,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/put-boxes-into-the-warehouse-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:pinterest",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:pinterest",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Pinterest",
+      "slug": "pinterest"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Pinterest",
+        "slug": "pinterest",
+        "timesEncountered": 3
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

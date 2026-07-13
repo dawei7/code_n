@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_3153",
+  "cases": [
+    {
+      "id": "sample-three-digit-values",
+      "name": "sample: three equal-length values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          13,
+          23,
+          12
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "digits"
+      ]
+    },
+    {
+      "id": "sample-all-same",
+      "name": "sample: identical numbers contribute zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10,
+          10,
+          10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-single-digit",
+      "name": "trial: one-digit values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-four-digit-mix",
+      "name": "trial: four-digit values with shared prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1024,
+          1124,
+          1225,
+          9224
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "positions"
+      ]
+    },
+    {
+      "id": "real-large-equal-length",
+      "name": "real: six-digit mixed values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          123456,
+          654321,
+          111111,
+          222222,
+          123123
+        ]
+      },
+      "expected": 48,
+      "tags": [
+        "real",
+        "digits"
+      ]
+    }
+  ]
+}

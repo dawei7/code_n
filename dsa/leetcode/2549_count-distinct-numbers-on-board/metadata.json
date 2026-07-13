@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_2549",
+  "source": "leetcode",
+  "frontend_id": "2549",
+  "slug": "count-distinct-numbers-on-board",
+  "title": "Count Distinct Numbers on Board",
+  "difficulty": "Easy",
+  "acceptance_rate": 61.826645563727766,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-distinct-numbers-on-board/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:oracle",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:math",
+    "leetcode_topic:simulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:oracle",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:math",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

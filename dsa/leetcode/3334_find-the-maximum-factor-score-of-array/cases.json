@@ -1,0 +1,118 @@
+{
+  "challenge_id": "lc_3334",
+  "cases": [
+    {
+      "id": "sample-powers-of-two",
+      "name": "sample: removing the smallest doubles gcd",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          16
+        ]
+      },
+      "expected": 64,
+      "tags": [
+        "sample",
+        "number-theory"
+      ]
+    },
+    {
+      "id": "sample-one-to-five",
+      "name": "sample: mixed coprime values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 60,
+      "tags": [
+        "sample",
+        "number-theory"
+      ]
+    },
+    {
+      "id": "sample-two-values",
+      "name": "sample: full array is already optimal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          20
+        ]
+      },
+      "expected": 400,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-single-number",
+      "name": "trial: single element can only keep its own score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12
+        ]
+      },
+      "expected": 144,
+      "tags": [
+        "edge",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-remove-prime-outlier",
+      "name": "trial: removing one value improves factor score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          12,
+          18,
+          25,
+          36
+        ]
+      },
+      "expected": 900,
+      "tags": [
+        "test",
+        "lcm-gcd"
+      ]
+    },
+    {
+      "id": "real-factor-outlier",
+      "name": "real: remove one factor outlier or keep all",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          6,
+          9,
+          15,
+          21,
+          35
+        ]
+      },
+      "expected": 1260,
+      "tags": [
+        "real",
+        "number-theory"
+      ]
+    }
+  ]
+}

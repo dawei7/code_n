@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "600",
+  "frontend_id": "600",
+  "title_slug": "non-negative-integers-without-consecutive-ones",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065456740",
+  "verified_at": "2026-07-12T21:31:42.178149+00:00"
+}

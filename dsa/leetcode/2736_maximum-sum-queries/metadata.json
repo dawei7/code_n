@@ -1,0 +1,89 @@
+{
+  "challenge_id": "lc_2736",
+  "source": "leetcode",
+  "frontend_id": "2736",
+  "slug": "maximum-sum-queries",
+  "title": "Maximum Sum Queries",
+  "difficulty": "Hard",
+  "acceptance_rate": 30.854239215407574,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Binary Indexed Tree",
+      "slug": "binary-indexed-tree"
+    },
+    {
+      "name": "Segment Tree",
+      "slug": "segment-tree"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-sum-queries/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-indexed-tree",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:segment-tree",
+    "leetcode_topic:sorting",
+    "leetcode_topic:stack"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-indexed-tree",
+    "topic:binary-search",
+    "topic:monotonic-stack",
+    "topic:segment-tree",
+    "topic:sorting",
+    "topic:stack"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

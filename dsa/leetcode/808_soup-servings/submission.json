@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "826",
+  "frontend_id": "808",
+  "title_slug": "soup-servings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.soupServings",
+  "verified_submission_id": "2066253648",
+  "verified_at": "2026-07-13T14:44:14.032549+00:00"
+}

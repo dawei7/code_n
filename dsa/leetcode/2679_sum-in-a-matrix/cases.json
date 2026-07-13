@@ -1,0 +1,143 @@
+{
+  "challenge_id": "lc_2679",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: sorted rows contribute column maxima",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            7,
+            2,
+            1
+          ],
+          [
+            6,
+            4,
+            2
+          ],
+          [
+            6,
+            5,
+            3
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "matrix"
+      ],
+      "expected": 15
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "edge"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-two-rows",
+      "name": "trial: two rows with different ranks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            10,
+            1,
+            4
+          ],
+          [
+            3,
+            8,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "sorting"
+      ],
+      "expected": 16
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "trial: all values equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "ties"
+      ],
+      "expected": 10
+    },
+    {
+      "id": "real-rectangular",
+      "name": "hidden: rectangular matrix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          [
+            9,
+            1,
+            6,
+            3
+          ],
+          [
+            2,
+            8,
+            7,
+            4
+          ],
+          [
+            5,
+            5,
+            5,
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "rectangular"
+      ],
+      "expected": 26
+    }
+  ]
+}

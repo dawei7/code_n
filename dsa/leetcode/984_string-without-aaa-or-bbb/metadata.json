@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_984",
+  "source": "leetcode",
+  "frontend_id": "984",
+  "slug": "string-without-aaa-or-bbb",
+  "title": "String Without AAA or BBB",
+  "difficulty": "Medium",
+  "acceptance_rate": 45.47259931434866,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/string-without-aaa-or-bbb/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:zalando",
+    "leetcode_topic:greedy",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:zalando",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:greedy",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Zalando",
+      "slug": "zalando"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Zalando",
+        "slug": "zalando",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

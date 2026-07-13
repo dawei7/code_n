@@ -1,0 +1,67 @@
+{
+  "challenge_id": "lc_2077",
+  "source": "leetcode",
+  "frontend_id": "2077",
+  "slug": "paths-in-maze-that-lead-to-same-room",
+  "title": "Paths in Maze That Lead to Same Room",
+  "difficulty": "Medium",
+  "acceptance_rate": 56.74961649906255,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    }
+  ],
+  "url": "https://leetcode.com/problems/paths-in-maze-that-lead-to-same-room/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_topic:graph"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:graph"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

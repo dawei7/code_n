@@ -1,0 +1,63 @@
+{
+  "challenge_id": "lc_1514",
+  "cases": [
+    {
+      "id": "benchmark-chain-beats-shortcuts",
+      "name": "benchmark: high-probability chain beats shortcuts",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "succ_prob": [
+          0.9,
+          0.9,
+          0.9,
+          0.8,
+          0.8,
+          0.8,
+          0.5
+        ],
+        "start": 0,
+        "end": 5
+      },
+      "expected": 0.729,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 1e-06
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

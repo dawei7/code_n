@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_1243",
+  "source": "leetcode",
+  "frontend_id": "1243",
+  "slug": "array-transformation",
+  "title": "Array Transformation",
+  "difficulty": "Easy",
+  "acceptance_rate": 53.831003196538695,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/array-transformation/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:virtu",
+    "leetcode_topic:array",
+    "leetcode_topic:simulation",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:virtu",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Virtu Financial",
+      "slug": "virtu"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Virtu Financial",
+        "slug": "virtu",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 87,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "array-transformation",
+      "leetcode_slug": "array-transformation",
+      "difficulty": "Easy",
+      "problem_order": 87
+    }
+  ]
+}

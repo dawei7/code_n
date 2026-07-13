@@ -1,0 +1,149 @@
+{
+  "challenge_id": "lc_2643",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: tie chooses first row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: second row has more ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "row-sum"
+      ]
+    },
+    {
+      "id": "trial-middle-row",
+      "name": "trial: middle row wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-three-way-tie",
+      "name": "trial: first row wins among equal counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "tags": [
+        "trial",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: no ones in any row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

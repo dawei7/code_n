@@ -1,0 +1,135 @@
+{
+  "challenge_id": "lc_2360",
+  "source": "leetcode",
+  "frontend_id": "2360",
+  "slug": "longest-cycle-in-a-graph",
+  "title": "Longest Cycle in a Graph",
+  "difficulty": "Hard",
+  "acceptance_rate": 50.90023727895653,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Topological Sort",
+      "slug": "topological-sort"
+    }
+  ],
+  "url": "https://leetcode.com/problems/longest-cycle-in-a-graph/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:anduril",
+    "leetcode_company:juspay",
+    "leetcode_company:nvidia",
+    "leetcode_company:phonepe",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:graph",
+    "leetcode_topic:topological-sort"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:anduril",
+    "company:juspay",
+    "company:nvidia",
+    "company:phonepe",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:graph",
+    "topic:topological-sort"
+  ],
+  "company_tags": [
+    {
+      "name": "Anduril",
+      "slug": "anduril"
+    },
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "Juspay",
+      "slug": "juspay"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Juspay",
+        "slug": "juspay",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Anduril",
+        "slug": "anduril",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_1018",
+  "cases": [
+    {
+      "id": "benchmark-longer-bits",
+      "name": "benchmark: longer bit stream",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

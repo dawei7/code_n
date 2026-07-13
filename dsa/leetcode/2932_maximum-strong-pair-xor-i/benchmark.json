@@ -1,0 +1,70 @@
+{
+  "challenge_id": "lc_2932",
+  "cases": [
+    {
+      "id": "benchmark-quadratic-limit-50",
+      "name": "benchmark: 50-number dense strong-pair scan",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          20,
+          39,
+          58,
+          77,
+          96,
+          15,
+          34,
+          53,
+          72,
+          91,
+          10,
+          29,
+          48,
+          67,
+          86,
+          5,
+          24,
+          43,
+          62,
+          81,
+          100,
+          19,
+          38,
+          57,
+          76,
+          95,
+          14,
+          33,
+          52,
+          71,
+          90,
+          9,
+          28,
+          47,
+          66,
+          85,
+          4,
+          23,
+          42,
+          61,
+          80,
+          99,
+          18,
+          37,
+          56,
+          75,
+          94,
+          13,
+          32
+        ]
+      },
+      "expected": 127,
+      "tags": [
+        "benchmark",
+        "quadratic"
+      ]
+    }
+  ]
+}

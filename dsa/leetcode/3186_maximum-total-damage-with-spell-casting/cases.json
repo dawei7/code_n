@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_3186",
+  "cases": [
+    {
+      "id": "sample-separated-powers",
+      "name": "sample: separated powers can both be chosen",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "power": [
+          1,
+          1,
+          3,
+          4
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "damage"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate power contributes multiplied damage",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "power": [
+          7,
+          1,
+          6,
+          6
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-all-conflicting",
+      "name": "trial: nearby powers conflict heavily",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "conflict"
+      ]
+    },
+    {
+      "id": "trial-separated-groups",
+      "name": "trial: separated groups combine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": [
+          1,
+          1,
+          4,
+          4,
+          7,
+          7
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "groups"
+      ]
+    },
+    {
+      "id": "real-density",
+      "name": "real: dense repeated powers with skip window",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "power": [
+          2,
+          2,
+          3,
+          5,
+          5,
+          8,
+          9,
+          11,
+          11
+        ]
+      },
+      "expected": 44,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

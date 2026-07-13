@@ -1,0 +1,6 @@
+{"challenge_id":"lc_206","cases":[
+{"id":"sample-five","name":"sample: reverse five nodes","kind":"sample","visible":true,"input":{"head":[1,2,3,4,5]},"expected":[5,4,3,2,1],"tags":["sample","linked-list"]},
+{"id":"trial-two","name":"reverse two nodes","kind":"trial","visible":true,"input":{"head":[1,2]},"expected":[2,1],"tags":["boundary"]},
+{"id":"trial-empty","name":"empty list","kind":"trial","visible":true,"input":{"head":[]},"expected":[],"tags":["empty"]},
+{"id":"real-single","name":"hidden: single node","kind":"real","visible":false,"input":{"head":[9]},"expected":[9],"tags":["hidden","single"]}
+]}

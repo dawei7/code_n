@@ -1,0 +1,37 @@
+{
+  "challenge_id": "lc_2440",
+  "cases": [
+    {
+      "id": "benchmark-three-components",
+      "name": "benchmark: split chain into three equal-sum components",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          1,
+          2
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

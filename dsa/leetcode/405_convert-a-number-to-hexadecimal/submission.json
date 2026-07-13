@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "405",
+  "frontend_id": "405",
+  "title_slug": "convert-a-number-to-hexadecimal",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064721217",
+  "verified_at": "2026-07-12T07:22:08.400823+00:00"
+}

@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2382",
+  "cases": [
+    {
+      "id": "benchmark-unit-values",
+      "name": "benchmark: equal values with staggered removals",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "remove_queries": [
+          2,
+          1,
+          3,
+          0
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

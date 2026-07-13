@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_393",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two-byte then ASCII",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "data": [
+          197,
+          130,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: invalid continuation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "data": [
+          235,
+          140,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "bad-continuation"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: valid four-byte character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "data": [
+          240,
+          162,
+          138,
+          147
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "four-byte"
+      ]
+    },
+    {
+      "id": "trial-ascii",
+      "name": "trial: ASCII sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "data": [
+          0,
+          65,
+          127
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "ascii"
+      ]
+    },
+    {
+      "id": "trial-continuation-first",
+      "name": "trial: continuation cannot lead",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "data": [
+          128
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "bad-leader"
+      ]
+    },
+    {
+      "id": "hidden-incomplete",
+      "name": "hidden: incomplete three-byte character",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "data": [
+          226,
+          130
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "incomplete"
+      ]
+    },
+    {
+      "id": "hidden-five-byte-prefix",
+      "name": "hidden: unsupported five-byte prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "data": [
+          248,
+          128,
+          128,
+          128,
+          128
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "invalid-width"
+      ]
+    },
+    {
+      "id": "hidden-several-characters",
+      "name": "hidden: adjacent widths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "data": [
+          36,
+          194,
+          162,
+          226,
+          130,
+          172,
+          65
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "mixed-width"
+      ]
+    }
+  ]
+}

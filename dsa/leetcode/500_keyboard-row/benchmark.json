@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_500",
+  "measurement_note": "Size is the total character count. Direct row lookup checks each character once, while comparing the keyboard row of every character pair performs quadratic work on the long valid word.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: validate a 32-letter top-row word",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "words": [
+          "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+        ]
+      },
+      "expected": [
+        "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "single-row"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: validate a 128-letter top-row word",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "words": [
+          "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+        ]
+      },
+      "expected": [
+        "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "single-row"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: validate a 512-letter top-row word",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "words": [
+          "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+        ]
+      },
+      "expected": [
+        "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "single-row"
+      ]
+    }
+  ]
+}

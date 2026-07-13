@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_1436",
+  "cases": [
+    {
+      "id": "benchmark-long-city-names",
+      "name": "benchmark: longer city-name chain",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "paths": [
+          [
+            "Earth",
+            "Mars"
+          ],
+          [
+            "Mars",
+            "Europa"
+          ],
+          [
+            "Europa",
+            "Titan"
+          ],
+          [
+            "Titan",
+            "Ceres"
+          ]
+        ]
+      },
+      "expected": "Ceres",
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

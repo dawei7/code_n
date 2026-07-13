@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "507",
+  "frontend_id": "507",
+  "title_slug": "perfect-number",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065151150",
+  "verified_at": "2026-07-12T15:35:13.749529+00:00"
+}

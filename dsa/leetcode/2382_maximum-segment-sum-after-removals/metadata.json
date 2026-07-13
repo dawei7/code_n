@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2382",
+  "source": "leetcode",
+  "frontend_id": "2382",
+  "slug": "maximum-segment-sum-after-removals",
+  "title": "Maximum Segment Sum After Removals",
+  "difficulty": "Hard",
+  "acceptance_rate": 49.91306363741741,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-segment-sum-after-removals/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:infosys",
+    "leetcode_company:medianet",
+    "leetcode_topic:array",
+    "leetcode_topic:ordered-set",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:union-find"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:infosys",
+    "company:medianet",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:ordered-set",
+    "topic:prefix-sum",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "Media.net",
+      "slug": "medianet"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Media.net",
+        "slug": "medianet",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

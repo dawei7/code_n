@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_101",
+  "cases": [
+    {"id": "sample-symmetric", "name": "sample: symmetric complete tree", "kind": "sample", "visible": true, "input": {"root": [1, 2, 2, 3, 4, 4, 3]}, "expected": true, "tags": ["sample", "symmetric"]},
+    {"id": "sample-asymmetric", "name": "sample: asymmetric child positions", "kind": "sample", "visible": true, "input": {"root": [1, 2, 2, null, 3, null, 3]}, "expected": false, "tags": ["sample", "structure"]},
+    {"id": "sample-single", "name": "sample: single node", "kind": "sample", "visible": true, "input": {"root": [1]}, "expected": true, "tags": ["sample", "boundary"]},
+    {"id": "trial-empty", "name": "empty tree", "kind": "trial", "visible": true, "input": {"root": []}, "expected": true, "tags": ["boundary"]},
+    {"id": "trial-values", "name": "mirrored shape but unequal values", "kind": "trial", "visible": true, "input": {"root": [1, 2, 2, 3, 4, 5, 3]}, "expected": false, "tags": ["values"]},
+    {"id": "real-sparse", "name": "hidden: sparse symmetric tree", "kind": "real", "visible": false, "input": {"root": [1, 2, 2, null, 3, 3, null]}, "expected": true, "tags": ["hidden", "sparse"]}
+  ]
+}

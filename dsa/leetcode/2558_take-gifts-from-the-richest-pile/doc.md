@@ -1,0 +1,85 @@
+# Take Gifts From the Richest Pile
+
+| Field | Value |
+|---|---|
+| Source | LeetCode |
+| Frontend ID | 2558 |
+| Difficulty | Easy |
+| Category | Algorithms |
+| Topics | Array, Heap (Priority Queue), Simulation |
+| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
+| Official Link | [take-gifts-from-the-richest-pile](https://leetcode.com/problems/take-gifts-from-the-richest-pile/) |
+
+## Problem Description
+[Open the original LeetCode problem](https://leetcode.com/problems/take-gifts-from-the-richest-pile/).
+
+### Goal
+Given an array of integers representing piles of gifts and an integer representing the number of seconds, simulate a process where in each second, you select the pile with the largest number of gifts, replace it with the integer square root of its current value (rounded down), and repeat this for the specified duration. The goal is to return the total number of gifts remaining after all seconds have elapsed.
+
+### Function Contract
+**Inputs**
+
+- `gifts`: A list of integers where each element represents the number of gifts in a pile.
+- `k`: An integer representing the number of seconds (operations) to perform.
+
+**Return value**
+
+- An integer representing the sum of all gifts remaining in the piles after `k` operations.
+
+### Examples
+**Example 1**
+
+- Input: `gifts = [25, 64, 9, 4, 100], k = 4`
+- Output: `29`
+- Explanation: After 4 operations, the piles become [5, 8, 9, 4, 10], summing to 29.
+
+**Example 2**
+
+- Input: `gifts = [1, 1, 1, 1], k = 4`
+- Output: `4`
+- Explanation: The square root of 1 is 1, so the piles remain unchanged.
+
+**Example 3**
+
+- Input: `gifts = [10], k = 1`
+- Output: `3`
+- Explanation: The pile of 10 becomes 3 (floor of sqrt(10)).
+
+---
+
+## Solution
+### Approach
+The problem is best solved using a **Max-Heap** (Priority Queue). Since we repeatedly need to extract the maximum element and re-insert a modified value, a max-heap allows for $O(\log n)$ extraction and insertion. In Python, we use `heapq` with negated values to simulate a max-heap.
+
+### Complexity Analysis
+- **Time Complexity**: $O(n + k \log n)$, where $n$ is the number of piles. Building the heap takes $O(n)$, and performing $k$ operations, each involving a heap pop and push, takes $O(k \log n)$.
+- **Space Complexity**: $O(n)$ to store the heap of gift piles.
+
+### Reference Implementations
+<details>
+<summary>python</summary>
+
+```python
+import heapq
+import math
+
+def solve(gifts: list[int], k: int) -> int:
+    # Python's heapq is a min-heap by default.
+    # We negate the values to simulate a max-heap.
+    max_heap = [-g for g in gifts]
+    heapq.heapify(max_heap)
+
+    for _ in range(k):
+        # Extract the largest pile (smallest negative value)
+        largest = -heapq.heappop(max_heap)
+
+        # Calculate the new value: floor of the square root
+        new_val = math.isqrt(largest)
+
+        # Push the modified value back into the heap
+        heapq.heappush(max_heap, -new_val)
+
+    # The result is the sum of the absolute values of the heap elements
+    return sum(-val for val in max_heap)
+```
+</details>

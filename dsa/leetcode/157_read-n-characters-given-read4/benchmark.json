@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_157",
+  "measurement_note": "Full-file reads require a growing number of four-character primitive chunks and linear copying into the result.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: read 8 characters once",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "content": "abcdefgh",
+        "n": 8
+      },
+      "expected": "abcdefgh",
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: read 64 characters once",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "content": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl",
+        "n": 64
+      },
+      "expected": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl",
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: read 256 characters once",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "content": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv",
+        "n": 256
+      },
+      "expected": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv",
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2867",
+  "source": "leetcode",
+  "frontend_id": "2867",
+  "slug": "count-valid-paths-in-a-tree",
+  "title": "Count Valid Paths in a Tree",
+  "difficulty": "Hard",
+  "acceptance_rate": 36.57023302792006,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Number Theory",
+      "slug": "number-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-valid-paths-in-a-tree/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:gameskraft",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math",
+    "leetcode_topic:number-theory",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:gameskraft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:depth-first-search",
+    "topic:dynamic-programming",
+    "topic:math",
+    "topic:number-theory",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Gameskraft",
+      "slug": "gameskraft"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Gameskraft",
+        "slug": "gameskraft",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

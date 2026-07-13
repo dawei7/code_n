@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_293",
+  "cases": [
+    {"id": "sample-overlap", "name": "sample: three overlapping moves", "kind": "sample", "visible": true, "input": {"currentState": "++++"}, "expected": ["--++", "+--+", "++--"], "tags": ["sample", "overlap"]},
+    {"id": "sample-too-short", "name": "sample: no adjacent pair", "kind": "sample", "visible": true, "input": {"currentState": "+"}, "expected": [], "tags": ["sample", "boundary"]},
+    {"id": "sample-one-move", "name": "sample: exactly one pair", "kind": "sample", "visible": true, "input": {"currentState": "++"}, "expected": ["--"], "tags": ["sample"]},
+    {"id": "trial-no-move", "name": "alternating symbols have no move", "kind": "trial", "visible": true, "input": {"currentState": "+-+-"}, "expected": [], "tags": ["none"]},
+    {"id": "trial-middle", "name": "one pair surrounded by minuses", "kind": "trial", "visible": true, "input": {"currentState": "-++-"}, "expected": ["----"], "tags": ["single"]},
+    {"id": "real-separated", "name": "hidden: separated legal pairs", "kind": "real", "visible": false, "input": {"currentState": "++--++"}, "expected": ["----++", "++----"], "tags": ["hidden", "separated"]}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "713",
+  "frontend_id": "713",
+  "title_slug": "subarray-product-less-than-k",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065646638",
+  "verified_at": "2026-07-13T04:49:15.722511+00:00"
+}

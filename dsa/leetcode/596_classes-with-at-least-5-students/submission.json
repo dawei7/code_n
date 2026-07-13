@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "596",
+  "frontend_id": "596",
+  "title_slug": "classes-with-at-least-5-students",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065451873",
+  "verified_at": "2026-07-12T21:18:28.641294+00:00"
+}

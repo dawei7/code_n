@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_279",
+  "measurement_note": "Size is n; three-square inputs exhaust the two-square scan while dynamic programming fills every smaller state and tests all square transitions.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: three-square value 66",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 66,
+      "input": {
+        "n": 66
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "three-squares"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: three-square value 513",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 513,
+      "input": {
+        "n": 513
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "three-squares"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: three-square value 4098",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4098,
+      "input": {
+        "n": 4098
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "three-squares"
+      ]
+    }
+  ]
+}

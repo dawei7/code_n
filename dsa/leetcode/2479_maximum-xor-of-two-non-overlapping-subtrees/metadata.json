@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2479",
+  "source": "leetcode",
+  "frontend_id": "2479",
+  "slug": "maximum-xor-of-two-non-overlapping-subtrees",
+  "title": "Maximum XOR of Two Non-Overlapping Subtrees",
+  "difficulty": "Hard",
+  "acceptance_rate": 52.22863135815417,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Trie",
+      "slug": "trie"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:directi",
+    "leetcode_company:medianet",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:graph",
+    "leetcode_topic:tree",
+    "leetcode_topic:trie"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:directi",
+    "company:medianet",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:depth-first-search",
+    "topic:graph",
+    "topic:tree",
+    "topic:trie"
+  ],
+  "company_tags": [
+    {
+      "name": "Directi",
+      "slug": "directi"
+    },
+    {
+      "name": "Media.net",
+      "slug": "medianet"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Directi",
+        "slug": "directi",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Media.net",
+        "slug": "medianet",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

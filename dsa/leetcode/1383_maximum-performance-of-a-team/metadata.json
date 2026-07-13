@@ -1,0 +1,176 @@
+{
+  "challenge_id": "lc_1383",
+  "source": "leetcode",
+  "frontend_id": "1383",
+  "slug": "maximum-performance-of-a-team",
+  "title": "Maximum Performance of a Team",
+  "difficulty": "Hard",
+  "acceptance_rate": 47.81251865178503,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-performance-of-a-team/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:citrix",
+    "leetcode_company:de-shaw",
+    "leetcode_company:facebook",
+    "leetcode_company:flipkart",
+    "leetcode_company:phonepe",
+    "leetcode_company:tiktok",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:sorting",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:citrix",
+    "company:de-shaw",
+    "company:facebook",
+    "company:flipkart",
+    "company:phonepe",
+    "company:tiktok",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:greedy",
+    "topic:heap-priority-queue",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Flipkart",
+      "slug": "flipkart"
+    },
+    {
+      "name": "Citrix",
+      "slug": "citrix"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Flipkart",
+        "slug": "flipkart",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Citrix",
+        "slug": "citrix",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 501,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "maximum-performance-of-a-team",
+      "leetcode_slug": "maximum-performance-of-a-team",
+      "difficulty": "Hard",
+      "problem_order": 27
+    }
+  ]
+}

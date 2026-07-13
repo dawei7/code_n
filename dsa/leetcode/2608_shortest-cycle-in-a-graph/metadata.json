@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2608",
+  "source": "leetcode",
+  "frontend_id": "2608",
+  "slug": "shortest-cycle-in-a-graph",
+  "title": "Shortest Cycle in a Graph",
+  "difficulty": "Hard",
+  "acceptance_rate": 39.937230769230766,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    }
+  ],
+  "url": "https://leetcode.com/problems/shortest-cycle-in-a-graph/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:phonepe",
+    "leetcode_company:zomato",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:graph"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:phonepe",
+    "company:zomato",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:breadth-first-search",
+    "topic:graph"
+  ],
+  "company_tags": [
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Zomato",
+      "slug": "zomato"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Zomato",
+        "slug": "zomato",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

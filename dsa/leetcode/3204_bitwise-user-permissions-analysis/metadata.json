@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_3204",
+  "source": "leetcode",
+  "frontend_id": "3204",
+  "slug": "bitwise-user-permissions-analysis",
+  "title": "Bitwise User Permissions Analysis",
+  "difficulty": "Medium",
+  "acceptance_rate": 92.95602605863192,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/bitwise-user-permissions-analysis/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

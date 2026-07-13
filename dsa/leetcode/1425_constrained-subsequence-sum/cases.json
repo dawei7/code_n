@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_1425",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: skip one negative valley",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          2,
+          -10,
+          5,
+          20
+        ],
+        "k": 2
+      },
+      "expected": 37,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3
+        ],
+        "k": 1
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: constrained skip",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          -2,
+          -10,
+          -5,
+          20
+        ],
+        "k": 2
+      },
+      "expected": 23,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-adjacent-only",
+      "name": "hidden: k equals one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          -1,
+          -1,
+          3,
+          -1,
+          3
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

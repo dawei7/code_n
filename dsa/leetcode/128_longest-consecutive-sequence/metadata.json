@@ -1,0 +1,550 @@
+{
+  "challenge_id": "lc_128",
+  "source": "leetcode",
+  "frontend_id": "128",
+  "slug": "longest-consecutive-sequence",
+  "title": "Longest Consecutive Sequence",
+  "difficulty": "Medium",
+  "acceptance_rate": 47.1659465160495,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    }
+  ],
+  "url": "https://leetcode.com/problems/longest-consecutive-sequence/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:atlassian",
+    "leetcode_company:bloomberg",
+    "leetcode_company:capgemini",
+    "leetcode_company:cisco",
+    "leetcode_company:de-shaw",
+    "leetcode_company:deloitte",
+    "leetcode_company:epam-systems",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:ibm",
+    "leetcode_company:infosys",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:morgan-stanley",
+    "leetcode_company:myntra",
+    "leetcode_company:nvidia",
+    "leetcode_company:okta",
+    "leetcode_company:oracle",
+    "leetcode_company:paypal",
+    "leetcode_company:paytm",
+    "leetcode_company:tcs",
+    "leetcode_company:tesla",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_company:visa",
+    "leetcode_company:walmart-labs",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-52-q4eh",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-5-nfzq",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:union-find",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "company:amazon",
+    "company:apple",
+    "company:atlassian",
+    "company:bloomberg",
+    "company:capgemini",
+    "company:cisco",
+    "company:de-shaw",
+    "company:deloitte",
+    "company:epam-systems",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:ibm",
+    "company:infosys",
+    "company:linkedin",
+    "company:microsoft",
+    "company:morgan-stanley",
+    "company:myntra",
+    "company:nvidia",
+    "company:okta",
+    "company:oracle",
+    "company:paypal",
+    "company:paytm",
+    "company:tcs",
+    "company:tesla",
+    "company:tiktok",
+    "company:uber",
+    "company:visa",
+    "company:walmart-labs",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:top-100-liked:top-100-liked-52-q4eh",
+    "study_plan_section:top-interview-150:top-interview-150-5-nfzq",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:hash-table",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Paytm",
+      "slug": "paytm"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Okta",
+      "slug": "okta"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "Atlassian",
+      "slug": "atlassian"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Tesla",
+      "slug": "tesla"
+    },
+    {
+      "name": "Morgan Stanley",
+      "slug": "morgan-stanley"
+    },
+    {
+      "name": "Cisco",
+      "slug": "cisco"
+    },
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    },
+    {
+      "name": "Capgemini",
+      "slug": "capgemini"
+    },
+    {
+      "name": "EPAM Systems",
+      "slug": "epam-systems"
+    },
+    {
+      "name": "Myntra",
+      "slug": "myntra"
+    },
+    {
+      "name": "Deloitte",
+      "slug": "deloitte"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 24
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 22
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 9
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Paytm",
+        "slug": "paytm",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Atlassian",
+        "slug": "atlassian",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tesla",
+        "slug": "tesla",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Morgan Stanley",
+        "slug": "morgan-stanley",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Cisco",
+        "slug": "cisco",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Capgemini",
+        "slug": "capgemini",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "EPAM Systems",
+        "slug": "epam-systems",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Myntra",
+        "slug": "myntra",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Deloitte",
+        "slug": "deloitte",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Okta",
+        "slug": "okta",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-5-nfzq",
+      "section_name": "Hashmap",
+      "path": [
+        "Hashmap"
+      ],
+      "order": 47,
+      "section_order": 5,
+      "problem_order": 9,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-52-q4eh",
+      "section_name": "Hashing",
+      "path": [
+        "Hashing"
+      ],
+      "order": 54,
+      "section_order": 7,
+      "problem_order": 3,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 7,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "longest-consecutive-sequence",
+      "leetcode_slug": "longest-consecutive-sequence",
+      "difficulty": "Medium",
+      "problem_order": 7
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 8,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "longest-consecutive-sequence",
+      "leetcode_slug": "longest-consecutive-sequence",
+      "difficulty": "Medium",
+      "problem_order": 8
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 17,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "longest-consecutive-sequence",
+      "leetcode_slug": "longest-consecutive-sequence",
+      "difficulty": "Medium",
+      "problem_order": 17
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 104,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "longest-consecutive-sequence",
+      "leetcode_slug": "longest-consecutive-sequence",
+      "difficulty": "Medium",
+      "problem_order": 104
+    }
+  ]
+}

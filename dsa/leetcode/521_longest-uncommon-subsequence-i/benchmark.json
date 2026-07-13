@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_521",
+  "measurement_note": "Size is each identical input length. Direct equality is linear, while explicitly generating the complete subsequence sets grows exponentially on distinct-character strings before concluding that the sets match.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: compare identical length-4 strings", "kind": "benchmark", "visible": false, "size": 4, "input": {"a": "abcd", "b": "abcd"}, "expected": -1, "tags": ["benchmark", "scaling", "identical"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: compare identical length-8 strings", "kind": "benchmark", "visible": false, "size": 8, "input": {"a": "abcdefgh", "b": "abcdefgh"}, "expected": -1, "tags": ["benchmark", "scaling", "identical"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: compare identical length-16 strings", "kind": "benchmark", "visible": false, "size": 16, "input": {"a": "abcdefghijklmnop", "b": "abcdefghijklmnop"}, "expected": -1, "tags": ["benchmark", "scaling", "identical"]}
+  ]
+}

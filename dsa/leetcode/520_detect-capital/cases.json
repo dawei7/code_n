@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_520",
+  "cases": [
+    {"id": "sample-all-uppercase", "name": "sample: every letter is uppercase", "kind": "sample", "visible": true, "input": {"word": "USA"}, "expected": true, "tags": ["sample", "uppercase"]},
+    {"id": "sample-invalid-mixed", "name": "sample: trailing capital is invalid", "kind": "sample", "visible": true, "input": {"word": "FlaG"}, "expected": false, "tags": ["sample", "mixed"]},
+    {"id": "sample-title", "name": "sample: only first letter is uppercase", "kind": "sample", "visible": true, "input": {"word": "Google"}, "expected": true, "tags": ["sample", "title"]},
+    {"id": "trial-lowercase", "name": "trial: every letter is lowercase", "kind": "trial", "visible": true, "input": {"word": "leetcode"}, "expected": true, "tags": ["trial", "lowercase"]},
+    {"id": "trial-interior-capital", "name": "trial: lone interior capital", "kind": "trial", "visible": true, "input": {"word": "mL"}, "expected": false, "tags": ["trial", "interior"]},
+    {"id": "hidden-single-upper", "name": "hidden: one uppercase character", "kind": "real", "visible": false, "input": {"word": "A"}, "expected": true, "tags": ["hidden", "singleton"]},
+    {"id": "hidden-single-lower", "name": "hidden: one lowercase character", "kind": "real", "visible": false, "input": {"word": "a"}, "expected": true, "tags": ["hidden", "singleton"]}
+  ]
+}

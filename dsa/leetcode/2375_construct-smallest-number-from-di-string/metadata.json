@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_2375",
+  "source": "leetcode",
+  "frontend_id": "2375",
+  "slug": "construct-smallest-number-from-di-string",
+  "title": "Construct Smallest Number From DI String",
+  "difficulty": "Medium",
+  "acceptance_rate": 85.54558953367044,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/construct-smallest-number-from-di-string/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:goldman-sachs",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:greedy",
+    "leetcode_topic:stack",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:goldman-sachs",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:backtracking",
+    "topic:greedy",
+    "topic:stack",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Backtracking"
+      ],
+      "order": 524,
+      "section_order": 9,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "construct-smallest-number-from-di-string",
+      "leetcode_slug": "construct-smallest-number-from-di-string",
+      "difficulty": "Medium",
+      "problem_order": 17
+    }
+  ]
+}

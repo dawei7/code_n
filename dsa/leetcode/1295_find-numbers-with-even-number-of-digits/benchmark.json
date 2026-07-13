@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_1295",
+  "cases": [
+    {
+      "id": "benchmark-mixed-lengths",
+      "name": "benchmark: mixed lengths",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          44,
+          8,
+          1234,
+          99999,
+          100000
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

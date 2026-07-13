@@ -1,0 +1,178 @@
+{
+  "challenge_id": "lc_945",
+  "source": "leetcode",
+  "frontend_id": "945",
+  "slug": "minimum-increment-to-make-array-unique",
+  "title": "Minimum Increment to Make Array Unique",
+  "difficulty": "Medium",
+  "acceptance_rate": 60.72071431428584,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-increment-to-make-array-unique/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:coursera",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:paypal",
+    "leetcode_company:tiktok",
+    "leetcode_company:zscaler",
+    "leetcode_topic:array",
+    "leetcode_topic:counting",
+    "leetcode_topic:greedy",
+    "leetcode_topic:sorting",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:coursera",
+    "company:goldman-sachs",
+    "company:google",
+    "company:paypal",
+    "company:tiktok",
+    "company:zscaler",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:counting",
+    "topic:greedy",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "ZScaler",
+      "slug": "zscaler"
+    },
+    {
+      "name": "Coursera",
+      "slug": "coursera"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ZScaler",
+        "slug": "zscaler",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Coursera",
+        "slug": "coursera",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Greedy"
+      ],
+      "order": 773,
+      "section_order": 14,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "minimum-increment-to-make-array-unique",
+      "leetcode_slug": "minimum-increment-to-make-array-unique",
+      "difficulty": "Medium",
+      "problem_order": 12
+    }
+  ]
+}

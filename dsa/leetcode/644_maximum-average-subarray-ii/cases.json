@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_644",
+  "cases": [
+    {"id": "sample-1", "name": "sample: best four-value window", "kind": "sample", "visible": true, "input": {"nums": [1,12,-5,-6,50,3], "k": 4}, "expected": 12.75, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["sample", "binary-search"]},
+    {"id": "sample-2", "name": "sample: one value", "kind": "sample", "visible": true, "input": {"nums": [5], "k": 1}, "expected": 5.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["sample", "singleton"]},
+    {"id": "trial-1", "name": "trial: longer window is optimal", "kind": "trial", "visible": true, "input": {"nums": [4,0,0,4], "k": 3}, "expected": 2.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["trial", "longer-window"]},
+    {"id": "trial-2", "name": "trial: all negative values", "kind": "trial", "visible": true, "input": {"nums": [-1,-2,-3], "k": 2}, "expected": -1.5, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["trial", "negative"]},
+    {"id": "hidden-1", "name": "hidden: best final minimum-length window", "kind": "real", "visible": false, "input": {"nums": [1,2,3,4], "k": 2}, "expected": 3.5, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["hidden", "final-window"]},
+    {"id": "hidden-2", "name": "hidden: whole array only", "kind": "real", "visible": false, "input": {"nums": [1,2,3], "k": 3}, "expected": 2.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["hidden", "full-window"]},
+    {"id": "hidden-3", "name": "hidden: fractional two-value average", "kind": "real", "visible": false, "input": {"nums": [0,1], "k": 2}, "expected": 0.5, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["hidden", "fractional"]},
+    {"id": "hidden-4", "name": "hidden: unit minimum chooses maximum", "kind": "real", "visible": false, "input": {"nums": [-5,7,-1], "k": 1}, "expected": 7.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["hidden", "unit-window"]}
+  ]
+}

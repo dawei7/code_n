@@ -1,0 +1,90 @@
+{
+  "challenge_id": "lc_1224",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: prefix length seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1,
+          1,
+          5,
+          3,
+          3,
+          5
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "hashing"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: full prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          5
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "single value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-all-singletons",
+      "name": "hidden: all singleton counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

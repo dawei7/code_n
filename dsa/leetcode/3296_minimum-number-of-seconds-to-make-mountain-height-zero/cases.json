@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_3296",
+  "cases": [
+    {
+      "id": "sample-small-mountain",
+      "name": "sample: small mountain split among workers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mountainHeight": 4,
+        "workerTimes": [
+          2,
+          1,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-single-worker",
+      "name": "sample: one worker triangular time",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mountainHeight": 5,
+        "workerTimes": [
+          1
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-many-fast-workers",
+      "name": "trial: many equal fast workers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mountainHeight": 8,
+        "workerTimes": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "parallel"
+      ]
+    },
+    {
+      "id": "trial-slow-fast-mix",
+      "name": "trial: slow and fast workers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mountainHeight": 10,
+        "workerTimes": [
+          9,
+          1,
+          5
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "mix"
+      ]
+    },
+    {
+      "id": "real-medium-mountain",
+      "name": "real: medium hidden mountain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mountainHeight": 37,
+        "workerTimes": [
+          3,
+          2,
+          7,
+          11,
+          5
+        ]
+      },
+      "expected": 147,
+      "tags": [
+        "real",
+        "math"
+      ]
+    }
+  ]
+}

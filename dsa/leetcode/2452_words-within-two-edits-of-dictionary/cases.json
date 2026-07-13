@@ -1,0 +1,120 @@
+{
+  "challenge_id": "lc_2452",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three queries within two edits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          "word",
+          "note",
+          "ants",
+          "wood"
+        ],
+        "dictionary": [
+          "wood",
+          "joke",
+          "moat"
+        ]
+      },
+      "expected": [
+        "word",
+        "note",
+        "wood"
+      ],
+      "tags": [
+        "sample",
+        "string"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no match within two edits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          "yes"
+        ],
+        "dictionary": [
+          "not"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: exact matches qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          "ac",
+          "ab"
+        ],
+        "dictionary": [
+          "ac",
+          "ab"
+        ]
+      },
+      "expected": [
+        "ac",
+        "ab"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-shared-prefix",
+      "name": "trial: two queries near the same dictionary word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "abcd",
+          "abce",
+          "zzzz"
+        ],
+        "dictionary": [
+          "abcf"
+        ]
+      },
+      "expected": [
+        "abcd",
+        "abce"
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-only-first-query",
+      "name": "hidden: only first query qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queries": [
+          "aaaa",
+          "bbbb",
+          "cccc"
+        ],
+        "dictionary": [
+          "zzzz",
+          "aaaz"
+        ]
+      },
+      "expected": [
+        "aaaa"
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "challenge_id": "lc_589",
+  "source": "leetcode",
+  "frontend_id": "589",
+  "slug": "n-ary-tree-preorder-traversal",
+  "title": "N-ary Tree Preorder Traversal",
+  "difficulty": "Easy",
+  "acceptance_rate": 76.86039451639559,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/n-ary-tree-preorder-traversal/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:stack",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:depth-first-search",
+    "topic:stack",
+    "topic:tree"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

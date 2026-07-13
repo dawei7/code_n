@@ -1,0 +1,482 @@
+{
+  "challenge_id": "lc_17",
+  "source": "leetcode",
+  "frontend_id": "17",
+  "slug": "letter-combinations-of-a-phone-number",
+  "title": "Letter Combinations of a Phone Number",
+  "difficulty": "Medium",
+  "acceptance_rate": 66.36757163694537,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    }
+  ],
+  "url": "https://leetcode.com/problems/letter-combinations-of-a-phone-number/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:citadel",
+    "leetcode_company:de-shaw",
+    "leetcode_company:dropbox",
+    "leetcode_company:epic-systems",
+    "leetcode_company:facebook",
+    "leetcode_company:flexport",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:ibm",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:servicenow",
+    "leetcode_company:societe-generale",
+    "leetcode_company:tcs",
+    "leetcode_company:tesla",
+    "leetcode_company:uber",
+    "leetcode_company:visa",
+    "leetcode_company:yandex",
+    "leetcode_company:zopsmart",
+    "leetcode_studyplan:leetcode-75",
+    "leetcode_studyplan:leetcode-75:leetcode-75-39-17n8",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-46-v52z",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-15-rpt9",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:string",
+    "neetcode:allNC",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:citadel",
+    "company:de-shaw",
+    "company:dropbox",
+    "company:epic-systems",
+    "company:facebook",
+    "company:flexport",
+    "company:goldman-sachs",
+    "company:google",
+    "company:ibm",
+    "company:linkedin",
+    "company:microsoft",
+    "company:oracle",
+    "company:servicenow",
+    "company:societe-generale",
+    "company:tcs",
+    "company:tesla",
+    "company:uber",
+    "company:visa",
+    "company:yandex",
+    "company:zopsmart",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:leetcode-75",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:leetcode-75:leetcode-75-39-17n8",
+    "study_plan_section:top-100-liked:top-100-liked-46-v52z",
+    "study_plan_section:top-interview-150:top-interview-150-15-rpt9",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:backtracking",
+    "topic:hash-table",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Epic Systems",
+      "slug": "epic-systems"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    },
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Tesla",
+      "slug": "tesla"
+    },
+    {
+      "name": "ServiceNow",
+      "slug": "servicenow"
+    },
+    {
+      "name": "Citadel",
+      "slug": "citadel"
+    },
+    {
+      "name": "Flexport",
+      "slug": "flexport"
+    },
+    {
+      "name": "Societe Generale",
+      "slug": "societe-generale"
+    },
+    {
+      "name": "Zopsmart",
+      "slug": "zopsmart"
+    },
+    {
+      "name": "Dropbox",
+      "slug": "dropbox"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 19
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 13
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Epic Systems",
+        "slug": "epic-systems",
+        "timesEncountered": 11
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tesla",
+        "slug": "tesla",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ServiceNow",
+        "slug": "servicenow",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Citadel",
+        "slug": "citadel",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Flexport",
+        "slug": "flexport",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Societe Generale",
+        "slug": "societe-generale",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zopsmart",
+        "slug": "zopsmart",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Dropbox",
+        "slug": "dropbox",
+        "timesEncountered": 0
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-15-rpt9",
+      "section_name": "Backtracking",
+      "path": [
+        "Backtracking"
+      ],
+      "order": 101,
+      "section_order": 15,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "leetcode-75",
+      "plan_name": "LeetCode 75",
+      "section_slug": "leetcode-75-39-17n8",
+      "section_name": "Backtracking",
+      "path": [
+        "Backtracking"
+      ],
+      "order": 57,
+      "section_order": 16,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/leetcode-75/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-46-v52z",
+      "section_name": "Backtracking",
+      "path": [
+        "Backtracking"
+      ],
+      "order": 1,
+      "section_order": 1,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Backtracking"
+      ],
+      "order": 74,
+      "section_order": 9,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "combinations-of-a-phone-number",
+      "leetcode_slug": "letter-combinations-of-a-phone-number",
+      "difficulty": "Medium",
+      "problem_order": 8
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Backtracking"
+      ],
+      "order": 132,
+      "section_order": 9,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "combinations-of-a-phone-number",
+      "leetcode_slug": "letter-combinations-of-a-phone-number",
+      "difficulty": "Medium",
+      "problem_order": 11
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Backtracking"
+      ],
+      "order": 520,
+      "section_order": 9,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "combinations-of-a-phone-number",
+      "leetcode_slug": "letter-combinations-of-a-phone-number",
+      "difficulty": "Medium",
+      "problem_order": 13
+    }
+  ]
+}

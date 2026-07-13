@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_318",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four-by-four optimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"]},
+      "expected": 16,
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: several nested alphabets",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["a", "ab", "abc", "d", "cd", "bcd", "abcd"]},
+      "expected": 4,
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no disjoint pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["a", "aa", "aaa", "aaaa"]},
+      "expected": 0,
+      "tags": ["sample", "impossible"]
+    },
+    {
+      "id": "trial-equal-masks",
+      "name": "trial: keep the longest equal mask",
+      "kind": "trial",
+      "visible": false,
+      "input": {"words": ["a", "aaaa", "b", "bbb"]},
+      "expected": 12,
+      "tags": ["trial", "duplicate-mask"]
+    },
+    {
+      "id": "trial-order-chain",
+      "name": "trial: nonadjacent words are disjoint",
+      "kind": "trial",
+      "visible": false,
+      "input": {"words": ["ab", "bc", "cd"]},
+      "expected": 4,
+      "tags": ["trial", "pair-search"]
+    },
+    {
+      "id": "hidden-long-disjoint",
+      "name": "hidden: choose two longest compatible words",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["abc", "defg", "gh", "xyz", "mnop"]},
+      "expected": 16,
+      "tags": ["hidden", "disjoint"]
+    },
+    {
+      "id": "hidden-obvious-largest",
+      "name": "hidden: largest lengths are compatible",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["abcd", "ef", "ghij", "klm"]},
+      "expected": 16,
+      "tags": ["hidden", "length-product"]
+    },
+    {
+      "id": "hidden-overlapping-distractors",
+      "name": "hidden: shorter distractors overlap both sides",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["abc", "def", "ad", "be"]},
+      "expected": 9,
+      "tags": ["hidden", "overlap"]
+    }
+  ]
+}

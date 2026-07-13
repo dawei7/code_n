@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_392",
+  "measurement_note": "Size is the length of s; t has twice that length, so total input grows linearly with size. Two pointers scan t once, while longest-common-subsequence dynamic programming evaluates the proportional Cartesian product.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: match 16 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaa",
+        "t": "babababababababababababababababa"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: match 40 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "t": "babababababababababababababababababababababababababababababababababababababababa"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: match 96 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "t": "babababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababa"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "duplicates"
+      ]
+    }
+  ]
+}

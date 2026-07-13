@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_2584",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: earliest valid split",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          7,
+          8,
+          15,
+          3,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "number-theory"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: shared factors cross every split",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          7,
+          15,
+          8,
+          3,
+          5
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: first element can split away",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-two-coprime-values",
+      "name": "trial: two coprime values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "small"
+      ]
+    },
+    {
+      "id": "real-late-valid-split",
+      "name": "hidden: split after repeated prime powers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          16,
+          3,
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

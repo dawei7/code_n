@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_2532",
+  "cases": [
+    {
+      "id": "benchmark-two-workers-two-boxes",
+      "name": "benchmark: worker priority changes with bridge direction",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "k": 2,
+        "time": [
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_691",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: combine overlapping stickers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stickers": [
+          "with",
+          "example",
+          "science"
+        ],
+        "target": "thehat"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: missing required letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stickers": [
+          "notice",
+          "possible"
+        ],
+        "target": "basicbasic"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: several useful sticker choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stickers": [
+          "these",
+          "guess",
+          "about",
+          "garden",
+          "him"
+        ],
+        "target": "atomher"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "multiple-choices"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one sticker per letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stickers": [
+          "a",
+          "b"
+        ],
+        "target": "ab"
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "disjoint-stickers"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: reuse one sticker",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stickers": [
+          "abc"
+        ],
+        "target": "abcabc"
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "reuse"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: extra letters are ignored",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stickers": [
+          "ab",
+          "bc"
+        ],
+        "target": "ac"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "extra-letters"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: duplicate target letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stickers": [
+          "ab",
+          "aab",
+          "b"
+        ],
+        "target": "aaabb"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: target covered by one large sticker",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stickers": [
+          "xyz",
+          "leetcode",
+          "code"
+        ],
+        "target": "code"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "one-sticker"
+      ]
+    }
+  ]
+}
+

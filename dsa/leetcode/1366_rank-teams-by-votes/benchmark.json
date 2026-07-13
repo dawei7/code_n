@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_1366",
+  "cases": [
+    {
+      "id": "benchmark-single-team",
+      "name": "benchmark: single team votes",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "votes": [
+          "M",
+          "M",
+          "M"
+        ]
+      },
+      "expected": "M",
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

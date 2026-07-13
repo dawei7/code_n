@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "714",
+  "frontend_id": "714",
+  "title_slug": "best-time-to-buy-and-sell-stock-with-transaction-fee",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065649472",
+  "verified_at": "2026-07-13T04:52:04.962183+00:00"
+}

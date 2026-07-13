@@ -1,0 +1,134 @@
+{
+  "challenge_id": "lc_797",
+  "source": "leetcode",
+  "frontend_id": "797",
+  "slug": "all-paths-from-source-to-target",
+  "title": "All Paths From Source to Target",
+  "difficulty": "Medium",
+  "acceptance_rate": 83.69894198608463,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    }
+  ],
+  "url": "https://leetcode.com/problems/all-paths-from-source-to-target/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:netflix",
+    "leetcode_studyplan:graph-theory",
+    "leetcode_studyplan:graph-theory:graph-theory-105-bmag",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:graph"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:netflix",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:graph-theory",
+    "study_plan_section:graph-theory:graph-theory-105-bmag",
+    "topic:backtracking",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:graph"
+  ],
+  "company_tags": [
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Netflix",
+      "slug": "netflix"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 3
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Netflix",
+        "slug": "netflix",
+        "timesEncountered": 2
+      }
+    ],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "graph-theory",
+      "plan_name": "Graph Theory",
+      "section_slug": "graph-theory-105-bmag",
+      "section_name": "Standard Traversal",
+      "path": [
+        "Standard Traversal"
+      ],
+      "order": 7,
+      "section_order": 1,
+      "problem_order": 7,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/graph-theory/"
+    }
+  ],
+  "neetcode_subsets": []
+}

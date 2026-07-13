@@ -1,0 +1,154 @@
+{
+  "challenge_id": "lc_3346",
+  "cases": [
+    {
+      "id": "sample-one-operation",
+      "name": "sample: one operation creates a pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 1,
+        "numOperations": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "sweep-line"
+      ]
+    },
+    {
+      "id": "sample-wide-operations",
+      "name": "sample: three operations over wider range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          8,
+          13
+        ],
+        "k": 5,
+        "numOperations": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "sweep-line"
+      ]
+    },
+    {
+      "id": "sample-no-operations",
+      "name": "sample: no operation allowed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          11,
+          12,
+          15
+        ],
+        "k": 2,
+        "numOperations": 0
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-non-original-target",
+      "name": "trial: target value may be absent from the original array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5
+        ],
+        "k": 2,
+        "numOperations": 2
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "candidate-boundary"
+      ]
+    },
+    {
+      "id": "trial-duplicate-zero-ops",
+      "name": "trial: duplicates must count as multiple reachable occurrences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          2,
+          10
+        ],
+        "k": 3,
+        "numOperations": 0
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-overlapping-intervals",
+      "name": "trial: overlapping intervals with limited operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          4,
+          5,
+          9,
+          10,
+          14
+        ],
+        "k": 4,
+        "numOperations": 3
+      },
+      "expected": 3,
+      "tags": [
+        "test",
+        "sweep-line"
+      ]
+    },
+    {
+      "id": "real-overlap-duplicates",
+      "name": "real: duplicates and absent targets in overlapping intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          9,
+          12,
+          13,
+          18,
+          19,
+          25
+        ],
+        "k": 5,
+        "numOperations": 4
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "sweep-line"
+      ]
+    }
+  ]
+}

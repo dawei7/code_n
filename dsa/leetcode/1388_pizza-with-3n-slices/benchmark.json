@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1388",
+  "cases": [
+    {
+      "id": "benchmark-repeated-pattern",
+      "name": "benchmark: repeated circular pattern",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "slices": [
+          9,
+          1,
+          1,
+          9,
+          1,
+          1,
+          9,
+          1,
+          1
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

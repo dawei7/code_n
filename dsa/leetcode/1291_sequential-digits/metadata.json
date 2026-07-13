@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_1291",
+  "source": "leetcode",
+  "frontend_id": "1291",
+  "slug": "sequential-digits",
+  "title": "Sequential Digits",
+  "difficulty": "Medium",
+  "acceptance_rate": 65.36408403106336,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    }
+  ],
+  "url": "https://leetcode.com/problems/sequential-digits/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:f5-networks",
+    "leetcode_company:google",
+    "leetcode_topic:enumeration",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:f5-networks",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:enumeration"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "F5",
+      "slug": "f5-networks"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "F5",
+        "slug": "f5-networks",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 146,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "sequential-digits",
+      "leetcode_slug": "sequential-digits",
+      "difficulty": "Medium",
+      "problem_order": 146
+    }
+  ]
+}

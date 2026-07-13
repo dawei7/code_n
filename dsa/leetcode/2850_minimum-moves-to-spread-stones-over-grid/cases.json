@@ -1,0 +1,155 @@
+{
+  "challenge_id": "lc_2850",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three stones move into right column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "grid"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two cells contain three stones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "assignment"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "trial-already-balanced",
+      "name": "trial: every cell already has one stone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "balanced"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-corner-pile",
+      "name": "trial: one corner supplies several empty cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "corner"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "real-two-source-assignment",
+      "name": "hidden: assignment choice matters between two sources",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "assignment"
+      ],
+      "expected": 4
+    }
+  ]
+}

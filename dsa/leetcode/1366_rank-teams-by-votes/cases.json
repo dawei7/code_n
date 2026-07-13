@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_1366",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: close first-place race",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "votes": [
+          "ABC",
+          "ACB",
+          "ABC",
+          "ACB",
+          "ACB"
+        ]
+      },
+      "expected": "ACB",
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two ballots",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "votes": [
+          "WXYZ",
+          "XYZW"
+        ]
+      },
+      "expected": "XWYZ",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one ballot",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "votes": [
+          "ZMNAGUEDSJYLBOPHRQICWFXTVK"
+        ]
+      },
+      "expected": "ZMNAGUEDSJYLBOPHRQICWFXTVK",
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-tie-break-by-letter",
+      "name": "hidden: final tie uses team letter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "votes": [
+          "BCA",
+          "CAB",
+          "CBA",
+          "ABC",
+          "ACB",
+          "BAC"
+        ]
+      },
+      "expected": "ABC",
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

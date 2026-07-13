@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_1562",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: latest singleton group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          5,
+          1,
+          2,
+          4
+        ],
+        "m": 1
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "intervals"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: size two never appears",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          1,
+          5,
+          4,
+          2
+        ],
+        "m": 2
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: whole array size",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3
+        ],
+        "m": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-group-size-two",
+      "name": "hidden: size-two group exists briefly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          1,
+          3,
+          5,
+          4
+        ],
+        "m": 2
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

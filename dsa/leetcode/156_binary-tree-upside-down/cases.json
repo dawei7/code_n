@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_156",
+  "cases": [
+    {"id": "sample-two-levels", "name": "sample: paired right siblings", "kind": "sample", "visible": true, "input": {"root": [1, 2, 3, 4, 5]}, "expected": [4, 5, 2, null, null, 3, 1], "tags": ["sample", "tree"]},
+    {"id": "sample-empty", "name": "sample: empty tree", "kind": "sample", "visible": true, "input": {"root": []}, "expected": [], "tags": ["sample", "boundary"]},
+    {"id": "trial-single", "name": "single node", "kind": "trial", "visible": true, "input": {"root": [1]}, "expected": [1], "tags": ["boundary"]},
+    {"id": "trial-left-chain", "name": "left chain becomes right chain", "kind": "trial", "visible": true, "input": {"root": [1, 2, null, 3]}, "expected": [3, null, 2, null, 1], "tags": ["skewed"]},
+    {"id": "real-three-levels", "name": "hidden: three paired levels", "kind": "real", "visible": false, "input": {"root": [1, 2, 3, 4, 5, null, null, 6, 7]}, "expected": [6, 7, 4, null, null, 5, 2, null, null, 3, 1], "tags": ["hidden", "deep"]}
+  ]
+}

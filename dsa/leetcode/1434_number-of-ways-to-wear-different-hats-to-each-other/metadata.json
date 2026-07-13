@@ -1,0 +1,122 @@
+{
+  "challenge_id": "lc_1434",
+  "source": "leetcode",
+  "frontend_id": "1434",
+  "slug": "number-of-ways-to-wear-different-hats-to-each-other",
+  "title": "Number of Ways to Wear Different Hats to Each Other",
+  "difficulty": "Hard",
+  "acceptance_rate": 46.399495357684955,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Bitmask",
+      "slug": "bitmask"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:mindtickle",
+    "leetcode_company:roblox",
+    "leetcode_studyplan:dynamic-programming-grandmaster",
+    "leetcode_studyplan:dynamic-programming-grandmaster:dynamic-programming-grandmaster-96-s3j6",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:bitmask",
+    "leetcode_topic:dynamic-programming"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:mindtickle",
+    "company:roblox",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming-grandmaster",
+    "study_plan_section:dynamic-programming-grandmaster:dynamic-programming-grandmaster-96-s3j6",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:bitmask",
+    "topic:dynamic-programming"
+  ],
+  "company_tags": [
+    {
+      "name": "Roblox",
+      "slug": "roblox"
+    },
+    {
+      "name": "Mindtickle",
+      "slug": "mindtickle"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Mindtickle",
+        "slug": "mindtickle",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Roblox",
+        "slug": "roblox",
+        "timesEncountered": 4
+      }
+    ],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "dynamic-programming-grandmaster",
+      "plan_name": "Dynamic Programming Grandmaster",
+      "section_slug": "dynamic-programming-grandmaster-96-s3j6",
+      "section_name": "Bitmasking",
+      "path": [
+        "Bitmasking"
+      ],
+      "order": 37,
+      "section_order": 6,
+      "problem_order": 5,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": true,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming-grandmaster/"
+    }
+  ],
+  "neetcode_subsets": []
+}

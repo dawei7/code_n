@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2552",
+  "cases": [
+    {
+      "id": "benchmark-several-valid-quadruplets",
+      "name": "benchmark: several choices share the same inversion",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          5,
+          2,
+          4,
+          3,
+          6
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

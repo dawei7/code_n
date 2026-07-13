@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_1345",
+  "cases": [
+    {
+      "id": "benchmark-many-repeats",
+      "name": "benchmark: alternating repeated values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          9,
+          1,
+          9,
+          1,
+          9,
+          1,
+          9,
+          1,
+          9,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_2364",
+  "cases": [
+    {
+      "id": "benchmark-one-bad-pair",
+      "name": "benchmark: only one pair breaks the good-pair relation",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,376 @@
+{
+  "challenge_id": "lc_26",
+  "source": "leetcode",
+  "frontend_id": "26",
+  "slug": "remove-duplicates-from-sorted-array",
+  "title": "Remove Duplicates from Sorted Array",
+  "difficulty": "Easy",
+  "acceptance_rate": 63.193387445798386,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    }
+  ],
+  "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:capgemini",
+    "leetcode_company:cisco",
+    "leetcode_company:cognizant",
+    "leetcode_company:deloitte",
+    "leetcode_company:epam-systems",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:infosys",
+    "leetcode_company:microsoft",
+    "leetcode_company:morgan-stanley",
+    "leetcode_company:oracle",
+    "leetcode_company:qualcomm",
+    "leetcode_company:tcs",
+    "leetcode_company:yandex",
+    "leetcode_company:zoho",
+    "leetcode_studyplan:apple-spring-23-high-frequency",
+    "leetcode_studyplan:apple-spring-23-high-frequency:apple-spring-23-high-frequency-149-cs8e",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-1-yf91",
+    "leetcode_topic:array",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:capgemini",
+    "company:cisco",
+    "company:cognizant",
+    "company:deloitte",
+    "company:epam-systems",
+    "company:facebook",
+    "company:google",
+    "company:infosys",
+    "company:microsoft",
+    "company:morgan-stanley",
+    "company:oracle",
+    "company:qualcomm",
+    "company:tcs",
+    "company:yandex",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:apple-spring-23-high-frequency",
+    "study_plan:top-interview-150",
+    "study_plan_section:apple-spring-23-high-frequency:apple-spring-23-high-frequency-149-cs8e",
+    "study_plan_section:top-interview-150:top-interview-150-1-yf91",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "Morgan Stanley",
+      "slug": "morgan-stanley"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "Capgemini",
+      "slug": "capgemini"
+    },
+    {
+      "name": "Cisco",
+      "slug": "cisco"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Qualcomm",
+      "slug": "qualcomm"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "EPAM Systems",
+      "slug": "epam-systems"
+    },
+    {
+      "name": "Cognizant",
+      "slug": "cognizant"
+    },
+    {
+      "name": "Deloitte",
+      "slug": "deloitte"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 24
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 14
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 14
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 9
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 9
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Morgan Stanley",
+        "slug": "morgan-stanley",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Capgemini",
+        "slug": "capgemini",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Cisco",
+        "slug": "cisco",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Qualcomm",
+        "slug": "qualcomm",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "EPAM Systems",
+        "slug": "epam-systems",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Cognizant",
+        "slug": "cognizant",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Deloitte",
+        "slug": "deloitte",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 5
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-1-yf91",
+      "section_name": "Array / String",
+      "path": [
+        "Array / String"
+      ],
+      "order": 3,
+      "section_order": 1,
+      "problem_order": 3,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "apple-spring-23-high-frequency",
+      "plan_name": "Apple Spring '23 High Frequency",
+      "section_slug": "apple-spring-23-high-frequency-149-cs8e",
+      "section_name": "April Interview Questions",
+      "path": [
+        "April Interview Questions"
+      ],
+      "order": 10,
+      "section_order": 1,
+      "problem_order": 10,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/apple-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Two Pointers"
+      ],
+      "order": 27,
+      "section_order": 1,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "remove-duplicates-from-sorted-array",
+      "leetcode_slug": "remove-duplicates-from-sorted-array",
+      "difficulty": "Easy",
+      "problem_order": 5
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Two Pointers"
+      ],
+      "order": 183,
+      "section_order": 1,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "remove-duplicates-from-sorted-array",
+      "leetcode_slug": "remove-duplicates-from-sorted-array",
+      "difficulty": "Easy",
+      "problem_order": 8
+    }
+  ]
+}

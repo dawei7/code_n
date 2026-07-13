@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_567",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: permutation in the middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s1": "ab",
+        "s2": "eidbaooo"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: letters separated across windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s1": "ab",
+        "s2": "eidboaoo"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: permutation at the end",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s1": "adc",
+        "s2": "dcda"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: equal one-character strings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "a",
+        "s2": "a"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: target longer than search text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "abc",
+        "s2": "ab"
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: repeated target letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "aabc",
+        "s2": "eidbaacboo"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "frequency"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: near match with wrong multiplicities",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "hello",
+        "s2": "ooolleoooleh"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "frequency"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: reversed target near the end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "xyz",
+        "s2": "afdgzyxksldfm"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "frequency"
+      ]
+    }
+  ]
+}
+

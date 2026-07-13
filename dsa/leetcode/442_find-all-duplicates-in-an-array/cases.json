@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_442",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two duplicated values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [4, 3, 2, 7, 8, 2, 3, 1]},
+      "expected": [2, 3],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "two-duplicates"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one duplicate",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 1, 2]},
+      "expected": [1],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "one-duplicate"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one unique value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1]},
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "none"]
+    },
+    {
+      "id": "trial-no-duplicates",
+      "name": "trial: permutation has no duplicates",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 4, 3, 2, 1]},
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["trial", "permutation"]
+    },
+    {
+      "id": "trial-all-paired",
+      "name": "trial: every distinct value appears twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 1, 2, 3]},
+      "expected": [1, 2, 3],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["trial", "all-paired"]
+    },
+    {
+      "id": "hidden-boundary-values",
+      "name": "hidden: duplicate includes the largest allowed value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 1, 2, 3, 6, 5]},
+      "expected": [6],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["hidden", "boundary"]
+    },
+    {
+      "id": "hidden-interleaved",
+      "name": "hidden: duplicates are interleaved with unique values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 5, 1, 2, 4, 5]},
+      "expected": [2, 5],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["hidden", "interleaved"]
+    }
+  ]
+}

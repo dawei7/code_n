@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2501",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: square chain through sixteen",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          6,
+          16,
+          8,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "hash-set"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no square streak exists",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: longer chain starting from two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          2,
+          4,
+          16,
+          256
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-element-streak",
+      "name": "trial: smallest valid square streak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-odd-square-chain",
+      "name": "hidden: square chain from an odd start",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          9,
+          81
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

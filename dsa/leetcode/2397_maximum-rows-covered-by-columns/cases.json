@@ -1,0 +1,124 @@
+{
+  "challenge_id": "lc_2397",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: choose two columns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "num_select": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "bitmask"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single column covers every row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1
+          ],
+          [
+            0
+          ]
+        ],
+        "num_select": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-combined-row",
+      "name": "trial: selected columns cover a combined row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        "num_select": 2
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-zero-rows",
+      "name": "hidden: zero rows are always covered",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "num_select": 1
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

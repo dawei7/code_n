@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_3219",
+  "cases": [
+    {
+      "id": "sample-small-cake",
+      "name": "sample: greedy chooses expensive cuts first",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 2,
+        "horizontal_cut": [
+          1,
+          3
+        ],
+        "vertical_cut": [
+          5
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-square-cake",
+      "name": "sample: square cake with mixed costs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "horizontal_cut": [
+          2,
+          1
+        ],
+        "vertical_cut": [
+          3,
+          1
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "cake"
+      ]
+    },
+    {
+      "id": "trial-single-row-cut",
+      "name": "trial: only vertical cuts remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 4,
+        "horizontal_cut": [],
+        "vertical_cut": [
+          4,
+          2,
+          7
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-single-column-cut",
+      "name": "trial: only horizontal cuts remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 1,
+        "horizontal_cut": [
+          4,
+          2,
+          7
+        ],
+        "vertical_cut": []
+      },
+      "expected": 13,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-rectangular-cake",
+      "name": "real: rectangular cake with repeated costs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 5,
+        "n": 4,
+        "horizontal_cut": [
+          6,
+          1,
+          6,
+          3
+        ],
+        "vertical_cut": [
+          5,
+          2,
+          4
+        ]
+      },
+      "expected": 60,
+      "tags": [
+        "real",
+        "greedy"
+      ]
+    }
+  ]
+}

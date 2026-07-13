@@ -1,0 +1,318 @@
+{
+  "challenge_id": "lc_1011",
+  "source": "leetcode",
+  "frontend_id": "1011",
+  "slug": "capacity-to-ship-packages-within-d-days",
+  "title": "Capacity To Ship Packages Within D Days",
+  "difficulty": "Medium",
+  "acceptance_rate": 74.22741059767063,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:agoda",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:dp-world",
+    "leetcode_company:facebook",
+    "leetcode_company:flipkart",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_company:visa",
+    "leetcode_company:walmart-labs",
+    "leetcode_company:zeta",
+    "leetcode_studyplan:binary-search",
+    "leetcode_studyplan:binary-search:binary-search-119-7k2x",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "neetcode:allNC",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:agoda",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:dp-world",
+    "company:facebook",
+    "company:flipkart",
+    "company:goldman-sachs",
+    "company:google",
+    "company:microsoft",
+    "company:oracle",
+    "company:tiktok",
+    "company:uber",
+    "company:visa",
+    "company:walmart-labs",
+    "company:zeta",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:binary-search",
+    "study_plan_section:binary-search:binary-search-119-7k2x",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:binary-search"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Agoda",
+      "slug": "agoda"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Flipkart",
+      "slug": "flipkart"
+    },
+    {
+      "name": "DP world",
+      "slug": "dp-world"
+    },
+    {
+      "name": "Zeta Global",
+      "slug": "zeta"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 13
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Agoda",
+        "slug": "agoda",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Flipkart",
+        "slug": "flipkart",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DP world",
+        "slug": "dp-world",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zeta Global",
+        "slug": "zeta",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "binary-search",
+      "plan_name": "Binary Search",
+      "section_slug": "binary-search-119-7k2x",
+      "section_name": "On Solution Space",
+      "path": [
+        "On Solution Space"
+      ],
+      "order": 34,
+      "section_order": 7,
+      "problem_order": 2,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/binary-search/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Binary Search"
+      ],
+      "order": 64,
+      "section_order": 4,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "capacity-to-ship-packages-within-d-days",
+      "leetcode_slug": "capacity-to-ship-packages-within-d-days",
+      "difficulty": "Medium",
+      "problem_order": 6
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Binary Search"
+      ],
+      "order": 315,
+      "section_order": 4,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "capacity-to-ship-packages-within-d-days",
+      "leetcode_slug": "capacity-to-ship-packages-within-d-days",
+      "difficulty": "Medium",
+      "problem_order": 17
+    }
+  ]
+}

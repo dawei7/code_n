@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_638",
+  "cases": [
+    {"id": "sample-1", "name": "sample: combine bundle and individual items", "kind": "sample", "visible": true, "input": {"price": [2,5], "special": [[3,0,5],[1,2,10]], "needs": [3,2]}, "expected": 14, "tags": ["sample", "mixed-purchase"]},
+    {"id": "sample-2", "name": "sample: one useful bundle", "kind": "sample", "visible": true, "input": {"price": [2,3,4], "special": [[1,1,0,4],[2,2,1,9]], "needs": [1,2,1]}, "expected": 11, "tags": ["sample", "bundle"]},
+    {"id": "trial-1", "name": "trial: no special offers", "kind": "trial", "visible": true, "input": {"price": [2,3], "special": [], "needs": [2,1]}, "expected": 7, "tags": ["trial", "individual-only"]},
+    {"id": "trial-2", "name": "trial: overbuying is forbidden", "kind": "trial", "visible": true, "input": {"price": [2], "special": [[3,1]], "needs": [2]}, "expected": 4, "tags": ["trial", "overbuy"]},
+    {"id": "hidden-1", "name": "hidden: repeated bundle is optimal", "kind": "real", "visible": false, "input": {"price": [3,4], "special": [[1,1,5]], "needs": [2,2]}, "expected": 10, "tags": ["hidden", "reuse"]},
+    {"id": "hidden-2", "name": "hidden: non-discounted bundle is useless", "kind": "real", "visible": false, "input": {"price": [2,5], "special": [[1,1,10]], "needs": [1,1]}, "expected": 7, "tags": ["hidden", "filter"]},
+    {"id": "hidden-3", "name": "hidden: overlapping offers tie", "kind": "real", "visible": false, "input": {"price": [2,3], "special": [[1,1,4],[2,0,3]], "needs": [3,2]}, "expected": 10, "tags": ["hidden", "overlap"]},
+    {"id": "hidden-4", "name": "hidden: zero needs", "kind": "real", "visible": false, "input": {"price": [2,3], "special": [[1,1,1]], "needs": [0,0]}, "expected": 0, "tags": ["hidden", "zero"]}
+  ]
+}

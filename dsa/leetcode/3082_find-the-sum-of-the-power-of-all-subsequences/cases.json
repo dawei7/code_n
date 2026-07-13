@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_3082",
+  "cases": [
+    {
+      "id": "sample-power-six",
+      "name": "sample: nested subsequences sum to three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-target",
+      "name": "sample: no inner subsequence reaches target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 7
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-zero-values",
+      "name": "trial: zero values multiply outer choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-duplicate-sums",
+      "name": "trial: duplicate values create multiple inner witnesses",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 16,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-small",
+      "name": "real: several target-sum subsequences",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          3,
+          1,
+          4,
+          2
+        ],
+        "k": 5
+      },
+      "expected": 28,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

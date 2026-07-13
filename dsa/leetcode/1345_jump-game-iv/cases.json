@@ -1,0 +1,87 @@
+{
+  "challenge_id": "lc_1345",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated teleport values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          100,
+          -23,
+          -23,
+          404,
+          100,
+          23,
+          23,
+          23,
+          3,
+          404
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "bfs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-teleport-to-end",
+      "name": "same value jumps near end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          7,
+          6,
+          9,
+          6,
+          9,
+          6,
+          9,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-no-teleports",
+      "name": "hidden: no repeated values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,469 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_558",
+  "measurement_note": "Size is the total node count in a sparse depth-d quad-tree (4d+1). A false leaf permits direct structural reuse, while expanding the represented grid performs work exponential in the sparse depth.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 5-node sparse depth-1 tree",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "quadTree1": {
+          "leaf": true,
+          "value": 0
+        },
+        "quadTree2": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "leaf": false,
+        "children": [
+          {
+            "leaf": true,
+            "value": 1
+          },
+          {
+            "leaf": true,
+            "value": 0
+          },
+          {
+            "leaf": true,
+            "value": 0
+          },
+          {
+            "leaf": true,
+            "value": 0
+          }
+        ]
+      },
+      "validator": {
+        "kind": "quad_tree"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "sparse-quad-tree"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 13-node sparse depth-3 tree",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 13,
+      "input": {
+        "quadTree1": {
+          "leaf": true,
+          "value": 0
+        },
+        "quadTree2": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": false,
+              "children": [
+                {
+                  "leaf": false,
+                  "children": [
+                    {
+                      "leaf": true,
+                      "value": 1
+                    },
+                    {
+                      "leaf": true,
+                      "value": 0
+                    },
+                    {
+                      "leaf": true,
+                      "value": 0
+                    },
+                    {
+                      "leaf": true,
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "leaf": true,
+                  "value": 0
+                },
+                {
+                  "leaf": true,
+                  "value": 0
+                },
+                {
+                  "leaf": true,
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "leaf": false,
+        "children": [
+          {
+            "leaf": false,
+            "children": [
+              {
+                "leaf": false,
+                "children": [
+                  {
+                    "leaf": true,
+                    "value": 1
+                  },
+                  {
+                    "leaf": true,
+                    "value": 0
+                  },
+                  {
+                    "leaf": true,
+                    "value": 0
+                  },
+                  {
+                    "leaf": true,
+                    "value": 0
+                  }
+                ]
+              },
+              {
+                "leaf": true,
+                "value": 0
+              },
+              {
+                "leaf": true,
+                "value": 0
+              },
+              {
+                "leaf": true,
+                "value": 0
+              }
+            ]
+          },
+          {
+            "leaf": true,
+            "value": 0
+          },
+          {
+            "leaf": true,
+            "value": 0
+          },
+          {
+            "leaf": true,
+            "value": 0
+          }
+        ]
+      },
+      "validator": {
+        "kind": "quad_tree"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "sparse-quad-tree"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 29-node sparse depth-7 tree",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 29,
+      "input": {
+        "quadTree1": {
+          "leaf": true,
+          "value": 0
+        },
+        "quadTree2": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": false,
+              "children": [
+                {
+                  "leaf": false,
+                  "children": [
+                    {
+                      "leaf": false,
+                      "children": [
+                        {
+                          "leaf": false,
+                          "children": [
+                            {
+                              "leaf": false,
+                              "children": [
+                                {
+                                  "leaf": false,
+                                  "children": [
+                                    {
+                                      "leaf": true,
+                                      "value": 1
+                                    },
+                                    {
+                                      "leaf": true,
+                                      "value": 0
+                                    },
+                                    {
+                                      "leaf": true,
+                                      "value": 0
+                                    },
+                                    {
+                                      "leaf": true,
+                                      "value": 0
+                                    }
+                                  ]
+                                },
+                                {
+                                  "leaf": true,
+                                  "value": 0
+                                },
+                                {
+                                  "leaf": true,
+                                  "value": 0
+                                },
+                                {
+                                  "leaf": true,
+                                  "value": 0
+                                }
+                              ]
+                            },
+                            {
+                              "leaf": true,
+                              "value": 0
+                            },
+                            {
+                              "leaf": true,
+                              "value": 0
+                            },
+                            {
+                              "leaf": true,
+                              "value": 0
+                            }
+                          ]
+                        },
+                        {
+                          "leaf": true,
+                          "value": 0
+                        },
+                        {
+                          "leaf": true,
+                          "value": 0
+                        },
+                        {
+                          "leaf": true,
+                          "value": 0
+                        }
+                      ]
+                    },
+                    {
+                      "leaf": true,
+                      "value": 0
+                    },
+                    {
+                      "leaf": true,
+                      "value": 0
+                    },
+                    {
+                      "leaf": true,
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "leaf": true,
+                  "value": 0
+                },
+                {
+                  "leaf": true,
+                  "value": 0
+                },
+                {
+                  "leaf": true,
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "leaf": false,
+        "children": [
+          {
+            "leaf": false,
+            "children": [
+              {
+                "leaf": false,
+                "children": [
+                  {
+                    "leaf": false,
+                    "children": [
+                      {
+                        "leaf": false,
+                        "children": [
+                          {
+                            "leaf": false,
+                            "children": [
+                              {
+                                "leaf": false,
+                                "children": [
+                                  {
+                                    "leaf": true,
+                                    "value": 1
+                                  },
+                                  {
+                                    "leaf": true,
+                                    "value": 0
+                                  },
+                                  {
+                                    "leaf": true,
+                                    "value": 0
+                                  },
+                                  {
+                                    "leaf": true,
+                                    "value": 0
+                                  }
+                                ]
+                              },
+                              {
+                                "leaf": true,
+                                "value": 0
+                              },
+                              {
+                                "leaf": true,
+                                "value": 0
+                              },
+                              {
+                                "leaf": true,
+                                "value": 0
+                              }
+                            ]
+                          },
+                          {
+                            "leaf": true,
+                            "value": 0
+                          },
+                          {
+                            "leaf": true,
+                            "value": 0
+                          },
+                          {
+                            "leaf": true,
+                            "value": 0
+                          }
+                        ]
+                      },
+                      {
+                        "leaf": true,
+                        "value": 0
+                      },
+                      {
+                        "leaf": true,
+                        "value": 0
+                      },
+                      {
+                        "leaf": true,
+                        "value": 0
+                      }
+                    ]
+                  },
+                  {
+                    "leaf": true,
+                    "value": 0
+                  },
+                  {
+                    "leaf": true,
+                    "value": 0
+                  },
+                  {
+                    "leaf": true,
+                    "value": 0
+                  }
+                ]
+              },
+              {
+                "leaf": true,
+                "value": 0
+              },
+              {
+                "leaf": true,
+                "value": 0
+              },
+              {
+                "leaf": true,
+                "value": 0
+              }
+            ]
+          },
+          {
+            "leaf": true,
+            "value": 0
+          },
+          {
+            "leaf": true,
+            "value": 0
+          },
+          {
+            "leaf": true,
+            "value": 0
+          }
+        ]
+      },
+      "validator": {
+        "kind": "quad_tree"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "sparse-quad-tree"
+      ]
+    }
+  ]
+}
+

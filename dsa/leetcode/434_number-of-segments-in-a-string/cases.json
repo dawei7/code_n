@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_434",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: ordinary sentence",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "Hello, my name is John"},
+      "expected": 5,
+      "tags": ["sample", "sentence"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one segment",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "Hello"},
+      "expected": 1,
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: spaces only",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "   "},
+      "expected": 0,
+      "tags": ["sample", "spaces"]
+    },
+    {
+      "id": "trial-punctuation",
+      "name": "trial: punctuation remains inside segments",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "love live! mu'sic forever"},
+      "expected": 4,
+      "tags": ["trial", "punctuation"]
+    },
+    {
+      "id": "trial-repeated-spaces",
+      "name": "trial: leading trailing and repeated spaces",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "  a   b  "},
+      "expected": 2,
+      "tags": ["trial", "repeated-spaces"]
+    },
+    {
+      "id": "hidden-empty",
+      "name": "hidden: empty string",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": ""},
+      "expected": 0,
+      "tags": ["hidden", "empty"]
+    },
+    {
+      "id": "hidden-commas",
+      "name": "hidden: punctuation-only segments",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": ", , , ,"},
+      "expected": 4,
+      "tags": ["hidden", "punctuation"]
+    },
+    {
+      "id": "hidden-single-spaces",
+      "name": "hidden: every character forms its own segment",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "a b c d e"},
+      "expected": 5,
+      "tags": ["hidden", "alternating"]
+    }
+  ]
+}

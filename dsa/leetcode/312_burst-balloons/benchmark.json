@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_312",
+  "measurement_note": "Nonuniform balloon values force full interval choices and factorial order search; size is balloon count.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 2 nonuniform balloons",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "nums": [
+          4,
+          1
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "nonuniform"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 4 nonuniform balloons",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "nums": [
+          4,
+          1,
+          6,
+          3
+        ]
+      },
+      "expected": 112,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "nonuniform"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 8 nonuniform balloons",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          4,
+          1,
+          6,
+          3,
+          8,
+          5,
+          2,
+          7
+        ]
+      },
+      "expected": 1057,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "nonuniform"
+      ]
+    }
+  ]
+}

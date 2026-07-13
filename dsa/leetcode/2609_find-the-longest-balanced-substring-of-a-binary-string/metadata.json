@@ -1,0 +1,67 @@
+{
+  "challenge_id": "lc_2609",
+  "source": "leetcode",
+  "frontend_id": "2609",
+  "slug": "find-the-longest-balanced-substring-of-a-binary-string",
+  "title": "Find the Longest Balanced Substring of a Binary String",
+  "difficulty": "Easy",
+  "acceptance_rate": 46.71915705247488,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-the-longest-balanced-substring-of-a-binary-string/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:tinkoff",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:tinkoff",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Tinkoff",
+      "slug": "tinkoff"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Tinkoff",
+        "slug": "tinkoff",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

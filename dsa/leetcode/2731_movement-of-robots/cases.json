@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_2731",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: robots pass through each other",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          0,
+          2
+        ],
+        "s": "RLL",
+        "d": 3
+      },
+      "tags": [
+        "sample",
+        "robots"
+      ],
+      "expected": 8
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two robots moving apart",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0
+        ],
+        "s": "RL",
+        "d": 2
+      },
+      "tags": [
+        "sample",
+        "robots"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "trial-same-direction",
+      "name": "trial: all robots move right",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          4,
+          8
+        ],
+        "s": "RRR",
+        "d": 5
+      },
+      "tags": [
+        "trial",
+        "same-direction"
+      ],
+      "expected": 16
+    },
+    {
+      "id": "trial-crossing-pairs",
+      "name": "trial: several crossings are equivalent to passing through",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -3,
+          1,
+          10
+        ],
+        "s": "LRRL",
+        "d": 4
+      },
+      "tags": [
+        "trial",
+        "crossing"
+      ],
+      "expected": 19
+    },
+    {
+      "id": "real-negative-final-positions",
+      "name": "hidden: negative final positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -10,
+          -1,
+          7,
+          12
+        ],
+        "s": "LRLR",
+        "d": 6
+      },
+      "tags": [
+        "hidden",
+        "negative"
+      ],
+      "expected": 106
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_2350",
+  "cases": [
+    {
+      "id": "benchmark-incomplete-third-set",
+      "name": "benchmark: two complete sets and an incomplete third",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "rolls": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3,
+          1,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

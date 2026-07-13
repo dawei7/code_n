@@ -1,0 +1,118 @@
+{
+  "challenge_id": "lc_1200",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: consecutive sorted pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          4,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one closest pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          3,
+          6,
+          10,
+          15
+        ]
+      },
+      "expected": [
+        [
+          1,
+          3
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: negative values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          8,
+          -10,
+          23,
+          19,
+          -4,
+          -14,
+          27
+        ]
+      },
+      "expected": [
+        [
+          -14,
+          -10
+        ],
+        [
+          19,
+          23
+        ],
+        [
+          23,
+          27
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-two-values",
+      "name": "hidden: two values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          10,
+          20
+        ]
+      },
+      "expected": [
+        [
+          10,
+          20
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

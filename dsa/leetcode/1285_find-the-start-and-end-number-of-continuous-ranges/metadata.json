@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1285",
+  "source": "leetcode",
+  "frontend_id": "1285",
+  "slug": "find-the-start-and-end-number-of-continuous-ranges",
+  "title": "Find the Start and End Number of Continuous Ranges",
+  "difficulty": "Medium",
+  "acceptance_rate": 81.94872127321644,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-the-start-and-end-number-of-continuous-ranges/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:microsoft",
+    "leetcode_studyplan:premium-sql-50",
+    "leetcode_studyplan:premium-sql-50:premium-sql-50-127-402b",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:microsoft",
+    "language:sql",
+    "leetcode",
+    "study_plan:premium-sql-50",
+    "study_plan_section:premium-sql-50:premium-sql-50-127-402b",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-sql-50",
+      "plan_name": "Advanced SQL 50",
+      "section_slug": "premium-sql-50-127-402b",
+      "section_name": "Advanced Topics: Window Function and CTE",
+      "path": [
+        "Advanced Topics: Window Function and CTE"
+      ],
+      "order": 44,
+      "section_order": 7,
+      "problem_order": 2,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_54",
+  "measurement_note": "The legal matrix dimensions are bounded at 10 by 10; tiers span the complete cell-count domain and verify one-pass traversal scaling.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one cell", "kind": "benchmark", "visible": false, "size": 1, "input": {"matrix": [[0]]}, "expected": [0], "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: sixteen cells", "kind": "benchmark", "visible": false, "size": 16, "input": {"matrix": [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]}, "expected": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: one hundred cells", "kind": "benchmark", "visible": false, "size": 100, "input": {"matrix": [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]]}, "expected": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "tags": ["benchmark", "scale-large"]}
+  ]
+}

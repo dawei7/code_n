@@ -1,0 +1,93 @@
+{
+  "challenge_id": "lc_1040",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three stones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          7,
+          4,
+          9
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: special minimum move",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          6,
+          5,
+          4,
+          3,
+          10
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-already-consecutive",
+      "name": "already consecutive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          100,
+          101,
+          104,
+          102,
+          103
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-two-clusters",
+      "name": "hidden: two clusters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stones": [
+          1,
+          2,
+          3,
+          10,
+          11
+        ]
+      },
+      "expected": [
+        2,
+        6
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

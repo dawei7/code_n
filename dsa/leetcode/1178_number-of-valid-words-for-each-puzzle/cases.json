@@ -1,0 +1,123 @@
+{
+  "challenge_id": "lc_1178",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: six puzzles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "aaaa",
+          "asas",
+          "able",
+          "ability",
+          "actt",
+          "actor",
+          "access"
+        ],
+        "puzzles": [
+          "aboveyz",
+          "abrodyz",
+          "abslute",
+          "absoryz",
+          "actresz",
+          "gaswxyz"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        3,
+        2,
+        4,
+        0
+      ],
+      "tags": [
+        "sample",
+        "bitmask"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: apple puzzles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "apple",
+          "pleas",
+          "please"
+        ],
+        "puzzles": [
+          "aelwxyz",
+          "aelpxyz",
+          "aelpsxy",
+          "saelpxy",
+          "xaelpsy"
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        3,
+        2,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-first-letter-required",
+      "name": "first letter is required",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "ab"
+        ],
+        "puzzles": [
+          "abcdefg"
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-repeated-letters",
+      "name": "hidden: repeated letters in words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aaaa",
+          "aa",
+          "abc",
+          "abd",
+          "bcd",
+          "ace"
+        ],
+        "puzzles": [
+          "abcdefg",
+          "bcdefgh",
+          "aacdefg"
+        ]
+      },
+      "expected": [
+        5,
+        1,
+        6
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

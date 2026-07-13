@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "492",
+  "frontend_id": "492",
+  "title_slug": "construct-the-rectangle",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065083377",
+  "verified_at": "2026-07-12T14:24:29.833647+00:00"
+}

@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_1089",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: duplicate middle zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          0,
+          2,
+          3,
+          0,
+          4,
+          5,
+          0
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0,
+        2,
+        3,
+        0,
+        0,
+        4
+      ],
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "single zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-leading-zeros",
+      "name": "hidden: leading zeros",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

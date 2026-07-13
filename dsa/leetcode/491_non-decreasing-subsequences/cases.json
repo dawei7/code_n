@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_491",
+  "cases": [
+    {"id": "sample-duplicate-seven", "name": "sample: duplicate final value", "kind": "sample", "visible": true, "input": {"nums": [4, 6, 7, 7]}, "expected": [[4,6],[4,7],[4,6,7],[4,6,7,7],[4,7,7],[6,7],[6,7,7],[7,7]], "validator": {"kind": "unordered_nested_list"}, "tags": ["sample", "duplicates"]},
+    {"id": "sample-leading-pair", "name": "sample: only the repeated leading value qualifies", "kind": "sample", "visible": true, "input": {"nums": [4, 4, 3, 2, 1]}, "expected": [[4,4]], "validator": {"kind": "unordered_nested_list"}, "tags": ["sample", "decreasing-tail"]},
+    {"id": "sample-decreasing", "name": "sample: strictly decreasing input", "kind": "sample", "visible": true, "input": {"nums": [3, 2, 1]}, "expected": [], "validator": {"kind": "unordered_nested_list"}, "tags": ["sample", "none"]},
+    {"id": "trial-single", "name": "trial: one element cannot form an answer", "kind": "trial", "visible": true, "input": {"nums": [5]}, "expected": [], "validator": {"kind": "unordered_nested_list"}, "tags": ["trial", "singleton"]},
+    {"id": "trial-all-equal", "name": "trial: one answer for each valid length", "kind": "trial", "visible": true, "input": {"nums": [1, 1, 1]}, "expected": [[1,1],[1,1,1]], "validator": {"kind": "unordered_nested_list"}, "tags": ["trial", "all-equal"]},
+    {"id": "hidden-two-branches", "name": "hidden: two different increasing pairs", "kind": "real", "visible": false, "input": {"nums": [1, 3, 2]}, "expected": [[1,3],[1,2]], "validator": {"kind": "unordered_nested_list"}, "tags": ["hidden", "branches"]},
+    {"id": "hidden-negative", "name": "hidden: negative repeated values", "kind": "real", "visible": false, "input": {"nums": [-1, -1, 0]}, "expected": [[-1,-1],[-1,0],[-1,-1,0]], "validator": {"kind": "unordered_nested_list"}, "tags": ["hidden", "negative"]}
+  ]
+}

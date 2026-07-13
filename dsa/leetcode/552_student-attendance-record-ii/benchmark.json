@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_552",
+  "measurement_note": "Size is the record length. Reusing the six automaton states advances once per day, while recomputing the dynamic program independently for every prefix length performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: count length-16 records",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "n": 16
+      },
+      "expected": 209305,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "six-state-dp"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: count length-32 records",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 32
+      },
+      "expected": 902845575,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "six-state-dp"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: count length-64 records",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 64
+      },
+      "expected": 36778970,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "six-state-dp"
+      ]
+    }
+  ]
+}
+

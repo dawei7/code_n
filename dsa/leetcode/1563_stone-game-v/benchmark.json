@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_1563",
+  "cases": [
+    {
+      "id": "benchmark-balanced-halves",
+      "name": "benchmark: balanced halves allow a choice",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "stone_value": [
+          2,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

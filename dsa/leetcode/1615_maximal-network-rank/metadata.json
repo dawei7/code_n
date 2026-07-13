@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_1615",
+  "source": "leetcode",
+  "frontend_id": "1615",
+  "slug": "maximal-network-rank",
+  "title": "Maximal Network Rank",
+  "difficulty": "Medium",
+  "acceptance_rate": 66.04723264181276,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximal-network-rank/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:microsoft",
+    "leetcode_studyplan:graph-theory",
+    "leetcode_studyplan:graph-theory:graph-theory-108-e5x3",
+    "leetcode_topic:graph"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:microsoft",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:graph-theory",
+    "study_plan_section:graph-theory:graph-theory-108-e5x3",
+    "topic:graph"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "graph-theory",
+      "plan_name": "Graph Theory",
+      "section_slug": "graph-theory-108-e5x3",
+      "section_name": "Graph Theory",
+      "path": [
+        "Graph Theory"
+      ],
+      "order": 25,
+      "section_order": 4,
+      "problem_order": 3,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/graph-theory/"
+    }
+  ],
+  "neetcode_subsets": []
+}

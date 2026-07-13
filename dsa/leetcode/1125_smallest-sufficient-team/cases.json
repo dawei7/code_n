@@ -1,0 +1,162 @@
+{
+  "challenge_id": "lc_1125",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two-person team",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "req_skills": [
+          "java",
+          "nodejs",
+          "reactjs"
+        ],
+        "people": [
+          [
+            "java"
+          ],
+          [
+            "nodejs"
+          ],
+          [
+            "nodejs",
+            "reactjs"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: overlapping skills",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "req_skills": [
+          "algorithms",
+          "math",
+          "java",
+          "reactjs",
+          "csharp",
+          "aws"
+        ],
+        "people": [
+          [
+            "algorithms",
+            "math",
+            "java"
+          ],
+          [
+            "algorithms",
+            "math",
+            "reactjs"
+          ],
+          [
+            "java",
+            "csharp",
+            "aws"
+          ],
+          [
+            "reactjs",
+            "csharp"
+          ],
+          [
+            "csharp",
+            "math"
+          ],
+          [
+            "aws",
+            "java"
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-skill",
+      "name": "single required skill",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "req_skills": [
+          "a"
+        ],
+        "people": [
+          [
+            "a"
+          ],
+          []
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-two-person-optimum",
+      "name": "hidden: two-person optimum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "req_skills": [
+          "a",
+          "b",
+          "c"
+        ],
+        "people": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "b",
+            "c"
+          ],
+          [
+            "c"
+          ],
+          [
+            "a"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

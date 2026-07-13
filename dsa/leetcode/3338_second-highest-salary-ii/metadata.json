@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_3338",
+  "source": "leetcode",
+  "frontend_id": "3338",
+  "slug": "second-highest-salary-ii",
+  "title": "Second Highest Salary II",
+  "difficulty": "Medium",
+  "acceptance_rate": 86.50454302512026,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/second-highest-salary-ii/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

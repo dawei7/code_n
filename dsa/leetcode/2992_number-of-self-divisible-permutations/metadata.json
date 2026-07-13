@@ -1,0 +1,115 @@
+{
+  "challenge_id": "lc_2992",
+  "source": "leetcode",
+  "frontend_id": "2992",
+  "slug": "number-of-self-divisible-permutations",
+  "title": "Number of Self-Divisible Permutations",
+  "difficulty": "Medium",
+  "acceptance_rate": 72.07872078720787,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Number Theory",
+      "slug": "number-theory"
+    },
+    {
+      "name": "Bitmask",
+      "slug": "bitmask"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-self-divisible-permutations/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:quip",
+    "leetcode_company:salesforce",
+    "leetcode_topic:array",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:bitmask",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math",
+    "leetcode_topic:number-theory"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:quip",
+    "company:salesforce",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:backtracking",
+    "topic:bit-manipulation",
+    "topic:bitmask",
+    "topic:dynamic-programming",
+    "topic:math",
+    "topic:number-theory"
+  ],
+  "company_tags": [
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Quip (Salesforce)",
+      "slug": "quip"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Quip (Salesforce)",
+        "slug": "quip",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

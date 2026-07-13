@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_730",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: duplicate wrapped palindromes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "bccb"},
+      "expected": 6,
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four distinct characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abcd"},
+      "expected": 4,
+      "tags": ["sample", "distinct"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated one character",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aaa"},
+      "expected": 3,
+      "tags": ["sample", "repeated"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "c"},
+      "expected": 1,
+      "tags": ["trial", "singleton"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one repeated endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aba"},
+      "expected": 4,
+      "tags": ["trial", "matching-endpoints"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: several nested palindrome forms",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcba"},
+      "expected": 10,
+      "tags": ["hidden", "nested"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: repeated alphabet block",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdabcd"},
+      "expected": 20,
+      "tags": ["hidden", "repeated-block"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: modulo reduction",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"},
+      "expected": 372554565,
+      "tags": ["hidden", "modulo"]
+    }
+  ]
+}

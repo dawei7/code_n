@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_3252",
+  "source": "leetcode",
+  "frontend_id": "3252",
+  "slug": "premier-league-table-ranking-ii",
+  "title": "Premier League Table Ranking II",
+  "difficulty": "Medium",
+  "acceptance_rate": 55.822882006654716,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/premier-league-table-ranking-ii/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

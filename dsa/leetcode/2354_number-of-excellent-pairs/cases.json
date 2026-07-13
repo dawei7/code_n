@@ -1,0 +1,81 @@
+{
+  "challenge_id": "lc_2354",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: deduplicate before counting pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "bit-count"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: threshold too high",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          1
+        ],
+        "k": 10
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all ordered pairs qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "k": 2
+      },
+      "expected": 16,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-all-small-pairs",
+      "name": "hidden: all ordered pairs qualify after deduplication",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

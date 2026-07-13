@@ -1,0 +1,6 @@
+{"challenge_id":"lc_245","cases":[
+{"id":"sample-distinct","name":"sample: distinct adjacent targets","kind":"sample","visible":true,"input":{"wordsDict":["practice","makes","perfect","coding","makes"],"word1":"makes","word2":"coding"},"expected":1,"tags":["sample","distinct"]},
+{"id":"sample-equal","name":"sample: equal targets","kind":"sample","visible":true,"input":{"wordsDict":["practice","makes","perfect","coding","makes"],"word1":"makes","word2":"makes"},"expected":3,"tags":["sample","equal"]},
+{"id":"trial-adjacent-equal","name":"adjacent equal occurrences","kind":"trial","visible":true,"input":{"wordsDict":["a","a"],"word1":"a","word2":"a"},"expected":1,"tags":["boundary"]},
+{"id":"real-equal-late","name":"hidden: best equal pair appears late","kind":"real","visible":false,"input":{"wordsDict":["x","a","x","a","b","a","a"],"word1":"a","word2":"a"},"expected":1,"tags":["hidden","late"]}
+]}

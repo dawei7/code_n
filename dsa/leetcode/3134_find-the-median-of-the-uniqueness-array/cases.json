@@ -1,0 +1,153 @@
+{
+  "challenge_id": "lc_3134",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all values distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one repeated value dominates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three distinct larger values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          73,
+          33,
+          9
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: all subarrays have one distinct value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "trial: alternating two values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "real-mixed-frequency",
+      "name": "real: mixed repeated frequencies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          4,
+          1,
+          5,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "median"
+      ]
+    },
+    {
+      "id": "real-longer-cycle",
+      "name": "real: longer low-cardinality cycle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          0,
+          1,
+          2,
+          3,
+          0,
+          1,
+          2,
+          3,
+          0,
+          1,
+          2,
+          3,
+          0
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "cycle"
+      ]
+    }
+  ]
+}

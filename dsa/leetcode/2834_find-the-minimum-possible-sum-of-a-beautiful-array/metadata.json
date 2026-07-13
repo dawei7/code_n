@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2834",
+  "source": "leetcode",
+  "frontend_id": "2834",
+  "slug": "find-the-minimum-possible-sum-of-a-beautiful-array",
+  "title": "Find the Minimum Possible Sum of a Beautiful Array",
+  "difficulty": "Medium",
+  "acceptance_rate": 34.91724952691612,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-the-minimum-possible-sum-of-a-beautiful-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:infosys",
+    "leetcode_topic:greedy",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:infosys",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:greedy",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

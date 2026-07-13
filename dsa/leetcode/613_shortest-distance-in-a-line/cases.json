@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_613",
+  "cases": [
+    {"id": "sample-1", "name": "sample: closest values cross zero", "kind": "sample", "visible": true, "input": {"tables": {"Point": [{"x": -1}, {"x": 0}, {"x": 2}]}}, "expected": {"columns": ["shortest"], "rows": [[1]]}, "tags": ["sample", "mixed-sign"]},
+    {"id": "sample-2", "name": "sample: exactly two positions", "kind": "sample", "visible": true, "input": {"tables": {"Point": [{"x": 10}, {"x": 25}]}}, "expected": {"columns": ["shortest"], "rows": [[15]]}, "tags": ["sample", "two-points"]},
+    {"id": "sample-3", "name": "sample: equal minimum gaps", "kind": "sample", "visible": true, "input": {"tables": {"Point": [{"x": -10}, {"x": -3}, {"x": 4}]}}, "expected": {"columns": ["shortest"], "rows": [[7]]}, "tags": ["sample", "ties"]},
+    {"id": "trial-1", "name": "trial: unsorted closest neighbors", "kind": "trial", "visible": true, "input": {"tables": {"Point": [{"x": 20}, {"x": -5}, {"x": 8}, {"x": 7}]}}, "expected": {"columns": ["shortest"], "rows": [[1]]}, "tags": ["trial", "input-order"]},
+    {"id": "trial-2", "name": "trial: all negative positions", "kind": "trial", "visible": true, "input": {"tables": {"Point": [{"x": -100}, {"x": -40}, {"x": -41}, {"x": -5}]}}, "expected": {"columns": ["shortest"], "rows": [[1]]}, "tags": ["trial", "negative"]},
+    {"id": "hidden-1", "name": "hidden: nearest pair inside wide range", "kind": "real", "visible": false, "input": {"tables": {"Point": [{"x": -10000}, {"x": 10000}, {"x": 9997}, {"x": 0}, {"x": 5000}]}}, "expected": {"columns": ["shortest"], "rows": [[3]]}, "tags": ["hidden", "range"]},
+    {"id": "hidden-2", "name": "hidden: minimum is not at either extreme", "kind": "real", "visible": false, "input": {"tables": {"Point": [{"x": 90}, {"x": 1}, {"x": 50}, {"x": 47}, {"x": -20}, {"x": 200}]}}, "expected": {"columns": ["shortest"], "rows": [[3]]}, "tags": ["hidden", "interior-gap"]}
+  ]
+}

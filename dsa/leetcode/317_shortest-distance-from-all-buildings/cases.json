@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_317",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: buildings around an obstacle",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1, 0, 2, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]},
+      "expected": 7,
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: adjacent empty land",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1, 0]]},
+      "expected": 1,
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no empty land",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1]]},
+      "expected": -1,
+      "tags": ["sample", "impossible"]
+    },
+    {
+      "id": "trial-between-buildings",
+      "name": "trial: one cell between two buildings",
+      "kind": "trial",
+      "visible": false,
+      "input": {"grid": [[1, 0, 1]]},
+      "expected": 2,
+      "tags": ["trial", "multiple-buildings"]
+    },
+    {
+      "id": "trial-open-corners",
+      "name": "trial: opposite corners in an open grid",
+      "kind": "trial",
+      "visible": false,
+      "input": {"grid": [[1, 0, 0], [0, 0, 0], [0, 0, 1]]},
+      "expected": 4,
+      "tags": ["trial", "open-grid"]
+    },
+    {
+      "id": "hidden-isolated-building",
+      "name": "hidden: one building is sealed off",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 2, 0], [2, 2, 1], [0, 0, 0]]},
+      "expected": -1,
+      "tags": ["hidden", "disconnected"]
+    },
+    {
+      "id": "hidden-four-buildings",
+      "name": "hidden: four buildings share a corridor",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 2, 1], [0, 0, 0], [1, 2, 1]]},
+      "expected": 8,
+      "tags": ["hidden", "obstacles"]
+    },
+    {
+      "id": "hidden-detour",
+      "name": "hidden: obstacle forces a detour",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 0, 2, 0], [0, 0, 2, 1], [0, 0, 0, 0]]},
+      "expected": 6,
+      "tags": ["hidden", "detour"]
+    }
+  ]
+}

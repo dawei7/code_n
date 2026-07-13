@@ -1,0 +1,23 @@
+{
+  "name": "coden-electron",
+  "version": "0.1.0",
+  "private": true,
+  "description": "cOde(n) desktop wrapper (Electron).",
+  "main": "dist/electron/src/main.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "npm run build && electron .",
+    "dev": "npm run build && electron .",
+    "dist": "npm run build && electron-builder --win --x64",
+    "dist:dry": "npm run build && electron-builder --win --x64 --publish never"
+  },
+  "dependencies": {
+    "electron-updater": "^6.3.0"
+  },
+  "devDependencies": {
+    "electron": "^31.3.0",
+    "electron-builder": "^24.13.3",
+    "typescript": "^5.5.3"
+  }
+}

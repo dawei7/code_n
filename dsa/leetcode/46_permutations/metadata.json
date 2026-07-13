@@ -1,0 +1,394 @@
+{
+  "challenge_id": "lc_46",
+  "source": "leetcode",
+  "frontend_id": "46",
+  "slug": "permutations",
+  "title": "Permutations",
+  "difficulty": "Medium",
+  "acceptance_rate": 82.09837120994872,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    }
+  ],
+  "url": "https://leetcode.com/problems/permutations/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:american-express",
+    "leetcode_company:apple",
+    "leetcode_company:arista-networks",
+    "leetcode_company:bloomberg",
+    "leetcode_company:bookingcom",
+    "leetcode_company:citadel",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:infosys",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:qualcomm",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_company:workday",
+    "leetcode_company:zomato",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-46-v52z",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-15-rpt9",
+    "leetcode_topic:array",
+    "leetcode_topic:backtracking",
+    "neetcode:allNC",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:american-express",
+    "company:apple",
+    "company:arista-networks",
+    "company:bloomberg",
+    "company:bookingcom",
+    "company:citadel",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:infosys",
+    "company:linkedin",
+    "company:microsoft",
+    "company:oracle",
+    "company:qualcomm",
+    "company:tiktok",
+    "company:uber",
+    "company:workday",
+    "company:zomato",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:top-100-liked:top-100-liked-46-v52z",
+    "study_plan_section:top-interview-150:top-interview-150-15-rpt9",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:backtracking"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Arista Networks",
+      "slug": "arista-networks"
+    },
+    {
+      "name": "Workday",
+      "slug": "workday"
+    },
+    {
+      "name": "Zomato",
+      "slug": "zomato"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Booking.com",
+      "slug": "bookingcom"
+    },
+    {
+      "name": "Citadel",
+      "slug": "citadel"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Qualcomm",
+      "slug": "qualcomm"
+    },
+    {
+      "name": "American Express",
+      "slug": "american-express"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 17
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Arista Networks",
+        "slug": "arista-networks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Workday",
+        "slug": "workday",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zomato",
+        "slug": "zomato",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Booking.com",
+        "slug": "bookingcom",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Citadel",
+        "slug": "citadel",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Qualcomm",
+        "slug": "qualcomm",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "American Express",
+        "slug": "american-express",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-15-rpt9",
+      "section_name": "Backtracking",
+      "path": [
+        "Backtracking"
+      ],
+      "order": 103,
+      "section_order": 15,
+      "problem_order": 3,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-46-v52z",
+      "section_name": "Backtracking",
+      "path": [
+        "Backtracking"
+      ],
+      "order": 4,
+      "section_order": 1,
+      "problem_order": 4,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Backtracking"
+      ],
+      "order": 69,
+      "section_order": 9,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "permutations",
+      "leetcode_slug": "permutations",
+      "difficulty": "Medium",
+      "problem_order": 3
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Backtracking"
+      ],
+      "order": 126,
+      "section_order": 9,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "permutations",
+      "leetcode_slug": "permutations",
+      "difficulty": "Medium",
+      "problem_order": 5
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Backtracking"
+      ],
+      "order": 512,
+      "section_order": 9,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "permutations",
+      "leetcode_slug": "permutations",
+      "difficulty": "Medium",
+      "problem_order": 5
+    }
+  ]
+}

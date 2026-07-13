@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_353","cases":[
+{"id":"sample-1","name":"sample: eat two foods then hit wall","kind":"sample","visible":true,"input":{"width":3,"height":2,"food":[[1,2],[0,1]],"directions":["R","D","R","U","L","U"]},"expected":[0,0,1,1,2,-1],"tags":["sample","food","wall"]},
+{"id":"sample-2","name":"sample: immediate wall collision","kind":"sample","visible":true,"input":{"width":1,"height":1,"food":[],"directions":["R"]},"expected":[-1],"tags":["sample","boundary"]},
+{"id":"sample-3","name":"sample: moving into departing tail is legal","kind":"sample","visible":true,"input":{"width":2,"height":2,"food":[[0,1]],"directions":["R","D","L","U"]},"expected":[1,1,1,1],"tags":["sample","tail"]},
+{"id":"trial-no-food","name":"trial: score remains zero","kind":"trial","visible":false,"input":{"width":3,"height":2,"food":[],"directions":["R","R","D","L"]},"expected":[0,0,0,0],"tags":["trial","no-food"]},
+{"id":"trial-vertical-food","name":"trial: consume food down one column","kind":"trial","visible":false,"input":{"width":1,"height":3,"food":[[1,0],[2,0]],"directions":["D","D"]},"expected":[1,2],"tags":["trial","food"]},
+{"id":"hidden-self-collision","name":"hidden: collide with non-tail body segment","kind":"real","visible":false,"input":{"width":3,"height":3,"food":[[0,1],[0,2],[1,2],[1,1]],"directions":["R","R","D","L","U"]},"expected":[1,2,3,4,-1],"tags":["hidden","self-collision"]},
+{"id":"hidden-left-wall","name":"hidden: leave through left wall","kind":"real","visible":false,"input":{"width":2,"height":2,"food":[],"directions":["L"]},"expected":[-1],"tags":["hidden","wall"]},
+{"id":"hidden-food-order","name":"hidden: later food cannot be eaten first","kind":"real","visible":false,"input":{"width":3,"height":2,"food":[[1,1],[0,2]],"directions":["R","R","D","L"]},"expected":[0,0,0,1],"tags":["hidden","food-order"]}
+]}

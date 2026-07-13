@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_2442",
+  "cases": [
+    {
+      "id": "benchmark-overlapping-reversals",
+      "name": "benchmark: several values reverse into existing values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          12,
+          21,
+          120,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

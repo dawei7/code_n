@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_1353",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: chain of events",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "events": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "events": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-event",
+      "name": "single event",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "events": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-same-day-conflict",
+      "name": "hidden: all events same day",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "events": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

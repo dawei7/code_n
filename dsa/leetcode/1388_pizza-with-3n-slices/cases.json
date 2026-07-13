@@ -1,0 +1,84 @@
+{
+  "challenge_id": "lc_1388",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: increasing slices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "slices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated high edge slices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "slices": [
+          8,
+          9,
+          8,
+          6,
+          1,
+          1
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-choice",
+      "name": "three slices choose one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "slices": [
+          4,
+          1,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-middle-values",
+      "name": "hidden: middle values matter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "slices": [
+          3,
+          1,
+          2,
+          5,
+          4,
+          6
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

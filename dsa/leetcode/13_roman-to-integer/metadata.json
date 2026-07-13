@@ -1,0 +1,474 @@
+{
+  "challenge_id": "lc_13",
+  "source": "leetcode",
+  "frontend_id": "13",
+  "slug": "roman-to-integer",
+  "title": "Roman to Integer",
+  "difficulty": "Easy",
+  "acceptance_rate": 66.82696115104986,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    }
+  ],
+  "url": "https://leetcode.com/problems/roman-to-integer/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:adobe",
+    "leetcode_company:amazon",
+    "leetcode_company:amd",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:expedia",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:ibm",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:pwc",
+    "leetcode_company:snowflake",
+    "leetcode_company:tcs",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_company:virtusa",
+    "leetcode_company:wix",
+    "leetcode_company:yahoo",
+    "leetcode_company:zoho",
+    "leetcode_studyplan:apple-spring-23-high-frequency",
+    "leetcode_studyplan:apple-spring-23-high-frequency:apple-spring-23-high-frequency-149-cs8e",
+    "leetcode_studyplan:google-spring-23-high-frequency",
+    "leetcode_studyplan:google-spring-23-high-frequency:google-spring-23-high-frequency-144-elbg",
+    "leetcode_studyplan:programming-skills",
+    "leetcode_studyplan:programming-skills:programming-skills-99-cqq6",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-1-yf91",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:math",
+    "leetcode_topic:string",
+    "neetcode:allNC",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:adobe",
+    "company:amazon",
+    "company:amd",
+    "company:apple",
+    "company:bloomberg",
+    "company:expedia",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:ibm",
+    "company:linkedin",
+    "company:microsoft",
+    "company:oracle",
+    "company:pwc",
+    "company:snowflake",
+    "company:tcs",
+    "company:tiktok",
+    "company:uber",
+    "company:virtusa",
+    "company:wix",
+    "company:yahoo",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:apple-spring-23-high-frequency",
+    "study_plan:google-spring-23-high-frequency",
+    "study_plan:programming-skills",
+    "study_plan:top-interview-150",
+    "study_plan_section:apple-spring-23-high-frequency:apple-spring-23-high-frequency-149-cs8e",
+    "study_plan_section:google-spring-23-high-frequency:google-spring-23-high-frequency-144-elbg",
+    "study_plan_section:programming-skills:programming-skills-99-cqq6",
+    "study_plan_section:top-interview-150:top-interview-150-1-yf91",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:hash-table",
+    "topic:math",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "Expedia",
+      "slug": "expedia"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "AMD",
+      "slug": "amd"
+    },
+    {
+      "name": "Virtusa",
+      "slug": "virtusa"
+    },
+    {
+      "name": "Wix",
+      "slug": "wix"
+    },
+    {
+      "name": "Pwc",
+      "slug": "pwc"
+    },
+    {
+      "name": "Yahoo",
+      "slug": "yahoo"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 28
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Expedia",
+        "slug": "expedia",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "AMD",
+        "slug": "amd",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Virtusa",
+        "slug": "virtusa",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Wix",
+        "slug": "wix",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Pwc",
+        "slug": "pwc",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Yahoo",
+        "slug": "yahoo",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-1-yf91",
+      "section_name": "Array / String",
+      "path": [
+        "Array / String"
+      ],
+      "order": 17,
+      "section_order": 1,
+      "problem_order": 17,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "google-spring-23-high-frequency",
+      "plan_name": "Google Spring' 23 High Frequency",
+      "section_slug": "google-spring-23-high-frequency-144-elbg",
+      "section_name": "March Interview Questions",
+      "path": [
+        "March Interview Questions"
+      ],
+      "order": 17,
+      "section_order": 3,
+      "problem_order": 1,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/google-spring-23-high-frequency/"
+    },
+    {
+      "plan_slug": "apple-spring-23-high-frequency",
+      "plan_name": "Apple Spring '23 High Frequency",
+      "section_slug": "apple-spring-23-high-frequency-149-cs8e",
+      "section_name": "April Interview Questions",
+      "path": [
+        "April Interview Questions"
+      ],
+      "order": 4,
+      "section_order": 1,
+      "problem_order": 4,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/apple-spring-23-high-frequency/"
+    },
+    {
+      "plan_slug": "programming-skills",
+      "plan_name": "Programming Skills",
+      "section_slug": "programming-skills-99-cqq6",
+      "section_name": "Basic Implementation",
+      "path": [
+        "Basic Implementation"
+      ],
+      "order": 11,
+      "section_order": 1,
+      "problem_order": 11,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/programming-skills/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Math & Geometry"
+      ],
+      "order": 236,
+      "section_order": 16,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "roman-to-integer",
+      "leetcode_slug": "roman-to-integer",
+      "difficulty": "Easy",
+      "problem_order": 9
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Math & Geometry"
+      ],
+      "order": 881,
+      "section_order": 16,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "roman-to-integer",
+      "leetcode_slug": "roman-to-integer",
+      "difficulty": "Easy",
+      "problem_order": 32
+    }
+  ]
+}

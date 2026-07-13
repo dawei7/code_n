@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_176",
+  "cases": [
+    {"id": "sample-three-distinct", "name": "sample: three distinct salaries", "kind": "sample", "visible": true, "input": {"tables": {"Employee": [{"id": 1, "salary": 100}, {"id": 2, "salary": 200}, {"id": 3, "salary": 300}]}}, "expected": {"columns": ["SecondHighestSalary"], "rows": [[200]]}, "tags": ["sample", "aggregate"]},
+    {"id": "sample-single", "name": "sample: no second distinct salary", "kind": "sample", "visible": true, "input": {"tables": {"Employee": [{"id": 1, "salary": 100}]}}, "expected": {"columns": ["SecondHighestSalary"], "rows": [[null]]}, "tags": ["sample", "null"]},
+    {"id": "trial-duplicate-maximum", "name": "duplicate maximum is ignored", "kind": "trial", "visible": true, "input": {"tables": {"Employee": [{"id": 1, "salary": 200}, {"id": 2, "salary": 200}, {"id": 3, "salary": 100}]}}, "expected": {"columns": ["SecondHighestSalary"], "rows": [[100]]}, "tags": ["duplicates"]},
+    {"id": "trial-all-equal", "name": "all salaries equal", "kind": "trial", "visible": true, "input": {"tables": {"Employee": [{"id": 1, "salary": 50}, {"id": 2, "salary": 50}]}}, "expected": {"columns": ["SecondHighestSalary"], "rows": [[null]]}, "tags": ["boundary", "duplicates"]},
+    {"id": "real-negative", "name": "hidden: negative salaries retain ordering", "kind": "real", "visible": false, "input": {"tables": {"Employee": [{"id": 1, "salary": -10}, {"id": 2, "salary": -30}, {"id": 3, "salary": -20}]}}, "expected": {"columns": ["SecondHighestSalary"], "rows": [[-20]]}, "tags": ["hidden", "negative"]}
+  ]
+}

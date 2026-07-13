@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_41",
+  "cases": [
+    {"id": "sample-1", "name": "sample: zero is irrelevant", "kind": "sample", "visible": true, "input": {"nums": [1, 2, 0]}, "expected": 3, "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: negatives and disorder", "kind": "sample", "visible": true, "input": {"nums": [3, 4, -1, 1]}, "expected": 2, "tags": ["sample", "negative"]},
+    {"id": "trial-one-missing", "name": "all values exceed one", "kind": "trial", "visible": true, "input": {"nums": [7, 8, 9, 11, 12]}, "expected": 1, "tags": ["boundary"]},
+    {"id": "trial-duplicates", "name": "duplicate placement does not cycle", "kind": "trial", "visible": true, "input": {"nums": [1, 1]}, "expected": 2, "tags": ["duplicates"]},
+    {"id": "real-complete-prefix", "name": "hidden: complete positive prefix", "kind": "real", "visible": false, "input": {"nums": [4, 2, 1, 3]}, "expected": 5, "tags": ["hidden", "n-plus-one"]}
+  ]
+}

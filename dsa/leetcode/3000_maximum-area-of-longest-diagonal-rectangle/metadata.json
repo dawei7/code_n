@@ -1,0 +1,67 @@
+{
+  "challenge_id": "lc_3000",
+  "source": "leetcode",
+  "frontend_id": "3000",
+  "slug": "maximum-area-of-longest-diagonal-rectangle",
+  "title": "Maximum Area of Longest Diagonal Rectangle",
+  "difficulty": "Easy",
+  "acceptance_rate": 45.93634052032623,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-area-of-longest-diagonal-rectangle/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_topic:array"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array"
+  ],
+  "company_tags": [
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

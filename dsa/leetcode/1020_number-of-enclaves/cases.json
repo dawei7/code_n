@@ -1,0 +1,128 @@
+{
+  "challenge_id": "lc_1020",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three enclosed cells",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: connected to border",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-land",
+      "name": "single border land",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-center-island",
+      "name": "hidden: center island",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

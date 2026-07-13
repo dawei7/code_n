@@ -1,0 +1,6 @@
+{"challenge_id":"lc_288","cases":[
+{"id":"sample-queries","name":"sample: mixed unique queries","kind":"sample","visible":true,"input":{"dictionary":["deer","door","cake","card"],"words":["dear","cart","cane","make"]},"expected":[false,true,false,true],"tags":["sample","design"]},
+{"id":"sample-same","name":"sample: identical dictionary word is unique","kind":"sample","visible":true,"input":{"dictionary":["hello"],"words":["hello"]},"expected":[true],"tags":["sample","identity"]},
+{"id":"trial-duplicates","name":"duplicate entries do not create ambiguity","kind":"trial","visible":true,"input":{"dictionary":["a","a"],"words":["a","b"]},"expected":[true,true],"tags":["duplicates","short"]},
+{"id":"real-collision","name":"hidden: two distinct words share abbreviation","kind":"real","visible":false,"input":{"dictionary":["internationalization","localization"],"words":["internationalization","interpolation"]},"expected":[true,true],"tags":["hidden","abbreviation"]}
+]}

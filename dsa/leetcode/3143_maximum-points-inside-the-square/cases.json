@@ -1,0 +1,192 @@
+{
+  "challenge_id": "lc_3143",
+  "cases": [
+    {
+      "id": "sample-distinct-inside",
+      "name": "sample: all visible tags are distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            2,
+            2
+          ],
+          [
+            -1,
+            -2
+          ],
+          [
+            -4,
+            4
+          ]
+        ],
+        "s": "abc"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "sample-duplicate-distance-conflict",
+      "name": "sample: equal-distance duplicate tags block the square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "s": "aab"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "trial-second-duplicate-farther",
+      "name": "trial: farther duplicate still allows nearest tagged point",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -2,
+            1
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "s": "cc"
+      },
+      "expected": 1,
+      "tags": [
+        "regression",
+        "duplicate-distance"
+      ]
+    },
+    {
+      "id": "trial-negative-coordinates",
+      "name": "trial: mixed negative coordinates and a late conflict",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            3
+          ],
+          [
+            -2,
+            0
+          ],
+          [
+            4,
+            -1
+          ],
+          [
+            -5,
+            -5
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "s": "abacd"
+      },
+      "expected": 3,
+      "tags": [
+        "chebyshev"
+      ]
+    },
+    {
+      "id": "real-zero-distance-conflict",
+      "name": "real: duplicate tag at the origin prevents including either",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "s": "zzxy"
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "origin"
+      ]
+    },
+    {
+      "id": "real-many-tags-before-conflict",
+      "name": "real: many tags fit before the second duplicate threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            0
+          ]
+        ],
+        "s": "abcdea"
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "threshold"
+      ]
+    }
+  ]
+}

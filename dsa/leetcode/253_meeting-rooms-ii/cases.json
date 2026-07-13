@@ -1,0 +1,6 @@
+{"challenge_id":"lc_253","cases":[
+{"id":"sample-two","name":"sample: two rooms required","kind":"sample","visible":true,"input":{"intervals":[[0,30],[5,10],[15,20]]},"expected":2,"tags":["sample","overlap"]},
+{"id":"sample-one","name":"sample: one room is enough","kind":"sample","visible":true,"input":{"intervals":[[7,10],[2,4]]},"expected":1,"tags":["sample","compatible"]},
+{"id":"trial-empty","name":"empty schedule","kind":"trial","visible":true,"input":{"intervals":[]},"expected":0,"tags":["boundary"]},
+{"id":"real-three","name":"hidden: three simultaneous meetings","kind":"real","visible":false,"input":{"intervals":[[1,5],[2,6],[3,7],[7,9]]},"expected":3,"tags":["hidden","peak"]}
+]}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "744",
+  "frontend_id": "743",
+  "title_slug": "network-delay-time",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.networkDelayTime",
+  "verified_submission_id": "2065865179",
+  "verified_at": "2026-07-13T08:15:04.684171+00:00"
+}

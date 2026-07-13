@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_1423",
+  "cases": [
+    {
+      "id": "benchmark-min-middle-window",
+      "name": "benchmark: leave a minimum middle window",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "card_points": [
+          5,
+          6,
+          1,
+          2,
+          100,
+          2,
+          1,
+          6,
+          5
+        ],
+        "k": 4
+      },
+      "expected": 22,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

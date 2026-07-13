@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_375",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: ten possible numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": 16,
+      "tags": [
+        "sample",
+        "minimax"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one possible number",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two possible numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-three",
+      "name": "trial: three possible numbers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-five",
+      "name": "trial: five possible numbers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "minimax"
+      ]
+    },
+    {
+      "id": "hidden-four",
+      "name": "hidden: four-value interval",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "small"
+      ]
+    },
+    {
+      "id": "hidden-seven",
+      "name": "hidden: seven-value interval",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 7
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "minimax"
+      ]
+    },
+    {
+      "id": "hidden-twelve",
+      "name": "hidden: larger interval",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 12
+      },
+      "expected": 21,
+      "tags": [
+        "hidden",
+        "larger"
+      ]
+    }
+  ]
+}
+

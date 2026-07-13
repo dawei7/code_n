@@ -1,0 +1,67 @@
+{
+  "challenge_id": "lc_2525",
+  "source": "leetcode",
+  "frontend_id": "2525",
+  "slug": "categorize-box-according-to-criteria",
+  "title": "Categorize Box According to Criteria",
+  "difficulty": "Easy",
+  "acceptance_rate": 39.34261103992772,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    }
+  ],
+  "url": "https://leetcode.com/problems/categorize-box-according-to-criteria/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:zendesk",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:zendesk",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Zendesk",
+      "slug": "zendesk"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Zendesk",
+        "slug": "zendesk",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

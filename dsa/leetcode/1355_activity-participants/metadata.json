@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1355",
+  "source": "leetcode",
+  "frontend_id": "1355",
+  "slug": "activity-participants",
+  "title": "Activity Participants",
+  "difficulty": "Medium",
+  "acceptance_rate": 72.04849263377623,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/activity-participants/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:ibm",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:ibm",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

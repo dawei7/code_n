@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_556",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: swap two digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 12
+      },
+      "expected": 21,
+      "tags": [
+        "sample",
+        "next-permutation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: descending digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 21
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "next-permutation"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: reverse a longer suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 230241
+      },
+      "expected": 230412,
+      "tags": [
+        "sample",
+        "next-permutation"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: repeated digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 115
+      },
+      "expected": 151,
+      "tags": [
+        "trial",
+        "digits"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: zero inside the number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 101
+      },
+      "expected": 110,
+      "tags": [
+        "trial",
+        "digits"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: several repeated suffix digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 12443322
+      },
+      "expected": 13222344,
+      "tags": [
+        "hidden",
+        "edge-case"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: single digit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 7
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "edge-case"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: next permutation overflows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1999999999
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "overflow"
+      ]
+    }
+  ]
+}
+

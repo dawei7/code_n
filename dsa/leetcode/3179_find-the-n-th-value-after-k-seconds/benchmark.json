@@ -1,0 +1,20 @@
+{
+  "challenge_id": "lc_3179",
+  "cases": [
+    {
+      "id": "benchmark-combination-60000",
+      "name": "benchmark: combination with 60,000 loop terms",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 60001,
+        "k": 60000
+      },
+      "expected": 998425108,
+      "tags": [
+        "benchmark",
+        "mod-combination"
+      ]
+    }
+  ]
+}

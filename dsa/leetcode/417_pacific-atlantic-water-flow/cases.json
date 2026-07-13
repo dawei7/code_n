@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_417",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: irregular five-by-five island",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            1,
+            2,
+            2,
+            3,
+            5
+          ],
+          [
+            3,
+            2,
+            3,
+            4,
+            4
+          ],
+          [
+            2,
+            4,
+            5,
+            3,
+            1
+          ],
+          [
+            6,
+            7,
+            1,
+            4,
+            5
+          ],
+          [
+            5,
+            1,
+            1,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "sample",
+        "irregular"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one cell touches both oceans",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: flat two-by-two plateau",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "sample",
+        "plateau"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "trial: every cell in one row touches both",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "trial",
+        "one-row"
+      ]
+    },
+    {
+      "id": "trial-one-column",
+      "name": "trial: every cell in one column touches both",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            1
+          ],
+          [
+            3
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "trial",
+        "one-column"
+      ]
+    },
+    {
+      "id": "hidden-increasing",
+      "name": "hidden: elevations increase toward Atlantic corner",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "heights": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "hidden",
+        "increasing"
+      ]
+    },
+    {
+      "id": "hidden-decreasing",
+      "name": "hidden: elevations decrease toward Atlantic corner",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "heights": [
+          [
+            5,
+            4,
+            3
+          ],
+          [
+            4,
+            3,
+            2
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "hidden",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "hidden-ridges",
+      "name": "hidden: separated high ridges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "heights": [
+          [
+            10,
+            1,
+            10
+          ],
+          [
+            1,
+            10,
+            1
+          ],
+          [
+            10,
+            1,
+            10
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "hidden",
+        "ridges"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_2762",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first two values form many valid subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          2,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "window"
+      ],
+      "expected": 8
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all values within range two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "all-valid"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-window-shrinks",
+      "name": "trial: large gap forces shrink",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          3,
+          5
+        ]
+      },
+      "tags": [
+        "trial",
+        "shrink"
+      ],
+      "expected": 9
+    },
+    {
+      "id": "real-plateaus",
+      "name": "hidden: repeated plateaus and gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          8,
+          9,
+          10,
+          12,
+          11,
+          10
+        ]
+      },
+      "tags": [
+        "hidden",
+        "plateau"
+      ],
+      "expected": 19
+    }
+  ]
+}

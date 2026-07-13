@@ -1,0 +1,88 @@
+{
+  "challenge_id": "lc_1528",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: restore leetcode",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "codeleet",
+        "indices": [
+          4,
+          5,
+          6,
+          7,
+          0,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": "leetcode",
+      "tags": [
+        "sample",
+        "string"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already ordered",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "indices": [
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": "abc",
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: restore nihao",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aiohn",
+        "indices": [
+          3,
+          1,
+          4,
+          2,
+          0
+        ]
+      },
+      "expected": "nihao",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-reverse-order",
+      "name": "hidden: reverse by target indices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcde",
+        "indices": [
+          4,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      "expected": "edcba",
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

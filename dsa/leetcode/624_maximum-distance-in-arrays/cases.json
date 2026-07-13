@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_624",
+  "cases": [
+    {"id": "sample-1", "name": "sample: maximum spans first and second arrays", "kind": "sample", "visible": true, "input": {"arrays": [[1,2,3],[4,5],[1,2,3]]}, "expected": 4, "tags": ["sample", "endpoints"]},
+    {"id": "sample-2", "name": "sample: equal singleton arrays", "kind": "sample", "visible": true, "input": {"arrays": [[1],[1]]}, "expected": 0, "tags": ["sample", "zero"]},
+    {"id": "sample-3", "name": "sample: negative to positive range", "kind": "sample", "visible": true, "input": {"arrays": [[-10,-5],[0,2],[3,9]]}, "expected": 19, "tags": ["sample", "negative"]},
+    {"id": "trial-1", "name": "trial: global extremes share one array", "kind": "trial", "visible": true, "input": {"arrays": [[1,100],[50,60]]}, "expected": 59, "tags": ["trial", "different-arrays"]},
+    {"id": "trial-2", "name": "trial: several singleton arrays", "kind": "trial", "visible": true, "input": {"arrays": [[7],[-3],[12],[4]]}, "expected": 15, "tags": ["trial", "singletons"]},
+    {"id": "hidden-1", "name": "hidden: later minimum pairs with earlier maximum", "kind": "real", "visible": false, "input": {"arrays": [[8,20],[10,15],[-7,-2]]}, "expected": 27, "tags": ["hidden", "reverse-orientation"]},
+    {"id": "hidden-2", "name": "hidden: duplicate extremes in different arrays", "kind": "real", "visible": false, "input": {"arrays": [[-5,10],[-5,0],[3,10]]}, "expected": 15, "tags": ["hidden", "ties"]}
+  ]
+}

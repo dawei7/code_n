@@ -1,0 +1,20 @@
+{
+  "challenge_id": "lc_3233",
+  "cases": [
+    {
+      "id": "benchmark-one-billion",
+      "name": "benchmark: full upper sieve range",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "l": 1,
+        "r": 1000000000
+      },
+      "expected": 999996599,
+      "tags": [
+        "benchmark",
+        "sieve"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{"challenge_id":"lc_287","cases":[
+{"id":"sample-two","name":"sample: duplicate two","kind":"sample","visible":true,"input":{"nums":[1,3,4,2,2]},"expected":2,"tags":["sample","cycle"]},
+{"id":"sample-three","name":"sample: duplicate three","kind":"sample","visible":true,"input":{"nums":[3,1,3,4,2]},"expected":3,"tags":["sample"]},
+{"id":"trial-many","name":"duplicate appears many times","kind":"trial","visible":true,"input":{"nums":[3,3,3,3,3]},"expected":3,"tags":["repeated"]},
+{"id":"real-one","name":"hidden: smallest possible duplicate","kind":"real","visible":false,"input":{"nums":[1,1]},"expected":1,"tags":["hidden","boundary"]}
+]}

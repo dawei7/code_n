@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "628",
+  "frontend_id": "628",
+  "title_slug": "maximum-product-of-three-numbers",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065490495",
+  "verified_at": "2026-07-12T23:19:46.287051+00:00"
+}

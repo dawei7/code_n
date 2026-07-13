@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_1287",
+  "cases": [
+    {
+      "id": "benchmark-middle-majority",
+      "name": "benchmark: middle majority",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

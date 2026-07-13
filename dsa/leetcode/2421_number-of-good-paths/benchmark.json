@@ -1,0 +1,42 @@
+{
+  "challenge_id": "lc_2421",
+  "cases": [
+    {
+      "id": "benchmark-separated-high-values",
+      "name": "benchmark: high values separated by larger blocker",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "vals": [
+          1,
+          2,
+          2,
+          3,
+          2
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

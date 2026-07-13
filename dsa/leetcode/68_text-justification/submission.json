@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "68",
+  "frontend_id": "68",
+  "title_slug": "text-justification",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064135802",
+  "verified_at": "2026-07-11T17:34:36.383564+00:00"
+}

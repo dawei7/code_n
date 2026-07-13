@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_2353",
+  "cases": [
+    {
+      "id": "benchmark-stale-heap-entries",
+      "name": "benchmark: repeated updates leave stale heap entries",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "commands": [
+          "FoodRatings",
+          "highestRated",
+          "changeRating",
+          "changeRating",
+          "highestRated",
+          "highestRated"
+        ],
+        "inputs": [
+          [
+            [
+              "taco",
+              "tofu",
+              "tea"
+            ],
+            [
+              "mexican",
+              "vegan",
+              "vegan"
+            ],
+            [
+              8,
+              8,
+              5
+            ]
+          ],
+          [
+            "vegan"
+          ],
+          [
+            "tea",
+            9
+          ],
+          [
+            "tofu",
+            9
+          ],
+          [
+            "vegan"
+          ],
+          [
+            "mexican"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        "tofu",
+        null,
+        null,
+        "tea",
+        "taco"
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

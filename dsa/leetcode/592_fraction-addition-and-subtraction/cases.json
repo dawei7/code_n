@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_592",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: cancellation to zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "expression": "-1/2+1/2"
+      },
+      "expected": "0/1",
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: cancellation followed by one third",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "expression": "-1/2+1/2+1/3"
+      },
+      "expected": "1/3",
+      "tags": [
+        "sample",
+        "addition"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: negative reduced result",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "expression": "1/3-1/2"
+      },
+      "expected": "-1/6",
+      "tags": [
+        "sample",
+        "subtraction"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: result is an integer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "5/3+1/3"
+      },
+      "expected": "2/1",
+      "tags": [
+        "trial",
+        "integer"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: several related denominators",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "1/10+1/5+3/10"
+      },
+      "expected": "3/5",
+      "tags": [
+        "trial",
+        "reduction"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: negative improper intermediate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "expression": "-7/4+3/2"
+      },
+      "expected": "-1/4",
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: improper positive result",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "expression": "1/2+1/2+1/2"
+      },
+      "expected": "3/2",
+      "tags": [
+        "hidden",
+        "improper"
+      ]
+    }
+  ]
+}

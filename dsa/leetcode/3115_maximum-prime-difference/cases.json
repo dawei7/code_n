@@ -1,0 +1,134 @@
+{
+  "challenge_id": "lc_3115",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three primes spread across the array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          9,
+          5,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "primes"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: only one prime at the end",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          8,
+          1,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "single-prime"
+      ]
+    },
+    {
+      "id": "trial-no-primes",
+      "name": "trial: no prime values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          12,
+          14
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "no-prime"
+      ]
+    },
+    {
+      "id": "trial-primes-at-ends",
+      "name": "trial: primes at both boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8,
+          11
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-many-composites-between",
+      "name": "real: large gap between first and last prime",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          4,
+          6,
+          8,
+          9,
+          25,
+          49,
+          97,
+          100,
+          89,
+          77,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "gap"
+      ]
+    },
+    {
+      "id": "real-smallest-and-largest-two-digit-primes",
+      "name": "real: repeated primes with composite tail",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          91,
+          2,
+          2,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          1
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "duplicates"
+      ]
+    }
+  ]
+}

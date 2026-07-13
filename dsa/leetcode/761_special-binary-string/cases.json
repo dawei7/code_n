@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_761",
+  "cases": [
+    {"id": "sample-1", "name": "sample: nested blocks reorder", "kind": "sample", "visible": true, "input": {"s": "11011000"}, "expected": "11100100", "tags": ["sample", "nested"]},
+    {"id": "sample-2", "name": "sample: smallest special string", "kind": "sample", "visible": true, "input": {"s": "10"}, "expected": "10", "tags": ["sample", "singleton"]},
+    {"id": "sample-3", "name": "sample: top-level swap", "kind": "sample", "visible": true, "input": {"s": "101100"}, "expected": "110010", "tags": ["sample", "top-level"]},
+    {"id": "trial-1", "name": "trial: two identical blocks", "kind": "trial", "visible": true, "input": {"s": "1010"}, "expected": "1010", "tags": ["trial", "duplicates"]},
+    {"id": "trial-2", "name": "trial: deeply nested block", "kind": "trial", "visible": true, "input": {"s": "111000"}, "expected": "111000", "tags": ["trial", "nested"]},
+    {"id": "trial-3", "name": "trial: larger block already first", "kind": "trial", "visible": true, "input": {"s": "110010"}, "expected": "110010", "tags": ["trial", "ordered"]},
+    {"id": "hidden-1", "name": "hidden: repeated larger siblings", "kind": "real", "visible": false, "input": {"s": "1011001100"}, "expected": "1100110010", "tags": ["hidden", "duplicates"]},
+    {"id": "hidden-2", "name": "hidden: three primitive shapes", "kind": "real", "visible": false, "input": {"s": "101100111000"}, "expected": "111000110010", "tags": ["hidden", "sorting"]},
+    {"id": "hidden-3", "name": "hidden: inner and outer ordering", "kind": "real", "visible": false, "input": {"s": "1101011000"}, "expected": "1110010100", "tags": ["hidden", "recursive"]}
+  ]
+}

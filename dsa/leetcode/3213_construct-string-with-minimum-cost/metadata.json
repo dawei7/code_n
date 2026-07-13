@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_3213",
+  "source": "leetcode",
+  "frontend_id": "3213",
+  "slug": "construct-string-with-minimum-cost",
+  "title": "Construct String with Minimum Cost",
+  "difficulty": "Hard",
+  "acceptance_rate": 19.015215013282948,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Suffix Array",
+      "slug": "suffix-array"
+    }
+  ],
+  "url": "https://leetcode.com/problems/construct-string-with-minimum-cost/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:mitsogo",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:string",
+    "leetcode_topic:suffix-array"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:mitsogo",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:dynamic-programming",
+    "topic:string",
+    "topic:suffix-array"
+  ],
+  "company_tags": [
+    {
+      "name": "Mitsogo",
+      "slug": "mitsogo"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Mitsogo",
+        "slug": "mitsogo",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

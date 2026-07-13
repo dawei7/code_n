@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_132",
+  "measurement_note": "Long a-prefixes followed by b expose many palindromic intervals but have answer one. Quadratic DP avoids exponential partition enumeration.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: two characters", "kind": "benchmark", "visible": false, "size": 2, "input": {"s": "ab"}, "expected": 1, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: sixteen characters", "kind": "benchmark", "visible": false, "size": 16, "input": {"s": "aaaaaaaaaaaaaaab"}, "expected": 1, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: sixty-four characters", "kind": "benchmark", "visible": false, "size": 64, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"}, "expected": 1, "tags": ["benchmark", "scale-large"]}
+  ]
+}

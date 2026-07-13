@@ -1,0 +1,400 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_558",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: false OR true",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "quadTree1": {
+          "leaf": true,
+          "value": 0
+        },
+        "quadTree2": {
+          "leaf": true,
+          "value": 1
+        }
+      },
+      "expected": {
+        "leaf": true,
+        "value": 1
+      },
+      "validator": {
+        "kind": "quad_tree"
+      },
+      "tags": [
+        "sample",
+        "leaf-shortcut"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: false leaf preserves a divided tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "quadTree1": {
+          "leaf": true,
+          "value": 0
+        },
+        "quadTree2": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "leaf": false,
+        "children": [
+          {
+            "leaf": true,
+            "value": 0
+          },
+          {
+            "leaf": true,
+            "value": 1
+          },
+          {
+            "leaf": true,
+            "value": 1
+          },
+          {
+            "leaf": true,
+            "value": 0
+          }
+        ]
+      },
+      "validator": {
+        "kind": "quad_tree"
+      },
+      "tags": [
+        "sample",
+        "leaf-shortcut"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: true leaf short-circuits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "quadTree1": {
+          "leaf": true,
+          "value": 1
+        },
+        "quadTree2": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "leaf": true,
+        "value": 1
+      },
+      "validator": {
+        "kind": "quad_tree"
+      },
+      "tags": [
+        "sample",
+        "leaf-shortcut"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: complementary checkerboards compress",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "quadTree1": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 0
+            }
+          ]
+        },
+        "quadTree2": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "leaf": true,
+        "value": 1
+      },
+      "validator": {
+        "kind": "quad_tree"
+      },
+      "tags": [
+        "trial",
+        "compression"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: complementary horizontal halves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "quadTree1": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            }
+          ]
+        },
+        "quadTree2": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "leaf": true,
+        "value": 1
+      },
+      "validator": {
+        "kind": "quad_tree"
+      },
+      "tags": [
+        "trial",
+        "compression"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: separated true quadrants",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "quadTree1": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            }
+          ]
+        },
+        "quadTree2": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 0
+            },
+            {
+              "leaf": true,
+              "value": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "leaf": false,
+        "children": [
+          {
+            "leaf": true,
+            "value": 1
+          },
+          {
+            "leaf": true,
+            "value": 0
+          },
+          {
+            "leaf": true,
+            "value": 0
+          },
+          {
+            "leaf": true,
+            "value": 1
+          }
+        ]
+      },
+      "validator": {
+        "kind": "quad_tree"
+      },
+      "tags": [
+        "hidden",
+        "quadrants"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: false preserves asymmetric tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "quadTree1": {
+          "leaf": false,
+          "children": [
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 1
+            },
+            {
+              "leaf": true,
+              "value": 0
+            }
+          ]
+        },
+        "quadTree2": {
+          "leaf": true,
+          "value": 0
+        }
+      },
+      "expected": {
+        "leaf": false,
+        "children": [
+          {
+            "leaf": true,
+            "value": 1
+          },
+          {
+            "leaf": true,
+            "value": 1
+          },
+          {
+            "leaf": true,
+            "value": 1
+          },
+          {
+            "leaf": true,
+            "value": 0
+          }
+        ]
+      },
+      "validator": {
+        "kind": "quad_tree"
+      },
+      "tags": [
+        "hidden",
+        "quadrants"
+      ]
+    }
+  ]
+}
+

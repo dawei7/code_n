@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "542",
+  "frontend_id": "542",
+  "title_slug": "01-matrix",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065317442",
+  "verified_at": "2026-07-12T18:03:36.837290+00:00"
+}

@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_2683",
+  "source": "leetcode",
+  "frontend_id": "2683",
+  "slug": "neighboring-bitwise-xor",
+  "title": "Neighboring Bitwise XOR",
+  "difficulty": "Medium",
+  "acceptance_rate": 79.80741314235942,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/neighboring-bitwise-xor/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:bit-manipulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Bit Manipulation"
+      ],
+      "order": 931,
+      "section_order": 17,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "neighboring-bitwise-xor",
+      "leetcode_slug": "neighboring-bitwise-xor",
+      "difficulty": "Medium",
+      "problem_order": 19
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "challenge_id": "lc_1514",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: indirect path beats direct edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "succ_prob": [
+          0.5,
+          0.5,
+          0.2
+        ],
+        "start": 0,
+        "end": 2
+      },
+      "expected": 0.25,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 1e-06
+      },
+      "tags": [
+        "sample",
+        "graph"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: direct edge is best",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "succ_prob": [
+          0.5,
+          0.5,
+          0.3
+        ],
+        "start": 0,
+        "end": 2
+      },
+      "expected": 0.3,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 1e-06
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: destination unreachable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "succ_prob": [
+          0.5
+        ],
+        "start": 0,
+        "end": 2
+      },
+      "expected": 0.0,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 1e-06
+      },
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-longer-route",
+      "name": "hidden: longer route has the best probability",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        "succ_prob": [
+          0.5,
+          0.5,
+          0.2,
+          0.9,
+          0.9,
+          0.1
+        ],
+        "start": 0,
+        "end": 4
+      },
+      "expected": 0.2025,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 1e-06
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

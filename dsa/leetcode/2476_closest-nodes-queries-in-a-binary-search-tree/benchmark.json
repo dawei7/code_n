@@ -1,0 +1,49 @@
+{
+  "challenge_id": "lc_2476",
+  "cases": [
+    {
+      "id": "benchmark-balanced-bst",
+      "name": "benchmark: balanced tree with several gaps",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "root": [
+          8,
+          4,
+          12,
+          2,
+          6,
+          10,
+          14
+        ],
+        "queries": [
+          1,
+          5,
+          13,
+          15
+        ]
+      },
+      "expected": [
+        [
+          -1,
+          2
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          12,
+          14
+        ],
+        [
+          14,
+          -1
+        ]
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

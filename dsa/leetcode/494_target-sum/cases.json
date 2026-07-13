@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_494",
+  "cases": [
+    {"id": "sample-five-ways", "name": "sample: five sign assignments", "kind": "sample", "visible": true, "input": {"nums": [1,1,1,1,1], "target": 3}, "expected": 5, "tags": ["sample", "multiple-ways"]},
+    {"id": "sample-single", "name": "sample: one matching sign", "kind": "sample", "visible": true, "input": {"nums": [1], "target": 1}, "expected": 1, "tags": ["sample", "singleton"]},
+    {"id": "sample-unreachable", "name": "sample: target outside reachable range", "kind": "sample", "visible": true, "input": {"nums": [1], "target": 2}, "expected": 0, "tags": ["sample", "unreachable"]},
+    {"id": "trial-zeroes", "name": "trial: zero signs multiply assignments", "kind": "trial", "visible": true, "input": {"nums": [0,0,0,0,0,0,0,0,1], "target": 1}, "expected": 256, "tags": ["trial", "zeros"]},
+    {"id": "trial-one-way", "name": "trial: one of four sign choices matches", "kind": "trial", "visible": true, "input": {"nums": [2,1], "target": 1}, "expected": 1, "tags": ["trial", "one-way"]},
+    {"id": "hidden-zero-target", "name": "hidden: symmetric zero target", "kind": "real", "visible": false, "input": {"nums": [1,2,3], "target": 0}, "expected": 2, "tags": ["hidden", "zero-target"]},
+    {"id": "hidden-negative-target", "name": "hidden: negative target", "kind": "real", "visible": false, "input": {"nums": [1,2,3], "target": -2}, "expected": 1, "tags": ["hidden", "negative-target"]}
+  ]
+}

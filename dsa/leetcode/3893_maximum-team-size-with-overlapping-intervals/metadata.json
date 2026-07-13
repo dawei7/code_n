@@ -1,0 +1,60 @@
+{
+  "challenge_id": "lc_3893",
+  "source": "leetcode",
+  "frontend_id": "3893",
+  "slug": "maximum-team-size-with-overlapping-intervals",
+  "title": "Maximum Team Size with Overlapping Intervals",
+  "difficulty": "Medium",
+  "acceptance_rate": 44.61077844311377,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/maximum-team-size-with-overlapping-intervals/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:salesforce"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:salesforce",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ],
+  "company_tags": [
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 3
+      }
+    ],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

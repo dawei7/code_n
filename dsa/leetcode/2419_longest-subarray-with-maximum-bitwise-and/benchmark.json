@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_2419",
+  "cases": [
+    {
+      "id": "benchmark-separated-max-runs",
+      "name": "benchmark: separated maximum runs",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          1,
+          4,
+          4,
+          4,
+          3,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

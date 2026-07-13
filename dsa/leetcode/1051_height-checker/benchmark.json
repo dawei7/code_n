@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1051",
+  "cases": [
+    {
+      "id": "benchmark-repeated-small",
+      "name": "benchmark: repeated small heights",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "heights": [
+          3,
+          3,
+          2,
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

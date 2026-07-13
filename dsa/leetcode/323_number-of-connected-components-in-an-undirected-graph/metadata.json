@@ -1,0 +1,257 @@
+{
+  "challenge_id": "lc_323",
+  "source": "leetcode",
+  "frontend_id": "323",
+  "slug": "number-of-connected-components-in-an-undirected-graph",
+  "title": "Number of Connected Components in an Undirected Graph",
+  "difficulty": "Medium",
+  "acceptance_rate": 65.05353721216616,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:facebook",
+    "leetcode_company:general-motors",
+    "leetcode_company:google",
+    "leetcode_company:linkedin",
+    "leetcode_company:tiktok",
+    "leetcode_company:twitter",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-72-slk0",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:graph",
+    "leetcode_topic:union-find",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:facebook",
+    "company:general-motors",
+    "company:google",
+    "company:linkedin",
+    "company:tiktok",
+    "company:twitter",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan_section:premium-algo-100:premium-algo-100-72-slk0",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:graph",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "General Motors",
+      "slug": "general-motors"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "X",
+      "slug": "twitter"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "General Motors",
+        "slug": "general-motors",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "X",
+        "slug": "twitter",
+        "timesEncountered": 0
+      }
+    ],
+    "1": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-72-slk0",
+      "section_name": "Graph - General",
+      "path": [
+        "Graph - General"
+      ],
+      "order": 55,
+      "section_order": 12,
+      "problem_order": 3,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "Graphs"
+      ],
+      "order": 46,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "count-connected-components",
+      "leetcode_slug": "number-of-connected-components-in-an-undirected-graph",
+      "difficulty": "Medium",
+      "problem_order": 5
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Graphs"
+      ],
+      "order": 89,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "count-connected-components",
+      "leetcode_slug": "number-of-connected-components-in-an-undirected-graph",
+      "difficulty": "Medium",
+      "problem_order": 10
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Graphs"
+      ],
+      "order": 157,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "count-connected-components",
+      "leetcode_slug": "number-of-connected-components-in-an-undirected-graph",
+      "difficulty": "Medium",
+      "problem_order": 15
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Graphs"
+      ],
+      "order": 581,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "count-connected-components",
+      "leetcode_slug": "number-of-connected-components-in-an-undirected-graph",
+      "difficulty": "Medium",
+      "problem_order": 26
+    }
+  ]
+}

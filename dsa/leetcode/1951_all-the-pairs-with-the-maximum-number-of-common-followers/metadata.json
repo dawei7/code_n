@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1951",
+  "source": "leetcode",
+  "frontend_id": "1951",
+  "slug": "all-the-pairs-with-the-maximum-number-of-common-followers",
+  "title": "All the Pairs With the Maximum Number of Common Followers",
+  "difficulty": "Medium",
+  "acceptance_rate": 69.72859125939401,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/all-the-pairs-with-the-maximum-number-of-common-followers/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:instagram",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:instagram",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "instagram",
+      "slug": "instagram"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "instagram",
+        "slug": "instagram",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1777",
+  "source": "leetcode",
+  "frontend_id": "1777",
+  "slug": "products-price-for-each-store",
+  "title": "Product's Price for Each Store",
+  "difficulty": "Easy",
+  "acceptance_rate": 82.13585891574134,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/products-price-for-each-store/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:amazon",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:amazon",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2202",
+  "source": "leetcode",
+  "frontend_id": "2202",
+  "slug": "maximize-the-topmost-element-after-k-moves",
+  "title": "Maximize the Topmost Element After K Moves",
+  "difficulty": "Medium",
+  "acceptance_rate": 24.126756594503863,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximize-the-topmost-element-after-k-moves/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:american-express",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:american-express",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy"
+  ],
+  "company_tags": [
+    {
+      "name": "American Express",
+      "slug": "american-express"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "American Express",
+        "slug": "american-express",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

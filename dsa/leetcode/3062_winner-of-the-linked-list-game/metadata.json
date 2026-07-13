@@ -1,0 +1,53 @@
+{
+  "challenge_id": "lc_3062",
+  "source": "leetcode",
+  "frontend_id": "3062",
+  "slug": "winner-of-the-linked-list-game",
+  "title": "Winner of the Linked List Game",
+  "difficulty": "Easy",
+  "acceptance_rate": 77.53343050890425,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Linked List",
+      "slug": "linked-list"
+    }
+  ],
+  "url": "https://leetcode.com/problems/winner-of-the-linked-list-game/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:linked-list"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:linked-list"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

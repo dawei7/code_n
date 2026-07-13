@@ -1,0 +1,310 @@
+{
+  "challenge_id": "lc_934",
+  "source": "leetcode",
+  "frontend_id": "934",
+  "slug": "shortest-bridge",
+  "title": "Shortest Bridge",
+  "difficulty": "Medium",
+  "acceptance_rate": 59.60773220577277,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/shortest-bridge/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bytedance",
+    "leetcode_company:coupang",
+    "leetcode_company:docusign",
+    "leetcode_company:facebook",
+    "leetcode_company:flipkart",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:mckinsey",
+    "leetcode_company:microsoft",
+    "leetcode_company:salesforce",
+    "leetcode_company:snowflake",
+    "leetcode_company:tesla",
+    "leetcode_company:tiktok",
+    "leetcode_company:tower-research",
+    "leetcode_company:uber",
+    "leetcode_studyplan:graph-theory",
+    "leetcode_studyplan:graph-theory:graph-theory-106-ggaq",
+    "leetcode_topic:array",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:matrix",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bytedance",
+    "company:coupang",
+    "company:docusign",
+    "company:facebook",
+    "company:flipkart",
+    "company:goldman-sachs",
+    "company:google",
+    "company:mckinsey",
+    "company:microsoft",
+    "company:salesforce",
+    "company:snowflake",
+    "company:tesla",
+    "company:tiktok",
+    "company:tower-research",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:graph-theory",
+    "study_plan_section:graph-theory:graph-theory-106-ggaq",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:breadth-first-search",
+    "topic:depth-first-search",
+    "topic:matrix"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "ByteDance",
+      "slug": "bytedance"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Coupang",
+      "slug": "coupang"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Tesla",
+      "slug": "tesla"
+    },
+    {
+      "name": "Tower Research Capital",
+      "slug": "tower-research"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Flipkart",
+      "slug": "flipkart"
+    },
+    {
+      "name": "Docusign",
+      "slug": "docusign"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "McKinsey",
+      "slug": "mckinsey"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Flipkart",
+        "slug": "flipkart",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Docusign",
+        "slug": "docusign",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "McKinsey",
+        "slug": "mckinsey",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 9
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ByteDance",
+        "slug": "bytedance",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Coupang",
+        "slug": "coupang",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tesla",
+        "slug": "tesla",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tower Research Capital",
+        "slug": "tower-research",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "graph-theory",
+      "plan_name": "Graph Theory",
+      "section_slug": "graph-theory-106-ggaq",
+      "section_name": "BFS",
+      "path": [
+        "BFS"
+      ],
+      "order": 10,
+      "section_order": 2,
+      "problem_order": 2,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/graph-theory/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Graphs"
+      ],
+      "order": 579,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "shortest-bridge",
+      "leetcode_slug": "shortest-bridge",
+      "difficulty": "Medium",
+      "problem_order": 24
+    }
+  ]
+}

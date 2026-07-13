@@ -1,0 +1,60 @@
+{
+  "challenge_id": "lc_3380",
+  "cases": [
+    {
+      "id": "benchmark-small-rectangle-enumeration",
+      "name": "benchmark: maximum small input rectangle enumeration",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            9,
+            9
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark",
+        "geometry"
+      ]
+    }
+  ]
+}

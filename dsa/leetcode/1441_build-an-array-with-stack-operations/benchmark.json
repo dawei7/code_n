@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_1441",
+  "cases": [
+    {
+      "id": "benchmark-multiple-skips",
+      "name": "benchmark: several gaps before the final target",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "target": [
+          1,
+          4,
+          6
+        ],
+        "n": 7
+      },
+      "expected": [
+        "Push",
+        "Push",
+        "Pop",
+        "Push",
+        "Pop",
+        "Push",
+        "Push",
+        "Pop",
+        "Push"
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

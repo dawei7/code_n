@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_762",
+  "cases": [
+    {"id": "sample-1", "name": "sample: six through ten", "kind": "sample", "visible": true, "input": {"left": 6, "right": 10}, "expected": 4, "tags": ["sample", "mixed"]},
+    {"id": "sample-2", "name": "sample: ten through fifteen", "kind": "sample", "visible": true, "input": {"left": 10, "right": 15}, "expected": 5, "tags": ["sample", "mixed"]},
+    {"id": "trial-1", "name": "trial: one is not prime", "kind": "trial", "visible": true, "input": {"left": 1, "right": 1}, "expected": 0, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: three has two set bits", "kind": "trial", "visible": true, "input": {"left": 3, "right": 3}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "trial-3", "name": "trial: first twenty values", "kind": "trial", "visible": true, "input": {"left": 1, "right": 20}, "expected": 14, "tags": ["trial", "prefix"]},
+    {"id": "hidden-1", "name": "hidden: crosses a power of two", "kind": "real", "visible": false, "input": {"left": 8, "right": 16}, "expected": 6, "tags": ["hidden", "power-of-two"]},
+    {"id": "hidden-2", "name": "hidden: around five-bit boundary", "kind": "real", "visible": false, "input": {"left": 31, "right": 33}, "expected": 2, "tags": ["hidden", "boundary"]},
+    {"id": "hidden-3", "name": "hidden: near maximum value", "kind": "real", "visible": false, "input": {"left": 999990, "right": 1000000}, "expected": 5, "tags": ["hidden", "upper-bound"]}
+  ]
+}

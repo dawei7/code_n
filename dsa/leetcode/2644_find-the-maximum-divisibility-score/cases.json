@@ -1,0 +1,150 @@
+{
+  "challenge_id": "lc_2644",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: divisor three wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          7,
+          9,
+          3,
+          9
+        ],
+        "divisors": [
+          5,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: tie chooses smallest divisor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          20,
+          14,
+          21,
+          10
+        ],
+        "divisors": [
+          5,
+          7,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no divisor matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          12
+        ],
+        "divisors": [
+          10,
+          16
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "zero-score"
+      ]
+    },
+    {
+      "id": "trial-smallest-tie",
+      "name": "trial: smaller divisor wins a full-score tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          12,
+          18,
+          24
+        ],
+        "divisors": [
+          6,
+          3,
+          4,
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-all-zero-score",
+      "name": "trial: all divisors score zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          11,
+          13
+        ],
+        "divisors": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "zero-score"
+      ]
+    },
+    {
+      "id": "real-divisor-one",
+      "name": "hidden: divisor one beats all others",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          99,
+          98,
+          97,
+          96
+        ],
+        "divisors": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "divisor-one"
+      ]
+    }
+  ]
+}

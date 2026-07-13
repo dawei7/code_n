@@ -1,0 +1,135 @@
+{
+  "challenge_id": "lc_2556",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one flip can disconnect the only path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two independent paths remain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all-open rectangle has multiple paths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-by-two-open",
+      "name": "trial: two-by-two grid has two paths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-cell",
+      "name": "hidden: start and end cannot be removed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

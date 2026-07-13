@@ -1,0 +1,596 @@
+{
+  "challenge_id": "lc_875",
+  "source": "leetcode",
+  "frontend_id": "875",
+  "slug": "koko-eating-bananas",
+  "title": "Koko Eating Bananas",
+  "difficulty": "Medium",
+  "acceptance_rate": 50.20884534784631,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/koko-eating-bananas/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:adobe",
+    "leetcode_company:agoda",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:citadel",
+    "leetcode_company:coupang",
+    "leetcode_company:de-shaw",
+    "leetcode_company:doordash",
+    "leetcode_company:facebook",
+    "leetcode_company:flipkart",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:ibm",
+    "leetcode_company:infosys",
+    "leetcode_company:josh-technology",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:netflix",
+    "leetcode_company:nvidia",
+    "leetcode_company:oracle",
+    "leetcode_company:oyo",
+    "leetcode_company:palo-alto-networks",
+    "leetcode_company:paypal",
+    "leetcode_company:phonepe",
+    "leetcode_company:quince",
+    "leetcode_company:salesforce",
+    "leetcode_company:snapchat",
+    "leetcode_company:swiggy",
+    "leetcode_company:tiktok",
+    "leetcode_company:turing",
+    "leetcode_company:uber",
+    "leetcode_company:vmware",
+    "leetcode_studyplan:binary-search",
+    "leetcode_studyplan:binary-search:binary-search-119-7k2x",
+    "leetcode_studyplan:google-spring-23-high-frequency",
+    "leetcode_studyplan:google-spring-23-high-frequency:google-spring-23-high-frequency-144-elbg",
+    "leetcode_studyplan:leetcode-75",
+    "leetcode_studyplan:leetcode-75:leetcode-75-38-mv3u",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "neetcode:allNC",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:adobe",
+    "company:agoda",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:citadel",
+    "company:coupang",
+    "company:de-shaw",
+    "company:doordash",
+    "company:facebook",
+    "company:flipkart",
+    "company:goldman-sachs",
+    "company:google",
+    "company:ibm",
+    "company:infosys",
+    "company:josh-technology",
+    "company:linkedin",
+    "company:microsoft",
+    "company:netflix",
+    "company:nvidia",
+    "company:oracle",
+    "company:oyo",
+    "company:palo-alto-networks",
+    "company:paypal",
+    "company:phonepe",
+    "company:quince",
+    "company:salesforce",
+    "company:snapchat",
+    "company:swiggy",
+    "company:tiktok",
+    "company:turing",
+    "company:uber",
+    "company:vmware",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:binary-search",
+    "study_plan:google-spring-23-high-frequency",
+    "study_plan:leetcode-75",
+    "study_plan_section:binary-search:binary-search-119-7k2x",
+    "study_plan_section:google-spring-23-high-frequency:google-spring-23-high-frequency-144-elbg",
+    "study_plan_section:leetcode-75:leetcode-75-38-mv3u",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:binary-search"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Agoda",
+      "slug": "agoda"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "Coupang",
+      "slug": "coupang"
+    },
+    {
+      "name": "DoorDash",
+      "slug": "doordash"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "Palo Alto Networks",
+      "slug": "palo-alto-networks"
+    },
+    {
+      "name": "Swiggy",
+      "slug": "swiggy"
+    },
+    {
+      "name": "Snap",
+      "slug": "snapchat"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Flipkart",
+      "slug": "flipkart"
+    },
+    {
+      "name": "Turing",
+      "slug": "turing"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Citadel",
+      "slug": "citadel"
+    },
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    },
+    {
+      "name": "oyo",
+      "slug": "oyo"
+    },
+    {
+      "name": "Netflix",
+      "slug": "netflix"
+    },
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "VMware",
+      "slug": "vmware"
+    },
+    {
+      "name": "Josh Technology",
+      "slug": "josh-technology"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "Quince",
+      "slug": "quince"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 23
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 21
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Agoda",
+        "slug": "agoda",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Coupang",
+        "slug": "coupang",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "DoorDash",
+        "slug": "doordash",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Palo Alto Networks",
+        "slug": "palo-alto-networks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Swiggy",
+        "slug": "swiggy",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snap",
+        "slug": "snapchat",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Flipkart",
+        "slug": "flipkart",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Turing",
+        "slug": "turing",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Citadel",
+        "slug": "citadel",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "oyo",
+        "slug": "oyo",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Netflix",
+        "slug": "netflix",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "VMware",
+        "slug": "vmware",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Josh Technology",
+        "slug": "josh-technology",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Quince",
+        "slug": "quince",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "leetcode-75",
+      "plan_name": "LeetCode 75",
+      "section_slug": "leetcode-75-38-mv3u",
+      "section_name": "Binary Search",
+      "path": [
+        "Binary Search"
+      ],
+      "order": 56,
+      "section_order": 15,
+      "problem_order": 4,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/leetcode-75/"
+    },
+    {
+      "plan_slug": "google-spring-23-high-frequency",
+      "plan_name": "Google Spring' 23 High Frequency",
+      "section_slug": "google-spring-23-high-frequency-144-elbg",
+      "section_name": "March Interview Questions",
+      "path": [
+        "March Interview Questions"
+      ],
+      "order": 20,
+      "section_order": 3,
+      "problem_order": 4,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/google-spring-23-high-frequency/"
+    },
+    {
+      "plan_slug": "binary-search",
+      "plan_name": "Binary Search",
+      "section_slug": "binary-search-119-7k2x",
+      "section_name": "On Solution Space",
+      "path": [
+        "On Solution Space"
+      ],
+      "order": 33,
+      "section_order": 7,
+      "problem_order": 1,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/binary-search/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Binary Search"
+      ],
+      "order": 28,
+      "section_order": 4,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "eating-bananas",
+      "leetcode_slug": "koko-eating-bananas",
+      "difficulty": "Medium",
+      "problem_order": 2
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Binary Search"
+      ],
+      "order": 63,
+      "section_order": 4,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "eating-bananas",
+      "leetcode_slug": "koko-eating-bananas",
+      "difficulty": "Medium",
+      "problem_order": 5
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Binary Search"
+      ],
+      "order": 314,
+      "section_order": 4,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "eating-bananas",
+      "leetcode_slug": "koko-eating-bananas",
+      "difficulty": "Medium",
+      "problem_order": 16
+    }
+  ]
+}

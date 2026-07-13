@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_383",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: missing required letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ransom_note": "a",
+        "magazine": "b"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "missing"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: insufficient duplicate supply",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ransom_note": "aa",
+        "magazine": "ab"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate supply is sufficient",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ransom_note": "aa",
+        "magazine": "aab"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "constructible"
+      ]
+    },
+    {
+      "id": "trial-empty-note",
+      "name": "trial: empty note",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ransom_note": "",
+        "magazine": "abc"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-exact-anagram",
+      "name": "trial: exact supply in another order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ransom_note": "cabba",
+        "magazine": "abcab"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "ordering"
+      ]
+    },
+    {
+      "id": "hidden-short-magazine",
+      "name": "hidden: magazine is too short",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "ransom_note": "leetcode",
+        "magazine": "code"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "length"
+      ]
+    },
+    {
+      "id": "hidden-late-shortage",
+      "name": "hidden: one late multiplicity shortage",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "ransom_note": "zzzzzy",
+        "magazine": "yzzzzx"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "late-shortage"
+      ]
+    },
+    {
+      "id": "hidden-extra-letters",
+      "name": "hidden: irrelevant supply remains",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "ransom_note": "algorithm",
+        "magazine": "logarithmxyz"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "extra-supply"
+      ]
+    }
+  ]
+}

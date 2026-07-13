@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_678",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: ordinary balanced pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "()"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "no-wildcard"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: wildcard can disappear",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "(*)"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "empty-wildcard"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: wildcard closes an opening",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "(*))"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "closing-wildcard"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: closing parenthesis comes first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": ")("
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "invalid-prefix"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: wildcard cannot close a later opening",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "*("
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "ordering"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: all wildcards disappear",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "***"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "all-wildcards"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: too many openings remain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(((*)"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "unmatched-openings"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: nested wildcard choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(*()**)"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "mixed-choices"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: irrecoverable closing suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(()*)))"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "too-many-closes"
+      ]
+    }
+  ]
+}
+

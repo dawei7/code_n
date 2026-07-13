@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_315",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [5, 2, 6, 1]},
+      "expected": [2, 1, 1, 0],
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [-1]},
+      "expected": [0],
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: equal values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [-1, -1]},
+      "expected": [0, 0],
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "hidden-descending",
+      "name": "hidden: every later value is smaller",
+      "kind": "trial",
+      "visible": false,
+      "input": {"nums": [5, 4, 3, 2, 1]},
+      "expected": [4, 3, 2, 1, 0],
+      "tags": ["trial", "descending"]
+    },
+    {
+      "id": "hidden-ascending",
+      "name": "hidden: no later value is smaller",
+      "kind": "trial",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 4, 5]},
+      "expected": [0, 0, 0, 0, 0],
+      "tags": ["trial", "ascending"]
+    },
+    {
+      "id": "hidden-mixed-duplicates",
+      "name": "hidden: strict comparison with duplicates",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 2, 6, 1, 2]},
+      "expected": [3, 1, 2, 0, 0],
+      "tags": ["hidden", "duplicates"]
+    },
+    {
+      "id": "hidden-negative-duplicates",
+      "name": "hidden: repeated negative values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, -1, -1, -2]},
+      "expected": [3, 1, 1, 0],
+      "tags": ["hidden", "negative", "duplicates"]
+    },
+    {
+      "id": "hidden-wide-values",
+      "name": "hidden: widely separated coordinates",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10000, -10000, 10000]},
+      "expected": [1, 0, 0],
+      "tags": ["hidden", "coordinate-compression"]
+    }
+  ]
+}

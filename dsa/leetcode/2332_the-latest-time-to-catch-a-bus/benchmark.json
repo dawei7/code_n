@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_2332",
+  "cases": [
+    {
+      "id": "benchmark-multiple-full-buses",
+      "name": "benchmark: several full buses before the last",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "buses": [
+          3,
+          8,
+          10
+        ],
+        "passengers": [
+          1,
+          2,
+          3,
+          7,
+          8
+        ],
+        "capacity": 2
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

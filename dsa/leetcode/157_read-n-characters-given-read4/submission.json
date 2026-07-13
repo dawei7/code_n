@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "157",
+  "frontend_id": "157",
+  "title_slug": "read-n-characters-given-read4",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064180018",
+  "verified_at": "2026-07-11T18:13:05.119101+00:00"
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_216",
+  "measurement_note": "Bounded-domain tiers exercise increasing-choice backtracking and terminal checks.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 bounded-search units",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "k": 1,
+        "n": 1
+      },
+      "expected": [
+        [
+          1
+        ]
+      ],
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 bounded-search units",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "k": 3,
+        "n": 6
+      },
+      "expected": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 bounded-search units",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "k": 9,
+        "n": 45
+      },
+      "expected": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      ],
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

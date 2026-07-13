@@ -1,0 +1,117 @@
+{
+  "challenge_id": "lc_1428",
+  "source": "leetcode",
+  "frontend_id": "1428",
+  "slug": "leftmost-column-with-at-least-a-one",
+  "title": "Leftmost Column with at Least a One",
+  "difficulty": "Medium",
+  "acceptance_rate": 55.258091185005576,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Interactive",
+      "slug": "interactive"
+    }
+  ],
+  "url": "https://leetcode.com/problems/leftmost-column-with-at-least-a-one/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:facebook",
+    "leetcode_company:uber",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:interactive",
+    "leetcode_topic:matrix",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:facebook",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:binary-search",
+    "topic:interactive",
+    "topic:matrix"
+  ],
+  "company_tags": [
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 7
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Binary Search"
+      ],
+      "order": 333,
+      "section_order": 4,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "leftmost-column-with-at-least-a-one",
+      "leetcode_slug": "leftmost-column-with-at-least-a-one",
+      "difficulty": "Medium",
+      "problem_order": 35
+    }
+  ]
+}

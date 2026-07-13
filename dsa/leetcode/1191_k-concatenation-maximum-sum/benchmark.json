@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_1191",
+  "cases": [
+    {
+      "id": "benchmark-two-peaks",
+      "name": "benchmark: two peaks",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          -3,
+          5,
+          -2
+        ],
+        "k": 4
+      },
+      "expected": 22,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

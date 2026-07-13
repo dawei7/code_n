@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_96",
+  "measurement_note": "The tiers increase n and force all root splits; dynamic programming reuses smaller counts while naive recursion repeats them exponentially.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: n=1", "kind": "benchmark", "visible": false, "size": 1, "input": {"n": 1}, "expected": 1, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: n=8", "kind": "benchmark", "visible": false, "size": 8, "input": {"n": 8}, "expected": 1430, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: n=19", "kind": "benchmark", "visible": false, "size": 19, "input": {"n": 19}, "expected": 1767263190, "tags": ["benchmark", "scale-large"]}
+  ]
+}

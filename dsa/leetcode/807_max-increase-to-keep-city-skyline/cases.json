@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_807",
+  "cases": [
+    {"id": "sample-1", "name": "sample: mixed four-by-four city", "kind": "sample", "visible": true, "input": {"grid": [[3, 0, 8, 4], [2, 4, 5, 7], [9, 2, 6, 3], [0, 3, 1, 0]]}, "expected": 35, "tags": ["sample", "mixed"]},
+    {"id": "sample-2", "name": "sample: one increase in two-by-two city", "kind": "sample", "visible": true, "input": {"grid": [[1, 2], [3, 4]]}, "expected": 1, "tags": ["sample", "small-grid"]},
+    {"id": "sample-3", "name": "sample: singleton city", "kind": "sample", "visible": true, "input": {"grid": [[5]]}, "expected": 0, "tags": ["sample", "singleton"]},
+    {"id": "trial-1", "name": "trial: uniform grid", "kind": "trial", "visible": true, "input": {"grid": [[7, 7], [7, 7]]}, "expected": 0, "tags": ["trial", "uniform"]},
+    {"id": "trial-2", "name": "trial: zero cross has fixed skyline", "kind": "trial", "visible": true, "input": {"grid": [[3, 0, 3], [0, 0, 0], [3, 0, 3]]}, "expected": 0, "tags": ["trial", "zeros"]},
+    {"id": "trial-3", "name": "trial: opposite corner towers", "kind": "trial", "visible": true, "input": {"grid": [[9, 0, 0], [0, 0, 0], [0, 0, 9]]}, "expected": 18, "tags": ["trial", "corner-maxima"]},
+    {"id": "hidden-1", "name": "hidden: all-zero city", "kind": "real", "visible": false, "input": {"grid": [[0, 0], [0, 0]]}, "expected": 0, "tags": ["hidden", "zeros", "uniform"]},
+    {"id": "hidden-2", "name": "hidden: center can rise to surrounding limit", "kind": "real", "visible": false, "input": {"grid": [[5, 5, 5], [5, 0, 5], [5, 5, 5]]}, "expected": 5, "tags": ["hidden", "center"]},
+    {"id": "hidden-3", "name": "hidden: diagonal maxima constrain cells", "kind": "real", "visible": false, "input": {"grid": [[4, 1, 1], [1, 5, 1], [1, 1, 6]]}, "expected": 20, "tags": ["hidden", "diagonal-maxima"]}
+  ]
+}

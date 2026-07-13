@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_1004",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two flips",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three flips",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "k": 0
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-zeroes",
+      "name": "all zeroes with one flip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternating bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

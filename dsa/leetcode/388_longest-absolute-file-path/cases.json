@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_388",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: nested file",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "input": "dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext"
+      },
+      "expected": 20,
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: directory only",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "input": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-file"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: root file",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "input": "file.txt"
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "root-file"
+      ]
+    },
+    {
+      "id": "trial-siblings",
+      "name": "trial: longest among sibling branches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "input": "dir\n\ta.txt\n\tsub\n\t\tlongname.log\n\tb.md"
+      },
+      "expected": 20,
+      "tags": [
+        "trial",
+        "siblings"
+      ]
+    },
+    {
+      "id": "trial-deep",
+      "name": "trial: deeply nested file",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "input": "a\n\tb\n\t\tc\n\t\t\td.ext"
+      },
+      "expected": 11,
+      "tags": [
+        "trial",
+        "deep"
+      ]
+    },
+    {
+      "id": "hidden-shallower-reset",
+      "name": "hidden: return to shallower branch",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "input": "root\n\tlongdir\n\t\tdeep.txt\n\tx\n\t\twider-name.bin"
+      },
+      "expected": 21,
+      "tags": [
+        "hidden",
+        "branch-reset"
+      ]
+    },
+    {
+      "id": "hidden-no-files",
+      "name": "hidden: several directories only",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "input": "root\n\ta\n\t\tb\n\tc"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "no-file"
+      ]
+    },
+    {
+      "id": "hidden-multiple-roots",
+      "name": "hidden: root-level file after directory",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "input": "folder\n\tchild.dat\n\ttiny.txt\noutside.extension"
+      },
+      "expected": 17,
+      "tags": [
+        "hidden",
+        "root-file"
+      ]
+    }
+  ]
+}

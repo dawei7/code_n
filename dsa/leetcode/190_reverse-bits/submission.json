@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "190",
+  "frontend_id": "190",
+  "title_slug": "reverse-bits",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064196367",
+  "verified_at": "2026-07-11T18:27:22.083376+00:00"
+}

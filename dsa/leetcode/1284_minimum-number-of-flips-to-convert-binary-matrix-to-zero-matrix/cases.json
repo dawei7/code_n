@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_1284",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one set bit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "bfs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three by three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-single-one",
+      "name": "hidden: single one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

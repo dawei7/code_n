@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_1267",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: diagonal isolated servers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: shared row and column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: column pair and row pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-single-server",
+      "name": "hidden: single server",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

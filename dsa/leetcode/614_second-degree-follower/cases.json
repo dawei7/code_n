@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_614",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two second-degree followers", "kind": "sample", "visible": true, "input": {"tables": {"Follow": [{"followee": "Alice", "follower": "Bob"}, {"followee": "Bob", "follower": "Cena"}, {"followee": "Bob", "follower": "Donald"}, {"followee": "Donald", "follower": "Edward"}]}}, "expected": {"columns": ["follower", "num"], "rows": [["Bob", 2], ["Donald", 1]]}, "tags": ["sample", "chain"]},
+    {"id": "sample-2", "name": "sample: two-user cycle", "kind": "sample", "visible": true, "input": {"tables": {"Follow": [{"followee": "A", "follower": "B"}, {"followee": "B", "follower": "A"}]}}, "expected": {"columns": ["follower", "num"], "rows": [["A", 1], ["B", 1]]}, "tags": ["sample", "cycle"]},
+    {"id": "sample-3", "name": "sample: followed user who follows nobody", "kind": "sample", "visible": true, "input": {"tables": {"Follow": [{"followee": "Hub", "follower": "A"}, {"followee": "Hub", "follower": "B"}]}}, "expected": {"columns": ["follower", "num"], "rows": []}, "tags": ["sample", "no-eligible-user"]},
+    {"id": "trial-1", "name": "trial: middle users in a chain", "kind": "trial", "visible": true, "input": {"tables": {"Follow": [{"followee": "A", "follower": "B"}, {"followee": "B", "follower": "C"}, {"followee": "C", "follower": "D"}]}}, "expected": {"columns": ["follower", "num"], "rows": [["B", 1], ["C", 1]]}, "tags": ["trial", "role-intersection"]},
+    {"id": "trial-2", "name": "trial: following several users does not multiply count", "kind": "trial", "visible": true, "input": {"tables": {"Follow": [{"followee": "A", "follower": "B"}, {"followee": "X", "follower": "B"}, {"followee": "B", "follower": "C"}, {"followee": "B", "follower": "D"}]}}, "expected": {"columns": ["follower", "num"], "rows": [["B", 2]]}, "tags": ["trial", "deduplication"]},
+    {"id": "hidden-1", "name": "hidden: three-user cycle with extra followers", "kind": "real", "visible": false, "input": {"tables": {"Follow": [{"followee": "A", "follower": "B"}, {"followee": "B", "follower": "C"}, {"followee": "C", "follower": "A"}, {"followee": "A", "follower": "D"}, {"followee": "C", "follower": "E"}]}}, "expected": {"columns": ["follower", "num"], "rows": [["A", 2], ["B", 1], ["C", 2]]}, "tags": ["hidden", "mixed-cycle"]},
+    {"id": "hidden-2", "name": "hidden: lexical output order", "kind": "real", "visible": false, "input": {"tables": {"Follow": [{"followee": "zoe", "follower": "amy"}, {"followee": "amy", "follower": "mike"}, {"followee": "mike", "follower": "zoe"}, {"followee": "mike", "follower": "nina"}]}}, "expected": {"columns": ["follower", "num"], "rows": [["amy", 1], ["mike", 2], ["zoe", 1]]}, "tags": ["hidden", "ordering"]}
+  ]
+}

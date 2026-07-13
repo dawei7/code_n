@@ -1,0 +1,108 @@
+{
+  "challenge_id": "lc_2908",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mountain around value five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          6,
+          1,
+          5,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "mountain"
+      ],
+      "expected": 9
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: later value ten gives a smaller triplet",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          8,
+          7,
+          10,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "triplet"
+      ],
+      "expected": 13
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: strictly decreasing has no mountain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "none"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-simple-peak",
+      "name": "trial: single obvious peak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100,
+          1
+        ]
+      },
+      "tags": [
+        "trial",
+        "peak"
+      ],
+      "expected": 102
+    },
+    {
+      "id": "real-many-candidates",
+      "name": "hidden: multiple peaks compete for minimum sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          3,
+          8,
+          2,
+          7,
+          1,
+          6,
+          4
+        ]
+      },
+      "tags": [
+        "hidden",
+        "minimum"
+      ],
+      "expected": 10
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "challenge_id": "lc_3200",
+  "cases": [
+    {
+      "id": "benchmark-billion-piles",
+      "name": "benchmark: billion-sized piles",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "red": 1000000000,
+        "blue": 999999937
+      },
+      "expected": 63244,
+      "tags": [
+        "benchmark",
+        "large-counts"
+      ]
+    }
+  ]
+}

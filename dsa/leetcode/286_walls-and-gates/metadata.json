@@ -1,0 +1,280 @@
+{
+  "challenge_id": "lc_286",
+  "source": "leetcode",
+  "frontend_id": "286",
+  "slug": "walls-and-gates",
+  "title": "Walls and Gates",
+  "difficulty": "Medium",
+  "acceptance_rate": 64.07638083129208,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/walls-and-gates/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:doordash",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:snowflake",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_company:visa",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-73-m66d",
+    "leetcode_studyplan:tiktok-spring-23-high-frequency",
+    "leetcode_studyplan:tiktok-spring-23-high-frequency:tiktok-spring-23-high-frequency-147-v6lb",
+    "leetcode_topic:array",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:matrix",
+    "neetcode:allNC",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:doordash",
+    "company:facebook",
+    "company:google",
+    "company:snowflake",
+    "company:tiktok",
+    "company:uber",
+    "company:visa",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan:tiktok-spring-23-high-frequency",
+    "study_plan_section:premium-algo-100:premium-algo-100-73-m66d",
+    "study_plan_section:tiktok-spring-23-high-frequency:tiktok-spring-23-high-frequency-147-v6lb",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:breadth-first-search",
+    "topic:matrix"
+  ],
+  "company_tags": [
+    {
+      "name": "DoorDash",
+      "slug": "doordash"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "DoorDash",
+        "slug": "doordash",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-73-m66d",
+      "section_name": "Graph - BFS",
+      "path": [
+        "Graph - BFS"
+      ],
+      "order": 65,
+      "section_order": 13,
+      "problem_order": 5,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    },
+    {
+      "plan_slug": "tiktok-spring-23-high-frequency",
+      "plan_name": "TikTok Spring '23 High Frequency",
+      "section_slug": "tiktok-spring-23-high-frequency-147-v6lb",
+      "section_name": "March Interview Questions",
+      "path": [
+        "March Interview Questions"
+      ],
+      "order": 13,
+      "section_order": 2,
+      "problem_order": 3,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/tiktok-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Graphs"
+      ],
+      "order": 82,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "islands-and-treasure",
+      "leetcode_slug": "walls-and-gates",
+      "difficulty": "Medium",
+      "problem_order": 3
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Graphs"
+      ],
+      "order": 148,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "islands-and-treasure",
+      "leetcode_slug": "walls-and-gates",
+      "difficulty": "Medium",
+      "problem_order": 6
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Graphs"
+      ],
+      "order": 565,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "islands-and-treasure",
+      "leetcode_slug": "walls-and-gates",
+      "difficulty": "Medium",
+      "problem_order": 10
+    }
+  ]
+}

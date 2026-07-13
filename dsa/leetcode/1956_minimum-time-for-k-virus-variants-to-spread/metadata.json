@@ -1,0 +1,89 @@
+{
+  "challenge_id": "lc_1956",
+  "source": "leetcode",
+  "frontend_id": "1956",
+  "slug": "minimum-time-for-k-virus-variants-to-spread",
+  "title": "Minimum Time For K Virus Variants to Spread",
+  "difficulty": "Hard",
+  "acceptance_rate": 50.63798760481225,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-time-for-k-virus-variants-to-spread/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:enumeration",
+    "leetcode_topic:geometry",
+    "leetcode_topic:math",
+    "leetcode_topic:ordered-set",
+    "leetcode_topic:sliding-window"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search",
+    "topic:enumeration",
+    "topic:geometry",
+    "topic:math",
+    "topic:ordered-set",
+    "topic:sliding-window"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

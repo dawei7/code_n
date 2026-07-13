@@ -1,0 +1,119 @@
+{
+  "challenge_id": "lc_2555",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two segments cover all prize positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prizePositions": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: zero-length segments can cover two positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prizePositions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 0
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate positions all fit in one segment",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prizePositions": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-separated-single-prizes",
+      "name": "trial: two segments each cover one isolated prize",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prizePositions": [
+          1,
+          3,
+          5
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-duplicate-zero-length",
+      "name": "trial: zero-length segment covers duplicate positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prizePositions": [
+          2,
+          2,
+          2
+        ],
+        "k": 0
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "regression"
+      ]
+    },
+    {
+      "id": "real-one-prize",
+      "name": "hidden: one prize can only be collected once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prizePositions": [
+          1
+        ],
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

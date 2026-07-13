@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "477",
+  "frontend_id": "477",
+  "title_slug": "total-hamming-distance",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064987196",
+  "verified_at": "2026-07-12T12:41:50.091379+00:00"
+}

@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_561",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four shuffled values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          3,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicates across three pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          2,
+          6,
+          5,
+          1,
+          2
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one negative pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2
+        ]
+      },
+      "expected": -2,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: all values equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: all values negative",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -2,
+          -3,
+          -4
+        ]
+      },
+      "expected": -8,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: mixed signs and duplicates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -10,
+          5,
+          0,
+          7,
+          7,
+          8
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "mixed-values"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: alternating high and low values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          1,
+          99,
+          2,
+          98,
+          3
+        ]
+      },
+      "expected": 103,
+      "tags": [
+        "hidden",
+        "mixed-values"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: consecutive values around zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1,
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "mixed-values"
+      ]
+    }
+  ]
+}
+

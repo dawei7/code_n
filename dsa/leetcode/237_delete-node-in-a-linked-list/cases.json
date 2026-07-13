@@ -1,0 +1,6 @@
+{"challenge_id":"lc_237","cases":[
+{"id":"sample-middle","name":"sample: delete from three-node suffix","kind":"sample","visible":true,"input":{"node":[5,1,9]},"expected":[1,9],"tags":["sample","middle"]},
+{"id":"sample-before-tail","name":"sample: delete node before tail","kind":"sample","visible":true,"input":{"node":[1,9]},"expected":[9],"tags":["sample","before-tail"]},
+{"id":"trial-longer","name":"delete before longer suffix","kind":"trial","visible":true,"input":{"node":[3,4,5,6]},"expected":[4,5,6],"tags":["mutation"]},
+{"id":"real-duplicate-values","name":"hidden: duplicate successor values","kind":"real","visible":false,"input":{"node":[2,2,3,2]},"expected":[2,3,2],"tags":["hidden","duplicates"]}
+]}

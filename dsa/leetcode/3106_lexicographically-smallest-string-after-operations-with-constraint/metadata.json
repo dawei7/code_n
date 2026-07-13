@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_3106",
+  "source": "leetcode",
+  "frontend_id": "3106",
+  "slug": "lexicographically-smallest-string-after-operations-with-constraint",
+  "title": "Lexicographically Smallest String After Operations With Constraint",
+  "difficulty": "Medium",
+  "acceptance_rate": 62.916772178610614,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-operations-with-constraint/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:servicenow",
+    "leetcode_topic:greedy",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:servicenow",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:greedy",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "ServiceNow",
+      "slug": "servicenow"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "ServiceNow",
+        "slug": "servicenow",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,148 @@
+{
+  "challenge_id": "lc_3382",
+  "cases": [
+    {
+      "id": "sample-clean-square",
+      "name": "sample: clean four-corner rectangle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "y": [
+          1,
+          3,
+          1,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "geometry"
+      ]
+    },
+    {
+      "id": "sample-interior-blocks",
+      "name": "sample: interior point invalidates rectangle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": [
+          1,
+          1,
+          3,
+          3,
+          2
+        ],
+        "y": [
+          1,
+          3,
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "interior-point"
+      ]
+    },
+    {
+      "id": "sample-boundary-smaller",
+      "name": "sample: boundary points force area two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": [
+          1,
+          1,
+          3,
+          3,
+          1,
+          3
+        ],
+        "y": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-stub-would-overcount",
+      "name": "trial: matching side segments but an interior point blocks the larger rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": [
+          0,
+          0,
+          5,
+          5,
+          2,
+          2
+        ],
+        "y": [
+          0,
+          5,
+          0,
+          5,
+          2,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "regression",
+        "range-count"
+      ]
+    },
+    {
+      "id": "real-adjacent-segments",
+      "name": "real: adjacent vertical segments with one valid maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "x": [
+          0,
+          0,
+          0,
+          4,
+          4,
+          4,
+          8,
+          8
+        ],
+        "y": [
+          0,
+          2,
+          5,
+          0,
+          2,
+          5,
+          0,
+          5
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "real",
+        "geometry"
+      ]
+    }
+  ]
+}

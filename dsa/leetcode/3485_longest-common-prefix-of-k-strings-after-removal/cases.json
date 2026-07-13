@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_3485",
+  "cases": [
+    {
+      "id": "sample-jump-run",
+      "name": "sample: removing each word changes best prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "jump",
+          "run",
+          "run",
+          "jump",
+          "run"
+        ],
+        "k": 2
+      },
+      "expected": [
+        3,
+        4,
+        4,
+        3,
+        4
+      ],
+      "tags": [
+        "sample",
+        "trie"
+      ]
+    },
+    {
+      "id": "trial-not-enough-after-removal",
+      "name": "trial: fewer than k words remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "ab"
+        ],
+        "k": 2
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-shared-prefixes",
+      "name": "trial: shared prefixes at different depths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "abd",
+          "abf",
+          "xyz"
+        ],
+        "k": 2
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "trial",
+        "prefix"
+      ]
+    },
+    {
+      "id": "real-fragile-depth",
+      "name": "real: one fragile deepest prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "flower",
+          "flow",
+          "flight",
+          "flask",
+          "dog",
+          "dove"
+        ],
+        "k": 3
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "real",
+        "fragile"
+      ]
+    }
+  ]
+}

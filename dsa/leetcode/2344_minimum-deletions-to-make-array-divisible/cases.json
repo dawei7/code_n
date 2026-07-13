@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2344",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: delete two smaller values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          2,
+          4,
+          3
+        ],
+        "nums_divide": [
+          9,
+          6,
+          9,
+          3,
+          15
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "gcd"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no divisor remains",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          6
+        ],
+        "nums_divide": [
+          8,
+          2,
+          6
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: smallest already divides all",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30
+        ],
+        "nums_divide": [
+          100,
+          200
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-smallest-valid",
+      "name": "hidden: smallest element divides the gcd",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          3,
+          9,
+          2
+        ],
+        "nums_divide": [
+          18,
+          36
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1843",
+  "source": "leetcode",
+  "frontend_id": "1843",
+  "slug": "suspicious-bank-accounts",
+  "title": "Suspicious Bank Accounts",
+  "difficulty": "Medium",
+  "acceptance_rate": 44.0818663231716,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/suspicious-bank-accounts/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:jpmorgan",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:jpmorgan",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "JPMorgan Chase",
+      "slug": "jpmorgan"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "JPMorgan Chase",
+        "slug": "jpmorgan",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

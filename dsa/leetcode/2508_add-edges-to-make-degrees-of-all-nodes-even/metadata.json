@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2508",
+  "source": "leetcode",
+  "frontend_id": "2508",
+  "slug": "add-edges-to-make-degrees-of-all-nodes-even",
+  "title": "Add Edges to Make Degrees of All Nodes Even",
+  "difficulty": "Hard",
+  "acceptance_rate": 36.567520754942365,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    }
+  ],
+  "url": "https://leetcode.com/problems/add-edges-to-make-degrees-of-all-nodes-even/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:hrt",
+    "leetcode_topic:graph",
+    "leetcode_topic:hash-table"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:hrt",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:graph",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Hudson River Trading",
+      "slug": "hrt"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Hudson River Trading",
+        "slug": "hrt",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

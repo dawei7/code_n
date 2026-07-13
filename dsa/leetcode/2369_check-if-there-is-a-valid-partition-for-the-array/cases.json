@@ -1,0 +1,81 @@
+{
+  "challenge_id": "lc_2369",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: triple equal then consecutive triple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: trailing singleton",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one triple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-three-equal-pairs",
+      "name": "hidden: partition into equal pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

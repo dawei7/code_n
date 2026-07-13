@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_706",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: present and absent gets",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["put",1,10],["get",1],["get",2]]},
+      "expected": [10,-1],
+      "tags": ["sample", "membership"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: overwrite existing key",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["put",2,20],["put",2,30],["get",2]]},
+      "expected": [30],
+      "tags": ["sample", "overwrite"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: remove mapping",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["put",1,5],["remove",1],["get",1]]},
+      "expected": [-1],
+      "tags": ["sample", "remove"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: colliding keys remain independent",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["put",1,11],["put",1010,22],["get",1],["get",1010]]},
+      "expected": [11,22],
+      "tags": ["trial", "collision"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: zero is a stored value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["put",7,0],["get",7],["get",8]]},
+      "expected": [0,-1],
+      "tags": ["trial", "zero-value"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: key-domain boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["put",0,3],["put",1000000,9],["get",0],["get",1000000]]},
+      "expected": [3,9],
+      "tags": ["hidden", "boundary-keys"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: remove one collision member",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["put",5,1],["put",1014,2],["remove",5],["get",5],["get",1014]]},
+      "expected": [-1,2],
+      "tags": ["hidden", "collision", "remove"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: operations without gets",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["put",3,4],["remove",3],["remove",9]]},
+      "expected": [],
+      "tags": ["hidden", "empty-output"]
+    }
+  ]
+}

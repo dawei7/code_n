@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_2530",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: identical values stay high for five operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "k": 5
+      },
+      "expected": 50,
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeatedly take the current maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          3,
+          3,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 17,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one very large value is reduced by thirds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000
+        ],
+        "k": 3
+      },
+      "expected": 1444444446,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-value-two-operations",
+      "name": "trial: one value is reused after ceil division",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ],
+        "k": 2
+      },
+      "expected": 12,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-one-operation",
+      "name": "hidden: one operation on one value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

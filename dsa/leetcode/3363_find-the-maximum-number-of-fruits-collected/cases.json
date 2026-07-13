@@ -1,0 +1,186 @@
+{
+  "challenge_id": "lc_3363",
+  "cases": [
+    {
+      "id": "sample-four-by-four",
+      "name": "sample: three children collect non-overlapping best paths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "fruits": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            8,
+            7
+          ],
+          [
+            9,
+            10,
+            11,
+            12
+          ],
+          [
+            13,
+            14,
+            15,
+            16
+          ]
+        ]
+      },
+      "expected": 100,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-two-by-two",
+      "name": "sample: all four rooms collected once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "fruits": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-avoid-double-count-final",
+      "name": "trial: final and diagonal cells are counted once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          [
+            5,
+            100,
+            1
+          ],
+          [
+            1,
+            50,
+            100
+          ],
+          [
+            100,
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": 262,
+      "tags": [
+        "regression",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-heavy-side-paths",
+      "name": "trial: side children should stay off the diagonal before the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          [
+            3,
+            9,
+            8,
+            7
+          ],
+          [
+            4,
+            5,
+            100,
+            8
+          ],
+          [
+            9,
+            100,
+            6,
+            9
+          ],
+          [
+            8,
+            7,
+            6,
+            5
+          ]
+        ]
+      },
+      "expected": 249,
+      "tags": [
+        "regression",
+        "side-paths"
+      ]
+    },
+    {
+      "id": "real-five-by-five",
+      "name": "real: varied five by five grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          [
+            4,
+            2,
+            9,
+            1,
+            8
+          ],
+          [
+            3,
+            7,
+            5,
+            6,
+            2
+          ],
+          [
+            8,
+            4,
+            10,
+            3,
+            9
+          ],
+          [
+            1,
+            6,
+            2,
+            11,
+            5
+          ],
+          [
+            9,
+            3,
+            7,
+            4,
+            12
+          ]
+        ]
+      },
+      "expected": 98,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

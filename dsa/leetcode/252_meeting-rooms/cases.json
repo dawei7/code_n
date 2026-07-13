@@ -1,0 +1,6 @@
+{"challenge_id":"lc_252","cases":[
+{"id":"sample-overlap","name":"sample: overlapping meetings","kind":"sample","visible":true,"input":{"intervals":[[0,30],[5,10],[15,20]]},"expected":false,"tags":["sample","overlap"]},
+{"id":"sample-compatible","name":"sample: separated meetings","kind":"sample","visible":true,"input":{"intervals":[[7,10],[2,4]]},"expected":true,"tags":["sample","compatible"]},
+{"id":"trial-touching","name":"touching endpoints are compatible","kind":"trial","visible":true,"input":{"intervals":[[1,2],[2,3],[3,4]]},"expected":true,"tags":["boundary"]},
+{"id":"real-unsorted-overlap","name":"hidden: overlap in unsorted input","kind":"real","visible":false,"input":{"intervals":[[10,12],[1,5],[4,8],[13,15]]},"expected":false,"tags":["hidden","sorting"]}
+]}

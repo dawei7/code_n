@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "699",
+  "frontend_id": "699",
+  "title_slug": "falling-squares",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065601402",
+  "verified_at": "2026-07-13T03:56:52.431522+00:00"
+}

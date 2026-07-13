@@ -1,0 +1,170 @@
+{
+  "challenge_id": "lc_697",
+  "source": "leetcode",
+  "frontend_id": "697",
+  "slug": "degree-of-an-array",
+  "title": "Degree of an Array",
+  "difficulty": "Easy",
+  "acceptance_rate": 58.48552987374287,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    }
+  ],
+  "url": "https://leetcode.com/problems/degree-of-an-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:ge-digital",
+    "leetcode_company:google",
+    "leetcode_company:oracle",
+    "leetcode_company:paypal",
+    "leetcode_company:rivian",
+    "leetcode_company:sofi",
+    "leetcode_company:turing",
+    "leetcode_company:walmart-labs",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:ge-digital",
+    "company:google",
+    "company:oracle",
+    "company:paypal",
+    "company:rivian",
+    "company:sofi",
+    "company:turing",
+    "company:walmart-labs",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "SoFi",
+      "slug": "sofi"
+    },
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Rivian",
+      "slug": "rivian"
+    },
+    {
+      "name": "Turing",
+      "slug": "turing"
+    },
+    {
+      "name": "GE Digital",
+      "slug": "ge-digital"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "SoFi",
+        "slug": "sofi",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Rivian",
+        "slug": "rivian",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Turing",
+        "slug": "turing",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "GE Digital",
+        "slug": "ge-digital",
+        "timesEncountered": 0
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

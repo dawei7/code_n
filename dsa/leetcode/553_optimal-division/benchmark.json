@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_553",
+  "measurement_note": "Size is the number of positive operands, within the platform limit. Direct formatting is linear, while enumerating all binary parenthesizations to confirm the maximum grows with the Catalan numbers.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 2 operands",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": "2/2",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "parenthesizations"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 4 operands",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": "2/(2/2/2)",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "parenthesizations"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 8 operands",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": "2/(2/2/2/2/2/2/2)",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "parenthesizations"
+      ]
+    }
+  ]
+}
+

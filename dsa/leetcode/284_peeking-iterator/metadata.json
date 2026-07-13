@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_284",
+  "source": "leetcode",
+  "frontend_id": "284",
+  "slug": "peeking-iterator",
+  "title": "Peeking Iterator",
+  "difficulty": "Medium",
+  "acceptance_rate": 61.65497524447853,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Iterator",
+      "slug": "iterator"
+    }
+  ],
+  "url": "https://leetcode.com/problems/peeking-iterator/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:apple",
+    "leetcode_company:google",
+    "leetcode_company:yahoo",
+    "leetcode_topic:array",
+    "leetcode_topic:design",
+    "leetcode_topic:iterator"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:apple",
+    "company:google",
+    "company:yahoo",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:design",
+    "topic:iterator"
+  ],
+  "company_tags": [
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Yahoo",
+      "slug": "yahoo"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 3
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Yahoo",
+        "slug": "yahoo",
+        "timesEncountered": 0
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

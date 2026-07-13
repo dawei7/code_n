@@ -1,0 +1,50 @@
+{
+  "challenge_id": "lc_1329",
+  "cases": [
+    {
+      "id": "benchmark-repeated-values",
+      "name": "benchmark: repeated diagonal values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            8,
+            4,
+            1
+          ],
+          [
+            4,
+            4,
+            1
+          ],
+          [
+            4,
+            8,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        [
+          4,
+          1,
+          1
+        ],
+        [
+          4,
+          8,
+          4
+        ],
+        [
+          4,
+          8,
+          9
+        ]
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

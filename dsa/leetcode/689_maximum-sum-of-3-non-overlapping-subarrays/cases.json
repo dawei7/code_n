@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_689",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: separated high windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          6,
+          7,
+          5,
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        0,
+        3,
+        5
+      ],
+      "tags": [
+        "sample",
+        "maximum-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: lexicographic tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        0,
+        2,
+        4
+      ],
+      "tags": [
+        "sample",
+        "tie-breaking"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: exactly three windows fit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 2
+      },
+      "expected": [
+        0,
+        2,
+        4
+      ],
+      "tags": [
+        "sample",
+        "minimum-layout"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: unit windows choose top values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          6,
+          7,
+          5,
+          1
+        ],
+        "k": 1
+      },
+      "expected": [
+        4,
+        5,
+        6
+      ],
+      "tags": [
+        "trial",
+        "unit-window"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: all windows tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 1
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "trial",
+        "all-ties"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: later total is larger",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          1,
+          1,
+          1,
+          9,
+          1,
+          1,
+          1,
+          9
+        ],
+        "k": 2
+      },
+      "expected": [
+        0,
+        3,
+        7
+      ],
+      "tags": [
+        "hidden",
+        "separated-peaks"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: adjacent windows are legal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        0,
+        2,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "touching-windows"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: right-side tie chooses earlier start",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          1,
+          8,
+          1,
+          5,
+          5,
+          5
+        ],
+        "k": 1
+      },
+      "expected": [
+        0,
+        2,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "right-tie"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_332",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one forced chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tickets": [
+          [
+            "MUC",
+            "LHR"
+          ],
+          [
+            "JFK",
+            "MUC"
+          ],
+          [
+            "SFO",
+            "SJC"
+          ],
+          [
+            "LHR",
+            "SFO"
+          ]
+        ]
+      },
+      "expected": [
+        "JFK",
+        "MUC",
+        "LHR",
+        "SFO",
+        "SJC"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: lexical Eulerian circuit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tickets": [
+          [
+            "JFK",
+            "SFO"
+          ],
+          [
+            "JFK",
+            "ATL"
+          ],
+          [
+            "SFO",
+            "ATL"
+          ],
+          [
+            "ATL",
+            "JFK"
+          ],
+          [
+            "ATL",
+            "SFO"
+          ]
+        ]
+      },
+      "expected": [
+        "JFK",
+        "ATL",
+        "JFK",
+        "SFO",
+        "ATL",
+        "SFO"
+      ],
+      "tags": [
+        "sample",
+        "lexical"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: smallest immediate edge is a dead end",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tickets": [
+          [
+            "JFK",
+            "KUL"
+          ],
+          [
+            "JFK",
+            "NRT"
+          ],
+          [
+            "NRT",
+            "JFK"
+          ]
+        ]
+      },
+      "expected": [
+        "JFK",
+        "NRT",
+        "JFK",
+        "KUL"
+      ],
+      "tags": [
+        "sample",
+        "dead-end"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "trial: one ticket",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "tickets": [
+          [
+            "JFK",
+            "SFO"
+          ]
+        ]
+      },
+      "expected": [
+        "JFK",
+        "SFO"
+      ],
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-duplicate",
+      "name": "trial: duplicate tickets are distinct",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "tickets": [
+          [
+            "JFK",
+            "AAA"
+          ],
+          [
+            "JFK",
+            "AAA"
+          ],
+          [
+            "AAA",
+            "JFK"
+          ]
+        ]
+      },
+      "expected": [
+        "JFK",
+        "AAA",
+        "JFK",
+        "AAA"
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-two-cycles",
+      "name": "hidden: lexical order between cycles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tickets": [
+          [
+            "JFK",
+            "BBB"
+          ],
+          [
+            "BBB",
+            "JFK"
+          ],
+          [
+            "JFK",
+            "AAA"
+          ],
+          [
+            "AAA",
+            "JFK"
+          ]
+        ]
+      },
+      "expected": [
+        "JFK",
+        "AAA",
+        "JFK",
+        "BBB",
+        "JFK"
+      ],
+      "tags": [
+        "hidden",
+        "cycles"
+      ]
+    },
+    {
+      "id": "hidden-prefix-codes",
+      "name": "hidden: compare complete airport codes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tickets": [
+          [
+            "JFK",
+            "AAB"
+          ],
+          [
+            "AAB",
+            "JFK"
+          ],
+          [
+            "JFK",
+            "AAA"
+          ],
+          [
+            "AAA",
+            "JFK"
+          ],
+          [
+            "JFK",
+            "ZZZ"
+          ]
+        ]
+      },
+      "expected": [
+        "JFK",
+        "AAA",
+        "JFK",
+        "AAB",
+        "JFK",
+        "ZZZ"
+      ],
+      "tags": [
+        "hidden",
+        "lexical"
+      ]
+    },
+    {
+      "id": "hidden-branching",
+      "name": "hidden: nested Eulerian cycles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tickets": [
+          [
+            "JFK",
+            "A"
+          ],
+          [
+            "A",
+            "B"
+          ],
+          [
+            "B",
+            "A"
+          ],
+          [
+            "A",
+            "JFK"
+          ],
+          [
+            "JFK",
+            "C"
+          ]
+        ]
+      },
+      "expected": [
+        "JFK",
+        "A",
+        "B",
+        "A",
+        "JFK",
+        "C"
+      ],
+      "tags": [
+        "hidden",
+        "nested-cycle"
+      ]
+    }
+  ]
+}

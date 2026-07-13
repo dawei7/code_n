@@ -1,0 +1,136 @@
+{
+  "challenge_id": "lc_2899",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three consecutive prev requests",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          "1",
+          "2",
+          "prev",
+          "prev",
+          "prev"
+        ]
+      },
+      "tags": [
+        "sample",
+        "simulation"
+      ],
+      "expected": [
+        2,
+        1,
+        -1
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: number resets the prev count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          "1",
+          "prev",
+          "2",
+          "prev",
+          "prev"
+        ]
+      },
+      "tags": [
+        "sample",
+        "reset"
+      ],
+      "expected": [
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: missing history returns minus one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          "7",
+          "prev",
+          "prev",
+          "3",
+          "prev"
+        ]
+      },
+      "tags": [
+        "sample",
+        "history"
+      ],
+      "expected": [
+        7,
+        -1,
+        3
+      ]
+    },
+    {
+      "id": "trial-prev-before-number",
+      "name": "trial: prev before any number is unavailable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          "prev",
+          "4",
+          "prev",
+          "prev",
+          "5",
+          "prev"
+        ]
+      },
+      "tags": [
+        "trial",
+        "empty-history"
+      ],
+      "expected": [
+        -1,
+        4,
+        -1,
+        5
+      ]
+    },
+    {
+      "id": "real-longer-session",
+      "name": "hidden: several reset and lookup groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          "8",
+          "9",
+          "prev",
+          "10",
+          "prev",
+          "prev",
+          "prev",
+          "11",
+          "12",
+          "prev",
+          "prev"
+        ]
+      },
+      "tags": [
+        "hidden",
+        "simulation"
+      ],
+      "expected": [
+        9,
+        10,
+        9,
+        8,
+        12,
+        11
+      ]
+    }
+  ]
+}

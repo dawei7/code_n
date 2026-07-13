@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1248",
+  "cases": [
+    {
+      "id": "benchmark-alternating",
+      "name": "benchmark: alternating odds and evens",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_1211",
+  "source": "leetcode",
+  "frontend_id": "1211",
+  "slug": "queries-quality-and-percentage",
+  "title": "Queries Quality and Percentage",
+  "difficulty": "Easy",
+  "acceptance_rate": 53.75285186308716,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/queries-quality-and-percentage/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_studyplan:top-sql-50",
+    "leetcode_studyplan:top-sql-50:top-sql-50-130-9fkf",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:amazon",
+    "company:bloomberg",
+    "company:facebook",
+    "company:google",
+    "language:sql",
+    "leetcode",
+    "study_plan:top-sql-50",
+    "study_plan_section:top-sql-50:top-sql-50-130-9fkf",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-sql-50",
+      "plan_name": "SQL 50",
+      "section_slug": "top-sql-50-130-9fkf",
+      "section_name": "Basic Aggregate Functions",
+      "path": [
+        "Basic Aggregate Functions"
+      ],
+      "order": 19,
+      "section_order": 3,
+      "problem_order": 5,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

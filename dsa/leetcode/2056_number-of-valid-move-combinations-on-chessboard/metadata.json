@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_2056",
+  "source": "leetcode",
+  "frontend_id": "2056",
+  "slug": "number-of-valid-move-combinations-on-chessboard",
+  "title": "Number of Valid Move Combinations On Chessboard",
+  "difficulty": "Hard",
+  "acceptance_rate": 49.06237092110698,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:paypal",
+    "leetcode_topic:array",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:simulation",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:paypal",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:backtracking",
+    "topic:simulation",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

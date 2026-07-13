@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2551",
+  "cases": [
+    {
+      "id": "benchmark-three-bags",
+      "name": "benchmark: choose two high and two low adjacent sums",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "weights": [
+          4,
+          2,
+          6,
+          8,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

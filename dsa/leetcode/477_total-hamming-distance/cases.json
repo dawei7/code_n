@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_477",
+  "cases": [
+    {"id": "sample-three", "name": "sample: three distinct patterns", "kind": "sample", "visible": true, "input": {"nums": [4, 14, 2]}, "expected": 6, "tags": ["sample", "mixed"]},
+    {"id": "sample-duplicate", "name": "sample: duplicate pattern contributes separately", "kind": "sample", "visible": true, "input": {"nums": [4, 14, 4]}, "expected": 4, "tags": ["sample", "duplicate"]},
+    {"id": "sample-zero-seven", "name": "sample: all three low bits differ", "kind": "sample", "visible": true, "input": {"nums": [0, 7]}, "expected": 3, "tags": ["sample", "dense"]},
+    {"id": "trial-single", "name": "trial: one number has no pair", "kind": "trial", "visible": true, "input": {"nums": [42]}, "expected": 0, "tags": ["trial", "single"]},
+    {"id": "trial-all-equal", "name": "trial: equal values have zero distance", "kind": "trial", "visible": true, "input": {"nums": [5, 5, 5, 5]}, "expected": 0, "tags": ["trial", "equal"]},
+    {"id": "hidden-four-patterns", "name": "hidden: four small bit patterns", "kind": "real", "visible": false, "input": {"nums": [0, 1, 2, 3]}, "expected": 8, "tags": ["hidden", "patterns"]},
+    {"id": "hidden-high-bit", "name": "hidden: high bit differs in two pairs", "kind": "real", "visible": false, "input": {"nums": [0, 1073741824, 0]}, "expected": 2, "tags": ["hidden", "high-bit"]}
+  ]
+}

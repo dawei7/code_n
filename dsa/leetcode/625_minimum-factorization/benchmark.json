@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_625",
+  "measurement_note": "Size is exponent k in a = 2^k. Greedy digit extraction performs work linear in k, while a guarded candidate-by-candidate digit-product search grows exponentially but still completes for these legal inputs.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: factor 2^3", "kind": "benchmark", "visible": false, "size": 3, "input": {"a": 8}, "expected": 8, "tags": ["benchmark", "scaling", "power-of-two"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: factor 2^6", "kind": "benchmark", "visible": false, "size": 6, "input": {"a": 64}, "expected": 88, "tags": ["benchmark", "scaling", "power-of-two"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: factor 2^12", "kind": "benchmark", "visible": false, "size": 12, "input": {"a": 4096}, "expected": 8888, "tags": ["benchmark", "scaling", "power-of-two"]}
+  ]
+}

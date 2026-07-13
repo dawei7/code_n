@@ -1,0 +1,376 @@
+{
+  "challenge_id": "lc_152",
+  "source": "leetcode",
+  "frontend_id": "152",
+  "slug": "maximum-product-subarray",
+  "title": "Maximum Product Subarray",
+  "difficulty": "Medium",
+  "acceptance_rate": 36.642854446083575,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-product-subarray/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:de-shaw",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:morgan-stanley",
+    "leetcode_company:paypal",
+    "leetcode_company:siemens",
+    "leetcode_company:swiggy",
+    "leetcode_company:tcs",
+    "leetcode_company:tiktok",
+    "leetcode_company:wayfair",
+    "leetcode_studyplan:tiktok-spring-23-high-frequency",
+    "leetcode_studyplan:tiktok-spring-23-high-frequency:tiktok-spring-23-high-frequency-147-v6lb",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-49-slv5",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "company:amazon",
+    "company:bloomberg",
+    "company:de-shaw",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:google",
+    "company:linkedin",
+    "company:microsoft",
+    "company:morgan-stanley",
+    "company:paypal",
+    "company:siemens",
+    "company:swiggy",
+    "company:tcs",
+    "company:tiktok",
+    "company:wayfair",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:tiktok-spring-23-high-frequency",
+    "study_plan:top-100-liked",
+    "study_plan_section:tiktok-spring-23-high-frequency:tiktok-spring-23-high-frequency-147-v6lb",
+    "study_plan_section:top-100-liked:top-100-liked-49-slv5",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:dynamic-programming"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Morgan Stanley",
+      "slug": "morgan-stanley"
+    },
+    {
+      "name": "Swiggy",
+      "slug": "swiggy"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "Wayfair",
+      "slug": "wayfair"
+    },
+    {
+      "name": "Siemens",
+      "slug": "siemens"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 11
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Morgan Stanley",
+        "slug": "morgan-stanley",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Wayfair",
+        "slug": "wayfair",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Siemens",
+        "slug": "siemens",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Swiggy",
+        "slug": "swiggy",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-49-slv5",
+      "section_name": "Dynamic Programming",
+      "path": [
+        "Dynamic Programming"
+      ],
+      "order": 38,
+      "section_order": 4,
+      "problem_order": 9,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    },
+    {
+      "plan_slug": "tiktok-spring-23-high-frequency",
+      "plan_name": "TikTok Spring '23 High Frequency",
+      "section_slug": "tiktok-spring-23-high-frequency-147-v6lb",
+      "section_name": "March Interview Questions",
+      "path": [
+        "March Interview Questions"
+      ],
+      "order": 17,
+      "section_order": 2,
+      "problem_order": 7,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/tiktok-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 55,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "maximum-product-subarray",
+      "leetcode_slug": "maximum-product-subarray",
+      "difficulty": "Medium",
+      "problem_order": 7
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 106,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "maximum-product-subarray",
+      "leetcode_slug": "maximum-product-subarray",
+      "difficulty": "Medium",
+      "problem_order": 8
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 182,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "maximum-product-subarray",
+      "leetcode_slug": "maximum-product-subarray",
+      "difficulty": "Medium",
+      "problem_order": 9
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 669,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "maximum-product-subarray",
+      "leetcode_slug": "maximum-product-subarray",
+      "difficulty": "Medium",
+      "problem_order": 13
+    }
+  ]
+}

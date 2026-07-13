@@ -1,0 +1,127 @@
+{
+  "challenge_id": "lc_140",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: cats and dog",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "catsanddog",
+        "word_dict": [
+          "cat",
+          "cats",
+          "and",
+          "sand",
+          "dog"
+        ]
+      },
+      "expected": [
+        "cats and dog",
+        "cat sand dog"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: pineapple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "pineapplepenapple",
+        "word_dict": [
+          "apple",
+          "pen",
+          "applepen",
+          "pine",
+          "pineapple"
+        ]
+      },
+      "expected": [
+        "pine apple pen apple",
+        "pineapple pen apple",
+        "pine applepen apple"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "catsandog",
+        "word_dict": [
+          "cats",
+          "dog",
+          "sand",
+          "and",
+          "cat"
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-single-word",
+      "name": "single complete dictionary word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "word_dict": ["a"]
+      },
+      "expected": ["a"],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": ["boundary"]
+    },
+    {
+      "id": "real-small-ambiguous",
+      "name": "hidden: small ambiguous string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaa",
+        "word_dict": [
+          "a",
+          "aa",
+          "aaa"
+        ]
+      },
+      "expected": [
+        "a a a a",
+        "a a aa",
+        "a aa a",
+        "a aaa",
+        "aa a a",
+        "aa aa",
+        "aaa a"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

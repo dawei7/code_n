@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_326",
+  "measurement_note": "Exact powers require one successful division per factor in iterative solutions; size is the exponent, equivalently the number of divisions to reach one.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: power with exponent 4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "n": 81
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "exact-power"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: power with exponent 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "n": 6561
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "exact-power"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: power with exponent 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "n": 43046721
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "exact-power"
+      ]
+    }
+  ]
+}

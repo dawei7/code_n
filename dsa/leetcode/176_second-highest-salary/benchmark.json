@@ -1,0 +1,1400 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_176",
+  "measurement_note": "Growing distinct salary tables require aggregate maximum selection while retaining scalar null semantics.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 distinct salaries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "salary": 1
+            },
+            {
+              "id": 2,
+              "salary": 2
+            },
+            {
+              "id": 3,
+              "salary": 3
+            },
+            {
+              "id": 4,
+              "salary": 4
+            },
+            {
+              "id": 5,
+              "salary": 5
+            },
+            {
+              "id": 6,
+              "salary": 6
+            },
+            {
+              "id": 7,
+              "salary": 7
+            },
+            {
+              "id": 8,
+              "salary": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "SecondHighestSalary"
+        ],
+        "rows": [
+          [
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 distinct salaries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "salary": 1
+            },
+            {
+              "id": 2,
+              "salary": 2
+            },
+            {
+              "id": 3,
+              "salary": 3
+            },
+            {
+              "id": 4,
+              "salary": 4
+            },
+            {
+              "id": 5,
+              "salary": 5
+            },
+            {
+              "id": 6,
+              "salary": 6
+            },
+            {
+              "id": 7,
+              "salary": 7
+            },
+            {
+              "id": 8,
+              "salary": 8
+            },
+            {
+              "id": 9,
+              "salary": 9
+            },
+            {
+              "id": 10,
+              "salary": 10
+            },
+            {
+              "id": 11,
+              "salary": 11
+            },
+            {
+              "id": 12,
+              "salary": 12
+            },
+            {
+              "id": 13,
+              "salary": 13
+            },
+            {
+              "id": 14,
+              "salary": 14
+            },
+            {
+              "id": 15,
+              "salary": 15
+            },
+            {
+              "id": 16,
+              "salary": 16
+            },
+            {
+              "id": 17,
+              "salary": 17
+            },
+            {
+              "id": 18,
+              "salary": 18
+            },
+            {
+              "id": 19,
+              "salary": 19
+            },
+            {
+              "id": 20,
+              "salary": 20
+            },
+            {
+              "id": 21,
+              "salary": 21
+            },
+            {
+              "id": 22,
+              "salary": 22
+            },
+            {
+              "id": 23,
+              "salary": 23
+            },
+            {
+              "id": 24,
+              "salary": 24
+            },
+            {
+              "id": 25,
+              "salary": 25
+            },
+            {
+              "id": 26,
+              "salary": 26
+            },
+            {
+              "id": 27,
+              "salary": 27
+            },
+            {
+              "id": 28,
+              "salary": 28
+            },
+            {
+              "id": 29,
+              "salary": 29
+            },
+            {
+              "id": 30,
+              "salary": 30
+            },
+            {
+              "id": 31,
+              "salary": 31
+            },
+            {
+              "id": 32,
+              "salary": 32
+            },
+            {
+              "id": 33,
+              "salary": 33
+            },
+            {
+              "id": 34,
+              "salary": 34
+            },
+            {
+              "id": 35,
+              "salary": 35
+            },
+            {
+              "id": 36,
+              "salary": 36
+            },
+            {
+              "id": 37,
+              "salary": 37
+            },
+            {
+              "id": 38,
+              "salary": 38
+            },
+            {
+              "id": 39,
+              "salary": 39
+            },
+            {
+              "id": 40,
+              "salary": 40
+            },
+            {
+              "id": 41,
+              "salary": 41
+            },
+            {
+              "id": 42,
+              "salary": 42
+            },
+            {
+              "id": 43,
+              "salary": 43
+            },
+            {
+              "id": 44,
+              "salary": 44
+            },
+            {
+              "id": 45,
+              "salary": 45
+            },
+            {
+              "id": 46,
+              "salary": 46
+            },
+            {
+              "id": 47,
+              "salary": 47
+            },
+            {
+              "id": 48,
+              "salary": 48
+            },
+            {
+              "id": 49,
+              "salary": 49
+            },
+            {
+              "id": 50,
+              "salary": 50
+            },
+            {
+              "id": 51,
+              "salary": 51
+            },
+            {
+              "id": 52,
+              "salary": 52
+            },
+            {
+              "id": 53,
+              "salary": 53
+            },
+            {
+              "id": 54,
+              "salary": 54
+            },
+            {
+              "id": 55,
+              "salary": 55
+            },
+            {
+              "id": 56,
+              "salary": 56
+            },
+            {
+              "id": 57,
+              "salary": 57
+            },
+            {
+              "id": 58,
+              "salary": 58
+            },
+            {
+              "id": 59,
+              "salary": 59
+            },
+            {
+              "id": 60,
+              "salary": 60
+            },
+            {
+              "id": 61,
+              "salary": 61
+            },
+            {
+              "id": 62,
+              "salary": 62
+            },
+            {
+              "id": 63,
+              "salary": 63
+            },
+            {
+              "id": 64,
+              "salary": 64
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "SecondHighestSalary"
+        ],
+        "rows": [
+          [
+            63
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 distinct salaries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "salary": 1
+            },
+            {
+              "id": 2,
+              "salary": 2
+            },
+            {
+              "id": 3,
+              "salary": 3
+            },
+            {
+              "id": 4,
+              "salary": 4
+            },
+            {
+              "id": 5,
+              "salary": 5
+            },
+            {
+              "id": 6,
+              "salary": 6
+            },
+            {
+              "id": 7,
+              "salary": 7
+            },
+            {
+              "id": 8,
+              "salary": 8
+            },
+            {
+              "id": 9,
+              "salary": 9
+            },
+            {
+              "id": 10,
+              "salary": 10
+            },
+            {
+              "id": 11,
+              "salary": 11
+            },
+            {
+              "id": 12,
+              "salary": 12
+            },
+            {
+              "id": 13,
+              "salary": 13
+            },
+            {
+              "id": 14,
+              "salary": 14
+            },
+            {
+              "id": 15,
+              "salary": 15
+            },
+            {
+              "id": 16,
+              "salary": 16
+            },
+            {
+              "id": 17,
+              "salary": 17
+            },
+            {
+              "id": 18,
+              "salary": 18
+            },
+            {
+              "id": 19,
+              "salary": 19
+            },
+            {
+              "id": 20,
+              "salary": 20
+            },
+            {
+              "id": 21,
+              "salary": 21
+            },
+            {
+              "id": 22,
+              "salary": 22
+            },
+            {
+              "id": 23,
+              "salary": 23
+            },
+            {
+              "id": 24,
+              "salary": 24
+            },
+            {
+              "id": 25,
+              "salary": 25
+            },
+            {
+              "id": 26,
+              "salary": 26
+            },
+            {
+              "id": 27,
+              "salary": 27
+            },
+            {
+              "id": 28,
+              "salary": 28
+            },
+            {
+              "id": 29,
+              "salary": 29
+            },
+            {
+              "id": 30,
+              "salary": 30
+            },
+            {
+              "id": 31,
+              "salary": 31
+            },
+            {
+              "id": 32,
+              "salary": 32
+            },
+            {
+              "id": 33,
+              "salary": 33
+            },
+            {
+              "id": 34,
+              "salary": 34
+            },
+            {
+              "id": 35,
+              "salary": 35
+            },
+            {
+              "id": 36,
+              "salary": 36
+            },
+            {
+              "id": 37,
+              "salary": 37
+            },
+            {
+              "id": 38,
+              "salary": 38
+            },
+            {
+              "id": 39,
+              "salary": 39
+            },
+            {
+              "id": 40,
+              "salary": 40
+            },
+            {
+              "id": 41,
+              "salary": 41
+            },
+            {
+              "id": 42,
+              "salary": 42
+            },
+            {
+              "id": 43,
+              "salary": 43
+            },
+            {
+              "id": 44,
+              "salary": 44
+            },
+            {
+              "id": 45,
+              "salary": 45
+            },
+            {
+              "id": 46,
+              "salary": 46
+            },
+            {
+              "id": 47,
+              "salary": 47
+            },
+            {
+              "id": 48,
+              "salary": 48
+            },
+            {
+              "id": 49,
+              "salary": 49
+            },
+            {
+              "id": 50,
+              "salary": 50
+            },
+            {
+              "id": 51,
+              "salary": 51
+            },
+            {
+              "id": 52,
+              "salary": 52
+            },
+            {
+              "id": 53,
+              "salary": 53
+            },
+            {
+              "id": 54,
+              "salary": 54
+            },
+            {
+              "id": 55,
+              "salary": 55
+            },
+            {
+              "id": 56,
+              "salary": 56
+            },
+            {
+              "id": 57,
+              "salary": 57
+            },
+            {
+              "id": 58,
+              "salary": 58
+            },
+            {
+              "id": 59,
+              "salary": 59
+            },
+            {
+              "id": 60,
+              "salary": 60
+            },
+            {
+              "id": 61,
+              "salary": 61
+            },
+            {
+              "id": 62,
+              "salary": 62
+            },
+            {
+              "id": 63,
+              "salary": 63
+            },
+            {
+              "id": 64,
+              "salary": 64
+            },
+            {
+              "id": 65,
+              "salary": 65
+            },
+            {
+              "id": 66,
+              "salary": 66
+            },
+            {
+              "id": 67,
+              "salary": 67
+            },
+            {
+              "id": 68,
+              "salary": 68
+            },
+            {
+              "id": 69,
+              "salary": 69
+            },
+            {
+              "id": 70,
+              "salary": 70
+            },
+            {
+              "id": 71,
+              "salary": 71
+            },
+            {
+              "id": 72,
+              "salary": 72
+            },
+            {
+              "id": 73,
+              "salary": 73
+            },
+            {
+              "id": 74,
+              "salary": 74
+            },
+            {
+              "id": 75,
+              "salary": 75
+            },
+            {
+              "id": 76,
+              "salary": 76
+            },
+            {
+              "id": 77,
+              "salary": 77
+            },
+            {
+              "id": 78,
+              "salary": 78
+            },
+            {
+              "id": 79,
+              "salary": 79
+            },
+            {
+              "id": 80,
+              "salary": 80
+            },
+            {
+              "id": 81,
+              "salary": 81
+            },
+            {
+              "id": 82,
+              "salary": 82
+            },
+            {
+              "id": 83,
+              "salary": 83
+            },
+            {
+              "id": 84,
+              "salary": 84
+            },
+            {
+              "id": 85,
+              "salary": 85
+            },
+            {
+              "id": 86,
+              "salary": 86
+            },
+            {
+              "id": 87,
+              "salary": 87
+            },
+            {
+              "id": 88,
+              "salary": 88
+            },
+            {
+              "id": 89,
+              "salary": 89
+            },
+            {
+              "id": 90,
+              "salary": 90
+            },
+            {
+              "id": 91,
+              "salary": 91
+            },
+            {
+              "id": 92,
+              "salary": 92
+            },
+            {
+              "id": 93,
+              "salary": 93
+            },
+            {
+              "id": 94,
+              "salary": 94
+            },
+            {
+              "id": 95,
+              "salary": 95
+            },
+            {
+              "id": 96,
+              "salary": 96
+            },
+            {
+              "id": 97,
+              "salary": 97
+            },
+            {
+              "id": 98,
+              "salary": 98
+            },
+            {
+              "id": 99,
+              "salary": 99
+            },
+            {
+              "id": 100,
+              "salary": 100
+            },
+            {
+              "id": 101,
+              "salary": 101
+            },
+            {
+              "id": 102,
+              "salary": 102
+            },
+            {
+              "id": 103,
+              "salary": 103
+            },
+            {
+              "id": 104,
+              "salary": 104
+            },
+            {
+              "id": 105,
+              "salary": 105
+            },
+            {
+              "id": 106,
+              "salary": 106
+            },
+            {
+              "id": 107,
+              "salary": 107
+            },
+            {
+              "id": 108,
+              "salary": 108
+            },
+            {
+              "id": 109,
+              "salary": 109
+            },
+            {
+              "id": 110,
+              "salary": 110
+            },
+            {
+              "id": 111,
+              "salary": 111
+            },
+            {
+              "id": 112,
+              "salary": 112
+            },
+            {
+              "id": 113,
+              "salary": 113
+            },
+            {
+              "id": 114,
+              "salary": 114
+            },
+            {
+              "id": 115,
+              "salary": 115
+            },
+            {
+              "id": 116,
+              "salary": 116
+            },
+            {
+              "id": 117,
+              "salary": 117
+            },
+            {
+              "id": 118,
+              "salary": 118
+            },
+            {
+              "id": 119,
+              "salary": 119
+            },
+            {
+              "id": 120,
+              "salary": 120
+            },
+            {
+              "id": 121,
+              "salary": 121
+            },
+            {
+              "id": 122,
+              "salary": 122
+            },
+            {
+              "id": 123,
+              "salary": 123
+            },
+            {
+              "id": 124,
+              "salary": 124
+            },
+            {
+              "id": 125,
+              "salary": 125
+            },
+            {
+              "id": 126,
+              "salary": 126
+            },
+            {
+              "id": 127,
+              "salary": 127
+            },
+            {
+              "id": 128,
+              "salary": 128
+            },
+            {
+              "id": 129,
+              "salary": 129
+            },
+            {
+              "id": 130,
+              "salary": 130
+            },
+            {
+              "id": 131,
+              "salary": 131
+            },
+            {
+              "id": 132,
+              "salary": 132
+            },
+            {
+              "id": 133,
+              "salary": 133
+            },
+            {
+              "id": 134,
+              "salary": 134
+            },
+            {
+              "id": 135,
+              "salary": 135
+            },
+            {
+              "id": 136,
+              "salary": 136
+            },
+            {
+              "id": 137,
+              "salary": 137
+            },
+            {
+              "id": 138,
+              "salary": 138
+            },
+            {
+              "id": 139,
+              "salary": 139
+            },
+            {
+              "id": 140,
+              "salary": 140
+            },
+            {
+              "id": 141,
+              "salary": 141
+            },
+            {
+              "id": 142,
+              "salary": 142
+            },
+            {
+              "id": 143,
+              "salary": 143
+            },
+            {
+              "id": 144,
+              "salary": 144
+            },
+            {
+              "id": 145,
+              "salary": 145
+            },
+            {
+              "id": 146,
+              "salary": 146
+            },
+            {
+              "id": 147,
+              "salary": 147
+            },
+            {
+              "id": 148,
+              "salary": 148
+            },
+            {
+              "id": 149,
+              "salary": 149
+            },
+            {
+              "id": 150,
+              "salary": 150
+            },
+            {
+              "id": 151,
+              "salary": 151
+            },
+            {
+              "id": 152,
+              "salary": 152
+            },
+            {
+              "id": 153,
+              "salary": 153
+            },
+            {
+              "id": 154,
+              "salary": 154
+            },
+            {
+              "id": 155,
+              "salary": 155
+            },
+            {
+              "id": 156,
+              "salary": 156
+            },
+            {
+              "id": 157,
+              "salary": 157
+            },
+            {
+              "id": 158,
+              "salary": 158
+            },
+            {
+              "id": 159,
+              "salary": 159
+            },
+            {
+              "id": 160,
+              "salary": 160
+            },
+            {
+              "id": 161,
+              "salary": 161
+            },
+            {
+              "id": 162,
+              "salary": 162
+            },
+            {
+              "id": 163,
+              "salary": 163
+            },
+            {
+              "id": 164,
+              "salary": 164
+            },
+            {
+              "id": 165,
+              "salary": 165
+            },
+            {
+              "id": 166,
+              "salary": 166
+            },
+            {
+              "id": 167,
+              "salary": 167
+            },
+            {
+              "id": 168,
+              "salary": 168
+            },
+            {
+              "id": 169,
+              "salary": 169
+            },
+            {
+              "id": 170,
+              "salary": 170
+            },
+            {
+              "id": 171,
+              "salary": 171
+            },
+            {
+              "id": 172,
+              "salary": 172
+            },
+            {
+              "id": 173,
+              "salary": 173
+            },
+            {
+              "id": 174,
+              "salary": 174
+            },
+            {
+              "id": 175,
+              "salary": 175
+            },
+            {
+              "id": 176,
+              "salary": 176
+            },
+            {
+              "id": 177,
+              "salary": 177
+            },
+            {
+              "id": 178,
+              "salary": 178
+            },
+            {
+              "id": 179,
+              "salary": 179
+            },
+            {
+              "id": 180,
+              "salary": 180
+            },
+            {
+              "id": 181,
+              "salary": 181
+            },
+            {
+              "id": 182,
+              "salary": 182
+            },
+            {
+              "id": 183,
+              "salary": 183
+            },
+            {
+              "id": 184,
+              "salary": 184
+            },
+            {
+              "id": 185,
+              "salary": 185
+            },
+            {
+              "id": 186,
+              "salary": 186
+            },
+            {
+              "id": 187,
+              "salary": 187
+            },
+            {
+              "id": 188,
+              "salary": 188
+            },
+            {
+              "id": 189,
+              "salary": 189
+            },
+            {
+              "id": 190,
+              "salary": 190
+            },
+            {
+              "id": 191,
+              "salary": 191
+            },
+            {
+              "id": 192,
+              "salary": 192
+            },
+            {
+              "id": 193,
+              "salary": 193
+            },
+            {
+              "id": 194,
+              "salary": 194
+            },
+            {
+              "id": 195,
+              "salary": 195
+            },
+            {
+              "id": 196,
+              "salary": 196
+            },
+            {
+              "id": 197,
+              "salary": 197
+            },
+            {
+              "id": 198,
+              "salary": 198
+            },
+            {
+              "id": 199,
+              "salary": 199
+            },
+            {
+              "id": 200,
+              "salary": 200
+            },
+            {
+              "id": 201,
+              "salary": 201
+            },
+            {
+              "id": 202,
+              "salary": 202
+            },
+            {
+              "id": 203,
+              "salary": 203
+            },
+            {
+              "id": 204,
+              "salary": 204
+            },
+            {
+              "id": 205,
+              "salary": 205
+            },
+            {
+              "id": 206,
+              "salary": 206
+            },
+            {
+              "id": 207,
+              "salary": 207
+            },
+            {
+              "id": 208,
+              "salary": 208
+            },
+            {
+              "id": 209,
+              "salary": 209
+            },
+            {
+              "id": 210,
+              "salary": 210
+            },
+            {
+              "id": 211,
+              "salary": 211
+            },
+            {
+              "id": 212,
+              "salary": 212
+            },
+            {
+              "id": 213,
+              "salary": 213
+            },
+            {
+              "id": 214,
+              "salary": 214
+            },
+            {
+              "id": 215,
+              "salary": 215
+            },
+            {
+              "id": 216,
+              "salary": 216
+            },
+            {
+              "id": 217,
+              "salary": 217
+            },
+            {
+              "id": 218,
+              "salary": 218
+            },
+            {
+              "id": 219,
+              "salary": 219
+            },
+            {
+              "id": 220,
+              "salary": 220
+            },
+            {
+              "id": 221,
+              "salary": 221
+            },
+            {
+              "id": 222,
+              "salary": 222
+            },
+            {
+              "id": 223,
+              "salary": 223
+            },
+            {
+              "id": 224,
+              "salary": 224
+            },
+            {
+              "id": 225,
+              "salary": 225
+            },
+            {
+              "id": 226,
+              "salary": 226
+            },
+            {
+              "id": 227,
+              "salary": 227
+            },
+            {
+              "id": 228,
+              "salary": 228
+            },
+            {
+              "id": 229,
+              "salary": 229
+            },
+            {
+              "id": 230,
+              "salary": 230
+            },
+            {
+              "id": 231,
+              "salary": 231
+            },
+            {
+              "id": 232,
+              "salary": 232
+            },
+            {
+              "id": 233,
+              "salary": 233
+            },
+            {
+              "id": 234,
+              "salary": 234
+            },
+            {
+              "id": 235,
+              "salary": 235
+            },
+            {
+              "id": 236,
+              "salary": 236
+            },
+            {
+              "id": 237,
+              "salary": 237
+            },
+            {
+              "id": 238,
+              "salary": 238
+            },
+            {
+              "id": 239,
+              "salary": 239
+            },
+            {
+              "id": 240,
+              "salary": 240
+            },
+            {
+              "id": 241,
+              "salary": 241
+            },
+            {
+              "id": 242,
+              "salary": 242
+            },
+            {
+              "id": 243,
+              "salary": 243
+            },
+            {
+              "id": 244,
+              "salary": 244
+            },
+            {
+              "id": 245,
+              "salary": 245
+            },
+            {
+              "id": 246,
+              "salary": 246
+            },
+            {
+              "id": 247,
+              "salary": 247
+            },
+            {
+              "id": 248,
+              "salary": 248
+            },
+            {
+              "id": 249,
+              "salary": 249
+            },
+            {
+              "id": 250,
+              "salary": 250
+            },
+            {
+              "id": 251,
+              "salary": 251
+            },
+            {
+              "id": 252,
+              "salary": 252
+            },
+            {
+              "id": 253,
+              "salary": 253
+            },
+            {
+              "id": 254,
+              "salary": 254
+            },
+            {
+              "id": 255,
+              "salary": 255
+            },
+            {
+              "id": 256,
+              "salary": 256
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "SecondHighestSalary"
+        ],
+        "rows": [
+          [
+            255
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

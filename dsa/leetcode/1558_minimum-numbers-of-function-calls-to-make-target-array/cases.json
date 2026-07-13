@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_1558",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one and five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "bits"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two equal powers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: mixed values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          5
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: zero target array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2921",
+  "source": "leetcode",
+  "frontend_id": "2921",
+  "slug": "maximum-profitable-triplets-with-increasing-prices-ii",
+  "title": "Maximum Profitable Triplets With Increasing Prices II",
+  "difficulty": "Hard",
+  "acceptance_rate": 46.2592804111936,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Indexed Tree",
+      "slug": "binary-indexed-tree"
+    },
+    {
+      "name": "Segment Tree",
+      "slug": "segment-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:ibm",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-indexed-tree",
+    "leetcode_topic:segment-tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:ibm",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-indexed-tree",
+    "topic:segment-tree"
+  ],
+  "company_tags": [
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

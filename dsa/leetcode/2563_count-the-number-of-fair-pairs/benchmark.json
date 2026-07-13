@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2563",
+  "cases": [
+    {
+      "id": "benchmark-negative-and-positive-values",
+      "name": "benchmark: fair pairs across negative and positive values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1,
+          0,
+          1,
+          2
+        ],
+        "lower": 1,
+        "upper": 2
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

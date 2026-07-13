@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_686",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: target crosses two boundaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": "abcd",
+        "b": "cdabcdab"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "boundary-crossing"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one-character repetition",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": "a",
+        "b": "aa"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "repeated-character"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: absent characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": "abc",
+        "b": "wxyz"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: target already contained",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": "aa",
+        "b": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "one-copy"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: offset match needs three copies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": "abc",
+        "b": "bcabca"
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "offset"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: match ends in fourth copy",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": "abc",
+        "b": "cabcabca"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "multiple-boundaries"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: same alphabet but impossible order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": "abc",
+        "b": "ac"
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: repeated source pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": "abab",
+        "b": "baba"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "periodic-source"
+      ]
+    }
+  ]
+}
+

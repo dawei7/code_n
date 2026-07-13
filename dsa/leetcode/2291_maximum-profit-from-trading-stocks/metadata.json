@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_2291",
+  "source": "leetcode",
+  "frontend_id": "2291",
+  "slug": "maximum-profit-from-trading-stocks",
+  "title": "Maximum Profit From Trading Stocks",
+  "difficulty": "Medium",
+  "acceptance_rate": 48.26228981471565,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-profit-from-trading-stocks/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:blackrock",
+    "leetcode_company:oracle",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:blackrock",
+    "company:oracle",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:dynamic-programming"
+  ],
+  "company_tags": [
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "BlackRock",
+      "slug": "blackrock"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "BlackRock",
+        "slug": "blackrock",
+        "timesEncountered": 3
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

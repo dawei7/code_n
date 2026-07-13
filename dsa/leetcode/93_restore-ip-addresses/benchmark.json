@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_93",
+  "measurement_note": "Tiers span impossible-short, ordinary, and maximum useful IPv4 digit lengths; the search remains bounded to four segments and three choices per segment.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one digit", "kind": "benchmark", "visible": false, "size": 1, "input": {"s": "1"}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: four digits", "kind": "benchmark", "visible": false, "size": 4, "input": {"s": "1111"}, "expected": ["1.1.1.1"], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: twelve digits", "kind": "benchmark", "visible": false, "size": 12, "input": {"s": "111111111111"}, "expected": ["111.111.111.111"], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scale-large"]}
+  ]
+}

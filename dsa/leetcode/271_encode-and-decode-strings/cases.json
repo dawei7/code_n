@@ -1,0 +1,6 @@
+{"challenge_id":"lc_271","cases":[
+{"id":"sample-encode","name":"sample: encode ordinary strings","kind":"sample","visible":true,"input":{"operation":"encode","value":["lint","code","love","you"]},"expected":"4#lint4#code4#love3#you","tags":["sample","encode"]},
+{"id":"sample-decode","name":"sample: decode including empty tail","kind":"sample","visible":true,"input":{"operation":"decode","value":"5#hello0#"},"expected":["hello",""],"tags":["sample","decode"]},
+{"id":"trial-separator","name":"separator content and empty string","kind":"trial","visible":true,"input":{"operation":"encode","value":["","a#b"]},"expected":"0#3#a#b","tags":["delimiter","empty"]},
+{"id":"real-digits","name":"hidden: numeric and Unicode payloads","kind":"real","visible":false,"input":{"operation":"decode","value":"3#1232#λx"},"expected":["123","λx"],"tags":["hidden","unicode"]}
+]}

@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_376",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: every adjacent step wiggles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          7,
+          4,
+          9,
+          2,
+          5
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "complete"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: skip values inside trends",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          17,
+          5,
+          10,
+          13,
+          15,
+          10,
+          5,
+          16,
+          8
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: strictly increasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "monotone"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-equal",
+      "name": "trial: all values equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "equal"
+      ]
+    },
+    {
+      "id": "hidden-plateau",
+      "name": "hidden: equal values between sign changes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          4,
+          4,
+          2,
+          2,
+          5
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "equal"
+      ]
+    },
+    {
+      "id": "hidden-negative",
+      "name": "hidden: alternating negative values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1,
+          -5,
+          -2,
+          -6,
+          -3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-late-turn",
+      "name": "hidden: long rise followed by one fall",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "turn"
+      ]
+    }
+  ]
+}
+

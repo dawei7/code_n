@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_1288",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one covered interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            2,
+            8
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: nested interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-overlap-not-covered",
+      "name": "overlap but not covered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            0,
+            10
+          ],
+          [
+            5,
+            12
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-same-start",
+      "name": "hidden: same start",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

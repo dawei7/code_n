@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_2607",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two cycles become equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          4,
+          1,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "median"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one gcd cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          5,
+          5,
+          7
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-k-equals-n",
+      "name": "trial: full-length subarrays are already equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-single-cycle",
+      "name": "trial: k one puts all values in one cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-already-periodic",
+      "name": "hidden: already periodic by gcd cycles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          10,
+          1,
+          10,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1445",
+  "source": "leetcode",
+  "frontend_id": "1445",
+  "slug": "apples-oranges",
+  "title": "Apples & Oranges",
+  "difficulty": "Medium",
+  "acceptance_rate": 86.01644669003919,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/apples-oranges/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:facebook",
+    "leetcode_studyplan:premium-sql-50",
+    "leetcode_studyplan:premium-sql-50:premium-sql-50-123-u202",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:facebook",
+    "language:sql",
+    "leetcode",
+    "study_plan:premium-sql-50",
+    "study_plan_section:premium-sql-50:premium-sql-50-123-u202",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-sql-50",
+      "plan_name": "Advanced SQL 50",
+      "section_slug": "premium-sql-50-123-u202",
+      "section_name": "Basic Aggregate Functions",
+      "path": [
+        "Basic Aggregate Functions"
+      ],
+      "order": 18,
+      "section_order": 3,
+      "problem_order": 7,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

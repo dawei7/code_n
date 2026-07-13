@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_583",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: overlapping length-two subsequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word1": "sea",
+        "word2": "eat"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "lcs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: second word is a subsequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word1": "leetcode",
+        "word2": "etco"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: distinct single characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word1": "a",
+        "word2": "b"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: identical strings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "algorithm",
+        "word2": "algorithm"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "identical"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: repeated characters require order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "aabcc",
+        "word2": "adcaa"
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "repeated"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: no common characters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word1": "abc",
+        "word2": "xyz"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: crossing character order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word1": "abcde",
+        "word2": "acebd"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    }
+  ]
+}

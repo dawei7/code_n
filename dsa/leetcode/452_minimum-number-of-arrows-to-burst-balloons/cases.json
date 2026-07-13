@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_452",
+  "cases": [
+    {
+      "id": "sample-overlapping-groups",
+      "name": "sample: two overlapping groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {"points": [[10, 16], [2, 8], [1, 6], [7, 12]]},
+      "expected": 2,
+      "tags": ["sample", "overlap"]
+    },
+    {
+      "id": "sample-disjoint",
+      "name": "sample: all intervals are disjoint",
+      "kind": "sample",
+      "visible": true,
+      "input": {"points": [[1, 2], [3, 4], [5, 6], [7, 8]]},
+      "expected": 4,
+      "tags": ["sample", "disjoint"]
+    },
+    {
+      "id": "sample-touching",
+      "name": "sample: intervals share closed endpoints",
+      "kind": "sample",
+      "visible": true,
+      "input": {"points": [[1, 2], [2, 3], [3, 4], [4, 5]]},
+      "expected": 2,
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: no balloons",
+      "kind": "trial",
+      "visible": true,
+      "input": {"points": []},
+      "expected": 0,
+      "tags": ["trial", "empty"]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one balloon",
+      "kind": "trial",
+      "visible": true,
+      "input": {"points": [[4, 9]]},
+      "expected": 1,
+      "tags": ["trial", "single"]
+    },
+    {
+      "id": "hidden-nested-duplicates",
+      "name": "hidden: nested and duplicate intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {"points": [[1, 10], [2, 9], [3, 8], [3, 8], [4, 7]]},
+      "expected": 1,
+      "tags": ["hidden", "nested", "duplicate"]
+    },
+    {
+      "id": "hidden-negative",
+      "name": "hidden: negative and positive groups",
+      "kind": "real",
+      "visible": false,
+      "input": {"points": [[-10, -5], [-7, -3], [-2, 1], [1, 4], [8, 9]]},
+      "expected": 3,
+      "tags": ["hidden", "negative"]
+    }
+  ]
+}

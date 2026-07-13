@@ -1,0 +1,188 @@
+{
+  "challenge_id": "lc_780",
+  "source": "leetcode",
+  "frontend_id": "780",
+  "slug": "reaching-points",
+  "title": "Reaching Points",
+  "difficulty": "Hard",
+  "acceptance_rate": 34.4802885296151,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    }
+  ],
+  "url": "https://leetcode.com/problems/reaching-points/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:blackstone",
+    "leetcode_company:cloudflare",
+    "leetcode_company:coursera",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:kla",
+    "leetcode_company:microsoft",
+    "leetcode_company:paypal",
+    "leetcode_company:salesforce",
+    "leetcode_company:snapchat",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:blackstone",
+    "company:cloudflare",
+    "company:coursera",
+    "company:goldman-sachs",
+    "company:google",
+    "company:kla",
+    "company:microsoft",
+    "company:paypal",
+    "company:salesforce",
+    "company:snapchat",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Cloudflare",
+      "slug": "cloudflare"
+    },
+    {
+      "name": "Snap",
+      "slug": "snapchat"
+    },
+    {
+      "name": "BlackStone",
+      "slug": "blackstone"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "KLA",
+      "slug": "kla"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Coursera",
+      "slug": "coursera"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "KLA",
+        "slug": "kla",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Coursera",
+        "slug": "coursera",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Cloudflare",
+        "slug": "cloudflare",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snap",
+        "slug": "snapchat",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "BlackStone",
+        "slug": "blackstone",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

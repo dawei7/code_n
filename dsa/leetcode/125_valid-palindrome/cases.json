@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_125",
+  "cases": [
+    {"id": "sample-phrase", "name": "sample: punctuation and case", "kind": "sample", "visible": true, "input": {"s": "A man, a plan, a canal: Panama"}, "expected": true, "tags": ["sample", "normalization"]},
+    {"id": "sample-false", "name": "sample: normalized mismatch", "kind": "sample", "visible": true, "input": {"s": "race a car"}, "expected": false, "tags": ["sample", "mismatch"]},
+    {"id": "sample-empty-normalized", "name": "sample: no alphanumeric characters", "kind": "sample", "visible": true, "input": {"s": " "}, "expected": true, "tags": ["sample", "boundary"]},
+    {"id": "trial-digits", "name": "digits participate in comparison", "kind": "trial", "visible": true, "input": {"s": "0P"}, "expected": false, "tags": ["digits"]},
+    {"id": "real-mixed", "name": "hidden: mixed digit mismatch", "kind": "real", "visible": false, "input": {"s": "1a-2-B1"}, "expected": false, "tags": ["hidden", "case"]}
+  ]
+}

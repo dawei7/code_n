@@ -1,0 +1,126 @@
+{
+  "challenge_id": "lc_2602",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two target values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          6,
+          8
+        ],
+        "queries": [
+          1,
+          5
+        ]
+      },
+      "expected": [
+        14,
+        10
+      ],
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one high target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          9,
+          6,
+          3
+        ],
+        "queries": [
+          10
+        ]
+      },
+      "expected": [
+        20
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one element below target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "queries": [
+          0
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "trial",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: all values already equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "queries": [
+          1,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-low-mid-high-targets",
+      "name": "hidden: targets below, inside, and above values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          10,
+          15
+        ],
+        "queries": [
+          0,
+          10,
+          20
+        ]
+      },
+      "expected": [
+        30,
+        10,
+        30
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

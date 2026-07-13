@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "662",
+  "frontend_id": "662",
+  "title_slug": "maximum-width-of-binary-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065531871",
+  "verified_at": "2026-07-13T01:36:28.279950+00:00"
+}

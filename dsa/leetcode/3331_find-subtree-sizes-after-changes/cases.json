@@ -1,0 +1,158 @@
+{
+  "challenge_id": "lc_3331",
+  "cases": [
+    {
+      "id": "sample-six-nodes",
+      "name": "sample: reattach one branch to same-character ancestor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "s": "abaabc"
+      },
+      "expected": [
+        6,
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "tree"
+      ]
+    },
+    {
+      "id": "sample-root-children",
+      "name": "sample: direct children remain under root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "s": "aabc"
+      },
+      "expected": [
+        4,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "tree"
+      ]
+    },
+    {
+      "id": "alternating-chain",
+      "name": "chain with alternating nearest same-character ancestors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1,
+          2
+        ],
+        "s": "abab"
+      },
+      "expected": [
+        4,
+        2,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "chain",
+        "ancestor-remap"
+      ]
+    },
+    {
+      "id": "trial-simultaneous-remap",
+      "name": "trial: simultaneous updates do not use newly changed parents",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          2,
+          2,
+          3,
+          3,
+          6
+        ],
+        "s": "abacabadb"
+      },
+      "expected": [
+        9,
+        4,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "regression",
+        "simultaneous"
+      ]
+    },
+    {
+      "id": "real-simultaneous-ancestor-map",
+      "name": "real: simultaneous nearest same-character reparenting",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          5,
+          5,
+          7
+        ],
+        "s": "abacabadab"
+      },
+      "expected": [
+        10,
+        2,
+        6,
+        1,
+        1,
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "real",
+        "tree",
+        "ancestor-remap"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "challenge_id": "lc_2959",
+  "source": "leetcode",
+  "frontend_id": "2959",
+  "slug": "number-of-possible-sets-of-closing-branches",
+  "title": "Number of Possible Sets of Closing Branches",
+  "difficulty": "Hard",
+  "acceptance_rate": 51.50689824530071,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-possible-sets-of-closing-branches/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:atlassian",
+    "leetcode_company:meesho",
+    "leetcode_company:ta-digital",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:enumeration",
+    "leetcode_topic:graph",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:shortest-path"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:atlassian",
+    "company:meesho",
+    "company:ta-digital",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:bit-manipulation",
+    "topic:enumeration",
+    "topic:graph",
+    "topic:heap-priority-queue",
+    "topic:shortest-path"
+  ],
+  "company_tags": [
+    {
+      "name": "Atlassian",
+      "slug": "atlassian"
+    },
+    {
+      "name": "Meesho",
+      "slug": "meesho"
+    },
+    {
+      "name": "TA Digital",
+      "slug": "ta-digital"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Atlassian",
+        "slug": "atlassian",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meesho",
+        "slug": "meesho",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "TA Digital",
+        "slug": "ta-digital",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

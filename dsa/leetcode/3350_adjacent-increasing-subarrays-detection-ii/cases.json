@@ -1,0 +1,126 @@
+{
+  "challenge_id": "lc_3350",
+  "cases": [
+    {
+      "id": "sample-max-three",
+      "name": "sample: maximum adjacent increasing length is three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          7,
+          8,
+          9,
+          2,
+          3,
+          4,
+          3,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-max-two",
+      "name": "sample: maximum adjacent increasing length is two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          4,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "increasing-runs"
+      ]
+    },
+    {
+      "id": "trial-whole-run-splits",
+      "name": "trial: one long run can be split into adjacent halves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "regression",
+        "single-run"
+      ]
+    },
+    {
+      "id": "trial-no-increase",
+      "name": "trial: no increasing pair beyond length one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "flat"
+      ]
+    },
+    {
+      "id": "real-many-runs",
+      "name": "real: several candidate run lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5,
+          6,
+          1,
+          2,
+          3,
+          7,
+          8,
+          9,
+          10,
+          11,
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "increasing-runs"
+      ]
+    }
+  ]
+}

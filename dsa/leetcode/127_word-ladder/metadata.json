@@ -1,0 +1,496 @@
+{
+  "challenge_id": "lc_127",
+  "source": "leetcode",
+  "frontend_id": "127",
+  "slug": "word-ladder",
+  "title": "Word Ladder",
+  "difficulty": "Hard",
+  "acceptance_rate": 45.960885650843544,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/word-ladder/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:box",
+    "leetcode_company:citadel",
+    "leetcode_company:docusign",
+    "leetcode_company:ebay",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:okta",
+    "leetcode_company:oracle",
+    "leetcode_company:phonepe",
+    "leetcode_company:reddit",
+    "leetcode_company:salesforce",
+    "leetcode_company:samsung",
+    "leetcode_company:servicenow",
+    "leetcode_company:snapchat",
+    "leetcode_company:tekion",
+    "leetcode_company:tesla",
+    "leetcode_company:the-trade-desk",
+    "leetcode_company:tiktok",
+    "leetcode_company:uber",
+    "leetcode_company:visa",
+    "leetcode_company:yelp",
+    "leetcode_studyplan:graph-theory",
+    "leetcode_studyplan:graph-theory:graph-theory-106-ggaq",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-13-9z8t",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:string",
+    "neetcode:allNC",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "company:amazon",
+    "company:apple",
+    "company:bloomberg",
+    "company:box",
+    "company:citadel",
+    "company:docusign",
+    "company:ebay",
+    "company:facebook",
+    "company:google",
+    "company:linkedin",
+    "company:microsoft",
+    "company:okta",
+    "company:oracle",
+    "company:phonepe",
+    "company:reddit",
+    "company:salesforce",
+    "company:samsung",
+    "company:servicenow",
+    "company:snapchat",
+    "company:tekion",
+    "company:tesla",
+    "company:the-trade-desk",
+    "company:tiktok",
+    "company:uber",
+    "company:visa",
+    "company:yelp",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:graph-theory",
+    "study_plan:top-interview-150",
+    "study_plan_section:graph-theory:graph-theory-106-ggaq",
+    "study_plan_section:top-interview-150:top-interview-150-13-9z8t",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:breadth-first-search",
+    "topic:hash-table",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Citadel",
+      "slug": "citadel"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "ServiceNow",
+      "slug": "servicenow"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Okta",
+      "slug": "okta"
+    },
+    {
+      "name": "Reddit",
+      "slug": "reddit"
+    },
+    {
+      "name": "Snap",
+      "slug": "snapchat"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "eBay",
+      "slug": "ebay"
+    },
+    {
+      "name": "Box",
+      "slug": "box"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "Samsung",
+      "slug": "samsung"
+    },
+    {
+      "name": "Tesla",
+      "slug": "tesla"
+    },
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    },
+    {
+      "name": "The Trade Desk",
+      "slug": "the-trade-desk"
+    },
+    {
+      "name": "Docusign",
+      "slug": "docusign"
+    },
+    {
+      "name": "Tekion",
+      "slug": "tekion"
+    },
+    {
+      "name": "Yelp",
+      "slug": "yelp"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Snap",
+        "slug": "snapchat",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "eBay",
+        "slug": "ebay",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Box",
+        "slug": "box",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Samsung",
+        "slug": "samsung",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tesla",
+        "slug": "tesla",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "The Trade Desk",
+        "slug": "the-trade-desk",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Docusign",
+        "slug": "docusign",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tekion",
+        "slug": "tekion",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Yelp",
+        "slug": "yelp",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 18
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Citadel",
+        "slug": "citadel",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ServiceNow",
+        "slug": "servicenow",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Okta",
+        "slug": "okta",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Reddit",
+        "slug": "reddit",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-13-9z8t",
+      "section_name": "Graph BFS",
+      "path": [
+        "Graph BFS"
+      ],
+      "order": 97,
+      "section_order": 13,
+      "problem_order": 3,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "graph-theory",
+      "plan_name": "Graph Theory",
+      "section_slug": "graph-theory-106-ggaq",
+      "section_name": "BFS",
+      "path": [
+        "BFS"
+      ],
+      "order": 12,
+      "section_order": 2,
+      "problem_order": 4,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/graph-theory/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Graphs"
+      ],
+      "order": 91,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "word-ladder",
+      "leetcode_slug": "word-ladder",
+      "difficulty": "Hard",
+      "problem_order": 12
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Graphs"
+      ],
+      "order": 162,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "word-ladder",
+      "leetcode_slug": "word-ladder",
+      "difficulty": "Hard",
+      "problem_order": 20
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Graphs"
+      ],
+      "order": 622,
+      "section_order": 10,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "word-ladder",
+      "leetcode_slug": "word-ladder",
+      "difficulty": "Hard",
+      "problem_order": 67
+    }
+  ]
+}

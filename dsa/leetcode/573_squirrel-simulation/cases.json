@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_573",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two nuts with no positive saving",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "height": 5,
+        "width": 7,
+        "tree": [
+          2,
+          2
+        ],
+        "squirrel": [
+          4,
+          4
+        ],
+        "nuts": [
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "manhattan"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one nut and negative saving",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "height": 1,
+        "width": 3,
+        "tree": [
+          0,
+          1
+        ],
+        "squirrel": [
+          0,
+          0
+        ],
+        "nuts": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "manhattan"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: squirrel starts at tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "height": 4,
+        "width": 4,
+        "tree": [
+          1,
+          1
+        ],
+        "squirrel": [
+          1,
+          1
+        ],
+        "nuts": [
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "manhattan"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one nearby nut",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 3,
+        "width": 3,
+        "tree": [
+          1,
+          1
+        ],
+        "squirrel": [
+          0,
+          0
+        ],
+        "nuts": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "first-nut"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: choose by relative saving",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 6,
+        "width": 6,
+        "tree": [
+          2,
+          2
+        ],
+        "squirrel": [
+          5,
+          5
+        ],
+        "nuts": [
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "trial",
+        "first-nut"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: symmetric nuts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": 5,
+        "width": 5,
+        "tree": [
+          0,
+          0
+        ],
+        "squirrel": [
+          4,
+          4
+        ],
+        "nuts": [
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      },
+      "expected": 22,
+      "tags": [
+        "hidden",
+        "saving"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: several competing first trips",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": 10,
+        "width": 10,
+        "tree": [
+          5,
+          5
+        ],
+        "squirrel": [
+          0,
+          9
+        ],
+        "nuts": [
+          [
+            1,
+            1
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      },
+      "expected": 55,
+      "tags": [
+        "hidden",
+        "saving"
+      ]
+    }
+  ]
+}
+

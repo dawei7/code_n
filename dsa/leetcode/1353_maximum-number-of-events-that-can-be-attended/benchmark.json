@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_1353",
+  "cases": [
+    {
+      "id": "benchmark-long-event-plus-short-events",
+      "name": "benchmark: long event plus short events",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "events": [
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

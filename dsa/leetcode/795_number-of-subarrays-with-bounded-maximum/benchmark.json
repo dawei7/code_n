@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_795",
+  "measurement_note": "Size is the array length. Endpoint contribution counting takes O(size); enumerating every start and extending every subarray takes O(size^2) on these all-valid arrays.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 qualifying values", "kind": "benchmark", "visible": false, "size": 4, "input": {"nums": [2, 2, 2, 2], "left": 2, "right": 2}, "expected": 10, "tags": ["benchmark", "scaling", "all-valid"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 qualifying values", "kind": "benchmark", "visible": false, "size": 16, "input": {"nums": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "left": 2, "right": 2}, "expected": 136, "tags": ["benchmark", "scaling", "all-valid"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 24 qualifying values", "kind": "benchmark", "visible": false, "size": 24, "input": {"nums": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "left": 2, "right": 2}, "expected": 300, "tags": ["benchmark", "scaling", "all-valid"]}
+  ]
+}

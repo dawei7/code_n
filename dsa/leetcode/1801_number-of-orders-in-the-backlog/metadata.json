@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_1801",
+  "source": "leetcode",
+  "frontend_id": "1801",
+  "slug": "number-of-orders-in-the-backlog",
+  "title": "Number of Orders in the Backlog",
+  "difficulty": "Medium",
+  "acceptance_rate": 54.09314961070969,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-orders-in-the-backlog/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:citadel",
+    "leetcode_company:robinhood",
+    "leetcode_topic:array",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:simulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:citadel",
+    "company:robinhood",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:heap-priority-queue",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Citadel",
+      "slug": "citadel"
+    },
+    {
+      "name": "Robinhood",
+      "slug": "robinhood"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Robinhood",
+        "slug": "robinhood",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Citadel",
+        "slug": "citadel",
+        "timesEncountered": 5
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

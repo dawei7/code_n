@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_2902",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one sub-multiset reaches six or seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3
+        ],
+        "l": 6,
+        "r": 7
+      },
+      "tags": [
+        "sample",
+        "bounded-knapsack"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: several sums between one and five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4,
+          2,
+          7
+        ],
+        "l": 1,
+        "r": 5
+      },
+      "tags": [
+        "sample",
+        "dp"
+      ],
+      "expected": 7
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: exact target sum with duplicates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "l": 3,
+        "r": 3
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-zeros-multiply-every-sum",
+      "name": "trial: zeros duplicate every reachable nonzero sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1
+        ],
+        "l": 0,
+        "r": 1
+      },
+      "tags": [
+        "trial",
+        "zeros"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "real-zero-with-two-nonzero-values",
+      "name": "hidden: zero multiplies a bounded nonzero sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          0,
+          4
+        ],
+        "l": 9,
+        "r": 13
+      },
+      "tags": [
+        "hidden",
+        "zero-edge"
+      ],
+      "expected": 2
+    }
+  ]
+}

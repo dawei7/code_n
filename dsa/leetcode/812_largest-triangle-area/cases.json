@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_812",
+  "cases": [
+    {"id": "sample-1", "name": "sample: axis endpoints form largest triangle", "kind": "sample", "visible": true, "input": {"points": [[0, 0], [0, 1], [1, 0], [0, 2], [2, 0]]}, "expected": 2.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "right-triangle"]},
+    {"id": "sample-2", "name": "sample: three-point right triangle", "kind": "sample", "visible": true, "input": {"points": [[0, 0], [4, 0], [0, 3]]}, "expected": 6.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "right-triangle"]},
+    {"id": "sample-3", "name": "sample: all points collinear", "kind": "sample", "visible": true, "input": {"points": [[0, 0], [1, 1], [2, 2]]}, "expected": 0.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "collinear"]},
+    {"id": "trial-1", "name": "trial: half-unit triangle", "kind": "trial", "visible": true, "input": {"points": [[0, 0], [1, 0], [0, 1]]}, "expected": 0.5, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "half-unit"]},
+    {"id": "trial-2", "name": "trial: square corners", "kind": "trial", "visible": true, "input": {"points": [[0, 0], [1, 0], [1, 1], [0, 1]]}, "expected": 0.5, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "square"]},
+    {"id": "trial-3", "name": "trial: negative-coordinate square", "kind": "trial", "visible": true, "input": {"points": [[-1, -1], [1, -1], [-1, 1], [1, 1], [0, 0]]}, "expected": 2.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "negative-coordinates"]},
+    {"id": "hidden-1", "name": "hidden: interior point does not enlarge hull triangle", "kind": "real", "visible": false, "input": {"points": [[0, 0], [6, 0], [0, 4], [1, 1]]}, "expected": 12.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["hidden", "interior-point"]},
+    {"id": "hidden-2", "name": "hidden: clockwise coordinates", "kind": "real", "visible": false, "input": {"points": [[0, 0], [0, 5], [3, 0]]}, "expected": 7.5, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["hidden", "orientation"]},
+    {"id": "hidden-3", "name": "hidden: collinear points beside one triangle", "kind": "real", "visible": false, "input": {"points": [[0, 0], [1, 0], [2, 0], [0, 3]]}, "expected": 3.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["hidden", "collinear"]}
+  ]
+}

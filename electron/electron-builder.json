@@ -1,0 +1,83 @@
+{
+  "appId": "com.dawei7.coden",
+  "productName": "cOde(n)",
+  "copyright": "Copyright © 2026 dawei7",
+  "directories": {
+    "output": "release"
+  },
+  "files": [
+    "dist/**/*",
+    "package.json"
+  ],
+  "extraResources": [
+    {
+      "from": "../server/dist/coden-server",
+      "to": "coden-server"
+    },
+    {
+      "from": "../server/dist/debug-python",
+      "to": "debug-python"
+    },
+    {
+      "from": "../server/dist/debug-tools",
+      "to": "debug-tools"
+    },
+    {
+      "from": "../web/dist",
+      "to": "web-dist"
+    },
+    {
+      "from": "../README.md",
+      "to": "README.md"
+    },
+    {
+      "from": "../dsa/leetcode",
+      "to": "dsa/leetcode",
+      "filter": [
+        "**/*",
+        "!_local",
+        "!_local/**/*",
+        "!_reports/leetcode_submission_results.jsonl"
+      ]
+    }
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      },
+      {
+        "target": "dir",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "icon": "assets/icon.ico"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "include": "installer.nsh",
+    "allowToChangeInstallationDirectory": true,
+    "allowElevation": false,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "cOde(n)",
+    "deleteAppDataOnUninstall": false,
+    "artifactName": "cOde(n)-Setup-${version}.${ext}"
+  },
+  "asar": true,
+  "compression": "normal",
+  "buildDependenciesFromSource": false,
+  "publish": {
+    "provider": "github",
+    "owner": "dawei7",
+    "repo": "code_n",
+    "releaseType": "release",
+    "channel": "latest"
+  }
+}

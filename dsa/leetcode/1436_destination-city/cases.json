@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_1436",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three-city chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "paths": [
+          [
+            "London",
+            "New York"
+          ],
+          [
+            "New York",
+            "Lima"
+          ],
+          [
+            "Lima",
+            "Sao Paulo"
+          ]
+        ]
+      },
+      "expected": "Sao Paulo",
+      "tags": [
+        "sample",
+        "hash-set"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: shuffled chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "paths": [
+          [
+            "B",
+            "C"
+          ],
+          [
+            "D",
+            "B"
+          ],
+          [
+            "C",
+            "A"
+          ]
+        ]
+      },
+      "expected": "A",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "paths": [
+          [
+            "A",
+            "Z"
+          ]
+        ]
+      },
+      "expected": "Z",
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-unordered-chain",
+      "name": "hidden: unordered chain edges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "paths": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "C",
+            "D"
+          ],
+          [
+            "B",
+            "C"
+          ]
+        ]
+      },
+      "expected": "D",
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

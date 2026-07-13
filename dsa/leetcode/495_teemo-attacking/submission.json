@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "495",
+  "frontend_id": "495",
+  "title_slug": "teemo-attacking",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065105495",
+  "verified_at": "2026-07-12T14:47:33.225581+00:00"
+}

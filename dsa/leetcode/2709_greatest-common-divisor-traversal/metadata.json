@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_2709",
+  "source": "leetcode",
+  "frontend_id": "2709",
+  "slug": "greatest-common-divisor-traversal",
+  "title": "Greatest Common Divisor Traversal",
+  "difficulty": "Hard",
+  "acceptance_rate": 41.819579675159545,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    },
+    {
+      "name": "Number Theory",
+      "slug": "number-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/greatest-common-divisor-traversal/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:math",
+    "leetcode_topic:number-theory",
+    "leetcode_topic:union-find",
+    "neetcode:allNC",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:math",
+    "topic:number-theory",
+    "topic:union-find"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Advanced Graphs"
+      ],
+      "order": 172,
+      "section_order": 11,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "greatest-common-divisor-traversal",
+      "leetcode_slug": "greatest-common-divisor-traversal",
+      "difficulty": "Hard",
+      "problem_order": 9
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Advanced Graphs"
+      ],
+      "order": 654,
+      "section_order": 11,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "greatest-common-divisor-traversal",
+      "leetcode_slug": "greatest-common-divisor-traversal",
+      "difficulty": "Hard",
+      "problem_order": 28
+    }
+  ]
+}

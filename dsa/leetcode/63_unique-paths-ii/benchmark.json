@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_63",
+  "measurement_note": "Obstacle-free square grids grow geometrically; dynamic programming processes each cell once, while unmemoized movement recursion grows with the number of paths.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: side one", "kind": "benchmark", "visible": false, "size": 1, "input": {"obstacle_grid": [[0]]}, "expected": 1, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: side four", "kind": "benchmark", "visible": false, "size": 4, "input": {"obstacle_grid": [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]}, "expected": 20, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: side sixteen", "kind": "benchmark", "visible": false, "size": 16, "input": {"obstacle_grid": [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]}, "expected": 155117520, "tags": ["benchmark", "scale-large"]}
+  ]
+}

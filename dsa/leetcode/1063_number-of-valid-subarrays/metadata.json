@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1063",
+  "source": "leetcode",
+  "frontend_id": "1063",
+  "slug": "number-of-valid-subarrays",
+  "title": "Number of Valid Subarrays",
+  "difficulty": "Hard",
+  "acceptance_rate": 80.06298835911338,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-valid-subarrays/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:hulu",
+    "leetcode_topic:array",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:stack"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:hulu",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:monotonic-stack",
+    "topic:stack"
+  ],
+  "company_tags": [
+    {
+      "name": "Hulu",
+      "slug": "hulu"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Hulu",
+        "slug": "hulu",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

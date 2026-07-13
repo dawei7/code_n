@@ -1,0 +1,54 @@
+{
+  "challenge_id": "lc_1263",
+  "cases": [
+    {
+      "id": "benchmark-two-pushes",
+      "name": "benchmark: two-push route",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "#",
+            "#",
+            "#",
+            "#",
+            "#"
+          ],
+          [
+            "#",
+            "S",
+            ".",
+            "T",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            "B",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            "#",
+            "#",
+            "#",
+            "#"
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

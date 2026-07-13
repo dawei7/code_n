@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_1566",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: single value pattern repeats",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          4,
+          4,
+          4,
+          4
+        ],
+        "m": 1,
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: length-two pattern repeats",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          3
+        ],
+        "m": 2,
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: not enough repetitions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          3
+        ],
+        "m": 2,
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-two-blocks",
+      "name": "hidden: two repeated length-two blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "m": 2,
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

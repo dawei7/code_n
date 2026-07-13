@@ -1,0 +1,234 @@
+{
+  "challenge_id": "lc_371",
+  "source": "leetcode",
+  "frontend_id": "371",
+  "slug": "sum-of-two-integers",
+  "title": "Sum of Two Integers",
+  "difficulty": "Medium",
+  "acceptance_rate": 55.76720741411783,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/sum-of-two-integers/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:hulu",
+    "leetcode_company:ibm",
+    "leetcode_company:microsoft",
+    "leetcode_company:swiggy",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:math",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:bloomberg",
+    "company:facebook",
+    "company:google",
+    "company:hulu",
+    "company:ibm",
+    "company:microsoft",
+    "company:swiggy",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:bit-manipulation",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Swiggy",
+      "slug": "swiggy"
+    },
+    {
+      "name": "Hulu",
+      "slug": "hulu"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Swiggy",
+        "slug": "swiggy",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Hulu",
+        "slug": "hulu",
+        "timesEncountered": 0
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "Bit Manipulation"
+      ],
+      "order": 74,
+      "section_order": 17,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "sum-of-two-integers",
+      "leetcode_slug": "sum-of-two-integers",
+      "difficulty": "Medium",
+      "problem_order": 4
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Bit Manipulation"
+      ],
+      "order": 148,
+      "section_order": 17,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "sum-of-two-integers",
+      "leetcode_slug": "sum-of-two-integers",
+      "difficulty": "Medium",
+      "problem_order": 5
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Bit Manipulation"
+      ],
+      "order": 246,
+      "section_order": 17,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "sum-of-two-integers",
+      "leetcode_slug": "sum-of-two-integers",
+      "difficulty": "Medium",
+      "problem_order": 6
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Bit Manipulation"
+      ],
+      "order": 925,
+      "section_order": 17,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "sum-of-two-integers",
+      "leetcode_slug": "sum-of-two-integers",
+      "difficulty": "Medium",
+      "problem_order": 13
+    }
+  ]
+}

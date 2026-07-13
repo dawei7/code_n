@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1069",
+  "source": "leetcode",
+  "frontend_id": "1069",
+  "slug": "product-sales-analysis-ii",
+  "title": "Product Sales Analysis II",
+  "difficulty": "Easy",
+  "acceptance_rate": 82.67522276025878,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/product-sales-analysis-ii/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:amazon",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:amazon",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

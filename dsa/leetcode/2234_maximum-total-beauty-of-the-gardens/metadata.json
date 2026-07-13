@@ -1,0 +1,127 @@
+{
+  "challenge_id": "lc_2234",
+  "source": "leetcode",
+  "frontend_id": "2234",
+  "slug": "maximum-total-beauty-of-the-gardens",
+  "title": "Maximum Total Beauty of the Gardens",
+  "difficulty": "Hard",
+  "acceptance_rate": 30.2129221732746,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:intuit",
+    "leetcode_studyplan:tiktok-spring-23-high-frequency",
+    "leetcode_studyplan:tiktok-spring-23-high-frequency:tiktok-spring-23-high-frequency-147-v6lb",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:enumeration",
+    "leetcode_topic:greedy",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:sorting",
+    "leetcode_topic:two-pointers"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:intuit",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:tiktok-spring-23-high-frequency",
+    "study_plan_section:tiktok-spring-23-high-frequency:tiktok-spring-23-high-frequency-147-v6lb",
+    "topic:array",
+    "topic:binary-search",
+    "topic:enumeration",
+    "topic:greedy",
+    "topic:prefix-sum",
+    "topic:sorting",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Intuit",
+      "slug": "intuit"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Intuit",
+        "slug": "intuit",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "tiktok-spring-23-high-frequency",
+      "plan_name": "TikTok Spring '23 High Frequency",
+      "section_slug": "tiktok-spring-23-high-frequency-147-v6lb",
+      "section_name": "March Interview Questions",
+      "path": [
+        "March Interview Questions"
+      ],
+      "order": 14,
+      "section_order": 2,
+      "problem_order": 4,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/tiktok-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": []
+}

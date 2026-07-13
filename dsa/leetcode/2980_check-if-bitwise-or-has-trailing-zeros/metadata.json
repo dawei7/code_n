@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2980",
+  "source": "leetcode",
+  "frontend_id": "2980",
+  "slug": "check-if-bitwise-or-has-trailing-zeros",
+  "title": "Check if Bitwise OR Has Trailing Zeros",
+  "difficulty": "Easy",
+  "acceptance_rate": 71.52354724748949,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/check-if-bitwise-or-has-trailing-zeros/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:meituan",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:meituan",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Meituan",
+      "slug": "meituan"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meituan",
+        "slug": "meituan",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

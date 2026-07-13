@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "734",
+  "frontend_id": "734",
+  "title_slug": "sentence-similarity",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.areSentencesSimilar",
+  "verified_submission_id": "2065812494",
+  "verified_at": "2026-07-13T07:16:46.828831+00:00"
+}

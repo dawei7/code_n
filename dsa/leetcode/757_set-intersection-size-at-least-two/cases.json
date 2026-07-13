@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_757",
+  "cases": [
+    {"id": "sample-1", "name": "sample: three shared points suffice", "kind": "sample", "visible": true, "input": {"intervals": [[1,3],[1,4],[2,5],[3,5]]}, "expected": 3, "tags": ["sample", "overlap"]},
+    {"id": "sample-2", "name": "sample: short boundary intervals", "kind": "sample", "visible": true, "input": {"intervals": [[1,2],[2,3],[2,4],[4,5]]}, "expected": 5, "tags": ["sample", "boundary"]},
+    {"id": "trial-1", "name": "trial: one interval", "kind": "trial", "visible": true, "input": {"intervals": [[5,9]]}, "expected": 2, "tags": ["trial", "single"]},
+    {"id": "trial-2", "name": "trial: identical intervals", "kind": "trial", "visible": true, "input": {"intervals": [[1,3],[1,3],[1,3]]}, "expected": 2, "tags": ["trial", "duplicates"]},
+    {"id": "trial-3", "name": "trial: disjoint intervals", "kind": "trial", "visible": true, "input": {"intervals": [[1,2],[4,5],[8,9]]}, "expected": 6, "tags": ["trial", "disjoint"]},
+    {"id": "hidden-1", "name": "hidden: nested intervals", "kind": "real", "visible": false, "input": {"intervals": [[1,10],[2,9],[3,8]]}, "expected": 2, "tags": ["hidden", "nested"]},
+    {"id": "hidden-2", "name": "hidden: two intervals share both points", "kind": "real", "visible": false, "input": {"intervals": [[1,3],[2,4]]}, "expected": 2, "tags": ["hidden", "shared-pair"]},
+    {"id": "hidden-3", "name": "hidden: equal ends with different starts", "kind": "real", "visible": false, "input": {"intervals": [[1,5],[3,5],[4,5]]}, "expected": 2, "tags": ["hidden", "equal-end"]}
+  ]
+}

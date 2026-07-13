@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_411",
+  "measurement_note": "Size is target length. Two dictionary words differ only at the first or final position, so relevant-bit branch-and-bound immediately forces those positions, while exhaustive enumeration still checks every one of the 2^size target masks.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: distinguish two sparse differences across 3 positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "target": "aaa",
+        "dictionary": [
+          "baa",
+          "aab"
+        ]
+      },
+      "expected": "aaa",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "sparse-differences"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: distinguish two sparse differences across 6 positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "target": "aaaaaa",
+        "dictionary": [
+          "baaaaa",
+          "aaaaab"
+        ]
+      },
+      "expected": "a4a",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "sparse-differences"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: distinguish two sparse differences across 12 positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "target": "aaaaaaaaaaaa",
+        "dictionary": [
+          "baaaaaaaaaaa",
+          "aaaaaaaaaaab"
+        ]
+      },
+      "expected": "a10a",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "sparse-differences"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "challenge_id": "lc_1311",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: level one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "watched_videos": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "C"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "D"
+          ]
+        ],
+        "friends": [
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "id": 0,
+        "level": 1
+      },
+      "expected": [
+        "B",
+        "C"
+      ],
+      "tags": [
+        "sample",
+        "bfs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: level two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "watched_videos": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "C"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "D"
+          ]
+        ],
+        "friends": [
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "id": 0,
+        "level": 2
+      },
+      "expected": [
+        "D"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-level-zero",
+      "name": "level zero uses starting person",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "watched_videos": [
+          [
+            "A"
+          ],
+          [
+            "B"
+          ],
+          [
+            "C"
+          ]
+        ],
+        "friends": [
+          [
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ]
+        ],
+        "id": 1,
+        "level": 0
+      },
+      "expected": [
+        "B"
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-frequency-tie",
+      "name": "hidden: one video at level two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "watched_videos": [
+          [
+            "x"
+          ],
+          [
+            "y",
+            "z"
+          ],
+          [
+            "y"
+          ],
+          [
+            "z"
+          ]
+        ],
+        "friends": [
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "id": 0,
+        "level": 2
+      },
+      "expected": [
+        "z"
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

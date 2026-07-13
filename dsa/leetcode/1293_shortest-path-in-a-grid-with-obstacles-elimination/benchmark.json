@@ -1,0 +1,44 @@
+{
+  "challenge_id": "lc_1293",
+  "cases": [
+    {
+      "id": "benchmark-four-by-four",
+      "name": "benchmark: four by four with one elimination",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

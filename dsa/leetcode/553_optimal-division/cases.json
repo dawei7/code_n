@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_553",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four-number optimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000,
+          100,
+          10,
+          2
+        ]
+      },
+      "expected": "1000/(100/10/2)",
+      "tags": [
+        "sample",
+        "format"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": "2",
+      "tags": [
+        "sample",
+        "format"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3
+        ]
+      },
+      "expected": "2/3",
+      "tags": [
+        "sample",
+        "format"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: minimum parenthesized tail",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": "2/(3/4)",
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: leading one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": "1/(2/3/4)",
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: tail contains one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          3,
+          1
+        ]
+      },
+      "expected": "9/(3/1)",
+      "tags": [
+        "hidden",
+        "positive-values"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: longer expression",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          2,
+          4,
+          8,
+          16
+        ]
+      },
+      "expected": "6/(2/4/8/16)",
+      "tags": [
+        "hidden",
+        "positive-values"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: all values are one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": "1/(1/1/1)",
+      "tags": [
+        "hidden",
+        "positive-values"
+      ]
+    }
+  ]
+}
+

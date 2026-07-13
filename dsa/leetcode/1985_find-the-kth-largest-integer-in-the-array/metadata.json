@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_1985",
+  "source": "leetcode",
+  "frontend_id": "1985",
+  "slug": "find-the-kth-largest-integer-in-the-array",
+  "title": "Find the Kth Largest Integer in the Array",
+  "difficulty": "Medium",
+  "acceptance_rate": 48.137173222850194,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Divide and Conquer",
+      "slug": "divide-and-conquer"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Quickselect",
+      "slug": "quickselect"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:divide-and-conquer",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:quickselect",
+    "leetcode_topic:sorting",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:divide-and-conquer",
+    "topic:heap-priority-queue",
+    "topic:quickselect",
+    "topic:sorting",
+    "topic:string"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 493,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "find-the-kth-largest-integer-in-the-array",
+      "leetcode_slug": "find-the-kth-largest-integer-in-the-array",
+      "difficulty": "Medium",
+      "problem_order": 19
+    }
+  ]
+}

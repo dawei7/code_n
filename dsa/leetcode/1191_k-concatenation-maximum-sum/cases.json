@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_1191",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: positive array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "kadane"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: alternating values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          -2,
+          1
+        ],
+        "k": 5
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          -1,
+          -2
+        ],
+        "k": 7
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-positive-total",
+      "name": "hidden: positive total repeated",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          -1,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 9,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

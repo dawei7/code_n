@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_3483",
+  "cases": [
+    {
+      "id": "sample-four-digits",
+      "name": "sample: twelve distinct even numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "digits": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-zero-and-duplicate",
+      "name": "sample: zero with duplicate twos",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "digits": [
+          0,
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-all-same-even",
+      "name": "trial: repeated same even digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          6,
+          6,
+          6
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-no-even-last",
+      "name": "trial: no even final digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          1,
+          3,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "none"
+      ]
+    },
+    {
+      "id": "real-many-duplicates",
+      "name": "real: many duplicate digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "digits": [
+          0,
+          0,
+          1,
+          2,
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": 53,
+      "tags": [
+        "real",
+        "counting"
+      ]
+    }
+  ]
+}

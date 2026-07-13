@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_1381",
+  "cases": [
+    {
+      "id": "benchmark-lazy-increments",
+      "name": "benchmark: layered increments",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "max_size": 4,
+        "operations": [
+          [
+            "push",
+            [
+              5
+            ]
+          ],
+          [
+            "push",
+            [
+              6
+            ]
+          ],
+          [
+            "increment",
+            [
+              1,
+              100
+            ]
+          ],
+          [
+            "push",
+            [
+              7
+            ]
+          ],
+          [
+            "increment",
+            [
+              3,
+              10
+            ]
+          ],
+          [
+            "pop",
+            []
+          ],
+          [
+            "pop",
+            []
+          ],
+          [
+            "pop",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        17,
+        16,
+        115
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

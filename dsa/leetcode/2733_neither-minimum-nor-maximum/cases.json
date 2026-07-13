@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_2733",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: middle from first three is valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "middle"
+      ],
+      "validator": {
+        "kind": "neither_min_nor_max"
+      },
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: only two values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "none"
+      ],
+      "validator": {
+        "kind": "neither_min_nor_max"
+      },
+      "expected": -1
+    },
+    {
+      "id": "trial-three-values",
+      "name": "trial: exactly three values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "validator": {
+        "kind": "neither_min_nor_max"
+      },
+      "expected": 2
+    },
+    {
+      "id": "trial-many-middle-options",
+      "name": "trial: several values are valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          4,
+          2
+        ]
+      },
+      "tags": [
+        "trial",
+        "multiple-valid"
+      ],
+      "validator": {
+        "kind": "neither_min_nor_max"
+      },
+      "expected": 4
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: large distinct values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          20,
+          90,
+          1,
+          70
+        ]
+      },
+      "tags": [
+        "hidden",
+        "large"
+      ],
+      "validator": {
+        "kind": "neither_min_nor_max"
+      },
+      "expected": 90
+    }
+  ]
+}

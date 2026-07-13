@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_648",
+  "cases": [
+    {"id": "sample-1", "name": "sample: several roots and unchanged words", "kind": "sample", "visible": true, "input": {"dictionary": ["cat","bat","rat"], "sentence": "the cattle was rattled by the battery"}, "expected": "the cat was rat by the bat", "tags": ["sample", "mixed"]},
+    {"id": "sample-2", "name": "sample: one-letter roots", "kind": "sample", "visible": true, "input": {"dictionary": ["a","b","c"], "sentence": "aadsfasf absbs bbab cadsfafs"}, "expected": "a a b c", "tags": ["sample", "short-roots"]},
+    {"id": "trial-1", "name": "trial: shortest matching root", "kind": "trial", "visible": true, "input": {"dictionary": ["cat","c"], "sentence": "cattle"}, "expected": "c", "tags": ["trial", "shortest"]},
+    {"id": "trial-2", "name": "trial: no roots match", "kind": "trial", "visible": true, "input": {"dictionary": ["ab","xy"], "sentence": "cat dog"}, "expected": "cat dog", "tags": ["trial", "unchanged"]},
+    {"id": "hidden-1", "name": "hidden: word equals root", "kind": "real", "visible": false, "input": {"dictionary": ["hello","hell"], "sentence": "hello helper"}, "expected": "hell helper", "tags": ["hidden", "equal", "shortest"]},
+    {"id": "hidden-2", "name": "hidden: duplicate roots", "kind": "real", "visible": false, "input": {"dictionary": ["a","a","apple"], "sentence": "apple apply"}, "expected": "a a", "tags": ["hidden", "duplicates"]},
+    {"id": "hidden-3", "name": "hidden: repeated word occurrences", "kind": "real", "visible": false, "input": {"dictionary": ["run"], "sentence": "runner runs runner"}, "expected": "run run run", "tags": ["hidden", "repeated"]}
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "challenge_id": "lc_3288",
+  "cases": [
+    {
+      "id": "sample-middle-point",
+      "name": "sample: required middle coordinate by index",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "lis"
+      ]
+    },
+    {
+      "id": "sample-start-point",
+      "name": "sample: required point at index zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            2,
+            1
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "k": 0
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-same-x-values",
+      "name": "trial: same x-values cannot both be counted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "edge",
+        "same-x"
+      ]
+    },
+    {
+      "id": "trial-same-y-values",
+      "name": "trial: same y-values cannot both be counted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "same-y"
+      ]
+    },
+    {
+      "id": "real-mixed-path",
+      "name": "real: hidden mixed increasing path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coordinates": [
+          [
+            4,
+            5
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "k": 5
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "lis"
+      ]
+    }
+  ]
+}

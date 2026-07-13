@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_1252",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two row-column operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 3,
+        "indices": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two by two cancels",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "indices": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-cell-toggle",
+      "name": "one cell toggle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 1,
+        "indices": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-repeated-index",
+      "name": "hidden: repeated index cancels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 3,
+        "n": 4,
+        "indices": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

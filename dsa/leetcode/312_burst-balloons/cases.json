@@ -1,0 +1,108 @@
+{
+  "challenge_id": "lc_312",
+  "cases": [
+    {
+      "id": "sample-classic",
+      "name": "sample: changing neighbors yield 167",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          5,
+          8
+        ]
+      },
+      "expected": 167,
+      "tags": [
+        "sample",
+        "interval-dp"
+      ]
+    },
+    {
+      "id": "sample-two",
+      "name": "sample: two balloons",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          1
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "sample",
+        "two-values"
+      ]
+    },
+    {
+      "id": "sample-other-two",
+      "name": "sample: larger left value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          2
+        ]
+      },
+      "expected": 30,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one balloon uses virtual neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-zeroes",
+      "name": "zero balloons still affect adjacency",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "real-middle-first",
+      "name": "hidden: optimal order bursts the middle first",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": 33,
+      "tags": [
+        "hidden",
+        "order"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_438",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two separated anagrams",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "cbaebabacd", "p": "abc"},
+      "expected": [0, 6],
+      "tags": ["sample", "separated"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: overlapping anagrams",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abab", "p": "ab"},
+      "expected": [0, 1, 2],
+      "tags": ["sample", "overlapping"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one-character match",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "a", "p": "a"},
+      "expected": [0],
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "trial-repeated",
+      "name": "trial: repeated pattern letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "baa", "p": "aa"},
+      "expected": [1],
+      "tags": ["trial", "repeated"]
+    },
+    {
+      "id": "trial-longer-pattern",
+      "name": "trial: pattern is longer than text",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "ab", "p": "abc"},
+      "expected": [],
+      "tags": ["trial", "longer-pattern"]
+    },
+    {
+      "id": "hidden-all-match",
+      "name": "hidden: every window matches",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaaaa", "p": "aa"},
+      "expected": [0, 1, 2, 3],
+      "tags": ["hidden", "all-match"]
+    },
+    {
+      "id": "hidden-no-match",
+      "name": "hidden: no window has the required multiset",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdefgh", "p": "zzz"},
+      "expected": [],
+      "tags": ["hidden", "none"]
+    },
+    {
+      "id": "hidden-last-window",
+      "name": "hidden: only the final window matches",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zzzzabc", "p": "bca"},
+      "expected": [4],
+      "tags": ["hidden", "boundary"]
+    }
+  ]
+}

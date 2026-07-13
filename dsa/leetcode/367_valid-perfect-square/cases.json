@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_367",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four squared",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 16
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "square"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: between consecutive squares",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 14
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "non-square"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: smallest positive input",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 1
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-two",
+      "name": "trial: first non-square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 2
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-large-square",
+      "name": "trial: 899 squared",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 808201
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "square"
+      ]
+    },
+    {
+      "id": "hidden-near-square",
+      "name": "hidden: one below a square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 9999
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "near-square"
+      ]
+    },
+    {
+      "id": "hidden-largest-int-square",
+      "name": "hidden: largest 32-bit square root",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 2147395600
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-max-int",
+      "name": "hidden: maximum signed 32-bit integer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 2147483647
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
+  ]
+}
+

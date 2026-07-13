@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_1519",
+  "source": "leetcode",
+  "frontend_id": "1519",
+  "slug": "number-of-nodes-in-the-sub-tree-with-the-same-label",
+  "title": "Number of Nodes in the Sub-Tree With the Same Label",
+  "difficulty": "Medium",
+  "acceptance_rate": 55.52900924932587,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-nodes-in-the-sub-tree-with-the-same-label/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:samsung",
+    "leetcode_company:uber",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:counting",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:samsung",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:breadth-first-search",
+    "topic:counting",
+    "topic:depth-first-search",
+    "topic:hash-table",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Samsung",
+      "slug": "samsung"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Samsung",
+        "slug": "samsung",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

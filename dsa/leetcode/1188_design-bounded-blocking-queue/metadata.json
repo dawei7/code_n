@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_1188",
+  "source": "leetcode",
+  "frontend_id": "1188",
+  "slug": "design-bounded-blocking-queue",
+  "title": "Design Bounded Blocking Queue",
+  "difficulty": "Medium",
+  "acceptance_rate": 73.85199867855962,
+  "category": "concurrency",
+  "category_title": "Concurrency",
+  "topics": [
+    {
+      "name": "Concurrency",
+      "slug": "concurrency"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-bounded-blocking-queue/",
+  "supported_languages": [],
+  "primary_language": "",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:concurrency",
+    "leetcode_company:bloomberg",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_topic:concurrency"
+  ],
+  "tags": [
+    "category:concurrency",
+    "company:bloomberg",
+    "company:linkedin",
+    "company:microsoft",
+    "leetcode",
+    "topic:concurrency"
+  ],
+  "company_tags": [
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

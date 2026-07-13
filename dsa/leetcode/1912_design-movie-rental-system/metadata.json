@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_1912",
+  "source": "leetcode",
+  "frontend_id": "1912",
+  "slug": "design-movie-rental-system",
+  "title": "Design Movie Rental System",
+  "difficulty": "Hard",
+  "acceptance_rate": 62.17132093875869,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-movie-rental-system/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:flipkart",
+    "leetcode_topic:array",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:ordered-set"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:flipkart",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:design",
+    "topic:hash-table",
+    "topic:heap-priority-queue",
+    "topic:ordered-set"
+  ],
+  "company_tags": [
+    {
+      "name": "Flipkart",
+      "slug": "flipkart"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Flipkart",
+        "slug": "flipkart",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

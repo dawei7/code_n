@@ -1,0 +1,6 @@
+{"challenge_id":"lc_282","cases":[
+{"id":"sample-123","name":"sample: addition and multiplication","kind":"sample","visible":true,"input":{"num":"123","target":6},"expected":["1+2+3","1*2*3"],"validator":{"kind":"unordered_list"},"tags":["sample","precedence"]},
+{"id":"sample-232","name":"sample: two precedence arrangements","kind":"sample","visible":true,"input":{"num":"232","target":8},"expected":["2+3*2","2*3+2"],"validator":{"kind":"unordered_list"},"tags":["sample"]},
+{"id":"trial-zero","name":"leading zero operands are forbidden","kind":"trial","visible":true,"input":{"num":"105","target":5},"expected":["1*0+5","10-5"],"validator":{"kind":"unordered_list"},"tags":["leading-zero"]},
+{"id":"real-double-zero","name":"hidden: two zero digits","kind":"real","visible":false,"input":{"num":"00","target":0},"expected":["0+0","0-0","0*0"],"validator":{"kind":"unordered_list"},"tags":["hidden","zero"]}
+]}

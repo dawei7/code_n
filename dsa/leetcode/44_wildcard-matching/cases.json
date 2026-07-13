@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_44",
+  "cases": [
+    {"id": "sample-1", "name": "sample: literal too short", "kind": "sample", "visible": true, "input": {"s": "aa", "p": "a"}, "expected": false, "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: star consumes all", "kind": "sample", "visible": true, "input": {"s": "aa", "p": "*"}, "expected": true, "tags": ["sample", "star"]},
+    {"id": "trial-question-mismatch", "name": "question mark then wrong literal", "kind": "trial", "visible": true, "input": {"s": "cb", "p": "?a"}, "expected": false, "tags": ["question"]},
+    {"id": "trial-multiple-stars", "name": "stars consume separated regions", "kind": "trial", "visible": true, "input": {"s": "adceb", "p": "*a*b"}, "expected": true, "tags": ["star"]},
+    {"id": "real-ambiguous-failure", "name": "hidden: plausible star split cannot finish", "kind": "real", "visible": false, "input": {"s": "acdcb", "p": "a*c?b"}, "expected": false, "tags": ["hidden", "backtracking"]},
+    {"id": "real-empty-star", "name": "hidden: star matches empty string", "kind": "real", "visible": false, "input": {"s": "", "p": "***"}, "expected": true, "tags": ["hidden", "empty"]}
+  ]
+}

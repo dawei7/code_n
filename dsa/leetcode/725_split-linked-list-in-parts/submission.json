@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "725",
+  "frontend_id": "725",
+  "title_slug": "split-linked-list-in-parts",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065739979",
+  "verified_at": "2026-07-13T06:14:37.090053+00:00"
+}

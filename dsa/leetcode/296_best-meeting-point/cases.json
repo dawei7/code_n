@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_296",
+  "cases": [
+    {"id": "sample-three-homes", "name": "sample: three separated homes", "kind": "sample", "visible": true, "input": {"grid": [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]}, "expected": 6, "tags": ["sample", "median"]},
+    {"id": "sample-single", "name": "sample: one occupied cell", "kind": "sample", "visible": true, "input": {"grid": [[1]]}, "expected": 0, "tags": ["sample", "boundary"]},
+    {"id": "sample-adjacent", "name": "sample: adjacent homes", "kind": "sample", "visible": true, "input": {"grid": [[1,1]]}, "expected": 1, "tags": ["sample", "even"]},
+    {"id": "trial-corners", "name": "four corners meet centrally", "kind": "trial", "visible": true, "input": {"grid": [[1,0,1],[0,0,0],[1,0,1]]}, "expected": 8, "tags": ["corners", "even"]},
+    {"id": "trial-one-row", "name": "one-dimensional row", "kind": "trial", "visible": true, "input": {"grid": [[1,0,0,1,0,1]]}, "expected": 5, "tags": ["one-dimensional"]},
+    {"id": "real-asymmetric", "name": "hidden: asymmetric occupied cells", "kind": "real", "visible": false, "input": {"grid": [[0,1,0,0],[0,0,0,1],[1,0,0,0],[0,0,1,0]]}, "expected": 8, "tags": ["hidden", "asymmetric"]}
+  ]
+}

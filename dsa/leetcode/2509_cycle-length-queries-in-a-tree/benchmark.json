@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2509",
+  "cases": [
+    {
+      "id": "benchmark-deeper-ancestors",
+      "name": "benchmark: deeper nodes climb to different ancestors",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "queries": [
+          [
+            16,
+            31
+          ],
+          [
+            10,
+            25
+          ],
+          [
+            1,
+            31
+          ]
+        ]
+      },
+      "expected": [
+        9,
+        8,
+        5
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

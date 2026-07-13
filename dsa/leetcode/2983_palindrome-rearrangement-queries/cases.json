@@ -1,0 +1,148 @@
+{
+  "challenge_id": "lc_2983",
+  "cases": [
+    {
+      "id": "sample-single-position",
+      "name": "sample: one-position rearrangements",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcabc",
+        "queries": [
+          [
+            0,
+            0,
+            5,
+            5
+          ],
+          [
+            1,
+            1,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        false,
+        false
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-range-match",
+      "name": "sample: larger right-side range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abbcdecbba",
+        "queries": [
+          [
+            0,
+            2,
+            7,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        false
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-balanced-ranges",
+      "name": "sample: balanced ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "acbcab",
+        "queries": [
+          [
+            1,
+            2,
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-already-palindrome",
+      "name": "trial: already palindrome outside ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abba",
+        "queries": [
+          [
+            0,
+            0,
+            3,
+            3
+          ],
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-overlapping-mapped-ranges",
+      "name": "real: mapped ranges overlap in half-space",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcddcba",
+        "queries": [
+          [
+            1,
+            3,
+            4,
+            6
+          ],
+          [
+            0,
+            1,
+            6,
+            7
+          ],
+          [
+            2,
+            2,
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

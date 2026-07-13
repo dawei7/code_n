@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_2383",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: train energy and experience",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "initial_energy": 5,
+        "initial_experience": 3,
+        "energy": [
+          1,
+          4,
+          3,
+          2
+        ],
+        "experience": [
+          2,
+          6,
+          3,
+          1
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "simulation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already stronger",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "initial_energy": 2,
+        "initial_experience": 4,
+        "energy": [
+          1
+        ],
+        "experience": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated small opponents",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "initial_energy": 1,
+        "initial_experience": 1,
+        "energy": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "experience": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-one-opponent",
+      "name": "hidden: one opponent needs energy and experience",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "initial_energy": 1,
+        "initial_experience": 1,
+        "energy": [
+          1
+        ],
+        "experience": [
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

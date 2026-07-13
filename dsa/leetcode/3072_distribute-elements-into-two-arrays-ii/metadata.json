@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_3072",
+  "source": "leetcode",
+  "frontend_id": "3072",
+  "slug": "distribute-elements-into-two-arrays-ii",
+  "title": "Distribute Elements Into Two Arrays II",
+  "difficulty": "Hard",
+  "acceptance_rate": 30.99339982708812,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Indexed Tree",
+      "slug": "binary-indexed-tree"
+    },
+    {
+      "name": "Segment Tree",
+      "slug": "segment-tree"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:autodesk",
+    "leetcode_company:capital-one",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-indexed-tree",
+    "leetcode_topic:segment-tree",
+    "leetcode_topic:simulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:autodesk",
+    "company:capital-one",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-indexed-tree",
+    "topic:segment-tree",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Capital One",
+      "slug": "capital-one"
+    },
+    {
+      "name": "Autodesk",
+      "slug": "autodesk"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Autodesk",
+        "slug": "autodesk",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Capital One",
+        "slug": "capital-one",
+        "timesEncountered": 3
+      }
+    ],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

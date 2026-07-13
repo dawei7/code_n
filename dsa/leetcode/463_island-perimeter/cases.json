@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_463",
+  "cases": [
+    {
+      "id": "sample-irregular",
+      "name": "sample: irregular connected island",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]]},
+      "expected": 16,
+      "tags": ["sample", "irregular"]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one land cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1]]},
+      "expected": 4,
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "sample-row",
+      "name": "sample: one-row island",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1, 1, 1]]},
+      "expected": 8,
+      "tags": ["sample", "row"]
+    },
+    {
+      "id": "trial-rectangle",
+      "name": "trial: solid rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 1, 1], [1, 1, 1]]},
+      "expected": 10,
+      "tags": ["trial", "rectangle"]
+    },
+    {
+      "id": "trial-column",
+      "name": "trial: one-column island",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1], [1], [1], [1]]},
+      "expected": 10,
+      "tags": ["trial", "column"]
+    },
+    {
+      "id": "hidden-corner-shape",
+      "name": "hidden: concave corner shape",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 1, 0], [1, 0, 0], [1, 1, 1]]},
+      "expected": 14,
+      "tags": ["hidden", "concave"]
+    },
+    {
+      "id": "hidden-water-border",
+      "name": "hidden: island surrounded inside the matrix",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[0, 0, 0, 0], [0, 1, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]]},
+      "expected": 8,
+      "tags": ["hidden", "border"]
+    }
+  ]
+}

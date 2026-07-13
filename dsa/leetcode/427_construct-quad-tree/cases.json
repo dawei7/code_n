@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_427",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four different quadrants",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[0, 1], [1, 0]]},
+      "expected": {"leaf": false, "children": [{"leaf": true, "value": 0}, {"leaf": true, "value": 1}, {"leaf": true, "value": 1}, {"leaf": true, "value": 0}]},
+      "validator": {"kind": "quad_tree"},
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: uniform grid collapses",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1, 1], [1, 1]]},
+      "expected": {"leaf": true, "value": 1},
+      "validator": {"kind": "quad_tree"},
+      "tags": ["sample", "uniform"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one zero cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[0]]},
+      "expected": {"leaf": true, "value": 0},
+      "validator": {"kind": "quad_tree"},
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "trial-three-uniform-quadrants",
+      "name": "trial: one quadrant differs",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 0, 0], [1, 1, 0, 0]]},
+      "expected": {"leaf": false, "children": [{"leaf": true, "value": 1}, {"leaf": true, "value": 1}, {"leaf": true, "value": 1}, {"leaf": true, "value": 0}]},
+      "validator": {"kind": "quad_tree"},
+      "tags": ["trial", "quadrants"]
+    },
+    {
+      "id": "hidden-all-zero",
+      "name": "hidden: larger zero grid collapses",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]},
+      "expected": {"leaf": true, "value": 0},
+      "validator": {"kind": "quad_tree"},
+      "tags": ["hidden", "uniform"]
+    },
+    {
+      "id": "hidden-checkerboard",
+      "name": "hidden: every two-by-two region stays divided",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[0, 1, 0, 1], [1, 0, 1, 0], [0, 1, 0, 1], [1, 0, 1, 0]]},
+      "expected": {"leaf": false, "children": [{"leaf": false, "children": [{"leaf": true, "value": 0}, {"leaf": true, "value": 1}, {"leaf": true, "value": 1}, {"leaf": true, "value": 0}]}, {"leaf": false, "children": [{"leaf": true, "value": 0}, {"leaf": true, "value": 1}, {"leaf": true, "value": 1}, {"leaf": true, "value": 0}]}, {"leaf": false, "children": [{"leaf": true, "value": 0}, {"leaf": true, "value": 1}, {"leaf": true, "value": 1}, {"leaf": true, "value": 0}]}, {"leaf": false, "children": [{"leaf": true, "value": 0}, {"leaf": true, "value": 1}, {"leaf": true, "value": 1}, {"leaf": true, "value": 0}]}]},
+      "validator": {"kind": "quad_tree"},
+      "tags": ["hidden", "checkerboard"]
+    }
+  ]
+}

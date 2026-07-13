@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_1938",
+  "source": "leetcode",
+  "frontend_id": "1938",
+  "slug": "maximum-genetic-difference-query",
+  "title": "Maximum Genetic Difference Query",
+  "difficulty": "Hard",
+  "acceptance_rate": 47.623931623931625,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Trie",
+      "slug": "trie"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-genetic-difference-query/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:medianet",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:trie"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:medianet",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:depth-first-search",
+    "topic:hash-table",
+    "topic:trie"
+  ],
+  "company_tags": [
+    {
+      "name": "Media.net",
+      "slug": "medianet"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Media.net",
+        "slug": "medianet",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

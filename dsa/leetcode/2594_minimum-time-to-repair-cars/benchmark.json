@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_2594",
+  "cases": [
+    {
+      "id": "benchmark-wide-rank-range",
+      "name": "benchmark: mechanics with widely different ranks",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "ranks": [
+          1,
+          10,
+          100
+        ],
+        "cars": 25
+      },
+      "expected": 360,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

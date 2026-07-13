@@ -1,0 +1,159 @@
+{
+  "challenge_id": "lc_1206",
+  "source": "leetcode",
+  "frontend_id": "1206",
+  "slug": "design-skiplist",
+  "title": "Design Skiplist",
+  "difficulty": "Hard",
+  "acceptance_rate": 59.84070257536178,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Linked List",
+      "slug": "linked-list"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-skiplist/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:ebay",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:optiver",
+    "leetcode_company:pure-storage",
+    "leetcode_company:twitter",
+    "leetcode_topic:design",
+    "leetcode_topic:linked-list"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:ebay",
+    "company:facebook",
+    "company:google",
+    "company:microsoft",
+    "company:optiver",
+    "company:pure-storage",
+    "company:twitter",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:design",
+    "topic:linked-list"
+  ],
+  "company_tags": [
+    {
+      "name": "Optiver",
+      "slug": "optiver"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "X",
+      "slug": "twitter"
+    },
+    {
+      "name": "Pure Storage",
+      "slug": "pure-storage"
+    },
+    {
+      "name": "eBay",
+      "slug": "ebay"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "X",
+        "slug": "twitter",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Pure Storage",
+        "slug": "pure-storage",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "eBay",
+        "slug": "ebay",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Optiver",
+        "slug": "optiver",
+        "timesEncountered": 8
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

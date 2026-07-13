@@ -1,0 +1,117 @@
+{
+  "challenge_id": "lc_1220",
+  "source": "leetcode",
+  "frontend_id": "1220",
+  "slug": "count-vowels-permutation",
+  "title": "Count Vowels Permutation",
+  "difficulty": "Hard",
+  "acceptance_rate": 61.34480518619666,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-vowels-permutation/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:mathworks",
+    "leetcode_studyplan:dynamic-programming",
+    "leetcode_studyplan:dynamic-programming:dynamic-programming-90-r3de",
+    "leetcode_topic:dynamic-programming",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:mathworks",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming",
+    "study_plan_section:dynamic-programming:dynamic-programming-90-r3de",
+    "subset:neetcode:allNC",
+    "topic:dynamic-programming"
+  ],
+  "company_tags": [
+    {
+      "name": "MathWorks",
+      "slug": "mathworks"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "C3.ai",
+        "slug": "c3ai",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "MathWorks",
+        "slug": "mathworks",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "dynamic-programming",
+      "plan_name": "Dynamic Programming",
+      "section_slug": "dynamic-programming-90-r3de",
+      "section_name": "General Multidimensional",
+      "path": [
+        "General Multidimensional"
+      ],
+      "order": 49,
+      "section_order": 10,
+      "problem_order": 3,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "2-D Dynamic Programming"
+      ],
+      "order": 739,
+      "section_order": 13,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "count-vowels-permutation",
+      "leetcode_slug": "count-vowels-permutation",
+      "difficulty": "Hard",
+      "problem_order": 28
+    }
+  ]
+}

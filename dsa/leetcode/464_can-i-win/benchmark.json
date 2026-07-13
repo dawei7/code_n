@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_464",
+  "measurement_note": "Size is the maximum choosable integer and therefore the number of state bits. Memoization evaluates each reachable subset once, while plain minimax recomputes the same losing subgames after different move orders.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: solve a losing game with 3 choices",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {"maxChoosableInteger": 3, "desiredTotal": 4},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "losing-game"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: solve a losing game with 6 choices",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"maxChoosableInteger": 6, "desiredTotal": 14},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "losing-game"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: solve a losing game with 12 choices",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"maxChoosableInteger": 12, "desiredTotal": 39},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "losing-game"]
+    }
+  ]
+}

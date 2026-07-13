@@ -1,0 +1,118 @@
+{
+  "challenge_id": "lc_2918",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: zeros in both arrays can balance at seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          2,
+          0,
+          1
+        ],
+        "nums2": [
+          2,
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "sample",
+        "zeros"
+      ],
+      "expected": 7
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: fixed second sum is too small",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          0,
+          2,
+          0
+        ],
+        "nums2": [
+          1,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-no-zeros-equal",
+      "name": "trial: already equal fixed sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          3
+        ]
+      },
+      "tags": [
+        "trial",
+        "fixed"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "trial-fixed-side-too-small",
+      "name": "trial: fixed side cannot be increased",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          0,
+          0
+        ],
+        "nums2": [
+          1
+        ]
+      },
+      "tags": [
+        "trial",
+        "impossible"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "real-one-flexible-side",
+      "name": "hidden: one array has enough zeros to catch up",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          8,
+          0,
+          0
+        ],
+        "nums2": [
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "tags": [
+        "hidden",
+        "greedy"
+      ],
+      "expected": 12
+    }
+  ]
+}

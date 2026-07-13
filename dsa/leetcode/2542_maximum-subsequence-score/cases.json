@@ -1,0 +1,123 @@
+{
+  "challenge_id": "lc_2542",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: choose three values with minimum multiplier three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          3,
+          3,
+          2
+        ],
+        "nums2": [
+          2,
+          1,
+          3,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: k one picks the best product pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4,
+          2,
+          3,
+          1,
+          1
+        ],
+        "nums2": [
+          7,
+          5,
+          10,
+          9,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 30,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: large nums1 values with lower multiplier",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          1,
+          14,
+          12
+        ],
+        "nums2": [
+          11,
+          7,
+          13,
+          6
+        ],
+        "k": 3
+      },
+      "expected": 168,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-index",
+      "name": "trial: one selected index multiplies directly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5
+        ],
+        "nums2": [
+          4
+        ],
+        "k": 1
+      },
+      "expected": 20,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-select-all",
+      "name": "hidden: selecting all values uses the global minimum multiplier",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          3,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

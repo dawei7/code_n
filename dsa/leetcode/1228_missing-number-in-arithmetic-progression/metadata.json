@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_1228",
+  "source": "leetcode",
+  "frontend_id": "1228",
+  "slug": "missing-number-in-arithmetic-progression",
+  "title": "Missing Number In Arithmetic Progression",
+  "difficulty": "Easy",
+  "acceptance_rate": 52.214263771443356,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    }
+  ],
+  "url": "https://leetcode.com/problems/missing-number-in-arithmetic-progression/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:audible",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-76-w98x",
+    "leetcode_topic:array",
+    "leetcode_topic:math",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:audible",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan_section:premium-algo-100:premium-algo-100-76-w98x",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Audible",
+      "slug": "audible"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Audible",
+        "slug": "audible",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-76-w98x",
+      "section_name": "Binary Search",
+      "path": [
+        "Binary Search"
+      ],
+      "order": 74,
+      "section_order": 16,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Binary Search"
+      ],
+      "order": 304,
+      "section_order": 4,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "missing-number-in-arithmetic-progression",
+      "leetcode_slug": "missing-number-in-arithmetic-progression",
+      "difficulty": "Easy",
+      "problem_order": 6
+    }
+  ]
+}

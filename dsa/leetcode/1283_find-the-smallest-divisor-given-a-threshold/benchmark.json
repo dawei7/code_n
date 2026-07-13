@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_1283",
+  "cases": [
+    {
+      "id": "benchmark-rounded-divisions",
+      "name": "benchmark: rounded divisions",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          200,
+          300
+        ],
+        "threshold": 6
+      },
+      "expected": 100,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

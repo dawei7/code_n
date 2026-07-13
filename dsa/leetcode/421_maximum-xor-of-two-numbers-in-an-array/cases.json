@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_421",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: best pair differs in several bits",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 10, 5, 25, 2, 8]},
+      "expected": 28,
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [0]},
+      "expected": 0,
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 4]},
+      "expected": 6,
+      "tags": ["sample", "pair"]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: all values equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [7, 7, 7, 7]},
+      "expected": 0,
+      "tags": ["trial", "duplicates"]
+    },
+    {
+      "id": "trial-small",
+      "name": "trial: best pair includes the largest value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [8, 10, 2]},
+      "expected": 10,
+      "tags": ["trial", "small"]
+    },
+    {
+      "id": "hidden-known",
+      "name": "hidden: maximum uses every low bit",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70]},
+      "expected": 127,
+      "tags": ["hidden", "dense"]
+    },
+    {
+      "id": "hidden-high-bit",
+      "name": "hidden: zero against the largest allowed value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 2147483647]},
+      "expected": 2147483647,
+      "tags": ["hidden", "boundary"]
+    },
+    {
+      "id": "hidden-not-largest",
+      "name": "hidden: optimal pair does not include the numeric maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [32, 17, 7, 24, 31]},
+      "expected": 63,
+      "tags": ["hidden", "pair-choice"]
+    }
+  ]
+}

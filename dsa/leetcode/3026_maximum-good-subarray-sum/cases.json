@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_3026",
+  "cases": [
+    {
+      "id": "sample-positive-run",
+      "name": "sample: adjacent increasing pair gives the best sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 11,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-negative-values",
+      "name": "sample: negative values can still form the maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          3,
+          2,
+          4,
+          5
+        ],
+        "k": 3
+      },
+      "expected": 11,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-negative-answer",
+      "name": "sample: all good subarray sums are negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3,
+          -4
+        ],
+        "k": 2
+      },
+      "expected": -6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-good-subarray",
+      "name": "trial: no endpoints differ by k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          -2,
+          7,
+          7
+        ],
+        "k": 6
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-repeated-endpoints",
+      "name": "real: repeated endpoints choose the minimum prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          -6,
+          1,
+          8,
+          -2,
+          4,
+          9,
+          -1,
+          2
+        ],
+        "k": 4
+      },
+      "expected": 19,
+      "tags": [
+        "real",
+        "prefix-sum"
+      ]
+    }
+  ]
+}

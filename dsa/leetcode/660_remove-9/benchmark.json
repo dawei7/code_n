@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_660",
+  "measurement_note": "Size is the requested rank n. Arithmetic base-9 conversion grows with the number of digits, while enumerating decimal candidates and rejecting those containing digit 9 examines a number of candidates proportional to the rank.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: rank 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 128
+      },
+      "expected": 152,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "rank"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: rank 1024",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {
+        "n": 1024
+      },
+      "expected": 1357,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "rank"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: rank 8192",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8192,
+      "input": {
+        "n": 8192
+      },
+      "expected": 12212,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "rank"
+      ]
+    }
+  ]
+}

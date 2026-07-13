@@ -1,0 +1,12 @@
+{
+  "challenge_id": "lc_294",
+  "cases": [
+    {"id": "sample-four", "name": "sample: winning four-plus run", "kind": "sample", "visible": true, "input": {"currentState": "++++"}, "expected": true, "tags": ["sample", "grundy"]},
+    {"id": "sample-short", "name": "sample: no legal move", "kind": "sample", "visible": true, "input": {"currentState": "+"}, "expected": false, "tags": ["sample", "boundary"]},
+    {"id": "sample-pair", "name": "sample: take the only pair", "kind": "sample", "visible": true, "input": {"currentState": "++"}, "expected": true, "tags": ["sample"]},
+    {"id": "trial-five-loss", "name": "five consecutive pluses are losing", "kind": "trial", "visible": true, "input": {"currentState": "+++++"}, "expected": false, "tags": ["mex"]},
+    {"id": "trial-cancel", "name": "equal independent games cancel", "kind": "trial", "visible": true, "input": {"currentState": "++--++"}, "expected": false, "tags": ["xor", "segments"]},
+    {"id": "real-unequal-runs", "name": "hidden: unequal independent runs", "kind": "real", "visible": false, "input": {"currentState": "++++--++"}, "expected": true, "tags": ["hidden", "xor"]},
+    {"id": "real-no-pair", "name": "hidden: separated single pluses", "kind": "real", "visible": false, "input": {"currentState": "+-+-+-+"}, "expected": false, "tags": ["hidden", "none"]}
+  ]
+}

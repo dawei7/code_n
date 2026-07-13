@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_536",
+  "cases": [
+    {"id":"sample-full","name":"sample: mixed tree with two subtrees","kind":"sample","visible":true,"input":{"s":"4(2(3)(1))(6(5))"},"expected":[4,2,6,3,1,5],"tags":["sample","tree"]},
+    {"id":"sample-negative","name":"sample: negative root value","kind":"sample","visible":true,"input":{"s":"-4(2)(3)"},"expected":[-4,2,3],"tags":["sample","negative"]},
+    {"id":"sample-right-only","name":"sample: empty left subtree before right child","kind":"sample","visible":true,"input":{"s":"4()(5)"},"expected":[4,null,5],"tags":["sample","empty-left"]},
+    {"id":"trial-single","name":"trial: one multi-digit node","kind":"trial","visible":true,"input":{"s":"123"},"expected":[123],"tags":["trial","leaf"]},
+    {"id":"trial-left-skew","name":"trial: nested left-only chain","kind":"trial","visible":true,"input":{"s":"1(2(3))"},"expected":[1,2,null,3],"tags":["trial","skewed"]},
+    {"id":"hidden-mixed-signs","name":"hidden: multi-digit values and negative child","kind":"real","visible":false,"input":{"s":"10(-20)(30(25)(40))"},"expected":[10,-20,30,null,null,25,40],"tags":["hidden","multi-digit"]},
+    {"id":"hidden-empty","name":"hidden: empty encoding","kind":"real","visible":false,"input":{"s":""},"expected":[],"tags":["hidden","empty"]}
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "challenge_id": "lc_291",
+  "cases": [
+    {
+      "id": "sample-alternating",
+      "name": "sample: alternating assignments",
+      "kind": "sample",
+      "visible": true,
+      "input": {"pattern": "abab", "s": "redblueredblue"},
+      "expected": true,
+      "tags": ["sample", "repeated-symbols"]
+    },
+    {
+      "id": "sample-one-symbol",
+      "name": "sample: one repeated assignment",
+      "kind": "sample",
+      "visible": true,
+      "input": {"pattern": "aaaa", "s": "asdasdasdasd"},
+      "expected": true,
+      "tags": ["sample", "reuse"]
+    },
+    {
+      "id": "sample-no-match",
+      "name": "sample: inconsistent repeated symbols",
+      "kind": "sample",
+      "visible": true,
+      "input": {"pattern": "aabb", "s": "xyzabcxzyabc"},
+      "expected": false,
+      "tags": ["sample", "backtracking"]
+    },
+    {
+      "id": "trial-bijection",
+      "name": "different symbols cannot share a substring",
+      "kind": "trial",
+      "visible": true,
+      "input": {"pattern": "ab", "s": "aa"},
+      "expected": false,
+      "tags": ["bijection"]
+    },
+    {
+      "id": "real-long-assignments",
+      "name": "hidden: repeated multi-character assignments",
+      "kind": "real",
+      "visible": false,
+      "input": {"pattern": "abba", "s": "redbluebluered"},
+      "expected": true,
+      "tags": ["hidden", "boundary"]
+    },
+    {
+      "id": "real-length-impossible",
+      "name": "hidden: repeated assignment cannot consume suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {"pattern": "aaaa", "s": "catcatcatdog"},
+      "expected": false,
+      "tags": ["hidden", "pruning"]
+    }
+  ]
+}

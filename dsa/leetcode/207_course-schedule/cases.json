@@ -1,0 +1,6 @@
+{"challenge_id":"lc_207","cases":[
+{"id":"sample-chain","name":"sample: one prerequisite edge","kind":"sample","visible":true,"input":{"num_courses":2,"prerequisites":[[1,0]]},"expected":true,"tags":["sample","topological-sort"]},
+{"id":"trial-cycle","name":"two-course cycle","kind":"trial","visible":true,"input":{"num_courses":2,"prerequisites":[[1,0],[0,1]]},"expected":false,"tags":["cycle"]},
+{"id":"trial-none","name":"no prerequisites","kind":"trial","visible":true,"input":{"num_courses":3,"prerequisites":[]},"expected":true,"tags":["boundary"]},
+{"id":"real-partial-cycle","name":"hidden: one component contains cycle","kind":"real","visible":false,"input":{"num_courses":5,"prerequisites":[[1,0],[2,1],[1,2],[4,3]]},"expected":false,"tags":["hidden","component"]}
+]}

@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1011",
+  "cases": [
+    {
+      "id": "benchmark-balanced",
+      "name": "benchmark: balanced shipment",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "weights": [
+          7,
+          2,
+          5,
+          10,
+          8,
+          3,
+          4
+        ],
+        "days": 3
+      },
+      "expected": 15,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

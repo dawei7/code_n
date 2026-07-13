@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_745",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one matching word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "WordFilter",
+          "f"
+        ],
+        "arguments": [
+          [
+            [
+              "apple"
+            ]
+          ],
+          [
+            "a",
+            "e"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: choose greatest matching index",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "WordFilter",
+          "f",
+          "f"
+        ],
+        "arguments": [
+          [
+            [
+              "apple",
+              "apply",
+              "ape"
+            ]
+          ],
+          [
+            "ap",
+            "e"
+          ],
+          [
+            "app",
+            "ly"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "maximum-index"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no matching affixes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "WordFilter",
+          "f"
+        ],
+        "arguments": [
+          [
+            [
+              "test",
+              "team"
+            ]
+          ],
+          [
+            "x",
+            "z"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "missing"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: duplicate words select later index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "WordFilter",
+          "f",
+          "f"
+        ],
+        "arguments": [
+          [
+            [
+              "apple",
+              "apple"
+            ]
+          ],
+          [
+            "a",
+            "e"
+          ],
+          [
+            "apple",
+            "apple"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: overlapping prefix and suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "WordFilter",
+          "f",
+          "f"
+        ],
+        "arguments": [
+          [
+            [
+              "aba",
+              "ababa",
+              "abc"
+            ]
+          ],
+          [
+            "aba",
+            "aba"
+          ],
+          [
+            "ab",
+            "ba"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "overlap"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: different queries choose different indices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "WordFilter",
+          "f",
+          "f",
+          "f"
+        ],
+        "arguments": [
+          [
+            [
+              "cat",
+              "cart",
+              "coat",
+              "cut"
+            ]
+          ],
+          [
+            "c",
+            "t"
+          ],
+          [
+            "ca",
+            "t"
+          ],
+          [
+            "co",
+            "t"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        3,
+        1,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "query-variation"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: exact affixes exclude later word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "WordFilter",
+          "f",
+          "f"
+        ],
+        "arguments": [
+          [
+            [
+              "alpha",
+              "alpine",
+              "alphabet"
+            ]
+          ],
+          [
+            "alpha",
+            "alpha"
+          ],
+          [
+            "alp",
+            "et"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "exact"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: several misses",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "WordFilter",
+          "f",
+          "f",
+          "f"
+        ],
+        "arguments": [
+          [
+            [
+              "red",
+              "green",
+              "blue"
+            ]
+          ],
+          [
+            "r",
+            "e"
+          ],
+          [
+            "g",
+            "d"
+          ],
+          [
+            "z",
+            "z"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        -1,
+        -1,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "missing"
+      ]
+    }
+  ]
+}

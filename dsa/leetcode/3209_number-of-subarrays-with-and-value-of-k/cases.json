@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_3209",
+  "cases": [
+    {
+      "id": "sample-zero-and",
+      "name": "sample: several subarrays AND to zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "and"
+      ]
+    },
+    {
+      "id": "sample-target-two",
+      "name": "sample: target appears after extension",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          3,
+          2,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "bitwise"
+      ]
+    },
+    {
+      "id": "trial-zero-target",
+      "name": "trial: zero target with mixed bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          7,
+          0,
+          3
+        ],
+        "k": 0
+      },
+      "expected": 10,
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-no-match",
+      "name": "trial: no subarray reaches target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8,
+          8
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-distinct-ands",
+      "name": "real: distinct AND states collapse quickly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          15,
+          7,
+          3,
+          11,
+          5,
+          1,
+          13,
+          9
+        ],
+        "k": 1
+      },
+      "expected": 22,
+      "tags": [
+        "real",
+        "and-states"
+      ]
+    }
+  ]
+}

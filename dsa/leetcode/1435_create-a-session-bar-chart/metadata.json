@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1435",
+  "source": "leetcode",
+  "frontend_id": "1435",
+  "slug": "create-a-session-bar-chart",
+  "title": "Create a Session Bar Chart",
+  "difficulty": "Easy",
+  "acceptance_rate": 74.37802907915993,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/create-a-session-bar-chart/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:twitch",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:twitch",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Twitch",
+      "slug": "twitch"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Twitch",
+        "slug": "twitch",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

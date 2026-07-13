@@ -1,0 +1,126 @@
+{
+  "challenge_id": "lc_2435",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two divisible paths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            2,
+            4
+          ],
+          [
+            3,
+            0,
+            5
+          ],
+          [
+            0,
+            7,
+            2
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one row with zero sum modulo",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ]
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: k one counts every path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7,
+            3,
+            4,
+            9
+          ],
+          [
+            2,
+            3,
+            6,
+            2
+          ],
+          [
+            2,
+            3,
+            7,
+            0
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "trial: only one path across a row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-cell-not-divisible",
+      "name": "hidden: single cell not divisible by k",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

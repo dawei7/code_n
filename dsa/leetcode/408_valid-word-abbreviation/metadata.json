@@ -1,0 +1,154 @@
+{
+  "challenge_id": "lc_408",
+  "source": "leetcode",
+  "frontend_id": "408",
+  "slug": "valid-word-abbreviation",
+  "title": "Valid Word Abbreviation",
+  "difficulty": "Easy",
+  "acceptance_rate": 37.04530327363324,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    }
+  ],
+  "url": "https://leetcode.com/problems/valid-word-abbreviation/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:datadog",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:snowflake",
+    "leetcode_company:tiktok",
+    "leetcode_topic:string",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:datadog",
+    "company:facebook",
+    "company:google",
+    "company:snowflake",
+    "company:tiktok",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:string",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Datadog",
+      "slug": "datadog"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 27
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Datadog",
+        "slug": "datadog",
+        "timesEncountered": 13
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Two Pointers"
+      ],
+      "order": 178,
+      "section_order": 1,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "valid-word-abbreviation",
+      "leetcode_slug": "valid-word-abbreviation",
+      "difficulty": "Easy",
+      "problem_order": 3
+    }
+  ]
+}

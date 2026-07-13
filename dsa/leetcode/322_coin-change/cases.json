@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_322",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several denominations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          1,
+          2,
+          5
+        ],
+        "amount": 11
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: impossible odd amount",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          2
+        ],
+        "amount": 3
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero amount",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          1
+        ],
+        "amount": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-greedy-trap",
+      "name": "trial: largest-first is suboptimal",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "coins": [
+          1,
+          3,
+          4
+        ],
+        "amount": 6
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "greedy-trap"
+      ]
+    },
+    {
+      "id": "trial-gcd-impossible",
+      "name": "trial: target outside denomination gcd",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "coins": [
+          4,
+          6
+        ],
+        "amount": 7
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "impossible"
+      ]
+    },
+    {
+      "id": "hidden-mixed",
+      "name": "hidden: combine several denominations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          2,
+          5,
+          10,
+          1
+        ],
+        "amount": 27
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    },
+    {
+      "id": "hidden-many-small",
+      "name": "hidden: only repeated threes work",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          3,
+          10
+        ],
+        "amount": 27
+      },
+      "expected": 9,
+      "tags": [
+        "hidden"
+      ]
+    },
+    {
+      "id": "hidden-large-known",
+      "name": "hidden: large irregular denominations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          186,
+          419,
+          83,
+          408
+        ],
+        "amount": 6249
+      },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "large"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_2451",
+  "cases": [
+    {
+      "id": "benchmark-outlier-first",
+      "name": "benchmark: outlier appears first",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "ace",
+          "bdf",
+          "xyz"
+        ]
+      },
+      "expected": "xyz",
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

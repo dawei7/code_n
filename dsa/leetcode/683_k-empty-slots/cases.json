@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_683",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one dark slot",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bulbs": [
+          1,
+          3,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "reachable"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: middle bulb blooms too early",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bulbs": [
+          1,
+          2,
+          3
+        ],
+        "k": 1
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "no-solution"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: adjacent lit bulbs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bulbs": [
+          2,
+          1,
+          3
+        ],
+        "k": 0
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "zero-gap"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: earliest pair surrounds position two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bulbs": [
+          3,
+          1,
+          5,
+          4,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "multiple-candidates"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: two empty positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bulbs": [
+          1,
+          4,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "wide-gap"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: known longer sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bulbs": [
+          6,
+          5,
+          8,
+          9,
+          7,
+          1,
+          10,
+          2,
+          3,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "late-answer"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: valid pair after an invalid window",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bulbs": [
+          4,
+          1,
+          3,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "window-reset"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: gap does not fit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bulbs": [
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "oversized-gap"
+      ]
+    }
+  ]
+}
+

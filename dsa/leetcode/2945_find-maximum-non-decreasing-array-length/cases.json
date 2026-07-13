@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_2945",
+  "cases": [
+    {
+      "id": "sample-must-merge-all",
+      "name": "sample: must merge all values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-already-nondecreasing",
+      "name": "sample: already non-decreasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-middle-merge",
+      "name": "sample: merge middle pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-alternating-heavy",
+      "name": "trial: alternating heavy and small values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          2,
+          8,
+          6,
+          8,
+          5,
+          1,
+          8,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "regression"
+      ]
+    },
+    {
+      "id": "real-many-small-groups",
+      "name": "real: many possible partition points",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          9,
+          1,
+          1,
+          10,
+          2,
+          3,
+          3,
+          20
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

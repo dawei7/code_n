@@ -1,0 +1,6 @@
+{"challenge_id":"lc_190","cases":[
+{"id":"sample-standard","name":"sample: mixed bit pattern","kind":"sample","visible":true,"input":{"n":43261596},"expected":964176192,"tags":["sample","bit-manipulation"]},
+{"id":"trial-zero","name":"all bits are zero","kind":"trial","visible":true,"input":{"n":0},"expected":0,"tags":["boundary"]},
+{"id":"trial-low-bit","name":"lowest bit becomes highest","kind":"trial","visible":true,"input":{"n":1},"expected":2147483648,"tags":["bit-width"]},
+{"id":"real-all-ones","name":"hidden: all bits set","kind":"real","visible":false,"input":{"n":4294967295},"expected":4294967295,"tags":["hidden"]}
+]}

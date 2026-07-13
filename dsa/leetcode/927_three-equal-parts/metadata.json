@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_927",
+  "source": "leetcode",
+  "frontend_id": "927",
+  "slug": "three-equal-parts",
+  "title": "Three Equal Parts",
+  "difficulty": "Hard",
+  "acceptance_rate": 41.47071497618299,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    }
+  ],
+  "url": "https://leetcode.com/problems/three-equal-parts/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:hotstar",
+    "leetcode_company:roku",
+    "leetcode_topic:array",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:hotstar",
+    "company:roku",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Roku",
+      "slug": "roku"
+    },
+    {
+      "name": "Hotstar",
+      "slug": "hotstar"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Hotstar",
+        "slug": "hotstar",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Roku",
+        "slug": "roku",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Roku",
+        "slug": "roku",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

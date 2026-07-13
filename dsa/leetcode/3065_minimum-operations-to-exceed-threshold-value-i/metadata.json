@@ -1,0 +1,67 @@
+{
+  "challenge_id": "lc_3065",
+  "source": "leetcode",
+  "frontend_id": "3065",
+  "slug": "minimum-operations-to-exceed-threshold-value-i",
+  "title": "Minimum Operations to Exceed Threshold Value I",
+  "difficulty": "Easy",
+  "acceptance_rate": 86.8594090005992,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-operations-to-exceed-threshold-value-i/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:tcs",
+    "leetcode_topic:array"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:tcs",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array"
+  ],
+  "company_tags": [
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,81 @@
+{
+  "challenge_id": "lc_152",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: positive before negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          -2,
+          4
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: zero reset",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          0,
+          -1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-even-negatives",
+      "name": "even number of negatives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          3,
+          -4
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "negative"
+      ]
+    },
+    {
+      "id": "real-separated-blocks",
+      "name": "hidden: separated blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          -3,
+          1,
+          -2,
+          -4,
+          0,
+          5,
+          -1,
+          2
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_3012",
+  "source": "leetcode",
+  "frontend_id": "3012",
+  "slug": "minimize-length-of-array-using-operations",
+  "title": "Minimize Length of Array Using Operations",
+  "difficulty": "Medium",
+  "acceptance_rate": 36.04988689368006,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Number Theory",
+      "slug": "number-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimize-length-of-array-using-operations/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:bny-mellon",
+    "leetcode_company:dtcc",
+    "leetcode_company:oracle",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:math",
+    "leetcode_topic:number-theory"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:bny-mellon",
+    "company:dtcc",
+    "company:oracle",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy",
+    "topic:math",
+    "topic:number-theory"
+  ],
+  "company_tags": [
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "BNY Mellon",
+      "slug": "bny-mellon"
+    },
+    {
+      "name": "DTCC",
+      "slug": "dtcc"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "BNY Mellon",
+        "slug": "bny-mellon",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "DTCC",
+        "slug": "dtcc",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

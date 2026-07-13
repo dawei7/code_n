@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_2327",
+  "source": "leetcode",
+  "frontend_id": "2327",
+  "slug": "number-of-people-aware-of-a-secret",
+  "title": "Number of People Aware of a Secret",
+  "difficulty": "Medium",
+  "acceptance_rate": 60.62988410283514,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Queue",
+      "slug": "queue"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-people-aware-of-a-secret/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:arcesium",
+    "leetcode_company:google",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:queue",
+    "leetcode_topic:simulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:arcesium",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:dynamic-programming",
+    "topic:queue",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Arcesium",
+      "slug": "arcesium"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Arcesium",
+        "slug": "arcesium",
+        "timesEncountered": 0
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

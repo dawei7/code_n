@@ -1,0 +1,214 @@
+{
+  "challenge_id": "lc_1650",
+  "source": "leetcode",
+  "frontend_id": "1650",
+  "slug": "lowest-common-ancestor-of-a-binary-tree-iii",
+  "title": "Lowest Common Ancestor of a Binary Tree III",
+  "difficulty": "Medium",
+  "acceptance_rate": 83.00882260373412,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Binary Tree",
+      "slug": "binary-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:linkedin",
+    "leetcode_company:microsoft",
+    "leetcode_company:mongodb",
+    "leetcode_company:yandex",
+    "leetcode_studyplan:amazon-spring-23-high-frequency",
+    "leetcode_studyplan:amazon-spring-23-high-frequency:amazon-spring-23-high-frequency-141-z5py",
+    "leetcode_topic:binary-tree",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:tree",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:apple",
+    "company:facebook",
+    "company:google",
+    "company:linkedin",
+    "company:microsoft",
+    "company:mongodb",
+    "company:yandex",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:amazon-spring-23-high-frequency",
+    "study_plan_section:amazon-spring-23-high-frequency:amazon-spring-23-high-frequency-141-z5py",
+    "subset:neetcode:allNC",
+    "topic:binary-tree",
+    "topic:hash-table",
+    "topic:tree",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "MongoDB",
+      "slug": "mongodb"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "MongoDB",
+        "slug": "mongodb",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 9
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "amazon-spring-23-high-frequency",
+      "plan_name": "Amazon Spring '23 High Frequency",
+      "section_slug": "amazon-spring-23-high-frequency-141-z5py",
+      "section_name": "March Interview Questions",
+      "path": [
+        "March Interview Questions"
+      ],
+      "order": 25,
+      "section_order": 3,
+      "problem_order": 8,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/amazon-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Trees"
+      ],
+      "order": 419,
+      "section_order": 6,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "lowest-common-ancestor-of-a-binary-tree-iii",
+      "leetcode_slug": "lowest-common-ancestor-of-a-binary-tree-iii",
+      "difficulty": "Medium",
+      "problem_order": 38
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "challenge_id": "lc_1146",
+  "source": "leetcode",
+  "frontend_id": "1146",
+  "slug": "snapshot-array",
+  "title": "Snapshot Array",
+  "difficulty": "Medium",
+  "acceptance_rate": 36.75767225139233,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    }
+  ],
+  "url": "https://leetcode.com/problems/snapshot-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:apple",
+    "leetcode_company:aurora",
+    "leetcode_company:coupang",
+    "leetcode_company:databricks",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:mongodb",
+    "leetcode_company:netflix",
+    "leetcode_company:nutanix",
+    "leetcode_company:openai",
+    "leetcode_company:rubrik",
+    "leetcode_company:snowflake",
+    "leetcode_company:tiktok",
+    "leetcode_company:verkada",
+    "leetcode_studyplan:binary-search",
+    "leetcode_studyplan:binary-search:binary-search-113-vwz9",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:apple",
+    "company:aurora",
+    "company:coupang",
+    "company:databricks",
+    "company:goldman-sachs",
+    "company:google",
+    "company:microsoft",
+    "company:mongodb",
+    "company:netflix",
+    "company:nutanix",
+    "company:openai",
+    "company:rubrik",
+    "company:snowflake",
+    "company:tiktok",
+    "company:verkada",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:binary-search",
+    "study_plan_section:binary-search:binary-search-113-vwz9",
+    "topic:array",
+    "topic:binary-search",
+    "topic:design",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "MongoDB",
+      "slug": "mongodb"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Aurora",
+      "slug": "aurora"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Netflix",
+      "slug": "netflix"
+    },
+    {
+      "name": "Databricks",
+      "slug": "databricks"
+    },
+    {
+      "name": "Verkada",
+      "slug": "verkada"
+    },
+    {
+      "name": "Coupang",
+      "slug": "coupang"
+    },
+    {
+      "name": "Rubrik",
+      "slug": "rubrik"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Nutanix",
+      "slug": "nutanix"
+    },
+    {
+      "name": "OpenAI",
+      "slug": "openai"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Netflix",
+        "slug": "netflix",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "MongoDB",
+        "slug": "mongodb",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Aurora",
+        "slug": "aurora",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Databricks",
+        "slug": "databricks",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Verkada",
+        "slug": "verkada",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Coupang",
+        "slug": "coupang",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Rubrik",
+        "slug": "rubrik",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nutanix",
+        "slug": "nutanix",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "OpenAI",
+        "slug": "openai",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "binary-search",
+      "plan_name": "Binary Search",
+      "section_slug": "binary-search-113-vwz9",
+      "section_name": "Search In Array",
+      "path": [
+        "Search In Array"
+      ],
+      "order": 8,
+      "section_order": 1,
+      "problem_order": 8,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/binary-search/"
+    }
+  ],
+  "neetcode_subsets": []
+}

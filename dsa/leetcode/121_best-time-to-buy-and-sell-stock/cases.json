@@ -1,0 +1,83 @@
+{
+  "challenge_id": "lc_121",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: buy low sell high",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          7,
+          1,
+          5,
+          3,
+          6,
+          4
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "one-transaction"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: descending prices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          7,
+          6,
+          4,
+          3,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-profit"
+      ]
+    },
+    {
+      "id": "trial-two-days",
+      "name": "two profitable days",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          2,
+          4,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "real-late-best-sell",
+      "name": "hidden: best sell at the end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          9,
+          8,
+          3,
+          6,
+          1,
+          7
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_32",
+  "cases": [
+    {"id": "sample-1", "name": "sample: unmatched opening prefix", "kind": "sample", "visible": true, "input": {"s": "(()"}, "expected": 2, "tags": ["sample", "backward-pass"]},
+    {"id": "sample-2", "name": "sample: valid middle segment", "kind": "sample", "visible": true, "input": {"s": ")()())"}, "expected": 4, "tags": ["sample", "boundary"]},
+    {"id": "trial-empty", "name": "empty string", "kind": "trial", "visible": true, "input": {"s": ""}, "expected": 0, "tags": ["empty"]},
+    {"id": "trial-separated-valid-pairs", "name": "unmatched opener separates pairs", "kind": "trial", "visible": true, "input": {"s": "()(()"}, "expected": 2, "tags": ["separator"]},
+    {"id": "real-nested-and-adjacent", "name": "hidden: nested and adjacent pairs", "kind": "real", "visible": false, "input": {"s": "()(())"}, "expected": 6, "tags": ["hidden", "whole-string"]}
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_396",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: best after rotation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          6
+        ]
+      },
+      "expected": 26,
+      "tags": [
+        "sample",
+        "rotation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          100
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: unrotated score is best",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "unrotated"
+      ]
+    },
+    {
+      "id": "trial-negative",
+      "name": "trial: all scores are negative",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3
+        ]
+      },
+      "expected": -5,
+      "tags": [
+        "trial",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-zeroes",
+      "name": "trial: every rotation ties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "ties"
+      ]
+    },
+    {
+      "id": "hidden-mixed",
+      "name": "hidden: mixed signs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          -3,
+          5,
+          -7,
+          2
+        ]
+      },
+      "expected": 29,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-duplicates",
+      "name": "hidden: repeated values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          1,
+          4,
+          1
+        ]
+      },
+      "expected": 34,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-two",
+      "name": "hidden: two-element boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -10,
+          6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "two"
+      ]
+    }
+  ]
+}

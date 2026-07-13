@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_2662",
+  "source": "leetcode",
+  "frontend_id": "2662",
+  "slug": "minimum-cost-of-a-path-with-special-roads",
+  "title": "Minimum Cost of a Path With Special Roads",
+  "difficulty": "Medium",
+  "acceptance_rate": 43.49088155486843,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-cost-of-a-path-with-special-roads/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:samsung",
+    "leetcode_topic:array",
+    "leetcode_topic:graph",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:shortest-path"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:samsung",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:graph",
+    "topic:heap-priority-queue",
+    "topic:shortest-path"
+  ],
+  "company_tags": [
+    {
+      "name": "Samsung",
+      "slug": "samsung"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Samsung",
+        "slug": "samsung",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

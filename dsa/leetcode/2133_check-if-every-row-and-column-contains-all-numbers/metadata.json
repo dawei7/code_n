@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_2133",
+  "source": "leetcode",
+  "frontend_id": "2133",
+  "slug": "check-if-every-row-and-column-contains-all-numbers",
+  "title": "Check if Every Row and Column Contains All Numbers",
+  "difficulty": "Easy",
+  "acceptance_rate": 54.2761260790787,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:indeed",
+    "leetcode_company:instacart",
+    "leetcode_company:karat",
+    "leetcode_company:zoho",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:matrix"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:indeed",
+    "company:instacart",
+    "company:karat",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:matrix"
+  ],
+  "company_tags": [
+    {
+      "name": "Karat",
+      "slug": "karat"
+    },
+    {
+      "name": "Indeed",
+      "slug": "indeed"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "Instacart",
+      "slug": "instacart"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Indeed",
+        "slug": "indeed",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Instacart",
+        "slug": "instacart",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Karat",
+        "slug": "karat",
+        "timesEncountered": 6
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

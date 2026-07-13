@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1575",
+  "cases": [
+    {
+      "id": "benchmark-evenly-spaced-cities",
+      "name": "benchmark: evenly spaced cities with limited fuel",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "locations": [
+          0,
+          2,
+          4
+        ],
+        "start": 0,
+        "finish": 2,
+        "fuel": 6
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

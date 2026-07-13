@@ -1,0 +1,90 @@
+{
+  "challenge_id": "lc_2426",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three valid pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          2,
+          5
+        ],
+        "nums2": [
+          2,
+          2,
+          1
+        ],
+        "diff": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "merge-sort"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negative diff blocks both pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          -1
+        ],
+        "nums2": [
+          -2,
+          2
+        ],
+        "diff": -1
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-valid-pair",
+      "name": "trial: single valid pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          0,
+          0
+        ],
+        "diff": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-one-element",
+      "name": "hidden: one element has no pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          5
+        ],
+        "nums2": [
+          3
+        ],
+        "diff": 10
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

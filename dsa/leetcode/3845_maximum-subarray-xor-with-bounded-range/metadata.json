@@ -1,0 +1,89 @@
+{
+  "challenge_id": "lc_3845",
+  "source": "leetcode",
+  "frontend_id": "3845",
+  "slug": "maximum-subarray-xor-with-bounded-range",
+  "title": "Maximum Subarray XOR with Bounded Range",
+  "difficulty": "Hard",
+  "acceptance_rate": 33.17368137460336,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Trie",
+      "slug": "trie"
+    },
+    {
+      "name": "Queue",
+      "slug": "queue"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    },
+    {
+      "name": "Monotonic Queue",
+      "slug": "monotonic-queue"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-subarray-xor-with-bounded-range/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:monotonic-queue",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:queue",
+    "leetcode_topic:sliding-window",
+    "leetcode_topic:trie"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:monotonic-queue",
+    "topic:prefix-sum",
+    "topic:queue",
+    "topic:sliding-window",
+    "topic:trie"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

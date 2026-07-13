@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2164",
+  "source": "leetcode",
+  "frontend_id": "2164",
+  "slug": "sort-even-and-odd-indices-independently",
+  "title": "Sort Even and Odd Indices Independently",
+  "difficulty": "Easy",
+  "acceptance_rate": 63.50494479373816,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/sort-even-and-odd-indices-independently/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:zoho",
+    "leetcode_topic:array",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

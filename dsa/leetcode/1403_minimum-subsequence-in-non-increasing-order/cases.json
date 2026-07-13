@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_1403",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two largest values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          10,
+          9,
+          8
+        ]
+      },
+      "expected": [
+        10,
+        9
+      ],
+      "validator": {
+        "kind": "minimum_subsequence"
+      },
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three selected values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          7,
+          6,
+          7
+        ]
+      },
+      "expected": [
+        7,
+        7,
+        6
+      ],
+      "validator": {
+        "kind": "minimum_subsequence"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "single value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6
+        ]
+      },
+      "expected": [
+        6
+      ],
+      "validator": {
+        "kind": "minimum_subsequence"
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-one-dominant-value",
+      "name": "hidden: one dominant value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          10
+        ]
+      },
+      "expected": [
+        10
+      ],
+      "validator": {
+        "kind": "minimum_subsequence"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

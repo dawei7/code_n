@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_101",
+  "measurement_note": "The tiers are fully symmetric complete trees with repeated values, forcing every mirrored node pair to be checked without an early mismatch.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one node", "kind": "benchmark", "visible": false, "size": 1, "input": {"root": [1]}, "expected": true, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: fifteen nodes", "kind": "benchmark", "visible": false, "size": 15, "input": {"root": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}, "expected": true, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: sixty-three nodes", "kind": "benchmark", "visible": false, "size": 63, "input": {"root": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}, "expected": true, "tags": ["benchmark", "scale-large"]}
+  ]
+}

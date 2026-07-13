@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_819",
+  "cases": [
+    {"id": "sample-1", "name": "sample: repeated ball with banned hit", "kind": "sample", "visible": true, "input": {"paragraph": "Bob hit a ball, the hit BALL flew far after it was hit.", "banned": ["hit"]}, "expected": "ball", "tags": ["sample", "mixed-case"]},
+    {"id": "sample-2", "name": "sample: punctuation-separated repeats", "kind": "sample", "visible": true, "input": {"paragraph": "a, a, a, a, b,b,b,c, c", "banned": ["a"]}, "expected": "b", "tags": ["sample", "punctuation"]},
+    {"id": "sample-3", "name": "sample: all earlier words banned", "kind": "sample", "visible": true, "input": {"paragraph": "Bob. hIt, baLl", "banned": ["bob", "hit"]}, "expected": "ball", "tags": ["sample", "banned"]},
+    {"id": "trial-1", "name": "trial: one unpunctuated word", "kind": "trial", "visible": true, "input": {"paragraph": "Hello", "banned": []}, "expected": "hello", "tags": ["trial", "single-word"]},
+    {"id": "trial-2", "name": "trial: punctuation and case folding", "kind": "trial", "visible": true, "input": {"paragraph": "Alpha! beta? ALPHA; gamma, beta. alpha.", "banned": ["gamma"]}, "expected": "alpha", "tags": ["trial", "all-delimiters"]},
+    {"id": "trial-3", "name": "trial: ban the raw frequency winner", "kind": "trial", "visible": true, "input": {"paragraph": "one one TWO two two three", "banned": ["two"]}, "expected": "one", "tags": ["trial", "banned-winner"]},
+    {"id": "hidden-1", "name": "hidden: apostrophes are boundaries", "kind": "real", "visible": false, "input": {"paragraph": "cat's cat's dog dog dog", "banned": ["cat", "s"]}, "expected": "dog", "tags": ["hidden", "apostrophe"]},
+    {"id": "hidden-2", "name": "hidden: adjacent punctuation", "kind": "real", "visible": false, "input": {"paragraph": "red!!!blue??red,,green;red", "banned": ["blue"]}, "expected": "red", "tags": ["hidden", "adjacent-delimiters"]},
+    {"id": "hidden-3", "name": "hidden: banned comparison ignores paragraph case", "kind": "real", "visible": false, "input": {"paragraph": "NO no Yes yes YES maybe", "banned": ["no"]}, "expected": "yes", "tags": ["hidden", "case-folding"]}
+  ]
+}

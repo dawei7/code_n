@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_410",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: best cut before ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          2,
+          5,
+          10,
+          8
+        ],
+        "m": 2
+      },
+      "expected": 18,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: increasing values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "m": 2
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "increasing"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one element per group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          4
+        ],
+        "m": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "m-equals-n"
+      ]
+    },
+    {
+      "id": "trial-one-group",
+      "name": "trial: all values in one group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          0,
+          5,
+          3
+        ],
+        "m": 1
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "one-group"
+      ]
+    },
+    {
+      "id": "trial-zeroes",
+      "name": "trial: zero values around positives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          5,
+          0,
+          5,
+          0
+        ],
+        "m": 3
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "zeroes"
+      ]
+    },
+    {
+      "id": "hidden-dominant",
+      "name": "hidden: one value dominates every partition",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          20,
+          1,
+          1
+        ],
+        "m": 3
+      },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "dominant"
+      ]
+    },
+    {
+      "id": "hidden-equal",
+      "name": "hidden: equal values split evenly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "m": 3
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "equal"
+      ]
+    },
+    {
+      "id": "hidden-many-groups",
+      "name": "hidden: exact nontrivial group count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          1,
+          2,
+          3,
+          9,
+          1,
+          2
+        ],
+        "m": 4
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "groups"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "challenge_id": "lc_3142",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: valid alternating columns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: vertical mismatch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "vertical"
+      ]
+    },
+    {
+      "id": "trial-horizontal-mismatch",
+      "name": "trial: adjacent columns are equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "horizontal"
+      ]
+    },
+    {
+      "id": "trial-single-column",
+      "name": "trial: single column only checks vertical equality",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7
+          ],
+          [
+            7
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-single-row-valid",
+      "name": "real: one row with alternating values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "single-row"
+      ]
+    },
+    {
+      "id": "real-late-vertical-break",
+      "name": "real: late vertical mismatch in a wider grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            3,
+            4,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            9,
+            4
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "late-break"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_413",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four-value arithmetic run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "increasing"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: fewer than three values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "short"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: five-value step-two run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "step-two"
+      ]
+    },
+    {
+      "id": "trial-constant",
+      "name": "trial: zero common difference",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "constant"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: negative common difference",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          7,
+          4,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "hidden-break",
+      "name": "hidden: difference change separates runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          8,
+          10,
+          12,
+          14
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "break"
+      ]
+    },
+    {
+      "id": "hidden-no-slices",
+      "name": "hidden: every adjacent difference changes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8,
+          16
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "none"
+      ]
+    },
+    {
+      "id": "hidden-overlapping",
+      "name": "hidden: several overlapping slices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          3,
+          1,
+          -1,
+          -3,
+          -5
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "overlapping"
+      ]
+    }
+  ]
+}

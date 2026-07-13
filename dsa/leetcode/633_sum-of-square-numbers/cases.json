@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_633",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two different squares", "kind": "sample", "visible": true, "input": {"c": 5}, "expected": true, "tags": ["sample", "representable"]},
+    {"id": "sample-2", "name": "sample: no representation", "kind": "sample", "visible": true, "input": {"c": 3}, "expected": false, "tags": ["sample", "impossible"]},
+    {"id": "trial-1", "name": "trial: zero uses two zeroes", "kind": "trial", "visible": true, "input": {"c": 0}, "expected": true, "tags": ["trial", "zero"]},
+    {"id": "trial-2", "name": "trial: equal components", "kind": "trial", "visible": true, "input": {"c": 8}, "expected": true, "tags": ["trial", "equal-roots"]},
+    {"id": "hidden-1", "name": "hidden: smallest positive pair", "kind": "real", "visible": false, "input": {"c": 2}, "expected": true, "tags": ["hidden", "ones"]},
+    {"id": "hidden-2", "name": "hidden: nearby impossible value", "kind": "real", "visible": false, "input": {"c": 6}, "expected": false, "tags": ["hidden", "impossible"]},
+    {"id": "hidden-3", "name": "hidden: two valid decompositions", "kind": "real", "visible": false, "input": {"c": 65}, "expected": true, "tags": ["hidden", "multiple-representations"]},
+    {"id": "hidden-4", "name": "hidden: near-limit perfect square", "kind": "real", "visible": false, "input": {"c": 2147395600}, "expected": true, "tags": ["hidden", "large", "perfect-square"]}
+  ]
+}

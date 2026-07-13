@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_2528",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: add stations to lift the weakest city",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stations": [
+          1,
+          2,
+          4,
+          5,
+          0
+        ],
+        "r": 1,
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: radius zero isolates each city",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stations": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "r": 0,
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one extra station cannot raise both ends",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stations": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "r": 1,
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-radius-covers-all-cities",
+      "name": "trial: every added station powers the whole line",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stations": [
+          0,
+          0,
+          0
+        ],
+        "r": 5,
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-city",
+      "name": "hidden: all new stations can go into one city",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stations": [
+          0
+        ],
+        "r": 0,
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "challenge_id": "lc_1351",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed signs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            3,
+            2,
+            -1
+          ],
+          [
+            3,
+            2,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            -1,
+            -2
+          ],
+          [
+            -1,
+            -1,
+            -2,
+            -3
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no negatives",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            2
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-negative",
+      "name": "single negative cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-bottom-row-negative",
+      "name": "hidden: bottom row all negative",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            5,
+            1,
+            0
+          ],
+          [
+            -1,
+            -2,
+            -3
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

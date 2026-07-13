@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_728",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first twenty-two values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"left": 1, "right": 22},
+      "expected": [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22],
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two-digit interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {"left": 47, "right": 85},
+      "expected": [48, 55, 66, 77],
+      "tags": ["sample", "two-digit"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single qualifying endpoint",
+      "kind": "sample",
+      "visible": true,
+      "input": {"left": 128, "right": 128},
+      "expected": [128],
+      "tags": ["sample", "singleton"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: all single-digit values qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"left": 5, "right": 9},
+      "expected": [5, 6, 7, 8, 9],
+      "tags": ["trial", "single-digit"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: zero digit rejects a singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {"left": 101, "right": 101},
+      "expected": [],
+      "tags": ["trial", "zero-digit"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: repeated and distinct digits",
+      "kind": "real",
+      "visible": false,
+      "input": {"left": 11, "right": 15},
+      "expected": [11, 12, 15],
+      "tags": ["hidden", "repeated-digit"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: consecutive three-digit answers",
+      "kind": "real",
+      "visible": false,
+      "input": {"left": 120, "right": 130},
+      "expected": [122, 124, 126, 128],
+      "tags": ["hidden", "three-digit"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: upper bound contains zeros",
+      "kind": "real",
+      "visible": false,
+      "input": {"left": 10000, "right": 10000},
+      "expected": [],
+      "tags": ["hidden", "upper-bound"]
+    }
+  ]
+}

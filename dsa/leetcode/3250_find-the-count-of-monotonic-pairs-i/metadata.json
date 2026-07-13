@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_3250",
+  "source": "leetcode",
+  "frontend_id": "3250",
+  "slug": "find-the-count-of-monotonic-pairs-i",
+  "title": "Find the Count of Monotonic Pairs I",
+  "difficulty": "Hard",
+  "acceptance_rate": 47.64618097951431,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-the-count-of-monotonic-pairs-i/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:arcesium",
+    "leetcode_topic:array",
+    "leetcode_topic:combinatorics",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math",
+    "leetcode_topic:prefix-sum"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:arcesium",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:combinatorics",
+    "topic:dynamic-programming",
+    "topic:math",
+    "topic:prefix-sum"
+  ],
+  "company_tags": [
+    {
+      "name": "Arcesium",
+      "slug": "arcesium"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Arcesium",
+        "slug": "arcesium",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

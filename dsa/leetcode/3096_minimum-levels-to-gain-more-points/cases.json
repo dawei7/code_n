@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_3096",
+  "cases": [
+    {
+      "id": "sample-first-winning-prefix",
+      "name": "sample: early prefix beats the remainder",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "possible": [
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-winning-prefix",
+      "name": "sample: no split gives player one more points",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "possible": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-wins",
+      "name": "trial: all wins but both parts non-empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "possible": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-late-split",
+      "name": "trial: winning split appears late",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "possible": [
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-levels",
+      "name": "real: longer mixed level results",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "possible": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "prefix"
+      ]
+    }
+  ]
+}

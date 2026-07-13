@@ -1,0 +1,180 @@
+{
+  "challenge_id": "lc_1489",
+  "source": "leetcode",
+  "frontend_id": "1489",
+  "slug": "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree",
+  "title": "Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree",
+  "difficulty": "Hard",
+  "acceptance_rate": 66.61822295709686,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Minimum Spanning Tree",
+      "slug": "minimum-spanning-tree"
+    },
+    {
+      "name": "Strongly Connected Component",
+      "slug": "strongly-connected-component"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_company:uber",
+    "leetcode_studyplan:graph-theory",
+    "leetcode_studyplan:graph-theory:graph-theory-112-2ckf",
+    "leetcode_topic:graph",
+    "leetcode_topic:minimum-spanning-tree",
+    "leetcode_topic:sorting",
+    "leetcode_topic:strongly-connected-component",
+    "leetcode_topic:union-find",
+    "neetcode:allNC",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:google",
+    "company:uber",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:graph-theory",
+    "study_plan_section:graph-theory:graph-theory-112-2ckf",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:graph",
+    "topic:minimum-spanning-tree",
+    "topic:sorting",
+    "topic:strongly-connected-component",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "graph-theory",
+      "plan_name": "Graph Theory",
+      "section_slug": "graph-theory-112-2ckf",
+      "section_name": "Minimum Spanning Tree",
+      "path": [
+        "Minimum Spanning Tree"
+      ],
+      "order": 44,
+      "section_order": 8,
+      "problem_order": 4,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/graph-theory/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Advanced Graphs"
+      ],
+      "order": 170,
+      "section_order": 11,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree",
+      "leetcode_slug": "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree",
+      "difficulty": "Hard",
+      "problem_order": 7
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Advanced Graphs"
+      ],
+      "order": 651,
+      "section_order": 11,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree",
+      "leetcode_slug": "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree",
+      "difficulty": "Hard",
+      "problem_order": 25
+    }
+  ]
+}

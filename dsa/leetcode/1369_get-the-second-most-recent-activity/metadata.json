@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1369",
+  "source": "leetcode",
+  "frontend_id": "1369",
+  "slug": "get-the-second-most-recent-activity",
+  "title": "Get the Second Most Recent Activity",
+  "difficulty": "Hard",
+  "acceptance_rate": 67.34611706678746,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/get-the-second-most-recent-activity/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:microsoft",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:microsoft",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

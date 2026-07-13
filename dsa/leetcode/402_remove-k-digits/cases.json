@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_402",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several greedy inversions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "1432219",
+        "k": 3
+      },
+      "expected": "1219",
+      "tags": [
+        "sample",
+        "inversions"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: deletion creates leading zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "10200",
+        "k": 1
+      },
+      "expected": "200",
+      "tags": [
+        "sample",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: remove every digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "10",
+        "k": 2
+      },
+      "expected": "0",
+      "tags": [
+        "sample",
+        "all-removed"
+      ]
+    },
+    {
+      "id": "trial-nondecreasing",
+      "name": "trial: delete from suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "112",
+        "k": 1
+      },
+      "expected": "11",
+      "tags": [
+        "trial",
+        "suffix"
+      ]
+    },
+    {
+      "id": "trial-zero-prefix",
+      "name": "trial: several leading zeroes after deletion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "100200",
+        "k": 1
+      },
+      "expected": "200",
+      "tags": [
+        "trial",
+        "normalization"
+      ]
+    },
+    {
+      "id": "hidden-descending",
+      "name": "hidden: every new digit triggers a pop",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": "9876543210",
+        "k": 5
+      },
+      "expected": "43210",
+      "tags": [
+        "hidden",
+        "descending"
+      ]
+    },
+    {
+      "id": "hidden-equal",
+      "name": "hidden: all digits equal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": "777777",
+        "k": 3
+      },
+      "expected": "777",
+      "tags": [
+        "hidden",
+        "equal"
+      ]
+    },
+    {
+      "id": "hidden-mixed-zeroes",
+      "name": "hidden: internal zeroes dominate larger prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": "120304050",
+        "k": 4
+      },
+      "expected": "50",
+      "tags": [
+        "hidden",
+        "zeroes"
+      ]
+    }
+  ]
+}

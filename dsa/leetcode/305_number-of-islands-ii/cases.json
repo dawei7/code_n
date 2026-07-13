@@ -1,0 +1,238 @@
+{
+  "challenge_id": "lc_305",
+  "cases": [
+    {
+      "id": "sample-separate",
+      "name": "sample: separate additions create three islands",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "positions": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "incremental"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one-cell grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 1,
+        "positions": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-duplicate-bridge",
+      "name": "sample: duplicate then bridge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "positions": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "duplicate",
+        "bridge"
+      ]
+    },
+    {
+      "id": "trial-multi-bridge",
+      "name": "one cell joins two established components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "positions": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        2,
+        2,
+        1
+      ],
+      "tags": [
+        "multiple-unions"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "single-row chain remains one island",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 5,
+        "positions": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "one-row"
+      ]
+    },
+    {
+      "id": "real-three-way",
+      "name": "hidden: bridge plus repeated coordinate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "positions": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "duplicate",
+        "bridge"
+      ]
+    }
+  ]
+}

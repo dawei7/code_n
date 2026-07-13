@@ -1,0 +1,210 @@
+{
+  "challenge_id": "lc_2617",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: reachable through mixed row and column jumps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            4,
+            2,
+            1
+          ],
+          [
+            4,
+            2,
+            3,
+            1
+          ],
+          [
+            2,
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            4,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three cells are enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            4,
+            2,
+            1
+          ],
+          [
+            4,
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            3,
+            4,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: blocked destination",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "unreachable"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: start is already the destination",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-one-row-long-jump",
+      "name": "trial: one row with direct jump",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "row"
+      ]
+    },
+    {
+      "id": "real-unreachable-two-by-two",
+      "name": "hidden: jump cannot reach target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "unreachable"
+      ]
+    },
+    {
+      "id": "real-zigzag-grid",
+      "name": "hidden: path must mix directions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            2,
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            2,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "mixed-jumps"
+      ]
+    }
+  ]
+}

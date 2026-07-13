@@ -1,0 +1,130 @@
+{
+  "challenge_id": "lc_1899",
+  "source": "leetcode",
+  "frontend_id": "1899",
+  "slug": "merge-triplets-to-form-target-triplet",
+  "title": "Merge Triplets to Form Target Triplet",
+  "difficulty": "Medium",
+  "acceptance_rate": 69.19392659360396,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/merge-triplets-to-form-target-triplet/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "neetcode:allNC",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:greedy"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "3": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Greedy"
+      ],
+      "order": 126,
+      "section_order": 14,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "merge-triplets-to-form-target",
+      "leetcode_slug": "merge-triplets-to-form-target-triplet",
+      "difficulty": "Medium",
+      "problem_order": 5
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Greedy"
+      ],
+      "order": 216,
+      "section_order": 14,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "merge-triplets-to-form-target",
+      "leetcode_slug": "merge-triplets-to-form-target-triplet",
+      "difficulty": "Medium",
+      "problem_order": 10
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Greedy"
+      ],
+      "order": 792,
+      "section_order": 14,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "merge-triplets-to-form-target",
+      "leetcode_slug": "merge-triplets-to-form-target-triplet",
+      "difficulty": "Medium",
+      "problem_order": 31
+    }
+  ]
+}

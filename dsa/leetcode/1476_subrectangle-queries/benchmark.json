@@ -1,0 +1,70 @@
+{
+  "challenge_id": "lc_1476",
+  "cases": [
+    {
+      "id": "benchmark-overlapping-updates",
+      "name": "benchmark: overlapping updates",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "rectangle": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "operations": [
+          [
+            "updateSubrectangle",
+            [
+              0,
+              0,
+              1,
+              2,
+              5
+            ]
+          ],
+          [
+            "updateSubrectangle",
+            [
+              1,
+              1,
+              1,
+              2,
+              7
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            "getValue",
+            [
+              1,
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        5,
+        7
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

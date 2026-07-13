@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_28",
+  "cases": [
+    {"id": "sample-1", "name": "sample: first of two occurrences", "kind": "sample", "visible": true, "input": {"haystack": "sadbutsad", "needle": "sad"}, "expected": 0, "tags": ["sample", "first-match"]},
+    {"id": "sample-2", "name": "sample: absent pattern", "kind": "sample", "visible": true, "input": {"haystack": "leetcode", "needle": "leeto"}, "expected": -1, "tags": ["sample", "absent"]},
+    {"id": "trial-overlapping-prefix", "name": "fallback reuses an overlapping border", "kind": "trial", "visible": true, "input": {"haystack": "mississippi", "needle": "issip"}, "expected": 4, "tags": ["overlap"]},
+    {"id": "trial-full-string", "name": "needle equals haystack", "kind": "trial", "visible": true, "input": {"haystack": "abc", "needle": "abc"}, "expected": 0, "tags": ["boundary"]},
+    {"id": "real-late-overlap", "name": "hidden: late match after repeated prefix", "kind": "real", "visible": false, "input": {"haystack": "aaaaab", "needle": "aaab"}, "expected": 2, "tags": ["hidden", "overlap"]}
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_1449",
+  "cases": [
+    {
+      "id": "benchmark-length-before-value",
+      "name": "benchmark: longer number beats larger single digit",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "cost": [
+          6,
+          10,
+          15,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40
+        ],
+        "target": 20
+      },
+      "expected": "22",
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

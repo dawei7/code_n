@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1465",
+  "cases": [
+    {
+      "id": "benchmark-unsorted-gaps",
+      "name": "benchmark: unsorted cuts with largest width gap",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "h": 9,
+        "w": 8,
+        "horizontal_cuts": [
+          7,
+          1,
+          5
+        ],
+        "vertical_cuts": [
+          3
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

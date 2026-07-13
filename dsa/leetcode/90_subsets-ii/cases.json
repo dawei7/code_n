@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_90",
+  "cases": [
+    {"id": "sample-duplicate", "name": "sample: one repeated value", "kind": "sample", "visible": true, "input": {"nums": [1,2,2]}, "expected": [[],[1],[1,2],[1,2,2],[2],[2,2]], "validator": {"kind": "unordered_nested_list"}, "tags": ["sample"]},
+    {"id": "sample-single", "name": "sample: one value", "kind": "sample", "visible": true, "input": {"nums": [0]}, "expected": [[],[0]], "validator": {"kind": "unordered_nested_list"}, "tags": ["sample", "boundary"]},
+    {"id": "trial-pair", "name": "two equal values", "kind": "trial", "visible": true, "input": {"nums": [1,1]}, "expected": [[],[1],[1,1]], "validator": {"kind": "unordered_nested_list"}, "tags": ["duplicates"]},
+    {"id": "trial-negative", "name": "duplicates with negative values", "kind": "trial", "visible": true, "input": {"nums": [-1,-1,2]}, "expected": null, "validator": {"kind": "unordered_nested_list"}, "tags": ["negative", "duplicates"]},
+    {"id": "real-triple", "name": "hidden: three equal copies", "kind": "real", "visible": false, "input": {"nums": [1,2,2,2]}, "expected": null, "validator": {"kind": "unordered_nested_list"}, "tags": ["hidden", "duplicates"]}
+  ]
+}

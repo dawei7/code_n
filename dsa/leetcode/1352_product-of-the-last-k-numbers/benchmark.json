@@ -1,0 +1,62 @@
+{
+  "challenge_id": "lc_1352",
+  "cases": [
+    {
+      "id": "benchmark-repeated-tens",
+      "name": "benchmark: repeated product values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "add",
+            [
+              10
+            ]
+          ],
+          [
+            "add",
+            [
+              10
+            ]
+          ],
+          [
+            "add",
+            [
+              10
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              1
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              2
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              3
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        10,
+        100,
+        1000
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

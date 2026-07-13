@@ -1,0 +1,620 @@
+{
+  "challenge_id": "lc_295",
+  "source": "leetcode",
+  "frontend_id": "295",
+  "slug": "find-median-from-data-stream",
+  "title": "Find Median from Data Stream",
+  "difficulty": "Hard",
+  "acceptance_rate": 54.690238433119056,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Data Stream",
+      "slug": "data-stream"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:anduril",
+    "leetcode_company:apple",
+    "leetcode_company:bloomberg",
+    "leetcode_company:citadel",
+    "leetcode_company:cohesity",
+    "leetcode_company:coupang",
+    "leetcode_company:docusign",
+    "leetcode_company:ebay",
+    "leetcode_company:facebook",
+    "leetcode_company:flipkart",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:intuit",
+    "leetcode_company:ixl",
+    "leetcode_company:kla",
+    "leetcode_company:meesho",
+    "leetcode_company:microsoft",
+    "leetcode_company:nvidia",
+    "leetcode_company:okta",
+    "leetcode_company:oracle",
+    "leetcode_company:paypal",
+    "leetcode_company:pinterest",
+    "leetcode_company:snowflake",
+    "leetcode_company:splunk",
+    "leetcode_company:spotify",
+    "leetcode_company:tekion",
+    "leetcode_company:tiktok",
+    "leetcode_company:tinder",
+    "leetcode_company:uber",
+    "leetcode_company:visa",
+    "leetcode_company:walmart-labs",
+    "leetcode_company:yandex",
+    "leetcode_studyplan:apple-spring-23-high-frequency",
+    "leetcode_studyplan:apple-spring-23-high-frequency:apple-spring-23-high-frequency-151-8z9e",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-53-tlit",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-19-w23l",
+    "leetcode_topic:data-stream",
+    "leetcode_topic:design",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:sorting",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:anduril",
+    "company:apple",
+    "company:bloomberg",
+    "company:citadel",
+    "company:cohesity",
+    "company:coupang",
+    "company:docusign",
+    "company:ebay",
+    "company:facebook",
+    "company:flipkart",
+    "company:goldman-sachs",
+    "company:google",
+    "company:intuit",
+    "company:ixl",
+    "company:kla",
+    "company:meesho",
+    "company:microsoft",
+    "company:nvidia",
+    "company:okta",
+    "company:oracle",
+    "company:paypal",
+    "company:pinterest",
+    "company:snowflake",
+    "company:splunk",
+    "company:spotify",
+    "company:tekion",
+    "company:tiktok",
+    "company:tinder",
+    "company:uber",
+    "company:visa",
+    "company:walmart-labs",
+    "company:yandex",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:apple-spring-23-high-frequency",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:apple-spring-23-high-frequency:apple-spring-23-high-frequency-151-8z9e",
+    "study_plan_section:top-100-liked:top-100-liked-53-tlit",
+    "study_plan_section:top-interview-150:top-interview-150-19-w23l",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:data-stream",
+    "topic:design",
+    "topic:heap-priority-queue",
+    "topic:sorting",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Citadel",
+      "slug": "citadel"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "IXL",
+      "slug": "ixl"
+    },
+    {
+      "name": "Tinder",
+      "slug": "tinder"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Anduril",
+      "slug": "anduril"
+    },
+    {
+      "name": "Spotify",
+      "slug": "spotify"
+    },
+    {
+      "name": "Flipkart",
+      "slug": "flipkart"
+    },
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Cohesity",
+      "slug": "cohesity"
+    },
+    {
+      "name": "Intuit",
+      "slug": "intuit"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Okta",
+      "slug": "okta"
+    },
+    {
+      "name": "Pinterest",
+      "slug": "pinterest"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "Docusign",
+      "slug": "docusign"
+    },
+    {
+      "name": "Coupang",
+      "slug": "coupang"
+    },
+    {
+      "name": "eBay",
+      "slug": "ebay"
+    },
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "Splunk",
+      "slug": "splunk"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Meesho",
+      "slug": "meesho"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Tekion",
+      "slug": "tekion"
+    },
+    {
+      "name": "KLA",
+      "slug": "kla"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Pinterest",
+        "slug": "pinterest",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Docusign",
+        "slug": "docusign",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Coupang",
+        "slug": "coupang",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "eBay",
+        "slug": "ebay",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Splunk",
+        "slug": "splunk",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meesho",
+        "slug": "meesho",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tekion",
+        "slug": "tekion",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "KLA",
+        "slug": "kla",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Anduril",
+        "slug": "anduril",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Spotify",
+        "slug": "spotify",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Flipkart",
+        "slug": "flipkart",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Cohesity",
+        "slug": "cohesity",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Intuit",
+        "slug": "intuit",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Okta",
+        "slug": "okta",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 12
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Citadel",
+        "slug": "citadel",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IXL",
+        "slug": "ixl",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tinder",
+        "slug": "tinder",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-19-w23l",
+      "section_name": "Heap",
+      "path": [
+        "Heap"
+      ],
+      "order": 124,
+      "section_order": 19,
+      "problem_order": 4,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-53-tlit",
+      "section_name": "Heap",
+      "path": [
+        "Heap"
+      ],
+      "order": 57,
+      "section_order": 8,
+      "problem_order": 2,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    },
+    {
+      "plan_slug": "apple-spring-23-high-frequency",
+      "plan_name": "Apple Spring '23 High Frequency",
+      "section_slug": "apple-spring-23-high-frequency-151-8z9e",
+      "section_name": "February Interview Questions",
+      "path": [
+        "February Interview Questions"
+      ],
+      "order": 20,
+      "section_order": 3,
+      "problem_order": 3,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/apple-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 35,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "find-median-in-a-data-stream",
+      "leetcode_slug": "find-median-from-data-stream",
+      "difficulty": "Hard",
+      "problem_order": 0
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 65,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "find-median-in-a-data-stream",
+      "leetcode_slug": "find-median-from-data-stream",
+      "difficulty": "Hard",
+      "problem_order": 6
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 119,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "find-median-in-a-data-stream",
+      "leetcode_slug": "find-median-from-data-stream",
+      "difficulty": "Hard",
+      "problem_order": 10
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 500,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "find-median-in-a-data-stream",
+      "leetcode_slug": "find-median-from-data-stream",
+      "difficulty": "Hard",
+      "problem_order": 26
+    }
+  ]
+}

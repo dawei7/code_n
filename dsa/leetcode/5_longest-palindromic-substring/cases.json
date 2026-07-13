@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_5",
+  "cases": [
+    {"id": "sample-1", "name": "sample: odd palindrome", "kind": "sample", "visible": true, "input": {"s": "babad"}, "expected": "bab", "tags": ["sample", "odd"]},
+    {"id": "sample-2", "name": "sample: even palindrome", "kind": "sample", "visible": true, "input": {"s": "cbbd"}, "expected": "bb", "tags": ["sample", "even"]},
+    {"id": "trial-single", "name": "single character", "kind": "trial", "visible": true, "input": {"s": "a"}, "expected": "a", "tags": ["boundary"]},
+    {"id": "trial-whole-string", "name": "whole string is a palindrome", "kind": "trial", "visible": true, "input": {"s": "racecar"}, "expected": "racecar", "tags": ["whole-string"]},
+    {"id": "real-long-even", "name": "hidden: even palindrome inside noise", "kind": "real", "visible": false, "input": {"s": "forgeeksskeegfor"}, "expected": "geeksskeeg", "tags": ["hidden", "even"]}
+  ]
+}

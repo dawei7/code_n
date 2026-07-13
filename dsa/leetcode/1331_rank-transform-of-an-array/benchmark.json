@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_1331",
+  "cases": [
+    {
+      "id": "benchmark-wide-range",
+      "name": "benchmark: duplicate values across range",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          2,
+          -1,
+          7,
+          0
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        1,
+        4,
+        2
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

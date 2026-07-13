@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "783",
+  "frontend_id": "700",
+  "title_slug": "search-in-a-binary-search-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065604334",
+  "verified_at": "2026-07-13T04:00:58.322481+00:00"
+}

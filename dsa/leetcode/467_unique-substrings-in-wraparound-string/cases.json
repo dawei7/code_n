@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_467",
+  "cases": [
+    {
+      "id": "sample-single",
+      "name": "sample: one letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {"p": "a"},
+      "expected": 1,
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "sample-broken-runs",
+      "name": "sample: no adjacent pair follows cyclic order",
+      "kind": "sample",
+      "visible": true,
+      "input": {"p": "cac"},
+      "expected": 2,
+      "tags": ["sample", "broken"]
+    },
+    {
+      "id": "sample-wrap",
+      "name": "sample: run crosses z to a",
+      "kind": "sample",
+      "visible": true,
+      "input": {"p": "zab"},
+      "expected": 6,
+      "tags": ["sample", "wrap"]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: empty string",
+      "kind": "trial",
+      "visible": true,
+      "input": {"p": ""},
+      "expected": 0,
+      "tags": ["trial", "empty"]
+    },
+    {
+      "id": "trial-full-alphabet",
+      "name": "trial: one full alphabet run",
+      "kind": "trial",
+      "visible": true,
+      "input": {"p": "abcdefghijklmnopqrstuvwxyz"},
+      "expected": 351,
+      "tags": ["trial", "alphabet"]
+    },
+    {
+      "id": "hidden-repeated-letter",
+      "name": "hidden: repeated equal letters do not extend a run",
+      "kind": "real",
+      "visible": false,
+      "input": {"p": "aaaa"},
+      "expected": 1,
+      "tags": ["hidden", "duplicate"]
+    },
+    {
+      "id": "hidden-multiple-runs",
+      "name": "hidden: only longest run per ending letter contributes",
+      "kind": "real",
+      "visible": false,
+      "input": {"p": "abcdezab"},
+      "expected": 18,
+      "tags": ["hidden", "multiple-runs"]
+    }
+  ]
+}

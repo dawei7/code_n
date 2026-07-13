@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_1385",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two distant values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr1": [
+          4,
+          5,
+          8
+        ],
+        "arr2": [
+          10,
+          9,
+          1,
+          8
+        ],
+        "d": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negative values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr1": [
+          1,
+          4,
+          2,
+          3
+        ],
+        "arr2": [
+          -4,
+          -3,
+          6,
+          10,
+          20,
+          30
+        ],
+        "d": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one distant value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr1": [
+          2,
+          1,
+          100,
+          3
+        ],
+        "arr2": [
+          -5,
+          -2,
+          10,
+          -3,
+          7
+        ],
+        "d": 6
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-single-distant",
+      "name": "hidden: one element far away",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr1": [
+          1
+        ],
+        "arr2": [
+          100
+        ],
+        "d": 10
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

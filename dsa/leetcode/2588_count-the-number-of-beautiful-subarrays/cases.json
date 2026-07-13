@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2588",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two zero-xor subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "prefix-xor"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no beautiful subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every zero-only subarray works",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-single-nonzero",
+      "name": "trial: one nonzero element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "small"
+      ]
+    },
+    {
+      "id": "real-symmetric-xor-pattern",
+      "name": "hidden: repeated prefix xors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          0,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_814",
+  "cases": [
+    {"id": "sample-1", "name": "sample: prune one zero leaf", "kind": "sample", "visible": true, "input": {"root": [1, null, 0, 0, 1]}, "expected": [1, null, 0, null, 1], "tags": ["sample", "sparse"]},
+    {"id": "sample-2", "name": "sample: prune left subtree and right leaf", "kind": "sample", "visible": true, "input": {"root": [1, 0, 1, 0, 0, 0, 1]}, "expected": [1, null, 1, null, 1], "tags": ["sample", "multiple-prunes"]},
+    {"id": "sample-3", "name": "sample: prune entire all-zero tree", "kind": "sample", "visible": true, "input": {"root": [0, 0, 0]}, "expected": [], "tags": ["sample", "all-zero"]},
+    {"id": "trial-1", "name": "trial: singleton one remains", "kind": "trial", "visible": true, "input": {"root": [1]}, "expected": [1], "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: singleton zero prunes", "kind": "trial", "visible": true, "input": {"root": [0]}, "expected": [], "tags": ["trial", "singleton", "all-zero"]},
+    {"id": "trial-3", "name": "trial: zero root retained by left one", "kind": "trial", "visible": true, "input": {"root": [0, 1, 0]}, "expected": [0, 1], "tags": ["trial", "zero-ancestor"]},
+    {"id": "hidden-1", "name": "hidden: prune all-zero left branch", "kind": "real", "visible": false, "input": {"root": [0, 0, 1, 0, 0]}, "expected": [0, null, 1], "tags": ["hidden", "branch"]},
+    {"id": "hidden-2", "name": "hidden: preserve path through zeros", "kind": "real", "visible": false, "input": {"root": [0, 0, null, 0, null, 1]}, "expected": [0, 0, null, 0, null, 1], "tags": ["hidden", "skewed", "zero-ancestor"]},
+    {"id": "hidden-3", "name": "hidden: prune one side under each child", "kind": "real", "visible": false, "input": {"root": [1, 0, 0, 1, 0, 0, 1]}, "expected": [1, 0, 0, 1, null, null, 1], "tags": ["hidden", "multiple-prunes"]}
+  ]
+}

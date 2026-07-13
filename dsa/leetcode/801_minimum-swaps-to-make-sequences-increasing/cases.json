@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_801",
+  "cases": [
+    {"id": "sample-1", "name": "sample: swap final pair", "kind": "sample", "visible": true, "input": {"nums1": [1, 3, 5, 4], "nums2": [1, 2, 3, 7]}, "expected": 1, "tags": ["sample", "final-swap"]},
+    {"id": "sample-2", "name": "sample: swap first pair", "kind": "sample", "visible": true, "input": {"nums1": [0, 3, 5, 8, 9], "nums2": [2, 1, 4, 6, 9]}, "expected": 1, "tags": ["sample", "first-swap"]},
+    {"id": "sample-3", "name": "sample: already increasing", "kind": "sample", "visible": true, "input": {"nums1": [1, 2, 3], "nums2": [2, 3, 4]}, "expected": 0, "tags": ["sample", "zero-swaps"]},
+    {"id": "trial-1", "name": "trial: singleton pair", "kind": "trial", "visible": true, "input": {"nums1": [5], "nums2": [7]}, "expected": 0, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: equal value forces last swap", "kind": "trial", "visible": true, "input": {"nums1": [0, 1, 3], "nums2": [0, 2, 2]}, "expected": 1, "tags": ["trial", "strict", "final-swap"]},
+    {"id": "trial-3", "name": "trial: two swaps are required", "kind": "trial", "visible": true, "input": {"nums1": [2, 4, 10, 11, 13, 15], "nums2": [4, 8, 7, 10, 14, 17]}, "expected": 2, "tags": ["trial", "multiple-swaps"]},
+    {"id": "hidden-1", "name": "hidden: only first pair must swap", "kind": "real", "visible": false, "input": {"nums1": [0, 2, 3], "nums2": [1, 1, 2]}, "expected": 1, "tags": ["hidden", "first-swap"]},
+    {"id": "hidden-2", "name": "hidden: three swaps among seven pairs", "kind": "real", "visible": false, "input": {"nums1": [1, 5, 11, 7, 17, 10, 20], "nums2": [3, 7, 6, 15, 9, 19, 14]}, "expected": 3, "tags": ["hidden", "multiple-swaps"]},
+    {"id": "hidden-3", "name": "hidden: identical increasing sequences", "kind": "real", "visible": false, "input": {"nums1": [0, 2, 4, 6], "nums2": [0, 2, 4, 6]}, "expected": 0, "tags": ["hidden", "both-alignments", "zero-swaps"]}
+  ]
+}

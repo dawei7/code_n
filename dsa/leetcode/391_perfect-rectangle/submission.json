@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "391",
+  "frontend_id": "391",
+  "title_slug": "perfect-rectangle",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064684619",
+  "verified_at": "2026-07-12T06:43:29.687268+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "655",
+  "frontend_id": "655",
+  "title_slug": "print-binary-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065523777",
+  "verified_at": "2026-07-13T01:13:26.279591+00:00"
+}

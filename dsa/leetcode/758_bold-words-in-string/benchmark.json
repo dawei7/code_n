@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_758",
+  "measurement_note": "Size is both the source length and dictionary word count; every word has length two. Trie construction and bounded source walks grow linearly in size. Trying every dictionary word at every source index grows quadratically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4-character source and 4 words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "words": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "s": "aaaa"
+      },
+      "expected": "<b>aaaa</b>",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dictionary-cross-product"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8-character source and 8 words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "words": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah"
+        ],
+        "s": "aaaaaaaa"
+      },
+      "expected": "<b>aaaaaaaa</b>",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dictionary-cross-product"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16-character source and 16 words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "words": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "aj",
+          "ak",
+          "al",
+          "am",
+          "an",
+          "ao",
+          "ap"
+        ],
+        "s": "aaaaaaaaaaaaaaaa"
+      },
+      "expected": "<b>aaaaaaaaaaaaaaaa</b>",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dictionary-cross-product"
+      ]
+    }
+  ]
+}

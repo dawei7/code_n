@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_550",
+  "cases": [
+    {
+      "id": "sample-one-of-three",
+      "name": "sample: one of three players returns next day",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "player_id": 1,
+              "device_id": 2,
+              "event_date": "2016-03-01",
+              "games_played": 5
+            },
+            {
+              "player_id": 1,
+              "device_id": 2,
+              "event_date": "2016-03-02",
+              "games_played": 6
+            },
+            {
+              "player_id": 2,
+              "device_id": 3,
+              "event_date": "2017-06-25",
+              "games_played": 1
+            },
+            {
+              "player_id": 3,
+              "device_id": 1,
+              "event_date": "2016-03-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 3,
+              "device_id": 4,
+              "event_date": "2018-07-03",
+              "games_played": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fraction"
+        ],
+        "rows": [
+          [
+            0.33
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "one-third"
+      ]
+    },
+    {
+      "id": "sample-all",
+      "name": "sample: every player returns next day",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2024-01-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2024-01-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 1,
+              "event_date": "2024-05-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 1,
+              "event_date": "2024-05-11",
+              "games_played": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fraction"
+        ],
+        "rows": [
+          [
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "all-return"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no next-day returns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2024-01-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2024-01-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 1,
+              "event_date": "2024-02-10",
+              "games_played": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fraction"
+        ],
+        "rows": [
+          [
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "none-return"
+      ]
+    },
+    {
+      "id": "trial-year-boundary",
+      "name": "trial: next day crosses a year boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2023-12-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2024-01-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 1,
+              "event_date": "2023-12-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 1,
+              "event_date": "2024-01-02",
+              "games_played": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fraction"
+        ],
+        "rows": [
+          [
+            0.5
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "calendar-boundary"
+      ]
+    },
+    {
+      "id": "trial-unsorted",
+      "name": "trial: first logins are not inserted first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2022-01-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2022-01-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2022-01-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 1,
+              "event_date": "2022-05-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 1,
+              "event_date": "2022-05-01",
+              "games_played": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fraction"
+        ],
+        "rows": [
+          [
+            0.5
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "hidden-later-consecutive",
+      "name": "hidden: a later consecutive pair does not qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2020-01-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2020-01-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2020-01-06",
+              "games_played": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fraction"
+        ],
+        "rows": [
+          [
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "first-login-only"
+      ]
+    },
+    {
+      "id": "hidden-multiple-later",
+      "name": "hidden: multiple later sessions count one player",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2020-02-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2020-02-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2020-02-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 1,
+              "event_date": "2020-03-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 3,
+              "device_id": 1,
+              "event_date": "2020-04-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 3,
+              "device_id": 1,
+              "event_date": "2020-04-10",
+              "games_played": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fraction"
+        ],
+        "rows": [
+          [
+            0.33
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "distinct-players"
+      ]
+    }
+  ]
+}
+

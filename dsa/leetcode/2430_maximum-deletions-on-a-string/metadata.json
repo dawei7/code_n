@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2430",
+  "source": "leetcode",
+  "frontend_id": "2430",
+  "slug": "maximum-deletions-on-a-string",
+  "title": "Maximum Deletions on a String",
+  "difficulty": "Hard",
+  "acceptance_rate": 36.16643901245642,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Rolling Hash",
+      "slug": "rolling-hash"
+    },
+    {
+      "name": "String Matching",
+      "slug": "string-matching"
+    },
+    {
+      "name": "Hash Function",
+      "slug": "hash-function"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-deletions-on-a-string/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:de-shaw",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:hash-function",
+    "leetcode_topic:rolling-hash",
+    "leetcode_topic:string",
+    "leetcode_topic:string-matching"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:de-shaw",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:dynamic-programming",
+    "topic:hash-function",
+    "topic:rolling-hash",
+    "topic:string",
+    "topic:string-matching"
+  ],
+  "company_tags": [
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

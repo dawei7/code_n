@@ -1,0 +1,96 @@
+{
+  "challenge_id": "lc_2342",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: pair with digit sum nine",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          18,
+          43,
+          36,
+          13,
+          7
+        ]
+      },
+      "expected": 54,
+      "tags": [
+        "sample",
+        "hash-table"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no equal digit sums",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          12,
+          19,
+          14
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-range-of-small-numbers",
+      "name": "trial: range of small numbers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-two-groups",
+      "name": "hidden: choose the best among two matching groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          51,
+          71,
+          17,
+          42
+        ]
+      },
+      "expected": 93,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

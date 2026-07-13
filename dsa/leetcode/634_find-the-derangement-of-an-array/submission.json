@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "634",
+  "frontend_id": "634",
+  "title_slug": "find-the-derangement-of-an-array",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065497955",
+  "verified_at": "2026-07-12T23:47:11.726418+00:00"
+}

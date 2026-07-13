@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_625",
+  "source": "leetcode",
+  "frontend_id": "625",
+  "slug": "minimum-factorization",
+  "title": "Minimum Factorization",
+  "difficulty": "Medium",
+  "acceptance_rate": 34.07993821201004,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-factorization/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:tencent",
+    "leetcode_topic:greedy",
+    "leetcode_topic:math",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:tencent",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:greedy",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Tencent",
+      "slug": "tencent"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Tencent",
+        "slug": "tencent",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Math & Geometry"
+      ],
+      "order": 907,
+      "section_order": 16,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "minimum-factorization",
+      "leetcode_slug": "minimum-factorization",
+      "difficulty": "Medium",
+      "problem_order": 58
+    }
+  ]
+}

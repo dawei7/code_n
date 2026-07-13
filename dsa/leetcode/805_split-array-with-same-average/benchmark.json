@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_805",
+  "measurement_note": "Size is the array length. Meet-in-the-middle enumerates O(2^(size/2)) half-subsets; testing all full-array subsets takes O(2^size) on these unsplittable arrays.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: unsplittable pair", "kind": "benchmark", "visible": false, "size": 2, "input": {"nums": [0, 2]}, "expected": false, "tags": ["benchmark", "scaling", "no-split"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: unsplittable length 4", "kind": "benchmark", "visible": false, "size": 4, "input": {"nums": [0, 1, 2, 7]}, "expected": false, "tags": ["benchmark", "scaling", "no-split"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: unsplittable length 8", "kind": "benchmark", "visible": false, "size": 8, "input": {"nums": [13, 0, 0, 21, 25, 23, 23, 27]}, "expected": false, "tags": ["benchmark", "scaling", "no-split"]}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "586",
+  "frontend_id": "586",
+  "title_slug": "customer-placing-the-largest-number-of-orders",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065437633",
+  "verified_at": "2026-07-12T20:44:16.800509+00:00"
+}

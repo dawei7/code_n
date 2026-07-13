@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_2301",
+  "source": "leetcode",
+  "frontend_id": "2301",
+  "slug": "match-substring-after-replacement",
+  "title": "Match Substring After Replacement",
+  "difficulty": "Hard",
+  "acceptance_rate": 43.530468491466934,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "String Matching",
+      "slug": "string-matching"
+    }
+  ],
+  "url": "https://leetcode.com/problems/match-substring-after-replacement/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:discord",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:string",
+    "leetcode_topic:string-matching"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:discord",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:string",
+    "topic:string-matching"
+  ],
+  "company_tags": [
+    {
+      "name": "Discord",
+      "slug": "discord"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Discord",
+        "slug": "discord",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

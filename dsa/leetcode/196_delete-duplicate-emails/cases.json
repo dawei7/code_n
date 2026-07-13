@@ -1,0 +1,6 @@
+{"challenge_id":"lc_196","cases":[
+{"id":"sample-one-duplicate","name":"sample: delete larger duplicate id","kind":"sample","visible":true,"input":{"tables":{"Person":[{"id":1,"email":"a@x.com"},{"id":2,"email":"b@x.com"},{"id":3,"email":"a@x.com"}]}},"expected":{"columns":["id","email"],"rows":[[1,"a@x.com"],[2,"b@x.com"]]},"tags":["sample","mutation"]},
+{"id":"trial-distinct","name":"distinct emails remain","kind":"trial","visible":true,"input":{"tables":{"Person":[{"id":5,"email":"a"},{"id":2,"email":"b"}]}},"expected":{"columns":["id","email"],"rows":[[2,"b"],[5,"a"]]},"tags":["boundary"]},
+{"id":"trial-three","name":"three duplicates keep minimum id","kind":"trial","visible":true,"input":{"tables":{"Person":[{"id":9,"email":"same"},{"id":3,"email":"same"},{"id":7,"email":"same"}]}},"expected":{"columns":["id","email"],"rows":[[3,"same"]]},"tags":["duplicates"]},
+{"id":"real-multiple-groups","name":"hidden: several duplicate groups","kind":"real","visible":false,"input":{"tables":{"Person":[{"id":8,"email":"a"},{"id":1,"email":"a"},{"id":4,"email":"b"},{"id":2,"email":"b"},{"id":6,"email":"c"}]}},"expected":{"columns":["id","email"],"rows":[[1,"a"],[2,"b"],[6,"c"]]},"tags":["hidden","groups"]}
+]}

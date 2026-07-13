@@ -1,0 +1,137 @@
+{
+  "challenge_id": "lc_3240",
+  "cases": [
+    {
+      "id": "sample-small-grid",
+      "name": "sample: both palindrome directions plus mod four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "parity"
+      ]
+    },
+    {
+      "id": "sample-middle-pairs",
+      "name": "sample: middle row affects parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "middle"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: single center one must flip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-mismatched-middle",
+      "name": "trial: mismatched middle pairs absorb parity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "middle"
+      ]
+    },
+    {
+      "id": "real-odd-rectangle",
+      "name": "real: odd rectangular grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "parity"
+      ]
+    }
+  ]
+}

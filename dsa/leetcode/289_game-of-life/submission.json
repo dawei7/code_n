@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "289",
+  "frontend_id": "289",
+  "title_slug": "game-of-life",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064311704",
+  "verified_at": "2026-07-11T21:40:59.824069+00:00"
+}

@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_330",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: fill one gap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3
+        ],
+        "n": 6
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two early gaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          10
+        ],
+        "n": 20
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: existing coverage is complete",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2
+        ],
+        "n": 5
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-patch"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: empty input",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "nums": [],
+        "n": 7
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-missing-one",
+      "name": "trial: first value starts above one",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "nums": [
+          2
+        ],
+        "n": 3
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "initial-gap"
+      ]
+    },
+    {
+      "id": "hidden-large-gap",
+      "name": "hidden: several gaps between inputs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          31,
+          33
+        ],
+        "n": 214
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "large-gap"
+      ]
+    },
+    {
+      "id": "hidden-binary-coverage",
+      "name": "hidden: powers already cover target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "n": 15
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "no-patch"
+      ]
+    },
+    {
+      "id": "hidden-maximum-empty",
+      "name": "hidden: maximum target without inputs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [],
+        "n": 2147483647
+      },
+      "expected": 31,
+      "tags": [
+        "hidden",
+        "large"
+      ]
+    }
+  ]
+}

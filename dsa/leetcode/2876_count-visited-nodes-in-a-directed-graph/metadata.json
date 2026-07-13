@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2876",
+  "source": "leetcode",
+  "frontend_id": "2876",
+  "slug": "count-visited-nodes-in-a-directed-graph",
+  "title": "Count Visited Nodes in a Directed Graph",
+  "difficulty": "Hard",
+  "acceptance_rate": 31.10426748790145,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Topological Sort",
+      "slug": "topological-sort"
+    },
+    {
+      "name": "Memoization",
+      "slug": "memoization"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-visited-nodes-in-a-directed-graph/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:bny-mellon",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:graph",
+    "leetcode_topic:memoization",
+    "leetcode_topic:topological-sort"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:bny-mellon",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:depth-first-search",
+    "topic:dynamic-programming",
+    "topic:graph",
+    "topic:memoization",
+    "topic:topological-sort"
+  ],
+  "company_tags": [
+    {
+      "name": "BNY Mellon",
+      "slug": "bny-mellon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "BNY Mellon",
+        "slug": "bny-mellon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

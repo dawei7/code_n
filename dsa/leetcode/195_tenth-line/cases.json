@@ -1,0 +1,6 @@
+{"challenge_id":"lc_195","cases":[
+{"id":"sample-twelve","name":"sample: select tenth of twelve lines","kind":"sample","visible":true,"input":{"stdin":"","files":{"file.txt":"Line 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8\nLine 9\nLine 10\nLine 11\nLine 12\n"}},"expected":"Line 10","tags":["sample","file"]},
+{"id":"trial-exactly-ten","name":"exactly ten lines","kind":"trial","visible":true,"input":{"stdin":"","files":{"file.txt":"1\n2\n3\n4\n5\n6\n7\n8\n9\nten\n"}},"expected":"ten","tags":["boundary"]},
+{"id":"trial-short","name":"fewer than ten lines","kind":"trial","visible":true,"input":{"stdin":"","files":{"file.txt":"1\n2\n3\n"}},"expected":"","tags":["boundary"]},
+{"id":"real-blank-tenth","name":"hidden: tenth line is blank","kind":"real","visible":false,"input":{"stdin":"","files":{"file.txt":"1\n2\n3\n4\n5\n6\n7\n8\n9\n\n11\n"}},"expected":"","tags":["hidden","blank-line"]}
+]}

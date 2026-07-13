@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_131",
+  "cases": [
+    {"id": "sample-aab", "name": "sample: two partitions", "kind": "sample", "visible": true, "input": {"s": "aab"}, "expected": [["a", "a", "b"], ["aa", "b"]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "multiple"]},
+    {"id": "sample-single", "name": "sample: one character", "kind": "sample", "visible": true, "input": {"s": "a"}, "expected": [["a"]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "boundary"]},
+    {"id": "sample-whole", "name": "sample: whole-string palindrome", "kind": "sample", "visible": true, "input": {"s": "efe"}, "expected": [["e", "f", "e"], ["efe"]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "palindrome"]},
+    {"id": "trial-no-long-part", "name": "only singleton partition", "kind": "trial", "visible": true, "input": {"s": "abc"}, "expected": [["a", "b", "c"]], "validator": {"kind": "unordered_list"}, "tags": ["singletons"]},
+    {"id": "real-overlap", "name": "hidden: overlapping palindromes", "kind": "real", "visible": false, "input": {"s": "aaa"}, "expected": [["a", "a", "a"], ["a", "aa"], ["aa", "a"], ["aaa"]], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "overlap"]}
+  ]
+}

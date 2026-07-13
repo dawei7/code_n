@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_544",
+  "cases": [
+    {
+      "id": "sample-2",
+      "name": "sample: one match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": "(1,2)",
+      "tags": [
+        "sample",
+        "minimum"
+      ]
+    },
+    {
+      "id": "sample-4",
+      "name": "sample: two rounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": "((1,4),(2,3))",
+      "tags": [
+        "sample",
+        "two-rounds"
+      ]
+    },
+    {
+      "id": "sample-8",
+      "name": "sample: three rounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 8
+      },
+      "expected": "(((1,8),(4,5)),((2,7),(3,6)))",
+      "tags": [
+        "sample",
+        "three-rounds"
+      ]
+    },
+    {
+      "id": "trial-sixteen",
+      "name": "trial: four rounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 16
+      },
+      "expected": "((((1,16),(8,9)),((4,13),(5,12))),(((2,15),(7,10)),((3,14),(6,11))))",
+      "tags": [
+        "trial",
+        "multi-digit"
+      ]
+    },
+    {
+      "id": "hidden-32",
+      "name": "hidden: five rounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 32
+      },
+      "expected": "(((((1,32),(16,17)),((8,25),(9,24))),(((4,29),(13,20)),((5,28),(12,21)))),((((2,31),(15,18)),((7,26),(10,23))),(((3,30),(14,19)),((6,27),(11,22)))))",
+      "tags": [
+        "hidden",
+        "larger"
+      ]
+    },
+    {
+      "id": "hidden-64",
+      "name": "hidden: six rounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 64
+      },
+      "expected": "((((((1,64),(32,33)),((16,49),(17,48))),(((8,57),(25,40)),((9,56),(24,41)))),((((4,61),(29,36)),((13,52),(20,45))),(((5,60),(28,37)),((12,53),(21,44))))),(((((2,63),(31,34)),((15,50),(18,47))),(((7,58),(26,39)),((10,55),(23,42)))),((((3,62),(30,35)),((14,51),(19,46))),(((6,59),(27,38)),((11,54),(22,43))))))",
+      "tags": [
+        "hidden",
+        "deep-nesting"
+      ]
+    }
+  ]
+}
+

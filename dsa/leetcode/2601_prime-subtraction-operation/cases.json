@@ -1,0 +1,93 @@
+{
+  "challenge_id": "lc_2601",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: subtraction makes sequence increasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          9,
+          6,
+          10
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "prime"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already adjustable upward by choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          8,
+          11,
+          12
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: final value cannot exceed previous",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          8,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-equal-small-values",
+      "name": "trial: equal twos cannot both increase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-small-increasing",
+      "name": "hidden: small increasing values remain possible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

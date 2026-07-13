@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_532",
+  "cases": [
+    {"id":"sample-unsorted","name":"sample: unsorted values with a duplicate","kind":"sample","visible":true,"input":{"nums":[3,1,4,1,5],"k":2},"expected":2,"tags":["sample","duplicates"]},
+    {"id":"sample-consecutive","name":"sample: every neighboring value forms a pair","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5],"k":1},"expected":4,"tags":["sample","consecutive"]},
+    {"id":"sample-zero","name":"sample: zero difference needs repeated values","kind":"sample","visible":true,"input":{"nums":[1,3,1,5,4],"k":0},"expected":1,"tags":["sample","zero"]},
+    {"id":"trial-negative","name":"trial: negative consecutive values","kind":"trial","visible":true,"input":{"nums":[-1,-2,-3],"k":1},"expected":2,"tags":["trial","negative"]},
+    {"id":"trial-many-duplicates","name":"trial: one repeated value contributes once","kind":"trial","visible":true,"input":{"nums":[1,1,1,1],"k":0},"expected":1,"tags":["trial","duplicates"]},
+    {"id":"hidden-unique-value-pair","name":"hidden: duplicate indices do not multiply a value pair","kind":"real","visible":false,"input":{"nums":[1,1,2,2,2],"k":1},"expected":1,"tags":["hidden","deduplicate"]},
+    {"id":"hidden-none","name":"hidden: no target difference exists","kind":"real","visible":false,"input":{"nums":[0,10,20,30],"k":7},"expected":0,"tags":["hidden","none"]}
+  ]
+}

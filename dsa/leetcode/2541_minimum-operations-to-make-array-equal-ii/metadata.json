@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2541",
+  "source": "leetcode",
+  "frontend_id": "2541",
+  "slug": "minimum-operations-to-make-array-equal-ii",
+  "title": "Minimum Operations to Make Array Equal II",
+  "difficulty": "Medium",
+  "acceptance_rate": 33.29051202055423,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-operations-to-make-array-equal-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:walmart-labs",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:walmart-labs",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

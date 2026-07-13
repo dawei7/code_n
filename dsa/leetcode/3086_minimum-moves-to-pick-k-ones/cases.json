@@ -1,0 +1,121 @@
+{
+  "challenge_id": "lc_3086",
+  "cases": [
+    {
+      "id": "sample-one-change",
+      "name": "sample: one change plus nearby existing ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "k": 3,
+        "maxChanges": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-created",
+      "name": "sample: create all needed ones near Alice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "k": 2,
+        "maxChanges": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-changes",
+      "name": "sample: move existing distant ones only",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "k": 2,
+        "maxChanges": 0
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-adjacent-run",
+      "name": "trial: adjacent run gives cheap pickups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "k": 3,
+        "maxChanges": 0
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-changes",
+      "name": "real: combine existing median window with changes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "k": 5,
+        "maxChanges": 2
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "prefix-sum"
+      ]
+    }
+  ]
+}

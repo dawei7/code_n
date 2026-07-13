@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_67",
+  "cases": [
+    {"id": "sample-carry", "name": "sample: final carry", "kind": "sample", "visible": true, "input": {"a": "11", "b": "1"}, "expected": "100", "tags": ["sample"]},
+    {"id": "sample-mixed", "name": "sample: several columns", "kind": "sample", "visible": true, "input": {"a": "1010", "b": "1011"}, "expected": "10101", "tags": ["sample"]},
+    {"id": "trial-zero", "name": "both inputs zero", "kind": "trial", "visible": true, "input": {"a": "0", "b": "0"}, "expected": "0", "tags": ["boundary"]},
+    {"id": "trial-different-lengths", "name": "unequal input lengths", "kind": "trial", "visible": true, "input": {"a": "1", "b": "111111"}, "expected": "1000000", "tags": ["carry", "lengths"]},
+    {"id": "real-alternating", "name": "hidden: alternating carries", "kind": "real", "visible": false, "input": {"a": "101010101", "b": "110011"}, "expected": "110001000", "tags": ["hidden", "carry"]}
+  ]
+}

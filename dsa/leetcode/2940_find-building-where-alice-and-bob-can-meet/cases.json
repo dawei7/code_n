@@ -1,0 +1,229 @@
+{
+  "challenge_id": "lc_2940",
+  "cases": [
+    {
+      "id": "sample-mixed-meetings",
+      "name": "sample: mixed meeting outcomes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "heights": [
+          6,
+          4,
+          8,
+          5,
+          2,
+          7
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        5,
+        -1,
+        5,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-direct-and-deferred",
+      "name": "sample: direct and deferred meetings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "heights": [
+          5,
+          3,
+          8,
+          2,
+          6,
+          1,
+          4,
+          6
+        ],
+        "queries": [
+          [
+            0,
+            7
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        7,
+        6,
+        -1,
+        4,
+        6
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-same-building",
+      "name": "sample: same starting building",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "heights": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-flat-buildings",
+      "name": "trial: flat buildings cannot climb",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          3,
+          3,
+          3
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        -1,
+        -1,
+        2
+      ],
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-right-side-regression",
+      "name": "real: deferred query must use right side",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "heights": [
+          8,
+          6,
+          6,
+          17,
+          17,
+          13
+        ],
+        "queries": [
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        5,
+        4,
+        5,
+        3,
+        -1,
+        -1,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "regression"
+      ]
+    }
+  ]
+}

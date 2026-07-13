@@ -1,0 +1,169 @@
+{
+  "challenge_id": "lc_2653",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: positive result becomes zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -2,
+          -3,
+          -4,
+          5
+        ],
+        "k": 2,
+        "x": 2
+      },
+      "expected": [
+        0,
+        -2,
+        -3,
+        0
+      ],
+      "tags": [
+        "sample",
+        "window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: first two windows have enough negatives",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3,
+          -4,
+          5
+        ],
+        "k": 2,
+        "x": 2
+      },
+      "expected": [
+        -1,
+        -2,
+        -3,
+        0
+      ],
+      "tags": [
+        "sample",
+        "window"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated negative minimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          1,
+          2,
+          -3,
+          0,
+          -3
+        ],
+        "k": 2,
+        "x": 1
+      },
+      "expected": [
+        -3,
+        0,
+        -3,
+        -3,
+        -3
+      ],
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-all-positive",
+      "name": "trial: no negative beauty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 3,
+        "x": 1
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "positive"
+      ]
+    },
+    {
+      "id": "trial-sorted-negatives",
+      "name": "trial: second smallest negative per window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -1,
+          -3,
+          -2,
+          -4
+        ],
+        "k": 3,
+        "x": 2
+      },
+      "expected": [
+        -3,
+        -2,
+        -3
+      ],
+      "tags": [
+        "trial",
+        "rank"
+      ]
+    },
+    {
+      "id": "real-zeros-between-negatives",
+      "name": "hidden: zeros do not count as negative",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          -1,
+          0,
+          -2,
+          0,
+          -3,
+          0
+        ],
+        "k": 4,
+        "x": 2
+      },
+      "expected": [
+        -1,
+        -1,
+        -2,
+        -2
+      ],
+      "tags": [
+        "hidden",
+        "zeros"
+      ]
+    }
+  ]
+}

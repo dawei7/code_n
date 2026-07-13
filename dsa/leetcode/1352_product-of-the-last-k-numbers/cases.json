@@ -1,0 +1,241 @@
+{
+  "challenge_id": "lc_1352",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: zero resets products",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "add",
+            [
+              3
+            ]
+          ],
+          [
+            "add",
+            [
+              0
+            ]
+          ],
+          [
+            "add",
+            [
+              2
+            ]
+          ],
+          [
+            "add",
+            [
+              5
+            ]
+          ],
+          [
+            "add",
+            [
+              4
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              2
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              3
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              4
+            ]
+          ],
+          [
+            "add",
+            [
+              8
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        20,
+        40,
+        0,
+        null,
+        32
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: product of all values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "add",
+            [
+              1
+            ]
+          ],
+          [
+            "add",
+            [
+              2
+            ]
+          ],
+          [
+            "add",
+            [
+              3
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              3
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        6
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero before value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "add",
+            [
+              0
+            ]
+          ],
+          [
+            "add",
+            [
+              9
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              1
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        9,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-zero-between-queries",
+      "name": "hidden: zero between product queries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "add",
+            [
+              2
+            ]
+          ],
+          [
+            "add",
+            [
+              5
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              2
+            ]
+          ],
+          [
+            "add",
+            [
+              0
+            ]
+          ],
+          [
+            "add",
+            [
+              4
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              1
+            ]
+          ],
+          [
+            "getProduct",
+            [
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        10,
+        null,
+        null,
+        4,
+        0
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "challenge_id": "lc_2961",
+  "cases": [
+    {
+      "id": "sample-two-matches",
+      "name": "sample: two variable rows match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "variables": [
+          [
+            2,
+            3,
+            3,
+            10
+          ],
+          [
+            3,
+            3,
+            3,
+            1
+          ],
+          [
+            6,
+            1,
+            1,
+            4
+          ]
+        ],
+        "target": 2
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-match",
+      "name": "sample: no matching row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "variables": [
+          [
+            39,
+            3,
+            1000,
+            1000
+          ]
+        ],
+        "target": 17
+      },
+      "expected": [],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-one-match",
+      "name": "sample: one simple matching row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "variables": [
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "target": 1
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-modulus-one",
+      "name": "trial: modulus one always yields zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "variables": [
+          [
+            9,
+            9,
+            9,
+            1
+          ],
+          [
+            2,
+            5,
+            7,
+            3
+          ]
+        ],
+        "target": 0
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "modular"
+      ]
+    },
+    {
+      "id": "real-large-exponents",
+      "name": "real: large exponents and mixed moduli",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "variables": [
+          [
+            987,
+            654321,
+            12345,
+            97
+          ],
+          [
+            10,
+            99999,
+            88888,
+            11
+          ],
+          [
+            123,
+            456,
+            789,
+            20
+          ]
+        ],
+        "target": 4
+      },
+      "expected": [],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

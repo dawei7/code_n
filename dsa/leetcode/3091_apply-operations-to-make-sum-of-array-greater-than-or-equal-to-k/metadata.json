@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_3091",
+  "source": "leetcode",
+  "frontend_id": "3091",
+  "slug": "apply-operations-to-make-sum-of-array-greater-than-or-equal-to-k",
+  "title": "Apply Operations to Make Sum of Array Greater Than or Equal to k",
+  "difficulty": "Medium",
+  "acceptance_rate": 44.506024096385545,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    }
+  ],
+  "url": "https://leetcode.com/problems/apply-operations-to-make-sum-of-array-greater-than-or-equal-to-k/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:turing",
+    "leetcode_company:zscaler",
+    "leetcode_topic:enumeration",
+    "leetcode_topic:greedy",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:turing",
+    "company:zscaler",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:enumeration",
+    "topic:greedy",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Turing",
+      "slug": "turing"
+    },
+    {
+      "name": "ZScaler",
+      "slug": "zscaler"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Turing",
+        "slug": "turing",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "ZScaler",
+        "slug": "zscaler",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

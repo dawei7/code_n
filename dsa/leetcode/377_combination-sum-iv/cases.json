@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_377",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: seven ordered sequences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "target": 4
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "ordered"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: target not divisible by only value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ],
+        "target": 13
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one exact value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5
+        ],
+        "target": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "exact"
+      ]
+    },
+    {
+      "id": "trial-zero",
+      "name": "trial: empty sequence reaches zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3
+        ],
+        "target": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-two-orders",
+      "name": "trial: same values in two orders",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3
+        ],
+        "target": 5
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "ordered"
+      ]
+    },
+    {
+      "id": "hidden-unsorted",
+      "name": "hidden: input order does not affect count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          2
+        ],
+        "target": 6
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "hidden-larger",
+      "name": "hidden: several reused values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5
+        ],
+        "target": 8
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "reuse"
+      ]
+    },
+    {
+      "id": "hidden-all-too-large",
+      "name": "hidden: every value exceeds target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          9
+        ],
+        "target": 3
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "impossible"
+      ]
+    }
+  ]
+}
+

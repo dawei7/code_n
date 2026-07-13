@@ -1,0 +1,90 @@
+{
+  "challenge_id": "lc_1503",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: ants from both sides",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "left": [
+          4,
+          3
+        ],
+        "right": [
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "simulation-insight"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all ants move right",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "left": [],
+        "right": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one ant each direction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "left": [
+          2
+        ],
+        "right": [
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-left-side-dominates",
+      "name": "hidden: left-moving ant determines the time",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "left": [
+          2,
+          6
+        ],
+        "right": [
+          7
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

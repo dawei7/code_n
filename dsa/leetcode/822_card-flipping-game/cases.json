@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_822",
+  "cases": [
+    {"id": "sample-1", "name": "sample: smallest feasible value starts face up", "kind": "sample", "visible": true, "input": {"fronts": [1, 2, 4, 4, 7], "backs": [1, 3, 4, 1, 3]}, "expected": 2, "tags": ["sample", "blocked"]},
+    {"id": "sample-2", "name": "sample: one equal-sided card", "kind": "sample", "visible": true, "input": {"fronts": [1], "backs": [1]}, "expected": 0, "tags": ["sample", "impossible"]},
+    {"id": "sample-3", "name": "sample: one flippable card", "kind": "sample", "visible": true, "input": {"fronts": [1], "backs": [2]}, "expected": 1, "tags": ["sample", "single"]},
+    {"id": "trial-1", "name": "trial: blocked value on another card stays invalid", "kind": "trial", "visible": true, "input": {"fronts": [2, 1], "backs": [2, 2]}, "expected": 1, "tags": ["trial", "global-block"]},
+    {"id": "trial-2", "name": "trial: two feasible values around one blocked value", "kind": "trial", "visible": true, "input": {"fronts": [3, 1, 2], "backs": [3, 2, 1]}, "expected": 1, "tags": ["trial", "minimum"]},
+    {"id": "trial-3", "name": "trial: every printed value blocked", "kind": "trial", "visible": true, "input": {"fronts": [1, 2, 3], "backs": [1, 2, 3]}, "expected": 0, "tags": ["trial", "all-blocked"]},
+    {"id": "hidden-1", "name": "hidden: smallest values blocked before later candidate", "kind": "real", "visible": false, "input": {"fronts": [1, 2, 3, 4], "backs": [1, 2, 3, 5]}, "expected": 4, "tags": ["hidden", "late-candidate"]},
+    {"id": "hidden-2", "name": "hidden: duplicates require several flips", "kind": "real", "visible": false, "input": {"fronts": [5, 5, 7, 8], "backs": [6, 7, 5, 5]}, "expected": 5, "tags": ["hidden", "duplicates"]},
+    {"id": "hidden-3", "name": "hidden: minimum appears only on a back", "kind": "real", "visible": false, "input": {"fronts": [9, 8, 7], "backs": [6, 9, 8]}, "expected": 6, "tags": ["hidden", "back-only"]},
+    {"id": "hidden-4", "name": "hidden: large blocked values do not affect minimum", "kind": "real", "visible": false, "input": {"fronts": [2000, 4, 10, 3], "backs": [2000, 5, 4, 10]}, "expected": 3, "tags": ["hidden", "value-boundary"]}
+  ]
+}

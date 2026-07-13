@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "736",
+  "frontend_id": "736",
+  "title_slug": "parse-lisp-expression",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.evaluate",
+  "verified_submission_id": "2065825025",
+  "verified_at": "2026-07-13T07:29:25.621966+00:00"
+}

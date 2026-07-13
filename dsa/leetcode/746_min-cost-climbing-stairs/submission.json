@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "747",
+  "frontend_id": "746",
+  "title_slug": "min-cost-climbing-stairs",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minCostClimbingStairs",
+  "verified_submission_id": "2065889229",
+  "verified_at": "2026-07-13T08:40:02.341707+00:00"
+}

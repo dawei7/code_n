@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_2614",
+  "cases": [
+    {
+      "id": "benchmark-four-by-four-diagonals",
+      "name": "benchmark: four-by-four diagonal scan",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          [
+            6,
+            8,
+            10,
+            12
+          ],
+          [
+            14,
+            17,
+            18,
+            19
+          ],
+          [
+            20,
+            21,
+            22,
+            23
+          ],
+          [
+            24,
+            25,
+            26,
+            29
+          ]
+        ]
+      },
+      "expected": 29,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_2560",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: choose two non-adjacent low-capability houses",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          9
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: endpoints give the smallest capability",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          7,
+          9,
+          3,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three houses force selecting a high value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          7,
+          9,
+          3,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 9,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-house",
+      "name": "trial: one required house",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-two-endpoints",
+      "name": "hidden: first and last houses are both cheap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

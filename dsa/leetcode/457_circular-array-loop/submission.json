@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "457",
+  "frontend_id": "457",
+  "title_slug": "circular-array-loop",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064933298",
+  "verified_at": "2026-07-12T11:39:38.559550+00:00"
+}

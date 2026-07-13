@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_773",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one move", "kind": "sample", "visible": true, "input": {"board": [[1, 2, 3], [4, 0, 5]]}, "expected": 1, "tags": ["sample", "reachable"]},
+    {"id": "sample-2", "name": "sample: parity makes target unreachable", "kind": "sample", "visible": true, "input": {"board": [[1, 2, 3], [5, 4, 0]]}, "expected": -1, "tags": ["sample", "unreachable"]},
+    {"id": "sample-3", "name": "sample: five moves", "kind": "sample", "visible": true, "input": {"board": [[4, 1, 2], [5, 0, 3]]}, "expected": 5, "tags": ["sample", "reachable"]},
+    {"id": "trial-1", "name": "trial: already solved", "kind": "trial", "visible": true, "input": {"board": [[1, 2, 3], [4, 5, 0]]}, "expected": 0, "tags": ["trial", "solved"]},
+    {"id": "trial-2", "name": "trial: two moves", "kind": "trial", "visible": true, "input": {"board": [[1, 0, 3], [4, 2, 5]]}, "expected": 2, "tags": ["trial", "reachable"]},
+    {"id": "trial-3", "name": "trial: fourteen moves", "kind": "trial", "visible": true, "input": {"board": [[3, 2, 4], [1, 5, 0]]}, "expected": 14, "tags": ["trial", "deep"]},
+    {"id": "hidden-1", "name": "hidden: maximum-distance state", "kind": "real", "visible": false, "input": {"board": [[4, 5, 0], [1, 2, 3]]}, "expected": 21, "tags": ["hidden", "deep"]},
+    {"id": "hidden-2", "name": "hidden: blank in upper-left", "kind": "real", "visible": false, "input": {"board": [[0, 4, 1], [2, 5, 3]]}, "expected": 9, "tags": ["hidden", "reachable"]},
+    {"id": "hidden-3", "name": "hidden: second unreachable arrangement", "kind": "real", "visible": false, "input": {"board": [[1, 2, 3], [0, 5, 4]]}, "expected": -1, "tags": ["hidden", "unreachable"]}
+  ]
+}

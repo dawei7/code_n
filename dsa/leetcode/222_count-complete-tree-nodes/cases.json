@@ -1,0 +1,6 @@
+{"challenge_id":"lc_222","cases":[
+{"id":"sample-six","name":"sample: incomplete final level","kind":"sample","visible":true,"input":{"root":[1,2,3,4,5,6]},"expected":6,"tags":["sample","complete-tree"]},
+{"id":"trial-empty","name":"empty tree","kind":"trial","visible":true,"input":{"root":[]},"expected":0,"tags":["boundary"]},
+{"id":"trial-single","name":"single node","kind":"trial","visible":true,"input":{"root":[1]},"expected":1,"tags":["single"]},
+{"id":"real-perfect","name":"hidden: perfect height-three tree","kind":"real","visible":false,"input":{"root":[1,2,3,4,5,6,7]},"expected":7,"tags":["hidden","perfect"]}
+]}

@@ -1,0 +1,158 @@
+{
+  "challenge_id": "lc_3035",
+  "source": "leetcode",
+  "frontend_id": "3035",
+  "slug": "maximum-palindromes-after-operations",
+  "title": "Maximum Palindromes After Operations",
+  "difficulty": "Medium",
+  "acceptance_rate": 47.13246352070885,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-palindromes-after-operations/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:expedia",
+    "leetcode_company:mathworks",
+    "leetcode_company:microsoft",
+    "leetcode_company:salesforce",
+    "leetcode_company:squarepoint-capital",
+    "leetcode_company:visa",
+    "leetcode_topic:array",
+    "leetcode_topic:counting",
+    "leetcode_topic:greedy",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:sorting",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:expedia",
+    "company:mathworks",
+    "company:microsoft",
+    "company:salesforce",
+    "company:squarepoint-capital",
+    "company:visa",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:counting",
+    "topic:greedy",
+    "topic:hash-table",
+    "topic:sorting",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Squarepoint Capital",
+      "slug": "squarepoint-capital"
+    },
+    {
+      "name": "MathWorks",
+      "slug": "mathworks"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Expedia",
+      "slug": "expedia"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Squarepoint Capital",
+        "slug": "squarepoint-capital",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "MathWorks",
+        "slug": "mathworks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Expedia",
+        "slug": "expedia",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 13
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      }
+    ],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

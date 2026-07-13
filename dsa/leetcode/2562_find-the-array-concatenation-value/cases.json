@@ -1,0 +1,89 @@
+{
+  "challenge_id": "lc_2562",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: concatenate outer pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          52,
+          2,
+          4
+        ]
+      },
+      "expected": 596,
+      "tags": [
+        "sample",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: odd length adds the middle value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          14,
+          13,
+          8,
+          12
+        ]
+      },
+      "expected": 673,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one value is added directly",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-values",
+      "name": "trial: two numbers concatenate once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          2
+        ]
+      },
+      "expected": 102,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-nine",
+      "name": "hidden: one one-digit value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

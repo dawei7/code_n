@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_709",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed-case word",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "Hello"},
+      "expected": "hello",
+      "tags": ["sample", "mixed-case"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already lowercase",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "here"},
+      "expected": "here",
+      "tags": ["sample", "unchanged"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all uppercase",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "LOVELY"},
+      "expected": "lovely",
+      "tags": ["sample", "uppercase"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: digits and punctuation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "C0De-N!"},
+      "expected": "c0de-n!",
+      "tags": ["trial", "printable-ascii"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one uppercase character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "Z"},
+      "expected": "z",
+      "tags": ["trial", "single-character"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: alphabet boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "AZaz"},
+      "expected": "azaz",
+      "tags": ["hidden", "boundary-letters"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: spaces remain",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "A B C"},
+      "expected": "a b c",
+      "tags": ["hidden", "spaces"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: no letters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "123-+="},
+      "expected": "123-+=",
+      "tags": ["hidden", "unchanged"]
+    }
+  ]
+}

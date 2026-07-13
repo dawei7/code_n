@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_1091",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: diagonal path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "bfs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three by three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-start-blocked",
+      "name": "start is blocked",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-narrow-path",
+      "name": "hidden: narrow path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

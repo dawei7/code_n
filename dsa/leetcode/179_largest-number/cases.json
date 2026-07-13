@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_179",
+  "cases": [
+    {"id": "sample-two", "name": "sample: numeric order is wrong", "kind": "sample", "visible": true, "input": {"nums": [10, 2]}, "expected": "210", "tags": ["sample", "comparator"]},
+    {"id": "sample-five", "name": "sample: mixed digit lengths", "kind": "sample", "visible": true, "input": {"nums": [3, 30, 34, 5, 9]}, "expected": "9534330", "tags": ["sample", "sorting"]},
+    {"id": "trial-zeroes", "name": "all zeroes normalize", "kind": "trial", "visible": true, "input": {"nums": [0, 0]}, "expected": "0", "tags": ["boundary", "zero"]},
+    {"id": "trial-prefix", "name": "one decimal string prefixes another", "kind": "trial", "visible": true, "input": {"nums": [121, 12]}, "expected": "12121", "tags": ["prefix"]},
+    {"id": "real-similar-prefixes", "name": "hidden: several similar prefixes", "kind": "real", "visible": false, "input": {"nums": [8308, 8308, 830]}, "expected": "83088308830", "tags": ["hidden", "prefix"]}
+  ]
+}

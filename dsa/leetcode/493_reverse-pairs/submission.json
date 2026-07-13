@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "493",
+  "frontend_id": "493",
+  "title_slug": "reverse-pairs",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065091717",
+  "verified_at": "2026-07-12T14:33:13.299100+00:00"
+}

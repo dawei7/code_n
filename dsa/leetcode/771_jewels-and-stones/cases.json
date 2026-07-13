@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_771",
+  "cases": [
+    {"id": "sample-1", "name": "sample: mixed-case jewels", "kind": "sample", "visible": true, "input": {"jewels": "aA", "stones": "aAAbbbb"}, "expected": 3, "tags": ["sample", "case-sensitive"]},
+    {"id": "sample-2", "name": "sample: uppercase stones do not match", "kind": "sample", "visible": true, "input": {"jewels": "z", "stones": "ZZ"}, "expected": 0, "tags": ["sample", "no-match"]},
+    {"id": "sample-3", "name": "sample: repeated jewel stone", "kind": "sample", "visible": true, "input": {"jewels": "b", "stones": "bbbb"}, "expected": 4, "tags": ["sample", "repeated"]},
+    {"id": "trial-1", "name": "trial: one of two cases matches", "kind": "trial", "visible": true, "input": {"jewels": "A", "stones": "aA"}, "expected": 1, "tags": ["trial", "case-sensitive"]},
+    {"id": "trial-2", "name": "trial: all distinct stones match", "kind": "trial", "visible": true, "input": {"jewels": "abc", "stones": "cba"}, "expected": 3, "tags": ["trial", "all-match"]},
+    {"id": "trial-3", "name": "trial: mixed matches and misses", "kind": "trial", "visible": true, "input": {"jewels": "qR", "stones": "RqQrrR"}, "expected": 3, "tags": ["trial", "mixed"]},
+    {"id": "hidden-1", "name": "hidden: disjoint letter sets", "kind": "real", "visible": false, "input": {"jewels": "abc", "stones": "XYZ"}, "expected": 0, "tags": ["hidden", "no-match"]},
+    {"id": "hidden-2", "name": "hidden: all alphabet cases are jewels", "kind": "real", "visible": false, "input": {"jewels": "aAbBcC", "stones": "CbAaBc"}, "expected": 6, "tags": ["hidden", "all-match"]},
+    {"id": "hidden-3", "name": "hidden: repeated non-jewels around matches", "kind": "real", "visible": false, "input": {"jewels": "mN", "stones": "xxmxxNxxm"}, "expected": 3, "tags": ["hidden", "repeated"]}
+  ]
+}

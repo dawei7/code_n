@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2856",
+  "source": "leetcode",
+  "frontend_id": "2856",
+  "slug": "minimum-array-length-after-pair-removals",
+  "title": "Minimum Array Length After Pair Removals",
+  "difficulty": "Medium",
+  "acceptance_rate": 27.802134722095122,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-array-length-after-pair-removals/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:snowflake",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:counting",
+    "leetcode_topic:greedy",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:two-pointers"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:snowflake",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search",
+    "topic:counting",
+    "topic:greedy",
+    "topic:hash-table",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

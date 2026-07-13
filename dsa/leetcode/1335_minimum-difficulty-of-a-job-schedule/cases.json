@@ -1,0 +1,84 @@
+{
+  "challenge_id": "lc_1335",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: descending jobs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "job_difficulty": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "d": 2
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: impossible schedule",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "job_difficulty": [
+          9,
+          9,
+          9
+        ],
+        "d": 4
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one job per day",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "job_difficulty": [
+          1,
+          1,
+          1
+        ],
+        "d": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternating difficulties",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "job_difficulty": [
+          7,
+          1,
+          7,
+          1,
+          7,
+          1
+        ],
+        "d": 3
+      },
+      "expected": 15,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

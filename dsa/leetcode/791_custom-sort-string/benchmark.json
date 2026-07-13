@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_791",
+  "measurement_note": "Size is the common order and input-string length. Frequency counting takes O(size); explicitly selection-sorting characters by custom rank takes O(size^2).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 ranked characters", "kind": "benchmark", "visible": false, "size": 4, "input": {"order": "dcba", "s": "abcd"}, "expected": "dcba", "validator": {"kind": "custom_sorted_string"}, "tags": ["benchmark", "scaling", "all-ranked"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 8 ranked characters", "kind": "benchmark", "visible": false, "size": 8, "input": {"order": "hgfedcba", "s": "abcdefgh"}, "expected": "hgfedcba", "validator": {"kind": "custom_sorted_string"}, "tags": ["benchmark", "scaling", "all-ranked"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 16 ranked characters", "kind": "benchmark", "visible": false, "size": 16, "input": {"order": "ponmlkjihgfedcba", "s": "abcdefghijklmnop"}, "expected": "ponmlkjihgfedcba", "validator": {"kind": "custom_sorted_string"}, "tags": ["benchmark", "scaling", "all-ranked"]}
+  ]
+}

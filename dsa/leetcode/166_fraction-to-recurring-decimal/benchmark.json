@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_166",
+  "measurement_note": "Denominators with increasingly long repetends require one hash-tracked long-division state per recurring digit.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: denominator 3 with 1-digit cycle",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1,
+      "input": {
+        "numerator": 1,
+        "denominator": 3
+      },
+      "expected": "0.(3)",
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: denominator 7 with 6-digit cycle",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "numerator": 1,
+        "denominator": 7
+      },
+      "expected": "0.(142857)",
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: denominator 97 with 96-digit cycle",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "numerator": 1,
+        "denominator": 97
+      },
+      "expected": "0.(010309278350515463917525773195876288659793814432989690721649484536082474226804123711340206185567)",
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

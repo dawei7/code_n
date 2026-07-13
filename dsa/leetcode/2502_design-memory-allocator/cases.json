@@ -1,0 +1,246 @@
+{
+  "challenge_id": "lc_2502",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: allocations, frees, and a failed large allocation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "commands": [
+          "Allocator",
+          "allocate",
+          "allocate",
+          "allocate",
+          "freeMemory",
+          "allocate",
+          "allocate",
+          "allocate",
+          "freeMemory",
+          "allocate",
+          "freeMemory"
+        ],
+        "inputs": [
+          [
+            10
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        1,
+        2,
+        1,
+        3,
+        1,
+        6,
+        3,
+        -1,
+        0
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: freeing creates the first available block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "commands": [
+          "Allocator",
+          "allocate",
+          "freeMemory",
+          "allocate"
+        ],
+        "inputs": [
+          [
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        2,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: reusing a fully freed block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "commands": [
+          "Allocator",
+          "allocate",
+          "freeMemory",
+          "allocate",
+          "freeMemory"
+        ],
+        "inputs": [
+          [
+            10
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        5,
+        0,
+        5
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-fragmented-memory",
+      "name": "trial: fragmentation prevents a large allocation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "commands": [
+          "Allocator",
+          "allocate",
+          "allocate",
+          "freeMemory",
+          "allocate"
+        ],
+        "inputs": [
+          [
+            4
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        2,
+        2,
+        -1
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-free-missing-id",
+      "name": "hidden: freeing an absent id changes nothing",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "commands": [
+          "Allocator",
+          "freeMemory",
+          "allocate"
+        ],
+        "inputs": [
+          [
+            3
+          ],
+          [
+            9
+          ],
+          [
+            1,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

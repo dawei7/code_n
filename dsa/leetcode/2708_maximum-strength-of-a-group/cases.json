@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2708",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: remove closest-to-zero negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          -1,
+          -5,
+          2,
+          5,
+          -9
+        ]
+      },
+      "tags": [
+        "sample",
+        "product"
+      ],
+      "expected": 1350
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: choose best pair of negatives",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -4,
+          -5,
+          -4
+        ]
+      },
+      "tags": [
+        "sample",
+        "negative"
+      ],
+      "expected": 20
+    },
+    {
+      "id": "trial-zero-beats-single-negative",
+      "name": "trial: zero beats a single negative",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-single-negative",
+      "name": "trial: only one negative value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -7
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": -7
+    },
+    {
+      "id": "real-mixed-with-zero",
+      "name": "hidden: zero plus even negatives",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          -2,
+          -3,
+          4
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 24
+    }
+  ]
+}

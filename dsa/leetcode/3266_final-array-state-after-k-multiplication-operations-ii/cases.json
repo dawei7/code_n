@@ -1,0 +1,124 @@
+{
+  "challenge_id": "lc_3266",
+  "cases": [
+    {
+      "id": "sample-five-ops-mod",
+      "name": "sample: five operations with modulo rule",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          5,
+          6
+        ],
+        "k": 5,
+        "multiplier": 2
+      },
+      "expected": [
+        8,
+        4,
+        6,
+        5,
+        6
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-multiplier-one",
+      "name": "sample: multiplier one returns modulo values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000
+        ],
+        "k": 2,
+        "multiplier": 1
+      },
+      "expected": [
+        100000
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-large-k-small-array",
+      "name": "trial: large k on tiny array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "k": 10,
+        "multiplier": 3
+      },
+      "expected": [
+        243,
+        486
+      ],
+      "tags": [
+        "large-k"
+      ]
+    },
+    {
+      "id": "trial-tie-distribution",
+      "name": "trial: tie order affects extra operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          6
+        ],
+        "k": 7,
+        "multiplier": 2
+      },
+      "expected": [
+        40,
+        20,
+        24
+      ],
+      "tags": [
+        "tie"
+      ]
+    },
+    {
+      "id": "real-balanced-phase",
+      "name": "real: simulation phase then round distribution",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          9,
+          2,
+          15,
+          7
+        ],
+        "k": 23,
+        "multiplier": 3
+      },
+      "expected": [
+        972,
+        729,
+        1458,
+        1215,
+        567
+      ],
+      "tags": [
+        "real",
+        "rounds"
+      ]
+    }
+  ]
+}

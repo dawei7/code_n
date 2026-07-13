@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_733",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: enclosed corner remains unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {"image": [[1,1,1],[1,1,0],[1,0,1]], "sr": 1, "sc": 1, "color": 2},
+      "expected": [[2,2,2],[2,2,0],[2,0,1]],
+      "tags": ["sample", "component"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: replacement already matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {"image": [[0,0,0],[0,0,0]], "sr": 0, "sc": 0, "color": 0},
+      "expected": [[0,0,0],[0,0,0]],
+      "tags": ["sample", "same-color"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: diagonal matches are disconnected",
+      "kind": "sample",
+      "visible": true,
+      "input": {"image": [[1,0,1],[0,1,0],[1,0,1]], "sr": 1, "sc": 1, "color": 2},
+      "expected": [[1,0,1],[0,2,0],[1,0,1]],
+      "tags": ["sample", "diagonal"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: winding connected corridor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"image": [[3,3,0,0],[0,3,3,0],[0,0,3,3]], "sr": 0, "sc": 0, "color": 7},
+      "expected": [[7,7,0,0],[0,7,7,0],[0,0,7,7]],
+      "tags": ["trial", "corridor"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one-cell image",
+      "kind": "trial",
+      "visible": true,
+      "input": {"image": [[4]], "sr": 0, "sc": 0, "color": 9},
+      "expected": [[9]],
+      "tags": ["trial", "singleton"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: fill from boundary around holes",
+      "kind": "real",
+      "visible": false,
+      "input": {"image": [[5,5,5,5],[5,0,0,5],[5,0,5,5],[5,5,5,0]], "sr": 0, "sc": 3, "color": 8},
+      "expected": [[8,8,8,8],[8,0,0,8],[8,0,8,8],[8,8,8,0]],
+      "tags": ["hidden", "holes"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: same color in separate regions",
+      "kind": "real",
+      "visible": false,
+      "input": {"image": [[2,2,1,2],[2,1,1,2],[1,1,2,2]], "sr": 0, "sc": 0, "color": 6},
+      "expected": [[6,6,1,2],[6,1,1,2],[1,1,2,2]],
+      "tags": ["hidden", "separate-region"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: rectangular full component",
+      "kind": "real",
+      "visible": false,
+      "input": {"image": [[1,1,1,1,1],[1,1,1,1,1]], "sr": 1, "sc": 4, "color": 3},
+      "expected": [[3,3,3,3,3],[3,3,3,3,3]],
+      "tags": ["hidden", "rectangular"]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "challenge_id": "lc_1478",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three mailboxes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "houses": [
+          1,
+          4,
+          8,
+          10,
+          20
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two mailboxes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "houses": [
+          2,
+          3,
+          5,
+          12,
+          18
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one mailbox",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "houses": [
+          7,
+          4,
+          6,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 8,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-one-mailbox-per-house",
+      "name": "hidden: enough mailboxes for every house",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "houses": [
+          1,
+          10,
+          20
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

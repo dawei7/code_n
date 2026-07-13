@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "193",
+  "frontend_id": "193",
+  "title_slug": "valid-phone-numbers",
+  "paid_only": false,
+  "language": "bash",
+  "source": "solutions/leetcode_bash.sh",
+  "verified_submission_id": "2064197275",
+  "verified_at": "2026-07-11T18:28:08.814843+00:00"
+}

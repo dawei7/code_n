@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_811",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one three-label domain", "kind": "sample", "visible": true, "input": {"cpdomains": ["9001 discuss.leetcode.com"]}, "expected": ["9001 discuss.leetcode.com", "9001 leetcode.com", "9001 com"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "suffixes"]},
+    {"id": "sample-2", "name": "sample: overlapping mail subdomains", "kind": "sample", "visible": true, "input": {"cpdomains": ["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]}, "expected": ["900 google.mail.com", "1 intel.mail.com", "901 mail.com", "50 yahoo.com", "951 com", "5 wiki.org", "5 org"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "aggregation"]},
+    {"id": "sample-3", "name": "sample: nested supplied domains", "kind": "sample", "visible": true, "input": {"cpdomains": ["10 a.com", "5 b.a.com"]}, "expected": ["5 b.a.com", "15 a.com", "15 com"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "nested"]},
+    {"id": "trial-1", "name": "trial: top-level domain only", "kind": "trial", "visible": true, "input": {"cpdomains": ["1 com"]}, "expected": ["1 com"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "top-level"]},
+    {"id": "trial-2", "name": "trial: repeated full domain", "kind": "trial", "visible": true, "input": {"cpdomains": ["10 a.com", "5 a.com"]}, "expected": ["15 a.com", "15 com"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "duplicates"]},
+    {"id": "trial-3", "name": "trial: supplied suffixes add together", "kind": "trial", "visible": true, "input": {"cpdomains": ["2 x.y.z", "3 y.z", "4 z"]}, "expected": ["2 x.y.z", "5 y.z", "9 z"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "nested"]},
+    {"id": "hidden-1", "name": "hidden: independent top-level suffixes", "kind": "real", "visible": false, "input": {"cpdomains": ["7 alpha.org", "8 beta.com"]}, "expected": ["7 alpha.org", "7 org", "8 beta.com", "8 com"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "independent"]},
+    {"id": "hidden-2", "name": "hidden: three full domains share parent", "kind": "real", "visible": false, "input": {"cpdomains": ["1 a.net", "2 b.net", "3 c.net"]}, "expected": ["1 a.net", "2 b.net", "3 c.net", "6 net"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "shared-parent"]},
+    {"id": "hidden-3", "name": "hidden: counts aggregate at two levels", "kind": "real", "visible": false, "input": {"cpdomains": ["4 a.x.com", "6 b.x.com", "5 x.com"]}, "expected": ["4 a.x.com", "6 b.x.com", "15 x.com", "15 com"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "aggregation"]}
+  ]
+}

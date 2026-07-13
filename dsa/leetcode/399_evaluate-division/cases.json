@@ -1,0 +1,419 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_399",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: connected reciprocal and unknown queries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "equations": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "b",
+            "c"
+          ]
+        ],
+        "values": [
+          2,
+          3
+        ],
+        "queries": [
+          [
+            "a",
+            "c"
+          ],
+          [
+            "b",
+            "a"
+          ],
+          [
+            "a",
+            "e"
+          ],
+          [
+            "a",
+            "a"
+          ],
+          [
+            "x",
+            "x"
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        0.5,
+        -1,
+        1,
+        -1
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "sample",
+        "connected",
+        "unknown"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: separate variable names",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "equations": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "b",
+            "c"
+          ],
+          [
+            "bc",
+            "cd"
+          ]
+        ],
+        "values": [
+          1.5,
+          2.5,
+          5
+        ],
+        "queries": [
+          [
+            "a",
+            "c"
+          ],
+          [
+            "c",
+            "b"
+          ],
+          [
+            "bc",
+            "cd"
+          ],
+          [
+            "cd",
+            "bc"
+          ]
+        ]
+      },
+      "expected": [
+        3.75,
+        0.4,
+        5,
+        0.2
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "sample",
+        "reciprocal"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one equation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "equations": [
+          [
+            "a",
+            "b"
+          ]
+        ],
+        "values": [
+          0.5
+        ],
+        "queries": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "b",
+            "a"
+          ],
+          [
+            "a",
+            "a"
+          ]
+        ]
+      },
+      "expected": [
+        0.5,
+        2,
+        1
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "sample",
+        "single-edge"
+      ]
+    },
+    {
+      "id": "trial-disconnected",
+      "name": "trial: disconnected components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "equations": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "values": [
+          4,
+          5
+        ],
+        "queries": [
+          [
+            "a",
+            "y"
+          ],
+          [
+            "x",
+            "y"
+          ],
+          [
+            "b",
+            "a"
+          ]
+        ]
+      },
+      "expected": [
+        -1,
+        5,
+        0.25
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "trial",
+        "disconnected"
+      ]
+    },
+    {
+      "id": "trial-long-chain",
+      "name": "trial: multiply along a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "equations": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "b",
+            "c"
+          ],
+          [
+            "c",
+            "d"
+          ]
+        ],
+        "values": [
+          2,
+          3,
+          4
+        ],
+        "queries": [
+          [
+            "a",
+            "d"
+          ],
+          [
+            "d",
+            "a"
+          ],
+          [
+            "b",
+            "d"
+          ]
+        ]
+      },
+      "expected": [
+        24,
+        0.041666666666666664,
+        12
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "trial",
+        "chain"
+      ]
+    },
+    {
+      "id": "hidden-known-self",
+      "name": "hidden: self query for known endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "equations": [
+          [
+            "m",
+            "n"
+          ]
+        ],
+        "values": [
+          7
+        ],
+        "queries": [
+          [
+            "m",
+            "m"
+          ],
+          [
+            "n",
+            "n"
+          ],
+          [
+            "z",
+            "z"
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        -1
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "hidden",
+        "self"
+      ]
+    },
+    {
+      "id": "hidden-fraction-chain",
+      "name": "hidden: fractional chain products",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "equations": [
+          [
+            "p",
+            "q"
+          ],
+          [
+            "q",
+            "r"
+          ]
+        ],
+        "values": [
+          0.2,
+          0.25
+        ],
+        "queries": [
+          [
+            "p",
+            "r"
+          ],
+          [
+            "r",
+            "p"
+          ],
+          [
+            "q",
+            "p"
+          ]
+        ]
+      },
+      "expected": [
+        0.05,
+        20,
+        5
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "hidden",
+        "fraction"
+      ]
+    },
+    {
+      "id": "hidden-merge-components",
+      "name": "hidden: equation joins prior components",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "equations": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            "d"
+          ],
+          [
+            "b",
+            "c"
+          ]
+        ],
+        "values": [
+          2,
+          5,
+          3
+        ],
+        "queries": [
+          [
+            "a",
+            "d"
+          ],
+          [
+            "d",
+            "a"
+          ],
+          [
+            "b",
+            "d"
+          ]
+        ]
+      },
+      "expected": [
+        30,
+        0.03333333333333333,
+        15
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "hidden",
+        "merge"
+      ]
+    }
+  ]
+}

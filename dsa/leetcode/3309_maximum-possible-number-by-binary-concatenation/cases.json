@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_3309",
+  "cases": [
+    {
+      "id": "sample-one-two-three",
+      "name": "sample: binary order matters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 30,
+      "tags": [
+        "sample",
+        "permutation"
+      ]
+    },
+    {
+      "id": "sample-powers-of-two",
+      "name": "sample: powers of two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          8,
+          16
+        ]
+      },
+      "expected": 1296,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "trial: equal values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-wide-bit-lengths",
+      "name": "trial: wide bit lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          127,
+          1,
+          64
+        ]
+      },
+      "expected": 32704,
+      "tags": [
+        "bits"
+      ]
+    },
+    {
+      "id": "real-random-triple",
+      "name": "real: hidden triple",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          31,
+          12
+        ]
+      },
+      "expected": 4069,
+      "tags": [
+        "real",
+        "permutation"
+      ]
+    }
+  ]
+}

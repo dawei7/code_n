@@ -1,0 +1,65 @@
+{
+  "challenge_id": "lc_3924",
+  "source": "leetcode",
+  "frontend_id": "3924",
+  "slug": "minimum-threshold-path-with-limited-heavy-edges",
+  "title": "Minimum Threshold Path With Limited Heavy Edges",
+  "difficulty": "Hard",
+  "acceptance_rate": 39.896322852574976,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-threshold-path-with-limited-heavy-edges/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:graph"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:binary-search",
+    "topic:breadth-first-search",
+    "topic:graph"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

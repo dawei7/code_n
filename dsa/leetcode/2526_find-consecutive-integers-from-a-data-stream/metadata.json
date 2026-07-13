@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2526",
+  "source": "leetcode",
+  "frontend_id": "2526",
+  "slug": "find-consecutive-integers-from-a-data-stream",
+  "title": "Find Consecutive Integers from a Data Stream",
+  "difficulty": "Medium",
+  "acceptance_rate": 51.41040339136694,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Queue",
+      "slug": "queue"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    },
+    {
+      "name": "Data Stream",
+      "slug": "data-stream"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-consecutive-integers-from-a-data-stream/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:intel",
+    "leetcode_topic:counting",
+    "leetcode_topic:data-stream",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:queue"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:intel",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:counting",
+    "topic:data-stream",
+    "topic:design",
+    "topic:hash-table",
+    "topic:queue"
+  ],
+  "company_tags": [
+    {
+      "name": "Intel",
+      "slug": "intel"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Intel",
+        "slug": "intel",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

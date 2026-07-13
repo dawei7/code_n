@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_695",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: horizontal island",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,1],[0,0]]},
+      "expected": 2,
+      "tags": ["sample", "horizontal"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: bent island",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,1],[0,1]]},
+      "expected": 3,
+      "tags": ["sample", "connected"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single land cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[0,0],[1,0]]},
+      "expected": 1,
+      "tags": ["sample", "single-cell"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: all water",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[0,0,0],[0,0,0]]},
+      "expected": 0,
+      "tags": ["trial", "no-islands"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: diagonal cells stay separate",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,1],[0,1,0],[1,0,1]]},
+      "expected": 1,
+      "tags": ["trial", "diagonal"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: choose largest of several islands",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,1,0,1,0],[1,1,0,1,0],[0,0,0,1,1]]},
+      "expected": 4,
+      "tags": ["hidden", "multiple-islands"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: boundary snake",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,0,0,0],[1,1,1,0],[0,0,1,0]]},
+      "expected": 5,
+      "tags": ["hidden", "boundary", "irregular"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: whole grid is one island",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,1,1,1],[1,1,1,1],[1,1,1,1]]},
+      "expected": 12,
+      "tags": ["hidden", "dense", "full-grid"]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_2588",
+  "cases": [
+    {
+      "id": "benchmark-repeated-same-value",
+      "name": "benchmark: repeated equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

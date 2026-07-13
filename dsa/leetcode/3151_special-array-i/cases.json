@@ -1,0 +1,138 @@
+{
+  "challenge_id": "lc_3151",
+  "cases": [
+    {
+      "id": "sample-single-element",
+      "name": "sample: one element is special",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-alternating",
+      "name": "sample: parities alternate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "true"
+      ]
+    },
+    {
+      "id": "sample-same-parity",
+      "name": "sample: adjacent same parity fails",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          1,
+          6
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "false"
+      ]
+    },
+    {
+      "id": "trial-zero-and-negative",
+      "name": "trial: zero and negative values use parity only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          -1,
+          2,
+          -3,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "parity"
+      ]
+    },
+    {
+      "id": "real-late-failure",
+      "name": "real: late adjacent even pair fails",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          8,
+          9,
+          12,
+          14,
+          17
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "late-fail"
+      ]
+    },
+    {
+      "id": "real-long-valid",
+      "name": "real: longer valid alternating array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "valid"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "challenge_id": "lc_2648",
+  "source": "leetcode",
+  "frontend_id": "2648",
+  "slug": "generate-fibonacci-sequence",
+  "title": "Generate Fibonacci Sequence",
+  "difficulty": "Easy",
+  "acceptance_rate": 83.6815556227424,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/generate-fibonacci-sequence/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript",
+    "leetcode_company:google",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:javascript",
+    "company:google",
+    "language:javascript",
+    "leetcode",
+    "subset:neetcode:allNC"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "JavaScript"
+      ],
+      "order": 971,
+      "section_order": 18,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "generate-fibonacci-sequence",
+      "leetcode_slug": "generate-fibonacci-sequence",
+      "difficulty": "Easy",
+      "problem_order": 28
+    }
+  ]
+}

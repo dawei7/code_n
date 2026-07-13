@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2318",
+  "source": "leetcode",
+  "frontend_id": "2318",
+  "slug": "number-of-distinct-roll-sequences",
+  "title": "Number of Distinct Roll Sequences",
+  "difficulty": "Hard",
+  "acceptance_rate": 58.315924795114896,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Memoization",
+      "slug": "memoization"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-distinct-roll-sequences/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:servicenow",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:memoization"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:servicenow",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:dynamic-programming",
+    "topic:memoization"
+  ],
+  "company_tags": [
+    {
+      "name": "ServiceNow",
+      "slug": "servicenow"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "ServiceNow",
+        "slug": "servicenow",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

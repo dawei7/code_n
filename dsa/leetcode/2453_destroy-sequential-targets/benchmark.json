@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2453",
+  "cases": [
+    {
+      "id": "benchmark-dominant-zero-remainder",
+      "name": "benchmark: dominant zero-remainder group",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30,
+          1,
+          11
+        ],
+        "space": 10
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

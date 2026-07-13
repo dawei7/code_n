@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_731",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed accepted and rejected bookings",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["book",10,20],["book",50,60],["book",10,40],["book",5,15],["book",5,10],["book",25,55]]},
+      "expected": [true, true, true, false, true, true],
+      "tags": ["sample", "overlap"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: third duplicate is rejected",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["book",5,10],["book",5,10],["book",5,10]]},
+      "expected": [true, true, false],
+      "tags": ["sample", "duplicate"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: touching intervals and narrow triple overlap",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["book",1,5],["book",5,9],["book",3,7],["book",4,6]]},
+      "expected": [true, true, true, false],
+      "tags": ["sample", "half-open"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: rejected range is fully rolled back",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["book",10,30],["book",15,25],["book",20,40],["book",30,40],["book",25,30]]},
+      "expected": [true, true, false, true, true],
+      "tags": ["trial", "transactional"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: containing interval would triple-book",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["book",10,20],["book",10,20],["book",5,25],["book",20,25]]},
+      "expected": [true, true, false, true],
+      "tags": ["trial", "containment"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: coordinate extremes",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["book",0,1],["book",999999999,1000000000],["book",0,1000000000],["book",0,1],["book",1,999999999]]},
+      "expected": [true, true, true, false, true],
+      "tags": ["hidden", "domain-boundary"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: disjoint double-booked regions",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["book",0,4],["book",6,10],["book",1,3],["book",7,9],["book",3,7],["book",4,6]]},
+      "expected": [true, true, true, true, true, true],
+      "tags": ["hidden", "disjoint-overlaps"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: one-point-wide triple conflict",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["book",100,200],["book",150,250],["book",199,300],["book",200,300],["book",50,100]]},
+      "expected": [true, true, false, true, true],
+      "tags": ["hidden", "narrow-conflict"]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_593",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: unit square in arbitrary order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "p1": [
+          0,
+          0
+        ],
+        "p2": [
+          1,
+          1
+        ],
+        "p3": [
+          1,
+          0
+        ],
+        "p4": [
+          0,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "square"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: rectangle is not a square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "p1": [
+          0,
+          0
+        ],
+        "p2": [
+          2,
+          0
+        ],
+        "p3": [
+          2,
+          1
+        ],
+        "p4": [
+          0,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "rectangle"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate point degenerates shape",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "p1": [
+          0,
+          0
+        ],
+        "p2": [
+          0,
+          0
+        ],
+        "p3": [
+          1,
+          0
+        ],
+        "p4": [
+          0,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: rotated diamond square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "p1": [
+          0,
+          2
+        ],
+        "p2": [
+          2,
+          0
+        ],
+        "p3": [
+          4,
+          2
+        ],
+        "p4": [
+          2,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "rotated"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: non-square rhombus",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "p1": [
+          0,
+          0
+        ],
+        "p2": [
+          2,
+          1
+        ],
+        "p3": [
+          4,
+          0
+        ],
+        "p4": [
+          2,
+          -1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "rhombus"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: large translated square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "p1": [
+          100,
+          100
+        ],
+        "p2": [
+          107,
+          100
+        ],
+        "p3": [
+          107,
+          107
+        ],
+        "p4": [
+          100,
+          107
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "translated"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: negative-coordinate rotated square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "p1": [
+          -3,
+          -1
+        ],
+        "p2": [
+          -1,
+          1
+        ],
+        "p3": [
+          1,
+          -1
+        ],
+        "p4": [
+          -1,
+          -3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_2879",
+  "source": "leetcode",
+  "frontend_id": "2879",
+  "slug": "display-the-first-three-rows",
+  "title": "Display the First Three Rows",
+  "difficulty": "Easy",
+  "acceptance_rate": 93.00273327410531,
+  "category": "pandas",
+  "category_title": "pandas",
+  "topics": [],
+  "url": "https://leetcode.com/problems/display-the-first-three-rows/",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:pandas",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_studyplan:introduction-to-pandas",
+    "leetcode_studyplan:introduction-to-pandas:introduction-to-pandas-170-g8ep"
+  ],
+  "tags": [
+    "category:pandas",
+    "company:amazon",
+    "company:google",
+    "language:python",
+    "leetcode",
+    "study_plan:introduction-to-pandas",
+    "study_plan_section:introduction-to-pandas:introduction-to-pandas-170-g8ep"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "introduction-to-pandas",
+      "plan_name": "Introduction to Pandas",
+      "section_slug": "introduction-to-pandas-170-g8ep",
+      "section_name": "Data Inspection",
+      "path": [
+        "Data Inspection"
+      ],
+      "order": 3,
+      "section_order": 2,
+      "problem_order": 2,
+      "catalog_slug": "introduction-to",
+      "catalog_name": "Introduction To",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/introduction-to-pandas/"
+    }
+  ],
+  "neetcode_subsets": []
+}

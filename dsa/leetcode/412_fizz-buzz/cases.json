@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_412",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first Fizz",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": [
+        "1",
+        "2",
+        "Fizz"
+      ],
+      "tags": [
+        "sample",
+        "fizz"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: first Buzz",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": [
+        "1",
+        "2",
+        "Fizz",
+        "4",
+        "Buzz"
+      ],
+      "tags": [
+        "sample",
+        "buzz"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: first combined label",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 15
+      },
+      "expected": [
+        "1",
+        "2",
+        "Fizz",
+        "4",
+        "Buzz",
+        "Fizz",
+        "7",
+        "8",
+        "Fizz",
+        "Buzz",
+        "11",
+        "Fizz",
+        "13",
+        "14",
+        "FizzBuzz"
+      ],
+      "tags": [
+        "sample",
+        "fizzbuzz"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "trial: smallest bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": [
+        "1"
+      ],
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-fourteen",
+      "name": "trial: no combined value yet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 14
+      },
+      "expected": [
+        "1",
+        "2",
+        "Fizz",
+        "4",
+        "Buzz",
+        "Fizz",
+        "7",
+        "8",
+        "Fizz",
+        "Buzz",
+        "11",
+        "Fizz",
+        "13",
+        "14"
+      ],
+      "tags": [
+        "trial",
+        "before-fifteen"
+      ]
+    },
+    {
+      "id": "hidden-sixteen",
+      "name": "hidden: sequence continues after combined label",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 16
+      },
+      "expected": [
+        "1",
+        "2",
+        "Fizz",
+        "4",
+        "Buzz",
+        "Fizz",
+        "7",
+        "8",
+        "Fizz",
+        "Buzz",
+        "11",
+        "Fizz",
+        "13",
+        "14",
+        "FizzBuzz",
+        "16"
+      ],
+      "tags": [
+        "hidden",
+        "after-fifteen"
+      ]
+    },
+    {
+      "id": "hidden-thirty",
+      "name": "hidden: several combined values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 30
+      },
+      "expected": [
+        "1",
+        "2",
+        "Fizz",
+        "4",
+        "Buzz",
+        "Fizz",
+        "7",
+        "8",
+        "Fizz",
+        "Buzz",
+        "11",
+        "Fizz",
+        "13",
+        "14",
+        "FizzBuzz",
+        "16",
+        "17",
+        "Fizz",
+        "19",
+        "Buzz",
+        "Fizz",
+        "22",
+        "23",
+        "Fizz",
+        "Buzz",
+        "26",
+        "Fizz",
+        "28",
+        "29",
+        "FizzBuzz"
+      ],
+      "tags": [
+        "hidden",
+        "multiple-combined"
+      ]
+    },
+    {
+      "id": "hidden-prime-bound",
+      "name": "hidden: prime final value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 47
+      },
+      "expected": [
+        "1",
+        "2",
+        "Fizz",
+        "4",
+        "Buzz",
+        "Fizz",
+        "7",
+        "8",
+        "Fizz",
+        "Buzz",
+        "11",
+        "Fizz",
+        "13",
+        "14",
+        "FizzBuzz",
+        "16",
+        "17",
+        "Fizz",
+        "19",
+        "Buzz",
+        "Fizz",
+        "22",
+        "23",
+        "Fizz",
+        "Buzz",
+        "26",
+        "Fizz",
+        "28",
+        "29",
+        "FizzBuzz",
+        "31",
+        "32",
+        "Fizz",
+        "34",
+        "Buzz",
+        "Fizz",
+        "37",
+        "38",
+        "Fizz",
+        "Buzz",
+        "41",
+        "Fizz",
+        "43",
+        "44",
+        "FizzBuzz",
+        "46",
+        "47"
+      ],
+      "tags": [
+        "hidden",
+        "prime"
+      ]
+    }
+  ]
+}

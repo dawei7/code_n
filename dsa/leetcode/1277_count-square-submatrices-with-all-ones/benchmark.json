@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_1277",
+  "cases": [
+    {
+      "id": "benchmark-three-by-three-full",
+      "name": "benchmark: full three by three",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

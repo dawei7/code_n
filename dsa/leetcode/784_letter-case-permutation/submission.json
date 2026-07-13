@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "800",
+  "frontend_id": "784",
+  "title_slug": "letter-case-permutation",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.letterCasePermutation",
+  "verified_submission_id": "2066125120",
+  "verified_at": "2026-07-13T12:40:51.011758+00:00"
+}

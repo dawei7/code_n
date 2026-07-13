@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_681",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: reuse the final digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "time": "19:34"
+      },
+      "expected": "19:39",
+      "tags": [
+        "sample",
+        "digit-reuse"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: wrap to the next day",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "time": "23:59"
+      },
+      "expected": "22:22",
+      "tags": [
+        "sample",
+        "day-wrap"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: only one digit available",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "time": "11:11"
+      },
+      "expected": "11:11",
+      "tags": [
+        "sample",
+        "full-cycle"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: next minute",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "time": "01:32"
+      },
+      "expected": "01:33",
+      "tags": [
+        "trial",
+        "one-minute-gap"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: hour carry",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "time": "20:48"
+      },
+      "expected": "22:00",
+      "tags": [
+        "trial",
+        "hour-wrap"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: midnight repeats next day",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "time": "00:00"
+      },
+      "expected": "00:00",
+      "tags": [
+        "hidden",
+        "midnight"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: rearrange minute digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "time": "22:23"
+      },
+      "expected": "22:32",
+      "tags": [
+        "hidden",
+        "minute-rearrangement"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: preserve leading zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "time": "05:50"
+      },
+      "expected": "05:55",
+      "tags": [
+        "hidden",
+        "leading-zero"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "793",
+  "frontend_id": "777",
+  "title_slug": "swap-adjacent-in-lr-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.canTransform",
+  "verified_submission_id": "2066090404",
+  "verified_at": "2026-07-13T12:01:29.480117+00:00"
+}

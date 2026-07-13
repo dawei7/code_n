@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "311",
+  "frontend_id": "311",
+  "title_slug": "sparse-matrix-multiplication",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064369304",
+  "verified_at": "2026-07-12T01:31:26.531174+00:00"
+}

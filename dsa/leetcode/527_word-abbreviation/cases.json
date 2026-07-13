@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_527",
+  "cases": [
+    {"id": "sample-mixed", "name": "sample: independent and conflicting groups", "kind": "sample", "visible": true, "input": {"words": ["like", "god", "internal", "me", "internet", "interval", "intension", "face", "intrusion"]}, "expected": ["l2e", "god", "internal", "me", "i6t", "interval", "inte4n", "f2e", "intr4n"], "tags": ["sample", "mixed"]},
+    {"id": "sample-distinguishing-prefix", "name": "sample: third character distinguishes words", "kind": "sample", "visible": true, "input": {"words": ["abcdef", "abqdef"]}, "expected": ["abc2f", "abq2f"], "tags": ["sample", "conflict"]},
+    {"id": "sample-single", "name": "sample: one long word", "kind": "sample", "visible": true, "input": {"words": ["localization"]}, "expected": ["l10n"], "tags": ["sample", "singleton"]},
+    {"id": "trial-short", "name": "trial: short words remain unchanged", "kind": "trial", "visible": true, "input": {"words": ["it", "dog", "door"]}, "expected": ["it", "dog", "d2r"], "tags": ["trial", "short"]},
+    {"id": "trial-different-signatures", "name": "trial: one separate group and one conflicting pair", "kind": "trial", "visible": true, "input": {"words": ["access", "accessible", "across"]}, "expected": ["acc2s", "a8e", "acr2s"], "tags": ["trial", "groups"]},
+    {"id": "hidden-no-saving", "name": "hidden: distinguishing prefix leaves no compression", "kind": "real", "visible": false, "input": {"words": ["internal", "interval"]}, "expected": ["internal", "interval"], "tags": ["hidden", "long-prefix"]},
+    {"id": "hidden-order", "name": "hidden: outputs preserve unsorted input order", "kind": "real", "visible": false, "input": {"words": ["intrusion", "intension", "internet"]}, "expected": ["intr4n", "inte4n", "i6t"], "tags": ["hidden", "order"]}
+  ]
+}

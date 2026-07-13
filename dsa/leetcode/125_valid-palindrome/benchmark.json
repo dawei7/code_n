@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_125",
+  "measurement_note": "Punctuation-heavy palindrome tiers force both pointers across the complete string while retaining constant auxiliary space.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: one character",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1,
+      "input": {
+        "s": "A"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: sixty-five characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 65,
+      "input": {
+        "s": ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: two hundred fifty-seven characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 257,
+      "input": {
+        "s": ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

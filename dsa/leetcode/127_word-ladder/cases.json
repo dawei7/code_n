@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_127",
+  "cases": [
+    {"id": "sample-found", "name": "sample: shortest length five", "kind": "sample", "visible": true, "input": {"begin_word": "hit", "end_word": "cog", "word_list": ["hot", "dot", "dog", "lot", "log", "cog"]}, "expected": 5, "tags": ["sample", "found"]},
+    {"id": "sample-missing-end", "name": "sample: end absent", "kind": "sample", "visible": true, "input": {"begin_word": "hit", "end_word": "cog", "word_list": ["hot", "dot", "dog", "lot", "log"]}, "expected": 0, "tags": ["sample", "impossible"]},
+    {"id": "sample-direct", "name": "sample: direct change", "kind": "sample", "visible": true, "input": {"begin_word": "a", "end_word": "c", "word_list": ["a", "b", "c"]}, "expected": 2, "tags": ["sample", "boundary"]},
+    {"id": "trial-shorter-branch", "name": "choose the shorter branch", "kind": "trial", "visible": true, "input": {"begin_word": "red", "end_word": "tax", "word_list": ["ted", "tex", "red", "tax", "tad", "den", "rex", "pee"]}, "expected": 4, "tags": ["branching"]},
+    {"id": "real-disconnected", "name": "hidden: disconnected end", "kind": "real", "visible": false, "input": {"begin_word": "abc", "end_word": "xyz", "word_list": ["xbc", "xya", "ayz", "xyz"]}, "expected": 0, "tags": ["hidden", "disconnected"]}
+  ]
+}

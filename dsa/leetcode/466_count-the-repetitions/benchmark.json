@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_466",
+  "measurement_note": "Size is n1, the source-block repetition count. Boundary-state cycle detection skips repeated behavior after constant state discovery, while direct subsequence scanning processes every source block.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: skip a repetition cycle across 128 source blocks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s1": "acb",
+        "n1": 128,
+        "s2": "ab",
+        "n2": 1
+      },
+      "expected": 128,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "cycle"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: skip a repetition cycle across 512 source blocks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s1": "acb",
+        "n1": 512,
+        "s2": "ab",
+        "n2": 1
+      },
+      "expected": 512,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "cycle"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: skip a repetition cycle across 2048 source blocks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2048,
+      "input": {
+        "s1": "acb",
+        "n1": 2048,
+        "s2": "ab",
+        "n2": 1
+      },
+      "expected": 2048,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "cycle"
+      ]
+    }
+  ]
+}
+

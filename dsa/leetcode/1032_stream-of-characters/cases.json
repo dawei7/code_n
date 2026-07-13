@@ -1,0 +1,108 @@
+{
+  "challenge_id": "lc_1032",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: suffix appears after stream grows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "cd",
+          "f",
+          "kl"
+        ],
+        "queries": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "sample",
+        "trie"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one character word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "cd",
+          "f",
+          "kl"
+        ],
+        "queries": [
+          "f"
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: overlapping suffixes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ba"
+        ],
+        "queries": [
+          "a",
+          "b",
+          "a"
+        ]
+      },
+      "expected": [
+        false,
+        true,
+        true
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-prefix-word-overlap",
+      "name": "hidden: prefix word overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "aa"
+        ],
+        "queries": [
+          "a",
+          "a",
+          "b",
+          "a"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

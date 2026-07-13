@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2803",
+  "source": "leetcode",
+  "frontend_id": "2803",
+  "slug": "factorial-generator",
+  "title": "Factorial Generator",
+  "difficulty": "Easy",
+  "acceptance_rate": 85.44336237826755,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/factorial-generator/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_662",
+  "measurement_note": "Size is the number of real tree nodes. Each tier contains leftmost and rightmost chains whose deepest width is exponential in their level count. Indexed traversals visit only real nodes, while explicitly carrying null placeholders processes every conceptual slot.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3-level opposing chains",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          null,
+          null,
+          5
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "sparse-width"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 7-level opposing chains",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 13,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          null,
+          null,
+          5,
+          6,
+          null,
+          null,
+          7,
+          8,
+          null,
+          null,
+          9,
+          10,
+          null,
+          null,
+          11,
+          12,
+          null,
+          null,
+          13
+        ]
+      },
+      "expected": 64,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "sparse-width"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 13-level opposing chains",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          null,
+          null,
+          5,
+          6,
+          null,
+          null,
+          7,
+          8,
+          null,
+          null,
+          9,
+          10,
+          null,
+          null,
+          11,
+          12,
+          null,
+          null,
+          13,
+          14,
+          null,
+          null,
+          15,
+          16,
+          null,
+          null,
+          17,
+          18,
+          null,
+          null,
+          19,
+          20,
+          null,
+          null,
+          21,
+          22,
+          null,
+          null,
+          23,
+          24,
+          null,
+          null,
+          25
+        ]
+      },
+      "expected": 4096,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "sparse-width"
+      ]
+    }
+  ]
+}

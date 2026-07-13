@@ -1,0 +1,183 @@
+{
+  "challenge_id": "lc_581",
+  "source": "leetcode",
+  "frontend_id": "581",
+  "slug": "shortest-unsorted-continuous-subarray",
+  "title": "Shortest Unsorted Continuous Subarray",
+  "difficulty": "Medium",
+  "acceptance_rate": 38.41004813477738,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/shortest-unsorted-continuous-subarray/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:ebay",
+    "leetcode_company:google",
+    "leetcode_company:liveramp",
+    "leetcode_company:microsoft",
+    "leetcode_company:tiktok",
+    "leetcode_studyplan:google-spring-23-high-frequency",
+    "leetcode_studyplan:google-spring-23-high-frequency:google-spring-23-high-frequency-143-kvk3",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:sorting",
+    "leetcode_topic:stack",
+    "leetcode_topic:two-pointers"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:ebay",
+    "company:google",
+    "company:liveramp",
+    "company:microsoft",
+    "company:tiktok",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:google-spring-23-high-frequency",
+    "study_plan_section:google-spring-23-high-frequency:google-spring-23-high-frequency-143-kvk3",
+    "topic:array",
+    "topic:greedy",
+    "topic:monotonic-stack",
+    "topic:sorting",
+    "topic:stack",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "eBay",
+      "slug": "ebay"
+    },
+    {
+      "name": "LiveRamp",
+      "slug": "liveramp"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "eBay",
+        "slug": "ebay",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "LiveRamp",
+        "slug": "liveramp",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "google-spring-23-high-frequency",
+      "plan_name": "Google Spring' 23 High Frequency",
+      "section_slug": "google-spring-23-high-frequency-143-kvk3",
+      "section_name": "April Interview Questions",
+      "path": [
+        "April Interview Questions"
+      ],
+      "order": 8,
+      "section_order": 2,
+      "problem_order": 6,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/google-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": []
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_498",
+  "cases": [
+    {"id": "sample-three-square", "name": "sample: three by three matrix", "kind": "sample", "visible": true, "input": {"mat": [[1,2,3],[4,5,6],[7,8,9]]}, "expected": [1,2,4,7,5,3,6,8,9], "tags": ["sample", "square"]},
+    {"id": "sample-two-square", "name": "sample: two by two matrix", "kind": "sample", "visible": true, "input": {"mat": [[1,2],[3,4]]}, "expected": [1,2,3,4], "tags": ["sample", "small"]},
+    {"id": "sample-single-row", "name": "sample: one row", "kind": "sample", "visible": true, "input": {"mat": [[1,2,3]]}, "expected": [1,2,3], "tags": ["sample", "single-row"]},
+    {"id": "trial-single-column", "name": "trial: one column", "kind": "trial", "visible": true, "input": {"mat": [[1],[2],[3]]}, "expected": [1,2,3], "tags": ["trial", "single-column"]},
+    {"id": "trial-wide", "name": "trial: two by three matrix", "kind": "trial", "visible": true, "input": {"mat": [[1,2,3],[4,5,6]]}, "expected": [1,2,4,5,3,6], "tags": ["trial", "wide"]},
+    {"id": "hidden-tall", "name": "hidden: three by two matrix", "kind": "real", "visible": false, "input": {"mat": [[1,2],[3,4],[5,6]]}, "expected": [1,2,3,5,4,6], "tags": ["hidden", "tall"]},
+    {"id": "hidden-single", "name": "hidden: one cell", "kind": "real", "visible": false, "input": {"mat": [[42]]}, "expected": [42], "tags": ["hidden", "singleton"]}
+  ]
+}

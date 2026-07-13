@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "543",
+  "frontend_id": "543",
+  "title_slug": "diameter-of-binary-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065324206",
+  "verified_at": "2026-07-12T18:09:29.931806+00:00"
+}

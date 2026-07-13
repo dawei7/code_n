@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_787",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one stop is cheaper", "kind": "sample", "visible": true, "input": {"n": 3, "flights": [[0, 1, 100], [1, 2, 100], [0, 2, 500]], "src": 0, "dst": 2, "k": 1}, "expected": 200, "tags": ["sample", "one-stop"]},
+    {"id": "sample-2", "name": "sample: direct flight required", "kind": "sample", "visible": true, "input": {"n": 3, "flights": [[0, 1, 2], [1, 2, 2], [0, 2, 5]], "src": 0, "dst": 2, "k": 0}, "expected": 5, "tags": ["sample", "zero-stops"]},
+    {"id": "sample-3", "name": "sample: destination unreachable", "kind": "sample", "visible": true, "input": {"n": 3, "flights": [[0, 1, 2]], "src": 0, "dst": 2, "k": 1}, "expected": -1, "tags": ["sample", "unreachable"]},
+    {"id": "trial-1", "name": "trial: cheap chain exceeds stop limit", "kind": "trial", "visible": true, "input": {"n": 4, "flights": [[0, 1, 1], [1, 2, 1], [2, 3, 1], [0, 3, 10]], "src": 0, "dst": 3, "k": 1}, "expected": 10, "tags": ["trial", "stop-limit"]},
+    {"id": "trial-2", "name": "trial: same chain becomes eligible", "kind": "trial", "visible": true, "input": {"n": 4, "flights": [[0, 1, 1], [1, 2, 1], [2, 3, 1], [0, 3, 10]], "src": 0, "dst": 3, "k": 2}, "expected": 3, "tags": ["trial", "exact-limit"]},
+    {"id": "trial-3", "name": "trial: best route uses three flights", "kind": "trial", "visible": true, "input": {"n": 5, "flights": [[0, 1, 5], [0, 2, 2], [2, 1, 1], [1, 4, 2], [2, 3, 2], [3, 4, 10], [0, 4, 20]], "src": 0, "dst": 4, "k": 2}, "expected": 5, "tags": ["trial", "competing-routes"]},
+    {"id": "hidden-1", "name": "hidden: positive cycle does not help", "kind": "real", "visible": false, "input": {"n": 3, "flights": [[0, 1, 5], [1, 0, 1], [1, 2, 5], [0, 2, 20]], "src": 0, "dst": 2, "k": 1}, "expected": 10, "tags": ["hidden", "cycle"]},
+    {"id": "hidden-2", "name": "hidden: four-flight chain is too long", "kind": "real", "visible": false, "input": {"n": 5, "flights": [[0, 1, 1], [1, 2, 1], [2, 3, 1], [3, 4, 1], [0, 4, 9], [1, 4, 20]], "src": 0, "dst": 4, "k": 2}, "expected": 9, "tags": ["hidden", "stop-limit"]},
+    {"id": "hidden-3", "name": "hidden: no flights", "kind": "real", "visible": false, "input": {"n": 2, "flights": [], "src": 0, "dst": 1, "k": 1}, "expected": -1, "tags": ["hidden", "unreachable"]}
+  ]
+}

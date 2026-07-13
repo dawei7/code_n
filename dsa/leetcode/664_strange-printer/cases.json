@@ -1,0 +1,9 @@
+{"schema_version":1,"challenge_id":"lc_664","cases":[
+{"id":"sample-1","name":"sample: two uniform runs","kind":"sample","visible":true,"input":{"s":"aaabbb"},"expected":2,"tags":["sample","runs"]},
+{"id":"sample-2","name":"sample: matching ends share a turn","kind":"sample","visible":true,"input":{"s":"aba"},"expected":2,"tags":["sample","overwrite"]},
+{"id":"sample-3","name":"sample: repeated alphabet block","kind":"sample","visible":true,"input":{"s":"abcabc"},"expected":5,"tags":["sample","interval-dp"]},
+{"id":"trial-1","name":"trial: one character","kind":"trial","visible":true,"input":{"s":"a"},"expected":1,"tags":["trial","boundary"]},
+{"id":"trial-2","name":"trial: one long run","kind":"trial","visible":true,"input":{"s":"aaaaaaaa"},"expected":1,"tags":["trial","compression"]},
+{"id":"hidden-1","name":"hidden: palindrome merges nested ends","kind":"real","visible":false,"input":{"s":"abcba"},"expected":3,"tags":["hidden","nested"]},
+{"id":"hidden-2","name":"hidden: two distinct characters","kind":"real","visible":false,"input":{"s":"ab"},"expected":2,"tags":["hidden","small"]}
+]}

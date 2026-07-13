@@ -1,0 +1,78 @@
+{
+  "challenge_id": "lc_1014",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: best middle pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "values": [
+          8,
+          1,
+          5,
+          2,
+          6
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "values": [
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-descending",
+      "name": "descending values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          5,
+          4,
+          3
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "real-late-high-value",
+      "name": "hidden: late high value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "values": [
+          1,
+          2,
+          10,
+          1,
+          10
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

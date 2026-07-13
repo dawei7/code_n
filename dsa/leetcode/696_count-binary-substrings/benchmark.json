@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_696",
+  "measurement_note": "Size is the binary string length. Alternating strings make the linear method process every run boundary, while an exhaustive interval validator still examines every substring even though only length-two intervals qualify.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: alternating length 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s": "01010101010101010101010101010101"},
+      "expected": 31,
+      "tags": ["benchmark", "scaling", "alternating"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: alternating length 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"s": "01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101"},
+      "expected": 127,
+      "tags": ["benchmark", "scaling", "alternating"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: alternating length 400",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 400,
+      "input": {"s": "0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101"},
+      "expected": 399,
+      "tags": ["benchmark", "scaling", "alternating"]
+    }
+  ]
+}

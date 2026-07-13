@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_539",
+  "cases": [
+    {"id":"sample-midnight","name":"sample: adjacent across midnight","kind":"sample","visible":true,"input":{"time_points":["23:59","00:00"]},"expected":1,"tags":["sample","wraparound"]},
+    {"id":"sample-duplicate","name":"sample: duplicate time","kind":"sample","visible":true,"input":{"time_points":["00:00","23:59","00:00"]},"expected":0,"tags":["sample","duplicate"]},
+    {"id":"sample-hour","name":"sample: one-hour separation","kind":"sample","visible":true,"input":{"time_points":["01:01","02:01"]},"expected":60,"tags":["sample","hour"]},
+    {"id":"trial-opposite","name":"trial: opposite points on the clock","kind":"trial","visible":true,"input":{"time_points":["00:00","12:00"]},"expected":720,"tags":["trial","opposite"]},
+    {"id":"trial-wrap-tie","name":"trial: equal direct and wraparound gaps","kind":"trial","visible":true,"input":{"time_points":["00:00","00:10","23:50"]},"expected":10,"tags":["trial","wraparound"]},
+    {"id":"hidden-unsorted","name":"hidden: unsorted times with wraparound minimum","kind":"real","visible":false,"input":{"time_points":["05:31","22:08","00:35"]},"expected":147,"tags":["hidden","unsorted"]},
+    {"id":"hidden-adjacent","name":"hidden: ordinary adjacent minutes","kind":"real","visible":false,"input":{"time_points":["12:00","12:01","18:30"]},"expected":1,"tags":["hidden","adjacent"]}
+  ]
+}

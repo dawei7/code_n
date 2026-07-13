@@ -1,0 +1,6 @@
+{"challenge_id":"lc_283","cases":[
+{"id":"sample-mixed","name":"sample: mixed zeros","kind":"sample","visible":true,"input":{"nums":[0,1,0,3,12]},"expected":[1,3,12,0,0],"tags":["sample","in-place"]},
+{"id":"sample-zero","name":"sample: single zero","kind":"sample","visible":true,"input":{"nums":[0]},"expected":[0],"tags":["sample","boundary"]},
+{"id":"trial-no-zero","name":"zero-free array remains stable","kind":"trial","visible":true,"input":{"nums":[1,2,3]},"expected":[1,2,3],"tags":["stable"]},
+{"id":"real-leading","name":"hidden: leading consecutive zeros","kind":"real","visible":false,"input":{"nums":[0,0,1]},"expected":[1,0,0],"tags":["hidden","leading"]}
+]}

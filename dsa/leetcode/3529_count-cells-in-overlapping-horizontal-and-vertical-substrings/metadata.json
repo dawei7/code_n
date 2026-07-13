@@ -1,0 +1,83 @@
+{
+  "challenge_id": "lc_3529",
+  "source": "leetcode",
+  "frontend_id": "3529",
+  "slug": "count-cells-in-overlapping-horizontal-and-vertical-substrings",
+  "title": "Count Cells in Overlapping Horizontal and Vertical Substrings",
+  "difficulty": "Medium",
+  "acceptance_rate": 27.608557058865195,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Rolling Hash",
+      "slug": "rolling-hash"
+    },
+    {
+      "name": "String Matching",
+      "slug": "string-matching"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Hash Function",
+      "slug": "hash-function"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-cells-in-overlapping-horizontal-and-vertical-substrings/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-function",
+    "leetcode_topic:matrix",
+    "leetcode_topic:rolling-hash",
+    "leetcode_topic:string",
+    "leetcode_topic:string-matching"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-function",
+    "topic:matrix",
+    "topic:rolling-hash",
+    "topic:string",
+    "topic:string-matching"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

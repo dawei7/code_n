@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_705",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: add query remove query",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["add",1],["contains",1],["remove",1],["contains",1]]},
+      "expected": [true,false],
+      "tags": ["sample", "lifecycle"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: absent operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["contains",13],["remove",2],["contains",17],["remove",13]]},
+      "expected": [false,false],
+      "tags": ["sample", "absent"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: distinguish stored keys",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["add",5],["add",9],["contains",5],["contains",16]]},
+      "expected": [true,false],
+      "tags": ["sample", "membership"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: duplicate add is idempotent",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["add",4],["add",4],["remove",4],["contains",4]]},
+      "expected": [false],
+      "tags": ["trial", "duplicate"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: colliding keys remain independent",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["add",1],["add",1010],["remove",1],["contains",1],["contains",1010]]},
+      "expected": [false,true],
+      "tags": ["trial", "collision"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: key-domain boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["add",0],["add",1000000],["contains",0],["contains",1000000]]},
+      "expected": [true,true],
+      "tags": ["hidden", "boundary-keys"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: remove one collision-chain member",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["add",7],["add",1016],["add",2025],["remove",1016],["contains",7],["contains",1016],["contains",2025]]},
+      "expected": [true,false,true],
+      "tags": ["hidden", "collision", "remove"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: no membership queries",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["add",3],["remove",3],["remove",9]]},
+      "expected": [],
+      "tags": ["hidden", "empty-output"]
+    }
+  ]
+}

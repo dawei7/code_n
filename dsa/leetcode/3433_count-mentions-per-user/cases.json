@@ -1,0 +1,143 @@
+{
+  "challenge_id": "lc_3433",
+  "cases": [
+    {
+      "id": "sample-here-after-online",
+      "name": "sample: offline user returns before HERE",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "numberOfUsers": 2,
+        "events": [
+          [
+            "MESSAGE",
+            "10",
+            "id1 id0"
+          ],
+          [
+            "OFFLINE",
+            "11",
+            "0"
+          ],
+          [
+            "MESSAGE",
+            "71",
+            "HERE"
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "sample",
+        "events"
+      ]
+    },
+    {
+      "id": "trial-same-time-offline-first",
+      "name": "trial: status change before message at same timestamp",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numberOfUsers": 2,
+        "events": [
+          [
+            "OFFLINE",
+            "10",
+            "0"
+          ],
+          [
+            "MESSAGE",
+            "10",
+            "HERE"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "trial",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-duplicate-ids",
+      "name": "trial: duplicate explicit mentions count repeatedly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numberOfUsers": 3,
+        "events": [
+          [
+            "MESSAGE",
+            "5",
+            "id1 id1 id2"
+          ],
+          [
+            "MESSAGE",
+            "6",
+            "ALL"
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        2
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-unsorted-events",
+      "name": "real: sort by timestamp and event priority",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "numberOfUsers": 4,
+        "events": [
+          [
+            "MESSAGE",
+            "70",
+            "HERE"
+          ],
+          [
+            "OFFLINE",
+            "20",
+            "2"
+          ],
+          [
+            "MESSAGE",
+            "20",
+            "HERE"
+          ],
+          [
+            "MESSAGE",
+            "21",
+            "id2 id3 id3"
+          ],
+          [
+            "MESSAGE",
+            "1",
+            "ALL"
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        2,
+        5
+      ],
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "challenge_id": "lc_3112",
+  "cases": [
+    {
+      "id": "sample-node-disappears-early",
+      "name": "sample: node one disappears before arrival",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            4
+          ]
+        ],
+        "disappear": [
+          1,
+          1,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        -1,
+        4
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-alternate-path",
+      "name": "sample: shortest valid path through node one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            4
+          ]
+        ],
+        "disappear": [
+          1,
+          3,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        3
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-unreachable",
+      "name": "sample: destination disappears at arrival time",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ]
+        ],
+        "disappear": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        -1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-multiple-paths",
+      "name": "trial: later direct path loses to earlier two-hop path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            1,
+            3,
+            3
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            2
+          ]
+        ],
+        "disappear": [
+          10,
+          10,
+          3,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        3,
+        2,
+        4
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-disappearing-network",
+      "name": "real: mixed reachable and unreachable nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            5
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            3,
+            4,
+            3
+          ],
+          [
+            1,
+            5,
+            7
+          ]
+        ],
+        "disappear": [
+          20,
+          5,
+          10,
+          8,
+          12,
+          6
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        5,
+        4,
+        7,
+        -1
+      ],
+      "tags": [
+        "real",
+        "dijkstra"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "challenge_id": "lc_2043",
+  "source": "leetcode",
+  "frontend_id": "2043",
+  "slug": "simple-bank-system",
+  "title": "Simple Bank System",
+  "difficulty": "Medium",
+  "acceptance_rate": 69.6660323146386,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/simple-bank-system/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:airbnb",
+    "leetcode_company:bloomberg",
+    "leetcode_company:capital-one",
+    "leetcode_company:coinbase",
+    "leetcode_company:dropbox",
+    "leetcode_company:facebook",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:hubspot",
+    "leetcode_company:instacart",
+    "leetcode_company:okta",
+    "leetcode_company:phonepe",
+    "leetcode_company:stripe",
+    "leetcode_company:the-trade-desk",
+    "leetcode_topic:array",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:simulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:airbnb",
+    "company:bloomberg",
+    "company:capital-one",
+    "company:coinbase",
+    "company:dropbox",
+    "company:facebook",
+    "company:goldman-sachs",
+    "company:hubspot",
+    "company:instacart",
+    "company:okta",
+    "company:phonepe",
+    "company:stripe",
+    "company:the-trade-desk",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:design",
+    "topic:hash-table",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Capital One",
+      "slug": "capital-one"
+    },
+    {
+      "name": "Hubspot",
+      "slug": "hubspot"
+    },
+    {
+      "name": "Instacart",
+      "slug": "instacart"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Okta",
+      "slug": "okta"
+    },
+    {
+      "name": "Coinbase",
+      "slug": "coinbase"
+    },
+    {
+      "name": "Dropbox",
+      "slug": "dropbox"
+    },
+    {
+      "name": "Stripe",
+      "slug": "stripe"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Airbnb",
+      "slug": "airbnb"
+    },
+    {
+      "name": "The Trade Desk",
+      "slug": "the-trade-desk"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "PhonePe",
+      "slug": "phonepe"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Airbnb",
+        "slug": "airbnb",
+        "timesEncountered": 9
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "The Trade Desk",
+        "slug": "the-trade-desk",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "PhonePe",
+        "slug": "phonepe",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Capital One",
+        "slug": "capital-one",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Hubspot",
+        "slug": "hubspot",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Instacart",
+        "slug": "instacart",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Okta",
+        "slug": "okta",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Coinbase",
+        "slug": "coinbase",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Dropbox",
+        "slug": "dropbox",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Stripe",
+        "slug": "stripe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

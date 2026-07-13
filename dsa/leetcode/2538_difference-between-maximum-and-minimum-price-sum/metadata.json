@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2538",
+  "source": "leetcode",
+  "frontend_id": "2538",
+  "slug": "difference-between-maximum-and-minimum-price-sum",
+  "title": "Difference Between Maximum and Minimum Price Sum",
+  "difficulty": "Hard",
+  "acceptance_rate": 33.84669438425953,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:directi",
+    "leetcode_company:medianet",
+    "leetcode_topic:array",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:directi",
+    "company:medianet",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:depth-first-search",
+    "topic:dynamic-programming",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Media.net",
+      "slug": "medianet"
+    },
+    {
+      "name": "Directi",
+      "slug": "directi"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Directi",
+        "slug": "directi",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Media.net",
+        "slug": "medianet",
+        "timesEncountered": 4
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

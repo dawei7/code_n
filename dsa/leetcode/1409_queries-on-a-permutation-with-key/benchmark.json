@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_1409",
+  "cases": [
+    {
+      "id": "benchmark-wide-moves",
+      "name": "benchmark: values moved from tail and middle",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "queries": [
+          5,
+          1,
+          5,
+          2,
+          4,
+          3
+        ],
+        "m": 5
+      },
+      "expected": [
+        4,
+        1,
+        1,
+        2,
+        4,
+        4
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

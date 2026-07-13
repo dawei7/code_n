@@ -1,0 +1,90 @@
+{
+  "challenge_id": "lc_1011",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: five days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "weights": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "days": 5
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "weights": [
+          3,
+          2,
+          2,
+          4,
+          1,
+          4
+        ],
+        "days": 3
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: four days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "weights": [
+          1,
+          2,
+          3,
+          1,
+          1
+        ],
+        "days": 4
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-one-day",
+      "name": "hidden: all packages in one day",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weights": [
+          5,
+          5,
+          5
+        ],
+        "days": 1
+      },
+      "expected": 15,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_3179",
+  "cases": [
+    {
+      "id": "sample-small",
+      "name": "sample: small prefix-sum simulation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 5
+      },
+      "expected": 56,
+      "tags": [
+        "sample",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "sample-one-second",
+      "name": "sample: one update over five values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-zero-seconds",
+      "name": "trial: zero seconds leaves the array unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-single-index",
+      "name": "trial: one-element array remains one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 100
+      },
+      "expected": 1,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-large-k-small-n",
+      "name": "real: large seconds with small n",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "k": 1000
+      },
+      "expected": 43484738,
+      "tags": [
+        "real",
+        "large-k"
+      ]
+    },
+    {
+      "id": "real-balanced-combination",
+      "name": "real: balanced combination parameters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 50,
+        "k": 75
+      },
+      "expected": 436619086,
+      "tags": [
+        "real",
+        "combination"
+      ]
+    }
+  ]
+}

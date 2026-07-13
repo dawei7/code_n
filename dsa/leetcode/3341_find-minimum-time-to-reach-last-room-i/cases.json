@@ -1,0 +1,164 @@
+{
+  "challenge_id": "lc_3341",
+  "cases": [
+    {
+      "id": "sample-waiting-two-by-two",
+      "name": "sample: wait before entering the last room",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "moveTime": [
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "dijkstra"
+      ]
+    },
+    {
+      "id": "sample-open-grid",
+      "name": "sample: open rectangle uses shortest path length",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "moveTime": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "sample-small-waits",
+      "name": "sample: small diagonal waits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "moveTime": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "trial-detour-around-late-room",
+      "name": "trial: detour avoids a late center room",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moveTime": [
+          [
+            0,
+            1,
+            50
+          ],
+          [
+            1,
+            50,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "test",
+        "shortest-path"
+      ]
+    },
+    {
+      "id": "trial-single-room",
+      "name": "trial: already at destination",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moveTime": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "single-cell"
+      ]
+    },
+    {
+      "id": "real-grid-waits",
+      "name": "real: grid with late rooms and detours",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "moveTime": [
+          [
+            0,
+            2,
+            9,
+            4
+          ],
+          [
+            1,
+            8,
+            3,
+            7
+          ],
+          [
+            2,
+            2,
+            2,
+            6
+          ],
+          [
+            9,
+            5,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "grid",
+        "dijkstra"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1049",
+  "cases": [
+    {
+      "id": "benchmark-many-odds",
+      "name": "benchmark: many odd weights",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "stones": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13,
+          17
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

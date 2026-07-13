@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_810",
+  "source": "leetcode",
+  "frontend_id": "810",
+  "slug": "chalkboard-xor-game",
+  "title": "Chalkboard XOR Game",
+  "difficulty": "Hard",
+  "acceptance_rate": 66.75416423617862,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Brainteaser",
+      "slug": "brainteaser"
+    },
+    {
+      "name": "Game Theory",
+      "slug": "game-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/chalkboard-xor-game/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:garena",
+    "leetcode_company:hashedin",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:brainteaser",
+    "leetcode_topic:game-theory",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:garena",
+    "company:hashedin",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:brainteaser",
+    "topic:game-theory",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "HashedIn",
+      "slug": "hashedin"
+    },
+    {
+      "name": "Garena",
+      "slug": "garena"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "HashedIn",
+        "slug": "hashedin",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Garena",
+        "slug": "garena",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

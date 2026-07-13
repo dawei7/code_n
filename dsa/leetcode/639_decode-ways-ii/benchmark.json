@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_639",
+  "measurement_note": "Size is the string length. Every character is a wildcard, so both one-character and two-character decoding branches remain available at every position. Rolling or memoized DP is linear, while correct uncached recursion repeats overlapping suffixes with Fibonacci-like exponential growth.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 5 wildcards", "kind": "benchmark", "visible": false, "size": 5, "input": {"s": "*****"}, "expected": 108864, "tags": ["benchmark", "scaling", "wildcards"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 10 wildcards", "kind": "benchmark", "visible": false, "size": 10, "input": {"s": "**********"}, "expected": 483456820, "tags": ["benchmark", "scaling", "wildcards", "modulo"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 20 wildcards", "kind": "benchmark", "visible": false, "size": 20, "input": {"s": "********************"}, "expected": 104671669, "tags": ["benchmark", "scaling", "wildcards", "modulo"]}
+  ]
+}

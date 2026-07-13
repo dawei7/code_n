@@ -1,0 +1,108 @@
+{
+  "challenge_id": "lc_2500",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two rows with three delete rounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            4
+          ],
+          [
+            3,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one cell grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            10
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two rows and two delete rounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            9,
+            8
+          ],
+          [
+            1,
+            6
+          ]
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "trial: one row contributes every value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-one-column",
+      "name": "hidden: one column contributes only the largest row value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            5
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

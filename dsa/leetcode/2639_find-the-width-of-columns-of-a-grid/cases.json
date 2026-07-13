@@ -1,0 +1,138 @@
+{
+  "challenge_id": "lc_2639",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one column grows by digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            22
+          ],
+          [
+            333
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "sample",
+        "digits"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negative sign counts toward width",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -15,
+            1,
+            3
+          ],
+          [
+            15,
+            7,
+            12
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: single zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-mixed-widths",
+      "name": "trial: mixed signs and digit lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1000,
+            -2,
+            34
+          ],
+          [
+            -9999,
+            88,
+            7
+          ],
+          [
+            12,
+            -345,
+            67890
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        4,
+        5
+      ],
+      "tags": [
+        "trial",
+        "width"
+      ]
+    },
+    {
+      "id": "real-negative-row",
+      "name": "hidden: all negative values in one row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -1,
+            -20,
+            -300
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    }
+  ]
+}

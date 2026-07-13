@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_212",
+  "measurement_note": "Growing candidate sets exercise trie-guided board backtracking and deduplication.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 board units",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "board": [
+          [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h"
+          ]
+        ],
+        "words": [
+          "abc",
+          "bcd",
+          "cde",
+          "def",
+          "efg",
+          "fgh",
+          "zzz"
+        ]
+      },
+      "expected": [
+        "abc",
+        "bcd",
+        "cde",
+        "def",
+        "efg",
+        "fgh"
+      ],
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 board units",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "board": [
+          [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p"
+          ]
+        ],
+        "words": [
+          "abc",
+          "bcd",
+          "cde",
+          "def",
+          "efg",
+          "fgh",
+          "ghi",
+          "hij",
+          "ijk",
+          "jkl",
+          "klm",
+          "lmn",
+          "mno",
+          "nop",
+          "zzz"
+        ]
+      },
+      "expected": [
+        "abc",
+        "bcd",
+        "cde",
+        "def",
+        "efg",
+        "fgh",
+        "ghi",
+        "hij",
+        "ijk",
+        "jkl",
+        "klm",
+        "lmn",
+        "mno",
+        "nop"
+      ],
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 board units",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "board": [
+          [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p"
+          ]
+        ],
+        "words": [
+          "abc",
+          "bcd",
+          "cde",
+          "def",
+          "efg",
+          "fgh",
+          "ghi",
+          "hij",
+          "ijk",
+          "jkl",
+          "klm",
+          "lmn",
+          "mno",
+          "nop",
+          "zzz"
+        ]
+      },
+      "expected": [
+        "abc",
+        "bcd",
+        "cde",
+        "def",
+        "efg",
+        "fgh",
+        "ghi",
+        "hij",
+        "ijk",
+        "jkl",
+        "klm",
+        "lmn",
+        "mno",
+        "nop"
+      ],
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1459",
+  "source": "leetcode",
+  "frontend_id": "1459",
+  "slug": "rectangles-area",
+  "title": "Rectangles Area",
+  "difficulty": "Medium",
+  "acceptance_rate": 68.79372697468483,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/rectangles-area/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:twitter",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:twitter",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "X",
+      "slug": "twitter"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "X",
+        "slug": "twitter",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

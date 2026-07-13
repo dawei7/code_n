@@ -1,0 +1,188 @@
+{
+  "challenge_id": "lc_3159",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first, missing, and second occurrence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          1,
+          7
+        ],
+        "x": 1,
+        "queries": [
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        -1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "occurrences"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: target never appears",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "x": 10,
+        "queries": [
+          1
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "sample",
+        "missing"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: alternating target positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ],
+        "x": 1,
+        "queries": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        4
+      ],
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-repeated-query",
+      "name": "trial: repeated occurrence requests",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          5,
+          2,
+          5
+        ],
+        "x": 5,
+        "queries": [
+          4,
+          1,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        5,
+        0,
+        5,
+        -1
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-target-at-ends",
+      "name": "real: target appears at both boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          0,
+          0,
+          9,
+          1,
+          9,
+          2,
+          9
+        ],
+        "x": 9,
+        "queries": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        3,
+        5,
+        7,
+        -1
+      ],
+      "tags": [
+        "real",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-single-occurrence",
+      "name": "real: exactly one occurrence with many queries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          7,
+          4,
+          4
+        ],
+        "x": 7,
+        "queries": [
+          1,
+          2,
+          10
+        ]
+      },
+      "expected": [
+        2,
+        -1,
+        -1
+      ],
+      "tags": [
+        "real",
+        "single"
+      ]
+    }
+  ]
+}

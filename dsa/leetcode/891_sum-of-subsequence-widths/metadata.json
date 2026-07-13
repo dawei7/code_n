@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_891",
+  "source": "leetcode",
+  "frontend_id": "891",
+  "slug": "sum-of-subsequence-widths",
+  "title": "Sum of Subsequence Widths",
+  "difficulty": "Hard",
+  "acceptance_rate": 40.78959174517721,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/sum-of-subsequence-widths/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:sapient",
+    "leetcode_topic:array",
+    "leetcode_topic:math",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:sapient",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:math",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Sapient",
+      "slug": "sapient"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Sapient",
+        "slug": "sapient",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

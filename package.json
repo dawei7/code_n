@@ -1,0 +1,34 @@
+{
+  "name": "coden",
+  "version": "0.1.0",
+  "private": true,
+  "description": "cOde(n) — root scripts for the web rebuild (2026-06-07).",
+  "scripts": {
+    "build:web": "npm run build --prefix web",
+    "build:electron": "npm run build --prefix electron",
+    "start:electron": "npm start --prefix electron",
+    "dev": "node tools/dev.mjs",
+    "dev:check": "node tools/dev.mjs --check",
+    "build:app": ".venv/Scripts/python.exe build_app.py",
+    "test:engine": ".venv/Scripts/python.exe -m pytest tests",
+    "test:server": ".venv/Scripts/python.exe -m pytest server/tests",
+    "test:web": "npm run typecheck --prefix web && npm run test:career --prefix web",
+    "test": "npm run test:engine && npm run test:server && npm run test:web"
+  },
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dawei7/code_n.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dawei7/code_n/issues"
+  },
+  "homepage": "https://github.com/dawei7/code_n#readme"
+}

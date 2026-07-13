@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1146",
+  "cases": [
+    {
+      "id": "benchmark-overwrite-same-snapshot",
+      "name": "benchmark: overwrite before snapshot",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "length": 3,
+        "operations": [
+          [
+            "set",
+            [
+              2,
+              11
+            ]
+          ],
+          [
+            "set",
+            [
+              2,
+              12
+            ]
+          ],
+          [
+            "snap",
+            []
+          ],
+          [
+            "set",
+            [
+              1,
+              5
+            ]
+          ],
+          [
+            "snap",
+            []
+          ],
+          [
+            "get",
+            [
+              2,
+              0
+            ]
+          ],
+          [
+            "get",
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            "get",
+            [
+              1,
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        0,
+        null,
+        1,
+        12,
+        0,
+        5
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

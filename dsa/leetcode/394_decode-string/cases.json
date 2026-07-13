@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_394",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: adjacent repeated groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "3[a]2[bc]"
+      },
+      "expected": "aaabcbc",
+      "tags": [
+        "sample",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: nested group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "3[a2[c]]"
+      },
+      "expected": "accaccacc",
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: groups with suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "2[abc]3[cd]ef"
+      },
+      "expected": "abcabccdcdcdef",
+      "tags": [
+        "sample",
+        "suffix"
+      ]
+    },
+    {
+      "id": "trial-multi-digit",
+      "name": "trial: multi-digit repeat count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "12[z]"
+      },
+      "expected": "zzzzzzzzzzzz",
+      "tags": [
+        "trial",
+        "multi-digit"
+      ]
+    },
+    {
+      "id": "trial-plain",
+      "name": "trial: unencoded letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "plain"
+      },
+      "expected": "plain",
+      "tags": [
+        "trial",
+        "plain"
+      ]
+    },
+    {
+      "id": "hidden-nested-prefix",
+      "name": "hidden: nested prefix and suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "2[x3[ab]y]"
+      },
+      "expected": "xabababyxabababy",
+      "tags": [
+        "hidden",
+        "nested"
+      ]
+    },
+    {
+      "id": "hidden-adjacent-nesting",
+      "name": "hidden: adjacent groups at two levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "a2[b2[c]d]e"
+      },
+      "expected": "abccdbccde",
+      "tags": [
+        "hidden",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "hidden-one-repeat",
+      "name": "hidden: repeat count one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "1[a2[b]c]"
+      },
+      "expected": "abbc",
+      "tags": [
+        "hidden",
+        "one"
+      ]
+    }
+  ]
+}

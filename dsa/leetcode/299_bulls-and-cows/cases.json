@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_299",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: one bull and three cows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "secret": "1807",
+        "guess": "7810"
+      },
+      "expected": "1A3B",
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate digits compete for matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "secret": "1123",
+        "guess": "0111"
+      },
+      "expected": "1A1B",
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-disjoint",
+      "name": "sample: no matching digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "secret": "1",
+        "guess": "0"
+      },
+      "expected": "0A0B",
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-all-cows",
+      "name": "all digits match at different positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "secret": "1122",
+        "guess": "2211"
+      },
+      "expected": "0A4B",
+      "tags": [
+        "duplicates",
+        "all-cows"
+      ]
+    },
+    {
+      "id": "trial-all-bulls",
+      "name": "every position matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "secret": "0000",
+        "guess": "0000"
+      },
+      "expected": "4A0B",
+      "tags": [
+        "duplicates",
+        "all-bulls"
+      ]
+    },
+    {
+      "id": "real-mixed-swap",
+      "name": "hidden: exact middle matches and swapped remainder",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "secret": "9305",
+        "guess": "0395"
+      },
+      "expected": "2A2B",
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
+  ]
+}

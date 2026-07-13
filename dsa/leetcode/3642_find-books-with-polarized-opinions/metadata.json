@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_3642",
+  "source": "leetcode",
+  "frontend_id": "3642",
+  "slug": "find-books-with-polarized-opinions",
+  "title": "Find Books with Polarized Opinions",
+  "difficulty": "Medium",
+  "acceptance_rate": 43.563268892794376,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [],
+  "url": "https://leetcode.com/problems/find-books-with-polarized-opinions/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

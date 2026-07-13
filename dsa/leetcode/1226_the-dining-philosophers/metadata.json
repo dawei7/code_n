@@ -1,0 +1,38 @@
+{
+  "challenge_id": "lc_1226",
+  "source": "leetcode",
+  "frontend_id": "1226",
+  "slug": "the-dining-philosophers",
+  "title": "The Dining Philosophers",
+  "difficulty": "Medium",
+  "acceptance_rate": 53.70651354224398,
+  "category": "concurrency",
+  "category_title": "Concurrency",
+  "topics": [
+    {
+      "name": "Concurrency",
+      "slug": "concurrency"
+    }
+  ],
+  "url": "https://leetcode.com/problems/the-dining-philosophers/",
+  "supported_languages": [],
+  "primary_language": "",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:concurrency",
+    "leetcode_topic:concurrency"
+  ],
+  "tags": [
+    "category:concurrency",
+    "leetcode",
+    "topic:concurrency"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

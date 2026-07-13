@@ -1,0 +1,48 @@
+{
+  "challenge_id": "lc_1565",
+  "source": "leetcode",
+  "frontend_id": "1565",
+  "slug": "unique-orders-and-customers-per-month",
+  "title": "Unique Orders and Customers Per Month",
+  "difficulty": "Easy",
+  "acceptance_rate": 81.96588393052048,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/unique-orders-and-customers-per-month/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Whole Foods Market",
+        "slug": "whole-foods-market",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

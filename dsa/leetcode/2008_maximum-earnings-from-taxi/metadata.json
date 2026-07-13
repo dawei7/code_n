@@ -1,0 +1,164 @@
+{
+  "challenge_id": "lc_2008",
+  "source": "leetcode",
+  "frontend_id": "2008",
+  "slug": "maximum-earnings-from-taxi",
+  "title": "Maximum Earnings From Taxi",
+  "difficulty": "Medium",
+  "acceptance_rate": 46.61498093783999,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-earnings-from-taxi/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:coindcx",
+    "leetcode_company:facebook",
+    "leetcode_company:myntra",
+    "leetcode_company:oracle",
+    "leetcode_company:salesforce",
+    "leetcode_company:uber",
+    "leetcode_company:wells-fargo",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:coindcx",
+    "company:facebook",
+    "company:myntra",
+    "company:oracle",
+    "company:salesforce",
+    "company:uber",
+    "company:wells-fargo",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search",
+    "topic:dynamic-programming",
+    "topic:hash-table",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Wells Fargo",
+      "slug": "wells-fargo"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "CoinDCX",
+      "slug": "coindcx"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Myntra",
+      "slug": "myntra"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "CoinDCX",
+        "slug": "coindcx",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Myntra",
+        "slug": "myntra",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Wells Fargo",
+        "slug": "wells-fargo",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

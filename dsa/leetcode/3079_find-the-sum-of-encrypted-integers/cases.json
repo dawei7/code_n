@@ -1,0 +1,93 @@
+{
+  "challenge_id": "lc_3079",
+  "cases": [
+    {
+      "id": "sample-basic-encryption",
+      "name": "sample: encrypt each number by its largest digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-multi-digit",
+      "name": "sample: multi-digit numbers repeat their largest digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          21,
+          31
+        ]
+      },
+      "expected": 66,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-with-zero-digit",
+      "name": "trial: zero digits do not matter unless all digits are zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          90,
+          101,
+          808
+        ]
+      },
+      "expected": 1098,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-repeated-largest",
+      "name": "trial: repeated largest digit remains the same",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999,
+          191,
+          5555
+        ]
+      },
+      "expected": 7553,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-varied-digits",
+      "name": "real: varied digit lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          12,
+          345,
+          7001,
+          86,
+          222
+        ]
+      },
+      "expected": 8664,
+      "tags": [
+        "real",
+        "digits"
+      ]
+    }
+  ]
+}

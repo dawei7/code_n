@@ -1,0 +1,96 @@
+{
+  "challenge_id": "lc_2395",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two adjacent sums match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "hash-set"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all adjacent sums unique",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated zero sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-repeat-later",
+      "name": "trial: repeated sum appears later",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-strictly-unique",
+      "name": "hidden: no duplicate adjacent pair sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          20,
+          31,
+          43,
+          56
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

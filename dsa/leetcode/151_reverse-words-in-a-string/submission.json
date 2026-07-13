@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "151",
+  "frontend_id": "151",
+  "title_slug": "reverse-words-in-a-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064176739",
+  "verified_at": "2026-07-11T18:10:13.853522+00:00"
+}

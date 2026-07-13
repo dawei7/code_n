@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1127",
+  "source": "leetcode",
+  "frontend_id": "1127",
+  "slug": "user-purchase-platform",
+  "title": "User Purchase Platform",
+  "difficulty": "Hard",
+  "acceptance_rate": 46.24247005199386,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/user-purchase-platform/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:linkedin",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:linkedin",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

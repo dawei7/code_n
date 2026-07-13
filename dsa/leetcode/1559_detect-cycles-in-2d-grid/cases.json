@@ -1,0 +1,134 @@
+{
+  "challenge_id": "lc_1559",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: outer cycle of a values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "a",
+            "a",
+            "a",
+            "a"
+          ],
+          [
+            "a",
+            "b",
+            "b",
+            "a"
+          ],
+          [
+            "a",
+            "b",
+            "b",
+            "a"
+          ],
+          [
+            "a",
+            "a",
+            "a",
+            "a"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "dfs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: winding c cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "c",
+            "c",
+            "c",
+            "a"
+          ],
+          [
+            "c",
+            "d",
+            "c",
+            "c"
+          ],
+          [
+            "c",
+            "c",
+            "e",
+            "c"
+          ],
+          [
+            "f",
+            "c",
+            "c",
+            "c"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no valid cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "a",
+            "b",
+            "b"
+          ],
+          [
+            "b",
+            "z",
+            "b"
+          ],
+          [
+            "b",
+            "b",
+            "a"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-all-distinct",
+      "name": "hidden: all neighboring values differ",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            "d"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

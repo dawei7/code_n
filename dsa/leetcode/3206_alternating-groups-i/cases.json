@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_3206",
+  "cases": [
+    {
+      "id": "sample-no-groups",
+      "name": "sample: no alternating triplet",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "colors": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "circular"
+      ]
+    },
+    {
+      "id": "sample-three-groups",
+      "name": "sample: circular groups at the edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "colors": [
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "circular"
+      ]
+    },
+    {
+      "id": "trial-perfect-cycle",
+      "name": "trial: every center alternates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-short",
+      "name": "trial: short array has no group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          0,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-mixed-cycle",
+      "name": "real: mixed circular pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "circular"
+      ]
+    }
+  ]
+}

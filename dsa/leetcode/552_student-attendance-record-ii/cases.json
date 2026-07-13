@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_552",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one day",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "small"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "small"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 19,
+      "tags": [
+        "sample",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: first longer recurrence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": 43,
+      "tags": [
+        "trial",
+        "recurrence"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: five days",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": 94,
+      "tags": [
+        "trial",
+        "recurrence"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: larger count at n=10",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10
+      },
+      "expected": 3536,
+      "tags": [
+        "hidden",
+        "larger-count"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: larger count at n=20",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20
+      },
+      "expected": 2947811,
+      "tags": [
+        "hidden",
+        "larger-count"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: modular reduction at n=50",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 50
+      },
+      "expected": 100469819,
+      "tags": [
+        "hidden",
+        "modulo"
+      ]
+    }
+  ]
+}
+

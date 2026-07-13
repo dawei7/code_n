@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_7",
+  "measurement_note": "The signed 32-bit contract caps inputs at 10 decimal digits, so the tiers cover the full bounded scale but cannot provide an unbounded asymptotic experiment.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: two digits", "kind": "benchmark", "visible": false, "size": 2, "input": {"x": 12}, "expected": 21, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: five digits", "kind": "benchmark", "visible": false, "size": 5, "input": {"x": 12345}, "expected": 54321, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: ten digits", "kind": "benchmark", "visible": false, "size": 10, "input": {"x": 1463847412}, "expected": 2147483641, "tags": ["benchmark", "scale-large"]}
+  ]
+}

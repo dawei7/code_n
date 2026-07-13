@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_616",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two separated bold regions", "kind": "sample", "visible": true, "input": {"s": "abcxyz123", "words": ["abc", "123"]}, "expected": "<b>abc</b>xyz<b>123</b>", "tags": ["sample", "separated"]},
+    {"id": "sample-2", "name": "sample: overlapping matches merge", "kind": "sample", "visible": true, "input": {"s": "aaabbcc", "words": ["aaa", "aab", "bc"]}, "expected": "<b>aaabbc</b>c", "tags": ["sample", "overlap"]},
+    {"id": "sample-3", "name": "sample: no dictionary match", "kind": "sample", "visible": true, "input": {"s": "plain", "words": ["xyz", "longerword"]}, "expected": "plain", "tags": ["sample", "no-match"]},
+    {"id": "trial-1", "name": "trial: adjacent matches share tags", "kind": "trial", "visible": true, "input": {"s": "abcxyz", "words": ["abc", "xyz"]}, "expected": "<b>abcxyz</b>", "tags": ["trial", "adjacent"]},
+    {"id": "trial-2", "name": "trial: contained and extending matches", "kind": "trial", "visible": true, "input": {"s": "abcdef", "words": ["abc", "bc", "cde"]}, "expected": "<b>abcde</b>f", "tags": ["trial", "contained"]},
+    {"id": "hidden-1", "name": "hidden: repeated overlapping occurrence", "kind": "real", "visible": false, "input": {"s": "aaaaa", "words": ["aa"]}, "expected": "<b>aaaaa</b>", "tags": ["hidden", "repeated"]},
+    {"id": "hidden-2", "name": "hidden: letters and digits with partial coverage", "kind": "real", "visible": false, "input": {"s": "a1b2c3d4", "words": ["1b2", "2c3", "d4", "missing"]}, "expected": "a<b>1b2c3d4</b>", "tags": ["hidden", "digits"]}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_807",
+  "measurement_note": "Size is the square grid side length. Precomputing all row and column maxima takes O(size^2); rescanning a row and column for every cell takes O(size^3).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 2 by 2 zero city", "kind": "benchmark", "visible": false, "size": 2, "input": {"grid": [[0, 0], [0, 0]]}, "expected": 0, "tags": ["benchmark", "scaling", "uniform"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 4 by 4 zero city", "kind": "benchmark", "visible": false, "size": 4, "input": {"grid": [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]}, "expected": 0, "tags": ["benchmark", "scaling", "uniform"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 8 by 8 zero city", "kind": "benchmark", "visible": false, "size": 8, "input": {"grid": [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]}, "expected": 0, "tags": ["benchmark", "scaling", "uniform"]}
+  ]
+}

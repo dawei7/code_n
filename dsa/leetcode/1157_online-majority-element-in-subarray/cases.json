@@ -1,0 +1,135 @@
+{
+  "challenge_id": "lc_1157",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: majority over full range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            5,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no majority",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: middle majority",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2
+        ],
+        "queries": [
+          [
+            2,
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-multiple-queries",
+      "name": "hidden: multiple query results",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          3,
+          3,
+          3,
+          2,
+          2,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            3,
+            5,
+            2
+          ],
+          [
+            0,
+            5,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        2,
+        -1
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

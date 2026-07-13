@@ -1,0 +1,128 @@
+{
+  "challenge_id": "lc_300",
+  "cases": [
+    {
+      "id": "sample-classic",
+      "name": "sample: replacements and extensions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          9,
+          2,
+          5,
+          3,
+          7,
+          101,
+          18
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "tails"
+      ]
+    },
+    {
+      "id": "sample-mixed",
+      "name": "sample: duplicates among increasing values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          3,
+          2,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-equal",
+      "name": "sample: all values equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "strict"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "strictly decreasing values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-negatives",
+      "name": "negative values with a reset",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -1,
+          -3,
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "negative",
+        "replacement"
+      ]
+    },
+    {
+      "id": "real-late-run",
+      "name": "hidden: best run forms after smaller replacement",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          10,
+          4,
+          3,
+          8,
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "replacement"
+      ]
+    }
+  ]
+}

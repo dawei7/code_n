@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2775",
+  "source": "leetcode",
+  "frontend_id": "2775",
+  "slug": "undefined-to-null",
+  "title": "Undefined to Null",
+  "difficulty": "Medium",
+  "acceptance_rate": 72.19917012448133,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/undefined-to-null/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

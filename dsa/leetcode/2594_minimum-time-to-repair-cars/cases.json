@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_2594",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several mechanics share cars",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ranks": [
+          4,
+          2,
+          3,
+          1
+        ],
+        "cars": 10
+      },
+      "expected": 16,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: fastest mechanic dominates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ranks": [
+          5,
+          1,
+          8
+        ],
+        "cars": 6
+      },
+      "expected": 16,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one mechanic one car",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ranks": [
+          1
+        ],
+        "cars": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-single-mechanic-many-cars",
+      "name": "trial: single mechanic repairs four cars",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranks": [
+          2
+        ],
+        "cars": 4
+      },
+      "expected": 32,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-equal-ranks",
+      "name": "hidden: equal ranks split work evenly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "ranks": [
+          3,
+          3,
+          3
+        ],
+        "cars": 9
+      },
+      "expected": 27,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

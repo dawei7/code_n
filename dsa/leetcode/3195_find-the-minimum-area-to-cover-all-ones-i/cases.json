@@ -1,0 +1,168 @@
+{
+  "challenge_id": "lc_3195",
+  "cases": [
+    {
+      "id": "sample-two-rows",
+      "name": "sample: bounding rectangle spans every column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "sample-single-one",
+      "name": "sample: single one area",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-corner-ones",
+      "name": "trial: opposite corners",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "corners"
+      ]
+    },
+    {
+      "id": "trial-inner-box",
+      "name": "trial: interior rectangle only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "interior"
+      ]
+    },
+    {
+      "id": "real-tall-grid",
+      "name": "real: tall sparse grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "real",
+        "sparse"
+      ]
+    }
+  ]
+}

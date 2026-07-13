@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_546",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: delayed merges across several colors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "boxes": [
+          1,
+          3,
+          2,
+          2,
+          2,
+          3,
+          4,
+          3,
+          1
+        ]
+      },
+      "expected": 23,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one contiguous color",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "boxes": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "single-color"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one box",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "boxes": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-box"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: remove the middle to join endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "boxes": [
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "endpoint-merge"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: two complete groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "boxes": [
+          1,
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "two-groups"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: nested endpoint merges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "boxes": [
+          1,
+          2,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "nested-merge"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: all colors distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "boxes": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: merge two existing runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "boxes": [
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "run-merge"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: repeated separated color",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "boxes": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    }
+  ]
+}
+

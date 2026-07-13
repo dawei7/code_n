@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_3421",
+  "source": "leetcode",
+  "frontend_id": "3421",
+  "slug": "find-students-who-improved",
+  "title": "Find Students Who Improved",
+  "difficulty": "Medium",
+  "acceptance_rate": 49.197911873443026,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-students-who-improved/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:google",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:google",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

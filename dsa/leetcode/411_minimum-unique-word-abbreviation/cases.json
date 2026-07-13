@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_411",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one differing dictionary word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": "apple",
+        "dictionary": [
+          "blade"
+        ]
+      },
+      "expected": "a4",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "sample",
+        "single-word"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: several constraints",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": "apple",
+        "dictionary": [
+          "plain",
+          "amber",
+          "blade"
+        ]
+      },
+      "expected": "1p3",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "sample",
+        "multiple-words"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no relevant dictionary words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": "aaaa",
+        "dictionary": []
+      },
+      "expected": "4",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "sample",
+        "empty-dictionary"
+      ]
+    },
+    {
+      "id": "trial-forced-positions",
+      "name": "trial: distinct words force two positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "abcdef",
+        "dictionary": [
+          "abcxef",
+          "abcyef",
+          "xbcdef"
+        ]
+      },
+      "expected": "a2d2",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "trial",
+        "hitting-set"
+      ]
+    },
+    {
+      "id": "trial-adjacent",
+      "name": "trial: adjacent positions must remain literal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "word",
+        "dictionary": [
+          "wood",
+          "ward"
+        ]
+      },
+      "expected": "word",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "trial",
+        "tie"
+      ]
+    },
+    {
+      "id": "hidden-all-positions",
+      "name": "hidden: every position is independently required",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "abc",
+        "dictionary": [
+          "xbc",
+          "axc",
+          "abx"
+        ]
+      },
+      "expected": "abc",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "hidden",
+        "all-literal"
+      ]
+    },
+    {
+      "id": "hidden-other-lengths",
+      "name": "hidden: other word lengths are irrelevant",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "target",
+        "dictionary": [
+          "tiny",
+          "muchlonger"
+        ]
+      },
+      "expected": "6",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "hidden",
+        "length-filter"
+      ]
+    },
+    {
+      "id": "hidden-separated",
+      "name": "hidden: separated distinguishing letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "abcdefg",
+        "dictionary": [
+          "xbcdefg",
+          "abcxefg",
+          "abcdxfg"
+        ]
+      },
+      "expected": "a2de2",
+      "validator": {
+        "kind": "minimum_unique_abbreviation",
+        "target_param": "target",
+        "dictionary_param": "dictionary"
+      },
+      "tags": [
+        "hidden",
+        "separated"
+      ]
+    }
+  ]
+}

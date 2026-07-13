@@ -1,0 +1,136 @@
+{
+  "challenge_id": "lc_2948",
+  "cases": [
+    {
+      "id": "sample-connected-values",
+      "name": "sample: connected by value gaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          3,
+          9,
+          8
+        ],
+        "limit": 2
+      },
+      "expected": [
+        1,
+        3,
+        5,
+        8,
+        9
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-duplicate-components",
+      "name": "sample: duplicates and separate component",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          7,
+          6,
+          18,
+          2,
+          1
+        ],
+        "limit": 3
+      },
+      "expected": [
+        1,
+        6,
+        7,
+        18,
+        1,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-swaps",
+      "name": "sample: no values close enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          7,
+          28,
+          19,
+          10
+        ],
+        "limit": 3
+      },
+      "expected": [
+        1,
+        7,
+        28,
+        19,
+        10
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-transitive-component",
+      "name": "trial: transitive swaps beat direct gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          4,
+          7
+        ],
+        "limit": 3
+      },
+      "expected": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "tags": [
+        "component"
+      ]
+    },
+    {
+      "id": "real-limit-zero-duplicates",
+      "name": "real: only equal values can swap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          2,
+          4,
+          1,
+          2
+        ],
+        "limit": 0
+      },
+      "expected": [
+        4,
+        2,
+        4,
+        1,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    }
+  ]
+}

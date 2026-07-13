@@ -1,0 +1,32 @@
+{
+  "challenge_id": "lc_1002",
+  "cases": [
+    {
+      "id": "benchmark-many-words",
+      "name": "benchmark: many words",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "character",
+          "teacher",
+          "cheater",
+          "reach"
+        ]
+      },
+      "expected": [
+        "a",
+        "c",
+        "e",
+        "h",
+        "r"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

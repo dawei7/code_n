@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_142",
+  "cases": [
+    {"id": "sample-middle-entry", "name": "sample: cycle begins at index one", "kind": "sample", "visible": true, "input": {"head": {"values": [3, 2, 0, -4], "pos": 1}}, "expected": 1, "tags": ["sample", "cycle"]},
+    {"id": "sample-head-entry", "name": "sample: cycle begins at head", "kind": "sample", "visible": true, "input": {"head": {"values": [1, 2], "pos": 0}}, "expected": 0, "tags": ["sample", "head-cycle"]},
+    {"id": "sample-none", "name": "sample: no cycle", "kind": "sample", "visible": true, "input": {"head": {"values": [1], "pos": -1}}, "expected": -1, "tags": ["sample", "acyclic"]},
+    {"id": "trial-empty", "name": "empty list", "kind": "trial", "visible": true, "input": {"head": {"values": [], "pos": -1}}, "expected": -1, "tags": ["boundary"]},
+    {"id": "real-self-loop", "name": "hidden: one-node self-loop", "kind": "real", "visible": false, "input": {"head": {"values": [7], "pos": 0}}, "expected": 0, "tags": ["hidden", "self-loop"]}
+  ]
+}

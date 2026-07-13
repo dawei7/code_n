@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "610",
+  "frontend_id": "610",
+  "title_slug": "triangle-judgement",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065470407",
+  "verified_at": "2026-07-12T22:12:10.106907+00:00"
+}

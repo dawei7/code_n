@@ -1,0 +1,121 @@
+{
+  "challenge_id": "lc_3074",
+  "cases": [
+    {
+      "id": "sample-two-boxes",
+      "name": "sample: two largest boxes fit all apples",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "apple": [
+          1,
+          3,
+          2
+        ],
+        "capacity": [
+          4,
+          3,
+          1,
+          5,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three-boxes",
+      "name": "sample: three boxes needed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "apple": [
+          5,
+          5,
+          5
+        ],
+        "capacity": [
+          2,
+          4,
+          2,
+          7
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-large",
+      "name": "trial: one large box is enough",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "apple": [
+          2,
+          2,
+          2
+        ],
+        "capacity": [
+          10,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-many-small",
+      "name": "trial: many small boxes accumulate capacity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "apple": [
+          4,
+          4
+        ],
+        "capacity": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-varied-capacity",
+      "name": "real: varied apple piles and capacities",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "apple": [
+          6,
+          2,
+          9,
+          1
+        ],
+        "capacity": [
+          5,
+          4,
+          10,
+          3,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "greedy"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_472",
+  "cases": [
+    {
+      "id": "sample-three-results",
+      "name": "sample: three words have dictionary decompositions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["cat", "cats", "catsdogcats", "dog", "dogcatsdog", "hippopotamuses", "rat", "ratcatdogcat"]},
+      "expected": ["catsdogcats", "dogcatsdog", "ratcatdogcat"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "multiple"]
+    },
+    {
+      "id": "sample-one-result",
+      "name": "sample: one two-word concatenation",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["cat", "dog", "catdog"]},
+      "expected": ["catdog"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "two-pieces"]
+    },
+    {
+      "id": "sample-reused-piece",
+      "name": "sample: one component may be reused",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["a", "aa", "aaa"]},
+      "expected": ["aa", "aaa"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "reuse"]
+    },
+    {
+      "id": "trial-no-results",
+      "name": "trial: no word decomposes",
+      "kind": "trial",
+      "visible": true,
+      "input": {"words": ["red", "blue", "green"]},
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["trial", "none"]
+    },
+    {
+      "id": "trial-empty-word",
+      "name": "trial: empty string is not a component",
+      "kind": "trial",
+      "visible": true,
+      "input": {"words": ["", "x", "xx"]},
+      "expected": ["xx"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["trial", "empty"]
+    },
+    {
+      "id": "hidden-many-pieces",
+      "name": "hidden: a word uses more than two components",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["a", "b", "ab", "aba", "ababa"]},
+      "expected": ["ab", "aba", "ababa"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["hidden", "many-pieces"]
+    },
+    {
+      "id": "hidden-overlapping-prefixes",
+      "name": "hidden: overlapping component lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["cat", "cats", "dog", "sand", "catsanddog", "catsdog"]},
+      "expected": ["catsdog", "catsanddog"],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["hidden", "prefixes"]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id":"lc_186",
+  "cases":[
+    {"id":"sample-four-words","name":"sample: reverse four words","kind":"sample","visible":true,"input":{"s":["t","h","e"," ","s","k","y"," ","i","s"," ","b","l","u","e"]},"expected":["b","l","u","e"," ","i","s"," ","s","k","y"," ","t","h","e"],"tags":["sample","in-place"]},
+    {"id":"trial-single-character","name":"one-character word is unchanged","kind":"trial","visible":true,"input":{"s":["a"]},"expected":["a"],"tags":["boundary"]},
+    {"id":"trial-two-words","name":"two words exchange positions","kind":"trial","visible":true,"input":{"s":["h","e","l","l","o"," ","w","o","r","l","d"]},"expected":["w","o","r","l","d"," ","h","e","l","l","o"],"tags":["two-pointers"]},
+    {"id":"real-single-word","name":"hidden: multi-character single word","kind":"real","visible":false,"input":{"s":["c","o","d","e"]},"expected":["c","o","d","e"],"tags":["hidden","single-word"]},
+    {"id":"real-varying-lengths","name":"hidden: words have varying lengths","kind":"real","visible":false,"input":{"s":["i"," ","l","o","v","e"," ","a","l","g","o","r","i","t","h","m","s"]},"expected":["a","l","g","o","r","i","t","h","m","s"," ","l","o","v","e"," ","i"],"tags":["hidden","mixed-length"]}
+  ]
+}

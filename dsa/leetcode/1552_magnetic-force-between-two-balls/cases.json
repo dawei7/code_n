@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_1552",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three balls in five baskets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "position": [
+          1,
+          2,
+          3,
+          4,
+          7
+        ],
+        "m": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two farthest baskets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "position": [
+          5,
+          4,
+          3,
+          2,
+          1,
+          1000000000
+        ],
+        "m": 2
+      },
+      "expected": 999999999,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: spaced baskets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "position": [
+          1,
+          2,
+          8,
+          12,
+          17
+        ],
+        "m": 3
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-three-balls",
+      "name": "hidden: choose every other cluster",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "position": [
+          1,
+          10,
+          20,
+          30
+        ],
+        "m": 3
+      },
+      "expected": 10,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

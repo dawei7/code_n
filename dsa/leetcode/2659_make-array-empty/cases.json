@@ -1,0 +1,119 @@
+{
+  "challenge_id": "lc_2659",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: smallest value starts at the end",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          -1
+        ]
+      },
+      "tags": [
+        "sample",
+        "circular"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: nearly sorted with one late removal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "rotation"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "trial-catches-static-rank-bug",
+      "name": "trial: removing one then rotating around",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3
+        ]
+      },
+      "tags": [
+        "trial",
+        "regression"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "trial-already-increasing",
+      "name": "trial: already increasing order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "real-decreasing-order",
+      "name": "hidden: decreasing order forces repeated wraps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "tags": [
+        "hidden",
+        "wrap"
+      ],
+      "expected": 15
+    },
+    {
+      "id": "real-mixed-negative-positive",
+      "name": "hidden: mixed negative and positive values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          -3,
+          5,
+          -1,
+          2
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 8
+    }
+  ]
+}

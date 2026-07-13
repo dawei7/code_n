@@ -1,0 +1,1046 @@
+{
+  "challenge_id": "lc_20",
+  "source": "leetcode",
+  "frontend_id": "20",
+  "slug": "valid-parentheses",
+  "title": "Valid Parentheses",
+  "difficulty": "Easy",
+  "acceptance_rate": 44.446059112655064,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/valid-parentheses/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:adobe",
+    "leetcode_company:airbnb",
+    "leetcode_company:amazon",
+    "leetcode_company:anduril",
+    "leetcode_company:apple",
+    "leetcode_company:att",
+    "leetcode_company:autodesk",
+    "leetcode_company:bank-of-america",
+    "leetcode_company:bloomberg",
+    "leetcode_company:bytedance",
+    "leetcode_company:cisco",
+    "leetcode_company:cognizant",
+    "leetcode_company:criteo",
+    "leetcode_company:de-shaw",
+    "leetcode_company:deloitte",
+    "leetcode_company:ebay",
+    "leetcode_company:epam-systems",
+    "leetcode_company:epic-systems",
+    "leetcode_company:expedia",
+    "leetcode_company:facebook",
+    "leetcode_company:freshworks",
+    "leetcode_company:godaddy",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:grab",
+    "leetcode_company:hcl",
+    "leetcode_company:huawei",
+    "leetcode_company:ibm",
+    "leetcode_company:infosys",
+    "leetcode_company:intel",
+    "leetcode_company:intuit",
+    "leetcode_company:jpmorgan",
+    "leetcode_company:linkedin",
+    "leetcode_company:lucid",
+    "leetcode_company:mastercard",
+    "leetcode_company:microsoft",
+    "leetcode_company:millennium",
+    "leetcode_company:mitsogo",
+    "leetcode_company:nvidia",
+    "leetcode_company:opentext",
+    "leetcode_company:oracle",
+    "leetcode_company:ozon",
+    "leetcode_company:paypal",
+    "leetcode_company:paytm",
+    "leetcode_company:qualcomm",
+    "leetcode_company:roblox",
+    "leetcode_company:sap",
+    "leetcode_company:servicenow",
+    "leetcode_company:siemens",
+    "leetcode_company:sigmoid",
+    "leetcode_company:sony",
+    "leetcode_company:splunk",
+    "leetcode_company:spotify",
+    "leetcode_company:tcs",
+    "leetcode_company:tesla",
+    "leetcode_company:tiktok",
+    "leetcode_company:toast",
+    "leetcode_company:tripadvisor",
+    "leetcode_company:turing",
+    "leetcode_company:twitter",
+    "leetcode_company:two-sigma",
+    "leetcode_company:ubs",
+    "leetcode_company:visa",
+    "leetcode_company:walmart-labs",
+    "leetcode_company:wells-fargo",
+    "leetcode_company:wix",
+    "leetcode_company:yahoo",
+    "leetcode_company:yandex",
+    "leetcode_company:zenefits",
+    "leetcode_company:zoho",
+    "leetcode_studyplan:apple-spring-23-high-frequency",
+    "leetcode_studyplan:apple-spring-23-high-frequency:apple-spring-23-high-frequency-149-cs8e",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-57-r7b6",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-7-x7pk",
+    "leetcode_topic:stack",
+    "leetcode_topic:string",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:adobe",
+    "company:airbnb",
+    "company:amazon",
+    "company:anduril",
+    "company:apple",
+    "company:att",
+    "company:autodesk",
+    "company:bank-of-america",
+    "company:bloomberg",
+    "company:bytedance",
+    "company:cisco",
+    "company:cognizant",
+    "company:criteo",
+    "company:de-shaw",
+    "company:deloitte",
+    "company:ebay",
+    "company:epam-systems",
+    "company:epic-systems",
+    "company:expedia",
+    "company:facebook",
+    "company:freshworks",
+    "company:godaddy",
+    "company:goldman-sachs",
+    "company:google",
+    "company:grab",
+    "company:hcl",
+    "company:huawei",
+    "company:ibm",
+    "company:infosys",
+    "company:intel",
+    "company:intuit",
+    "company:jpmorgan",
+    "company:linkedin",
+    "company:lucid",
+    "company:mastercard",
+    "company:microsoft",
+    "company:millennium",
+    "company:mitsogo",
+    "company:nvidia",
+    "company:opentext",
+    "company:oracle",
+    "company:ozon",
+    "company:paypal",
+    "company:paytm",
+    "company:qualcomm",
+    "company:roblox",
+    "company:sap",
+    "company:servicenow",
+    "company:siemens",
+    "company:sigmoid",
+    "company:sony",
+    "company:splunk",
+    "company:spotify",
+    "company:tcs",
+    "company:tesla",
+    "company:tiktok",
+    "company:toast",
+    "company:tripadvisor",
+    "company:turing",
+    "company:twitter",
+    "company:two-sigma",
+    "company:ubs",
+    "company:visa",
+    "company:walmart-labs",
+    "company:wells-fargo",
+    "company:wix",
+    "company:yahoo",
+    "company:yandex",
+    "company:zenefits",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:apple-spring-23-high-frequency",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:apple-spring-23-high-frequency:apple-spring-23-high-frequency-149-cs8e",
+    "study_plan_section:top-100-liked:top-100-liked-57-r7b6",
+    "study_plan_section:top-interview-150:top-interview-150-7-x7pk",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:stack",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Tripadvisor",
+      "slug": "tripadvisor"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Intuit",
+      "slug": "intuit"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "Qualcomm",
+      "slug": "qualcomm"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "Sony",
+      "slug": "sony"
+    },
+    {
+      "name": "Autodesk",
+      "slug": "autodesk"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Epic Systems",
+      "slug": "epic-systems"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Cognizant",
+      "slug": "cognizant"
+    },
+    {
+      "name": "Tesla",
+      "slug": "tesla"
+    },
+    {
+      "name": "ServiceNow",
+      "slug": "servicenow"
+    },
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "GoDaddy",
+      "slug": "godaddy"
+    },
+    {
+      "name": "Spotify",
+      "slug": "spotify"
+    },
+    {
+      "name": "Deloitte",
+      "slug": "deloitte"
+    },
+    {
+      "name": "Two Sigma",
+      "slug": "two-sigma"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "SAP",
+      "slug": "sap"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "Wells Fargo",
+      "slug": "wells-fargo"
+    },
+    {
+      "name": "FreshWorks",
+      "slug": "freshworks"
+    },
+    {
+      "name": "Lucid",
+      "slug": "lucid"
+    },
+    {
+      "name": "EPAM Systems",
+      "slug": "epam-systems"
+    },
+    {
+      "name": "Bank of America",
+      "slug": "bank-of-america"
+    },
+    {
+      "name": "Turing",
+      "slug": "turing"
+    },
+    {
+      "name": "Roblox",
+      "slug": "roblox"
+    },
+    {
+      "name": "Intel",
+      "slug": "intel"
+    },
+    {
+      "name": "Expedia",
+      "slug": "expedia"
+    },
+    {
+      "name": "opentext",
+      "slug": "opentext"
+    },
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "Siemens",
+      "slug": "siemens"
+    },
+    {
+      "name": "DE Shaw",
+      "slug": "de-shaw"
+    },
+    {
+      "name": "HCL",
+      "slug": "hcl"
+    },
+    {
+      "name": "eBay",
+      "slug": "ebay"
+    },
+    {
+      "name": "Yahoo",
+      "slug": "yahoo"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Huawei",
+      "slug": "huawei"
+    },
+    {
+      "name": "Cisco",
+      "slug": "cisco"
+    },
+    {
+      "name": "JPMorgan Chase",
+      "slug": "jpmorgan"
+    },
+    {
+      "name": "Splunk",
+      "slug": "splunk"
+    },
+    {
+      "name": "ByteDance",
+      "slug": "bytedance"
+    },
+    {
+      "name": "Paytm",
+      "slug": "paytm"
+    },
+    {
+      "name": "Toast",
+      "slug": "toast"
+    },
+    {
+      "name": "Ozon",
+      "slug": "ozon"
+    },
+    {
+      "name": "AT&T",
+      "slug": "att"
+    },
+    {
+      "name": "Mastercard",
+      "slug": "mastercard"
+    },
+    {
+      "name": "Mitsogo",
+      "slug": "mitsogo"
+    },
+    {
+      "name": "Grab",
+      "slug": "grab"
+    },
+    {
+      "name": "Sigmoid",
+      "slug": "sigmoid"
+    },
+    {
+      "name": "Millennium",
+      "slug": "millennium"
+    },
+    {
+      "name": "Criteo",
+      "slug": "criteo"
+    },
+    {
+      "name": "UBS",
+      "slug": "ubs"
+    },
+    {
+      "name": "Wix",
+      "slug": "wix"
+    },
+    {
+      "name": "Anduril",
+      "slug": "anduril"
+    },
+    {
+      "name": "X",
+      "slug": "twitter"
+    },
+    {
+      "name": "Airbnb",
+      "slug": "airbnb"
+    },
+    {
+      "name": "Zenefits",
+      "slug": "zenefits"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Turing",
+        "slug": "turing",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Roblox",
+        "slug": "roblox",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Intel",
+        "slug": "intel",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Expedia",
+        "slug": "expedia",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "opentext",
+        "slug": "opentext",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Siemens",
+        "slug": "siemens",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DE Shaw",
+        "slug": "de-shaw",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "HCL",
+        "slug": "hcl",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "eBay",
+        "slug": "ebay",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Yahoo",
+        "slug": "yahoo",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Huawei",
+        "slug": "huawei",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Cisco",
+        "slug": "cisco",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "JPMorgan Chase",
+        "slug": "jpmorgan",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Splunk",
+        "slug": "splunk",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ByteDance",
+        "slug": "bytedance",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Paytm",
+        "slug": "paytm",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Toast",
+        "slug": "toast",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Ozon",
+        "slug": "ozon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "AT&T",
+        "slug": "att",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Mastercard",
+        "slug": "mastercard",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Mitsogo",
+        "slug": "mitsogo",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Grab",
+        "slug": "grab",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Sigmoid",
+        "slug": "sigmoid",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Millennium",
+        "slug": "millennium",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Criteo",
+        "slug": "criteo",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "UBS",
+        "slug": "ubs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Wix",
+        "slug": "wix",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Anduril",
+        "slug": "anduril",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "X",
+        "slug": "twitter",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Airbnb",
+        "slug": "airbnb",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Zenefits",
+        "slug": "zenefits",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 33
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 19
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 17
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 15
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tripadvisor",
+        "slug": "tripadvisor",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Intuit",
+        "slug": "intuit",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Qualcomm",
+        "slug": "qualcomm",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Sony",
+        "slug": "sony",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Autodesk",
+        "slug": "autodesk",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Epic Systems",
+        "slug": "epic-systems",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Cognizant",
+        "slug": "cognizant",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tesla",
+        "slug": "tesla",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ServiceNow",
+        "slug": "servicenow",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "GoDaddy",
+        "slug": "godaddy",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Spotify",
+        "slug": "spotify",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Deloitte",
+        "slug": "deloitte",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Two Sigma",
+        "slug": "two-sigma",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "SAP",
+        "slug": "sap",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Wells Fargo",
+        "slug": "wells-fargo",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "FreshWorks",
+        "slug": "freshworks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Lucid",
+        "slug": "lucid",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "EPAM Systems",
+        "slug": "epam-systems",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bank of America",
+        "slug": "bank-of-america",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-7-x7pk",
+      "section_name": "Stack",
+      "path": [
+        "Stack"
+      ],
+      "order": 52,
+      "section_order": 7,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-57-r7b6",
+      "section_name": "Stack",
+      "path": [
+        "Stack"
+      ],
+      "order": 81,
+      "section_order": 12,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    },
+    {
+      "plan_slug": "apple-spring-23-high-frequency",
+      "plan_name": "Apple Spring '23 High Frequency",
+      "section_slug": "apple-spring-23-high-frequency-149-cs8e",
+      "section_name": "April Interview Questions",
+      "path": [
+        "April Interview Questions"
+      ],
+      "order": 11,
+      "section_order": 1,
+      "problem_order": 11,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/apple-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "Stack"
+      ],
+      "order": 15,
+      "section_order": 3,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "validate-parentheses",
+      "leetcode_slug": "valid-parentheses",
+      "difficulty": "Easy",
+      "problem_order": 0
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Stack"
+      ],
+      "order": 20,
+      "section_order": 3,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "validate-parentheses",
+      "leetcode_slug": "valid-parentheses",
+      "difficulty": "Easy",
+      "problem_order": 0
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Stack"
+      ],
+      "order": 45,
+      "section_order": 3,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "validate-parentheses",
+      "leetcode_slug": "valid-parentheses",
+      "difficulty": "Easy",
+      "problem_order": 1
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Stack"
+      ],
+      "order": 261,
+      "section_order": 3,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "validate-parentheses",
+      "leetcode_slug": "valid-parentheses",
+      "difficulty": "Easy",
+      "problem_order": 2
+    }
+  ]
+}

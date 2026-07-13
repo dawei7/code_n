@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_605",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: place one flower in the middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "flowerbed": [
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "n": 1
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "feasible"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two flowers do not fit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "flowerbed": [
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "n": 2
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "infeasible"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one empty plot",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "flowerbed": [
+          0
+        ],
+        "n": 1
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: zero target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "flowerbed": [
+          1
+        ],
+        "n": 0
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "zero-target"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: both boundary plots are usable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "flowerbed": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "n": 2
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: all-zero even-length bed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "flowerbed": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 3
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "zero-run"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: separated gaps have limited capacity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "flowerbed": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 3
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "segments"
+      ]
+    }
+  ]
+}

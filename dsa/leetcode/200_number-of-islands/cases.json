@@ -1,0 +1,6 @@
+{"challenge_id":"lc_200","cases":[
+{"id":"sample-two","name":"sample: two separated components","kind":"sample","visible":true,"input":{"grid":[["1","1","0"],["1","0","0"],["0","0","1"]]},"expected":2,"tags":["sample","graph"]},
+{"id":"trial-water","name":"all water","kind":"trial","visible":true,"input":{"grid":[["0","0"],["0","0"]]},"expected":0,"tags":["boundary"]},
+{"id":"trial-diagonal","name":"diagonal land is disconnected","kind":"trial","visible":true,"input":{"grid":[["1","0"],["0","1"]]},"expected":2,"tags":["connectivity"]},
+{"id":"real-one-island","name":"hidden: winding connected land","kind":"real","visible":false,"input":{"grid":[["1","0","0"],["1","1","0"],["0","1","1"]]},"expected":1,"tags":["hidden","component"]}
+]}

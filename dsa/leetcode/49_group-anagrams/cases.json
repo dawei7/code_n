@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_49",
+  "cases": [
+    {"id": "sample-1", "name": "sample: three groups", "kind": "sample", "visible": true, "input": {"strs": ["eat","tea","tan","ate","nat","bat"]}, "expected": [["eat","tea","ate"],["tan","nat"],["bat"]], "validator": {"kind": "anagram_groups"}, "tags": ["sample"]},
+    {"id": "sample-empty-word", "name": "sample: empty word", "kind": "sample", "visible": true, "input": {"strs": [""]}, "expected": [[""]], "validator": {"kind": "anagram_groups"}, "tags": ["sample", "boundary"]},
+    {"id": "trial-identical", "name": "repeated identical strings", "kind": "trial", "visible": true, "input": {"strs": ["a","a","a"]}, "expected": [["a","a","a"]], "validator": {"kind": "anagram_groups"}, "tags": ["duplicates"]},
+    {"id": "trial-singletons", "name": "same letters with different counts", "kind": "trial", "visible": true, "input": {"strs": ["ab","aab","bba","ba"]}, "expected": [["ab","ba"],["aab"],["bba"]], "validator": {"kind": "anagram_groups"}, "tags": ["frequency"]},
+    {"id": "real-mixed", "name": "hidden: duplicates and empty strings", "kind": "real", "visible": false, "input": {"strs": ["","abc","bca","","cab","foo","ofo","abc"]}, "expected": [["",""],["abc","bca","cab","abc"],["foo","ofo"]], "validator": {"kind": "anagram_groups"}, "tags": ["hidden", "duplicates"]}
+  ]
+}

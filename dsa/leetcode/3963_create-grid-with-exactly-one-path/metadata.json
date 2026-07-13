@@ -1,0 +1,46 @@
+{
+  "challenge_id": "lc_3963",
+  "source": "leetcode",
+  "frontend_id": "3963",
+  "slug": "create-grid-with-exactly-one-path",
+  "title": "Create Grid With Exactly One Path",
+  "difficulty": "Easy",
+  "acceptance_rate": 76.17792292105212,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/create-grid-with-exactly-one-path/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

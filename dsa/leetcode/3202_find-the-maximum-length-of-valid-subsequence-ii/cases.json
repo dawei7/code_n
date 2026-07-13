@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_3202",
+  "cases": [
+    {
+      "id": "sample-k-two-all-valid",
+      "name": "sample: all adjacent sums have same parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "modulo"
+      ]
+    },
+    {
+      "id": "sample-k-three",
+      "name": "sample: choose a modulo pattern",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          3,
+          1,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "trial-not-just-zero",
+      "name": "trial: constant remainder is not zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          5,
+          7,
+          8
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "constant-remainder"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "trial: any two elements are valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          14
+        ],
+        "k": 5
+      },
+      "expected": 2,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-k-five",
+      "name": "real: longer k-five sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          11,
+          3,
+          8,
+          13,
+          2,
+          7,
+          12,
+          17,
+          4,
+          9
+        ],
+        "k": 5
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "modulo-dp"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "challenge_id": "lc_2682",
+  "cases": [
+    {
+      "id": "benchmark-circular-game-10000",
+      "name": "benchmark: 10,000 friends circular game",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 10000,
+        "k": 37
+      },
+      "tags": [
+        "benchmark",
+        "large",
+        "cycle"
+      ]
+    }
+  ]
+}

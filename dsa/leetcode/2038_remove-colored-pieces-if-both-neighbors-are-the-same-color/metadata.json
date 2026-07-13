@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_2038",
+  "source": "leetcode",
+  "frontend_id": "2038",
+  "slug": "remove-colored-pieces-if-both-neighbors-are-the-same-color",
+  "title": "Remove Colored Pieces if Both Neighbors are the Same Color",
+  "difficulty": "Medium",
+  "acceptance_rate": 63.12539319251091,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Game Theory",
+      "slug": "game-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/remove-colored-pieces-if-both-neighbors-are-the-same-color/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:mathworks",
+    "leetcode_topic:game-theory",
+    "leetcode_topic:greedy",
+    "leetcode_topic:math",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:mathworks",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:game-theory",
+    "topic:greedy",
+    "topic:math",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "MathWorks",
+      "slug": "mathworks"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "MathWorks",
+        "slug": "mathworks",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Greedy"
+      ],
+      "order": 804,
+      "section_order": 14,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "remove-colored-pieces-if-both-neighbors-are-the-same-color",
+      "leetcode_slug": "remove-colored-pieces-if-both-neighbors-are-the-same-color",
+      "difficulty": "Medium",
+      "problem_order": 43
+    }
+  ]
+}

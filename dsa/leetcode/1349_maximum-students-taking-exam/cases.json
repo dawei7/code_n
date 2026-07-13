@@ -1,0 +1,125 @@
+{
+  "challenge_id": "lc_1349",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: blocked exam seats",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "seats": [
+          [
+            "#",
+            ".",
+            "#",
+            "#",
+            ".",
+            "#"
+          ],
+          [
+            ".",
+            "#",
+            "#",
+            "#",
+            "#",
+            "."
+          ],
+          [
+            "#",
+            ".",
+            "#",
+            "#",
+            ".",
+            "#"
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: narrow room",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "seats": [
+          [
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            "#"
+          ],
+          [
+            "#",
+            "."
+          ],
+          [
+            "#",
+            "#"
+          ],
+          [
+            ".",
+            "#"
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-seat",
+      "name": "single available seat",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "seats": [
+          [
+            "."
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-open-room-with-center-block",
+      "name": "hidden: open room with center blocked",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "seats": [
+          [
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            "#",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            "."
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

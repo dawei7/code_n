@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1039",
+  "cases": [
+    {
+      "id": "benchmark-six-values",
+      "name": "benchmark: six values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "values": [
+          2,
+          3,
+          7,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 198,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,596 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_578",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: higher fraction beats more exposure",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SurveyLog": [
+            {
+              "id": 1,
+              "action": "show",
+              "question_id": 1,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 1
+            },
+            {
+              "id": 2,
+              "action": "show",
+              "question_id": 1,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 2
+            },
+            {
+              "id": 3,
+              "action": "show",
+              "question_id": 1,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 3
+            },
+            {
+              "id": 4,
+              "action": "show",
+              "question_id": 1,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 4
+            },
+            {
+              "id": 5,
+              "action": "answer",
+              "question_id": 1,
+              "answer_id": 101,
+              "q_num": 1,
+              "timestamp": 5
+            },
+            {
+              "id": 6,
+              "action": "answer",
+              "question_id": 1,
+              "answer_id": 102,
+              "q_num": 1,
+              "timestamp": 6
+            },
+            {
+              "id": 7,
+              "action": "show",
+              "question_id": 2,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 7
+            },
+            {
+              "id": 8,
+              "action": "show",
+              "question_id": 2,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 8
+            },
+            {
+              "id": 9,
+              "action": "show",
+              "question_id": 2,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 9
+            },
+            {
+              "id": 10,
+              "action": "show",
+              "question_id": 2,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 10
+            },
+            {
+              "id": 11,
+              "action": "answer",
+              "question_id": 2,
+              "answer_id": 201,
+              "q_num": 1,
+              "timestamp": 11
+            },
+            {
+              "id": 12,
+              "action": "answer",
+              "question_id": 2,
+              "answer_id": 202,
+              "q_num": 1,
+              "timestamp": 12
+            },
+            {
+              "id": 13,
+              "action": "answer",
+              "question_id": 2,
+              "answer_id": 203,
+              "q_num": 1,
+              "timestamp": 13
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "survey_log"
+        ],
+        "rows": [
+          [
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "rate"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: equal rates choose smaller identifier",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SurveyLog": [
+            {
+              "id": 1,
+              "action": "show",
+              "question_id": 8,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 1
+            },
+            {
+              "id": 2,
+              "action": "show",
+              "question_id": 8,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 2
+            },
+            {
+              "id": 3,
+              "action": "answer",
+              "question_id": 8,
+              "answer_id": 80,
+              "q_num": 1,
+              "timestamp": 3
+            },
+            {
+              "id": 4,
+              "action": "show",
+              "question_id": 3,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 4
+            },
+            {
+              "id": 5,
+              "action": "show",
+              "question_id": 3,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 5
+            },
+            {
+              "id": 6,
+              "action": "answer",
+              "question_id": 3,
+              "answer_id": 30,
+              "q_num": 1,
+              "timestamp": 6
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "survey_log"
+        ],
+        "rows": [
+          [
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one question with no answers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SurveyLog": [
+            {
+              "id": 1,
+              "action": "show",
+              "question_id": 5,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 1
+            },
+            {
+              "id": 2,
+              "action": "show",
+              "question_id": 5,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 2
+            },
+            {
+              "id": 3,
+              "action": "skip",
+              "question_id": 5,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "survey_log"
+        ],
+        "rows": [
+          [
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "zero-rate"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: skip rows do not change rate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SurveyLog": [
+            {
+              "id": 1,
+              "action": "show",
+              "question_id": 1,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 1
+            },
+            {
+              "id": 2,
+              "action": "show",
+              "question_id": 1,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 2
+            },
+            {
+              "id": 3,
+              "action": "answer",
+              "question_id": 1,
+              "answer_id": 10,
+              "q_num": 1,
+              "timestamp": 3
+            },
+            {
+              "id": 4,
+              "action": "skip",
+              "question_id": 1,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 4
+            },
+            {
+              "id": 5,
+              "action": "skip",
+              "question_id": 1,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 5
+            },
+            {
+              "id": 6,
+              "action": "show",
+              "question_id": 2,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 6
+            },
+            {
+              "id": 7,
+              "action": "show",
+              "question_id": 2,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 7
+            },
+            {
+              "id": 8,
+              "action": "answer",
+              "question_id": 2,
+              "answer_id": 20,
+              "q_num": 1,
+              "timestamp": 8
+            },
+            {
+              "id": 9,
+              "action": "answer",
+              "question_id": 2,
+              "answer_id": 21,
+              "q_num": 1,
+              "timestamp": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "survey_log"
+        ],
+        "rows": [
+          [
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "skip"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: raw answer total is misleading",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SurveyLog": [
+            {
+              "id": 1,
+              "action": "show",
+              "question_id": 4,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 1
+            },
+            {
+              "id": 2,
+              "action": "show",
+              "question_id": 4,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 2
+            },
+            {
+              "id": 3,
+              "action": "show",
+              "question_id": 4,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 3
+            },
+            {
+              "id": 4,
+              "action": "show",
+              "question_id": 4,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 4
+            },
+            {
+              "id": 5,
+              "action": "answer",
+              "question_id": 4,
+              "answer_id": 40,
+              "q_num": 1,
+              "timestamp": 5
+            },
+            {
+              "id": 6,
+              "action": "answer",
+              "question_id": 4,
+              "answer_id": 41,
+              "q_num": 1,
+              "timestamp": 6
+            },
+            {
+              "id": 7,
+              "action": "show",
+              "question_id": 9,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 7
+            },
+            {
+              "id": 8,
+              "action": "answer",
+              "question_id": 9,
+              "answer_id": 90,
+              "q_num": 1,
+              "timestamp": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "survey_log"
+        ],
+        "rows": [
+          [
+            9
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "denominator"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: unsorted question rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "SurveyLog": [
+            {
+              "id": 8,
+              "action": "answer",
+              "question_id": 7,
+              "answer_id": 70,
+              "q_num": 1,
+              "timestamp": 8
+            },
+            {
+              "id": 2,
+              "action": "show",
+              "question_id": 2,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 2
+            },
+            {
+              "id": 6,
+              "action": "show",
+              "question_id": 7,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 6
+            },
+            {
+              "id": 1,
+              "action": "show",
+              "question_id": 7,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 1
+            },
+            {
+              "id": 5,
+              "action": "answer",
+              "question_id": 2,
+              "answer_id": 20,
+              "q_num": 1,
+              "timestamp": 5
+            },
+            {
+              "id": 3,
+              "action": "show",
+              "question_id": 2,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 3
+            },
+            {
+              "id": 7,
+              "action": "answer",
+              "question_id": 7,
+              "answer_id": 71,
+              "q_num": 1,
+              "timestamp": 7
+            },
+            {
+              "id": 4,
+              "action": "show",
+              "question_id": 7,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "survey_log"
+        ],
+        "rows": [
+          [
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: three-way zero-rate tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "SurveyLog": [
+            {
+              "id": 1,
+              "action": "show",
+              "question_id": 12,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 1
+            },
+            {
+              "id": 2,
+              "action": "skip",
+              "question_id": 12,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 2
+            },
+            {
+              "id": 3,
+              "action": "show",
+              "question_id": 4,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 3
+            },
+            {
+              "id": 4,
+              "action": "show",
+              "question_id": 19,
+              "answer_id": null,
+              "q_num": 1,
+              "timestamp": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "survey_log"
+        ],
+        "rows": [
+          [
+            4
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "tie"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_506",
+  "cases": [
+    {"id": "sample-descending", "name": "sample: already descending scores", "kind": "sample", "visible": true, "input": {"score": [5,4,3,2,1]}, "expected": ["Gold Medal","Silver Medal","Bronze Medal","4","5"], "tags": ["sample", "descending"]},
+    {"id": "sample-mixed", "name": "sample: labels restored to input order", "kind": "sample", "visible": true, "input": {"score": [10,3,8,9,4]}, "expected": ["Gold Medal","5","Bronze Medal","Silver Medal","4"], "tags": ["sample", "mixed"]},
+    {"id": "sample-single", "name": "sample: one athlete", "kind": "sample", "visible": true, "input": {"score": [1]}, "expected": ["Gold Medal"], "tags": ["sample", "singleton"]},
+    {"id": "trial-two", "name": "trial: only gold and silver", "kind": "trial", "visible": true, "input": {"score": [2,1]}, "expected": ["Gold Medal","Silver Medal"], "tags": ["trial", "two-athletes"]},
+    {"id": "trial-score-gaps", "name": "trial: score magnitudes do not change relative ranks", "kind": "trial", "visible": true, "input": {"score": [1,1000000,3]}, "expected": ["Bronze Medal","Gold Medal","Silver Medal"], "tags": ["trial", "gaps"]},
+    {"id": "hidden-four", "name": "hidden: all medal positions are permuted", "kind": "real", "visible": false, "input": {"score": [100,50,75,25]}, "expected": ["Gold Medal","Bronze Medal","Silver Medal","4"], "tags": ["hidden", "permutation"]}
+  ]
+}

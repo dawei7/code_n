@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_485",
+  "cases": [
+    {"id": "sample-longest-at-end", "name": "sample: longest run at the end", "kind": "sample", "visible": true, "input": {"nums": [1, 1, 0, 1, 1, 1]}, "expected": 3, "tags": ["sample", "trailing-run"]},
+    {"id": "sample-separated", "name": "sample: separated one runs", "kind": "sample", "visible": true, "input": {"nums": [1, 0, 1, 1, 0, 1]}, "expected": 2, "tags": ["sample", "multiple-runs"]},
+    {"id": "sample-all-zero", "name": "sample: no ones", "kind": "sample", "visible": true, "input": {"nums": [0, 0, 0]}, "expected": 0, "tags": ["sample", "all-zero"]},
+    {"id": "trial-single-one", "name": "trial: one element run", "kind": "trial", "visible": true, "input": {"nums": [1]}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "trial-alternating", "name": "trial: alternating values", "kind": "trial", "visible": true, "input": {"nums": [0, 1, 0, 1, 0, 1, 0]}, "expected": 1, "tags": ["trial", "alternating"]},
+    {"id": "hidden-leading-run", "name": "hidden: longest run at the start", "kind": "real", "visible": false, "input": {"nums": [1, 1, 1, 0, 1]}, "expected": 3, "tags": ["hidden", "leading-run"]},
+    {"id": "hidden-long-trailing", "name": "hidden: zero before long trailing run", "kind": "real", "visible": false, "input": {"nums": [0, 1, 1, 1, 1]}, "expected": 4, "tags": ["hidden", "trailing-run"]}
+  ]
+}

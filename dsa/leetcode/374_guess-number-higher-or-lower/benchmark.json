@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_374",
+  "measurement_note": "Size is the search-range upper bound. Placing the hidden value at n forces upward linear guessing to inspect every candidate, while binary search still halves the range per query.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: hidden value at end of range 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 32,
+        "pick": 32
+      },
+      "expected": 32,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "upper"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: hidden value at end of range 256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "n": 256,
+        "pick": 256
+      },
+      "expected": 256,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "upper"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: hidden value at end of range 2048",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2048,
+      "input": {
+        "n": 2048,
+        "pick": 2048
+      },
+      "expected": 2048,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "upper"
+      ]
+    }
+  ]
+}
+

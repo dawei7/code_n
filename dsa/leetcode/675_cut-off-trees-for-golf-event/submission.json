@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "675",
+  "frontend_id": "675",
+  "title_slug": "cut-off-trees-for-golf-event",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065553418",
+  "verified_at": "2026-07-13T02:31:11.011996+00:00"
+}

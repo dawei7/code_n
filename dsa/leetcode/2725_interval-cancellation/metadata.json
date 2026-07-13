@@ -1,0 +1,58 @@
+{
+  "challenge_id": "lc_2725",
+  "source": "leetcode",
+  "frontend_id": "2725",
+  "slug": "interval-cancellation",
+  "title": "Interval Cancellation",
+  "difficulty": "Easy",
+  "acceptance_rate": 85.00135901219228,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/interval-cancellation/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript",
+    "leetcode_studyplan:30-days-of-javascript",
+    "leetcode_studyplan:30-days-of-javascript:30-days-of-javascript-155-8jib"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode",
+    "study_plan:30-days-of-javascript",
+    "study_plan_section:30-days-of-javascript:30-days-of-javascript-155-8jib"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-javascript",
+      "plan_name": "30 Days of JavaScript",
+      "section_slug": "30-days-of-javascript-155-8jib",
+      "section_name": "Promises and Time",
+      "path": [
+        "Promises and Time"
+      ],
+      "order": 15,
+      "section_order": 4,
+      "problem_order": 4,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-javascript/"
+    }
+  ],
+  "neetcode_subsets": []
+}

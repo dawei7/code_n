@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "599",
+  "frontend_id": "599",
+  "title_slug": "minimum-index-sum-of-two-lists",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065455693",
+  "verified_at": "2026-07-12T21:28:43.974704+00:00"
+}

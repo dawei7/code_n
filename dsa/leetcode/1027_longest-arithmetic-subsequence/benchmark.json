@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1027",
+  "cases": [
+    {
+      "id": "benchmark-negative-diff",
+      "name": "benchmark: negative difference",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          7,
+          4,
+          1,
+          -2,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

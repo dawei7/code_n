@@ -1,0 +1,115 @@
+{
+  "challenge_id": "lc_120",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed triangle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "triangle": [
+          [
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            5,
+            7
+          ],
+          [
+            4,
+            1,
+            8,
+            3
+          ]
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "triangle": [
+          [
+            -10
+          ]
+        ]
+      },
+      "expected": -10,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-small-positive",
+      "name": "small positive triangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "triangle": [
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "real-negative-path",
+      "name": "hidden: negative values improve path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "triangle": [
+          [
+            1
+          ],
+          [
+            -2,
+            3
+          ],
+          [
+            4,
+            -5,
+            6
+          ],
+          [
+            7,
+            8,
+            -9,
+            10
+          ]
+        ]
+      },
+      "expected": -15,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    }
+  ]
+}

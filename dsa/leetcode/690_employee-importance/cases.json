@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_690",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two direct subordinates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "employees": [
+          {
+            "id": 1,
+            "importance": 5,
+            "subordinates": [
+              2,
+              3
+            ]
+          },
+          {
+            "id": 2,
+            "importance": 3,
+            "subordinates": []
+          },
+          {
+            "id": 3,
+            "importance": 3,
+            "subordinates": []
+          }
+        ],
+        "id": 1
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "direct-subordinates"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: request a leaf",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "employees": [
+          {
+            "id": 1,
+            "importance": 2,
+            "subordinates": [
+              2
+            ]
+          },
+          {
+            "id": 2,
+            "importance": 4,
+            "subordinates": []
+          }
+        ],
+        "id": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "leaf"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: negative importance",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "employees": [
+          {
+            "id": 1,
+            "importance": -5,
+            "subordinates": [
+              2
+            ]
+          },
+          {
+            "id": 2,
+            "importance": 2,
+            "subordinates": []
+          }
+        ],
+        "id": 1
+      },
+      "expected": -3,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: indirect subordinate chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "employees": [
+          {
+            "id": 1,
+            "importance": 1,
+            "subordinates": [
+              2
+            ]
+          },
+          {
+            "id": 2,
+            "importance": 2,
+            "subordinates": [
+              3
+            ]
+          },
+          {
+            "id": 3,
+            "importance": 3,
+            "subordinates": []
+          }
+        ],
+        "id": 1
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "indirect"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: unrelated employees excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "employees": [
+          {
+            "id": 10,
+            "importance": 7,
+            "subordinates": [
+              11
+            ]
+          },
+          {
+            "id": 11,
+            "importance": 8,
+            "subordinates": []
+          },
+          {
+            "id": 20,
+            "importance": 100,
+            "subordinates": []
+          }
+        ],
+        "id": 10
+      },
+      "expected": 15,
+      "tags": [
+        "trial",
+        "separate-hierarchy"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: branching hierarchy",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "employees": [
+          {
+            "id": 1,
+            "importance": 4,
+            "subordinates": [
+              2,
+              3
+            ]
+          },
+          {
+            "id": 2,
+            "importance": 5,
+            "subordinates": [
+              4
+            ]
+          },
+          {
+            "id": 3,
+            "importance": 6,
+            "subordinates": []
+          },
+          {
+            "id": 4,
+            "importance": 7,
+            "subordinates": []
+          }
+        ],
+        "id": 1
+      },
+      "expected": 22,
+      "tags": [
+        "hidden",
+        "branching"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: negative subtree total",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "employees": [
+          {
+            "id": 1,
+            "importance": 1,
+            "subordinates": [
+              2,
+              3
+            ]
+          },
+          {
+            "id": 2,
+            "importance": -10,
+            "subordinates": []
+          },
+          {
+            "id": 3,
+            "importance": 2,
+            "subordinates": []
+          }
+        ],
+        "id": 1
+      },
+      "expected": -7,
+      "tags": [
+        "hidden",
+        "negative-total"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: nonconsecutive ids",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "employees": [
+          {
+            "id": 50,
+            "importance": 9,
+            "subordinates": [
+              7
+            ]
+          },
+          {
+            "id": 7,
+            "importance": 1,
+            "subordinates": [
+              99
+            ]
+          },
+          {
+            "id": 99,
+            "importance": 2,
+            "subordinates": []
+          }
+        ],
+        "id": 7
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "nonconsecutive-ids"
+      ]
+    }
+  ]
+}
+

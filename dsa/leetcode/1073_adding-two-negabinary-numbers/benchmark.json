@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_1073",
+  "cases": [
+    {
+      "id": "benchmark-longer-carry",
+      "name": "benchmark: longer carry",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr1": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "arr2": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

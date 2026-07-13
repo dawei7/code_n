@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_129",
+  "cases": [
+    {"id": "sample-two-leaves", "name": "sample: numbers twelve and thirteen", "kind": "sample", "visible": true, "input": {"root": [1, 2, 3]}, "expected": 25, "tags": ["sample", "two-leaves"]},
+    {"id": "sample-three-leaves", "name": "sample: mixed path lengths", "kind": "sample", "visible": true, "input": {"root": [4, 9, 0, 5, 1]}, "expected": 1026, "tags": ["sample", "digits"]},
+    {"id": "sample-zero", "name": "sample: zero root", "kind": "sample", "visible": true, "input": {"root": [0]}, "expected": 0, "tags": ["sample", "boundary"]},
+    {"id": "trial-one-sided", "name": "one-sided number", "kind": "trial", "visible": true, "input": {"root": [1, null, 2, null, 3]}, "expected": 123, "tags": ["one-sided"]},
+    {"id": "real-leading-zero", "name": "hidden: leading zero paths", "kind": "real", "visible": false, "input": {"root": [0, 1, 2]}, "expected": 3, "tags": ["hidden", "zero"]}
+  ]
+}

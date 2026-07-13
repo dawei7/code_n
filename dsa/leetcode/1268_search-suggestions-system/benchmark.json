@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_1268",
+  "cases": [
+    {
+      "id": "benchmark-cod-prefix",
+      "name": "benchmark: cod prefix",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "products": [
+          "code",
+          "coder",
+          "coding",
+          "codec",
+          "coffee"
+        ],
+        "search_word": "cod"
+      },
+      "expected": [
+        [
+          "code",
+          "codec",
+          "coder"
+        ],
+        [
+          "code",
+          "codec",
+          "coder"
+        ],
+        [
+          "code",
+          "codec",
+          "coder"
+        ]
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

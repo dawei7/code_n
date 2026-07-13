@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_476",
+  "measurement_note": "Size is the significant bit width within the 31-bit input domain. A direct all-ones mask is linear in conceptual bit work, while rebuilding each successive bit mask from bit zero repeats earlier shifts quadratically.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: complement a 4-bit power of two", "kind": "benchmark", "visible": false, "size": 4, "input": {"num": 8}, "expected": 7, "tags": ["benchmark", "scaling"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: complement a 16-bit power of two", "kind": "benchmark", "visible": false, "size": 16, "input": {"num": 32768}, "expected": 32767, "tags": ["benchmark", "scaling"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: complement a 31-bit power of two", "kind": "benchmark", "visible": false, "size": 31, "input": {"num": 1073741824}, "expected": 1073741823, "tags": ["benchmark", "scaling"]}
+  ]
+}

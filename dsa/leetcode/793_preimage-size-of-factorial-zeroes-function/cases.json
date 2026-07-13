@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_793",
+  "cases": [
+    {"id": "sample-1", "name": "sample: zero trailing zeroes", "kind": "sample", "visible": true, "input": {"k": 0}, "expected": 5, "tags": ["sample", "present"]},
+    {"id": "sample-2", "name": "sample: first skipped value", "kind": "sample", "visible": true, "input": {"k": 5}, "expected": 0, "tags": ["sample", "skipped"]},
+    {"id": "sample-3", "name": "sample: three trailing zeroes", "kind": "sample", "visible": true, "input": {"k": 3}, "expected": 5, "tags": ["sample", "present"]},
+    {"id": "trial-1", "name": "trial: one trailing zero", "kind": "trial", "visible": true, "input": {"k": 1}, "expected": 5, "tags": ["trial", "present"]},
+    {"id": "trial-2", "name": "trial: value before first jump", "kind": "trial", "visible": true, "input": {"k": 4}, "expected": 5, "tags": ["trial", "present"]},
+    {"id": "trial-3", "name": "trial: value after first jump", "kind": "trial", "visible": true, "input": {"k": 6}, "expected": 5, "tags": ["trial", "present"]},
+    {"id": "hidden-1", "name": "hidden: skipped at fifty factorial", "kind": "real", "visible": false, "input": {"k": 11}, "expected": 0, "tags": ["hidden", "skipped"]},
+    {"id": "hidden-2", "name": "hidden: large skipped target", "kind": "real", "visible": false, "input": {"k": 999999990}, "expected": 0, "tags": ["hidden", "large-target", "skipped"]},
+    {"id": "hidden-3", "name": "hidden: maximum target is present", "kind": "real", "visible": false, "input": {"k": 1000000000}, "expected": 5, "tags": ["hidden", "large-target", "present"]}
+  ]
+}

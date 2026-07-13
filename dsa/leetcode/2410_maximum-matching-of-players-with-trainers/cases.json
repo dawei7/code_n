@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_2410",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two players matched",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "players": [
+          4,
+          7,
+          9
+        ],
+        "trainers": [
+          8,
+          2,
+          5,
+          8
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: only one trainer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "players": [
+          1,
+          1,
+          1
+        ],
+        "trainers": [
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no trainer is strong enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "players": [
+          2,
+          2,
+          3
+        ],
+        "trainers": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-unsorted-input",
+      "name": "trial: unsorted arrays still match greedily",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "players": [
+          3,
+          1,
+          2
+        ],
+        "trainers": [
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-exact-match",
+      "name": "hidden: exact single match",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "players": [
+          5
+        ],
+        "trainers": [
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

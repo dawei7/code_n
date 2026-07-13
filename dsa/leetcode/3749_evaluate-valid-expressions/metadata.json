@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_3749",
+  "source": "leetcode",
+  "frontend_id": "3749",
+  "slug": "evaluate-valid-expressions",
+  "title": "Evaluate Valid Expressions",
+  "difficulty": "Hard",
+  "acceptance_rate": 69.78319783197831,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Divide and Conquer",
+      "slug": "divide-and-conquer"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    }
+  ],
+  "url": "https://leetcode.com/problems/evaluate-valid-expressions/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:divide-and-conquer",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:math",
+    "leetcode_topic:stack",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:divide-and-conquer",
+    "topic:hash-table",
+    "topic:math",
+    "topic:stack",
+    "topic:string"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

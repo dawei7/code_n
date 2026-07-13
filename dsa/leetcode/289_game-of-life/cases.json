@@ -1,0 +1,6 @@
+{"challenge_id":"lc_289","cases":[
+{"id":"sample-board","name":"sample: mixed board","kind":"sample","visible":true,"input":{"board":[[0,1,0],[0,0,1],[1,1,1],[0,0,0]]},"expected":[[0,0,0],[1,0,1],[0,1,1],[0,1,0]],"tags":["sample","in-place"]},
+{"id":"sample-block","name":"sample: three-cell corner grows","kind":"sample","visible":true,"input":{"board":[[1,1],[1,0]]},"expected":[[1,1],[1,1]],"tags":["sample"]},
+{"id":"trial-single","name":"single live cell dies","kind":"trial","visible":true,"input":{"board":[[1]]},"expected":[[0]],"tags":["boundary"]},
+{"id":"real-blinker","name":"hidden: blinker rotates","kind":"real","visible":false,"input":{"board":[[0,0,0],[1,1,1],[0,0,0]]},"expected":[[0,1,0],[0,1,0],[0,1,0]],"tags":["hidden","oscillator"]}
+]}

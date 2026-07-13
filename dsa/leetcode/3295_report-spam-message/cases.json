@@ -1,0 +1,114 @@
+{
+  "challenge_id": "lc_3295",
+  "cases": [
+    {
+      "id": "sample-two-banned",
+      "name": "sample: two banned words make spam",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "message": [
+          "hello",
+          "world",
+          "leetcode"
+        ],
+        "bannedWords": [
+          "world",
+          "hello"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "set"
+      ]
+    },
+    {
+      "id": "sample-one-banned",
+      "name": "sample: one banned word is not enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "message": [
+          "hello",
+          "programming",
+          "fun"
+        ],
+        "bannedWords": [
+          "world",
+          "programming"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-duplicate-message-word",
+      "name": "trial: same banned word appears twice in message",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "sale",
+          "sale"
+        ],
+        "bannedWords": [
+          "sale"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "edge",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-no-banned",
+      "name": "trial: no banned words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "clean",
+          "message"
+        ],
+        "bannedWords": [
+          "spam",
+          "ads"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "none"
+      ]
+    },
+    {
+      "id": "real-mixed-message",
+      "name": "real: hidden mixed message",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "message": [
+          "please",
+          "buy",
+          "now",
+          "limited",
+          "offer",
+          "now"
+        ],
+        "bannedWords": [
+          "spam",
+          "now",
+          "offer"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "set"
+      ]
+    }
+  ]
+}

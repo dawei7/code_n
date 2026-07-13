@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_3076",
+  "cases": [
+    {
+      "id": "sample-distinct-letters",
+      "name": "sample: each word has a short uncommon substring",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          "cab",
+          "ad",
+          "bad",
+          "c"
+        ]
+      },
+      "expected": [
+        "ab",
+        "",
+        "ba",
+        ""
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-unique",
+      "name": "sample: identical words have no uncommon substring",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          "abc",
+          "abc"
+        ]
+      },
+      "expected": [
+        "",
+        ""
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-lexicographic-tie",
+      "name": "trial: choose lexicographically smallest among shortest candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          "banana",
+          "band",
+          "an"
+        ]
+      },
+      "expected": [
+        "na",
+        "d",
+        ""
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-single-word",
+      "name": "trial: one word can use its first character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          "solo"
+        ]
+      },
+      "expected": [
+        "l"
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-overlapping-strings",
+      "name": "real: overlapping substrings across several words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          "abcd",
+          "bcde",
+          "cdef",
+          "abxy"
+        ]
+      },
+      "expected": [
+        "abc",
+        "bcde",
+        "f",
+        "x"
+      ],
+      "tags": [
+        "real",
+        "strings"
+      ]
+    }
+  ]
+}

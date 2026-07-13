@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_481",
+  "measurement_note": "Size is the requested prefix length. One self-extending sequence generation is linear, while regenerating the complete magical prefix independently for every intermediate length repeats quadratic work.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: count a 64-symbol prefix", "kind": "benchmark", "visible": false, "size": 64, "input": {"n": 64}, "expected": 32, "tags": ["benchmark", "scaling"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: count a 256-symbol prefix", "kind": "benchmark", "visible": false, "size": 256, "input": {"n": 256}, "expected": 129, "tags": ["benchmark", "scaling"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: count a 1024-symbol prefix", "kind": "benchmark", "visible": false, "size": 1024, "input": {"n": 1024}, "expected": 513, "tags": ["benchmark", "scaling"]}
+  ]
+}

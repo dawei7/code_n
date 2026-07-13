@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+:root {
+  /* Light Theme (Material Design inspired) */
+  --coden-bg: #f8f9fa;
+  --coden-surface: #ffffff;
+  --coden-surface-elevated: #f1f3f5;
+  --coden-border: #e2e8f0;
+  --coden-muted: #64748b;
+  --coden-text: #0f172a;
+  --coden-accent: #0284c7;  /* Material light blue/teal for light mode */
+  --coden-accent-contrast: #000000;
+  --coden-compare: #d97706; /* amber-600 */
+  --coden-swap: #e11d48;    /* rose-600 */
+  --coden-read: #2563eb;    /* blue-600 */
+  --coden-inner: #f1f5f9;   /* slate-100 */
+}
+
+.dark {
+  /* Dark Theme (Material Design) */
+  --coden-bg: #121212;
+  --coden-surface: #1e1e1e;
+  --coden-surface-elevated: #2d2d2d;
+  --coden-border: #333333;
+  --coden-muted: #a0a0a0;
+  --coden-text: #ffffff;
+  --coden-accent: #03dac6;
+  --coden-accent-contrast: #000000;
+  --coden-compare: #ffb300;
+  --coden-swap: #cf6679;
+  --coden-read: #64b5f6;
+  --coden-inner: #181818;
+}
+
+/* Custom scrollbar for the dark theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.coden-debug-breakpoint::before {
+  content: "";
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin: 3px 0 0 auto;
+  border-radius: 999px;
+  background: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25);
+  transform: translateX(-2px);
+}
+
+.coden-debug-breakpoint-unverified::before {
+  background: transparent;
+  border: 2px solid #ef4444;
+  box-shadow: none;
+}
+
+.coden-debug-current-line {
+  background: linear-gradient(90deg, rgba(251, 191, 36, 0.22), rgba(251, 191, 36, 0.06));
+  border-top: 1px solid rgba(251, 191, 36, 0.22);
+  border-bottom: 1px solid rgba(251, 191, 36, 0.22);
+}
+
+.debug-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  box-shadow: -10px 0 30px rgba(15, 23, 42, 0.06);
+}
+
+.debug-tool-button {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  color: var(--coden-text);
+  transition: background-color 120ms ease, color 120ms ease, transform 120ms ease;
+}
+
+.debug-tool-button:hover:not(:disabled) {
+  background: var(--coden-border);
+  transform: translateY(-1px);
+}
+
+.debug-tool-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.32;
+}
+
+.debug-status-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  flex: none;
+  border-radius: 999px;
+  background: var(--coden-muted);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--coden-muted) 14%, transparent);
+}
+
+.debug-status-dot-running,
+.debug-status-dot-starting {
+  background: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.14);
+  animation: coden-debug-pulse 1.4s ease-in-out infinite;
+}
+
+.debug-status-dot-paused {
+  background: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.16);
+}
+
+.debug-status-dot-error {
+  background: #f43f5e;
+  box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.15);
+}
+
+.debug-status-dot-exited {
+  background: #64748b;
+}
+
+@keyframes coden-debug-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.coden-debug-current-glyph::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 3px auto 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 9px solid #fbbf24;
+}
+
+select option {
+  background-color: var(--coden-surface);
+  color: var(--coden-text);
+}

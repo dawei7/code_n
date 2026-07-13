@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_444",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two vertices can follow one",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3], "sequences": [[1, 2], [1, 3]]},
+      "expected": false,
+      "tags": ["sample", "ambiguous"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all order positions are forced",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3], "sequences": [[1, 2], [1, 3], [2, 3]]},
+      "expected": true,
+      "tags": ["sample", "unique"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: observed one-value reconstruction",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1], "sequences": [[1]]},
+      "expected": true,
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "trial-missing",
+      "name": "trial: one target value never appears",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 3], "sequences": [[1, 2]]},
+      "expected": false,
+      "tags": ["trial", "missing"]
+    },
+    {
+      "id": "trial-duplicate-edge",
+      "name": "trial: repeated constraints do not add indegree",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 3], "sequences": [[1, 2], [1, 2], [2, 3]]},
+      "expected": true,
+      "tags": ["trial", "duplicate-edge"]
+    },
+    {
+      "id": "hidden-wrong-order",
+      "name": "hidden: unique reconstruction differs from target",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3], "sequences": [[1, 3], [3, 2]]},
+      "expected": false,
+      "tags": ["hidden", "wrong-order"]
+    },
+    {
+      "id": "hidden-cycle",
+      "name": "hidden: constraints contain a cycle",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3], "sequences": [[1, 2], [2, 3], [3, 1]]},
+      "expected": false,
+      "tags": ["hidden", "cycle"]
+    },
+    {
+      "id": "hidden-invalid-value",
+      "name": "hidden: subsequence contains a value outside the target",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3], "sequences": [[1, 2], [2, 4]]},
+      "expected": false,
+      "tags": ["hidden", "invalid-value"]
+    }
+  ]
+}

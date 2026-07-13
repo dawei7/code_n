@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_533",
+  "cases": [
+    {"id":"sample-mixed","name":"sample: two qualifying columns and one overloaded column","kind":"sample","visible":true,"input":{"picture":[["W","B","W","B","B","W"],["W","B","W","B","B","W"],["W","B","W","B","B","W"],["W","W","B","W","B","W"]],"target":3},"expected":6,"tags":["sample","mixed"]},
+    {"id":"sample-identical-two","name":"sample: two identical rows qualify completely","kind":"sample","visible":true,"input":{"picture":[["B","W","B"],["B","W","B"]],"target":2},"expected":4,"tags":["sample","identical"]},
+    {"id":"sample-too-many-rows","name":"sample: pattern occurs more than target","kind":"sample","visible":true,"input":{"picture":[["B","W","B"],["B","W","B"],["B","W","B"]],"target":2},"expected":0,"tags":["sample","overloaded"]},
+    {"id":"trial-single","name":"trial: one black pixel with target one","kind":"trial","visible":true,"input":{"picture":[["W","B","W"]],"target":1},"expected":1,"tags":["trial","singleton"]},
+    {"id":"trial-different-rows","name":"trial: matching counts but different row patterns","kind":"trial","visible":true,"input":{"picture":[["B","B","W"],["B","W","B"]],"target":2},"expected":0,"tags":["trial","different-patterns"]},
+    {"id":"hidden-white","name":"hidden: all-white picture","kind":"real","visible":false,"input":{"picture":[["W","W"],["W","W"]],"target":1},"expected":0,"tags":["hidden","empty"]},
+    {"id":"hidden-one-column","name":"hidden: column count matches but row counts do not","kind":"real","visible":false,"input":{"picture":[["B"],["B"],["B"]],"target":3},"expected":0,"tags":["hidden","column"]}
+  ]
+}

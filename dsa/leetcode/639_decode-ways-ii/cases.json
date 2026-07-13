@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_639",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one wildcard", "kind": "sample", "visible": true, "input": {"s": "*"}, "expected": 9, "tags": ["sample", "wildcard"]},
+    {"id": "sample-2", "name": "sample: wildcard after one", "kind": "sample", "visible": true, "input": {"s": "1*"}, "expected": 18, "tags": ["sample", "one-prefix"]},
+    {"id": "sample-3", "name": "sample: wildcard after two", "kind": "sample", "visible": true, "input": {"s": "2*"}, "expected": 15, "tags": ["sample", "two-prefix"]},
+    {"id": "trial-1", "name": "trial: isolated zero", "kind": "trial", "visible": true, "input": {"s": "0"}, "expected": 0, "tags": ["trial", "zero"]},
+    {"id": "trial-2", "name": "trial: two wildcards", "kind": "trial", "visible": true, "input": {"s": "**"}, "expected": 96, "tags": ["trial", "pair-multiplicity"]},
+    {"id": "hidden-1", "name": "hidden: wildcard before zero", "kind": "real", "visible": false, "input": {"s": "*0"}, "expected": 2, "tags": ["hidden", "zero-pair"]},
+    {"id": "hidden-2", "name": "hidden: zero after wildcard pair", "kind": "real", "visible": false, "input": {"s": "1*0"}, "expected": 2, "tags": ["hidden", "zero"]},
+    {"id": "hidden-3", "name": "hidden: wildcard on both sides", "kind": "real", "visible": false, "input": {"s": "*1*"}, "expected": 180, "tags": ["hidden", "mixed"]},
+    {"id": "hidden-4", "name": "hidden: invalid thirty", "kind": "real", "visible": false, "input": {"s": "30"}, "expected": 0, "tags": ["hidden", "invalid-pair"]}
+  ]
+}

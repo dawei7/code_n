@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_291",
+  "measurement_note": "Size is target-string length. Repeated-symbol failures reward incremental consistency pruning over enumerating all complete partitions.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: inconsistent repeated symbol at n=12",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"pattern": "aaaa", "s": "aaaaaaaaaaab"},
+      "expected": false,
+      "tags": ["benchmark", "scale-small", "pruning"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: inconsistent repeated symbol at n=24",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"pattern": "aaaa", "s": "aaaaaaaaaaaaaaaaaaaaaaab"},
+      "expected": false,
+      "tags": ["benchmark", "scale-medium", "pruning"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: inconsistent repeated symbol at n=48",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {"pattern": "aaaa", "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"},
+      "expected": false,
+      "tags": ["benchmark", "scale-large", "pruning"]
+    }
+  ]
+}

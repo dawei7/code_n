@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_2401",
+  "cases": [
+    {
+      "id": "benchmark-conflict-then-long-window",
+      "name": "benchmark: conflict resets into a longer window",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          3,
+          32,
+          64,
+          128
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

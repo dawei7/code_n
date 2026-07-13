@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2169",
+  "source": "leetcode",
+  "frontend_id": "2169",
+  "slug": "count-operations-to-obtain-zero",
+  "title": "Count Operations to Obtain Zero",
+  "difficulty": "Easy",
+  "acceptance_rate": 79.81355299947639,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-operations-to-obtain-zero/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:payu",
+    "leetcode_topic:math",
+    "leetcode_topic:simulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:payu",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:math",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "PayU",
+      "slug": "payu"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "PayU",
+        "slug": "payu",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

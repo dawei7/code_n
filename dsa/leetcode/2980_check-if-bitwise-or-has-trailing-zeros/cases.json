@@ -1,0 +1,96 @@
+{
+  "challenge_id": "lc_2980",
+  "cases": [
+    {
+      "id": "sample-two-evens",
+      "name": "sample: pair of evens exists",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-odd",
+      "name": "sample: all values odd",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-many-evens",
+      "name": "sample: many even numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          16
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: one even is not enough",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-even-at-end",
+      "name": "real: two evens appear late",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          9,
+          11,
+          13,
+          20,
+          22
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

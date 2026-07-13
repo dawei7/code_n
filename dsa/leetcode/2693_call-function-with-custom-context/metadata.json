@@ -1,0 +1,53 @@
+{
+  "challenge_id": "lc_2693",
+  "source": "leetcode",
+  "frontend_id": "2693",
+  "slug": "call-function-with-custom-context",
+  "title": "Call Function with Custom Context",
+  "difficulty": "Medium",
+  "acceptance_rate": 77.53828988741252,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/call-function-with-custom-context/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode",
+    "subset:neetcode:allNC"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "JavaScript"
+      ],
+      "order": 968,
+      "section_order": 18,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "call-function-with-custom-context",
+      "leetcode_slug": "call-function-with-custom-context",
+      "difficulty": "Medium",
+      "problem_order": 25
+    }
+  ]
+}

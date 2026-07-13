@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_736",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: nested shadowing and multiplication",
+      "kind": "sample",
+      "visible": true,
+      "input": {"expression": "(let x 2 (mult x (let x 3 y 4 (add x y))))"},
+      "expected": 14,
+      "tags": ["sample", "shadowing"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: sequential rebinding",
+      "kind": "sample",
+      "visible": true,
+      "input": {"expression": "(let x 3 x 2 x)"},
+      "expected": 2,
+      "tags": ["sample", "rebinding"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: later binding uses earlier values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"expression": "(let x 1 y 2 x (add x y) (add x y))"},
+      "expected": 5,
+      "tags": ["sample", "sequential"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: atomic negative arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {"expression": "(add -7 (mult 3 4))"},
+      "expected": 5,
+      "tags": ["trial", "negative"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: inner shadow ends before outer lookup",
+      "kind": "trial",
+      "visible": true,
+      "input": {"expression": "(let x 2 (add (let x 3 (let x 4 x)) x))"},
+      "expected": 6,
+      "tags": ["trial", "scope-exit"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: binding expression sees outer value",
+      "kind": "real",
+      "visible": false,
+      "input": {"expression": "(let x 5 (let x (add x 1) y (mult x 2) (add x y)))"},
+      "expected": 18,
+      "tags": ["hidden", "outer-lookup"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: multi-character variable names",
+      "kind": "real",
+      "visible": false,
+      "input": {"expression": "(let alpha1 7 beta2 -3 (mult (add alpha1 beta2) alpha1))"},
+      "expected": 28,
+      "tags": ["hidden", "variable-token"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: final expression is a nested let",
+      "kind": "real",
+      "visible": false,
+      "input": {"expression": "(let a 1 b 2 (let c (add a b) (mult c b)))"},
+      "expected": 6,
+      "tags": ["hidden", "nested-final"]
+    }
+  ]
+}

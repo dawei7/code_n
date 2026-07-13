@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_569",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: odd company size",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "company": "A",
+              "salary": 10
+            },
+            {
+              "id": 2,
+              "company": "A",
+              "salary": 20
+            },
+            {
+              "id": 3,
+              "company": "A",
+              "salary": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": [
+          [
+            2,
+            "A",
+            20
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "median"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: even company size",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "company": "B",
+              "salary": 35
+            },
+            {
+              "id": 2,
+              "company": "B",
+              "salary": 5
+            },
+            {
+              "id": 3,
+              "company": "B",
+              "salary": 25
+            },
+            {
+              "id": 4,
+              "company": "B",
+              "salary": 15
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": [
+          [
+            4,
+            "B",
+            15
+          ],
+          [
+            3,
+            "B",
+            25
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "median"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one employee",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 9,
+              "company": "Solo",
+              "salary": 77
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": [
+          [
+            9,
+            "Solo",
+            77
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "median"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: independent odd and even companies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "company": "A",
+              "salary": 10
+            },
+            {
+              "id": 2,
+              "company": "A",
+              "salary": 30
+            },
+            {
+              "id": 3,
+              "company": "A",
+              "salary": 20
+            },
+            {
+              "id": 4,
+              "company": "B",
+              "salary": 8
+            },
+            {
+              "id": 5,
+              "company": "B",
+              "salary": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": [
+          [
+            3,
+            "A",
+            20
+          ],
+          [
+            5,
+            "B",
+            2
+          ],
+          [
+            4,
+            "B",
+            8
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "partition"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: tied salaries use identifier order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 10,
+              "company": "Tie",
+              "salary": 50
+            },
+            {
+              "id": 3,
+              "company": "Tie",
+              "salary": 50
+            },
+            {
+              "id": 8,
+              "company": "Tie",
+              "salary": 50
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": [
+          [
+            8,
+            "Tie",
+            50
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "partition"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: mixed salary signs and companies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 4,
+              "company": "X",
+              "salary": -10
+            },
+            {
+              "id": 1,
+              "company": "X",
+              "salary": 0
+            },
+            {
+              "id": 2,
+              "company": "X",
+              "salary": 5
+            },
+            {
+              "id": 3,
+              "company": "X",
+              "salary": 100
+            },
+            {
+              "id": 7,
+              "company": "Y",
+              "salary": 42
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": [
+          [
+            1,
+            "X",
+            0
+          ],
+          [
+            2,
+            "X",
+            5
+          ],
+          [
+            7,
+            "Y",
+            42
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: unsorted five-employee company",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 5,
+              "company": "C",
+              "salary": 5
+            },
+            {
+              "id": 1,
+              "company": "C",
+              "salary": 1
+            },
+            {
+              "id": 4,
+              "company": "C",
+              "salary": 4
+            },
+            {
+              "id": 2,
+              "company": "C",
+              "salary": 2
+            },
+            {
+              "id": 3,
+              "company": "C",
+              "salary": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "company",
+          "salary"
+        ],
+        "rows": [
+          [
+            3,
+            "C",
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    }
+  ]
+}
+

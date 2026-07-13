@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_504",
+  "measurement_note": "Size is the positive magnitude of num. Repeated division by seven takes logarithmically many steps, while finding each quotient through repeated subtraction takes linear total time in the magnitude.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: convert magnitude 15000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 15000,
+      "input": {"num": 15000},
+      "expected": "61506",
+      "tags": ["benchmark", "scaling", "positive"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: convert magnitude 60000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 60000,
+      "input": {"num": 60000},
+      "expected": "336633",
+      "tags": ["benchmark", "scaling", "positive"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: convert magnitude 240000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 240000,
+      "input": {"num": 240000},
+      "expected": "2016465",
+      "tags": ["benchmark", "scaling", "positive"]
+    }
+  ]
+}

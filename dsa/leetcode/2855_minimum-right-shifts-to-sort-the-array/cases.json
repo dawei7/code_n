@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_2855",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: rotated sorted array needs two right shifts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "rotation"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already sorted array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5
+        ]
+      },
+      "tags": [
+        "sample",
+        "sorted"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: cannot be sorted by right shifts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value is already sorted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "tags": [
+        "trial",
+        "single"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "real-longer-rotation",
+      "name": "hidden: pivot near the middle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          40,
+          50,
+          60,
+          70,
+          5,
+          10,
+          20,
+          30
+        ]
+      },
+      "tags": [
+        "hidden",
+        "rotation"
+      ],
+      "expected": 4
+    }
+  ]
+}

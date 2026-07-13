@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_3",
+  "cases": [
+    {"id": "sample-1", "name": "sample: repeating blocks", "kind": "sample", "visible": true, "input": {"s": "abcabcbb"}, "expected": 3, "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: one repeated character", "kind": "sample", "visible": true, "input": {"s": "bbbbb"}, "expected": 1, "tags": ["sample", "duplicates"]},
+    {"id": "trial-empty", "name": "empty string", "kind": "trial", "visible": true, "input": {"s": ""}, "expected": 0, "tags": ["empty"]},
+    {"id": "trial-stale-index", "name": "previous occurrence is outside the window", "kind": "trial", "visible": true, "input": {"s": "tmmzuxt"}, "expected": 5, "tags": ["stale-index"]},
+    {"id": "real-overlapping-window", "name": "hidden: overlap after a duplicate", "kind": "real", "visible": false, "input": {"s": "dvdf"}, "expected": 3, "tags": ["hidden", "window"]}
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_2502",
+  "cases": [
+    {
+      "id": "benchmark-fragmentation-and-empty-free",
+      "name": "benchmark: fragmented free space and no-op free",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "commands": [
+          "Allocator",
+          "allocate",
+          "allocate",
+          "freeMemory",
+          "allocate",
+          "freeMemory"
+        ],
+        "inputs": [
+          [
+            6
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        3,
+        3,
+        -1,
+        0
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1442",
+  "cases": [
+    {
+      "id": "benchmark-repeated-pattern",
+      "name": "benchmark: repeated xor pattern",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

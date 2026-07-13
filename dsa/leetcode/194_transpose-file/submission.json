@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "194",
+  "frontend_id": "194",
+  "title_slug": "transpose-file",
+  "paid_only": false,
+  "language": "bash",
+  "source": "solutions/leetcode_bash.sh",
+  "verified_submission_id": "2064197567",
+  "verified_at": "2026-07-11T18:28:23.760391+00:00"
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_323",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two components",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all vertices isolated",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": []
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "isolated"
+      ]
+    },
+    {
+      "id": "trial-cycle",
+      "name": "trial: cycle plus isolated vertex",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "cycle"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one isolated vertex",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "edges": []
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-pairs",
+      "name": "hidden: two pairs and one isolated vertex",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "isolated"
+      ]
+    },
+    {
+      "id": "hidden-star",
+      "name": "hidden: star connects every vertex",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "connected"
+      ]
+    },
+    {
+      "id": "hidden-cycle-bridge",
+      "name": "hidden: bridge joins two cyclic regions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "cycle",
+        "bridge"
+      ]
+    }
+  ]
+}

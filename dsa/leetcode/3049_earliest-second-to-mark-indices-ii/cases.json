@@ -1,0 +1,135 @@
+{
+  "challenge_id": "lc_3049",
+  "cases": [
+    {
+      "id": "sample-fast-zeroing",
+      "name": "sample: fast zeroing enables six-second finish",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "changeIndices": [
+          1,
+          3,
+          2,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-normal-decrements",
+      "name": "sample: normal decrements can beat zeroing choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "changeIndices": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: too few seconds for any strategy",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "changeIndices": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-appearance",
+      "name": "trial: a single fast-zero appearance still needs mark time",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          0,
+          1
+        ],
+        "changeIndices": [
+          1,
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-zero-and-decrement",
+      "name": "real: mix zero operations with normal marking",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          0,
+          4,
+          1
+        ],
+        "changeIndices": [
+          1,
+          3,
+          2,
+          4,
+          3,
+          1,
+          4,
+          2,
+          3
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "heap"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "challenge_id": "lc_3047",
+  "cases": [
+    {
+      "id": "sample-overlap-square",
+      "name": "sample: overlapping rectangles contain a square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bottomLeft": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "topRight": [
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-positive-area",
+      "name": "sample: touching edges do not form a square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bottomLeft": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "topRight": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-wide-short-overlap",
+      "name": "trial: square side is limited by height",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bottomLeft": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "topRight": [
+          [
+            7,
+            3
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-multiple-rectangles",
+      "name": "trial: best pair is not adjacent in input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bottomLeft": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "topRight": [
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            7,
+            7
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-overlaps",
+      "name": "real: mixed overlaps with one largest square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bottomLeft": [
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        "topRight": [
+          [
+            6,
+            6
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            4,
+            8
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "geometry"
+      ]
+    }
+  ]
+}

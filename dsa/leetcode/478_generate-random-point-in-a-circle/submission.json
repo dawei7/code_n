@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "915",
+  "frontend_id": "478",
+  "title_slug": "generate-random-point-in-a-circle",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064991373",
+  "verified_at": "2026-07-12T12:46:30.590811+00:00"
+}

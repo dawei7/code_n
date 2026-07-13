@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_2587",
+  "cases": [
+    {
+      "id": "benchmark-mixed-values",
+      "name": "benchmark: mixed positives and negatives",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          9,
+          -5,
+          -6,
+          -7,
+          -8,
+          3,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

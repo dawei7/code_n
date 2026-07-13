@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_3673",
+  "source": "leetcode",
+  "frontend_id": "3673",
+  "slug": "find-zombie-sessions",
+  "title": "Find Zombie Sessions",
+  "difficulty": "Hard",
+  "acceptance_rate": 48.903889026504835,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [],
+  "url": "https://leetcode.com/problems/find-zombie-sessions/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

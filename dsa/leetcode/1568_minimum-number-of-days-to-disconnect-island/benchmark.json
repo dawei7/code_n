@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_1568",
+  "cases": [
+    {
+      "id": "benchmark-bridge-cell",
+      "name": "benchmark: removing one bridge disconnects the island",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

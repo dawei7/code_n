@@ -1,0 +1,75 @@
+{
+  "challenge_id": "lc_1144",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: increasing triplet",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: alternating highs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          6,
+          1,
+          6,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "single value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: all equal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

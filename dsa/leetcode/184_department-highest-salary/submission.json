@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "184",
+  "frontend_id": "184",
+  "title_slug": "department-highest-salary",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2064194507",
+  "verified_at": "2026-07-11T18:25:45.347934+00:00"
+}

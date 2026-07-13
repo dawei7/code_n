@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1458",
+  "cases": [
+    {
+      "id": "benchmark-mixed-signs",
+      "name": "benchmark: mixed signs and skips",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "nums2": [
+          2,
+          -1,
+          4
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

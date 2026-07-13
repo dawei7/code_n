@@ -1,0 +1,9 @@
+{"schema_version":1,"challenge_id":"lc_666","cases":[
+{"id":"sample-1","name":"sample: two leaves","kind":"sample","visible":true,"input":{"nums":[113,215,221]},"expected":12,"tags":["sample","branching"]},
+{"id":"sample-2","name":"sample: only right child","kind":"sample","visible":true,"input":{"nums":[113,221]},"expected":4,"tags":["sample","sparse"]},
+{"id":"sample-3","name":"sample: root is leaf","kind":"sample","visible":true,"input":{"nums":[111]},"expected":1,"tags":["sample","boundary"]},
+{"id":"trial-1","name":"trial: complete three-level tree","kind":"trial","visible":true,"input":{"nums":[119,219,229,315,325,337,349]},"expected":98,"tags":["trial","complete"]},
+{"id":"trial-2","name":"trial: two sparse depth-three leaves","kind":"trial","visible":true,"input":{"nums":[115,215,224,325,336]},"expected":30,"tags":["trial","sparse"]},
+{"id":"hidden-1","name":"hidden: zero-valued nodes remain present","kind":"real","visible":false,"input":{"nums":[110,210,220]},"expected":0,"tags":["hidden","zero"]},
+{"id":"hidden-2","name":"hidden: single left chain","kind":"real","visible":false,"input":{"nums":[117,218,319,411]},"expected":25,"tags":["hidden","chain"]}
+]}

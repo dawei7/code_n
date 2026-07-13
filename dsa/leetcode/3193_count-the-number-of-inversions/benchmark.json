@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_3193",
+  "cases": [
+    {
+      "id": "benchmark-n300-k400",
+      "name": "benchmark: n=300 with 400 target inversions",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 300,
+        "requirements": [
+          [
+            0,
+            0
+          ],
+          [
+            149,
+            250
+          ],
+          [
+            299,
+            400
+          ]
+        ]
+      },
+      "expected": 54794850,
+      "tags": [
+        "benchmark",
+        "quadratic-dp"
+      ]
+    }
+  ]
+}

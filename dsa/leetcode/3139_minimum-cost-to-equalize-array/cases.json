@@ -1,0 +1,148 @@
+{
+  "challenge_id": "lc_3139",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two values use single increments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1
+        ],
+        "cost1": 5,
+        "cost2": 2
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "two-values"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: pair operations are cheap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          3,
+          3,
+          5
+        ],
+        "cost1": 2,
+        "cost2": 1
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "pair-cheap"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: pair operation too expensive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          3
+        ],
+        "cost1": 1,
+        "cost2": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "single-cheap"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: already equal array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "cost1": 4,
+        "cost2": 5
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-bottleneck-minimum",
+      "name": "trial: one low value creates a pairing bottleneck",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          10,
+          10
+        ],
+        "cost1": 3,
+        "cost2": 2
+      },
+      "expected": 27,
+      "tags": [
+        "bottleneck"
+      ]
+    },
+    {
+      "id": "real-target-above-maximum",
+      "name": "real: best target can be above current maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          100
+        ],
+        "cost1": 50,
+        "cost2": 1
+      },
+      "expected": 100,
+      "tags": [
+        "real",
+        "target-search"
+      ]
+    },
+    {
+      "id": "real-modulo-sized-costs",
+      "name": "real: large costs still return modulo result",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          1,
+          3,
+          9,
+          2
+        ],
+        "cost1": 1000000006,
+        "cost2": 999999937
+      },
+      "expected": 999999237,
+      "tags": [
+        "real",
+        "modulo"
+      ]
+    }
+  ]
+}

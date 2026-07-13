@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2528",
+  "cases": [
+    {
+      "id": "benchmark-two-weak-middle-cities",
+      "name": "benchmark: two additions lift the middle bottleneck",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "stations": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "r": 1,
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

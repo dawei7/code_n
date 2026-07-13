@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_2612",
+  "cases": [
+    {
+      "id": "benchmark-wide-reversal",
+      "name": "benchmark: wider reversal with banned gaps",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "p": 4,
+        "banned": [
+          1,
+          7
+        ],
+        "k": 4
+      },
+      "expected": [
+        2,
+        -1,
+        2,
+        1,
+        0,
+        1,
+        2,
+        -1,
+        2,
+        3
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

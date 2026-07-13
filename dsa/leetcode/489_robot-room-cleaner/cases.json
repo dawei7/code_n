@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_489",
+  "cases": [
+    {"id": "sample-single-cell", "name": "sample: one reachable cell", "kind": "sample", "visible": true, "input": {"robot": {"room": [[1]], "row": 0, "col": 0, "direction": 0}}, "expected": 1, "validator": {"kind": "robot_room_cleaner"}, "tags": ["sample", "singleton"]},
+    {"id": "sample-corridor", "name": "sample: four-cell corridor", "kind": "sample", "visible": true, "input": {"robot": {"room": [[1, 1, 1, 1]], "row": 0, "col": 2, "direction": 1}}, "expected": 4, "validator": {"kind": "robot_room_cleaner"}, "tags": ["sample", "corridor"]},
+    {"id": "sample-obstacle-ring", "name": "sample: ring around one obstacle", "kind": "sample", "visible": true, "input": {"robot": {"room": [[1, 1, 1], [1, 0, 1], [1, 1, 1]], "row": 0, "col": 0, "direction": 0}}, "expected": 8, "validator": {"kind": "robot_room_cleaner"}, "tags": ["sample", "cycle"]},
+    {"id": "trial-disconnected", "name": "trial: ignore disconnected open cells", "kind": "trial", "visible": true, "input": {"robot": {"room": [[1, 1, 0, 1], [0, 1, 0, 1], [1, 1, 0, 1]], "row": 0, "col": 0, "direction": 3}}, "expected": 5, "validator": {"kind": "robot_room_cleaner"}, "tags": ["trial", "disconnected"]},
+    {"id": "trial-winding", "name": "trial: winding path", "kind": "trial", "visible": true, "input": {"robot": {"room": [[1, 0, 1], [1, 0, 1], [1, 1, 1]], "row": 0, "col": 0, "direction": 2}}, "expected": 7, "validator": {"kind": "robot_room_cleaner"}, "tags": ["trial", "dead-ends"]},
+    {"id": "hidden-open-rectangle", "name": "hidden: open rectangle with rotated start", "kind": "real", "visible": false, "input": {"robot": {"room": [[1, 1, 1], [1, 1, 1]], "row": 1, "col": 1, "direction": 2}}, "expected": 6, "validator": {"kind": "robot_room_cleaner"}, "tags": ["hidden", "open-room"]},
+    {"id": "hidden-branching", "name": "hidden: branching room with walls", "kind": "real", "visible": false, "input": {"robot": {"room": [[1, 1, 0, 1, 1], [1, 1, 1, 1, 0], [0, 1, 0, 1, 1], [1, 1, 1, 1, 1]], "row": 1, "col": 2, "direction": 1}}, "expected": 16, "validator": {"kind": "robot_room_cleaner"}, "tags": ["hidden", "branching"]}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_45",
+  "cases": [
+    {"id": "sample-1", "name": "sample: best first landing extends reach", "kind": "sample", "visible": true, "input": {"nums": [2, 3, 1, 1, 4]}, "expected": 2, "tags": ["sample", "greedy"]},
+    {"id": "sample-2", "name": "sample: zero inside reachable layer", "kind": "sample", "visible": true, "input": {"nums": [2, 3, 0, 1, 4]}, "expected": 2, "tags": ["sample", "zero"]},
+    {"id": "trial-already-at-end", "name": "single index needs no jump", "kind": "trial", "visible": true, "input": {"nums": [0]}, "expected": 0, "tags": ["boundary"]},
+    {"id": "trial-unit-jumps", "name": "every step is required", "kind": "trial", "visible": true, "input": {"nums": [1, 1, 1, 1]}, "expected": 3, "tags": ["linear-path"]},
+    {"id": "real-one-large-jump", "name": "hidden: first jump reaches end", "kind": "real", "visible": false, "input": {"nums": [5, 0, 0, 0, 0, 0]}, "expected": 1, "tags": ["hidden", "direct"]}
+  ]
+}

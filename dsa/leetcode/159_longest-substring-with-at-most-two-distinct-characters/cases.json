@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_159",
+  "cases": [
+    {"id": "sample-three-types", "name": "sample: third character ends best window", "kind": "sample", "visible": true, "input": {"s": "eceba"}, "expected": 3, "tags": ["sample", "sliding-window"]},
+    {"id": "sample-long-suffix", "name": "sample: long two-character suffix", "kind": "sample", "visible": true, "input": {"s": "ccaabbb"}, "expected": 5, "tags": ["sample"]},
+    {"id": "trial-empty", "name": "empty string", "kind": "trial", "visible": true, "input": {"s": ""}, "expected": 0, "tags": ["boundary"]},
+    {"id": "trial-two-types", "name": "entire string has two types", "kind": "trial", "visible": true, "input": {"s": "abababa"}, "expected": 7, "tags": ["two-types"]},
+    {"id": "real-repeated-evictions", "name": "hidden: repeated third-character transitions", "kind": "real", "visible": false, "input": {"s": "abacccab"}, "expected": 5, "tags": ["hidden", "window"]}
+  ]
+}

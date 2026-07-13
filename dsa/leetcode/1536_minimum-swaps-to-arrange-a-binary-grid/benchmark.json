@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_1536",
+  "cases": [
+    {
+      "id": "benchmark-reverse-trailing-zero-order",
+      "name": "benchmark: reverse order of trailing-zero counts",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "challenge_id": "lc_3452",
+  "cases": [
+    {
+      "id": "sample-spaced-peaks",
+      "name": "sample: spaced good numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          1,
+          5,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "comparisons"
+      ]
+    },
+    {
+      "id": "sample-two-values",
+      "name": "sample: missing neighbor counts as good",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-all-increasing",
+      "name": "trial: increasing values with k one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-wide-gap",
+      "name": "trial: compare over a wider gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          8,
+          2,
+          7,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 24,
+      "tags": [
+        "trial",
+        "wide-gap"
+      ]
+    },
+    {
+      "id": "real-mixed-local-maxima",
+      "name": "real: mixed local maxima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          2,
+          9,
+          3,
+          10,
+          4,
+          7,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 15,
+      "tags": [
+        "real",
+        "local-maxima"
+      ]
+    }
+  ]
+}

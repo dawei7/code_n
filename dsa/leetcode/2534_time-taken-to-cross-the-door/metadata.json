@@ -1,0 +1,148 @@
+{
+  "challenge_id": "lc_2534",
+  "source": "leetcode",
+  "frontend_id": "2534",
+  "slug": "time-taken-to-cross-the-door",
+  "title": "Time Taken to Cross the Door",
+  "difficulty": "Hard",
+  "acceptance_rate": 50.355722954593006,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Queue",
+      "slug": "queue"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/time-taken-to-cross-the-door/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_company:salesforce",
+    "leetcode_studyplan:amazon-spring-23-high-frequency",
+    "leetcode_studyplan:amazon-spring-23-high-frequency:amazon-spring-23-high-frequency-152-2qxf",
+    "leetcode_topic:array",
+    "leetcode_topic:queue",
+    "leetcode_topic:simulation",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:google",
+    "company:salesforce",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:amazon-spring-23-high-frequency",
+    "study_plan_section:amazon-spring-23-high-frequency:amazon-spring-23-high-frequency-152-2qxf",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:queue",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 5
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "amazon-spring-23-high-frequency",
+      "plan_name": "Amazon Spring '23 High Frequency",
+      "section_slug": "amazon-spring-23-high-frequency-152-2qxf",
+      "section_name": "April Interview Questions",
+      "path": [
+        "April Interview Questions"
+      ],
+      "order": 3,
+      "section_order": 2,
+      "problem_order": 1,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/amazon-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 173,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "time-taken-to-cross-the-door",
+      "leetcode_slug": "time-taken-to-cross-the-door",
+      "difficulty": "Hard",
+      "problem_order": 173
+    }
+  ]
+}

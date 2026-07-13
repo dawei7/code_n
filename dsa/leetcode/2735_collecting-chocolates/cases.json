@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_2735",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: rotation lowers total chocolate cost",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          20,
+          1,
+          15
+        ],
+        "x": 5
+      },
+      "tags": [
+        "sample",
+        "rotation"
+      ],
+      "expected": 13
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: operation cost discourages rotations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "x": 4
+      },
+      "tags": [
+        "sample",
+        "cost"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "trial-zero-operation-best",
+      "name": "trial: zero rotations are best",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          5,
+          4
+        ],
+        "x": 100
+      },
+      "tags": [
+        "trial",
+        "expensive"
+      ],
+      "expected": 14
+    },
+    {
+      "id": "trial-cheap-rotations",
+      "name": "trial: cheap rotations find a low value for each type",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          7,
+          3,
+          8,
+          2
+        ],
+        "x": 1
+      },
+      "tags": [
+        "trial",
+        "cheap"
+      ],
+      "expected": 14
+    },
+    {
+      "id": "real-repeated-values",
+      "name": "hidden: repeated low costs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          1,
+          6,
+          1,
+          6
+        ],
+        "x": 2
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ],
+      "expected": 9
+    }
+  ]
+}

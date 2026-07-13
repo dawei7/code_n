@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_2488",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: median subarrays around k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1,
+          4,
+          5
+        ],
+        "k": 4
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "prefix-balance"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: k at the middle of three values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one element equals k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-k-in-the-middle",
+      "name": "trial: three valid subarrays around middle k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-value",
+      "name": "hidden: one value input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

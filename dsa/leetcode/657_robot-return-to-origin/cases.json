@@ -1,0 +1,9 @@
+{"schema_version":1,"challenge_id":"lc_657","cases":[
+{"id":"sample-1","name":"sample: vertical cancellation","kind":"sample","visible":true,"input":{"moves":"UD"},"expected":true,"tags":["sample","return"]},
+{"id":"sample-2","name":"sample: horizontal drift","kind":"sample","visible":true,"input":{"moves":"LL"},"expected":false,"tags":["sample","drift"]},
+{"id":"sample-3","name":"sample: square route","kind":"sample","visible":true,"input":{"moves":"URDL"},"expected":true,"tags":["sample","both-axes"]},
+{"id":"trial-1","name":"trial: single move","kind":"trial","visible":true,"input":{"moves":"U"},"expected":false,"tags":["trial","boundary"]},
+{"id":"trial-2","name":"trial: returns then leaves","kind":"trial","visible":true,"input":{"moves":"UDR"},"expected":false,"tags":["trial","final-position"]},
+{"id":"hidden-1","name":"hidden: separated cancellations","kind":"real","visible":false,"input":{"moves":"UUURRRDDDLLL"},"expected":true,"tags":["hidden","grouped"]},
+{"id":"hidden-2","name":"hidden: one unmatched vertical move","kind":"real","visible":false,"input":{"moves":"LRUDU"},"expected":false,"tags":["hidden","unbalanced"]}
+]}

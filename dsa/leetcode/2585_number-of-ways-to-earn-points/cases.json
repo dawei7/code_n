@@ -1,0 +1,138 @@
+{
+  "challenge_id": "lc_2585",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several bounded combinations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 6,
+        "types": [
+          [
+            6,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: many available questions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 5,
+        "types": [
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            2
+          ],
+          [
+            50,
+            5
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: exactly all selected",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 18,
+        "types": [
+          [
+            6,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-zero-target",
+      "name": "trial: zero target has one empty selection",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 0,
+        "types": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-tight-count-limits",
+      "name": "hidden: count limits rule out many sums",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": 10,
+        "types": [
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

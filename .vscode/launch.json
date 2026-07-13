@@ -1,0 +1,79 @@
+{
+  // VSCode debug + run configurations for cOde(n).
+  //
+  // Personal solutions are stored in the ignored .coden-data profile as
+  // versioned files. Press F5 to run the selected file under debugpy against
+  // the cOde(n) engine (the same engine cOde(n) uses). The verdict
+  // and complexity numbers print in the integrated terminal;
+  // breakpoints in the selected python_vN.py hit normally.
+  //
+  // The developer handoff writes the active challenge id to
+  // .coden-data/active-challenge.json. The script reads
+  // that file when no id is passed, so the typical flow is:
+  //   1. Open cOde(n), pick a challenge
+  //   2. Click "Open in VSCode" -> VSCode opens the project
+  //   3. In VSCode: open the problem's user_solutions/python_vN.py, press F5
+  //   4. If you change challenges in cOde(n), click "Open in
+  //      VSCode" again to refresh the active file
+  //
+  // Working directory: the repo root. Python interpreter: the
+  // .venv at the repo root. Both are configured in settings.json.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run current challenge (debug)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/tools/run_solution.py",
+      "args": [
+        "${input:challengeId}",
+        "--n", "${input:n}",
+        "--seed", "${input:seed}",
+        "--no-ansi"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "justMyCode": false,
+      "purpose": ["debug-test"]
+    },
+    {
+      "name": "Run current challenge (no debug)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/tools/run_solution.py",
+      "args": [
+        "${input:challengeId}",
+        "--n", "${input:n}",
+        "--seed", "${input:seed}",
+        "--no-ansi"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "justMyCode": true,
+      "purpose": ["debug-test"],
+      "presentation": {
+        "hidden": false
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "challengeId",
+      "type": "promptString",
+      "default": "",
+      "description": "Challenge ID (leave empty to auto-detect from cOde(n) active challenge)"
+    },
+    {
+      "id": "n",
+      "type": "promptString",
+      "description": "Input size n (max depends on the challenge - see the description in cOde(n))",
+      "default": "16"
+    },
+    {
+      "id": "seed",
+      "type": "promptString",
+      "description": "Random seed (any integer)",
+      "default": "1"
+    }
+  ]
+}

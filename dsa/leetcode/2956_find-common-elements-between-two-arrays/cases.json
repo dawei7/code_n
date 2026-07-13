@@ -1,0 +1,138 @@
+{
+  "challenge_id": "lc_2956",
+  "cases": [
+    {
+      "id": "sample-overlap-with-duplicates",
+      "name": "sample: overlap with duplicates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4,
+          3,
+          2,
+          3,
+          1
+        ],
+        "nums2": [
+          2,
+          2,
+          5,
+          2,
+          3,
+          6
+        ]
+      },
+      "expected": [
+        3,
+        4
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-disjoint",
+      "name": "sample: disjoint arrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          4,
+          2,
+          3
+        ],
+        "nums2": [
+          1,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-common",
+      "name": "sample: all values common",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-asymmetric-duplicates",
+      "name": "trial: asymmetric duplicates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          2,
+          3,
+          4
+        ],
+        "nums2": [
+          2,
+          4,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-negative-values",
+      "name": "real: negative and zero values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          -1,
+          0,
+          1,
+          1
+        ],
+        "nums2": [
+          0,
+          2,
+          -1,
+          -1
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

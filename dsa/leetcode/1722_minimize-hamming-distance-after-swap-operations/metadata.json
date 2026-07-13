@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_1722",
+  "source": "leetcode",
+  "frontend_id": "1722",
+  "slug": "minimize-hamming-distance-after-swap-operations",
+  "title": "Minimize Hamming Distance After Swap Operations",
+  "difficulty": "Medium",
+  "acceptance_rate": 69.6281803292053,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimize-hamming-distance-after-swap-operations/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_company:sumologic",
+    "leetcode_topic:array",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:union-find"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "company:sumologic",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:depth-first-search",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Sumo Logic",
+      "slug": "sumologic"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Sumo Logic",
+        "slug": "sumologic",
+        "timesEncountered": 3
+      }
+    ],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

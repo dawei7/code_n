@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_724",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: pivot in the middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 7, 3, 6, 5, 6]},
+      "expected": 3,
+      "tags": ["sample", "middle-pivot"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no pivot",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3]},
+      "expected": -1,
+      "tags": ["sample", "missing"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: pivot at the first index",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 1, -1]},
+      "expected": 0,
+      "tags": ["sample", "first-index"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: single value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [8]},
+      "expected": 0,
+      "tags": ["trial", "singleton"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: pivot at the last index",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [-1, 1, 0]},
+      "expected": 2,
+      "tags": ["trial", "last-index"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: negative values around a pivot",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-1, -1, -1, -1, -1, 0]},
+      "expected": 2,
+      "tags": ["hidden", "negative-values"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: multiple pivots require the leftmost",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 0, 0, 0]},
+      "expected": 0,
+      "tags": ["hidden", "leftmost"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: balanced nonzero sides",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, -2, 5, 9, 3, 4]},
+      "expected": 3,
+      "tags": ["hidden", "mixed-signs"]
+    }
+  ]
+}

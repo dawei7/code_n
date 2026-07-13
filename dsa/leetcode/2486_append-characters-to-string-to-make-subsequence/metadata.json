@@ -1,0 +1,134 @@
+{
+  "challenge_id": "lc_2486",
+  "source": "leetcode",
+  "frontend_id": "2486",
+  "slug": "append-characters-to-string-to-make-subsequence",
+  "title": "Append Characters to String to Make Subsequence",
+  "difficulty": "Medium",
+  "acceptance_rate": 73.08961722121498,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    }
+  ],
+  "url": "https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_studyplan:amazon-spring-23-high-frequency",
+    "leetcode_studyplan:amazon-spring-23-high-frequency:amazon-spring-23-high-frequency-141-z5py",
+    "leetcode_topic:greedy",
+    "leetcode_topic:string",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:amazon-spring-23-high-frequency",
+    "study_plan_section:amazon-spring-23-high-frequency:amazon-spring-23-high-frequency-141-z5py",
+    "subset:neetcode:allNC",
+    "topic:greedy",
+    "topic:string",
+    "topic:two-pointers"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "amazon-spring-23-high-frequency",
+      "plan_name": "Amazon Spring '23 High Frequency",
+      "section_slug": "amazon-spring-23-high-frequency-141-z5py",
+      "section_name": "March Interview Questions",
+      "path": [
+        "March Interview Questions"
+      ],
+      "order": 24,
+      "section_order": 3,
+      "problem_order": 7,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/amazon-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 5,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "append-characters-to-string-to-make-subsequence",
+      "leetcode_slug": "append-characters-to-string-to-make-subsequence",
+      "difficulty": "Medium",
+      "problem_order": 5
+    }
+  ]
+}

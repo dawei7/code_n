@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_81",
+  "cases": [
+    {"id": "sample-found", "name": "sample: target in rotated suffix", "kind": "sample", "visible": true, "input": {"nums": [2,5,6,0,0,1,2], "target": 0}, "expected": true, "tags": ["sample"]},
+    {"id": "sample-missing", "name": "sample: missing target", "kind": "sample", "visible": true, "input": {"nums": [2,5,6,0,0,1,2], "target": 3}, "expected": false, "tags": ["sample"]},
+    {"id": "trial-ambiguous", "name": "duplicates hide the pivot", "kind": "trial", "visible": true, "input": {"nums": [1,0,1,1,1], "target": 0}, "expected": true, "tags": ["duplicates", "pivot"]},
+    {"id": "trial-single", "name": "single missing value", "kind": "trial", "visible": true, "input": {"nums": [1], "target": 2}, "expected": false, "tags": ["boundary"]},
+    {"id": "real-duplicate-block", "name": "hidden: target between duplicate blocks", "kind": "real", "visible": false, "input": {"nums": [1,1,1,1,2,1,1], "target": 2}, "expected": true, "tags": ["hidden", "duplicates"]}
+  ]
+}

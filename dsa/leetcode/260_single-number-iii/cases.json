@@ -1,0 +1,6 @@
+{"challenge_id":"lc_260","cases":[
+{"id":"sample-pairs","name":"sample: two singles among pairs","kind":"sample","visible":true,"input":{"nums":[1,2,1,3,2,5]},"expected":[3,5],"validator":{"kind":"unordered_list"},"tags":["sample","xor"]},
+{"id":"sample-two","name":"sample: only the two singles","kind":"sample","visible":true,"input":{"nums":[-1,0]},"expected":[-1,0],"validator":{"kind":"unordered_list"},"tags":["sample","negative"]},
+{"id":"trial-zero","name":"zero and positive singleton","kind":"trial","visible":true,"input":{"nums":[0,1]},"expected":[0,1],"validator":{"kind":"unordered_list"},"tags":["boundary"]},
+{"id":"real-negative-pairs","name":"hidden: signed values and repeated pairs","kind":"real","visible":false,"input":{"nums":[-4,7,6,-4,8,6]},"expected":[7,8],"validator":{"kind":"unordered_list"},"tags":["hidden","signed"]}
+]}

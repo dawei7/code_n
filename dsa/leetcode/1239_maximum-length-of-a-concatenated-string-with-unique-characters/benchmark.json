@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1239",
+  "cases": [
+    {
+      "id": "benchmark-overlapping-choices",
+      "name": "benchmark: overlapping choices",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          "ab",
+          "cd",
+          "cde",
+          "cdef",
+          "efg",
+          "fgh",
+          "abxyz"
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

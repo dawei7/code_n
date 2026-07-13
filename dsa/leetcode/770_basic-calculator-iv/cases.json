@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_770",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one substituted variable", "kind": "sample", "visible": true, "input": {"expression": "e + 8 - a + 5", "evalvars": ["e"], "evalints": [1]}, "expected": ["-1*a", "14"], "tags": ["sample", "substitution"]},
+    {"id": "sample-2", "name": "sample: two substitutions", "kind": "sample", "visible": true, "input": {"expression": "e - 8 + temperature - pressure", "evalvars": ["e", "temperature"], "evalints": [1, 12]}, "expected": ["-1*pressure", "5"], "tags": ["sample", "substitution"]},
+    {"id": "sample-3", "name": "sample: difference of squares", "kind": "sample", "visible": true, "input": {"expression": "(e + 8) * (e - 8)", "evalvars": [], "evalints": []}, "expected": ["1*e*e", "-64"], "tags": ["sample", "multiplication"]},
+    {"id": "trial-1", "name": "trial: complete cancellation", "kind": "trial", "visible": true, "input": {"expression": "7 - 7", "evalvars": [], "evalints": []}, "expected": [], "tags": ["trial", "zero"]},
+    {"id": "trial-2", "name": "trial: commutative products combine", "kind": "trial", "visible": true, "input": {"expression": "a * b * c + b * a * c * 4", "evalvars": [], "evalints": []}, "expected": ["5*a*b*c"], "tags": ["trial", "like-terms"]},
+    {"id": "trial-3", "name": "trial: repeated additive term", "kind": "trial", "visible": true, "input": {"expression": "a + a + a", "evalvars": [], "evalints": []}, "expected": ["3*a"], "tags": ["trial", "like-terms"]},
+    {"id": "hidden-1", "name": "hidden: distributive cancellation", "kind": "real", "visible": false, "input": {"expression": "a * (b + c) - b * a", "evalvars": [], "evalints": []}, "expected": ["1*a*c"], "tags": ["hidden", "distribution"]},
+    {"id": "hidden-2", "name": "hidden: all symbols substituted", "kind": "real", "visible": false, "input": {"expression": "x * y + y", "evalvars": ["x", "y"], "evalints": [2, 3]}, "expected": ["9"], "tags": ["hidden", "constant"]},
+    {"id": "hidden-3", "name": "hidden: subtraction inside parentheses", "kind": "real", "visible": false, "input": {"expression": "a - (b - c)", "evalvars": [], "evalints": []}, "expected": ["1*a", "-1*b", "1*c"], "tags": ["hidden", "parentheses"]},
+    {"id": "hidden-4", "name": "hidden: explicit zero factors disappear", "kind": "real", "visible": false, "input": {"expression": "0 + a * 0", "evalvars": [], "evalints": []}, "expected": [], "tags": ["hidden", "zero"]}
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "challenge_id": "lc_1441",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: skip one value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": [
+          1,
+          3
+        ],
+        "n": 3
+      },
+      "expected": [
+        "Push",
+        "Push",
+        "Pop",
+        "Push"
+      ],
+      "tags": [
+        "sample",
+        "stack"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no skipped values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": [
+          1,
+          2,
+          3
+        ],
+        "n": 3
+      },
+      "expected": [
+        "Push",
+        "Push",
+        "Push"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: skip first value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": [
+          2,
+          3,
+          4
+        ],
+        "n": 4
+      },
+      "expected": [
+        "Push",
+        "Pop",
+        "Push",
+        "Push",
+        "Push"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-only-last-needed",
+      "name": "hidden: only final stream value is kept",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": [
+          3
+        ],
+        "n": 3
+      },
+      "expected": [
+        "Push",
+        "Pop",
+        "Push",
+        "Pop",
+        "Push"
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

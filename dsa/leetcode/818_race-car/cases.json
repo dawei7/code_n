@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_818",
+  "cases": [
+    {"id": "sample-1", "name": "sample: exact two accelerations", "kind": "sample", "visible": true, "input": {"target": 3}, "expected": 2, "tags": ["sample", "exact-run"]},
+    {"id": "sample-2", "name": "sample: overshoot by one", "kind": "sample", "visible": true, "input": {"target": 6}, "expected": 5, "tags": ["sample", "overshoot"]},
+    {"id": "sample-3", "name": "sample: turn short of target", "kind": "sample", "visible": true, "input": {"target": 4}, "expected": 5, "tags": ["sample", "undershoot"]},
+    {"id": "trial-1", "name": "trial: minimum target", "kind": "trial", "visible": true, "input": {"target": 1}, "expected": 1, "tags": ["trial", "boundary"]},
+    {"id": "trial-2", "name": "trial: target two", "kind": "trial", "visible": true, "input": {"target": 2}, "expected": 4, "tags": ["trial", "reverse"]},
+    {"id": "trial-3", "name": "trial: exact three accelerations", "kind": "trial", "visible": true, "input": {"target": 7}, "expected": 3, "tags": ["trial", "exact-run"]},
+    {"id": "hidden-1", "name": "hidden: target five", "kind": "real", "visible": false, "input": {"target": 5}, "expected": 7, "tags": ["hidden", "undershoot"]},
+    {"id": "hidden-2", "name": "hidden: target ten", "kind": "real", "visible": false, "input": {"target": 10}, "expected": 7, "tags": ["hidden", "mixed"]},
+    {"id": "hidden-3", "name": "hidden: exact four accelerations", "kind": "real", "visible": false, "input": {"target": 15}, "expected": 4, "tags": ["hidden", "exact-run"]}
+  ]
+}

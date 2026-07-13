@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_65",
+  "measurement_note": "The public input length is bounded at twenty characters; tiers span that full range and verify a single-pass parser without using unstable micro-timing as a stricter gate.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one character", "kind": "benchmark", "visible": false, "size": 1, "input": {"s": "0"}, "expected": true, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: five characters", "kind": "benchmark", "visible": false, "size": 5, "input": {"s": "2e+10"}, "expected": true, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: twenty characters", "kind": "benchmark", "visible": false, "size": 20, "input": {"s": "12345678901234567890"}, "expected": true, "tags": ["benchmark", "scale-large"]}
+  ]
+}

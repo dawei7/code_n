@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_2499",
+  "cases": [
+    {
+      "id": "benchmark-extra-helper-index",
+      "name": "benchmark: one non-conflicting index breaks the dominant value",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "nums2": [
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2793",
+  "source": "leetcode",
+  "frontend_id": "2793",
+  "slug": "status-of-flight-tickets",
+  "title": "Status of Flight Tickets",
+  "difficulty": "Hard",
+  "acceptance_rate": 79.86125709480764,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [],
+  "url": "https://leetcode.com/problems/status-of-flight-tickets/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

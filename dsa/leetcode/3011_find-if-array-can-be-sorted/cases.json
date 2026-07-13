@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_3011",
+  "cases": [
+    {
+      "id": "sample-sortable-blocks",
+      "name": "sample: sortable within bit-count blocks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          4,
+          2,
+          30,
+          15
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-not-sortable",
+      "name": "sample: block order prevents global sort",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          16,
+          8,
+          4,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-already-sorted",
+      "name": "trial: already sorted values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-late-small-value",
+      "name": "trial: small value trapped in a later block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          11,
+          3,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-multiple-groups",
+      "name": "real: several same-popcount groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          16,
+          8,
+          4,
+          2,
+          1,
+          31,
+          47,
+          15,
+          23
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "bits"
+      ]
+    }
+  ]
+}

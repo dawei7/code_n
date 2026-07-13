@@ -1,0 +1,93 @@
+{
+  "challenge_id": "lc_3035",
+  "cases": [
+    {
+      "id": "sample-all-palindromes",
+      "name": "sample: all target lengths can be palindromes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ba",
+          "aa",
+          "abbb"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-palindromes",
+      "name": "sample: both words can be rebuilt as palindromes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "abc"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-one-palindrome",
+      "name": "sample: only one target length can be filled",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "cdl",
+          "abc"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-short-first",
+      "name": "trial: shorter words are filled first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ef",
+          "aa",
+          "abcd",
+          "ghij"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-lengths",
+      "name": "real: mixed lengths and repeated letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "h",
+          "cc",
+          "ddd",
+          "aabb",
+          "eeffg"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "counts"
+      ]
+    }
+  ]
+}

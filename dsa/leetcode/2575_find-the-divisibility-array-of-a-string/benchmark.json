@@ -1,0 +1,40 @@
+{
+  "challenge_id": "lc_2575",
+  "cases": [
+    {
+      "id": "benchmark-large-divisor",
+      "name": "benchmark: long word with large divisor",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "word": "98765432101234567890",
+        "m": 97
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

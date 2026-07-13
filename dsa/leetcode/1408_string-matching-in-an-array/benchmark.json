@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_1408",
+  "cases": [
+    {
+      "id": "benchmark-shared-prefixes",
+      "name": "benchmark: shared prefixes and single letters",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "aa",
+          "aaa",
+          "aaaa",
+          "b",
+          "baaa"
+        ]
+      },
+      "expected": [
+        "a",
+        "aa",
+        "aaa",
+        "b"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

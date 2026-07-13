@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_755",
+  "measurement_note": "Size is the terrain length; volume is fixed at four. An ascending slope makes every droplet inspect the full left reach. Direct directional scans take linear time per droplet, while revalidating the path to every candidate takes quadratic time in size.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8-position ascending slope",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "heights": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "volume": 4,
+        "k": 7
+      },
+      "expected": [
+        3,
+        3,
+        4,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "full-left-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16-position ascending slope",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "heights": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "volume": 4,
+        "k": 15
+      },
+      "expected": [
+        3,
+        3,
+        4,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "full-left-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 32-position ascending slope",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "heights": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "volume": 4,
+        "k": 31
+      },
+      "expected": [
+        3,
+        3,
+        4,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "full-left-scan"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "challenge_id": "lc_2972",
+  "cases": [
+    {
+      "id": "sample-increasing",
+      "name": "sample: already increasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-one-drop",
+      "name": "sample: one early drop",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          5,
+          7,
+          8
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate tail",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          7,
+          6,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-decreasing",
+      "name": "trial: two elements decreasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "regression",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-middle-bridge",
+      "name": "real: prefix and suffix can bridge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          8,
+          3,
+          4,
+          9
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

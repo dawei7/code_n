@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_694",
+  "measurement_note": "Size is the total number of grid cells. Each tier is one dense island, forcing a linear implementation to visit every cell while an implementation that refloods the component from every land cell performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: dense four by four island",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"grid": [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "dense-island"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: dense eight by eight island",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"grid": [[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1]]},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "dense-island"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: dense twelve by twelve island",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 144,
+      "input": {"grid": [[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1]]},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "dense-island"]
+    }
+  ]
+}

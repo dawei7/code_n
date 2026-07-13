@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "10",
+  "frontend_id": "10",
+  "title_slug": "regular-expression-matching",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2063730785",
+  "verified_at": "2026-07-11T09:59:37.798Z"
+}

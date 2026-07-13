@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_721",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: direct shared email",
+      "kind": "sample",
+      "visible": true,
+      "input": {"accounts": [["John","a@mail.com","b@mail.com"],["John","b@mail.com","c@mail.com"]]},
+      "expected": [["John","a@mail.com","b@mail.com","c@mail.com"]],
+      "validator": {"kind": "accounts_merge"},
+      "tags": ["sample", "direct-overlap"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: merged and independent accounts",
+      "kind": "sample",
+      "visible": true,
+      "input": {"accounts": [["John","johnsmith@mail.com","john_newyork@mail.com"],["John","johnsmith@mail.com","john00@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]]},
+      "expected": [["John","john00@mail.com","john_newyork@mail.com","johnsmith@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]],
+      "validator": {"kind": "accounts_merge"},
+      "tags": ["sample", "multiple-components"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: same name without shared email",
+      "kind": "sample",
+      "visible": true,
+      "input": {"accounts": [["Alex","x@mail.com"],["Alex","y@mail.com"]]},
+      "expected": [["Alex","x@mail.com"],["Alex","y@mail.com"]],
+      "validator": {"kind": "accounts_merge"},
+      "tags": ["sample", "name-not-identity"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: transitive account chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {"accounts": [["Lee","a@x.com","b@x.com"],["Lee","c@x.com","d@x.com"],["Lee","b@x.com","c@x.com"]]},
+      "expected": [["Lee","a@x.com","b@x.com","c@x.com","d@x.com"]],
+      "validator": {"kind": "accounts_merge"},
+      "tags": ["trial", "transitive"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: distinct names stay separate",
+      "kind": "trial",
+      "visible": true,
+      "input": {"accounts": [["Ann","ann@x.com"],["Bob","bob@x.com","b@x.com"]]},
+      "expected": [["Ann","ann@x.com"],["Bob","b@x.com","bob@x.com"]],
+      "validator": {"kind": "accounts_merge"},
+      "tags": ["trial", "different-people"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: one account",
+      "kind": "real",
+      "visible": false,
+      "input": {"accounts": [["Solo","z@x.com","a@x.com"]]},
+      "expected": [["Solo","a@x.com","z@x.com"]],
+      "validator": {"kind": "accounts_merge"},
+      "tags": ["hidden", "single-account"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: overlapping records arrive apart",
+      "kind": "real",
+      "visible": false,
+      "input": {"accounts": [["Kim","k1@x.com","k2@x.com"],["Pat","p@x.com"],["Kim","k3@x.com","k4@x.com"],["Kim","k2@x.com","k3@x.com"]]},
+      "expected": [["Kim","k1@x.com","k2@x.com","k3@x.com","k4@x.com"],["Pat","p@x.com"]],
+      "validator": {"kind": "accounts_merge"},
+      "tags": ["hidden", "nonadjacent-chain"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: two independent components for one name",
+      "kind": "real",
+      "visible": false,
+      "input": {"accounts": [["Rae","a@r.com","b@r.com"],["Rae","c@r.com","d@r.com"],["Rae","b@r.com"]]},
+      "expected": [["Rae","a@r.com","b@r.com"],["Rae","c@r.com","d@r.com"]],
+      "validator": {"kind": "accounts_merge"},
+      "tags": ["hidden", "same-name-components"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_649",
+  "cases": [
+    {"id": "sample-1", "name": "sample: Radiant acts first", "kind": "sample", "visible": true, "input": {"senate": "RD"}, "expected": "Radiant", "tags": ["sample", "first-mover"]},
+    {"id": "sample-2", "name": "sample: Dire majority survives", "kind": "sample", "visible": true, "input": {"senate": "RDD"}, "expected": "Dire", "tags": ["sample", "multiple-rounds"]},
+    {"id": "sample-3", "name": "sample: Dire acts before two Radiant turns", "kind": "sample", "visible": true, "input": {"senate": "DRD"}, "expected": "Dire", "tags": ["sample", "order"]},
+    {"id": "trial-1", "name": "trial: only Radiant", "kind": "trial", "visible": true, "input": {"senate": "RRRR"}, "expected": "Radiant", "tags": ["trial", "single-party"]},
+    {"id": "trial-2", "name": "trial: only Dire", "kind": "trial", "visible": true, "input": {"senate": "D"}, "expected": "Dire", "tags": ["trial", "single-party"]},
+    {"id": "hidden-1", "name": "hidden: alternating Radiant first", "kind": "real", "visible": false, "input": {"senate": "RDRD"}, "expected": "Radiant", "tags": ["hidden", "alternating"]},
+    {"id": "hidden-2", "name": "hidden: alternating Dire first", "kind": "real", "visible": false, "input": {"senate": "DRDR"}, "expected": "Dire", "tags": ["hidden", "alternating"]},
+    {"id": "hidden-3", "name": "hidden: later Radiant recovery", "kind": "real", "visible": false, "input": {"senate": "DRR"}, "expected": "Radiant", "tags": ["hidden", "later-round"]}
+  ]
+}

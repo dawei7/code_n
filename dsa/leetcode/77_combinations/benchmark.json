@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_77",
+  "measurement_note": "Tiers span increasing combination layers; runtime is necessarily output-sensitive, and the reviewed search prunes prefixes that cannot reach k values.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: C(1,1)", "kind": "benchmark", "visible": false, "size": 1, "input": {"n": 1, "k": 1}, "expected": [[1]], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: C(4,2)", "kind": "benchmark", "visible": false, "size": 4, "input": {"n": 4, "k": 2}, "expected": null, "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: C(16,8)", "kind": "benchmark", "visible": false, "size": 16, "input": {"n": 16, "k": 8}, "expected": null, "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scale-large"]}
+  ]
+}

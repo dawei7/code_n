@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_642",
+  "cases": [
+    {"id": "sample-1", "name": "sample: classic prefix sequence", "kind": "sample", "visible": true, "input": {"operations": ["AutocompleteSystem","input","input","input","input"], "arguments": [[ ["i love you","island","iroman","i love leetcode"], [5,3,2,2] ],["i"],[" "],["a"],["#"]]}, "expected": [null,["i love you","island","i love leetcode"],["i love you","i love leetcode"],[],[]], "tags": ["sample", "ranking", "missing-prefix"]},
+    {"id": "sample-2", "name": "sample: lexicographic tie order", "kind": "sample", "visible": true, "input": {"operations": ["AutocompleteSystem","input"], "arguments": [[ ["abc","abb","aba"], [1,1,1] ],["a"]]}, "expected": [null,["aba","abb","abc"]], "tags": ["sample", "tie"]},
+    {"id": "trial-1", "name": "trial: completed sentence is learned", "kind": "trial", "visible": true, "input": {"operations": ["AutocompleteSystem","input","input","input","input","input"], "arguments": [[ ["abc"], [2] ],["a"],["b"],["d"],["#"],["a"]]}, "expected": [null,["abc"],["abc"],[],[],["abc","abd"]], "tags": ["trial", "learning"]},
+    {"id": "trial-2", "name": "trial: only top three are returned", "kind": "trial", "visible": true, "input": {"operations": ["AutocompleteSystem","input"], "arguments": [[ ["ax","ay","az","aw"], [4,3,2,1] ],["a"]]}, "expected": [null,["ax","ay","az"]], "tags": ["trial", "top-three"]},
+    {"id": "hidden-1", "name": "hidden: frequency increase changes rank", "kind": "real", "visible": false, "input": {"operations": ["AutocompleteSystem","input","input","input","input","input","input"], "arguments": [[ ["aa","ab","ac"], [2,1,1] ],["a"],["b"],["#"],["a"],["b"],["#"]]}, "expected": [null,["aa","ab","ac"],["ab"],[],["aa","ab","ac"],["ab"],[]], "tags": ["hidden", "frequency-update"]},
+    {"id": "hidden-2", "name": "hidden: spaces participate in prefixes", "kind": "real", "visible": false, "input": {"operations": ["AutocompleteSystem","input","input"], "arguments": [[ ["a b","a c","ab"], [2,3,4] ],["a"],[" "]]}, "expected": [null,["ab","a c","a b"],["a c","a b"]], "tags": ["hidden", "space"]}
+  ]
+}

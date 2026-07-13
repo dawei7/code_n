@@ -1,0 +1,121 @@
+{
+  "challenge_id": "lc_2788",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: split by dot and drop empty parts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "one.two.three",
+          "four.five",
+          "six"
+        ],
+        "separator": "."
+      },
+      "tags": [
+        "sample",
+        "split"
+      ],
+      "expected": [
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: dollar separator creates empty parts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "$easy$",
+          "$problem$"
+        ],
+        "separator": "$"
+      },
+      "tags": [
+        "sample",
+        "empty"
+      ],
+      "expected": [
+        "easy",
+        "problem"
+      ]
+    },
+    {
+      "id": "trial-no-separator-hit",
+      "name": "trial: words without separator stay whole",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "def"
+        ],
+        "separator": ","
+      },
+      "tags": [
+        "trial",
+        "none"
+      ],
+      "expected": [
+        "abc",
+        "def"
+      ]
+    },
+    {
+      "id": "trial-leading-trailing",
+      "name": "trial: leading and trailing separators",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "|a||b|",
+          "c|"
+        ],
+        "separator": "|"
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    {
+      "id": "real-mixed-strings",
+      "name": "hidden: mixed separator placements",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aa#bb#",
+          "#cc",
+          "dd##ee#ff"
+        ],
+        "separator": "#"
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": [
+        "aa",
+        "bb",
+        "cc",
+        "dd",
+        "ee",
+        "ff"
+      ]
+    }
+  ]
+}

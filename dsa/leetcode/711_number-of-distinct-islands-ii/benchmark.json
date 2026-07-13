@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_711",
+  "measurement_note": "Size is the total number of grid cells. Every tier is one dense island. Global visitation and eight constant-count transforms are linear, while reflooding and recanonicalizing the same component from every land cell takes quadratic time.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: dense three by three island",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9,
+      "input": {"grid": [[1,1,1],[1,1,1],[1,1,1]]},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "dense-island"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: dense six by six island",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36,
+      "input": {"grid": [[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1]]},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "dense-island"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: dense nine by nine island",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 81,
+      "input": {"grid": [[1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1]]},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "dense-island"]
+    }
+  ]
+}

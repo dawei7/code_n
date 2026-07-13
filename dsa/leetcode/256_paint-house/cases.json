@@ -1,0 +1,6 @@
+{"challenge_id":"lc_256","cases":[
+{"id":"sample-three","name":"sample: three houses","kind":"sample","visible":true,"input":{"costs":[[17,2,17],[16,16,5],[14,3,19]]},"expected":10,"tags":["sample","dp"]},
+{"id":"sample-one","name":"sample: one house","kind":"sample","visible":true,"input":{"costs":[[7,6,2]]},"expected":2,"tags":["sample","boundary"]},
+{"id":"trial-empty","name":"no houses","kind":"trial","visible":true,"input":{"costs":[]},"expected":0,"tags":["boundary","empty"]},
+{"id":"real-switching","name":"hidden: optimum switches colors","kind":"real","visible":false,"input":{"costs":[[1,100,100],[100,2,100],[3,100,4],[100,1,100]]},"expected":7,"tags":["hidden","state"]}
+]}

@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_397",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: power of two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 8
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: increment clears trailing ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "increment"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two halvings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "even"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "trial: already at target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-three",
+      "name": "trial: special odd value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "special-case"
+      ]
+    },
+    {
+      "id": "hidden-long-ones",
+      "name": "hidden: several trailing one bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 15
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "trailing-ones"
+      ]
+    },
+    {
+      "id": "hidden-mixed",
+      "name": "hidden: alternating odd and even steps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 100
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-int-max",
+      "name": "hidden: maximum signed integer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2147483647
+      },
+      "expected": 32,
+      "tags": [
+        "hidden",
+        "overflow-boundary"
+      ]
+    }
+  ]
+}

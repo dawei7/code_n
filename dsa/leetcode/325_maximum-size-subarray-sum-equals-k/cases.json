@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_325",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: longest interior sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          5,
+          -2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negative prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -1,
+          2,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no matching sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 7
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-zero-target",
+      "name": "trial: whole alternating array sums to zero",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "k": 0
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "zero-target"
+      ]
+    },
+    {
+      "id": "trial-negative-target",
+      "name": "trial: repeated negative values",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1,
+          -1,
+          -1
+        ],
+        "k": -2
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-whole-array",
+      "name": "hidden: whole array is optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          3,
+          -2,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "hidden-zero-prefixes",
+      "name": "hidden: repeated equal prefix sums",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "k": 0
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "zeros"
+      ]
+    },
+    {
+      "id": "hidden-single",
+      "name": "hidden: single matching element",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 7
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
+  ]
+}

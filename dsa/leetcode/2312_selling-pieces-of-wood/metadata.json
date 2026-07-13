@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2312",
+  "source": "leetcode",
+  "frontend_id": "2312",
+  "slug": "selling-pieces-of-wood",
+  "title": "Selling Pieces of Wood",
+  "difficulty": "Hard",
+  "acceptance_rate": 53.124897044773164,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Memoization",
+      "slug": "memoization"
+    }
+  ],
+  "url": "https://leetcode.com/problems/selling-pieces-of-wood/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:palantir",
+    "leetcode_topic:array",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:memoization"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:palantir",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:dynamic-programming",
+    "topic:memoization"
+  ],
+  "company_tags": [
+    {
+      "name": "Palantir",
+      "slug": "palantir"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Palantir",
+        "slug": "palantir",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,76 @@
+{
+  "challenge_id": "lc_1502",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: reorder into progression",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          5,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: gap mismatch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: constant progression",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-negative-progression",
+      "name": "hidden: negative arithmetic progression",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          -3,
+          -1,
+          -5,
+          -7
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

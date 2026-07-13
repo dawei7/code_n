@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_585",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: shared value and unique locations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Insurance": [
+            {
+              "pid": 1,
+              "tiv_2015": 10,
+              "tiv_2016": 5,
+              "lat": 1,
+              "lon": 1
+            },
+            {
+              "pid": 2,
+              "tiv_2015": 10,
+              "tiv_2016": 7.5,
+              "lat": 2,
+              "lon": 2
+            },
+            {
+              "pid": 3,
+              "tiv_2015": 20,
+              "tiv_2016": 100,
+              "lat": 3,
+              "lon": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tiv_2016"
+        ],
+        "rows": [
+          [
+            12.5
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "group-counts"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate location removes two policies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Insurance": [
+            {
+              "pid": 1,
+              "tiv_2015": 5,
+              "tiv_2016": 10,
+              "lat": 0,
+              "lon": 0
+            },
+            {
+              "pid": 2,
+              "tiv_2015": 5,
+              "tiv_2016": 20,
+              "lat": 0,
+              "lon": 0
+            },
+            {
+              "pid": 3,
+              "tiv_2015": 5,
+              "tiv_2016": 30,
+              "lat": 1,
+              "lon": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tiv_2016"
+        ],
+        "rows": [
+          [
+            30
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "duplicate-location"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: unique value is excluded",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Insurance": [
+            {
+              "pid": 1,
+              "tiv_2015": 1,
+              "tiv_2016": 2.22,
+              "lat": 1,
+              "lon": 1
+            },
+            {
+              "pid": 2,
+              "tiv_2015": 2,
+              "tiv_2016": 3.33,
+              "lat": 2,
+              "lon": 2
+            },
+            {
+              "pid": 3,
+              "tiv_2015": 2,
+              "tiv_2016": 4.44,
+              "lat": 3,
+              "lon": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tiv_2016"
+        ],
+        "rows": [
+          [
+            7.77
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "group-counts"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: round the final decimal sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Insurance": [
+            {
+              "pid": 1,
+              "tiv_2015": 8,
+              "tiv_2016": 1.116,
+              "lat": 1,
+              "lon": 1
+            },
+            {
+              "pid": 2,
+              "tiv_2015": 8,
+              "tiv_2016": 2.224,
+              "lat": 2,
+              "lon": 2
+            },
+            {
+              "pid": 3,
+              "tiv_2015": 8,
+              "tiv_2016": 3.337,
+              "lat": 3,
+              "lon": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tiv_2016"
+        ],
+        "rows": [
+          [
+            6.68
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "group-counts"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: coordinate pair needs both components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Insurance": [
+            {
+              "pid": 10,
+              "tiv_2015": 4,
+              "tiv_2016": 10,
+              "lat": -1,
+              "lon": -1
+            },
+            {
+              "pid": 2,
+              "tiv_2015": 4,
+              "tiv_2016": 20,
+              "lat": -1,
+              "lon": 2
+            },
+            {
+              "pid": 7,
+              "tiv_2015": 9,
+              "tiv_2016": 30,
+              "lat": -1,
+              "lon": 2
+            },
+            {
+              "pid": 9,
+              "tiv_2015": 9,
+              "tiv_2016": 40,
+              "lat": 5,
+              "lon": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tiv_2016"
+        ],
+        "rows": [
+          [
+            50
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "group-counts"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: several qualifying value groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Insurance": [
+            {
+              "pid": 1,
+              "tiv_2015": 100,
+              "tiv_2016": 10,
+              "lat": 1,
+              "lon": 2
+            },
+            {
+              "pid": 2,
+              "tiv_2015": 100,
+              "tiv_2016": 20,
+              "lat": 2,
+              "lon": 1
+            },
+            {
+              "pid": 3,
+              "tiv_2015": 200,
+              "tiv_2016": 30,
+              "lat": 3,
+              "lon": 3
+            },
+            {
+              "pid": 4,
+              "tiv_2015": 200,
+              "tiv_2016": 40,
+              "lat": 4,
+              "lon": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tiv_2016"
+        ],
+        "rows": [
+          [
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "group-counts"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: mixed qualifying and duplicated locations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Insurance": [
+            {
+              "pid": 1,
+              "tiv_2015": 1,
+              "tiv_2016": 5,
+              "lat": 0,
+              "lon": 0
+            },
+            {
+              "pid": 2,
+              "tiv_2015": 1,
+              "tiv_2016": 6,
+              "lat": 0,
+              "lon": 1
+            },
+            {
+              "pid": 3,
+              "tiv_2015": 1,
+              "tiv_2016": 7,
+              "lat": 1,
+              "lon": 0
+            },
+            {
+              "pid": 4,
+              "tiv_2015": 2,
+              "tiv_2016": 8,
+              "lat": 2,
+              "lon": 2
+            },
+            {
+              "pid": 5,
+              "tiv_2015": 2,
+              "tiv_2016": 9,
+              "lat": 2,
+              "lon": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tiv_2016"
+        ],
+        "rows": [
+          [
+            18
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "duplicate-location"
+      ]
+    }
+  ]
+}

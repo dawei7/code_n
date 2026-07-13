@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2529",
+  "cases": [
+    {
+      "id": "benchmark-equal-positive-count",
+      "name": "benchmark: positives and negatives tie",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          -5,
+          -4,
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

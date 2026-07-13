@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1205",
+  "source": "leetcode",
+  "frontend_id": "1205",
+  "slug": "monthly-transactions-ii",
+  "title": "Monthly Transactions II",
+  "difficulty": "Medium",
+  "acceptance_rate": 42.02582446344443,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/monthly-transactions-ii/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:wish",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:wish",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Wish",
+      "slug": "wish"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Wish",
+        "slug": "wish",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

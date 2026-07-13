@@ -1,0 +1,19 @@
+{
+  "challenge_id": "lc_2761",
+  "cases": [
+    {
+      "id": "benchmark-prime-pairs-50000",
+      "name": "benchmark: prime pairs for 50,000",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 50000
+      },
+      "tags": [
+        "benchmark",
+        "large",
+        "sieve"
+      ]
+    }
+  ]
+}

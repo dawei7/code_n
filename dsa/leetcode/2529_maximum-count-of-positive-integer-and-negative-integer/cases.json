@@ -1,0 +1,96 @@
+{
+  "challenge_id": "lc_2529",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: positives outnumber negatives",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -1,
+          -1,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negatives outnumber positives",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          -2,
+          -1,
+          0,
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all numbers are positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          20,
+          66,
+          1314
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-zeroes",
+      "name": "trial: zeroes count as neither positive nor negative",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-negative",
+      "name": "hidden: one negative value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

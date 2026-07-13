@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_744",
+  "cases": [
+    {"id": "sample-1", "name": "sample: target below all letters", "kind": "sample", "visible": true, "input": {"letters": ["c","f","j"], "target": "a"}, "expected": "c", "tags": ["sample", "lower-boundary"]},
+    {"id": "sample-2", "name": "sample: skip exact target", "kind": "sample", "visible": true, "input": {"letters": ["c","f","j"], "target": "c"}, "expected": "f", "tags": ["sample", "strict"]},
+    {"id": "sample-3", "name": "sample: wrap after last letter", "kind": "sample", "visible": true, "input": {"letters": ["x","x","y","y"], "target": "z"}, "expected": "x", "tags": ["sample", "wraparound"]},
+    {"id": "trial-1", "name": "trial: target lies between letters", "kind": "trial", "visible": true, "input": {"letters": ["c","f","j"], "target": "d"}, "expected": "f", "tags": ["trial", "between"]},
+    {"id": "trial-2", "name": "trial: duplicates of target", "kind": "trial", "visible": true, "input": {"letters": ["e","e","e","n","n"], "target": "e"}, "expected": "n", "tags": ["trial", "duplicates"]},
+    {"id": "hidden-1", "name": "hidden: target equals maximum", "kind": "real", "visible": false, "input": {"letters": ["c","f","j"], "target": "j"}, "expected": "c", "tags": ["hidden", "wraparound"]},
+    {"id": "hidden-2", "name": "hidden: two letters and high target", "kind": "real", "visible": false, "input": {"letters": ["a","b"], "target": "z"}, "expected": "a", "tags": ["hidden", "upper-boundary"]},
+    {"id": "hidden-3", "name": "hidden: greater duplicate block", "kind": "real", "visible": false, "input": {"letters": ["x","x","y","y"], "target": "x"}, "expected": "y", "tags": ["hidden", "duplicates"]}
+  ]
+}

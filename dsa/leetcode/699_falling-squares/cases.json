@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_699",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: overlap then disjoint drop",
+      "kind": "sample",
+      "visible": true,
+      "input": {"positions": [[1,2],[2,3],[6,1]]},
+      "expected": [2,5,5],
+      "tags": ["sample", "partial-overlap"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: edge-touching squares",
+      "kind": "sample",
+      "visible": true,
+      "input": {"positions": [[100,100],[200,100]]},
+      "expected": [100,100],
+      "tags": ["sample", "touching-edges"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: nested stack",
+      "kind": "sample",
+      "visible": true,
+      "input": {"positions": [[1,5],[2,2],[3,1]]},
+      "expected": [5,7,8],
+      "tags": ["sample", "nested"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: three disjoint squares",
+      "kind": "trial",
+      "visible": true,
+      "input": {"positions": [[1,2],[4,3],[8,1]]},
+      "expected": [2,3,3],
+      "tags": ["trial", "disjoint"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: repeated identical footprint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"positions": [[2,2],[2,2],[2,2]]},
+      "expected": [2,4,6],
+      "tags": ["trial", "coincident"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: bridge across equal stacks",
+      "kind": "real",
+      "visible": false,
+      "input": {"positions": [[1,2],[4,2],[2,3]]},
+      "expected": [2,2,5],
+      "tags": ["hidden", "bridge"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: touching remains separate",
+      "kind": "real",
+      "visible": false,
+      "input": {"positions": [[1,2],[3,3]]},
+      "expected": [2,3],
+      "tags": ["hidden", "half-open"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: wide square uses tallest support",
+      "kind": "real",
+      "visible": false,
+      "input": {"positions": [[1,2],[5,4],[2,5]]},
+      "expected": [2,4,9],
+      "tags": ["hidden", "multiple-supports"]
+    }
+  ]
+}

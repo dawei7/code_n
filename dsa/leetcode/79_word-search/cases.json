@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_79",
+  "cases": [
+    {"id": "sample-long", "name": "sample: winding path", "kind": "sample", "visible": true, "input": {"board": [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "word": "ABCCED"}, "expected": true, "tags": ["sample"]},
+    {"id": "sample-short", "name": "sample: path near right edge", "kind": "sample", "visible": true, "input": {"board": [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "word": "SEE"}, "expected": true, "tags": ["sample"]},
+    {"id": "trial-no-reuse", "name": "cell cannot be reused", "kind": "trial", "visible": true, "input": {"board": [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "word": "ABCB"}, "expected": false, "tags": ["reuse"]},
+    {"id": "trial-single", "name": "single-cell match", "kind": "trial", "visible": true, "input": {"board": [["Z"]], "word": "Z"}, "expected": true, "tags": ["boundary"]},
+    {"id": "real-diagonal", "name": "hidden: diagonal adjacency is forbidden", "kind": "real", "visible": false, "input": {"board": [["A","X"],["X","B"]], "word": "AB"}, "expected": false, "tags": ["hidden", "adjacency"]}
+  ]
+}

@@ -1,0 +1,5 @@
+{"schema_version":1,"challenge_id":"lc_231","measurement_note":"Size is the significant bit length; the bitwise solution performs constant work as magnitude grows.","cases":[
+{"id":"benchmark-scale-1","name":"benchmark: 1-bit power","kind":"benchmark","visible":false,"size":1,"input":{"n":1},"expected":true,"tags":["benchmark","scale-small"]},
+{"id":"benchmark-scale-2","name":"benchmark: 8-bit power","kind":"benchmark","visible":false,"size":8,"input":{"n":128},"expected":true,"tags":["benchmark","scale-medium"]},
+{"id":"benchmark-scale-3","name":"benchmark: 30-bit power","kind":"benchmark","visible":false,"size":30,"input":{"n":536870912},"expected":true,"tags":["benchmark","scale-large"]}
+]}

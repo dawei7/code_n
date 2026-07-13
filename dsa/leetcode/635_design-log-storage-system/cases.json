@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_635",
+  "cases": [
+    {"id": "sample-1", "name": "sample: year and hour retrievals", "kind": "sample", "visible": true, "input": {"operations": ["LogSystem","put","put","put","retrieve","retrieve"], "arguments": [[],[1,"2017:01:01:23:59:59"],[2,"2017:01:01:22:59:59"],[3,"2016:01:01:00:00:00"],["2016:01:01:01:01:01","2017:01:01:23:00:00","Year"],["2016:01:01:01:01:01","2017:01:01:23:00:00","Hour"]]}, "expected": [null,null,null,null,[1,2,3],[1,2]], "tags": ["sample", "granularity"]},
+    {"id": "trial-1", "name": "trial: month boundary", "kind": "trial", "visible": true, "input": {"operations": ["LogSystem","put","put","retrieve"], "arguments": [[],[10,"2017:01:31:23:59:59"],[20,"2017:02:01:00:00:00"],["2017:01:01:00:00:00","2017:01:01:00:00:00","Month"]]}, "expected": [null,null,null,[10]], "tags": ["trial", "month"]},
+    {"id": "trial-2", "name": "trial: day ignores clock fields", "kind": "trial", "visible": true, "input": {"operations": ["LogSystem","put","put","put","retrieve"], "arguments": [[],[4,"2018:03:14:00:00:00"],[5,"2018:03:14:23:59:59"],[6,"2018:03:15:00:00:00"],["2018:03:14:12:00:00","2018:03:14:12:00:00","Day"]]}, "expected": [null,null,null,null,[4,5]], "tags": ["trial", "day"]},
+    {"id": "hidden-1", "name": "hidden: duplicate exact timestamps", "kind": "real", "visible": false, "input": {"operations": ["LogSystem","put","put","put","retrieve"], "arguments": [[],[7,"2019:06:30:12:30:45"],[8,"2019:06:30:12:30:45"],[9,"2019:06:30:12:30:46"],["2019:06:30:12:30:45","2019:06:30:12:30:45","Second"]]}, "expected": [null,null,null,null,[7,8]], "tags": ["hidden", "duplicates", "second"]},
+    {"id": "hidden-2", "name": "hidden: minute includes every second", "kind": "real", "visible": false, "input": {"operations": ["LogSystem","put","put","retrieve"], "arguments": [[],[30,"2020:05:01:12:34:59"],[40,"2020:05:01:12:35:00"],["2020:05:01:12:34:00","2020:05:01:12:34:00","Minute"]]}, "expected": [null,null,null,[30]], "tags": ["hidden", "minute"]},
+    {"id": "hidden-3", "name": "hidden: empty interval result", "kind": "real", "visible": false, "input": {"operations": ["LogSystem","put","retrieve"], "arguments": [[],[99,"2021:01:01:00:00:00"],["2022:01:01:00:00:00","2022:12:31:23:59:59","Year"]]}, "expected": [null,null,[]], "tags": ["hidden", "empty"]}
+  ]
+}

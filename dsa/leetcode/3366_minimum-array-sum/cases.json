@@ -1,0 +1,115 @@
+{
+  "challenge_id": "lc_3366",
+  "cases": [
+    {
+      "id": "sample-op2-then-op1",
+      "name": "sample: use subtract and divide on different values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          8,
+          3,
+          19,
+          3
+        ],
+        "k": 3,
+        "op1": 1,
+        "op2": 1
+      },
+      "expected": 23,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-two-divides-one-subtract",
+      "name": "sample: all operations on separate indices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          3
+        ],
+        "k": 3,
+        "op1": 2,
+        "op2": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "trial-both-orders-matter",
+      "name": "trial: subtract-then-divide can beat divide-then-subtract",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          5,
+          1
+        ],
+        "k": 4,
+        "op1": 2,
+        "op2": 2
+      },
+      "expected": 3,
+      "tags": [
+        "regression",
+        "operation-order"
+      ]
+    },
+    {
+      "id": "trial-zero-k",
+      "name": "trial: subtracting zero should not change the optimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          0,
+          9
+        ],
+        "k": 0,
+        "op1": 2,
+        "op2": 3
+      },
+      "expected": 8,
+      "tags": [
+        "edge",
+        "zero-k"
+      ]
+    },
+    {
+      "id": "real-balanced-ops",
+      "name": "real: limited operation budgets over mixed values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          18,
+          7,
+          25,
+          3,
+          12,
+          30
+        ],
+        "k": 6,
+        "op1": 3,
+        "op2": 2
+      },
+      "expected": 47,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

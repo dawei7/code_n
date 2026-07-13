@@ -1,0 +1,67 @@
+{
+  "challenge_id": "lc_1336",
+  "source": "leetcode",
+  "frontend_id": "1336",
+  "slug": "number-of-transactions-per-visit",
+  "title": "Number of Transactions per Visit",
+  "difficulty": "Hard",
+  "acceptance_rate": 47.892571837367356,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-transactions-per-visit/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:machine-zone",
+    "leetcode_company:machinezone",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:machine-zone",
+    "company:machinezone",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Machine Zone",
+      "slug": "machine-zone"
+    },
+    {
+      "name": "MachineZone",
+      "slug": "machinezone"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Machine Zone",
+        "slug": "machine-zone",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "MachineZone",
+        "slug": "machinezone",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

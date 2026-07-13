@@ -1,0 +1,76 @@
+{
+  "challenge_id": "lc_1363",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: remove one digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "digits": [
+          8,
+          1,
+          9
+        ]
+      },
+      "expected": "981",
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: includes zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "digits": [
+          8,
+          6,
+          7,
+          1,
+          0
+        ]
+      },
+      "expected": "8760",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-multiple",
+      "name": "single non-divisible digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          1
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-all-zeroes",
+      "name": "hidden: all zeroes collapse to one zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "digits": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": "0",
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

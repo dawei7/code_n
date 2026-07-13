@@ -1,0 +1,173 @@
+{
+  "challenge_id": "lc_3080",
+  "cases": [
+    {
+      "id": "sample-progressive-marking",
+      "name": "sample: direct mark plus smallest unmarked values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          1,
+          2,
+          3,
+          1
+        ],
+        "queries": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        3,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-already-marked-index",
+      "name": "sample: repeated explicit index does not subtract twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          3,
+          8
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        0,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-k-exceeds-remaining",
+      "name": "trial: k can exceed remaining unmarked elements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          7
+        ],
+        "queries": [
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-zero-k",
+      "name": "trial: zero smallest marks after explicit mark",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          2,
+          9,
+          1
+        ],
+        "queries": [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        9,
+        6
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-ties-by-index",
+      "name": "real: equal values are marked by smaller index first",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          2,
+          2,
+          5
+        ],
+        "queries": [
+          [
+            4,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        0,
+        0
+      ],
+      "tags": [
+        "real",
+        "heap"
+      ]
+    }
+  ]
+}

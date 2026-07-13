@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_505",
+  "cases": [
+    {"id": "sample-reachable", "name": "sample: shortest rolling distance", "kind": "sample", "visible": true, "input": {"maze": [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], "start": [0,4], "destination": [4,4]}, "expected": 12, "tags": ["sample", "reachable"]},
+    {"id": "sample-cannot-stop", "name": "sample: destination cannot be a stopping point", "kind": "sample", "visible": true, "input": {"maze": [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], "start": [0,4], "destination": [3,2]}, "expected": -1, "tags": ["sample", "unreachable"]},
+    {"id": "sample-open-grid", "name": "sample: two rolls across an open grid", "kind": "sample", "visible": true, "input": {"maze": [[0,0,0],[0,0,0],[0,0,0]], "start": [0,0], "destination": [2,2]}, "expected": 4, "tags": ["sample", "open"]},
+    {"id": "trial-start-equals-destination", "name": "trial: start already at destination", "kind": "trial", "visible": true, "input": {"maze": [[0,0],[0,0]], "start": [1,1], "destination": [1,1]}, "expected": 0, "tags": ["trial", "zero-distance"]},
+    {"id": "trial-straight-corridor", "name": "trial: one horizontal roll", "kind": "trial", "visible": true, "input": {"maze": [[0,0,0,0]], "start": [0,0], "destination": [0,3]}, "expected": 3, "tags": ["trial", "corridor"]},
+    {"id": "hidden-pass-through", "name": "hidden: passing through an interior destination is insufficient", "kind": "real", "visible": false, "input": {"maze": [[0,0,0,0,0]], "start": [0,0], "destination": [0,2]}, "expected": -1, "tags": ["hidden", "stop-semantics"]},
+    {"id": "hidden-isolated", "name": "hidden: start isolated from destination", "kind": "real", "visible": false, "input": {"maze": [[0,1,0],[1,1,0],[0,0,0]], "start": [0,0], "destination": [2,2]}, "expected": -1, "tags": ["hidden", "isolated"]}
+  ]
+}

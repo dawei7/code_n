@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_491",
+  "measurement_note": "Size is the array length. Depth-local duplicate pruning keeps an all-equal input to one branch per answer length, while bit-mask enumeration still generates every one of the 2^n index subsets before deduplication.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: deduplicate 3 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": [
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: deduplicate 7 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 7,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": [
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: deduplicate 14 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 14,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": [
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "all-equal"
+      ]
+    }
+  ]
+}

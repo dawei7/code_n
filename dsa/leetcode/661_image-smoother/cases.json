@@ -1,0 +1,8 @@
+{"schema_version":1,"challenge_id":"lc_661","cases":[
+{"id":"sample-1","name":"sample: central zero floors all averages","kind":"sample","visible":true,"input":{"img":[[1,1,1],[1,0,1],[1,1,1]]},"expected":[[0,0,0],[0,0,0],[0,0,0]],"tags":["sample","floor"]},
+{"id":"sample-2","name":"sample: one cell","kind":"sample","visible":true,"input":{"img":[[7]]},"expected":[[7]],"tags":["sample","boundary"]},
+{"id":"sample-3","name":"sample: one row","kind":"sample","visible":true,"input":{"img":[[1,2,3]]},"expected":[[1,2,2]],"tags":["sample","one-row"]},
+{"id":"trial-1","name":"trial: two by two shares one neighborhood","kind":"trial","visible":true,"input":{"img":[[1,2],[3,4]]},"expected":[[2,2],[2,2]],"tags":["trial","small"]},
+{"id":"trial-2","name":"trial: isolated bright center","kind":"trial","visible":true,"input":{"img":[[0,0,0],[0,9,0],[0,0,0]]},"expected":[[2,1,2],[1,1,1],[2,1,2]],"tags":["trial","boundaries"]},
+{"id":"hidden-1","name":"hidden: one column","kind":"real","visible":false,"input":{"img":[[3],[6],[9]]},"expected":[[4],[6],[7]],"tags":["hidden","one-column"]}
+]}

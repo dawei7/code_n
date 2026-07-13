@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_398",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated target picks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          3,
+          3
+        ],
+        "targets": [
+          3,
+          1,
+          3
+        ]
+      },
+      "expected": [
+        2,
+        0,
+        4
+      ],
+      "validator": {
+        "kind": "random_pick_indices",
+        "values_param": "nums",
+        "targets_param": "targets"
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single stored value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "targets": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "validator": {
+        "kind": "random_pick_indices",
+        "values_param": "nums",
+        "targets_param": "targets"
+      },
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: signed values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          4,
+          -1
+        ],
+        "targets": [
+          -1,
+          4
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "validator": {
+        "kind": "random_pick_indices",
+        "values_param": "nums",
+        "targets_param": "targets"
+      },
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-two-occurrences",
+      "name": "trial: either endpoint is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          8,
+          9,
+          5
+        ],
+        "targets": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        3,
+        0,
+        3
+      ],
+      "validator": {
+        "kind": "random_pick_indices",
+        "values_param": "nums",
+        "targets_param": "targets"
+      },
+      "tags": [
+        "trial",
+        "two-choices"
+      ]
+    },
+    {
+      "id": "trial-zero",
+      "name": "trial: zero target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          2
+        ],
+        "targets": [
+          0,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "random_pick_indices",
+        "values_param": "nums",
+        "targets_param": "targets"
+      },
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "hidden-many-values",
+      "name": "hidden: interleaved occurrence lists",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          1,
+          4,
+          2,
+          1,
+          4,
+          2
+        ],
+        "targets": [
+          1,
+          2,
+          4,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        6,
+        5,
+        4
+      ],
+      "validator": {
+        "kind": "random_pick_indices",
+        "values_param": "nums",
+        "targets_param": "targets"
+      },
+      "tags": [
+        "hidden",
+        "interleaved"
+      ]
+    },
+    {
+      "id": "hidden-last-only",
+      "name": "hidden: target occurs only at final index",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          9
+        ],
+        "targets": [
+          9,
+          9
+        ]
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "validator": {
+        "kind": "random_pick_indices",
+        "values_param": "nums",
+        "targets_param": "targets"
+      },
+      "tags": [
+        "hidden",
+        "last"
+      ]
+    },
+    {
+      "id": "hidden-all-equal",
+      "name": "hidden: every index is eligible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          6,
+          6,
+          6
+        ],
+        "targets": [
+          6,
+          6,
+          6
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "random_pick_indices",
+        "values_param": "nums",
+        "targets_param": "targets"
+      },
+      "tags": [
+        "hidden",
+        "all-equal"
+      ]
+    }
+  ]
+}

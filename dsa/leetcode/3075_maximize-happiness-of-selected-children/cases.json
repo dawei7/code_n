@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_3075",
+  "cases": [
+    {
+      "id": "sample-pick-two",
+      "name": "sample: pick two happiest children",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "happiness": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-zero-after-decrement",
+      "name": "sample: later choices can drop to zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "happiness": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-large-first",
+      "name": "trial: large values stay positive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "happiness": [
+          10,
+          8,
+          6,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 21,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-k-all",
+      "name": "trial: choose every child",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "happiness": [
+          5,
+          3,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 7,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-happiness",
+      "name": "real: mixed sorted contributions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "happiness": [
+          12,
+          1,
+          9,
+          3,
+          7,
+          2
+        ],
+        "k": 4
+      },
+      "expected": 25,
+      "tags": [
+        "real",
+        "greedy"
+      ]
+    }
+  ]
+}

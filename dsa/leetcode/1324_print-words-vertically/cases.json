@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_1324",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "HOW ARE YOU"
+      },
+      "expected": [
+        "HAY",
+        "ORO",
+        "WEU"
+      ],
+      "tags": [
+        "sample",
+        "string"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: trailing spaces trimmed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "TO BE OR NOT TO BE"
+      },
+      "expected": [
+        "TBONTB",
+        "OEROOE",
+        "   T"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: uneven words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "CONTEST IS COMING"
+      },
+      "expected": [
+        "CIC",
+        "OSO",
+        "N M",
+        "T I",
+        "E N",
+        "S G",
+        "T"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-word",
+      "name": "single one-character word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "A"
+      },
+      "expected": [
+        "A"
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-ragged-columns",
+      "name": "hidden: ragged columns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ABC DE F"
+      },
+      "expected": [
+        "ADF",
+        "BE",
+        "C"
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

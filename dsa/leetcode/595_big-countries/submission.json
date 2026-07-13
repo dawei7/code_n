@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "595",
+  "frontend_id": "595",
+  "title_slug": "big-countries",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065450859",
+  "verified_at": "2026-07-12T21:15:35.584657+00:00"
+}

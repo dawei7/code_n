@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_301",
+  "measurement_note": "A fixed ambiguous parenthesis core with growing retained text isolates per-character work without favoring DFS over BFS; size is total string length.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: ambiguous core with retained text at n=28",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 28,
+      "input": {
+        "s": "()())()aaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": [
+        "(())()aaaaaaaaaaaaaaaaaaaaa",
+        "()()()aaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "retained-text"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: ambiguous core with retained text at n=56",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 56,
+      "input": {
+        "s": "()())()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": [
+        "(())()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "()()()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "retained-text"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: ambiguous core with retained text at n=112",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 112,
+      "input": {
+        "s": "()())()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": [
+        "(())()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "()()()aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "retained-text"
+      ]
+    }
+  ]
+}

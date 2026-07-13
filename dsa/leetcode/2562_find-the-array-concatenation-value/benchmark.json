@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_2562",
+  "cases": [
+    {
+      "id": "benchmark-three-widths",
+      "name": "benchmark: concatenate values with different digit widths",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          20,
+          300
+        ]
+      },
+      "expected": 1320,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

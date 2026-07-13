@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_72",
+  "cases": [
+    {"id": "sample-horse", "name": "sample: mixed operations", "kind": "sample", "visible": true, "input": {"word1": "horse", "word2": "ros"}, "expected": 3, "tags": ["sample"]},
+    {"id": "sample-intention", "name": "sample: longer words", "kind": "sample", "visible": true, "input": {"word1": "intention", "word2": "execution"}, "expected": 5, "tags": ["sample"]},
+    {"id": "trial-empty", "name": "insert into empty source", "kind": "trial", "visible": true, "input": {"word1": "", "word2": "abc"}, "expected": 3, "tags": ["boundary"]},
+    {"id": "trial-identical", "name": "identical words require no edits", "kind": "trial", "visible": true, "input": {"word1": "algorithm", "word2": "algorithm"}, "expected": 0, "tags": ["identity"]},
+    {"id": "real-kitten", "name": "hidden: replacements and insertion", "kind": "real", "visible": false, "input": {"word1": "kitten", "word2": "sitting"}, "expected": 3, "tags": ["hidden", "mixed-operations"]}
+  ]
+}

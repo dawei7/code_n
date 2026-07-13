@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_2835",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: split eight once to form seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          8
+        ],
+        "target": 7
+      },
+      "tags": [
+        "sample",
+        "split"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: split thirty-two twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          32,
+          1,
+          2
+        ],
+        "target": 12
+      },
+      "tags": [
+        "sample",
+        "split"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-already-available",
+      "name": "trial: target is already a subsequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "target": 13
+      },
+      "tags": [
+        "trial",
+        "subsequence"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-impossible-total-sum",
+      "name": "trial: total sum is too small",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          32,
+          1
+        ],
+        "target": 35
+      },
+      "tags": [
+        "trial",
+        "impossible"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "real-single-large-cascade",
+      "name": "hidden: one large power split into many smaller powers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          64
+        ],
+        "target": 31
+      },
+      "tags": [
+        "hidden",
+        "cascade"
+      ],
+      "expected": 6
+    }
+  ]
+}

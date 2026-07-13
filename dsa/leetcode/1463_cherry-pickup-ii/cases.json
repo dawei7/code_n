@@ -1,0 +1,112 @@
+{
+  "challenge_id": "lc_1463",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            1,
+            1
+          ],
+          [
+            2,
+            5,
+            1
+          ],
+          [
+            1,
+            5,
+            5
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: sparse cherries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two by two grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-single-cell",
+      "name": "hidden: robots start on same single cell",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            5
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

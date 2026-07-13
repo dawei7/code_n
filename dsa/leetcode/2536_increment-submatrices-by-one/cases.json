@@ -1,0 +1,158 @@
+{
+  "challenge_id": "lc_2536",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: overlapping lower-right and upper-left squares",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "queries": [
+          [
+            1,
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          0,
+          1,
+          1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: whole two-by-two matrix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "queries": [
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one-cell matrix increment",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "queries": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-corners",
+      "name": "trial: disjoint one-cell increments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "queries": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-empty-query-list",
+      "name": "hidden: no submatrices are incremented",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "queries": []
+      },
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

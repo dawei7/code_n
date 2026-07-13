@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "314",
+  "frontend_id": "314",
+  "title_slug": "binary-tree-vertical-order-traversal",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064372913",
+  "verified_at": "2026-07-12T01:45:01.667447+00:00"
+}

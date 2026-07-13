@@ -1,0 +1,217 @@
+{
+  "challenge_id": "lc_3394",
+  "cases": [
+    {
+      "id": "sample-horizontal-cuts",
+      "name": "sample: two horizontal cuts create three sections",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "rectangles": [
+          [
+            1,
+            0,
+            5,
+            2
+          ],
+          [
+            0,
+            2,
+            2,
+            4
+          ],
+          [
+            3,
+            2,
+            5,
+            3
+          ],
+          [
+            0,
+            4,
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "intervals"
+      ]
+    },
+    {
+      "id": "sample-vertical-cuts",
+      "name": "sample: two vertical cuts create three sections",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "rectangles": [
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            0,
+            3,
+            4
+          ],
+          [
+            0,
+            2,
+            2,
+            3
+          ],
+          [
+            3,
+            0,
+            4,
+            3
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "intervals"
+      ]
+    },
+    {
+      "id": "sample-no-cuts",
+      "name": "sample: neither direction has three separated groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "rectangles": [
+          [
+            0,
+            2,
+            2,
+            4
+          ],
+          [
+            1,
+            0,
+            3,
+            2
+          ],
+          [
+            2,
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            0,
+            4,
+            2
+          ],
+          [
+            3,
+            2,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "false"
+      ]
+    },
+    {
+      "id": "trial-touching-edges",
+      "name": "trial: touching rectangle boundaries still allow a cut line",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "rectangles": [
+          [
+            0,
+            0,
+            2,
+            6
+          ],
+          [
+            2,
+            0,
+            4,
+            6
+          ],
+          [
+            4,
+            0,
+            6,
+            6
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "regression",
+        "touching-edges"
+      ]
+    },
+    {
+      "id": "real-layered-rectangles",
+      "name": "real: separated y groups with multiple rectangles per group",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 12,
+        "rectangles": [
+          [
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            3,
+            0,
+            5,
+            2
+          ],
+          [
+            0,
+            4,
+            4,
+            6
+          ],
+          [
+            5,
+            4,
+            9,
+            6
+          ],
+          [
+            1,
+            8,
+            3,
+            11
+          ],
+          [
+            6,
+            8,
+            10,
+            11
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "intervals"
+      ]
+    }
+  ]
+}

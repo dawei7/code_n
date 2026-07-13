@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_784",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two letters separated by digits", "kind": "sample", "visible": true, "input": {"s": "a1b2"}, "expected": ["a1b2", "a1B2", "A1b2", "A1B2"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "mixed"]},
+    {"id": "sample-2", "name": "sample: one letter", "kind": "sample", "visible": true, "input": {"s": "3z4"}, "expected": ["3z4", "3Z4"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "mixed"]},
+    {"id": "sample-3", "name": "sample: digits only", "kind": "sample", "visible": true, "input": {"s": "12345"}, "expected": ["12345"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "digits-only"]},
+    {"id": "trial-1", "name": "trial: one lowercase letter", "kind": "trial", "visible": true, "input": {"s": "a"}, "expected": ["a", "A"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "single-letter"]},
+    {"id": "trial-2", "name": "trial: one uppercase letter", "kind": "trial", "visible": true, "input": {"s": "C"}, "expected": ["c", "C"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "initial-uppercase"]},
+    {"id": "trial-3", "name": "trial: adjacent mixed-case letters", "kind": "trial", "visible": true, "input": {"s": "aB"}, "expected": ["ab", "aB", "Ab", "AB"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "initial-uppercase"]},
+    {"id": "hidden-1", "name": "hidden: one digit", "kind": "real", "visible": false, "input": {"s": "0"}, "expected": ["0"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "digits-only"]},
+    {"id": "hidden-2", "name": "hidden: uppercase and lowercase around digit", "kind": "real", "visible": false, "input": {"s": "Z9y"}, "expected": ["z9y", "z9Y", "Z9y", "Z9Y"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "mixed"]},
+    {"id": "hidden-3", "name": "hidden: three letters and two digits", "kind": "real", "visible": false, "input": {"s": "a1B2c"}, "expected": ["a1b2c", "a1b2C", "a1B2c", "a1B2C", "A1b2c", "A1b2C", "A1B2c", "A1B2C"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "mixed"]}
+  ]
+}

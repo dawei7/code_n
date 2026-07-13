@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_29",
+  "measurement_note": "The signed 32-bit domain caps the bit length at 32; tiers measure increasing quotient work within that bounded range.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: two-bit magnitude", "kind": "benchmark", "visible": false, "size": 2, "input": {"dividend": 7, "divisor": 2}, "expected": 3, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: eight-bit magnitude", "kind": "benchmark", "visible": false, "size": 8, "input": {"dividend": 255, "divisor": 17}, "expected": 15, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: sixteen-bit magnitude", "kind": "benchmark", "visible": false, "size": 16, "input": {"dividend": 65535, "divisor": 257}, "expected": 255, "tags": ["benchmark", "scale-large"]}
+  ]
+}

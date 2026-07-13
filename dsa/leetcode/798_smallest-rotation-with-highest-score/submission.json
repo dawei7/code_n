@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "814",
+  "frontend_id": "798",
+  "title_slug": "smallest-rotation-with-highest-score",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.bestRotation",
+  "verified_submission_id": "2066196243",
+  "verified_at": "2026-07-13T13:52:08.804444+00:00"
+}

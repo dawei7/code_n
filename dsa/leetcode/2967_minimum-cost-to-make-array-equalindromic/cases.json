@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2967",
+  "cases": [
+    {
+      "id": "sample-small-median",
+      "name": "sample: median is already a palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-repeated-palindrome",
+      "name": "sample: repeated palindrome target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          22,
+          33,
+          22
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-near-eleven",
+      "name": "trial: nearest palindrome around median",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          12,
+          13
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "palindrome"
+      ]
+    },
+    {
+      "id": "trial-power-boundary",
+      "name": "trial: palindrome near digit boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          98,
+          100,
+          102
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: larger values near six digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          12321,
+          12400,
+          13031,
+          99999
+        ]
+      },
+      "expected": 88309,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_1282",
+  "cases": [
+    {
+      "id": "benchmark-large-group",
+      "name": "benchmark: large group plus smaller groups",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "group_sizes": [
+          4,
+          4,
+          4,
+          4,
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          6
+        ]
+      ],
+      "validator": {
+        "kind": "group_people"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_2386",
+  "cases": [
+    {
+      "id": "benchmark-all-negative",
+      "name": "benchmark: all negative values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3
+        ],
+        "k": 4
+      },
+      "expected": -3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

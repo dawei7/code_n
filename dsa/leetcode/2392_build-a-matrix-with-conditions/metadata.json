@@ -1,0 +1,124 @@
+{
+  "challenge_id": "lc_2392",
+  "source": "leetcode",
+  "frontend_id": "2392",
+  "slug": "build-a-matrix-with-conditions",
+  "title": "Build a Matrix With Conditions",
+  "difficulty": "Hard",
+  "acceptance_rate": 79.36075940081281,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    },
+    {
+      "name": "Topological Sort",
+      "slug": "topological-sort"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/build-a-matrix-with-conditions/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_topic:array",
+    "leetcode_topic:graph",
+    "leetcode_topic:matrix",
+    "leetcode_topic:topological-sort",
+    "neetcode:allNC",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:graph",
+    "topic:matrix",
+    "topic:topological-sort"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Advanced Graphs"
+      ],
+      "order": 171,
+      "section_order": 11,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "build-a-matrix-with-conditions",
+      "leetcode_slug": "build-a-matrix-with-conditions",
+      "difficulty": "Hard",
+      "problem_order": 8
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Advanced Graphs"
+      ],
+      "order": 653,
+      "section_order": 11,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "build-a-matrix-with-conditions",
+      "leetcode_slug": "build-a-matrix-with-conditions",
+      "difficulty": "Hard",
+      "problem_order": 27
+    }
+  ]
+}

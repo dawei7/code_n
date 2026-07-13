@@ -1,0 +1,6 @@
+{"challenge_id":"lc_258","cases":[
+{"id":"sample-thirty-eight","name":"sample: two digit-sum rounds","kind":"sample","visible":true,"input":{"num":38},"expected":2,"tags":["sample","digital-root"]},
+{"id":"sample-zero","name":"sample: zero remains zero","kind":"sample","visible":true,"input":{"num":0},"expected":0,"tags":["sample","boundary"]},
+{"id":"trial-multiple-nine","name":"positive multiple of nine maps to nine","kind":"trial","visible":true,"input":{"num":9999},"expected":9,"tags":["modulo"]},
+{"id":"real-large","name":"hidden: large non-multiple of nine","kind":"real","visible":false,"input":{"num":2147483647},"expected":1,"tags":["hidden","upper-bound"]}
+]}

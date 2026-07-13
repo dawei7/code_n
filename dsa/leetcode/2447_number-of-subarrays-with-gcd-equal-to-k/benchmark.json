@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2447",
+  "cases": [
+    {
+      "id": "benchmark-many-gcd-three",
+      "name": "benchmark: many overlapping gcd-three subarrays",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          12,
+          3,
+          9,
+          15
+        ],
+        "k": 3
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

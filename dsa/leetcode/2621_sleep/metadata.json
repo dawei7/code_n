@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2621",
+  "source": "leetcode",
+  "frontend_id": "2621",
+  "slug": "sleep",
+  "title": "Sleep",
+  "difficulty": "Easy",
+  "acceptance_rate": 87.35294216368439,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/sleep/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript",
+    "leetcode_company:google",
+    "leetcode_studyplan:30-days-of-javascript",
+    "leetcode_studyplan:30-days-of-javascript:30-days-of-javascript-155-8jib",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:javascript",
+    "company:google",
+    "language:javascript",
+    "leetcode",
+    "study_plan:30-days-of-javascript",
+    "study_plan_section:30-days-of-javascript:30-days-of-javascript-155-8jib",
+    "subset:neetcode:allNC"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-javascript",
+      "plan_name": "30 Days of JavaScript",
+      "section_slug": "30-days-of-javascript-155-8jib",
+      "section_name": "Promises and Time",
+      "path": [
+        "Promises and Time"
+      ],
+      "order": 13,
+      "section_order": 4,
+      "problem_order": 2,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-javascript/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "JavaScript"
+      ],
+      "order": 953,
+      "section_order": 18,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "sleep",
+      "leetcode_slug": "sleep",
+      "difficulty": "Easy",
+      "problem_order": 10
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "challenge_id": "lc_3411",
+  "cases": [
+    {
+      "id": "sample-ones-and-twos",
+      "name": "sample: long product-equivalent subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three-length",
+      "name": "sample: coprime middle segment",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-five-length",
+      "name": "sample: ones extend the segment",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          4,
+          5,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-best",
+      "name": "trial: repeated composite values block long products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-small-values",
+      "name": "real: mixed values under official bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          6,
+          1,
+          2,
+          3,
+          1,
+          5,
+          10,
+          1,
+          2
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

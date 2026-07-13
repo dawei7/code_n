@@ -1,0 +1,67 @@
+{
+  "challenge_id": "lc_3226",
+  "source": "leetcode",
+  "frontend_id": "3226",
+  "slug": "number-of-bit-changes-to-make-two-integers-equal",
+  "title": "Number of Bit Changes to Make Two Integers Equal",
+  "difficulty": "Easy",
+  "acceptance_rate": 63.63099114745398,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-bit-changes-to-make-two-integers-equal/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:thoughtworks",
+    "leetcode_topic:bit-manipulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:thoughtworks",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:bit-manipulation"
+  ],
+  "company_tags": [
+    {
+      "name": "ThoughtWorks",
+      "slug": "thoughtworks"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "ThoughtWorks",
+        "slug": "thoughtworks",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

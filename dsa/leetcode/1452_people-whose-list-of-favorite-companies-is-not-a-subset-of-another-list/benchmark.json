@@ -1,0 +1,40 @@
+{
+  "challenge_id": "lc_1452",
+  "cases": [
+    {
+      "id": "benchmark-nested-and-disjoint",
+      "name": "benchmark: nested sets plus a disjoint list",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "favorite_companies": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "a",
+            "b",
+            "c"
+          ],
+          [
+            "d"
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        4
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "challenge_id": "lc_1499",
+  "cases": [
+    {
+      "id": "benchmark-queue-keeps-best-prior",
+      "name": "benchmark: queue keeps best prior point",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 22,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

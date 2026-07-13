@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "822",
+  "frontend_id": "804",
+  "title_slug": "unique-morse-code-words",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.uniqueMorseRepresentations",
+  "verified_submission_id": "2066230539",
+  "verified_at": "2026-07-13T14:23:26.896391+00:00"
+}

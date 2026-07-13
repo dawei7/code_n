@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_1223",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed limits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "roll_max": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 34,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all limits one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "roll_max": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 30,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: length three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "roll_max": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 181,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-one-roll",
+      "name": "hidden: one roll",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "roll_max": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

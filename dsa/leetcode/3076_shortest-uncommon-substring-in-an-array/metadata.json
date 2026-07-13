@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_3076",
+  "source": "leetcode",
+  "frontend_id": "3076",
+  "slug": "shortest-uncommon-substring-in-an-array",
+  "title": "Shortest Uncommon Substring in an Array",
+  "difficulty": "Medium",
+  "acceptance_rate": 51.099833037394326,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Trie",
+      "slug": "trie"
+    }
+  ],
+  "url": "https://leetcode.com/problems/shortest-uncommon-substring-in-an-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:affirm",
+    "leetcode_company:airbnb",
+    "leetcode_company:moveworks",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:string",
+    "leetcode_topic:trie"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:affirm",
+    "company:airbnb",
+    "company:moveworks",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:string",
+    "topic:trie"
+  ],
+  "company_tags": [
+    {
+      "name": "Moveworks",
+      "slug": "moveworks"
+    },
+    {
+      "name": "Airbnb",
+      "slug": "airbnb"
+    },
+    {
+      "name": "Affirm",
+      "slug": "affirm"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": true,
+        "name": "Moveworks",
+        "slug": "moveworks",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Airbnb",
+        "slug": "airbnb",
+        "timesEncountered": 6
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Affirm",
+        "slug": "affirm",
+        "timesEncountered": 3
+      }
+    ],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

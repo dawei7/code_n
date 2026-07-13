@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_18",
+  "cases": [
+    {"id": "sample-1", "name": "sample: three unique quadruplets", "kind": "sample", "visible": true, "input": {"nums": [1, 0, -1, 0, -2, 2], "target": 0}, "expected": [[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "duplicates"]},
+    {"id": "sample-2", "name": "sample: all values equal", "kind": "sample", "visible": true, "input": {"nums": [2, 2, 2, 2, 2], "target": 8}, "expected": [[2, 2, 2, 2]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "duplicates"]},
+    {"id": "trial-too-short", "name": "fewer than four values", "kind": "trial", "visible": true, "input": {"nums": [1, 2, 3], "target": 6}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["boundary"]},
+    {"id": "trial-no-solution", "name": "target outside achievable range", "kind": "trial", "visible": true, "input": {"nums": [-3, -1, 0, 2, 4, 5], "target": 100}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["no-solution"]},
+    {"id": "real-zero-duplicates", "name": "hidden: many zeroes produce one result", "kind": "real", "visible": false, "input": {"nums": [0, 0, 0, 0, 0, 0], "target": 0}, "expected": [[0, 0, 0, 0]], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "duplicates"]}
+  ]
+}

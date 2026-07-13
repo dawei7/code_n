@@ -1,0 +1,71 @@
+{
+  "challenge_id": "lc_3039",
+  "cases": [
+    {
+      "id": "sample-last-pass-two-chars",
+      "name": "sample: final operation removes two max-frequency chars",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aabcbbca"
+      },
+      "expected": "ba",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-once",
+      "name": "sample: every character is removed in the first pass",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd"
+      },
+      "expected": "abcd",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-one-char",
+      "name": "sample: one repeated character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": "a",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-order-by-last-index",
+      "name": "trial: result follows last occurrence order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abacbade"
+      },
+      "expected": "a",
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-many-tied-max",
+      "name": "real: several maximum-frequency letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzxyxzyyxxzz"
+      },
+      "expected": "z",
+      "tags": [
+        "real",
+        "counts"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_466",
+  "cases": [
+    {
+      "id": "sample-grouped-targets",
+      "name": "sample: four target copies form two groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "acb", "n1": 4, "s2": "ab", "n2": 2},
+      "expected": 2,
+      "tags": ["sample", "grouping"]
+    },
+    {
+      "id": "sample-identical-block",
+      "name": "sample: identical source and target",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "acb", "n1": 1, "s2": "acb", "n2": 1},
+      "expected": 1,
+      "tags": ["sample", "identical"]
+    },
+    {
+      "id": "sample-overlapping-characters",
+      "name": "sample: dense repeated character matching",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "aaa", "n1": 3, "s2": "aa", "n2": 1},
+      "expected": 4,
+      "tags": ["sample", "dense"]
+    },
+    {
+      "id": "trial-missing-character",
+      "name": "trial: target alphabet is impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s1": "abc", "n1": 100, "s2": "d", "n2": 1},
+      "expected": 0,
+      "tags": ["trial", "missing"]
+    },
+    {
+      "id": "trial-cross-boundary",
+      "name": "trial: target copies cross source boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s1": "abc", "n1": 4, "s2": "cab", "n2": 1},
+      "expected": 3,
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "hidden-incomplete-group",
+      "name": "hidden: leftover target copy does not form a group",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "ab", "n1": 5, "s2": "ab", "n2": 2},
+      "expected": 2,
+      "tags": ["hidden", "grouping"]
+    },
+    {
+      "id": "hidden-large-cycle",
+      "name": "hidden: cycle skipping across many source blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "baba", "n1": 1000, "s2": "ba", "n2": 3},
+      "expected": 666,
+      "tags": ["hidden", "cycle"]
+    }
+  ]
+}

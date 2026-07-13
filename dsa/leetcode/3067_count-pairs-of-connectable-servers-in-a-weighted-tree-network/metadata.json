@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_3067",
+  "source": "leetcode",
+  "frontend_id": "3067",
+  "slug": "count-pairs-of-connectable-servers-in-a-weighted-tree-network",
+  "title": "Count Pairs of Connectable Servers in a Weighted Tree Network",
+  "difficulty": "Medium",
+  "acceptance_rate": 56.13330259821516,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    },
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-pairs-of-connectable-servers-in-a-weighted-tree-network/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:thoughtspot",
+    "leetcode_company:ubs",
+    "leetcode_topic:array",
+    "leetcode_topic:depth-first-search",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:thoughtspot",
+    "company:ubs",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:depth-first-search",
+    "topic:tree"
+  ],
+  "company_tags": [
+    {
+      "name": "thoughtspot",
+      "slug": "thoughtspot"
+    },
+    {
+      "name": "UBS",
+      "slug": "ubs"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "thoughtspot",
+        "slug": "thoughtspot",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "UBS",
+        "slug": "ubs",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

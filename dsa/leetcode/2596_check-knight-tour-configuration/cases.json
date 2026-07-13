@@ -1,0 +1,147 @@
+{
+  "challenge_id": "lc_2596",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: valid five by five tour",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            11,
+            16,
+            5,
+            20
+          ],
+          [
+            17,
+            4,
+            19,
+            10,
+            15
+          ],
+          [
+            12,
+            1,
+            8,
+            21,
+            6
+          ],
+          [
+            3,
+            18,
+            23,
+            14,
+            9
+          ],
+          [
+            24,
+            13,
+            2,
+            7,
+            22
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: invalid knight moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            5,
+            8,
+            1
+          ],
+          [
+            2,
+            7,
+            4
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: single-cell tour",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-wrong-start",
+      "name": "trial: tour must start at top-left",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-two-by-two-impossible",
+      "name": "hidden: two by two has no complete knight tour",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

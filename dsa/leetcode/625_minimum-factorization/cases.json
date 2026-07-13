@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_625",
+  "cases": [
+    {"id": "sample-1", "name": "sample: combine factors into six and eight", "kind": "sample", "visible": true, "input": {"a": 48}, "expected": 68, "tags": ["sample", "composite-digits"]},
+    {"id": "sample-2", "name": "sample: product fifteen", "kind": "sample", "visible": true, "input": {"a": 15}, "expected": 35, "tags": ["sample", "two-digits"]},
+    {"id": "sample-3", "name": "sample: unsupported prime factor", "kind": "sample", "visible": true, "input": {"a": 13}, "expected": 0, "tags": ["sample", "impossible"]},
+    {"id": "trial-1", "name": "trial: one is already minimal", "kind": "trial", "visible": true, "input": {"a": 1}, "expected": 1, "tags": ["trial", "one-digit"]},
+    {"id": "trial-2", "name": "trial: two threes form digit nine", "kind": "trial", "visible": true, "input": {"a": 36}, "expected": 49, "tags": ["trial", "greedy-grouping"]},
+    {"id": "hidden-1", "name": "hidden: several composite factors", "kind": "real", "visible": false, "input": {"a": 100}, "expected": 455, "tags": ["hidden", "ascending-digits"]},
+    {"id": "hidden-2", "name": "hidden: minimum representation overflows", "kind": "real", "visible": false, "input": {"a": 1073741824}, "expected": 0, "tags": ["hidden", "overflow"]}
+  ]
+}

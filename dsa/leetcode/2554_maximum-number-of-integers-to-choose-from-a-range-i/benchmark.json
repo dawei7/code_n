@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_2554",
+  "cases": [
+    {
+      "id": "benchmark-skipping-banned-values",
+      "name": "benchmark: banned gaps still allow three picks",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "banned": [
+          2,
+          4
+        ],
+        "n": 6,
+        "maxSum": 10
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

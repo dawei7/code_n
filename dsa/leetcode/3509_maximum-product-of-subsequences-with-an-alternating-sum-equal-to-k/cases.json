@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_3509",
+  "cases": [
+    {
+      "id": "sample-product-six",
+      "name": "sample: product six within limit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2,
+        "limit": 10
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-no-sum",
+      "name": "sample: no matching alternating sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          2,
+          3
+        ],
+        "k": -5,
+        "limit": 12
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-limit-excludes-largest",
+      "name": "sample: product limit excludes larger subsequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          3
+        ],
+        "k": 0,
+        "limit": 9
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "limit"
+      ]
+    },
+    {
+      "id": "trial-zero-recovers-product",
+      "name": "trial: zero can recover over-limit product",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          0,
+          4
+        ],
+        "k": -2,
+        "limit": 4
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-mixed-small-values",
+      "name": "real: mixed small values and limit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          0,
+          5,
+          2,
+          1,
+          4
+        ],
+        "k": 2,
+        "limit": 60
+      },
+      "expected": 60,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

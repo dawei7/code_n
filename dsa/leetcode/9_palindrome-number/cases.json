@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_9",
+  "cases": [
+    {"id": "sample-1", "name": "sample: odd-length palindrome", "kind": "sample", "visible": true, "input": {"x": 121}, "expected": true, "tags": ["sample", "odd"]},
+    {"id": "sample-2", "name": "sample: negative number", "kind": "sample", "visible": true, "input": {"x": -121}, "expected": false, "tags": ["sample", "negative"]},
+    {"id": "trial-trailing-zero", "name": "nonzero trailing zero", "kind": "trial", "visible": true, "input": {"x": 10}, "expected": false, "tags": ["zero"]},
+    {"id": "trial-zero", "name": "zero is a palindrome", "kind": "trial", "visible": true, "input": {"x": 0}, "expected": true, "tags": ["boundary"]},
+    {"id": "real-even-boundary", "name": "hidden: large even-length palindrome", "kind": "real", "visible": false, "input": {"x": 2147447412}, "expected": true, "tags": ["hidden", "even", "boundary"]}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_622",
+  "cases": [
+    {"id": "sample-1", "name": "sample: fill, reject, wrap, and inspect", "kind": "sample", "visible": true, "input": {"operations": ["MyCircularQueue","enQueue","enQueue","enQueue","enQueue","Rear","isFull","deQueue","enQueue","Rear"], "arguments": [[3],[1],[2],[3],[4],[],[],[],[4],[]]}, "expected": [null,true,true,true,false,3,true,true,true,4], "tags": ["sample", "wrap"]},
+    {"id": "sample-2", "name": "sample: capacity one lifecycle", "kind": "sample", "visible": true, "input": {"operations": ["MyCircularQueue","Front","Rear","enQueue","Front","Rear","isFull"], "arguments": [[1],[],[],[7],[],[],[]]}, "expected": [null,-1,-1,true,7,7,true], "tags": ["sample", "capacity-one"]},
+    {"id": "sample-3", "name": "sample: empty operations leave state unchanged", "kind": "sample", "visible": true, "input": {"operations": ["MyCircularQueue","isEmpty","deQueue","Front","Rear","isEmpty"], "arguments": [[4],[],[],[],[],[]]}, "expected": [null,true,false,-1,-1,true], "tags": ["sample", "empty"]},
+    {"id": "trial-1", "name": "trial: wrapped front and rear", "kind": "trial", "visible": true, "input": {"operations": ["MyCircularQueue","enQueue","enQueue","deQueue","enQueue","Front","Rear","isFull"], "arguments": [[2],[10],[20],[],[30],[],[],[]]}, "expected": [null,true,true,true,true,20,30,true], "tags": ["trial", "wrapped-endpoints"]},
+    {"id": "trial-2", "name": "trial: failed enqueue preserves rear", "kind": "trial", "visible": true, "input": {"operations": ["MyCircularQueue","enQueue","enQueue","enQueue","Rear","Front"], "arguments": [[2],[5],[6],[99],[],[]]}, "expected": [null,true,true,false,6,5], "tags": ["trial", "full"]},
+    {"id": "hidden-1", "name": "hidden: several wrap cycles", "kind": "real", "visible": false, "input": {"operations": ["MyCircularQueue","enQueue","enQueue","enQueue","deQueue","deQueue","enQueue","enQueue","Front","Rear","deQueue","enQueue","Front","Rear"], "arguments": [[3],[1],[2],[3],[],[],[4],[5],[],[],[],[6],[],[]]}, "expected": [null,true,true,true,true,true,true,true,3,5,true,true,4,6], "tags": ["hidden", "multiple-wraps"]},
+    {"id": "hidden-2", "name": "hidden: refill after becoming empty", "kind": "real", "visible": false, "input": {"operations": ["MyCircularQueue","enQueue","deQueue","isEmpty","enQueue","enQueue","Front","Rear","isFull"], "arguments": [[2],[8],[],[],[9],[10],[],[],[]]}, "expected": [null,true,true,true,true,true,9,10,true], "tags": ["hidden", "refill"]}
+  ]
+}

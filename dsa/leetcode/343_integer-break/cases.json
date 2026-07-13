@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_343",
+  "cases": [
+    {"id":"sample-1","name":"sample: three threes and a remainder","kind":"sample","visible":true,"input":{"n":10},"expected":36,"tags":["sample"]},
+    {"id":"sample-2","name":"sample: mandatory split of three","kind":"sample","visible":true,"input":{"n":3},"expected":2,"tags":["sample","boundary"]},
+    {"id":"sample-3","name":"sample: smallest input","kind":"sample","visible":true,"input":{"n":2},"expected":1,"tags":["sample","boundary"]},
+    {"id":"trial-four","name":"trial: two plus two","kind":"trial","visible":false,"input":{"n":4},"expected":4,"tags":["trial","remainder-one"]},
+    {"id":"trial-five","name":"trial: three plus two","kind":"trial","visible":false,"input":{"n":5},"expected":6,"tags":["trial","remainder-two"]},
+    {"id":"hidden-divisible-by-three","name":"hidden: exact groups of three","kind":"real","visible":false,"input":{"n":9},"expected":27,"tags":["hidden","remainder-zero"]},
+    {"id":"hidden-remainder-two","name":"hidden: larger remainder-two case","kind":"real","visible":false,"input":{"n":8},"expected":18,"tags":["hidden","remainder-two"]},
+    {"id":"hidden-maximum","name":"hidden: maximum input","kind":"real","visible":false,"input":{"n":58},"expected":1549681956,"tags":["hidden","boundary","remainder-one"]}
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_3376",
+  "cases": [
+    {
+      "id": "sample-three-locks-k-one",
+      "name": "sample: break low strength first with k one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "locks": [
+          3,
+          4,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "bitmask-dp"
+      ]
+    },
+    {
+      "id": "sample-three-locks-k-two",
+      "name": "sample: larger factor increment changes order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "locks": [
+          2,
+          5,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "bitmask-dp"
+      ]
+    },
+    {
+      "id": "trial-minutes-not-energy",
+      "name": "trial: add minutes needed, not accumulated energy",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "locks": [
+          6,
+          7
+        ],
+        "k": 3
+      },
+      "expected": 8,
+      "tags": [
+        "regression",
+        "minutes"
+      ]
+    },
+    {
+      "id": "trial-single-lock",
+      "name": "trial: single lock uses initial factor only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "locks": [
+          11
+        ],
+        "k": 5
+      },
+      "expected": 11,
+      "tags": [
+        "edge",
+        "single"
+      ]
+    },
+    {
+      "id": "real-eight-locks",
+      "name": "real: full n equals eight bitmask case",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "locks": [
+          9,
+          17,
+          4,
+          23,
+          11,
+          30,
+          6,
+          14
+        ],
+        "k": 3
+      },
+      "expected": 15,
+      "tags": [
+        "real",
+        "bitmask-dp"
+      ]
+    }
+  ]
+}

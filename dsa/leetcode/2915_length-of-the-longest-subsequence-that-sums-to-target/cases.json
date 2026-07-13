@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_2915",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: length three reaches target nine",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "target": 9
+      },
+      "tags": [
+        "sample",
+        "dp"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four values reach target seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          3,
+          2,
+          1,
+          5
+        ],
+        "target": 7
+      },
+      "tags": [
+        "sample",
+        "subsequence"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no subsequence reaches target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          5,
+          4,
+          5
+        ],
+        "target": 3
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-all-equal-values",
+      "name": "trial: two equal values make the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ],
+        "target": 4
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-longest-prefers-small-values",
+      "name": "hidden: longest answer is not the fewest values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "target": 6
+      },
+      "tags": [
+        "hidden",
+        "length"
+      ],
+      "expected": 4
+    }
+  ]
+}

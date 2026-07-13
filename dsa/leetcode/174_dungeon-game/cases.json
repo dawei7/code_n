@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_174",
+  "cases": [
+    {"id": "sample-mixed-grid", "name": "sample: gains and losses", "kind": "sample", "visible": true, "input": {"dungeon": [[-2, -3, 3], [-5, -10, 1], [10, 30, -5]]}, "expected": 7, "tags": ["sample", "dynamic-programming"]},
+    {"id": "sample-neutral-single", "name": "sample: neutral single cell", "kind": "sample", "visible": true, "input": {"dungeon": [[0]]}, "expected": 1, "tags": ["sample", "boundary"]},
+    {"id": "trial-negative-single", "name": "single damaging cell", "kind": "trial", "visible": true, "input": {"dungeon": [[-3]]}, "expected": 4, "tags": ["boundary", "negative"]},
+    {"id": "trial-positive-single", "name": "single healing cell", "kind": "trial", "visible": true, "input": {"dungeon": [[100]]}, "expected": 1, "tags": ["boundary", "positive"]},
+    {"id": "real-all-negative", "name": "hidden: every path accumulates damage", "kind": "real", "visible": false, "input": {"dungeon": [[-1, -1], [-1, -1]]}, "expected": 4, "tags": ["hidden", "negative"]}
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_3336",
+  "cases": [
+    {
+      "id": "sample-one-two-three",
+      "name": "sample: small mixed gcds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "gcd-dp"
+      ]
+    },
+    {
+      "id": "sample-tens",
+      "name": "sample: common factor values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "gcd-dp"
+      ]
+    },
+    {
+      "id": "sample-all-ones",
+      "name": "sample: all choices share gcd one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 50,
+      "tags": [
+        "sample",
+        "gcd-dp"
+      ]
+    },
+    {
+      "id": "trial-two-equal-values",
+      "name": "trial: two equal values form two ordered non-empty subsequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "disjoint-subsequences"
+      ]
+    },
+    {
+      "id": "trial-mixed-composites",
+      "name": "trial: composite values with several matching gcd pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15,
+          30
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "test",
+        "number-theory"
+      ]
+    },
+    {
+      "id": "real-equal-gcd-composites",
+      "name": "real: composite values with repeated gcd states",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8,
+          12
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "real",
+        "gcd-dp"
+      ]
+    }
+  ]
+}

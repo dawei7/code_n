@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_258",
+  "measurement_note": "Size is the numeric input value; constant-time modular arithmetic stays flat while value-linear remainder simulation scales with num.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: digital root of 1000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "num": 1000
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "arithmetic"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: digital root of 10000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {
+        "num": 10000
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "arithmetic"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: digital root of 1000000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000000,
+      "input": {
+        "num": 1000000
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "arithmetic"
+      ]
+    }
+  ]
+}

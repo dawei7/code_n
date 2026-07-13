@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1413",
+  "cases": [
+    {
+      "id": "benchmark-deep-middle-dip",
+      "name": "benchmark: deepest prefix after recovery",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3,
+          10,
+          -20,
+          5
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

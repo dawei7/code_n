@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_1299",
+  "cases": [
+    {
+      "id": "benchmark-repeated-maximum",
+      "name": "benchmark: repeated maximum",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          1,
+          5,
+          3,
+          2
+        ]
+      },
+      "expected": [
+        5,
+        5,
+        3,
+        2,
+        -1
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

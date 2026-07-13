@@ -1,0 +1,64 @@
+{
+  "challenge_id": "lc_1195",
+  "source": "leetcode",
+  "frontend_id": "1195",
+  "slug": "fizz-buzz-multithreaded",
+  "title": "Fizz Buzz Multithreaded",
+  "difficulty": "Medium",
+  "acceptance_rate": 74.86572878143062,
+  "category": "concurrency",
+  "category_title": "Concurrency",
+  "topics": [
+    {
+      "name": "Concurrency",
+      "slug": "concurrency"
+    }
+  ],
+  "url": "https://leetcode.com/problems/fizz-buzz-multithreaded/",
+  "supported_languages": [],
+  "primary_language": "",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:concurrency",
+    "leetcode_company:microsoft",
+    "leetcode_company:nvidia",
+    "leetcode_topic:concurrency"
+  ],
+  "tags": [
+    "category:concurrency",
+    "company:microsoft",
+    "company:nvidia",
+    "leetcode",
+    "topic:concurrency"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

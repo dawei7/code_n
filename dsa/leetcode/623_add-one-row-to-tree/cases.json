@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_623",
+  "cases": [
+    {"id": "sample-1", "name": "sample: insert below the root", "kind": "sample", "visible": true, "input": {"root": [4,2,6,3,1,5], "val": 1, "depth": 2}, "expected": [4,1,1,2,null,null,6,3,1,5], "tags": ["sample", "depth-two"]},
+    {"id": "sample-2", "name": "sample: insert below a one-sided level", "kind": "sample", "visible": true, "input": {"root": [4,2,null,3,1], "val": 1, "depth": 3}, "expected": [4,2,null,1,1,3,null,null,1], "tags": ["sample", "one-sided"]},
+    {"id": "sample-3", "name": "sample: create a new root", "kind": "sample", "visible": true, "input": {"root": [1,2,3], "val": 9, "depth": 1}, "expected": [9,1,null,2,3], "tags": ["sample", "new-root"]},
+    {"id": "trial-1", "name": "trial: leaf receives two new children", "kind": "trial", "visible": true, "input": {"root": [5], "val": 7, "depth": 2}, "expected": [5,7,7], "tags": ["trial", "leaf"]},
+    {"id": "trial-2", "name": "trial: preserve asymmetric old children", "kind": "trial", "visible": true, "input": {"root": [8,4,10,null,6,9], "val": 2, "depth": 3}, "expected": [8,4,10,2,2,2,2,null,null,null,6,9], "tags": ["trial", "asymmetric"]},
+    {"id": "hidden-1", "name": "hidden: insert negative row above leaves", "kind": "real", "visible": false, "input": {"root": [1,2,3,4,5,6,7], "val": -1, "depth": 3}, "expected": [1,2,3,-1,-1,-1,-1,4,null,null,5,6,null,null,7], "tags": ["hidden", "negative-value"]},
+    {"id": "hidden-2", "name": "hidden: insert at bottom of right chain", "kind": "real", "visible": false, "input": {"root": [1,null,2,null,3], "val": 4, "depth": 4}, "expected": [1,null,2,null,3,4,4], "tags": ["hidden", "right-chain"]}
+  ]
+}

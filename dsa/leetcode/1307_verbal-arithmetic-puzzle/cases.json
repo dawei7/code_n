@@ -1,0 +1,76 @@
+{
+  "challenge_id": "lc_1307",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: send more money",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "SEND",
+          "MORE"
+        ],
+        "result": "MONEY"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: six plus seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "SIX",
+          "SEVEN",
+          "SEVEN"
+        ],
+        "result": "TWENTY"
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: this is too funny",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "THIS",
+          "IS",
+          "TOO"
+        ],
+        "result": "FUNNY"
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-unsatisfiable",
+      "name": "hidden: no assignment exists",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "LEET",
+          "CODE"
+        ],
+        "result": "POINT"
+      },
+      "expected": false,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

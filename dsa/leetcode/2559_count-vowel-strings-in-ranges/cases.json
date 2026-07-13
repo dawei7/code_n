@@ -1,0 +1,131 @@
+{
+  "challenge_id": "lc_2559",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed words and three ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "aba",
+          "bcb",
+          "ece",
+          "aa",
+          "e"
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        0
+      ],
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all words are vowel strings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "e",
+          "i"
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-valid-word",
+      "name": "trial: only one word starts and ends with vowels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "owl",
+          "ice"
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-consonant-word",
+      "name": "hidden: one consonant-only word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "b"
+        ],
+        "queries": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

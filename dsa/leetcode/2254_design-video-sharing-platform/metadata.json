@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_2254",
+  "source": "leetcode",
+  "frontend_id": "2254",
+  "slug": "design-video-sharing-platform",
+  "title": "Design Video Sharing Platform",
+  "difficulty": "Hard",
+  "acceptance_rate": 64.26426426426426,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-video-sharing-platform/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:google",
+    "leetcode_studyplan:google-spring-23-high-frequency",
+    "leetcode_studyplan:google-spring-23-high-frequency:google-spring-23-high-frequency-143-kvk3",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:heap-priority-queue"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:google-spring-23-high-frequency",
+    "study_plan_section:google-spring-23-high-frequency:google-spring-23-high-frequency-143-kvk3",
+    "topic:design",
+    "topic:hash-table",
+    "topic:heap-priority-queue"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "google-spring-23-high-frequency",
+      "plan_name": "Google Spring' 23 High Frequency",
+      "section_slug": "google-spring-23-high-frequency-143-kvk3",
+      "section_name": "April Interview Questions",
+      "path": [
+        "April Interview Questions"
+      ],
+      "order": 9,
+      "section_order": 2,
+      "problem_order": 7,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/google-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": []
+}

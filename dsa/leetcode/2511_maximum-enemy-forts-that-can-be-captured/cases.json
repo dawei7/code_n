@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_2511",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: longest capture segment is between opposite forts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "forts": [
+          1,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: adjacent opposite forts capture none",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "forts": [
+          0,
+          0,
+          1,
+          -1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: same fort type cannot capture",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "forts": [
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-enemy-to-owned-fort",
+      "name": "trial: capture also works in the reverse direction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "forts": [
+          -1,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-fort",
+      "name": "hidden: one fort cannot form a capture path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "forts": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

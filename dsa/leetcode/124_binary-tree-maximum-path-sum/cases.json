@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_124",
+  "cases": [
+    {"id": "sample-root-turn", "name": "sample: path through root", "kind": "sample", "visible": true, "input": {"root": [1, 2, 3]}, "expected": 6, "tags": ["sample", "turn"]},
+    {"id": "sample-subtree", "name": "sample: best path below root", "kind": "sample", "visible": true, "input": {"root": [-10, 9, 20, null, null, 15, 7]}, "expected": 42, "tags": ["sample", "subtree"]},
+    {"id": "sample-negative", "name": "sample: one negative node", "kind": "sample", "visible": true, "input": {"root": [-3]}, "expected": -3, "tags": ["sample", "negative"]},
+    {"id": "trial-one-branch", "name": "negative branch is excluded", "kind": "trial", "visible": true, "input": {"root": [2, -1]}, "expected": 2, "tags": ["negative-gain"]},
+    {"id": "real-all-negative", "name": "hidden: all-negative tree", "kind": "real", "visible": false, "input": {"root": [-8, -3, -10, -4, -5]}, "expected": -3, "tags": ["hidden", "negative"]}
+  ]
+}

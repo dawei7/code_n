@@ -1,0 +1,119 @@
+{
+  "challenge_id": "lc_2382",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: split several segments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          5,
+          6,
+          1
+        ],
+        "remove_queries": [
+          0,
+          3,
+          2,
+          4,
+          1
+        ]
+      },
+      "expected": [
+        14,
+        7,
+        2,
+        2,
+        0
+      ],
+      "tags": [
+        "sample",
+        "union-find"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: removals from right to left",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          11,
+          1
+        ],
+        "remove_queries": [
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      "expected": [
+        16,
+        5,
+        3,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: middle first",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          9,
+          2
+        ],
+        "remove_queries": [
+          1,
+          0,
+          2
+        ]
+      },
+      "expected": [
+        5,
+        2,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-three-elements",
+      "name": "hidden: center removal splits both sides",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6
+        ],
+        "remove_queries": [
+          1,
+          0,
+          2
+        ]
+      },
+      "expected": [
+        6,
+        6,
+        0
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

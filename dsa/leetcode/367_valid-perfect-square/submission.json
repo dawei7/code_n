@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "367",
+  "frontend_id": "367",
+  "title_slug": "valid-perfect-square",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064615122",
+  "verified_at": "2026-07-12T05:31:30.731768+00:00"
+}

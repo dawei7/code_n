@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_440",
+  "measurement_note": "Size is the upper range bound. Implicit prefix-subtree counting depends on decimal depth, while converting and sorting every integer materializes work proportional to the whole range.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: select the final value from one through 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {"n": 512, "k": 512},
+      "expected": 99,
+      "tags": ["benchmark", "scaling", "final-rank"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: select the final value from one through 2048",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2048,
+      "input": {"n": 2048, "k": 2048},
+      "expected": 999,
+      "tags": ["benchmark", "scaling", "final-rank"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: select the final value from one through 8192",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8192,
+      "input": {"n": 8192, "k": 8192},
+      "expected": 999,
+      "tags": ["benchmark", "scaling", "final-rank"]
+    }
+  ]
+}

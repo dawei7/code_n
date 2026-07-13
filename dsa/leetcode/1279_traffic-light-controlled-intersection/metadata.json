@@ -1,0 +1,38 @@
+{
+  "challenge_id": "lc_1279",
+  "source": "leetcode",
+  "frontend_id": "1279",
+  "slug": "traffic-light-controlled-intersection",
+  "title": "Traffic Light Controlled Intersection",
+  "difficulty": "Easy",
+  "acceptance_rate": 73.13308718358115,
+  "category": "concurrency",
+  "category_title": "Concurrency",
+  "topics": [
+    {
+      "name": "Concurrency",
+      "slug": "concurrency"
+    }
+  ],
+  "url": "https://leetcode.com/problems/traffic-light-controlled-intersection/",
+  "supported_languages": [],
+  "primary_language": "",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:concurrency",
+    "leetcode_topic:concurrency"
+  ],
+  "tags": [
+    "category:concurrency",
+    "leetcode",
+    "topic:concurrency"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

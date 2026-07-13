@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_2518",
+  "cases": [
+    {
+      "id": "benchmark-one-balanced-split",
+      "name": "benchmark: only the two balanced sides are great",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5
+        ],
+        "k": 5
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

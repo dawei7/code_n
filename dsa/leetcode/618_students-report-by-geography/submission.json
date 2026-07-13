@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "618",
+  "frontend_id": "618",
+  "title_slug": "students-report-by-geography",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065479475",
+  "verified_at": "2026-07-12T22:41:29.643738+00:00"
+}

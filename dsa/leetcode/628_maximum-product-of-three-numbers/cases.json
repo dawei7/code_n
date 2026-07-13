@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_628",
+  "cases": [
+    {"id": "sample-1", "name": "sample: exactly three positive values", "kind": "sample", "visible": true, "input": {"nums": [1,2,3]}, "expected": 6, "tags": ["sample", "three-values"]},
+    {"id": "sample-2", "name": "sample: choose three largest positives", "kind": "sample", "visible": true, "input": {"nums": [1,2,3,4]}, "expected": 24, "tags": ["sample", "positive"]},
+    {"id": "sample-3", "name": "sample: two negative extremes win", "kind": "sample", "visible": true, "input": {"nums": [-10,-10,5,2]}, "expected": 500, "tags": ["sample", "negative-pair"]},
+    {"id": "trial-1", "name": "trial: all negative values", "kind": "trial", "visible": true, "input": {"nums": [-5,-4,-3,-2]}, "expected": -24, "tags": ["trial", "all-negative"]},
+    {"id": "trial-2", "name": "trial: zero beats negative products", "kind": "trial", "visible": true, "input": {"nums": [-5,-4,-3,0]}, "expected": 0, "tags": ["trial", "zero-and-negatives"]},
+    {"id": "hidden-1", "name": "hidden: mixed signs and interior values", "kind": "real", "visible": false, "input": {"nums": [-5,-4,-3,1,2]}, "expected": 40, "tags": ["hidden", "mixed"]},
+    {"id": "hidden-2", "name": "hidden: repeated largest values", "kind": "real", "visible": false, "input": {"nums": [7,7,7,-20,-1]}, "expected": 343, "tags": ["hidden", "duplicates"]}
+  ]
+}

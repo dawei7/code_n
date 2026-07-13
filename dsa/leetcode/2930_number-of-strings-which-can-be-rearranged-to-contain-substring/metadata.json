@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2930",
+  "source": "leetcode",
+  "frontend_id": "2930",
+  "slug": "number-of-strings-which-can-be-rearranged-to-contain-substring",
+  "title": "Number of Strings Which Can Be Rearranged to Contain Substring",
+  "difficulty": "Medium",
+  "acceptance_rate": 57.36357456275879,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-strings-which-can-be-rearranged-to-contain-substring/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:meesho",
+    "leetcode_topic:combinatorics",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:meesho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:combinatorics",
+    "topic:dynamic-programming",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Meesho",
+      "slug": "meesho"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meesho",
+        "slug": "meesho",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

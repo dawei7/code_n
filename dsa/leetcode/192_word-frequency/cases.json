@@ -1,0 +1,6 @@
+{"challenge_id":"lc_192","cases":[
+{"id":"sample-mixed","name":"sample: four frequencies","kind":"sample","visible":true,"input":{"stdin":"","files":{"words.txt":"the day is sunny the the\nthe sunny is is\n"}},"expected":"the 4\nis 3\nsunny 2\nday 1","tags":["sample","file"]},
+{"id":"trial-single","name":"single word","kind":"trial","visible":true,"input":{"stdin":"","files":{"words.txt":"code\n"}},"expected":"code 1","tags":["boundary"]},
+{"id":"trial-whitespace","name":"repeated whitespace separates words","kind":"trial","visible":true,"input":{"stdin":"","files":{"words.txt":"a   b\na\n"}},"expected":"a 2\nb 1","tags":["whitespace"]},
+{"id":"real-tie","name":"hidden: deterministic equal-frequency order","kind":"real","visible":false,"input":{"stdin":"","files":{"words.txt":"ant bee cat ant bee cat\n"}},"expected":"cat 2\nbee 2\nant 2","tags":["hidden","tie"]}
+]}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_395",
+  "measurement_note": "Size is the string length with three proportionally repeated letters and fixed k. The target-distinct sliding windows perform a constant number of linear passes, while enumerating every start/end pair performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: evaluate 32 repeated letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "abcabcabcabcabcabcabcabcabcabcab",
+        "k": 2
+      },
+      "expected": 32,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "all-valid"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: evaluate 96 repeated letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc",
+        "k": 2
+      },
+      "expected": 96,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "all-valid"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: evaluate 256 repeated letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabca",
+        "k": 2
+      },
+      "expected": 256,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "all-valid"
+      ]
+    }
+  ]
+}

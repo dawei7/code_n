@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_579",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four consecutive months",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "Id": 1,
+              "Month": 1,
+              "Salary": 20
+            },
+            {
+              "Id": 1,
+              "Month": 2,
+              "Salary": 30
+            },
+            {
+              "Id": 1,
+              "Month": 3,
+              "Salary": 40
+            },
+            {
+              "Id": 1,
+              "Month": 4,
+              "Salary": 60
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Id",
+          "Month",
+          "Salary"
+        ],
+        "rows": [
+          [
+            1,
+            3,
+            90
+          ],
+          [
+            1,
+            2,
+            50
+          ],
+          [
+            1,
+            1,
+            20
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: gap larger than the window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "Id": 2,
+              "Month": 1,
+              "Salary": 50
+            },
+            {
+              "Id": 2,
+              "Month": 4,
+              "Salary": 80
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Id",
+          "Month",
+          "Salary"
+        ],
+        "rows": [
+          [
+            2,
+            1,
+            50
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "month-gap"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one row is excluded",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "Id": 9,
+              "Month": 7,
+              "Salary": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Id",
+          "Month",
+          "Salary"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "sample",
+        "window"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: independent employees and a missing month",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "Id": 1,
+              "Month": 1,
+              "Salary": 10
+            },
+            {
+              "Id": 1,
+              "Month": 3,
+              "Salary": 30
+            },
+            {
+              "Id": 1,
+              "Month": 4,
+              "Salary": 40
+            },
+            {
+              "Id": 2,
+              "Month": 2,
+              "Salary": 7
+            },
+            {
+              "Id": 2,
+              "Month": 3,
+              "Salary": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Id",
+          "Month",
+          "Salary"
+        ],
+        "rows": [
+          [
+            1,
+            3,
+            40
+          ],
+          [
+            1,
+            1,
+            10
+          ],
+          [
+            2,
+            2,
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "window"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: zero and negative salaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "Id": 4,
+              "Month": 5,
+              "Salary": -10
+            },
+            {
+              "Id": 4,
+              "Month": 6,
+              "Salary": 0
+            },
+            {
+              "Id": 4,
+              "Month": 7,
+              "Salary": 25
+            },
+            {
+              "Id": 4,
+              "Month": 8,
+              "Salary": 40
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Id",
+          "Month",
+          "Salary"
+        ],
+        "rows": [
+          [
+            4,
+            7,
+            15
+          ],
+          [
+            4,
+            6,
+            -10
+          ],
+          [
+            4,
+            5,
+            -10
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "window"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: unsorted sparse months",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "Id": 8,
+              "Month": 12,
+              "Salary": 12
+            },
+            {
+              "Id": 8,
+              "Month": 10,
+              "Salary": 10
+            },
+            {
+              "Id": 8,
+              "Month": 9,
+              "Salary": 9
+            },
+            {
+              "Id": 8,
+              "Month": 6,
+              "Salary": 6
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Id",
+          "Month",
+          "Salary"
+        ],
+        "rows": [
+          [
+            8,
+            10,
+            19
+          ],
+          [
+            8,
+            9,
+            9
+          ],
+          [
+            8,
+            6,
+            6
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "window"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: employees have different latest months",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "Id": 3,
+              "Month": 1,
+              "Salary": 5
+            },
+            {
+              "Id": 3,
+              "Month": 2,
+              "Salary": 6
+            },
+            {
+              "Id": 5,
+              "Month": 1,
+              "Salary": 100
+            },
+            {
+              "Id": 5,
+              "Month": 2,
+              "Salary": 200
+            },
+            {
+              "Id": 5,
+              "Month": 3,
+              "Salary": 300
+            },
+            {
+              "Id": 5,
+              "Month": 4,
+              "Salary": 400
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Id",
+          "Month",
+          "Salary"
+        ],
+        "rows": [
+          [
+            3,
+            1,
+            5
+          ],
+          [
+            5,
+            3,
+            600
+          ],
+          [
+            5,
+            2,
+            300
+          ],
+          [
+            5,
+            1,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "window"
+      ]
+    }
+  ]
+}

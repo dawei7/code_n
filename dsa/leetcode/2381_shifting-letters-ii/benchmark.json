@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_2381",
+  "cases": [
+    {
+      "id": "benchmark-wrap-and-cancel",
+      "name": "benchmark: wrap around both endpoints",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "xyz",
+        "shifts": [
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            2,
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": "zzz",
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

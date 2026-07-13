@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_2470",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several subarrays reach the target lcm",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          6,
+          2,
+          7,
+          1
+        ],
+        "k": 6
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "lcm"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single element does not divide target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every subarray has lcm one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-composite-target",
+      "name": "trial: composite target from adjacent values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4
+        ],
+        "k": 12
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-equal-k",
+      "name": "hidden: one element equals k",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2795",
+  "source": "leetcode",
+  "frontend_id": "2795",
+  "slug": "parallel-execution-of-promises-for-individual-results-retrieval",
+  "title": "Parallel Execution of Promises for Individual Results Retrieval",
+  "difficulty": "Medium",
+  "acceptance_rate": 87.66383962991519,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/parallel-execution-of-promises-for-individual-results-retrieval/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

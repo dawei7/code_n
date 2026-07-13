@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_87",
+  "measurement_note": "Reversed distinct strings span recursive split depths; memoized interval states keep the search polynomial while producing valid root-and-subtree swaps.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: length one", "kind": "benchmark", "visible": false, "size": 1, "input": {"s1": "a", "s2": "a"}, "expected": true, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: length four reverse", "kind": "benchmark", "visible": false, "size": 4, "input": {"s1": "abcd", "s2": "dcba"}, "expected": true, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: length sixteen reverse", "kind": "benchmark", "visible": false, "size": 16, "input": {"s1": "abcdefghijklmnop", "s2": "ponmlkjihgfedcba"}, "expected": true, "tags": ["benchmark", "scale-large"]}
+  ]
+}

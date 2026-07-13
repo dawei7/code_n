@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_503",
+  "cases": [
+    {"id": "sample-wrap", "name": "sample: last value wraps to the middle value", "kind": "sample", "visible": true, "input": {"nums": [1,2,1]}, "expected": [2,-1,2], "tags": ["sample", "wrap"]},
+    {"id": "sample-mixed", "name": "sample: local and wrapped successors", "kind": "sample", "visible": true, "input": {"nums": [1,2,3,4,3]}, "expected": [2,3,4,-1,4], "tags": ["sample", "mixed"]},
+    {"id": "sample-descending", "name": "sample: descending values wrap to maximum", "kind": "sample", "visible": true, "input": {"nums": [5,4,3,2,1]}, "expected": [-1,5,5,5,5], "tags": ["sample", "descending"]},
+    {"id": "trial-single", "name": "trial: one value", "kind": "trial", "visible": true, "input": {"nums": [1]}, "expected": [-1], "tags": ["trial", "singleton"]},
+    {"id": "trial-equal", "name": "trial: equal values are not greater", "kind": "trial", "visible": true, "input": {"nums": [2,2,2]}, "expected": [-1,-1,-1], "tags": ["trial", "duplicates"]},
+    {"id": "hidden-standard", "name": "hidden: several stack resolutions", "kind": "real", "visible": false, "input": {"nums": [2,1,2,4,3]}, "expected": [4,2,4,-1,4], "tags": ["hidden", "stack"]},
+    {"id": "hidden-increasing", "name": "hidden: increasing values with one wrap answer", "kind": "real", "visible": false, "input": {"nums": [1,2,3]}, "expected": [2,3,-1], "tags": ["hidden", "increasing"]}
+  ]
+}

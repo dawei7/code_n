@@ -1,0 +1,156 @@
+{
+  "challenge_id": "lc_3102",
+  "cases": [
+    {
+      "id": "sample-four-points",
+      "name": "sample: remove one point to minimize maximum distance",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            3,
+            10
+          ],
+          [
+            5,
+            15
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: all identical points",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-outlier",
+      "name": "trial: removing the outlier collapses the distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            100,
+            100
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-negative-coordinates",
+      "name": "trial: negative and positive coordinates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -5,
+            4
+          ],
+          [
+            3,
+            -2
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-multiple-extremes",
+      "name": "real: multiple transformed-coordinate extremes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            3,
+            10
+          ],
+          [
+            5,
+            15
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "real",
+        "geometry"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_2587",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: positives offset negatives",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          -1,
+          0,
+          1,
+          -3,
+          3,
+          -3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no positive prefix possible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -3,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all prefixes positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-large-positive",
+      "name": "trial: one large positive carries negatives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -2,
+          -2,
+          -2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-many-small-negatives",
+      "name": "hidden: prefix turns non-positive late",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

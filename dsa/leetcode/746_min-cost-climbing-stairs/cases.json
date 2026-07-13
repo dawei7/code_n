@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_746",
+  "cases": [
+    {"id": "sample-1", "name": "sample: start on the cheaper middle stair", "kind": "sample", "visible": true, "input": {"cost": [10, 15, 20]}, "expected": 15, "tags": ["sample", "start-at-one"]},
+    {"id": "sample-2", "name": "sample: avoid several expensive stairs", "kind": "sample", "visible": true, "input": {"cost": [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]}, "expected": 6, "tags": ["sample", "mixed-jumps"]},
+    {"id": "trial-1", "name": "trial: minimum-length staircase", "kind": "trial", "visible": true, "input": {"cost": [5, 6]}, "expected": 5, "tags": ["trial", "minimum-length"]},
+    {"id": "trial-2", "name": "trial: free route", "kind": "trial", "visible": true, "input": {"cost": [0, 0, 0, 0]}, "expected": 0, "tags": ["trial", "zero-cost"]},
+    {"id": "trial-3", "name": "trial: cheaper two-step rhythm", "kind": "trial", "visible": true, "input": {"cost": [2, 9, 2, 9, 2, 9]}, "expected": 6, "tags": ["trial", "two-step"]},
+    {"id": "hidden-1", "name": "hidden: cheaper second starting stair", "kind": "real", "visible": false, "input": {"cost": [100, 1]}, "expected": 1, "tags": ["hidden", "start-at-one"]},
+    {"id": "hidden-2", "name": "hidden: low costs surround a spike", "kind": "real", "visible": false, "input": {"cost": [1, 1, 1000, 1, 1]}, "expected": 2, "tags": ["hidden", "avoid-spike"]},
+    {"id": "hidden-3", "name": "hidden: several equal optimal prefixes", "kind": "real", "visible": false, "input": {"cost": [3, 3, 3, 3, 3, 3, 3]}, "expected": 9, "tags": ["hidden", "ties"]}
+  ]
+}

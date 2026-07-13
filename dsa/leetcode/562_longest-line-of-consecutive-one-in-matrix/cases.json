@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_562",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: diagonal length three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "directional"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one horizontal row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "directional"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: vertical run interrupted",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "directional"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: all zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: main diagonal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: anti-diagonal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "matrix"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: competing directions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "matrix"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: one cell",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "matrix"
+      ]
+    }
+  ]
+}
+

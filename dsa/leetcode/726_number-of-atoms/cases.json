@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_726",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: simple atom counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {"formula": "H2O"},
+      "expected": "H2O",
+      "tags": ["sample", "flat"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one multiplied group",
+      "kind": "sample",
+      "visible": true,
+      "input": {"formula": "Mg(OH)2"},
+      "expected": "H2MgO2",
+      "tags": ["sample", "group"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: nested groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {"formula": "K4(ON(SO3)2)2"},
+      "expected": "K4N2O14S4",
+      "tags": ["sample", "nested"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: multi-digit atom count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"formula": "Be32"},
+      "expected": "Be32",
+      "tags": ["trial", "multi-digit"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: multi-digit group count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"formula": "(H2O)12"},
+      "expected": "H24O12",
+      "tags": ["trial", "group-multiplier"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: multiplier composition",
+      "kind": "real",
+      "visible": false,
+      "input": {"formula": "((NB3)3)11"},
+      "expected": "B99N33",
+      "tags": ["hidden", "composed-multipliers"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: repeated atoms across groups",
+      "kind": "real",
+      "visible": false,
+      "input": {"formula": "H2O(H2O)2"},
+      "expected": "H6O3",
+      "tags": ["hidden", "aggregation"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: full atom names determine sorting",
+      "kind": "real",
+      "visible": false,
+      "input": {"formula": "Uuo2He3"},
+      "expected": "He3Uuo2",
+      "tags": ["hidden", "lexicographic"]
+    }
+  ]
+}

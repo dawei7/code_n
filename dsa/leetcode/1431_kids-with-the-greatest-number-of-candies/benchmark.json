@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1431",
+  "cases": [
+    {
+      "id": "benchmark-all-can-reach",
+      "name": "benchmark: all kids can reach greatest count",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "candies": [
+          5,
+          1,
+          2
+        ],
+        "extra_candies": 4
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

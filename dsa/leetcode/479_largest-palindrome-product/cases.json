@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_479",
+  "cases": [
+    {"id": "sample-one-digit", "name": "sample: one-digit factors", "kind": "sample", "visible": true, "input": {"n": 1}, "expected": 9, "tags": ["sample", "boundary"]},
+    {"id": "sample-two-digits", "name": "sample: two-digit factors", "kind": "sample", "visible": true, "input": {"n": 2}, "expected": 987, "tags": ["sample", "two"]},
+    {"id": "sample-three-digits", "name": "sample: three-digit factors", "kind": "sample", "visible": true, "input": {"n": 3}, "expected": 123, "tags": ["sample", "three"]},
+    {"id": "trial-four-digits", "name": "trial: four-digit factors", "kind": "trial", "visible": true, "input": {"n": 4}, "expected": 597, "tags": ["trial", "four"]},
+    {"id": "trial-five-digits", "name": "trial: five-digit factors", "kind": "trial", "visible": true, "input": {"n": 5}, "expected": 677, "tags": ["trial", "five"]},
+    {"id": "hidden-six-digits", "name": "hidden: six-digit factors", "kind": "real", "visible": false, "input": {"n": 6}, "expected": 1218, "tags": ["hidden", "six"]},
+    {"id": "hidden-seven-digits", "name": "hidden: seven-digit factors", "kind": "real", "visible": false, "input": {"n": 7}, "expected": 877, "tags": ["hidden", "seven"]},
+    {"id": "hidden-eight-digits", "name": "hidden: upper input boundary", "kind": "real", "visible": false, "input": {"n": 8}, "expected": 475, "tags": ["hidden", "boundary"]}
+  ]
+}

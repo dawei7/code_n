@@ -1,0 +1,88 @@
+{
+  "challenge_id": "lc_1218",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: increasing by one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "difference": 1
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no matching difference",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          3,
+          5,
+          7
+        ],
+        "difference": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: negative difference",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          5,
+          7,
+          8,
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        "difference": -2
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-descending-chain",
+      "name": "hidden: full descending chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          3,
+          0,
+          -3,
+          -6,
+          -9
+        ],
+        "difference": -3
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

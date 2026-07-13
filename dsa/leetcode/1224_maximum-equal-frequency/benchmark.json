@@ -1,0 +1,31 @@
+{
+  "challenge_id": "lc_1224",
+  "cases": [
+    {
+      "id": "benchmark-mixed-counts",
+      "name": "benchmark: mixed counts",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          2,
+          8,
+          9,
+          3,
+          8,
+          1,
+          5,
+          2,
+          3,
+          7,
+          6
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

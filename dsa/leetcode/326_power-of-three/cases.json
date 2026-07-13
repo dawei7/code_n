@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_326",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: positive power",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 27
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 0
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: negative value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": -1
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-exponent-zero",
+      "name": "trial: three to exponent zero",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "n": 1
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-extra-factor",
+      "name": "trial: divisible by three with another factor",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "n": 45
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "composite"
+      ]
+    },
+    {
+      "id": "hidden-largest-power",
+      "name": "hidden: largest signed-32-bit power",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1162261467
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "large"
+      ]
+    },
+    {
+      "id": "hidden-below-largest",
+      "name": "hidden: value below largest power",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1162261466
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "near-boundary"
+      ]
+    },
+    {
+      "id": "hidden-smaller-power",
+      "name": "hidden: middle exponent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 59049
+      },
+      "expected": true,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

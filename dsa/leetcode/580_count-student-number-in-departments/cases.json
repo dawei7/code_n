@@ -1,0 +1,446 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_580",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: unequal department sizes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "dept_id": 1,
+              "dept_name": "Engineering"
+            },
+            {
+              "dept_id": 2,
+              "dept_name": "History"
+            }
+          ],
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "A",
+              "gender": "F",
+              "dept_id": 1
+            },
+            {
+              "student_id": 2,
+              "student_name": "B",
+              "gender": "M",
+              "dept_id": 1
+            },
+            {
+              "student_id": 3,
+              "student_name": "C",
+              "gender": "F",
+              "dept_id": 1
+            },
+            {
+              "student_id": 4,
+              "student_name": "D",
+              "gender": "M",
+              "dept_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "dept_name",
+          "student_number"
+        ],
+        "rows": [
+          [
+            "Engineering",
+            3
+          ],
+          [
+            "History",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: preserve an empty department",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "dept_id": 1,
+              "dept_name": "Science"
+            },
+            {
+              "dept_id": 2,
+              "dept_name": "Music"
+            }
+          ],
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "A",
+              "gender": "F",
+              "dept_id": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "dept_name",
+          "student_number"
+        ],
+        "rows": [
+          [
+            "Science",
+            1
+          ],
+          [
+            "Music",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "empty-department"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: equal counts use name order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "dept_id": 8,
+              "dept_name": "Biology"
+            },
+            {
+              "dept_id": 3,
+              "dept_name": "Art"
+            }
+          ],
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "A",
+              "gender": "F",
+              "dept_id": 8
+            },
+            {
+              "student_id": 2,
+              "student_name": "B",
+              "gender": "M",
+              "dept_id": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "dept_name",
+          "student_number"
+        ],
+        "rows": [
+          [
+            "Art",
+            1
+          ],
+          [
+            "Biology",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: zero, one, and two students",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "dept_id": 10,
+              "dept_name": "Zero"
+            },
+            {
+              "dept_id": 20,
+              "dept_name": "Two"
+            },
+            {
+              "dept_id": 30,
+              "dept_name": "One"
+            }
+          ],
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "A",
+              "gender": "F",
+              "dept_id": 20
+            },
+            {
+              "student_id": 2,
+              "student_name": "B",
+              "gender": "M",
+              "dept_id": 20
+            },
+            {
+              "student_id": 3,
+              "student_name": "C",
+              "gender": "F",
+              "dept_id": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "dept_name",
+          "student_number"
+        ],
+        "rows": [
+          [
+            "Two",
+            2
+          ],
+          [
+            "One",
+            1
+          ],
+          [
+            "Zero",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: duplicate department names stay separate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "dept_id": 1,
+              "dept_name": "Same"
+            },
+            {
+              "dept_id": 2,
+              "dept_name": "Same"
+            },
+            {
+              "dept_id": 3,
+              "dept_name": "Other"
+            }
+          ],
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "A",
+              "gender": "F",
+              "dept_id": 1
+            },
+            {
+              "student_id": 2,
+              "student_name": "B",
+              "gender": "M",
+              "dept_id": 2
+            },
+            {
+              "student_id": 3,
+              "student_name": "C",
+              "gender": "F",
+              "dept_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "dept_name",
+          "student_number"
+        ],
+        "rows": [
+          [
+            "Same",
+            2
+          ],
+          [
+            "Same",
+            1
+          ],
+          [
+            "Other",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: nonconsecutive identifiers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "dept_id": 100,
+              "dept_name": "Zeta"
+            },
+            {
+              "dept_id": 5,
+              "dept_name": "Alpha"
+            },
+            {
+              "dept_id": 42,
+              "dept_name": "Middle"
+            }
+          ],
+          "Student": [
+            {
+              "student_id": 9,
+              "student_name": "N",
+              "gender": "F",
+              "dept_id": 42
+            },
+            {
+              "student_id": 1,
+              "student_name": "Q",
+              "gender": "M",
+              "dept_id": 100
+            },
+            {
+              "student_id": 4,
+              "student_name": "R",
+              "gender": "F",
+              "dept_id": 42
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "dept_name",
+          "student_number"
+        ],
+        "rows": [
+          [
+            "Middle",
+            2
+          ],
+          [
+            "Zeta",
+            1
+          ],
+          [
+            "Alpha",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: multiple empty departments",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "dept_id": 1,
+              "dept_name": "Empty A"
+            },
+            {
+              "dept_id": 2,
+              "dept_name": "Full"
+            },
+            {
+              "dept_id": 3,
+              "dept_name": "Empty B"
+            }
+          ],
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "A",
+              "gender": "F",
+              "dept_id": 2
+            },
+            {
+              "student_id": 2,
+              "student_name": "B",
+              "gender": "M",
+              "dept_id": 2
+            },
+            {
+              "student_id": 3,
+              "student_name": "C",
+              "gender": "F",
+              "dept_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "dept_name",
+          "student_number"
+        ],
+        "rows": [
+          [
+            "Full",
+            3
+          ],
+          [
+            "Empty A",
+            0
+          ],
+          [
+            "Empty B",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "empty-department"
+      ]
+    }
+  ]
+}

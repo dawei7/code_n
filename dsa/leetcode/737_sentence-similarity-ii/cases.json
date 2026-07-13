@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_737",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one position uses a transitive chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence1": ["great","acting","skills"], "sentence2": ["fine","drama","talent"], "similarPairs": [["great","good"],["fine","good"],["drama","acting"],["skills","talent"]]},
+      "expected": true,
+      "tags": ["sample", "transitive"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: long component chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence1": ["I","love","leetcode"], "sentence2": ["I","love","onepiece"], "similarPairs": [["manga","onepiece"],["platform","anime"],["leetcode","platform"],["anime","manga"]]},
+      "expected": true,
+      "tags": ["sample", "chain"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: different components",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence1": ["great"], "sentence2": ["fine"], "similarPairs": [["great","good"],["fine","excellent"]]},
+      "expected": false,
+      "tags": ["sample", "disconnected"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: different sentence lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {"sentence1": ["one","extra"], "sentence2": ["one"], "similarPairs": [["extra","spare"]]},
+      "expected": false,
+      "tags": ["trial", "length-mismatch"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: identical unpaired words",
+      "kind": "trial",
+      "visible": true,
+      "input": {"sentence1": ["same","words"], "sentence2": ["same","words"], "similarPairs": []},
+      "expected": true,
+      "tags": ["trial", "reflexive"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: reversed and duplicate edges",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence1": ["a","x"], "sentence2": ["d","z"], "similarPairs": [["a","b"],["c","b"],["d","c"],["b","a"],["x","z"]]},
+      "expected": true,
+      "tags": ["hidden", "duplicate-edge"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: one absent different word",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence1": ["known","missing"], "sentence2": ["known","other"], "similarPairs": [["known","familiar"]]},
+      "expected": false,
+      "tags": ["hidden", "unpaired"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: shared graph but separate components",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence1": ["red","small","fast"], "sentence2": ["crimson","tiny","slow"], "similarPairs": [["red","scarlet"],["scarlet","crimson"],["small","little"],["little","tiny"],["fast","quick"],["slow","steady"]]},
+      "expected": false,
+      "tags": ["hidden", "mixed-components"]
+    }
+  ]
+}

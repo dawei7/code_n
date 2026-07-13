@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "326",
+  "frontend_id": "326",
+  "title_slug": "power-of-three",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064387096",
+  "verified_at": "2026-07-12T02:29:19.540843+00:00"
+}

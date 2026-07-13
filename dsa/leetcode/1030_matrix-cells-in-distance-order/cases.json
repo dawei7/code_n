@@ -1,0 +1,170 @@
+{
+  "challenge_id": "lc_1030",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rows": 1,
+        "cols": 2,
+        "r_center": 0,
+        "c_center": 0
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two by two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rows": 2,
+        "cols": 2,
+        "r_center": 0,
+        "c_center": 1
+      },
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-corner-center",
+      "name": "corner-ish center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rows": 2,
+        "cols": 3,
+        "r_center": 1,
+        "c_center": 2
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-centered-square",
+      "name": "hidden: centered square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rows": 3,
+        "cols": 3,
+        "r_center": 1,
+        "c_center": 1
+      },
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

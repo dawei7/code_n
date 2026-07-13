@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_2521",
+  "cases": [
+    {
+      "id": "benchmark-four-prime-union",
+      "name": "benchmark: composites combine to four unique primes",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          30,
+          42,
+          70
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

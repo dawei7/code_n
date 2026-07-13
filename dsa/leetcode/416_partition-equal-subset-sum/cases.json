@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_416",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one element equals half the total",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          11,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "true"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no half-sum subset",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "false"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate elements form both sides",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-odd-total",
+      "name": "trial: odd total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "odd"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one positive element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "hidden-many-ones",
+      "name": "hidden: repeated unit values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "ones"
+      ]
+    },
+    {
+      "id": "hidden-large-value",
+      "name": "hidden: dominant value prevents partition",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          5,
+          20
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "dominant"
+      ]
+    },
+    {
+      "id": "hidden-combination",
+      "name": "hidden: target requires several values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "combination"
+      ]
+    }
+  ]
+}

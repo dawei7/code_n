@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_2540",
+  "cases": [
+    {
+      "id": "benchmark-multiple-common-values",
+      "name": "benchmark: later common values are ignored",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          4,
+          6,
+          8
+        ],
+        "nums2": [
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

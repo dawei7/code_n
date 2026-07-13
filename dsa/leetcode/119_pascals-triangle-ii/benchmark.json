@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_119",
+  "measurement_note": "Size is the returned row length. The binomial recurrence writes each coefficient once, while constructing all previous rows grows quadratically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: row zero",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1,
+      "input": {
+        "row_index": 0
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: row fifteen",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "row_index": 15
+      },
+      "expected": [
+        1,
+        15,
+        105,
+        455,
+        1365,
+        3003,
+        5005,
+        6435,
+        6435,
+        5005,
+        3003,
+        1365,
+        455,
+        105,
+        15,
+        1
+      ],
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: row thirty-three",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 34,
+      "input": {
+        "row_index": 33
+      },
+      "expected": [
+        1,
+        33,
+        528,
+        5456,
+        40920,
+        237336,
+        1107568,
+        4272048,
+        13884156,
+        38567100,
+        92561040,
+        193536720,
+        354817320,
+        573166440,
+        818809200,
+        1037158320,
+        1166803110,
+        1166803110,
+        1037158320,
+        818809200,
+        573166440,
+        354817320,
+        193536720,
+        92561040,
+        38567100,
+        13884156,
+        4272048,
+        1107568,
+        237336,
+        40920,
+        5456,
+        528,
+        33,
+        1
+      ],
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

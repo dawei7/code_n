@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1482",
+  "cases": [
+    {
+      "id": "benchmark-all-flowers-needed",
+      "name": "benchmark: all flowers are needed",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "bloom_day": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "m": 1,
+        "k": 4
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

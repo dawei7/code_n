@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_476",
+  "cases": [
+    {"id": "sample-five", "name": "sample: flip three significant bits", "kind": "sample", "visible": true, "input": {"num": 5}, "expected": 2, "tags": ["sample", "mixed"]},
+    {"id": "sample-one", "name": "sample: single bit flips to zero", "kind": "sample", "visible": true, "input": {"num": 1}, "expected": 0, "tags": ["sample", "single"]},
+    {"id": "sample-ten", "name": "sample: alternating four-bit pattern", "kind": "sample", "visible": true, "input": {"num": 10}, "expected": 5, "tags": ["sample", "alternating"]},
+    {"id": "trial-power-two", "name": "trial: power of two", "kind": "trial", "visible": true, "input": {"num": 8}, "expected": 7, "tags": ["trial", "power-two"]},
+    {"id": "trial-all-ones", "name": "trial: all significant bits are one", "kind": "trial", "visible": true, "input": {"num": 31}, "expected": 0, "tags": ["trial", "all-ones"]},
+    {"id": "hidden-high-bit", "name": "hidden: highest allowed power of two", "kind": "real", "visible": false, "input": {"num": 1073741824}, "expected": 1073741823, "tags": ["hidden", "high-bit"]},
+    {"id": "hidden-large-mixed", "name": "hidden: large mixed bit pattern", "kind": "real", "visible": false, "input": {"num": 123456789}, "expected": 10760938, "tags": ["hidden", "large"]}
+  ]
+}

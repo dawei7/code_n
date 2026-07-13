@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "690",
+  "frontend_id": "690",
+  "title_slug": "employee-importance",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065578200",
+  "verified_at": "2026-07-13T03:21:07.923216+00:00"
+}

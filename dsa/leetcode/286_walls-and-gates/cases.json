@@ -1,0 +1,6 @@
+{"challenge_id":"lc_286","cases":[
+{"id":"sample-grid","name":"sample: walls and two gates","kind":"sample","visible":true,"input":{"rooms":[[2147483647,-1,0,2147483647],[2147483647,2147483647,2147483647,-1],[2147483647,-1,2147483647,-1],[0,-1,2147483647,2147483647]]},"expected":[[3,-1,0,1],[2,2,1,-1],[1,-1,2,-1],[0,-1,3,4]],"tags":["sample","multi-source-bfs"]},
+{"id":"sample-row","name":"sample: adjacent empty room","kind":"sample","visible":true,"input":{"rooms":[[0,2147483647]]},"expected":[[0,1]],"tags":["sample","boundary"]},
+{"id":"trial-no-gate","name":"no gate leaves infinity unchanged","kind":"trial","visible":true,"input":{"rooms":[[2147483647]]},"expected":[[2147483647]],"tags":["no-gate"]},
+{"id":"real-blocked","name":"hidden: wall blocks an empty room","kind":"real","visible":false,"input":{"rooms":[[0,-1,2147483647]]},"expected":[[0,-1,2147483647]],"tags":["hidden","unreachable"]}
+]}

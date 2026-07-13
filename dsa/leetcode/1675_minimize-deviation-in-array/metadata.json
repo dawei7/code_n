@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_1675",
+  "source": "leetcode",
+  "frontend_id": "1675",
+  "slug": "minimize-deviation-in-array",
+  "title": "Minimize Deviation in Array",
+  "difficulty": "Hard",
+  "acceptance_rate": 54.024235270347155,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimize-deviation-in-array/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:samsung",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:heap-priority-queue",
+    "leetcode_topic:ordered-set",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:samsung",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:greedy",
+    "topic:heap-priority-queue",
+    "topic:ordered-set"
+  ],
+  "company_tags": [
+    {
+      "name": "Samsung",
+      "slug": "samsung"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Samsung",
+        "slug": "samsung",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Heap / Priority Queue"
+      ],
+      "order": 488,
+      "section_order": 8,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "minimize-deviation-in-array",
+      "leetcode_slug": "minimize-deviation-in-array",
+      "difficulty": "Hard",
+      "problem_order": 14
+    }
+  ]
+}

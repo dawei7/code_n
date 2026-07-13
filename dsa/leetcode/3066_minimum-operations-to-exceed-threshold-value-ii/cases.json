@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_3066",
+  "cases": [
+    {
+      "id": "sample-two-ops",
+      "name": "sample: two heap combinations reach the threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          11,
+          10,
+          1,
+          3
+        ],
+        "k": 10
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-four-ops",
+      "name": "sample: repeated combinations leave one large value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          4,
+          9
+        ],
+        "k": 20
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-already-ok",
+      "name": "trial: no operation needed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          11,
+          12
+        ],
+        "k": 10
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-small-chain",
+      "name": "trial: chain of small values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          9
+        ],
+        "k": 15
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-heap",
+      "name": "real: mixed heap values require several operations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          1,
+          8,
+          2,
+          16,
+          3,
+          32
+        ],
+        "k": 25
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "heap"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "581",
+  "frontend_id": "581",
+  "title_slug": "shortest-unsorted-continuous-subarray",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065431095",
+  "verified_at": "2026-07-12T20:30:35.803814+00:00"
+}

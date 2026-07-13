@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_3191",
+  "cases": [
+    {
+      "id": "sample-possible",
+      "name": "sample: greedy flips make all ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: trailing zero cannot be fixed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-already-ones",
+      "name": "trial: already all ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-short-impossible",
+      "name": "trial: short array with zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "edge",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-overlapping-flips",
+      "name": "real: overlapping flips are required",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "overlap"
+      ]
+    }
+  ]
+}

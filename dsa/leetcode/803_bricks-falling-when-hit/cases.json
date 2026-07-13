@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_803",
+  "cases": [
+    {"id": "sample-1", "name": "sample: support brick releases two", "kind": "sample", "visible": true, "input": {"grid": [[1, 0, 0, 0], [1, 1, 1, 0]], "hits": [[1, 0]]}, "expected": [2], "tags": ["sample", "support"]},
+    {"id": "sample-2", "name": "sample: sequential hits release none", "kind": "sample", "visible": true, "input": {"grid": [[1, 0, 0, 0], [1, 1, 0, 0]], "hits": [[1, 1], [1, 0]]}, "expected": [0, 0], "tags": ["sample", "sequential"]},
+    {"id": "sample-3", "name": "sample: fallen brick makes later hit empty", "kind": "sample", "visible": true, "input": {"grid": [[1], [1], [1]], "hits": [[1, 0], [2, 0], [0, 0]]}, "expected": [1, 0, 0], "tags": ["sample", "empty-hit", "chain"]},
+    {"id": "trial-1", "name": "trial: hit empty singleton", "kind": "trial", "visible": true, "input": {"grid": [[0]], "hits": [[0, 0]]}, "expected": [0], "tags": ["trial", "empty-hit", "singleton"]},
+    {"id": "trial-2", "name": "trial: directly removed brick is excluded", "kind": "trial", "visible": true, "input": {"grid": [[1]], "hits": [[0, 0]]}, "expected": [0], "tags": ["trial", "singleton", "roof"]},
+    {"id": "trial-3", "name": "trial: second roof anchor preserves grid", "kind": "trial", "visible": true, "input": {"grid": [[1, 1], [1, 1]], "hits": [[0, 0]]}, "expected": [0], "tags": ["trial", "multiple-anchors"]},
+    {"id": "hidden-1", "name": "hidden: one roof bridge supports three", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 0], [0, 1, 1], [0, 0, 1]], "hits": [[0, 1]]}, "expected": [3], "tags": ["hidden", "support", "bridge"]},
+    {"id": "hidden-2", "name": "hidden: first hit drops vertical branch", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 1], [0, 1, 0], [0, 1, 0]], "hits": [[0, 1], [0, 0]]}, "expected": [2, 0], "tags": ["hidden", "sequential", "support"]},
+    {"id": "hidden-3", "name": "hidden: interior hit splits no stable component", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 1], [1, 1, 1]], "hits": [[1, 1]]}, "expected": [0], "tags": ["hidden", "redundant-connections"]}
+  ]
+}

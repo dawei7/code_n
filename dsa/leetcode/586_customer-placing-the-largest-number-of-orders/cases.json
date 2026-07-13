@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_586",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one customer has three orders",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_number": 1,
+              "customer_number": 1
+            },
+            {
+              "order_number": 2,
+              "customer_number": 2
+            },
+            {
+              "order_number": 3,
+              "customer_number": 2
+            },
+            {
+              "order_number": 4,
+              "customer_number": 1
+            },
+            {
+              "order_number": 5,
+              "customer_number": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_number"
+        ],
+        "rows": [
+          [
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_number": 77,
+              "customer_number": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_number"
+        ],
+        "rows": [
+          [
+            9
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: unsorted order numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_number": 100,
+              "customer_number": 7
+            },
+            {
+              "order_number": 2,
+              "customer_number": 3
+            },
+            {
+              "order_number": 50,
+              "customer_number": 7
+            },
+            {
+              "order_number": 1,
+              "customer_number": 5
+            },
+            {
+              "order_number": 9,
+              "customer_number": 7
+            },
+            {
+              "order_number": 4,
+              "customer_number": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_number"
+        ],
+        "rows": [
+          [
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: nonconsecutive customer identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_number": 1,
+              "customer_number": 100
+            },
+            {
+              "order_number": 2,
+              "customer_number": 5
+            },
+            {
+              "order_number": 3,
+              "customer_number": 100
+            },
+            {
+              "order_number": 4,
+              "customer_number": 5
+            },
+            {
+              "order_number": 5,
+              "customer_number": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_number"
+        ],
+        "rows": [
+          [
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: large identifier remains a grouping key",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_number": 9,
+              "customer_number": 40
+            },
+            {
+              "order_number": 8,
+              "customer_number": 40
+            },
+            {
+              "order_number": 7,
+              "customer_number": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_number"
+        ],
+        "rows": [
+          [
+            40
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: winner appears late",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_number": 1,
+              "customer_number": 1
+            },
+            {
+              "order_number": 2,
+              "customer_number": 2
+            },
+            {
+              "order_number": 3,
+              "customer_number": 3
+            },
+            {
+              "order_number": 4,
+              "customer_number": 4
+            },
+            {
+              "order_number": 5,
+              "customer_number": 3
+            },
+            {
+              "order_number": 6,
+              "customer_number": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_number"
+        ],
+        "rows": [
+          [
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: close unique maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_number": 20,
+              "customer_number": 8
+            },
+            {
+              "order_number": 1,
+              "customer_number": 4
+            },
+            {
+              "order_number": 13,
+              "customer_number": 8
+            },
+            {
+              "order_number": 3,
+              "customer_number": 4
+            },
+            {
+              "order_number": 7,
+              "customer_number": 9
+            },
+            {
+              "order_number": 5,
+              "customer_number": 8
+            },
+            {
+              "order_number": 2,
+              "customer_number": 4
+            },
+            {
+              "order_number": 11,
+              "customer_number": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_number"
+        ],
+        "rows": [
+          [
+            8
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "aggregation"
+      ]
+    }
+  ]
+}

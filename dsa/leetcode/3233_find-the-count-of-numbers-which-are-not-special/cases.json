@@ -1,0 +1,78 @@
+{
+  "challenge_id": "lc_3233",
+  "cases": [
+    {
+      "id": "sample-small-range",
+      "name": "sample: range contains one prime square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "l": 4,
+        "r": 16
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "prime-square"
+      ]
+    },
+    {
+      "id": "sample-no-special",
+      "name": "sample: no special numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "l": 8,
+        "r": 10
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-single-special",
+      "name": "trial: single special number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 49,
+        "r": 49
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-wide-small",
+      "name": "trial: several prime squares",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 1,
+        "r": 100
+      },
+      "expected": 96,
+      "tags": [
+        "sieve"
+      ]
+    },
+    {
+      "id": "real-large-window",
+      "name": "real: large upper range window",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 999900000,
+        "r": 1000000000
+      },
+      "expected": 100001,
+      "tags": [
+        "real",
+        "large"
+      ]
+    }
+  ]
+}

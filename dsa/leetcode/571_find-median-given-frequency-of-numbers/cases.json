@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_571",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: odd total across three values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Numbers": [
+            {
+              "num": 1,
+              "frequency": 1
+            },
+            {
+              "num": 2,
+              "frequency": 1
+            },
+            {
+              "num": 3,
+              "frequency": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "median"
+        ],
+        "rows": [
+          [
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "median"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: even total averages two values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Numbers": [
+            {
+              "num": 1,
+              "frequency": 1
+            },
+            {
+              "num": 3,
+              "frequency": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "median"
+        ],
+        "rows": [
+          [
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "median"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one repeated value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Numbers": [
+            {
+              "num": 7,
+              "frequency": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "median"
+        ],
+        "rows": [
+          [
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "median"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: both centers lie in the first interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Numbers": [
+            {
+              "num": 0,
+              "frequency": 7
+            },
+            {
+              "num": 1,
+              "frequency": 1
+            },
+            {
+              "num": 2,
+              "frequency": 3
+            },
+            {
+              "num": 3,
+              "frequency": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "median"
+        ],
+        "rows": [
+          [
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "frequency-interval"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: negative and positive values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Numbers": [
+            {
+              "num": -5,
+              "frequency": 2
+            },
+            {
+              "num": 0,
+              "frequency": 1
+            },
+            {
+              "num": 10,
+              "frequency": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "median"
+        ],
+        "rows": [
+          [
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "frequency-interval"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: centers straddle two frequency blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Numbers": [
+            {
+              "num": 1,
+              "frequency": 2
+            },
+            {
+              "num": 5,
+              "frequency": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "median"
+        ],
+        "rows": [
+          [
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: unsorted rows with dominant frequency",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Numbers": [
+            {
+              "num": 100,
+              "frequency": 1
+            },
+            {
+              "num": 0,
+              "frequency": 9
+            },
+            {
+              "num": 50,
+              "frequency": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "median"
+        ],
+        "rows": [
+          [
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    }
+  ]
+}
+

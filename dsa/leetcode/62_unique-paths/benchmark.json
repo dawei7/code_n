@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_62",
+  "measurement_note": "Square-grid sides grow geometrically; combinatorial and dynamic-programming solutions remain practical, while path enumeration grows exponentially and fails the largest tier.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: side one", "kind": "benchmark", "visible": false, "size": 1, "input": {"m": 1, "n": 1}, "expected": 1, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: side four", "kind": "benchmark", "visible": false, "size": 4, "input": {"m": 4, "n": 4}, "expected": 20, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: side sixteen", "kind": "benchmark", "visible": false, "size": 16, "input": {"m": 16, "n": 16}, "expected": 155117520, "tags": ["benchmark", "scale-large"]}
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_3347",
+  "cases": [
+    {
+      "id": "sample-three-values",
+      "name": "sample: make two equal with two operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          5
+        ],
+        "k": 1,
+        "numOperations": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "frequency"
+      ]
+    },
+    {
+      "id": "sample-existing-duplicate",
+      "name": "sample: existing duplicate remains best",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          11,
+          20,
+          20
+        ],
+        "k": 5,
+        "numOperations": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-absent-target",
+      "name": "trial: best target is absent from original array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5
+        ],
+        "k": 2,
+        "numOperations": 2
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "candidate-boundary"
+      ]
+    },
+    {
+      "id": "trial-duplicate-zero-ops",
+      "name": "trial: duplicate values count with no useful operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          2,
+          10
+        ],
+        "k": 3,
+        "numOperations": 0
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-overlap-wide",
+      "name": "real: overlapping intervals and limited operations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          9,
+          14,
+          15,
+          20,
+          24,
+          29,
+          29
+        ],
+        "k": 6,
+        "numOperations": 4
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "sweep-line"
+      ]
+    }
+  ]
+}

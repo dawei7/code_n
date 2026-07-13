@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_3326",
+  "cases": [
+    {
+      "id": "sample-composite-reduces",
+      "name": "sample: composite can reduce enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          25,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "spf"
+      ]
+    },
+    {
+      "id": "sample-prime-impossible",
+      "name": "sample: prime cannot reduce enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          6
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-already-nondecreasing",
+      "name": "trial: already non-decreasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-composite-to-prime-factor",
+      "name": "trial: composite reduces to smallest prime factor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "operation"
+      ]
+    },
+    {
+      "id": "real-mixed-decreasing",
+      "name": "real: hidden mixed decreasing suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          49,
+          21,
+          14,
+          7,
+          11
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "greedy"
+      ]
+    }
+  ]
+}

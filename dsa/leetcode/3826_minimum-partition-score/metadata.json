@@ -1,0 +1,83 @@
+{
+  "challenge_id": "lc_3826",
+  "source": "leetcode",
+  "frontend_id": "3826",
+  "slug": "minimum-partition-score",
+  "title": "Minimum Partition Score",
+  "difficulty": "Hard",
+  "acceptance_rate": 33.843951324266285,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Divide and Conquer",
+      "slug": "divide-and-conquer"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Queue",
+      "slug": "queue"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    },
+    {
+      "name": "Monotonic Queue",
+      "slug": "monotonic-queue"
+    }
+  ],
+  "url": "https://leetcode.com/problems/minimum-partition-score/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:divide-and-conquer",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:monotonic-queue",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:queue"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:divide-and-conquer",
+    "topic:dynamic-programming",
+    "topic:monotonic-queue",
+    "topic:prefix-sum",
+    "topic:queue"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

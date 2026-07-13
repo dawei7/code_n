@@ -1,0 +1,108 @@
+{
+  "challenge_id": "lc_2778",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: divisors of four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "divisors"
+      ],
+      "expected": 21
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: divisors of one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          7,
+          1,
+          19,
+          18,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "divisors"
+      ],
+      "expected": 63
+    },
+    {
+      "id": "trial-prime-length",
+      "name": "trial: prime length has two special indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          1,
+          5
+        ]
+      },
+      "tags": [
+        "trial",
+        "prime-length"
+      ],
+      "expected": 34
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 81
+    },
+    {
+      "id": "real-many-divisors",
+      "name": "hidden: length with several divisors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15,
+          17,
+          19,
+          21,
+          23
+        ]
+      },
+      "tags": [
+        "hidden",
+        "many-divisors"
+      ],
+      "expected": 734
+    }
+  ]
+}

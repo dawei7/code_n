@@ -1,0 +1,147 @@
+{
+  "challenge_id": "lc_708",
+  "source": "leetcode",
+  "frontend_id": "708",
+  "slug": "insert-into-a-sorted-circular-linked-list",
+  "title": "Insert into a Sorted Circular Linked List",
+  "difficulty": "Medium",
+  "acceptance_rate": 38.5716186912376,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Linked List",
+      "slug": "linked-list"
+    }
+  ],
+  "url": "https://leetcode.com/problems/insert-into-a-sorted-circular-linked-list/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:anduril",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:tiktok",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-68-vjdw",
+    "leetcode_topic:linked-list",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:anduril",
+    "company:facebook",
+    "company:google",
+    "company:tiktok",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan_section:premium-algo-100:premium-algo-100-68-vjdw",
+    "subset:neetcode:allNC",
+    "topic:linked-list"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Anduril",
+      "slug": "anduril"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Anduril",
+        "slug": "anduril",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 2
+      }
+    ],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-68-vjdw",
+      "section_name": "Linked Lists",
+      "path": [
+        "Linked Lists"
+      ],
+      "order": 35,
+      "section_order": 8,
+      "problem_order": 2,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Linked List"
+      ],
+      "order": 350,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "insert-into-a-sorted-circular-linked-list",
+      "leetcode_slug": "insert-into-a-sorted-circular-linked-list",
+      "difficulty": "Medium",
+      "problem_order": 9
+    }
+  ]
+}

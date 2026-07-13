@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2374",
+  "source": "leetcode",
+  "frontend_id": "2374",
+  "slug": "node-with-highest-edge-score",
+  "title": "Node With Highest Edge Score",
+  "difficulty": "Medium",
+  "acceptance_rate": 49.501167480365105,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Graph Theory",
+      "slug": "graph"
+    }
+  ],
+  "url": "https://leetcode.com/problems/node-with-highest-edge-score/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:juspay",
+    "leetcode_topic:graph",
+    "leetcode_topic:hash-table"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:juspay",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:graph",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Juspay",
+      "slug": "juspay"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Juspay",
+        "slug": "juspay",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

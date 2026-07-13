@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_190",
+  "measurement_note": "Distinct unsigned patterns confirm fixed 32-step work independent of numeric magnitude.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 bit-pattern weight",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "n": 4055616968
+      },
+      "expected": 330554767,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 bit-pattern weight",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 2380164672
+      },
+      "expected": 41319345,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 bit-pattern weight",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "n": 930724096
+      },
+      "expected": 10329836,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

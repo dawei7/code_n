@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_16",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one above target", "kind": "sample", "visible": true, "input": {"nums": [-1, 2, 1, -4], "target": 1}, "expected": 2, "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: all zeroes", "kind": "sample", "visible": true, "input": {"nums": [0, 0, 0], "target": 1}, "expected": 0, "tags": ["sample", "duplicates"]},
+    {"id": "trial-far-negative-target", "name": "target lies below every sum", "kind": "trial", "visible": true, "input": {"nums": [1, 1, 1, 0], "target": -100}, "expected": 2, "tags": ["boundary-direction"]},
+    {"id": "trial-exact", "name": "exact target permits early return", "kind": "trial", "visible": true, "input": {"nums": [-2, 0, 1, 1, 2], "target": 0}, "expected": 0, "tags": ["exact"]},
+    {"id": "real-sparse-positive", "name": "hidden: closest among sparse positives", "kind": "real", "visible": false, "input": {"nums": [1, 2, 4, 8, 16], "target": 10}, "expected": 11, "tags": ["hidden"]}
+  ]
+}

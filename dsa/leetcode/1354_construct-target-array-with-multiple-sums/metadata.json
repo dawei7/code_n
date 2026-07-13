@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_1354",
+  "source": "leetcode",
+  "frontend_id": "1354",
+  "slug": "construct-target-array-with-multiple-sums",
+  "title": "Construct Target Array With Multiple Sums",
+  "difficulty": "Hard",
+  "acceptance_rate": 37.09329359663073,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    }
+  ],
+  "url": "https://leetcode.com/problems/construct-target-array-with-multiple-sums/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:quora",
+    "leetcode_topic:array",
+    "leetcode_topic:heap-priority-queue"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:quora",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:heap-priority-queue"
+  ],
+  "company_tags": [
+    {
+      "name": "Quora",
+      "slug": "quora"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": true,
+        "name": "Quora",
+        "slug": "quora",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,80 @@
+{
+  "challenge_id": "lc_1526",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mountain shape",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": [
+          1,
+          2,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: drop then rise",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": [
+          3,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: multiple rises",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": [
+          3,
+          1,
+          5,
+          4,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-flat-target",
+      "name": "hidden: flat target needs one layer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

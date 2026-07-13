@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_321",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: combine both arrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          4,
+          6,
+          5
+        ],
+        "nums2": [
+          9,
+          1,
+          2,
+          5,
+          8,
+          3
+        ],
+        "k": 5
+      },
+      "expected": [
+        9,
+        8,
+        6,
+        5,
+        3
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: retain every digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          6,
+          7
+        ],
+        "nums2": [
+          6,
+          0,
+          4
+        ],
+        "k": 5
+      },
+      "expected": [
+        6,
+        7,
+        6,
+        0,
+        4
+      ],
+      "tags": [
+        "sample",
+        "tie-breaking"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: choose leading nine",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          9
+        ],
+        "nums2": [
+          8,
+          9
+        ],
+        "k": 3
+      },
+      "expected": [
+        9,
+        8,
+        9
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-source",
+      "name": "trial: take digits from one source",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "nums1": [
+          9,
+          1,
+          2
+        ],
+        "nums2": [],
+        "k": 2
+      },
+      "expected": [
+        9,
+        2
+      ],
+      "tags": [
+        "trial",
+        "single-source"
+      ]
+    },
+    {
+      "id": "trial-one-digit",
+      "name": "trial: choose one global maximum",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          9,
+          2
+        ],
+        "nums2": [
+          8,
+          7
+        ],
+        "k": 1
+      },
+      "expected": [
+        9
+      ],
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-equal-prefixes",
+      "name": "hidden: long equal merge prefixes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          9,
+          1,
+          1
+        ],
+        "nums2": [
+          9,
+          1,
+          0
+        ],
+        "k": 6
+      },
+      "expected": [
+        9,
+        9,
+        1,
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "equal-prefix"
+      ]
+    },
+    {
+      "id": "hidden-repeated-fives",
+      "name": "hidden: repeated equal choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          5,
+          5,
+          1
+        ],
+        "nums2": [
+          5,
+          5,
+          0
+        ],
+        "k": 5
+      },
+      "expected": [
+        5,
+        5,
+        5,
+        5,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-short",
+      "name": "hidden: discard from both sources",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          8,
+          6,
+          9
+        ],
+        "nums2": [
+          1,
+          7,
+          5
+        ],
+        "k": 3
+      },
+      "expected": [
+        9,
+        7,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "subsequence"
+      ]
+    }
+  ]
+}

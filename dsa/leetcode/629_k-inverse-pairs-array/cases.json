@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_629",
+  "cases": [
+    {"id": "sample-1", "name": "sample: increasing permutation only", "kind": "sample", "visible": true, "input": {"n": 3, "k": 0}, "expected": 1, "tags": ["sample", "zero-inversions"]},
+    {"id": "sample-2", "name": "sample: one inversion", "kind": "sample", "visible": true, "input": {"n": 3, "k": 1}, "expected": 2, "tags": ["sample", "one-inversion"]},
+    {"id": "sample-3", "name": "sample: middle count for four values", "kind": "sample", "visible": true, "input": {"n": 4, "k": 2}, "expected": 5, "tags": ["sample", "dynamic-programming"]},
+    {"id": "trial-1", "name": "trial: impossible inversion count", "kind": "trial", "visible": true, "input": {"n": 2, "k": 2}, "expected": 0, "tags": ["trial", "impossible"]},
+    {"id": "trial-2", "name": "trial: decreasing permutation only", "kind": "trial", "visible": true, "input": {"n": 4, "k": 6}, "expected": 1, "tags": ["trial", "maximum-inversions"]},
+    {"id": "hidden-1", "name": "hidden: central Mahonian coefficient", "kind": "real", "visible": false, "input": {"n": 5, "k": 5}, "expected": 22, "tags": ["hidden", "central"]},
+    {"id": "hidden-2", "name": "hidden: symmetric high inversion count", "kind": "real", "visible": false, "input": {"n": 5, "k": 9}, "expected": 4, "tags": ["hidden", "symmetry"]}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_762",
+  "measurement_note": "Size is the inclusive interval width. Fixed-width population count and constant prime lookup take O(size), while an explicit per-value bit scan adds growth with the represented magnitude.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: first 64 positive integers", "kind": "benchmark", "visible": false, "size": 64, "input": {"left": 1, "right": 64}, "expected": 41, "tags": ["benchmark", "scaling", "prefix"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: first 512 positive integers", "kind": "benchmark", "visible": false, "size": 512, "input": {"left": 1, "right": 512}, "expected": 282, "tags": ["benchmark", "scaling", "prefix"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: first 4096 positive integers", "kind": "benchmark", "visible": false, "size": 4096, "input": {"left": 1, "right": 4096}, "expected": 1882, "tags": ["benchmark", "scaling", "prefix"]}
+  ]
+}

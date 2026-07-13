@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2796",
+  "source": "leetcode",
+  "frontend_id": "2796",
+  "slug": "repeat-string",
+  "title": "Repeat String",
+  "difficulty": "Easy",
+  "acceptance_rate": 93.14070941977918,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/repeat-string/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

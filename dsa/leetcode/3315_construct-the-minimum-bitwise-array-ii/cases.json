@@ -1,0 +1,131 @@
+{
+  "challenge_id": "lc_3315",
+  "cases": [
+    {
+      "id": "sample-small-primes-ii",
+      "name": "sample: small odd and even targets II",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": [
+        -1,
+        1,
+        4,
+        3
+      ],
+      "tags": [
+        "sample",
+        "bitwise"
+      ]
+    },
+    {
+      "id": "sample-large-odd",
+      "name": "sample: larger odd values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          13,
+          31,
+          127
+        ]
+      },
+      "expected": [
+        9,
+        12,
+        15,
+        63
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-powers-of-two",
+      "name": "trial: powers of two are impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          16,
+          32
+        ]
+      },
+      "expected": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "tags": [
+        "edge",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "trial: all-one bit patterns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          7,
+          15,
+          31
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        3,
+        7,
+        15
+      ],
+      "tags": [
+        "all-ones"
+      ]
+    },
+    {
+      "id": "real-mixed-bit-patterns-ii",
+      "name": "real: hidden mixed bit patterns II",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          21,
+          33,
+          45,
+          64,
+          95,
+          111
+        ]
+      },
+      "expected": [
+        20,
+        32,
+        44,
+        -1,
+        79,
+        103
+      ],
+      "tags": [
+        "real",
+        "bits"
+      ]
+    }
+  ]
+}

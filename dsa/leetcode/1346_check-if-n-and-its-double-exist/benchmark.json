@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_1346",
+  "cases": [
+    {
+      "id": "benchmark-powers-of-three",
+      "name": "benchmark: no accidental double",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          3,
+          9,
+          27
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

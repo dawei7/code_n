@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_600",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: upper bound 101 is valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "valid-bound"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: zero and one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "valid-bound"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: include binary 10",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "valid-bound"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: bound itself has consecutive ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "invalid-bound"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: first four-bit power",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "valid-bound"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: alternating four-bit bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10
+      },
+      "expected": 8,
+      "tags": [
+        "real",
+        "valid-bound"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: largest alternating five-bit pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 21
+      },
+      "expected": 13,
+      "tags": [
+        "real",
+        "valid-bound"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2447",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four subarrays have gcd three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          3,
+          1,
+          2,
+          6,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "gcd"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single value not equal to k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ],
+        "k": 7
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every all-one subarray qualifies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-multiples-of-three",
+      "name": "trial: several multiples collapse to gcd three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          6,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-no-matching-gcd",
+      "name": "hidden: no subarray gcd equals five",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6
+        ],
+        "k": 5
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

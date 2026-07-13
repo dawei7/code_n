@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_377",
+  "measurement_note": "Size is target with a fixed three-value set. Dynamic programming evaluates each subtotal once, while uncached recursion rebuilds the same remaining sums along exponentially many ordered prefixes.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: ordered sums through target 4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "target": 4
+      },
+      "expected": 7,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "branching"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: ordered sums through target 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "target": 8
+      },
+      "expected": 81,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "branching"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: ordered sums through target 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "target": 16
+      },
+      "expected": 10609,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "branching"
+      ]
+    }
+  ]
+}
+

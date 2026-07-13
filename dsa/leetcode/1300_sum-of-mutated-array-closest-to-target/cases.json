@@ -1,0 +1,80 @@
+{
+  "challenge_id": "lc_1300",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: cap three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          4,
+          9,
+          3
+        ],
+        "target": 10
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: keep maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          3,
+          5
+        ],
+        "target": 10
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: large values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          60864,
+          25176,
+          27249,
+          21296,
+          20204
+        ],
+        "target": 56803
+      },
+      "expected": 11361,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-target-above-sum",
+      "name": "hidden: target above total sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1
+        ],
+        "target": 10
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

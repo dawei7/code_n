@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_2334",
+  "cases": [
+    {
+      "id": "benchmark-equal-values",
+      "name": "benchmark: all equal values require full length",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "threshold": 3
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

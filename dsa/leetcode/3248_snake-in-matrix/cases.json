@@ -1,0 +1,194 @@
+{
+  "challenge_id": "lc_3248",
+  "cases": [
+    {
+      "id": "sample-small-path",
+      "name": "sample: short path through grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "commands": [
+          "RIGHT",
+          "DOWN"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-return-offset",
+      "name": "sample: moves cancel then shift right",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "commands": [
+          "DOWN",
+          "RIGHT",
+          "UP",
+          "RIGHT"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "cancel"
+      ]
+    },
+    {
+      "id": "trial-no-move",
+      "name": "trial: empty command list",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "commands": []
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-zigzag",
+      "name": "trial: zigzag stays within matrix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "commands": [
+          "RIGHT",
+          "RIGHT",
+          "DOWN",
+          "LEFT",
+          "DOWN",
+          "RIGHT"
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "zigzag"
+      ]
+    },
+    {
+      "id": "real-long-canceling-prefix",
+      "name": "real: long canceling prefix with final offset",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 30,
+        "commands": [
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT"
+        ]
+      },
+      "expected": 369,
+      "tags": [
+        "real",
+        "long"
+      ]
+    }
+  ]
+}

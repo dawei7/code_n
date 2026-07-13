@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2960",
+  "cases": [
+    {
+      "id": "sample-mixed-batteries",
+      "name": "sample: mixed batteries with decrements",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "batteryPercentages": [
+          1,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-leading-zero",
+      "name": "sample: leading zero device",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "batteryPercentages": [
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-zero",
+      "name": "sample: all devices depleted",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "batteryPercentages": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-all-pass",
+      "name": "trial: all devices can be tested",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "batteryPercentages": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "simulation"
+      ]
+    },
+    {
+      "id": "real-late-recovery",
+      "name": "real: later high batteries still pass",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "batteryPercentages": [
+          0,
+          0,
+          5,
+          1,
+          6,
+          2,
+          7
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

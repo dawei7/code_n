@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_2020",
+  "source": "leetcode",
+  "frontend_id": "2020",
+  "slug": "number-of-accounts-that-did-not-stream",
+  "title": "Number of Accounts That Did Not Stream",
+  "difficulty": "Medium",
+  "acceptance_rate": 72.0157743060822,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-accounts-that-did-not-stream/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:warnermedia",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:warnermedia",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Warnermedia",
+      "slug": "warnermedia"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Warnermedia",
+        "slug": "warnermedia",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

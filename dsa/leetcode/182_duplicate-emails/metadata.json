@@ -1,0 +1,153 @@
+{
+  "challenge_id": "lc_182",
+  "source": "leetcode",
+  "frontend_id": "182",
+  "slug": "duplicate-emails",
+  "title": "Duplicate Emails",
+  "difficulty": "Easy",
+  "acceptance_rate": 73.95763072908429,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/duplicate-emails/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:epam-systems",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:tcs",
+    "leetcode_studyplan:premium-sql-50",
+    "leetcode_studyplan:premium-sql-50:premium-sql-50-124-22dr",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:amazon",
+    "company:bloomberg",
+    "company:epam-systems",
+    "company:facebook",
+    "company:google",
+    "company:microsoft",
+    "company:tcs",
+    "language:sql",
+    "leetcode",
+    "study_plan:premium-sql-50",
+    "study_plan_section:premium-sql-50:premium-sql-50-124-22dr",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "EPAM Systems",
+      "slug": "epam-systems"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "EPAM Systems",
+        "slug": "epam-systems",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-sql-50",
+      "plan_name": "Advanced SQL 50",
+      "section_slug": "premium-sql-50-124-22dr",
+      "section_name": "Sorting and Grouping",
+      "path": [
+        "Sorting and Grouping"
+      ],
+      "order": 21,
+      "section_order": 4,
+      "problem_order": 2,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/premium-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

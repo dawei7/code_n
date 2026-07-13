@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_364",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: shallow integer outweighs nested siblings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nested_list": [
+          [
+            1,
+            1
+          ],
+          2,
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "inverse"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three distinct depths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nested_list": [
+          1,
+          [
+            4,
+            [
+              6
+            ]
+          ]
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "sample",
+        "depth"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nested_list": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-negative",
+      "name": "trial: negative values keep their sign",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nested_list": [
+          -1,
+          [
+            2,
+            [
+              -3
+            ]
+          ]
+        ]
+      },
+      "expected": -2,
+      "tags": [
+        "trial",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-empty-branches",
+      "name": "trial: empty branches do not increase integer depth",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nested_list": [
+          [],
+          [
+            []
+          ],
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "hidden-mixed-branches",
+      "name": "hidden: unequal branch depths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nested_list": [
+          5,
+          [
+            1,
+            1
+          ],
+          [
+            [
+              2
+            ]
+          ],
+          3
+        ]
+      },
+      "expected": 30,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-only-empty",
+      "name": "hidden: no integers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nested_list": [
+          [],
+          [
+            []
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "empty"
+      ]
+    },
+    {
+      "id": "hidden-deep-single",
+      "name": "hidden: sole deeply nested integer has weight one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nested_list": [
+          [
+            [
+              [
+                7
+              ]
+            ]
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "depth"
+      ]
+    }
+  ]
+}
+

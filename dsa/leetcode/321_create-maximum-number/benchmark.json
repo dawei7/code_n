@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_321",
+  "measurement_note": "Equal digits force full suffix tie comparisons across every feasible source split; size is each input length and the requested output length.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: equal-prefix arrays with n=6",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "nums1": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "nums2": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "k": 6
+      },
+      "expected": [
+        9,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "equal-prefix"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: equal-prefix arrays with n=12",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "nums1": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "nums2": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "k": 12
+      },
+      "expected": [
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "equal-prefix"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: equal-prefix arrays with n=24",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "nums1": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "nums2": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "k": 24
+      },
+      "expected": [
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "equal-prefix"
+      ]
+    }
+  ]
+}

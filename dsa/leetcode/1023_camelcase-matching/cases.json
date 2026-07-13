@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_1023",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: pattern FB",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          "FooBar",
+          "FooBarTest",
+          "FootBall",
+          "FrameBuffer",
+          "ForceFeedBack"
+        ],
+        "pattern": "FB"
+      },
+      "expected": [
+        true,
+        false,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "sample",
+        "string"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: pattern FoBa",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          "FooBar",
+          "FooBarTest",
+          "FootBall",
+          "FrameBuffer",
+          "ForceFeedBack"
+        ],
+        "pattern": "FoBa"
+      },
+      "expected": [
+        true,
+        false,
+        true,
+        false,
+        false
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: pattern FoBaT",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          "FooBar",
+          "FooBarTest",
+          "FootBall",
+          "FrameBuffer",
+          "ForceFeedBack"
+        ],
+        "pattern": "FoBaT"
+      },
+      "expected": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-lowercase-extra",
+      "name": "hidden: lowercase extras allowed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queries": [
+          "CompetitiveProgramming",
+          "CounterPick",
+          "ControlPanel"
+        ],
+        "pattern": "CP"
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

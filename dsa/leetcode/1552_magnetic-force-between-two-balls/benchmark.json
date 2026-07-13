@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1552",
+  "cases": [
+    {
+      "id": "benchmark-powers-of-two",
+      "name": "benchmark: exponentially spaced baskets",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "position": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "m": 4
+      },
+      "expected": 7,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

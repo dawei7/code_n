@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1217",
+  "cases": [
+    {
+      "id": "benchmark-mixed-parity",
+      "name": "benchmark: mixed parity",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "position": [
+          2,
+          4,
+          6,
+          7,
+          9,
+          11
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

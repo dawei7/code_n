@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_1582",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one special position",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: identity matrix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-row-with-two-ones",
+      "name": "hidden: row with two ones blocks both cells",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

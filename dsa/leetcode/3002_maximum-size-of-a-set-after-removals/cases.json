@@ -1,0 +1,134 @@
+{
+  "challenge_id": "lc_3002",
+  "cases": [
+    {
+      "id": "sample-shared-small",
+      "name": "sample: shared values limit the union",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "nums2": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-exclusive-full",
+      "name": "sample: disjoint duplicate pairs keep every value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "nums2": [
+          4,
+          4,
+          5,
+          5,
+          6,
+          6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-capacity",
+      "name": "trial: each array can keep one unique value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          1
+        ],
+        "nums2": [
+          4,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-common-fill",
+      "name": "trial: remaining capacity is filled by common values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "nums2": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-overlapping-sets",
+      "name": "real: overlapping sets with duplicates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          7,
+          8
+        ],
+        "nums2": [
+          2,
+          3,
+          5,
+          5,
+          6,
+          7,
+          9,
+          9
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "real",
+        "duplicates"
+      ]
+    }
+  ]
+}

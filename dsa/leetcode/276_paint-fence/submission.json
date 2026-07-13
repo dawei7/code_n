@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "276",
+  "frontend_id": "276",
+  "title_slug": "paint-fence",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064300971",
+  "verified_at": "2026-07-11T21:09:54.094704+00:00"
+}

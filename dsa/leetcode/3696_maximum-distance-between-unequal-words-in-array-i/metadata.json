@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_3696",
+  "source": "leetcode",
+  "frontend_id": "3696",
+  "slug": "maximum-distance-between-unequal-words-in-array-i",
+  "title": "Maximum Distance Between Unequal Words in Array I",
+  "difficulty": "Easy",
+  "acceptance_rate": 82.90833907649898,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-distance-between-unequal-words-in-array-i/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:walmart-labs",
+    "leetcode_topic:array",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:walmart-labs",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

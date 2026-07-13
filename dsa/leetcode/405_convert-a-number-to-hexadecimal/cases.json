@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_405",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two hexadecimal digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 26
+      },
+      "expected": "1a",
+      "tags": [
+        "sample",
+        "positive"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negative one fills every bit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": -1
+      },
+      "expected": "ffffffff",
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 0
+      },
+      "expected": "0",
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-single-digit",
+      "name": "trial: largest decimal digit value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 15
+      },
+      "expected": "f",
+      "tags": [
+        "trial",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-power",
+      "name": "trial: hexadecimal place boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 16
+      },
+      "expected": "10",
+      "tags": [
+        "trial",
+        "power"
+      ]
+    },
+    {
+      "id": "hidden-negative-two",
+      "name": "hidden: negative value with low e digit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": -2
+      },
+      "expected": "fffffffe",
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-int-min",
+      "name": "hidden: minimum signed integer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": -2147483648
+      },
+      "expected": "80000000",
+      "tags": [
+        "hidden",
+        "minimum"
+      ]
+    },
+    {
+      "id": "hidden-int-max",
+      "name": "hidden: maximum signed integer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 2147483647
+      },
+      "expected": "7fffffff",
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    }
+  ]
+}

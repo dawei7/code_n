@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_1072",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one uniform row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "hashing"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: complementary rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three columns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-repeated-pattern",
+      "name": "hidden: repeated complement pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

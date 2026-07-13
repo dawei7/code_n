@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_409",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several pairs and one center",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abccccdd"
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one complete pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "bb"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "pair"
+      ]
+    },
+    {
+      "id": "trial-case-sensitive",
+      "name": "trial: uppercase and lowercase differ",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "Aa"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "case-sensitive"
+      ]
+    },
+    {
+      "id": "trial-all-even",
+      "name": "trial: all characters pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbCC"
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "all-even"
+      ]
+    },
+    {
+      "id": "hidden-many-odds",
+      "name": "hidden: several odd counts share one center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaabbbccc"
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "odd-counts"
+      ]
+    },
+    {
+      "id": "hidden-one-uppercase-pair",
+      "name": "hidden: only uppercase values pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abAAcd"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "uppercase"
+      ]
+    },
+    {
+      "id": "hidden-all-same",
+      "name": "hidden: repeated single character kind",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzzzzzz"
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "all-same"
+      ]
+    }
+  ]
+}

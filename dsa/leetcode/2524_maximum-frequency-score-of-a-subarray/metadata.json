@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2524",
+  "source": "leetcode",
+  "frontend_id": "2524",
+  "slug": "maximum-frequency-score-of-a-subarray",
+  "title": "Maximum Frequency Score of a Subarray",
+  "difficulty": "Hard",
+  "acceptance_rate": 36.08050847457627,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:paypal",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:math",
+    "leetcode_topic:sliding-window",
+    "leetcode_topic:stack"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:paypal",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:math",
+    "topic:sliding-window",
+    "topic:stack"
+  ],
+  "company_tags": [
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

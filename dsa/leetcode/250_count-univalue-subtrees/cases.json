@@ -1,0 +1,6 @@
+{"challenge_id":"lc_250","cases":[
+{"id":"sample-four","name":"sample: four univalue subtrees","kind":"sample","visible":true,"input":{"root":[5,1,5,5,5,null,5]},"expected":4,"tags":["sample","mixed"]},
+{"id":"sample-empty","name":"sample: empty tree","kind":"sample","visible":true,"input":{"root":[]},"expected":0,"tags":["sample","boundary"]},
+{"id":"trial-all-one","name":"entire three-node tree qualifies","kind":"trial","visible":true,"input":{"root":[1,1,1]},"expected":3,"tags":["all-equal"]},
+{"id":"real-leaves-only","name":"hidden: unequal root leaves qualify","kind":"real","visible":false,"input":{"root":[1,2,3]},"expected":2,"tags":["hidden","leaves"]}
+]}

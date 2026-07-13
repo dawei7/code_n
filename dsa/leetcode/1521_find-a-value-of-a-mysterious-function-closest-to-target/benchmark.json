@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1521",
+  "cases": [
+    {
+      "id": "benchmark-reducing-and-set",
+      "name": "benchmark: repeated reductions keep a small candidate set",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          10,
+          7,
+          5,
+          3,
+          12,
+          8
+        ],
+        "target": 6
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

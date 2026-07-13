@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_2779",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three values can meet after operation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          6,
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "tags": [
+        "sample",
+        "window"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all equal values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 10
+      },
+      "tags": [
+        "sample",
+        "equal"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "trial-zero-k",
+      "name": "trial: k zero counts equal values only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          2,
+          5
+        ],
+        "k": 0
+      },
+      "tags": [
+        "trial",
+        "zero-k"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "trial-spread-values",
+      "name": "trial: choose densest sorted window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ],
+        "k": 1
+      },
+      "tags": [
+        "trial",
+        "spread"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-clustered-values",
+      "name": "hidden: cluster beats isolated extremes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          12,
+          13,
+          14,
+          30,
+          31,
+          32,
+          100
+        ],
+        "k": 2
+      },
+      "tags": [
+        "hidden",
+        "cluster"
+      ],
+      "expected": 4
+    }
+  ]
+}

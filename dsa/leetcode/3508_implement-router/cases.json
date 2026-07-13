@@ -1,0 +1,240 @@
+{
+  "challenge_id": "lc_3508",
+  "cases": [
+    {
+      "id": "sample-router-memory",
+      "name": "sample: memory limit and duplicate packet",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "Router",
+          "addPacket",
+          "addPacket",
+          "addPacket",
+          "addPacket",
+          "addPacket",
+          "forwardPacket",
+          "addPacket",
+          "getCount"
+        ],
+        "arguments": [
+          [
+            3
+          ],
+          [
+            1,
+            4,
+            90
+          ],
+          [
+            2,
+            5,
+            90
+          ],
+          [
+            1,
+            4,
+            90
+          ],
+          [
+            3,
+            5,
+            95
+          ],
+          [
+            4,
+            5,
+            105
+          ],
+          [],
+          [
+            5,
+            2,
+            110
+          ],
+          [
+            5,
+            100,
+            110
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        true,
+        false,
+        true,
+        true,
+        [
+          2,
+          5,
+          90
+        ],
+        true,
+        1
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-empty-forward",
+      "name": "sample: forwarding from empty router",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "Router",
+          "addPacket",
+          "forwardPacket",
+          "forwardPacket"
+        ],
+        "arguments": [
+          [
+            2
+          ],
+          [
+            7,
+            4,
+            90
+          ],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        [
+          7,
+          4,
+          90
+        ],
+        []
+      ],
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-count-after-drop",
+      "name": "trial: count after automatic drop",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "Router",
+          "addPacket",
+          "addPacket",
+          "addPacket",
+          "getCount",
+          "forwardPacket",
+          "getCount"
+        ],
+        "arguments": [
+          [
+            2
+          ],
+          [
+            1,
+            9,
+            10
+          ],
+          [
+            2,
+            9,
+            20
+          ],
+          [
+            3,
+            9,
+            30
+          ],
+          [
+            9,
+            1,
+            30
+          ],
+          [],
+          [
+            9,
+            1,
+            30
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        true,
+        true,
+        2,
+        [
+          2,
+          9,
+          20
+        ],
+        1
+      ],
+      "tags": [
+        "trial",
+        "counts"
+      ]
+    },
+    {
+      "id": "real-duplicate-after-forward",
+      "name": "real: duplicate can return after forwarding",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "Router",
+          "addPacket",
+          "forwardPacket",
+          "addPacket",
+          "getCount"
+        ],
+        "arguments": [
+          [
+            2
+          ],
+          [
+            5,
+            6,
+            10
+          ],
+          [],
+          [
+            5,
+            6,
+            10
+          ],
+          [
+            6,
+            10,
+            10
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        [
+          5,
+          6,
+          10
+        ],
+        true,
+        1
+      ],
+      "tags": [
+        "real",
+        "duplicates"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_97",
+  "measurement_note": "Size is the number of DP states. Repeated equal prefixes create both choices at most states and a final mismatch prevents naive backtracking from exiting early.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 states", "kind": "benchmark", "visible": false, "size": 4, "input": {"s1": "a", "s2": "a", "s3": "ab"}, "expected": false, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 49 states", "kind": "benchmark", "visible": false, "size": 49, "input": {"s1": "aaaaaa", "s2": "aaaaaa", "s3": "aaaaaaaaaaab"}, "expected": false, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 169 states", "kind": "benchmark", "visible": false, "size": 169, "input": {"s1": "aaaaaaaaaaaa", "s2": "aaaaaaaaaaaa", "s3": "aaaaaaaaaaaaaaaaaaaaaaab"}, "expected": false, "tags": ["benchmark", "scale-large"]}
+  ]
+}

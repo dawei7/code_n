@@ -1,0 +1,142 @@
+{
+  "challenge_id": "lc_3212",
+  "cases": [
+    {
+      "id": "sample-balanced-prefixes",
+      "name": "sample: balanced X and Y prefixes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "X",
+            "Y",
+            "."
+          ],
+          [
+            "Y",
+            ".",
+            "X"
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "sample-no-x",
+      "name": "sample: equal counts without X does not count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            ".",
+            "Y"
+          ],
+          [
+            ".",
+            "."
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "trial: single row prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "X",
+            "Y",
+            "Y",
+            "X",
+            "."
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "row"
+      ]
+    },
+    {
+      "id": "trial-single-column",
+      "name": "trial: single column prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "X"
+          ],
+          [
+            "."
+          ],
+          [
+            "Y"
+          ],
+          [
+            "X"
+          ],
+          [
+            "Y"
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "column"
+      ]
+    },
+    {
+      "id": "real-four-by-four",
+      "name": "real: mixed four by four grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "X",
+            ".",
+            "Y",
+            "X"
+          ],
+          [
+            "Y",
+            "X",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            "Y",
+            "X",
+            "Y"
+          ],
+          [
+            "X",
+            ".",
+            ".",
+            "Y"
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "real",
+        "prefix"
+      ]
+    }
+  ]
+}

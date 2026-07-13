@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_340",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: best window is a prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "eceba", "k": 2},
+      "expected": 3,
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated single character",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aa", "k": 1},
+      "expected": 2,
+      "tags": ["sample", "repeated"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero distinct characters allowed",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "a", "k": 0},
+      "expected": 0,
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: empty string",
+      "kind": "trial",
+      "visible": false,
+      "input": {"s": "", "k": 3},
+      "expected": 0,
+      "tags": ["trial", "empty"]
+    },
+    {
+      "id": "trial-large-k",
+      "name": "trial: limit exceeds distinct count",
+      "kind": "trial",
+      "visible": false,
+      "input": {"s": "abc", "k": 5},
+      "expected": 3,
+      "tags": ["trial", "large-k"]
+    },
+    {
+      "id": "hidden-counted-shrink",
+      "name": "hidden: repeated copies survive shrinking",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abaccc", "k": 2},
+      "expected": 4,
+      "tags": ["hidden", "frequency"]
+    },
+    {
+      "id": "hidden-best-suffix",
+      "name": "hidden: best window is a suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "ccaabbb", "k": 2},
+      "expected": 5,
+      "tags": ["hidden", "suffix"]
+    },
+    {
+      "id": "hidden-several-shrinks",
+      "name": "hidden: several character evictions",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aabacbebebe", "k": 3},
+      "expected": 7,
+      "tags": ["hidden", "multiple-shrinks"]
+    }
+  ]
+}

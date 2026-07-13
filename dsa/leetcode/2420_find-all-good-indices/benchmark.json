@@ -1,0 +1,31 @@
+{
+  "challenge_id": "lc_2420",
+  "cases": [
+    {
+      "id": "benchmark-longer-pattern",
+      "name": "benchmark: longer non-increasing then non-decreasing pattern",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1,
+          2,
+          3,
+          4,
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

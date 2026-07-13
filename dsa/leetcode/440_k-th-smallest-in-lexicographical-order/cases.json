@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_440",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: ten follows one lexicographically",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 13, "k": 2},
+      "expected": 10,
+      "tags": ["sample", "prefix"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one-value range",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 1, "k": 1},
+      "expected": 1,
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: tenth value below one hundred",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 100, "k": 10},
+      "expected": 17,
+      "tags": ["sample", "rank"]
+    },
+    {
+      "id": "trial-cross-prefix",
+      "name": "trial: rank moves from prefix one to two",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 10, "k": 3},
+      "expected": 2,
+      "tags": ["trial", "sibling"]
+    },
+    {
+      "id": "trial-deep-prefix",
+      "name": "trial: rank stays inside prefix one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 25, "k": 5},
+      "expected": 13,
+      "tags": ["trial", "descend"]
+    },
+    {
+      "id": "hidden-last",
+      "name": "hidden: final lexicographic value",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 50, "k": 50},
+      "expected": 9,
+      "tags": ["hidden", "last"]
+    },
+    {
+      "id": "hidden-power-ten",
+      "name": "hidden: exact power of ten forms a deep prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000, "k": 4},
+      "expected": 1000,
+      "tags": ["hidden", "power-ten"]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "284",
+  "frontend_id": "284",
+  "title_slug": "peeking-iterator",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064308435",
+  "verified_at": "2026-07-11T21:30:49.886558+00:00"
+}

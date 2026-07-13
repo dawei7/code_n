@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_157",
+  "cases": [
+    {"id": "sample-short-file", "name": "sample: file shorter than request", "kind": "sample", "visible": true, "input": {"content": "abc", "n": 4}, "expected": "abc", "tags": ["sample", "eof"]},
+    {"id": "sample-exact-request", "name": "sample: request equals file length", "kind": "sample", "visible": true, "input": {"content": "abcde", "n": 5}, "expected": "abcde", "tags": ["sample", "read4"]},
+    {"id": "trial-partial-first-chunk", "name": "request ends inside first chunk", "kind": "trial", "visible": true, "input": {"content": "abcd", "n": 2}, "expected": "ab", "tags": ["boundary"]},
+    {"id": "trial-zero", "name": "zero-character request", "kind": "trial", "visible": true, "input": {"content": "data", "n": 0}, "expected": "", "tags": ["boundary", "zero"]},
+    {"id": "real-crosses-chunks", "name": "hidden: request crosses several primitive reads", "kind": "real", "visible": false, "input": {"content": "abcdefghijk", "n": 9}, "expected": "abcdefghi", "tags": ["hidden", "chunks"]}
+  ]
+}

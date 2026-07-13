@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_747",
+  "cases": [
+    {"id": "sample-1", "name": "sample: maximum is exactly twice the runner-up", "kind": "sample", "visible": true, "input": {"nums": [3, 6, 1, 0]}, "expected": 1, "tags": ["sample", "dominant"]},
+    {"id": "sample-2", "name": "sample: maximum is not dominant", "kind": "sample", "visible": true, "input": {"nums": [1, 2, 3, 4]}, "expected": -1, "tags": ["sample", "failure"]},
+    {"id": "trial-1", "name": "trial: dominant value at the front", "kind": "trial", "visible": true, "input": {"nums": [10, 2, 5, 1]}, "expected": 0, "tags": ["trial", "front-index"]},
+    {"id": "trial-2", "name": "trial: two values with zero", "kind": "trial", "visible": true, "input": {"nums": [0, 1]}, "expected": 1, "tags": ["trial", "zero"]},
+    {"id": "trial-3", "name": "trial: close runner-up blocks dominance", "kind": "trial", "visible": true, "input": {"nums": [8, 3, 5, 4]}, "expected": -1, "tags": ["trial", "runner-up"]},
+    {"id": "hidden-1", "name": "hidden: dominant value at the end", "kind": "real", "visible": false, "input": {"nums": [1, 2, 3, 7]}, "expected": 3, "tags": ["hidden", "end-index"]},
+    {"id": "hidden-2", "name": "hidden: exact equality with two values", "kind": "real", "visible": false, "input": {"nums": [4, 2]}, "expected": 0, "tags": ["hidden", "equality"]},
+    {"id": "hidden-3", "name": "hidden: maximum in the interior", "kind": "real", "visible": false, "input": {"nums": [2, 16, 7, 3, 1]}, "expected": 1, "tags": ["hidden", "interior-index"]}
+  ]
+}

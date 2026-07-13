@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_71",
+  "cases": [
+    {"id": "sample-trailing", "name": "sample: remove trailing separator", "kind": "sample", "visible": true, "input": {"path": "/home/"}, "expected": "/home", "tags": ["sample"]},
+    {"id": "sample-repeated", "name": "sample: repeated separators", "kind": "sample", "visible": true, "input": {"path": "/home//foo/"}, "expected": "/home/foo", "tags": ["sample"]},
+    {"id": "trial-parent", "name": "parent component removes one directory", "kind": "trial", "visible": true, "input": {"path": "/home/user/Documents/../Pictures"}, "expected": "/home/user/Pictures", "tags": ["parent"]},
+    {"id": "trial-above-root", "name": "cannot navigate above root", "kind": "trial", "visible": true, "input": {"path": "/../../.."}, "expected": "/", "tags": ["boundary"]},
+    {"id": "real-literal-dots", "name": "hidden: three dots are a directory name", "kind": "real", "visible": false, "input": {"path": "/.../a/./b/../../c/"}, "expected": "/.../c", "tags": ["hidden", "literal"]}
+  ]
+}

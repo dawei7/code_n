@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_2935",
+  "cases": [
+    {
+      "id": "sample-small-chain",
+      "name": "sample: small strong chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-distinct-strong-pair",
+      "name": "trial: only self pairs qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          100
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-separated-groups",
+      "name": "sample: separated strong groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          6,
+          25,
+          30
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicates in sliding window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          12,
+          13,
+          24,
+          25,
+          48,
+          96
+        ]
+      },
+      "expected": 80,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-wide-values",
+      "name": "real: wide values under bit limit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          3,
+          7,
+          14,
+          15,
+          28,
+          31,
+          60,
+          61,
+          120,
+          121,
+          240
+        ]
+      },
+      "expected": 137,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

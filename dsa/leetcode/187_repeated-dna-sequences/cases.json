@@ -1,0 +1,6 @@
+{"challenge_id":"lc_187","cases":[
+{"id":"sample-two","name":"sample: two repeated sequences","kind":"sample","visible":true,"input":{"s":"AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"},"expected":["AAAAACCCCC","CCCCCAAAAA"],"tags":["sample","sliding-window"]},
+{"id":"sample-overlap","name":"overlapping copies count","kind":"sample","visible":true,"input":{"s":"AAAAAAAAAAAAA"},"expected":["AAAAAAAAAA"],"tags":["overlap"]},
+{"id":"trial-short","name":"fewer than ten characters","kind":"trial","visible":true,"input":{"s":"ACGT"},"expected":[],"tags":["boundary"]},
+{"id":"real-no-repeat","name":"hidden: all ten-character windows differ","kind":"real","visible":false,"input":{"s":"ACGTACGTACG"},"expected":[],"tags":["hidden"]}
+]}

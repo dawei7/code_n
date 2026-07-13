@@ -1,0 +1,6 @@
+{"challenge_id":"lc_248","cases":[
+{"id":"sample-two-digit-range","name":"sample: bounded two-digit range","kind":"sample","visible":true,"input":{"low":"50","high":"100"},"expected":3,"tags":["sample","bounds"]},
+{"id":"sample-zero-only","name":"sample: zero singleton range","kind":"sample","visible":true,"input":{"low":"0","high":"0"},"expected":1,"tags":["sample","zero"]},
+{"id":"trial-through-ten","name":"single-digit valid numbers","kind":"trial","visible":true,"input":{"low":"0","high":"10"},"expected":3,"tags":["boundary"]},
+{"id":"real-inclusive-valid","name":"hidden: both valid endpoints included","kind":"real","visible":false,"input":{"low":"69","high":"96"},"expected":3,"tags":["hidden","inclusive"]}
+]}

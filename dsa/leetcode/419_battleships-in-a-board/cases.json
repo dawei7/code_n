@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_419",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one horizontal cell and one vertical ship",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            "X",
+            ".",
+            ".",
+            "X"
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "X"
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "X"
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: empty one-cell board",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            "."
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one-cell ship",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            "X"
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-horizontal",
+      "name": "trial: ship spans one row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            "X",
+            "X",
+            "X",
+            "X"
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "horizontal"
+      ]
+    },
+    {
+      "id": "trial-vertical",
+      "name": "trial: ship spans one column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            "X"
+          ],
+          [
+            "X"
+          ],
+          [
+            "X"
+          ],
+          [
+            "X"
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "vertical"
+      ]
+    },
+    {
+      "id": "hidden-separated",
+      "name": "hidden: several separated single-cell ships",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "board": [
+          [
+            "X",
+            ".",
+            "X"
+          ],
+          [
+            ".",
+            ".",
+            "."
+          ],
+          [
+            "X",
+            ".",
+            "X"
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "separated"
+      ]
+    },
+    {
+      "id": "hidden-multiple",
+      "name": "hidden: horizontal and vertical ships of varied lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "board": [
+          [
+            "X",
+            "X",
+            ".",
+            ".",
+            "X"
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            ".",
+            "X"
+          ],
+          [
+            "X",
+            ".",
+            "X",
+            "X",
+            "."
+          ],
+          [
+            "X",
+            ".",
+            ".",
+            ".",
+            "."
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "varied"
+      ]
+    },
+    {
+      "id": "hidden-empty",
+      "name": "hidden: larger all-empty board",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "board": [
+          [
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            "."
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "all-empty"
+      ]
+    }
+  ]
+}

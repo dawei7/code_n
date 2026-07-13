@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "178",
+  "frontend_id": "178",
+  "title_slug": "rank-scores",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2064192631",
+  "verified_at": "2026-07-11T18:24:10.622680+00:00"
+}

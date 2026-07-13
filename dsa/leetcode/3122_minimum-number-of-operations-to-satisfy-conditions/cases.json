@@ -1,0 +1,191 @@
+{
+  "challenge_id": "lc_3122",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: already valid columns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: adjacent columns must differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single column needs no neighbor check",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "single-column"
+      ]
+    },
+    {
+      "id": "trial-mixed-digits",
+      "name": "trial: mixed digit columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            2,
+            2,
+            4
+          ],
+          [
+            5,
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "dp"
+      ]
+    },
+    {
+      "id": "trial-force-alternation",
+      "name": "trial: identical best digits in adjacent columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7,
+            7,
+            7
+          ],
+          [
+            7,
+            7,
+            7
+          ],
+          [
+            8,
+            8,
+            8
+          ],
+          [
+            7,
+            7,
+            7
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "adjacent"
+      ]
+    },
+    {
+      "id": "real-wide-pattern",
+      "name": "real: wider pattern with several ties",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            2,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            4,
+            2,
+            5,
+            3
+          ],
+          [
+            6,
+            1,
+            1,
+            7,
+            2,
+            8
+          ],
+          [
+            0,
+            9,
+            1,
+            2,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "real",
+        "ties"
+      ]
+    }
+  ]
+}

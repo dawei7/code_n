@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "540",
+  "frontend_id": "540",
+  "title_slug": "single-element-in-a-sorted-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065307664",
+  "verified_at": "2026-07-12T17:55:20.795487+00:00"
+}

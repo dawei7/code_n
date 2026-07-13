@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1253",
+  "source": "leetcode",
+  "frontend_id": "1253",
+  "slug": "reconstruct-a-2-row-binary-matrix",
+  "title": "Reconstruct a 2-Row Binary Matrix",
+  "difficulty": "Medium",
+  "acceptance_rate": 49.12177904267638,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    }
+  ],
+  "url": "https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:grab",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:matrix"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:grab",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy",
+    "topic:matrix"
+  ],
+  "company_tags": [
+    {
+      "name": "Grab",
+      "slug": "grab"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Grab",
+        "slug": "grab",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

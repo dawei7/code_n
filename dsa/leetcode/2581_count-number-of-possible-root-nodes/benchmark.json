@@ -1,0 +1,54 @@
+{
+  "challenge_id": "lc_2581",
+  "cases": [
+    {
+      "id": "benchmark-chain-with-many-guesses",
+      "name": "benchmark: chain rerooting updates many guesses",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "guesses": [
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

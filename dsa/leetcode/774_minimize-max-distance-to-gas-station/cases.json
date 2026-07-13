@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_774",
+  "cases": [
+    {"id": "sample-1", "name": "sample: halve every unit gap", "kind": "sample", "visible": true, "input": {"stations": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "k": 9}, "expected": 0.5, "validator": {"kind": "float_close", "tolerance": 1e-5}, "tags": ["sample", "uniform"]},
+    {"id": "sample-2", "name": "sample: one station among varied gaps", "kind": "sample", "visible": true, "input": {"stations": [23, 24, 36, 39, 46, 56, 57, 65, 84, 98], "k": 1}, "expected": 14.0, "validator": {"kind": "float_close", "tolerance": 1e-5}, "tags": ["sample", "varied"]},
+    {"id": "sample-3", "name": "sample: split one gap four ways", "kind": "sample", "visible": true, "input": {"stations": [0, 10], "k": 3}, "expected": 2.5, "validator": {"kind": "float_close", "tolerance": 1e-5}, "tags": ["sample", "single-gap"]},
+    {"id": "trial-1", "name": "trial: one new midpoint", "kind": "trial", "visible": true, "input": {"stations": [0, 10], "k": 1}, "expected": 5.0, "validator": {"kind": "float_close", "tolerance": 1e-5}, "tags": ["trial", "single-gap"]},
+    {"id": "trial-2", "name": "trial: allocate across unequal gaps", "kind": "trial", "visible": true, "input": {"stations": [0, 4, 10], "k": 2}, "expected": 3.0, "validator": {"kind": "float_close", "tolerance": 1e-5}, "tags": ["trial", "allocation"]},
+    {"id": "trial-3", "name": "trial: many stations in a unit gap", "kind": "trial", "visible": true, "input": {"stations": [0, 1], "k": 100}, "expected": 0.009900990099009901, "validator": {"kind": "float_close", "tolerance": 1e-5}, "tags": ["trial", "precision"]},
+    {"id": "hidden-1", "name": "hidden: all new stations favor largest gap", "kind": "real", "visible": false, "input": {"stations": [0, 9, 10], "k": 2}, "expected": 3.0, "validator": {"kind": "float_close", "tolerance": 1e-5}, "tags": ["hidden", "allocation"]},
+    {"id": "hidden-2", "name": "hidden: equal existing gaps", "kind": "real", "visible": false, "input": {"stations": [0, 6, 12], "k": 2}, "expected": 3.0, "validator": {"kind": "float_close", "tolerance": 1e-5}, "tags": ["hidden", "uniform"]},
+    {"id": "hidden-3", "name": "hidden: fractional allocation threshold", "kind": "real", "visible": false, "input": {"stations": [0, 5, 11], "k": 3}, "expected": 2.5, "validator": {"kind": "float_close", "tolerance": 1e-5}, "tags": ["hidden", "fractional"]}
+  ]
+}

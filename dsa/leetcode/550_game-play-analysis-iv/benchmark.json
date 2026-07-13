@@ -1,0 +1,4124 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_550",
+  "measurement_note": "Size is the Activity row count, with two rows per player and half returning the next day. Grouping first dates once and joining them scales near linearly after ordering, while correlated first-date scans repeat work for every player.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: retention across 32 activity rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2020-01-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 2,
+              "event_date": "2020-01-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 1,
+              "event_date": "2020-01-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 2,
+              "event_date": "2020-01-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 3,
+              "device_id": 1,
+              "event_date": "2020-01-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 3,
+              "device_id": 2,
+              "event_date": "2020-01-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 4,
+              "device_id": 1,
+              "event_date": "2020-01-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 4,
+              "device_id": 2,
+              "event_date": "2020-01-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 5,
+              "device_id": 1,
+              "event_date": "2020-01-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 5,
+              "device_id": 2,
+              "event_date": "2020-01-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 6,
+              "device_id": 1,
+              "event_date": "2020-01-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 6,
+              "device_id": 2,
+              "event_date": "2020-01-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 7,
+              "device_id": 1,
+              "event_date": "2020-01-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 7,
+              "device_id": 2,
+              "event_date": "2020-01-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 8,
+              "device_id": 1,
+              "event_date": "2020-01-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 8,
+              "device_id": 2,
+              "event_date": "2020-01-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 9,
+              "device_id": 1,
+              "event_date": "2020-01-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 9,
+              "device_id": 2,
+              "event_date": "2020-01-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 10,
+              "device_id": 1,
+              "event_date": "2020-01-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 10,
+              "device_id": 2,
+              "event_date": "2020-02-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 11,
+              "device_id": 1,
+              "event_date": "2020-02-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 11,
+              "device_id": 2,
+              "event_date": "2020-02-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 12,
+              "device_id": 1,
+              "event_date": "2020-02-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 12,
+              "device_id": 2,
+              "event_date": "2020-02-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 13,
+              "device_id": 1,
+              "event_date": "2020-02-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 13,
+              "device_id": 2,
+              "event_date": "2020-02-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 14,
+              "device_id": 1,
+              "event_date": "2020-02-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 14,
+              "device_id": 2,
+              "event_date": "2020-02-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 15,
+              "device_id": 1,
+              "event_date": "2020-02-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 15,
+              "device_id": 2,
+              "event_date": "2020-02-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 16,
+              "device_id": 1,
+              "event_date": "2020-02-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 16,
+              "device_id": 2,
+              "event_date": "2020-02-20",
+              "games_played": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fraction"
+        ],
+        "rows": [
+          [
+            0.5
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "retention"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: retention across 128 activity rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2020-01-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 2,
+              "event_date": "2020-01-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 1,
+              "event_date": "2020-01-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 2,
+              "event_date": "2020-01-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 3,
+              "device_id": 1,
+              "event_date": "2020-01-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 3,
+              "device_id": 2,
+              "event_date": "2020-01-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 4,
+              "device_id": 1,
+              "event_date": "2020-01-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 4,
+              "device_id": 2,
+              "event_date": "2020-01-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 5,
+              "device_id": 1,
+              "event_date": "2020-01-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 5,
+              "device_id": 2,
+              "event_date": "2020-01-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 6,
+              "device_id": 1,
+              "event_date": "2020-01-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 6,
+              "device_id": 2,
+              "event_date": "2020-01-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 7,
+              "device_id": 1,
+              "event_date": "2020-01-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 7,
+              "device_id": 2,
+              "event_date": "2020-01-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 8,
+              "device_id": 1,
+              "event_date": "2020-01-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 8,
+              "device_id": 2,
+              "event_date": "2020-01-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 9,
+              "device_id": 1,
+              "event_date": "2020-01-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 9,
+              "device_id": 2,
+              "event_date": "2020-01-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 10,
+              "device_id": 1,
+              "event_date": "2020-01-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 10,
+              "device_id": 2,
+              "event_date": "2020-02-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 11,
+              "device_id": 1,
+              "event_date": "2020-02-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 11,
+              "device_id": 2,
+              "event_date": "2020-02-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 12,
+              "device_id": 1,
+              "event_date": "2020-02-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 12,
+              "device_id": 2,
+              "event_date": "2020-02-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 13,
+              "device_id": 1,
+              "event_date": "2020-02-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 13,
+              "device_id": 2,
+              "event_date": "2020-02-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 14,
+              "device_id": 1,
+              "event_date": "2020-02-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 14,
+              "device_id": 2,
+              "event_date": "2020-02-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 15,
+              "device_id": 1,
+              "event_date": "2020-02-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 15,
+              "device_id": 2,
+              "event_date": "2020-02-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 16,
+              "device_id": 1,
+              "event_date": "2020-02-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 16,
+              "device_id": 2,
+              "event_date": "2020-02-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 17,
+              "device_id": 1,
+              "event_date": "2020-02-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 17,
+              "device_id": 2,
+              "event_date": "2020-02-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 18,
+              "device_id": 1,
+              "event_date": "2020-02-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 18,
+              "device_id": 2,
+              "event_date": "2020-02-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 19,
+              "device_id": 1,
+              "event_date": "2020-02-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 19,
+              "device_id": 2,
+              "event_date": "2020-02-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 20,
+              "device_id": 1,
+              "event_date": "2020-03-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 20,
+              "device_id": 2,
+              "event_date": "2020-03-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 21,
+              "device_id": 1,
+              "event_date": "2020-03-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 21,
+              "device_id": 2,
+              "event_date": "2020-03-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 22,
+              "device_id": 1,
+              "event_date": "2020-03-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 22,
+              "device_id": 2,
+              "event_date": "2020-03-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 23,
+              "device_id": 1,
+              "event_date": "2020-03-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 23,
+              "device_id": 2,
+              "event_date": "2020-03-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 24,
+              "device_id": 1,
+              "event_date": "2020-03-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 24,
+              "device_id": 2,
+              "event_date": "2020-03-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 25,
+              "device_id": 1,
+              "event_date": "2020-03-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 25,
+              "device_id": 2,
+              "event_date": "2020-03-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 26,
+              "device_id": 1,
+              "event_date": "2020-03-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 26,
+              "device_id": 2,
+              "event_date": "2020-03-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 27,
+              "device_id": 1,
+              "event_date": "2020-03-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 27,
+              "device_id": 2,
+              "event_date": "2020-03-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 28,
+              "device_id": 1,
+              "event_date": "2020-03-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 28,
+              "device_id": 2,
+              "event_date": "2020-03-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 29,
+              "device_id": 1,
+              "event_date": "2020-03-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 29,
+              "device_id": 2,
+              "event_date": "2020-03-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 30,
+              "device_id": 1,
+              "event_date": "2020-03-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 30,
+              "device_id": 2,
+              "event_date": "2020-04-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 31,
+              "device_id": 1,
+              "event_date": "2020-04-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 31,
+              "device_id": 2,
+              "event_date": "2020-04-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 32,
+              "device_id": 1,
+              "event_date": "2020-04-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 32,
+              "device_id": 2,
+              "event_date": "2020-04-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 33,
+              "device_id": 1,
+              "event_date": "2020-04-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 33,
+              "device_id": 2,
+              "event_date": "2020-04-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 34,
+              "device_id": 1,
+              "event_date": "2020-04-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 34,
+              "device_id": 2,
+              "event_date": "2020-04-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 35,
+              "device_id": 1,
+              "event_date": "2020-04-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 35,
+              "device_id": 2,
+              "event_date": "2020-04-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 36,
+              "device_id": 1,
+              "event_date": "2020-04-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 36,
+              "device_id": 2,
+              "event_date": "2020-04-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 37,
+              "device_id": 1,
+              "event_date": "2020-04-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 37,
+              "device_id": 2,
+              "event_date": "2020-04-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 38,
+              "device_id": 1,
+              "event_date": "2020-04-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 38,
+              "device_id": 2,
+              "event_date": "2020-04-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 39,
+              "device_id": 1,
+              "event_date": "2020-04-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 39,
+              "device_id": 2,
+              "event_date": "2020-04-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 40,
+              "device_id": 1,
+              "event_date": "2020-04-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 40,
+              "device_id": 2,
+              "event_date": "2020-05-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 41,
+              "device_id": 1,
+              "event_date": "2020-05-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 41,
+              "device_id": 2,
+              "event_date": "2020-05-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 42,
+              "device_id": 1,
+              "event_date": "2020-05-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 42,
+              "device_id": 2,
+              "event_date": "2020-05-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 43,
+              "device_id": 1,
+              "event_date": "2020-05-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 43,
+              "device_id": 2,
+              "event_date": "2020-05-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 44,
+              "device_id": 1,
+              "event_date": "2020-05-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 44,
+              "device_id": 2,
+              "event_date": "2020-05-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 45,
+              "device_id": 1,
+              "event_date": "2020-05-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 45,
+              "device_id": 2,
+              "event_date": "2020-05-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 46,
+              "device_id": 1,
+              "event_date": "2020-05-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 46,
+              "device_id": 2,
+              "event_date": "2020-05-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 47,
+              "device_id": 1,
+              "event_date": "2020-05-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 47,
+              "device_id": 2,
+              "event_date": "2020-05-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 48,
+              "device_id": 1,
+              "event_date": "2020-05-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 48,
+              "device_id": 2,
+              "event_date": "2020-05-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 49,
+              "device_id": 1,
+              "event_date": "2020-05-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 49,
+              "device_id": 2,
+              "event_date": "2020-05-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 50,
+              "device_id": 1,
+              "event_date": "2020-05-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 50,
+              "device_id": 2,
+              "event_date": "2020-06-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 51,
+              "device_id": 1,
+              "event_date": "2020-06-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 51,
+              "device_id": 2,
+              "event_date": "2020-06-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 52,
+              "device_id": 1,
+              "event_date": "2020-06-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 52,
+              "device_id": 2,
+              "event_date": "2020-06-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 53,
+              "device_id": 1,
+              "event_date": "2020-06-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 53,
+              "device_id": 2,
+              "event_date": "2020-06-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 54,
+              "device_id": 1,
+              "event_date": "2020-06-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 54,
+              "device_id": 2,
+              "event_date": "2020-06-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 55,
+              "device_id": 1,
+              "event_date": "2020-06-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 55,
+              "device_id": 2,
+              "event_date": "2020-06-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 56,
+              "device_id": 1,
+              "event_date": "2020-06-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 56,
+              "device_id": 2,
+              "event_date": "2020-06-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 57,
+              "device_id": 1,
+              "event_date": "2020-06-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 57,
+              "device_id": 2,
+              "event_date": "2020-06-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 58,
+              "device_id": 1,
+              "event_date": "2020-06-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 58,
+              "device_id": 2,
+              "event_date": "2020-06-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 59,
+              "device_id": 1,
+              "event_date": "2020-06-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 59,
+              "device_id": 2,
+              "event_date": "2020-06-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 60,
+              "device_id": 1,
+              "event_date": "2020-06-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 60,
+              "device_id": 2,
+              "event_date": "2020-07-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 61,
+              "device_id": 1,
+              "event_date": "2020-07-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 61,
+              "device_id": 2,
+              "event_date": "2020-07-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 62,
+              "device_id": 1,
+              "event_date": "2020-07-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 62,
+              "device_id": 2,
+              "event_date": "2020-07-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 63,
+              "device_id": 1,
+              "event_date": "2020-07-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 63,
+              "device_id": 2,
+              "event_date": "2020-07-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 64,
+              "device_id": 1,
+              "event_date": "2020-07-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 64,
+              "device_id": 2,
+              "event_date": "2020-07-13",
+              "games_played": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fraction"
+        ],
+        "rows": [
+          [
+            0.5
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "retention"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: retention across 512 activity rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "player_id": 1,
+              "device_id": 1,
+              "event_date": "2020-01-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 1,
+              "device_id": 2,
+              "event_date": "2020-01-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 1,
+              "event_date": "2020-01-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 2,
+              "device_id": 2,
+              "event_date": "2020-01-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 3,
+              "device_id": 1,
+              "event_date": "2020-01-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 3,
+              "device_id": 2,
+              "event_date": "2020-01-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 4,
+              "device_id": 1,
+              "event_date": "2020-01-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 4,
+              "device_id": 2,
+              "event_date": "2020-01-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 5,
+              "device_id": 1,
+              "event_date": "2020-01-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 5,
+              "device_id": 2,
+              "event_date": "2020-01-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 6,
+              "device_id": 1,
+              "event_date": "2020-01-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 6,
+              "device_id": 2,
+              "event_date": "2020-01-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 7,
+              "device_id": 1,
+              "event_date": "2020-01-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 7,
+              "device_id": 2,
+              "event_date": "2020-01-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 8,
+              "device_id": 1,
+              "event_date": "2020-01-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 8,
+              "device_id": 2,
+              "event_date": "2020-01-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 9,
+              "device_id": 1,
+              "event_date": "2020-01-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 9,
+              "device_id": 2,
+              "event_date": "2020-01-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 10,
+              "device_id": 1,
+              "event_date": "2020-01-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 10,
+              "device_id": 2,
+              "event_date": "2020-02-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 11,
+              "device_id": 1,
+              "event_date": "2020-02-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 11,
+              "device_id": 2,
+              "event_date": "2020-02-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 12,
+              "device_id": 1,
+              "event_date": "2020-02-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 12,
+              "device_id": 2,
+              "event_date": "2020-02-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 13,
+              "device_id": 1,
+              "event_date": "2020-02-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 13,
+              "device_id": 2,
+              "event_date": "2020-02-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 14,
+              "device_id": 1,
+              "event_date": "2020-02-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 14,
+              "device_id": 2,
+              "event_date": "2020-02-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 15,
+              "device_id": 1,
+              "event_date": "2020-02-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 15,
+              "device_id": 2,
+              "event_date": "2020-02-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 16,
+              "device_id": 1,
+              "event_date": "2020-02-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 16,
+              "device_id": 2,
+              "event_date": "2020-02-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 17,
+              "device_id": 1,
+              "event_date": "2020-02-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 17,
+              "device_id": 2,
+              "event_date": "2020-02-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 18,
+              "device_id": 1,
+              "event_date": "2020-02-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 18,
+              "device_id": 2,
+              "event_date": "2020-02-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 19,
+              "device_id": 1,
+              "event_date": "2020-02-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 19,
+              "device_id": 2,
+              "event_date": "2020-02-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 20,
+              "device_id": 1,
+              "event_date": "2020-03-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 20,
+              "device_id": 2,
+              "event_date": "2020-03-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 21,
+              "device_id": 1,
+              "event_date": "2020-03-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 21,
+              "device_id": 2,
+              "event_date": "2020-03-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 22,
+              "device_id": 1,
+              "event_date": "2020-03-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 22,
+              "device_id": 2,
+              "event_date": "2020-03-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 23,
+              "device_id": 1,
+              "event_date": "2020-03-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 23,
+              "device_id": 2,
+              "event_date": "2020-03-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 24,
+              "device_id": 1,
+              "event_date": "2020-03-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 24,
+              "device_id": 2,
+              "event_date": "2020-03-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 25,
+              "device_id": 1,
+              "event_date": "2020-03-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 25,
+              "device_id": 2,
+              "event_date": "2020-03-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 26,
+              "device_id": 1,
+              "event_date": "2020-03-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 26,
+              "device_id": 2,
+              "event_date": "2020-03-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 27,
+              "device_id": 1,
+              "event_date": "2020-03-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 27,
+              "device_id": 2,
+              "event_date": "2020-03-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 28,
+              "device_id": 1,
+              "event_date": "2020-03-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 28,
+              "device_id": 2,
+              "event_date": "2020-03-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 29,
+              "device_id": 1,
+              "event_date": "2020-03-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 29,
+              "device_id": 2,
+              "event_date": "2020-03-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 30,
+              "device_id": 1,
+              "event_date": "2020-03-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 30,
+              "device_id": 2,
+              "event_date": "2020-04-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 31,
+              "device_id": 1,
+              "event_date": "2020-04-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 31,
+              "device_id": 2,
+              "event_date": "2020-04-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 32,
+              "device_id": 1,
+              "event_date": "2020-04-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 32,
+              "device_id": 2,
+              "event_date": "2020-04-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 33,
+              "device_id": 1,
+              "event_date": "2020-04-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 33,
+              "device_id": 2,
+              "event_date": "2020-04-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 34,
+              "device_id": 1,
+              "event_date": "2020-04-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 34,
+              "device_id": 2,
+              "event_date": "2020-04-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 35,
+              "device_id": 1,
+              "event_date": "2020-04-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 35,
+              "device_id": 2,
+              "event_date": "2020-04-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 36,
+              "device_id": 1,
+              "event_date": "2020-04-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 36,
+              "device_id": 2,
+              "event_date": "2020-04-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 37,
+              "device_id": 1,
+              "event_date": "2020-04-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 37,
+              "device_id": 2,
+              "event_date": "2020-04-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 38,
+              "device_id": 1,
+              "event_date": "2020-04-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 38,
+              "device_id": 2,
+              "event_date": "2020-04-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 39,
+              "device_id": 1,
+              "event_date": "2020-04-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 39,
+              "device_id": 2,
+              "event_date": "2020-04-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 40,
+              "device_id": 1,
+              "event_date": "2020-04-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 40,
+              "device_id": 2,
+              "event_date": "2020-05-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 41,
+              "device_id": 1,
+              "event_date": "2020-05-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 41,
+              "device_id": 2,
+              "event_date": "2020-05-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 42,
+              "device_id": 1,
+              "event_date": "2020-05-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 42,
+              "device_id": 2,
+              "event_date": "2020-05-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 43,
+              "device_id": 1,
+              "event_date": "2020-05-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 43,
+              "device_id": 2,
+              "event_date": "2020-05-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 44,
+              "device_id": 1,
+              "event_date": "2020-05-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 44,
+              "device_id": 2,
+              "event_date": "2020-05-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 45,
+              "device_id": 1,
+              "event_date": "2020-05-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 45,
+              "device_id": 2,
+              "event_date": "2020-05-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 46,
+              "device_id": 1,
+              "event_date": "2020-05-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 46,
+              "device_id": 2,
+              "event_date": "2020-05-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 47,
+              "device_id": 1,
+              "event_date": "2020-05-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 47,
+              "device_id": 2,
+              "event_date": "2020-05-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 48,
+              "device_id": 1,
+              "event_date": "2020-05-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 48,
+              "device_id": 2,
+              "event_date": "2020-05-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 49,
+              "device_id": 1,
+              "event_date": "2020-05-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 49,
+              "device_id": 2,
+              "event_date": "2020-05-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 50,
+              "device_id": 1,
+              "event_date": "2020-05-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 50,
+              "device_id": 2,
+              "event_date": "2020-05-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 51,
+              "device_id": 1,
+              "event_date": "2020-06-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 51,
+              "device_id": 2,
+              "event_date": "2020-06-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 52,
+              "device_id": 1,
+              "event_date": "2020-06-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 52,
+              "device_id": 2,
+              "event_date": "2020-06-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 53,
+              "device_id": 1,
+              "event_date": "2020-06-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 53,
+              "device_id": 2,
+              "event_date": "2020-06-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 54,
+              "device_id": 1,
+              "event_date": "2020-06-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 54,
+              "device_id": 2,
+              "event_date": "2020-06-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 55,
+              "device_id": 1,
+              "event_date": "2020-06-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 55,
+              "device_id": 2,
+              "event_date": "2020-06-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 56,
+              "device_id": 1,
+              "event_date": "2020-06-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 56,
+              "device_id": 2,
+              "event_date": "2020-06-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 57,
+              "device_id": 1,
+              "event_date": "2020-06-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 57,
+              "device_id": 2,
+              "event_date": "2020-06-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 58,
+              "device_id": 1,
+              "event_date": "2020-06-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 58,
+              "device_id": 2,
+              "event_date": "2020-06-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 59,
+              "device_id": 1,
+              "event_date": "2020-06-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 59,
+              "device_id": 2,
+              "event_date": "2020-06-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 60,
+              "device_id": 1,
+              "event_date": "2020-06-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 60,
+              "device_id": 2,
+              "event_date": "2020-06-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 61,
+              "device_id": 1,
+              "event_date": "2020-07-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 61,
+              "device_id": 2,
+              "event_date": "2020-07-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 62,
+              "device_id": 1,
+              "event_date": "2020-07-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 62,
+              "device_id": 2,
+              "event_date": "2020-07-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 63,
+              "device_id": 1,
+              "event_date": "2020-07-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 63,
+              "device_id": 2,
+              "event_date": "2020-07-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 64,
+              "device_id": 1,
+              "event_date": "2020-07-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 64,
+              "device_id": 2,
+              "event_date": "2020-07-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 65,
+              "device_id": 1,
+              "event_date": "2020-07-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 65,
+              "device_id": 2,
+              "event_date": "2020-07-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 66,
+              "device_id": 1,
+              "event_date": "2020-07-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 66,
+              "device_id": 2,
+              "event_date": "2020-07-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 67,
+              "device_id": 1,
+              "event_date": "2020-07-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 67,
+              "device_id": 2,
+              "event_date": "2020-07-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 68,
+              "device_id": 1,
+              "event_date": "2020-07-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 68,
+              "device_id": 2,
+              "event_date": "2020-07-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 69,
+              "device_id": 1,
+              "event_date": "2020-07-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 69,
+              "device_id": 2,
+              "event_date": "2020-07-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 70,
+              "device_id": 1,
+              "event_date": "2020-07-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 70,
+              "device_id": 2,
+              "event_date": "2020-07-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 71,
+              "device_id": 1,
+              "event_date": "2020-08-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 71,
+              "device_id": 2,
+              "event_date": "2020-08-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 72,
+              "device_id": 1,
+              "event_date": "2020-08-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 72,
+              "device_id": 2,
+              "event_date": "2020-08-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 73,
+              "device_id": 1,
+              "event_date": "2020-08-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 73,
+              "device_id": 2,
+              "event_date": "2020-08-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 74,
+              "device_id": 1,
+              "event_date": "2020-08-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 74,
+              "device_id": 2,
+              "event_date": "2020-08-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 75,
+              "device_id": 1,
+              "event_date": "2020-08-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 75,
+              "device_id": 2,
+              "event_date": "2020-08-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 76,
+              "device_id": 1,
+              "event_date": "2020-08-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 76,
+              "device_id": 2,
+              "event_date": "2020-08-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 77,
+              "device_id": 1,
+              "event_date": "2020-08-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 77,
+              "device_id": 2,
+              "event_date": "2020-08-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 78,
+              "device_id": 1,
+              "event_date": "2020-08-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 78,
+              "device_id": 2,
+              "event_date": "2020-08-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 79,
+              "device_id": 1,
+              "event_date": "2020-08-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 79,
+              "device_id": 2,
+              "event_date": "2020-08-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 80,
+              "device_id": 1,
+              "event_date": "2020-08-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 80,
+              "device_id": 2,
+              "event_date": "2020-08-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 81,
+              "device_id": 1,
+              "event_date": "2020-08-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 81,
+              "device_id": 2,
+              "event_date": "2020-09-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 82,
+              "device_id": 1,
+              "event_date": "2020-09-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 82,
+              "device_id": 2,
+              "event_date": "2020-09-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 83,
+              "device_id": 1,
+              "event_date": "2020-09-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 83,
+              "device_id": 2,
+              "event_date": "2020-09-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 84,
+              "device_id": 1,
+              "event_date": "2020-09-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 84,
+              "device_id": 2,
+              "event_date": "2020-09-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 85,
+              "device_id": 1,
+              "event_date": "2020-09-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 85,
+              "device_id": 2,
+              "event_date": "2020-09-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 86,
+              "device_id": 1,
+              "event_date": "2020-09-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 86,
+              "device_id": 2,
+              "event_date": "2020-09-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 87,
+              "device_id": 1,
+              "event_date": "2020-09-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 87,
+              "device_id": 2,
+              "event_date": "2020-09-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 88,
+              "device_id": 1,
+              "event_date": "2020-09-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 88,
+              "device_id": 2,
+              "event_date": "2020-09-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 89,
+              "device_id": 1,
+              "event_date": "2020-09-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 89,
+              "device_id": 2,
+              "event_date": "2020-09-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 90,
+              "device_id": 1,
+              "event_date": "2020-09-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 90,
+              "device_id": 2,
+              "event_date": "2020-09-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 91,
+              "device_id": 1,
+              "event_date": "2020-09-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 91,
+              "device_id": 2,
+              "event_date": "2020-10-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 92,
+              "device_id": 1,
+              "event_date": "2020-10-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 92,
+              "device_id": 2,
+              "event_date": "2020-10-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 93,
+              "device_id": 1,
+              "event_date": "2020-10-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 93,
+              "device_id": 2,
+              "event_date": "2020-10-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 94,
+              "device_id": 1,
+              "event_date": "2020-10-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 94,
+              "device_id": 2,
+              "event_date": "2020-10-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 95,
+              "device_id": 1,
+              "event_date": "2020-10-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 95,
+              "device_id": 2,
+              "event_date": "2020-10-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 96,
+              "device_id": 1,
+              "event_date": "2020-10-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 96,
+              "device_id": 2,
+              "event_date": "2020-10-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 97,
+              "device_id": 1,
+              "event_date": "2020-10-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 97,
+              "device_id": 2,
+              "event_date": "2020-10-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 98,
+              "device_id": 1,
+              "event_date": "2020-10-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 98,
+              "device_id": 2,
+              "event_date": "2020-10-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 99,
+              "device_id": 1,
+              "event_date": "2020-10-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 99,
+              "device_id": 2,
+              "event_date": "2020-10-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 100,
+              "device_id": 1,
+              "event_date": "2020-10-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 100,
+              "device_id": 2,
+              "event_date": "2020-10-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 101,
+              "device_id": 1,
+              "event_date": "2020-10-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 101,
+              "device_id": 2,
+              "event_date": "2020-10-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 102,
+              "device_id": 1,
+              "event_date": "2020-11-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 102,
+              "device_id": 2,
+              "event_date": "2020-11-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 103,
+              "device_id": 1,
+              "event_date": "2020-11-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 103,
+              "device_id": 2,
+              "event_date": "2020-11-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 104,
+              "device_id": 1,
+              "event_date": "2020-11-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 104,
+              "device_id": 2,
+              "event_date": "2020-11-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 105,
+              "device_id": 1,
+              "event_date": "2020-11-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 105,
+              "device_id": 2,
+              "event_date": "2020-11-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 106,
+              "device_id": 1,
+              "event_date": "2020-11-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 106,
+              "device_id": 2,
+              "event_date": "2020-11-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 107,
+              "device_id": 1,
+              "event_date": "2020-11-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 107,
+              "device_id": 2,
+              "event_date": "2020-11-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 108,
+              "device_id": 1,
+              "event_date": "2020-11-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 108,
+              "device_id": 2,
+              "event_date": "2020-11-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 109,
+              "device_id": 1,
+              "event_date": "2020-11-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 109,
+              "device_id": 2,
+              "event_date": "2020-11-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 110,
+              "device_id": 1,
+              "event_date": "2020-11-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 110,
+              "device_id": 2,
+              "event_date": "2020-11-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 111,
+              "device_id": 1,
+              "event_date": "2020-11-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 111,
+              "device_id": 2,
+              "event_date": "2020-11-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 112,
+              "device_id": 1,
+              "event_date": "2020-12-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 112,
+              "device_id": 2,
+              "event_date": "2020-12-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 113,
+              "device_id": 1,
+              "event_date": "2020-12-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 113,
+              "device_id": 2,
+              "event_date": "2020-12-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 114,
+              "device_id": 1,
+              "event_date": "2020-12-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 114,
+              "device_id": 2,
+              "event_date": "2020-12-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 115,
+              "device_id": 1,
+              "event_date": "2020-12-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 115,
+              "device_id": 2,
+              "event_date": "2020-12-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 116,
+              "device_id": 1,
+              "event_date": "2020-12-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 116,
+              "device_id": 2,
+              "event_date": "2020-12-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 117,
+              "device_id": 1,
+              "event_date": "2020-12-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 117,
+              "device_id": 2,
+              "event_date": "2020-12-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 118,
+              "device_id": 1,
+              "event_date": "2020-12-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 118,
+              "device_id": 2,
+              "event_date": "2020-12-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 119,
+              "device_id": 1,
+              "event_date": "2020-12-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 119,
+              "device_id": 2,
+              "event_date": "2020-12-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 120,
+              "device_id": 1,
+              "event_date": "2020-12-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 120,
+              "device_id": 2,
+              "event_date": "2020-12-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 121,
+              "device_id": 1,
+              "event_date": "2020-12-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 121,
+              "device_id": 2,
+              "event_date": "2020-12-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 122,
+              "device_id": 1,
+              "event_date": "2021-01-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 122,
+              "device_id": 2,
+              "event_date": "2021-01-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 123,
+              "device_id": 1,
+              "event_date": "2021-01-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 123,
+              "device_id": 2,
+              "event_date": "2021-01-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 124,
+              "device_id": 1,
+              "event_date": "2021-01-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 124,
+              "device_id": 2,
+              "event_date": "2021-01-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 125,
+              "device_id": 1,
+              "event_date": "2021-01-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 125,
+              "device_id": 2,
+              "event_date": "2021-01-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 126,
+              "device_id": 1,
+              "event_date": "2021-01-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 126,
+              "device_id": 2,
+              "event_date": "2021-01-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 127,
+              "device_id": 1,
+              "event_date": "2021-01-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 127,
+              "device_id": 2,
+              "event_date": "2021-01-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 128,
+              "device_id": 1,
+              "event_date": "2021-01-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 128,
+              "device_id": 2,
+              "event_date": "2021-01-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 129,
+              "device_id": 1,
+              "event_date": "2021-01-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 129,
+              "device_id": 2,
+              "event_date": "2021-01-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 130,
+              "device_id": 1,
+              "event_date": "2021-01-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 130,
+              "device_id": 2,
+              "event_date": "2021-01-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 131,
+              "device_id": 1,
+              "event_date": "2021-01-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 131,
+              "device_id": 2,
+              "event_date": "2021-01-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 132,
+              "device_id": 1,
+              "event_date": "2021-01-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 132,
+              "device_id": 2,
+              "event_date": "2021-02-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 133,
+              "device_id": 1,
+              "event_date": "2021-02-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 133,
+              "device_id": 2,
+              "event_date": "2021-02-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 134,
+              "device_id": 1,
+              "event_date": "2021-02-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 134,
+              "device_id": 2,
+              "event_date": "2021-02-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 135,
+              "device_id": 1,
+              "event_date": "2021-02-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 135,
+              "device_id": 2,
+              "event_date": "2021-02-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 136,
+              "device_id": 1,
+              "event_date": "2021-02-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 136,
+              "device_id": 2,
+              "event_date": "2021-02-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 137,
+              "device_id": 1,
+              "event_date": "2021-02-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 137,
+              "device_id": 2,
+              "event_date": "2021-02-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 138,
+              "device_id": 1,
+              "event_date": "2021-02-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 138,
+              "device_id": 2,
+              "event_date": "2021-02-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 139,
+              "device_id": 1,
+              "event_date": "2021-02-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 139,
+              "device_id": 2,
+              "event_date": "2021-02-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 140,
+              "device_id": 1,
+              "event_date": "2021-02-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 140,
+              "device_id": 2,
+              "event_date": "2021-02-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 141,
+              "device_id": 1,
+              "event_date": "2021-02-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 141,
+              "device_id": 2,
+              "event_date": "2021-03-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 142,
+              "device_id": 1,
+              "event_date": "2021-03-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 142,
+              "device_id": 2,
+              "event_date": "2021-03-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 143,
+              "device_id": 1,
+              "event_date": "2021-03-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 143,
+              "device_id": 2,
+              "event_date": "2021-03-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 144,
+              "device_id": 1,
+              "event_date": "2021-03-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 144,
+              "device_id": 2,
+              "event_date": "2021-03-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 145,
+              "device_id": 1,
+              "event_date": "2021-03-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 145,
+              "device_id": 2,
+              "event_date": "2021-03-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 146,
+              "device_id": 1,
+              "event_date": "2021-03-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 146,
+              "device_id": 2,
+              "event_date": "2021-03-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 147,
+              "device_id": 1,
+              "event_date": "2021-03-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 147,
+              "device_id": 2,
+              "event_date": "2021-03-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 148,
+              "device_id": 1,
+              "event_date": "2021-03-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 148,
+              "device_id": 2,
+              "event_date": "2021-03-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 149,
+              "device_id": 1,
+              "event_date": "2021-03-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 149,
+              "device_id": 2,
+              "event_date": "2021-03-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 150,
+              "device_id": 1,
+              "event_date": "2021-03-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 150,
+              "device_id": 2,
+              "event_date": "2021-03-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 151,
+              "device_id": 1,
+              "event_date": "2021-03-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 151,
+              "device_id": 2,
+              "event_date": "2021-03-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 152,
+              "device_id": 1,
+              "event_date": "2021-04-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 152,
+              "device_id": 2,
+              "event_date": "2021-04-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 153,
+              "device_id": 1,
+              "event_date": "2021-04-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 153,
+              "device_id": 2,
+              "event_date": "2021-04-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 154,
+              "device_id": 1,
+              "event_date": "2021-04-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 154,
+              "device_id": 2,
+              "event_date": "2021-04-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 155,
+              "device_id": 1,
+              "event_date": "2021-04-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 155,
+              "device_id": 2,
+              "event_date": "2021-04-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 156,
+              "device_id": 1,
+              "event_date": "2021-04-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 156,
+              "device_id": 2,
+              "event_date": "2021-04-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 157,
+              "device_id": 1,
+              "event_date": "2021-04-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 157,
+              "device_id": 2,
+              "event_date": "2021-04-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 158,
+              "device_id": 1,
+              "event_date": "2021-04-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 158,
+              "device_id": 2,
+              "event_date": "2021-04-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 159,
+              "device_id": 1,
+              "event_date": "2021-04-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 159,
+              "device_id": 2,
+              "event_date": "2021-04-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 160,
+              "device_id": 1,
+              "event_date": "2021-04-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 160,
+              "device_id": 2,
+              "event_date": "2021-04-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 161,
+              "device_id": 1,
+              "event_date": "2021-04-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 161,
+              "device_id": 2,
+              "event_date": "2021-04-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 162,
+              "device_id": 1,
+              "event_date": "2021-05-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 162,
+              "device_id": 2,
+              "event_date": "2021-05-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 163,
+              "device_id": 1,
+              "event_date": "2021-05-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 163,
+              "device_id": 2,
+              "event_date": "2021-05-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 164,
+              "device_id": 1,
+              "event_date": "2021-05-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 164,
+              "device_id": 2,
+              "event_date": "2021-05-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 165,
+              "device_id": 1,
+              "event_date": "2021-05-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 165,
+              "device_id": 2,
+              "event_date": "2021-05-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 166,
+              "device_id": 1,
+              "event_date": "2021-05-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 166,
+              "device_id": 2,
+              "event_date": "2021-05-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 167,
+              "device_id": 1,
+              "event_date": "2021-05-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 167,
+              "device_id": 2,
+              "event_date": "2021-05-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 168,
+              "device_id": 1,
+              "event_date": "2021-05-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 168,
+              "device_id": 2,
+              "event_date": "2021-05-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 169,
+              "device_id": 1,
+              "event_date": "2021-05-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 169,
+              "device_id": 2,
+              "event_date": "2021-05-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 170,
+              "device_id": 1,
+              "event_date": "2021-05-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 170,
+              "device_id": 2,
+              "event_date": "2021-05-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 171,
+              "device_id": 1,
+              "event_date": "2021-05-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 171,
+              "device_id": 2,
+              "event_date": "2021-05-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 172,
+              "device_id": 1,
+              "event_date": "2021-05-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 172,
+              "device_id": 2,
+              "event_date": "2021-06-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 173,
+              "device_id": 1,
+              "event_date": "2021-06-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 173,
+              "device_id": 2,
+              "event_date": "2021-06-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 174,
+              "device_id": 1,
+              "event_date": "2021-06-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 174,
+              "device_id": 2,
+              "event_date": "2021-06-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 175,
+              "device_id": 1,
+              "event_date": "2021-06-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 175,
+              "device_id": 2,
+              "event_date": "2021-06-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 176,
+              "device_id": 1,
+              "event_date": "2021-06-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 176,
+              "device_id": 2,
+              "event_date": "2021-06-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 177,
+              "device_id": 1,
+              "event_date": "2021-06-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 177,
+              "device_id": 2,
+              "event_date": "2021-06-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 178,
+              "device_id": 1,
+              "event_date": "2021-06-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 178,
+              "device_id": 2,
+              "event_date": "2021-06-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 179,
+              "device_id": 1,
+              "event_date": "2021-06-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 179,
+              "device_id": 2,
+              "event_date": "2021-06-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 180,
+              "device_id": 1,
+              "event_date": "2021-06-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 180,
+              "device_id": 2,
+              "event_date": "2021-06-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 181,
+              "device_id": 1,
+              "event_date": "2021-06-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 181,
+              "device_id": 2,
+              "event_date": "2021-06-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 182,
+              "device_id": 1,
+              "event_date": "2021-06-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 182,
+              "device_id": 2,
+              "event_date": "2021-07-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 183,
+              "device_id": 1,
+              "event_date": "2021-07-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 183,
+              "device_id": 2,
+              "event_date": "2021-07-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 184,
+              "device_id": 1,
+              "event_date": "2021-07-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 184,
+              "device_id": 2,
+              "event_date": "2021-07-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 185,
+              "device_id": 1,
+              "event_date": "2021-07-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 185,
+              "device_id": 2,
+              "event_date": "2021-07-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 186,
+              "device_id": 1,
+              "event_date": "2021-07-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 186,
+              "device_id": 2,
+              "event_date": "2021-07-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 187,
+              "device_id": 1,
+              "event_date": "2021-07-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 187,
+              "device_id": 2,
+              "event_date": "2021-07-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 188,
+              "device_id": 1,
+              "event_date": "2021-07-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 188,
+              "device_id": 2,
+              "event_date": "2021-07-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 189,
+              "device_id": 1,
+              "event_date": "2021-07-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 189,
+              "device_id": 2,
+              "event_date": "2021-07-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 190,
+              "device_id": 1,
+              "event_date": "2021-07-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 190,
+              "device_id": 2,
+              "event_date": "2021-07-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 191,
+              "device_id": 1,
+              "event_date": "2021-07-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 191,
+              "device_id": 2,
+              "event_date": "2021-07-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 192,
+              "device_id": 1,
+              "event_date": "2021-07-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 192,
+              "device_id": 2,
+              "event_date": "2021-08-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 193,
+              "device_id": 1,
+              "event_date": "2021-08-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 193,
+              "device_id": 2,
+              "event_date": "2021-08-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 194,
+              "device_id": 1,
+              "event_date": "2021-08-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 194,
+              "device_id": 2,
+              "event_date": "2021-08-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 195,
+              "device_id": 1,
+              "event_date": "2021-08-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 195,
+              "device_id": 2,
+              "event_date": "2021-08-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 196,
+              "device_id": 1,
+              "event_date": "2021-08-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 196,
+              "device_id": 2,
+              "event_date": "2021-08-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 197,
+              "device_id": 1,
+              "event_date": "2021-08-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 197,
+              "device_id": 2,
+              "event_date": "2021-08-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 198,
+              "device_id": 1,
+              "event_date": "2021-08-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 198,
+              "device_id": 2,
+              "event_date": "2021-08-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 199,
+              "device_id": 1,
+              "event_date": "2021-08-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 199,
+              "device_id": 2,
+              "event_date": "2021-08-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 200,
+              "device_id": 1,
+              "event_date": "2021-08-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 200,
+              "device_id": 2,
+              "event_date": "2021-08-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 201,
+              "device_id": 1,
+              "event_date": "2021-08-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 201,
+              "device_id": 2,
+              "event_date": "2021-08-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 202,
+              "device_id": 1,
+              "event_date": "2021-08-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 202,
+              "device_id": 2,
+              "event_date": "2021-08-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 203,
+              "device_id": 1,
+              "event_date": "2021-09-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 203,
+              "device_id": 2,
+              "event_date": "2021-09-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 204,
+              "device_id": 1,
+              "event_date": "2021-09-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 204,
+              "device_id": 2,
+              "event_date": "2021-09-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 205,
+              "device_id": 1,
+              "event_date": "2021-09-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 205,
+              "device_id": 2,
+              "event_date": "2021-09-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 206,
+              "device_id": 1,
+              "event_date": "2021-09-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 206,
+              "device_id": 2,
+              "event_date": "2021-09-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 207,
+              "device_id": 1,
+              "event_date": "2021-09-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 207,
+              "device_id": 2,
+              "event_date": "2021-09-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 208,
+              "device_id": 1,
+              "event_date": "2021-09-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 208,
+              "device_id": 2,
+              "event_date": "2021-09-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 209,
+              "device_id": 1,
+              "event_date": "2021-09-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 209,
+              "device_id": 2,
+              "event_date": "2021-09-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 210,
+              "device_id": 1,
+              "event_date": "2021-09-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 210,
+              "device_id": 2,
+              "event_date": "2021-09-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 211,
+              "device_id": 1,
+              "event_date": "2021-09-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 211,
+              "device_id": 2,
+              "event_date": "2021-09-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 212,
+              "device_id": 1,
+              "event_date": "2021-09-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 212,
+              "device_id": 2,
+              "event_date": "2021-09-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 213,
+              "device_id": 1,
+              "event_date": "2021-10-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 213,
+              "device_id": 2,
+              "event_date": "2021-10-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 214,
+              "device_id": 1,
+              "event_date": "2021-10-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 214,
+              "device_id": 2,
+              "event_date": "2021-10-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 215,
+              "device_id": 1,
+              "event_date": "2021-10-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 215,
+              "device_id": 2,
+              "event_date": "2021-10-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 216,
+              "device_id": 1,
+              "event_date": "2021-10-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 216,
+              "device_id": 2,
+              "event_date": "2021-10-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 217,
+              "device_id": 1,
+              "event_date": "2021-10-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 217,
+              "device_id": 2,
+              "event_date": "2021-10-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 218,
+              "device_id": 1,
+              "event_date": "2021-10-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 218,
+              "device_id": 2,
+              "event_date": "2021-10-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 219,
+              "device_id": 1,
+              "event_date": "2021-10-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 219,
+              "device_id": 2,
+              "event_date": "2021-10-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 220,
+              "device_id": 1,
+              "event_date": "2021-10-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 220,
+              "device_id": 2,
+              "event_date": "2021-10-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 221,
+              "device_id": 1,
+              "event_date": "2021-10-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 221,
+              "device_id": 2,
+              "event_date": "2021-10-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 222,
+              "device_id": 1,
+              "event_date": "2021-10-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 222,
+              "device_id": 2,
+              "event_date": "2021-10-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 223,
+              "device_id": 1,
+              "event_date": "2021-10-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 223,
+              "device_id": 2,
+              "event_date": "2021-11-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 224,
+              "device_id": 1,
+              "event_date": "2021-11-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 224,
+              "device_id": 2,
+              "event_date": "2021-11-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 225,
+              "device_id": 1,
+              "event_date": "2021-11-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 225,
+              "device_id": 2,
+              "event_date": "2021-11-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 226,
+              "device_id": 1,
+              "event_date": "2021-11-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 226,
+              "device_id": 2,
+              "event_date": "2021-11-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 227,
+              "device_id": 1,
+              "event_date": "2021-11-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 227,
+              "device_id": 2,
+              "event_date": "2021-11-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 228,
+              "device_id": 1,
+              "event_date": "2021-11-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 228,
+              "device_id": 2,
+              "event_date": "2021-11-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 229,
+              "device_id": 1,
+              "event_date": "2021-11-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 229,
+              "device_id": 2,
+              "event_date": "2021-11-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 230,
+              "device_id": 1,
+              "event_date": "2021-11-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 230,
+              "device_id": 2,
+              "event_date": "2021-11-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 231,
+              "device_id": 1,
+              "event_date": "2021-11-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 231,
+              "device_id": 2,
+              "event_date": "2021-11-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 232,
+              "device_id": 1,
+              "event_date": "2021-11-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 232,
+              "device_id": 2,
+              "event_date": "2021-11-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 233,
+              "device_id": 1,
+              "event_date": "2021-11-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 233,
+              "device_id": 2,
+              "event_date": "2021-12-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 234,
+              "device_id": 1,
+              "event_date": "2021-12-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 234,
+              "device_id": 2,
+              "event_date": "2021-12-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 235,
+              "device_id": 1,
+              "event_date": "2021-12-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 235,
+              "device_id": 2,
+              "event_date": "2021-12-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 236,
+              "device_id": 1,
+              "event_date": "2021-12-09",
+              "games_played": 0
+            },
+            {
+              "player_id": 236,
+              "device_id": 2,
+              "event_date": "2021-12-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 237,
+              "device_id": 1,
+              "event_date": "2021-12-12",
+              "games_played": 0
+            },
+            {
+              "player_id": 237,
+              "device_id": 2,
+              "event_date": "2021-12-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 238,
+              "device_id": 1,
+              "event_date": "2021-12-15",
+              "games_played": 0
+            },
+            {
+              "player_id": 238,
+              "device_id": 2,
+              "event_date": "2021-12-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 239,
+              "device_id": 1,
+              "event_date": "2021-12-18",
+              "games_played": 0
+            },
+            {
+              "player_id": 239,
+              "device_id": 2,
+              "event_date": "2021-12-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 240,
+              "device_id": 1,
+              "event_date": "2021-12-21",
+              "games_played": 0
+            },
+            {
+              "player_id": 240,
+              "device_id": 2,
+              "event_date": "2021-12-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 241,
+              "device_id": 1,
+              "event_date": "2021-12-24",
+              "games_played": 0
+            },
+            {
+              "player_id": 241,
+              "device_id": 2,
+              "event_date": "2021-12-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 242,
+              "device_id": 1,
+              "event_date": "2021-12-27",
+              "games_played": 0
+            },
+            {
+              "player_id": 242,
+              "device_id": 2,
+              "event_date": "2021-12-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 243,
+              "device_id": 1,
+              "event_date": "2021-12-30",
+              "games_played": 0
+            },
+            {
+              "player_id": 243,
+              "device_id": 2,
+              "event_date": "2022-01-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 244,
+              "device_id": 1,
+              "event_date": "2022-01-02",
+              "games_played": 0
+            },
+            {
+              "player_id": 244,
+              "device_id": 2,
+              "event_date": "2022-01-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 245,
+              "device_id": 1,
+              "event_date": "2022-01-05",
+              "games_played": 0
+            },
+            {
+              "player_id": 245,
+              "device_id": 2,
+              "event_date": "2022-01-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 246,
+              "device_id": 1,
+              "event_date": "2022-01-08",
+              "games_played": 0
+            },
+            {
+              "player_id": 246,
+              "device_id": 2,
+              "event_date": "2022-01-10",
+              "games_played": 0
+            },
+            {
+              "player_id": 247,
+              "device_id": 1,
+              "event_date": "2022-01-11",
+              "games_played": 0
+            },
+            {
+              "player_id": 247,
+              "device_id": 2,
+              "event_date": "2022-01-13",
+              "games_played": 0
+            },
+            {
+              "player_id": 248,
+              "device_id": 1,
+              "event_date": "2022-01-14",
+              "games_played": 0
+            },
+            {
+              "player_id": 248,
+              "device_id": 2,
+              "event_date": "2022-01-16",
+              "games_played": 0
+            },
+            {
+              "player_id": 249,
+              "device_id": 1,
+              "event_date": "2022-01-17",
+              "games_played": 0
+            },
+            {
+              "player_id": 249,
+              "device_id": 2,
+              "event_date": "2022-01-19",
+              "games_played": 0
+            },
+            {
+              "player_id": 250,
+              "device_id": 1,
+              "event_date": "2022-01-20",
+              "games_played": 0
+            },
+            {
+              "player_id": 250,
+              "device_id": 2,
+              "event_date": "2022-01-22",
+              "games_played": 0
+            },
+            {
+              "player_id": 251,
+              "device_id": 1,
+              "event_date": "2022-01-23",
+              "games_played": 0
+            },
+            {
+              "player_id": 251,
+              "device_id": 2,
+              "event_date": "2022-01-25",
+              "games_played": 0
+            },
+            {
+              "player_id": 252,
+              "device_id": 1,
+              "event_date": "2022-01-26",
+              "games_played": 0
+            },
+            {
+              "player_id": 252,
+              "device_id": 2,
+              "event_date": "2022-01-28",
+              "games_played": 0
+            },
+            {
+              "player_id": 253,
+              "device_id": 1,
+              "event_date": "2022-01-29",
+              "games_played": 0
+            },
+            {
+              "player_id": 253,
+              "device_id": 2,
+              "event_date": "2022-01-31",
+              "games_played": 0
+            },
+            {
+              "player_id": 254,
+              "device_id": 1,
+              "event_date": "2022-02-01",
+              "games_played": 0
+            },
+            {
+              "player_id": 254,
+              "device_id": 2,
+              "event_date": "2022-02-03",
+              "games_played": 0
+            },
+            {
+              "player_id": 255,
+              "device_id": 1,
+              "event_date": "2022-02-04",
+              "games_played": 0
+            },
+            {
+              "player_id": 255,
+              "device_id": 2,
+              "event_date": "2022-02-06",
+              "games_played": 0
+            },
+            {
+              "player_id": 256,
+              "device_id": 1,
+              "event_date": "2022-02-07",
+              "games_played": 0
+            },
+            {
+              "player_id": 256,
+              "device_id": 2,
+              "event_date": "2022-02-09",
+              "games_played": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fraction"
+        ],
+        "rows": [
+          [
+            0.5
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "retention"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,32 @@
+{
+  "challenge_id": "lc_1380",
+  "cases": [
+    {
+      "id": "benchmark-two-by-two",
+      "name": "benchmark: two by two matrix",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            10,
+            20
+          ],
+          [
+            30,
+            40
+          ]
+        ]
+      },
+      "expected": [
+        30
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

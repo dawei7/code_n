@@ -1,0 +1,83 @@
+{
+  "challenge_id": "lc_2365",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated task needs idle days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tasks": [
+          1,
+          2,
+          1,
+          2,
+          3,
+          1
+        ],
+        "space": 3
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "simulation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two repeated tasks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tasks": [
+          5,
+          8,
+          8,
+          5
+        ],
+        "space": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no repeats",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tasks": [
+          1,
+          2,
+          3
+        ],
+        "space": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-same-task-only",
+      "name": "hidden: same task repeated with cooldown",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tasks": [
+          1,
+          1,
+          1
+        ],
+        "space": 2
+      },
+      "expected": 7,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_1515",
+  "source": "leetcode",
+  "frontend_id": "1515",
+  "slug": "best-position-for-a-service-centre",
+  "title": "Best Position for a Service Centre",
+  "difficulty": "Hard",
+  "acceptance_rate": 35.442677257912266,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Randomized",
+      "slug": "randomized"
+    }
+  ],
+  "url": "https://leetcode.com/problems/best-position-for-a-service-centre/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:citadel",
+    "leetcode_topic:array",
+    "leetcode_topic:geometry",
+    "leetcode_topic:math",
+    "leetcode_topic:randomized"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:citadel",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:geometry",
+    "topic:math",
+    "topic:randomized"
+  ],
+  "company_tags": [
+    {
+      "name": "Citadel",
+      "slug": "citadel"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Citadel",
+        "slug": "citadel",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

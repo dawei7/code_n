@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_593",
+  "measurement_note": "Size is the maximum coordinate difference, equal to the axis-aligned square's side length. Fixed-count multiplication-based squared distances use constant arithmetic operations, while computing each square by repeated addition grows with coordinate span.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: validate a square with side 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "p1": [
+          0,
+          0
+        ],
+        "p2": [
+          16,
+          0
+        ],
+        "p3": [
+          16,
+          16
+        ],
+        "p4": [
+          0,
+          16
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "coordinate-span"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: validate a square with side 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "p1": [
+          0,
+          0
+        ],
+        "p2": [
+          64,
+          0
+        ],
+        "p3": [
+          64,
+          64
+        ],
+        "p4": [
+          0,
+          64
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "coordinate-span"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: validate a square with side 256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "p1": [
+          0,
+          0
+        ],
+        "p2": [
+          256,
+          0
+        ],
+        "p3": [
+          256,
+          256
+        ],
+        "p4": [
+          0,
+          256
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "coordinate-span"
+      ]
+    }
+  ]
+}

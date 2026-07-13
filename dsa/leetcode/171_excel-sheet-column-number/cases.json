@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_171",
+  "cases": [
+    {"id": "sample-first", "name": "sample: first column", "kind": "sample", "visible": true, "input": {"column_title": "A"}, "expected": 1, "tags": ["sample", "boundary"]},
+    {"id": "sample-two-letters", "name": "sample: two-letter title", "kind": "sample", "visible": true, "input": {"column_title": "AB"}, "expected": 28, "tags": ["sample", "base-26"]},
+    {"id": "trial-last-letter", "name": "last one-letter title", "kind": "trial", "visible": true, "input": {"column_title": "Z"}, "expected": 26, "tags": ["boundary"]},
+    {"id": "trial-high-two", "name": "high two-letter title", "kind": "trial", "visible": true, "input": {"column_title": "ZY"}, "expected": 701, "tags": ["conversion"]},
+    {"id": "real-three-letters", "name": "hidden: first three-letter title", "kind": "real", "visible": false, "input": {"column_title": "AAA"}, "expected": 703, "tags": ["hidden", "positional"]}
+  ]
+}

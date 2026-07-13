@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_2558",
+  "cases": [
+    {
+      "id": "benchmark-richest-pile-changes",
+      "name": "benchmark: richest pile changes after reductions",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "gifts": [
+          81,
+          9,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

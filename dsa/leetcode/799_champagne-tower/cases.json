@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_799",
+  "cases": [
+    {"id": "sample-1", "name": "sample: no overflow reaches row one", "kind": "sample", "visible": true, "input": {"poured": 1, "query_row": 1, "query_glass": 1}, "expected": 0.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "no-overflow"]},
+    {"id": "sample-2", "name": "sample: one excess cup splits", "kind": "sample", "visible": true, "input": {"poured": 2, "query_row": 1, "query_glass": 1}, "expected": 0.5, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "split"]},
+    {"id": "sample-3", "name": "sample: two parents feed middle glass", "kind": "sample", "visible": true, "input": {"poured": 4, "query_row": 2, "query_glass": 1}, "expected": 0.5, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "merge"]},
+    {"id": "trial-1", "name": "trial: empty top glass", "kind": "trial", "visible": true, "input": {"poured": 0, "query_row": 0, "query_glass": 0}, "expected": 0.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "top"]},
+    {"id": "trial-2", "name": "trial: overfilled top is capped", "kind": "trial", "visible": true, "input": {"poured": 3, "query_row": 0, "query_glass": 0}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "cap"]},
+    {"id": "trial-3", "name": "trial: flow stops before row two", "kind": "trial", "visible": true, "input": {"poured": 2, "query_row": 2, "query_glass": 1}, "expected": 0.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "no-overflow"]},
+    {"id": "hidden-1", "name": "hidden: fractional edge glass", "kind": "real", "visible": false, "input": {"poured": 10, "query_row": 3, "query_glass": 0}, "expected": 0.375, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["hidden", "edge", "fractional"]},
+    {"id": "hidden-2", "name": "hidden: saturated middle glass", "kind": "real", "visible": false, "input": {"poured": 6, "query_row": 2, "query_glass": 1}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["hidden", "cap", "merge"]},
+    {"id": "hidden-3", "name": "hidden: very large pour saturates deep glass", "kind": "real", "visible": false, "input": {"poured": 100000009, "query_row": 33, "query_glass": 17}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["hidden", "deep", "cap"]}
+  ]
+}

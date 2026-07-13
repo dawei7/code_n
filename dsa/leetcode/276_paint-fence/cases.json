@@ -1,0 +1,6 @@
+{"challenge_id":"lc_276","cases":[
+{"id":"sample-three-two","name":"sample: three posts and two colors","kind":"sample","visible":true,"input":{"n":3,"k":2},"expected":6,"tags":["sample","dp"]},
+{"id":"sample-one","name":"sample: one post and one color","kind":"sample","visible":true,"input":{"n":1,"k":1},"expected":1,"tags":["sample","boundary"]},
+{"id":"trial-two-one","name":"two posts may share one color","kind":"trial","visible":true,"input":{"n":2,"k":1},"expected":1,"tags":["same"]},
+{"id":"real-three-one","name":"hidden: third identical post is forbidden","kind":"real","visible":false,"input":{"n":3,"k":1},"expected":0,"tags":["hidden","forbidden-run"]}
+]}

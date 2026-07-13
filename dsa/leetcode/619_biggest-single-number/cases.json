@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_619",
+  "cases": [
+    {"id": "sample-1", "name": "sample: greatest single below repeated maxima", "kind": "sample", "visible": true, "input": {"tables": {"MyNumbers": [{"num": 8}, {"num": 8}, {"num": 3}, {"num": 3}, {"num": 1}, {"num": 4}, {"num": 5}, {"num": 6}]}}, "expected": {"columns": ["num"], "rows": [[6]]}, "tags": ["sample", "mixed-frequencies"]},
+    {"id": "sample-2", "name": "sample: no single number", "kind": "sample", "visible": true, "input": {"tables": {"MyNumbers": [{"num": 8}, {"num": 8}, {"num": 7}, {"num": 7}, {"num": 3}, {"num": 3}, {"num": 3}]}}, "expected": {"columns": ["num"], "rows": [[null]]}, "tags": ["sample", "null-result"]},
+    {"id": "sample-3", "name": "sample: one stored row", "kind": "sample", "visible": true, "input": {"tables": {"MyNumbers": [{"num": 42}]}}, "expected": {"columns": ["num"], "rows": [[42]]}, "tags": ["sample", "singleton"]},
+    {"id": "trial-1", "name": "trial: greatest single is negative", "kind": "trial", "visible": true, "input": {"tables": {"MyNumbers": [{"num": -1}, {"num": -1}, {"num": -2}, {"num": -3}, {"num": -3}]}}, "expected": {"columns": ["num"], "rows": [[-2]]}, "tags": ["trial", "negative"]},
+    {"id": "trial-2", "name": "trial: zero is the only single", "kind": "trial", "visible": true, "input": {"tables": {"MyNumbers": [{"num": 5}, {"num": 5}, {"num": 0}, {"num": -1}, {"num": -1}]}}, "expected": {"columns": ["num"], "rows": [[0]]}, "tags": ["trial", "zero"]},
+    {"id": "hidden-1", "name": "hidden: several singles around repeated values", "kind": "real", "visible": false, "input": {"tables": {"MyNumbers": [{"num": 100}, {"num": 100}, {"num": 99}, {"num": 50}, {"num": 50}, {"num": 75}, {"num": 74}]}}, "expected": {"columns": ["num"], "rows": [[99]]}, "tags": ["hidden", "several-singles"]},
+    {"id": "hidden-2", "name": "hidden: high multiplicity remains excluded", "kind": "real", "visible": false, "input": {"tables": {"MyNumbers": [{"num": 10}, {"num": 10}, {"num": 10}, {"num": 10}, {"num": 9}, {"num": 9}, {"num": 8}]}}, "expected": {"columns": ["num"], "rows": [[8]]}, "tags": ["hidden", "high-frequency"]}
+  ]
+}

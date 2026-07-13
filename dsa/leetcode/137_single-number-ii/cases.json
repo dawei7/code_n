@@ -1,0 +1,90 @@
+{
+  "challenge_id": "lc_137",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: positive single",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "bitwise"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: large single",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          99
+        ]
+      },
+      "expected": 99,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-negative-single",
+      "name": "negative single among triples",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -2,
+          1,
+          1,
+          4,
+          1,
+          4,
+          4,
+          -4,
+          -2
+        ]
+      },
+      "expected": -4,
+      "tags": [
+        "negative"
+      ]
+    },
+    {
+      "id": "real-zero-single",
+      "name": "hidden: zero appears once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          7,
+          7,
+          7,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

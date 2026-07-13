@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "746",
+  "frontend_id": "745",
+  "title_slug": "prefix-and-suffix-search",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "WordFilter.f",
+  "verified_submission_id": "2065883502",
+  "verified_at": "2026-07-13T08:34:21.144542+00:00"
+}

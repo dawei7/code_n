@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_1296",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two groups of four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          6
+        ],
+        "k": 4
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two groups of three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          2,
+          2,
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: length not divisible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-single-value",
+      "name": "hidden: single value group",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

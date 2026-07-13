@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_2598",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: value five remainder counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -10,
+          7,
+          13,
+          6,
+          8
+        ],
+        "value": 5
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "modulo"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: different modulus changes mex",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -10,
+          7,
+          13,
+          6,
+          8
+        ],
+        "value": 7
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all residues filled twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          0,
+          3,
+          2,
+          4,
+          2,
+          1,
+          1,
+          0,
+          4
+        ],
+        "value": 5
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-missing-next-residue",
+      "name": "trial: first missing residue after consecutive values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2
+        ],
+        "value": 4
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-negative-values",
+      "name": "hidden: negative numbers use positive modulo classes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3
+        ],
+        "value": 2
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

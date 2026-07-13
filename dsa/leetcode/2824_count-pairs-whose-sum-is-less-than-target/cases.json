@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_2824",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two pairs below target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          1,
+          2,
+          3,
+          1
+        ],
+        "target": 2
+      },
+      "tags": [
+        "sample",
+        "pairs"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: every pair below zero target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -6,
+          2,
+          5,
+          -2,
+          -7,
+          -1,
+          3
+        ],
+        "target": -2
+      },
+      "tags": [
+        "sample",
+        "negative"
+      ],
+      "expected": 10
+    },
+    {
+      "id": "trial-no-pairs",
+      "name": "trial: no pair is small enough",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          6,
+          7
+        ],
+        "target": 3
+      },
+      "tags": [
+        "trial",
+        "none"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-all-pairs",
+      "name": "trial: all pairs are small enough",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "target": 3
+      },
+      "tags": [
+        "trial",
+        "all"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "real-mixed-values",
+      "name": "hidden: mixed positive and negative values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          -5,
+          0,
+          4,
+          -2,
+          8
+        ],
+        "target": 5
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 7
+    }
+  ]
+}

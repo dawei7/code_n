@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_1324",
+  "cases": [
+    {
+      "id": "benchmark-leading-spaces",
+      "name": "benchmark: leading spaces inside rows",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "AB CDE FGHI"
+      },
+      "expected": [
+        "ACF",
+        "BDG",
+        " EH",
+        "  I"
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

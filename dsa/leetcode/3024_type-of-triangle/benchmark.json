@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_3024",
+  "cases": [
+    {
+      "id": "benchmark-triangle-constant",
+      "name": "benchmark: constant-size triangle classification",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          12345,
+          99991,
+          99991
+        ]
+      },
+      "expected": "isosceles",
+      "tags": [
+        "benchmark",
+        "constant"
+      ]
+    }
+  ]
+}

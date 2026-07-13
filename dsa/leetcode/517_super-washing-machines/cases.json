@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_517",
+  "cases": [
+    {"id": "sample-surplus", "name": "sample: right machine distributes three dresses", "kind": "sample", "visible": true, "input": {"machines": [1,0,5]}, "expected": 3, "tags": ["sample", "surplus"]},
+    {"id": "sample-center", "name": "sample: center sends in two rounds", "kind": "sample", "visible": true, "input": {"machines": [0,3,0]}, "expected": 2, "tags": ["sample", "center"]},
+    {"id": "sample-impossible", "name": "sample: total is not divisible", "kind": "sample", "visible": true, "input": {"machines": [0,2,0]}, "expected": -1, "tags": ["sample", "impossible"]},
+    {"id": "trial-single", "name": "trial: one machine is already balanced", "kind": "trial", "visible": true, "input": {"machines": [7]}, "expected": 0, "tags": ["trial", "singleton"]},
+    {"id": "trial-balanced", "name": "trial: equal loads need no moves", "kind": "trial", "visible": true, "input": {"machines": [2,2,2]}, "expected": 0, "tags": ["trial", "balanced"]},
+    {"id": "hidden-left-surplus", "name": "hidden: surplus travels through a chain", "kind": "real", "visible": false, "input": {"machines": [4,0,0,0]}, "expected": 3, "tags": ["hidden", "boundary-flow"]},
+    {"id": "hidden-prefix-dominates", "name": "hidden: boundary congestion exceeds local surplus", "kind": "real", "visible": false, "input": {"machines": [0,0,11,5]}, "expected": 8, "tags": ["hidden", "prefix"]}
+  ]
+}

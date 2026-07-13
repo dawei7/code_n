@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_2836",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three-player cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "receiver": [
+          2,
+          0,
+          1
+        ],
+        "k": 4
+      },
+      "tags": [
+        "sample",
+        "cycle"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: tail into a small chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "receiver": [
+          1,
+          1,
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "tags": [
+        "sample",
+        "functional-graph"
+      ],
+      "expected": 10
+    },
+    {
+      "id": "trial-self-loop-hub",
+      "name": "trial: every player passes to zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "receiver": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "k": 1
+      },
+      "tags": [
+        "trial",
+        "self-loop"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "trial-zero-passes",
+      "name": "trial: zero passes keeps the start player",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "receiver": [
+          2,
+          0,
+          1
+        ],
+        "k": 0
+      },
+      "tags": [
+        "trial",
+        "zero-k"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-long-cycle-entry",
+      "name": "hidden: chain enters a three-node cycle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "receiver": [
+          1,
+          2,
+          3,
+          4,
+          2,
+          6,
+          7,
+          5
+        ],
+        "k": 20
+      },
+      "tags": [
+        "hidden",
+        "binary-lifting"
+      ],
+      "expected": 126
+    }
+  ]
+}

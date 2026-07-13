@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_322",
+  "measurement_note": "Coin one makes every predecessor reachable, exposing solutions that rescan all earlier totals for each target; size is amount.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: dense totals through amount 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "coins": [
+          1,
+          7,
+          13,
+          29
+        ],
+        "amount": 64
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "dense-reachability"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: dense totals through amount 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "coins": [
+          1,
+          7,
+          13,
+          29
+        ],
+        "amount": 128
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "dense-reachability"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: dense totals through amount 256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "coins": [
+          1,
+          7,
+          13,
+          29
+        ],
+        "amount": 256
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "dense-reachability"
+      ]
+    }
+  ]
+}

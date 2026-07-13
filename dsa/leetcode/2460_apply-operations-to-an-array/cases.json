@@ -1,0 +1,125 @@
+{
+  "challenge_id": "lc_2460",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: adjacent equal pairs create zeroes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": [
+        1,
+        4,
+        2,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "simulation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: zero moves to the end",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: existing zeroes shift after operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          4,
+          7,
+          0,
+          0,
+          6
+        ]
+      },
+      "expected": [
+        8,
+        4,
+        7,
+        6,
+        0,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-three-equal-values",
+      "name": "trial: one pair is merged from three equal values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        4,
+        2,
+        0
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-leading-zeroes",
+      "name": "hidden: leading zeroes and one merge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

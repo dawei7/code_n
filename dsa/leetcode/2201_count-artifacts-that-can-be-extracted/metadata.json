@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2201",
+  "source": "leetcode",
+  "frontend_id": "2201",
+  "slug": "count-artifacts-that-can-be-extracted",
+  "title": "Count Artifacts That Can Be Extracted",
+  "difficulty": "Medium",
+  "acceptance_rate": 57.38057286383616,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Simulation",
+      "slug": "simulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-artifacts-that-can-be-extracted/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:imc",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:simulation"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:imc",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:simulation"
+  ],
+  "company_tags": [
+    {
+      "name": "IMC",
+      "slug": "imc"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "IMC",
+        "slug": "imc",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_1363",
+  "cases": [
+    {
+      "id": "benchmark-remove-two-digits",
+      "name": "benchmark: remove two digits",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "digits": [
+          9,
+          8,
+          6,
+          8,
+          6
+        ]
+      },
+      "expected": "966",
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

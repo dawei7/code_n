@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "580",
+  "frontend_id": "580",
+  "title_slug": "count-student-number-in-departments",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065429509",
+  "verified_at": "2026-07-12T20:27:19.395761+00:00"
+}

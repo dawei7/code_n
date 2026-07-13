@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_711",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: horizontal and vertical dominoes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,1,0,1],[0,0,0,1]]},
+      "expected": 1,
+      "tags": ["sample", "rotation"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: reflected corner shapes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,0,0,1,1],[1,1,0,0,1]]},
+      "expected": 1,
+      "tags": ["sample", "reflection"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: line and corner differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,1,1,0,1,0],[0,0,0,0,1,1]]},
+      "expected": 2,
+      "tags": ["sample", "noncongruent"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: repeated isolated cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,0,1],[0,0,0],[1,0,1]]},
+      "expected": 1,
+      "tags": ["trial", "single-cell"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: all water",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[0,0,0],[0,0,0]]},
+      "expected": 0,
+      "tags": ["trial", "no-islands"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: square and four-cell line",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,1,0,1,1,1,1],[1,1,0,0,0,0,0]]},
+      "expected": 2,
+      "tags": ["hidden", "same-area", "noncongruent"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: one irregular island",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,1,0],[0,1,1],[0,0,1]]},
+      "expected": 1,
+      "tags": ["hidden", "single-component"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: rotated T shapes",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,1,1,0,0,1,0],[0,1,0,0,0,1,1],[0,0,0,0,0,1,0]]},
+      "expected": 1,
+      "tags": ["hidden", "rotation", "branched"]
+    }
+  ]
+}

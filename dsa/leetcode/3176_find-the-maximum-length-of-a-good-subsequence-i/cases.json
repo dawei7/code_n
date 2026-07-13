@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_3176",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two allowed value changes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          1,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no unequal adjacent pairs allowed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          1
+        ],
+        "k": 0
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "k-zero"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: alternating values with one change",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: all equal values ignore k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-three-value-pattern",
+      "name": "real: three repeated values and two changes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          1,
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "pattern"
+      ]
+    }
+  ]
+}

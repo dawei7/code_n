@@ -1,0 +1,59 @@
+{
+  "challenge_id": "lc_3064",
+  "source": "leetcode",
+  "frontend_id": "3064",
+  "slug": "guess-the-number-using-bitwise-questions-i",
+  "title": "Guess the Number Using Bitwise Questions I",
+  "difficulty": "Medium",
+  "acceptance_rate": 88.84373845585519,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Interactive",
+      "slug": "interactive"
+    }
+  ],
+  "url": "https://leetcode.com/problems/guess-the-number-using-bitwise-questions-i/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:interactive"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:bit-manipulation",
+    "topic:interactive"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

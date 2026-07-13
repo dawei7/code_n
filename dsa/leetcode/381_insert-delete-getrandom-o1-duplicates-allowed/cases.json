@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_381",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: duplicate occurrences and random choice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            1
+          ],
+          [
+            "insert",
+            1
+          ],
+          [
+            "insert",
+            2
+          ],
+          [
+            "getRandom"
+          ],
+          [
+            "remove",
+            1
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true,
+        1,
+        true,
+        2
+      ],
+      "validator": {
+        "kind": "randomized_collection_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: remove present then missing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            5
+          ],
+          [
+            "remove",
+            5
+          ],
+          [
+            "remove",
+            5
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "validator": {
+        "kind": "randomized_collection_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "missing"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate negative value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            -2
+          ],
+          [
+            "insert",
+            -2
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        -2
+      ],
+      "validator": {
+        "kind": "randomized_collection_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-remove-one",
+      "name": "trial: one duplicate remains after removal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            4
+          ],
+          [
+            "insert",
+            4
+          ],
+          [
+            "remove",
+            4
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true,
+        4
+      ],
+      "validator": {
+        "kind": "randomized_collection_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "trial",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "trial-reinsert-after-empty",
+      "name": "trial: value becomes new after final removal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            3
+          ],
+          [
+            "remove",
+            3
+          ],
+          [
+            "insert",
+            3
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "validator": {
+        "kind": "randomized_collection_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "trial",
+        "reinsert"
+      ]
+    },
+    {
+      "id": "hidden-same-value-swap",
+      "name": "hidden: moved occurrence equals removed value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            7
+          ],
+          [
+            "insert",
+            7
+          ],
+          [
+            "insert",
+            8
+          ],
+          [
+            "remove",
+            7
+          ],
+          [
+            "remove",
+            8
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true,
+        true,
+        true,
+        7
+      ],
+      "validator": {
+        "kind": "randomized_collection_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "hidden",
+        "swap"
+      ]
+    },
+    {
+      "id": "hidden-middle-swap",
+      "name": "hidden: moved different value updates index set",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            1
+          ],
+          [
+            "insert",
+            2
+          ],
+          [
+            "insert",
+            1
+          ],
+          [
+            "remove",
+            2
+          ],
+          [
+            "remove",
+            1
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false,
+        true,
+        true,
+        1
+      ],
+      "validator": {
+        "kind": "randomized_collection_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "hidden",
+        "swap"
+      ]
+    },
+    {
+      "id": "hidden-random-members",
+      "name": "hidden: random result follows remaining counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            1
+          ],
+          [
+            "insert",
+            2
+          ],
+          [
+            "insert",
+            2
+          ],
+          [
+            "getRandom"
+          ],
+          [
+            "remove",
+            2
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false,
+        2,
+        true,
+        1
+      ],
+      "validator": {
+        "kind": "randomized_collection_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "hidden",
+        "random"
+      ]
+    }
+  ]
+}
+

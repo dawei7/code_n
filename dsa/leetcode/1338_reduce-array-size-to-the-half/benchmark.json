@@ -1,0 +1,59 @@
+{
+  "challenge_id": "lc_1338",
+  "cases": [
+    {
+      "id": "benchmark-majority-value",
+      "name": "benchmark: majority value",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          7,
+          7,
+          7,
+          7,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_2435",
+  "cases": [
+    {
+      "id": "benchmark-three-by-three",
+      "name": "benchmark: mixed remainders in a three by three grid",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            2,
+            0,
+            2
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

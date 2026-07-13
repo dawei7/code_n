@@ -1,0 +1,49 @@
+{
+  "challenge_id": "lc_1337",
+  "cases": [
+    {
+      "id": "benchmark-full-order",
+      "name": "benchmark: return all rows",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "k": 4
+      },
+      "expected": [
+        1,
+        2,
+        0,
+        3
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_811",
+  "measurement_note": "Size is the number of distinct top-level domains. Hash aggregation takes expected O(size); linearly searching a growing list of accumulated domains takes O(size^2).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 distinct domains", "kind": "benchmark", "visible": false, "size": 4, "input": {"cpdomains": ["1 a", "1 b", "1 c", "1 d"]}, "expected": ["1 a", "1 b", "1 c", "1 d"], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "distinct"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 distinct domains", "kind": "benchmark", "visible": false, "size": 16, "input": {"cpdomains": ["1 a", "1 b", "1 c", "1 d", "1 e", "1 f", "1 g", "1 h", "1 i", "1 j", "1 k", "1 l", "1 m", "1 n", "1 o", "1 p"]}, "expected": ["1 a", "1 b", "1 c", "1 d", "1 e", "1 f", "1 g", "1 h", "1 i", "1 j", "1 k", "1 l", "1 m", "1 n", "1 o", "1 p"], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "distinct"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 24 distinct domains", "kind": "benchmark", "visible": false, "size": 24, "input": {"cpdomains": ["1 a", "1 b", "1 c", "1 d", "1 e", "1 f", "1 g", "1 h", "1 i", "1 j", "1 k", "1 l", "1 m", "1 n", "1 o", "1 p", "1 q", "1 r", "1 s", "1 t", "1 u", "1 v", "1 w", "1 x"]}, "expected": ["1 a", "1 b", "1 c", "1 d", "1 e", "1 f", "1 g", "1 h", "1 i", "1 j", "1 k", "1 l", "1 m", "1 n", "1 o", "1 p", "1 q", "1 r", "1 s", "1 t", "1 u", "1 v", "1 w", "1 x"], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "distinct"]}
+  ]
+}

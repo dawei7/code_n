@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "790",
+  "frontend_id": "775",
+  "title_slug": "global-and-local-inversions",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isIdealPermutation",
+  "verified_submission_id": "2066076129",
+  "verified_at": "2026-07-13T11:45:03.441551+00:00"
+}

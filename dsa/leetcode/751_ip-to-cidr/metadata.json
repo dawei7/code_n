@@ -1,0 +1,130 @@
+{
+  "challenge_id": "lc_751",
+  "source": "leetcode",
+  "frontend_id": "751",
+  "slug": "ip-to-cidr",
+  "title": "IP to CIDR",
+  "difficulty": "Medium",
+  "acceptance_rate": 53.74822639129749,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/ip-to-cidr/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:airbnb",
+    "leetcode_company:databricks",
+    "leetcode_company:google",
+    "leetcode_company:openai",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:string",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:airbnb",
+    "company:databricks",
+    "company:google",
+    "company:openai",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:bit-manipulation",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Databricks",
+      "slug": "databricks"
+    },
+    {
+      "name": "OpenAI",
+      "slug": "openai"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Airbnb",
+      "slug": "airbnb"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Airbnb",
+        "slug": "airbnb",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Databricks",
+        "slug": "databricks",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "OpenAI",
+        "slug": "openai",
+        "timesEncountered": 3
+      }
+    ]
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Bit Manipulation"
+      ],
+      "order": 942,
+      "section_order": 17,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "ip-to-cidr",
+      "leetcode_slug": "ip-to-cidr",
+      "difficulty": "Medium",
+      "problem_order": 30
+    }
+  ]
+}

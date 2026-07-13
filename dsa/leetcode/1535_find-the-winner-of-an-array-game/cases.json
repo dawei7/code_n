@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_1535",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: winner after two consecutive wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          1,
+          3,
+          5,
+          4,
+          6,
+          7
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "simulation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: first value is already maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          2,
+          1
+        ],
+        "k": 10
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: global maximum eventually wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          9,
+          8,
+          2,
+          3,
+          7,
+          6,
+          4,
+          5
+        ],
+        "k": 7
+      },
+      "expected": 9,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-one-win-needed",
+      "name": "hidden: k equals one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          25,
+          35,
+          42,
+          68,
+          70
+        ],
+        "k": 1
+      },
+      "expected": 25,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

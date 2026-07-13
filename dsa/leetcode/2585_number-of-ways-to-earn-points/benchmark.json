@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2585",
+  "cases": [
+    {
+      "id": "benchmark-larger-target",
+      "name": "benchmark: larger target with repeated denominations",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "target": 50,
+        "types": [
+          [
+            10,
+            1
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            10
+          ]
+        ]
+      },
+      "expected": 107,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

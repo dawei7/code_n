@@ -1,0 +1,131 @@
+{
+  "challenge_id": "lc_3264",
+  "cases": [
+    {
+      "id": "sample-five-ops",
+      "name": "sample: five heap operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          5,
+          6
+        ],
+        "k": 5,
+        "multiplier": 2
+      },
+      "expected": [
+        8,
+        4,
+        6,
+        5,
+        6
+      ],
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-two-values",
+      "name": "sample: repeated leftmost minimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "k": 3,
+        "multiplier": 4
+      },
+      "expected": [
+        16,
+        8
+      ],
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-zero-ops",
+      "name": "trial: zero operations leaves array unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          4,
+          7
+        ],
+        "k": 0,
+        "multiplier": 5
+      },
+      "expected": [
+        9,
+        4,
+        7
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-ties-leftmost",
+      "name": "trial: ties use leftmost index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3
+        ],
+        "k": 4,
+        "multiplier": 2
+      },
+      "expected": [
+        12,
+        6,
+        6
+      ],
+      "tags": [
+        "tie"
+      ]
+    },
+    {
+      "id": "real-mixed-small",
+      "name": "real: mixed values with multiple reshuffles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          9,
+          1,
+          7,
+          3
+        ],
+        "k": 8,
+        "multiplier": 3
+      },
+      "expected": [
+        15,
+        27,
+        9,
+        9,
+        21,
+        9
+      ],
+      "tags": [
+        "real",
+        "heap"
+      ]
+    }
+  ]
+}

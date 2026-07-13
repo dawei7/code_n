@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "74",
+  "frontend_id": "74",
+  "title_slug": "search-a-2d-matrix",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064137508",
+  "verified_at": "2026-07-11T17:36:07.208208+00:00"
+}

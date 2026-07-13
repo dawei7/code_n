@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_502",
+  "cases": [
+    {"id": "sample-two", "name": "sample: two choices unlock the largest profit", "kind": "sample", "visible": true, "input": {"k": 2, "w": 0, "profits": [1,2,3], "capital": [0,1,1]}, "expected": 4, "tags": ["sample", "unlock"]},
+    {"id": "sample-three", "name": "sample: complete all three projects", "kind": "sample", "visible": true, "input": {"k": 3, "w": 0, "profits": [1,2,3], "capital": [0,1,2]}, "expected": 6, "tags": ["sample", "chain"]},
+    {"id": "sample-one", "name": "sample: only one project initially affordable", "kind": "sample", "visible": true, "input": {"k": 1, "w": 2, "profits": [1,2], "capital": [2,3]}, "expected": 3, "tags": ["sample", "one-choice"]},
+    {"id": "trial-none-affordable", "name": "trial: no project can start", "kind": "trial", "visible": true, "input": {"k": 3, "w": 0, "profits": [1,2], "capital": [1,2]}, "expected": 0, "tags": ["trial", "blocked"]},
+    {"id": "trial-zero-k", "name": "trial: zero selections", "kind": "trial", "visible": true, "input": {"k": 0, "w": 7, "profits": [10], "capital": [0]}, "expected": 7, "tags": ["trial", "zero-k"]},
+    {"id": "hidden-max-profit", "name": "hidden: choose larger of two affordable profits", "kind": "real", "visible": false, "input": {"k": 1, "w": 0, "profits": [0,2], "capital": [0,0]}, "expected": 2, "tags": ["hidden", "greedy"]},
+    {"id": "hidden-excess-k", "name": "hidden: selections exceed project count", "kind": "real", "visible": false, "input": {"k": 5, "w": 1, "profits": [2,3], "capital": [0,3]}, "expected": 6, "tags": ["hidden", "excess-k"]}
+  ]
+}

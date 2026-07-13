@@ -1,0 +1,128 @@
+{
+  "challenge_id": "lc_3045",
+  "source": "leetcode",
+  "frontend_id": "3045",
+  "slug": "count-prefix-and-suffix-pairs-ii",
+  "title": "Count Prefix and Suffix Pairs II",
+  "difficulty": "Hard",
+  "acceptance_rate": 28.66611567569319,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Trie",
+      "slug": "trie"
+    },
+    {
+      "name": "Rolling Hash",
+      "slug": "rolling-hash"
+    },
+    {
+      "name": "String Matching",
+      "slug": "string-matching"
+    },
+    {
+      "name": "Hash Function",
+      "slug": "hash-function"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-prefix-and-suffix-pairs-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:autodesk",
+    "leetcode_company:capital-one",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-function",
+    "leetcode_topic:rolling-hash",
+    "leetcode_topic:string",
+    "leetcode_topic:string-matching",
+    "leetcode_topic:trie",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:autodesk",
+    "company:capital-one",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:hash-function",
+    "topic:rolling-hash",
+    "topic:string",
+    "topic:string-matching",
+    "topic:trie"
+  ],
+  "company_tags": [
+    {
+      "name": "Capital One",
+      "slug": "capital-one"
+    },
+    {
+      "name": "Autodesk",
+      "slug": "autodesk"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Capital One",
+        "slug": "capital-one",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Autodesk",
+        "slug": "autodesk",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Tries"
+      ],
+      "order": 552,
+      "section_order": 7,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "count-prefix-and-suffix-pairs-ii",
+      "leetcode_slug": "count-prefix-and-suffix-pairs-ii",
+      "difficulty": "Hard",
+      "problem_order": 9
+    }
+  ]
+}

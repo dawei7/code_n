@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "731",
+  "frontend_id": "731",
+  "title_slug": "my-calendar-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "MyCalendarTwo.book",
+  "verified_submission_id": "2065792497",
+  "verified_at": "2026-07-13T06:58:14.478397+00:00"
+}

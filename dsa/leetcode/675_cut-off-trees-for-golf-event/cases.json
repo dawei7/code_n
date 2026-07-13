@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_675",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: winding ordered route",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "forest": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            7,
+            6,
+            5
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "reachable"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: blocked lower trees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "forest": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            7,
+            6,
+            5
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "unreachable"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: begin on the shortest tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "forest": [
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            8,
+            7,
+            6
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "tree-at-start"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: no trees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "forest": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "empty-target-list"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one adjacent tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "forest": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-tree"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: blocked start",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "forest": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "blocked-start"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: detour around obstacles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "forest": [
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "detour"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: single starting tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "forest": [
+          [
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "tree-at-start"
+      ]
+    }
+  ]
+}

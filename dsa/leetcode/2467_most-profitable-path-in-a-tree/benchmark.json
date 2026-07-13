@@ -1,0 +1,38 @@
+{
+  "challenge_id": "lc_2467",
+  "cases": [
+    {
+      "id": "benchmark-chain-shared-path",
+      "name": "benchmark: chain where Bob reaches middle first",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "bob": 3,
+        "amount": [
+          5,
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

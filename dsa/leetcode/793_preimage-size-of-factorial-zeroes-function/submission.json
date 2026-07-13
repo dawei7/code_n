@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "809",
+  "frontend_id": "793",
+  "title_slug": "preimage-size-of-factorial-zeroes-function",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.preimageSizeFZF",
+  "verified_submission_id": "2066169825",
+  "verified_at": "2026-07-13T13:26:32.245091+00:00"
+}

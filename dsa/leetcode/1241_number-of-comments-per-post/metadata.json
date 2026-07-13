@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1241",
+  "source": "leetcode",
+  "frontend_id": "1241",
+  "slug": "number-of-comments-per-post",
+  "title": "Number of Comments per Post",
+  "difficulty": "Easy",
+  "acceptance_rate": 65.58256178924623,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-comments-per-post/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:facebook",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:facebook",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

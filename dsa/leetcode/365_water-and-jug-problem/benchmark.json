@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_365",
+  "measurement_note": "Size is the larger jug capacity. Consecutive capacities have gcd one: remainder-based Euclid finishes in constant-many steps here, while a correct subtractive GCD implementation repeatedly removes one unit and grows linearly with capacity.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: consecutive capacities near 100",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "x": 100,
+        "y": 99,
+        "target": 1
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "consecutive"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: consecutive capacities near 1000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "x": 1000,
+        "y": 999,
+        "target": 1
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "consecutive"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: consecutive capacities near 10000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {
+        "x": 10000,
+        "y": 9999,
+        "target": 1
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "consecutive"
+      ]
+    }
+  ]
+}
+

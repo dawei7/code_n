@@ -1,0 +1,119 @@
+{
+  "challenge_id": "lc_3500",
+  "cases": [
+    {
+      "id": "sample-two-subarrays",
+      "name": "sample: divide into two subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4
+        ],
+        "cost": [
+          4,
+          6,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 110,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-three-subarrays",
+      "name": "sample: divide into three subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          8,
+          5,
+          1,
+          14,
+          2,
+          2,
+          12,
+          1
+        ],
+        "cost": [
+          7,
+          2,
+          8,
+          4,
+          2,
+          2,
+          1,
+          1,
+          2
+        ],
+        "k": 7
+      },
+      "expected": 985,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "trial-single-subarray-best",
+      "name": "trial: single subarray can be best",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ],
+        "cost": [
+          1,
+          3,
+          5
+        ],
+        "k": 5
+      },
+      "expected": 99,
+      "tags": [
+        "trial",
+        "partition"
+      ]
+    },
+    {
+      "id": "real-mixed-costs",
+      "name": "real: mixed costs and nums",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          3,
+          2,
+          6,
+          4
+        ],
+        "cost": [
+          2,
+          7,
+          1,
+          5,
+          3,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 393,
+      "tags": [
+        "real",
+        "cht"
+      ]
+    }
+  ]
+}

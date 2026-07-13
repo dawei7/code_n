@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_2607",
+  "source": "leetcode",
+  "frontend_id": "2607",
+  "slug": "make-k-subarray-sums-equal",
+  "title": "Make K-Subarray Sums Equal",
+  "difficulty": "Medium",
+  "acceptance_rate": 38.79552187934244,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Number Theory",
+      "slug": "number-theory"
+    }
+  ],
+  "url": "https://leetcode.com/problems/make-k-subarray-sums-equal/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:morgan-stanley",
+    "leetcode_company:observeai",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:math",
+    "leetcode_topic:number-theory",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:morgan-stanley",
+    "company:observeai",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy",
+    "topic:math",
+    "topic:number-theory",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Morgan Stanley",
+      "slug": "morgan-stanley"
+    },
+    {
+      "name": "observe.ai",
+      "slug": "observeai"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Morgan Stanley",
+        "slug": "morgan-stanley",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "observe.ai",
+        "slug": "observeai",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

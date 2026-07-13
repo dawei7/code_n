@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_651",
+  "cases": [
+    {"id": "sample-1", "name": "sample: type three characters", "kind": "sample", "visible": true, "input": {"n": 3}, "expected": 3, "tags": ["sample", "typing"]},
+    {"id": "sample-2", "name": "sample: first profitable copy sequence", "kind": "sample", "visible": true, "input": {"n": 7}, "expected": 9, "tags": ["sample", "copy-paste"]},
+    {"id": "sample-3", "name": "sample: repeated multiplication", "kind": "sample", "visible": true, "input": {"n": 9}, "expected": 16, "tags": ["sample", "multiple-phases"]},
+    {"id": "trial-1", "name": "trial: one keypress", "kind": "trial", "visible": true, "input": {"n": 1}, "expected": 1, "tags": ["trial", "boundary"]},
+    {"id": "trial-2", "name": "trial: copy not yet beneficial", "kind": "trial", "visible": true, "input": {"n": 6}, "expected": 6, "tags": ["trial", "typing"]},
+    {"id": "hidden-1", "name": "hidden: threefold final phase", "kind": "real", "visible": false, "input": {"n": 11}, "expected": 27, "tags": ["hidden", "copy-paste"]},
+    {"id": "hidden-2", "name": "hidden: several optimal phases", "kind": "real", "visible": false, "input": {"n": 15}, "expected": 81, "tags": ["hidden", "multiple-phases"]},
+    {"id": "hidden-3", "name": "hidden: maximum budget", "kind": "real", "visible": false, "input": {"n": 50}, "expected": 1327104, "tags": ["hidden", "upper-bound"]}
+  ]
+}

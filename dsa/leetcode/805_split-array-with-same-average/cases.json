@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_805",
+  "cases": [
+    {"id": "sample-1", "name": "sample: endpoint pair matches average", "kind": "sample", "visible": true, "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8]}, "expected": true, "tags": ["sample", "valid-split"]},
+    {"id": "sample-2", "name": "sample: unequal pair", "kind": "sample", "visible": true, "input": {"nums": [3, 1]}, "expected": false, "tags": ["sample", "no-split"]},
+    {"id": "sample-3", "name": "sample: singleton equals full average", "kind": "sample", "visible": true, "input": {"nums": [1, 2, 3]}, "expected": true, "tags": ["sample", "singleton-subset"]},
+    {"id": "trial-1", "name": "trial: one element cannot split", "kind": "trial", "visible": true, "input": {"nums": [0]}, "expected": false, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: equal values always split", "kind": "trial", "visible": true, "input": {"nums": [5, 5]}, "expected": true, "tags": ["trial", "all-equal"]},
+    {"id": "trial-3", "name": "trial: two unequal boundary values", "kind": "trial", "visible": true, "input": {"nums": [0, 1]}, "expected": false, "tags": ["trial", "no-split"]},
+    {"id": "hidden-1", "name": "hidden: integral average without matching subset", "kind": "real", "visible": false, "input": {"nums": [18, 10, 5, 3]}, "expected": false, "tags": ["hidden", "no-split", "integral-average"]},
+    {"id": "hidden-2", "name": "hidden: endpoint pair forms valid half", "kind": "real", "visible": false, "input": {"nums": [1, 2, 5, 6]}, "expected": true, "tags": ["hidden", "pair-subset"]},
+    {"id": "hidden-3", "name": "hidden: duplicate boundary values split", "kind": "real", "visible": false, "input": {"nums": [0, 0, 1, 1]}, "expected": true, "tags": ["hidden", "duplicates"]}
+  ]
+}

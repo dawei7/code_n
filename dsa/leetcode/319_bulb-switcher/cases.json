@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_319",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three bulbs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3},
+      "expected": 1,
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no bulbs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 0},
+      "expected": 0,
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one bulb",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 1},
+      "expected": 1,
+      "tags": ["sample", "perfect-square"]
+    },
+    {
+      "id": "trial-exact-square",
+      "name": "trial: second perfect square",
+      "kind": "trial",
+      "visible": false,
+      "input": {"n": 4},
+      "expected": 2,
+      "tags": ["trial", "perfect-square"]
+    },
+    {
+      "id": "trial-below-square",
+      "name": "trial: immediately below a square",
+      "kind": "trial",
+      "visible": false,
+      "input": {"n": 15},
+      "expected": 3,
+      "tags": ["trial", "rounding"]
+    },
+    {
+      "id": "hidden-square-boundary",
+      "name": "hidden: exact square changes the count",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 16},
+      "expected": 4,
+      "tags": ["hidden", "perfect-square"]
+    },
+    {
+      "id": "hidden-above-square",
+      "name": "hidden: values after a square keep its count",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 24},
+      "expected": 4,
+      "tags": ["hidden", "rounding"]
+    },
+    {
+      "id": "hidden-maximum",
+      "name": "hidden: maximum-scale input",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000000000},
+      "expected": 31622,
+      "tags": ["hidden", "large"]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{"challenge_id":"lc_198","cases":[
+{"id":"sample-four","name":"sample: choose first and third","kind":"sample","visible":true,"input":{"nums":[1,2,3,1]},"expected":4,"tags":["sample","dynamic-programming"]},
+{"id":"sample-five","name":"sample: several selected houses","kind":"sample","visible":true,"input":{"nums":[2,7,9,3,1]},"expected":12,"tags":["sample"]},
+{"id":"trial-single","name":"single house","kind":"trial","visible":true,"input":{"nums":[50]},"expected":50,"tags":["boundary"]},
+{"id":"real-zeros","name":"hidden: zero amounts between values","kind":"real","visible":false,"input":{"nums":[5,0,0,5]},"expected":10,"tags":["hidden","zero"]}
+]}

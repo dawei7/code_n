@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_342",
+  "cases": [
+    {"id":"sample-1","name":"sample: positive power","kind":"sample","visible":true,"input":{"n":16},"expected":true,"tags":["sample"]},
+    {"id":"sample-2","name":"sample: non-power","kind":"sample","visible":true,"input":{"n":5},"expected":false,"tags":["sample"]},
+    {"id":"sample-3","name":"sample: exponent zero","kind":"sample","visible":true,"input":{"n":1},"expected":true,"tags":["sample","boundary"]},
+    {"id":"trial-zero","name":"trial: zero","kind":"trial","visible":false,"input":{"n":0},"expected":false,"tags":["trial","zero"]},
+    {"id":"trial-negative","name":"trial: negative power magnitude","kind":"trial","visible":false,"input":{"n":-4},"expected":false,"tags":["trial","negative"]},
+    {"id":"hidden-odd-bit","name":"hidden: power of two but not four","kind":"real","visible":false,"input":{"n":2},"expected":false,"tags":["hidden","odd-position"]},
+    {"id":"hidden-largest-power","name":"hidden: largest signed-32-bit power of four","kind":"real","visible":false,"input":{"n":1073741824},"expected":true,"tags":["hidden","large"]},
+    {"id":"hidden-large-odd-bit","name":"hidden: large power of two at odd position","kind":"real","visible":false,"input":{"n":536870912},"expected":false,"tags":["hidden","odd-position","large"]}
+  ]
+}

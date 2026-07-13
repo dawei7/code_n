@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_2347",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: flush beats rank matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ranks": [
+          13,
+          2,
+          3,
+          1,
+          9
+        ],
+        "suits": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ]
+      },
+      "expected": "Flush",
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three of a kind",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ranks": [
+          4,
+          4,
+          2,
+          4,
+          9
+        ],
+        "suits": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      "expected": "Three of a Kind",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ranks": [
+          10,
+          10,
+          2,
+          12,
+          9
+        ],
+        "suits": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      "expected": "Pair",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-high-card",
+      "name": "hidden: all ranks and suits vary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "ranks": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "suits": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      "expected": "High Card",
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

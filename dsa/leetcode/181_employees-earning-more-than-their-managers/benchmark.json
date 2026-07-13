@@ -1,0 +1,2539 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_181",
+  "measurement_note": "Growing employee relations share one manager and exercise indexed self-join salary filtering.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 employee rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "Manager",
+              "salary": 100,
+              "managerId": null
+            },
+            {
+              "id": 2,
+              "name": "E2",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 3,
+              "name": "E3",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 4,
+              "name": "E4",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 5,
+              "name": "E5",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 6,
+              "name": "E6",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 7,
+              "name": "E7",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 8,
+              "name": "E8",
+              "salary": 150,
+              "managerId": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Employee"
+        ],
+        "rows": [
+          [
+            "E2"
+          ],
+          [
+            "E4"
+          ],
+          [
+            "E6"
+          ],
+          [
+            "E8"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 employee rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "Manager",
+              "salary": 100,
+              "managerId": null
+            },
+            {
+              "id": 2,
+              "name": "E2",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 3,
+              "name": "E3",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 4,
+              "name": "E4",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 5,
+              "name": "E5",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 6,
+              "name": "E6",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 7,
+              "name": "E7",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 8,
+              "name": "E8",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 9,
+              "name": "E9",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 10,
+              "name": "E10",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 11,
+              "name": "E11",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 12,
+              "name": "E12",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 13,
+              "name": "E13",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 14,
+              "name": "E14",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 15,
+              "name": "E15",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 16,
+              "name": "E16",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 17,
+              "name": "E17",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 18,
+              "name": "E18",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 19,
+              "name": "E19",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 20,
+              "name": "E20",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 21,
+              "name": "E21",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 22,
+              "name": "E22",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 23,
+              "name": "E23",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 24,
+              "name": "E24",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 25,
+              "name": "E25",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 26,
+              "name": "E26",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 27,
+              "name": "E27",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 28,
+              "name": "E28",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 29,
+              "name": "E29",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 30,
+              "name": "E30",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 31,
+              "name": "E31",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 32,
+              "name": "E32",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 33,
+              "name": "E33",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 34,
+              "name": "E34",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 35,
+              "name": "E35",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 36,
+              "name": "E36",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 37,
+              "name": "E37",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 38,
+              "name": "E38",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 39,
+              "name": "E39",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 40,
+              "name": "E40",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 41,
+              "name": "E41",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 42,
+              "name": "E42",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 43,
+              "name": "E43",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 44,
+              "name": "E44",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 45,
+              "name": "E45",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 46,
+              "name": "E46",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 47,
+              "name": "E47",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 48,
+              "name": "E48",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 49,
+              "name": "E49",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 50,
+              "name": "E50",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 51,
+              "name": "E51",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 52,
+              "name": "E52",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 53,
+              "name": "E53",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 54,
+              "name": "E54",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 55,
+              "name": "E55",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 56,
+              "name": "E56",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 57,
+              "name": "E57",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 58,
+              "name": "E58",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 59,
+              "name": "E59",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 60,
+              "name": "E60",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 61,
+              "name": "E61",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 62,
+              "name": "E62",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 63,
+              "name": "E63",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 64,
+              "name": "E64",
+              "salary": 150,
+              "managerId": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Employee"
+        ],
+        "rows": [
+          [
+            "E2"
+          ],
+          [
+            "E4"
+          ],
+          [
+            "E6"
+          ],
+          [
+            "E8"
+          ],
+          [
+            "E10"
+          ],
+          [
+            "E12"
+          ],
+          [
+            "E14"
+          ],
+          [
+            "E16"
+          ],
+          [
+            "E18"
+          ],
+          [
+            "E20"
+          ],
+          [
+            "E22"
+          ],
+          [
+            "E24"
+          ],
+          [
+            "E26"
+          ],
+          [
+            "E28"
+          ],
+          [
+            "E30"
+          ],
+          [
+            "E32"
+          ],
+          [
+            "E34"
+          ],
+          [
+            "E36"
+          ],
+          [
+            "E38"
+          ],
+          [
+            "E40"
+          ],
+          [
+            "E42"
+          ],
+          [
+            "E44"
+          ],
+          [
+            "E46"
+          ],
+          [
+            "E48"
+          ],
+          [
+            "E50"
+          ],
+          [
+            "E52"
+          ],
+          [
+            "E54"
+          ],
+          [
+            "E56"
+          ],
+          [
+            "E58"
+          ],
+          [
+            "E60"
+          ],
+          [
+            "E62"
+          ],
+          [
+            "E64"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 employee rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "Manager",
+              "salary": 100,
+              "managerId": null
+            },
+            {
+              "id": 2,
+              "name": "E2",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 3,
+              "name": "E3",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 4,
+              "name": "E4",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 5,
+              "name": "E5",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 6,
+              "name": "E6",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 7,
+              "name": "E7",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 8,
+              "name": "E8",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 9,
+              "name": "E9",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 10,
+              "name": "E10",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 11,
+              "name": "E11",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 12,
+              "name": "E12",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 13,
+              "name": "E13",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 14,
+              "name": "E14",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 15,
+              "name": "E15",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 16,
+              "name": "E16",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 17,
+              "name": "E17",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 18,
+              "name": "E18",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 19,
+              "name": "E19",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 20,
+              "name": "E20",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 21,
+              "name": "E21",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 22,
+              "name": "E22",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 23,
+              "name": "E23",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 24,
+              "name": "E24",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 25,
+              "name": "E25",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 26,
+              "name": "E26",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 27,
+              "name": "E27",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 28,
+              "name": "E28",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 29,
+              "name": "E29",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 30,
+              "name": "E30",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 31,
+              "name": "E31",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 32,
+              "name": "E32",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 33,
+              "name": "E33",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 34,
+              "name": "E34",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 35,
+              "name": "E35",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 36,
+              "name": "E36",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 37,
+              "name": "E37",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 38,
+              "name": "E38",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 39,
+              "name": "E39",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 40,
+              "name": "E40",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 41,
+              "name": "E41",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 42,
+              "name": "E42",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 43,
+              "name": "E43",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 44,
+              "name": "E44",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 45,
+              "name": "E45",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 46,
+              "name": "E46",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 47,
+              "name": "E47",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 48,
+              "name": "E48",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 49,
+              "name": "E49",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 50,
+              "name": "E50",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 51,
+              "name": "E51",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 52,
+              "name": "E52",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 53,
+              "name": "E53",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 54,
+              "name": "E54",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 55,
+              "name": "E55",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 56,
+              "name": "E56",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 57,
+              "name": "E57",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 58,
+              "name": "E58",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 59,
+              "name": "E59",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 60,
+              "name": "E60",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 61,
+              "name": "E61",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 62,
+              "name": "E62",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 63,
+              "name": "E63",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 64,
+              "name": "E64",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 65,
+              "name": "E65",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 66,
+              "name": "E66",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 67,
+              "name": "E67",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 68,
+              "name": "E68",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 69,
+              "name": "E69",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 70,
+              "name": "E70",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 71,
+              "name": "E71",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 72,
+              "name": "E72",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 73,
+              "name": "E73",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 74,
+              "name": "E74",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 75,
+              "name": "E75",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 76,
+              "name": "E76",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 77,
+              "name": "E77",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 78,
+              "name": "E78",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 79,
+              "name": "E79",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 80,
+              "name": "E80",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 81,
+              "name": "E81",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 82,
+              "name": "E82",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 83,
+              "name": "E83",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 84,
+              "name": "E84",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 85,
+              "name": "E85",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 86,
+              "name": "E86",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 87,
+              "name": "E87",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 88,
+              "name": "E88",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 89,
+              "name": "E89",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 90,
+              "name": "E90",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 91,
+              "name": "E91",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 92,
+              "name": "E92",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 93,
+              "name": "E93",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 94,
+              "name": "E94",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 95,
+              "name": "E95",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 96,
+              "name": "E96",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 97,
+              "name": "E97",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 98,
+              "name": "E98",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 99,
+              "name": "E99",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 100,
+              "name": "E100",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 101,
+              "name": "E101",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 102,
+              "name": "E102",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 103,
+              "name": "E103",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 104,
+              "name": "E104",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 105,
+              "name": "E105",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 106,
+              "name": "E106",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 107,
+              "name": "E107",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 108,
+              "name": "E108",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 109,
+              "name": "E109",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 110,
+              "name": "E110",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 111,
+              "name": "E111",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 112,
+              "name": "E112",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 113,
+              "name": "E113",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 114,
+              "name": "E114",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 115,
+              "name": "E115",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 116,
+              "name": "E116",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 117,
+              "name": "E117",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 118,
+              "name": "E118",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 119,
+              "name": "E119",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 120,
+              "name": "E120",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 121,
+              "name": "E121",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 122,
+              "name": "E122",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 123,
+              "name": "E123",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 124,
+              "name": "E124",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 125,
+              "name": "E125",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 126,
+              "name": "E126",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 127,
+              "name": "E127",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 128,
+              "name": "E128",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 129,
+              "name": "E129",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 130,
+              "name": "E130",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 131,
+              "name": "E131",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 132,
+              "name": "E132",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 133,
+              "name": "E133",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 134,
+              "name": "E134",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 135,
+              "name": "E135",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 136,
+              "name": "E136",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 137,
+              "name": "E137",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 138,
+              "name": "E138",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 139,
+              "name": "E139",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 140,
+              "name": "E140",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 141,
+              "name": "E141",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 142,
+              "name": "E142",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 143,
+              "name": "E143",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 144,
+              "name": "E144",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 145,
+              "name": "E145",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 146,
+              "name": "E146",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 147,
+              "name": "E147",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 148,
+              "name": "E148",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 149,
+              "name": "E149",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 150,
+              "name": "E150",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 151,
+              "name": "E151",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 152,
+              "name": "E152",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 153,
+              "name": "E153",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 154,
+              "name": "E154",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 155,
+              "name": "E155",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 156,
+              "name": "E156",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 157,
+              "name": "E157",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 158,
+              "name": "E158",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 159,
+              "name": "E159",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 160,
+              "name": "E160",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 161,
+              "name": "E161",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 162,
+              "name": "E162",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 163,
+              "name": "E163",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 164,
+              "name": "E164",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 165,
+              "name": "E165",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 166,
+              "name": "E166",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 167,
+              "name": "E167",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 168,
+              "name": "E168",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 169,
+              "name": "E169",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 170,
+              "name": "E170",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 171,
+              "name": "E171",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 172,
+              "name": "E172",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 173,
+              "name": "E173",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 174,
+              "name": "E174",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 175,
+              "name": "E175",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 176,
+              "name": "E176",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 177,
+              "name": "E177",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 178,
+              "name": "E178",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 179,
+              "name": "E179",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 180,
+              "name": "E180",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 181,
+              "name": "E181",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 182,
+              "name": "E182",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 183,
+              "name": "E183",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 184,
+              "name": "E184",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 185,
+              "name": "E185",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 186,
+              "name": "E186",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 187,
+              "name": "E187",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 188,
+              "name": "E188",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 189,
+              "name": "E189",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 190,
+              "name": "E190",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 191,
+              "name": "E191",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 192,
+              "name": "E192",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 193,
+              "name": "E193",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 194,
+              "name": "E194",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 195,
+              "name": "E195",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 196,
+              "name": "E196",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 197,
+              "name": "E197",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 198,
+              "name": "E198",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 199,
+              "name": "E199",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 200,
+              "name": "E200",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 201,
+              "name": "E201",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 202,
+              "name": "E202",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 203,
+              "name": "E203",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 204,
+              "name": "E204",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 205,
+              "name": "E205",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 206,
+              "name": "E206",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 207,
+              "name": "E207",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 208,
+              "name": "E208",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 209,
+              "name": "E209",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 210,
+              "name": "E210",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 211,
+              "name": "E211",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 212,
+              "name": "E212",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 213,
+              "name": "E213",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 214,
+              "name": "E214",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 215,
+              "name": "E215",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 216,
+              "name": "E216",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 217,
+              "name": "E217",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 218,
+              "name": "E218",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 219,
+              "name": "E219",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 220,
+              "name": "E220",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 221,
+              "name": "E221",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 222,
+              "name": "E222",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 223,
+              "name": "E223",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 224,
+              "name": "E224",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 225,
+              "name": "E225",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 226,
+              "name": "E226",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 227,
+              "name": "E227",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 228,
+              "name": "E228",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 229,
+              "name": "E229",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 230,
+              "name": "E230",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 231,
+              "name": "E231",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 232,
+              "name": "E232",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 233,
+              "name": "E233",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 234,
+              "name": "E234",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 235,
+              "name": "E235",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 236,
+              "name": "E236",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 237,
+              "name": "E237",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 238,
+              "name": "E238",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 239,
+              "name": "E239",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 240,
+              "name": "E240",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 241,
+              "name": "E241",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 242,
+              "name": "E242",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 243,
+              "name": "E243",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 244,
+              "name": "E244",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 245,
+              "name": "E245",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 246,
+              "name": "E246",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 247,
+              "name": "E247",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 248,
+              "name": "E248",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 249,
+              "name": "E249",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 250,
+              "name": "E250",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 251,
+              "name": "E251",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 252,
+              "name": "E252",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 253,
+              "name": "E253",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 254,
+              "name": "E254",
+              "salary": 150,
+              "managerId": 1
+            },
+            {
+              "id": 255,
+              "name": "E255",
+              "salary": 50,
+              "managerId": 1
+            },
+            {
+              "id": 256,
+              "name": "E256",
+              "salary": 150,
+              "managerId": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Employee"
+        ],
+        "rows": [
+          [
+            "E2"
+          ],
+          [
+            "E4"
+          ],
+          [
+            "E6"
+          ],
+          [
+            "E8"
+          ],
+          [
+            "E10"
+          ],
+          [
+            "E12"
+          ],
+          [
+            "E14"
+          ],
+          [
+            "E16"
+          ],
+          [
+            "E18"
+          ],
+          [
+            "E20"
+          ],
+          [
+            "E22"
+          ],
+          [
+            "E24"
+          ],
+          [
+            "E26"
+          ],
+          [
+            "E28"
+          ],
+          [
+            "E30"
+          ],
+          [
+            "E32"
+          ],
+          [
+            "E34"
+          ],
+          [
+            "E36"
+          ],
+          [
+            "E38"
+          ],
+          [
+            "E40"
+          ],
+          [
+            "E42"
+          ],
+          [
+            "E44"
+          ],
+          [
+            "E46"
+          ],
+          [
+            "E48"
+          ],
+          [
+            "E50"
+          ],
+          [
+            "E52"
+          ],
+          [
+            "E54"
+          ],
+          [
+            "E56"
+          ],
+          [
+            "E58"
+          ],
+          [
+            "E60"
+          ],
+          [
+            "E62"
+          ],
+          [
+            "E64"
+          ],
+          [
+            "E66"
+          ],
+          [
+            "E68"
+          ],
+          [
+            "E70"
+          ],
+          [
+            "E72"
+          ],
+          [
+            "E74"
+          ],
+          [
+            "E76"
+          ],
+          [
+            "E78"
+          ],
+          [
+            "E80"
+          ],
+          [
+            "E82"
+          ],
+          [
+            "E84"
+          ],
+          [
+            "E86"
+          ],
+          [
+            "E88"
+          ],
+          [
+            "E90"
+          ],
+          [
+            "E92"
+          ],
+          [
+            "E94"
+          ],
+          [
+            "E96"
+          ],
+          [
+            "E98"
+          ],
+          [
+            "E100"
+          ],
+          [
+            "E102"
+          ],
+          [
+            "E104"
+          ],
+          [
+            "E106"
+          ],
+          [
+            "E108"
+          ],
+          [
+            "E110"
+          ],
+          [
+            "E112"
+          ],
+          [
+            "E114"
+          ],
+          [
+            "E116"
+          ],
+          [
+            "E118"
+          ],
+          [
+            "E120"
+          ],
+          [
+            "E122"
+          ],
+          [
+            "E124"
+          ],
+          [
+            "E126"
+          ],
+          [
+            "E128"
+          ],
+          [
+            "E130"
+          ],
+          [
+            "E132"
+          ],
+          [
+            "E134"
+          ],
+          [
+            "E136"
+          ],
+          [
+            "E138"
+          ],
+          [
+            "E140"
+          ],
+          [
+            "E142"
+          ],
+          [
+            "E144"
+          ],
+          [
+            "E146"
+          ],
+          [
+            "E148"
+          ],
+          [
+            "E150"
+          ],
+          [
+            "E152"
+          ],
+          [
+            "E154"
+          ],
+          [
+            "E156"
+          ],
+          [
+            "E158"
+          ],
+          [
+            "E160"
+          ],
+          [
+            "E162"
+          ],
+          [
+            "E164"
+          ],
+          [
+            "E166"
+          ],
+          [
+            "E168"
+          ],
+          [
+            "E170"
+          ],
+          [
+            "E172"
+          ],
+          [
+            "E174"
+          ],
+          [
+            "E176"
+          ],
+          [
+            "E178"
+          ],
+          [
+            "E180"
+          ],
+          [
+            "E182"
+          ],
+          [
+            "E184"
+          ],
+          [
+            "E186"
+          ],
+          [
+            "E188"
+          ],
+          [
+            "E190"
+          ],
+          [
+            "E192"
+          ],
+          [
+            "E194"
+          ],
+          [
+            "E196"
+          ],
+          [
+            "E198"
+          ],
+          [
+            "E200"
+          ],
+          [
+            "E202"
+          ],
+          [
+            "E204"
+          ],
+          [
+            "E206"
+          ],
+          [
+            "E208"
+          ],
+          [
+            "E210"
+          ],
+          [
+            "E212"
+          ],
+          [
+            "E214"
+          ],
+          [
+            "E216"
+          ],
+          [
+            "E218"
+          ],
+          [
+            "E220"
+          ],
+          [
+            "E222"
+          ],
+          [
+            "E224"
+          ],
+          [
+            "E226"
+          ],
+          [
+            "E228"
+          ],
+          [
+            "E230"
+          ],
+          [
+            "E232"
+          ],
+          [
+            "E234"
+          ],
+          [
+            "E236"
+          ],
+          [
+            "E238"
+          ],
+          [
+            "E240"
+          ],
+          [
+            "E242"
+          ],
+          [
+            "E244"
+          ],
+          [
+            "E246"
+          ],
+          [
+            "E248"
+          ],
+          [
+            "E250"
+          ],
+          [
+            "E252"
+          ],
+          [
+            "E254"
+          ],
+          [
+            "E256"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

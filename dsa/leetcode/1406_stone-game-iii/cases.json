@@ -1,0 +1,81 @@
+{
+  "challenge_id": "lc_1406",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: bob wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stone_value": [
+          1,
+          2,
+          3,
+          7
+        ]
+      },
+      "expected": "Bob",
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: alice wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stone_value": [
+          1,
+          2,
+          3,
+          -9
+        ]
+      },
+      "expected": "Alice",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stone_value": [
+          1,
+          2,
+          3,
+          6
+        ]
+      },
+      "expected": "Tie",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-negative-middle",
+      "name": "hidden: negative middle values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stone_value": [
+          1,
+          2,
+          3,
+          -1,
+          -2,
+          -3,
+          7
+        ]
+      },
+      "expected": "Alice",
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

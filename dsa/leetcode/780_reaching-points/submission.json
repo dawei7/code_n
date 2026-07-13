@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "796",
+  "frontend_id": "780",
+  "title_slug": "reaching-points",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.reachingPoints",
+  "verified_submission_id": "2066105413",
+  "verified_at": "2026-07-13T12:18:22.581143+00:00"
+}

@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_3196",
+  "cases": [
+    {
+      "id": "sample-mixed-signs",
+      "name": "sample: mixed signs can stay together",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -2,
+          3,
+          4
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-alternating-ones",
+      "name": "sample: alternating signs reward grouping",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          1,
+          -1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-negative-block",
+      "name": "trial: negative block decisions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          -2,
+          -5,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "negative"
+      ]
+    },
+    {
+      "id": "real-zigzag",
+      "name": "real: longer zigzag sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          -6,
+          -2,
+          5,
+          -9,
+          3,
+          7,
+          -4
+        ]
+      },
+      "expected": 40,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

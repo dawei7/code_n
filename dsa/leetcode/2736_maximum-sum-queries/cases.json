@@ -1,0 +1,214 @@
+{
+  "challenge_id": "lc_2736",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed query thresholds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4,
+          3,
+          1,
+          2
+        ],
+        "nums2": [
+          2,
+          4,
+          9,
+          5
+        ],
+        "queries": [
+          [
+            4,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "queries"
+      ],
+      "expected": [
+        6,
+        10,
+        7
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: same answer for all queries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          2,
+          5
+        ],
+        "nums2": [
+          2,
+          3,
+          4
+        ],
+        "queries": [
+          [
+            4,
+            4
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "queries"
+      ],
+      "expected": [
+        9,
+        9,
+        9
+      ]
+    },
+    {
+      "id": "trial-no-match",
+      "name": "trial: one query has no matching pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          3
+        ],
+        "queries": [
+          [
+            3,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "no-match"
+      ],
+      "expected": [
+        -1,
+        4
+      ]
+    },
+    {
+      "id": "trial-tie-by-sum",
+      "name": "trial: choose maximum sum among eligible pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          5,
+          3
+        ],
+        "nums2": [
+          1,
+          7,
+          10
+        ],
+        "queries": [
+          [
+            5,
+            1
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            3,
+            9
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "ties"
+      ],
+      "expected": [
+        12,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "real-many-thresholds",
+      "name": "hidden: several thresholds and missing answers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          8,
+          1,
+          6,
+          4,
+          10
+        ],
+        "nums2": [
+          2,
+          9,
+          5,
+          7,
+          3
+        ],
+        "queries": [
+          [
+            7,
+            2
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            1,
+            10
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "thresholds"
+      ],
+      "expected": [
+        13,
+        -1,
+        -1,
+        -1
+      ]
+    }
+  ]
+}

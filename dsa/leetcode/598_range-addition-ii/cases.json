@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_598",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: nested prefix rectangles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "ops": [
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "intersection"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "ops": []
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: different row and column limits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 5,
+        "ops": [
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "independent-minima"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 10,
+        "n": 12,
+        "ops": [
+          [
+            7,
+            9
+          ]
+        ]
+      },
+      "expected": 63,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: repeated operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 5,
+        "n": 6,
+        "ops": [
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "trial",
+        "repeated"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: whole-matrix operations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 2,
+        "n": 7,
+        "ops": [
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            7
+          ]
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "whole-matrix"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: minima come from separate operations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 100,
+        "n": 100,
+        "ops": [
+          [
+            4,
+            90
+          ],
+          [
+            80,
+            3
+          ],
+          [
+            50,
+            50
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "intersection"
+      ]
+    }
+  ]
+}

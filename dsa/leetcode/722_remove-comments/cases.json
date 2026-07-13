@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_722",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: line comment preserves preceding spaces",
+      "kind": "sample",
+      "visible": true,
+      "input": {"source": ["int main() {","  // declaration","int x = 1;","}"]},
+      "expected": ["int main() {","  ","int x = 1;","}"],
+      "tags": ["sample", "line-comment"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: block spans lines",
+      "kind": "sample",
+      "visible": true,
+      "input": {"source": ["a/* comment","continued */b"]},
+      "expected": ["ab"],
+      "tags": ["sample", "multiline-block"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: multiple blocks on one line",
+      "kind": "sample",
+      "visible": true,
+      "input": {"source": ["x/*one*/y/*two*/z"]},
+      "expected": ["xyz"],
+      "tags": ["sample", "multiple-blocks"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: block then line comment",
+      "kind": "trial",
+      "visible": true,
+      "input": {"source": ["a/*x*/b//ignored","next"]},
+      "expected": ["ab","next"],
+      "tags": ["trial", "delimiter-precedence"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: comment-only lines disappear",
+      "kind": "trial",
+      "visible": true,
+      "input": {"source": ["// all","/* block */","ok"]},
+      "expected": ["ok"],
+      "tags": ["trial", "empty-lines"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: comment markers inside block are ignored",
+      "kind": "real",
+      "visible": false,
+      "input": {"source": ["left/* // still block","more /* text */right"]},
+      "expected": ["leftright"],
+      "tags": ["hidden", "markers-inside-block"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: separated symbols are ordinary text",
+      "kind": "real",
+      "visible": false,
+      "input": {"source": ["/ * not a comment * /","code"]},
+      "expected": ["/ * not a comment * /","code"],
+      "tags": ["hidden", "non-delimiters"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: block closes before line comment",
+      "kind": "real",
+      "visible": false,
+      "input": {"source": ["pre/*a","b*/post//tail","last"]},
+      "expected": ["prepost","last"],
+      "tags": ["hidden", "cross-line-buffer"]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_2391",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all three garbage trucks travel",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "garbage": [
+          "G",
+          "P",
+          "GP",
+          "GG"
+        ],
+        "travel": [
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: metal reaches second house",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "garbage": [
+          "MMM",
+          "PGM",
+          "GP"
+        ],
+        "travel": [
+          3,
+          10
+        ]
+      },
+      "expected": 37,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-type-per-house",
+      "name": "trial: one garbage type per house",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "garbage": [
+          "M",
+          "P",
+          "G"
+        ],
+        "travel": [
+          1,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-one-type-per-house",
+      "name": "hidden: trucks stop at different houses",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "garbage": [
+          "M",
+          "P",
+          "G"
+        ],
+        "travel": [
+          1,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

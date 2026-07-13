@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_1458",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: positive product with negative pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          1,
+          -2,
+          5
+        ],
+        "nums2": [
+          3,
+          0,
+          -6
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: best uses negative and negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          -2
+        ],
+        "nums2": [
+          2,
+          -6,
+          7
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: non-empty negative answer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          -1,
+          -1
+        ],
+        "nums2": [
+          1,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-all-products-negative",
+      "name": "hidden: best answer is still negative",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          -5,
+          -1,
+          -2
+        ],
+        "nums2": [
+          3,
+          4
+        ]
+      },
+      "expected": -3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

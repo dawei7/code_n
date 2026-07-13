@@ -1,0 +1,152 @@
+{
+  "challenge_id": "lc_2751",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all right-moving robots survive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "positions": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "healths": [
+          2,
+          17,
+          9,
+          15,
+          10
+        ],
+        "directions": "RRRRR"
+      },
+      "tags": [
+        "sample",
+        "robots"
+      ],
+      "expected": [
+        2,
+        17,
+        9,
+        15,
+        10
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: left robot wins sequential collisions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "positions": [
+          3,
+          5,
+          2,
+          6
+        ],
+        "healths": [
+          10,
+          10,
+          15,
+          12
+        ],
+        "directions": "RLRL"
+      },
+      "tags": [
+        "sample",
+        "collision"
+      ],
+      "expected": [
+        14
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: equal healths destroy each other",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "positions": [
+          1,
+          2,
+          5,
+          6
+        ],
+        "healths": [
+          10,
+          10,
+          11,
+          11
+        ],
+        "directions": "RLRL"
+      },
+      "tags": [
+        "sample",
+        "equal"
+      ],
+      "expected": []
+    },
+    {
+      "id": "trial-mixed-survivors",
+      "name": "trial: survivors returned in original order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "positions": [
+          10,
+          1,
+          7,
+          4
+        ],
+        "healths": [
+          5,
+          3,
+          4,
+          6
+        ],
+        "directions": "LRRL"
+      },
+      "tags": [
+        "trial",
+        "order"
+      ],
+      "expected": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "real-collision-chain",
+      "name": "hidden: one robot collides through a chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "positions": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ],
+        "healths": [
+          4,
+          3,
+          2,
+          6,
+          5
+        ],
+        "directions": "RRRLL"
+      },
+      "tags": [
+        "hidden",
+        "chain"
+      ],
+      "expected": [
+        5
+      ]
+    }
+  ]
+}

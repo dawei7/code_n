@@ -1,0 +1,166 @@
+{
+  "challenge_id": "lc_2428",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: maximum hourglass in four by four grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            6,
+            2,
+            1,
+            3
+          ],
+          [
+            4,
+            2,
+            1,
+            5
+          ],
+          [
+            9,
+            2,
+            8,
+            7
+          ],
+          [
+            4,
+            1,
+            2,
+            9
+          ]
+        ]
+      },
+      "expected": 30,
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: only one three by three hourglass",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      },
+      "expected": 35,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: top-heavy small grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            2,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "trial: all ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-rectangular-grid",
+      "name": "hidden: three by five grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            9,
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            8,
+            1,
+            8,
+            1
+          ],
+          [
+            7,
+            0,
+            6,
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_1233",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two roots remain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "folder": [
+          "/a",
+          "/a/b",
+          "/c/d",
+          "/c/d/e",
+          "/c/f"
+        ]
+      },
+      "expected": [
+        "/a",
+        "/c/d",
+        "/c/f"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one root remains",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "folder": [
+          "/a",
+          "/a/b/c",
+          "/a/b/d"
+        ]
+      },
+      "expected": [
+        "/a"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: similar names not subfolders",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "folder": [
+          "/a/b/c",
+          "/a/b/ca",
+          "/a/b/d"
+        ]
+      },
+      "expected": [
+        "/a/b/c",
+        "/a/b/ca",
+        "/a/b/d"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-prefix-trap",
+      "name": "hidden: prefix trap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "folder": [
+          "/x",
+          "/x/y",
+          "/z",
+          "/z/a",
+          "/zab"
+        ]
+      },
+      "expected": [
+        "/x",
+        "/z",
+        "/zab"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1477",
+  "cases": [
+    {
+      "id": "benchmark-many-overlaps",
+      "name": "benchmark: many overlapping candidates",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "target": 3
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_370",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: overlapping positive and negative updates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "length": 5,
+        "updates": [
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            2,
+            4,
+            3
+          ],
+          [
+            0,
+            2,
+            -2
+          ]
+        ]
+      },
+      "expected": [
+        -2,
+        0,
+        3,
+        5,
+        3
+      ],
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one full-range update",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "length": 3,
+        "updates": [
+          [
+            0,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "full-range"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no updates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "length": 1,
+        "updates": []
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-single-index",
+      "name": "trial: one-element interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "length": 4,
+        "updates": [
+          [
+            2,
+            2,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        7,
+        0
+      ],
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-cancel",
+      "name": "trial: equal updates cancel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "length": 4,
+        "updates": [
+          [
+            0,
+            3,
+            5
+          ],
+          [
+            0,
+            3,
+            -5
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-disjoint",
+      "name": "hidden: disjoint range effects",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "length": 6,
+        "updates": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            4,
+            5,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        0,
+        0,
+        3,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "hidden-layered",
+      "name": "hidden: nested intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "length": 5,
+        "updates": [
+          [
+            0,
+            4,
+            1
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            2,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        7,
+        3,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "nested"
+      ]
+    },
+    {
+      "id": "hidden-negative",
+      "name": "hidden: negative suffix update",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "length": 5,
+        "updates": [
+          [
+            2,
+            4,
+            -3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        -3,
+        -3,
+        -3
+      ],
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    }
+  ]
+}
+

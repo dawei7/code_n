@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "195",
+  "frontend_id": "195",
+  "title_slug": "tenth-line",
+  "paid_only": false,
+  "language": "bash",
+  "source": "solutions/leetcode_bash.sh",
+  "verified_submission_id": "2064197842",
+  "verified_at": "2026-07-11T18:28:39.079534+00:00"
+}

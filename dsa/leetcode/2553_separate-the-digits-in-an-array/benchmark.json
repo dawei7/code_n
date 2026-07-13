@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_2553",
+  "cases": [
+    {
+      "id": "benchmark-mixed-zero-digits",
+      "name": "benchmark: mixed values with internal and trailing zeroes",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          909,
+          80
+        ]
+      },
+      "expected": [
+        9,
+        0,
+        9,
+        8,
+        0
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

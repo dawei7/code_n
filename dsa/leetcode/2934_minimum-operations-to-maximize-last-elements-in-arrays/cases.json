@@ -1,0 +1,124 @@
+{
+  "challenge_id": "lc_2934",
+  "cases": [
+    {
+      "id": "sample-one-swap",
+      "name": "sample: one swap needed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          7
+        ],
+        "nums2": [
+          4,
+          5,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-already-valid",
+      "name": "sample: already valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          3,
+          4,
+          5,
+          9
+        ],
+        "nums2": [
+          8,
+          7,
+          6,
+          5,
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          5,
+          4
+        ],
+        "nums2": [
+          2,
+          5,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-index",
+      "name": "trial: one index is already maximal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-last-swap-not-double-counted",
+      "name": "real: final swap counted once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          2,
+          7,
+          4,
+          1,
+          2,
+          5,
+          9
+        ],
+        "nums2": [
+          5,
+          8,
+          4,
+          8,
+          6,
+          3,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "regression"
+      ]
+    }
+  ]
+}

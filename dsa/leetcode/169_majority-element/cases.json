@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_169",
+  "cases": [
+    {"id": "sample-three", "name": "sample: majority around one other value", "kind": "sample", "visible": true, "input": {"nums": [3, 2, 3]}, "expected": 3, "tags": ["sample", "voting"]},
+    {"id": "sample-many-cancellations", "name": "sample: candidate changes during scan", "kind": "sample", "visible": true, "input": {"nums": [2, 2, 1, 1, 1, 2, 2]}, "expected": 2, "tags": ["sample"]},
+    {"id": "trial-single", "name": "single value", "kind": "trial", "visible": true, "input": {"nums": [7]}, "expected": 7, "tags": ["boundary"]},
+    {"id": "trial-negative", "name": "negative majority", "kind": "trial", "visible": true, "input": {"nums": [-1, 2, -1, -1]}, "expected": -1, "tags": ["negative"]},
+    {"id": "real-late-majority", "name": "hidden: majority concentrated late", "kind": "real", "visible": false, "input": {"nums": [1, 2, 3, 9, 9, 9, 9, 9]}, "expected": 9, "tags": ["hidden", "late"]}
+  ]
+}

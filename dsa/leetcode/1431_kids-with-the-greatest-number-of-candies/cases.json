@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_1431",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several kids can tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "candies": [
+          2,
+          3,
+          5,
+          1,
+          3
+        ],
+        "extra_candies": 3
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: only current leader",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "candies": [
+          4,
+          2,
+          1,
+          1,
+          2
+        ],
+        "extra_candies": 1
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: tied leaders",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "candies": [
+          12,
+          1,
+          12
+        ],
+        "extra_candies": 10
+      },
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-no-extra",
+      "name": "hidden: no extra candies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "candies": [
+          1,
+          3,
+          3
+        ],
+        "extra_candies": 0
+      },
+      "expected": [
+        false,
+        true,
+        true
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

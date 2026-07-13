@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "726",
+  "frontend_id": "726",
+  "title_slug": "number-of-atoms",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065747966",
+  "verified_at": "2026-07-13T06:21:10.761291+00:00"
+}

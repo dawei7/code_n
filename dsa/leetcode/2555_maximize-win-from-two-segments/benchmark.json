@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_2555",
+  "cases": [
+    {
+      "id": "benchmark-two-clusters",
+      "name": "benchmark: two dense clusters are both covered",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "prizePositions": [
+          1,
+          1,
+          1,
+          10,
+          10,
+          11
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

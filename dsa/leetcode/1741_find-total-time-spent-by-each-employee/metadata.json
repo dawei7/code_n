@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_1741",
+  "source": "leetcode",
+  "frontend_id": "1741",
+  "slug": "find-total-time-spent-by-each-employee",
+  "title": "Find Total Time Spent by Each Employee",
+  "difficulty": "Easy",
+  "acceptance_rate": 86.36158417893436,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-total-time-spent-by-each-employee/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_studyplan:30-days-of-pandas",
+    "leetcode_studyplan:30-days-of-pandas:30-days-of-pandas-163-i9nm",
+    "leetcode_studyplan:premium-sql-50",
+    "leetcode_studyplan:premium-sql-50:premium-sql-50-123-u202",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:amazon",
+    "company:google",
+    "language:sql",
+    "leetcode",
+    "study_plan:30-days-of-pandas",
+    "study_plan:premium-sql-50",
+    "study_plan_section:30-days-of-pandas:30-days-of-pandas-163-i9nm",
+    "study_plan_section:premium-sql-50:premium-sql-50-123-u202",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-pandas",
+      "plan_name": "30 Days of Pandas",
+      "section_slug": "30-days-of-pandas-163-i9nm",
+      "section_name": "Data Aggregation",
+      "path": [
+        "Data Aggregation"
+      ],
+      "order": 21,
+      "section_order": 7,
+      "problem_order": 1,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-pandas/"
+    },
+    {
+      "plan_slug": "premium-sql-50",
+      "plan_name": "Advanced SQL 50",
+      "section_slug": "premium-sql-50-123-u202",
+      "section_name": "Basic Aggregate Functions",
+      "path": [
+        "Basic Aggregate Functions"
+      ],
+      "order": 16,
+      "section_order": 3,
+      "problem_order": 5,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/premium-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

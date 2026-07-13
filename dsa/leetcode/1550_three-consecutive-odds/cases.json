@@ -1,0 +1,87 @@
+{
+  "challenge_id": "lc_1550",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: no three odds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          6,
+          4,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three odds at end",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          34,
+          3,
+          4,
+          5,
+          7,
+          23,
+          12
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-start",
+      "name": "three odds at start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          9,
+          11,
+          13,
+          2,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-separated",
+      "name": "hidden: odds separated by evens",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          3,
+          2,
+          5,
+          7,
+          4,
+          9,
+          11
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

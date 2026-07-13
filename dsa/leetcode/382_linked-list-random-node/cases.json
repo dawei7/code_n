@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_382",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three-node random draws",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          2,
+          3
+        ],
+        "draws": 5
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "linked_list_random_draws",
+        "head_param": "head",
+        "draws_param": "draws"
+      },
+      "tags": [
+        "sample",
+        "multiple-nodes"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single node is deterministic",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          7
+        ],
+        "draws": 4
+      },
+      "expected": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "validator": {
+        "kind": "linked_list_random_draws",
+        "head_param": "head",
+        "draws_param": "draws"
+      },
+      "tags": [
+        "sample",
+        "single-node"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate values preserve occurrences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          -2,
+          5,
+          -2
+        ],
+        "draws": 4
+      },
+      "expected": [
+        -2,
+        5,
+        -2,
+        5
+      ],
+      "validator": {
+        "kind": "linked_list_random_draws",
+        "head_param": "head",
+        "draws_param": "draws"
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-zero-draws",
+      "name": "trial: no requested draws",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          4,
+          9
+        ],
+        "draws": 0
+      },
+      "expected": [],
+      "validator": {
+        "kind": "linked_list_random_draws",
+        "head_param": "head",
+        "draws_param": "draws"
+      },
+      "tags": [
+        "trial",
+        "empty-output"
+      ]
+    },
+    {
+      "id": "trial-zero-value",
+      "name": "trial: zero is a valid value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          0,
+          -1,
+          1
+        ],
+        "draws": 6
+      },
+      "expected": [
+        0,
+        -1,
+        1,
+        0,
+        -1,
+        1
+      ],
+      "validator": {
+        "kind": "linked_list_random_draws",
+        "head_param": "head",
+        "draws_param": "draws"
+      },
+      "tags": [
+        "trial",
+        "zero",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-two-nodes",
+      "name": "hidden: repeated draws from two nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          10,
+          20
+        ],
+        "draws": 32
+      },
+      "expected": [
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20,
+        10,
+        20
+      ],
+      "validator": {
+        "kind": "linked_list_random_draws",
+        "head_param": "head",
+        "draws_param": "draws"
+      },
+      "tags": [
+        "hidden",
+        "repeated-draws"
+      ]
+    },
+    {
+      "id": "hidden-all-equal",
+      "name": "hidden: all node values equal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "draws": 12
+      },
+      "expected": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "validator": {
+        "kind": "linked_list_random_draws",
+        "head_param": "head",
+        "draws_param": "draws"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    }
+  ]
+}

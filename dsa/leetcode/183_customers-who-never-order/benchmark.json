@@ -1,0 +1,2545 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_183",
+  "measurement_note": "Growing customer and order tables exercise anti-join behavior while half of the customers remain unmatched.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 customers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "id": 1,
+              "name": "Customer001"
+            },
+            {
+              "id": 2,
+              "name": "Customer002"
+            },
+            {
+              "id": 3,
+              "name": "Customer003"
+            },
+            {
+              "id": 4,
+              "name": "Customer004"
+            },
+            {
+              "id": 5,
+              "name": "Customer005"
+            },
+            {
+              "id": 6,
+              "name": "Customer006"
+            },
+            {
+              "id": 7,
+              "name": "Customer007"
+            },
+            {
+              "id": 8,
+              "name": "Customer008"
+            }
+          ],
+          "Orders": [
+            {
+              "id": 1,
+              "customerId": 2
+            },
+            {
+              "id": 2,
+              "customerId": 4
+            },
+            {
+              "id": 3,
+              "customerId": 6
+            },
+            {
+              "id": 4,
+              "customerId": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Customers"
+        ],
+        "rows": [
+          [
+            "Customer001"
+          ],
+          [
+            "Customer003"
+          ],
+          [
+            "Customer005"
+          ],
+          [
+            "Customer007"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 customers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "id": 1,
+              "name": "Customer001"
+            },
+            {
+              "id": 2,
+              "name": "Customer002"
+            },
+            {
+              "id": 3,
+              "name": "Customer003"
+            },
+            {
+              "id": 4,
+              "name": "Customer004"
+            },
+            {
+              "id": 5,
+              "name": "Customer005"
+            },
+            {
+              "id": 6,
+              "name": "Customer006"
+            },
+            {
+              "id": 7,
+              "name": "Customer007"
+            },
+            {
+              "id": 8,
+              "name": "Customer008"
+            },
+            {
+              "id": 9,
+              "name": "Customer009"
+            },
+            {
+              "id": 10,
+              "name": "Customer010"
+            },
+            {
+              "id": 11,
+              "name": "Customer011"
+            },
+            {
+              "id": 12,
+              "name": "Customer012"
+            },
+            {
+              "id": 13,
+              "name": "Customer013"
+            },
+            {
+              "id": 14,
+              "name": "Customer014"
+            },
+            {
+              "id": 15,
+              "name": "Customer015"
+            },
+            {
+              "id": 16,
+              "name": "Customer016"
+            },
+            {
+              "id": 17,
+              "name": "Customer017"
+            },
+            {
+              "id": 18,
+              "name": "Customer018"
+            },
+            {
+              "id": 19,
+              "name": "Customer019"
+            },
+            {
+              "id": 20,
+              "name": "Customer020"
+            },
+            {
+              "id": 21,
+              "name": "Customer021"
+            },
+            {
+              "id": 22,
+              "name": "Customer022"
+            },
+            {
+              "id": 23,
+              "name": "Customer023"
+            },
+            {
+              "id": 24,
+              "name": "Customer024"
+            },
+            {
+              "id": 25,
+              "name": "Customer025"
+            },
+            {
+              "id": 26,
+              "name": "Customer026"
+            },
+            {
+              "id": 27,
+              "name": "Customer027"
+            },
+            {
+              "id": 28,
+              "name": "Customer028"
+            },
+            {
+              "id": 29,
+              "name": "Customer029"
+            },
+            {
+              "id": 30,
+              "name": "Customer030"
+            },
+            {
+              "id": 31,
+              "name": "Customer031"
+            },
+            {
+              "id": 32,
+              "name": "Customer032"
+            },
+            {
+              "id": 33,
+              "name": "Customer033"
+            },
+            {
+              "id": 34,
+              "name": "Customer034"
+            },
+            {
+              "id": 35,
+              "name": "Customer035"
+            },
+            {
+              "id": 36,
+              "name": "Customer036"
+            },
+            {
+              "id": 37,
+              "name": "Customer037"
+            },
+            {
+              "id": 38,
+              "name": "Customer038"
+            },
+            {
+              "id": 39,
+              "name": "Customer039"
+            },
+            {
+              "id": 40,
+              "name": "Customer040"
+            },
+            {
+              "id": 41,
+              "name": "Customer041"
+            },
+            {
+              "id": 42,
+              "name": "Customer042"
+            },
+            {
+              "id": 43,
+              "name": "Customer043"
+            },
+            {
+              "id": 44,
+              "name": "Customer044"
+            },
+            {
+              "id": 45,
+              "name": "Customer045"
+            },
+            {
+              "id": 46,
+              "name": "Customer046"
+            },
+            {
+              "id": 47,
+              "name": "Customer047"
+            },
+            {
+              "id": 48,
+              "name": "Customer048"
+            },
+            {
+              "id": 49,
+              "name": "Customer049"
+            },
+            {
+              "id": 50,
+              "name": "Customer050"
+            },
+            {
+              "id": 51,
+              "name": "Customer051"
+            },
+            {
+              "id": 52,
+              "name": "Customer052"
+            },
+            {
+              "id": 53,
+              "name": "Customer053"
+            },
+            {
+              "id": 54,
+              "name": "Customer054"
+            },
+            {
+              "id": 55,
+              "name": "Customer055"
+            },
+            {
+              "id": 56,
+              "name": "Customer056"
+            },
+            {
+              "id": 57,
+              "name": "Customer057"
+            },
+            {
+              "id": 58,
+              "name": "Customer058"
+            },
+            {
+              "id": 59,
+              "name": "Customer059"
+            },
+            {
+              "id": 60,
+              "name": "Customer060"
+            },
+            {
+              "id": 61,
+              "name": "Customer061"
+            },
+            {
+              "id": 62,
+              "name": "Customer062"
+            },
+            {
+              "id": 63,
+              "name": "Customer063"
+            },
+            {
+              "id": 64,
+              "name": "Customer064"
+            }
+          ],
+          "Orders": [
+            {
+              "id": 1,
+              "customerId": 2
+            },
+            {
+              "id": 2,
+              "customerId": 4
+            },
+            {
+              "id": 3,
+              "customerId": 6
+            },
+            {
+              "id": 4,
+              "customerId": 8
+            },
+            {
+              "id": 5,
+              "customerId": 10
+            },
+            {
+              "id": 6,
+              "customerId": 12
+            },
+            {
+              "id": 7,
+              "customerId": 14
+            },
+            {
+              "id": 8,
+              "customerId": 16
+            },
+            {
+              "id": 9,
+              "customerId": 18
+            },
+            {
+              "id": 10,
+              "customerId": 20
+            },
+            {
+              "id": 11,
+              "customerId": 22
+            },
+            {
+              "id": 12,
+              "customerId": 24
+            },
+            {
+              "id": 13,
+              "customerId": 26
+            },
+            {
+              "id": 14,
+              "customerId": 28
+            },
+            {
+              "id": 15,
+              "customerId": 30
+            },
+            {
+              "id": 16,
+              "customerId": 32
+            },
+            {
+              "id": 17,
+              "customerId": 34
+            },
+            {
+              "id": 18,
+              "customerId": 36
+            },
+            {
+              "id": 19,
+              "customerId": 38
+            },
+            {
+              "id": 20,
+              "customerId": 40
+            },
+            {
+              "id": 21,
+              "customerId": 42
+            },
+            {
+              "id": 22,
+              "customerId": 44
+            },
+            {
+              "id": 23,
+              "customerId": 46
+            },
+            {
+              "id": 24,
+              "customerId": 48
+            },
+            {
+              "id": 25,
+              "customerId": 50
+            },
+            {
+              "id": 26,
+              "customerId": 52
+            },
+            {
+              "id": 27,
+              "customerId": 54
+            },
+            {
+              "id": 28,
+              "customerId": 56
+            },
+            {
+              "id": 29,
+              "customerId": 58
+            },
+            {
+              "id": 30,
+              "customerId": 60
+            },
+            {
+              "id": 31,
+              "customerId": 62
+            },
+            {
+              "id": 32,
+              "customerId": 64
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Customers"
+        ],
+        "rows": [
+          [
+            "Customer001"
+          ],
+          [
+            "Customer003"
+          ],
+          [
+            "Customer005"
+          ],
+          [
+            "Customer007"
+          ],
+          [
+            "Customer009"
+          ],
+          [
+            "Customer011"
+          ],
+          [
+            "Customer013"
+          ],
+          [
+            "Customer015"
+          ],
+          [
+            "Customer017"
+          ],
+          [
+            "Customer019"
+          ],
+          [
+            "Customer021"
+          ],
+          [
+            "Customer023"
+          ],
+          [
+            "Customer025"
+          ],
+          [
+            "Customer027"
+          ],
+          [
+            "Customer029"
+          ],
+          [
+            "Customer031"
+          ],
+          [
+            "Customer033"
+          ],
+          [
+            "Customer035"
+          ],
+          [
+            "Customer037"
+          ],
+          [
+            "Customer039"
+          ],
+          [
+            "Customer041"
+          ],
+          [
+            "Customer043"
+          ],
+          [
+            "Customer045"
+          ],
+          [
+            "Customer047"
+          ],
+          [
+            "Customer049"
+          ],
+          [
+            "Customer051"
+          ],
+          [
+            "Customer053"
+          ],
+          [
+            "Customer055"
+          ],
+          [
+            "Customer057"
+          ],
+          [
+            "Customer059"
+          ],
+          [
+            "Customer061"
+          ],
+          [
+            "Customer063"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 customers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "id": 1,
+              "name": "Customer001"
+            },
+            {
+              "id": 2,
+              "name": "Customer002"
+            },
+            {
+              "id": 3,
+              "name": "Customer003"
+            },
+            {
+              "id": 4,
+              "name": "Customer004"
+            },
+            {
+              "id": 5,
+              "name": "Customer005"
+            },
+            {
+              "id": 6,
+              "name": "Customer006"
+            },
+            {
+              "id": 7,
+              "name": "Customer007"
+            },
+            {
+              "id": 8,
+              "name": "Customer008"
+            },
+            {
+              "id": 9,
+              "name": "Customer009"
+            },
+            {
+              "id": 10,
+              "name": "Customer010"
+            },
+            {
+              "id": 11,
+              "name": "Customer011"
+            },
+            {
+              "id": 12,
+              "name": "Customer012"
+            },
+            {
+              "id": 13,
+              "name": "Customer013"
+            },
+            {
+              "id": 14,
+              "name": "Customer014"
+            },
+            {
+              "id": 15,
+              "name": "Customer015"
+            },
+            {
+              "id": 16,
+              "name": "Customer016"
+            },
+            {
+              "id": 17,
+              "name": "Customer017"
+            },
+            {
+              "id": 18,
+              "name": "Customer018"
+            },
+            {
+              "id": 19,
+              "name": "Customer019"
+            },
+            {
+              "id": 20,
+              "name": "Customer020"
+            },
+            {
+              "id": 21,
+              "name": "Customer021"
+            },
+            {
+              "id": 22,
+              "name": "Customer022"
+            },
+            {
+              "id": 23,
+              "name": "Customer023"
+            },
+            {
+              "id": 24,
+              "name": "Customer024"
+            },
+            {
+              "id": 25,
+              "name": "Customer025"
+            },
+            {
+              "id": 26,
+              "name": "Customer026"
+            },
+            {
+              "id": 27,
+              "name": "Customer027"
+            },
+            {
+              "id": 28,
+              "name": "Customer028"
+            },
+            {
+              "id": 29,
+              "name": "Customer029"
+            },
+            {
+              "id": 30,
+              "name": "Customer030"
+            },
+            {
+              "id": 31,
+              "name": "Customer031"
+            },
+            {
+              "id": 32,
+              "name": "Customer032"
+            },
+            {
+              "id": 33,
+              "name": "Customer033"
+            },
+            {
+              "id": 34,
+              "name": "Customer034"
+            },
+            {
+              "id": 35,
+              "name": "Customer035"
+            },
+            {
+              "id": 36,
+              "name": "Customer036"
+            },
+            {
+              "id": 37,
+              "name": "Customer037"
+            },
+            {
+              "id": 38,
+              "name": "Customer038"
+            },
+            {
+              "id": 39,
+              "name": "Customer039"
+            },
+            {
+              "id": 40,
+              "name": "Customer040"
+            },
+            {
+              "id": 41,
+              "name": "Customer041"
+            },
+            {
+              "id": 42,
+              "name": "Customer042"
+            },
+            {
+              "id": 43,
+              "name": "Customer043"
+            },
+            {
+              "id": 44,
+              "name": "Customer044"
+            },
+            {
+              "id": 45,
+              "name": "Customer045"
+            },
+            {
+              "id": 46,
+              "name": "Customer046"
+            },
+            {
+              "id": 47,
+              "name": "Customer047"
+            },
+            {
+              "id": 48,
+              "name": "Customer048"
+            },
+            {
+              "id": 49,
+              "name": "Customer049"
+            },
+            {
+              "id": 50,
+              "name": "Customer050"
+            },
+            {
+              "id": 51,
+              "name": "Customer051"
+            },
+            {
+              "id": 52,
+              "name": "Customer052"
+            },
+            {
+              "id": 53,
+              "name": "Customer053"
+            },
+            {
+              "id": 54,
+              "name": "Customer054"
+            },
+            {
+              "id": 55,
+              "name": "Customer055"
+            },
+            {
+              "id": 56,
+              "name": "Customer056"
+            },
+            {
+              "id": 57,
+              "name": "Customer057"
+            },
+            {
+              "id": 58,
+              "name": "Customer058"
+            },
+            {
+              "id": 59,
+              "name": "Customer059"
+            },
+            {
+              "id": 60,
+              "name": "Customer060"
+            },
+            {
+              "id": 61,
+              "name": "Customer061"
+            },
+            {
+              "id": 62,
+              "name": "Customer062"
+            },
+            {
+              "id": 63,
+              "name": "Customer063"
+            },
+            {
+              "id": 64,
+              "name": "Customer064"
+            },
+            {
+              "id": 65,
+              "name": "Customer065"
+            },
+            {
+              "id": 66,
+              "name": "Customer066"
+            },
+            {
+              "id": 67,
+              "name": "Customer067"
+            },
+            {
+              "id": 68,
+              "name": "Customer068"
+            },
+            {
+              "id": 69,
+              "name": "Customer069"
+            },
+            {
+              "id": 70,
+              "name": "Customer070"
+            },
+            {
+              "id": 71,
+              "name": "Customer071"
+            },
+            {
+              "id": 72,
+              "name": "Customer072"
+            },
+            {
+              "id": 73,
+              "name": "Customer073"
+            },
+            {
+              "id": 74,
+              "name": "Customer074"
+            },
+            {
+              "id": 75,
+              "name": "Customer075"
+            },
+            {
+              "id": 76,
+              "name": "Customer076"
+            },
+            {
+              "id": 77,
+              "name": "Customer077"
+            },
+            {
+              "id": 78,
+              "name": "Customer078"
+            },
+            {
+              "id": 79,
+              "name": "Customer079"
+            },
+            {
+              "id": 80,
+              "name": "Customer080"
+            },
+            {
+              "id": 81,
+              "name": "Customer081"
+            },
+            {
+              "id": 82,
+              "name": "Customer082"
+            },
+            {
+              "id": 83,
+              "name": "Customer083"
+            },
+            {
+              "id": 84,
+              "name": "Customer084"
+            },
+            {
+              "id": 85,
+              "name": "Customer085"
+            },
+            {
+              "id": 86,
+              "name": "Customer086"
+            },
+            {
+              "id": 87,
+              "name": "Customer087"
+            },
+            {
+              "id": 88,
+              "name": "Customer088"
+            },
+            {
+              "id": 89,
+              "name": "Customer089"
+            },
+            {
+              "id": 90,
+              "name": "Customer090"
+            },
+            {
+              "id": 91,
+              "name": "Customer091"
+            },
+            {
+              "id": 92,
+              "name": "Customer092"
+            },
+            {
+              "id": 93,
+              "name": "Customer093"
+            },
+            {
+              "id": 94,
+              "name": "Customer094"
+            },
+            {
+              "id": 95,
+              "name": "Customer095"
+            },
+            {
+              "id": 96,
+              "name": "Customer096"
+            },
+            {
+              "id": 97,
+              "name": "Customer097"
+            },
+            {
+              "id": 98,
+              "name": "Customer098"
+            },
+            {
+              "id": 99,
+              "name": "Customer099"
+            },
+            {
+              "id": 100,
+              "name": "Customer100"
+            },
+            {
+              "id": 101,
+              "name": "Customer101"
+            },
+            {
+              "id": 102,
+              "name": "Customer102"
+            },
+            {
+              "id": 103,
+              "name": "Customer103"
+            },
+            {
+              "id": 104,
+              "name": "Customer104"
+            },
+            {
+              "id": 105,
+              "name": "Customer105"
+            },
+            {
+              "id": 106,
+              "name": "Customer106"
+            },
+            {
+              "id": 107,
+              "name": "Customer107"
+            },
+            {
+              "id": 108,
+              "name": "Customer108"
+            },
+            {
+              "id": 109,
+              "name": "Customer109"
+            },
+            {
+              "id": 110,
+              "name": "Customer110"
+            },
+            {
+              "id": 111,
+              "name": "Customer111"
+            },
+            {
+              "id": 112,
+              "name": "Customer112"
+            },
+            {
+              "id": 113,
+              "name": "Customer113"
+            },
+            {
+              "id": 114,
+              "name": "Customer114"
+            },
+            {
+              "id": 115,
+              "name": "Customer115"
+            },
+            {
+              "id": 116,
+              "name": "Customer116"
+            },
+            {
+              "id": 117,
+              "name": "Customer117"
+            },
+            {
+              "id": 118,
+              "name": "Customer118"
+            },
+            {
+              "id": 119,
+              "name": "Customer119"
+            },
+            {
+              "id": 120,
+              "name": "Customer120"
+            },
+            {
+              "id": 121,
+              "name": "Customer121"
+            },
+            {
+              "id": 122,
+              "name": "Customer122"
+            },
+            {
+              "id": 123,
+              "name": "Customer123"
+            },
+            {
+              "id": 124,
+              "name": "Customer124"
+            },
+            {
+              "id": 125,
+              "name": "Customer125"
+            },
+            {
+              "id": 126,
+              "name": "Customer126"
+            },
+            {
+              "id": 127,
+              "name": "Customer127"
+            },
+            {
+              "id": 128,
+              "name": "Customer128"
+            },
+            {
+              "id": 129,
+              "name": "Customer129"
+            },
+            {
+              "id": 130,
+              "name": "Customer130"
+            },
+            {
+              "id": 131,
+              "name": "Customer131"
+            },
+            {
+              "id": 132,
+              "name": "Customer132"
+            },
+            {
+              "id": 133,
+              "name": "Customer133"
+            },
+            {
+              "id": 134,
+              "name": "Customer134"
+            },
+            {
+              "id": 135,
+              "name": "Customer135"
+            },
+            {
+              "id": 136,
+              "name": "Customer136"
+            },
+            {
+              "id": 137,
+              "name": "Customer137"
+            },
+            {
+              "id": 138,
+              "name": "Customer138"
+            },
+            {
+              "id": 139,
+              "name": "Customer139"
+            },
+            {
+              "id": 140,
+              "name": "Customer140"
+            },
+            {
+              "id": 141,
+              "name": "Customer141"
+            },
+            {
+              "id": 142,
+              "name": "Customer142"
+            },
+            {
+              "id": 143,
+              "name": "Customer143"
+            },
+            {
+              "id": 144,
+              "name": "Customer144"
+            },
+            {
+              "id": 145,
+              "name": "Customer145"
+            },
+            {
+              "id": 146,
+              "name": "Customer146"
+            },
+            {
+              "id": 147,
+              "name": "Customer147"
+            },
+            {
+              "id": 148,
+              "name": "Customer148"
+            },
+            {
+              "id": 149,
+              "name": "Customer149"
+            },
+            {
+              "id": 150,
+              "name": "Customer150"
+            },
+            {
+              "id": 151,
+              "name": "Customer151"
+            },
+            {
+              "id": 152,
+              "name": "Customer152"
+            },
+            {
+              "id": 153,
+              "name": "Customer153"
+            },
+            {
+              "id": 154,
+              "name": "Customer154"
+            },
+            {
+              "id": 155,
+              "name": "Customer155"
+            },
+            {
+              "id": 156,
+              "name": "Customer156"
+            },
+            {
+              "id": 157,
+              "name": "Customer157"
+            },
+            {
+              "id": 158,
+              "name": "Customer158"
+            },
+            {
+              "id": 159,
+              "name": "Customer159"
+            },
+            {
+              "id": 160,
+              "name": "Customer160"
+            },
+            {
+              "id": 161,
+              "name": "Customer161"
+            },
+            {
+              "id": 162,
+              "name": "Customer162"
+            },
+            {
+              "id": 163,
+              "name": "Customer163"
+            },
+            {
+              "id": 164,
+              "name": "Customer164"
+            },
+            {
+              "id": 165,
+              "name": "Customer165"
+            },
+            {
+              "id": 166,
+              "name": "Customer166"
+            },
+            {
+              "id": 167,
+              "name": "Customer167"
+            },
+            {
+              "id": 168,
+              "name": "Customer168"
+            },
+            {
+              "id": 169,
+              "name": "Customer169"
+            },
+            {
+              "id": 170,
+              "name": "Customer170"
+            },
+            {
+              "id": 171,
+              "name": "Customer171"
+            },
+            {
+              "id": 172,
+              "name": "Customer172"
+            },
+            {
+              "id": 173,
+              "name": "Customer173"
+            },
+            {
+              "id": 174,
+              "name": "Customer174"
+            },
+            {
+              "id": 175,
+              "name": "Customer175"
+            },
+            {
+              "id": 176,
+              "name": "Customer176"
+            },
+            {
+              "id": 177,
+              "name": "Customer177"
+            },
+            {
+              "id": 178,
+              "name": "Customer178"
+            },
+            {
+              "id": 179,
+              "name": "Customer179"
+            },
+            {
+              "id": 180,
+              "name": "Customer180"
+            },
+            {
+              "id": 181,
+              "name": "Customer181"
+            },
+            {
+              "id": 182,
+              "name": "Customer182"
+            },
+            {
+              "id": 183,
+              "name": "Customer183"
+            },
+            {
+              "id": 184,
+              "name": "Customer184"
+            },
+            {
+              "id": 185,
+              "name": "Customer185"
+            },
+            {
+              "id": 186,
+              "name": "Customer186"
+            },
+            {
+              "id": 187,
+              "name": "Customer187"
+            },
+            {
+              "id": 188,
+              "name": "Customer188"
+            },
+            {
+              "id": 189,
+              "name": "Customer189"
+            },
+            {
+              "id": 190,
+              "name": "Customer190"
+            },
+            {
+              "id": 191,
+              "name": "Customer191"
+            },
+            {
+              "id": 192,
+              "name": "Customer192"
+            },
+            {
+              "id": 193,
+              "name": "Customer193"
+            },
+            {
+              "id": 194,
+              "name": "Customer194"
+            },
+            {
+              "id": 195,
+              "name": "Customer195"
+            },
+            {
+              "id": 196,
+              "name": "Customer196"
+            },
+            {
+              "id": 197,
+              "name": "Customer197"
+            },
+            {
+              "id": 198,
+              "name": "Customer198"
+            },
+            {
+              "id": 199,
+              "name": "Customer199"
+            },
+            {
+              "id": 200,
+              "name": "Customer200"
+            },
+            {
+              "id": 201,
+              "name": "Customer201"
+            },
+            {
+              "id": 202,
+              "name": "Customer202"
+            },
+            {
+              "id": 203,
+              "name": "Customer203"
+            },
+            {
+              "id": 204,
+              "name": "Customer204"
+            },
+            {
+              "id": 205,
+              "name": "Customer205"
+            },
+            {
+              "id": 206,
+              "name": "Customer206"
+            },
+            {
+              "id": 207,
+              "name": "Customer207"
+            },
+            {
+              "id": 208,
+              "name": "Customer208"
+            },
+            {
+              "id": 209,
+              "name": "Customer209"
+            },
+            {
+              "id": 210,
+              "name": "Customer210"
+            },
+            {
+              "id": 211,
+              "name": "Customer211"
+            },
+            {
+              "id": 212,
+              "name": "Customer212"
+            },
+            {
+              "id": 213,
+              "name": "Customer213"
+            },
+            {
+              "id": 214,
+              "name": "Customer214"
+            },
+            {
+              "id": 215,
+              "name": "Customer215"
+            },
+            {
+              "id": 216,
+              "name": "Customer216"
+            },
+            {
+              "id": 217,
+              "name": "Customer217"
+            },
+            {
+              "id": 218,
+              "name": "Customer218"
+            },
+            {
+              "id": 219,
+              "name": "Customer219"
+            },
+            {
+              "id": 220,
+              "name": "Customer220"
+            },
+            {
+              "id": 221,
+              "name": "Customer221"
+            },
+            {
+              "id": 222,
+              "name": "Customer222"
+            },
+            {
+              "id": 223,
+              "name": "Customer223"
+            },
+            {
+              "id": 224,
+              "name": "Customer224"
+            },
+            {
+              "id": 225,
+              "name": "Customer225"
+            },
+            {
+              "id": 226,
+              "name": "Customer226"
+            },
+            {
+              "id": 227,
+              "name": "Customer227"
+            },
+            {
+              "id": 228,
+              "name": "Customer228"
+            },
+            {
+              "id": 229,
+              "name": "Customer229"
+            },
+            {
+              "id": 230,
+              "name": "Customer230"
+            },
+            {
+              "id": 231,
+              "name": "Customer231"
+            },
+            {
+              "id": 232,
+              "name": "Customer232"
+            },
+            {
+              "id": 233,
+              "name": "Customer233"
+            },
+            {
+              "id": 234,
+              "name": "Customer234"
+            },
+            {
+              "id": 235,
+              "name": "Customer235"
+            },
+            {
+              "id": 236,
+              "name": "Customer236"
+            },
+            {
+              "id": 237,
+              "name": "Customer237"
+            },
+            {
+              "id": 238,
+              "name": "Customer238"
+            },
+            {
+              "id": 239,
+              "name": "Customer239"
+            },
+            {
+              "id": 240,
+              "name": "Customer240"
+            },
+            {
+              "id": 241,
+              "name": "Customer241"
+            },
+            {
+              "id": 242,
+              "name": "Customer242"
+            },
+            {
+              "id": 243,
+              "name": "Customer243"
+            },
+            {
+              "id": 244,
+              "name": "Customer244"
+            },
+            {
+              "id": 245,
+              "name": "Customer245"
+            },
+            {
+              "id": 246,
+              "name": "Customer246"
+            },
+            {
+              "id": 247,
+              "name": "Customer247"
+            },
+            {
+              "id": 248,
+              "name": "Customer248"
+            },
+            {
+              "id": 249,
+              "name": "Customer249"
+            },
+            {
+              "id": 250,
+              "name": "Customer250"
+            },
+            {
+              "id": 251,
+              "name": "Customer251"
+            },
+            {
+              "id": 252,
+              "name": "Customer252"
+            },
+            {
+              "id": 253,
+              "name": "Customer253"
+            },
+            {
+              "id": 254,
+              "name": "Customer254"
+            },
+            {
+              "id": 255,
+              "name": "Customer255"
+            },
+            {
+              "id": 256,
+              "name": "Customer256"
+            }
+          ],
+          "Orders": [
+            {
+              "id": 1,
+              "customerId": 2
+            },
+            {
+              "id": 2,
+              "customerId": 4
+            },
+            {
+              "id": 3,
+              "customerId": 6
+            },
+            {
+              "id": 4,
+              "customerId": 8
+            },
+            {
+              "id": 5,
+              "customerId": 10
+            },
+            {
+              "id": 6,
+              "customerId": 12
+            },
+            {
+              "id": 7,
+              "customerId": 14
+            },
+            {
+              "id": 8,
+              "customerId": 16
+            },
+            {
+              "id": 9,
+              "customerId": 18
+            },
+            {
+              "id": 10,
+              "customerId": 20
+            },
+            {
+              "id": 11,
+              "customerId": 22
+            },
+            {
+              "id": 12,
+              "customerId": 24
+            },
+            {
+              "id": 13,
+              "customerId": 26
+            },
+            {
+              "id": 14,
+              "customerId": 28
+            },
+            {
+              "id": 15,
+              "customerId": 30
+            },
+            {
+              "id": 16,
+              "customerId": 32
+            },
+            {
+              "id": 17,
+              "customerId": 34
+            },
+            {
+              "id": 18,
+              "customerId": 36
+            },
+            {
+              "id": 19,
+              "customerId": 38
+            },
+            {
+              "id": 20,
+              "customerId": 40
+            },
+            {
+              "id": 21,
+              "customerId": 42
+            },
+            {
+              "id": 22,
+              "customerId": 44
+            },
+            {
+              "id": 23,
+              "customerId": 46
+            },
+            {
+              "id": 24,
+              "customerId": 48
+            },
+            {
+              "id": 25,
+              "customerId": 50
+            },
+            {
+              "id": 26,
+              "customerId": 52
+            },
+            {
+              "id": 27,
+              "customerId": 54
+            },
+            {
+              "id": 28,
+              "customerId": 56
+            },
+            {
+              "id": 29,
+              "customerId": 58
+            },
+            {
+              "id": 30,
+              "customerId": 60
+            },
+            {
+              "id": 31,
+              "customerId": 62
+            },
+            {
+              "id": 32,
+              "customerId": 64
+            },
+            {
+              "id": 33,
+              "customerId": 66
+            },
+            {
+              "id": 34,
+              "customerId": 68
+            },
+            {
+              "id": 35,
+              "customerId": 70
+            },
+            {
+              "id": 36,
+              "customerId": 72
+            },
+            {
+              "id": 37,
+              "customerId": 74
+            },
+            {
+              "id": 38,
+              "customerId": 76
+            },
+            {
+              "id": 39,
+              "customerId": 78
+            },
+            {
+              "id": 40,
+              "customerId": 80
+            },
+            {
+              "id": 41,
+              "customerId": 82
+            },
+            {
+              "id": 42,
+              "customerId": 84
+            },
+            {
+              "id": 43,
+              "customerId": 86
+            },
+            {
+              "id": 44,
+              "customerId": 88
+            },
+            {
+              "id": 45,
+              "customerId": 90
+            },
+            {
+              "id": 46,
+              "customerId": 92
+            },
+            {
+              "id": 47,
+              "customerId": 94
+            },
+            {
+              "id": 48,
+              "customerId": 96
+            },
+            {
+              "id": 49,
+              "customerId": 98
+            },
+            {
+              "id": 50,
+              "customerId": 100
+            },
+            {
+              "id": 51,
+              "customerId": 102
+            },
+            {
+              "id": 52,
+              "customerId": 104
+            },
+            {
+              "id": 53,
+              "customerId": 106
+            },
+            {
+              "id": 54,
+              "customerId": 108
+            },
+            {
+              "id": 55,
+              "customerId": 110
+            },
+            {
+              "id": 56,
+              "customerId": 112
+            },
+            {
+              "id": 57,
+              "customerId": 114
+            },
+            {
+              "id": 58,
+              "customerId": 116
+            },
+            {
+              "id": 59,
+              "customerId": 118
+            },
+            {
+              "id": 60,
+              "customerId": 120
+            },
+            {
+              "id": 61,
+              "customerId": 122
+            },
+            {
+              "id": 62,
+              "customerId": 124
+            },
+            {
+              "id": 63,
+              "customerId": 126
+            },
+            {
+              "id": 64,
+              "customerId": 128
+            },
+            {
+              "id": 65,
+              "customerId": 130
+            },
+            {
+              "id": 66,
+              "customerId": 132
+            },
+            {
+              "id": 67,
+              "customerId": 134
+            },
+            {
+              "id": 68,
+              "customerId": 136
+            },
+            {
+              "id": 69,
+              "customerId": 138
+            },
+            {
+              "id": 70,
+              "customerId": 140
+            },
+            {
+              "id": 71,
+              "customerId": 142
+            },
+            {
+              "id": 72,
+              "customerId": 144
+            },
+            {
+              "id": 73,
+              "customerId": 146
+            },
+            {
+              "id": 74,
+              "customerId": 148
+            },
+            {
+              "id": 75,
+              "customerId": 150
+            },
+            {
+              "id": 76,
+              "customerId": 152
+            },
+            {
+              "id": 77,
+              "customerId": 154
+            },
+            {
+              "id": 78,
+              "customerId": 156
+            },
+            {
+              "id": 79,
+              "customerId": 158
+            },
+            {
+              "id": 80,
+              "customerId": 160
+            },
+            {
+              "id": 81,
+              "customerId": 162
+            },
+            {
+              "id": 82,
+              "customerId": 164
+            },
+            {
+              "id": 83,
+              "customerId": 166
+            },
+            {
+              "id": 84,
+              "customerId": 168
+            },
+            {
+              "id": 85,
+              "customerId": 170
+            },
+            {
+              "id": 86,
+              "customerId": 172
+            },
+            {
+              "id": 87,
+              "customerId": 174
+            },
+            {
+              "id": 88,
+              "customerId": 176
+            },
+            {
+              "id": 89,
+              "customerId": 178
+            },
+            {
+              "id": 90,
+              "customerId": 180
+            },
+            {
+              "id": 91,
+              "customerId": 182
+            },
+            {
+              "id": 92,
+              "customerId": 184
+            },
+            {
+              "id": 93,
+              "customerId": 186
+            },
+            {
+              "id": 94,
+              "customerId": 188
+            },
+            {
+              "id": 95,
+              "customerId": 190
+            },
+            {
+              "id": 96,
+              "customerId": 192
+            },
+            {
+              "id": 97,
+              "customerId": 194
+            },
+            {
+              "id": 98,
+              "customerId": 196
+            },
+            {
+              "id": 99,
+              "customerId": 198
+            },
+            {
+              "id": 100,
+              "customerId": 200
+            },
+            {
+              "id": 101,
+              "customerId": 202
+            },
+            {
+              "id": 102,
+              "customerId": 204
+            },
+            {
+              "id": 103,
+              "customerId": 206
+            },
+            {
+              "id": 104,
+              "customerId": 208
+            },
+            {
+              "id": 105,
+              "customerId": 210
+            },
+            {
+              "id": 106,
+              "customerId": 212
+            },
+            {
+              "id": 107,
+              "customerId": 214
+            },
+            {
+              "id": 108,
+              "customerId": 216
+            },
+            {
+              "id": 109,
+              "customerId": 218
+            },
+            {
+              "id": 110,
+              "customerId": 220
+            },
+            {
+              "id": 111,
+              "customerId": 222
+            },
+            {
+              "id": 112,
+              "customerId": 224
+            },
+            {
+              "id": 113,
+              "customerId": 226
+            },
+            {
+              "id": 114,
+              "customerId": 228
+            },
+            {
+              "id": 115,
+              "customerId": 230
+            },
+            {
+              "id": 116,
+              "customerId": 232
+            },
+            {
+              "id": 117,
+              "customerId": 234
+            },
+            {
+              "id": 118,
+              "customerId": 236
+            },
+            {
+              "id": 119,
+              "customerId": 238
+            },
+            {
+              "id": 120,
+              "customerId": 240
+            },
+            {
+              "id": 121,
+              "customerId": 242
+            },
+            {
+              "id": 122,
+              "customerId": 244
+            },
+            {
+              "id": 123,
+              "customerId": 246
+            },
+            {
+              "id": 124,
+              "customerId": 248
+            },
+            {
+              "id": 125,
+              "customerId": 250
+            },
+            {
+              "id": 126,
+              "customerId": 252
+            },
+            {
+              "id": 127,
+              "customerId": 254
+            },
+            {
+              "id": 128,
+              "customerId": 256
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Customers"
+        ],
+        "rows": [
+          [
+            "Customer001"
+          ],
+          [
+            "Customer003"
+          ],
+          [
+            "Customer005"
+          ],
+          [
+            "Customer007"
+          ],
+          [
+            "Customer009"
+          ],
+          [
+            "Customer011"
+          ],
+          [
+            "Customer013"
+          ],
+          [
+            "Customer015"
+          ],
+          [
+            "Customer017"
+          ],
+          [
+            "Customer019"
+          ],
+          [
+            "Customer021"
+          ],
+          [
+            "Customer023"
+          ],
+          [
+            "Customer025"
+          ],
+          [
+            "Customer027"
+          ],
+          [
+            "Customer029"
+          ],
+          [
+            "Customer031"
+          ],
+          [
+            "Customer033"
+          ],
+          [
+            "Customer035"
+          ],
+          [
+            "Customer037"
+          ],
+          [
+            "Customer039"
+          ],
+          [
+            "Customer041"
+          ],
+          [
+            "Customer043"
+          ],
+          [
+            "Customer045"
+          ],
+          [
+            "Customer047"
+          ],
+          [
+            "Customer049"
+          ],
+          [
+            "Customer051"
+          ],
+          [
+            "Customer053"
+          ],
+          [
+            "Customer055"
+          ],
+          [
+            "Customer057"
+          ],
+          [
+            "Customer059"
+          ],
+          [
+            "Customer061"
+          ],
+          [
+            "Customer063"
+          ],
+          [
+            "Customer065"
+          ],
+          [
+            "Customer067"
+          ],
+          [
+            "Customer069"
+          ],
+          [
+            "Customer071"
+          ],
+          [
+            "Customer073"
+          ],
+          [
+            "Customer075"
+          ],
+          [
+            "Customer077"
+          ],
+          [
+            "Customer079"
+          ],
+          [
+            "Customer081"
+          ],
+          [
+            "Customer083"
+          ],
+          [
+            "Customer085"
+          ],
+          [
+            "Customer087"
+          ],
+          [
+            "Customer089"
+          ],
+          [
+            "Customer091"
+          ],
+          [
+            "Customer093"
+          ],
+          [
+            "Customer095"
+          ],
+          [
+            "Customer097"
+          ],
+          [
+            "Customer099"
+          ],
+          [
+            "Customer101"
+          ],
+          [
+            "Customer103"
+          ],
+          [
+            "Customer105"
+          ],
+          [
+            "Customer107"
+          ],
+          [
+            "Customer109"
+          ],
+          [
+            "Customer111"
+          ],
+          [
+            "Customer113"
+          ],
+          [
+            "Customer115"
+          ],
+          [
+            "Customer117"
+          ],
+          [
+            "Customer119"
+          ],
+          [
+            "Customer121"
+          ],
+          [
+            "Customer123"
+          ],
+          [
+            "Customer125"
+          ],
+          [
+            "Customer127"
+          ],
+          [
+            "Customer129"
+          ],
+          [
+            "Customer131"
+          ],
+          [
+            "Customer133"
+          ],
+          [
+            "Customer135"
+          ],
+          [
+            "Customer137"
+          ],
+          [
+            "Customer139"
+          ],
+          [
+            "Customer141"
+          ],
+          [
+            "Customer143"
+          ],
+          [
+            "Customer145"
+          ],
+          [
+            "Customer147"
+          ],
+          [
+            "Customer149"
+          ],
+          [
+            "Customer151"
+          ],
+          [
+            "Customer153"
+          ],
+          [
+            "Customer155"
+          ],
+          [
+            "Customer157"
+          ],
+          [
+            "Customer159"
+          ],
+          [
+            "Customer161"
+          ],
+          [
+            "Customer163"
+          ],
+          [
+            "Customer165"
+          ],
+          [
+            "Customer167"
+          ],
+          [
+            "Customer169"
+          ],
+          [
+            "Customer171"
+          ],
+          [
+            "Customer173"
+          ],
+          [
+            "Customer175"
+          ],
+          [
+            "Customer177"
+          ],
+          [
+            "Customer179"
+          ],
+          [
+            "Customer181"
+          ],
+          [
+            "Customer183"
+          ],
+          [
+            "Customer185"
+          ],
+          [
+            "Customer187"
+          ],
+          [
+            "Customer189"
+          ],
+          [
+            "Customer191"
+          ],
+          [
+            "Customer193"
+          ],
+          [
+            "Customer195"
+          ],
+          [
+            "Customer197"
+          ],
+          [
+            "Customer199"
+          ],
+          [
+            "Customer201"
+          ],
+          [
+            "Customer203"
+          ],
+          [
+            "Customer205"
+          ],
+          [
+            "Customer207"
+          ],
+          [
+            "Customer209"
+          ],
+          [
+            "Customer211"
+          ],
+          [
+            "Customer213"
+          ],
+          [
+            "Customer215"
+          ],
+          [
+            "Customer217"
+          ],
+          [
+            "Customer219"
+          ],
+          [
+            "Customer221"
+          ],
+          [
+            "Customer223"
+          ],
+          [
+            "Customer225"
+          ],
+          [
+            "Customer227"
+          ],
+          [
+            "Customer229"
+          ],
+          [
+            "Customer231"
+          ],
+          [
+            "Customer233"
+          ],
+          [
+            "Customer235"
+          ],
+          [
+            "Customer237"
+          ],
+          [
+            "Customer239"
+          ],
+          [
+            "Customer241"
+          ],
+          [
+            "Customer243"
+          ],
+          [
+            "Customer245"
+          ],
+          [
+            "Customer247"
+          ],
+          [
+            "Customer249"
+          ],
+          [
+            "Customer251"
+          ],
+          [
+            "Customer253"
+          ],
+          [
+            "Customer255"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

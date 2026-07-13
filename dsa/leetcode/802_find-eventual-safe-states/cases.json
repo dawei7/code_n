@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_802",
+  "cases": [
+    {"id": "sample-1", "name": "sample: cycle and terminal branches", "kind": "sample", "visible": true, "input": {"graph": [[1, 2], [2, 3], [5], [0], [5], [], []]}, "expected": [2, 4, 5, 6], "tags": ["sample", "cycle", "terminal"]},
+    {"id": "sample-2", "name": "sample: only terminal node safe", "kind": "sample", "visible": true, "input": {"graph": [[1, 2, 3, 4], [1, 2], [3, 4], [0, 4], []]}, "expected": [4], "tags": ["sample", "self-loop", "cycle"]},
+    {"id": "sample-3", "name": "sample: every node terminal", "kind": "sample", "visible": true, "input": {"graph": [[], [], []]}, "expected": [0, 1, 2], "tags": ["sample", "all-safe", "terminal"]},
+    {"id": "trial-1", "name": "trial: one self-loop", "kind": "trial", "visible": true, "input": {"graph": [[0]]}, "expected": [], "tags": ["trial", "self-loop", "no-safe"]},
+    {"id": "trial-2", "name": "trial: acyclic chain", "kind": "trial", "visible": true, "input": {"graph": [[1], [2], [3], []]}, "expected": [0, 1, 2, 3], "tags": ["trial", "all-safe", "chain"]},
+    {"id": "trial-3", "name": "trial: safe and unsafe choices from source", "kind": "trial", "visible": true, "input": {"graph": [[1, 2], [3], [2], []]}, "expected": [1, 3], "tags": ["trial", "mixed", "self-loop"]},
+    {"id": "hidden-1", "name": "hidden: predecessor reaches two-node cycle", "kind": "real", "visible": false, "input": {"graph": [[1], [2], [1], []]}, "expected": [3], "tags": ["hidden", "cycle", "disconnected"]},
+    {"id": "hidden-2", "name": "hidden: branches merge into terminal", "kind": "real", "visible": false, "input": {"graph": [[1, 2], [3], [3], []]}, "expected": [0, 1, 2, 3], "tags": ["hidden", "all-safe", "merge"]},
+    {"id": "hidden-3", "name": "hidden: cycle beside independent safe chain", "kind": "real", "visible": false, "input": {"graph": [[1], [0], [3], [4], []]}, "expected": [2, 3, 4], "tags": ["hidden", "cycle", "chain"]}
+  ]
+}

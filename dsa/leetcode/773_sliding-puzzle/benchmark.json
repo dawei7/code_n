@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_773",
+  "measurement_note": "Size is the number of unique states dequeued by the canonical BFS before reaching the target under the package's fixed neighbor order. Set membership keeps search O(V+E); rebuilding and searching an ordered visited-state list for every neighbor adds superlinear work.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: target reached after 4 dequeues", "kind": "benchmark", "visible": false, "size": 4, "input": {"board": [[1, 2, 3], [4, 0, 5]]}, "expected": 1, "tags": ["benchmark", "scaling", "state-search"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: target reached after 63 dequeues", "kind": "benchmark", "visible": false, "size": 63, "input": {"board": [[0, 4, 1], [2, 5, 3]]}, "expected": 9, "tags": ["benchmark", "scaling", "state-search"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: target reached after 360 dequeues", "kind": "benchmark", "visible": false, "size": 360, "input": {"board": [[4, 5, 0], [1, 2, 3]]}, "expected": 21, "tags": ["benchmark", "scaling", "state-search"]}
+  ]
+}

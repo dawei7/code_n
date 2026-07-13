@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_2917",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four values share bits zero and three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          12,
+          9,
+          8,
+          9,
+          15
+        ],
+        "k": 4
+      },
+      "tags": [
+        "sample",
+        "bits"
+      ],
+      "expected": 9
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: k one is ordinary bitwise OR",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 1
+      },
+      "tags": [
+        "sample",
+        "or"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: several values cover every low bit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          8,
+          5,
+          9,
+          11,
+          6,
+          8
+        ],
+        "k": 1
+      },
+      "tags": [
+        "sample",
+        "bits"
+      ],
+      "expected": 15
+    },
+    {
+      "id": "trial-no-bit-meets-threshold",
+      "name": "trial: no bit is present in two numbers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4
+        ],
+        "k": 2
+      },
+      "tags": [
+        "trial",
+        "zero"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "real-high-threshold",
+      "name": "hidden: only common high-frequency bits survive",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          31,
+          14,
+          7,
+          28,
+          21,
+          13
+        ],
+        "k": 3
+      },
+      "tags": [
+        "hidden",
+        "frequency"
+      ],
+      "expected": 31
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_158",
+  "cases": [
+    {"id": "sample-surplus-across-calls", "name": "sample: preserve first-call surplus", "kind": "sample", "visible": true, "input": {"content": "abc", "requests": [1, 2, 1]}, "expected": ["a", "bc", ""], "tags": ["sample", "persistent-buffer"]},
+    {"id": "sample-exact-partitions", "name": "sample: requests partition the file", "kind": "sample", "visible": true, "input": {"content": "abcdef", "requests": [1, 3, 2]}, "expected": ["a", "bcd", "ef"], "tags": ["sample", "chunks"]},
+    {"id": "trial-zero-request", "name": "zero request does not advance the stream", "kind": "trial", "visible": true, "input": {"content": "abcd", "requests": [0, 2, 2]}, "expected": ["", "ab", "cd"], "tags": ["boundary", "zero"]},
+    {"id": "trial-request-past-eof", "name": "later call reaches and remains at EOF", "kind": "trial", "visible": true, "input": {"content": "xy", "requests": [1, 5, 1]}, "expected": ["x", "y", ""], "tags": ["eof"]},
+    {"id": "real-many-small-calls", "name": "hidden: several calls share primitive chunks", "kind": "real", "visible": false, "input": {"content": "abcdefghij", "requests": [2, 1, 4, 3]}, "expected": ["ab", "c", "defg", "hij"], "tags": ["hidden", "persistent-buffer"]}
+  ]
+}

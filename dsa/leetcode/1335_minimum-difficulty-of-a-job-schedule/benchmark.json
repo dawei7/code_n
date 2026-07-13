@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1335",
+  "cases": [
+    {
+      "id": "benchmark-varied",
+      "name": "benchmark: varied high difficulties",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "job_difficulty": [
+          11,
+          111,
+          22,
+          222,
+          33,
+          333,
+          44,
+          444
+        ],
+        "d": 6
+      },
+      "expected": 843,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

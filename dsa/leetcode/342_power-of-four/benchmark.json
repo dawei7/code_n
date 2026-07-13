@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_342",
+  "measurement_note": "Exact powers exercise increasing factor counts; size is the exponent. The signed-32-bit contract caps it at 15, so iterative division is bounded and legitimately behaves as constant-time within this problem domain.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: fourth power exponent 1","kind":"benchmark","visible":false,"size":1,"input":{"n":4},"expected":true,"tags":["benchmark","scale-small","exact-power"]},
+    {"id":"benchmark-scale-2","name":"benchmark: fourth power exponent 4","kind":"benchmark","visible":false,"size":4,"input":{"n":256},"expected":true,"tags":["benchmark","scale-medium","exact-power"]},
+    {"id":"benchmark-scale-3","name":"benchmark: fourth power exponent 15","kind":"benchmark","visible":false,"size":15,"input":{"n":1073741824},"expected":true,"tags":["benchmark","scale-large","exact-power"]}
+  ]
+}

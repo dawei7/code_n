@@ -1,0 +1,40 @@
+{
+  "challenge_id": "lc_1094",
+  "cases": [
+    {
+      "id": "benchmark-overlap-fails",
+      "name": "benchmark: overlapping trips fail",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "trips": [
+          [
+            2,
+            1,
+            5
+          ],
+          [
+            3,
+            5,
+            7
+          ],
+          [
+            4,
+            2,
+            6
+          ],
+          [
+            1,
+            6,
+            8
+          ]
+        ],
+        "capacity": 6
+      },
+      "expected": false,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "640",
+  "frontend_id": "640",
+  "title_slug": "solve-the-equation",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065504505",
+  "verified_at": "2026-07-13T00:10:42.004783+00:00"
+}

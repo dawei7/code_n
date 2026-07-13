@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_1383",
+  "cases": [
+    {
+      "id": "benchmark-efficiency-tradeoff",
+      "name": "benchmark: speed and efficiency tradeoff",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "speed": [
+          9,
+          8,
+          7,
+          6,
+          5
+        ],
+        "efficiency": [
+          1,
+          10,
+          2,
+          9,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 126,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

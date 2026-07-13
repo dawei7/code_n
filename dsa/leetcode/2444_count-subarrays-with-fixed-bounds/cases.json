@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_2444",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: out-of-range value resets window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          2,
+          7,
+          5
+        ],
+        "min_k": 1,
+        "max_k": 5
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: min and max are equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "min_k": 1,
+        "max_k": 1
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one full-span subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "min_k": 1,
+        "max_k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-alternating-bounds",
+      "name": "trial: alternating min and max values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          1,
+          5
+        ],
+        "min_k": 1,
+        "max_k": 5
+      },
+      "expected": 6,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-equal-bound-prefix",
+      "name": "hidden: equal bounds count only the valid run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3
+        ],
+        "min_k": 2,
+        "max_k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

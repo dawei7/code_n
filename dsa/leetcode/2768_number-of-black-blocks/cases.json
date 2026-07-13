@@ -1,0 +1,192 @@
+{
+  "challenge_id": "lc_2768",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one black cell affects one block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "coordinates": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "grid"
+      ],
+      "expected": [
+        3,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two black cells share blocks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "overlap"
+      ],
+      "expected": [
+        0,
+        2,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "trial-corner-cells",
+      "name": "trial: all four corners in a large grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 4,
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "corners"
+      ],
+      "expected": [
+        5,
+        4,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "trial-full-two-by-two",
+      "name": "trial: one full black block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "full"
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "real-mixed-block-counts",
+      "name": "hidden: mixed adjacent black cells",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 5,
+        "n": 6,
+        "coordinates": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": [
+        9,
+        5,
+        5,
+        1,
+        0
+      ]
+    }
+  ]
+}

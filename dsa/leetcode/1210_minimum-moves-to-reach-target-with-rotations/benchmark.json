@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_1210",
+  "cases": [
+    {
+      "id": "benchmark-unreachable",
+      "name": "benchmark: unreachable target",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

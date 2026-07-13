@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "265",
+  "frontend_id": "265",
+  "title_slug": "paint-house-ii",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064289447",
+  "verified_at": "2026-07-11T20:43:44.409362+00:00"
+}

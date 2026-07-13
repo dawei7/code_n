@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_1787",
+  "source": "leetcode",
+  "frontend_id": "1787",
+  "slug": "make-the-xor-of-all-segments-equal-to-zero",
+  "title": "Make the XOR of All Segments Equal to Zero",
+  "difficulty": "Hard",
+  "acceptance_rate": 40.832535346138684,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/make-the-xor-of-all-segments-equal-to-zero/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:medianet",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:counting",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:hash-table"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:medianet",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:counting",
+    "topic:dynamic-programming",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Media.net",
+      "slug": "medianet"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Media.net",
+        "slug": "medianet",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "codeagon",
+        "slug": "codeagon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

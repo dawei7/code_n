@@ -1,0 +1,185 @@
+{
+  "challenge_id": "lc_2373",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four local windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            9,
+            9,
+            8,
+            1
+          ],
+          [
+            5,
+            6,
+            2,
+            6
+          ],
+          [
+            8,
+            2,
+            6,
+            4
+          ],
+          [
+            6,
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          9,
+          9
+        ],
+        [
+          8,
+          6
+        ]
+      ],
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: center dominates all windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: exactly one local window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        [
+          9
+        ]
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-single-window",
+      "name": "hidden: three by three increasing grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        [
+          9
+        ]
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

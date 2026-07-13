@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "141",
+  "frontend_id": "141",
+  "title_slug": "linked-list-cycle",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064168522",
+  "verified_at": "2026-07-11T18:03:05.792099+00:00"
+}

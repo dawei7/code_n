@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_531",
+  "cases": [
+    {"id":"sample-diagonal","name":"sample: three lonely diagonal pixels","kind":"sample","visible":true,"input":{"picture":[["W","W","B"],["W","B","W"],["B","W","W"]]},"expected":3,"tags":["sample","diagonal"]},
+    {"id":"sample-shared","name":"sample: every black pixel shares an axis","kind":"sample","visible":true,"input":{"picture":[["B","B"],["B","W"]]},"expected":0,"tags":["sample","shared"]},
+    {"id":"sample-white","name":"sample: all-white picture","kind":"sample","visible":true,"input":{"picture":[["W","W"],["W","W"]]},"expected":0,"tags":["sample","empty"]},
+    {"id":"trial-single","name":"trial: one black pixel","kind":"trial","visible":true,"input":{"picture":[["B"]]},"expected":1,"tags":["trial","singleton"]},
+    {"id":"trial-rectangular","name":"trial: rectangular picture with two lonely pixels","kind":"trial","visible":true,"input":{"picture":[["B","W","W","W"],["W","W","B","W"]]},"expected":2,"tags":["trial","rectangular"]},
+    {"id":"hidden-row","name":"hidden: multiple black pixels in one row","kind":"real","visible":false,"input":{"picture":[["B","W","B","W"]]},"expected":0,"tags":["hidden","one-row"]},
+    {"id":"hidden-mixed","name":"hidden: only one candidate is lonely","kind":"real","visible":false,"input":{"picture":[["B","W","W"],["W","B","B"],["W","W","B"]]},"expected":1,"tags":["hidden","mixed"]}
+  ]
+}

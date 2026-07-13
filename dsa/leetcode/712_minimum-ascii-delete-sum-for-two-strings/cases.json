@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_712",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: delete outer characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "sea", "s2": "eat"},
+      "expected": 231,
+      "tags": ["sample", "shared-subsequence"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: weighted alignment",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "delete", "s2": "leet"},
+      "expected": 403,
+      "tags": ["sample", "weighted"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: identical strings",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "abc", "s2": "abc"},
+      "expected": 0,
+      "tags": ["sample", "identical"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: remove one middle character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s1": "abc", "s2": "ac"},
+      "expected": 98,
+      "tags": ["trial", "single-deletion"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: no common character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s1": "a", "s2": "b"},
+      "expected": 195,
+      "tags": ["trial", "disjoint"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: delete one duplicate",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "aaa", "s2": "aa"},
+      "expected": 97,
+      "tags": ["hidden", "duplicates"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: heavier common subsequence wins",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "zab", "s2": "azb"},
+      "expected": 194,
+      "tags": ["hidden", "weighted-choice"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: one trailing deletion",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "code", "s2": "codec"},
+      "expected": 99,
+      "tags": ["hidden", "trailing"]
+    }
+  ]
+}

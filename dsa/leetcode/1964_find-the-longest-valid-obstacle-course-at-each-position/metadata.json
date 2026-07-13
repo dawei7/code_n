@@ -1,0 +1,122 @@
+{
+  "challenge_id": "lc_1964",
+  "source": "leetcode",
+  "frontend_id": "1964",
+  "slug": "find-the-longest-valid-obstacle-course-at-each-position",
+  "title": "Find the Longest Valid Obstacle Course at Each Position",
+  "difficulty": "Hard",
+  "acceptance_rate": 62.52212350027126,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Binary Indexed Tree",
+      "slug": "binary-indexed-tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:morgan-stanley",
+    "leetcode_studyplan:dynamic-programming",
+    "leetcode_studyplan:dynamic-programming:dynamic-programming-84-ss8w",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-indexed-tree",
+    "leetcode_topic:binary-search",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:morgan-stanley",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:dynamic-programming",
+    "study_plan_section:dynamic-programming:dynamic-programming-84-ss8w",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:binary-indexed-tree",
+    "topic:binary-search"
+  ],
+  "company_tags": [
+    {
+      "name": "Morgan Stanley",
+      "slug": "morgan-stanley"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Morgan Stanley",
+        "slug": "morgan-stanley",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "dynamic-programming",
+      "plan_name": "Dynamic Programming",
+      "section_slug": "dynamic-programming-84-ss8w",
+      "section_name": "Longest Increasing Subsequence",
+      "path": [
+        "Longest Increasing Subsequence"
+      ],
+      "order": 25,
+      "section_order": 4,
+      "problem_order": 7,
+      "catalog_slug": "in-depth-topics",
+      "catalog_name": "In-Depth Topics",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/dynamic-programming/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "1-D Dynamic Programming"
+      ],
+      "order": 700,
+      "section_order": 12,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "find-the-longest-valid-obstacle-course-at-each-position",
+      "leetcode_slug": "find-the-longest-valid-obstacle-course-at-each-position",
+      "difficulty": "Hard",
+      "problem_order": 44
+    }
+  ]
+}

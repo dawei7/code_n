@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_2501",
+  "cases": [
+    {
+      "id": "benchmark-long-power-chain",
+      "name": "benchmark: chain grows to the value limit",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          16,
+          256,
+          65536
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

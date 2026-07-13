@@ -1,0 +1,193 @@
+{
+  "challenge_id": "lc_2861",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: second machine is too expensive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 2,
+        "budget": 15,
+        "composition": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            10
+          ]
+        ],
+        "stock": [
+          0,
+          0,
+          0
+        ],
+        "cost": [
+          1,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "binary-search"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: stocked third metal favors the expensive recipe",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 2,
+        "budget": 15,
+        "composition": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            10
+          ]
+        ],
+        "stock": [
+          0,
+          0,
+          100
+        ],
+        "cost": [
+          1,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "stock"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "trial-single-machine-limited-metal",
+      "name": "trial: one missing metal controls production",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "k": 1,
+        "budget": 10,
+        "composition": [
+          [
+            2,
+            1
+          ]
+        ],
+        "stock": [
+          1,
+          1
+        ],
+        "cost": [
+          5,
+          5
+        ]
+      },
+      "tags": [
+        "trial",
+        "single-machine"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-zero-budget-stock-only",
+      "name": "trial: zero budget uses only existing stock",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "k": 2,
+        "budget": 0,
+        "composition": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "stock": [
+          4,
+          5
+        ],
+        "cost": [
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "trial",
+        "stock-only"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-competing-machines",
+      "name": "hidden: best machine changes with costs and stock",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "k": 3,
+        "budget": 120,
+        "composition": [
+          [
+            2,
+            1,
+            3,
+            2
+          ],
+          [
+            1,
+            3,
+            1,
+            4
+          ],
+          [
+            3,
+            2,
+            2,
+            1
+          ]
+        ],
+        "stock": [
+          10,
+          8,
+          15,
+          4
+        ],
+        "cost": [
+          5,
+          3,
+          4,
+          6
+        ]
+      },
+      "tags": [
+        "hidden",
+        "binary-search"
+      ],
+      "expected": 7
+    }
+  ]
+}

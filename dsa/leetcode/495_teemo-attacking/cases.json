@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_495",
+  "cases": [
+    {"id": "sample-separated", "name": "sample: separated poison intervals", "kind": "sample", "visible": true, "input": {"time_series": [1,4], "duration": 2}, "expected": 4, "tags": ["sample", "separated"]},
+    {"id": "sample-overlap", "name": "sample: overlapping intervals", "kind": "sample", "visible": true, "input": {"time_series": [1,2], "duration": 2}, "expected": 3, "tags": ["sample", "overlap"]},
+    {"id": "sample-single", "name": "sample: one attack", "kind": "sample", "visible": true, "input": {"time_series": [1], "duration": 5}, "expected": 5, "tags": ["sample", "singleton"]},
+    {"id": "trial-continuous-refresh", "name": "trial: repeated refreshes form one interval", "kind": "trial", "visible": true, "input": {"time_series": [1,2,3], "duration": 5}, "expected": 7, "tags": ["trial", "continuous"]},
+    {"id": "trial-duration-one", "name": "trial: unit duration", "kind": "trial", "visible": true, "input": {"time_series": [1,2,100], "duration": 1}, "expected": 3, "tags": ["trial", "unit-duration"]},
+    {"id": "hidden-repeated-time", "name": "hidden: repeated attack timestamp", "kind": "real", "visible": false, "input": {"time_series": [1,1,1], "duration": 2}, "expected": 2, "tags": ["hidden", "repeated"]},
+    {"id": "hidden-touching", "name": "hidden: intervals touch without overlap", "kind": "real", "visible": false, "input": {"time_series": [0,5,10], "duration": 5}, "expected": 15, "tags": ["hidden", "touching"]}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_2527",
+  "cases": [
+    {
+      "id": "benchmark-repeated-values-cancel",
+      "name": "benchmark: repeated values cancel each other",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

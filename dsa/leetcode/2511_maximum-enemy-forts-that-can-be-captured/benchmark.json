@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_2511",
+  "cases": [
+    {
+      "id": "benchmark-multiple-opposite-pairs",
+      "name": "benchmark: choose the widest opposite-fort gap",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "forts": [
+          1,
+          0,
+          -1,
+          0,
+          0,
+          1,
+          0,
+          -1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

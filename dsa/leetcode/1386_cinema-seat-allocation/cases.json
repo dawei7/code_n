@@ -1,0 +1,118 @@
+{
+  "challenge_id": "lc_1386",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three rows with reservations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "reserved_seats": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            10
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "bitmask"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "reserved_seats": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            6
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: four rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "reserved_seats": [
+          [
+            4,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            1,
+            7
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-empty-reservations",
+      "name": "hidden: no reservations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "reserved_seats": []
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

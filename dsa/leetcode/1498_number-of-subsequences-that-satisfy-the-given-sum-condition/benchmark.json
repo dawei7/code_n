@@ -1,0 +1,40 @@
+{
+  "challenge_id": "lc_1498",
+  "cases": [
+    {
+      "id": "benchmark-all-values-valid",
+      "name": "benchmark: all non-empty subsequences valid",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "target": 10
+      },
+      "expected": 1048575,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

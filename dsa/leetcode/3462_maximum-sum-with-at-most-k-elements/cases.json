@@ -1,0 +1,165 @@
+{
+  "challenge_id": "lc_3462",
+  "cases": [
+    {
+      "id": "sample-two-by-two",
+      "name": "sample: row limits in a tiny grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "limits": [
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-three-columns",
+      "name": "sample: choose three largest allowed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            3,
+            7
+          ],
+          [
+            8,
+            2,
+            6
+          ]
+        ],
+        "limits": [
+          2,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 21,
+      "tags": [
+        "sample",
+        "limits"
+      ]
+    },
+    {
+      "id": "trial-zero-limit",
+      "name": "trial: one row contributes nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            9,
+            8
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            7,
+            6
+          ]
+        ],
+        "limits": [
+          0,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "zero-limit"
+      ]
+    },
+    {
+      "id": "trial-k-smaller-than-capacity",
+      "name": "trial: k smaller than available picks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            10,
+            1,
+            9
+          ],
+          [
+            8,
+            7,
+            6
+          ]
+        ],
+        "limits": [
+          3,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 19,
+      "tags": [
+        "trial",
+        "top-k"
+      ]
+    },
+    {
+      "id": "real-mixed-limits",
+      "name": "real: mixed row limits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            4,
+            15,
+            6,
+            1
+          ],
+          [
+            8,
+            3,
+            11,
+            2
+          ],
+          [
+            10,
+            9,
+            7,
+            5
+          ]
+        ],
+        "limits": [
+          2,
+          1,
+          3
+        ],
+        "k": 4
+      },
+      "expected": 45,
+      "tags": [
+        "real",
+        "row-limits"
+      ]
+    }
+  ]
+}

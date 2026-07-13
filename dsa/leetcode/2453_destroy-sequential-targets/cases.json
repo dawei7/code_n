@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_2453",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: odd remainder group wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          7,
+          8,
+          1,
+          1,
+          5
+        ],
+        "space": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "modulo"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: tie chooses smaller start",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          2,
+          4,
+          6
+        ],
+        "space": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate starting value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          1,
+          4
+        ],
+        "space": 4
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-remainders-tie",
+      "name": "trial: tied remainder groups choose two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8
+        ],
+        "space": 4
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-target",
+      "name": "hidden: one target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5
+        ],
+        "space": 3
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

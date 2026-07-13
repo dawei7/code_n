@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_626",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two swaps and an unmatched final seat", "kind": "sample", "visible": true, "input": {"tables": {"Seat": [{"id": 1, "student": "Abbot"}, {"id": 2, "student": "Doris"}, {"id": 3, "student": "Emerson"}, {"id": 4, "student": "Green"}, {"id": 5, "student": "Jeames"}]}}, "expected": {"columns": ["id", "student"], "rows": [[1,"Doris"],[2,"Abbot"],[3,"Green"],[4,"Emerson"],[5,"Jeames"]]}, "tags": ["sample", "odd-count"]},
+    {"id": "sample-2", "name": "sample: one student remains unchanged", "kind": "sample", "visible": true, "input": {"tables": {"Seat": [{"id": 1, "student": "Solo"}]}}, "expected": {"columns": ["id", "student"], "rows": [[1,"Solo"]]}, "tags": ["sample", "singleton"]},
+    {"id": "sample-3", "name": "sample: one complete pair", "kind": "sample", "visible": true, "input": {"tables": {"Seat": [{"id": 1, "student": "A"}, {"id": 2, "student": "B"}]}}, "expected": {"columns": ["id", "student"], "rows": [[1,"B"],[2,"A"]]}, "tags": ["sample", "pair"]},
+    {"id": "trial-1", "name": "trial: input rows arrive out of order", "kind": "trial", "visible": true, "input": {"tables": {"Seat": [{"id": 4, "student": "D"}, {"id": 2, "student": "B"}, {"id": 1, "student": "A"}, {"id": 3, "student": "C"}]}}, "expected": {"columns": ["id", "student"], "rows": [[1,"B"],[2,"A"],[3,"D"],[4,"C"]]}, "tags": ["trial", "ordering"]},
+    {"id": "trial-2", "name": "trial: duplicate names still occupy separate rows", "kind": "trial", "visible": true, "input": {"tables": {"Seat": [{"id": 1, "student": "Same"}, {"id": 2, "student": "Same"}, {"id": 3, "student": "Other"}]}}, "expected": {"columns": ["id", "student"], "rows": [[1,"Same"],[2,"Same"],[3,"Other"]]}, "tags": ["trial", "duplicate-names"]},
+    {"id": "hidden-1", "name": "hidden: three pairs", "kind": "real", "visible": false, "input": {"tables": {"Seat": [{"id": 1, "student": "A1"}, {"id": 2, "student": "A2"}, {"id": 3, "student": "A3"}, {"id": 4, "student": "A4"}, {"id": 5, "student": "A5"}, {"id": 6, "student": "A6"}]}}, "expected": {"columns": ["id", "student"], "rows": [[1,"A2"],[2,"A1"],[3,"A4"],[4,"A3"],[5,"A6"],[6,"A5"]]}, "tags": ["hidden", "even-count"]},
+    {"id": "hidden-2", "name": "hidden: several pairs plus final row", "kind": "real", "visible": false, "input": {"tables": {"Seat": [{"id": 7, "student": "G"}, {"id": 5, "student": "E"}, {"id": 3, "student": "C"}, {"id": 1, "student": "A"}, {"id": 2, "student": "B"}, {"id": 4, "student": "D"}, {"id": 6, "student": "F"}]}}, "expected": {"columns": ["id", "student"], "rows": [[1,"B"],[2,"A"],[3,"D"],[4,"C"],[5,"F"],[6,"E"],[7,"G"]]}, "tags": ["hidden", "odd-final"]}
+  ]
+}

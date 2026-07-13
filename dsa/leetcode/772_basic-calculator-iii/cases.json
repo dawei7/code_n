@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_772",
+  "cases": [
+    {"id": "sample-1", "name": "sample: simple addition", "kind": "sample", "visible": true, "input": {"s": "1 + 1"}, "expected": 2, "tags": ["sample", "addition"]},
+    {"id": "sample-2", "name": "sample: division precedence", "kind": "sample", "visible": true, "input": {"s": "6-4 / 2"}, "expected": 4, "tags": ["sample", "precedence"]},
+    {"id": "sample-3", "name": "sample: nested mixed operations", "kind": "sample", "visible": true, "input": {"s": "2*(5+5*2)/3+(6/2+8)"}, "expected": 21, "tags": ["sample", "parentheses"]},
+    {"id": "trial-1", "name": "trial: deeply nested official expression", "kind": "trial", "visible": true, "input": {"s": "(2+6*3+5-(3*14/7+2)*5)+3"}, "expected": -12, "tags": ["trial", "nested"]},
+    {"id": "trial-2", "name": "trial: left-associative multiply after division", "kind": "trial", "visible": true, "input": {"s": "5/2*2"}, "expected": 4, "tags": ["trial", "left-associative"]},
+    {"id": "trial-3", "name": "trial: division by a product", "kind": "trial", "visible": true, "input": {"s": "18/(3*2)"}, "expected": 3, "tags": ["trial", "parentheses"]},
+    {"id": "hidden-1", "name": "hidden: negative quotient truncates toward zero", "kind": "real", "visible": false, "input": {"s": "7/-3"}, "expected": -2, "tags": ["hidden", "negative-division"]},
+    {"id": "hidden-2", "name": "hidden: unary sign before expression", "kind": "real", "visible": false, "input": {"s": "-(2+3)*4"}, "expected": -20, "tags": ["hidden", "unary"]},
+    {"id": "hidden-3", "name": "hidden: subtract a negative factor", "kind": "real", "visible": false, "input": {"s": "1-(-2)"}, "expected": 3, "tags": ["hidden", "unary"]},
+    {"id": "hidden-4", "name": "hidden: zero literal", "kind": "real", "visible": false, "input": {"s": "0"}, "expected": 0, "tags": ["hidden", "zero"]}
+  ]
+}

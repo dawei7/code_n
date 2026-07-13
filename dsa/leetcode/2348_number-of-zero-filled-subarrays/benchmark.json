@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_2348",
+  "cases": [
+    {
+      "id": "benchmark-four-zeros",
+      "name": "benchmark: one long block",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

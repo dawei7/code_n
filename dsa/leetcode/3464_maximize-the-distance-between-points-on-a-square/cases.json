@@ -1,0 +1,210 @@
+{
+  "challenge_id": "lc_3464",
+  "cases": [
+    {
+      "id": "sample-corners",
+      "name": "sample: all four corners",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "side": 2,
+        "points": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "perimeter"
+      ]
+    },
+    {
+      "id": "sample-extra-edge-point",
+      "name": "sample: extra edge point lowers distance",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "side": 2,
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "selection"
+      ]
+    },
+    {
+      "id": "sample-large-square",
+      "name": "sample: choose among square boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "side": 3,
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "k": 4
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-k-two",
+      "name": "trial: any two far boundary points",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "side": 5,
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "two-points"
+      ]
+    },
+    {
+      "id": "real-dense-boundary",
+      "name": "real: dense boundary choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "side": 6,
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "k": 5
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "binary-search"
+      ]
+    }
+  ]
+}

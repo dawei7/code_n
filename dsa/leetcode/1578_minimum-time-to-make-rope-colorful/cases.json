@@ -1,0 +1,84 @@
+{
+  "challenge_id": "lc_1578",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: remove one from repeated a group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "colors": "abaac",
+        "needed_time": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already colorful",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "colors": "abc",
+        "needed_time": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two repeated groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "colors": "aabaa",
+        "needed_time": [
+          1,
+          2,
+          3,
+          4,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-single-long-group",
+      "name": "hidden: keep the most expensive balloon",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": "aaaa",
+        "needed_time": [
+          4,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

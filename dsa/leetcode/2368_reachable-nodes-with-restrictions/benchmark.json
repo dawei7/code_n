@@ -1,0 +1,44 @@
+{
+  "challenge_id": "lc_2368",
+  "cases": [
+    {
+      "id": "benchmark-root-neighbor-blocked",
+      "name": "benchmark: restricted node next to root blocks the chain",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "restricted": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "edge"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_112",
+  "measurement_note": "Complete trees of ones use an impossible target, forcing every root-to-leaf candidate and every node to be inspected.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one node", "kind": "benchmark", "visible": false, "size": 1, "input": {"root": [1], "targetSum": 0}, "expected": false, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: fifteen nodes", "kind": "benchmark", "visible": false, "size": 15, "input": {"root": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "targetSum": 100}, "expected": false, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: sixty-three nodes", "kind": "benchmark", "visible": false, "size": 63, "input": {"root": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "targetSum": 100}, "expected": false, "tags": ["benchmark", "scale-large"]}
+  ]
+}

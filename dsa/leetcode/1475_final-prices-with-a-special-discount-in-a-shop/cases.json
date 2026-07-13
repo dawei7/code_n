@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_1475",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several discounts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          8,
+          4,
+          6,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        4,
+        2,
+        4,
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "monotonic-stack"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: increasing prices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: equal discount value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          10,
+          1,
+          1,
+          6
+        ]
+      },
+      "expected": [
+        9,
+        0,
+        1,
+        6
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: repeated equal prices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        5
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

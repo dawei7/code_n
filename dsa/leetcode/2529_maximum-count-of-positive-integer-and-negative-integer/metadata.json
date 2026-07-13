@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2529",
+  "source": "leetcode",
+  "frontend_id": "2529",
+  "slug": "maximum-count-of-positive-integer-and-negative-integer",
+  "title": "Maximum Count of Positive Integer and Negative Integer",
+  "difficulty": "Easy",
+  "acceptance_rate": 74.2518474433368,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Counting",
+      "slug": "counting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:sharechat",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:counting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:sharechat",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search",
+    "topic:counting"
+  ],
+  "company_tags": [
+    {
+      "name": "ShareChat",
+      "slug": "sharechat"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "ShareChat",
+        "slug": "sharechat",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,138 @@
+{
+  "challenge_id": "lc_2482",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed grid row and column differences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          -2,
+          -2,
+          2
+        ]
+      ],
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all ones grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          -2
+        ]
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-diagonal-ones",
+      "name": "hidden: diagonal ones balance every cell",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

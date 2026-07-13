@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_2561",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one cheap swap balances the baskets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "basket1": [
+          4,
+          2,
+          2,
+          2
+        ],
+        "basket2": [
+          1,
+          4,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: odd total fruit count makes balancing impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "basket1": [
+          2,
+          3,
+          4,
+          1
+        ],
+        "basket2": [
+          3,
+          2,
+          5,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: another impossible distribution",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "basket1": [
+          8,
+          4,
+          5,
+          3
+        ],
+        "basket2": [
+          3,
+          2,
+          5,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-already-equal",
+      "name": "trial: baskets are already equivalent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "basket1": [
+          1,
+          1
+        ],
+        "basket2": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-fruit-mismatch",
+      "name": "hidden: one fruit in each basket cannot be balanced",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "basket1": [
+          1
+        ],
+        "basket2": [
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

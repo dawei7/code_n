@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_345","cases":[
+{"id":"sample-1","name":"sample: mixed-case vowels","kind":"sample","visible":true,"input":{"s":"IceCreAm"},"expected":"AceCreIm","tags":["sample","case"]},
+{"id":"sample-2","name":"sample: lowercase word","kind":"sample","visible":true,"input":{"s":"leetcode"},"expected":"leotcede","tags":["sample"]},
+{"id":"sample-3","name":"sample: no vowels","kind":"sample","visible":true,"input":{"s":"rhythm"},"expected":"rhythm","tags":["sample","no-vowels"]},
+{"id":"trial-empty","name":"trial: empty string","kind":"trial","visible":false,"input":{"s":""},"expected":"","tags":["trial","empty"]},
+{"id":"trial-two-cases","name":"trial: uppercase and lowercase pair","kind":"trial","visible":false,"input":{"s":"aA"},"expected":"Aa","tags":["trial","case"]},
+{"id":"hidden-all-vowels","name":"hidden: every character is a vowel","kind":"real","visible":false,"input":{"s":"uOiea"},"expected":"aeiOu","tags":["hidden","all-vowels"]},
+{"id":"hidden-fixed-symbols","name":"hidden: punctuation remains fixed","kind":"real","visible":false,"input":{"s":"a.!E?i"},"expected":"i.!E?a","tags":["hidden","symbols"]},
+{"id":"hidden-internal-pair","name":"hidden: swap vowels around consonants","kind":"real","visible":false,"input":{"s":"bcAEd"},"expected":"bcEAd","tags":["hidden","internal"]}
+]}

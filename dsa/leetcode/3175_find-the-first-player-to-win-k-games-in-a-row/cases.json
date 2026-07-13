@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_3175",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: third player reaches two wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "skills": [
+          4,
+          2,
+          6,
+          3,
+          9
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "simulation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: maximum eventually wins large streak",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "skills": [
+          2,
+          5,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "max-skill"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: huge k returns strongest player",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "skills": [
+          16,
+          4,
+          7,
+          17
+        ],
+        "k": 562624757
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "huge-k"
+      ]
+    },
+    {
+      "id": "trial-first-player-dominates",
+      "name": "trial: first player already strongest",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skills": [
+          10,
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "dominant"
+      ]
+    },
+    {
+      "id": "real-late-maximum",
+      "name": "real: late maximum takes over before k",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "skills": [
+          5,
+          1,
+          4,
+          3,
+          9,
+          2,
+          8
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "late-max"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "challenge_id": "lc_2900",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: skip same-group middle word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "e",
+          "a",
+          "b"
+        ],
+        "groups": [
+          0,
+          0,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "subsequence"
+      ],
+      "expected": [
+        "e",
+        "b"
+      ],
+      "validator": {
+        "kind": "alternating_groups_subsequence"
+      }
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: stop before repeated final group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "groups": [
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "alternating"
+      ],
+      "expected": [
+        "a",
+        "b",
+        "c"
+      ],
+      "validator": {
+        "kind": "alternating_groups_subsequence"
+      }
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every adjacent group differs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "groups": [
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "full-length"
+      ],
+      "expected": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "validator": {
+        "kind": "alternating_groups_subsequence"
+      }
+    },
+    {
+      "id": "trial-single-run",
+      "name": "trial: one long same-group run contributes one word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "bb",
+          "cc"
+        ],
+        "groups": [
+          1,
+          1,
+          1
+        ]
+      },
+      "tags": [
+        "trial",
+        "single-run"
+      ],
+      "expected": [
+        "aa"
+      ],
+      "validator": {
+        "kind": "alternating_groups_subsequence"
+      }
+    },
+    {
+      "id": "real-many-runs",
+      "name": "hidden: several alternating runs with skipped words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "w0",
+          "w1",
+          "w2",
+          "w3",
+          "w4",
+          "w5",
+          "w6"
+        ],
+        "groups": [
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      "tags": [
+        "hidden",
+        "runs"
+      ],
+      "expected": [
+        "w0",
+        "w2",
+        "w4",
+        "w5"
+      ],
+      "validator": {
+        "kind": "alternating_groups_subsequence"
+      }
+    }
+  ]
+}

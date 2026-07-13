@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1212",
+  "source": "leetcode",
+  "frontend_id": "1212",
+  "slug": "team-scores-in-football-tournament",
+  "title": "Team Scores in Football Tournament",
+  "difficulty": "Medium",
+  "acceptance_rate": 55.781752071706414,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/team-scores-in-football-tournament/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:wayfair",
+    "leetcode_studyplan:premium-sql-50",
+    "leetcode_studyplan:premium-sql-50:premium-sql-50-122-psai",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:wayfair",
+    "language:sql",
+    "leetcode",
+    "study_plan:premium-sql-50",
+    "study_plan_section:premium-sql-50:premium-sql-50-122-psai",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Wayfair",
+      "slug": "wayfair"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Wayfair",
+        "slug": "wayfair",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-sql-50",
+      "plan_name": "Advanced SQL 50",
+      "section_slug": "premium-sql-50-122-psai",
+      "section_name": "Basic Joins",
+      "path": [
+        "Basic Joins"
+      ],
+      "order": 11,
+      "section_order": 2,
+      "problem_order": 6,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

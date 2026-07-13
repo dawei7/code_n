@@ -1,0 +1,90 @@
+{
+  "challenge_id": "lc_139",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: leetcode",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcode",
+        "word_dict": [
+          "leet",
+          "code"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: apple pen apple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "applepenapple",
+        "word_dict": [
+          "apple",
+          "pen"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: impossible suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "catsandog",
+        "word_dict": [
+          "cats",
+          "dog",
+          "sand",
+          "and",
+          "cat"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-single-miss",
+      "name": "single character absent from dictionary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "word_dict": ["b"]
+      },
+      "expected": false,
+      "tags": ["boundary", "negative"]
+    },
+    {
+      "id": "real-reused-words",
+      "name": "hidden: reused dictionary words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaa",
+        "word_dict": [
+          "aaaa",
+          "aaa"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

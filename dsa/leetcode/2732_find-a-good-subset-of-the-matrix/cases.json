@@ -1,0 +1,171 @@
+{
+  "challenge_id": "lc_2732",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two complementary rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "matrix"
+      ],
+      "validator": {
+        "kind": "good_subset_matrix"
+      },
+      "expected": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all-zero row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "zero-row"
+      ],
+      "validator": {
+        "kind": "good_subset_matrix"
+      },
+      "expected": [
+        0
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no good subset exists",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "empty"
+      ],
+      "validator": {
+        "kind": "good_subset_matrix"
+      },
+      "expected": []
+    },
+    {
+      "id": "trial-later-zero-row",
+      "name": "trial: zero row appears later",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero-row"
+      ],
+      "validator": {
+        "kind": "good_subset_matrix"
+      },
+      "expected": [
+        1
+      ]
+    },
+    {
+      "id": "real-pair-not-first-two",
+      "name": "hidden: valid pair appears after conflicting rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "pair"
+      ],
+      "validator": {
+        "kind": "good_subset_matrix"
+      },
+      "expected": [
+        1,
+        4
+      ]
+    }
+  ]
+}

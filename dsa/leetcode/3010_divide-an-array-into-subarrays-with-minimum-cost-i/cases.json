@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_3010",
+  "cases": [
+    {
+      "id": "sample-small-cost",
+      "name": "sample: choose the two smallest starts after index zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          12
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three-elements",
+      "name": "sample: exactly three subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-minima-late",
+      "name": "trial: smallest starts are near the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          1,
+          2,
+          6
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate low starts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          4,
+          4,
+          10,
+          4,
+          9
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-longer-array",
+      "name": "real: longer unsorted choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          12,
+          50,
+          3,
+          40,
+          2,
+          25,
+          1,
+          30,
+          4
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "real",
+        "sorting"
+      ]
+    }
+  ]
+}

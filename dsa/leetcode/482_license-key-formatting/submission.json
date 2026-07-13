@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "482",
+  "frontend_id": "482",
+  "title_slug": "license-key-formatting",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065001824",
+  "verified_at": "2026-07-12T12:58:06.806218+00:00"
+}

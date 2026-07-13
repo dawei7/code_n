@@ -1,0 +1,124 @@
+{
+  "challenge_id": "lc_2611",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: choose best two gains",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "reward1": [
+          1,
+          1,
+          3,
+          4
+        ],
+        "reward2": [
+          4,
+          4,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: first mouse eats both",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "reward1": [
+          1,
+          1
+        ],
+        "reward2": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-best-piece",
+      "name": "trial: one strong first-mouse advantage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "reward1": [
+          10,
+          1,
+          1
+        ],
+        "reward2": [
+          1,
+          10,
+          10
+        ],
+        "k": 1
+      },
+      "expected": 30,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-zero-first-mouse",
+      "name": "trial: first mouse eats no cheese",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "reward1": [
+          5,
+          6,
+          7
+        ],
+        "reward2": [
+          7,
+          6,
+          5
+        ],
+        "k": 0
+      },
+      "expected": 18,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-three-of-four",
+      "name": "hidden: choose three largest gains",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "reward1": [
+          3,
+          8,
+          2,
+          6
+        ],
+        "reward2": [
+          5,
+          1,
+          7,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 24,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

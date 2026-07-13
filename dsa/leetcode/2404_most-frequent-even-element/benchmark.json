@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_2404",
+  "cases": [
+    {
+      "id": "benchmark-tied-frequencies",
+      "name": "benchmark: highest frequency tie chooses smaller value",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          12,
+          10,
+          12,
+          14,
+          14,
+          14,
+          10
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

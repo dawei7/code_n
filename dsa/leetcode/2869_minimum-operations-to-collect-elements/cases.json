@@ -1,0 +1,115 @@
+{
+  "challenge_id": "lc_2869",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: collect one and two from the suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          5,
+          4,
+          2
+        ],
+        "k": 2
+      },
+      "tags": [
+        "sample",
+        "reverse-scan"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: collecting one through five needs all elements",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          5,
+          4,
+          2
+        ],
+        "k": 5
+      },
+      "tags": [
+        "sample",
+        "all-values"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate three appears before one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          5,
+          3,
+          1
+        ],
+        "k": 3
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "trial-suffix-already-complete",
+      "name": "trial: last k values contain the full set",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          8,
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "tags": [
+        "trial",
+        "suffix"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "real-many-irrelevant-values",
+      "name": "hidden: large values are ignored while scanning",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          4,
+          2,
+          8,
+          1,
+          9,
+          3,
+          10,
+          2,
+          1
+        ],
+        "k": 4
+      },
+      "tags": [
+        "hidden",
+        "ignored-values"
+      ],
+      "expected": 9
+    }
+  ]
+}

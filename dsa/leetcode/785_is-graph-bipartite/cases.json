@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_785",
+  "cases": [
+    {"id": "sample-1", "name": "sample: triangle creates conflict", "kind": "sample", "visible": true, "input": {"graph": [[1, 2, 3], [0, 2], [0, 1, 3], [0, 2]]}, "expected": false, "tags": ["sample", "odd-cycle"]},
+    {"id": "sample-2", "name": "sample: four-cycle", "kind": "sample", "visible": true, "input": {"graph": [[1, 3], [0, 2], [1, 3], [0, 2]]}, "expected": true, "tags": ["sample", "even-cycle"]},
+    {"id": "sample-3", "name": "sample: isolated vertices", "kind": "sample", "visible": true, "input": {"graph": [[], []]}, "expected": true, "tags": ["sample", "disconnected"]},
+    {"id": "trial-1", "name": "trial: five-cycle", "kind": "trial", "visible": true, "input": {"graph": [[1, 4], [0, 2], [1, 3], [2, 4], [3, 0]]}, "expected": false, "tags": ["trial", "odd-cycle"]},
+    {"id": "trial-2", "name": "trial: path graph", "kind": "trial", "visible": true, "input": {"graph": [[1], [0, 2], [1, 3], [2, 4], [3]]}, "expected": true, "tags": ["trial", "tree"]},
+    {"id": "trial-3", "name": "trial: disconnected triangle", "kind": "trial", "visible": true, "input": {"graph": [[], [2, 3], [1, 3], [1, 2], []]}, "expected": false, "tags": ["trial", "disconnected", "odd-cycle"]},
+    {"id": "hidden-1", "name": "hidden: complete bipartite graph", "kind": "real", "visible": false, "input": {"graph": [[3, 4, 5], [3, 4, 5], [3, 4, 5], [0, 1, 2], [0, 1, 2], [0, 1, 2]]}, "expected": true, "tags": ["hidden", "dense"]},
+    {"id": "hidden-2", "name": "hidden: edge among isolated vertices", "kind": "real", "visible": false, "input": {"graph": [[], [2], [1], []]}, "expected": true, "tags": ["hidden", "disconnected"]},
+    {"id": "hidden-3", "name": "hidden: even cycle with separate path", "kind": "real", "visible": false, "input": {"graph": [[1, 3], [0, 2], [1, 3], [0, 2], [5], [4, 6], [5]]}, "expected": true, "tags": ["hidden", "disconnected", "even-cycle"]}
+  ]
+}

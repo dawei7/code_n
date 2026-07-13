@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_1391",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: connected road",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            4,
+            3
+          ],
+          [
+            6,
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "graph"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: disconnected road",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-row-dead-end",
+      "name": "one row dead end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-vertical-path",
+      "name": "hidden: vertical path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

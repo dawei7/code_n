@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_3046",
+  "cases": [
+    {
+      "id": "sample-possible",
+      "name": "sample: every value appears at most twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: one value appears three times",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-unique",
+      "name": "trial: all values are unique",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-pairs-only",
+      "name": "trial: every value appears exactly twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          5,
+          5,
+          6,
+          6
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-late-triple",
+      "name": "real: a late triple makes the split impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3,
+          3,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "counts"
+      ]
+    }
+  ]
+}

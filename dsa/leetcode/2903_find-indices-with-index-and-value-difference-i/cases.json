@@ -1,0 +1,140 @@
+{
+  "challenge_id": "lc_2903",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: pair far enough in index and value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          4,
+          1
+        ],
+        "indexDifference": 2,
+        "valueDifference": 4
+      },
+      "tags": [
+        "sample",
+        "pair"
+      ],
+      "expected": [
+        0,
+        3
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      }
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: zero differences allow same index",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ],
+        "indexDifference": 0,
+        "valueDifference": 0
+      },
+      "tags": [
+        "sample",
+        "same-index"
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      }
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no value difference is large enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "indexDifference": 2,
+        "valueDifference": 4
+      },
+      "tags": [
+        "sample",
+        "not-found"
+      ],
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      }
+    },
+    {
+      "id": "trial-late-valid-pair",
+      "name": "trial: valid pair appears near the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7,
+          20
+        ],
+        "indexDifference": 3,
+        "valueDifference": 15
+      },
+      "tags": [
+        "trial",
+        "late"
+      ],
+      "expected": [
+        0,
+        4
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      }
+    },
+    {
+      "id": "real-negative-and-positive-values",
+      "name": "hidden: values on both sides of zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -4,
+          2,
+          9,
+          -10,
+          6,
+          20
+        ],
+        "indexDifference": 2,
+        "valueDifference": 14
+      },
+      "tags": [
+        "hidden",
+        "pair"
+      ],
+      "expected": [
+        0,
+        5
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      }
+    }
+  ]
+}

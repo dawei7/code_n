@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_2765",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: alternating pattern length four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "alternating"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: first rise only gives length two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          5,
+          6
+        ]
+      },
+      "tags": [
+        "sample",
+        "short"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no valid start pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          21,
+          9,
+          5
+        ]
+      },
+      "tags": [
+        "sample",
+        "none"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-overlapping-pattern",
+      "name": "trial: overlapping alternating runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          3,
+          4,
+          3
+        ]
+      },
+      "tags": [
+        "trial",
+        "overlap"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "real-late-run",
+      "name": "hidden: longest run appears late",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          6,
+          5,
+          6,
+          5,
+          7,
+          8,
+          7,
+          8,
+          7
+        ]
+      },
+      "tags": [
+        "hidden",
+        "late"
+      ],
+      "expected": 5
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_2845",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: odd-count subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          4
+        ],
+        "modulo": 2,
+        "k": 1
+      },
+      "tags": [
+        "sample",
+        "prefix"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: count divisible by three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          9,
+          6
+        ],
+        "modulo": 3,
+        "k": 0
+      },
+      "tags": [
+        "sample",
+        "zero-remainder"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one matching decimal remainder",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          12,
+          21,
+          14
+        ],
+        "modulo": 10,
+        "k": 1
+      },
+      "tags": [
+        "sample",
+        "prefix"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "trial-no-interesting-subarray",
+      "name": "trial: every candidate count misses the target remainder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          10,
+          15,
+          20
+        ],
+        "modulo": 5,
+        "k": 0
+      },
+      "tags": [
+        "trial",
+        "none"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "real-mixed-prefix-remainders",
+      "name": "hidden: repeated prefix remainders create many ranges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25
+        ],
+        "modulo": 3,
+        "k": 1
+      },
+      "tags": [
+        "hidden",
+        "prefix"
+      ],
+      "expected": 15
+    }
+  ]
+}

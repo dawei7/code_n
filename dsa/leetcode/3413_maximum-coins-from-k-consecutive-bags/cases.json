@@ -1,0 +1,158 @@
+{
+  "challenge_id": "lc_3413",
+  "cases": [
+    {
+      "id": "sample-gapped-segments",
+      "name": "sample: window crosses a gap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          [
+            8,
+            10,
+            1
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            5,
+            6,
+            4
+          ]
+        ],
+        "k": 4
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "gaps"
+      ]
+    },
+    {
+      "id": "sample-single-segment",
+      "name": "sample: one long segment",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          [
+            1,
+            10,
+            3
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-right-aligned",
+      "name": "trial: best window is right aligned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            6,
+            8,
+            7
+          ],
+          [
+            10,
+            12,
+            1
+          ]
+        ],
+        "k": 4
+      },
+      "expected": 21,
+      "tags": [
+        "trial",
+        "alignment"
+      ]
+    },
+    {
+      "id": "trial-wide-window",
+      "name": "trial: window covers full segments and partial ends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          [
+            2,
+            4,
+            3
+          ],
+          [
+            9,
+            11,
+            6
+          ],
+          [
+            15,
+            18,
+            2
+          ]
+        ],
+        "k": 9
+      },
+      "expected": 24,
+      "tags": [
+        "trial",
+        "partial"
+      ]
+    },
+    {
+      "id": "real-many-segments",
+      "name": "real: several non-overlapping weighted ranges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          [
+            1,
+            5,
+            2
+          ],
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            13,
+            16,
+            3
+          ],
+          [
+            20,
+            25,
+            4
+          ],
+          [
+            30,
+            31,
+            20
+          ]
+        ],
+        "k": 8
+      },
+      "expected": 48,
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_609",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two duplicate-content groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {"paths": ["root/a 1.txt(abcd) 2.txt(efgh)", "root/c 3.txt(abcd)", "root/c/d 4.txt(efgh)", "root 4.txt(efgh)"]},
+      "expected": [["root/a/1.txt", "root/c/3.txt"], ["root/a/2.txt", "root/c/d/4.txt", "root/4.txt"]],
+      "validator": {"kind": "unordered_nested_list"},
+      "tags": ["sample", "multiple-groups"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two duplicate pairs and one unique file",
+      "kind": "sample",
+      "visible": true,
+      "input": {"paths": ["root/a 1.txt(abcd) 2.txt(efgh)", "root/c 3.txt(abcd)", "root/c/d 4.txt(efgh) 5.txt(ijkl)"]},
+      "expected": [["root/a/1.txt", "root/c/3.txt"], ["root/a/2.txt", "root/c/d/4.txt"]],
+      "validator": {"kind": "unordered_nested_list"},
+      "tags": ["sample", "unique-omitted"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no duplicate contents",
+      "kind": "sample",
+      "visible": true,
+      "input": {"paths": ["data a.txt(red) b.txt(blue)", "archive c.txt(green)"]},
+      "expected": [],
+      "validator": {"kind": "unordered_nested_list"},
+      "tags": ["sample", "no-duplicates"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: three equal files in one directory",
+      "kind": "trial",
+      "visible": true,
+      "input": {"paths": ["box a.txt(same) b.log(same) c.bin(same) d.txt(other)"]},
+      "expected": [["box/a.txt", "box/b.log", "box/c.bin"]],
+      "validator": {"kind": "unordered_nested_list"},
+      "tags": ["trial", "group-of-three"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: equal filename in distinct directories",
+      "kind": "trial",
+      "visible": true,
+      "input": {"paths": ["left note.txt(copy)", "right note.txt(copy)"]},
+      "expected": [["left/note.txt", "right/note.txt"]],
+      "validator": {"kind": "unordered_nested_list"},
+      "tags": ["trial", "same-filename"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: content prefixes are not equal",
+      "kind": "real",
+      "visible": false,
+      "input": {"paths": ["a first.txt(x) second.txt(xy)", "b third.txt(x) fourth.txt(xyz)"]},
+      "expected": [["a/first.txt", "b/third.txt"]],
+      "validator": {"kind": "unordered_nested_list"},
+      "tags": ["hidden", "exact-content"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: several groups across nested directories",
+      "kind": "real",
+      "visible": false,
+      "input": {"paths": ["root p.txt(11) q.txt(22)", "root/a r.txt(33) s.txt(11)", "root/a/b t.txt(22) u.txt(33) v.txt(44)"]},
+      "expected": [["root/p.txt", "root/a/s.txt"], ["root/q.txt", "root/a/b/t.txt"], ["root/a/r.txt", "root/a/b/u.txt"]],
+      "validator": {"kind": "unordered_nested_list"},
+      "tags": ["hidden", "nested-directories"]
+    }
+  ]
+}

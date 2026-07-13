@@ -1,0 +1,1072 @@
+{
+  "challenge_id": "lc_1",
+  "source": "leetcode",
+  "frontend_id": "1",
+  "slug": "two-sum",
+  "title": "Two Sum",
+  "difficulty": "Easy",
+  "acceptance_rate": 57.7646809537946,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    }
+  ],
+  "url": "https://leetcode.com/problems/two-sum/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:accenture",
+    "leetcode_company:accolite",
+    "leetcode_company:adobe",
+    "leetcode_company:airbnb",
+    "leetcode_company:altimetrik",
+    "leetcode_company:amazon",
+    "leetcode_company:american-express",
+    "leetcode_company:apple",
+    "leetcode_company:atlassian",
+    "leetcode_company:bloomberg",
+    "leetcode_company:capgemini",
+    "leetcode_company:citadel",
+    "leetcode_company:cognizant",
+    "leetcode_company:comcast",
+    "leetcode_company:databricks",
+    "leetcode_company:deloitte",
+    "leetcode_company:doordash",
+    "leetcode_company:dropbox",
+    "leetcode_company:ebay",
+    "leetcode_company:epam-systems",
+    "leetcode_company:epic-systems",
+    "leetcode_company:facebook",
+    "leetcode_company:flipkart",
+    "leetcode_company:goldman-sachs",
+    "leetcode_company:google",
+    "leetcode_company:grab",
+    "leetcode_company:hcl",
+    "leetcode_company:hubspot",
+    "leetcode_company:ibm",
+    "leetcode_company:infosys",
+    "leetcode_company:intel",
+    "leetcode_company:intuit",
+    "leetcode_company:jio",
+    "leetcode_company:jpmorgan",
+    "leetcode_company:kla",
+    "leetcode_company:linkedin",
+    "leetcode_company:mastercard",
+    "leetcode_company:meesho",
+    "leetcode_company:microsoft",
+    "leetcode_company:morgan-stanley",
+    "leetcode_company:naver",
+    "leetcode_company:netapp",
+    "leetcode_company:nvidia",
+    "leetcode_company:oracle",
+    "leetcode_company:ozon",
+    "leetcode_company:paypal",
+    "leetcode_company:persistent-systems",
+    "leetcode_company:pwc",
+    "leetcode_company:qualcomm",
+    "leetcode_company:roblox",
+    "leetcode_company:salesforce",
+    "leetcode_company:samsung",
+    "leetcode_company:sap",
+    "leetcode_company:servicenow",
+    "leetcode_company:snowflake",
+    "leetcode_company:sony",
+    "leetcode_company:splunk",
+    "leetcode_company:spotify",
+    "leetcode_company:synopsys",
+    "leetcode_company:tcs",
+    "leetcode_company:tekion",
+    "leetcode_company:tesla",
+    "leetcode_company:tiger-analytics",
+    "leetcode_company:tiktok",
+    "leetcode_company:tinkoff",
+    "leetcode_company:uber",
+    "leetcode_company:visa",
+    "leetcode_company:walmart-labs",
+    "leetcode_company:western-digital",
+    "leetcode_company:wipro",
+    "leetcode_company:yahoo",
+    "leetcode_company:yandex",
+    "leetcode_company:yelp",
+    "leetcode_company:zoho",
+    "leetcode_studyplan:top-100-liked",
+    "leetcode_studyplan:top-100-liked:top-100-liked-52-q4eh",
+    "leetcode_studyplan:top-interview-150",
+    "leetcode_studyplan:top-interview-150:top-interview-150-5-nfzq",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "neetcode:allNC",
+    "neetcode:blind75",
+    "neetcode:neetcode150",
+    "neetcode:neetcode250",
+    "neetcode_250"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:accenture",
+    "company:accolite",
+    "company:adobe",
+    "company:airbnb",
+    "company:altimetrik",
+    "company:amazon",
+    "company:american-express",
+    "company:apple",
+    "company:atlassian",
+    "company:bloomberg",
+    "company:capgemini",
+    "company:citadel",
+    "company:cognizant",
+    "company:comcast",
+    "company:databricks",
+    "company:deloitte",
+    "company:doordash",
+    "company:dropbox",
+    "company:ebay",
+    "company:epam-systems",
+    "company:epic-systems",
+    "company:facebook",
+    "company:flipkart",
+    "company:goldman-sachs",
+    "company:google",
+    "company:grab",
+    "company:hcl",
+    "company:hubspot",
+    "company:ibm",
+    "company:infosys",
+    "company:intel",
+    "company:intuit",
+    "company:jio",
+    "company:jpmorgan",
+    "company:kla",
+    "company:linkedin",
+    "company:mastercard",
+    "company:meesho",
+    "company:microsoft",
+    "company:morgan-stanley",
+    "company:naver",
+    "company:netapp",
+    "company:nvidia",
+    "company:oracle",
+    "company:ozon",
+    "company:paypal",
+    "company:persistent-systems",
+    "company:pwc",
+    "company:qualcomm",
+    "company:roblox",
+    "company:salesforce",
+    "company:samsung",
+    "company:sap",
+    "company:servicenow",
+    "company:snowflake",
+    "company:sony",
+    "company:splunk",
+    "company:spotify",
+    "company:synopsys",
+    "company:tcs",
+    "company:tekion",
+    "company:tesla",
+    "company:tiger-analytics",
+    "company:tiktok",
+    "company:tinkoff",
+    "company:uber",
+    "company:visa",
+    "company:walmart-labs",
+    "company:western-digital",
+    "company:wipro",
+    "company:yahoo",
+    "company:yandex",
+    "company:yelp",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:top-100-liked",
+    "study_plan:top-interview-150",
+    "study_plan_section:top-100-liked:top-100-liked-52-q4eh",
+    "study_plan_section:top-interview-150:top-interview-150-5-nfzq",
+    "subset:neetcode:allNC",
+    "subset:neetcode:blind75",
+    "subset:neetcode:neetcode150",
+    "subset:neetcode:neetcode250",
+    "subset:neetcode_250",
+    "topic:array",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Deloitte",
+      "slug": "deloitte"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "Capgemini",
+      "slug": "capgemini"
+    },
+    {
+      "name": "eBay",
+      "slug": "ebay"
+    },
+    {
+      "name": "NetApp",
+      "slug": "netapp"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "JPMorgan Chase",
+      "slug": "jpmorgan"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "IBM",
+      "slug": "ibm"
+    },
+    {
+      "name": "Visa",
+      "slug": "visa"
+    },
+    {
+      "name": "Qualcomm",
+      "slug": "qualcomm"
+    },
+    {
+      "name": "HCL",
+      "slug": "hcl"
+    },
+    {
+      "name": "Altimetrik",
+      "slug": "altimetrik"
+    },
+    {
+      "name": "Cognizant",
+      "slug": "cognizant"
+    },
+    {
+      "name": "Wipro",
+      "slug": "wipro"
+    },
+    {
+      "name": "Morgan Stanley",
+      "slug": "morgan-stanley"
+    },
+    {
+      "name": "SAP",
+      "slug": "sap"
+    },
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    },
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    },
+    {
+      "name": "Yandex",
+      "slug": "yandex"
+    },
+    {
+      "name": "Grab",
+      "slug": "grab"
+    },
+    {
+      "name": "Intuit",
+      "slug": "intuit"
+    },
+    {
+      "name": "Citadel",
+      "slug": "citadel"
+    },
+    {
+      "name": "Flipkart",
+      "slug": "flipkart"
+    },
+    {
+      "name": "Roblox",
+      "slug": "roblox"
+    },
+    {
+      "name": "American Express",
+      "slug": "american-express"
+    },
+    {
+      "name": "Tiger Analytics",
+      "slug": "tiger-analytics"
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Databricks",
+      "slug": "databricks"
+    },
+    {
+      "name": "Pwc",
+      "slug": "pwc"
+    },
+    {
+      "name": "Sony",
+      "slug": "sony"
+    },
+    {
+      "name": "Walmart Labs",
+      "slug": "walmart-labs"
+    },
+    {
+      "name": "Spotify",
+      "slug": "spotify"
+    },
+    {
+      "name": "TikTok",
+      "slug": "tiktok"
+    },
+    {
+      "name": "EPAM Systems",
+      "slug": "epam-systems"
+    },
+    {
+      "name": "Comcast",
+      "slug": "comcast"
+    },
+    {
+      "name": "DoorDash",
+      "slug": "doordash"
+    },
+    {
+      "name": "Intel",
+      "slug": "intel"
+    },
+    {
+      "name": "Salesforce",
+      "slug": "salesforce"
+    },
+    {
+      "name": "Hubspot",
+      "slug": "hubspot"
+    },
+    {
+      "name": "Uber",
+      "slug": "uber"
+    },
+    {
+      "name": "ServiceNow",
+      "slug": "servicenow"
+    },
+    {
+      "name": "PayPal",
+      "slug": "paypal"
+    },
+    {
+      "name": "Epic Systems",
+      "slug": "epic-systems"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin"
+    },
+    {
+      "name": "Samsung",
+      "slug": "samsung"
+    },
+    {
+      "name": "Naver",
+      "slug": "naver"
+    },
+    {
+      "name": "Western Digital",
+      "slug": "western-digital"
+    },
+    {
+      "name": "Splunk",
+      "slug": "splunk"
+    },
+    {
+      "name": "Atlassian",
+      "slug": "atlassian"
+    },
+    {
+      "name": "Accolite",
+      "slug": "accolite"
+    },
+    {
+      "name": "Tesla",
+      "slug": "tesla"
+    },
+    {
+      "name": "persistent systems",
+      "slug": "persistent-systems"
+    },
+    {
+      "name": "Synopsys",
+      "slug": "synopsys"
+    },
+    {
+      "name": "Tinkoff",
+      "slug": "tinkoff"
+    },
+    {
+      "name": "Tekion",
+      "slug": "tekion"
+    },
+    {
+      "name": "Ozon",
+      "slug": "ozon"
+    },
+    {
+      "name": "Mastercard",
+      "slug": "mastercard"
+    },
+    {
+      "name": "Meesho",
+      "slug": "meesho"
+    },
+    {
+      "name": "Jio",
+      "slug": "jio"
+    },
+    {
+      "name": "KLA",
+      "slug": "kla"
+    },
+    {
+      "name": "Yahoo",
+      "slug": "yahoo"
+    },
+    {
+      "name": "Airbnb",
+      "slug": "airbnb"
+    },
+    {
+      "name": "Yelp",
+      "slug": "yelp"
+    },
+    {
+      "name": "Dropbox",
+      "slug": "dropbox"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 230
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 110
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 40
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 38
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 37
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 11
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 7
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Deloitte",
+        "slug": "deloitte",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Capgemini",
+        "slug": "capgemini",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "eBay",
+        "slug": "ebay",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "NetApp",
+        "slug": "netapp",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "JPMorgan Chase",
+        "slug": "jpmorgan",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "IBM",
+        "slug": "ibm",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Visa",
+        "slug": "visa",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Qualcomm",
+        "slug": "qualcomm",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "HCL",
+        "slug": "hcl",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Altimetrik",
+        "slug": "altimetrik",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Cognizant",
+        "slug": "cognizant",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Wipro",
+        "slug": "wipro",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Morgan Stanley",
+        "slug": "morgan-stanley",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "SAP",
+        "slug": "sap",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Yandex",
+        "slug": "yandex",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Grab",
+        "slug": "grab",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Intuit",
+        "slug": "intuit",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Citadel",
+        "slug": "citadel",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Flipkart",
+        "slug": "flipkart",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Roblox",
+        "slug": "roblox",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "American Express",
+        "slug": "american-express",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tiger Analytics",
+        "slug": "tiger-analytics",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Databricks",
+        "slug": "databricks",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Pwc",
+        "slug": "pwc",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Sony",
+        "slug": "sony",
+        "timesEncountered": 2
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Walmart Labs",
+        "slug": "walmart-labs",
+        "timesEncountered": 10
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Spotify",
+        "slug": "spotify",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "TikTok",
+        "slug": "tiktok",
+        "timesEncountered": 8
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "EPAM Systems",
+        "slug": "epam-systems",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Comcast",
+        "slug": "comcast",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "DoorDash",
+        "slug": "doordash",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Intel",
+        "slug": "intel",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Salesforce",
+        "slug": "salesforce",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Hubspot",
+        "slug": "hubspot",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Uber",
+        "slug": "uber",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ServiceNow",
+        "slug": "servicenow",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "PayPal",
+        "slug": "paypal",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Epic Systems",
+        "slug": "epic-systems",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "LinkedIn",
+        "slug": "linkedin",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Samsung",
+        "slug": "samsung",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Naver",
+        "slug": "naver",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Western Digital",
+        "slug": "western-digital",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Splunk",
+        "slug": "splunk",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Atlassian",
+        "slug": "atlassian",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accolite",
+        "slug": "accolite",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tesla",
+        "slug": "tesla",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "persistent systems",
+        "slug": "persistent-systems",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Synopsys",
+        "slug": "synopsys",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tinkoff",
+        "slug": "tinkoff",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Tekion",
+        "slug": "tekion",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Ozon",
+        "slug": "ozon",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Mastercard",
+        "slug": "mastercard",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meesho",
+        "slug": "meesho",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Jio",
+        "slug": "jio",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "KLA",
+        "slug": "kla",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Yahoo",
+        "slug": "yahoo",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Airbnb",
+        "slug": "airbnb",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Yelp",
+        "slug": "yelp",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Dropbox",
+        "slug": "dropbox",
+        "timesEncountered": 0
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-interview-150",
+      "plan_name": "Top Interview 150",
+      "section_slug": "top-interview-150-5-nfzq",
+      "section_name": "Hashmap",
+      "path": [
+        "Hashmap"
+      ],
+      "order": 44,
+      "section_order": 5,
+      "problem_order": 6,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-interview-150/"
+    },
+    {
+      "plan_slug": "top-100-liked",
+      "plan_name": "Top 100 Liked",
+      "section_slug": "top-100-liked-52-q4eh",
+      "section_name": "Hashing",
+      "path": [
+        "Hashing"
+      ],
+      "order": 52,
+      "section_order": 7,
+      "problem_order": 1,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-100-liked/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "blind75",
+      "subset_name": "Blind 75",
+      "subset_order": 1,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 2,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/blind75",
+      "neetcode_slug": "two-integer-sum",
+      "leetcode_slug": "two-sum",
+      "difficulty": "Easy",
+      "problem_order": 2
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode150",
+      "subset_name": "NeetCode 150",
+      "subset_order": 2,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 2,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/neetcode150",
+      "neetcode_slug": "two-integer-sum",
+      "leetcode_slug": "two-sum",
+      "difficulty": "Easy",
+      "problem_order": 2
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "neetcode250",
+      "subset_name": "NeetCode 250",
+      "subset_order": 3,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 3,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/neetcode250",
+      "neetcode_slug": "two-integer-sum",
+      "leetcode_slug": "two-sum",
+      "difficulty": "Easy",
+      "problem_order": 3
+    },
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 35,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "two-integer-sum",
+      "leetcode_slug": "two-sum",
+      "difficulty": "Easy",
+      "problem_order": 35
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "challenge_id": "lc_3982",
+  "source": "leetcode",
+  "frontend_id": "3982",
+  "slug": "sum-of-integers-with-maximum-digit-range",
+  "title": "Sum of Integers with Maximum Digit Range",
+  "difficulty": "Easy",
+  "acceptance_rate": 72.63418551733369,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/sum-of-integers-with-maximum-digit-range/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

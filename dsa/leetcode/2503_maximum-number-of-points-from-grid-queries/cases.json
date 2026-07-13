@@ -1,0 +1,157 @@
+{
+  "challenge_id": "lc_2503",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: offline expansion answers three thresholds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            5,
+            7
+          ],
+          [
+            3,
+            5,
+            1
+          ]
+        ],
+        "queries": [
+          5,
+          6,
+          2
+        ]
+      },
+      "expected": [
+        5,
+        8,
+        1
+      ],
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: starting cell blocks the query",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ]
+        ],
+        "queries": [
+          3
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: diagonal low cell is unreachable until threshold grows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "queries": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        4
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-cell-thresholds",
+      "name": "trial: threshold must be greater than the start value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2
+          ]
+        ],
+        "queries": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        1
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-two-by-two-partial",
+      "name": "hidden: one high cell stays excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "queries": [
+          4
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

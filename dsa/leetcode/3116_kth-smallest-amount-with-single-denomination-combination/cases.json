@@ -1,0 +1,133 @@
+{
+  "challenge_id": "lc_3116",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: nested denominations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          3,
+          6,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two denominations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          5,
+          2
+        ],
+        "k": 7
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: denomination one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "unit"
+      ]
+    },
+    {
+      "id": "trial-overlapping-powers",
+      "name": "trial: powers of two overlap heavily",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          2,
+          4,
+          8
+        ],
+        "k": 10
+      },
+      "expected": 20,
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-coprime-small",
+      "name": "trial: pairwise coprime small denominations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          4,
+          7,
+          9
+        ],
+        "k": 25
+      },
+      "expected": 56,
+      "tags": [
+        "coprime-ish"
+      ]
+    },
+    {
+      "id": "real-shared-lcms",
+      "name": "real: denominations with shared least common multiples",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          6,
+          10,
+          15
+        ],
+        "k": 40
+      },
+      "expected": 150,
+      "tags": [
+        "real",
+        "lcm"
+      ]
+    },
+    {
+      "id": "real-unsorted-denominations",
+      "name": "real: unsorted denominations and larger rank",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          17,
+          3,
+          11,
+          5
+        ],
+        "k": 150
+      },
+      "expected": 276,
+      "tags": [
+        "real",
+        "binary-search"
+      ]
+    }
+  ]
+}

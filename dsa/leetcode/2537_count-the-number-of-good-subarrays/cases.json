@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_2537",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all equal values form one full-window answer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 10
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: multiple duplicate groups create good subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          3,
+          2,
+          2,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all values are distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-pair",
+      "name": "trial: exactly one identical pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-value",
+      "name": "hidden: one value cannot make a pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

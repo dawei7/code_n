@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_95",
+  "measurement_note": "Input size is n; the Catalan-sized output dominates, and interval memoization avoids recomputing the same subforests.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: n=1", "kind": "benchmark", "visible": false, "size": 1, "input": {"n": 1}, "expected": 1, "validator": {"kind": "unique_bsts"}, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: n=4", "kind": "benchmark", "visible": false, "size": 4, "input": {"n": 4}, "expected": 14, "validator": {"kind": "unique_bsts"}, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: n=8", "kind": "benchmark", "visible": false, "size": 8, "input": {"n": 8}, "expected": 1430, "validator": {"kind": "unique_bsts"}, "tags": ["benchmark", "scale-large"]}
+  ]
+}

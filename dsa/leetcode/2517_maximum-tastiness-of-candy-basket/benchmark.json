@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2517",
+  "cases": [
+    {
+      "id": "benchmark-evenly-spaced",
+      "name": "benchmark: evenly spaced prices choose every other candy",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "price": [
+          1,
+          4,
+          7,
+          10,
+          13
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "challenge_id": "lc_2826",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one change sorts three groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          2,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "groups"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already sorted groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "sorted"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-all-three",
+      "name": "trial: all values are three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-reversed-groups",
+      "name": "trial: reversed groups need changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      "tags": [
+        "trial",
+        "reversed"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "real-mixed-pattern",
+      "name": "hidden: mixed values with several possible partitions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          1,
+          2,
+          3,
+          1,
+          3
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 3
+    }
+  ]
+}

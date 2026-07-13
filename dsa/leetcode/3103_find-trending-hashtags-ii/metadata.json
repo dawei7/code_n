@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_3103",
+  "source": "leetcode",
+  "frontend_id": "3103",
+  "slug": "find-trending-hashtags-ii",
+  "title": "Find Trending Hashtags II ",
+  "difficulty": "Hard",
+  "acceptance_rate": 66.85170499603488,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-trending-hashtags-ii/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

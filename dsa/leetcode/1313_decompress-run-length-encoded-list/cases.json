@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_1313",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed frequencies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        2,
+        4,
+        4,
+        4
+      ],
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated output",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        3
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-zero-frequency",
+      "name": "zero frequency emits nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          5
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-multiple-runs",
+      "name": "hidden: multiple run lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          7,
+          1,
+          8,
+          3,
+          9
+        ]
+      },
+      "expected": [
+        7,
+        7,
+        8,
+        9,
+        9,
+        9
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

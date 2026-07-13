@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "697",
+  "frontend_id": "697",
+  "title_slug": "degree-of-an-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065594473",
+  "verified_at": "2026-07-13T03:47:00.344285+00:00"
+}

@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2560",
+  "cases": [
+    {
+      "id": "benchmark-middle-choice",
+      "name": "benchmark: middle values allow a lower capability",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          1,
+          5,
+          2,
+          7
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

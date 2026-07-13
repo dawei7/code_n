@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_3808",
+  "source": "leetcode",
+  "frontend_id": "3808",
+  "slug": "find-emotionally-consistent-users",
+  "title": "Find Emotionally Consistent Users",
+  "difficulty": "Medium",
+  "acceptance_rate": 51.63322103412919,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [],
+  "url": "https://leetcode.com/problems/find-emotionally-consistent-users/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

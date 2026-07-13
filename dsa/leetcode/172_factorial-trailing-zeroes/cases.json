@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_172",
+  "cases": [
+    {"id": "sample-below-five", "name": "sample: no factor five", "kind": "sample", "visible": true, "input": {"n": 3}, "expected": 0, "tags": ["sample", "boundary"]},
+    {"id": "sample-one-five", "name": "sample: first trailing zero", "kind": "sample", "visible": true, "input": {"n": 5}, "expected": 1, "tags": ["sample", "factor"]},
+    {"id": "trial-zero", "name": "zero factorial", "kind": "trial", "visible": true, "input": {"n": 0}, "expected": 0, "tags": ["boundary"]},
+    {"id": "trial-square-of-five", "name": "twenty-five contributes twice", "kind": "trial", "visible": true, "input": {"n": 25}, "expected": 6, "tags": ["power-of-five"]},
+    {"id": "real-hundred", "name": "hidden: several powers contribute", "kind": "real", "visible": false, "input": {"n": 100}, "expected": 24, "tags": ["hidden", "powers"]}
+  ]
+}

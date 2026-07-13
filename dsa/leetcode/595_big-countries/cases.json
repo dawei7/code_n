@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_595",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: inclusive area threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "World": [
+            {
+              "name": "AreaLand",
+              "continent": "X",
+              "area": 3000000,
+              "population": 1,
+              "gdp": 10
+            },
+            {
+              "name": "Small",
+              "continent": "X",
+              "area": 2999999,
+              "population": 24999999,
+              "gdp": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "population",
+          "area"
+        ],
+        "rows": [
+          [
+            "AreaLand",
+            1,
+            3000000
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "filter"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: inclusive population threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "World": [
+            {
+              "name": "PeopleLand",
+              "continent": "Y",
+              "area": 100,
+              "population": 25000000,
+              "gdp": 30
+            },
+            {
+              "name": "Few",
+              "continent": "Y",
+              "area": 100,
+              "population": 24999999,
+              "gdp": 40
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "population",
+          "area"
+        ],
+        "rows": [
+          [
+            "PeopleLand",
+            25000000,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "filter"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: both versus neither",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "World": [
+            {
+              "name": "Both",
+              "continent": "Z",
+              "area": 5000000,
+              "population": 90000000,
+              "gdp": 50
+            },
+            {
+              "name": "Neither",
+              "continent": "Z",
+              "area": 1,
+              "population": 1,
+              "gdp": 60
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "population",
+          "area"
+        ],
+        "rows": [
+          [
+            "Both",
+            90000000,
+            5000000
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "filter"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: both exact boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "World": [
+            {
+              "name": "Exact Area",
+              "continent": "A",
+              "area": 3000000,
+              "population": 24999999,
+              "gdp": 1
+            },
+            {
+              "name": "Exact Population",
+              "continent": "A",
+              "area": 2999999,
+              "population": 25000000,
+              "gdp": 2
+            },
+            {
+              "name": "Below",
+              "continent": "A",
+              "area": 2999999,
+              "population": 24999999,
+              "gdp": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "population",
+          "area"
+        ],
+        "rows": [
+          [
+            "Exact Area",
+            24999999,
+            3000000
+          ],
+          [
+            "Exact Population",
+            25000000,
+            2999999
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "filter"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: deterministic name order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "World": [
+            {
+              "name": "Zeta",
+              "continent": "A",
+              "area": 4000000,
+              "population": 10,
+              "gdp": 1
+            },
+            {
+              "name": "Alpha",
+              "continent": "B",
+              "area": 10,
+              "population": 30000000,
+              "gdp": 2
+            },
+            {
+              "name": "Middle",
+              "continent": "C",
+              "area": 10,
+              "population": 10,
+              "gdp": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "population",
+          "area"
+        ],
+        "rows": [
+          [
+            "Alpha",
+            30000000,
+            10
+          ],
+          [
+            "Zeta",
+            10,
+            4000000
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "filter"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: GDP is irrelevant",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "World": [
+            {
+              "name": "One",
+              "continent": "A",
+              "area": 9999999,
+              "population": 99999999,
+              "gdp": 0
+            },
+            {
+              "name": "Two",
+              "continent": "A",
+              "area": 3000000,
+              "population": 25000000,
+              "gdp": 0
+            },
+            {
+              "name": "Three",
+              "continent": "A",
+              "area": 0,
+              "population": 0,
+              "gdp": 999999999
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "population",
+          "area"
+        ],
+        "rows": [
+          [
+            "One",
+            99999999,
+            9999999
+          ],
+          [
+            "Two",
+            25000000,
+            3000000
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "filter"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: lexical names and mixed qualifiers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "World": [
+            {
+              "name": "Name 10",
+              "continent": "A",
+              "area": 3000001,
+              "population": 1,
+              "gdp": 1
+            },
+            {
+              "name": "Name 2",
+              "continent": "A",
+              "area": 1,
+              "population": 25000001,
+              "gdp": 1
+            },
+            {
+              "name": "Name 1",
+              "continent": "A",
+              "area": 1,
+              "population": 1,
+              "gdp": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "population",
+          "area"
+        ],
+        "rows": [
+          [
+            "Name 10",
+            1,
+            3000001
+          ],
+          [
+            "Name 2",
+            25000001,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "filter"
+      ]
+    }
+  ]
+}

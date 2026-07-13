@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_3232",
+  "cases": [
+    {
+      "id": "sample-single-digits-win",
+      "name": "sample: single digit sum wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          10
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "digits"
+      ]
+    },
+    {
+      "id": "sample-balanced-loss",
+      "name": "sample: equal sums cannot win",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          10
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "balance"
+      ]
+    },
+    {
+      "id": "trial-double-digits-win",
+      "name": "trial: double digit sum wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          22
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "double-digit"
+      ]
+    },
+    {
+      "id": "trial-all-single",
+      "name": "trial: only single digit numbers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          9,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-many-values",
+      "name": "real: mixed one and two digit values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          12,
+          7,
+          33,
+          4,
+          25,
+          9,
+          10
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "digits"
+      ]
+    }
+  ]
+}

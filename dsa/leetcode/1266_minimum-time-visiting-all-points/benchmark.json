@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_1266",
+  "cases": [
+    {
+      "id": "benchmark-negative-to-positive",
+      "name": "benchmark: negative to positive",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            -3,
+            -4
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            -1
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

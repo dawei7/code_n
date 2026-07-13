@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_80",
+  "cases": [
+    {"id": "sample-basic", "name": "sample: remove a third copy", "kind": "sample", "visible": true, "input": {"nums": [1,1,1,2,2,3]}, "expected": [1,1,2,2,3], "tags": ["sample"]},
+    {"id": "sample-long", "name": "sample: several duplicate runs", "kind": "sample", "visible": true, "input": {"nums": [0,0,1,1,1,1,2,3,3]}, "expected": [0,0,1,1,2,3,3], "tags": ["sample"]},
+    {"id": "trial-single", "name": "single value", "kind": "trial", "visible": true, "input": {"nums": [5]}, "expected": [5], "tags": ["boundary"]},
+    {"id": "trial-no-removal", "name": "all runs already legal", "kind": "trial", "visible": true, "input": {"nums": [-2,-2,0,1,1]}, "expected": [-2,-2,0,1,1], "tags": ["identity"]},
+    {"id": "real-all-same", "name": "hidden: one long duplicate run", "kind": "real", "visible": false, "input": {"nums": [7,7,7,7,7,7]}, "expected": [7,7], "tags": ["hidden", "duplicates"]}
+  ]
+}

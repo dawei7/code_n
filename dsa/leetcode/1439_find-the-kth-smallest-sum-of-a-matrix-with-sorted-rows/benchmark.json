@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_1439",
+  "cases": [
+    {
+      "id": "benchmark-duplicate-sums",
+      "name": "benchmark: duplicate row values create tied sums",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            10
+          ],
+          [
+            2,
+            3,
+            9
+          ],
+          [
+            4,
+            6,
+            8
+          ]
+        ],
+        "k": 8
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

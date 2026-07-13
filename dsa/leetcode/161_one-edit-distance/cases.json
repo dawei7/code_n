@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_161",
+  "cases": [
+    {"id": "sample-insertion", "name": "sample: insert into shorter string", "kind": "sample", "visible": true, "input": {"s": "ab", "t": "acb"}, "expected": true, "tags": ["sample", "insertion"]},
+    {"id": "sample-identical-empty", "name": "sample: identical empty strings", "kind": "sample", "visible": true, "input": {"s": "", "t": ""}, "expected": false, "tags": ["sample", "exactly-one"]},
+    {"id": "trial-replacement", "name": "one replacement with case change", "kind": "trial", "visible": true, "input": {"s": "a", "t": "A"}, "expected": true, "tags": ["replacement"]},
+    {"id": "trial-two-edits", "name": "two mismatches are too many", "kind": "trial", "visible": true, "input": {"s": "ab", "t": "cd"}, "expected": false, "tags": ["negative"]},
+    {"id": "real-trailing-deletion", "name": "hidden: delete final character", "kind": "real", "visible": false, "input": {"s": "algorithm", "t": "algorith"}, "expected": true, "tags": ["hidden", "deletion"]}
+  ]
+}

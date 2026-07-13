@@ -1,0 +1,122 @@
+{
+  "challenge_id": "lc_2926",
+  "cases": [
+    {
+      "id": "sample-balanced-middle",
+      "name": "sample: balanced middle subsequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          5,
+          6
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-skip-negatives",
+      "name": "sample: skip negative dip",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -1,
+          -3,
+          8
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-negative",
+      "name": "sample: best single negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-repeated-b-values",
+      "name": "trial: repeated transformed values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          3,
+          7,
+          8,
+          1,
+          11
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "fenwick"
+      ]
+    },
+    {
+      "id": "real-mixed-signs",
+      "name": "real: mixed signs and late gain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          -5,
+          0,
+          1,
+          8,
+          7,
+          15,
+          -1,
+          20
+        ]
+      },
+      "expected": 44,
+      "tags": [
+        "hidden"
+      ]
+    },
+    {
+      "id": "real-descending-negative",
+      "name": "real: descending negatives",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3,
+          -4,
+          -5
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    }
+  ]
+}

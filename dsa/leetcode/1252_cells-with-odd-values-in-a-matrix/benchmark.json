@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_1252",
+  "cases": [
+    {
+      "id": "benchmark-larger-matrix",
+      "name": "benchmark: larger matrix",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "m": 4,
+        "n": 5,
+        "indices": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

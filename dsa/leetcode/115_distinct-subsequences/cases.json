@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_115",
+  "cases": [
+    {"id": "sample-rabbit", "name": "sample: repeated b choices", "kind": "sample", "visible": true, "input": {"s": "rabbbit", "t": "rabbit"}, "expected": 3, "tags": ["sample", "repeated"]},
+    {"id": "sample-bag", "name": "sample: five bag choices", "kind": "sample", "visible": true, "input": {"s": "babgbag", "t": "bag"}, "expected": 5, "tags": ["sample", "repeated"]},
+    {"id": "sample-empty", "name": "empty target from empty source", "kind": "sample", "visible": true, "input": {"s": "", "t": ""}, "expected": 1, "tags": ["sample", "boundary"]},
+    {"id": "trial-empty-target", "name": "empty target from nonempty source", "kind": "trial", "visible": true, "input": {"s": "abc", "t": ""}, "expected": 1, "tags": ["boundary"]},
+    {"id": "trial-too-long", "name": "target longer than source", "kind": "trial", "visible": true, "input": {"s": "ab", "t": "abc"}, "expected": 0, "tags": ["impossible"]},
+    {"id": "real-combinations", "name": "hidden: repeated-character combinations", "kind": "real", "visible": false, "input": {"s": "aaaaaaaaaa", "t": "aaaaa"}, "expected": 252, "tags": ["hidden", "combinatorics"]}
+  ]
+}

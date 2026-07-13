@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "58",
+  "frontend_id": "58",
+  "title_slug": "length-of-last-word",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064132252",
+  "verified_at": "2026-07-11T17:31:24.233158+00:00"
+}

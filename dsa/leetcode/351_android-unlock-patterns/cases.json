@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_351","cases":[
+{"id":"sample-1","name":"sample: one-key patterns","kind":"sample","visible":true,"input":{"m":1,"n":1},"expected":9,"tags":["sample","boundary"]},
+{"id":"sample-2","name":"sample: lengths one through two","kind":"sample","visible":true,"input":{"m":1,"n":2},"expected":65,"tags":["sample"]},
+{"id":"sample-3","name":"sample: exactly two keys","kind":"sample","visible":true,"input":{"m":2,"n":2},"expected":56,"tags":["sample","exact-length"]},
+{"id":"trial-three","name":"trial: exactly three keys","kind":"trial","visible":false,"input":{"m":3,"n":3},"expected":320,"tags":["trial","exact-length"]},
+{"id":"trial-through-three","name":"trial: cumulative through length three","kind":"trial","visible":false,"input":{"m":1,"n":3},"expected":385,"tags":["trial","cumulative"]},
+{"id":"hidden-four","name":"hidden: exactly four keys","kind":"real","visible":false,"input":{"m":4,"n":4},"expected":1624,"tags":["hidden","exact-length"]},
+{"id":"hidden-five-six","name":"hidden: lengths five and six","kind":"real","visible":false,"input":{"m":5,"n":6},"expected":33168,"tags":["hidden","range"]},
+{"id":"hidden-eight-nine","name":"hidden: both maximum lengths","kind":"real","visible":false,"input":{"m":8,"n":9},"expected":281408,"tags":["hidden","maximum"]}
+]}

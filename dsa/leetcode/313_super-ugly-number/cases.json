@@ -1,0 +1,115 @@
+{
+  "challenge_id": "lc_313",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: mixed allowed primes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 12,
+        "primes": [
+          2,
+          7,
+          13,
+          19
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "sample",
+        "mixed-primes"
+      ]
+    },
+    {
+      "id": "sample-first",
+      "name": "sample: first value is one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "primes": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-classic",
+      "name": "sample: fifth classic ugly number",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "primes": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "classic"
+      ]
+    },
+    {
+      "id": "trial-single-prime",
+      "name": "single prime produces powers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "primes": [
+          3
+        ]
+      },
+      "expected": 81,
+      "tags": [
+        "single-prime"
+      ]
+    },
+    {
+      "id": "trial-duplicate-products",
+      "name": "several streams produce the same values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "primes": [
+          2,
+          3
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-classic",
+      "name": "hidden: tenth classic ugly number",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "primes": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "classic"
+      ]
+    }
+  ]
+}

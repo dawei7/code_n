@@ -1,0 +1,285 @@
+{
+  "challenge_id": "lc_304",
+  "cases": [
+    {
+      "id": "sample-standard",
+      "name": "sample: three standard subrectangles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            3,
+            0,
+            1,
+            4,
+            2
+          ],
+          [
+            5,
+            6,
+            3,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            0,
+            1,
+            5
+          ],
+          [
+            4,
+            1,
+            0,
+            1,
+            7
+          ],
+          [
+            1,
+            0,
+            3,
+            0,
+            5
+          ]
+        ],
+        "queries": [
+          [
+            2,
+            1,
+            4,
+            3
+          ],
+          [
+            1,
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        11,
+        12
+      ],
+      "tags": [
+        "sample",
+        "inclusion-exclusion"
+      ]
+    },
+    {
+      "id": "sample-full",
+      "name": "sample: complete two-by-two matrix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        6
+      ],
+      "tags": [
+        "sample",
+        "full-matrix"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one negative cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            -90
+          ]
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        -90
+      ],
+      "tags": [
+        "sample",
+        "single-cell"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "one-row ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            2,
+            -1,
+            4,
+            3
+          ]
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            0,
+            2
+          ],
+          [
+            0,
+            3,
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        3,
+        3
+      ],
+      "tags": [
+        "one-row"
+      ]
+    },
+    {
+      "id": "trial-one-column",
+      "name": "one-column ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            5
+          ],
+          [
+            -2
+          ],
+          [
+            7
+          ]
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        10,
+        5
+      ],
+      "tags": [
+        "one-column"
+      ]
+    },
+    {
+      "id": "real-overlap",
+      "name": "hidden: overlapping interior and boundary rectangles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            0,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        45,
+        28,
+        16,
+        15
+      ],
+      "tags": [
+        "hidden",
+        "overlap"
+      ]
+    }
+  ]
+}

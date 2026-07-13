@@ -1,0 +1,127 @@
+{
+  "challenge_id": "lc_2519",
+  "source": "leetcode",
+  "frontend_id": "2519",
+  "slug": "count-the-number-of-k-big-indices",
+  "title": "Count the Number of K-Big Indices",
+  "difficulty": "Hard",
+  "acceptance_rate": 53.6685451660557,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    },
+    {
+      "name": "Divide and Conquer",
+      "slug": "divide-and-conquer"
+    },
+    {
+      "name": "Binary Indexed Tree",
+      "slug": "binary-indexed-tree"
+    },
+    {
+      "name": "Segment Tree",
+      "slug": "segment-tree"
+    },
+    {
+      "name": "Merge Sort",
+      "slug": "merge-sort"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-the-number-of-k-big-indices/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_studyplan:amazon-spring-23-high-frequency",
+    "leetcode_studyplan:amazon-spring-23-high-frequency:amazon-spring-23-high-frequency-152-2qxf",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-indexed-tree",
+    "leetcode_topic:binary-search",
+    "leetcode_topic:divide-and-conquer",
+    "leetcode_topic:merge-sort",
+    "leetcode_topic:ordered-set",
+    "leetcode_topic:segment-tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:amazon-spring-23-high-frequency",
+    "study_plan_section:amazon-spring-23-high-frequency:amazon-spring-23-high-frequency-152-2qxf",
+    "topic:array",
+    "topic:binary-indexed-tree",
+    "topic:binary-search",
+    "topic:divide-and-conquer",
+    "topic:merge-sort",
+    "topic:ordered-set",
+    "topic:segment-tree"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "amazon-spring-23-high-frequency",
+      "plan_name": "Amazon Spring '23 High Frequency",
+      "section_slug": "amazon-spring-23-high-frequency-152-2qxf",
+      "section_name": "April Interview Questions",
+      "path": [
+        "April Interview Questions"
+      ],
+      "order": 6,
+      "section_order": 2,
+      "problem_order": 4,
+      "catalog_slug": "sprint-interview",
+      "catalog_name": "Sprint Interview",
+      "premium_only": false,
+      "section_premium_only": true,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/amazon-spring-23-high-frequency/"
+    }
+  ],
+  "neetcode_subsets": []
+}

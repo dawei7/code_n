@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_653",
+  "cases": [
+    {"id": "sample-1", "name": "sample: pair in separate branches", "kind": "sample", "visible": true, "input": {"root": [5, 3, 6, 2, 4, null, 7], "k": 9}, "expected": true, "tags": ["sample", "found"]},
+    {"id": "sample-2", "name": "sample: target too large", "kind": "sample", "visible": true, "input": {"root": [5, 3, 6, 2, 4, null, 7], "k": 28}, "expected": false, "tags": ["sample", "missing"]},
+    {"id": "sample-3", "name": "sample: root and child pair", "kind": "sample", "visible": true, "input": {"root": [2, 1, 3], "k": 4}, "expected": true, "tags": ["sample", "root-pair"]},
+    {"id": "trial-1", "name": "trial: single node cannot pair with itself", "kind": "trial", "visible": true, "input": {"root": [1], "k": 2}, "expected": false, "tags": ["trial", "boundary"]},
+    {"id": "trial-2", "name": "trial: negative pair", "kind": "trial", "visible": true, "input": {"root": [-2, -3, 0, -4, null, -1, 2], "k": -5}, "expected": true, "tags": ["trial", "negative"]},
+    {"id": "hidden-1", "name": "hidden: zero target across signs", "kind": "real", "visible": false, "input": {"root": [0, -3, 4, -4, -1, 2, 5], "k": 0}, "expected": true, "tags": ["hidden", "signed"]},
+    {"id": "hidden-2", "name": "hidden: no pair in skewed tree", "kind": "real", "visible": false, "input": {"root": [1, null, 2, null, 3, null, 4], "k": 20}, "expected": false, "tags": ["hidden", "skewed"]}
+  ]
+}

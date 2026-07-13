@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_702",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: target near right side",
+      "kind": "sample",
+      "visible": true,
+      "input": {"reader": [-1,0,3,5,9,12], "target": 9},
+      "expected": 4,
+      "tags": ["sample", "found"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: target falls in a gap",
+      "kind": "sample",
+      "visible": true,
+      "input": {"reader": [-1,0,3,5,9,12], "target": 2},
+      "expected": -1,
+      "tags": ["sample", "not-found"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: find final value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"reader": [1,2,4,8,16], "target": 16},
+      "expected": 4,
+      "tags": ["sample", "last-value"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one-value reader hit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"reader": [7], "target": 7},
+      "expected": 0,
+      "tags": ["trial", "single-value", "found"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: target before minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"reader": [4,8,12], "target": 1},
+      "expected": -1,
+      "tags": ["trial", "below-range"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: negative target at first index",
+      "kind": "real",
+      "visible": false,
+      "input": {"reader": [-20,-10,-3,0,11], "target": -20},
+      "expected": 0,
+      "tags": ["hidden", "first-value"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: target beyond maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {"reader": [2,5,9,14,21], "target": 22},
+      "expected": -1,
+      "tags": ["hidden", "above-range", "sentinel"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: singleton miss",
+      "kind": "real",
+      "visible": false,
+      "input": {"reader": [3], "target": 2},
+      "expected": -1,
+      "tags": ["hidden", "single-value", "not-found"]
+    }
+  ]
+}

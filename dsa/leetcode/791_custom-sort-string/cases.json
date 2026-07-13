@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_791",
+  "cases": [
+    {"id": "sample-1", "name": "sample: reversed custom prefix", "kind": "sample", "visible": true, "input": {"order": "cba", "s": "abcd"}, "expected": "cbad", "validator": {"kind": "custom_sorted_string"}, "tags": ["sample", "unranked"]},
+    {"id": "sample-2", "name": "sample: partial alphabet order", "kind": "sample", "visible": true, "input": {"order": "bcafg", "s": "abcd"}, "expected": "bcad", "validator": {"kind": "custom_sorted_string"}, "tags": ["sample", "unranked"]},
+    {"id": "sample-3", "name": "sample: repeated ranked character", "kind": "sample", "visible": true, "input": {"order": "kqep", "s": "kqeep"}, "expected": "kqeep", "validator": {"kind": "custom_sorted_string"}, "tags": ["sample", "duplicates"]},
+    {"id": "trial-1", "name": "trial: repeated ranked and unranked groups", "kind": "trial", "visible": true, "input": {"order": "cba", "s": "aaabbccdd"}, "expected": "ccbbaaadd", "validator": {"kind": "custom_sorted_string"}, "tags": ["trial", "duplicates", "unranked"]},
+    {"id": "trial-2", "name": "trial: all characters ranked", "kind": "trial", "visible": true, "input": {"order": "zyx", "s": "xxyyzz"}, "expected": "zzyyxx", "validator": {"kind": "custom_sorted_string"}, "tags": ["trial", "duplicates"]},
+    {"id": "trial-3", "name": "trial: no input character ranked", "kind": "trial", "visible": true, "input": {"order": "abc", "s": "dddd"}, "expected": "dddd", "validator": {"kind": "custom_sorted_string"}, "tags": ["trial", "unranked"]},
+    {"id": "hidden-1", "name": "hidden: ranked subset with several leftovers", "kind": "real", "visible": false, "input": {"order": "hgfedcba", "s": "leetcode"}, "expected": "eeedclto", "validator": {"kind": "custom_sorted_string"}, "tags": ["hidden", "unranked", "duplicates"]},
+    {"id": "hidden-2", "name": "hidden: full alphabet ranking", "kind": "real", "visible": false, "input": {"order": "abcdefghijklmnopqrstuvwxyz", "s": "mississippi"}, "expected": "iiiimppssss", "validator": {"kind": "custom_sorted_string"}, "tags": ["hidden", "duplicates"]},
+    {"id": "hidden-3", "name": "hidden: keyboard-prefix ranking", "kind": "real", "visible": false, "input": {"order": "qwerty", "s": "typewriter"}, "expected": "weerrttypi", "validator": {"kind": "custom_sorted_string"}, "tags": ["hidden", "unranked", "duplicates"]}
+  ]
+}

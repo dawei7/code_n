@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_475",
+  "cases": [
+    {"id": "sample-middle-heater", "name": "sample: one heater between extreme houses", "kind": "sample", "visible": true, "input": {"houses": [1, 2, 3], "heaters": [2]}, "expected": 1, "tags": ["sample", "middle"]},
+    {"id": "sample-end-heaters", "name": "sample: heaters at both endpoints", "kind": "sample", "visible": true, "input": {"houses": [1, 2, 3, 4], "heaters": [1, 4]}, "expected": 1, "tags": ["sample", "endpoints"]},
+    {"id": "sample-far-house", "name": "sample: farther house determines radius", "kind": "sample", "visible": true, "input": {"houses": [1, 5], "heaters": [2]}, "expected": 3, "tags": ["sample", "outside"]},
+    {"id": "trial-exact", "name": "trial: every house has a heater", "kind": "trial", "visible": true, "input": {"houses": [2, 4, 8], "heaters": [8, 2, 4]}, "expected": 0, "tags": ["trial", "exact"]},
+    {"id": "trial-unsorted", "name": "trial: unsorted inputs", "kind": "trial", "visible": true, "input": {"houses": [10, 1, 6], "heaters": [8, 3]}, "expected": 2, "tags": ["trial", "unsorted"]},
+    {"id": "hidden-left-outside", "name": "hidden: farthest house lies left of all heaters", "kind": "real", "visible": false, "input": {"houses": [1, 9, 10], "heaters": [8, 12]}, "expected": 7, "tags": ["hidden", "outside"]},
+    {"id": "hidden-duplicates", "name": "hidden: duplicate houses and heaters", "kind": "real", "visible": false, "input": {"houses": [1, 1, 2, 2], "heaters": [1, 1]}, "expected": 1, "tags": ["hidden", "duplicates"]}
+  ]
+}

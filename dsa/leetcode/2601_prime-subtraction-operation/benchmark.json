@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_2601",
+  "cases": [
+    {
+      "id": "benchmark-descending-adjustable",
+      "name": "benchmark: descending values can be adjusted",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          20,
+          17,
+          13,
+          11
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

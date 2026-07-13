@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_62",
+  "cases": [
+    {"id": "sample-wide", "name": "sample: wide grid", "kind": "sample", "visible": true, "input": {"m": 3, "n": 7}, "expected": 28, "tags": ["sample"]},
+    {"id": "sample-tall", "name": "sample: tall grid", "kind": "sample", "visible": true, "input": {"m": 3, "n": 2}, "expected": 3, "tags": ["sample"]},
+    {"id": "trial-single-row", "name": "only rightward moves", "kind": "trial", "visible": true, "input": {"m": 1, "n": 8}, "expected": 1, "tags": ["boundary"]},
+    {"id": "trial-square", "name": "small square", "kind": "trial", "visible": true, "input": {"m": 4, "n": 4}, "expected": 20, "tags": ["combinatorics"]},
+    {"id": "real-ten", "name": "hidden: larger square", "kind": "real", "visible": false, "input": {"m": 10, "n": 10}, "expected": 48620, "tags": ["hidden", "combinatorics"]}
+  ]
+}

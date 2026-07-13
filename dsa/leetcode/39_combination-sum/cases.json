@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_39",
+  "cases": [
+    {"id": "sample-1", "name": "sample: reused and singleton solutions", "kind": "sample", "visible": true, "input": {"candidates": [2, 3, 6, 7], "target": 7}, "expected": [[2, 2, 3], [7]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "reuse"]},
+    {"id": "sample-2", "name": "sample: three combinations", "kind": "sample", "visible": true, "input": {"candidates": [2, 3, 5], "target": 8}, "expected": [[2, 2, 2, 2], [2, 3, 3], [3, 5]], "validator": {"kind": "unordered_list"}, "tags": ["sample"]},
+    {"id": "trial-no-solution", "name": "target below the candidate", "kind": "trial", "visible": true, "input": {"candidates": [2], "target": 1}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["no-solution"]},
+    {"id": "trial-one-repeated-value", "name": "one candidate reused", "kind": "trial", "visible": true, "input": {"candidates": [2], "target": 4}, "expected": [[2, 2]], "validator": {"kind": "unordered_list"}, "tags": ["reuse"]},
+    {"id": "real-overlapping-combinations", "name": "hidden: combinations share candidates", "kind": "real", "visible": false, "input": {"candidates": [2, 3, 5], "target": 10}, "expected": [[2, 2, 2, 2, 2], [2, 2, 3, 3], [2, 3, 5], [5, 5]], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "reuse"]}
+  ]
+}

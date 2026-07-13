@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_384",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: shuffle then reset",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "operations": [
+          "shuffle",
+          "reset"
+        ]
+      },
+      "expected": [
+        [
+          2,
+          3,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "shuffle_array_trace",
+        "values_param": "nums",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "reset"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated shuffles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "operations": [
+          "shuffle",
+          "shuffle"
+        ]
+      },
+      "expected": [
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "shuffle_array_trace",
+        "values_param": "nums",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "shuffle"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single element",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "operations": [
+          "shuffle",
+          "reset",
+          "shuffle"
+        ]
+      },
+      "expected": [
+        [
+          5
+        ],
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "validator": {
+        "kind": "shuffle_array_trace",
+        "values_param": "nums",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate multiplicities",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2
+        ],
+        "operations": [
+          "shuffle",
+          "reset"
+        ]
+      },
+      "expected": [
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ]
+      ],
+      "validator": {
+        "kind": "shuffle_array_trace",
+        "values_param": "nums",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-reset-only",
+      "name": "trial: repeated resets",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          -2,
+          0
+        ],
+        "operations": [
+          "reset",
+          "reset"
+        ]
+      },
+      "expected": [
+        [
+          4,
+          -2,
+          0
+        ],
+        [
+          4,
+          -2,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "shuffle_array_trace",
+        "values_param": "nums",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "trial",
+        "reset"
+      ]
+    },
+    {
+      "id": "hidden-negative-values",
+      "name": "hidden: shuffle signed values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -3,
+          0,
+          7,
+          -1
+        ],
+        "operations": [
+          "shuffle",
+          "shuffle",
+          "reset"
+        ]
+      },
+      "expected": [
+        [
+          7,
+          -3,
+          -1,
+          0
+        ],
+        [
+          -1,
+          7,
+          0,
+          -3
+        ],
+        [
+          -3,
+          0,
+          7,
+          -1
+        ]
+      ],
+      "validator": {
+        "kind": "shuffle_array_trace",
+        "values_param": "nums",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-return-original",
+      "name": "hidden: original order is a valid shuffle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          9
+        ],
+        "operations": [
+          "shuffle",
+          "reset"
+        ]
+      },
+      "expected": [
+        [
+          8,
+          9
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "validator": {
+        "kind": "shuffle_array_trace",
+        "values_param": "nums",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "hidden",
+        "identity-permutation"
+      ]
+    }
+  ]
+}

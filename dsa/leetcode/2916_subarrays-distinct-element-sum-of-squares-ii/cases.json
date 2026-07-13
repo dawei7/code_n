@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2916",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated first value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "segment-tree"
+      ],
+      "expected": 15
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all values distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "distinct"
+      ],
+      "expected": 20
+    },
+    {
+      "id": "trial-paired-duplicates",
+      "name": "trial: duplicate blocks update previous ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "tags": [
+        "trial",
+        "lazy"
+      ],
+      "expected": 22
+    },
+    {
+      "id": "real-alternating-values",
+      "name": "hidden: alternating values create repeated range updates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          2,
+          4
+        ]
+      },
+      "tags": [
+        "hidden",
+        "segment-tree"
+      ],
+      "expected": 132
+    }
+  ]
+}

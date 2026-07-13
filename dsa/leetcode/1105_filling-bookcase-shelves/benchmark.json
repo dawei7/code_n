@@ -1,0 +1,44 @@
+{
+  "challenge_id": "lc_1105",
+  "cases": [
+    {
+      "id": "benchmark-six-books",
+      "name": "benchmark: six books",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "books": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "shelf_width": 6
+      },
+      "expected": 13,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

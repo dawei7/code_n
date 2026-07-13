@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_755",
+  "cases": [
+    {"id": "sample-1", "name": "sample: fill both sides of a ridge", "kind": "sample", "visible": true, "input": {"heights": [2,1,1,2,1,2,2], "volume": 4, "k": 3}, "expected": [2,2,2,3,2,2,2], "tags": ["sample", "both-sides"]},
+    {"id": "sample-2", "name": "sample: descend entirely to the left", "kind": "sample", "visible": true, "input": {"heights": [1,2,3,4], "volume": 2, "k": 2}, "expected": [2,3,3,4], "tags": ["sample", "left-flow"]},
+    {"id": "trial-1", "name": "trial: level a three-cell basin", "kind": "trial", "visible": true, "input": {"heights": [3,1,3], "volume": 5, "k": 1}, "expected": [4,4,4], "tags": ["trial", "basin"]},
+    {"id": "trial-2", "name": "trial: flat terrain expands from center", "kind": "trial", "visible": true, "input": {"heights": [1,1,1], "volume": 3, "k": 1}, "expected": [2,2,2], "tags": ["trial", "flat"]},
+    {"id": "trial-3", "name": "trial: equal lows prefer the left", "kind": "trial", "visible": true, "input": {"heights": [1,2,1], "volume": 1, "k": 1}, "expected": [2,2,1], "tags": ["trial", "left-priority"]},
+    {"id": "hidden-1", "name": "hidden: single terrain column", "kind": "real", "visible": false, "input": {"heights": [5], "volume": 3, "k": 0}, "expected": [8], "tags": ["hidden", "single-position"]},
+    {"id": "hidden-2", "name": "hidden: tall barrier stops left traversal", "kind": "real", "visible": false, "input": {"heights": [5,1,2], "volume": 1, "k": 2}, "expected": [5,2,2], "tags": ["hidden", "barrier"]},
+    {"id": "hidden-3", "name": "hidden: closest point on lower plateau", "kind": "real", "visible": false, "input": {"heights": [1,1,2], "volume": 1, "k": 2}, "expected": [1,2,2], "tags": ["hidden", "plateau"]}
+  ]
+}

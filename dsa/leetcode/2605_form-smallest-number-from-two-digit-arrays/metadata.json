@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_2605",
+  "source": "leetcode",
+  "frontend_id": "2605",
+  "slug": "form-smallest-number-from-two-digit-arrays",
+  "title": "Form Smallest Number From Two Digit Arrays",
+  "difficulty": "Easy",
+  "acceptance_rate": 55.39319844667511,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    }
+  ],
+  "url": "https://leetcode.com/problems/form-smallest-number-from-two-digit-arrays/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:tinkoff",
+    "leetcode_topic:array",
+    "leetcode_topic:enumeration",
+    "leetcode_topic:hash-table"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:tinkoff",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:enumeration",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Tinkoff",
+      "slug": "tinkoff"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Tinkoff",
+        "slug": "tinkoff",
+        "timesEncountered": 4
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

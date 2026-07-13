@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_1289",
+  "cases": [
+    {
+      "id": "benchmark-four-by-four",
+      "name": "benchmark: four by four",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            10,
+            3,
+            2,
+            8
+          ],
+          [
+            4,
+            6,
+            5,
+            1
+          ],
+          [
+            7,
+            2,
+            9,
+            3
+          ],
+          [
+            1,
+            5,
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

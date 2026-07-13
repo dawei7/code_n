@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_687",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: matching right branch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          4,
+          5,
+          1,
+          1,
+          null,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "right-arm"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: matching left subtree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          4,
+          5,
+          4,
+          4,
+          null,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "left-subtree"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single node",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: complete same-valued tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "two-arms"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: no equal edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "all-different"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: empty tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": []
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "empty-tree"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: same-valued right chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          2,
+          null,
+          2,
+          null,
+          2,
+          null,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "skewed-tree"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: longest path avoids root",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          9,
+          2,
+          3,
+          2,
+          2,
+          null,
+          null,
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "below-root"
+      ]
+    }
+  ]
+}
+

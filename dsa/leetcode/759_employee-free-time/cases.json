@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_759",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one common gap", "kind": "sample", "visible": true, "input": {"schedule": [[[1,2],[5,6]],[[1,3]],[[4,10]]]}, "expected": [[3,4]], "tags": ["sample", "one-gap"]},
+    {"id": "sample-2", "name": "sample: two common gaps", "kind": "sample", "visible": true, "input": {"schedule": [[[1,3],[6,7]],[[2,4]],[[2,5],[9,12]]]}, "expected": [[5,6],[7,9]], "tags": ["sample", "multiple-gaps"]},
+    {"id": "trial-1", "name": "trial: one employee with a gap", "kind": "trial", "visible": true, "input": {"schedule": [[[1,2],[4,5]]]}, "expected": [[2,4]], "tags": ["trial", "single-employee"]},
+    {"id": "trial-2", "name": "trial: all busy intervals overlap", "kind": "trial", "visible": true, "input": {"schedule": [[[1,5]],[[2,6]],[[3,4]]]}, "expected": [], "tags": ["trial", "overlap"]},
+    {"id": "trial-3", "name": "trial: touching intervals have no gap", "kind": "trial", "visible": true, "input": {"schedule": [[[1,2]],[[2,3]],[[3,4]]]}, "expected": [], "tags": ["trial", "touching"]},
+    {"id": "hidden-1", "name": "hidden: nested interval followed by gap", "kind": "real", "visible": false, "input": {"schedule": [[[1,10]],[[2,3]],[[12,14]]]}, "expected": [[10,12]], "tags": ["hidden", "nested"]},
+    {"id": "hidden-2", "name": "hidden: several disjoint busy blocks", "kind": "real", "visible": false, "input": {"schedule": [[[0,1],[8,9]],[[3,4]],[[6,7]]]}, "expected": [[1,3],[4,6],[7,8]], "tags": ["hidden", "disjoint"]},
+    {"id": "hidden-3", "name": "hidden: overlap extends the merged end", "kind": "real", "visible": false, "input": {"schedule": [[[1,4],[8,10]],[[2,9]]]}, "expected": [], "tags": ["hidden", "bridge-overlap"]}
+  ]
+}

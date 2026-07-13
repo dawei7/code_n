@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_806",
+  "measurement_note": "Size is the string length. Maintaining the active line takes O(size); recomputing the complete layout for every growing prefix takes O(size^2).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 narrow characters", "kind": "benchmark", "visible": false, "size": 4, "input": {"widths": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "s": "aaaa"}, "expected": [1, 8], "tags": ["benchmark", "scaling", "single-line"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 narrow characters", "kind": "benchmark", "visible": false, "size": 16, "input": {"widths": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "s": "aaaaaaaaaaaaaaaa"}, "expected": [1, 32], "tags": ["benchmark", "scaling", "single-line"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 24 narrow characters", "kind": "benchmark", "visible": false, "size": 24, "input": {"widths": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "s": "aaaaaaaaaaaaaaaaaaaaaaaa"}, "expected": [1, 48], "tags": ["benchmark", "scaling", "single-line"]}
+  ]
+}

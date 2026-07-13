@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1218",
+  "cases": [
+    {
+      "id": "benchmark-zero-difference",
+      "name": "benchmark: zero difference",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "difference": 0
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

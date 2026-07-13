@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "262",
+  "frontend_id": "262",
+  "title_slug": "trips-and-users",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2064285477",
+  "verified_at": "2026-07-11T20:35:26.366778+00:00"
+}

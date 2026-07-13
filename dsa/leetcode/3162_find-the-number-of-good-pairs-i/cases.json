@@ -1,0 +1,117 @@
+{
+  "challenge_id": "lc_3162",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: only one divisible pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          3,
+          4
+        ],
+        "nums2": [
+          1,
+          3,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two pairs from twelve",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          4,
+          12
+        ],
+        "nums2": [
+          2,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single good pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          10
+        ],
+        "nums2": [
+          2
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-duplicates-count-indices",
+      "name": "trial: duplicate values count as separate indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          6,
+          6,
+          12
+        ],
+        "nums2": [
+          1,
+          2,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 9,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-no-pairs",
+      "name": "real: no product divides any value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          5,
+          7,
+          11
+        ],
+        "nums2": [
+          2,
+          3
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "zero"
+      ]
+    }
+  ]
+}

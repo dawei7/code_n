@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_424",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: alternating string fits the budget",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "ABAB", "k": 2},
+      "expected": 4,
+      "tags": ["sample", "alternating"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: best window is a proper substring",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "AABABBA", "k": 1},
+      "expected": 4,
+      "tags": ["sample", "window"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: string already repeats one letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "AAAA", "k": 0},
+      "expected": 4,
+      "tags": ["sample", "no-change"]
+    },
+    {
+      "id": "trial-zero-budget",
+      "name": "trial: zero budget selects the longest run",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "ABAA", "k": 0},
+      "expected": 2,
+      "tags": ["trial", "zero-budget"]
+    },
+    {
+      "id": "trial-one-change",
+      "name": "trial: one change joins a two-character window",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "ABCDE", "k": 1},
+      "expected": 2,
+      "tags": ["trial", "distinct"]
+    },
+    {
+      "id": "hidden-whole-string",
+      "name": "hidden: budget transforms the whole string",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "ABBB", "k": 2},
+      "expected": 4,
+      "tags": ["hidden", "whole-string"]
+    },
+    {
+      "id": "hidden-center-run",
+      "name": "hidden: both ends can join the center run",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "BAAAB", "k": 2},
+      "expected": 5,
+      "tags": ["hidden", "center"]
+    },
+    {
+      "id": "hidden-competing-targets",
+      "name": "hidden: best target changes between windows",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "ABBCACBB", "k": 2},
+      "expected": 4,
+      "tags": ["hidden", "targets"]
+    },
+    {
+      "id": "hidden-single",
+      "name": "hidden: one-character input",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "Z", "k": 0},
+      "expected": 1,
+      "tags": ["hidden", "single"]
+    }
+  ]
+}

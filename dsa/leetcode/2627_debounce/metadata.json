@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2627",
+  "source": "leetcode",
+  "frontend_id": "2627",
+  "slug": "debounce",
+  "title": "Debounce",
+  "difficulty": "Medium",
+  "acceptance_rate": 91.67304439846178,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/debounce/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript",
+    "leetcode_studyplan:30-days-of-javascript",
+    "leetcode_studyplan:30-days-of-javascript:30-days-of-javascript-155-8jib",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode",
+    "study_plan:30-days-of-javascript",
+    "study_plan_section:30-days-of-javascript:30-days-of-javascript-155-8jib",
+    "subset:neetcode:allNC"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-javascript",
+      "plan_name": "30 Days of JavaScript",
+      "section_slug": "30-days-of-javascript-155-8jib",
+      "section_name": "Promises and Time",
+      "path": [
+        "Promises and Time"
+      ],
+      "order": 18,
+      "section_order": 4,
+      "problem_order": 7,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-javascript/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "JavaScript"
+      ],
+      "order": 957,
+      "section_order": 18,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "debounce",
+      "leetcode_slug": "debounce",
+      "difficulty": "Medium",
+      "problem_order": 14
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_693",
+  "measurement_note": "Size is the number of significant bits in n. Every tier is a fully alternating value, so a linear scan examines all bits. Rechecking every earlier bit against each newly exposed bit takes quadratic time in this workload variable.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: six alternating bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"n": 42},
+      "expected": true,
+      "tags": ["benchmark", "scaling", "full-scan"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: fifteen alternating bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 15,
+      "input": {"n": 21845},
+      "expected": true,
+      "tags": ["benchmark", "scaling", "full-scan"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: thirty alternating bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 30,
+      "input": {"n": 715827882},
+      "expected": true,
+      "tags": ["benchmark", "scaling", "full-scan"]
+    }
+  ]
+}

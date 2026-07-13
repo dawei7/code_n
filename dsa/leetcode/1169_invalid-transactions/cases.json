@@ -1,0 +1,96 @@
+{
+  "challenge_id": "lc_1169",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: same name different city",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "transactions": [
+          "alice,20,800,mtv",
+          "alice,50,100,beijing"
+        ]
+      },
+      "expected": [
+        "alice,20,800,mtv",
+        "alice,50,100,beijing"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "hashing"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: amount too high",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "transactions": [
+          "alice,20,1200,mtv",
+          "bob,50,100,beijing"
+        ]
+      },
+      "expected": [
+        "alice,20,1200,mtv"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-same-city-high-amount",
+      "name": "same city plus high amount",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "transactions": [
+          "alice,20,800,mtv",
+          "alice,50,1200,mtv"
+        ]
+      },
+      "expected": [
+        "alice,50,1200,mtv"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-two-names",
+      "name": "hidden: two names with invalid transactions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "transactions": [
+          "alice,20,800,mtv",
+          "alice,80,100,beijing",
+          "bob,30,1200,rome",
+          "bob,90,100,paris"
+        ]
+      },
+      "expected": [
+        "alice,20,800,mtv",
+        "alice,80,100,beijing",
+        "bob,30,1200,rome",
+        "bob,90,100,paris"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

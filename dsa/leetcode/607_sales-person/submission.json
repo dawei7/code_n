@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "607",
+  "frontend_id": "607",
+  "title_slug": "sales-person",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065465430",
+  "verified_at": "2026-07-12T21:57:00.963285+00:00"
+}

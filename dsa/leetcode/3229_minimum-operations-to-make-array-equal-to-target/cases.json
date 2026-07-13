@@ -1,0 +1,130 @@
+{
+  "challenge_id": "lc_3229",
+  "cases": [
+    {
+      "id": "sample-mixed-signs",
+      "name": "sample: positive and negative ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          1,
+          2
+        ],
+        "target": [
+          4,
+          6,
+          2,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "range-ops"
+      ]
+    },
+    {
+      "id": "sample-decrement-run",
+      "name": "sample: one decrement run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2
+        ],
+        "target": [
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "decrement"
+      ]
+    },
+    {
+      "id": "trial-already-equal",
+      "name": "trial: arrays already equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ],
+        "target": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-sign-breaks",
+      "name": "trial: zeros split operation runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "target": [
+          2,
+          1,
+          0,
+          -1,
+          -3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "signs"
+      ]
+    },
+    {
+      "id": "real-zigzag-diff",
+      "name": "real: zigzag differences",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          4,
+          2,
+          7,
+          3
+        ],
+        "target": [
+          2,
+          4,
+          4,
+          6,
+          1,
+          8
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "real",
+        "diff"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "434",
+  "frontend_id": "434",
+  "title_slug": "number-of-segments-in-a-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064806234",
+  "verified_at": "2026-07-12T09:06:25.347081+00:00"
+}

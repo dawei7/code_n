@@ -1,0 +1,117 @@
+{
+  "challenge_id": "lc_1383",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: choose two engineers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "speed": [
+          2,
+          10,
+          3,
+          1,
+          5,
+          8
+        ],
+        "efficiency": [
+          5,
+          4,
+          3,
+          9,
+          7,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 60,
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: choose up to three engineers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "speed": [
+          2,
+          10,
+          3,
+          1,
+          5,
+          8
+        ],
+        "efficiency": [
+          5,
+          4,
+          3,
+          9,
+          7,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 68,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-engineer",
+      "name": "only one engineer can be chosen",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "speed": [
+          5,
+          5,
+          5
+        ],
+        "efficiency": [
+          1,
+          2,
+          3
+        ],
+        "k": 1
+      },
+      "expected": 15,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-all-engineers-allowed",
+      "name": "hidden: all engineers allowed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "speed": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "efficiency": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 12,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

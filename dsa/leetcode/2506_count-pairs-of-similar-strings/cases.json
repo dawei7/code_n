@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_2506",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two strings share the same character set",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "aba",
+          "aabb",
+          "abcd",
+          "bac",
+          "aabc"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "bitmask"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all three words are similar",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "aabb",
+          "ab",
+          "ba"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no matching character sets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "nba",
+          "cyp",
+          "ocm"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-similar-pair",
+      "name": "trial: only the two-letter words match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "ab",
+          "ba"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-all-one-letter-set",
+      "name": "hidden: different lengths but the same character set",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aaa",
+          "aa",
+          "a"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

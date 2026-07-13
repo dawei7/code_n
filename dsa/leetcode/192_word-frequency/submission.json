@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "192",
+  "frontend_id": "192",
+  "title_slug": "word-frequency",
+  "paid_only": false,
+  "language": "bash",
+  "source": "solutions/leetcode_bash.sh",
+  "verified_submission_id": "2064196983",
+  "verified_at": "2026-07-11T18:27:53.937212+00:00"
+}

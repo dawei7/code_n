@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1534",
+  "cases": [
+    {
+      "id": "benchmark-all-triplets-valid",
+      "name": "benchmark: every triplet is good",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "a": 0,
+        "b": 0,
+        "c": 0
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

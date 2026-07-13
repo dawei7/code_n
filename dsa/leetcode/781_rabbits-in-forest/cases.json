@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_781",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two group sizes", "kind": "sample", "visible": true, "input": {"answers": [1, 1, 2]}, "expected": 5, "tags": ["sample", "mixed-groups"]},
+    {"id": "sample-2", "name": "sample: partial large group", "kind": "sample", "visible": true, "input": {"answers": [10, 10, 10]}, "expected": 11, "tags": ["sample", "partial-group"]},
+    {"id": "sample-3", "name": "sample: empty survey", "kind": "sample", "visible": true, "input": {"answers": []}, "expected": 0, "tags": ["sample", "empty"]},
+    {"id": "trial-1", "name": "trial: three unique colors", "kind": "trial", "visible": true, "input": {"answers": [0, 0, 0]}, "expected": 3, "tags": ["trial", "zero-answers"]},
+    {"id": "trial-2", "name": "trial: one overflow response starts another group", "kind": "trial", "visible": true, "input": {"answers": [1, 1, 1]}, "expected": 4, "tags": ["trial", "multiple-groups"]},
+    {"id": "trial-3", "name": "trial: one complete group", "kind": "trial", "visible": true, "input": {"answers": [2, 2, 2]}, "expected": 3, "tags": ["trial", "complete-group"]},
+    {"id": "hidden-1", "name": "hidden: mixed complete and partial groups", "kind": "real", "visible": false, "input": {"answers": [0, 1, 1, 2, 2, 2, 2]}, "expected": 9, "tags": ["hidden", "mixed-groups"]},
+    {"id": "hidden-2", "name": "hidden: one report requires unseen rabbits", "kind": "real", "visible": false, "input": {"answers": [4]}, "expected": 5, "tags": ["hidden", "partial-group"]},
+    {"id": "hidden-3", "name": "hidden: two complete groups", "kind": "real", "visible": false, "input": {"answers": [3, 3, 3, 3, 3, 3, 3, 3]}, "expected": 8, "tags": ["hidden", "multiple-groups"]}
+  ]
+}

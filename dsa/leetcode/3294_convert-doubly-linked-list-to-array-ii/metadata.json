@@ -1,0 +1,65 @@
+{
+  "challenge_id": "lc_3294",
+  "source": "leetcode",
+  "frontend_id": "3294",
+  "slug": "convert-doubly-linked-list-to-array-ii",
+  "title": "Convert Doubly Linked List to Array II",
+  "difficulty": "Medium",
+  "acceptance_rate": 83.00465322401949,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Linked List",
+      "slug": "linked-list"
+    },
+    {
+      "name": "Doubly-Linked List",
+      "slug": "doubly-linked-list"
+    }
+  ],
+  "url": "https://leetcode.com/problems/convert-doubly-linked-list-to-array-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:array",
+    "leetcode_topic:doubly-linked-list",
+    "leetcode_topic:linked-list"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:doubly-linked-list",
+    "topic:linked-list"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

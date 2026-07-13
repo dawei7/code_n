@@ -1,0 +1,46 @@
+{
+  "challenge_id": "lc_3985",
+  "source": "leetcode",
+  "frontend_id": "3985",
+  "slug": "palindromic-subarray-sum",
+  "title": "Palindromic Subarray Sum",
+  "difficulty": "Hard",
+  "acceptance_rate": 33.38718362950996,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/palindromic-subarray-sum/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,221 @@
+{
+  "challenge_id": "lc_1255",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: choose dad and good",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "dog",
+          "cat",
+          "dad",
+          "good"
+        ],
+        "letters": [
+          "a",
+          "a",
+          "c",
+          "c",
+          "d",
+          "d",
+          "d",
+          "g",
+          "g",
+          "o",
+          "o"
+        ],
+        "score": [
+          1,
+          0,
+          9,
+          5,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 23,
+      "tags": [
+        "sample",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: high x and z scores",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "xxxz",
+          "ax",
+          "bx",
+          "cx"
+        ],
+        "letters": [
+          "z",
+          "a",
+          "b",
+          "c",
+          "x",
+          "x",
+          "x"
+        ],
+        "score": [
+          4,
+          4,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          10
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: impossible word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "leetcode"
+        ],
+        "letters": [
+          "l",
+          "e",
+          "t",
+          "c",
+          "o",
+          "d"
+        ],
+        "score": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-combined-word",
+      "name": "hidden: combined word beats separate words equally",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "ab"
+        ],
+        "letters": [
+          "a",
+          "b"
+        ],
+        "score": [
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

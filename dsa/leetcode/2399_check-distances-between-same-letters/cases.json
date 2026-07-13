@@ -1,0 +1,211 @@
+{
+  "challenge_id": "lc_2399",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all seen letters match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abaccb",
+        "distance": [
+          1,
+          3,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "string"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: same adjacent letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aa",
+        "distance": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: required distance mismatch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcba",
+        "distance": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-last-letter-mismatch",
+      "name": "trial: z distance mismatch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zz",
+        "distance": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-last-letter-match",
+      "name": "hidden: z distance matches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zz",
+        "distance": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

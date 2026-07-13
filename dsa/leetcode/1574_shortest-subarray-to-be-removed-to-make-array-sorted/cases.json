@@ -1,0 +1,88 @@
+{
+  "challenge_id": "lc_1574",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: remove middle drop",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          10,
+          4,
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: strictly decreasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: already sorted",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-remove-two-values",
+      "name": "hidden: remove a short middle segment",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          3,
+          10,
+          0,
+          7,
+          8,
+          9
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "challenge_id": "lc_1381",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: push then pop",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "max_size": 2,
+        "operations": [
+          [
+            "push",
+            [
+              1
+            ]
+          ],
+          [
+            "push",
+            [
+              2
+            ]
+          ],
+          [
+            "pop",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        2
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: increment bottom elements",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "max_size": 3,
+        "operations": [
+          [
+            "push",
+            [
+              1
+            ]
+          ],
+          [
+            "push",
+            [
+              2
+            ]
+          ],
+          [
+            "increment",
+            [
+              2,
+              5
+            ]
+          ],
+          [
+            "pop",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        7
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: pop empty stack",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "max_size": 1,
+        "operations": [
+          [
+            "pop",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-capacity-limit",
+      "name": "hidden: push beyond capacity is ignored",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "max_size": 2,
+        "operations": [
+          [
+            "push",
+            [
+              1
+            ]
+          ],
+          [
+            "push",
+            [
+              2
+            ]
+          ],
+          [
+            "push",
+            [
+              3
+            ]
+          ],
+          [
+            "increment",
+            [
+              3,
+              10
+            ]
+          ],
+          [
+            "pop",
+            []
+          ],
+          [
+            "pop",
+            []
+          ],
+          [
+            "pop",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        12,
+        11,
+        -1
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

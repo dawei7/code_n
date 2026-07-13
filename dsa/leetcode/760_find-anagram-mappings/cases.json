@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_760",
+  "cases": [
+    {"id": "sample-1", "name": "sample: five distinct values", "kind": "sample", "visible": true, "input": {"nums1": [12, 28, 46, 32, 50], "nums2": [50, 12, 32, 46, 28]}, "expected": [1, 4, 3, 2, 0], "validator": {"kind": "anagram_mapping"}, "tags": ["sample", "distinct"]},
+    {"id": "sample-2", "name": "sample: duplicate values admit alternatives", "kind": "sample", "visible": true, "input": {"nums1": [1, 2, 1], "nums2": [1, 1, 2]}, "expected": [0, 2, 1], "validator": {"kind": "anagram_mapping"}, "tags": ["sample", "duplicates"]},
+    {"id": "trial-1", "name": "trial: single value", "kind": "trial", "visible": true, "input": {"nums1": [7], "nums2": [7]}, "expected": [0], "validator": {"kind": "anagram_mapping"}, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: negative and zero values", "kind": "trial", "visible": true, "input": {"nums1": [-3, 0, 9], "nums2": [9, -3, 0]}, "expected": [1, 2, 0], "validator": {"kind": "anagram_mapping"}, "tags": ["trial", "negative"]},
+    {"id": "trial-3", "name": "trial: already aligned", "kind": "trial", "visible": true, "input": {"nums1": [4, 5, 6, 7], "nums2": [4, 5, 6, 7]}, "expected": [0, 1, 2, 3], "validator": {"kind": "anagram_mapping"}, "tags": ["trial", "identity"]},
+    {"id": "hidden-1", "name": "hidden: all values equal", "kind": "real", "visible": false, "input": {"nums1": [8, 8, 8, 8], "nums2": [8, 8, 8, 8]}, "expected": [0, 1, 2, 3], "validator": {"kind": "anagram_mapping"}, "tags": ["hidden", "all-duplicate"]},
+    {"id": "hidden-2", "name": "hidden: interleaved duplicate groups", "kind": "real", "visible": false, "input": {"nums1": [2, 3, 2, 4, 3], "nums2": [3, 2, 4, 2, 3]}, "expected": [1, 0, 3, 2, 4], "validator": {"kind": "anagram_mapping"}, "tags": ["hidden", "duplicates"]},
+    {"id": "hidden-3", "name": "hidden: reverse ordering", "kind": "real", "visible": false, "input": {"nums1": [10, 20, 30, 40, 50, 60], "nums2": [60, 50, 40, 30, 20, 10]}, "expected": [5, 4, 3, 2, 1, 0], "validator": {"kind": "anagram_mapping"}, "tags": ["hidden", "reverse"]}
+  ]
+}

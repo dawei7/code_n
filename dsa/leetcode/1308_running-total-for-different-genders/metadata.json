@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_1308",
+  "source": "leetcode",
+  "frontend_id": "1308",
+  "slug": "running-total-for-different-genders",
+  "title": "Running Total for Different Genders",
+  "difficulty": "Medium",
+  "acceptance_rate": 86.08105431827593,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/running-total-for-different-genders/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_51",
+  "cases": [
+    {"id": "sample-four", "name": "sample: two four-queen boards", "kind": "sample", "visible": true, "input": {"n": 4}, "expected": [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]], "validator": {"kind": "unordered_list"}, "tags": ["sample"]},
+    {"id": "sample-one", "name": "sample: single queen", "kind": "sample", "visible": true, "input": {"n": 1}, "expected": [["Q"]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "boundary"]},
+    {"id": "trial-two", "name": "no arrangement for two queens", "kind": "trial", "visible": true, "input": {"n": 2}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["impossible"]},
+    {"id": "trial-three", "name": "no arrangement for three queens", "kind": "trial", "visible": true, "input": {"n": 3}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["impossible"]},
+    {"id": "real-six", "name": "hidden: six queens", "kind": "real", "visible": false, "input": {"n": 6}, "expected": null, "validator": {"kind": "unordered_list"}, "tags": ["hidden", "backtracking"]}
+  ]
+}

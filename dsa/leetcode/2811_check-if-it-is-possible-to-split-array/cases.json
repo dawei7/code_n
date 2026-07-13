@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_2811",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: adjacent sum enables split",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1
+        ],
+        "m": 4
+      },
+      "tags": [
+        "sample",
+        "split"
+      ],
+      "expected": true
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: length two always possible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3
+        ],
+        "m": 5
+      },
+      "tags": [
+        "sample",
+        "short"
+      ],
+      "expected": false
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no adjacent pair reaches threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          3,
+          2,
+          3
+        ],
+        "m": 6
+      },
+      "tags": [
+        "sample",
+        "false"
+      ],
+      "expected": true
+    },
+    {
+      "id": "trial-length-one",
+      "name": "trial: length one always possible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ],
+        "m": 100
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": true
+    },
+    {
+      "id": "real-late-adjacent-pair",
+      "name": "hidden: valid adjacent pair appears late",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          7,
+          2,
+          1
+        ],
+        "m": 9
+      },
+      "tags": [
+        "hidden",
+        "late"
+      ],
+      "expected": true
+    }
+  ]
+}

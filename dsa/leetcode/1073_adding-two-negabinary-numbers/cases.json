@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_1073",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed carries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr1": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "arr2": [
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "math"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: zero plus zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr1": [
+          0
+        ],
+        "arr2": [
+          0
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero plus one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr1": [
+          0
+        ],
+        "arr2": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-one-plus-one",
+      "name": "hidden: one plus one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr1": [
+          1
+        ],
+        "arr2": [
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "carry"
+      ]
+    }
+  ]
+}

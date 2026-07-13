@@ -1,0 +1,80 @@
+{
+  "challenge_id": "lc_1375",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two aligned moments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "flips": [
+          3,
+          2,
+          4,
+          1,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one aligned moment",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "flips": [
+          4,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-already-prefix",
+      "name": "every step aligned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "flips": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-last-two-swap",
+      "name": "hidden: final swap alignment",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "flips": [
+          2,
+          1,
+          3,
+          5,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

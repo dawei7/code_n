@@ -1,0 +1,89 @@
+{
+  "challenge_id": "lc_1467",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two single balls",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "balls": [
+          1,
+          1
+        ]
+      },
+      "expected": 1.0,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "sample",
+        "probability"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two thirds probability",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "balls": [
+          2,
+          1,
+          1
+        ]
+      },
+      "expected": 0.66667,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three fifths probability",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "balls": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 0.6,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-two-balanced-colors",
+      "name": "hidden: each box gets one of each color",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "balls": [
+          2,
+          2
+        ]
+      },
+      "expected": 1.0,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

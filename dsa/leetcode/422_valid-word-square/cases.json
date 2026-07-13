@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_422",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: full four-by-four word square",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["abcd", "bnrt", "crmy", "dtye"]},
+      "expected": true,
+      "tags": ["sample", "square"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: valid ragged word square",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["abcd", "bnrt", "crm", "dt"]},
+      "expected": true,
+      "tags": ["sample", "ragged"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: rows and columns differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["ball", "area", "read", "lady"]},
+      "expected": false,
+      "tags": ["sample", "mismatch"]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one diagonal character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"words": ["z"]},
+      "expected": true,
+      "tags": ["trial", "single"]
+    },
+    {
+      "id": "trial-short-tail",
+      "name": "trial: two-row ragged square",
+      "kind": "trial",
+      "visible": true,
+      "input": {"words": ["ab", "b"]},
+      "expected": true,
+      "tags": ["trial", "ragged"]
+    },
+    {
+      "id": "hidden-missing-row",
+      "name": "hidden: first word extends beyond the row count",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["abc", "b"]},
+      "expected": false,
+      "tags": ["hidden", "missing-row"]
+    },
+    {
+      "id": "hidden-missing-column",
+      "name": "hidden: reflected row is too short",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["a", "ab"]},
+      "expected": false,
+      "tags": ["hidden", "missing-column"]
+    },
+    {
+      "id": "hidden-three-ragged",
+      "name": "hidden: three-row symmetric ragged grid",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["abc", "b", "c"]},
+      "expected": true,
+      "tags": ["hidden", "ragged"]
+    },
+    {
+      "id": "hidden-late-mismatch",
+      "name": "hidden: mismatch appears near the final cell",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["abcd", "bnrt", "crmx", "dtye"]},
+      "expected": false,
+      "tags": ["hidden", "late-mismatch"]
+    }
+  ]
+}

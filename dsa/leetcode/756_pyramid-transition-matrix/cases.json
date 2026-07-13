@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_756",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two legal layers", "kind": "sample", "visible": true, "input": {"bottom": "BCD", "allowed": ["BCC", "CDE", "CEA", "FFF"]}, "expected": true, "tags": ["sample", "reachable"]},
+    {"id": "sample-2", "name": "sample: every branch fails", "kind": "sample", "visible": true, "input": {"bottom": "AAAA", "allowed": ["AAB", "AAC", "BCD", "BBE", "DEF"]}, "expected": false, "tags": ["sample", "unreachable"]},
+    {"id": "trial-1", "name": "trial: one transition reaches the top", "kind": "trial", "visible": true, "input": {"bottom": "AB", "allowed": ["ABC"]}, "expected": true, "tags": ["trial", "single-layer"]},
+    {"id": "trial-2", "name": "trial: required pair is missing", "kind": "trial", "visible": true, "input": {"bottom": "AB", "allowed": []}, "expected": false, "tags": ["trial", "missing-rule"]},
+    {"id": "trial-3", "name": "trial: same rule sustains all layers", "kind": "trial", "visible": true, "input": {"bottom": "AAAA", "allowed": ["AAA"]}, "expected": true, "tags": ["trial", "repeated-rule"]},
+    {"id": "hidden-1", "name": "hidden: one branch succeeds after another fails", "kind": "real", "visible": false, "input": {"bottom": "ABC", "allowed": ["ABD", "ABE", "BCF", "DFG", "EFA"]}, "expected": true, "tags": ["hidden", "branching"]},
+    {"id": "hidden-2", "name": "hidden: upper row has no continuation", "kind": "real", "visible": false, "input": {"bottom": "ABC", "allowed": ["ABD", "BCF"]}, "expected": false, "tags": ["hidden", "dead-end"]},
+    {"id": "hidden-3", "name": "hidden: matching branch reaches the top", "kind": "real", "visible": false, "input": {"bottom": "AAA", "allowed": ["AAB", "AAC", "BBD", "CCD"]}, "expected": true, "tags": ["hidden", "matching-branch"]}
+  ]
+}

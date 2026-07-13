@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1140",
+  "cases": [
+    {
+      "id": "benchmark-seven-piles",
+      "name": "benchmark: seven piles",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "piles": [
+          4,
+          10,
+          3,
+          8,
+          2,
+          7,
+          6
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

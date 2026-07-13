@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_3194",
+  "cases": [
+    {
+      "id": "sample-eight-values",
+      "name": "sample: eight values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          8,
+          3,
+          4,
+          15,
+          13,
+          4,
+          1
+        ]
+      },
+      "expected": 5.5,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-six-values",
+      "name": "sample: six values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          9,
+          8,
+          3,
+          10,
+          5
+        ]
+      },
+      "expected": 5.5,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate extremes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 4.0,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-negative-values",
+      "name": "trial: negative and positive values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -1,
+          2,
+          8,
+          9,
+          10
+        ]
+      },
+      "expected": 2.5,
+      "tags": [
+        "signed"
+      ]
+    },
+    {
+      "id": "real-wide-range",
+      "name": "real: wide numeric range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          -100,
+          50,
+          -50,
+          0,
+          7,
+          7,
+          12
+        ]
+      },
+      "expected": 0.0,
+      "tags": [
+        "real",
+        "range"
+      ]
+    }
+  ]
+}

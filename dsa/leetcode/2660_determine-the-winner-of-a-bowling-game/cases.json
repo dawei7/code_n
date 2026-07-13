@@ -1,0 +1,128 @@
+{
+  "challenge_id": "lc_2660",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: player one benefits from ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "player1": [
+          4,
+          10,
+          7,
+          9
+        ],
+        "player2": [
+          6,
+          5,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "strike"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: player two wins with consecutive tens",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "player1": [
+          3,
+          5,
+          7,
+          6
+        ],
+        "player2": [
+          8,
+          10,
+          10,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "strike"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: tied total score",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "player1": [
+          2,
+          3
+        ],
+        "player2": [
+          4,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-two-roll-window",
+      "name": "trial: ten affects next two rolls only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "player1": [
+          10,
+          1,
+          1,
+          10,
+          1
+        ],
+        "player2": [
+          9,
+          2,
+          2,
+          9,
+          2
+        ]
+      },
+      "tags": [
+        "trial",
+        "window"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-late-strike",
+      "name": "hidden: late strike changes only following roll",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "player1": [
+          1,
+          1,
+          10,
+          2
+        ],
+        "player2": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "tags": [
+        "hidden",
+        "late"
+      ],
+      "expected": 2
+    }
+  ]
+}

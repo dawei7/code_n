@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_2395",
+  "cases": [
+    {
+      "id": "benchmark-duplicate-near-start",
+      "name": "benchmark: duplicate sum with mixed values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          3,
+          8,
+          0,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

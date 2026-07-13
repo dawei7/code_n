@@ -1,0 +1,246 @@
+{
+  "challenge_id": "lc_176",
+  "source": "leetcode",
+  "frontend_id": "176",
+  "slug": "second-highest-salary",
+  "title": "Second Highest Salary",
+  "difficulty": "Medium",
+  "acceptance_rate": 47.49732374215881,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/second-highest-salary/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:accenture",
+    "leetcode_company:amazon",
+    "leetcode_company:bloomberg",
+    "leetcode_company:cognizant",
+    "leetcode_company:deloitte",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:infosys",
+    "leetcode_company:lti",
+    "leetcode_company:microsoft",
+    "leetcode_company:oracle",
+    "leetcode_company:tcs",
+    "leetcode_company:zs-associates",
+    "leetcode_studyplan:30-days-of-pandas",
+    "leetcode_studyplan:30-days-of-pandas:30-days-of-pandas-161-m49j",
+    "leetcode_studyplan:top-sql-50",
+    "leetcode_studyplan:top-sql-50:top-sql-50-134-jwwc",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:accenture",
+    "company:amazon",
+    "company:bloomberg",
+    "company:cognizant",
+    "company:deloitte",
+    "company:facebook",
+    "company:google",
+    "company:infosys",
+    "company:lti",
+    "company:microsoft",
+    "company:oracle",
+    "company:tcs",
+    "company:zs-associates",
+    "language:sql",
+    "leetcode",
+    "study_plan:30-days-of-pandas",
+    "study_plan:top-sql-50",
+    "study_plan_section:30-days-of-pandas:30-days-of-pandas-161-m49j",
+    "study_plan_section:top-sql-50:top-sql-50-134-jwwc",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    },
+    {
+      "name": "tcs",
+      "slug": "tcs"
+    },
+    {
+      "name": "LTIMindtree",
+      "slug": "lti"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Cognizant",
+      "slug": "cognizant"
+    },
+    {
+      "name": "Accenture",
+      "slug": "accenture"
+    },
+    {
+      "name": "Deloitte",
+      "slug": "deloitte"
+    },
+    {
+      "name": "ZS Associates",
+      "slug": "zs-associates"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 11
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "tcs",
+        "slug": "tcs",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "LTIMindtree",
+        "slug": "lti",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Oracle",
+        "slug": "oracle",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Cognizant",
+        "slug": "cognizant",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Accenture",
+        "slug": "accenture",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Deloitte",
+        "slug": "deloitte",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "ZS Associates",
+        "slug": "zs-associates",
+        "timesEncountered": 2
+      }
+    ],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-pandas",
+      "plan_name": "30 Days of Pandas",
+      "section_slug": "30-days-of-pandas-161-m49j",
+      "section_name": "Data Manipulation",
+      "path": [
+        "Data Manipulation"
+      ],
+      "order": 12,
+      "section_order": 4,
+      "problem_order": 2,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-pandas/"
+    },
+    {
+      "plan_slug": "top-sql-50",
+      "plan_name": "SQL 50",
+      "section_slug": "top-sql-50-134-jwwc",
+      "section_name": "Advanced String Functions / Regex / Clause",
+      "path": [
+        "Advanced String Functions / Regex / Clause"
+      ],
+      "order": 47,
+      "section_order": 7,
+      "problem_order": 4,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

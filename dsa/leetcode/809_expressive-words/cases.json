@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_809",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one expressive candidate", "kind": "sample", "visible": true, "input": {"s": "heeellooo", "words": ["hello", "hi", "helo"]}, "expected": 1, "tags": ["sample", "mixed"]},
+    {"id": "sample-2", "name": "sample: both long groups stretch", "kind": "sample", "visible": true, "input": {"s": "zzzzzyyyyy", "words": ["zzyy", "zy", "zyy"]}, "expected": 3, "tags": ["sample", "all-expressive"]},
+    {"id": "sample-3", "name": "sample: missing target group", "kind": "sample", "visible": true, "input": {"s": "abcd", "words": ["abc"]}, "expected": 0, "tags": ["sample", "missing-group"]},
+    {"id": "trial-1", "name": "trial: exact unchanged word", "kind": "trial", "visible": true, "input": {"s": "hello", "words": ["hello"]}, "expected": 1, "tags": ["trial", "exact"]},
+    {"id": "trial-2", "name": "trial: short target runs cannot stretch", "kind": "trial", "visible": true, "input": {"s": "abc", "words": ["abc", "abbc", "abcc"]}, "expected": 1, "tags": ["trial", "short-runs"]},
+    {"id": "trial-3", "name": "trial: candidate run exceeds target", "kind": "trial", "visible": true, "input": {"s": "heeellooo", "words": ["heeeellooo"]}, "expected": 0, "tags": ["trial", "too-long"]},
+    {"id": "hidden-1", "name": "hidden: several valid run lengths", "kind": "real", "visible": false, "input": {"s": "heeellooo", "words": ["heeellooo", "hellooo", "heeello", "hello"]}, "expected": 4, "tags": ["hidden", "all-expressive"]},
+    {"id": "hidden-2", "name": "hidden: same counts with wrong characters", "kind": "real", "visible": false, "input": {"s": "aaabbb", "words": ["aaaccc", "ab", "aabb"]}, "expected": 2, "tags": ["hidden", "character-mismatch"]},
+    {"id": "hidden-3", "name": "hidden: extra candidate group", "kind": "real", "visible": false, "input": {"s": "aaa", "words": ["a", "aa", "aaa", "abaa"]}, "expected": 3, "tags": ["hidden", "extra-group"]}
+  ]
+}

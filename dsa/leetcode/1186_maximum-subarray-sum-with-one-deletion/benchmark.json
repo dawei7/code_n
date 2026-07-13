@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1186",
+  "cases": [
+    {
+      "id": "benchmark-large-bridge",
+      "name": "benchmark: large bridge deletion",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          8,
+          -1,
+          6,
+          -7,
+          5,
+          -2,
+          9
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

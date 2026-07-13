@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_116",
+  "cases": [
+    {"id": "sample-perfect", "name": "sample: three perfect levels", "kind": "sample", "visible": true, "input": {"root": [1, 2, 3, 4, 5, 6, 7]}, "expected": [1, 2, 3, 4, 5, 6, 7], "validator": {"kind": "next_right_pointers"}, "tags": ["sample", "perfect"]},
+    {"id": "sample-empty", "name": "sample: empty tree", "kind": "sample", "visible": true, "input": {"root": []}, "expected": [], "validator": {"kind": "next_right_pointers"}, "tags": ["sample", "boundary"]},
+    {"id": "sample-single", "name": "sample: single node", "kind": "sample", "visible": true, "input": {"root": [1]}, "expected": [1], "validator": {"kind": "next_right_pointers"}, "tags": ["sample", "boundary"]},
+    {"id": "trial-two-levels", "name": "two perfect levels", "kind": "trial", "visible": true, "input": {"root": [8, 4, 12]}, "expected": [8, 4, 12], "validator": {"kind": "next_right_pointers"}, "tags": ["cross-parent"]},
+    {"id": "real-four-levels", "name": "hidden: four perfect levels", "kind": "real", "visible": false, "input": {"root": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}, "expected": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "validator": {"kind": "next_right_pointers"}, "tags": ["hidden", "perfect"]}
+  ]
+}

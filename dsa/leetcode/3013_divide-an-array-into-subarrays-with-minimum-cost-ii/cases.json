@@ -1,0 +1,124 @@
+{
+  "challenge_id": "lc_3013",
+  "cases": [
+    {
+      "id": "sample-window-choice",
+      "name": "sample: best starts are in the allowed distance window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          6,
+          4,
+          2
+        ],
+        "k": 3,
+        "dist": 3
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-tight-window",
+      "name": "trial: tight distance forces adjacent starts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          8,
+          3,
+          7,
+          15
+        ],
+        "k": 3,
+        "dist": 1
+      },
+      "expected": 20,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-duplicates-window",
+      "name": "trial: duplicate low costs inside a window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          2,
+          2,
+          2,
+          1
+        ],
+        "k": 4,
+        "dist": 3
+      },
+      "expected": 15,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-late-best-window",
+      "name": "trial: optimal window appears late",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          9,
+          8,
+          7,
+          1,
+          2,
+          1,
+          6
+        ],
+        "k": 4,
+        "dist": 3
+      },
+      "expected": 9,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-many-candidates",
+      "name": "real: many candidate starts and duplicate costs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          20,
+          14,
+          3,
+          18,
+          4,
+          4,
+          17,
+          2,
+          2,
+          16,
+          5,
+          1,
+          1
+        ],
+        "k": 5,
+        "dist": 5
+      },
+      "expected": 26,
+      "tags": [
+        "real",
+        "window"
+      ]
+    }
+  ]
+}

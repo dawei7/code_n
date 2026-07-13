@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_694",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: translated square islands",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1],[0,0,0,1,1]]},
+      "expected": 1,
+      "tags": ["sample", "translation"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three shapes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,1,0,1,1],[1,0,0,0,0],[0,0,0,0,1],[1,1,0,1,1]]},
+      "expected": 3,
+      "tags": ["sample", "multiple-shapes"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated single-cell islands",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,0,1],[0,0,0],[1,0,1]]},
+      "expected": 1,
+      "tags": ["sample", "single-cell"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: rotation remains distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,0,1,0],[0,0,0,1,0]]},
+      "expected": 2,
+      "tags": ["trial", "rotation"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: all water",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[0,0,0],[0,0,0]]},
+      "expected": 0,
+      "tags": ["trial", "no-islands"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: one irregular island",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,1,0],[0,1,1],[0,0,1]]},
+      "expected": 1,
+      "tags": ["hidden", "single-component"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: translated L shapes",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]]},
+      "expected": 1,
+      "tags": ["hidden", "translation", "branched"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: reflection remains distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,0,0,0,1],[1,1,0,1,1]]},
+      "expected": 2,
+      "tags": ["hidden", "reflection"]
+    }
+  ]
+}

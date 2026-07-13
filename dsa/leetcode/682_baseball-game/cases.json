@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_682",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: cancel double and sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "5",
+          "2",
+          "C",
+          "D",
+          "+"
+        ]
+      },
+      "expected": 30,
+      "tags": [
+        "sample",
+        "all-commands"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negative score and nested sums",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "5",
+          "-2",
+          "4",
+          "C",
+          "D",
+          "9",
+          "+",
+          "+"
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "sample",
+        "negative-score"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: cancel the only score",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "1",
+          "C"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: only numeric scores",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "3",
+          "-1",
+          "8"
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "numbers-only"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: repeated doubles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "2",
+          "D",
+          "D",
+          "+"
+        ]
+      },
+      "expected": 26,
+      "tags": [
+        "trial",
+        "derived-scores"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: cancel a derived score",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "10",
+          "20",
+          "+",
+          "C",
+          "D"
+        ]
+      },
+      "expected": 70,
+      "tags": [
+        "hidden",
+        "cancel-derived"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: negative derived values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "-5",
+          "-3",
+          "+",
+          "D"
+        ]
+      },
+      "expected": -32,
+      "tags": [
+        "hidden",
+        "negative-derived"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: multiple cancellations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "1",
+          "2",
+          "3",
+          "C",
+          "C",
+          "D"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "multiple-cancels"
+      ]
+    }
+  ]
+}

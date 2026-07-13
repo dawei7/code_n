@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_165",
+  "cases": [
+    {"id": "sample-different-digit-count", "name": "sample: numeric comparison differs from lexical", "kind": "sample", "visible": true, "input": {"version1": "1.2", "version2": "1.10"}, "expected": -1, "tags": ["sample", "components"]},
+    {"id": "sample-leading-zeroes", "name": "sample: leading zeroes are ignored", "kind": "sample", "visible": true, "input": {"version1": "1.01", "version2": "1.001"}, "expected": 0, "tags": ["sample", "zeroes"]},
+    {"id": "trial-trailing-zeroes", "name": "missing revisions equal zero", "kind": "trial", "visible": true, "input": {"version1": "1.0", "version2": "1.0.0.0"}, "expected": 0, "tags": ["trailing-zeroes"]},
+    {"id": "trial-first-larger", "name": "first differing revision is larger", "kind": "trial", "visible": true, "input": {"version1": "2.0.1", "version2": "1.999.999"}, "expected": 1, "tags": ["early-difference"]},
+    {"id": "real-long-revision", "name": "hidden: long revisions compare without integer conversion", "kind": "real", "visible": false, "input": {"version1": "1.0000000000000000000000002", "version2": "1.0000000000000000000000003"}, "expected": -1, "tags": ["hidden", "large-component"]}
+  ]
+}

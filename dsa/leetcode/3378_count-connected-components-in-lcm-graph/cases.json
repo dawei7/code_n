@@ -1,0 +1,114 @@
+{
+  "challenge_id": "lc_3378",
+  "cases": [
+    {
+      "id": "sample-four-components",
+      "name": "sample: one small lcm edge and three isolated nodes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          3,
+          9
+        ],
+        "threshold": 5
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "lcm",
+        "dsu"
+      ]
+    },
+    {
+      "id": "sample-two-components",
+      "name": "sample: transitive lcm connections below threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          3,
+          9,
+          12
+        ],
+        "threshold": 10
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "lcm",
+        "dsu"
+      ]
+    },
+    {
+      "id": "trial-values-above-threshold",
+      "name": "trial: values above threshold are isolated components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          6,
+          30,
+          35
+        ],
+        "threshold": 12
+      },
+      "expected": 3,
+      "tags": [
+        "regression",
+        "above-threshold"
+      ]
+    },
+    {
+      "id": "trial-common-multiple-bridge",
+      "name": "trial: connection through a common multiple not present in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15,
+          77
+        ],
+        "threshold": 30
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "common-multiple"
+      ]
+    },
+    {
+      "id": "real-mixed-components",
+      "name": "real: mixed connected and isolated lcm groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          6,
+          9,
+          14,
+          21,
+          25,
+          49,
+          121
+        ],
+        "threshold": 42
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "lcm"
+      ]
+    }
+  ]
+}

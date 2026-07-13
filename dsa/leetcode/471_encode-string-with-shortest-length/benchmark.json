@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_471",
+  "measurement_note": "Size is the input string length. Interval DP with linear period detection takes cubic time, while retrying every candidate unit and comparing all characters adds another factor on near-uniform substrings.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: encode a length-6 near-uniform string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"s": "aaaaab"},
+      "expected": "5[a]b",
+      "tags": ["benchmark", "scaling", "near-uniform"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: encode a length-12 near-uniform string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"s": "aaaaaaaaaaab"},
+      "expected": "11[a]b",
+      "tags": ["benchmark", "scaling", "near-uniform"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: encode a length-24 near-uniform string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaab"},
+      "expected": "23[a]b",
+      "tags": ["benchmark", "scaling", "near-uniform"]
+    }
+  ]
+}

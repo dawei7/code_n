@@ -1,0 +1,195 @@
+{
+  "challenge_id": "lc_3238",
+  "cases": [
+    {
+      "id": "sample-two-winners",
+      "name": "sample: players exceed their index",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "pick": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-no-winners",
+      "name": "sample: no color count is high enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "pick": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-player-zero",
+      "name": "trial: player zero wins after one pick",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "pick": [
+          [
+            0,
+            7
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-many-colors",
+      "name": "trial: many colors do not combine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "pick": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "id": "real-mixed-picks",
+      "name": "real: mixed repeated picks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "pick": [
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            9
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "counting"
+      ]
+    }
+  ]
+}

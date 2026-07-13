@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_2407",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: constrained increasing subsequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          1,
+          4,
+          3,
+          4,
+          5,
+          8,
+          15
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "segment-tree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: non-contiguous choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          4,
+          5,
+          1,
+          8,
+          12,
+          4,
+          7
+        ],
+        "k": 5
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: gap too large",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-duplicates-only",
+      "name": "trial: duplicates cannot extend",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-perfect-chain",
+      "name": "hidden: every step fits the limit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

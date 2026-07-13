@@ -1,0 +1,141 @@
+{
+  "challenge_id": "lc_1258",
+  "source": "leetcode",
+  "frontend_id": "1258",
+  "slug": "synonymous-sentences",
+  "title": "Synonymous Sentences",
+  "difficulty": "Medium",
+  "acceptance_rate": 57.440413916417796,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    },
+    {
+      "name": "Sort",
+      "slug": "sort"
+    },
+    {
+      "name": "Union-Find",
+      "slug": "union-find"
+    }
+  ],
+  "url": "https://leetcode.com/problems/synonymous-sentences/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:cruise-automation",
+    "leetcode_company:moveworks",
+    "leetcode_company:rippling",
+    "leetcode_topic:array",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:sort",
+    "leetcode_topic:string",
+    "leetcode_topic:union-find",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:cruise-automation",
+    "company:moveworks",
+    "company:rippling",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:backtracking",
+    "topic:hash-table",
+    "topic:sort",
+    "topic:string",
+    "topic:union-find"
+  ],
+  "company_tags": [
+    {
+      "name": "Rippling",
+      "slug": "rippling"
+    },
+    {
+      "name": "Moveworks",
+      "slug": "moveworks"
+    },
+    {
+      "name": "Cruise",
+      "slug": "cruise-automation"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Moveworks",
+        "slug": "moveworks",
+        "timesEncountered": 6
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Cruise",
+        "slug": "cruise-automation",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Rippling",
+        "slug": "rippling",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 163,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "synonymous-sentences",
+      "leetcode_slug": "synonymous-sentences",
+      "difficulty": "Medium",
+      "problem_order": 163
+    }
+  ]
+}

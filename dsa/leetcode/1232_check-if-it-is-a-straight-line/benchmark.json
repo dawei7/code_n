@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_1232",
+  "cases": [
+    {
+      "id": "benchmark-slope-two",
+      "name": "benchmark: slope two",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "coordinates": [
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            8,
+            15
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

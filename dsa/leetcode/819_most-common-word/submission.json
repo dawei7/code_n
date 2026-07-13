@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "837",
+  "frontend_id": "819",
+  "title_slug": "most-common-word",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.mostCommonWord",
+  "verified_submission_id": "2066342234",
+  "verified_at": "2026-07-13T15:59:53.526278+00:00"
+}

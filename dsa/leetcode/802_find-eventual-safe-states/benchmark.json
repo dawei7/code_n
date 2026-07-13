@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_802",
+  "measurement_note": "Size is the number of vertices in an acyclic chain. Reverse topological elimination takes O(size); starting a fresh traversal from every node revisits suffixes and takes O(size^2).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: safe chain of 4 vertices", "kind": "benchmark", "visible": false, "size": 4, "input": {"graph": [[1], [2], [3], []]}, "expected": [0, 1, 2, 3], "tags": ["benchmark", "scaling", "chain"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: safe chain of 16 vertices", "kind": "benchmark", "visible": false, "size": 16, "input": {"graph": [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], []]}, "expected": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "tags": ["benchmark", "scaling", "chain"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: safe chain of 24 vertices", "kind": "benchmark", "visible": false, "size": 24, "input": {"graph": [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17], [18], [19], [20], [21], [22], [23], []]}, "expected": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "tags": ["benchmark", "scaling", "chain"]}
+  ]
+}

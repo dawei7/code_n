@@ -1,0 +1,20 @@
+{
+  "challenge_id": "lc_1354",
+  "cases": [
+    {
+      "id": "benchmark-single-two",
+      "name": "benchmark: single value above one",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "target": [
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

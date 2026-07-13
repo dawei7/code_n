@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_500",
+  "cases": [
+    {"id": "sample-mixed", "name": "sample: two qualifying words", "kind": "sample", "visible": true, "input": {"words": ["Hello","Alaska","Dad","Peace"]}, "expected": ["Alaska","Dad"], "tags": ["sample", "mixed"]},
+    {"id": "sample-none", "name": "sample: no qualifying word", "kind": "sample", "visible": true, "input": {"words": ["omk"]}, "expected": [], "tags": ["sample", "none"]},
+    {"id": "sample-middle-row", "name": "sample: both use the middle row", "kind": "sample", "visible": true, "input": {"words": ["adsdf","sfd"]}, "expected": ["adsdf","sfd"], "tags": ["sample", "middle-row"]},
+    {"id": "trial-top-row", "name": "trial: mixed-case top-row words", "kind": "trial", "visible": true, "input": {"words": ["Type","Row"]}, "expected": ["Type","Row"], "tags": ["trial", "top-row"]},
+    {"id": "trial-single", "name": "trial: one letter", "kind": "trial", "visible": true, "input": {"words": ["A"]}, "expected": ["A"], "tags": ["trial", "singleton"]},
+    {"id": "hidden-spans-rows", "name": "hidden: letters span all rows", "kind": "real", "visible": false, "input": {"words": ["qaz"]}, "expected": [], "tags": ["hidden", "invalid"]},
+    {"id": "hidden-preserve-order", "name": "hidden: preserve input order and case", "kind": "real", "visible": false, "input": {"words": ["Dad","POP","Alaska"]}, "expected": ["Dad","POP","Alaska"], "tags": ["hidden", "order"]}
+  ]
+}

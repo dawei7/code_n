@@ -1,0 +1,114 @@
+{
+  "challenge_id": "lc_1265",
+  "source": "leetcode",
+  "frontend_id": "1265",
+  "slug": "print-immutable-linked-list-in-reverse",
+  "title": "Print Immutable Linked List in Reverse",
+  "difficulty": "Medium",
+  "acceptance_rate": 94.06680908914352,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Linked List",
+      "slug": "linked-list"
+    },
+    {
+      "name": "Two Pointers",
+      "slug": "two-pointers"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    }
+  ],
+  "url": "https://leetcode.com/problems/print-immutable-linked-list-in-reverse/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-68-vjdw",
+    "leetcode_topic:linked-list",
+    "leetcode_topic:recursion",
+    "leetcode_topic:stack",
+    "leetcode_topic:two-pointers",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan_section:premium-algo-100:premium-algo-100-68-vjdw",
+    "subset:neetcode:allNC",
+    "topic:linked-list",
+    "topic:recursion",
+    "topic:stack",
+    "topic:two-pointers"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-68-vjdw",
+      "section_name": "Linked Lists",
+      "path": [
+        "Linked Lists"
+      ],
+      "order": 37,
+      "section_order": 8,
+      "problem_order": 4,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Linked List"
+      ],
+      "order": 352,
+      "section_order": 5,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "print-immutable-linked-list-in-reverse",
+      "leetcode_slug": "print-immutable-linked-list-in-reverse",
+      "difficulty": "Medium",
+      "problem_order": 11
+    }
+  ]
+}

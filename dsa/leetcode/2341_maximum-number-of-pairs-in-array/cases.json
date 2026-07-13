@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_2341",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three pairs and one leftover",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          1,
+          3,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        3,
+        1
+      ],
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one exact pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single leftover",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-multiple-leftovers",
+      "name": "hidden: two values left after pairing",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_514",
+  "measurement_note": "Size is |ring| times |key|. A circular distance transform spends linear work per DP layer, while comparing every current occurrence with every next occurrence adds another factor of |ring| when all characters match.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 8 by 8 repeated-character state grid", "kind": "benchmark", "visible": false, "size": 64, "input": {"ring": "aaaaaaaa", "key": "aaaaaaaa"}, "expected": 8, "tags": ["benchmark", "scaling", "duplicates"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 by 16 repeated-character state grid", "kind": "benchmark", "visible": false, "size": 256, "input": {"ring": "aaaaaaaaaaaaaaaa", "key": "aaaaaaaaaaaaaaaa"}, "expected": 16, "tags": ["benchmark", "scaling", "duplicates"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 32 by 32 repeated-character state grid", "kind": "benchmark", "visible": false, "size": 1024, "input": {"ring": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "key": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "expected": 32, "tags": ["benchmark", "scaling", "duplicates"]}
+  ]
+}

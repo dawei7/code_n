@@ -1,0 +1,94 @@
+# Mark Elements on Array by Performing Queries
+
+| Field | Value |
+|---|---|
+| Source | LeetCode |
+| Frontend ID | 3080 |
+| Difficulty | Medium |
+| Category | Algorithms |
+| Topics | Array, Hash Table, Sorting, Heap (Priority Queue), Simulation |
+| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
+| Official Link | [mark-elements-on-array-by-performing-queries](https://leetcode.com/problems/mark-elements-on-array-by-performing-queries/) |
+
+## Problem Description
+[Open the original LeetCode problem](https://leetcode.com/problems/mark-elements-on-array-by-performing-queries/).
+
+### Goal
+Given an array of integers and a sequence of queries, you must maintain a "marked" status for each index. For each query `(index, k)`, you first mark the element at the specified index (if not already marked). Then, you identify the `k` smallest unmarked elements in the array (breaking ties by index) and mark them as well. After each query, calculate the sum of all currently unmarked elements.
+
+### Function Contract
+**Inputs**
+
+- `nums`: A list of integers representing the initial array.
+- `queries`: A list of lists, where each inner list contains two integers `[index, k]`.
+
+**Return value**
+
+- A list of integers representing the sum of unmarked elements after each query is processed.
+
+### Examples
+**Example 1**
+
+- Input: `nums = [1, 2, 2, 1, 2, 3, 1]`, `queries = [[1, 2], [3, 3], [4, 2]]`
+- Output: `[8, 6, 0]`
+
+**Example 2**
+
+- Input: `nums = [1, 4, 2, 3]`, `queries = [[0, 1]]`
+- Output: `[7]`
+
+**Example 3**
+
+- Input: `nums = [1, 1, 1]`, `queries = [[0, 1], [1, 2]]`
+- Output: `[2, 0]`
+
+---
+
+## Solution
+### Approach
+The problem is solved using a Min-Heap (Priority Queue) to efficiently retrieve the smallest unmarked elements. We store tuples of `(value, index)` in the heap. A boolean array (or set) tracks which indices have been marked to ensure we skip already marked elements during the heap extraction process.
+
+### Complexity Analysis
+- **Time Complexity**: `O(N log N + Q log N)`, where `N` is the length of `nums` and `Q` is the number of queries. Sorting the initial array takes `O(N log N)`, and each query involves heap operations that take `O(log N)`.
+- **Space Complexity**: `O(N)`, required to store the heap, the marked status array, and the initial array values.
+
+### Reference Implementations
+<details>
+<summary>python</summary>
+
+```python
+import heapq
+
+def solve(nums, queries):
+    n = len(nums)
+    total_sum = sum(nums)
+    marked = [False] * n
+
+    # Create a min-heap of (value, index)
+    # This allows us to efficiently find the smallest unmarked elements
+    pq = []
+    for i in range(n):
+        heapq.heappush(pq, (nums[i], i))
+
+    results = []
+
+    for index, k in queries:
+        # Mark the element at the given index if not already marked
+        if not marked[index]:
+            marked[index] = True
+            total_sum -= nums[index]
+
+        # Mark k smallest unmarked elements
+        count = 0
+        while count < k and pq:
+            val, idx = heapq.heappop(pq)
+            if not marked[idx]:
+                marked[idx] = True
+                total_sum -= val
+                count += 1
+
+        results.append(total_sum)
+
+    return results
+```
+</details>

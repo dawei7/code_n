@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_58",
+  "cases": [
+    {"id": "sample-basic", "name": "sample: two words", "kind": "sample", "visible": true, "input": {"s": "Hello World"}, "expected": 5, "tags": ["sample"]},
+    {"id": "sample-spaces", "name": "sample: irregular spacing", "kind": "sample", "visible": true, "input": {"s": "   fly me   to   the moon  "}, "expected": 4, "tags": ["sample", "spaces"]},
+    {"id": "trial-single", "name": "one-letter string", "kind": "trial", "visible": true, "input": {"s": "a"}, "expected": 1, "tags": ["boundary"]},
+    {"id": "trial-leading", "name": "leading spaces only", "kind": "trial", "visible": true, "input": {"s": "    final"}, "expected": 5, "tags": ["spaces"]},
+    {"id": "real-trailing", "name": "hidden: long trailing suffix", "kind": "real", "visible": false, "input": {"s": "one two alphabet      "}, "expected": 8, "tags": ["hidden", "trailing-spaces"]}
+  ]
+}

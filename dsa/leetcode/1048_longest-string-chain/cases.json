@@ -1,0 +1,82 @@
+{
+  "challenge_id": "lc_1048",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: bdca chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "ba",
+          "bca",
+          "bda",
+          "bdca"
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: xbc chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "xbc",
+          "pcxbcf",
+          "xb",
+          "cxbc",
+          "pcxbc"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd",
+          "dbqca"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-branching-chain",
+      "name": "hidden: branching chain choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "ab",
+          "ac",
+          "bd",
+          "abc",
+          "abd",
+          "abdd"
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

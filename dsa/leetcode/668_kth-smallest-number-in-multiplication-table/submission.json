@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "668",
+  "frontend_id": "668",
+  "title_slug": "kth-smallest-number-in-multiplication-table",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065543228",
+  "verified_at": "2026-07-13T02:06:45.358916+00:00"
+}

@@ -1,0 +1,124 @@
+{
+  "challenge_id": "lc_2862",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: square-free index group wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          7,
+          3,
+          5,
+          7,
+          2,
+          4,
+          9
+        ]
+      },
+      "tags": [
+        "sample",
+        "number-theory"
+      ],
+      "expected": 16
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: second square-free grouping example",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          10,
+          3,
+          10,
+          1,
+          13,
+          7,
+          9,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "square-free"
+      ],
+      "expected": 19
+    },
+    {
+      "id": "trial-first-ten-indices",
+      "name": "trial: first ten indices form several square-free classes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "tags": [
+        "trial",
+        "classes"
+      ],
+      "expected": 14
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one index is always complete",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          42
+        ]
+      },
+      "tags": [
+        "trial",
+        "single"
+      ],
+      "expected": 42
+    },
+    {
+      "id": "real-heavy-square-index-class",
+      "name": "hidden: values favor the square-index class",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          1,
+          1,
+          8,
+          1,
+          1,
+          1,
+          1,
+          13,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          21
+        ]
+      },
+      "tags": [
+        "hidden",
+        "square-class"
+      ],
+      "expected": 45
+    }
+  ]
+}

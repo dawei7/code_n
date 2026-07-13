@@ -1,0 +1,9 @@
+{
+  "challenge_id": "lc_183",
+  "cases": [
+    {"id":"sample-mixed","name":"sample: two customers never order","kind":"sample","visible":true,"input":{"tables":{"Customers":[{"id":1,"name":"Joe"},{"id":2,"name":"Henry"},{"id":3,"name":"Sam"},{"id":4,"name":"Max"}],"Orders":[{"id":1,"customerId":1},{"id":2,"customerId":3}]}},"expected":{"columns":["Customers"],"rows":[["Henry"],["Max"]]},"tags":["sample","anti-join"]},
+    {"id":"trial-no-orders","name":"empty order table returns every customer","kind":"trial","visible":true,"input":{"tables":{"Customers":[{"id":1,"name":"Ada"},{"id":2,"name":"Lin"}],"Orders":{"columns":["id","customerId"],"rows":[]}}},"expected":{"columns":["Customers"],"rows":[["Ada"],["Lin"]]},"tags":["boundary","empty-table"]},
+    {"id":"trial-all-ordered","name":"all customers have ordered","kind":"trial","visible":true,"input":{"tables":{"Customers":[{"id":1,"name":"A"},{"id":2,"name":"B"}],"Orders":[{"id":7,"customerId":1},{"id":8,"customerId":2}]}},"expected":{"columns":["Customers"],"rows":[]},"tags":["boundary"]},
+    {"id":"real-duplicate-orders","name":"hidden: repeated orders do not duplicate output","kind":"real","visible":false,"input":{"tables":{"Customers":[{"id":1,"name":"A"},{"id":2,"name":"B"},{"id":3,"name":"C"}],"Orders":[{"id":1,"customerId":2},{"id":2,"customerId":2}]}},"expected":{"columns":["Customers"],"rows":[["A"],["C"]]},"tags":["hidden","duplicates"]}
+  ]
+}

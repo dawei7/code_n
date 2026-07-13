@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_1239",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: un iq ue",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          "un",
+          "iq",
+          "ue"
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: cha r act ers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          "cha",
+          "r",
+          "act",
+          "ers"
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: full alphabet",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          "abcdefghijklmnopqrstuvwxyz"
+        ]
+      },
+      "expected": 26,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-invalid-words",
+      "name": "hidden: repeated letters inside words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          "aa",
+          "bb"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "challenge_id": "lc_1",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: pair at front",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          7,
+          11,
+          15
+        ],
+        "target": 9
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: pair after first",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          4
+        ],
+        "target": 6
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "self-use-guard"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "duplicates are different indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "target": 6
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-negatives",
+      "name": "negative complement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -8,
+          12,
+          5,
+          -3,
+          9
+        ],
+        "target": 1
+      },
+      "expected": [
+        0,
+        4
+      ],
+      "tags": [
+        "negative"
+      ]
+    },
+    {
+      "id": "real-late-pair",
+      "name": "hidden: late pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          41,
+          -10,
+          7,
+          22,
+          13,
+          0,
+          -4,
+          19
+        ],
+        "target": 15
+      },
+      "expected": [
+        6,
+        7
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

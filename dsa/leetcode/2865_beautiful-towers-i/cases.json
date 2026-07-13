@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_2865",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: peak near the left",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "maxHeights": [
+          5,
+          3,
+          4,
+          1,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "mountain"
+      ],
+      "expected": 13
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: high middle peak with constraints",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "maxHeights": [
+          6,
+          5,
+          3,
+          9,
+          2,
+          7
+        ]
+      },
+      "tags": [
+        "sample",
+        "mountain"
+      ],
+      "expected": 22
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: plateau around the peak",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "maxHeights": [
+          3,
+          2,
+          5,
+          5,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "plateau"
+      ],
+      "expected": 18
+    },
+    {
+      "id": "trial-increasing-limits",
+      "name": "trial: strictly increasing limits peak at the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maxHeights": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "tags": [
+        "trial",
+        "increasing"
+      ],
+      "expected": 15
+    },
+    {
+      "id": "real-deep-valley",
+      "name": "hidden: low valley constrains both sides",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "maxHeights": [
+          9,
+          8,
+          1,
+          8,
+          9,
+          7,
+          6
+        ]
+      },
+      "tags": [
+        "hidden",
+        "valley"
+      ],
+      "expected": 33
+    }
+  ]
+}

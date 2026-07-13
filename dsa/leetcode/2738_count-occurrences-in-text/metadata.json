@@ -1,0 +1,65 @@
+{
+  "challenge_id": "lc_2738",
+  "source": "leetcode",
+  "frontend_id": "2738",
+  "slug": "count-occurrences-in-text",
+  "title": "Count Occurrences in Text",
+  "difficulty": "Medium",
+  "acceptance_rate": 54.3136908962597,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-occurrences-in-text/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_studyplan:30-days-of-pandas",
+    "leetcode_studyplan:30-days-of-pandas:30-days-of-pandas-165-vohx",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode",
+    "study_plan:30-days-of-pandas",
+    "study_plan_section:30-days-of-pandas:30-days-of-pandas-165-vohx",
+    "topic:database"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-pandas",
+      "plan_name": "30 Days of Pandas",
+      "section_slug": "30-days-of-pandas-165-vohx",
+      "section_name": "Strengthen Your Learning by Solving this Question",
+      "path": [
+        "Strengthen Your Learning by Solving this Question"
+      ],
+      "order": 10,
+      "section_order": 3,
+      "problem_order": 1,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-pandas/"
+    }
+  ],
+  "neetcode_subsets": []
+}

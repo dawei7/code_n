@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_604",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: iterate the encoded LeetCode string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "compressedString": "L1e2t1C1o1d1e1",
+        "operations": [
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ],
+          [
+            "next"
+          ]
+        ]
+      },
+      "expected": [
+        "L",
+        "e",
+        "e",
+        "t",
+        "C",
+        "o",
+        "d",
+        true,
+        "e",
+        false,
+        " "
+      ],
+      "tags": [
+        "sample",
+        "runs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: multi-digit repetition count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "compressedString": "a12",
+        "operations": [
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ]
+        ]
+      },
+      "expected": [
+        "a",
+        "a",
+        true,
+        "a",
+        "a",
+        "a"
+      ],
+      "tags": [
+        "sample",
+        "multi-digit"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated availability checks do not consume",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "compressedString": "x1y1",
+        "operations": [
+          [
+            "hasNext"
+          ],
+          [
+            "hasNext"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        "x",
+        true,
+        "y",
+        false
+      ],
+      "tags": [
+        "sample",
+        "has-next"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: exhausted iterator returns spaces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "compressedString": "z1",
+        "operations": [
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ]
+        ]
+      },
+      "expected": [
+        "z",
+        " ",
+        " ",
+        false
+      ],
+      "tags": [
+        "trial",
+        "exhausted"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: cross several run boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "compressedString": "a2b1c3",
+        "operations": [
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ]
+        ]
+      },
+      "expected": [
+        "a",
+        "a",
+        "b",
+        "c",
+        "c",
+        "c",
+        false
+      ],
+      "tags": [
+        "trial",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: counts with zero digits inside multi-digit values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "compressedString": "m10n2",
+        "operations": [
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ]
+        ]
+      },
+      "expected": [
+        "m",
+        "m",
+        "m",
+        true
+      ],
+      "tags": [
+        "hidden",
+        "count-parsing"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: hasNext changes only after final consumption",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "compressedString": "p2",
+        "operations": [
+          [
+            "hasNext"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ],
+          [
+            "next"
+          ],
+          [
+            "hasNext"
+          ],
+          [
+            "next"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        "p",
+        true,
+        "p",
+        false,
+        " "
+      ],
+      "tags": [
+        "hidden",
+        "state"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{"challenge_id":"lc_201","cases":[
+{"id":"sample-small","name":"sample: suffix bits disappear","kind":"sample","visible":true,"input":{"left":5,"right":7},"expected":4,"tags":["sample","bit-prefix"]},
+{"id":"trial-equal","name":"single-value range","kind":"trial","visible":true,"input":{"left":12,"right":12},"expected":12,"tags":["boundary"]},
+{"id":"trial-zero","name":"zero endpoint","kind":"trial","visible":true,"input":{"left":0,"right":1},"expected":0,"tags":["zero"]},
+{"id":"real-wider","name":"hidden: shared high prefix","kind":"real","visible":false,"input":{"left":49,"right":62},"expected":48,"tags":["hidden","prefix"]}
+]}

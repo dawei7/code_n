@@ -1,0 +1,51 @@
+{
+  "challenge_id": "lc_1125",
+  "cases": [
+    {
+      "id": "benchmark-paired-skills",
+      "name": "benchmark: paired skills beat singles",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "req_skills": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "people": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "c"
+          ],
+          [
+            "d"
+          ],
+          [
+            "a",
+            "d"
+          ],
+          [
+            "b",
+            "c"
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        5
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

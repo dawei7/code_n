@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_815",
+  "cases": [
+    {"id": "sample-1", "name": "sample: transfer at stop seven", "kind": "sample", "visible": true, "input": {"routes": [[1, 2, 7], [3, 6, 7]], "source": 1, "target": 6}, "expected": 2, "tags": ["sample", "transfer"]},
+    {"id": "sample-2", "name": "sample: disconnected route groups", "kind": "sample", "visible": true, "input": {"routes": [[7, 12], [4, 5, 15], [6], [15, 19], [9, 12, 13]], "source": 15, "target": 12}, "expected": -1, "tags": ["sample", "unreachable"]},
+    {"id": "sample-3", "name": "sample: source already equals target", "kind": "sample", "visible": true, "input": {"routes": [[5, 8, 11]], "source": 8, "target": 8}, "expected": 0, "tags": ["sample", "zero-bus"]},
+    {"id": "trial-1", "name": "trial: one direct route", "kind": "trial", "visible": true, "input": {"routes": [[10, 20, 30], [40, 50]], "source": 10, "target": 30}, "expected": 1, "tags": ["trial", "direct"]},
+    {"id": "trial-2", "name": "trial: endpoint absent", "kind": "trial", "visible": true, "input": {"routes": [[1, 2], [2, 3]], "source": 1, "target": 9}, "expected": -1, "tags": ["trial", "absent"]},
+    {"id": "trial-3", "name": "trial: choose a shorter transfer path", "kind": "trial", "visible": true, "input": {"routes": [[1, 2], [2, 3], [3, 8], [1, 7], [7, 8]], "source": 1, "target": 8}, "expected": 2, "tags": ["trial", "shortest"]},
+    {"id": "hidden-1", "name": "hidden: cyclic transfer network", "kind": "real", "visible": false, "input": {"routes": [[1, 2, 3], [3, 4, 5], [5, 6, 1], [6, 7]], "source": 2, "target": 7}, "expected": 3, "tags": ["hidden", "cycle"]},
+    {"id": "hidden-2", "name": "hidden: singleton routes do not connect", "kind": "real", "visible": false, "input": {"routes": [[1], [2], [3]], "source": 1, "target": 3}, "expected": -1, "tags": ["hidden", "singleton", "unreachable"]},
+    {"id": "hidden-3", "name": "hidden: several equal minimum journeys", "kind": "real", "visible": false, "input": {"routes": [[1, 2, 3], [3, 4], [2, 5], [5, 6], [4, 6]], "source": 1, "target": 6}, "expected": 3, "tags": ["hidden", "multiple-paths"]}
+  ]
+}

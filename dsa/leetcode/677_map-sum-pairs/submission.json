@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "677",
+  "frontend_id": "677",
+  "title_slug": "map-sum-pairs",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065556939",
+  "verified_at": "2026-07-13T02:38:51.220082+00:00"
+}

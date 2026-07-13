@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_1375",
+  "cases": [
+    {
+      "id": "benchmark-reversed",
+      "name": "benchmark: reversed flips",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "flips": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

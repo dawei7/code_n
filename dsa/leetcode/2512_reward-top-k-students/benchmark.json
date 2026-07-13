@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_2512",
+  "cases": [
+    {
+      "id": "benchmark-mixed-score-order",
+      "name": "benchmark: mixed scores and id tie-breaks",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "positive_feedback": [
+          "a",
+          "b"
+        ],
+        "negative_feedback": [
+          "x"
+        ],
+        "report": [
+          "a x",
+          "b b",
+          "x x",
+          "a b"
+        ],
+        "student_id": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "expected": [
+        1,
+        3,
+        4
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

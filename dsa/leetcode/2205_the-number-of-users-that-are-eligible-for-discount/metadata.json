@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_2205",
+  "source": "leetcode",
+  "frontend_id": "2205",
+  "slug": "the-number-of-users-that-are-eligible-for-discount",
+  "title": "The Number of Users That Are Eligible for Discount",
+  "difficulty": "Easy",
+  "acceptance_rate": 50.61814382726798,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/the-number-of-users-that-are-eligible-for-discount/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:analytics-quotient",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:analytics-quotient",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Analytics quotient",
+      "slug": "analytics-quotient"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Analytics quotient",
+        "slug": "analytics-quotient",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

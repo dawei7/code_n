@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_2458",
+  "cases": [
+    {
+      "id": "benchmark-balanced-tree",
+      "name": "benchmark: balanced tree leaf and child removals",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "queries": [
+          2,
+          6,
+          7
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

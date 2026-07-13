@@ -1,0 +1,6 @@
+{"challenge_id":"lc_264","cases":[
+{"id":"sample-tenth","name":"sample: tenth ugly number","kind":"sample","visible":true,"input":{"n":10},"expected":12,"tags":["sample","sequence"]},
+{"id":"sample-first","name":"sample: first ugly number","kind":"sample","visible":true,"input":{"n":1},"expected":1,"tags":["sample","boundary"]},
+{"id":"trial-fifteenth","name":"fifteenth sequence value","kind":"trial","visible":true,"input":{"n":15},"expected":24,"tags":["sequence"]},
+{"id":"real-hundredth","name":"hidden: larger sequence prefix","kind":"real","visible":false,"input":{"n":100},"expected":1536,"tags":["hidden","deduplication"]}
+]}

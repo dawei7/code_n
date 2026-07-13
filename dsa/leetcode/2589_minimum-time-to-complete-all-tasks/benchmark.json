@@ -1,0 +1,39 @@
+{
+  "challenge_id": "lc_2589",
+  "cases": [
+    {
+      "id": "benchmark-wide-window-with-small-windows",
+      "name": "benchmark: wide task plus tight windows",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tasks": [
+          [
+            1,
+            10,
+            5
+          ],
+          [
+            2,
+            3,
+            2
+          ],
+          [
+            6,
+            8,
+            2
+          ],
+          [
+            9,
+            10,
+            1
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

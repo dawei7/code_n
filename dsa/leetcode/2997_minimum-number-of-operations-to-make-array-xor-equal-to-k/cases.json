@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2997",
+  "cases": [
+    {
+      "id": "sample-two-bit-difference",
+      "name": "sample: two bits differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-already-equal",
+      "name": "sample: xor already equals target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          0,
+          2,
+          0
+        ],
+        "k": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-single-number",
+      "name": "sample: single number bit flips",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-high-bits",
+      "name": "trial: high bit differences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1024,
+          7,
+          3
+        ],
+        "k": 2048
+      },
+      "expected": 3,
+      "tags": [
+        "bit-count"
+      ]
+    },
+    {
+      "id": "real-many-cancel",
+      "name": "real: many values cancel in xor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          9,
+          9,
+          12
+        ],
+        "k": 12
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

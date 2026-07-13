@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "616",
+  "frontend_id": "616",
+  "title_slug": "add-bold-tag-in-string",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065476941",
+  "verified_at": "2026-07-12T22:33:20.192795+00:00"
+}

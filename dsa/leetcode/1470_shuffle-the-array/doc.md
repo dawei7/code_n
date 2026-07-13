@@ -1,0 +1,69 @@
+# Shuffle the Array
+
+| Field | Value |
+|---|---|
+| Source | LeetCode |
+| Frontend ID | 1470 |
+| Difficulty | Easy |
+| Category | Algorithms |
+| Topics | Array |
+| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
+| Official Link | [shuffle-the-array](https://leetcode.com/problems/shuffle-the-array/) |
+
+## Problem Description
+[Open the original LeetCode problem](https://leetcode.com/problems/shuffle-the-array/).
+
+### Goal
+Given an array shaped as `[x1, x2, ..., xn, y1, y2, ..., yn]`, rearrange it to `[x1, y1, x2, y2, ..., xn, yn]`.
+
+### Function Contract
+**Inputs**
+
+- `nums`: the input array of length `2n`.
+- `n`: half the array length.
+
+**Return value**
+
+The shuffled array.
+
+### Examples
+**Example 1**
+
+- Input: `nums = [2,5,1,3,4,7], n = 3`
+- Output: `[2,3,5,4,1,7]`
+
+**Example 2**
+
+- Input: `nums = [1,2,3,4,4,3,2,1], n = 4`
+- Output: `[1,4,2,3,3,2,4,1]`
+
+**Example 3**
+
+- Input: `nums = [1,1,2,2], n = 2`
+- Output: `[1,2,1,2]`
+
+---
+
+## Solution
+### Approach
+Linear interleaving from the first and second halves.
+
+### Complexity Analysis
+- **Time Complexity**: `O(n)`
+- **Space Complexity**: `O(n)` for the output.
+
+### Reference Implementations
+<details>
+<summary>python</summary>
+
+```python
+def solve(nums, n):
+    n = max(0, min(int(n), len(nums) // 2))
+    result = []
+    for index in range(n):
+        result.append(nums[index])
+        result.append(nums[index + n])
+    result.extend(nums[2 * n:])
+    return result
+```
+</details>

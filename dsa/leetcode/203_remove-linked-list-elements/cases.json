@@ -1,0 +1,6 @@
+{"challenge_id":"lc_203","cases":[
+{"id":"sample-multiple","name":"sample: remove several matching nodes","kind":"sample","visible":true,"input":{"head":[1,2,6,3,4,5,6],"val":6},"expected":[1,2,3,4,5],"tags":["sample","linked-list"]},
+{"id":"trial-all","name":"all nodes match","kind":"trial","visible":true,"input":{"head":[7,7,7],"val":7},"expected":[],"tags":["boundary"]},
+{"id":"trial-empty","name":"empty list","kind":"trial","visible":true,"input":{"head":[],"val":1},"expected":[],"tags":["empty"]},
+{"id":"real-head-tail","name":"hidden: remove head and tail","kind":"real","visible":false,"input":{"head":[2,1,2,3,2],"val":2},"expected":[1,3],"tags":["hidden","boundaries"]}
+]}

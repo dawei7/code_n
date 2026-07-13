@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_529",
+  "cases": [
+    {"id": "sample-region", "name": "sample: reveal a blank region and numbered border", "kind": "sample", "visible": true, "input": {"board": [["E","E","E","E","E"],["E","E","M","E","E"],["E","E","E","E","E"],["E","E","E","E","E"]], "click": [3,0]}, "expected": [["B","1","E","1","B"],["B","1","M","1","B"],["B","1","1","1","B"],["B","B","B","B","B"]], "tags": ["sample", "flood-fill"]},
+    {"id": "sample-mine", "name": "sample: click a mine", "kind": "sample", "visible": true, "input": {"board": [["E","M"],["E","E"]], "click": [0,1]}, "expected": [["E","X"],["E","E"]], "tags": ["sample", "mine"]},
+    {"id": "sample-number", "name": "sample: diagonal mine creates a numbered cell", "kind": "sample", "visible": true, "input": {"board": [["E","E","E"],["E","M","E"],["E","E","E"]], "click": [0,0]}, "expected": [["1","E","E"],["E","M","E"],["E","E","E"]], "tags": ["sample", "diagonal"]},
+    {"id": "trial-single-empty", "name": "trial: one empty square", "kind": "trial", "visible": true, "input": {"board": [["E"]], "click": [0,0]}, "expected": [["B"]], "tags": ["trial", "singleton"]},
+    {"id": "trial-corner-mine", "name": "trial: corner number stops expansion", "kind": "trial", "visible": true, "input": {"board": [["M","E","E"],["E","E","E"]], "click": [1,1]}, "expected": [["M","E","E"],["E","1","E"]], "tags": ["trial", "boundary"]},
+    {"id": "hidden-blank-row", "name": "hidden: reveal an entire one-row board", "kind": "real", "visible": false, "input": {"board": [["E","E","E","E"]], "click": [0,2]}, "expected": [["B","B","B","B"]], "tags": ["hidden", "row"]},
+    {"id": "hidden-multiple-mines", "name": "hidden: count several neighboring mines", "kind": "real", "visible": false, "input": {"board": [["M","E","M"],["E","E","E"],["M","E","M"]], "click": [1,1]}, "expected": [["M","E","M"],["E","4","E"],["M","E","M"]], "tags": ["hidden", "count"]}
+  ]
+}

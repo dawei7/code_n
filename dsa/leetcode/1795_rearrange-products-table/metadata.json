@@ -1,0 +1,114 @@
+{
+  "challenge_id": "lc_1795",
+  "source": "leetcode",
+  "frontend_id": "1795",
+  "slug": "rearrange-products-table",
+  "title": "Rearrange Products Table",
+  "difficulty": "Easy",
+  "acceptance_rate": 85.51942471706067,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/rearrange-products-table/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_studyplan:30-days-of-pandas",
+    "leetcode_studyplan:30-days-of-pandas:30-days-of-pandas-161-m49j",
+    "leetcode_studyplan:premium-sql-50",
+    "leetcode_studyplan:premium-sql-50:premium-sql-50-125-thzz",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:amazon",
+    "company:google",
+    "language:sql",
+    "leetcode",
+    "study_plan:30-days-of-pandas",
+    "study_plan:premium-sql-50",
+    "study_plan_section:30-days-of-pandas:30-days-of-pandas-161-m49j",
+    "study_plan_section:premium-sql-50:premium-sql-50-125-thzz",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      }
+    ],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-pandas",
+      "plan_name": "30 Days of Pandas",
+      "section_slug": "30-days-of-pandas-161-m49j",
+      "section_name": "Data Manipulation",
+      "path": [
+        "Data Manipulation"
+      ],
+      "order": 16,
+      "section_order": 4,
+      "problem_order": 6,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-pandas/"
+    },
+    {
+      "plan_slug": "premium-sql-50",
+      "plan_name": "Advanced SQL 50",
+      "section_slug": "premium-sql-50-125-thzz",
+      "section_name": "Advanced Select and Joins",
+      "path": [
+        "Advanced Select and Joins"
+      ],
+      "order": 28,
+      "section_order": 5,
+      "problem_order": 2,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/premium-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

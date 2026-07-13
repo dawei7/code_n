@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1322",
+  "source": "leetcode",
+  "frontend_id": "1322",
+  "slug": "ads-performance",
+  "title": "Ads Performance",
+  "difficulty": "Easy",
+  "acceptance_rate": 58.455766063501414,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/ads-performance/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:facebook",
+    "leetcode_studyplan:30-days-of-pandas",
+    "leetcode_studyplan:30-days-of-pandas:30-days-of-pandas-166-unju",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:facebook",
+    "language:sql",
+    "leetcode",
+    "study_plan:30-days-of-pandas",
+    "study_plan_section:30-days-of-pandas:30-days-of-pandas-166-unju",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-pandas",
+      "plan_name": "30 Days of Pandas",
+      "section_slug": "30-days-of-pandas-166-unju",
+      "section_name": "Strengthen Your Learning by Solving this Question",
+      "path": [
+        "Strengthen Your Learning by Solving this Question"
+      ],
+      "order": 20,
+      "section_order": 6,
+      "problem_order": 1,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-pandas/"
+    }
+  ],
+  "neetcode_subsets": []
+}

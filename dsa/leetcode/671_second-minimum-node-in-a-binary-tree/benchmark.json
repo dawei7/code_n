@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_671",
+  "measurement_note": "Size is the number of nodes in a legal full binary tree. Direct depth-first traversal processes each node once, while validating every larger candidate by comparing it with every collected node performs quadratic work across the comb-shaped tiers.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 5-node comb tree",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "root": [
+          1,
+          2,
+          1,
+          null,
+          null,
+          3,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "comb-tree"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 13-node comb tree",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 13,
+      "input": {
+        "root": [
+          1,
+          2,
+          1,
+          null,
+          null,
+          3,
+          1,
+          null,
+          null,
+          4,
+          1,
+          null,
+          null,
+          5,
+          1,
+          null,
+          null,
+          6,
+          1,
+          null,
+          null,
+          7,
+          8
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "comb-tree"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 25-node comb tree",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25,
+      "input": {
+        "root": [
+          1,
+          2,
+          1,
+          null,
+          null,
+          3,
+          1,
+          null,
+          null,
+          4,
+          1,
+          null,
+          null,
+          5,
+          1,
+          null,
+          null,
+          6,
+          1,
+          null,
+          null,
+          7,
+          1,
+          null,
+          null,
+          8,
+          1,
+          null,
+          null,
+          9,
+          1,
+          null,
+          null,
+          10,
+          1,
+          null,
+          null,
+          11,
+          1,
+          null,
+          null,
+          12,
+          1,
+          null,
+          null,
+          13,
+          14
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "comb-tree"
+      ]
+    }
+  ]
+}

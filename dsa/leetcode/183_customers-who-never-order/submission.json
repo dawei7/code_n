@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "183",
+  "frontend_id": "183",
+  "title_slug": "customers-who-never-order",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2064194184",
+  "verified_at": "2026-07-11T18:25:29.406707+00:00"
+}

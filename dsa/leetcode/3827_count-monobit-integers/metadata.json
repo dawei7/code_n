@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_3827",
+  "source": "leetcode",
+  "frontend_id": "3827",
+  "slug": "count-monobit-integers",
+  "title": "Count Monobit Integers",
+  "difficulty": "Easy",
+  "acceptance_rate": 66.57840686941674,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-monobit-integers/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:zoho",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:enumeration"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:zoho",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:bit-manipulation",
+    "topic:enumeration"
+  ],
+  "company_tags": [
+    {
+      "name": "Zoho",
+      "slug": "zoho"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Zoho",
+        "slug": "zoho",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

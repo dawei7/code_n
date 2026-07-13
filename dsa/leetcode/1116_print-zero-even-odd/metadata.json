@@ -1,0 +1,52 @@
+{
+  "challenge_id": "lc_1116",
+  "source": "leetcode",
+  "frontend_id": "1116",
+  "slug": "print-zero-even-odd",
+  "title": "Print Zero Even Odd",
+  "difficulty": "Medium",
+  "acceptance_rate": 65.73863971238286,
+  "category": "concurrency",
+  "category_title": "Concurrency",
+  "topics": [
+    {
+      "name": "Concurrency",
+      "slug": "concurrency"
+    }
+  ],
+  "url": "https://leetcode.com/problems/print-zero-even-odd/",
+  "supported_languages": [],
+  "primary_language": "",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:concurrency",
+    "leetcode_company:goldman-sachs",
+    "leetcode_topic:concurrency"
+  ],
+  "tags": [
+    "category:concurrency",
+    "company:goldman-sachs",
+    "leetcode",
+    "topic:concurrency"
+  ],
+  "company_tags": [
+    {
+      "name": "Goldman Sachs",
+      "slug": "goldman-sachs"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Goldman Sachs",
+        "slug": "goldman-sachs",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,47 @@
+{
+  "challenge_id": "lc_1504",
+  "cases": [
+    {
+      "id": "benchmark-all-ones-rectangle",
+      "name": "benchmark: all-one four by five rectangle",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 150,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

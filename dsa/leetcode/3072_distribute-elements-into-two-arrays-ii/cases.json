@@ -1,0 +1,139 @@
+{
+  "challenge_id": "lc_3072",
+  "cases": [
+    {
+      "id": "sample-duplicates",
+      "name": "sample: greater-count distribution with duplicates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        1,
+        3
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-longer",
+      "name": "sample: greater counts decide most placements",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          14,
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        5,
+        3,
+        1,
+        2,
+        14
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: equal greater counts use length tie-break",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-count-tie",
+      "name": "trial: equal greater counts prefer shorter array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          3,
+          2,
+          5,
+          0
+        ]
+      },
+      "expected": [
+        4,
+        3,
+        2,
+        0,
+        1,
+        5
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-ranks",
+      "name": "real: mixed ranks and duplicates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          3,
+          7,
+          2,
+          6,
+          1,
+          5,
+          4,
+          7,
+          0
+        ]
+      },
+      "expected": [
+        8,
+        7,
+        2,
+        6,
+        1,
+        5,
+        4,
+        7,
+        0,
+        3
+      ],
+      "tags": [
+        "real",
+        "fenwick"
+      ]
+    }
+  ]
+}

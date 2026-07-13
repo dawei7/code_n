@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_418",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two words across two rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sentence": [
+          "hello",
+          "world"
+        ],
+        "rows": 2,
+        "cols": 8
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "two-words"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: sentence wraps within rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sentence": [
+          "a",
+          "bcd",
+          "e"
+        ],
+        "rows": 3,
+        "cols": 6
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "wrap"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: narrow rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sentence": [
+          "i",
+          "had",
+          "apple",
+          "pie"
+        ],
+        "rows": 4,
+        "cols": 5
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "narrow"
+      ]
+    },
+    {
+      "id": "trial-one-word",
+      "name": "trial: one word repeats within each row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": [
+          "a"
+        ],
+        "rows": 2,
+        "cols": 4
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "one-word"
+      ]
+    },
+    {
+      "id": "trial-exact-width",
+      "name": "trial: one word exactly fills each row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": [
+          "hello"
+        ],
+        "rows": 3,
+        "cols": 5
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "exact"
+      ]
+    },
+    {
+      "id": "hidden-cycle",
+      "name": "hidden: repeated starting state permits cycles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sentence": [
+          "ab",
+          "c"
+        ],
+        "rows": 20,
+        "cols": 5
+      },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "cycle"
+      ]
+    },
+    {
+      "id": "hidden-long-short",
+      "name": "hidden: mixed word lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sentence": [
+          "abcdef",
+          "g",
+          "hi"
+        ],
+        "rows": 7,
+        "cols": 8
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "mixed-lengths"
+      ]
+    },
+    {
+      "id": "hidden-one-row",
+      "name": "hidden: several completions in one wide row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sentence": [
+          "a",
+          "b"
+        ],
+        "rows": 1,
+        "cols": 20
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "wide"
+      ]
+    }
+  ]
+}

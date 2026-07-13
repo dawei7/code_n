@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_164",
+  "cases": [
+    {"id": "sample-unsorted", "name": "sample: maximum middle gap", "kind": "sample", "visible": true, "input": {"nums": [3, 6, 9, 1]}, "expected": 3, "tags": ["sample", "bucket-sort"]},
+    {"id": "sample-single", "name": "sample: one value", "kind": "sample", "visible": true, "input": {"nums": [10]}, "expected": 0, "tags": ["sample", "boundary"]},
+    {"id": "trial-equal", "name": "all values equal", "kind": "trial", "visible": true, "input": {"nums": [1, 1, 1, 1]}, "expected": 0, "tags": ["duplicates"]},
+    {"id": "trial-two", "name": "two values define the gap", "kind": "trial", "visible": true, "input": {"nums": [100, 3]}, "expected": 97, "tags": ["boundary"]},
+    {"id": "real-duplicates-and-outlier", "name": "hidden: duplicate cluster and outlier", "kind": "real", "visible": false, "input": {"nums": [1, 1, 2, 2, 100, 101]}, "expected": 98, "tags": ["hidden", "outlier"]}
+  ]
+}

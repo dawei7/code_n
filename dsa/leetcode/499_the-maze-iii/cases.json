@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_499",
+  "cases": [
+    {"id": "sample-lex-shortest", "name": "sample: lexicographically smallest shortest route", "kind": "sample", "visible": true, "input": {"maze": [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], "ball": [4,3], "hole": [0,1]}, "expected": "lul", "tags": ["sample", "lexicographic"]},
+    {"id": "sample-impossible", "name": "sample: unreachable hole", "kind": "sample", "visible": true, "input": {"maze": [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], "ball": [4,3], "hole": [3,0]}, "expected": "impossible", "tags": ["sample", "unreachable"]},
+    {"id": "sample-open-square", "name": "sample: equal-distance paths choose d before r", "kind": "sample", "visible": true, "input": {"maze": [[0,0,0],[0,0,0],[0,0,0]], "ball": [0,0], "hole": [2,2]}, "expected": "dr", "tags": ["sample", "tie"]},
+    {"id": "trial-hole-mid-roll", "name": "trial: hole interrupts a corridor roll", "kind": "trial", "visible": true, "input": {"maze": [[0,0,0,0,0]], "ball": [0,0], "hole": [0,2]}, "expected": "r", "tags": ["trial", "mid-roll"]},
+    {"id": "trial-already-there", "name": "trial: ball starts at hole", "kind": "trial", "visible": true, "input": {"maze": [[0]], "ball": [0,0], "hole": [0,0]}, "expected": "", "tags": ["trial", "same-cell"]},
+    {"id": "hidden-vertical", "name": "hidden: direct vertical drop", "kind": "real", "visible": false, "input": {"maze": [[0],[0],[0],[0]], "ball": [0,0], "hole": [2,0]}, "expected": "d", "tags": ["hidden", "vertical"]},
+    {"id": "hidden-turn", "name": "hidden: walls force two turns", "kind": "real", "visible": false, "input": {"maze": [[0,0,1],[1,0,1],[0,0,0]], "ball": [0,0], "hole": [2,2]}, "expected": "rdr", "tags": ["hidden", "turn"]}
+  ]
+}

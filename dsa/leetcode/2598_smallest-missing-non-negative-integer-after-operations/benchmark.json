@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2598",
+  "cases": [
+    {
+      "id": "benchmark-one-remainder-class",
+      "name": "benchmark: every value shares one remainder",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "value": 5
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

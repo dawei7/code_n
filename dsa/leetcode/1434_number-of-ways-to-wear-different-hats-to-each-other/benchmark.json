@@ -1,0 +1,54 @@
+{
+  "challenge_id": "lc_1434",
+  "cases": [
+    {
+      "id": "benchmark-five-factorial",
+      "name": "benchmark: five people all like five hats",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "hats": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": 120,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

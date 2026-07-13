@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1005",
+  "cases": [
+    {
+      "id": "benchmark-mixed",
+      "name": "benchmark: mixed signs",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          -8,
+          -3,
+          -5,
+          2,
+          7,
+          0
+        ],
+        "k": 5
+      },
+      "expected": 25,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

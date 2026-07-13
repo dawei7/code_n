@@ -1,0 +1,44 @@
+{
+  "challenge_id": "lc_1386",
+  "cases": [
+    {
+      "id": "benchmark-mixed-blocks",
+      "name": "benchmark: mixed blocked sections",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "reserved_seats": [
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            9
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

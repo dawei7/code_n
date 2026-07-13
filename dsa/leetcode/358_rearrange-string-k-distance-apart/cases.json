@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_358",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three balanced letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aabbcc",
+        "k": 3
+      },
+      "expected": "abcabc",
+      "validator": {
+        "kind": "rearranged_k_distance",
+        "string_param": "s",
+        "distance_param": "k"
+      },
+      "tags": [
+        "sample",
+        "multiple-valid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: dominant letter is impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaabc",
+        "k": 3
+      },
+      "expected": "",
+      "validator": {
+        "kind": "rearranged_k_distance",
+        "string_param": "s",
+        "distance_param": "k"
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: uneven frequencies at distance two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaadbbcc",
+        "k": 2
+      },
+      "expected": "abacabcd",
+      "validator": {
+        "kind": "rearranged_k_distance",
+        "string_param": "s",
+        "distance_param": "k"
+      },
+      "tags": [
+        "sample",
+        "multiple-valid"
+      ]
+    },
+    {
+      "id": "trial-no-separation",
+      "name": "trial: zero distance preserves all copies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aa",
+        "k": 0
+      },
+      "expected": "aa",
+      "validator": {
+        "kind": "rearranged_k_distance",
+        "string_param": "s",
+        "distance_param": "k"
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-large-distance",
+      "name": "trial: distinct letters tolerate a large distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "k": 10
+      },
+      "expected": "abcd",
+      "validator": {
+        "kind": "rearranged_k_distance",
+        "string_param": "s",
+        "distance_param": "k"
+      },
+      "tags": [
+        "trial",
+        "boundary",
+        "multiple-valid"
+      ]
+    },
+    {
+      "id": "hidden-distance-one",
+      "name": "hidden: distance one permits adjacent copies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaa",
+        "k": 1
+      },
+      "expected": "aaaa",
+      "validator": {
+        "kind": "rearranged_k_distance",
+        "string_param": "s",
+        "distance_param": "k"
+      },
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-tight-impossible",
+      "name": "hidden: two pairs cannot fit distance three",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aabb",
+        "k": 3
+      },
+      "expected": "",
+      "validator": {
+        "kind": "rearranged_k_distance",
+        "string_param": "s",
+        "distance_param": "k"
+      },
+      "tags": [
+        "hidden",
+        "impossible"
+      ]
+    },
+    {
+      "id": "hidden-tight-feasible",
+      "name": "hidden: alternating copies exactly meet distance two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaabbc",
+        "k": 2
+      },
+      "expected": "ababac",
+      "validator": {
+        "kind": "rearranged_k_distance",
+        "string_param": "s",
+        "distance_param": "k"
+      },
+      "tags": [
+        "hidden",
+        "tight",
+        "multiple-valid"
+      ]
+    }
+  ]
+}
+

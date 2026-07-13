@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_457",
+  "cases": [
+    {
+      "id": "sample-forward-cycle",
+      "name": "sample: positive multi-index cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, -1, 1, 2, 2]},
+      "expected": true,
+      "tags": ["sample", "forward"]
+    },
+    {
+      "id": "sample-self-loop-only",
+      "name": "sample: apparent cycles reduce to invalid self-loops",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [-1, -2, -3, -4, -5, 6]},
+      "expected": false,
+      "tags": ["sample", "self-loop"]
+    },
+    {
+      "id": "sample-later-cycle",
+      "name": "sample: valid cycle starts after mixed prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, -1, 5, 1, 4]},
+      "expected": true,
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "trial-direction-change",
+      "name": "trial: direction change invalidates loop",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [-2, 1, -1, -2, -2]},
+      "expected": false,
+      "tags": ["trial", "direction"]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one-node loop is invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1]},
+      "expected": false,
+      "tags": ["trial", "single"]
+    },
+    {
+      "id": "hidden-backward-cycle",
+      "name": "hidden: valid negative-direction cycle",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-1, -1, -1]},
+      "expected": true,
+      "tags": ["hidden", "backward"]
+    },
+    {
+      "id": "hidden-multiple-wraps",
+      "name": "hidden: large jumps wrap several times",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 1, 1, 1, 1]},
+      "expected": true,
+      "tags": ["hidden", "wrap"]
+    }
+  ]
+}

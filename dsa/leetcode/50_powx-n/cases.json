@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_50",
+  "cases": [
+    {"id": "sample-positive", "name": "sample: positive exponent", "kind": "sample", "visible": true, "input": {"x": 2.0, "n": 10}, "expected": 1024.0, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["sample"]},
+    {"id": "sample-fractional", "name": "sample: fractional base", "kind": "sample", "visible": true, "input": {"x": 2.1, "n": 3}, "expected": 9.261, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["sample"]},
+    {"id": "sample-negative", "name": "sample: negative exponent", "kind": "sample", "visible": true, "input": {"x": 2.0, "n": -2}, "expected": 0.25, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["sample", "negative"]},
+    {"id": "trial-zero", "name": "zero exponent", "kind": "trial", "visible": true, "input": {"x": -7.5, "n": 0}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["boundary"]},
+    {"id": "real-min-exponent", "name": "hidden: minimum 32-bit exponent", "kind": "real", "visible": false, "input": {"x": 1.0, "n": -2147483648}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 0.0000001}, "tags": ["hidden", "integer-boundary"]}
+  ]
+}

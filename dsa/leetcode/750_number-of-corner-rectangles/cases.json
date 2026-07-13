@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_750",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one rectangle in a sparse grid", "kind": "sample", "visible": true, "input": {"grid": [[1,0,0,1,0],[0,0,1,0,1],[0,0,0,1,0],[1,0,1,0,1]]}, "expected": 1, "tags": ["sample", "sparse"]},
+    {"id": "sample-2", "name": "sample: dense three by three grid", "kind": "sample", "visible": true, "input": {"grid": [[1,1,1],[1,1,1],[1,1,1]]}, "expected": 9, "tags": ["sample", "dense"]},
+    {"id": "trial-1", "name": "trial: two rows and three columns", "kind": "trial", "visible": true, "input": {"grid": [[1,1,1],[1,1,1]]}, "expected": 3, "tags": ["trial", "minimum-rows"]},
+    {"id": "trial-2", "name": "trial: no shared column pair", "kind": "trial", "visible": true, "input": {"grid": [[1,1,0],[0,1,1],[1,0,1]]}, "expected": 0, "tags": ["trial", "no-rectangle"]},
+    {"id": "trial-3", "name": "trial: repeated column pair across three rows", "kind": "trial", "visible": true, "input": {"grid": [[1,0,1,0],[1,1,1,0],[1,0,1,1]]}, "expected": 3, "tags": ["trial", "pair-frequency"]},
+    {"id": "hidden-1", "name": "hidden: single row", "kind": "real", "visible": false, "input": {"grid": [[1,1,1,1]]}, "expected": 0, "tags": ["hidden", "boundary"]},
+    {"id": "hidden-2", "name": "hidden: single column", "kind": "real", "visible": false, "input": {"grid": [[1],[1],[1],[1]]}, "expected": 0, "tags": ["hidden", "boundary"]},
+    {"id": "hidden-3", "name": "hidden: two separate column pairs", "kind": "real", "visible": false, "input": {"grid": [[1,1,0,0],[1,1,0,0],[0,0,1,1],[0,0,1,1]]}, "expected": 2, "tags": ["hidden", "disconnected"]}
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "challenge_id": "lc_3020",
+  "cases": [
+    {
+      "id": "sample-square-chain",
+      "name": "sample: chain using 2, 4, and 16",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          1,
+          2,
+          2,
+          16,
+          16
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-ones-only",
+      "name": "sample: odd count of ones can all be used",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-even-ones",
+      "name": "trial: even ones must leave an odd subset length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-long-chain",
+      "name": "trial: longer power chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          9,
+          9,
+          81,
+          81,
+          6561
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-chains",
+      "name": "real: several possible chains compete",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          4,
+          4,
+          16,
+          3,
+          3,
+          9,
+          9,
+          81,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "counts"
+      ]
+    }
+  ]
+}

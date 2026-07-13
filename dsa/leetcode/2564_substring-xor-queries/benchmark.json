@@ -1,0 +1,45 @@
+{
+  "challenge_id": "lc_2564",
+  "cases": [
+    {
+      "id": "benchmark-several-substring-lengths",
+      "name": "benchmark: targets use substrings of different lengths",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "1110",
+        "queries": [
+          [
+            2,
+            5
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

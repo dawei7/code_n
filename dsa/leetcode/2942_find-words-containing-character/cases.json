@@ -1,0 +1,115 @@
+{
+  "challenge_id": "lc_2942",
+  "cases": [
+    {
+      "id": "sample-two-words",
+      "name": "sample: both words contain target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "leet",
+          "code"
+        ],
+        "x": "e"
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-some-words",
+      "name": "sample: some words contain target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "bcd",
+          "aaaa",
+          "cbc"
+        ],
+        "x": "a"
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-words",
+      "name": "sample: no words contain target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "bcd",
+          "aaaa",
+          "cbc"
+        ],
+        "x": "z"
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "empty-output"
+      ]
+    },
+    {
+      "id": "trial-target-at-end",
+      "name": "trial: target appears at word end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "go",
+          "lang",
+          "debug",
+          "run"
+        ],
+        "x": "g"
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "string"
+      ]
+    },
+    {
+      "id": "real-empty-and-single",
+      "name": "real: empty strings and single letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "",
+          "x",
+          "alpha",
+          "box",
+          "orbit",
+          ""
+        ],
+        "x": "x"
+      },
+      "expected": [
+        1,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

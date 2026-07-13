@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "327",
+  "frontend_id": "327",
+  "title_slug": "count-of-range-sum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064388504",
+  "verified_at": "2026-07-12T02:32:33.104938+00:00"
+}

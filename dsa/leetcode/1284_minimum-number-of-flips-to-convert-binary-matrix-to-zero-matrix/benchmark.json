@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1284",
+  "cases": [
+    {
+      "id": "benchmark-two-by-two",
+      "name": "benchmark: two by two",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

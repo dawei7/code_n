@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "462",
+  "frontend_id": "462",
+  "title_slug": "minimum-moves-to-equal-array-elements-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064945665",
+  "verified_at": "2026-07-12T11:53:48.748803+00:00"
+}

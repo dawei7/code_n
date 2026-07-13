@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_1200",
+  "cases": [
+    {
+      "id": "benchmark-two-min-gaps",
+      "name": "benchmark: two minimum gaps",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          9,
+          1,
+          4,
+          7,
+          3,
+          10
+        ]
+      },
+      "expected": [
+        [
+          3,
+          4
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

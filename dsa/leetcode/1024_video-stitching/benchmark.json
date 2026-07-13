@@ -1,0 +1,48 @@
+{
+  "challenge_id": "lc_1024",
+  "cases": [
+    {
+      "id": "benchmark-many-overlaps",
+      "name": "benchmark: many overlaps",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "clips": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            9,
+            12
+          ]
+        ],
+        "time": 12
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "challenge_id": "lc_2541",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two moves of size three balance the arrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4,
+          3,
+          1,
+          4
+        ],
+        "nums2": [
+          1,
+          3,
+          7,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "math"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: total difference cannot be balanced",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          8,
+          5,
+          2
+        ],
+        "nums2": [
+          2,
+          4,
+          1,
+          6
+        ],
+        "k": 1
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: k zero and arrays already equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          10,
+          10
+        ],
+        "nums2": [
+          10,
+          10
+        ],
+        "k": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-balanced-transfer",
+      "name": "trial: one unit transferred between two positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          2,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-k-zero-not-equal",
+      "name": "hidden: k zero cannot change unequal arrays",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          2
+        ],
+        "k": 0
+      },
+      "expected": -1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

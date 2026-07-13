@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "491",
+  "frontend_id": "491",
+  "title_slug": "non-decreasing-subsequences",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065042319",
+  "verified_at": "2026-07-12T13:42:46.620989+00:00"
+}

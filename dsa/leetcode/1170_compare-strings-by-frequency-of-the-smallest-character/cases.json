@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_1170",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one query",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          "cbd"
+        ],
+        "words": [
+          "zaaaz"
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two queries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          "bbb",
+          "cc"
+        ],
+        "words": [
+          "a",
+          "aa",
+          "aaa",
+          "aaaa"
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-query",
+      "name": "single query against several words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "a"
+        ],
+        "words": [
+          "b",
+          "cc",
+          "ddd"
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-frequencies",
+      "name": "hidden: mixed frequencies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queries": [
+          "abcd",
+          "aabc",
+          "zzzz"
+        ],
+        "words": [
+          "aaa",
+          "aa",
+          "z",
+          "bbbb"
+        ]
+      },
+      "expected": [
+        3,
+        2,
+        0
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

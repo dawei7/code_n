@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_715",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: remove middle subrange",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["addRange",10,20],["removeRange",14,16],["queryRange",10,14],["queryRange",13,15],["queryRange",16,17]]},
+      "expected": [true,false,true],
+      "tags": ["sample", "split"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: query before and after add",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["queryRange",1,2],["addRange",1,2],["queryRange",1,2]]},
+      "expected": [false,true],
+      "tags": ["sample", "state-change"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: adjacent ranges cover union",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["addRange",5,10],["addRange",10,15],["queryRange",5,15]]},
+      "expected": [true],
+      "tags": ["sample", "adjacent"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: removal outside tracked range",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["addRange",20,30],["removeRange",1,10],["queryRange",20,30]]},
+      "expected": [true],
+      "tags": ["trial", "disjoint-remove"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: query crossing one-unit gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["addRange",1,3],["addRange",4,6],["queryRange",1,6]]},
+      "expected": [false],
+      "tags": ["trial", "gap"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: re-add removed center",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["addRange",1,10],["removeRange",4,7],["addRange",5,6],["queryRange",4,7],["queryRange",5,6]]},
+      "expected": [false,true],
+      "tags": ["hidden", "readd"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: coordinate upper boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["addRange",999999990,1000000000],["queryRange",999999995,1000000000],["removeRange",999999999,1000000000],["queryRange",999999995,1000000000]]},
+      "expected": [true,false],
+      "tags": ["hidden", "domain-boundary"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: nested add changes nothing",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["addRange",10,30],["addRange",15,20],["queryRange",10,30]]},
+      "expected": [true],
+      "tags": ["hidden", "nested"]
+    }
+  ]
+}

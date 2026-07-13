@@ -1,0 +1,83 @@
+{
+  "challenge_id": "lc_1027",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: constant difference three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          6,
+          9,
+          12
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: best length three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          4,
+          7,
+          2,
+          10
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: longer mixed sequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          20,
+          1,
+          15,
+          3,
+          10,
+          5,
+          8
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "hidden: duplicates form zero difference",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    }
+  ]
+}

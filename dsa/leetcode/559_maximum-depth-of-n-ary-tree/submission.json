@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "774",
+  "frontend_id": "559",
+  "title_slug": "maximum-depth-of-n-ary-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065384091",
+  "verified_at": "2026-07-12T19:12:51.275034+00:00"
+}

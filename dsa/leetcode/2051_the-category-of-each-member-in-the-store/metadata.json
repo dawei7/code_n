@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_2051",
+  "source": "leetcode",
+  "frontend_id": "2051",
+  "slug": "the-category-of-each-member-in-the-store",
+  "title": "The Category of Each Member in the Store",
+  "difficulty": "Medium",
+  "acceptance_rate": 70.41859874229817,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/the-category-of-each-member-in-the-store/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

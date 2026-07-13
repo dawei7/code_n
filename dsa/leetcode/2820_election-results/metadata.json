@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2820",
+  "source": "leetcode",
+  "frontend_id": "2820",
+  "slug": "election-results",
+  "title": "Election Results",
+  "difficulty": "Medium",
+  "acceptance_rate": 66.58732520083308,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [],
+  "url": "https://leetcode.com/problems/election-results/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

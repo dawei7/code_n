@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1327",
+  "source": "leetcode",
+  "frontend_id": "1327",
+  "slug": "list-the-products-ordered-in-a-period",
+  "title": "List the Products Ordered in a Period",
+  "difficulty": "Easy",
+  "acceptance_rate": 71.82406204078859,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/list-the-products-ordered-in-a-period/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:amazon",
+    "leetcode_studyplan:top-sql-50",
+    "leetcode_studyplan:top-sql-50:top-sql-50-134-jwwc",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:amazon",
+    "language:sql",
+    "leetcode",
+    "study_plan:top-sql-50",
+    "study_plan_section:top-sql-50:top-sql-50-134-jwwc",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-sql-50",
+      "plan_name": "SQL 50",
+      "section_slug": "top-sql-50-134-jwwc",
+      "section_name": "Advanced String Functions / Regex / Clause",
+      "path": [
+        "Advanced String Functions / Regex / Clause"
+      ],
+      "order": 49,
+      "section_order": 7,
+      "problem_order": 6,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

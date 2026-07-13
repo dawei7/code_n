@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_110",
+  "measurement_note": "Right-skewed tiers expose repeated-height implementations: bottom-up height visits each node once, while recomputing descendant heights grows quadratically.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one node", "kind": "benchmark", "visible": false, "size": 1, "input": {"root": [1]}, "expected": true, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: eight-node chain", "kind": "benchmark", "visible": false, "size": 8, "input": {"root": [1, null, 2, null, 3, null, 4, null, 5, null, 6, null, 7, null, 8]}, "expected": false, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: thirty-two-node chain", "kind": "benchmark", "visible": false, "size": 32, "input": {"root": [1, null, 2, null, 3, null, 4, null, 5, null, 6, null, 7, null, 8, null, 9, null, 10, null, 11, null, 12, null, 13, null, 14, null, 15, null, 16, null, 17, null, 18, null, 19, null, 20, null, 21, null, 22, null, 23, null, 24, null, 25, null, 26, null, 27, null, 28, null, 29, null, 30, null, 31, null, 32]}, "expected": false, "tags": ["benchmark", "scale-large"]}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "612",
+  "frontend_id": "612",
+  "title_slug": "shortest-distance-in-a-plane",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065472733",
+  "verified_at": "2026-07-12T22:19:35.382499+00:00"
+}

@@ -1,0 +1,32 @@
+{
+  "challenge_id": "lc_1487",
+  "cases": [
+    {
+      "id": "benchmark-nested-suffixes",
+      "name": "benchmark: nested suffix collisions",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "names": [
+          "a",
+          "a",
+          "a(1)",
+          "a",
+          "a(2)",
+          "a(1)"
+        ]
+      },
+      "expected": [
+        "a",
+        "a(1)",
+        "a(1)(1)",
+        "a(2)",
+        "a(2)(1)",
+        "a(1)(2)"
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

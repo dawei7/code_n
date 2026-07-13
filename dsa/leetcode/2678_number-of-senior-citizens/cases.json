@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_2678",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two passengers over sixty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "details": [
+          "7868190130M7522",
+          "5303914400F9211",
+          "9273338290F4010"
+        ]
+      },
+      "tags": [
+        "sample",
+        "age"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no senior citizens",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "details": [
+          "1313579440F2036",
+          "2921522980M5644"
+        ]
+      },
+      "tags": [
+        "sample",
+        "age"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-exactly-sixty",
+      "name": "trial: age sixty is not senior",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "details": [
+          "0000000000M6000",
+          "1111111111F6100"
+        ]
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-all-seniors",
+      "name": "trial: all ages over sixty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "details": [
+          "2222222222M9901",
+          "3333333333F6102",
+          "4444444444M7503"
+        ]
+      },
+      "tags": [
+        "trial",
+        "all"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "real-mixed-boundaries",
+      "name": "hidden: mixed ages around threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "details": [
+          "5555555555F5900",
+          "6666666666M6000",
+          "7777777777F6200",
+          "8888888888M1000"
+        ]
+      },
+      "tags": [
+        "hidden",
+        "boundary"
+      ],
+      "expected": 1
+    }
+  ]
+}

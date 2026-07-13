@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "812",
+  "frontend_id": "796",
+  "title_slug": "rotate-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.rotateString",
+  "verified_submission_id": "2066186174",
+  "verified_at": "2026-07-13T13:42:31.648252+00:00"
+}

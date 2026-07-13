@@ -1,0 +1,108 @@
+{
+  "challenge_id": "lc_3487",
+  "cases": [
+    {
+      "id": "sample-all-positive",
+      "name": "sample: keep all positive distinct values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "positive"
+      ]
+    },
+    {
+      "id": "sample-duplicates-and-zero",
+      "name": "sample: delete duplicates and zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-negatives",
+      "name": "sample: delete negative values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          -1,
+          -2,
+          1,
+          0,
+          -1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-all-negative",
+      "name": "trial: must keep one negative",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -1,
+          -3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "all-negative"
+      ]
+    },
+    {
+      "id": "real-mixed-values",
+      "name": "real: mixed repeated positives",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          -2,
+          5,
+          7,
+          0,
+          7,
+          3,
+          -10
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "real",
+        "set"
+      ]
+    }
+  ]
+}

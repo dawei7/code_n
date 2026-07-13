@@ -1,0 +1,186 @@
+{
+  "challenge_id": "lc_2456",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two creators tie in total views",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "creators": [
+          "alice",
+          "bob",
+          "alice",
+          "chris"
+        ],
+        "ids": [
+          "one",
+          "two",
+          "three",
+          "four"
+        ],
+        "views": [
+          5,
+          10,
+          5,
+          4
+        ]
+      },
+      "expected": [
+        [
+          "alice",
+          "one"
+        ],
+        [
+          "bob",
+          "two"
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "hash-map"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: lexicographically smallest id wins tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "creators": [
+          "alice",
+          "alice",
+          "alice"
+        ],
+        "ids": [
+          "a",
+          "b",
+          "c"
+        ],
+        "views": [
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        [
+          "alice",
+          "b"
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one creator with tied videos",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "creators": [
+          "a",
+          "a"
+        ],
+        "ids": [
+          "b",
+          "c"
+        ],
+        "views": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-popular-creators",
+      "name": "trial: two creators tie and both are returned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "creators": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ],
+        "ids": [
+          "z",
+          "y",
+          "a",
+          "x"
+        ],
+        "views": [
+          2,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        [
+          "a",
+          "a"
+        ],
+        [
+          "b",
+          "x"
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-video",
+      "name": "hidden: single video",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "creators": [
+          "solo"
+        ],
+        "ids": [
+          "only"
+        ],
+        "views": [
+          0
+        ]
+      },
+      "expected": [
+        [
+          "solo",
+          "only"
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

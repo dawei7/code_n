@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_3397",
+  "cases": [
+    {
+      "id": "sample-all-distinct-after-ops",
+      "name": "sample: all six can become distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-four-equal",
+      "name": "sample: four equal values with k one produce three distinct values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-zero-k",
+      "name": "trial: no movement means only existing distinct values count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "k": 0
+      },
+      "expected": 3,
+      "tags": [
+        "edge",
+        "zero-k"
+      ]
+    },
+    {
+      "id": "trial-negative-targets",
+      "name": "trial: assigned values may go below one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 5
+      },
+      "expected": 3,
+      "tags": [
+        "regression",
+        "range-assignment"
+      ]
+    },
+    {
+      "id": "real-overlapping-ranges",
+      "name": "real: overlapping sorted ranges with limited slots",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          6,
+          7,
+          7,
+          9,
+          10
+        ],
+        "k": 2
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "greedy"
+      ]
+    }
+  ]
+}

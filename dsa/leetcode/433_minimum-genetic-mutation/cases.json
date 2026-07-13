@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_433",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: target is one mutation away",
+      "kind": "sample",
+      "visible": true,
+      "input": {"startGene": "AACCGGTT", "endGene": "AACCGGTA", "bank": ["AACCGGTA"]},
+      "expected": 1,
+      "tags": ["sample", "one-step"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: shortest path uses two mutations",
+      "kind": "sample",
+      "visible": true,
+      "input": {"startGene": "AACCGGTT", "endGene": "AAACGGTA", "bank": ["AACCGGTA", "AACCGCTA", "AAACGGTA"]},
+      "expected": 2,
+      "tags": ["sample", "two-step"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three-gene chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {"startGene": "AAAAACCC", "endGene": "AACCCCCC", "bank": ["AAAACCCC", "AAACCCCC", "AACCCCCC"]},
+      "expected": 3,
+      "tags": ["sample", "chain"]
+    },
+    {
+      "id": "trial-target-absent",
+      "name": "trial: target is not allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"startGene": "AACCGGTT", "endGene": "AACCGGTA", "bank": []},
+      "expected": -1,
+      "tags": ["trial", "absent"]
+    },
+    {
+      "id": "trial-equal",
+      "name": "trial: no mutation is needed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"startGene": "AACCGGTT", "endGene": "AACCGGTT", "bank": []},
+      "expected": 0,
+      "tags": ["trial", "equal"]
+    },
+    {
+      "id": "hidden-unreachable",
+      "name": "hidden: target exists but no valid first step does",
+      "kind": "real",
+      "visible": false,
+      "input": {"startGene": "AAAAAAAA", "endGene": "CCCCCCCC", "bank": ["CCCCCCCC", "CAAAAAAC", "ACCCCCCA"]},
+      "expected": -1,
+      "tags": ["hidden", "unreachable"]
+    },
+    {
+      "id": "hidden-branching",
+      "name": "hidden: distractor genes do not change the shortest path",
+      "kind": "real",
+      "visible": false,
+      "input": {"startGene": "AAAAAAAA", "endGene": "CCCCAAAA", "bank": ["CAAAAAAA", "CCAAAAAA", "CCCAAAAA", "CCCCAAAA", "GAAAAAAA", "GGAAAAAA"]},
+      "expected": 4,
+      "tags": ["hidden", "branching"]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_1307",
+  "cases": [
+    {
+      "id": "benchmark-single-letter-zero",
+      "name": "benchmark: single-letter words may use zero",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "A",
+          "B"
+        ],
+        "result": "A"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

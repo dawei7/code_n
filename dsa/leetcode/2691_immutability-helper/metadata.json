@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2691",
+  "source": "leetcode",
+  "frontend_id": "2691",
+  "slug": "immutability-helper",
+  "title": "Immutability Helper",
+  "difficulty": "Hard",
+  "acceptance_rate": 40.13738959764475,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/immutability-helper/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

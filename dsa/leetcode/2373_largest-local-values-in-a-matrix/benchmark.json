@@ -1,0 +1,52 @@
+{
+  "challenge_id": "lc_2373",
+  "cases": [
+    {
+      "id": "benchmark-four-windows",
+      "name": "benchmark: maximum appears in every local window",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            5,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            9,
+            1,
+            2
+          ],
+          [
+            3,
+            8,
+            7,
+            1
+          ],
+          [
+            2,
+            1,
+            6,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          9,
+          9
+        ],
+        [
+          9,
+          9
+        ]
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

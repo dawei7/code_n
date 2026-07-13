@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_361",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: wall blocks one row direction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "0",
+            "E",
+            "0",
+            "0"
+          ],
+          [
+            "E",
+            "0",
+            "W",
+            "E"
+          ],
+          [
+            "0",
+            "E",
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "wall"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two crossing enemies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "0",
+            "E"
+          ],
+          [
+            "E",
+            "0"
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "cross"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no empty placement",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "W",
+            "E"
+          ],
+          [
+            "E",
+            "W"
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-empty"
+      ]
+    },
+    {
+      "id": "trial-wall-segments",
+      "name": "trial: separate segments in one row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "E",
+            "0",
+            "W",
+            "0",
+            "E",
+            "E"
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "segments"
+      ]
+    },
+    {
+      "id": "trial-all-empty",
+      "name": "trial: empty cells but no enemies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "hidden-single-enemy",
+      "name": "hidden: enemy adjacent to one empty cell",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "0",
+            "E"
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-cross-wall",
+      "name": "hidden: walls isolate a stronger lower segment",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "E",
+            "0",
+            "E"
+          ],
+          [
+            "W",
+            "0",
+            "W"
+          ],
+          [
+            "E",
+            "0",
+            "E"
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "walls"
+      ]
+    },
+    {
+      "id": "hidden-empty-grid",
+      "name": "hidden: empty grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": []
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
+  ]
+}
+

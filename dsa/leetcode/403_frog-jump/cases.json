@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_403",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: increasing jumps reach the end",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          0,
+          1,
+          3,
+          5,
+          6,
+          8,
+          12,
+          17
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "reachable"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: central gap blocks all paths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          8,
+          9,
+          11
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "unreachable"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one required jump",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          0,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "two-stones"
+      ]
+    },
+    {
+      "id": "trial-first-gap",
+      "name": "trial: first jump has no landing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          0,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "first-jump"
+      ]
+    },
+    {
+      "id": "trial-growing",
+      "name": "trial: strictly growing jump sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          0,
+          1,
+          3,
+          6,
+          10,
+          15
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "growing"
+      ]
+    },
+    {
+      "id": "hidden-dense",
+      "name": "hidden: dense stones allow many states",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stones": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "dense"
+      ]
+    },
+    {
+      "id": "hidden-late-gap",
+      "name": "hidden: many reachable stones before failure",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stones": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          10
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "late-gap"
+      ]
+    },
+    {
+      "id": "hidden-alternate-path",
+      "name": "hidden: successful path needs non-obvious jump choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stones": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          7,
+          9,
+          10,
+          12
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "alternate"
+      ]
+    }
+  ]
+}

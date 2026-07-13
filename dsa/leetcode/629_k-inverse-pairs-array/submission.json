@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "629",
+  "frontend_id": "629",
+  "title_slug": "k-inverse-pairs-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065491397",
+  "verified_at": "2026-07-12T23:23:16.343793+00:00"
+}

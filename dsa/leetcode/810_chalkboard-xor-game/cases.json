@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_810",
+  "cases": [
+    {"id": "sample-1", "name": "sample: odd nonzero XOR loses", "kind": "sample", "visible": true, "input": {"nums": [1, 1, 2]}, "expected": false, "tags": ["sample", "odd", "nonzero-xor"]},
+    {"id": "sample-2", "name": "sample: even nonzero XOR wins", "kind": "sample", "visible": true, "input": {"nums": [0, 1]}, "expected": true, "tags": ["sample", "even", "nonzero-xor"]},
+    {"id": "sample-3", "name": "sample: initial XOR is zero", "kind": "sample", "visible": true, "input": {"nums": [1, 2, 3]}, "expected": true, "tags": ["sample", "zero-xor"]},
+    {"id": "trial-1", "name": "trial: singleton nonzero value", "kind": "trial", "visible": true, "input": {"nums": [5]}, "expected": false, "tags": ["trial", "singleton", "nonzero-xor"]},
+    {"id": "trial-2", "name": "trial: singleton zero", "kind": "trial", "visible": true, "input": {"nums": [0]}, "expected": true, "tags": ["trial", "singleton", "zero-xor"]},
+    {"id": "trial-3", "name": "trial: even distinct values", "kind": "trial", "visible": true, "input": {"nums": [1, 2]}, "expected": true, "tags": ["trial", "even", "nonzero-xor"]},
+    {"id": "hidden-1", "name": "hidden: odd duplicates leave nonzero XOR", "kind": "real", "visible": false, "input": {"nums": [2, 2, 3]}, "expected": false, "tags": ["hidden", "odd", "duplicates"]},
+    {"id": "hidden-2", "name": "hidden: odd list with zero XOR", "kind": "real", "visible": false, "input": {"nums": [4, 4, 0]}, "expected": true, "tags": ["hidden", "odd", "zero-xor"]},
+    {"id": "hidden-3", "name": "hidden: even repeated values", "kind": "real", "visible": false, "input": {"nums": [7, 7, 7, 2]}, "expected": true, "tags": ["hidden", "even", "duplicates"]}
+  ]
+}

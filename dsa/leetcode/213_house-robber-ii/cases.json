@@ -1,0 +1,6 @@
+{"challenge_id":"lc_213","cases":[
+{"id":"sample-three","name":"sample: endpoints conflict","kind":"sample","visible":true,"input":{"nums":[2,3,2]},"expected":3,"tags":["sample","dynamic-programming"]},
+{"id":"sample-four","name":"sample: choose nonadjacent middle/end","kind":"sample","visible":true,"input":{"nums":[1,2,3,1]},"expected":4,"tags":["sample"]},
+{"id":"trial-single","name":"single circular house","kind":"trial","visible":true,"input":{"nums":[50]},"expected":50,"tags":["boundary"]},
+{"id":"real-two","name":"hidden: two houses are adjacent","kind":"real","visible":false,"input":{"nums":[18,73]},"expected":73,"tags":["hidden","two"]}
+]}

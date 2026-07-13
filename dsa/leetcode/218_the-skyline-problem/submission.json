@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "218",
+  "frontend_id": "218",
+  "title_slug": "the-skyline-problem",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064214600",
+  "verified_at": "2026-07-11T18:47:09.274017+00:00"
+}

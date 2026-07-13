@@ -1,0 +1,120 @@
+{
+  "challenge_id": "lc_2412",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed losing transactions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "transactions": [
+          [
+            2,
+            1
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: non-losing transaction can be last",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "transactions": [
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero-cost transaction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "transactions": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-identical-losses",
+      "name": "trial: repeated loss transactions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "transactions": [
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            0
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-one-loss-one-gain",
+      "name": "hidden: one loss and one gain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "transactions": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

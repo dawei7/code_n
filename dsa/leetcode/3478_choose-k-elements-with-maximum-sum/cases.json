@@ -1,0 +1,135 @@
+{
+  "challenge_id": "lc_3478",
+  "cases": [
+    {
+      "id": "sample-top-two",
+      "name": "sample: choose top two previous values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4,
+          2,
+          1,
+          5,
+          3
+        ],
+        "nums2": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "k": 2
+      },
+      "expected": [
+        80,
+        30,
+        0,
+        80,
+        50
+      ],
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "trial-fewer-than-k",
+      "name": "trial: fewer than k candidates are allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          3,
+          2
+        ],
+        "nums2": [
+          5,
+          6,
+          7
+        ],
+        "k": 3
+      },
+      "expected": [
+        0,
+        12,
+        5
+      ],
+      "tags": [
+        "trial",
+        "at-most-k"
+      ]
+    },
+    {
+      "id": "trial-equal-nums1",
+      "name": "trial: equal nums1 cannot choose each other",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          2,
+          3,
+          1
+        ],
+        "nums2": [
+          9,
+          8,
+          7,
+          6
+        ],
+        "k": 2
+      },
+      "expected": [
+        6,
+        6,
+        17,
+        0
+      ],
+      "tags": [
+        "trial",
+        "ties"
+      ]
+    },
+    {
+      "id": "real-mixed-groups",
+      "name": "real: grouped nums1 values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          5,
+          1,
+          5,
+          2,
+          4,
+          3
+        ],
+        "nums2": [
+          3,
+          10,
+          8,
+          7,
+          6,
+          9
+        ],
+        "k": 3
+      },
+      "expected": [
+        26,
+        0,
+        26,
+        10,
+        26,
+        17
+      ],
+      "tags": [
+        "real",
+        "heap"
+      ]
+    }
+  ]
+}

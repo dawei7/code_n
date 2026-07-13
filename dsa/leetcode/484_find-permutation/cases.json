@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_484",
+  "cases": [
+    {"id": "sample-increase", "name": "sample: one increase", "kind": "sample", "visible": true, "input": {"s": "I"}, "expected": [1, 2], "tags": ["sample", "increase"]},
+    {"id": "sample-decrease-increase", "name": "sample: decrease then increase", "kind": "sample", "visible": true, "input": {"s": "DI"}, "expected": [2, 1, 3], "tags": ["sample", "mixed"]},
+    {"id": "sample-multiple-runs", "name": "sample: multiple decrease runs", "kind": "sample", "visible": true, "input": {"s": "DDIIDI"}, "expected": [3, 2, 1, 4, 6, 5, 7], "tags": ["sample", "runs"]},
+    {"id": "trial-all-increases", "name": "trial: all increases", "kind": "trial", "visible": true, "input": {"s": "III"}, "expected": [1, 2, 3, 4], "tags": ["trial", "ascending"]},
+    {"id": "trial-middle-run", "name": "trial: decrease run between increases", "kind": "trial", "visible": true, "input": {"s": "IDDI"}, "expected": [1, 4, 3, 2, 5], "tags": ["trial", "middle-run"]},
+    {"id": "hidden-all-decreases", "name": "hidden: all decreases", "kind": "real", "visible": false, "input": {"s": "DDD"}, "expected": [4, 3, 2, 1], "tags": ["hidden", "descending"]},
+    {"id": "hidden-alternating", "name": "hidden: alternating comparisons", "kind": "real", "visible": false, "input": {"s": "DIDID"}, "expected": [2, 1, 4, 3, 6, 5], "tags": ["hidden", "alternating"]}
+  ]
+}

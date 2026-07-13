@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1561",
+  "cases": [
+    {
+      "id": "benchmark-repeated-large-piles",
+      "name": "benchmark: repeated large piles",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "piles": [
+          1,
+          1,
+          1,
+          10,
+          10,
+          10,
+          20,
+          20,
+          20
+        ]
+      },
+      "expected": 40,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "challenge_id": "lc_3225",
+  "cases": [
+    {
+      "id": "sample-five-by-five",
+      "name": "sample: official five by five grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            5,
+            0,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-second-five-by-five",
+      "name": "sample: official dense grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            10,
+            9,
+            0,
+            0,
+            15
+          ],
+          [
+            7,
+            1,
+            0,
+            8,
+            0
+          ],
+          [
+            5,
+            20,
+            0,
+            11,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            2
+          ],
+          [
+            8,
+            12,
+            1,
+            10,
+            3
+          ]
+        ]
+      },
+      "expected": 94,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: one column has no horizontal neighbor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-two-by-two",
+      "name": "trial: two columns can score across the boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            5
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "real-four-by-four",
+      "name": "real: four by four mixed grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            3,
+            0,
+            4,
+            1
+          ],
+          [
+            2,
+            5,
+            0,
+            6
+          ],
+          [
+            0,
+            7,
+            2,
+            3
+          ],
+          [
+            4,
+            1,
+            8,
+            0
+          ]
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

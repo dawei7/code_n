@@ -1,0 +1,197 @@
+{
+  "challenge_id": "lc_2662",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: chain two special roads",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start": [
+          1,
+          1
+        ],
+        "target": [
+          4,
+          5
+        ],
+        "special_roads": [
+          [
+            1,
+            2,
+            3,
+            3,
+            2
+          ],
+          [
+            3,
+            4,
+            4,
+            5,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "dijkstra"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: choose between direct walk and roads",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start": [
+          3,
+          2
+        ],
+        "target": [
+          5,
+          7
+        ],
+        "special_roads": [
+          [
+            3,
+            2,
+            3,
+            4,
+            4
+          ],
+          [
+            3,
+            3,
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            4,
+            5,
+            6,
+            6
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "roads"
+      ],
+      "expected": 7
+    },
+    {
+      "id": "trial-no-special-benefit",
+      "name": "trial: special road is worse than walking",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "target": [
+          2,
+          2
+        ],
+        "special_roads": [
+          [
+            0,
+            0,
+            2,
+            2,
+            10
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "direct"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "trial-road-start-requires-walk",
+      "name": "trial: walk to road start first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "target": [
+          10,
+          10
+        ],
+        "special_roads": [
+          [
+            1,
+            1,
+            9,
+            9,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "walk-to-road"
+      ],
+      "expected": 7
+    },
+    {
+      "id": "real-overlapping-roads",
+      "name": "hidden: overlapping special roads",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "start": [
+          2,
+          3
+        ],
+        "target": [
+          20,
+          18
+        ],
+        "special_roads": [
+          [
+            2,
+            3,
+            10,
+            10,
+            5
+          ],
+          [
+            10,
+            10,
+            18,
+            16,
+            4
+          ],
+          [
+            5,
+            5,
+            20,
+            18,
+            30
+          ],
+          [
+            18,
+            16,
+            20,
+            18,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "overlap"
+      ],
+      "expected": 11
+    }
+  ]
+}

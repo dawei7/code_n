@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_797",
+  "measurement_note": "Size is the number of vertices. Reverse reachability processes these dense dead subgraphs in polynomial time; unpruned path enumeration explores exponentially many dead prefixes before returning the one direct answer.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 3 vertices with one dead branch", "kind": "benchmark", "visible": false, "size": 3, "input": {"graph": [[1, 2], [], []]}, "expected": [[0, 2]], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "dead-subgraph"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 7 vertices with a dense dead DAG", "kind": "benchmark", "visible": false, "size": 7, "input": {"graph": [[1, 6], [2, 3, 4, 5], [3, 4, 5], [4, 5], [5], [], []]}, "expected": [[0, 6]], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "dead-subgraph"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 13 vertices with a dense dead DAG", "kind": "benchmark", "visible": false, "size": 13, "input": {"graph": [[1, 12], [2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [3, 4, 5, 6, 7, 8, 9, 10, 11], [4, 5, 6, 7, 8, 9, 10, 11], [5, 6, 7, 8, 9, 10, 11], [6, 7, 8, 9, 10, 11], [7, 8, 9, 10, 11], [8, 9, 10, 11], [9, 10, 11], [10, 11], [11], [], []]}, "expected": [[0, 12]], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "dead-subgraph"]}
+  ]
+}

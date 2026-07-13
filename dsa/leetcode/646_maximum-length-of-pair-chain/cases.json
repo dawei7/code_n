@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_646",
+  "cases": [
+    {"id": "sample-1", "name": "sample: strict endpoint blocks middle pair", "kind": "sample", "visible": true, "input": {"pairs": [[1,2],[2,3],[3,4]]}, "expected": 2, "tags": ["sample", "strict"]},
+    {"id": "sample-2", "name": "sample: unsorted full chain", "kind": "sample", "visible": true, "input": {"pairs": [[1,2],[7,8],[4,5]]}, "expected": 3, "tags": ["sample", "reorder"]},
+    {"id": "trial-1", "name": "trial: skip containing interval", "kind": "trial", "visible": true, "input": {"pairs": [[1,10],[2,3],[4,5],[6,7]]}, "expected": 3, "tags": ["trial", "greedy"]},
+    {"id": "trial-2", "name": "trial: one pair", "kind": "trial", "visible": true, "input": {"pairs": [[-2,5]]}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "hidden-1", "name": "hidden: negative endpoints", "kind": "real", "visible": false, "input": {"pairs": [[-10,-8],[-7,-5],[-6,-4],[-3,-1]]}, "expected": 3, "tags": ["hidden", "negative"]},
+    {"id": "hidden-2", "name": "hidden: touching only", "kind": "real", "visible": false, "input": {"pairs": [[1,2],[2,3]]}, "expected": 1, "tags": ["hidden", "strict"]},
+    {"id": "hidden-3", "name": "hidden: duplicate pairs", "kind": "real", "visible": false, "input": {"pairs": [[1,2],[1,2],[3,4],[5,6]]}, "expected": 3, "tags": ["hidden", "duplicates"]}
+  ]
+}

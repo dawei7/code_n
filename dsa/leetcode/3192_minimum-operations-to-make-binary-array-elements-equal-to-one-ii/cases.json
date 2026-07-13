@@ -1,0 +1,108 @@
+{
+  "challenge_id": "lc_3192",
+  "cases": [
+    {
+      "id": "sample-mixed-suffixes",
+      "name": "sample: repeated suffix flips",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "suffix-flip"
+      ]
+    },
+    {
+      "id": "sample-single-flip",
+      "name": "sample: one suffix fixes trailing zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "suffix-flip"
+      ]
+    },
+    {
+      "id": "trial-already-ones",
+      "name": "trial: already all ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-alternating-start-zero",
+      "name": "trial: alternating from zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-long-runs",
+      "name": "real: long same-value runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "runs"
+      ]
+    }
+  ]
+}

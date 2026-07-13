@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_599",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: unique best common restaurant",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "list1": [
+          "Shogun",
+          "Tapioca Express",
+          "Burger King",
+          "KFC"
+        ],
+        "list2": [
+          "KFC",
+          "Shogun",
+          "Burger King"
+        ]
+      },
+      "expected": [
+        "Shogun"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "unique"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three restaurants tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "list1": [
+          "Shogun",
+          "Tapioca Express",
+          "Burger King",
+          "KFC"
+        ],
+        "list2": [
+          "KFC",
+          "Burger King",
+          "Tapioca Express",
+          "Shogun"
+        ]
+      },
+      "expected": [
+        "KFC",
+        "Burger King",
+        "Tapioca Express",
+        "Shogun"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two swapped favorites tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "list1": [
+          "happy",
+          "sad",
+          "good"
+        ],
+        "list2": [
+          "sad",
+          "happy",
+          "good"
+        ]
+      },
+      "expected": [
+        "happy",
+        "sad"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: only one common string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "list1": [
+          "a",
+          "b",
+          "shared"
+        ],
+        "list2": [
+          "x",
+          "y",
+          "shared"
+        ]
+      },
+      "expected": [
+        "shared"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "single-common"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: later unique minimum replaces earlier candidate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "list1": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "list2": [
+          "d",
+          "b",
+          "c"
+        ]
+      },
+      "expected": [
+        "b"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "replacement"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: exact case-sensitive strings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "list1": [
+          "Cafe",
+          "cafe",
+          "Diner"
+        ],
+        "list2": [
+          "cafe",
+          "Cafe"
+        ]
+      },
+      "expected": [
+        "Cafe",
+        "cafe"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "case-sensitive"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: best appears late in second list",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "list1": [
+          "p",
+          "q",
+          "r",
+          "s"
+        ],
+        "list2": [
+          "x",
+          "s",
+          "y",
+          "p",
+          "q"
+        ]
+      },
+      "expected": [
+        "p"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "late"
+      ]
+    }
+  ]
+}

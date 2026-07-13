@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_12",
+  "cases": [
+    {"id": "sample-1", "name": "sample: several decimal places", "kind": "sample", "visible": true, "input": {"num": 3749}, "expected": "MMMDCCXLIX", "tags": ["sample", "subtractive"]},
+    {"id": "sample-2", "name": "sample: repeated units", "kind": "sample", "visible": true, "input": {"num": 58}, "expected": "LVIII", "tags": ["sample"]},
+    {"id": "trial-multiple-subtractive-pairs", "name": "subtractive pair in three places", "kind": "trial", "visible": true, "input": {"num": 1994}, "expected": "MCMXCIV", "tags": ["subtractive"]},
+    {"id": "trial-smallest", "name": "smallest legal value", "kind": "trial", "visible": true, "input": {"num": 1}, "expected": "I", "tags": ["boundary"]},
+    {"id": "real-largest", "name": "hidden: largest legal value", "kind": "real", "visible": false, "input": {"num": 3999}, "expected": "MMMCMXCIX", "tags": ["hidden", "boundary"]}
+  ]
+}

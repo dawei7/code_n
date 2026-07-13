@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_640",
+  "cases": [
+    {"id": "sample-1", "name": "sample: collect terms on both sides", "kind": "sample", "visible": true, "input": {"equation": "x+5-3+x=6+x-2"}, "expected": "x=2", "tags": ["sample", "unique"]},
+    {"id": "sample-2", "name": "sample: identical expressions", "kind": "sample", "visible": true, "input": {"equation": "x=x"}, "expected": "Infinite solutions", "tags": ["sample", "infinite"]},
+    {"id": "sample-3", "name": "sample: zero solution", "kind": "sample", "visible": true, "input": {"equation": "2x=x"}, "expected": "x=0", "tags": ["sample", "zero"]},
+    {"id": "trial-1", "name": "trial: negative solution", "kind": "trial", "visible": true, "input": {"equation": "2x+3x-6x=x+2"}, "expected": "x=-1", "tags": ["trial", "negative"]},
+    {"id": "trial-2", "name": "trial: inconsistent constants", "kind": "trial", "visible": true, "input": {"equation": "x=x+2"}, "expected": "No solution", "tags": ["trial", "none"]},
+    {"id": "hidden-1", "name": "hidden: implicit negative coefficient", "kind": "real", "visible": false, "input": {"equation": "-x=-1"}, "expected": "x=1", "tags": ["hidden", "implicit-one"]},
+    {"id": "hidden-2", "name": "hidden: multi-digit terms", "kind": "real", "visible": false, "input": {"equation": "10x+20=0"}, "expected": "x=-2", "tags": ["hidden", "multi-digit"]},
+    {"id": "hidden-3", "name": "hidden: zero coefficient identity", "kind": "real", "visible": false, "input": {"equation": "0x=0"}, "expected": "Infinite solutions", "tags": ["hidden", "zero-coefficient"]},
+    {"id": "hidden-4", "name": "hidden: zero coefficient contradiction", "kind": "real", "visible": false, "input": {"equation": "0x=1"}, "expected": "No solution", "tags": ["hidden", "zero-coefficient"]}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "786",
+  "frontend_id": "702",
+  "title_slug": "search-in-a-sorted-array-of-unknown-size",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065611037",
+  "verified_at": "2026-07-13T04:09:46.626394+00:00"
+}

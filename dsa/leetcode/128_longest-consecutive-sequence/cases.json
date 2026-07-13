@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_128",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: unsorted run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          4,
+          200,
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "hash-set"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          3,
+          7,
+          2,
+          5,
+          8,
+          4,
+          6,
+          0,
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "empty list",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": []
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-negative-run",
+      "name": "hidden: negative run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -3,
+          -2,
+          -1,
+          10,
+          11,
+          50
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    }
+  ]
+}

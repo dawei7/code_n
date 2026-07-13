@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1526",
+  "cases": [
+    {
+      "id": "benchmark-many-rises",
+      "name": "benchmark: sum all positive rises",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "target": [
+          1,
+          3,
+          2,
+          4,
+          1,
+          5
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

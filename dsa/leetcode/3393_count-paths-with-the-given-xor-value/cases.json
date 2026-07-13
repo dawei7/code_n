@@ -1,0 +1,167 @@
+{
+  "challenge_id": "lc_3393",
+  "cases": [
+    {
+      "id": "sample-three-by-three",
+      "name": "sample: three paths with xor eleven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            1,
+            5
+          ],
+          [
+            7,
+            10,
+            0
+          ],
+          [
+            12,
+            6,
+            4
+          ]
+        ],
+        "k": 11
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "xor-dp"
+      ]
+    },
+    {
+      "id": "sample-three-by-four",
+      "name": "sample: five paths with xor two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            3,
+            3,
+            3
+          ],
+          [
+            0,
+            3,
+            3,
+            2
+          ],
+          [
+            3,
+            0,
+            1,
+            1
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "xor-dp"
+      ]
+    },
+    {
+      "id": "sample-zero-paths",
+      "name": "sample: no path reaches target xor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            2
+          ],
+          [
+            3,
+            0,
+            3,
+            2
+          ],
+          [
+            3,
+            0,
+            2,
+            2
+          ]
+        ],
+        "k": 10
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: single cell path xor is the cell value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7
+          ]
+        ],
+        "k": 7
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "single-cell"
+      ]
+    },
+    {
+      "id": "real-varied-grid",
+      "name": "real: varied four by five grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            5,
+            1,
+            3,
+            0,
+            7
+          ],
+          [
+            2,
+            4,
+            6,
+            8,
+            1
+          ],
+          [
+            9,
+            0,
+            5,
+            2,
+            3
+          ],
+          [
+            1,
+            7,
+            4,
+            6,
+            10
+          ]
+        ],
+        "k": 6
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "xor-dp"
+      ]
+    }
+  ]
+}

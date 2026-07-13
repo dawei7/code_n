@@ -1,0 +1,50 @@
+{
+  "challenge_id": "lc_2",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: carry in the middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {"l1": [2, 4, 3], "l2": [5, 6, 4]},
+      "expected": [7, 0, 8],
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: both numbers are zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"l1": [0], "l2": [0]},
+      "expected": [0],
+      "tags": ["sample", "zero"]
+    },
+    {
+      "id": "trial-final-carry",
+      "name": "carry creates a new digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l1": [9, 9], "l2": [1]},
+      "expected": [0, 0, 1],
+      "tags": ["carry", "unequal-length"]
+    },
+    {
+      "id": "trial-unequal-lengths",
+      "name": "longer second operand",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l1": [5], "l2": [5, 4, 3]},
+      "expected": [0, 5, 3],
+      "tags": ["carry", "unequal-length"]
+    },
+    {
+      "id": "real-carry-chain",
+      "name": "hidden: carry across every remaining digit",
+      "kind": "real",
+      "visible": false,
+      "input": {"l1": [9, 9, 9, 9, 9, 9, 9], "l2": [9, 9, 9, 9]},
+      "expected": [8, 9, 9, 9, 0, 0, 0, 1],
+      "tags": ["hidden", "carry-chain"]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_783",
+  "cases": [
+    {"id": "sample-1", "name": "sample: close values in left subtree", "kind": "sample", "visible": true, "input": {"root": [4, 2, 6, 1, 3]}, "expected": 1, "tags": ["sample", "balanced"]},
+    {"id": "sample-2", "name": "sample: close values at both extremes", "kind": "sample", "visible": true, "input": {"root": [1, 0, 48, null, null, 12, 49]}, "expected": 1, "tags": ["sample", "sparse"]},
+    {"id": "sample-3", "name": "sample: three evenly spaced values", "kind": "sample", "visible": true, "input": {"root": [10, 5, 15]}, "expected": 5, "tags": ["sample", "balanced"]},
+    {"id": "trial-1", "name": "trial: left-skewed consecutive values", "kind": "trial", "visible": true, "input": {"root": [5, 3, null, 2, null, 1]}, "expected": 1, "tags": ["trial", "skewed"]},
+    {"id": "trial-2", "name": "trial: sparse mixed tree", "kind": "trial", "visible": true, "input": {"root": [8, 3, 10, 1, 6, null, 14, null, null, 4, 7, 13]}, "expected": 1, "tags": ["trial", "sparse"]},
+    {"id": "trial-3", "name": "trial: exactly two nodes", "kind": "trial", "visible": true, "input": {"root": [100, 50]}, "expected": 50, "tags": ["trial", "two-nodes"]},
+    {"id": "hidden-1", "name": "hidden: uneven large gaps", "kind": "real", "visible": false, "input": {"root": [1000, 100, 5000, 10, 500]}, "expected": 90, "tags": ["hidden", "large-values"]},
+    {"id": "hidden-2", "name": "hidden: right-skewed increasing gaps", "kind": "real", "visible": false, "input": {"root": [1, null, 4, null, 9, null, 16]}, "expected": 3, "tags": ["hidden", "skewed"]},
+    {"id": "hidden-3", "name": "hidden: full tree with repeated minimum gap", "kind": "real", "visible": false, "input": {"root": [20, 10, 30, 5, 15, 25, 40, 2, 8, 13, 17, 22, 27, 35, 50]}, "expected": 2, "tags": ["hidden", "balanced"]}
+  ]
+}

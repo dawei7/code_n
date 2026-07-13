@@ -1,0 +1,6 @@
+{"challenge_id":"lc_209","cases":[
+{"id":"sample-seven","name":"sample: shortest final pair","kind":"sample","visible":true,"input":{"target":7,"nums":[2,3,1,2,4,3]},"expected":2,"tags":["sample","sliding-window"]},
+{"id":"trial-single","name":"single value reaches target","kind":"trial","visible":true,"input":{"target":4,"nums":[1,4,4]},"expected":1,"tags":["boundary"]},
+{"id":"trial-impossible","name":"total is below target","kind":"trial","visible":true,"input":{"target":20,"nums":[1,2,3]},"expected":0,"tags":["no-solution"]},
+{"id":"real-whole","name":"hidden: entire array is shortest","kind":"real","visible":false,"input":{"target":15,"nums":[1,2,3,4,5]},"expected":5,"tags":["hidden","whole-array"]}
+]}

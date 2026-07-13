@@ -1,0 +1,347 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_602",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: user three has three friends",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "RequestAccepted": [
+            {
+              "requester_id": 1,
+              "accepter_id": 2,
+              "accept_date": "2016-06-03"
+            },
+            {
+              "requester_id": 1,
+              "accepter_id": 3,
+              "accept_date": "2016-06-08"
+            },
+            {
+              "requester_id": 2,
+              "accepter_id": 3,
+              "accept_date": "2016-06-08"
+            },
+            {
+              "requester_id": 3,
+              "accepter_id": 4,
+              "accept_date": "2016-06-09"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "num"
+        ],
+        "rows": [
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "degree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: winner appears only as accepter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "RequestAccepted": [
+            {
+              "requester_id": 2,
+              "accepter_id": 5,
+              "accept_date": "2020-01-01"
+            },
+            {
+              "requester_id": 3,
+              "accepter_id": 5,
+              "accept_date": "2020-01-02"
+            },
+            {
+              "requester_id": 4,
+              "accepter_id": 5,
+              "accept_date": "2020-01-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "num"
+        ],
+        "rows": [
+          [
+            5,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "degree"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: winner appears in both roles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "RequestAccepted": [
+            {
+              "requester_id": 1,
+              "accepter_id": 2,
+              "accept_date": "2021-01-01"
+            },
+            {
+              "requester_id": 3,
+              "accepter_id": 1,
+              "accept_date": "2021-01-02"
+            },
+            {
+              "requester_id": 1,
+              "accepter_id": 4,
+              "accept_date": "2021-01-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "num"
+        ],
+        "rows": [
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "degree"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: nonconsecutive identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "RequestAccepted": [
+            {
+              "requester_id": 10,
+              "accepter_id": 20,
+              "accept_date": "2022-01-01"
+            },
+            {
+              "requester_id": 30,
+              "accepter_id": 10,
+              "accept_date": "2022-01-02"
+            },
+            {
+              "requester_id": 10,
+              "accepter_id": 40,
+              "accept_date": "2022-01-03"
+            },
+            {
+              "requester_id": 50,
+              "accepter_id": 60,
+              "accept_date": "2022-01-04"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "num"
+        ],
+        "rows": [
+          [
+            10,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "degree"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: requester-side center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "RequestAccepted": [
+            {
+              "requester_id": 7,
+              "accepter_id": 8,
+              "accept_date": "2023-01-01"
+            },
+            {
+              "requester_id": 7,
+              "accepter_id": 9,
+              "accept_date": "2023-01-02"
+            },
+            {
+              "requester_id": 7,
+              "accepter_id": 10,
+              "accept_date": "2023-01-03"
+            },
+            {
+              "requester_id": 8,
+              "accepter_id": 9,
+              "accept_date": "2023-01-04"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "num"
+        ],
+        "rows": [
+          [
+            7,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "degree"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: large identifier in both roles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "RequestAccepted": [
+            {
+              "requester_id": 100,
+              "accepter_id": 1,
+              "accept_date": "2024-01-01"
+            },
+            {
+              "requester_id": 2,
+              "accepter_id": 100,
+              "accept_date": "2024-01-02"
+            },
+            {
+              "requester_id": 100,
+              "accepter_id": 3,
+              "accept_date": "2024-01-03"
+            },
+            {
+              "requester_id": 4,
+              "accepter_id": 100,
+              "accept_date": "2024-01-04"
+            },
+            {
+              "requester_id": 5,
+              "accepter_id": 6,
+              "accept_date": "2024-01-05"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "num"
+        ],
+        "rows": [
+          [
+            100,
+            4
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "degree"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: mixed network with unique hub",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "RequestAccepted": [
+            {
+              "requester_id": 1,
+              "accepter_id": 9,
+              "accept_date": "2025-01-01"
+            },
+            {
+              "requester_id": 2,
+              "accepter_id": 9,
+              "accept_date": "2025-01-02"
+            },
+            {
+              "requester_id": 3,
+              "accepter_id": 9,
+              "accept_date": "2025-01-03"
+            },
+            {
+              "requester_id": 9,
+              "accepter_id": 4,
+              "accept_date": "2025-01-04"
+            },
+            {
+              "requester_id": 4,
+              "accepter_id": 5,
+              "accept_date": "2025-01-05"
+            },
+            {
+              "requester_id": 5,
+              "accepter_id": 6,
+              "accept_date": "2025-01-06"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "num"
+        ],
+        "rows": [
+          [
+            9,
+            4
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "degree"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_441",
+  "measurement_note": "Size is the number of complete rows. The exact integer-square-root formula uses fixed bounded arithmetic, while subtracting successive row costs performs one iteration per completed row.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: complete 256 staircase rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"n": 33024},
+      "expected": 256,
+      "tags": ["benchmark", "scaling", "row-count"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: complete 1024 staircase rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {"n": 525312},
+      "expected": 1024,
+      "tags": ["benchmark", "scaling", "row-count"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: complete 4096 staircase rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {"n": 8392704},
+      "expected": 4096,
+      "tags": ["benchmark", "scaling", "row-count"]
+    }
+  ]
+}

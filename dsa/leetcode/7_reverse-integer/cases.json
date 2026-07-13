@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_7",
+  "cases": [
+    {"id": "sample-1", "name": "sample: positive", "kind": "sample", "visible": true, "input": {"x": 123}, "expected": 321, "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: negative", "kind": "sample", "visible": true, "input": {"x": -123}, "expected": -321, "tags": ["sample", "negative"]},
+    {"id": "trial-trailing-zero", "name": "trailing zero is discarded", "kind": "trial", "visible": true, "input": {"x": 120}, "expected": 21, "tags": ["zero"]},
+    {"id": "trial-positive-overflow", "name": "positive reversal overflows", "kind": "trial", "visible": true, "input": {"x": 1534236469}, "expected": 0, "tags": ["overflow"]},
+    {"id": "real-negative-boundary", "name": "hidden: negative reversal remains in range", "kind": "real", "visible": false, "input": {"x": -2147483412}, "expected": -2143847412, "tags": ["hidden", "boundary"]}
+  ]
+}

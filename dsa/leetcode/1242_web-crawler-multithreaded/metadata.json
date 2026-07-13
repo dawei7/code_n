@@ -1,0 +1,125 @@
+{
+  "challenge_id": "lc_1242",
+  "source": "leetcode",
+  "frontend_id": "1242",
+  "slug": "web-crawler-multithreaded",
+  "title": "Web Crawler Multithreaded",
+  "difficulty": "Medium",
+  "acceptance_rate": 51.2686071019365,
+  "category": "concurrency",
+  "category_title": "Concurrency",
+  "topics": [
+    {
+      "name": "Depth-First Search",
+      "slug": "depth-first-search"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    },
+    {
+      "name": "Concurrency",
+      "slug": "concurrency"
+    }
+  ],
+  "url": "https://leetcode.com/problems/web-crawler-multithreaded/",
+  "supported_languages": [],
+  "primary_language": "",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:concurrency",
+    "leetcode_company:apple",
+    "leetcode_company:dropbox",
+    "leetcode_company:facebook",
+    "leetcode_company:mongodb",
+    "leetcode_company:rubrik",
+    "leetcode_company:snowflake",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:concurrency",
+    "leetcode_topic:depth-first-search"
+  ],
+  "tags": [
+    "category:concurrency",
+    "company:apple",
+    "company:dropbox",
+    "company:facebook",
+    "company:mongodb",
+    "company:rubrik",
+    "company:snowflake",
+    "leetcode",
+    "topic:breadth-first-search",
+    "topic:concurrency",
+    "topic:depth-first-search"
+  ],
+  "company_tags": [
+    {
+      "name": "Snowflake",
+      "slug": "snowflake"
+    },
+    {
+      "name": "Rubrik",
+      "slug": "rubrik"
+    },
+    {
+      "name": "MongoDB",
+      "slug": "mongodb"
+    },
+    {
+      "name": "Apple",
+      "slug": "apple"
+    },
+    {
+      "name": "Dropbox",
+      "slug": "dropbox"
+    },
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "MongoDB",
+        "slug": "mongodb",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Apple",
+        "slug": "apple",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Dropbox",
+        "slug": "dropbox",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Snowflake",
+        "slug": "snowflake",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Rubrik",
+        "slug": "rubrik",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

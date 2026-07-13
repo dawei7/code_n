@@ -1,0 +1,154 @@
+{
+  "challenge_id": "lc_3165",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two updates over three values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          9
+        ],
+        "queries": [
+          [
+            1,
+            -2
+          ],
+          [
+            0,
+            -3
+          ]
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "sample",
+        "updates"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all non-positive after update",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          -1
+        ],
+        "queries": [
+          [
+            0,
+            -5
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: four values with endpoint update",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4,
+          9
+        ],
+        "queries": [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-negative-to-positive",
+      "name": "trial: updates revive negative positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          4,
+          -2,
+          7
+        ],
+        "queries": [
+          [
+            0,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            -10
+          ]
+        ]
+      },
+      "expected": 37,
+      "tags": [
+        "non-adjacent"
+      ]
+    },
+    {
+      "id": "real-many-updates-same-index",
+      "name": "real: repeated updates on the same index",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          -1,
+          4,
+          -2,
+          3
+        ],
+        "queries": [
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            -5
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            0,
+            -3
+          ]
+        ]
+      },
+      "expected": 57,
+      "tags": [
+        "real",
+        "repeat-update"
+      ]
+    }
+  ]
+}

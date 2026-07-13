@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1364",
+  "source": "leetcode",
+  "frontend_id": "1364",
+  "slug": "number-of-trusted-contacts-of-a-customer",
+  "title": "Number of Trusted Contacts of a Customer",
+  "difficulty": "Medium",
+  "acceptance_rate": 74.70319634703196,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-trusted-contacts-of-a-customer/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:roblox",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:roblox",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Roblox",
+      "slug": "roblox"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Roblox",
+        "slug": "roblox",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_734",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all aligned words have direct pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence1": ["great","acting","skills"], "sentence2": ["fine","drama","talent"], "similarPairs": [["great","fine"],["drama","acting"],["skills","talent"]]},
+      "expected": true,
+      "tags": ["sample", "direct-pairs"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: identical words need no pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence1": ["great"], "sentence2": ["great"], "similarPairs": []},
+      "expected": true,
+      "tags": ["sample", "reflexive"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: similarity is not transitive",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence1": ["great"], "sentence2": ["fine"], "similarPairs": [["great","good"],["good","fine"]]},
+      "expected": false,
+      "tags": ["sample", "non-transitive"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: different sentence lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {"sentence1": ["one","short"], "sentence2": ["one"], "similarPairs": [["short","brief"]]},
+      "expected": false,
+      "tags": ["trial", "length-mismatch"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: pair orientation is symmetric",
+      "kind": "trial",
+      "visible": true,
+      "input": {"sentence1": ["calm","sea"], "sentence2": ["quiet","ocean"], "similarPairs": [["quiet","calm"],["ocean","sea"]]},
+      "expected": true,
+      "tags": ["trial", "symmetric"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: one unlisted alignment fails",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence1": ["fast","red","car"], "sentence2": ["quick","red","vehicle"], "similarPairs": [["fast","quick"],["car","auto"]]},
+      "expected": false,
+      "tags": ["hidden", "missing-pair"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: duplicates and unused pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence1": ["a","same","c"], "sentence2": ["b","same","d"], "similarPairs": [["a","b"],["a","b"],["d","c"],["unused","pair"]]},
+      "expected": true,
+      "tags": ["hidden", "duplicates"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: reverse pair at every position",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence1": ["north","south","east","west"], "sentence2": ["up","down","right","left"], "similarPairs": [["up","north"],["down","south"],["right","east"],["left","west"]]},
+      "expected": true,
+      "tags": ["hidden", "reversed"]
+    }
+  ]
+}

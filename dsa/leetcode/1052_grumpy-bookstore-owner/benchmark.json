@@ -1,0 +1,38 @@
+{
+  "challenge_id": "lc_1052",
+  "cases": [
+    {
+      "id": "benchmark-longer-day",
+      "name": "benchmark: longer day",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "customers": [
+          3,
+          8,
+          8,
+          7,
+          1,
+          5,
+          9,
+          4
+        ],
+        "grumpy": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "minutes": 3
+      },
+      "expected": 33,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

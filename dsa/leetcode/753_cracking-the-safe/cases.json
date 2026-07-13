@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_753",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two one-digit passwords", "kind": "sample", "visible": true, "input": {"n": 1, "k": 2}, "expected": "10", "validator": {"kind": "de_bruijn_sequence"}, "tags": ["sample", "single-digit"]},
+    {"id": "sample-2", "name": "sample: four binary passwords", "kind": "sample", "visible": true, "input": {"n": 2, "k": 2}, "expected": "01100", "validator": {"kind": "de_bruijn_sequence"}, "tags": ["sample", "binary"]},
+    {"id": "trial-1", "name": "trial: one-symbol alphabet", "kind": "trial", "visible": true, "input": {"n": 1, "k": 1}, "expected": "0", "validator": {"kind": "de_bruijn_sequence"}, "tags": ["trial", "minimum"]},
+    {"id": "trial-2", "name": "trial: three one-digit passwords", "kind": "trial", "visible": true, "input": {"n": 1, "k": 3}, "expected": "210", "validator": {"kind": "de_bruijn_sequence"}, "tags": ["trial", "single-digit"]},
+    {"id": "trial-3", "name": "trial: nine ternary passwords", "kind": "trial", "visible": true, "input": {"n": 2, "k": 3}, "expected": "0221120100", "validator": {"kind": "de_bruijn_sequence"}, "tags": ["trial", "ternary"]},
+    {"id": "hidden-1", "name": "hidden: binary passwords of length three", "kind": "real", "visible": false, "input": {"n": 3, "k": 2}, "expected": "0011101000", "validator": {"kind": "de_bruijn_sequence"}, "tags": ["hidden", "eulerian"]},
+    {"id": "hidden-2", "name": "hidden: ternary passwords of length three", "kind": "real", "visible": false, "input": {"n": 3, "k": 3}, "expected": "00222121112201202101102001000", "validator": {"kind": "de_bruijn_sequence"}, "tags": ["hidden", "eulerian"]},
+    {"id": "hidden-3", "name": "hidden: binary passwords of length four", "kind": "real", "visible": false, "input": {"n": 4, "k": 2}, "expected": "0001111010110010000", "validator": {"kind": "de_bruijn_sequence"}, "tags": ["hidden", "longer-password"]}
+  ]
+}

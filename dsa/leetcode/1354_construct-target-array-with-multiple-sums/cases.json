@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_1354",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: constructible target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": [
+          9,
+          3,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: impossible target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": [
+          8,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-single-one",
+      "name": "hidden: single one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": [
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

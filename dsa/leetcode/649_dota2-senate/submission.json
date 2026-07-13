@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "649",
+  "frontend_id": "649",
+  "title_slug": "dota2-senate",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065516839",
+  "verified_at": "2026-07-13T00:51:44.142719+00:00"
+}

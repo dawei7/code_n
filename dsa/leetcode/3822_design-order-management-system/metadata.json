@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_3822",
+  "source": "leetcode",
+  "frontend_id": "3822",
+  "slug": "design-order-management-system",
+  "title": "Design Order Management System",
+  "difficulty": "Medium",
+  "acceptance_rate": 78.22623473181093,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-order-management-system/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:optiver",
+    "leetcode_topic:design",
+    "leetcode_topic:hash-table"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:optiver",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:design",
+    "topic:hash-table"
+  ],
+  "company_tags": [
+    {
+      "name": "Optiver",
+      "slug": "optiver"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Optiver",
+        "slug": "optiver",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

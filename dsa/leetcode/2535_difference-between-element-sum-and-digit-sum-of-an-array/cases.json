@@ -1,0 +1,90 @@
+{
+  "challenge_id": "lc_2535",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed one- and two-digit values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          15,
+          6,
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "math"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all one-digit values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: trailing zeroes increase the difference",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30
+        ]
+      },
+      "expected": 54,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-values",
+      "name": "trial: two values with large digit reduction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          99,
+          1
+        ]
+      },
+      "expected": 81,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-digit",
+      "name": "hidden: one digit has no difference",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

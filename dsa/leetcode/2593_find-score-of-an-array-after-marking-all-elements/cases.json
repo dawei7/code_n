@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_2593",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: smallest values mark neighbors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          4,
+          5,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: later small value changes score",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: single element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-tie-by-index",
+      "name": "trial: equal values break ties by index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          1,
+          5
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-descending-values",
+      "name": "hidden: descending values select alternating suffixes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

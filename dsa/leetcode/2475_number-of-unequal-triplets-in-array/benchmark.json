@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2475",
+  "cases": [
+    {
+      "id": "benchmark-even-frequency-groups",
+      "name": "benchmark: three value groups with equal frequency",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

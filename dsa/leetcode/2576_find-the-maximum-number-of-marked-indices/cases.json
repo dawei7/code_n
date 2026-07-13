@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_2576",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one valid pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          2,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two valid pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          2,
+          5,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no pair can be marked",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          6,
+          8
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-duplicate-perfect-pairs",
+      "name": "trial: duplicate values form perfect pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-chain-of-doubles",
+      "name": "hidden: every small value can be paired",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          8,
+          16
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

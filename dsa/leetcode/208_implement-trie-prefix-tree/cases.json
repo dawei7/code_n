@@ -1,0 +1,6 @@
+{"challenge_id":"lc_208","cases":[
+{"id":"sample-apple","name":"sample: distinguish word and prefix","kind":"sample","visible":true,"input":{"operations":[["insert","apple"],["search","apple"],["search","app"],["startsWith","app"],["insert","app"],["search","app"]]},"expected":[true,false,true,true],"tags":["sample","trie"]},
+{"id":"trial-empty-trie","name":"queries before insertion","kind":"trial","visible":true,"input":{"operations":[["search","bat"],["startsWith","b"]]},"expected":[false,false],"tags":["boundary"]},
+{"id":"trial-shared-prefix","name":"multiple words share prefix","kind":"trial","visible":true,"input":{"operations":[["insert","car"],["insert","cat"],["search","can"],["startsWith","ca"]]},"expected":[false,true],"tags":["prefix"]},
+{"id":"real-word-prefix","name":"hidden: shorter word inserted after longer","kind":"real","visible":false,"input":{"operations":[["insert","testing"],["search","test"],["insert","test"],["search","test"],["startsWith","tester"]]},"expected":[false,true,false],"tags":["hidden","terminal"]}
+]}

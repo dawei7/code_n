@@ -1,0 +1,114 @@
+{
+  "challenge_id": "lc_2654",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: shortest gcd-one window has length two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          6,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "gcd"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: gcd never reaches one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          10,
+          6,
+          14
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "trial: already all ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "ones"
+      ]
+    },
+    {
+      "id": "trial-one-existing-one",
+      "name": "trial: one existing one propagates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "ones"
+      ]
+    },
+    {
+      "id": "real-gcd-one-window-length-three",
+      "name": "hidden: gcd one needs three values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "gcd"
+      ]
+    },
+    {
+      "id": "real-single-non-one",
+      "name": "hidden: single non-one value is impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

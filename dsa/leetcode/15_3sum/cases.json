@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_15",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two unique triplets", "kind": "sample", "visible": true, "input": {"nums": [-1, 0, 1, 2, -1, -4]}, "expected": [[-1, -1, 2], [-1, 0, 1]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "duplicates"]},
+    {"id": "sample-2", "name": "sample: no triplet", "kind": "sample", "visible": true, "input": {"nums": [0, 1, 1]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["sample"]},
+    {"id": "trial-all-zero", "name": "many zeroes produce one triplet", "kind": "trial", "visible": true, "input": {"nums": [0, 0, 0, 0]}, "expected": [[0, 0, 0]], "validator": {"kind": "unordered_list"}, "tags": ["duplicates", "zero"]},
+    {"id": "trial-duplicate-pairs", "name": "duplicate complements", "kind": "trial", "visible": true, "input": {"nums": [-2, 0, 0, 2, 2]}, "expected": [[-2, 0, 2]], "validator": {"kind": "unordered_list"}, "tags": ["duplicates"]},
+    {"id": "real-two-solutions", "name": "hidden: two combinations share a fixed value", "kind": "real", "visible": false, "input": {"nums": [-5, 1, 2, 3, 4]}, "expected": [[-5, 1, 4], [-5, 2, 3]], "validator": {"kind": "unordered_list"}, "tags": ["hidden"]}
+  ]
+}

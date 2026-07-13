@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_1408",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: nested short words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "mass",
+          "as",
+          "hero",
+          "superhero"
+        ]
+      },
+      "expected": [
+        "as",
+        "hero"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "string-matching"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: multiple substrings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "leetcode",
+          "et",
+          "code"
+        ]
+      },
+      "expected": [
+        "et",
+        "code"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no substrings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "blue",
+          "green",
+          "red"
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-overlapping-substrings",
+      "name": "hidden: overlapping substring candidates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "leetcoder",
+          "leetcode",
+          "od",
+          "hamlet",
+          "am"
+        ]
+      },
+      "expected": [
+        "leetcode",
+        "od",
+        "am"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

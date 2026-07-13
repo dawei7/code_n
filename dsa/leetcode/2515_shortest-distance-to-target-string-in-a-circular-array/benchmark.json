@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2515",
+  "cases": [
+    {
+      "id": "benchmark-two-targets",
+      "name": "benchmark: choose the nearer of two target positions",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "c",
+          "a"
+        ],
+        "target": "a",
+        "startIndex": 2
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

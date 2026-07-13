@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_78",
+  "cases": [
+    {"id": "sample-three", "name": "sample: three values", "kind": "sample", "visible": true, "input": {"nums": [1,2,3]}, "expected": [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]], "validator": {"kind": "unordered_list"}, "tags": ["sample"]},
+    {"id": "sample-single", "name": "sample: one value", "kind": "sample", "visible": true, "input": {"nums": [0]}, "expected": [[],[0]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "boundary"]},
+    {"id": "trial-negative", "name": "mixed-sign values", "kind": "trial", "visible": true, "input": {"nums": [-1,2]}, "expected": [[],[-1],[2],[-1,2]], "validator": {"kind": "unordered_list"}, "tags": ["negative"]},
+    {"id": "trial-two", "name": "two positive values", "kind": "trial", "visible": true, "input": {"nums": [9,37]}, "expected": [[],[9],[37],[9,37]], "validator": {"kind": "unordered_list"}, "tags": ["small"]},
+    {"id": "real-four", "name": "hidden: four-value power set", "kind": "real", "visible": false, "input": {"nums": [2,4,6,8]}, "expected": null, "validator": {"kind": "unordered_list"}, "tags": ["hidden", "power-set"]}
+  ]
+}

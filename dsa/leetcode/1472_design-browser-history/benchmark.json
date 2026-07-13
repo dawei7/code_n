@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_1472",
+  "cases": [
+    {
+      "id": "benchmark-clamped-navigation",
+      "name": "benchmark: clamped back and forward navigation",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "homepage": "root.com",
+        "operations": [
+          [
+            "visit",
+            [
+              "a.com"
+            ]
+          ],
+          [
+            "visit",
+            [
+              "b.com"
+            ]
+          ],
+          [
+            "visit",
+            [
+              "c.com"
+            ]
+          ],
+          [
+            "back",
+            [
+              10
+            ]
+          ],
+          [
+            "forward",
+            [
+              2
+            ]
+          ],
+          [
+            "visit",
+            [
+              "d.com"
+            ]
+          ],
+          [
+            "back",
+            [
+              1
+            ]
+          ],
+          [
+            "forward",
+            [
+              5
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        "root.com",
+        "b.com",
+        null,
+        "b.com",
+        "d.com"
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

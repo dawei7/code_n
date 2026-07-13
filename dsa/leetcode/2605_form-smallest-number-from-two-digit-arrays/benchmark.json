@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2605",
+  "cases": [
+    {
+      "id": "benchmark-no-common-digits",
+      "name": "benchmark: no common digits with low first array",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          5,
+          4
+        ],
+        "nums2": [
+          6,
+          8
+        ]
+      },
+      "expected": 46,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

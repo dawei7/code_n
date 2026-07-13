@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_460",
+  "cases": [
+    {
+      "id": "sample-frequency-and-recency",
+      "name": "sample: frequency eviction then recency tie-break",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": ["LFUCache", "put", "put", "get", "put", "get", "get", "put", "get", "get", "get"], "arguments": [[2], [1, 1], [2, 2], [1], [3, 3], [2], [3], [4, 4], [1], [3], [4]]},
+      "expected": [null, null, null, 1, null, -1, 3, null, -1, 3, 4],
+      "tags": ["sample", "design"]
+    },
+    {
+      "id": "sample-zero-capacity",
+      "name": "sample: zero-capacity cache stores nothing",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": ["LFUCache", "put", "get"], "arguments": [[0], [1, 1], [1]]},
+      "expected": [null, null, -1],
+      "tags": ["sample", "zero-capacity"]
+    },
+    {
+      "id": "sample-update",
+      "name": "sample: updating a key changes its value and use count",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": ["LFUCache", "put", "put", "put", "get"], "arguments": [[2], [1, 1], [2, 2], [1, 10], [1]]},
+      "expected": [null, null, null, null, 10],
+      "tags": ["sample", "update"]
+    },
+    {
+      "id": "trial-update-protects",
+      "name": "trial: updated key survives a later eviction",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": ["LFUCache", "put", "put", "put", "put", "get", "get", "get"], "arguments": [[2], [1, 1], [2, 2], [1, 10], [3, 3], [1], [2], [3]]},
+      "expected": [null, null, null, null, null, 10, -1, 3],
+      "tags": ["trial", "update"]
+    },
+    {
+      "id": "trial-recency-tie",
+      "name": "trial: least recent key loses a frequency tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": ["LFUCache", "put", "put", "get", "get", "put", "get", "get", "get"], "arguments": [[2], [1, 1], [2, 2], [1], [2], [3, 3], [1], [2], [3]]},
+      "expected": [null, null, null, 1, 2, null, -1, 2, 3],
+      "tags": ["trial", "recency"]
+    },
+    {
+      "id": "hidden-frequency-priority",
+      "name": "hidden: frequency dominates more recent low-use key",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": ["LFUCache", "put", "put", "get", "get", "put", "get", "get"], "arguments": [[2], [1, 10], [2, 20], [1], [1], [3, 30], [2], [1]]},
+      "expected": [null, null, null, 10, 10, null, -1, 10],
+      "tags": ["hidden", "frequency"]
+    },
+    {
+      "id": "hidden-capacity-one",
+      "name": "hidden: capacity one replaces the only key",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": ["LFUCache", "put", "get", "put", "get", "get"], "arguments": [[1], [7, 70], [7], [8, 80], [7], [8]]},
+      "expected": [null, null, 70, null, -1, 80],
+      "tags": ["hidden", "capacity-one"]
+    }
+  ]
+}

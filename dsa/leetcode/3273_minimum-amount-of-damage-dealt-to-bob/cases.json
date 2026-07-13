@@ -1,0 +1,131 @@
+{
+  "challenge_id": "lc_3273",
+  "cases": [
+    {
+      "id": "sample-four-enemies",
+      "name": "sample: four enemies sorted by danger",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "damage": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "health": [
+          4,
+          5,
+          6,
+          8
+        ],
+        "power": 4
+      },
+      "expected": 39,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-single-enemy",
+      "name": "sample: one enemy",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "damage": [
+          1
+        ],
+        "health": [
+          1
+        ],
+        "power": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-tie-ratios",
+      "name": "trial: equal ratio tie does not change total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "damage": [
+          4,
+          2,
+          8
+        ],
+        "health": [
+          8,
+          4,
+          16
+        ],
+        "power": 2
+      },
+      "expected": 140,
+      "tags": [
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-high-health-low-damage",
+      "name": "trial: high health low damage enemy waits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "damage": [
+          9,
+          1,
+          5,
+          3
+        ],
+        "health": [
+          10,
+          100,
+          9,
+          4
+        ],
+        "power": 5
+      },
+      "expected": 77,
+      "tags": [
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-mixed-enemies",
+      "name": "real: mixed enemy profile",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "damage": [
+          5,
+          1,
+          6,
+          4,
+          2,
+          9,
+          3
+        ],
+        "health": [
+          2,
+          3,
+          5,
+          6,
+          3,
+          20,
+          7
+        ],
+        "power": 3
+      },
+      "expected": 237,
+      "tags": [
+        "real",
+        "greedy"
+      ]
+    }
+  ]
+}

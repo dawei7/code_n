@@ -1,0 +1,83 @@
+{
+  "challenge_id": "lc_1283",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: divisor five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          5,
+          9
+        ],
+        "threshold": 6
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: divisor max value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          44,
+          22,
+          33,
+          11,
+          1
+        ],
+        "threshold": 5
+      },
+      "expected": 44,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: huge threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          21212,
+          10101,
+          12121
+        ],
+        "threshold": 1000000
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-small-primes",
+      "name": "hidden: small primes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          7,
+          11
+        ],
+        "threshold": 11
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

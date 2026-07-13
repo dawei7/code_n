@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_524",
+  "cases": [
+    {"id": "sample-apple", "name": "sample: apple is the longest qualifying word", "kind": "sample", "visible": true, "input": {"s": "abpcplea", "dictionary": ["ale","apple","monkey","plea"]}, "expected": "apple", "tags": ["sample", "subsequence"]},
+    {"id": "sample-single-letters", "name": "sample: lexicographically first single letter wins", "kind": "sample", "visible": true, "input": {"s": "abpcplea", "dictionary": ["a","b","c"]}, "expected": "a", "tags": ["sample", "tie"]},
+    {"id": "sample-equal-length-tie", "name": "sample: lexicographic tie-breaking", "kind": "sample", "visible": true, "input": {"s": "bab", "dictionary": ["ba","ab","a","b"]}, "expected": "ab", "tags": ["sample", "lexicographic"]},
+    {"id": "trial-none", "name": "trial: no candidate is a subsequence", "kind": "trial", "visible": true, "input": {"s": "abc", "dictionary": ["d","acb","abcd"]}, "expected": "", "tags": ["trial", "empty-result"]},
+    {"id": "trial-complete-source", "name": "trial: source itself is available", "kind": "trial", "visible": true, "input": {"s": "algorithm", "dictionary": ["algo","algorithm","rhythm"]}, "expected": "algorithm", "tags": ["trial", "complete"]},
+    {"id": "hidden-repeated", "name": "hidden: repeated letters require distinct positions", "kind": "real", "visible": false, "input": {"s": "aabbcc", "dictionary": ["abc","aabc","aabbc","aaab"]}, "expected": "aabbc", "tags": ["hidden", "repeated"]},
+    {"id": "hidden-input-order", "name": "hidden: later lexicographic word can replace an earlier tie", "kind": "real", "visible": false, "input": {"s": "abdc", "dictionary": ["bd","ac","ad"]}, "expected": "ac", "tags": ["hidden", "tie"]}
+  ]
+}

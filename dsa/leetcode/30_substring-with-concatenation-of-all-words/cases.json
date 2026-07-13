@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_30",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two orderings", "kind": "sample", "visible": true, "input": {"s": "barfoothefoobarman", "words": ["foo", "bar"]}, "expected": [0, 9], "validator": {"kind": "unordered_list"}, "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: wrong duplicate multiplicity", "kind": "sample", "visible": true, "input": {"s": "wordgoodgoodgoodbestword", "words": ["word", "good", "best", "word"]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["sample", "duplicates"]},
+    {"id": "trial-overlapping", "name": "overlapping aligned matches", "kind": "trial", "visible": true, "input": {"s": "barfoofoobarthefoobarman", "words": ["bar", "foo", "the"]}, "expected": [6, 9, 12], "validator": {"kind": "unordered_list"}, "tags": ["overlap"]},
+    {"id": "trial-single-word", "name": "single-word concatenation", "kind": "trial", "visible": true, "input": {"s": "aaaa", "words": ["aa"]}, "expected": [0, 1, 2], "validator": {"kind": "unordered_list"}, "tags": ["single-word", "unaligned-offsets"]},
+    {"id": "real-repeated-word", "name": "hidden: repeated required word", "kind": "real", "visible": false, "input": {"s": "lingmindraboofooowingdingbarrwingmonkeypoundcake", "words": ["fooo", "barr", "wing", "ding", "wing"]}, "expected": [13], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "duplicates"]}
+  ]
+}

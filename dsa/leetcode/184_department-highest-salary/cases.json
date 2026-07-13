@@ -1,0 +1,9 @@
+{
+  "challenge_id":"lc_184",
+  "cases":[
+    {"id":"sample-two-departments","name":"sample: one maximum per department","kind":"sample","visible":true,"input":{"tables":{"Employee":[{"id":1,"name":"Joe","salary":85000,"departmentId":1},{"id":2,"name":"Max","salary":90000,"departmentId":1},{"id":3,"name":"Sam","salary":60000,"departmentId":2},{"id":4,"name":"Randy","salary":85000,"departmentId":2}],"Department":[{"id":1,"name":"IT"},{"id":2,"name":"Sales"}]}},"expected":{"columns":["Department","Employee","Salary"],"rows":[["IT","Max",90000],["Sales","Randy",85000]]},"tags":["sample","window-function"]},
+    {"id":"trial-tied-maximum","name":"all tied maxima are retained","kind":"trial","visible":true,"input":{"tables":{"Employee":[{"id":1,"name":"Ada","salary":10,"departmentId":1},{"id":2,"name":"Lin","salary":10,"departmentId":1},{"id":3,"name":"Bo","salary":8,"departmentId":1}],"Department":[{"id":1,"name":"IT"}]}},"expected":{"columns":["Department","Employee","Salary"],"rows":[["IT","Ada",10],["IT","Lin",10]]},"tags":["ties"]},
+    {"id":"trial-empty-department","name":"departments without employees are omitted","kind":"trial","visible":true,"input":{"tables":{"Employee":[{"id":1,"name":"Solo","salary":7,"departmentId":1}],"Department":[{"id":1,"name":"A"},{"id":2,"name":"B"}]}},"expected":{"columns":["Department","Employee","Salary"],"rows":[["A","Solo",7]]},"tags":["boundary"]},
+    {"id":"real-negative-salaries","name":"hidden: maximum can be negative","kind":"real","visible":false,"input":{"tables":{"Employee":[{"id":1,"name":"Low","salary":-5,"departmentId":1},{"id":2,"name":"High","salary":-2,"departmentId":1}],"Department":[{"id":1,"name":"Test"}]}},"expected":{"columns":["Department","Employee","Salary"],"rows":[["Test","High",-2]]},"tags":["hidden","ordering"]}
+  ]
+}

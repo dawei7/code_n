@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_109",
+  "cases": [
+    {"id": "sample-five", "name": "sample: five list nodes", "kind": "sample", "visible": true, "input": {"head": [-10, -3, 0, 5, 9]}, "expected": [0, -3, 9, -10, null, 5], "validator": {"kind": "balanced_bst", "values_param": "head"}, "tags": ["sample", "balanced-bst"]},
+    {"id": "sample-empty", "name": "sample: empty list", "kind": "sample", "visible": true, "input": {"head": []}, "expected": [], "validator": {"kind": "balanced_bst", "values_param": "head"}, "tags": ["sample", "boundary"]},
+    {"id": "sample-two", "name": "sample: two nodes", "kind": "sample", "visible": true, "input": {"head": [1, 3]}, "expected": [3, 1], "validator": {"kind": "balanced_bst", "values_param": "head"}, "tags": ["sample", "small"]},
+    {"id": "trial-one", "name": "single list node", "kind": "trial", "visible": true, "input": {"head": [7]}, "expected": [7], "validator": {"kind": "balanced_bst", "values_param": "head"}, "tags": ["boundary"]},
+    {"id": "real-seven", "name": "hidden: seven values", "kind": "real", "visible": false, "input": {"head": [-5, -3, -1, 0, 2, 4, 8]}, "expected": [0, -3, 4, -5, -1, 2, 8], "validator": {"kind": "balanced_bst", "values_param": "head"}, "tags": ["hidden", "balanced-bst"]}
+  ]
+}

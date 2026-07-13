@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_692",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two frequency leaders",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "i",
+          "love",
+          "leetcode",
+          "i",
+          "love",
+          "coding"
+        ],
+        "k": 2
+      },
+      "expected": [
+        "i",
+        "love"
+      ],
+      "tags": [
+        "sample",
+        "frequency"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four ranked words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "the",
+          "day",
+          "is",
+          "sunny",
+          "the",
+          "the",
+          "the",
+          "sunny",
+          "is",
+          "is"
+        ],
+        "k": 4
+      },
+      "expected": [
+        "the",
+        "is",
+        "sunny",
+        "day"
+      ],
+      "tags": [
+        "sample",
+        "multiple-frequencies"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all counts tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "b",
+          "a",
+          "c",
+          "b",
+          "a",
+          "c"
+        ],
+        "k": 2
+      },
+      "expected": [
+        "a",
+        "b"
+      ],
+      "tags": [
+        "sample",
+        "lexical-tie"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one requested word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "x",
+          "y",
+          "x",
+          "z",
+          "x",
+          "y"
+        ],
+        "k": 1
+      },
+      "expected": [
+        "x"
+      ],
+      "tags": [
+        "trial",
+        "k-one"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: return every distinct word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "cat",
+          "dog",
+          "cat",
+          "ant"
+        ],
+        "k": 3
+      },
+      "expected": [
+        "cat",
+        "ant",
+        "dog"
+      ],
+      "tags": [
+        "trial",
+        "all-distinct-results"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: prefix lexical ordering",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "aa",
+          "a",
+          "aa",
+          "ab"
+        ],
+        "k": 2
+      },
+      "expected": [
+        "a",
+        "aa"
+      ],
+      "tags": [
+        "hidden",
+        "prefix-words"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: lower frequency lexical ties",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "z",
+          "x",
+          "y",
+          "z"
+        ],
+        "k": 3
+      },
+      "expected": [
+        "z",
+        "x",
+        "y"
+      ],
+      "tags": [
+        "hidden",
+        "tie-group"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: repeated single distinct word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "only",
+          "only",
+          "only"
+        ],
+        "k": 1
+      },
+      "expected": [
+        "only"
+      ],
+      "tags": [
+        "hidden",
+        "single-distinct"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,210 @@
+{
+  "challenge_id": "lc_3387",
+  "cases": [
+    {
+      "id": "sample-eur-cycle",
+      "name": "sample: day one and day two chain multiplies amount",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "initialCurrency": "EUR",
+        "pairs1": [
+          [
+            "EUR",
+            "USD"
+          ],
+          [
+            "USD",
+            "JPY"
+          ]
+        ],
+        "rates1": [
+          2.0,
+          3.0
+        ],
+        "pairs2": [
+          [
+            "JPY",
+            "USD"
+          ],
+          [
+            "USD",
+            "CHF"
+          ],
+          [
+            "CHF",
+            "EUR"
+          ]
+        ],
+        "rates2": [
+          4.0,
+          5.0,
+          6.0
+        ]
+      },
+      "expected": 720.0,
+      "tags": [
+        "sample",
+        "graph"
+      ]
+    },
+    {
+      "id": "sample-ngn-inverse",
+      "name": "sample: inverse day two conversion is best",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "initialCurrency": "NGN",
+        "pairs1": [
+          [
+            "NGN",
+            "EUR"
+          ]
+        ],
+        "rates1": [
+          9.0
+        ],
+        "pairs2": [
+          [
+            "NGN",
+            "EUR"
+          ]
+        ],
+        "rates2": [
+          6.0
+        ]
+      },
+      "expected": 1.5,
+      "tags": [
+        "sample",
+        "inverse"
+      ]
+    },
+    {
+      "id": "sample-no-conversion",
+      "name": "sample: no conversion is best",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "initialCurrency": "USD",
+        "pairs1": [
+          [
+            "USD",
+            "EUR"
+          ]
+        ],
+        "rates1": [
+          1.0
+        ],
+        "pairs2": [
+          [
+            "EUR",
+            "JPY"
+          ]
+        ],
+        "rates2": [
+          10.0
+        ]
+      },
+      "expected": 1.0,
+      "tags": [
+        "sample",
+        "no-op"
+      ]
+    },
+    {
+      "id": "trial-branching-choice",
+      "name": "trial: best intermediate currency is not the direct one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initialCurrency": "AAA",
+        "pairs1": [
+          [
+            "AAA",
+            "BBB"
+          ],
+          [
+            "AAA",
+            "CCC"
+          ]
+        ],
+        "rates1": [
+          2.0,
+          5.0
+        ],
+        "pairs2": [
+          [
+            "BBB",
+            "AAA"
+          ],
+          [
+            "CCC",
+            "AAA"
+          ]
+        ],
+        "rates2": [
+          3.0,
+          0.5
+        ]
+      },
+      "expected": 6.0,
+      "tags": [
+        "regression",
+        "branching"
+      ]
+    },
+    {
+      "id": "real-two-day-network",
+      "name": "real: two small conversion networks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "initialCurrency": "USD",
+        "pairs1": [
+          [
+            "USD",
+            "EUR"
+          ],
+          [
+            "EUR",
+            "JPY"
+          ],
+          [
+            "USD",
+            "CHF"
+          ]
+        ],
+        "rates1": [
+          0.9,
+          130.0,
+          0.8
+        ],
+        "pairs2": [
+          [
+            "JPY",
+            "CHF"
+          ],
+          [
+            "CHF",
+            "USD"
+          ],
+          [
+            "EUR",
+            "USD"
+          ]
+        ],
+        "rates2": [
+          0.006,
+          1.4,
+          1.1
+        ]
+      },
+      "expected": 1.12,
+      "tags": [
+        "real",
+        "graph"
+      ]
+    }
+  ]
+}

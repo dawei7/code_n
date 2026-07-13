@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_647",
+  "measurement_note": "Size is the string length. Equal characters force every center expansion and every explicit palindrome check to inspect full radii. Center expansion is quadratic, while enumerating all substrings and manually verifying each one grows cubically.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 16 equal characters", "kind": "benchmark", "visible": false, "size": 16, "input": {"s": "aaaaaaaaaaaaaaaa"}, "expected": 136, "tags": ["benchmark", "scaling", "all-equal"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 32 equal characters", "kind": "benchmark", "visible": false, "size": 32, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "expected": 528, "tags": ["benchmark", "scaling", "all-equal"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 64 equal characters", "kind": "benchmark", "visible": false, "size": 64, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "expected": 2080, "tags": ["benchmark", "scaling", "all-equal"]}
+  ]
+}

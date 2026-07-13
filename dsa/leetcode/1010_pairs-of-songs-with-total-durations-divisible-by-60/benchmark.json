@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1010",
+  "cases": [
+    {
+      "id": "benchmark-many-pairs",
+      "name": "benchmark: many pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "time": [
+          15,
+          45,
+          30,
+          30,
+          60,
+          90,
+          120,
+          75,
+          105
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

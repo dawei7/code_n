@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_82",
+  "cases": [
+    {"id": "sample-middle", "name": "sample: duplicate runs in the middle", "kind": "sample", "visible": true, "input": {"head": [1,2,3,3,4,4,5]}, "expected": [1,2,5], "tags": ["sample"]},
+    {"id": "sample-prefix", "name": "sample: duplicate prefix", "kind": "sample", "visible": true, "input": {"head": [1,1,1,2,3]}, "expected": [2,3], "tags": ["sample"]},
+    {"id": "trial-all-duplicate", "name": "all nodes removed", "kind": "trial", "visible": true, "input": {"head": [1,1]}, "expected": [], "tags": ["duplicates"]},
+    {"id": "trial-empty", "name": "empty list", "kind": "trial", "visible": true, "input": {"head": []}, "expected": [], "tags": ["boundary"]},
+    {"id": "real-separated", "name": "hidden: alternating unique and duplicate runs", "kind": "real", "visible": false, "input": {"head": [-3,-3,-2,-1,-1,0,2,2,4]}, "expected": [-2,0,4], "tags": ["hidden", "runs"]}
+  ]
+}

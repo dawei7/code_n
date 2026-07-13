@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "29",
+  "frontend_id": "29",
+  "title_slug": "divide-two-integers",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2063761776",
+  "verified_at": "2026-07-11T10:34:44.376Z"
+}

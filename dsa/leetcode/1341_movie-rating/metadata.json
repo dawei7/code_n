@@ -1,0 +1,129 @@
+{
+  "challenge_id": "lc_1341",
+  "source": "leetcode",
+  "frontend_id": "1341",
+  "slug": "movie-rating",
+  "title": "Movie Rating",
+  "difficulty": "Medium",
+  "acceptance_rate": 43.786206704842385,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/movie-rating/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:bloomberg",
+    "leetcode_company:facebook",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_company:sap",
+    "leetcode_studyplan:top-sql-50",
+    "leetcode_studyplan:top-sql-50:top-sql-50-133-0stx",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:bloomberg",
+    "company:facebook",
+    "company:google",
+    "company:microsoft",
+    "company:sap",
+    "language:sql",
+    "leetcode",
+    "study_plan:top-sql-50",
+    "study_plan_section:top-sql-50:top-sql-50-133-0stx",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Bloomberg",
+      "slug": "bloomberg"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "SAP",
+      "slug": "sap"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "SAP",
+        "slug": "sap",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Bloomberg",
+        "slug": "bloomberg",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      }
+    ]
+  },
+  "study_plans": [
+    {
+      "plan_slug": "top-sql-50",
+      "plan_name": "SQL 50",
+      "section_slug": "top-sql-50-133-0stx",
+      "section_name": "Subqueries",
+      "path": [
+        "Subqueries"
+      ],
+      "order": 39,
+      "section_order": 6,
+      "problem_order": 3,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_138",
+  "cases": [
+    {"id": "sample-five", "name": "sample: mixed random targets", "kind": "sample", "visible": true, "input": {"nodes": [[7, null], [13, 0], [11, 4], [10, 2], [1, 0]]}, "expected": [[7, null], [13, 0], [11, 4], [10, 2], [1, 0]], "tags": ["sample", "random"]},
+    {"id": "sample-self", "name": "sample: self random pointer", "kind": "sample", "visible": true, "input": {"nodes": [[1, 1], [2, 1]]}, "expected": [[1, 1], [2, 1]], "tags": ["sample", "self-reference"]},
+    {"id": "sample-empty", "name": "sample: empty list", "kind": "sample", "visible": true, "input": {"nodes": []}, "expected": [], "tags": ["sample", "boundary"]},
+    {"id": "trial-single", "name": "single node points to itself", "kind": "trial", "visible": true, "input": {"nodes": [[5, 0]]}, "expected": [[5, 0]], "tags": ["boundary", "self-reference"]},
+    {"id": "real-cycle", "name": "hidden: random-pointer cycle", "kind": "real", "visible": false, "input": {"nodes": [[1, 2], [2, 0], [3, 1]]}, "expected": [[1, 2], [2, 0], [3, 1]], "tags": ["hidden", "cycle"]}
+  ]
+}

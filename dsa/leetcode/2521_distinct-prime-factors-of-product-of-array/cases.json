@@ -1,0 +1,92 @@
+{
+  "challenge_id": "lc_2521",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four distinct prime factors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          3,
+          7,
+          10,
+          6
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "math"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all numbers are powers of two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          16
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three different primes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          7,
+          11
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-shared-prime-factors",
+      "name": "trial: composite values share the same primes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          18
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-prime",
+      "name": "hidden: one prime value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

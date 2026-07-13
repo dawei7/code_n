@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_3127",
+  "cases": [
+    {
+      "id": "benchmark-fixed-checkerboard",
+      "name": "benchmark: fixed checkerboard scan",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "B",
+            "W",
+            "B"
+          ],
+          [
+            "W",
+            "B",
+            "W"
+          ],
+          [
+            "B",
+            "W",
+            "B"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "constant"
+      ]
+    }
+  ]
+}

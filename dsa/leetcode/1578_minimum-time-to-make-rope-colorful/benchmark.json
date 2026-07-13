@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1578",
+  "cases": [
+    {
+      "id": "benchmark-two-groups",
+      "name": "benchmark: two adjacent-color groups",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "colors": "aaabbb",
+        "needed_time": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

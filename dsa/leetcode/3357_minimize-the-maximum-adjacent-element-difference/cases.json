@@ -1,0 +1,131 @@
+{
+  "challenge_id": "lc_3357",
+  "cases": [
+    {
+      "id": "sample-middle-gap",
+      "name": "sample: one missing value between fixed values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          -1,
+          10,
+          8
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-all-missing",
+      "name": "sample: all missing values can be equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-separated-single-gaps",
+      "name": "sample: two independent single gaps use different values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          10,
+          -1,
+          8
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-gaps"
+      ]
+    },
+    {
+      "id": "trial-multiple-missing-gap",
+      "name": "trial: multiple missing values require checking x-y transition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          -1,
+          -1,
+          -1,
+          7,
+          6
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "multiple-gap"
+      ]
+    },
+    {
+      "id": "trial-feedback-pattern",
+      "name": "trial: missing-test-case style mixed gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          34,
+          -1,
+          40,
+          -1,
+          -1,
+          46,
+          -1,
+          52
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "regression",
+        "multiple-gap"
+      ]
+    },
+    {
+      "id": "real-leading-trailing-gaps",
+      "name": "real: leading, trailing, and internal gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1,
+          -1,
+          5,
+          9,
+          -1,
+          14,
+          -1,
+          -1,
+          20,
+          -1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "binary-search"
+      ]
+    }
+  ]
+}

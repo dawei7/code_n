@@ -1,0 +1,6 @@
+{"challenge_id":"lc_251","cases":[
+{"id":"sample-mixed","name":"sample: rows of different lengths","kind":"sample","visible":true,"input":{"vec":[[1,2],[3],[4,5,6]]},"expected":[1,2,3,4,5,6],"tags":["sample","iterator"]},
+{"id":"sample-empty-rows","name":"sample: skip empty rows","kind":"sample","visible":true,"input":{"vec":[[],[7],[]]},"expected":[7],"tags":["sample","empty-rows"]},
+{"id":"trial-empty","name":"entirely empty vector","kind":"trial","visible":true,"input":{"vec":[]},"expected":[],"tags":["boundary"]},
+{"id":"real-many-empty","name":"hidden: consecutive empty rows","kind":"real","visible":false,"input":{"vec":[[],[],[1,2],[],[3],[]]},"expected":[1,2,3],"tags":["hidden","normalization"]}
+]}

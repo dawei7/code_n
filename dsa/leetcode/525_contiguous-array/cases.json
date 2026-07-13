@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_525",
+  "cases": [
+    {"id": "sample-pair", "name": "sample: one zero and one one", "kind": "sample", "visible": true, "input": {"nums": [0,1]}, "expected": 2, "tags": ["sample", "pair"]},
+    {"id": "sample-prefix", "name": "sample: best interval is a length-two prefix or suffix", "kind": "sample", "visible": true, "input": {"nums": [0,1,0]}, "expected": 2, "tags": ["sample", "prefix"]},
+    {"id": "sample-interior", "name": "sample: longest balanced interval lies inside the array", "kind": "sample", "visible": true, "input": {"nums": [0,1,1,1,1,1,0,0,0]}, "expected": 6, "tags": ["sample", "interior"]},
+    {"id": "trial-all-zero", "name": "trial: no ones are available", "kind": "trial", "visible": true, "input": {"nums": [0,0,0]}, "expected": 0, "tags": ["trial", "none"]},
+    {"id": "trial-alternating", "name": "trial: entire alternating array is balanced", "kind": "trial", "visible": true, "input": {"nums": [0,1,0,1,0,1]}, "expected": 6, "tags": ["trial", "whole-array"]},
+    {"id": "hidden-whole", "name": "hidden: differently ordered complete array is balanced", "kind": "real", "visible": false, "input": {"nums": [1,1,0,1,0,0]}, "expected": 6, "tags": ["hidden", "whole-array"]},
+    {"id": "hidden-single", "name": "hidden: one element cannot balance", "kind": "real", "visible": false, "input": {"nums": [1]}, "expected": 0, "tags": ["hidden", "singleton"]}
+  ]
+}

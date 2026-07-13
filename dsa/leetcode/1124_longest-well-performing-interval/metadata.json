@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_1124",
+  "source": "leetcode",
+  "frontend_id": "1124",
+  "slug": "longest-well-performing-interval",
+  "title": "Longest Well-Performing Interval",
+  "difficulty": "Medium",
+  "acceptance_rate": 37.88643095149944,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Stack",
+      "slug": "stack"
+    },
+    {
+      "name": "Monotonic Stack",
+      "slug": "monotonic-stack"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/longest-well-performing-interval/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:infosys",
+    "leetcode_company:netapp",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:monotonic-stack",
+    "leetcode_topic:prefix-sum",
+    "leetcode_topic:stack"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:infosys",
+    "company:netapp",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:monotonic-stack",
+    "topic:prefix-sum",
+    "topic:stack"
+  ],
+  "company_tags": [
+    {
+      "name": "NetApp",
+      "slug": "netapp"
+    },
+    {
+      "name": "Infosys",
+      "slug": "infosys"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Infosys",
+        "slug": "infosys",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "NetApp",
+        "slug": "netapp",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "NetApp",
+        "slug": "netapp",
+        "timesEncountered": 2
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

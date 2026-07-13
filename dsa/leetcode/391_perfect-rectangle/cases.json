@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_391",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: exact irregular partition",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rectangles": [
+          [
+            1,
+            1,
+            3,
+            3
+          ],
+          [
+            3,
+            1,
+            4,
+            2
+          ],
+          [
+            3,
+            2,
+            4,
+            4
+          ],
+          [
+            1,
+            3,
+            2,
+            4
+          ],
+          [
+            2,
+            3,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "perfect-cover"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: disconnected gap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rectangles": [
+          [
+            1,
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            2,
+            4
+          ],
+          [
+            3,
+            1,
+            4,
+            2
+          ],
+          [
+            3,
+            2,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "gap"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: overlapping pieces",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rectangles": [
+          [
+            1,
+            1,
+            3,
+            3
+          ],
+          [
+            3,
+            1,
+            4,
+            2
+          ],
+          [
+            1,
+            3,
+            2,
+            4
+          ],
+          [
+            2,
+            2,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rectangles": [
+          [
+            -2,
+            -1,
+            5,
+            4
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "single",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-grid",
+      "name": "trial: four-cell grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "grid"
+      ]
+    },
+    {
+      "id": "hidden-duplicate",
+      "name": "hidden: duplicate rectangle overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "hidden-gap-overlap",
+      "name": "hidden: equal area hides gap and overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            2,
+            1,
+            3
+          ],
+          [
+            0,
+            2,
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "area-insufficient"
+      ]
+    },
+    {
+      "id": "hidden-shared-edges",
+      "name": "hidden: unequal strips share complete edges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangles": [
+          [
+            -3,
+            -2,
+            0,
+            2
+          ],
+          [
+            0,
+            -2,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "shared-edge"
+      ]
+    }
+  ]
+}

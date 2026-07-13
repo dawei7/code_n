@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_695",
+  "measurement_note": "Size is the total number of grid cells. Every tier is one dense island, so a linear traversal visits every cell once, while recomputing the full component area from every land cell takes quadratic time.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: full four by four grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"grid": [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]},
+      "expected": 16,
+      "tags": ["benchmark", "scaling", "dense"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: full eight by eight grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"grid": [[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1]]},
+      "expected": 64,
+      "tags": ["benchmark", "scaling", "dense"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: full eleven by eleven grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 121,
+      "input": {"grid": [[1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1]]},
+      "expected": 121,
+      "tags": ["benchmark", "scaling", "dense"]
+    }
+  ]
+}

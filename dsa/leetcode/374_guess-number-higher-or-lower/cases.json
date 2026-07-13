@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_374",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: hidden value inside range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "pick": 6
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "middle"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one possible value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "pick": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: hidden value at upper bound",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 100,
+        "pick": 100
+      },
+      "expected": 100,
+      "tags": [
+        "sample",
+        "upper"
+      ]
+    },
+    {
+      "id": "trial-first",
+      "name": "trial: hidden value at lower bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 50,
+        "pick": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "lower"
+      ]
+    },
+    {
+      "id": "trial-even-middle",
+      "name": "trial: pick near midpoint of even range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 20,
+        "pick": 11
+      },
+      "expected": 11,
+      "tags": [
+        "trial",
+        "middle"
+      ]
+    },
+    {
+      "id": "hidden-two-upper",
+      "name": "hidden: upper value in two-number range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "pick": 2
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-large-middle",
+      "name": "hidden: large search range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4096,
+        "pick": 2049
+      },
+      "expected": 2049,
+      "tags": [
+        "hidden",
+        "large"
+      ]
+    },
+    {
+      "id": "hidden-near-end",
+      "name": "hidden: one below upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 999,
+        "pick": 998
+      },
+      "expected": 998,
+      "tags": [
+        "hidden",
+        "upper"
+      ]
+    }
+  ]
+}

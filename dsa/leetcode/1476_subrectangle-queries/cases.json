@@ -1,0 +1,230 @@
+{
+  "challenge_id": "lc_1476",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: query update query",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rectangle": [
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            4,
+            3,
+            4
+          ],
+          [
+            3,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "operations": [
+          [
+            "getValue",
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            "updateSubrectangle",
+            [
+              0,
+              0,
+              3,
+              2,
+              5
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        null,
+        5
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single-cell update",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rectangle": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "operations": [
+          [
+            "updateSubrectangle",
+            [
+              0,
+              0,
+              0,
+              0,
+              7
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            "getValue",
+            [
+              1,
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        7,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one-cell rectangle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rectangle": [
+          [
+            3
+          ]
+        ],
+        "operations": [
+          [
+            "getValue",
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            "updateSubrectangle",
+            [
+              0,
+              0,
+              0,
+              0,
+              9
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              0
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        null,
+        9
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-column-update",
+      "name": "hidden: update one column",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangle": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "operations": [
+          [
+            "getValue",
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            "updateSubrectangle",
+            [
+              0,
+              1,
+              1,
+              1,
+              8
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            "getValue",
+            [
+              1,
+              0
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        null,
+        8,
+        3
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

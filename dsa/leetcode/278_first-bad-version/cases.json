@@ -1,0 +1,6 @@
+{"challenge_id":"lc_278","cases":[
+{"id":"sample-four","name":"sample: fourth of five is first bad","kind":"sample","visible":true,"input":{"n":5,"bad":4},"expected":4,"tags":["sample","binary-search"]},
+{"id":"sample-one","name":"sample: only version is bad","kind":"sample","visible":true,"input":{"n":1,"bad":1},"expected":1,"tags":["sample","boundary"]},
+{"id":"trial-early","name":"first bad near beginning","kind":"trial","visible":true,"input":{"n":10,"bad":2},"expected":2,"tags":["early"]},
+{"id":"real-last","name":"hidden: last version is first bad","kind":"real","visible":false,"input":{"n":100,"bad":100},"expected":100,"tags":["hidden","last"]}
+]}

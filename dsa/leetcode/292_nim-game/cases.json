@@ -1,0 +1,12 @@
+{
+  "challenge_id": "lc_292",
+  "cases": [
+    {"id": "sample-four", "name": "sample: first losing pile", "kind": "sample", "visible": true, "input": {"n": 4}, "expected": false, "tags": ["sample", "multiple-of-four"]},
+    {"id": "sample-one", "name": "sample: take the only stone", "kind": "sample", "visible": true, "input": {"n": 1}, "expected": true, "tags": ["sample", "minimum"]},
+    {"id": "sample-two", "name": "sample: immediate win", "kind": "sample", "visible": true, "input": {"n": 2}, "expected": true, "tags": ["sample"]},
+    {"id": "trial-three", "name": "take all three stones", "kind": "trial", "visible": true, "input": {"n": 3}, "expected": true, "tags": ["boundary"]},
+    {"id": "trial-eight", "name": "second losing multiple", "kind": "trial", "visible": true, "input": {"n": 8}, "expected": false, "tags": ["multiple-of-four"]},
+    {"id": "real-large-win", "name": "hidden: large non-multiple", "kind": "real", "visible": false, "input": {"n": 9999}, "expected": true, "tags": ["hidden", "large"]},
+    {"id": "real-large-loss", "name": "hidden: large multiple", "kind": "real", "visible": false, "input": {"n": 10000}, "expected": false, "tags": ["hidden", "large"]}
+  ]
+}

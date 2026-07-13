@@ -1,0 +1,108 @@
+{
+  "challenge_id": "lc_2586",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: full range with two matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "are",
+          "amy",
+          "u"
+        ],
+        "left": 0,
+        "right": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: middle range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "hey",
+          "aeo",
+          "mu",
+          "ooo",
+          "artro"
+        ],
+        "left": 1,
+        "right": 4
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-letter-words",
+      "name": "trial: single-letter words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ],
+        "left": 0,
+        "right": 4
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-mixed-start-and-end",
+      "name": "trial: words must start and end with vowels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ice",
+          "owl",
+          "sky",
+          "unit"
+        ],
+        "left": 0,
+        "right": 3
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-inner-range",
+      "name": "hidden: range excludes first word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aba",
+          "bcb",
+          "ece",
+          "aa",
+          "e"
+        ],
+        "left": 1,
+        "right": 4
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

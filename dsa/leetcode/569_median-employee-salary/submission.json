@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "569",
+  "frontend_id": "569",
+  "title_slug": "median-employee-salary",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065407595",
+  "verified_at": "2026-07-12T19:47:42.702642+00:00"
+}

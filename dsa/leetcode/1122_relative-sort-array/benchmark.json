@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_1122",
+  "cases": [
+    {
+      "id": "benchmark-repeated-leftovers",
+      "name": "benchmark: repeated leftovers",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr1": [
+          7,
+          7,
+          9,
+          8,
+          6,
+          5,
+          5,
+          4
+        ],
+        "arr2": [
+          5,
+          7,
+          4
+        ]
+      },
+      "expected": [
+        5,
+        5,
+        7,
+        7,
+        4,
+        6,
+        8,
+        9
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

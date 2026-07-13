@@ -1,0 +1,157 @@
+{
+  "challenge_id": "lc_1268",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mouse",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "products": [
+          "mobile",
+          "mouse",
+          "moneypot",
+          "monitor",
+          "mousepad"
+        ],
+        "search_word": "mouse"
+      },
+      "expected": [
+        [
+          "mobile",
+          "moneypot",
+          "monitor"
+        ],
+        [
+          "mobile",
+          "moneypot",
+          "monitor"
+        ],
+        [
+          "mouse",
+          "mousepad"
+        ],
+        [
+          "mouse",
+          "mousepad"
+        ],
+        [
+          "mouse",
+          "mousepad"
+        ]
+      ],
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: havana",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "products": [
+          "havana"
+        ],
+        "search_word": "havana"
+      },
+      "expected": [
+        [
+          "havana"
+        ],
+        [
+          "havana"
+        ],
+        [
+          "havana"
+        ],
+        [
+          "havana"
+        ],
+        [
+          "havana"
+        ],
+        [
+          "havana"
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: bags",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "products": [
+          "bags",
+          "baggage",
+          "banner",
+          "box",
+          "cloths"
+        ],
+        "search_word": "bags"
+      },
+      "expected": [
+        [
+          "baggage",
+          "bags",
+          "banner"
+        ],
+        [
+          "baggage",
+          "bags",
+          "banner"
+        ],
+        [
+          "baggage",
+          "bags"
+        ],
+        [
+          "bags"
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-exact-prefix",
+      "name": "hidden: exact prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "products": [
+          "apple",
+          "app",
+          "application",
+          "banana"
+        ],
+        "search_word": "app"
+      },
+      "expected": [
+        [
+          "app",
+          "apple",
+          "application"
+        ],
+        [
+          "app",
+          "apple",
+          "application"
+        ],
+        [
+          "app",
+          "apple",
+          "application"
+        ]
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "challenge_id": "lc_2343",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three trim queries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          "102",
+          "473",
+          "251",
+          "814"
+        ],
+        "queries": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: ties prefer lower original index",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          "001",
+          "010",
+          "001",
+          "100"
+        ],
+        "queries": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "ties"
+      ]
+    },
+    {
+      "id": "trial-small-varied-trims",
+      "name": "trial: varied two-digit trims",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          "24",
+          "37",
+          "96",
+          "04"
+        ],
+        "queries": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        2
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-leading-zero-ties",
+      "name": "hidden: leading-zero ties at different trim widths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          "000",
+          "111",
+          "010",
+          "001"
+        ],
+        "queries": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        0
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "challenge_id": "lc_1524",
+  "cases": [
+    {
+      "id": "benchmark-twenty-odds",
+      "name": "benchmark: many odd-length windows",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 110,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

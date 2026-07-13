@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_86",
+  "cases": [
+    {"id": "sample-standard", "name": "sample: interleaved partitions", "kind": "sample", "visible": true, "input": {"head": [1,4,3,2,5,2], "x": 3}, "expected": [1,2,2,4,3,5], "tags": ["sample"]},
+    {"id": "sample-two", "name": "sample: reverse partition groups", "kind": "sample", "visible": true, "input": {"head": [2,1], "x": 2}, "expected": [1,2], "tags": ["sample"]},
+    {"id": "trial-empty", "name": "empty list", "kind": "trial", "visible": true, "input": {"head": [], "x": 0}, "expected": [], "tags": ["boundary"]},
+    {"id": "trial-one-side", "name": "all values below pivot", "kind": "trial", "visible": true, "input": {"head": [1,2,3], "x": 10}, "expected": [1,2,3], "tags": ["identity"]},
+    {"id": "real-stability", "name": "hidden: preserve order inside both groups", "kind": "real", "visible": false, "input": {"head": [3,1,2,3,0,2], "x": 3}, "expected": [1,2,0,2,3,3], "tags": ["hidden", "stability"]}
+  ]
+}

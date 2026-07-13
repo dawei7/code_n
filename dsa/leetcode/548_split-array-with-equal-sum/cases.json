@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_548",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: minimum-size valid split",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no equal split",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "invalid"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: four zero-sum sections",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "zeros"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: removed negatives separate equal positives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: multi-element sections",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          -1,
+          9,
+          1,
+          0,
+          8,
+          3,
+          -2,
+          7,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "longer-sections"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: near match fails at final section",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "near-match"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: mixed signs without a split",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          -2,
+          4,
+          -1,
+          5,
+          -3,
+          2,
+          6
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "mixed-signs"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: final value breaks zero-sum candidate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "zero-prefix"
+      ]
+    }
+  ]
+}
+

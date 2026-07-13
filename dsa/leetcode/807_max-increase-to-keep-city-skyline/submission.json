@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "825",
+  "frontend_id": "807",
+  "title_slug": "max-increase-to-keep-city-skyline",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxIncreaseKeepingSkyline",
+  "verified_submission_id": "2066246928",
+  "verified_at": "2026-07-13T14:38:08.166487+00:00"
+}

@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2425",
+  "source": "leetcode",
+  "frontend_id": "2425",
+  "slug": "bitwise-xor-of-all-pairings",
+  "title": "Bitwise XOR of All Pairings",
+  "difficulty": "Medium",
+  "acceptance_rate": 66.87981536752967,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    },
+    {
+      "name": "Brainteaser",
+      "slug": "brainteaser"
+    }
+  ],
+  "url": "https://leetcode.com/problems/bitwise-xor-of-all-pairings/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:trilogy",
+    "leetcode_topic:array",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:brainteaser",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:trilogy",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:bit-manipulation",
+    "topic:brainteaser"
+  ],
+  "company_tags": [
+    {
+      "name": "Trilogy",
+      "slug": "trilogy"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Trilogy",
+        "slug": "trilogy",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Bit Manipulation"
+      ],
+      "order": 927,
+      "section_order": 17,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "bitwise-xor-of-all-pairings",
+      "leetcode_slug": "bitwise-xor-of-all-pairings",
+      "difficulty": "Medium",
+      "problem_order": 15
+    }
+  ]
+}

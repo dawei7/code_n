@@ -1,0 +1,32 @@
+{
+  "challenge_id": "lc_1304",
+  "cases": [
+    {
+      "id": "benchmark-ten-values",
+      "name": "benchmark: ten values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 10
+      },
+      "expected": [
+        1,
+        -1,
+        2,
+        -2,
+        3,
+        -3,
+        4,
+        -4,
+        5,
+        -5
+      ],
+      "validator": {
+        "kind": "unique_sum_zero"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

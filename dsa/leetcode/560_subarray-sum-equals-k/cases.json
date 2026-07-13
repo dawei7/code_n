@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_560",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two length-two subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: prefix and singleton",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero target with negative value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          0
+        ],
+        "k": 0
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: every zero interval qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "k": 0
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "zero-sum"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one negative-positive cancellation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -1,
+          1
+        ],
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "zero-sum"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: overlapping mixed-sign subarrays",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          4,
+          7,
+          2,
+          -3,
+          1,
+          4,
+          2
+        ],
+        "k": 7
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: negative target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          -2,
+          2,
+          -2
+        ],
+        "k": -2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: whole-array singleton",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
+  ]
+}
+

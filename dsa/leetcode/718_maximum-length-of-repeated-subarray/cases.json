@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_718",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated suffix appears internally",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [1,2,3,2,1], "nums2": [3,2,1,4,7]},
+      "expected": 3,
+      "tags": ["sample", "interior-match"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: entire duplicate arrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [0,0,0,0,0], "nums2": [0,0,0,0,0]},
+      "expected": 5,
+      "tags": ["sample", "full-match"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: disjoint values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [1,2,3], "nums2": [4,5,6]},
+      "expected": 0,
+      "tags": ["sample", "no-match"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: shorter array matches completely",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [8,9], "nums2": [4,8,9,5]},
+      "expected": 2,
+      "tags": ["trial", "shorter-full-match"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: equal values separated by gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1,9,2,9,3], "nums2": [1,8,2,8,3]},
+      "expected": 1,
+      "tags": ["trial", "contiguity"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: best match ends at both boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [6,7,1,2,3], "nums2": [9,1,2,3]},
+      "expected": 3,
+      "tags": ["hidden", "ending-boundary"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: repeated candidates of different lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1,2,1,2,3,1,2], "nums2": [1,2,3,1,2,4]},
+      "expected": 5,
+      "tags": ["hidden", "overlapping-candidates"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: one-element arrays",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [100], "nums2": [100]},
+      "expected": 1,
+      "tags": ["hidden", "minimum-length"]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "challenge_id": "lc_2358",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: six students form three groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grades": [
+          10,
+          6,
+          12,
+          7,
+          3,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "math"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two students form one group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grades": [
+          8,
+          8
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: eleven students form four groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grades": [
+          47,
+          2,
+          18,
+          46,
+          8,
+          32,
+          45,
+          19,
+          23,
+          4,
+          12
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-exact-triangular-count",
+      "name": "hidden: exact triangular number of students",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

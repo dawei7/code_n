@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_474",
+  "cases": [
+    {"id": "sample-mixed", "name": "sample: choose four affordable strings", "kind": "sample", "visible": true, "input": {"strs": ["10", "0001", "111001", "1", "0"], "m": 5, "n": 3}, "expected": 4, "tags": ["sample", "mixed"]},
+    {"id": "sample-small", "name": "sample: choose one zero and one one", "kind": "sample", "visible": true, "input": {"strs": ["10", "0", "1"], "m": 1, "n": 1}, "expected": 2, "tags": ["sample", "small"]},
+    {"id": "sample-all-fit", "name": "sample: all duplicate singletons fit", "kind": "sample", "visible": true, "input": {"strs": ["0", "0", "1", "1"], "m": 2, "n": 2}, "expected": 4, "tags": ["sample", "duplicates"]},
+    {"id": "trial-zero-zeros", "name": "trial: zero budget for zeros", "kind": "trial", "visible": true, "input": {"strs": ["1", "11", "0"], "m": 0, "n": 3}, "expected": 2, "tags": ["trial", "boundary"]},
+    {"id": "trial-none-fit", "name": "trial: no string fits", "kind": "trial", "visible": true, "input": {"strs": ["0", "1", "10"], "m": 0, "n": 0}, "expected": 0, "tags": ["trial", "empty-budget"]},
+    {"id": "hidden-tradeoff", "name": "hidden: several small strings beat one large string", "kind": "real", "visible": false, "input": {"strs": ["0011", "0", "0", "1", "1"], "m": 2, "n": 2}, "expected": 4, "tags": ["hidden", "tradeoff"]},
+    {"id": "hidden-duplicate-items", "name": "hidden: duplicate strings are separate items", "kind": "real", "visible": false, "input": {"strs": ["10", "10", "10"], "m": 2, "n": 2}, "expected": 2, "tags": ["hidden", "duplicates"]}
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "challenge_id": "lc_3417",
+  "cases": [
+    {
+      "id": "sample-two-by-two",
+      "name": "sample: two by two zigzag skip",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        4
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three-rows",
+      "name": "sample: vertical rectangle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three-by-three",
+      "name": "sample: odd square grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        5,
+        7,
+        9
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-wide-row",
+      "name": "trial: even-width rows preserve global skipping",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            7,
+            8
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        8,
+        6
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-four-by-four",
+      "name": "real: square traversal with alternating rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            8,
+            7,
+            6,
+            5
+          ],
+          [
+            9,
+            10,
+            11,
+            12
+          ],
+          [
+            16,
+            15,
+            14,
+            13
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        15
+      ],
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

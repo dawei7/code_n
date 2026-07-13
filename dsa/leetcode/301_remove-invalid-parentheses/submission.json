@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "301",
+  "frontend_id": "301",
+  "title_slug": "remove-invalid-parentheses",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064359466",
+  "verified_at": "2026-07-12T00:53:54.219266+00:00"
+}

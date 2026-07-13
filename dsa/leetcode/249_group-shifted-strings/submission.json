@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "249",
+  "frontend_id": "249",
+  "title_slug": "group-shifted-strings",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064267191",
+  "verified_at": "2026-07-11T20:02:05.959557+00:00"
+}

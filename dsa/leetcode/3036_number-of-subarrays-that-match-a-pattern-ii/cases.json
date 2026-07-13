@@ -1,0 +1,139 @@
+{
+  "challenge_id": "lc_3036",
+  "cases": [
+    {
+      "id": "sample-kmp-repeated",
+      "name": "sample: repeated relation pattern",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          2,
+          3,
+          4,
+          3,
+          4,
+          5
+        ],
+        "pattern": [
+          1,
+          1,
+          -1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-equality",
+      "name": "sample: equality relation search",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          6,
+          6,
+          5
+        ],
+        "pattern": [
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-relation",
+      "name": "trial: single decreasing relation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          4,
+          3,
+          2
+        ],
+        "pattern": [
+          -1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-overlap",
+      "name": "trial: overlapping KMP matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ],
+        "pattern": [
+          1,
+          -1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-longer-pattern",
+      "name": "real: longer relation pattern with overlaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          4,
+          4,
+          2,
+          5,
+          5,
+          1,
+          2,
+          2,
+          0,
+          3
+        ],
+        "pattern": [
+          1,
+          0,
+          -1,
+          1,
+          0,
+          -1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "kmp"
+      ]
+    }
+  ]
+}

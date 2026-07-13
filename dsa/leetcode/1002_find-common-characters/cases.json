@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_1002",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: bella label roller",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "bella",
+          "label",
+          "roller"
+        ]
+      },
+      "expected": [
+        "e",
+        "l",
+        "l"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "counter"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: cool lock cook",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "cool",
+          "lock",
+          "cook"
+        ]
+      },
+      "expected": [
+        "c",
+        "o"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-common",
+      "name": "no common characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "def"
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-repeated-common",
+      "name": "hidden: repeated common character",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aabb",
+          "abbb",
+          "aaab"
+        ]
+      },
+      "expected": [
+        "a",
+        "b"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

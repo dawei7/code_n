@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_508",
+  "cases": [
+    {"id": "sample-all-distinct", "name": "sample: all subtree sums occur once", "kind": "sample", "visible": true, "input": {"root": [5,2,-3]}, "expected": [2,-3,4], "validator": {"kind": "unordered_list"}, "tags": ["sample", "tie"]},
+    {"id": "sample-repeated", "name": "sample: one sum occurs twice", "kind": "sample", "visible": true, "input": {"root": [5,2,-5]}, "expected": [2], "validator": {"kind": "unordered_list"}, "tags": ["sample", "repeated"]},
+    {"id": "sample-single", "name": "sample: one-node tree", "kind": "sample", "visible": true, "input": {"root": [1]}, "expected": [1], "validator": {"kind": "unordered_list"}, "tags": ["sample", "singleton"]},
+    {"id": "trial-zeroes", "name": "trial: every subtree sum is zero", "kind": "trial", "visible": true, "input": {"root": [0,0,0]}, "expected": [0], "validator": {"kind": "unordered_list"}, "tags": ["trial", "zero"]},
+    {"id": "trial-negative-root", "name": "trial: negative and positive sums tie", "kind": "trial", "visible": true, "input": {"root": [-1,-2,3]}, "expected": [-2,3,0], "validator": {"kind": "unordered_list"}, "tags": ["trial", "negative"]},
+    {"id": "hidden-shared-leaf-sum", "name": "hidden: equal leaves create the mode", "kind": "real", "visible": false, "input": {"root": [4,1,1]}, "expected": [1], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "duplicate-leaves"]},
+    {"id": "hidden-chain", "name": "hidden: sums along a negative chain", "kind": "real", "visible": false, "input": {"root": [-1,null,-1,null,-1]}, "expected": [-1,-2,-3], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "skewed"]}
+  ]
+}

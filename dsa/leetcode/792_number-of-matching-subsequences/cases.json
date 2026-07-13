@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_792",
+  "cases": [
+    {"id": "sample-1", "name": "sample: three matching words", "kind": "sample", "visible": true, "input": {"s": "abcde", "words": ["a", "bb", "acd", "ace"]}, "expected": 3, "tags": ["sample", "mixed"]},
+    {"id": "sample-2", "name": "sample: two long matches", "kind": "sample", "visible": true, "input": {"s": "dsahjpjauf", "words": ["ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax"]}, "expected": 2, "tags": ["sample", "long-words"]},
+    {"id": "sample-3", "name": "sample: repeated source character", "kind": "sample", "visible": true, "input": {"s": "aaaa", "words": ["a", "aa", "aaa", "aaaa", "aaaaa"]}, "expected": 4, "tags": ["sample", "repeated-character"]},
+    {"id": "trial-1", "name": "trial: duplicate single-letter matches", "kind": "trial", "visible": true, "input": {"s": "abc", "words": ["a", "a", "ac", "d"]}, "expected": 3, "tags": ["trial", "duplicates"]},
+    {"id": "trial-2", "name": "trial: duplicate full-string matches", "kind": "trial", "visible": true, "input": {"s": "abc", "words": ["abc", "abc", "abc"]}, "expected": 3, "tags": ["trial", "duplicates"]},
+    {"id": "trial-3", "name": "trial: no candidates match", "kind": "trial", "visible": true, "input": {"s": "abc", "words": ["d", "ee"]}, "expected": 0, "tags": ["trial", "no-matches"]},
+    {"id": "hidden-1", "name": "hidden: repeated letters in longer source", "kind": "real", "visible": false, "input": {"s": "abracadabra", "words": ["abra", "cada", "bar", "aaa", "bbb", "ra"]}, "expected": 5, "tags": ["hidden", "mixed"]},
+    {"id": "hidden-2", "name": "hidden: all but reversed pair match", "kind": "real", "visible": false, "input": {"s": "xyz", "words": ["x", "xy", "xyz", "xz", "yz", "zy"]}, "expected": 5, "tags": ["hidden", "ordering"]},
+    {"id": "hidden-3", "name": "hidden: many repeated source letters", "kind": "real", "visible": false, "input": {"s": "mississippi", "words": ["miss", "sip", "ppi", "issi", "mississippi", "mppi"]}, "expected": 6, "tags": ["hidden", "repeated-character"]}
+  ]
+}

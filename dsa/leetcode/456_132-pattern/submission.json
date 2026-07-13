@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "456",
+  "frontend_id": "456",
+  "title_slug": "132-pattern",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064930714",
+  "verified_at": "2026-07-12T11:36:42.005712+00:00"
+}

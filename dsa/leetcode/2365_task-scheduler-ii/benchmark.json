@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2365",
+  "cases": [
+    {
+      "id": "benchmark-alternating-tasks",
+      "name": "benchmark: alternating tasks with short cooldown",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tasks": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "space": 1
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

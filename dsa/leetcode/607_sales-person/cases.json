@@ -1,0 +1,550 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_607",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: red seller excluded and blue seller retained",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SalesPerson": [
+            {
+              "sales_id": 1,
+              "name": "Alice",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 2,
+              "name": "Bob",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            }
+          ],
+          "Company": [
+            {
+              "com_id": 1,
+              "name": "RED",
+              "city": "A"
+            },
+            {
+              "com_id": 2,
+              "name": "BLUE",
+              "city": "B"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2021-01-01",
+              "com_id": 1,
+              "sales_id": 1,
+              "amount": 100
+            },
+            {
+              "order_id": 2,
+              "order_date": "2021-01-02",
+              "com_id": 2,
+              "sales_id": 2,
+              "amount": 200
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Bob"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "anti-join"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: salesperson with no orders qualifies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SalesPerson": [
+            {
+              "sales_id": 1,
+              "name": "Cara",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 2,
+              "name": "Other",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            }
+          ],
+          "Company": [
+            {
+              "com_id": 1,
+              "name": "RED",
+              "city": "A"
+            },
+            {
+              "com_id": 2,
+              "name": "BLUE",
+              "city": "B"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2021-02-01",
+              "com_id": 1,
+              "sales_id": 2,
+              "amount": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Cara"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "anti-join"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one red order is enough to exclude",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SalesPerson": [
+            {
+              "sales_id": 1,
+              "name": "Dan",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 2,
+              "name": "Eve",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            }
+          ],
+          "Company": [
+            {
+              "com_id": 1,
+              "name": "RED",
+              "city": "A"
+            },
+            {
+              "com_id": 2,
+              "name": "GREEN",
+              "city": "G"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2021-03-01",
+              "com_id": 2,
+              "sales_id": 1,
+              "amount": 10
+            },
+            {
+              "order_id": 2,
+              "order_date": "2021-03-02",
+              "com_id": 1,
+              "sales_id": 1,
+              "amount": 20
+            },
+            {
+              "order_id": 3,
+              "order_date": "2021-03-03",
+              "com_id": 2,
+              "sales_id": 2,
+              "amount": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Eve"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "anti-join"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: nonconsecutive identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SalesPerson": [
+            {
+              "sales_id": 10,
+              "name": "Zed",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 3,
+              "name": "Amy",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 40,
+              "name": "Mike",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            }
+          ],
+          "Company": [
+            {
+              "com_id": 7,
+              "name": "RED",
+              "city": "R"
+            },
+            {
+              "com_id": 8,
+              "name": "ORANGE",
+              "city": "O"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2022-01-01",
+              "com_id": 8,
+              "sales_id": 10,
+              "amount": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2022-01-02",
+              "com_id": 7,
+              "sales_id": 40,
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Amy"
+          ],
+          [
+            "Zed"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "anti-join"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: duplicate names remain separate rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SalesPerson": [
+            {
+              "sales_id": 1,
+              "name": "Same",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 2,
+              "name": "Same",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 3,
+              "name": "Third",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            }
+          ],
+          "Company": [
+            {
+              "com_id": 1,
+              "name": "RED",
+              "city": "R"
+            },
+            {
+              "com_id": 2,
+              "name": "BLUE",
+              "city": "B"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2022-02-01",
+              "com_id": 1,
+              "sales_id": 1,
+              "amount": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2022-02-02",
+              "com_id": 2,
+              "sales_id": 2,
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Same"
+          ],
+          [
+            "Third"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "anti-join"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: repeated red orders do not duplicate exclusion",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "SalesPerson": [
+            {
+              "sales_id": 1,
+              "name": "A",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 2,
+              "name": "B",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 3,
+              "name": "C",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            }
+          ],
+          "Company": [
+            {
+              "com_id": 1,
+              "name": "RED",
+              "city": "R"
+            },
+            {
+              "com_id": 2,
+              "name": "BLUE",
+              "city": "B"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2023-01-01",
+              "com_id": 1,
+              "sales_id": 1,
+              "amount": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2023-01-02",
+              "com_id": 1,
+              "sales_id": 1,
+              "amount": 1
+            },
+            {
+              "order_id": 3,
+              "order_date": "2023-01-03",
+              "com_id": 2,
+              "sales_id": 2,
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "B"
+          ],
+          [
+            "C"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "anti-join"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: no-order, blue-only, red, and mixed salespeople",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "SalesPerson": [
+            {
+              "sales_id": 5,
+              "name": "No Orders",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 6,
+              "name": "Blue Only",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 7,
+              "name": "Red Seller",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            },
+            {
+              "sales_id": 8,
+              "name": "Mixed",
+              "salary": 50000,
+              "commission_rate": 10,
+              "hire_date": "2020-01-01"
+            }
+          ],
+          "Company": [
+            {
+              "com_id": 1,
+              "name": "RED",
+              "city": "R"
+            },
+            {
+              "com_id": 2,
+              "name": "BLUE",
+              "city": "B"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2024-01-01",
+              "com_id": 2,
+              "sales_id": 6,
+              "amount": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2024-01-02",
+              "com_id": 1,
+              "sales_id": 7,
+              "amount": 1
+            },
+            {
+              "order_id": 3,
+              "order_date": "2024-01-03",
+              "com_id": 2,
+              "sales_id": 8,
+              "amount": 1
+            },
+            {
+              "order_id": 4,
+              "order_date": "2024-01-04",
+              "com_id": 1,
+              "sales_id": 8,
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Blue Only"
+          ],
+          [
+            "No Orders"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "anti-join"
+      ]
+    }
+  ]
+}

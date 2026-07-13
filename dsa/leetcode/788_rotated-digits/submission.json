@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "804",
+  "frontend_id": "788",
+  "title_slug": "rotated-digits",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.rotatedDigits",
+  "verified_submission_id": "2066147786",
+  "verified_at": "2026-07-13T13:04:41.013933+00:00"
+}

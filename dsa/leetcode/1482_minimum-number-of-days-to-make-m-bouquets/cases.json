@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_1482",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: single-flower bouquets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bloom_day": [
+          1,
+          10,
+          3,
+          10,
+          2
+        ],
+        "m": 3,
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: impossible flower count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bloom_day": [
+          1,
+          10,
+          3,
+          10,
+          2
+        ],
+        "m": 3,
+        "k": 2
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: adjacency matters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bloom_day": [
+          7,
+          7,
+          7,
+          7,
+          12,
+          7,
+          7
+        ],
+        "m": 2,
+        "k": 3
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-two-adjacent-bouquets",
+      "name": "hidden: two adjacent bouquets become possible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bloom_day": [
+          1,
+          2,
+          4,
+          9,
+          3,
+          4,
+          1
+        ],
+        "m": 2,
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "challenge_id": "lc_2347",
+  "cases": [
+    {
+      "id": "benchmark-four-of-kind-is-three-of-kind",
+      "name": "benchmark: four matching ranks still classify as three of a kind",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "ranks": [
+          7,
+          7,
+          7,
+          7,
+          2
+        ],
+        "suits": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      "expected": "Three of a Kind",
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

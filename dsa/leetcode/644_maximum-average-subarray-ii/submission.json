@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "644",
+  "frontend_id": "644",
+  "title_slug": "maximum-average-subarray-ii",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065509460",
+  "verified_at": "2026-07-13T00:27:04.968040+00:00"
+}

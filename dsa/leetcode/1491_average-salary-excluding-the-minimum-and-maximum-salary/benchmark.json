@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1491",
+  "cases": [
+    {
+      "id": "benchmark-small-values",
+      "name": "benchmark: small unique values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "salary": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 3.0,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

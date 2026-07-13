@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_732",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: maximum rises through mixed overlaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["book",10,20],["book",50,60],["book",10,40],["book",5,15],["book",5,10],["book",25,55]]},
+      "expected": [1, 1, 2, 3, 3, 3],
+      "tags": ["sample", "overlap"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate intervals",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["book",5,10],["book",5,10],["book",5,10],["book",5,10]]},
+      "expected": [1, 2, 3, 4],
+      "tags": ["sample", "duplicate"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: touching then crossing intervals",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["book",1,5],["book",5,9],["book",3,7],["book",4,6]]},
+      "expected": [1, 1, 2, 3],
+      "tags": ["sample", "half-open"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: successively nested intervals",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["book",0,100],["book",10,90],["book",20,80],["book",30,70]]},
+      "expected": [1, 2, 3, 4],
+      "tags": ["trial", "nested"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: all bookings remain disjoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["book",8,10],["book",0,2],["book",4,6],["book",2,4],["book",6,8]]},
+      "expected": [1, 1, 1, 1, 1],
+      "tags": ["trial", "disjoint"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: coordinate extremes and spanning interval",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["book",0,1],["book",999999999,1000000000],["book",0,1000000000],["book",0,1],["book",1,999999999]]},
+      "expected": [1, 1, 2, 3, 3],
+      "tags": ["hidden", "domain-boundary"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: separate peaks merge",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["book",0,4],["book",6,10],["book",1,3],["book",7,9],["book",3,7],["book",2,8]]},
+      "expected": [1, 1, 2, 2, 2, 3],
+      "tags": ["hidden", "separate-peaks"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: narrow region sets the maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["book",100,200],["book",150,250],["book",199,300],["book",200,300],["book",50,100]]},
+      "expected": [1, 2, 3, 3, 3],
+      "tags": ["hidden", "narrow-peak"]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_246",
+  "measurement_note": "Size is numeral length; valid rotating pairs force comparison through the center.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "num": "69696969"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "num": "6969696969696969696969696969696969696969696969696969696969696969"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "num": "6969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969696969"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

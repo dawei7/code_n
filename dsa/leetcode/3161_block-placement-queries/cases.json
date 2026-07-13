@@ -1,0 +1,254 @@
+{
+  "challenge_id": "lc_3161",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: obstacle at two and three checks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3,
+            3
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        false,
+        true,
+        true
+      ],
+      "tags": [
+        "sample",
+        "obstacle"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: splitting a large gap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            7,
+            6
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            7,
+            5
+          ],
+          [
+            2,
+            7,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "sample",
+        "split-gap"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: checks before and after adjacent obstacles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-touching-obstacle",
+      "name": "trial: block can touch an obstacle boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            5,
+            5
+          ],
+          [
+            2,
+            4,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            5,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "touching"
+      ]
+    },
+    {
+      "id": "real-duplicate-obstacle",
+      "name": "real: duplicate obstacle placements are harmless",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queries": [
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            8,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            8,
+            3
+          ],
+          [
+            2,
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "real",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "real-prefix-limited",
+      "name": "real: only obstacles up to query boundary matter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queries": [
+          [
+            1,
+            10
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            5,
+            3
+          ],
+          [
+            2,
+            10,
+            6
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            10,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "real",
+        "prefix"
+      ]
+    }
+  ]
+}

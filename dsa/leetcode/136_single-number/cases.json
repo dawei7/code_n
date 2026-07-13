@@ -1,0 +1,75 @@
+{
+  "challenge_id": "lc_136",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one duplicate pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "xor"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two duplicate pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "single value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-negative-single",
+      "name": "hidden: negative single",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1,
+          -1,
+          -2
+        ]
+      },
+      "expected": -2,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "challenge_id": "lc_1473",
+  "cases": [
+    {
+      "id": "benchmark-fixed-endpoints",
+      "name": "benchmark: fixed endpoints with two unpainted middle houses",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "houses": [
+          1,
+          0,
+          0,
+          2
+        ],
+        "cost": [
+          [
+            5,
+            5
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "m": 4,
+        "n": 2,
+        "target": 2
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

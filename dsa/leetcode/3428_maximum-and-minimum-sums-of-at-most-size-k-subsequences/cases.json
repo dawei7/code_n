@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_3428",
+  "cases": [
+    {
+      "id": "sample-size-two",
+      "name": "sample: subsequences up to size two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 24,
+      "tags": [
+        "sample",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "sample-singletons",
+      "name": "sample: only singleton subsequences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          0,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 22,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-k-all",
+      "name": "trial: k reaches array length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          7,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 108,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-values",
+      "name": "real: repeated and zero values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          5,
+          5,
+          2,
+          9,
+          1,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 562,
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

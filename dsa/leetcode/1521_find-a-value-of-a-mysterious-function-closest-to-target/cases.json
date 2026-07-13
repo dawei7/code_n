@@ -1,0 +1,83 @@
+{
+  "challenge_id": "lc_1521",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: closest value is two away",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          9,
+          12,
+          3,
+          7,
+          15
+        ],
+        "target": 5
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "bitwise-and"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: large repeated values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1000000,
+          1000000,
+          1000000
+        ],
+        "target": 1
+      },
+      "expected": 999999,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: exact zero from a subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          4,
+          8,
+          16
+        ],
+        "target": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-small-values",
+      "name": "hidden: closest is one away",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          8,
+          4,
+          2
+        ],
+        "target": 3
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

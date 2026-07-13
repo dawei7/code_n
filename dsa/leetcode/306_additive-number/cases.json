@@ -1,0 +1,88 @@
+{
+  "challenge_id": "lc_306",
+  "cases": [
+    {
+      "id": "sample-fibonacci",
+      "name": "sample: single-digit Fibonacci-style sequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "112358"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "sample-large-terms",
+      "name": "sample: multi-digit terms",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "199100199"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "multi-digit"
+      ]
+    },
+    {
+      "id": "sample-leading-zero",
+      "name": "sample: leading-zero alternatives are invalid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "1023"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "zero may appear as a single-digit term",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "000"
+      },
+      "expected": true,
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-zero-middle",
+      "name": "one plus zero forces one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "101"
+      },
+      "expected": true,
+      "tags": [
+        "zero",
+        "valid"
+      ]
+    },
+    {
+      "id": "real-four-terms",
+      "name": "hidden: repeated multi-digit starting terms",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": "12122436"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "multi-digit"
+      ]
+    }
+  ]
+}

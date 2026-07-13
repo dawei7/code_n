@@ -1,0 +1,185 @@
+{
+  "challenge_id": "lc_3425",
+  "cases": [
+    {
+      "id": "sample-longest-two-nodes",
+      "name": "sample: longest path with two nodes tie-break",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            1,
+            4,
+            4
+          ],
+          [
+            2,
+            5,
+            6
+          ]
+        ],
+        "nums": [
+          2,
+          1,
+          2,
+          1,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        6,
+        2
+      ],
+      "tags": [
+        "sample",
+        "tree"
+      ]
+    },
+    {
+      "id": "sample-duplicate-edge",
+      "name": "sample: only single-node paths are special",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            1,
+            0,
+            8
+          ]
+        ],
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-unique-chain",
+      "name": "trial: all values unique along a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            3
+          ]
+        ],
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        6,
+        4
+      ],
+      "tags": [
+        "trial",
+        "chain"
+      ]
+    },
+    {
+      "id": "real-branching-duplicates",
+      "name": "real: branching tree with repeated values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            3,
+            7
+          ],
+          [
+            1,
+            4,
+            1
+          ],
+          [
+            2,
+            5,
+            5
+          ],
+          [
+            5,
+            6,
+            6
+          ],
+          [
+            5,
+            7,
+            1
+          ]
+        ],
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          4,
+          2,
+          5,
+          3
+        ]
+      },
+      "expected": [
+        13,
+        4
+      ],
+      "tags": [
+        "real",
+        "tree"
+      ]
+    }
+  ]
+}

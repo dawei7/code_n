@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2137",
+  "source": "leetcode",
+  "frontend_id": "2137",
+  "slug": "pour-water-between-buckets-to-make-water-levels-equal",
+  "title": "Pour Water Between Buckets to Make Water Levels Equal",
+  "difficulty": "Medium",
+  "acceptance_rate": 68.66494401378122,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Binary Search",
+      "slug": "binary-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/pour-water-between-buckets-to-make-water-levels-equal/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:deutsche-bank",
+    "leetcode_topic:array",
+    "leetcode_topic:binary-search"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:deutsche-bank",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:binary-search"
+  ],
+  "company_tags": [
+    {
+      "name": "Deutsche Bank",
+      "slug": "deutsche-bank"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Deutsche Bank",
+        "slug": "deutsche-bank",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

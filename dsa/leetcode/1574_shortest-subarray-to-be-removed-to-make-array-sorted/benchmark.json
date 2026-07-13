@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1574",
+  "cases": [
+    {
+      "id": "benchmark-remove-one-dip",
+      "name": "benchmark: one dip in the middle",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          0,
+          5,
+          6
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

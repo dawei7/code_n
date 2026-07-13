@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_819",
+  "measurement_note": "Size is the number of one-letter word occurrences. A frequency table processes the paragraph once; nested recounting of every occurrence takes O(size^2).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 8 repeated words", "kind": "benchmark", "visible": false, "size": 8, "input": {"paragraph": "a a a a a a a a", "banned": []}, "expected": "a", "tags": ["benchmark", "scaling", "repeated"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 32 repeated words", "kind": "benchmark", "visible": false, "size": 32, "input": {"paragraph": "a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a", "banned": []}, "expected": "a", "tags": ["benchmark", "scaling", "repeated"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 48 repeated words", "kind": "benchmark", "visible": false, "size": 48, "input": {"paragraph": "a a a a a a a a!a a a a a a a a!a a a a a a a a!a a a a a a a a!a a a a a a a a!a a a a a a a a", "banned": []}, "expected": "a", "tags": ["benchmark", "scaling", "repeated"]}
+  ]
+}

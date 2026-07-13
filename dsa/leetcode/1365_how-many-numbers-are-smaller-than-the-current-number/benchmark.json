@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_1365",
+  "cases": [
+    {
+      "id": "benchmark-descending-with-duplicates",
+      "name": "benchmark: descending with duplicates",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        2,
+        1,
+        0
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

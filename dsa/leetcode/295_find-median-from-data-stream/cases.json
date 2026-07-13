@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_295",
+  "cases": [
+    {"id": "sample-increasing", "name": "sample: increasing stream", "kind": "sample", "visible": true, "input": {"stream": [1, 2, 3, 4, 5]}, "expected": [1.0, 1.5, 2.0, 2.5, 3.0], "tags": ["sample", "odd-even"]},
+    {"id": "sample-two", "name": "sample: average of two values", "kind": "sample", "visible": true, "input": {"stream": [50, 98]}, "expected": [50.0, 74.0], "tags": ["sample", "average"]},
+    {"id": "sample-second-pair", "name": "sample: another two-value stream", "kind": "sample", "visible": true, "input": {"stream": [18, 73]}, "expected": [18.0, 45.5], "tags": ["sample"]},
+    {"id": "trial-negatives", "name": "negative values cross both heaps", "kind": "trial", "visible": true, "input": {"stream": [-5, -10, -3]}, "expected": [-5.0, -7.5, -5.0], "tags": ["negative"]},
+    {"id": "trial-duplicates", "name": "duplicate boundary values", "kind": "trial", "visible": true, "input": {"stream": [2, 2, 2, 2]}, "expected": [2.0, 2.0, 2.0, 2.0], "tags": ["duplicates"]},
+    {"id": "real-alternating", "name": "hidden: values alternate between halves", "kind": "real", "visible": false, "input": {"stream": [5, 1, 9, 2, 8, 3]}, "expected": [5.0, 3.0, 5.0, 3.5, 5.0, 4.0], "tags": ["hidden", "rebalance"]}
+  ]
+}

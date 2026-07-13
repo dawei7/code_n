@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_3097",
+  "cases": [
+    {
+      "id": "sample-single-element",
+      "name": "sample: one element already reaches k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-whole-array",
+      "name": "sample: whole array needed to reach k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          8
+        ],
+        "k": 10
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-impossible",
+      "name": "trial: no subarray OR reaches k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 8
+      },
+      "expected": -1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-zero-k",
+      "name": "trial: k zero is satisfied by one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-shrink-window",
+      "name": "real: window shrinks after OR reaches k",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          16,
+          8,
+          3
+        ],
+        "k": 31
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "bitwise"
+      ]
+    }
+  ]
+}

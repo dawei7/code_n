@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_1577",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one triplet from nums1 square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          7,
+          4
+        ],
+        "nums2": [
+          5,
+          2,
+          8,
+          9
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicates and one match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          7,
+          7,
+          8,
+          3
+        ],
+        "nums2": [
+          1,
+          2,
+          9,
+          7
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-two-directions",
+      "name": "hidden: matches from both directions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          2,
+          4
+        ],
+        "nums2": [
+          1,
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

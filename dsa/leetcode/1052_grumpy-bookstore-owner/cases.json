@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_1052",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: window of three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "customers": [
+          1,
+          0,
+          1,
+          2,
+          1,
+          1,
+          7,
+          5
+        ],
+        "grumpy": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "minutes": 3
+      },
+      "expected": 16,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one minute open",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "customers": [
+          1
+        ],
+        "grumpy": [
+          0
+        ],
+        "minutes": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-window-covers-grumpy",
+      "name": "window covers all grumpy minutes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "customers": [
+          4,
+          10,
+          10
+        ],
+        "grumpy": [
+          1,
+          1,
+          0
+        ],
+        "minutes": 2
+      },
+      "expected": 24,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-one-minute-choice",
+      "name": "hidden: one minute choice",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "customers": [
+          2,
+          6,
+          6,
+          9
+        ],
+        "grumpy": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "minutes": 1
+      },
+      "expected": 17,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

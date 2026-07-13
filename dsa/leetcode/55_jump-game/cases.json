@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_55",
+  "cases": [
+    {"id": "sample-reachable", "name": "sample: reachable through several jumps", "kind": "sample", "visible": true, "input": {"nums": [2,3,1,1,4]}, "expected": true, "tags": ["sample"]},
+    {"id": "sample-blocked", "name": "sample: zero barrier", "kind": "sample", "visible": true, "input": {"nums": [3,2,1,0,4]}, "expected": false, "tags": ["sample", "unreachable"]},
+    {"id": "trial-single", "name": "already at the destination", "kind": "trial", "visible": true, "input": {"nums": [0]}, "expected": true, "tags": ["boundary"]},
+    {"id": "trial-exact", "name": "exact jumps across zeros", "kind": "trial", "visible": true, "input": {"nums": [2,0,2,0,1]}, "expected": true, "tags": ["zeros"]},
+    {"id": "real-leading-zero", "name": "hidden: cannot leave the start", "kind": "real", "visible": false, "input": {"nums": [0,2,3]}, "expected": false, "tags": ["hidden", "boundary"]}
+  ]
+}

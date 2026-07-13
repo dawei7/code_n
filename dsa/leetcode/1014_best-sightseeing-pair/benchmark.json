@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1014",
+  "cases": [
+    {
+      "id": "benchmark-many-values",
+      "name": "benchmark: many values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "values": [
+          6,
+          3,
+          7,
+          4,
+          7,
+          6,
+          2,
+          8
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_160",
+  "cases": [
+    {"id": "sample-unequal-prefixes", "name": "sample: unequal prefixes share three nodes", "kind": "sample", "visible": true, "input": {"head_a": {"prefix": [4, 1], "shared": [8, 4, 5]}, "head_b": {"prefix": [5, 6, 1], "shared": [8, 4, 5]}}, "expected": [8, 4, 5], "tags": ["sample", "identity"]},
+    {"id": "sample-short-second-prefix", "name": "sample: short second prefix", "kind": "sample", "visible": true, "input": {"head_a": {"prefix": [1, 9, 1], "shared": [2, 4]}, "head_b": {"prefix": [3], "shared": [2, 4]}}, "expected": [2, 4], "tags": ["sample"]},
+    {"id": "trial-no-intersection", "name": "disjoint lists", "kind": "trial", "visible": true, "input": {"head_a": {"prefix": [2, 6, 4], "shared": []}, "head_b": {"prefix": [1, 5], "shared": []}}, "expected": [], "tags": ["boundary", "disjoint"]},
+    {"id": "trial-same-head", "name": "both heads begin at shared tail", "kind": "trial", "visible": true, "input": {"head_a": {"prefix": [], "shared": [7, 8]}, "head_b": {"prefix": [], "shared": [7, 8]}}, "expected": [7, 8], "tags": ["boundary", "same-head"]},
+    {"id": "real-equal-values-disjoint", "name": "hidden: equal values do not imply identity", "kind": "real", "visible": false, "input": {"head_a": {"prefix": [1, 2, 3], "shared": []}, "head_b": {"prefix": [1, 2, 3], "shared": []}}, "expected": [], "tags": ["hidden", "identity"]}
+  ]
+}

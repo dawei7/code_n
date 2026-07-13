@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "576",
+  "frontend_id": "576",
+  "title_slug": "out-of-boundary-paths",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065422874",
+  "verified_at": "2026-07-12T20:14:27.007067+00:00"
+}

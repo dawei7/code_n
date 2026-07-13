@@ -1,0 +1,209 @@
+{
+  "challenge_id": "lc_3484",
+  "cases": [
+    {
+      "id": "sample-spreadsheet",
+      "name": "sample: spreadsheet cell operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "Spreadsheet",
+          "getValue",
+          "setCell",
+          "getValue",
+          "setCell",
+          "getValue",
+          "resetCell",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            3
+          ],
+          [
+            "=5+7"
+          ],
+          [
+            "A1",
+            10
+          ],
+          [
+            "=A1+6"
+          ],
+          [
+            "B2",
+            15
+          ],
+          [
+            "=A1+B2"
+          ],
+          [
+            "A1"
+          ],
+          [
+            "=A1+B2"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        12,
+        null,
+        16,
+        null,
+        25,
+        null,
+        15
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "trial-unset-cells",
+      "name": "trial: unset cells behave as zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "Spreadsheet",
+          "getValue",
+          "setCell",
+          "resetCell",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            5
+          ],
+          [
+            "=Z5+A1"
+          ],
+          [
+            "Z5",
+            9
+          ],
+          [
+            "Z5"
+          ],
+          [
+            "=Z5+8"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        null,
+        null,
+        8
+      ],
+      "tags": [
+        "trial",
+        "reset"
+      ]
+    },
+    {
+      "id": "trial-two-literals",
+      "name": "trial: formula with two literals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "Spreadsheet",
+          "getValue",
+          "setCell",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            2
+          ],
+          [
+            "=123+456"
+          ],
+          [
+            "C2",
+            44
+          ],
+          [
+            "=44+C2"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        579,
+        null,
+        88
+      ],
+      "tags": [
+        "trial",
+        "literals"
+      ]
+    },
+    {
+      "id": "real-repeated-updates",
+      "name": "real: repeated cell updates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "Spreadsheet",
+          "setCell",
+          "setCell",
+          "getValue",
+          "setCell",
+          "getValue",
+          "resetCell",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            10
+          ],
+          [
+            "A10",
+            5
+          ],
+          [
+            "B1",
+            7
+          ],
+          [
+            "=A10+B1"
+          ],
+          [
+            "A10",
+            20
+          ],
+          [
+            "=A10+B1"
+          ],
+          [
+            "B1"
+          ],
+          [
+            "=A10+B1"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        12,
+        null,
+        27,
+        null,
+        20
+      ],
+      "tags": [
+        "real",
+        "design"
+      ]
+    }
+  ]
+}

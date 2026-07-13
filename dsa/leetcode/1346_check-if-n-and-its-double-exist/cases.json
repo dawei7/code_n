@@ -1,0 +1,80 @@
+{
+  "challenge_id": "lc_1346",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: double exists",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          10,
+          2,
+          5,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "hash-set"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no double",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          1,
+          7,
+          11
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-zeroes",
+      "name": "two zeroes form a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-negative-values",
+      "name": "hidden: negative values without pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          -2,
+          0,
+          10,
+          -19,
+          4,
+          6,
+          -8
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,264 @@
+{
+  "challenge_id": "lc_311",
+  "cases": [
+    {
+      "id": "sample-sparse",
+      "name": "sample: sparse rectangular multiplication",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat1": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            -1,
+            0,
+            3
+          ]
+        ],
+        "mat2": [
+          [
+            7,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          7,
+          0,
+          0
+        ],
+        [
+          -7,
+          0,
+          3
+        ]
+      ],
+      "tags": [
+        "sample",
+        "sparse"
+      ]
+    },
+    {
+      "id": "sample-zero",
+      "name": "sample: zero left matrix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat1": [
+          [
+            0,
+            0
+          ]
+        ],
+        "mat2": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "sample-diagonal",
+      "name": "sample: diagonal times identity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat1": [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "mat2": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "tags": [
+        "sample",
+        "identity"
+      ]
+    },
+    {
+      "id": "trial-negative",
+      "name": "negative rectangular factors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat1": [
+          [
+            1,
+            -2,
+            0
+          ],
+          [
+            0,
+            3,
+            4
+          ]
+        ],
+        "mat2": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          17
+        ]
+      ],
+      "tags": [
+        "negative",
+        "rectangular"
+      ]
+    },
+    {
+      "id": "trial-cancel",
+      "name": "nonzero contributions cancel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat1": [
+          [
+            1,
+            1
+          ]
+        ],
+        "mat2": [
+          [
+            2
+          ],
+          [
+            -2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "tags": [
+        "cancellation"
+      ]
+    },
+    {
+      "id": "real-mixed",
+      "name": "hidden: mixed sparse rows and columns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat1": [
+          [
+            0,
+            5
+          ],
+          [
+            -2,
+            0
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "mat2": [
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            0,
+            -1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          -5,
+          15
+        ],
+        [
+          -2,
+          0,
+          -4
+        ],
+        [
+          3,
+          -4,
+          18
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
+  ]
+}

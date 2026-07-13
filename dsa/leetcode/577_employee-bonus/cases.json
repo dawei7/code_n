@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_577",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: small, large, and absent bonuses",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "empId": 1,
+              "name": "Ada",
+              "supervisor": null,
+              "salary": 50000
+            },
+            {
+              "empId": 2,
+              "name": "Grace",
+              "supervisor": 1,
+              "salary": 50000
+            },
+            {
+              "empId": 3,
+              "name": "Linus",
+              "supervisor": 1,
+              "salary": 50000
+            }
+          ],
+          "Bonus": [
+            {
+              "empId": 1,
+              "bonus": 500
+            },
+            {
+              "empId": 2,
+              "bonus": 1500
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "bonus"
+        ],
+        "rows": [
+          [
+            "Ada",
+            500
+          ],
+          [
+            "Linus",
+            null
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "left-join"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all employees lack bonus rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "empId": 4,
+              "name": "Mina",
+              "supervisor": null,
+              "salary": 50000
+            },
+            {
+              "empId": 5,
+              "name": "Omar",
+              "supervisor": 4,
+              "salary": 50000
+            },
+            {
+              "empId": 6,
+              "name": "Anchor",
+              "supervisor": 4,
+              "salary": 50000
+            }
+          ],
+          "Bonus": [
+            {
+              "empId": 6,
+              "bonus": 1500
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "bonus"
+        ],
+        "rows": [
+          [
+            "Mina",
+            null
+          ],
+          [
+            "Omar",
+            null
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "missing"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: threshold is strict",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "empId": 6,
+              "name": "Exact",
+              "supervisor": null,
+              "salary": 50000
+            },
+            {
+              "empId": 7,
+              "name": "Below",
+              "supervisor": null,
+              "salary": 50000
+            }
+          ],
+          "Bonus": [
+            {
+              "empId": 6,
+              "bonus": 1000
+            },
+            {
+              "empId": 7,
+              "bonus": 999
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "bonus"
+        ],
+        "rows": [
+          [
+            "Below",
+            999
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "threshold"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: zero and negative bonuses qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "empId": 8,
+              "name": "Zero",
+              "supervisor": null,
+              "salary": 50000
+            },
+            {
+              "empId": 9,
+              "name": "Negative",
+              "supervisor": null,
+              "salary": 50000
+            },
+            {
+              "empId": 10,
+              "name": "Large",
+              "supervisor": null,
+              "salary": 50000
+            }
+          ],
+          "Bonus": [
+            {
+              "empId": 8,
+              "bonus": 0
+            },
+            {
+              "empId": 9,
+              "bonus": -25
+            },
+            {
+              "empId": 10,
+              "bonus": 4000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "bonus"
+        ],
+        "rows": [
+          [
+            "Negative",
+            -25
+          ],
+          [
+            "Zero",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "values"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: nonconsecutive identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "empId": 20,
+              "name": "Twenty",
+              "supervisor": null,
+              "salary": 50000
+            },
+            {
+              "empId": 3,
+              "name": "Three",
+              "supervisor": null,
+              "salary": 50000
+            },
+            {
+              "empId": 91,
+              "name": "Ninety One",
+              "supervisor": null,
+              "salary": 50000
+            }
+          ],
+          "Bonus": [
+            {
+              "empId": 91,
+              "bonus": 120
+            },
+            {
+              "empId": 20,
+              "bonus": 2000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "bonus"
+        ],
+        "rows": [
+          [
+            "Ninety One",
+            120
+          ],
+          [
+            "Three",
+            null
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "identifiers"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: only high bonuses",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "empId": 1,
+              "name": "A",
+              "supervisor": null,
+              "salary": 50000
+            },
+            {
+              "empId": 2,
+              "name": "B",
+              "supervisor": null,
+              "salary": 50000
+            }
+          ],
+          "Bonus": [
+            {
+              "empId": 1,
+              "bonus": 1001
+            },
+            {
+              "empId": 2,
+              "bonus": 9999
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "bonus"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: mixed unsorted bonus rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "empId": 5,
+              "name": "Echo",
+              "supervisor": null,
+              "salary": 50000
+            },
+            {
+              "empId": 2,
+              "name": "Bravo",
+              "supervisor": null,
+              "salary": 50000
+            },
+            {
+              "empId": 8,
+              "name": "Hotel",
+              "supervisor": null,
+              "salary": 50000
+            },
+            {
+              "empId": 1,
+              "name": "Alpha",
+              "supervisor": null,
+              "salary": 50000
+            }
+          ],
+          "Bonus": [
+            {
+              "empId": 8,
+              "bonus": 800
+            },
+            {
+              "empId": 1,
+              "bonus": 1800
+            },
+            {
+              "empId": 5,
+              "bonus": 50
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "bonus"
+        ],
+        "rows": [
+          [
+            "Bravo",
+            null
+          ],
+          [
+            "Echo",
+            50
+          ],
+          [
+            "Hotel",
+            800
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    }
+  ]
+}

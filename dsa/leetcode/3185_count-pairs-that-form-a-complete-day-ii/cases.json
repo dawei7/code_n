@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_3185",
+  "cases": [
+    {
+      "id": "sample-basic",
+      "name": "sample: complete-day pairs with duplicate remainders",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "hours": [
+          12,
+          12,
+          30,
+          24,
+          24
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "pairs"
+      ]
+    },
+    {
+      "id": "sample-complements",
+      "name": "sample: complementary remainders",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "hours": [
+          72,
+          48,
+          24,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "zero-remainder"
+      ]
+    },
+    {
+      "id": "trial-no-pairs",
+      "name": "trial: no valid complete-day pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          1,
+          2,
+          5,
+          10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-all-zero-remainder",
+      "name": "trial: all values divisible by 24",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          24,
+          48,
+          72,
+          96
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-mixed-large",
+      "name": "real: large mixed durations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hours": [
+          101,
+          47,
+          73,
+          95,
+          1,
+          23,
+          25,
+          49
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "real",
+        "modulo"
+      ]
+    }
+  ]
+}

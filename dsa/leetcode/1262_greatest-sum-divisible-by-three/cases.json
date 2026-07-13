@@ -1,0 +1,76 @@
+{
+  "challenge_id": "lc_1262",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: remove one remainder",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          6,
+          5,
+          1,
+          8
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no divisible subset except empty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: choose all",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          4
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-all-remainder-two",
+      "name": "hidden: all remainder two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

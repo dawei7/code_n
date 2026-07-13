@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_327",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed signs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          5,
+          -1
+        ],
+        "lower": -2,
+        "upper": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ],
+        "lower": 0,
+        "upper": 0
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no zero-sum range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "lower": 0,
+        "upper": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-positive",
+      "name": "trial: several positive ranges",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "lower": 3,
+        "upper": 5
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "positive"
+      ]
+    },
+    {
+      "id": "trial-equal-prefixes",
+      "name": "trial: all zero subarrays",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0
+        ],
+        "lower": 0,
+        "upper": 0
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-negative-range",
+      "name": "hidden: negative inclusive interval",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -3,
+          1,
+          2,
+          -2,
+          2
+        ],
+        "lower": -2,
+        "upper": 1
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-exact-bound",
+      "name": "hidden: equal lower and upper",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          -2,
+          2
+        ],
+        "lower": 2,
+        "upper": 2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "exact-bound"
+      ]
+    },
+    {
+      "id": "hidden-wide-values",
+      "name": "hidden: prefix sums exceed signed element scale",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2147483647,
+          -2147483648,
+          -1,
+          0
+        ],
+        "lower": -1,
+        "upper": 0
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_264",
+  "measurement_note": "Size is sequence position n; three monotone pointers generate each value once while rescanning all prior products is quadratic.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: ugly number position 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "n": 16
+      },
+      "expected": 25,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "sequence"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: ugly number position 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 64
+      },
+      "expected": 450,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "sequence"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: ugly number position 256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "n": 256
+      },
+      "expected": 43200,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "sequence"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "challenge_id": "lc_2649",
+  "source": "leetcode",
+  "frontend_id": "2649",
+  "slug": "nested-array-generator",
+  "title": "Nested Array Generator",
+  "difficulty": "Medium",
+  "acceptance_rate": 80.5739514348786,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/nested-array-generator/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode",
+    "subset:neetcode:allNC"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "JavaScript"
+      ],
+      "order": 972,
+      "section_order": 18,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "nested-array-generator",
+      "leetcode_slug": "nested-array-generator",
+      "difficulty": "Medium",
+      "problem_order": 29
+    }
+  ]
+}

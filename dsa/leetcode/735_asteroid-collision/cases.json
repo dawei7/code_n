@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_735",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: larger right mover survives",
+      "kind": "sample",
+      "visible": true,
+      "input": {"asteroids": [5,10,-5]},
+      "expected": [5,10],
+      "tags": ["sample", "larger-blocker"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: equal sizes annihilate",
+      "kind": "sample",
+      "visible": true,
+      "input": {"asteroids": [8,-8]},
+      "expected": [],
+      "tags": ["sample", "equal"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: collision chain stops at largest",
+      "kind": "sample",
+      "visible": true,
+      "input": {"asteroids": [10,2,-5]},
+      "expected": [10],
+      "tags": ["sample", "chain"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: directions move apart",
+      "kind": "trial",
+      "visible": true,
+      "input": {"asteroids": [-2,-1,1,2]},
+      "expected": [-2,-1,1,2],
+      "tags": ["trial", "no-collision"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: large left mover survives",
+      "kind": "trial",
+      "visible": true,
+      "input": {"asteroids": [1,2,3,-10]},
+      "expected": [-10],
+      "tags": ["trial", "full-chain"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: surviving left movers retain order",
+      "kind": "real",
+      "visible": false,
+      "input": {"asteroids": [1,-2,-2,-2]},
+      "expected": [-2,-2,-2],
+      "tags": ["hidden", "left-survivors"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: separate collision chains",
+      "kind": "real",
+      "visible": false,
+      "input": {"asteroids": [3,4,-9,8,-8]},
+      "expected": [-9],
+      "tags": ["hidden", "separate-chains"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: mixed unequal and equal outcomes",
+      "kind": "real",
+      "visible": false,
+      "input": {"asteroids": [10,-5,-15,20,-20,25]},
+      "expected": [-15,25],
+      "tags": ["hidden", "mixed"]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_273",
+  "measurement_note": "Size is the numeric value; base-1000 decomposition uses logarithmically many chunks while repeated subtraction by scale grows with the value.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: words for 999",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 999,
+      "input": {
+        "num": 999
+      },
+      "expected": "Nine Hundred Ninety Nine",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "scale-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: words for 99999",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 99999,
+      "input": {
+        "num": 99999
+      },
+      "expected": "Ninety Nine Thousand Nine Hundred Ninety Nine",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "scale-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: words for 9999999",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9999999,
+      "input": {
+        "num": 9999999
+      },
+      "expected": "Nine Million Nine Hundred Ninety Nine Thousand Nine Hundred Ninety Nine",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "scale-groups"
+      ]
+    }
+  ]
+}

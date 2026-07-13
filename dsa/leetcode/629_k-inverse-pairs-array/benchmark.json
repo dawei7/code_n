@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_629",
+  "measurement_note": "Size is used for both n and k. Prefix-window DP evaluates size squared states, while direct recurrence summation adds up to size predecessors per state and grows cubically.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: n and k equal 12", "kind": "benchmark", "visible": false, "size": 12, "input": {"n": 12, "k": 12}, "expected": 330121, "tags": ["benchmark", "scaling", "dp"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: n and k equal 48", "kind": "benchmark", "visible": false, "size": 48, "input": {"n": 48, "k": 48}, "expected": 622849268, "tags": ["benchmark", "scaling", "dp"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: n and k equal 96", "kind": "benchmark", "visible": false, "size": 96, "input": {"n": 96, "k": 96}, "expected": 571750516, "tags": ["benchmark", "scaling", "dp"]}
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "challenge_id": "lc_149",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: diagonal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "geometry"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four collinear",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-points",
+      "name": "two points",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-vertical-line",
+      "name": "hidden: vertical line",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

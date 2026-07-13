@@ -1,0 +1,9 @@
+{
+  "challenge_id": "lc_173",
+  "cases": [
+    {"id": "sample-mixed-tree", "name": "sample: traverse mixed BST", "kind": "sample", "visible": true, "input": {"root": [7, 3, 15, null, null, 9, 20], "operations": ["BSTIterator", "next", "next", "hasNext", "next", "hasNext", "next", "hasNext", "next", "hasNext"]}, "expected": [null, 3, 7, true, 9, true, 15, true, 20, false], "tags": ["sample", "iterator"]},
+    {"id": "trial-single", "name": "single-node iterator", "kind": "trial", "visible": true, "input": {"root": [1], "operations": ["BSTIterator", "hasNext", "next", "hasNext"]}, "expected": [null, true, 1, false], "tags": ["boundary"]},
+    {"id": "trial-empty", "name": "empty iterator", "kind": "trial", "visible": true, "input": {"root": [], "operations": ["BSTIterator", "hasNext"]}, "expected": [null, false], "tags": ["boundary", "empty"]},
+    {"id": "real-left-skewed", "name": "hidden: left-skewed BST", "kind": "real", "visible": false, "input": {"root": [4, 3, null, 2, null, 1], "operations": ["BSTIterator", "next", "next", "next", "next", "hasNext"]}, "expected": [null, 1, 2, 3, 4, false], "tags": ["hidden", "skewed"]}
+  ]
+}

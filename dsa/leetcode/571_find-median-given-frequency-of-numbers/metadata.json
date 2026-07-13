@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_571",
+  "source": "leetcode",
+  "frontend_id": "571",
+  "slug": "find-median-given-frequency-of-numbers",
+  "title": "Find Median Given Frequency of Numbers",
+  "difficulty": "Hard",
+  "acceptance_rate": 42.19152153087959,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-median-given-frequency-of-numbers/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:pinterest",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:pinterest",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Pinterest",
+      "slug": "pinterest"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Pinterest",
+        "slug": "pinterest",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

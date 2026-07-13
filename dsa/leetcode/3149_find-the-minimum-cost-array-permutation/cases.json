@@ -1,0 +1,155 @@
+{
+  "challenge_id": "lc_3149",
+  "cases": [
+    {
+      "id": "sample-small-cycle",
+      "name": "sample: small cycle with clear minimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "cycle"
+      ]
+    },
+    {
+      "id": "sample-lexicographic-tie",
+      "name": "sample: lexicographic tie chooses smaller permutation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "lexicographic"
+      ]
+    },
+    {
+      "id": "trial-four-values",
+      "name": "trial: four-value permutation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          0,
+          1,
+          3
+        ]
+      },
+      "expected": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "dp"
+      ]
+    },
+    {
+      "id": "trial-duplicate-values",
+      "name": "trial: duplicate values create many equal-cost paths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1,
+          0,
+          3
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        1,
+        4,
+        3
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-six-values",
+      "name": "real: six-value exact DP case",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          4,
+          0,
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        5,
+        4,
+        3,
+        2
+      ],
+      "tags": [
+        "real",
+        "dp"
+      ]
+    },
+    {
+      "id": "real-seven-values-ties",
+      "name": "real: seven values with tie pressure",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          1,
+          5,
+          2,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        3,
+        1,
+        2,
+        4,
+        5,
+        6
+      ],
+      "tags": [
+        "real",
+        "lexicographic"
+      ]
+    }
+  ]
+}

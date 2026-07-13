@@ -1,0 +1,9 @@
+{
+  "challenge_id": "lc_182",
+  "cases": [
+    {"id": "sample-one-duplicate", "name": "sample: one duplicated email", "kind": "sample", "visible": true, "input": {"tables": {"Person": [{"id": 1, "email": "a@b.com"}, {"id": 2, "email": "c@d.com"}, {"id": 3, "email": "a@b.com"}]}}, "expected": {"columns": ["Email"], "rows": [["a@b.com"]]}, "tags": ["sample", "grouping"]},
+    {"id": "trial-unique", "name": "all emails unique", "kind": "trial", "visible": true, "input": {"tables": {"Person": [{"id": 1, "email": "a@x"}, {"id": 2, "email": "b@x"}]}}, "expected": {"columns": ["Email"], "rows": []}, "tags": ["boundary"]},
+    {"id": "trial-three-copies", "name": "three copies still produce one row", "kind": "trial", "visible": true, "input": {"tables": {"Person": [{"id": 1, "email": "same@x"}, {"id": 2, "email": "same@x"}, {"id": 3, "email": "same@x"}]}}, "expected": {"columns": ["Email"], "rows": [["same@x"]]}, "tags": ["multiplicity"]},
+    {"id": "real-several", "name": "hidden: several duplicated groups", "kind": "real", "visible": false, "input": {"tables": {"Person": [{"id": 1, "email": "z@x"}, {"id": 2, "email": "a@x"}, {"id": 3, "email": "z@x"}, {"id": 4, "email": "b@x"}, {"id": 5, "email": "a@x"}]}}, "expected": {"columns": ["Email"], "rows": [["a@x"], ["z@x"]]}, "tags": ["hidden", "multiple"]}
+  ]
+}

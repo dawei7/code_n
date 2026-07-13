@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1160",
+  "cases": [
+    {
+      "id": "benchmark-overlapping-words",
+      "name": "benchmark: overlapping words",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "code",
+          "node",
+          "done",
+          "tone",
+          "stone"
+        ],
+        "chars": "onedocte"
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

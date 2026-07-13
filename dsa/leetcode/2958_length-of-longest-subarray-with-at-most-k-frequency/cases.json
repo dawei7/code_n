@@ -1,0 +1,120 @@
+{
+  "challenge_id": "lc_2958",
+  "cases": [
+    {
+      "id": "sample-each-twice",
+      "name": "sample: each value at most twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3,
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-k-one",
+      "name": "sample: k equals one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-same",
+      "name": "sample: all values same",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-window-shrinks-many",
+      "name": "trial: repeated shrink operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "real-large-k",
+      "name": "real: k larger than every frequency",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          2,
+          4,
+          1
+        ],
+        "k": 5
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

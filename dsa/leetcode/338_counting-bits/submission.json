@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "338",
+  "frontend_id": "338",
+  "title_slug": "counting-bits",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064470420",
+  "verified_at": "2026-07-12T03:13:55.369393+00:00"
+}

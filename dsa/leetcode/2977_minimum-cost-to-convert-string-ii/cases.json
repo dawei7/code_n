@@ -1,0 +1,138 @@
+{
+  "challenge_id": "lc_2977",
+  "cases": [
+    {
+      "id": "sample-impossible",
+      "name": "sample: impossible substring conversion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "abcd",
+        "target": "acde",
+        "original": [
+          "ab",
+          "ac"
+        ],
+        "changed": [
+          "ac",
+          "bc"
+        ],
+        "cost": [
+          2,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-segments",
+      "name": "sample: two substring transformations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "abcdefgh",
+        "target": "acdeeghh",
+        "original": [
+          "bcd",
+          "fgh",
+          "th"
+        ],
+        "changed": [
+          "cde",
+          "thh",
+          "gh"
+        ],
+        "cost": [
+          1,
+          3,
+          5
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-overlapping-lengths",
+      "name": "sample: multiple transformed segments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "abcdefg",
+        "target": "affgefg",
+        "original": [
+          "bcd",
+          "efg"
+        ],
+        "changed": [
+          "fge",
+          "fge"
+        ],
+        "cost": [
+          1,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-indirect-substring",
+      "name": "trial: cheaper indirect substring conversion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "aaaa",
+        "target": "bbbb",
+        "original": [
+          "aa",
+          "aa",
+          "cc"
+        ],
+        "changed": [
+          "cc",
+          "bb",
+          "bb"
+        ],
+        "cost": [
+          1,
+          10,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "shortest-path"
+      ]
+    },
+    {
+      "id": "real-character-match-gap",
+      "name": "real: equal characters between converted spans",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "source": "xabcy",
+        "target": "xdefy",
+        "original": [
+          "abc"
+        ],
+        "changed": [
+          "def"
+        ],
+        "cost": [
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

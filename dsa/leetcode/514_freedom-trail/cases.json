@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_514",
+  "cases": [
+    {"id": "sample-short-key", "name": "sample: rotate to d after selecting g", "kind": "sample", "visible": true, "input": {"ring": "godding", "key": "gd"}, "expected": 4, "tags": ["sample", "wrap"]},
+    {"id": "sample-full-word", "name": "sample: spell a longer sequence", "kind": "sample", "visible": true, "input": {"ring": "godding", "key": "godding"}, "expected": 13, "tags": ["sample", "dynamic-programming"]},
+    {"id": "sample-single", "name": "sample: no rotation is needed", "kind": "sample", "visible": true, "input": {"ring": "a", "key": "a"}, "expected": 1, "tags": ["sample", "singleton"]},
+    {"id": "trial-wrap", "name": "trial: shortest route crosses the boundary", "kind": "trial", "visible": true, "input": {"ring": "abcde", "key": "ade"}, "expected": 6, "tags": ["trial", "wrap"]},
+    {"id": "trial-repeated", "name": "trial: repeated selections need no rotation", "kind": "trial", "visible": true, "input": {"ring": "aaa", "key": "aaaa"}, "expected": 4, "tags": ["trial", "duplicates"]},
+    {"id": "hidden-alternating", "name": "hidden: choose among repeated occurrences", "kind": "real", "visible": false, "input": {"ring": "ababcab", "key": "acba"}, "expected": 9, "tags": ["hidden", "duplicates"]},
+    {"id": "hidden-reverse", "name": "hidden: several counterclockwise moves", "kind": "real", "visible": false, "input": {"ring": "abcdef", "key": "fed"}, "expected": 6, "tags": ["hidden", "counterclockwise"]}
+  ]
+}

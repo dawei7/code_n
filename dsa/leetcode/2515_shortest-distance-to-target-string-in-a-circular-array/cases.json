@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_2515",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: nearest target is one step away",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "hello",
+          "i",
+          "am",
+          "leetcode",
+          "hello"
+        ],
+        "target": "hello",
+        "startIndex": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "circular-array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: circular wrap is shorter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "leetcode"
+        ],
+        "target": "leetcode",
+        "startIndex": 0
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: target is absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "i",
+          "eat",
+          "apple"
+        ],
+        "target": "pie",
+        "startIndex": 0
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-start-is-target",
+      "name": "trial: starting position already matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "x",
+          "y",
+          "z"
+        ],
+        "target": "y",
+        "startIndex": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-absent-word",
+      "name": "hidden: one word does not match target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "a"
+        ],
+        "target": "b",
+        "startIndex": 0
+      },
+      "expected": -1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

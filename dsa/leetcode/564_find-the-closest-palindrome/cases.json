@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_564",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mirror the prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": "123"
+      },
+      "expected": "121",
+      "tags": [
+        "sample",
+        "palindrome"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": "1"
+      },
+      "expected": "0",
+      "tags": [
+        "sample",
+        "palindrome"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: cross to a longer palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": "99"
+      },
+      "expected": "101",
+      "tags": [
+        "sample",
+        "palindrome"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: power of ten",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": "1000"
+      },
+      "expected": "999",
+      "tags": [
+        "trial",
+        "digit-boundary"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: all nines",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": "999"
+      },
+      "expected": "1001",
+      "tags": [
+        "trial",
+        "digit-boundary"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: two-digit power boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": "10"
+      },
+      "expected": "9",
+      "tags": [
+        "hidden",
+        "edge-case"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: palindromic two-digit input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": "11"
+      },
+      "expected": "9",
+      "tags": [
+        "hidden",
+        "edge-case"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: adjacent higher prefix is closer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": "1283"
+      },
+      "expected": "1331",
+      "tags": [
+        "hidden",
+        "edge-case"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: tied palindromic neighbors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": "121"
+      },
+      "expected": "111",
+      "tags": [
+        "hidden",
+        "edge-case"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: large power of ten",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": "100000000000000000"
+      },
+      "expected": "99999999999999999",
+      "tags": [
+        "hidden",
+        "edge-case"
+      ]
+    }
+  ]
+}
+

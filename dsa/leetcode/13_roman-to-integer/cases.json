@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_13",
+  "cases": [
+    {"id": "sample-1", "name": "sample: repeated units", "kind": "sample", "visible": true, "input": {"s": "III"}, "expected": 3, "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: descending additive symbols", "kind": "sample", "visible": true, "input": {"s": "LVIII"}, "expected": 58, "tags": ["sample"]},
+    {"id": "trial-multiple-subtractive-pairs", "name": "three subtractive pairs", "kind": "trial", "visible": true, "input": {"s": "MCMXCIV"}, "expected": 1994, "tags": ["subtractive"]},
+    {"id": "trial-small-subtractive", "name": "smallest subtractive pair", "kind": "trial", "visible": true, "input": {"s": "IV"}, "expected": 4, "tags": ["subtractive"]},
+    {"id": "real-largest", "name": "hidden: largest legal numeral", "kind": "real", "visible": false, "input": {"s": "MMMCMXCIX"}, "expected": 3999, "tags": ["hidden", "boundary"]}
+  ]
+}

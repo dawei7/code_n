@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_372",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one-digit exponent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 2,
+        "b": [
+          3
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "small"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: exponent ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 2,
+        "b": [
+          1,
+          0
+        ]
+      },
+      "expected": 1024,
+      "tags": [
+        "sample",
+        "zero-digit"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one to a large exponent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": [
+          4,
+          3,
+          3,
+          8,
+          5,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "large-exponent"
+      ]
+    },
+    {
+      "id": "trial-zero-exponent",
+      "name": "trial: exponent zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 0,
+        "b": [
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-modulus-base",
+      "name": "trial: base divisible by modulus",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1337,
+        "b": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "modulus"
+      ]
+    },
+    {
+      "id": "hidden-large-base",
+      "name": "hidden: reduce a large base before powering",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": 2147483647,
+        "b": [
+          2,
+          0,
+          0
+        ]
+      },
+      "expected": 1198,
+      "tags": [
+        "hidden",
+        "large-base"
+      ]
+    },
+    {
+      "id": "hidden-internal-zero",
+      "name": "hidden: zero inside decimal exponent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": 7,
+        "b": [
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "zero-digit"
+      ]
+    },
+    {
+      "id": "hidden-negative-base",
+      "name": "hidden: negative base normalization",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": -2,
+        "b": [
+          1,
+          1
+        ]
+      },
+      "expected": 626,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    }
+  ]
+}
+

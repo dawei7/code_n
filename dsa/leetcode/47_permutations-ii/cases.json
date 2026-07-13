@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_47",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one repeated value", "kind": "sample", "visible": true, "input": {"nums": [1, 1, 2]}, "expected": [[1, 1, 2], [1, 2, 1], [2, 1, 1]], "validator": {"kind": "unordered_list"}, "tags": ["sample", "duplicates"]},
+    {"id": "sample-2", "name": "sample: all values distinct", "kind": "sample", "visible": true, "input": {"nums": [1, 2, 3]}, "expected": null, "validator": {"kind": "unordered_list"}, "tags": ["sample"]},
+    {"id": "trial-all-equal", "name": "all positions are indistinguishable", "kind": "trial", "visible": true, "input": {"nums": [1, 1]}, "expected": [[1, 1]], "validator": {"kind": "unordered_list"}, "tags": ["duplicates"]},
+    {"id": "trial-negative-duplicate", "name": "negative repeated values", "kind": "trial", "visible": true, "input": {"nums": [-1, -1, 2]}, "expected": [[-1, -1, 2], [-1, 2, -1], [2, -1, -1]], "validator": {"kind": "unordered_list"}, "tags": ["negative", "duplicates"]},
+    {"id": "real-two-pairs", "name": "hidden: two duplicate groups", "kind": "real", "visible": false, "input": {"nums": [1, 1, 2, 2]}, "expected": null, "validator": {"kind": "unordered_list"}, "tags": ["hidden", "duplicates"]}
+  ]
+}

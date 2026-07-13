@@ -1,0 +1,9 @@
+{
+  "challenge_id": "lc_95",
+  "cases": [
+    {"id": "sample-three", "name": "sample: five trees", "kind": "sample", "visible": true, "input": {"n": 3}, "expected": 5, "validator": {"kind": "unique_bsts"}, "tags": ["sample", "catalan"]},
+    {"id": "sample-one", "name": "sample: one key", "kind": "sample", "visible": true, "input": {"n": 1}, "expected": 1, "validator": {"kind": "unique_bsts"}, "tags": ["sample", "boundary"]},
+    {"id": "trial-two", "name": "two possible roots", "kind": "trial", "visible": true, "input": {"n": 2}, "expected": 2, "validator": {"kind": "unique_bsts"}, "tags": ["branching"]},
+    {"id": "real-four", "name": "hidden: fourteen structures", "kind": "real", "visible": false, "input": {"n": 4}, "expected": 14, "validator": {"kind": "unique_bsts"}, "tags": ["hidden", "catalan"]}
+  ]
+}

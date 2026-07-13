@@ -1,0 +1,167 @@
+{
+  "challenge_id": "lc_3261",
+  "cases": [
+    {
+      "id": "sample-whole-range",
+      "name": "sample: whole range count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0001111",
+        "k": 2,
+        "queries": [
+          [
+            0,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        26
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-multiple-ranges",
+      "name": "sample: multiple query ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "010101",
+        "k": 1,
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        15,
+        9,
+        3,
+        9
+      ],
+      "tags": [
+        "sample",
+        "queries"
+      ]
+    },
+    {
+      "id": "trial-k-zero",
+      "name": "trial: k zero requires one-symbol substrings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "001100",
+        "k": 0,
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        9,
+        5,
+        3
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-all-one-symbol",
+      "name": "trial: all one symbol",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111111",
+        "k": 1,
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        21,
+        6
+      ],
+      "tags": [
+        "uniform"
+      ]
+    },
+    {
+      "id": "real-overlapping-ranges",
+      "name": "real: overlapping hidden ranges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "0010110011100101",
+        "k": 2,
+        "queries": [
+          [
+            0,
+            15
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            8,
+            15
+          ],
+          [
+            1,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        74,
+        43,
+        15,
+        31,
+        20
+      ],
+      "tags": [
+        "real",
+        "range-query"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_486",
+  "cases": [
+    {"id": "sample-loss", "name": "sample: first player cannot protect both ends", "kind": "sample", "visible": true, "input": {"nums": [1, 5, 2]}, "expected": false, "tags": ["sample", "loss"]},
+    {"id": "sample-large-middle", "name": "sample: first player can secure the large score", "kind": "sample", "visible": true, "input": {"nums": [1, 5, 233, 7]}, "expected": true, "tags": ["sample", "win"]},
+    {"id": "sample-tie", "name": "sample: equal values produce a tie", "kind": "sample", "visible": true, "input": {"nums": [1, 1]}, "expected": true, "tags": ["sample", "tie"]},
+    {"id": "trial-single", "name": "trial: one score", "kind": "trial", "visible": true, "input": {"nums": [0]}, "expected": true, "tags": ["trial", "singleton"]},
+    {"id": "trial-odd-loss", "name": "trial: odd-length losing position", "kind": "trial", "visible": true, "input": {"nums": [2, 4, 55, 6, 8]}, "expected": false, "tags": ["trial", "odd-length"]},
+    {"id": "hidden-right-choice", "name": "hidden: optimal right endpoint opening", "kind": "real", "visible": false, "input": {"nums": [3, 9, 1, 2]}, "expected": true, "tags": ["hidden", "right-end"]},
+    {"id": "hidden-mixed", "name": "hidden: mixed six-score game", "kind": "real", "visible": false, "input": {"nums": [20, 30, 2, 2, 2, 10]}, "expected": true, "tags": ["hidden", "mixed"]}
+  ]
+}

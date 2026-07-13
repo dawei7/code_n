@@ -1,0 +1,207 @@
+{
+  "challenge_id": "lc_130",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: enclosed region",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            "X",
+            "X",
+            "X",
+            "X"
+          ],
+          [
+            "X",
+            "O",
+            "O",
+            "X"
+          ],
+          [
+            "X",
+            "X",
+            "O",
+            "X"
+          ],
+          [
+            "X",
+            "O",
+            "X",
+            "X"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "X",
+          "X",
+          "X",
+          "X"
+        ],
+        [
+          "X",
+          "X",
+          "X",
+          "X"
+        ],
+        [
+          "X",
+          "X",
+          "X",
+          "X"
+        ],
+        [
+          "X",
+          "O",
+          "X",
+          "X"
+        ]
+      ],
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            "X"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "X"
+        ]
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-border-connected",
+      "name": "border-connected region survives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            "O",
+            "O"
+          ],
+          [
+            "O",
+            "O"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "O",
+          "O"
+        ],
+        [
+          "O",
+          "O"
+        ]
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-mixed-regions",
+      "name": "hidden: mixed captured and safe regions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "board": [
+          [
+            "X",
+            "O",
+            "X",
+            "X",
+            "X"
+          ],
+          [
+            "X",
+            "O",
+            "O",
+            "X",
+            "X"
+          ],
+          [
+            "X",
+            "X",
+            "O",
+            "X",
+            "O"
+          ],
+          [
+            "O",
+            "X",
+            "X",
+            "O",
+            "X"
+          ],
+          [
+            "X",
+            "X",
+            "X",
+            "X",
+            "X"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "X",
+          "O",
+          "X",
+          "X",
+          "X"
+        ],
+        [
+          "X",
+          "O",
+          "O",
+          "X",
+          "X"
+        ],
+        [
+          "X",
+          "X",
+          "O",
+          "X",
+          "O"
+        ],
+        [
+          "O",
+          "X",
+          "X",
+          "X",
+          "X"
+        ],
+        [
+          "X",
+          "X",
+          "X",
+          "X",
+          "X"
+        ]
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

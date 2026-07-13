@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_1250",
+  "cases": [
+    {
+      "id": "benchmark-composite-gcd-one",
+      "name": "benchmark: composite numbers with gcd one",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2735",
+  "source": "leetcode",
+  "frontend_id": "2735",
+  "slug": "collecting-chocolates",
+  "title": "Collecting Chocolates",
+  "difficulty": "Medium",
+  "acceptance_rate": 35.17648909160357,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Enumeration",
+      "slug": "enumeration"
+    }
+  ],
+  "url": "https://leetcode.com/problems/collecting-chocolates/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:deutsche-bank",
+    "leetcode_topic:array",
+    "leetcode_topic:enumeration"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:deutsche-bank",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:enumeration"
+  ],
+  "company_tags": [
+    {
+      "name": "Deutsche Bank",
+      "slug": "deutsche-bank"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Deutsche Bank",
+        "slug": "deutsche-bank",
+        "timesEncountered": 6
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

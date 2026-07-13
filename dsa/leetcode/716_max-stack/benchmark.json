@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_716",
+  "measurement_note": "Size is the total operation count. Each tier pushes a descending sequence so the maximum stays deepest in the stack, then removes every value with popMax. Heap-indexed linked nodes take logarithmic time per removal, while a correct plain-stack implementation rescans a shrinking stack and takes quadratic aggregate time.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 maximum-stack operations",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"operations": [
+        ["push",8],["push",7],["push",6],["push",5],["push",4],["push",3],["push",2],["push",1],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"]
+      ]},
+      "expected": [8,7,6,5,4,3,2,1],
+      "tags": ["benchmark", "scaling", "interior-maximum"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 maximum-stack operations",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"operations": [
+        ["push",32],["push",31],["push",30],["push",29],["push",28],["push",27],["push",26],["push",25],
+        ["push",24],["push",23],["push",22],["push",21],["push",20],["push",19],["push",18],["push",17],
+        ["push",16],["push",15],["push",14],["push",13],["push",12],["push",11],["push",10],["push",9],
+        ["push",8],["push",7],["push",6],["push",5],["push",4],["push",3],["push",2],["push",1],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"]
+      ]},
+      "expected": [32,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],
+      "tags": ["benchmark", "scaling", "interior-maximum"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 maximum-stack operations",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"operations": [
+        ["push",128],["push",127],["push",126],["push",125],["push",124],["push",123],["push",122],["push",121],
+        ["push",120],["push",119],["push",118],["push",117],["push",116],["push",115],["push",114],["push",113],
+        ["push",112],["push",111],["push",110],["push",109],["push",108],["push",107],["push",106],["push",105],
+        ["push",104],["push",103],["push",102],["push",101],["push",100],["push",99],["push",98],["push",97],
+        ["push",96],["push",95],["push",94],["push",93],["push",92],["push",91],["push",90],["push",89],
+        ["push",88],["push",87],["push",86],["push",85],["push",84],["push",83],["push",82],["push",81],
+        ["push",80],["push",79],["push",78],["push",77],["push",76],["push",75],["push",74],["push",73],
+        ["push",72],["push",71],["push",70],["push",69],["push",68],["push",67],["push",66],["push",65],
+        ["push",64],["push",63],["push",62],["push",61],["push",60],["push",59],["push",58],["push",57],
+        ["push",56],["push",55],["push",54],["push",53],["push",52],["push",51],["push",50],["push",49],
+        ["push",48],["push",47],["push",46],["push",45],["push",44],["push",43],["push",42],["push",41],
+        ["push",40],["push",39],["push",38],["push",37],["push",36],["push",35],["push",34],["push",33],
+        ["push",32],["push",31],["push",30],["push",29],["push",28],["push",27],["push",26],["push",25],
+        ["push",24],["push",23],["push",22],["push",21],["push",20],["push",19],["push",18],["push",17],
+        ["push",16],["push",15],["push",14],["push",13],["push",12],["push",11],["push",10],["push",9],
+        ["push",8],["push",7],["push",6],["push",5],["push",4],["push",3],["push",2],["push",1],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],
+        ["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"],["popMax"]
+      ]},
+      "expected": [128,127,126,125,124,123,122,121,120,119,118,117,116,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101,100,99,98,97,96,95,94,93,92,91,90,89,88,87,86,85,84,83,82,81,80,79,78,77,76,75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57,56,55,54,53,52,51,50,49,48,47,46,45,44,43,42,41,40,39,38,37,36,35,34,33,32,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],
+      "tags": ["benchmark", "scaling", "interior-maximum"]
+    }
+  ]
+}

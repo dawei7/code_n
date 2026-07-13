@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_820",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one word covers its suffix", "kind": "sample", "visible": true, "input": {"words": ["time", "me", "bell"]}, "expected": 10, "tags": ["sample", "suffix"]},
+    {"id": "sample-2", "name": "sample: one letter", "kind": "sample", "visible": true, "input": {"words": ["t"]}, "expected": 2, "tags": ["sample", "single"]},
+    {"id": "sample-3", "name": "sample: duplicate and suffix share one segment", "kind": "sample", "visible": true, "input": {"words": ["time", "time", "me"]}, "expected": 5, "tags": ["sample", "duplicate"]},
+    {"id": "trial-1", "name": "trial: no suffix relationships", "kind": "trial", "visible": true, "input": {"words": ["a", "b", "c"]}, "expected": 6, "tags": ["trial", "independent"]},
+    {"id": "trial-2", "name": "trial: complete suffix chain", "kind": "trial", "visible": true, "input": {"words": ["abcdefg", "bcdefg", "cdefg", "defg", "efg", "fg", "g"]}, "expected": 8, "tags": ["trial", "suffix-chain"]},
+    {"id": "trial-3", "name": "trial: shared suffix with two leaves", "kind": "trial", "visible": true, "input": {"words": ["time", "lime", "me"]}, "expected": 10, "tags": ["trial", "branching"]},
+    {"id": "hidden-1", "name": "hidden: longer word added after its suffixes", "kind": "real", "visible": false, "input": {"words": ["me", "time", "etime"]}, "expected": 6, "tags": ["hidden", "insertion-order"]},
+    {"id": "hidden-2", "name": "hidden: one word covers nested one-letter suffixes", "kind": "real", "visible": false, "input": {"words": ["a", "aa", "aaa", "baaa"]}, "expected": 5, "tags": ["hidden", "nested-suffixes"]},
+    {"id": "hidden-3", "name": "hidden: duplicates across two leaf branches", "kind": "real", "visible": false, "input": {"words": ["abc", "xbc", "bc", "c", "abc"]}, "expected": 8, "tags": ["hidden", "duplicates", "branches"]},
+    {"id": "hidden-4", "name": "hidden: independent words cover separate suffixes", "kind": "real", "visible": false, "input": {"words": ["time", "bell", "lime", "ell", "me"]}, "expected": 15, "tags": ["hidden", "multiple-leaves"]}
+  ]
+}

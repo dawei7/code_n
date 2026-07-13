@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_1390",
+  "cases": [
+    {
+      "id": "benchmark-many-semiprimes",
+      "name": "benchmark: many four-divisor numbers",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          8,
+          10,
+          14,
+          22
+        ]
+      },
+      "expected": 105,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

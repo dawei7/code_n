@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_3267",
+  "cases": [
+    {
+      "id": "sample-two-swaps",
+      "name": "sample: two swaps can match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1023,
+          2310,
+          2130,
+          213
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "two-swaps"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          70,
+          700
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "padding"
+      ]
+    },
+    {
+      "id": "trial-zero-padding",
+      "name": "trial: padding and two swaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1,
+          10,
+          1000,
+          10000
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "padding"
+      ]
+    },
+    {
+      "id": "trial-no-match",
+      "name": "trial: unrelated digit groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          123,
+          456,
+          789,
+          101
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "none"
+      ]
+    },
+    {
+      "id": "real-mixed-two-swap-groups",
+      "name": "real: mixed two-swap groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          123456,
+          654321,
+          132546,
+          321654,
+          909090,
+          990900,
+          900990
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "digits"
+      ]
+    }
+  ]
+}

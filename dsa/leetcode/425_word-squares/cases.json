@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_425",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two four-word squares",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["area", "lead", "wall", "lady", "ball"]},
+      "expected": [["wall", "area", "lead", "lady"], ["ball", "area", "lead", "lady"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "two-results"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one word is reused",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["abat", "baba", "atan", "atal"]},
+      "expected": [["baba", "abat", "baba", "atan"], ["baba", "abat", "baba", "atal"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "reuse"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one-letter square",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["a"]},
+      "expected": [["a"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "trial-two-by-two",
+      "name": "trial: two symmetric two-word orders",
+      "kind": "trial",
+      "visible": true,
+      "input": {"words": ["ab", "ba"]},
+      "expected": [["ab", "ba"], ["ba", "ab"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["trial", "two-by-two"]
+    },
+    {
+      "id": "trial-no-square",
+      "name": "trial: no prefix can complete a square",
+      "kind": "trial",
+      "visible": true,
+      "input": {"words": ["abcd", "efgh", "ijkl", "mnop"]},
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["trial", "empty"]
+    },
+    {
+      "id": "hidden-diagonal",
+      "name": "hidden: one three-word symmetric grid",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["abc", "bde", "cef", "xyz"]},
+      "expected": [["abc", "bde", "cef"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["hidden", "three-by-three"]
+    },
+    {
+      "id": "hidden-self-repeat",
+      "name": "hidden: one word repeats in every row",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["aaa", "bbb"]},
+      "expected": [["aaa", "aaa", "aaa"], ["bbb", "bbb", "bbb"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["hidden", "reuse"]
+    }
+  ]
+}

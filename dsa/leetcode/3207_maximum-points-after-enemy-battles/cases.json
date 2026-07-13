@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_3207",
+  "cases": [
+    {
+      "id": "sample-three-enemies",
+      "name": "sample: enough energy for the weakest enemy",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "enemy_energies": [
+          3,
+          2,
+          2
+        ],
+        "current_energy": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-single-enemy",
+      "name": "sample: one enemy can be farmed for points",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "enemy_energies": [
+          2
+        ],
+        "current_energy": 10
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-not-enough-energy",
+      "name": "trial: cannot beat the weakest enemy",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "enemy_energies": [
+          5,
+          9,
+          4
+        ],
+        "current_energy": 3
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-large-weak-enemy-gap",
+      "name": "trial: weakest enemy controls the score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "enemy_energies": [
+          8,
+          1,
+          20,
+          4
+        ],
+        "current_energy": 8
+      },
+      "expected": 40,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-many-enemies",
+      "name": "real: many enemy energies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "enemy_energies": [
+          6,
+          14,
+          3,
+          9,
+          11,
+          5,
+          20
+        ],
+        "current_energy": 18
+      },
+      "expected": 27,
+      "tags": [
+        "real",
+        "greedy"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7771 @@
+{
+  "schema_version": 1,
+  "provider": "AlgoMaster",
+  "source_url": "https://algomaster.io/practice/dsa-patterns",
+  "problem_count": 600,
+  "lists": [
+    {
+      "slug": "am-600",
+      "name": "AlgoMaster 600",
+      "duration": "6+ months",
+      "description": "600 curated LeetCode problems for 6+ months of preparation.",
+      "order": 1,
+      "count": 600,
+      "source_url": "https://algomaster.io/practice/dsa-patterns?tab=am-600"
+    },
+    {
+      "slug": "am-300",
+      "name": "AlgoMaster 300",
+      "duration": "3+ months",
+      "description": "300 curated LeetCode problems for 3+ months of preparation.",
+      "order": 2,
+      "count": 300,
+      "source_url": "https://algomaster.io/practice/dsa-patterns?tab=am-300"
+    },
+    {
+      "slug": "am-150",
+      "name": "AlgoMaster 150",
+      "duration": "1-3 months",
+      "description": "150 curated LeetCode problems for 1-3 months of preparation.",
+      "order": 3,
+      "count": 150,
+      "source_url": "https://algomaster.io/practice/dsa-patterns?tab=am-150"
+    },
+    {
+      "slug": "am-75",
+      "name": "AlgoMaster 75",
+      "duration": "less than 1 month",
+      "description": "75 curated LeetCode problems for less than 1 month of preparation.",
+      "order": 4,
+      "count": 75,
+      "source_url": "https://algomaster.io/practice/dsa-patterns?tab=am-75"
+    }
+  ],
+  "problems": [
+    {
+      "challenge_id": "lc_485",
+      "leetcode_slug": "max-consecutive-ones",
+      "source_frontend_id": "485",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 1,
+      "order": 1,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_414",
+      "leetcode_slug": "third-maximum-number",
+      "source_frontend_id": "414",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 2,
+      "order": 2,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_283",
+      "leetcode_slug": "move-zeroes",
+      "source_frontend_id": "283",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 3,
+      "order": 3,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1470",
+      "leetcode_slug": "shuffle-the-array",
+      "source_frontend_id": "1470",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 4,
+      "order": 4,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_169",
+      "leetcode_slug": "majority-element",
+      "source_frontend_id": "169",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 5,
+      "order": 5,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_26",
+      "leetcode_slug": "remove-duplicates-from-sorted-array",
+      "source_frontend_id": "26",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 6,
+      "order": 6,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_27",
+      "leetcode_slug": "remove-element",
+      "source_frontend_id": "27",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 7,
+      "order": 7,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_121",
+      "leetcode_slug": "best-time-to-buy-and-sell-stock",
+      "source_frontend_id": "121",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 8,
+      "order": 8,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_163",
+      "leetcode_slug": "missing-ranges",
+      "source_frontend_id": "163",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 9,
+      "order": 9,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_229",
+      "leetcode_slug": "majority-element-ii",
+      "source_frontend_id": "229",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 10,
+      "order": 10,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_189",
+      "leetcode_slug": "rotate-array",
+      "source_frontend_id": "189",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 11,
+      "order": 11,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_238",
+      "leetcode_slug": "product-of-array-except-self",
+      "source_frontend_id": "238",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 12,
+      "order": 12,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_80",
+      "leetcode_slug": "remove-duplicates-from-sorted-array-ii",
+      "source_frontend_id": "80",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 13,
+      "order": 13,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_122",
+      "leetcode_slug": "best-time-to-buy-and-sell-stock-ii",
+      "source_frontend_id": "122",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 14,
+      "order": 14,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_2348",
+      "leetcode_slug": "number-of-zero-filled-subarrays",
+      "source_frontend_id": "2348",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 15,
+      "order": 15,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_334",
+      "leetcode_slug": "increasing-triplet-subsequence",
+      "source_frontend_id": "334",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 16,
+      "order": 16,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_31",
+      "leetcode_slug": "next-permutation",
+      "source_frontend_id": "31",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 17,
+      "order": 17,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_41",
+      "leetcode_slug": "first-missing-positive",
+      "source_frontend_id": "41",
+      "pattern": "Arrays",
+      "pattern_order": 1,
+      "pattern_problem_order": 18,
+      "order": 18,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_344",
+      "leetcode_slug": "reverse-string",
+      "source_frontend_id": "344",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 1,
+      "order": 19,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_58",
+      "leetcode_slug": "length-of-last-word",
+      "source_frontend_id": "58",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 2,
+      "order": 20,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_392",
+      "leetcode_slug": "is-subsequence",
+      "source_frontend_id": "392",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 3,
+      "order": 21,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_125",
+      "leetcode_slug": "valid-palindrome",
+      "source_frontend_id": "125",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 4,
+      "order": 22,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_680",
+      "leetcode_slug": "valid-palindrome-ii",
+      "source_frontend_id": "680",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 5,
+      "order": 23,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_242",
+      "leetcode_slug": "valid-anagram",
+      "source_frontend_id": "242",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 6,
+      "order": 24,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_796",
+      "leetcode_slug": "rotate-string",
+      "source_frontend_id": "796",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 7,
+      "order": 25,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_14",
+      "leetcode_slug": "longest-common-prefix",
+      "source_frontend_id": "14",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 8,
+      "order": 26,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_409",
+      "leetcode_slug": "longest-palindrome",
+      "source_frontend_id": "409",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 9,
+      "order": 27,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_28",
+      "leetcode_slug": "find-the-index-of-the-first-occurrence-in-a-string",
+      "source_frontend_id": "28",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 10,
+      "order": 28,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_161",
+      "leetcode_slug": "one-edit-distance",
+      "source_frontend_id": "161",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 11,
+      "order": 29,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_6",
+      "leetcode_slug": "zigzag-conversion",
+      "source_frontend_id": "6",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 12,
+      "order": 30,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_38",
+      "leetcode_slug": "count-and-say",
+      "source_frontend_id": "38",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 13,
+      "order": 31,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_151",
+      "leetcode_slug": "reverse-words-in-a-string",
+      "source_frontend_id": "151",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 14,
+      "order": 32,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_1657",
+      "leetcode_slug": "determine-if-two-strings-are-close",
+      "source_frontend_id": "1657",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 15,
+      "order": 33,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_616",
+      "leetcode_slug": "add-bold-tag-in-string",
+      "source_frontend_id": "616",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 16,
+      "order": 34,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_68",
+      "leetcode_slug": "text-justification",
+      "source_frontend_id": "68",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 17,
+      "order": 35,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_843",
+      "leetcode_slug": "guess-the-word",
+      "source_frontend_id": "843",
+      "pattern": "Strings",
+      "pattern_order": 2,
+      "pattern_problem_order": 18,
+      "order": 36,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_136",
+      "leetcode_slug": "single-number",
+      "source_frontend_id": "136",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 1,
+      "order": 37,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_268",
+      "leetcode_slug": "missing-number",
+      "source_frontend_id": "268",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 2,
+      "order": 38,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_645",
+      "leetcode_slug": "set-mismatch",
+      "source_frontend_id": "645",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 3,
+      "order": 39,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_231",
+      "leetcode_slug": "power-of-two",
+      "source_frontend_id": "231",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 4,
+      "order": 40,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_191",
+      "leetcode_slug": "number-of-1-bits",
+      "source_frontend_id": "191",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 5,
+      "order": 41,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_338",
+      "leetcode_slug": "counting-bits",
+      "source_frontend_id": "338",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 6,
+      "order": 42,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_461",
+      "leetcode_slug": "hamming-distance",
+      "source_frontend_id": "461",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 7,
+      "order": 43,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_190",
+      "leetcode_slug": "reverse-bits",
+      "source_frontend_id": "190",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 8,
+      "order": 44,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_201",
+      "leetcode_slug": "bitwise-and-of-numbers-range",
+      "source_frontend_id": "201",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 9,
+      "order": 45,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_137",
+      "leetcode_slug": "single-number-ii",
+      "source_frontend_id": "137",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 10,
+      "order": 46,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_260",
+      "leetcode_slug": "single-number-iii",
+      "source_frontend_id": "260",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 11,
+      "order": 47,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_371",
+      "leetcode_slug": "sum-of-two-integers",
+      "source_frontend_id": "371",
+      "pattern": "Bit Manipulation",
+      "pattern_order": 3,
+      "pattern_problem_order": 12,
+      "order": 48,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_706",
+      "leetcode_slug": "design-hashmap",
+      "source_frontend_id": "706",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 1,
+      "order": 49,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_217",
+      "leetcode_slug": "contains-duplicate",
+      "source_frontend_id": "217",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 2,
+      "order": 50,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_290",
+      "leetcode_slug": "word-pattern",
+      "source_frontend_id": "290",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 3,
+      "order": 51,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_387",
+      "leetcode_slug": "first-unique-character-in-a-string",
+      "source_frontend_id": "387",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 4,
+      "order": 52,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_448",
+      "leetcode_slug": "find-all-numbers-disappeared-in-an-array",
+      "source_frontend_id": "448",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 5,
+      "order": 53,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1189",
+      "leetcode_slug": "maximum-number-of-balloons",
+      "source_frontend_id": "1189",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 6,
+      "order": 54,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1512",
+      "leetcode_slug": "number-of-good-pairs",
+      "source_frontend_id": "1512",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 7,
+      "order": 55,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_205",
+      "leetcode_slug": "isomorphic-strings",
+      "source_frontend_id": "205",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 8,
+      "order": 56,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_383",
+      "leetcode_slug": "ransom-note",
+      "source_frontend_id": "383",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 9,
+      "order": 57,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_219",
+      "leetcode_slug": "contains-duplicate-ii",
+      "source_frontend_id": "219",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 10,
+      "order": 58,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_350",
+      "leetcode_slug": "intersection-of-two-arrays-ii",
+      "source_frontend_id": "350",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 11,
+      "order": 59,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_49",
+      "leetcode_slug": "group-anagrams",
+      "source_frontend_id": "49",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 12,
+      "order": 60,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_535",
+      "leetcode_slug": "encode-and-decode-tinyurl",
+      "source_frontend_id": "535",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 13,
+      "order": 61,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_767",
+      "leetcode_slug": "reorganize-string",
+      "source_frontend_id": "767",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 14,
+      "order": 62,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_128",
+      "leetcode_slug": "longest-consecutive-sequence",
+      "source_frontend_id": "128",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 15,
+      "order": 63,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_659",
+      "leetcode_slug": "split-array-into-consecutive-subsequences",
+      "source_frontend_id": "659",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 16,
+      "order": 64,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_792",
+      "leetcode_slug": "number-of-matching-subsequences",
+      "source_frontend_id": "792",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 17,
+      "order": 65,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1525",
+      "leetcode_slug": "number-of-good-ways-to-split-a-string",
+      "source_frontend_id": "1525",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 18,
+      "order": 66,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_249",
+      "leetcode_slug": "group-shifted-strings",
+      "source_frontend_id": "249",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 19,
+      "order": 67,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1647",
+      "leetcode_slug": "minimum-deletions-to-make-character-frequencies-unique",
+      "source_frontend_id": "1647",
+      "pattern": "Hash Tables",
+      "pattern_order": 4,
+      "pattern_problem_order": 20,
+      "order": 68,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_88",
+      "leetcode_slug": "merge-sorted-array",
+      "source_frontend_id": "88",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 1,
+      "order": 69,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1768",
+      "leetcode_slug": "merge-strings-alternately",
+      "source_frontend_id": "1768",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 2,
+      "order": 70,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_977",
+      "leetcode_slug": "squares-of-a-sorted-array",
+      "source_frontend_id": "977",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 3,
+      "order": 71,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1",
+      "leetcode_slug": "two-sum",
+      "source_frontend_id": "1",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 4,
+      "order": 72,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_844",
+      "leetcode_slug": "backspace-string-compare",
+      "source_frontend_id": "844",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 5,
+      "order": 73,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_408",
+      "leetcode_slug": "valid-word-abbreviation",
+      "source_frontend_id": "408",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 6,
+      "order": 74,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_696",
+      "leetcode_slug": "count-binary-substrings",
+      "source_frontend_id": "696",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 7,
+      "order": 75,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_167",
+      "leetcode_slug": "two-sum-ii-input-array-is-sorted",
+      "source_frontend_id": "167",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 8,
+      "order": 76,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_11",
+      "leetcode_slug": "container-with-most-water",
+      "source_frontend_id": "11",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 9,
+      "order": 77,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_15",
+      "leetcode_slug": "3sum",
+      "source_frontend_id": "15",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 10,
+      "order": 78,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_18",
+      "leetcode_slug": "4sum",
+      "source_frontend_id": "18",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 11,
+      "order": 79,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_443",
+      "leetcode_slug": "string-compression",
+      "source_frontend_id": "443",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 12,
+      "order": 80,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_881",
+      "leetcode_slug": "boats-to-save-people",
+      "source_frontend_id": "861",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 13,
+      "order": 81,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_5",
+      "leetcode_slug": "longest-palindromic-substring",
+      "source_frontend_id": "5",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 14,
+      "order": 82,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_42",
+      "leetcode_slug": "trapping-rain-water",
+      "source_frontend_id": "42",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 15,
+      "order": 83,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_2444",
+      "leetcode_slug": "count-subarrays-with-fixed-bounds",
+      "source_frontend_id": "2444",
+      "pattern": "Two Pointers",
+      "pattern_order": 5,
+      "pattern_problem_order": 16,
+      "order": 84,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1480",
+      "leetcode_slug": "running-sum-of-1d-array",
+      "source_frontend_id": "1480",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 1,
+      "order": 85,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_303",
+      "leetcode_slug": "range-sum-query-immutable",
+      "source_frontend_id": "303",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 2,
+      "order": 86,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_724",
+      "leetcode_slug": "find-pivot-index",
+      "source_frontend_id": "724",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 3,
+      "order": 87,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1854",
+      "leetcode_slug": "maximum-population-year",
+      "source_frontend_id": "1854",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 4,
+      "order": 88,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_370",
+      "leetcode_slug": "range-addition",
+      "source_frontend_id": "370",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 5,
+      "order": 89,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_560",
+      "leetcode_slug": "subarray-sum-equals-k",
+      "source_frontend_id": "560",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 6,
+      "order": 90,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_974",
+      "leetcode_slug": "subarray-sums-divisible-by-k",
+      "source_frontend_id": "974",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 7,
+      "order": 91,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_523",
+      "leetcode_slug": "continuous-subarray-sum",
+      "source_frontend_id": "523",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 8,
+      "order": 92,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_525",
+      "leetcode_slug": "contiguous-array",
+      "source_frontend_id": "525",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 9,
+      "order": 93,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_304",
+      "leetcode_slug": "range-sum-query-2d-immutable",
+      "source_frontend_id": "304",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 10,
+      "order": 94,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2536",
+      "leetcode_slug": "increment-submatrices-by-one",
+      "source_frontend_id": "2536",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 11,
+      "order": 95,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1314",
+      "leetcode_slug": "matrix-block-sum",
+      "source_frontend_id": "1314",
+      "pattern": "Prefix Sum",
+      "pattern_order": 6,
+      "pattern_problem_order": 12,
+      "order": 96,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_643",
+      "leetcode_slug": "maximum-average-subarray-i",
+      "source_frontend_id": "643",
+      "pattern": "Sliding Window - Fixed Size",
+      "pattern_order": 7,
+      "pattern_problem_order": 1,
+      "order": 97,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_438",
+      "leetcode_slug": "find-all-anagrams-in-a-string",
+      "source_frontend_id": "438",
+      "pattern": "Sliding Window - Fixed Size",
+      "pattern_order": 7,
+      "pattern_problem_order": 2,
+      "order": 98,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_567",
+      "leetcode_slug": "permutation-in-string",
+      "source_frontend_id": "567",
+      "pattern": "Sliding Window - Fixed Size",
+      "pattern_order": 7,
+      "pattern_problem_order": 3,
+      "order": 99,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_1456",
+      "leetcode_slug": "maximum-number-of-vowels-in-a-substring-of-given-length",
+      "source_frontend_id": "1456",
+      "pattern": "Sliding Window - Fixed Size",
+      "pattern_order": 7,
+      "pattern_problem_order": 4,
+      "order": 100,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2461",
+      "leetcode_slug": "maximum-sum-of-distinct-subarrays-with-length-k",
+      "source_frontend_id": "2461",
+      "pattern": "Sliding Window - Fixed Size",
+      "pattern_order": 7,
+      "pattern_problem_order": 5,
+      "order": 101,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_30",
+      "leetcode_slug": "substring-with-concatenation-of-all-words",
+      "source_frontend_id": "30",
+      "pattern": "Sliding Window - Fixed Size",
+      "pattern_order": 7,
+      "pattern_problem_order": 6,
+      "order": 102,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_3",
+      "leetcode_slug": "longest-substring-without-repeating-characters",
+      "source_frontend_id": "3",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 1,
+      "order": 103,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_424",
+      "leetcode_slug": "longest-repeating-character-replacement",
+      "source_frontend_id": "424",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 2,
+      "order": 104,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_209",
+      "leetcode_slug": "minimum-size-subarray-sum",
+      "source_frontend_id": "209",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 3,
+      "order": 105,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1004",
+      "leetcode_slug": "max-consecutive-ones-iii",
+      "source_frontend_id": "1004",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 4,
+      "order": 106,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1248",
+      "leetcode_slug": "count-number-of-nice-subarrays",
+      "source_frontend_id": "1248",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 5,
+      "order": 107,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_904",
+      "leetcode_slug": "fruit-into-baskets",
+      "source_frontend_id": "904",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 6,
+      "order": 108,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1423",
+      "leetcode_slug": "maximum-points-you-can-obtain-from-cards",
+      "source_frontend_id": "1423",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 7,
+      "order": 109,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_713",
+      "leetcode_slug": "subarray-product-less-than-k",
+      "source_frontend_id": "713",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 8,
+      "order": 110,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1838",
+      "leetcode_slug": "frequency-of-the-most-frequent-element",
+      "source_frontend_id": "1838",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 9,
+      "order": 111,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_159",
+      "leetcode_slug": "longest-substring-with-at-most-two-distinct-characters",
+      "source_frontend_id": "159",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 10,
+      "order": 112,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_340",
+      "leetcode_slug": "longest-substring-with-at-most-k-distinct-characters",
+      "source_frontend_id": "340",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 11,
+      "order": 113,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_395",
+      "leetcode_slug": "longest-substring-with-at-least-k-repeating-characters",
+      "source_frontend_id": "395",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 12,
+      "order": 114,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_76",
+      "leetcode_slug": "minimum-window-substring",
+      "source_frontend_id": "76",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 13,
+      "order": 115,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_727",
+      "leetcode_slug": "minimum-window-subsequence",
+      "source_frontend_id": "727",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 14,
+      "order": 116,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_992",
+      "leetcode_slug": "subarrays-with-k-different-integers",
+      "source_frontend_id": "992",
+      "pattern": "Sliding Window - Dynamic Size",
+      "pattern_order": 8,
+      "pattern_problem_order": 15,
+      "order": 117,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_53",
+      "leetcode_slug": "maximum-subarray",
+      "source_frontend_id": "53",
+      "pattern": "Kadane's Algorithm",
+      "pattern_order": 9,
+      "pattern_problem_order": 1,
+      "order": 118,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_918",
+      "leetcode_slug": "maximum-sum-circular-subarray",
+      "source_frontend_id": "918",
+      "pattern": "Kadane's Algorithm",
+      "pattern_order": 9,
+      "pattern_problem_order": 2,
+      "order": 119,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1186",
+      "leetcode_slug": "maximum-subarray-sum-with-one-deletion",
+      "source_frontend_id": "1186",
+      "pattern": "Kadane's Algorithm",
+      "pattern_order": 9,
+      "pattern_problem_order": 3,
+      "order": 120,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1749",
+      "leetcode_slug": "maximum-absolute-sum-of-any-subarray",
+      "source_frontend_id": "1749",
+      "pattern": "Kadane's Algorithm",
+      "pattern_order": 9,
+      "pattern_problem_order": 4,
+      "order": 121,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_152",
+      "leetcode_slug": "maximum-product-subarray",
+      "source_frontend_id": "152",
+      "pattern": "Kadane's Algorithm",
+      "pattern_order": 9,
+      "pattern_problem_order": 5,
+      "order": 122,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_978",
+      "leetcode_slug": "longest-turbulent-subarray",
+      "source_frontend_id": "978",
+      "pattern": "Kadane's Algorithm",
+      "pattern_order": 9,
+      "pattern_problem_order": 6,
+      "order": 123,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1014",
+      "leetcode_slug": "best-sightseeing-pair",
+      "source_frontend_id": "1014",
+      "pattern": "Kadane's Algorithm",
+      "pattern_order": 9,
+      "pattern_problem_order": 7,
+      "order": 124,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_867",
+      "leetcode_slug": "transpose-matrix",
+      "source_frontend_id": "867",
+      "pattern": "Matrix (2D Array)",
+      "pattern_order": 10,
+      "pattern_problem_order": 1,
+      "order": 125,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_54",
+      "leetcode_slug": "spiral-matrix",
+      "source_frontend_id": "54",
+      "pattern": "Matrix (2D Array)",
+      "pattern_order": 10,
+      "pattern_problem_order": 2,
+      "order": 126,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_59",
+      "leetcode_slug": "spiral-matrix-ii",
+      "source_frontend_id": "59",
+      "pattern": "Matrix (2D Array)",
+      "pattern_order": 10,
+      "pattern_problem_order": 3,
+      "order": 127,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_498",
+      "leetcode_slug": "diagonal-traverse",
+      "source_frontend_id": "498",
+      "pattern": "Matrix (2D Array)",
+      "pattern_order": 10,
+      "pattern_problem_order": 4,
+      "order": 128,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_48",
+      "leetcode_slug": "rotate-image",
+      "source_frontend_id": "48",
+      "pattern": "Matrix (2D Array)",
+      "pattern_order": 10,
+      "pattern_problem_order": 5,
+      "order": 129,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_73",
+      "leetcode_slug": "set-matrix-zeroes",
+      "source_frontend_id": "73",
+      "pattern": "Matrix (2D Array)",
+      "pattern_order": 10,
+      "pattern_problem_order": 6,
+      "order": 130,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_723",
+      "leetcode_slug": "candy-crush",
+      "source_frontend_id": "723",
+      "pattern": "Matrix (2D Array)",
+      "pattern_order": 10,
+      "pattern_problem_order": 7,
+      "order": 131,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_36",
+      "leetcode_slug": "valid-sudoku",
+      "source_frontend_id": "36",
+      "pattern": "Matrix (2D Array)",
+      "pattern_order": 10,
+      "pattern_problem_order": 8,
+      "order": 132,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_289",
+      "leetcode_slug": "game-of-life",
+      "source_frontend_id": "289",
+      "pattern": "Matrix (2D Array)",
+      "pattern_order": 10,
+      "pattern_problem_order": 9,
+      "order": 133,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_160",
+      "leetcode_slug": "intersection-of-two-linked-lists",
+      "source_frontend_id": "160",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 1,
+      "order": 134,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_83",
+      "leetcode_slug": "remove-duplicates-from-sorted-list",
+      "source_frontend_id": "83",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 2,
+      "order": 135,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_707",
+      "leetcode_slug": "design-linked-list",
+      "source_frontend_id": "707",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 3,
+      "order": 136,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_2095",
+      "leetcode_slug": "delete-the-middle-node-of-a-linked-list",
+      "source_frontend_id": "2095",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 4,
+      "order": 137,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_19",
+      "leetcode_slug": "remove-nth-node-from-end-of-list",
+      "source_frontend_id": "19",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 5,
+      "order": 138,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_82",
+      "leetcode_slug": "remove-duplicates-from-sorted-list-ii",
+      "source_frontend_id": "82",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 6,
+      "order": 139,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_328",
+      "leetcode_slug": "odd-even-linked-list",
+      "source_frontend_id": "328",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 7,
+      "order": 140,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_24",
+      "leetcode_slug": "swap-nodes-in-pairs",
+      "source_frontend_id": "24",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 8,
+      "order": 141,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_138",
+      "leetcode_slug": "copy-list-with-random-pointer",
+      "source_frontend_id": "138",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 9,
+      "order": 142,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_86",
+      "leetcode_slug": "partition-list",
+      "source_frontend_id": "86",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 10,
+      "order": 143,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_61",
+      "leetcode_slug": "rotate-list",
+      "source_frontend_id": "61",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 11,
+      "order": 144,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_143",
+      "leetcode_slug": "reorder-list",
+      "source_frontend_id": "143",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 12,
+      "order": 145,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2",
+      "leetcode_slug": "add-two-numbers",
+      "source_frontend_id": "2",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 13,
+      "order": 146,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_445",
+      "leetcode_slug": "add-two-numbers-ii",
+      "source_frontend_id": "445",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 14,
+      "order": 147,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_237",
+      "leetcode_slug": "delete-node-in-a-linked-list",
+      "source_frontend_id": "237",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 15,
+      "order": 148,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_430",
+      "leetcode_slug": "flatten-a-multilevel-doubly-linked-list",
+      "source_frontend_id": "430",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 16,
+      "order": 149,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_708",
+      "leetcode_slug": "insert-into-a-sorted-circular-linked-list",
+      "source_frontend_id": "708",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 17,
+      "order": 150,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1669",
+      "leetcode_slug": "merge-in-between-linked-lists",
+      "source_frontend_id": "1669",
+      "pattern": "Linked List",
+      "pattern_order": 11,
+      "pattern_problem_order": 18,
+      "order": 151,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_234",
+      "leetcode_slug": "palindrome-linked-list",
+      "source_frontend_id": "234",
+      "pattern": "LinkedList In-place Reversal",
+      "pattern_order": 12,
+      "pattern_problem_order": 1,
+      "order": 152,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_206",
+      "leetcode_slug": "reverse-linked-list",
+      "source_frontend_id": "206",
+      "pattern": "LinkedList In-place Reversal",
+      "pattern_order": 12,
+      "pattern_problem_order": 2,
+      "order": 153,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_92",
+      "leetcode_slug": "reverse-linked-list-ii",
+      "source_frontend_id": "92",
+      "pattern": "LinkedList In-place Reversal",
+      "pattern_order": 12,
+      "pattern_problem_order": 3,
+      "order": 154,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_25",
+      "leetcode_slug": "reverse-nodes-in-k-group",
+      "source_frontend_id": "25",
+      "pattern": "LinkedList In-place Reversal",
+      "pattern_order": 12,
+      "pattern_problem_order": 4,
+      "order": 155,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_876",
+      "leetcode_slug": "middle-of-the-linked-list",
+      "source_frontend_id": "876",
+      "pattern": "Fast and Slow Pointers",
+      "pattern_order": 13,
+      "pattern_problem_order": 1,
+      "order": 156,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_202",
+      "leetcode_slug": "happy-number",
+      "source_frontend_id": "202",
+      "pattern": "Fast and Slow Pointers",
+      "pattern_order": 13,
+      "pattern_problem_order": 2,
+      "order": 157,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_142",
+      "leetcode_slug": "linked-list-cycle-ii",
+      "source_frontend_id": "141",
+      "pattern": "Fast and Slow Pointers",
+      "pattern_order": 13,
+      "pattern_problem_order": 3,
+      "order": 158,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_20",
+      "leetcode_slug": "valid-parentheses",
+      "source_frontend_id": "20",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 1,
+      "order": 159,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_682",
+      "leetcode_slug": "baseball-game",
+      "source_frontend_id": "682",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 2,
+      "order": 160,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1047",
+      "leetcode_slug": "remove-all-adjacent-duplicates-in-string",
+      "source_frontend_id": "1047",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 3,
+      "order": 161,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1614",
+      "leetcode_slug": "maximum-nesting-depth-of-the-parentheses",
+      "source_frontend_id": "1614",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 4,
+      "order": 162,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_155",
+      "leetcode_slug": "min-stack",
+      "source_frontend_id": "155",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 5,
+      "order": 163,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_735",
+      "leetcode_slug": "asteroid-collision",
+      "source_frontend_id": "735",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 6,
+      "order": 164,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_853",
+      "leetcode_slug": "car-fleet",
+      "source_frontend_id": "853",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 7,
+      "order": 165,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_678",
+      "leetcode_slug": "valid-parenthesis-string",
+      "source_frontend_id": "678",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 8,
+      "order": 166,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_946",
+      "leetcode_slug": "validate-stack-sequences",
+      "source_frontend_id": "946",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 9,
+      "order": 167,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1249",
+      "leetcode_slug": "minimum-remove-to-make-valid-parentheses",
+      "source_frontend_id": "1249",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 10,
+      "order": 168,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_316",
+      "leetcode_slug": "remove-duplicate-letters",
+      "source_frontend_id": "316",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 11,
+      "order": 169,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_2390",
+      "leetcode_slug": "removing-stars-from-a-string",
+      "source_frontend_id": "2390",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 12,
+      "order": 170,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_71",
+      "leetcode_slug": "simplify-path",
+      "source_frontend_id": "71",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 13,
+      "order": 171,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_636",
+      "leetcode_slug": "exclusive-time-of-functions",
+      "source_frontend_id": "636",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 14,
+      "order": 172,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_150",
+      "leetcode_slug": "evaluate-reverse-polish-notation",
+      "source_frontend_id": "150",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 15,
+      "order": 173,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_227",
+      "leetcode_slug": "basic-calculator-ii",
+      "source_frontend_id": "227",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 16,
+      "order": 174,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_224",
+      "leetcode_slug": "basic-calculator",
+      "source_frontend_id": "224",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 17,
+      "order": 175,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_32",
+      "leetcode_slug": "longest-valid-parentheses",
+      "source_frontend_id": "32",
+      "pattern": "Stacks",
+      "pattern_order": 14,
+      "pattern_problem_order": 18,
+      "order": 176,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_496",
+      "leetcode_slug": "next-greater-element-i",
+      "source_frontend_id": "496",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 1,
+      "order": 177,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1475",
+      "leetcode_slug": "final-prices-with-a-special-discount-in-a-shop",
+      "source_frontend_id": "1475",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 2,
+      "order": 178,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_503",
+      "leetcode_slug": "next-greater-element-ii",
+      "source_frontend_id": "503",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 3,
+      "order": 179,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_739",
+      "leetcode_slug": "daily-temperatures",
+      "source_frontend_id": "739",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 4,
+      "order": 180,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_901",
+      "leetcode_slug": "online-stock-span",
+      "source_frontend_id": "901",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 5,
+      "order": 181,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1762",
+      "leetcode_slug": "buildings-with-an-ocean-view",
+      "source_frontend_id": "1762",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 6,
+      "order": 182,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_456",
+      "leetcode_slug": "132-pattern",
+      "source_frontend_id": "456",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 7,
+      "order": 183,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_402",
+      "leetcode_slug": "remove-k-digits",
+      "source_frontend_id": "402",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 8,
+      "order": 184,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_962",
+      "leetcode_slug": "maximum-width-ramp",
+      "source_frontend_id": "962",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 9,
+      "order": 185,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_769",
+      "leetcode_slug": "max-chunks-to-make-sorted",
+      "source_frontend_id": "769",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 10,
+      "order": 186,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_907",
+      "leetcode_slug": "sum-of-subarray-minimums",
+      "source_frontend_id": "907",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 11,
+      "order": 187,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2104",
+      "leetcode_slug": "sum-of-subarray-ranges",
+      "source_frontend_id": "2104",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 12,
+      "order": 188,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_581",
+      "leetcode_slug": "shortest-unsorted-continuous-subarray",
+      "source_frontend_id": "581",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 13,
+      "order": 189,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1019",
+      "leetcode_slug": "next-greater-node-in-linked-list",
+      "source_frontend_id": "1019",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 14,
+      "order": 190,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1944",
+      "leetcode_slug": "number-of-visible-people-in-a-queue",
+      "source_frontend_id": "1944",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 15,
+      "order": 191,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_84",
+      "leetcode_slug": "largest-rectangle-in-histogram",
+      "source_frontend_id": "84",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 16,
+      "order": 192,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_321",
+      "leetcode_slug": "create-maximum-number",
+      "source_frontend_id": "321",
+      "pattern": "Monotonic Stack",
+      "pattern_order": 15,
+      "pattern_problem_order": 17,
+      "order": 193,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_933",
+      "leetcode_slug": "number-of-recent-calls",
+      "source_frontend_id": "933",
+      "pattern": "Queues",
+      "pattern_order": 16,
+      "pattern_problem_order": 1,
+      "order": 194,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_2073",
+      "leetcode_slug": "time-needed-to-buy-tickets",
+      "source_frontend_id": "2073",
+      "pattern": "Queues",
+      "pattern_order": 16,
+      "pattern_problem_order": 2,
+      "order": 195,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_346",
+      "leetcode_slug": "moving-average-from-data-stream",
+      "source_frontend_id": "346",
+      "pattern": "Queues",
+      "pattern_order": 16,
+      "pattern_problem_order": 3,
+      "order": 196,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_950",
+      "leetcode_slug": "reveal-cards-in-increasing-order",
+      "source_frontend_id": "950",
+      "pattern": "Queues",
+      "pattern_order": 16,
+      "pattern_problem_order": 4,
+      "order": 197,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1429",
+      "leetcode_slug": "first-unique-number",
+      "source_frontend_id": "1429",
+      "pattern": "Queues",
+      "pattern_order": 16,
+      "pattern_problem_order": 5,
+      "order": 198,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2327",
+      "leetcode_slug": "number-of-people-aware-of-a-secret",
+      "source_frontend_id": "2327",
+      "pattern": "Queues",
+      "pattern_order": 16,
+      "pattern_problem_order": 6,
+      "order": 199,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1823",
+      "leetcode_slug": "find-the-winner-of-the-circular-game",
+      "source_frontend_id": "1823",
+      "pattern": "Queues",
+      "pattern_order": 16,
+      "pattern_problem_order": 7,
+      "order": 200,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1696",
+      "leetcode_slug": "jump-game-vi",
+      "source_frontend_id": "1696",
+      "pattern": "Monotonic Queue",
+      "pattern_order": 17,
+      "pattern_problem_order": 1,
+      "order": 201,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_2762",
+      "leetcode_slug": "continuous-subarrays",
+      "source_frontend_id": "2762",
+      "pattern": "Monotonic Queue",
+      "pattern_order": 17,
+      "pattern_problem_order": 2,
+      "order": 202,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1673",
+      "leetcode_slug": "find-the-most-competitive-subsequence",
+      "source_frontend_id": "1673",
+      "pattern": "Monotonic Queue",
+      "pattern_order": 17,
+      "pattern_problem_order": 3,
+      "order": 203,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_3578",
+      "leetcode_slug": "count-partitions-with-max-min-difference-at-most-k",
+      "source_frontend_id": "3578",
+      "pattern": "Monotonic Queue",
+      "pattern_order": 17,
+      "pattern_problem_order": 4,
+      "order": 204,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1438",
+      "leetcode_slug": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit",
+      "source_frontend_id": "1438",
+      "pattern": "Monotonic Queue",
+      "pattern_order": 17,
+      "pattern_problem_order": 5,
+      "order": 205,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_239",
+      "leetcode_slug": "sliding-window-maximum",
+      "source_frontend_id": "239",
+      "pattern": "Monotonic Queue",
+      "pattern_order": 17,
+      "pattern_problem_order": 6,
+      "order": 206,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_1499",
+      "leetcode_slug": "max-value-of-equation",
+      "source_frontend_id": "1499",
+      "pattern": "Monotonic Queue",
+      "pattern_order": 17,
+      "pattern_problem_order": 7,
+      "order": 207,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1425",
+      "leetcode_slug": "constrained-subsequence-sum",
+      "source_frontend_id": "1425",
+      "pattern": "Monotonic Queue",
+      "pattern_order": 17,
+      "pattern_problem_order": 8,
+      "order": 208,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_862",
+      "leetcode_slug": "shortest-subarray-with-sum-at-least-k",
+      "source_frontend_id": "862",
+      "pattern": "Monotonic Queue",
+      "pattern_order": 17,
+      "pattern_problem_order": 9,
+      "order": 209,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_451",
+      "leetcode_slug": "sort-characters-by-frequency",
+      "source_frontend_id": "451",
+      "pattern": "Bucket Sort",
+      "pattern_order": 18,
+      "pattern_problem_order": 1,
+      "order": 210,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_692",
+      "leetcode_slug": "top-k-frequent-words",
+      "source_frontend_id": "692",
+      "pattern": "Bucket Sort",
+      "pattern_order": 18,
+      "pattern_problem_order": 2,
+      "order": 211,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_164",
+      "leetcode_slug": "maximum-gap",
+      "source_frontend_id": "164",
+      "pattern": "Bucket Sort",
+      "pattern_order": 18,
+      "pattern_problem_order": 3,
+      "order": 212,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_220",
+      "leetcode_slug": "contains-duplicate-iii",
+      "source_frontend_id": "220",
+      "pattern": "Bucket Sort",
+      "pattern_order": 18,
+      "pattern_problem_order": 4,
+      "order": 213,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_21",
+      "leetcode_slug": "merge-two-sorted-lists",
+      "source_frontend_id": "21",
+      "pattern": "Recursion",
+      "pattern_order": 19,
+      "pattern_problem_order": 1,
+      "order": 214,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_50",
+      "leetcode_slug": "powx-n",
+      "source_frontend_id": "50",
+      "pattern": "Recursion",
+      "pattern_order": 19,
+      "pattern_problem_order": 2,
+      "order": 215,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_394",
+      "leetcode_slug": "decode-string",
+      "source_frontend_id": "394",
+      "pattern": "Recursion",
+      "pattern_order": 19,
+      "pattern_problem_order": 3,
+      "order": 216,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_761",
+      "leetcode_slug": "special-binary-string",
+      "source_frontend_id": "761",
+      "pattern": "Recursion",
+      "pattern_order": 19,
+      "pattern_problem_order": 4,
+      "order": 217,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_273",
+      "leetcode_slug": "integer-to-english-words",
+      "source_frontend_id": "273",
+      "pattern": "Recursion",
+      "pattern_order": 19,
+      "pattern_problem_order": 5,
+      "order": 218,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1763",
+      "leetcode_slug": "longest-nice-substring",
+      "source_frontend_id": "1763",
+      "pattern": "Divide and Conquer",
+      "pattern_order": 20,
+      "pattern_problem_order": 1,
+      "order": 219,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_109",
+      "leetcode_slug": "convert-sorted-list-to-binary-search-tree",
+      "source_frontend_id": "109",
+      "pattern": "Divide and Conquer",
+      "pattern_order": 20,
+      "pattern_problem_order": 2,
+      "order": 220,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_427",
+      "leetcode_slug": "construct-quad-tree",
+      "source_frontend_id": "427",
+      "pattern": "Divide and Conquer",
+      "pattern_order": 20,
+      "pattern_problem_order": 3,
+      "order": 221,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_654",
+      "leetcode_slug": "maximum-binary-tree",
+      "source_frontend_id": "654",
+      "pattern": "Divide and Conquer",
+      "pattern_order": 20,
+      "pattern_problem_order": 4,
+      "order": 222,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_912",
+      "leetcode_slug": "sort-an-array",
+      "source_frontend_id": "912",
+      "pattern": "Merge Sort",
+      "pattern_order": 21,
+      "pattern_problem_order": 1,
+      "order": 223,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_148",
+      "leetcode_slug": "sort-list",
+      "source_frontend_id": "148",
+      "pattern": "Merge Sort",
+      "pattern_order": 21,
+      "pattern_problem_order": 2,
+      "order": 224,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_493",
+      "leetcode_slug": "reverse-pairs",
+      "source_frontend_id": "493",
+      "pattern": "Merge Sort",
+      "pattern_order": 21,
+      "pattern_problem_order": 3,
+      "order": 225,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_327",
+      "leetcode_slug": "count-of-range-sum",
+      "source_frontend_id": "327",
+      "pattern": "Merge Sort",
+      "pattern_order": 21,
+      "pattern_problem_order": 4,
+      "order": 226,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_75",
+      "leetcode_slug": "sort-colors",
+      "source_frontend_id": "75",
+      "pattern": "QuickSort / QuickSelect",
+      "pattern_order": 22,
+      "pattern_problem_order": 1,
+      "order": 227,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_215",
+      "leetcode_slug": "kth-largest-element-in-an-array",
+      "source_frontend_id": "215",
+      "pattern": "QuickSort / QuickSelect",
+      "pattern_order": 22,
+      "pattern_problem_order": 2,
+      "order": 228,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1985",
+      "leetcode_slug": "find-the-kth-largest-integer-in-the-array",
+      "source_frontend_id": "1985",
+      "pattern": "QuickSort / QuickSelect",
+      "pattern_order": 22,
+      "pattern_problem_order": 3,
+      "order": 229,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_704",
+      "leetcode_slug": "binary-search",
+      "source_frontend_id": "704",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 1,
+      "order": 230,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_278",
+      "leetcode_slug": "first-bad-version",
+      "source_frontend_id": "278",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 2,
+      "order": 231,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_367",
+      "leetcode_slug": "valid-perfect-square",
+      "source_frontend_id": "367",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 3,
+      "order": 232,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_35",
+      "leetcode_slug": "search-insert-position",
+      "source_frontend_id": "35",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 4,
+      "order": 233,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_374",
+      "leetcode_slug": "guess-number-higher-or-lower",
+      "source_frontend_id": "374",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 5,
+      "order": 234,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_744",
+      "leetcode_slug": "find-smallest-letter-greater-than-target",
+      "source_frontend_id": "744",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 6,
+      "order": 235,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_34",
+      "leetcode_slug": "find-first-and-last-position-of-element-in-sorted-array",
+      "source_frontend_id": "34",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 7,
+      "order": 236,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_33",
+      "leetcode_slug": "search-in-rotated-sorted-array",
+      "source_frontend_id": "33",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 8,
+      "order": 237,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_81",
+      "leetcode_slug": "search-in-rotated-sorted-array-ii",
+      "source_frontend_id": "81",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 9,
+      "order": 238,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_162",
+      "leetcode_slug": "find-peak-element",
+      "source_frontend_id": "162",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 10,
+      "order": 239,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_528",
+      "leetcode_slug": "random-pick-with-weight",
+      "source_frontend_id": "528",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 11,
+      "order": 240,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_658",
+      "leetcode_slug": "find-k-closest-elements",
+      "source_frontend_id": "658",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 12,
+      "order": 241,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_475",
+      "leetcode_slug": "heaters",
+      "source_frontend_id": "475",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 13,
+      "order": 242,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_875",
+      "leetcode_slug": "koko-eating-bananas",
+      "source_frontend_id": "875",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 14,
+      "order": 243,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1011",
+      "leetcode_slug": "capacity-to-ship-packages-within-d-days",
+      "source_frontend_id": "1011",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 15,
+      "order": 244,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1482",
+      "leetcode_slug": "minimum-number-of-days-to-make-m-bouquets",
+      "source_frontend_id": "1482",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 16,
+      "order": 245,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_153",
+      "leetcode_slug": "find-minimum-in-rotated-sorted-array",
+      "source_frontend_id": "153",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 17,
+      "order": 246,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_74",
+      "leetcode_slug": "search-a-2d-matrix",
+      "source_frontend_id": "74",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 18,
+      "order": 247,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_240",
+      "leetcode_slug": "search-a-2d-matrix-ii",
+      "source_frontend_id": "240",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 19,
+      "order": 248,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1552",
+      "leetcode_slug": "magnetic-force-between-two-balls",
+      "source_frontend_id": "1552",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 20,
+      "order": 249,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1095",
+      "leetcode_slug": "find-in-mountain-array",
+      "source_frontend_id": "1095",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 21,
+      "order": 250,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_410",
+      "leetcode_slug": "split-array-largest-sum",
+      "source_frontend_id": "410",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 22,
+      "order": 251,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_4",
+      "leetcode_slug": "median-of-two-sorted-arrays",
+      "source_frontend_id": "4",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 23,
+      "order": 252,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_719",
+      "leetcode_slug": "find-k-th-smallest-pair-distance",
+      "source_frontend_id": "719",
+      "pattern": "Binary Search",
+      "pattern_order": 23,
+      "pattern_problem_order": 24,
+      "order": 253,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_22",
+      "leetcode_slug": "generate-parentheses",
+      "source_frontend_id": "22",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 1,
+      "order": 254,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_46",
+      "leetcode_slug": "permutations",
+      "source_frontend_id": "46",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 2,
+      "order": 255,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_47",
+      "leetcode_slug": "permutations-ii",
+      "source_frontend_id": "47",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 3,
+      "order": 256,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_78",
+      "leetcode_slug": "subsets",
+      "source_frontend_id": "78",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 4,
+      "order": 257,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_90",
+      "leetcode_slug": "subsets-ii",
+      "source_frontend_id": "90",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 5,
+      "order": 258,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_39",
+      "leetcode_slug": "combination-sum",
+      "source_frontend_id": "39",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 6,
+      "order": 259,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_40",
+      "leetcode_slug": "combination-sum-ii",
+      "source_frontend_id": "40",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 7,
+      "order": 260,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_216",
+      "leetcode_slug": "combination-sum-iii",
+      "source_frontend_id": "216",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 8,
+      "order": 261,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_77",
+      "leetcode_slug": "combinations",
+      "source_frontend_id": "77",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 9,
+      "order": 262,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_17",
+      "leetcode_slug": "letter-combinations-of-a-phone-number",
+      "source_frontend_id": "17",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 10,
+      "order": 263,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_93",
+      "leetcode_slug": "restore-ip-addresses",
+      "source_frontend_id": "93",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 11,
+      "order": 264,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_131",
+      "leetcode_slug": "palindrome-partitioning",
+      "source_frontend_id": "131",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 12,
+      "order": 265,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_980",
+      "leetcode_slug": "unique-paths-iii",
+      "source_frontend_id": "980",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 13,
+      "order": 266,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_301",
+      "leetcode_slug": "remove-invalid-parentheses",
+      "source_frontend_id": "301",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 14,
+      "order": 267,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_51",
+      "leetcode_slug": "n-queens",
+      "source_frontend_id": "51",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 15,
+      "order": 268,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_37",
+      "leetcode_slug": "sudoku-solver",
+      "source_frontend_id": "37",
+      "pattern": "Backtracking",
+      "pattern_order": 24,
+      "pattern_problem_order": 16,
+      "order": 269,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_104",
+      "leetcode_slug": "maximum-depth-of-binary-tree",
+      "source_frontend_id": "104",
+      "pattern": "Tree Traversal - Level Order",
+      "pattern_order": 25,
+      "pattern_problem_order": 1,
+      "order": 270,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_637",
+      "leetcode_slug": "average-of-levels-in-binary-tree",
+      "source_frontend_id": "637",
+      "pattern": "Tree Traversal - Level Order",
+      "pattern_order": 25,
+      "pattern_problem_order": 2,
+      "order": 271,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_102",
+      "leetcode_slug": "binary-tree-level-order-traversal",
+      "source_frontend_id": "102",
+      "pattern": "Tree Traversal - Level Order",
+      "pattern_order": 25,
+      "pattern_problem_order": 3,
+      "order": 272,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_199",
+      "leetcode_slug": "binary-tree-right-side-view",
+      "source_frontend_id": "199",
+      "pattern": "Tree Traversal - Level Order",
+      "pattern_order": 25,
+      "pattern_problem_order": 4,
+      "order": 273,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_103",
+      "leetcode_slug": "binary-tree-zigzag-level-order-traversal",
+      "source_frontend_id": "103",
+      "pattern": "Tree Traversal - Level Order",
+      "pattern_order": 25,
+      "pattern_problem_order": 5,
+      "order": 274,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_314",
+      "leetcode_slug": "binary-tree-vertical-order-traversal",
+      "source_frontend_id": "314",
+      "pattern": "Tree Traversal - Level Order",
+      "pattern_order": 25,
+      "pattern_problem_order": 6,
+      "order": 275,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_116",
+      "leetcode_slug": "populating-next-right-pointers-in-each-node",
+      "source_frontend_id": "116",
+      "pattern": "Tree Traversal - Level Order",
+      "pattern_order": 25,
+      "pattern_problem_order": 7,
+      "order": 276,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_117",
+      "leetcode_slug": "populating-next-right-pointers-in-each-node-ii",
+      "source_frontend_id": "117",
+      "pattern": "Tree Traversal - Level Order",
+      "pattern_order": 25,
+      "pattern_problem_order": 8,
+      "order": 277,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_662",
+      "leetcode_slug": "maximum-width-of-binary-tree",
+      "source_frontend_id": "662",
+      "pattern": "Tree Traversal - Level Order",
+      "pattern_order": 25,
+      "pattern_problem_order": 9,
+      "order": 278,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_958",
+      "leetcode_slug": "check-completeness-of-a-binary-tree",
+      "source_frontend_id": "958",
+      "pattern": "Tree Traversal - Level Order",
+      "pattern_order": 25,
+      "pattern_problem_order": 10,
+      "order": 279,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_144",
+      "leetcode_slug": "binary-tree-preorder-traversal",
+      "source_frontend_id": "144",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 1,
+      "order": 280,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_100",
+      "leetcode_slug": "same-tree",
+      "source_frontend_id": "100",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 2,
+      "order": 281,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_101",
+      "leetcode_slug": "symmetric-tree",
+      "source_frontend_id": "101",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 3,
+      "order": 282,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_404",
+      "leetcode_slug": "sum-of-left-leaves",
+      "source_frontend_id": "404",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 4,
+      "order": 283,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_572",
+      "leetcode_slug": "subtree-of-another-tree",
+      "source_frontend_id": "572",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 5,
+      "order": 284,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_257",
+      "leetcode_slug": "binary-tree-paths",
+      "source_frontend_id": "257",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 6,
+      "order": 285,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_108",
+      "leetcode_slug": "convert-sorted-array-to-binary-search-tree",
+      "source_frontend_id": "108",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 7,
+      "order": 286,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_222",
+      "leetcode_slug": "count-complete-tree-nodes",
+      "source_frontend_id": "222",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 8,
+      "order": 287,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_113",
+      "leetcode_slug": "path-sum-ii",
+      "source_frontend_id": "113",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 9,
+      "order": 288,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_437",
+      "leetcode_slug": "path-sum-iii",
+      "source_frontend_id": "437",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 10,
+      "order": 289,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_687",
+      "leetcode_slug": "longest-univalue-path",
+      "source_frontend_id": "687",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 11,
+      "order": 290,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1026",
+      "leetcode_slug": "maximum-difference-between-node-and-ancestor",
+      "source_frontend_id": "1026",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 12,
+      "order": 291,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_105",
+      "leetcode_slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+      "source_frontend_id": "105",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 13,
+      "order": 292,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_106",
+      "leetcode_slug": "construct-binary-tree-from-inorder-and-postorder-traversal",
+      "source_frontend_id": "106",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 14,
+      "order": 293,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_297",
+      "leetcode_slug": "serialize-and-deserialize-binary-tree",
+      "source_frontend_id": "297",
+      "pattern": "Tree Traversal - Pre Order",
+      "pattern_order": 26,
+      "pattern_problem_order": 15,
+      "order": 294,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_94",
+      "leetcode_slug": "binary-tree-inorder-traversal",
+      "source_frontend_id": "94",
+      "pattern": "Tree Traversal - In Order",
+      "pattern_order": 27,
+      "pattern_problem_order": 1,
+      "order": 295,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_783",
+      "leetcode_slug": "minimum-distance-between-bst-nodes",
+      "source_frontend_id": "783",
+      "pattern": "Tree Traversal - In Order",
+      "pattern_order": 27,
+      "pattern_problem_order": 2,
+      "order": 296,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_530",
+      "leetcode_slug": "minimum-absolute-difference-in-bst",
+      "source_frontend_id": "530",
+      "pattern": "Tree Traversal - In Order",
+      "pattern_order": 27,
+      "pattern_problem_order": 3,
+      "order": 297,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_98",
+      "leetcode_slug": "validate-binary-search-tree",
+      "source_frontend_id": "98",
+      "pattern": "Tree Traversal - In Order",
+      "pattern_order": 27,
+      "pattern_problem_order": 4,
+      "order": 298,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_230",
+      "leetcode_slug": "kth-smallest-element-in-a-bst",
+      "source_frontend_id": "230",
+      "pattern": "Tree Traversal - In Order",
+      "pattern_order": 27,
+      "pattern_problem_order": 5,
+      "order": 299,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_173",
+      "leetcode_slug": "binary-search-tree-iterator",
+      "source_frontend_id": "173",
+      "pattern": "Tree Traversal - In Order",
+      "pattern_order": 27,
+      "pattern_problem_order": 6,
+      "order": 300,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1382",
+      "leetcode_slug": "balance-a-binary-search-tree",
+      "source_frontend_id": "1382",
+      "pattern": "Tree Traversal - In Order",
+      "pattern_order": 27,
+      "pattern_problem_order": 7,
+      "order": 301,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_145",
+      "leetcode_slug": "binary-tree-postorder-traversal",
+      "source_frontend_id": "145",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 1,
+      "order": 302,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_226",
+      "leetcode_slug": "invert-binary-tree",
+      "source_frontend_id": "226",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 2,
+      "order": 303,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_110",
+      "leetcode_slug": "balanced-binary-tree",
+      "source_frontend_id": "110",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 3,
+      "order": 304,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_543",
+      "leetcode_slug": "diameter-of-binary-tree",
+      "source_frontend_id": "543",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 4,
+      "order": 305,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1448",
+      "leetcode_slug": "count-good-nodes-in-binary-tree",
+      "source_frontend_id": "1448",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 5,
+      "order": 306,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_129",
+      "leetcode_slug": "sum-root-to-leaf-numbers",
+      "source_frontend_id": "129",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 6,
+      "order": 307,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1110",
+      "leetcode_slug": "delete-nodes-and-return-forest",
+      "source_frontend_id": "1110",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 7,
+      "order": 308,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_236",
+      "leetcode_slug": "lowest-common-ancestor-of-a-binary-tree",
+      "source_frontend_id": "236",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 8,
+      "order": 309,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_652",
+      "leetcode_slug": "find-duplicate-subtrees",
+      "source_frontend_id": "652",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 9,
+      "order": 310,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_114",
+      "leetcode_slug": "flatten-binary-tree-to-linked-list",
+      "source_frontend_id": "114",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 10,
+      "order": 311,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_979",
+      "leetcode_slug": "distribute-coins-in-binary-tree",
+      "source_frontend_id": "979",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 11,
+      "order": 312,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_545",
+      "leetcode_slug": "boundary-of-binary-tree",
+      "source_frontend_id": "545",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 12,
+      "order": 313,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2096",
+      "leetcode_slug": "step-by-step-directions-from-a-binary-tree-node-to-another",
+      "source_frontend_id": "2096",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 13,
+      "order": 314,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_124",
+      "leetcode_slug": "binary-tree-maximum-path-sum",
+      "source_frontend_id": "124",
+      "pattern": "Tree Traversal - Post-Order",
+      "pattern_order": 28,
+      "pattern_problem_order": 14,
+      "order": 315,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_700",
+      "leetcode_slug": "search-in-a-binary-search-tree",
+      "source_frontend_id": "700",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 1,
+      "order": 316,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_270",
+      "leetcode_slug": "closest-binary-search-tree-value",
+      "source_frontend_id": "270",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 2,
+      "order": 317,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_653",
+      "leetcode_slug": "two-sum-iv-input-is-a-bst",
+      "source_frontend_id": "653",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 3,
+      "order": 318,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_938",
+      "leetcode_slug": "range-sum-of-bst",
+      "source_frontend_id": "938",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 4,
+      "order": 319,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_285",
+      "leetcode_slug": "inorder-successor-in-bst",
+      "source_frontend_id": "285",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 5,
+      "order": 320,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_510",
+      "leetcode_slug": "inorder-successor-in-bst-ii",
+      "source_frontend_id": "510",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 6,
+      "order": 321,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_701",
+      "leetcode_slug": "insert-into-a-binary-search-tree",
+      "source_frontend_id": "701",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 7,
+      "order": 322,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_450",
+      "leetcode_slug": "delete-node-in-a-bst",
+      "source_frontend_id": "450",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 8,
+      "order": 323,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_669",
+      "leetcode_slug": "trim-a-binary-search-tree",
+      "source_frontend_id": "669",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 9,
+      "order": 324,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_235",
+      "leetcode_slug": "lowest-common-ancestor-of-a-binary-search-tree",
+      "source_frontend_id": "235",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 10,
+      "order": 325,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_333",
+      "leetcode_slug": "largest-bst-subtree",
+      "source_frontend_id": "333",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 11,
+      "order": 326,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_99",
+      "leetcode_slug": "recover-binary-search-tree",
+      "source_frontend_id": "99",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 12,
+      "order": 327,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_426",
+      "leetcode_slug": "convert-binary-search-tree-to-sorted-doubly-linked-list",
+      "source_frontend_id": "426",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 13,
+      "order": 328,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1008",
+      "leetcode_slug": "construct-binary-search-tree-from-preorder-traversal",
+      "source_frontend_id": "1008",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 14,
+      "order": 329,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_729",
+      "leetcode_slug": "my-calendar-i",
+      "source_frontend_id": "729",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 15,
+      "order": 330,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_731",
+      "leetcode_slug": "my-calendar-ii",
+      "source_frontend_id": "731",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 16,
+      "order": 331,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_2034",
+      "leetcode_slug": "stock-price-fluctuation",
+      "source_frontend_id": "2034",
+      "pattern": "BST / Ordered Set",
+      "pattern_order": 29,
+      "pattern_problem_order": 17,
+      "order": 332,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_208",
+      "leetcode_slug": "implement-trie-prefix-tree",
+      "source_frontend_id": "208",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 1,
+      "order": 333,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_211",
+      "leetcode_slug": "design-add-and-search-words-data-structure",
+      "source_frontend_id": "211",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 2,
+      "order": 334,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1268",
+      "leetcode_slug": "search-suggestions-system",
+      "source_frontend_id": "1268",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 3,
+      "order": 335,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_720",
+      "leetcode_slug": "longest-word-in-dictionary",
+      "source_frontend_id": "720",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 4,
+      "order": 336,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_648",
+      "leetcode_slug": "replace-words",
+      "source_frontend_id": "648",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 5,
+      "order": 337,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_421",
+      "leetcode_slug": "maximum-xor-of-two-numbers-in-an-array",
+      "source_frontend_id": "421",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 6,
+      "order": 338,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1233",
+      "leetcode_slug": "remove-sub-folders-from-the-filesystem",
+      "source_frontend_id": "1233",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 7,
+      "order": 339,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_3043",
+      "leetcode_slug": "find-the-length-of-the-longest-common-prefix",
+      "source_frontend_id": "3043",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 8,
+      "order": 340,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2452",
+      "leetcode_slug": "words-within-two-edits-of-dictionary",
+      "source_frontend_id": "2452",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 9,
+      "order": 341,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_212",
+      "leetcode_slug": "word-search-ii",
+      "source_frontend_id": "212",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 10,
+      "order": 342,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_1032",
+      "leetcode_slug": "stream-of-characters",
+      "source_frontend_id": "1032",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 11,
+      "order": 343,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_472",
+      "leetcode_slug": "concatenated-words",
+      "source_frontend_id": "472",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 12,
+      "order": 344,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_425",
+      "leetcode_slug": "word-squares",
+      "source_frontend_id": "425",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 13,
+      "order": 345,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_336",
+      "leetcode_slug": "palindrome-pairs",
+      "source_frontend_id": "336",
+      "pattern": "Tries",
+      "pattern_order": 30,
+      "pattern_problem_order": 14,
+      "order": 346,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1046",
+      "leetcode_slug": "last-stone-weight",
+      "source_frontend_id": "1046",
+      "pattern": "Heaps",
+      "pattern_order": 31,
+      "pattern_problem_order": 1,
+      "order": 347,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1167",
+      "leetcode_slug": "minimum-cost-to-connect-sticks",
+      "source_frontend_id": "1167",
+      "pattern": "Heaps",
+      "pattern_order": 31,
+      "pattern_problem_order": 2,
+      "order": 348,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1642",
+      "leetcode_slug": "furthest-building-you-can-reach",
+      "source_frontend_id": "1642",
+      "pattern": "Heaps",
+      "pattern_order": 31,
+      "pattern_problem_order": 3,
+      "order": 349,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1834",
+      "leetcode_slug": "single-threaded-cpu",
+      "source_frontend_id": "1834",
+      "pattern": "Heaps",
+      "pattern_order": 31,
+      "pattern_problem_order": 4,
+      "order": 350,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1882",
+      "leetcode_slug": "process-tasks-using-servers",
+      "source_frontend_id": "1882",
+      "pattern": "Heaps",
+      "pattern_order": 31,
+      "pattern_problem_order": 5,
+      "order": 351,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1383",
+      "leetcode_slug": "maximum-performance-of-a-team",
+      "source_frontend_id": "1383",
+      "pattern": "Heaps",
+      "pattern_order": 31,
+      "pattern_problem_order": 6,
+      "order": 352,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1405",
+      "leetcode_slug": "longest-happy-string",
+      "source_frontend_id": "1405",
+      "pattern": "Heaps",
+      "pattern_order": 31,
+      "pattern_problem_order": 7,
+      "order": 353,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_295",
+      "leetcode_slug": "find-median-from-data-stream",
+      "source_frontend_id": "295",
+      "pattern": "Two Heaps",
+      "pattern_order": 32,
+      "pattern_problem_order": 1,
+      "order": 354,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_502",
+      "leetcode_slug": "ipo",
+      "source_frontend_id": "502",
+      "pattern": "Two Heaps",
+      "pattern_order": 32,
+      "pattern_problem_order": 2,
+      "order": 355,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_480",
+      "leetcode_slug": "sliding-window-median",
+      "source_frontend_id": "480",
+      "pattern": "Two Heaps",
+      "pattern_order": 32,
+      "pattern_problem_order": 3,
+      "order": 356,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_703",
+      "leetcode_slug": "kth-largest-element-in-a-stream",
+      "source_frontend_id": "703",
+      "pattern": "Top K Elements",
+      "pattern_order": 33,
+      "pattern_problem_order": 1,
+      "order": 357,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_347",
+      "leetcode_slug": "top-k-frequent-elements",
+      "source_frontend_id": "347",
+      "pattern": "Top K Elements",
+      "pattern_order": 33,
+      "pattern_problem_order": 2,
+      "order": 358,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_973",
+      "leetcode_slug": "k-closest-points-to-origin",
+      "source_frontend_id": "973",
+      "pattern": "Top K Elements",
+      "pattern_order": 33,
+      "pattern_problem_order": 3,
+      "order": 359,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_228",
+      "leetcode_slug": "summary-ranges",
+      "source_frontend_id": "228",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 1,
+      "order": 360,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_252",
+      "leetcode_slug": "meeting-rooms",
+      "source_frontend_id": "252",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 2,
+      "order": 361,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_253",
+      "leetcode_slug": "meeting-rooms-ii",
+      "source_frontend_id": "253",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 3,
+      "order": 362,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1229",
+      "leetcode_slug": "meeting-scheduler",
+      "source_frontend_id": "1229",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 4,
+      "order": 363,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_986",
+      "leetcode_slug": "interval-list-intersections",
+      "source_frontend_id": "986",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 5,
+      "order": 364,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1094",
+      "leetcode_slug": "car-pooling",
+      "source_frontend_id": "1094",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 6,
+      "order": 365,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_56",
+      "leetcode_slug": "merge-intervals",
+      "source_frontend_id": "56",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 7,
+      "order": 366,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_57",
+      "leetcode_slug": "insert-interval",
+      "source_frontend_id": "57",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 8,
+      "order": 367,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1288",
+      "leetcode_slug": "remove-covered-intervals",
+      "source_frontend_id": "1288",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 9,
+      "order": 368,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_763",
+      "leetcode_slug": "partition-labels",
+      "source_frontend_id": "763",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 10,
+      "order": 369,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_452",
+      "leetcode_slug": "minimum-number-of-arrows-to-burst-balloons",
+      "source_frontend_id": "452",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 11,
+      "order": 370,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1353",
+      "leetcode_slug": "maximum-number-of-events-that-can-be-attended",
+      "source_frontend_id": "1353",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 12,
+      "order": 371,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_435",
+      "leetcode_slug": "non-overlapping-intervals",
+      "source_frontend_id": "435",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 13,
+      "order": 372,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_2054",
+      "leetcode_slug": "two-best-non-overlapping-events",
+      "source_frontend_id": "2054",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 14,
+      "order": 373,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2402",
+      "leetcode_slug": "meeting-rooms-iii",
+      "source_frontend_id": "2402",
+      "pattern": "Intervals",
+      "pattern_order": 34,
+      "pattern_problem_order": 15,
+      "order": 374,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_373",
+      "leetcode_slug": "find-k-pairs-with-smallest-sums",
+      "source_frontend_id": "373",
+      "pattern": "K-Way Merge",
+      "pattern_order": 35,
+      "pattern_problem_order": 1,
+      "order": 375,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_378",
+      "leetcode_slug": "kth-smallest-element-in-a-sorted-matrix",
+      "source_frontend_id": "378",
+      "pattern": "K-Way Merge",
+      "pattern_order": 35,
+      "pattern_problem_order": 2,
+      "order": 376,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_23",
+      "leetcode_slug": "merge-k-sorted-lists",
+      "source_frontend_id": "23",
+      "pattern": "K-Way Merge",
+      "pattern_order": 35,
+      "pattern_problem_order": 3,
+      "order": 377,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_632",
+      "leetcode_slug": "smallest-range-covering-elements-from-k-lists",
+      "source_frontend_id": "632",
+      "pattern": "K-Way Merge",
+      "pattern_order": 35,
+      "pattern_problem_order": 4,
+      "order": 378,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_359",
+      "leetcode_slug": "logger-rate-limiter",
+      "source_frontend_id": "359",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 1,
+      "order": 379,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_232",
+      "leetcode_slug": "implement-queue-using-stacks",
+      "source_frontend_id": "232",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 2,
+      "order": 380,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_225",
+      "leetcode_slug": "implement-stack-using-queues",
+      "source_frontend_id": "225",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 3,
+      "order": 381,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_622",
+      "leetcode_slug": "design-circular-queue",
+      "source_frontend_id": "622",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 4,
+      "order": 382,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_641",
+      "leetcode_slug": "design-circular-deque",
+      "source_frontend_id": "641",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 5,
+      "order": 383,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_362",
+      "leetcode_slug": "design-hit-counter",
+      "source_frontend_id": "362",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 6,
+      "order": 384,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1472",
+      "leetcode_slug": "design-browser-history",
+      "source_frontend_id": "1472",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 7,
+      "order": 385,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_981",
+      "leetcode_slug": "time-based-key-value-store",
+      "source_frontend_id": "981",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 8,
+      "order": 386,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_271",
+      "leetcode_slug": "encode-and-decode-strings",
+      "source_frontend_id": "271",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 9,
+      "order": 387,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1146",
+      "leetcode_slug": "snapshot-array",
+      "source_frontend_id": "1146",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 10,
+      "order": 388,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_355",
+      "leetcode_slug": "design-twitter",
+      "source_frontend_id": "355",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 11,
+      "order": 389,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_146",
+      "leetcode_slug": "lru-cache",
+      "source_frontend_id": "146",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 12,
+      "order": 390,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_380",
+      "leetcode_slug": "insert-delete-getrandom-o1",
+      "source_frontend_id": "380",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 13,
+      "order": 391,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_2353",
+      "leetcode_slug": "design-a-food-rating-system",
+      "source_frontend_id": "2353",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 14,
+      "order": 392,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_460",
+      "leetcode_slug": "lfu-cache",
+      "source_frontend_id": "460",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 15,
+      "order": 393,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_716",
+      "leetcode_slug": "max-stack",
+      "source_frontend_id": "716",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 16,
+      "order": 394,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_895",
+      "leetcode_slug": "maximum-frequency-stack",
+      "source_frontend_id": "895",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 17,
+      "order": 395,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_432",
+      "leetcode_slug": "all-oone-data-structure",
+      "source_frontend_id": "432",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 18,
+      "order": 396,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_715",
+      "leetcode_slug": "range-module",
+      "source_frontend_id": "715",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 19,
+      "order": 397,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_642",
+      "leetcode_slug": "design-search-autocomplete-system",
+      "source_frontend_id": "642",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 20,
+      "order": 398,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_588",
+      "leetcode_slug": "design-in-memory-file-system",
+      "source_frontend_id": "588",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 21,
+      "order": 399,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2296",
+      "leetcode_slug": "design-a-text-editor",
+      "source_frontend_id": "2296",
+      "pattern": "Data Structure Design",
+      "pattern_order": 36,
+      "pattern_problem_order": 22,
+      "order": 400,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_455",
+      "leetcode_slug": "assign-cookies",
+      "source_frontend_id": "455",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 1,
+      "order": 401,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_3074",
+      "leetcode_slug": "apple-redistribution-into-boxes",
+      "source_frontend_id": "3074",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 2,
+      "order": 402,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_55",
+      "leetcode_slug": "jump-game",
+      "source_frontend_id": "55",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 3,
+      "order": 403,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_45",
+      "leetcode_slug": "jump-game-ii",
+      "source_frontend_id": "45",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 4,
+      "order": 404,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_1871",
+      "leetcode_slug": "jump-game-vii",
+      "source_frontend_id": "1871",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 5,
+      "order": 405,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_921",
+      "leetcode_slug": "minimum-add-to-make-parentheses-valid",
+      "source_frontend_id": "921",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 6,
+      "order": 406,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_134",
+      "leetcode_slug": "gas-station",
+      "source_frontend_id": "134",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 7,
+      "order": 407,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_621",
+      "leetcode_slug": "task-scheduler",
+      "source_frontend_id": "621",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 8,
+      "order": 408,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_670",
+      "leetcode_slug": "maximum-swap",
+      "source_frontend_id": "670",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 9,
+      "order": 409,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_406",
+      "leetcode_slug": "queue-reconstruction-by-height",
+      "source_frontend_id": "406",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 10,
+      "order": 410,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1717",
+      "leetcode_slug": "maximum-score-from-removing-substrings",
+      "source_frontend_id": "1717",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 11,
+      "order": 411,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1488",
+      "leetcode_slug": "avoid-flood-in-the-city",
+      "source_frontend_id": "1488",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 12,
+      "order": 412,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1975",
+      "leetcode_slug": "maximum-matrix-sum",
+      "source_frontend_id": "1975",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 13,
+      "order": 413,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_826",
+      "leetcode_slug": "most-profit-assigning-work",
+      "source_frontend_id": "826",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 14,
+      "order": 414,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_857",
+      "leetcode_slug": "minimum-cost-to-hire-k-workers",
+      "source_frontend_id": "857",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 15,
+      "order": 415,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_135",
+      "leetcode_slug": "candy",
+      "source_frontend_id": "135",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 16,
+      "order": 416,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_871",
+      "leetcode_slug": "minimum-number-of-refueling-stops",
+      "source_frontend_id": "871",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 17,
+      "order": 417,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_757",
+      "leetcode_slug": "set-intersection-size-at-least-two",
+      "source_frontend_id": "757",
+      "pattern": "Greedy",
+      "pattern_order": 37,
+      "pattern_problem_order": 18,
+      "order": 418,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_733",
+      "leetcode_slug": "flood-fill",
+      "source_frontend_id": "733",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 1,
+      "order": 419,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_200",
+      "leetcode_slug": "number-of-islands",
+      "source_frontend_id": "200",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 2,
+      "order": 420,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_694",
+      "leetcode_slug": "number-of-distinct-islands",
+      "source_frontend_id": "694",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 3,
+      "order": 421,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_79",
+      "leetcode_slug": "word-search",
+      "source_frontend_id": "79",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 4,
+      "order": 422,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1376",
+      "leetcode_slug": "time-needed-to-inform-all-employees",
+      "source_frontend_id": "1376",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 5,
+      "order": 423,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_797",
+      "leetcode_slug": "all-paths-from-source-to-target",
+      "source_frontend_id": "797",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 6,
+      "order": 424,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_133",
+      "leetcode_slug": "clone-graph",
+      "source_frontend_id": "133",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 7,
+      "order": 425,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_785",
+      "leetcode_slug": "is-graph-bipartite",
+      "source_frontend_id": "785",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 8,
+      "order": 426,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_863",
+      "leetcode_slug": "all-nodes-distance-k-in-binary-tree",
+      "source_frontend_id": "863",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 9,
+      "order": 427,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_690",
+      "leetcode_slug": "employee-importance",
+      "source_frontend_id": "690",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 10,
+      "order": 428,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_130",
+      "leetcode_slug": "surrounded-regions",
+      "source_frontend_id": "130",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 11,
+      "order": 429,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_417",
+      "leetcode_slug": "pacific-atlantic-water-flow",
+      "source_frontend_id": "417",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 12,
+      "order": 430,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1020",
+      "leetcode_slug": "number-of-enclaves",
+      "source_frontend_id": "1020",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 13,
+      "order": 431,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_827",
+      "leetcode_slug": "making-a-large-island",
+      "source_frontend_id": "827",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 14,
+      "order": 432,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1192",
+      "leetcode_slug": "critical-connections-in-a-network",
+      "source_frontend_id": "1192",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 15,
+      "order": 433,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2246",
+      "leetcode_slug": "longest-path-with-different-adjacent-characters",
+      "source_frontend_id": "2246",
+      "pattern": "Depth First Search (DFS)",
+      "pattern_order": 38,
+      "pattern_problem_order": 16,
+      "order": 434,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_994",
+      "leetcode_slug": "rotting-oranges",
+      "source_frontend_id": "994",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 1,
+      "order": 435,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_542",
+      "leetcode_slug": "01-matrix",
+      "source_frontend_id": "542",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 2,
+      "order": 436,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_752",
+      "leetcode_slug": "open-the-lock",
+      "source_frontend_id": "752",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 3,
+      "order": 437,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_909",
+      "leetcode_slug": "snakes-and-ladders",
+      "source_frontend_id": "909",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 4,
+      "order": 438,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_433",
+      "leetcode_slug": "minimum-genetic-mutation",
+      "source_frontend_id": "433",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 5,
+      "order": 439,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_286",
+      "leetcode_slug": "walls-and-gates",
+      "source_frontend_id": "286",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 6,
+      "order": 440,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1197",
+      "leetcode_slug": "minimum-knight-moves",
+      "source_frontend_id": "1197",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 7,
+      "order": 441,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1091",
+      "leetcode_slug": "shortest-path-in-binary-matrix",
+      "source_frontend_id": "1091",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 8,
+      "order": 442,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1102",
+      "leetcode_slug": "path-with-maximum-minimum-value",
+      "source_frontend_id": "1102",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 9,
+      "order": 443,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1293",
+      "leetcode_slug": "shortest-path-in-a-grid-with-obstacles-elimination",
+      "source_frontend_id": "1293",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 10,
+      "order": 444,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_815",
+      "leetcode_slug": "bus-routes",
+      "source_frontend_id": "815",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 11,
+      "order": 445,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_127",
+      "leetcode_slug": "word-ladder",
+      "source_frontend_id": "127",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 12,
+      "order": 446,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_2290",
+      "leetcode_slug": "minimum-obstacle-removal-to-reach-corner",
+      "source_frontend_id": "2290",
+      "pattern": "Breadth First Search (BFS)",
+      "pattern_order": 39,
+      "pattern_problem_order": 13,
+      "order": 447,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_210",
+      "leetcode_slug": "course-schedule-ii",
+      "source_frontend_id": "210",
+      "pattern": "Topological Sort",
+      "pattern_order": 40,
+      "pattern_problem_order": 1,
+      "order": 448,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_1462",
+      "leetcode_slug": "course-schedule-iv",
+      "source_frontend_id": "1462",
+      "pattern": "Topological Sort",
+      "pattern_order": 40,
+      "pattern_problem_order": 2,
+      "order": 449,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1136",
+      "leetcode_slug": "parallel-courses",
+      "source_frontend_id": "1136",
+      "pattern": "Topological Sort",
+      "pattern_order": 40,
+      "pattern_problem_order": 3,
+      "order": 450,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_802",
+      "leetcode_slug": "find-eventual-safe-states",
+      "source_frontend_id": "802",
+      "pattern": "Topological Sort",
+      "pattern_order": 40,
+      "pattern_problem_order": 4,
+      "order": 451,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_310",
+      "leetcode_slug": "minimum-height-trees",
+      "source_frontend_id": "310",
+      "pattern": "Topological Sort",
+      "pattern_order": 40,
+      "pattern_problem_order": 5,
+      "order": 452,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_2115",
+      "leetcode_slug": "find-all-possible-recipes-from-given-supplies",
+      "source_frontend_id": "2115",
+      "pattern": "Topological Sort",
+      "pattern_order": 40,
+      "pattern_problem_order": 6,
+      "order": 453,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1203",
+      "leetcode_slug": "sort-items-by-groups-respecting-dependencies",
+      "source_frontend_id": "1203",
+      "pattern": "Topological Sort",
+      "pattern_order": 40,
+      "pattern_problem_order": 7,
+      "order": 454,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_269",
+      "leetcode_slug": "alien-dictionary",
+      "source_frontend_id": "269",
+      "pattern": "Topological Sort",
+      "pattern_order": 40,
+      "pattern_problem_order": 8,
+      "order": 455,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_323",
+      "leetcode_slug": "number-of-connected-components-in-an-undirected-graph",
+      "source_frontend_id": "323",
+      "pattern": "Union Find",
+      "pattern_order": 41,
+      "pattern_problem_order": 1,
+      "order": 456,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_547",
+      "leetcode_slug": "number-of-provinces",
+      "source_frontend_id": "547",
+      "pattern": "Union Find",
+      "pattern_order": 41,
+      "pattern_problem_order": 2,
+      "order": 457,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_684",
+      "leetcode_slug": "redundant-connection",
+      "source_frontend_id": "684",
+      "pattern": "Union Find",
+      "pattern_order": 41,
+      "pattern_problem_order": 3,
+      "order": 458,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_261",
+      "leetcode_slug": "graph-valid-tree",
+      "source_frontend_id": "261",
+      "pattern": "Union Find",
+      "pattern_order": 41,
+      "pattern_problem_order": 4,
+      "order": 459,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_721",
+      "leetcode_slug": "accounts-merge",
+      "source_frontend_id": "721",
+      "pattern": "Union Find",
+      "pattern_order": 41,
+      "pattern_problem_order": 5,
+      "order": 460,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_399",
+      "leetcode_slug": "evaluate-division",
+      "source_frontend_id": "399",
+      "pattern": "Union Find",
+      "pattern_order": 41,
+      "pattern_problem_order": 6,
+      "order": 461,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_947",
+      "leetcode_slug": "most-stones-removed-with-same-row-or-column",
+      "source_frontend_id": "947",
+      "pattern": "Union Find",
+      "pattern_order": 41,
+      "pattern_problem_order": 7,
+      "order": 462,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_924",
+      "leetcode_slug": "minimize-malware-spread",
+      "source_frontend_id": "924",
+      "pattern": "Union Find",
+      "pattern_order": 41,
+      "pattern_problem_order": 8,
+      "order": 463,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_305",
+      "leetcode_slug": "number-of-islands-ii",
+      "source_frontend_id": "305",
+      "pattern": "Union Find",
+      "pattern_order": 41,
+      "pattern_problem_order": 9,
+      "order": 464,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1584",
+      "leetcode_slug": "min-cost-to-connect-all-points",
+      "source_frontend_id": "1584",
+      "pattern": "Minimum Spanning Tree",
+      "pattern_order": 42,
+      "pattern_problem_order": 1,
+      "order": 465,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_1135",
+      "leetcode_slug": "connecting-cities-with-minimum-cost",
+      "source_frontend_id": "1135",
+      "pattern": "Minimum Spanning Tree",
+      "pattern_order": 42,
+      "pattern_problem_order": 2,
+      "order": 466,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1168",
+      "leetcode_slug": "optimize-water-distribution-in-a-village",
+      "source_frontend_id": "1168",
+      "pattern": "Minimum Spanning Tree",
+      "pattern_order": 42,
+      "pattern_problem_order": 3,
+      "order": 467,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1489",
+      "leetcode_slug": "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree",
+      "source_frontend_id": "1489",
+      "pattern": "Minimum Spanning Tree",
+      "pattern_order": 42,
+      "pattern_problem_order": 4,
+      "order": 468,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_3600",
+      "leetcode_slug": "maximize-spanning-tree-stability-with-upgrades",
+      "source_frontend_id": "3600",
+      "pattern": "Minimum Spanning Tree",
+      "pattern_order": 42,
+      "pattern_problem_order": 5,
+      "order": 469,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_743",
+      "leetcode_slug": "network-delay-time",
+      "source_frontend_id": "743",
+      "pattern": "Shortest Path",
+      "pattern_order": 43,
+      "pattern_problem_order": 1,
+      "order": 470,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_787",
+      "leetcode_slug": "cheapest-flights-within-k-stops",
+      "source_frontend_id": "787",
+      "pattern": "Shortest Path",
+      "pattern_order": 43,
+      "pattern_problem_order": 2,
+      "order": 471,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_1514",
+      "leetcode_slug": "path-with-maximum-probability",
+      "source_frontend_id": "1514",
+      "pattern": "Shortest Path",
+      "pattern_order": 43,
+      "pattern_problem_order": 3,
+      "order": 472,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1631",
+      "leetcode_slug": "path-with-minimum-effort",
+      "source_frontend_id": "1631",
+      "pattern": "Shortest Path",
+      "pattern_order": 43,
+      "pattern_problem_order": 4,
+      "order": 473,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_505",
+      "leetcode_slug": "the-maze-ii",
+      "source_frontend_id": "505",
+      "pattern": "Shortest Path",
+      "pattern_order": 43,
+      "pattern_problem_order": 5,
+      "order": 474,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2976",
+      "leetcode_slug": "minimum-cost-to-convert-string-i",
+      "source_frontend_id": "2976",
+      "pattern": "Shortest Path",
+      "pattern_order": 43,
+      "pattern_problem_order": 6,
+      "order": 475,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_3650",
+      "leetcode_slug": "minimum-cost-path-with-edge-reversals",
+      "source_frontend_id": "3650",
+      "pattern": "Shortest Path",
+      "pattern_order": 43,
+      "pattern_problem_order": 7,
+      "order": 476,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_3341",
+      "leetcode_slug": "find-minimum-time-to-reach-last-room-i",
+      "source_frontend_id": "3341",
+      "pattern": "Shortest Path",
+      "pattern_order": 43,
+      "pattern_problem_order": 8,
+      "order": 477,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_778",
+      "leetcode_slug": "swim-in-rising-water",
+      "source_frontend_id": "778",
+      "pattern": "Shortest Path",
+      "pattern_order": 43,
+      "pattern_problem_order": 9,
+      "order": 478,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1368",
+      "leetcode_slug": "minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
+      "source_frontend_id": "1368",
+      "pattern": "Shortest Path",
+      "pattern_order": 43,
+      "pattern_problem_order": 10,
+      "order": 479,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2203",
+      "leetcode_slug": "minimum-weighted-subgraph-with-the-required-paths",
+      "source_frontend_id": "2203",
+      "pattern": "Shortest Path",
+      "pattern_order": 43,
+      "pattern_problem_order": 11,
+      "order": 480,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_332",
+      "leetcode_slug": "reconstruct-itinerary",
+      "source_frontend_id": "332",
+      "pattern": "Eulerian Circuit",
+      "pattern_order": 44,
+      "pattern_problem_order": 1,
+      "order": 481,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_753",
+      "leetcode_slug": "cracking-the-safe",
+      "source_frontend_id": "753",
+      "pattern": "Eulerian Circuit",
+      "pattern_order": 44,
+      "pattern_problem_order": 2,
+      "order": 482,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_2097",
+      "leetcode_slug": "valid-arrangement-of-pairs",
+      "source_frontend_id": "2097",
+      "pattern": "Eulerian Circuit",
+      "pattern_order": 44,
+      "pattern_problem_order": 3,
+      "order": 483,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_509",
+      "leetcode_slug": "fibonacci-number",
+      "source_frontend_id": "509",
+      "pattern": "1-D DP",
+      "pattern_order": 45,
+      "pattern_problem_order": 1,
+      "order": 484,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_70",
+      "leetcode_slug": "climbing-stairs",
+      "source_frontend_id": "70",
+      "pattern": "1-D DP",
+      "pattern_order": 45,
+      "pattern_problem_order": 2,
+      "order": 485,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_746",
+      "leetcode_slug": "min-cost-climbing-stairs",
+      "source_frontend_id": "746",
+      "pattern": "1-D DP",
+      "pattern_order": 45,
+      "pattern_problem_order": 3,
+      "order": 486,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_198",
+      "leetcode_slug": "house-robber",
+      "source_frontend_id": "198",
+      "pattern": "1-D DP",
+      "pattern_order": 45,
+      "pattern_problem_order": 4,
+      "order": 487,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_213",
+      "leetcode_slug": "house-robber-ii",
+      "source_frontend_id": "213",
+      "pattern": "1-D DP",
+      "pattern_order": 45,
+      "pattern_problem_order": 5,
+      "order": 488,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_646",
+      "leetcode_slug": "maximum-length-of-pair-chain",
+      "source_frontend_id": "646",
+      "pattern": "1-D DP",
+      "pattern_order": 45,
+      "pattern_problem_order": 6,
+      "order": 489,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_740",
+      "leetcode_slug": "delete-and-earn",
+      "source_frontend_id": "740",
+      "pattern": "1-D DP",
+      "pattern_order": 45,
+      "pattern_problem_order": 7,
+      "order": 490,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_343",
+      "leetcode_slug": "integer-break",
+      "source_frontend_id": "343",
+      "pattern": "1-D DP",
+      "pattern_order": 45,
+      "pattern_problem_order": 8,
+      "order": 491,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1262",
+      "leetcode_slug": "greatest-sum-divisible-by-three",
+      "source_frontend_id": "1262",
+      "pattern": "1-D DP",
+      "pattern_order": 45,
+      "pattern_problem_order": 9,
+      "order": 492,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1411",
+      "leetcode_slug": "number-of-ways-to-paint-n-3-grid",
+      "source_frontend_id": "1411",
+      "pattern": "1-D DP",
+      "pattern_order": 45,
+      "pattern_problem_order": 10,
+      "order": 493,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_416",
+      "leetcode_slug": "partition-equal-subset-sum",
+      "source_frontend_id": "416",
+      "pattern": "0/1 Knapsack",
+      "pattern_order": 46,
+      "pattern_problem_order": 1,
+      "order": 494,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_494",
+      "leetcode_slug": "target-sum",
+      "source_frontend_id": "494",
+      "pattern": "0/1 Knapsack",
+      "pattern_order": 46,
+      "pattern_problem_order": 2,
+      "order": 495,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1049",
+      "leetcode_slug": "last-stone-weight-ii",
+      "source_frontend_id": "1049",
+      "pattern": "0/1 Knapsack",
+      "pattern_order": 46,
+      "pattern_problem_order": 3,
+      "order": 496,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_474",
+      "leetcode_slug": "ones-and-zeroes",
+      "source_frontend_id": "474",
+      "pattern": "0/1 Knapsack",
+      "pattern_order": 46,
+      "pattern_problem_order": 4,
+      "order": 497,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_879",
+      "leetcode_slug": "profitable-schemes",
+      "source_frontend_id": "879",
+      "pattern": "0/1 Knapsack",
+      "pattern_order": 46,
+      "pattern_problem_order": 5,
+      "order": 498,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_322",
+      "leetcode_slug": "coin-change",
+      "source_frontend_id": "322",
+      "pattern": "Unbounded Knapsack",
+      "pattern_order": 47,
+      "pattern_problem_order": 1,
+      "order": 499,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_518",
+      "leetcode_slug": "coin-change-ii",
+      "source_frontend_id": "518",
+      "pattern": "Unbounded Knapsack",
+      "pattern_order": 47,
+      "pattern_problem_order": 2,
+      "order": 500,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_279",
+      "leetcode_slug": "perfect-squares",
+      "source_frontend_id": "279",
+      "pattern": "Unbounded Knapsack",
+      "pattern_order": 47,
+      "pattern_problem_order": 3,
+      "order": 501,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_983",
+      "leetcode_slug": "minimum-cost-for-tickets",
+      "source_frontend_id": "983",
+      "pattern": "Unbounded Knapsack",
+      "pattern_order": 47,
+      "pattern_problem_order": 4,
+      "order": 502,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_300",
+      "leetcode_slug": "longest-increasing-subsequence",
+      "source_frontend_id": "300",
+      "pattern": "Longest Increasing Subsequence (LIS)",
+      "pattern_order": 48,
+      "pattern_problem_order": 1,
+      "order": 503,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_673",
+      "leetcode_slug": "number-of-longest-increasing-subsequence",
+      "source_frontend_id": "673",
+      "pattern": "Longest Increasing Subsequence (LIS)",
+      "pattern_order": 48,
+      "pattern_problem_order": 2,
+      "order": 504,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1048",
+      "leetcode_slug": "longest-string-chain",
+      "source_frontend_id": "1048",
+      "pattern": "Longest Increasing Subsequence (LIS)",
+      "pattern_order": 48,
+      "pattern_problem_order": 3,
+      "order": 505,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1027",
+      "leetcode_slug": "longest-arithmetic-subsequence",
+      "source_frontend_id": "1027",
+      "pattern": "Longest Increasing Subsequence (LIS)",
+      "pattern_order": 48,
+      "pattern_problem_order": 4,
+      "order": 506,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_354",
+      "leetcode_slug": "russian-doll-envelopes",
+      "source_frontend_id": "354",
+      "pattern": "Longest Increasing Subsequence (LIS)",
+      "pattern_order": 48,
+      "pattern_problem_order": 5,
+      "order": 507,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_118",
+      "leetcode_slug": "pascals-triangle",
+      "source_frontend_id": "118",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 1,
+      "order": 508,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_62",
+      "leetcode_slug": "unique-paths",
+      "source_frontend_id": "62",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 2,
+      "order": 509,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_63",
+      "leetcode_slug": "unique-paths-ii",
+      "source_frontend_id": "63",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 3,
+      "order": 510,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_64",
+      "leetcode_slug": "minimum-path-sum",
+      "source_frontend_id": "64",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 4,
+      "order": 511,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_120",
+      "leetcode_slug": "triangle",
+      "source_frontend_id": "120",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 5,
+      "order": 512,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_221",
+      "leetcode_slug": "maximal-square",
+      "source_frontend_id": "221",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 6,
+      "order": 513,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1277",
+      "leetcode_slug": "count-square-submatrices-with-all-ones",
+      "source_frontend_id": "1277",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 7,
+      "order": 514,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1937",
+      "leetcode_slug": "maximum-number-of-points-with-cost",
+      "source_frontend_id": "1937",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 8,
+      "order": 515,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_256",
+      "leetcode_slug": "paint-house",
+      "source_frontend_id": "256",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 9,
+      "order": 516,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_931",
+      "leetcode_slug": "minimum-falling-path-sum",
+      "source_frontend_id": "931",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 10,
+      "order": 517,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1235",
+      "leetcode_slug": "maximum-profit-in-job-scheduling",
+      "source_frontend_id": "1235",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 11,
+      "order": 518,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_312",
+      "leetcode_slug": "burst-balloons",
+      "source_frontend_id": "312",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 12,
+      "order": 519,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_546",
+      "leetcode_slug": "remove-boxes",
+      "source_frontend_id": "546",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 13,
+      "order": 520,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_85",
+      "leetcode_slug": "maximal-rectangle",
+      "source_frontend_id": "85",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 14,
+      "order": 521,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_741",
+      "leetcode_slug": "cherry-pickup",
+      "source_frontend_id": "741",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 15,
+      "order": 522,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_174",
+      "leetcode_slug": "dungeon-game",
+      "source_frontend_id": "174",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 16,
+      "order": 523,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_329",
+      "leetcode_slug": "longest-increasing-path-in-a-matrix",
+      "source_frontend_id": "329",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 17,
+      "order": 524,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_1931",
+      "leetcode_slug": "painting-a-grid-with-three-different-colors",
+      "source_frontend_id": "1931",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 18,
+      "order": 525,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_3651",
+      "leetcode_slug": "minimum-cost-path-with-teleportations",
+      "source_frontend_id": "3651",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 19,
+      "order": 526,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_403",
+      "leetcode_slug": "frog-jump",
+      "source_frontend_id": "403",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 20,
+      "order": 527,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_465",
+      "leetcode_slug": "optimal-account-balancing",
+      "source_frontend_id": "465",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 21,
+      "order": 528,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1335",
+      "leetcode_slug": "minimum-difficulty-of-a-job-schedule",
+      "source_frontend_id": "1335",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 22,
+      "order": 529,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1547",
+      "leetcode_slug": "minimum-cost-to-cut-a-stick",
+      "source_frontend_id": "1547",
+      "pattern": "2D Grid DP",
+      "pattern_order": 49,
+      "pattern_problem_order": 23,
+      "order": 530,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1143",
+      "leetcode_slug": "longest-common-subsequence",
+      "source_frontend_id": "1143",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 1,
+      "order": 531,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_516",
+      "leetcode_slug": "longest-palindromic-subsequence",
+      "source_frontend_id": "516",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 2,
+      "order": 532,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_72",
+      "leetcode_slug": "edit-distance",
+      "source_frontend_id": "72",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 3,
+      "order": 533,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_91",
+      "leetcode_slug": "decode-ways",
+      "source_frontend_id": "91",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 4,
+      "order": 534,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_139",
+      "leetcode_slug": "word-break",
+      "source_frontend_id": "139",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 5,
+      "order": 535,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_97",
+      "leetcode_slug": "interleaving-string",
+      "source_frontend_id": "97",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 6,
+      "order": 536,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1653",
+      "leetcode_slug": "minimum-deletions-to-make-string-balanced",
+      "source_frontend_id": "1653",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 7,
+      "order": 537,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_140",
+      "leetcode_slug": "word-break-ii",
+      "source_frontend_id": "140",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 8,
+      "order": 538,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_44",
+      "leetcode_slug": "wildcard-matching",
+      "source_frontend_id": "44",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 9,
+      "order": 539,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_10",
+      "leetcode_slug": "regular-expression-matching",
+      "source_frontend_id": "10",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 10,
+      "order": 540,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_115",
+      "leetcode_slug": "distinct-subsequences",
+      "source_frontend_id": "115",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 11,
+      "order": 541,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_132",
+      "leetcode_slug": "palindrome-partitioning-ii",
+      "source_frontend_id": "132",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 12,
+      "order": 542,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_664",
+      "leetcode_slug": "strange-printer",
+      "source_frontend_id": "664",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 13,
+      "order": 543,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1092",
+      "leetcode_slug": "shortest-common-supersequence",
+      "source_frontend_id": "1092",
+      "pattern": "String DP",
+      "pattern_order": 50,
+      "pattern_problem_order": 14,
+      "order": 544,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_337",
+      "leetcode_slug": "house-robber-iii",
+      "source_frontend_id": "337",
+      "pattern": "Tree / Graph DP",
+      "pattern_order": 51,
+      "pattern_problem_order": 1,
+      "order": 545,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_95",
+      "leetcode_slug": "unique-binary-search-trees-ii",
+      "source_frontend_id": "95",
+      "pattern": "Tree / Graph DP",
+      "pattern_order": 51,
+      "pattern_problem_order": 2,
+      "order": 546,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_1976",
+      "leetcode_slug": "number-of-ways-to-arrive-at-destination",
+      "source_frontend_id": "1976",
+      "pattern": "Tree / Graph DP",
+      "pattern_order": 51,
+      "pattern_problem_order": 3,
+      "order": 547,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_968",
+      "leetcode_slug": "binary-tree-cameras",
+      "source_frontend_id": "968",
+      "pattern": "Tree / Graph DP",
+      "pattern_order": 51,
+      "pattern_problem_order": 4,
+      "order": 548,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_834",
+      "leetcode_slug": "sum-of-distances-in-tree",
+      "source_frontend_id": "834",
+      "pattern": "Tree / Graph DP",
+      "pattern_order": 51,
+      "pattern_problem_order": 5,
+      "order": 549,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1066",
+      "leetcode_slug": "campus-bikes-ii",
+      "source_frontend_id": "1066",
+      "pattern": "Bitmask DP",
+      "pattern_order": 52,
+      "pattern_problem_order": 1,
+      "order": 550,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_698",
+      "leetcode_slug": "partition-to-k-equal-sum-subsets",
+      "source_frontend_id": "698",
+      "pattern": "Bitmask DP",
+      "pattern_order": 52,
+      "pattern_problem_order": 2,
+      "order": 551,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1986",
+      "leetcode_slug": "minimum-number-of-work-sessions-to-finish-the-tasks",
+      "source_frontend_id": "1986",
+      "pattern": "Bitmask DP",
+      "pattern_order": 52,
+      "pattern_problem_order": 3,
+      "order": 552,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_2305",
+      "leetcode_slug": "fair-distribution-of-cookies",
+      "source_frontend_id": "2305",
+      "pattern": "Bitmask DP",
+      "pattern_order": 52,
+      "pattern_problem_order": 4,
+      "order": 553,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_847",
+      "leetcode_slug": "shortest-path-visiting-all-nodes",
+      "source_frontend_id": "847",
+      "pattern": "Bitmask DP",
+      "pattern_order": 52,
+      "pattern_problem_order": 5,
+      "order": 554,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_357",
+      "leetcode_slug": "count-numbers-with-unique-digits",
+      "source_frontend_id": "357",
+      "pattern": "Digit DP",
+      "pattern_order": 53,
+      "pattern_problem_order": 1,
+      "order": 555,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_233",
+      "leetcode_slug": "number-of-digit-one",
+      "source_frontend_id": "233",
+      "pattern": "Digit DP",
+      "pattern_order": 53,
+      "pattern_problem_order": 2,
+      "order": 556,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_902",
+      "leetcode_slug": "numbers-at-most-n-given-digit-set",
+      "source_frontend_id": "902",
+      "pattern": "Digit DP",
+      "pattern_order": 53,
+      "pattern_problem_order": 3,
+      "order": 557,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_688",
+      "leetcode_slug": "knight-probability-in-chessboard",
+      "source_frontend_id": "688",
+      "pattern": "Probability DP",
+      "pattern_order": 54,
+      "pattern_problem_order": 1,
+      "order": 558,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_808",
+      "leetcode_slug": "soup-servings",
+      "source_frontend_id": "808",
+      "pattern": "Probability DP",
+      "pattern_order": 54,
+      "pattern_problem_order": 2,
+      "order": 559,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_837",
+      "leetcode_slug": "new-21-game",
+      "source_frontend_id": "837",
+      "pattern": "Probability DP",
+      "pattern_order": 54,
+      "pattern_problem_order": 3,
+      "order": 560,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_309",
+      "leetcode_slug": "best-time-to-buy-and-sell-stock-with-cooldown",
+      "source_frontend_id": "309",
+      "pattern": "State Machine DP",
+      "pattern_order": 55,
+      "pattern_problem_order": 1,
+      "order": 561,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_714",
+      "leetcode_slug": "best-time-to-buy-and-sell-stock-with-transaction-fee",
+      "source_frontend_id": "714",
+      "pattern": "State Machine DP",
+      "pattern_order": 55,
+      "pattern_problem_order": 2,
+      "order": 562,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_123",
+      "leetcode_slug": "best-time-to-buy-and-sell-stock-iii",
+      "source_frontend_id": "123",
+      "pattern": "State Machine DP",
+      "pattern_order": 55,
+      "pattern_problem_order": 3,
+      "order": 563,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_188",
+      "leetcode_slug": "best-time-to-buy-and-sell-stock-iv",
+      "source_frontend_id": "188",
+      "pattern": "State Machine DP",
+      "pattern_order": 55,
+      "pattern_problem_order": 4,
+      "order": 564,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_9",
+      "leetcode_slug": "palindrome-number",
+      "source_frontend_id": "9",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 1,
+      "order": 565,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150"
+      ]
+    },
+    {
+      "challenge_id": "lc_66",
+      "leetcode_slug": "plus-one",
+      "source_frontend_id": "66",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 2,
+      "order": 566,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_13",
+      "leetcode_slug": "roman-to-integer",
+      "source_frontend_id": "13",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 3,
+      "order": 567,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_168",
+      "leetcode_slug": "excel-sheet-column-title",
+      "source_frontend_id": "168",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 4,
+      "order": 568,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1071",
+      "leetcode_slug": "greatest-common-divisor-of-strings",
+      "source_frontend_id": "1071",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 5,
+      "order": 569,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_263",
+      "leetcode_slug": "ugly-number",
+      "source_frontend_id": "263",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 6,
+      "order": 570,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_264",
+      "leetcode_slug": "ugly-number-ii",
+      "source_frontend_id": "264",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 7,
+      "order": 571,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_7",
+      "leetcode_slug": "reverse-integer",
+      "source_frontend_id": "7",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 8,
+      "order": 572,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_43",
+      "leetcode_slug": "multiply-strings",
+      "source_frontend_id": "43",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 9,
+      "order": 573,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_287",
+      "leetcode_slug": "find-the-duplicate-number",
+      "source_frontend_id": "287",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 10,
+      "order": 574,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1922",
+      "leetcode_slug": "count-good-numbers",
+      "source_frontend_id": "1922",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 11,
+      "order": 575,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_204",
+      "leetcode_slug": "count-primes",
+      "source_frontend_id": "204",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 12,
+      "order": 576,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_172",
+      "leetcode_slug": "factorial-trailing-zeroes",
+      "source_frontend_id": "172",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 13,
+      "order": 577,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_611",
+      "leetcode_slug": "valid-triangle-number",
+      "source_frontend_id": "611",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 14,
+      "order": 578,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_593",
+      "leetcode_slug": "valid-square",
+      "source_frontend_id": "593",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 15,
+      "order": 579,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_939",
+      "leetcode_slug": "minimum-area-rectangle",
+      "source_frontend_id": "939",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 16,
+      "order": 580,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_963",
+      "leetcode_slug": "minimum-area-rectangle-ii",
+      "source_frontend_id": "963",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 17,
+      "order": 581,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_149",
+      "leetcode_slug": "max-points-on-a-line",
+      "source_frontend_id": "149",
+      "pattern": "Maths / Geometry",
+      "pattern_order": 56,
+      "pattern_problem_order": 18,
+      "order": 582,
+      "lists": [
+        "am-600",
+        "am-300",
+        "am-150",
+        "am-75"
+      ]
+    },
+    {
+      "challenge_id": "lc_459",
+      "leetcode_slug": "repeated-substring-pattern",
+      "source_frontend_id": "459",
+      "pattern": "String Matching",
+      "pattern_order": 57,
+      "pattern_problem_order": 1,
+      "order": 583,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_686",
+      "leetcode_slug": "repeated-string-match",
+      "source_frontend_id": "686",
+      "pattern": "String Matching",
+      "pattern_order": 57,
+      "pattern_problem_order": 2,
+      "order": 584,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1698",
+      "leetcode_slug": "number-of-distinct-substrings-in-a-string",
+      "source_frontend_id": "1698",
+      "pattern": "String Matching",
+      "pattern_order": 57,
+      "pattern_problem_order": 3,
+      "order": 585,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1392",
+      "leetcode_slug": "longest-happy-prefix",
+      "source_frontend_id": "1392",
+      "pattern": "String Matching",
+      "pattern_order": 57,
+      "pattern_problem_order": 4,
+      "order": 586,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_214",
+      "leetcode_slug": "shortest-palindrome",
+      "source_frontend_id": "214",
+      "pattern": "String Matching",
+      "pattern_order": 57,
+      "pattern_problem_order": 5,
+      "order": 587,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_1044",
+      "leetcode_slug": "longest-duplicate-substring",
+      "source_frontend_id": "1044",
+      "pattern": "String Matching",
+      "pattern_order": 57,
+      "pattern_problem_order": 6,
+      "order": 588,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_307",
+      "leetcode_slug": "range-sum-query-mutable",
+      "source_frontend_id": "307",
+      "pattern": "Binary Indexed Tree / Segment Tree",
+      "pattern_order": 58,
+      "pattern_problem_order": 1,
+      "order": 589,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_308",
+      "leetcode_slug": "range-sum-query-2d-mutable",
+      "source_frontend_id": "308",
+      "pattern": "Binary Indexed Tree / Segment Tree",
+      "pattern_order": 58,
+      "pattern_problem_order": 2,
+      "order": 590,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_315",
+      "leetcode_slug": "count-of-smaller-numbers-after-self",
+      "source_frontend_id": "315",
+      "pattern": "Binary Indexed Tree / Segment Tree",
+      "pattern_order": 58,
+      "pattern_problem_order": 3,
+      "order": 591,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_699",
+      "leetcode_slug": "falling-squares",
+      "source_frontend_id": "699",
+      "pattern": "Binary Indexed Tree / Segment Tree",
+      "pattern_order": 58,
+      "pattern_problem_order": 4,
+      "order": 592,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_3161",
+      "leetcode_slug": "block-placement-queries",
+      "source_frontend_id": "3161",
+      "pattern": "Binary Indexed Tree / Segment Tree",
+      "pattern_order": 58,
+      "pattern_problem_order": 5,
+      "order": 593,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_3721",
+      "leetcode_slug": "longest-balanced-subarray-ii",
+      "source_frontend_id": "3721",
+      "pattern": "Binary Indexed Tree / Segment Tree",
+      "pattern_order": 58,
+      "pattern_problem_order": 6,
+      "order": 594,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_2426",
+      "leetcode_slug": "number-of-pairs-satisfying-inequality",
+      "source_frontend_id": "2426",
+      "pattern": "Binary Indexed Tree / Segment Tree",
+      "pattern_order": 58,
+      "pattern_problem_order": 7,
+      "order": 595,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_759",
+      "leetcode_slug": "employee-free-time",
+      "source_frontend_id": "759",
+      "pattern": "Line Sweep",
+      "pattern_order": 59,
+      "pattern_problem_order": 1,
+      "order": 596,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_1851",
+      "leetcode_slug": "minimum-interval-to-include-each-query",
+      "source_frontend_id": "1851",
+      "pattern": "Line Sweep",
+      "pattern_order": 59,
+      "pattern_problem_order": 2,
+      "order": 597,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_218",
+      "leetcode_slug": "the-skyline-problem",
+      "source_frontend_id": "218",
+      "pattern": "Line Sweep",
+      "pattern_order": 59,
+      "pattern_problem_order": 3,
+      "order": 598,
+      "lists": [
+        "am-600",
+        "am-300"
+      ]
+    },
+    {
+      "challenge_id": "lc_850",
+      "leetcode_slug": "rectangle-area-ii",
+      "source_frontend_id": "850",
+      "pattern": "Line Sweep",
+      "pattern_order": 59,
+      "pattern_problem_order": 4,
+      "order": 599,
+      "lists": [
+        "am-600"
+      ]
+    },
+    {
+      "challenge_id": "lc_391",
+      "leetcode_slug": "perfect-rectangle",
+      "source_frontend_id": "391",
+      "pattern": "Line Sweep",
+      "pattern_order": 59,
+      "pattern_problem_order": 5,
+      "order": 600,
+      "lists": [
+        "am-600"
+      ]
+    }
+  ]
+}

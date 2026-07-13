@@ -1,0 +1,231 @@
+{
+  "challenge_id": "lc_3108",
+  "cases": [
+    {
+      "id": "sample-disconnected",
+      "name": "sample: disconnected query returns minus one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            7
+          ],
+          [
+            1,
+            3,
+            7
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ],
+        "query": [
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        -1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-component-and-zero",
+      "name": "sample: component AND can become zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            2,
+            7
+          ],
+          [
+            0,
+            1,
+            15
+          ],
+          [
+            1,
+            2,
+            6
+          ]
+        ],
+        "query": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        6
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-start-equals-end",
+      "name": "trial: same start and end costs zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            1,
+            2,
+            10
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ],
+        "query": [
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-multiple-components",
+      "name": "trial: several components with different AND masks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1,
+            12
+          ],
+          [
+            1,
+            2,
+            10
+          ],
+          [
+            3,
+            4,
+            7
+          ]
+        ],
+        "query": [
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        7,
+        -1
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-cycle-component",
+      "name": "real: cycle component AND includes every edge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            14
+          ],
+          [
+            1,
+            2,
+            11
+          ],
+          [
+            2,
+            0,
+            7
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ],
+        "query": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        -1,
+        5
+      ],
+      "tags": [
+        "real",
+        "dsu"
+      ]
+    }
+  ]
+}

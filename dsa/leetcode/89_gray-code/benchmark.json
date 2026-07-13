@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_89",
+  "measurement_note": "Bit widths grow across exponential output sizes; each tier validates the complete circular Gray-code property rather than one reference ordering.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: two outputs", "kind": "benchmark", "visible": false, "size": 1, "input": {"n": 1}, "expected": null, "validator": {"kind": "gray_code"}, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: sixteen outputs", "kind": "benchmark", "visible": false, "size": 4, "input": {"n": 4}, "expected": null, "validator": {"kind": "gray_code"}, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 4096 outputs", "kind": "benchmark", "visible": false, "size": 12, "input": {"n": 12}, "expected": null, "validator": {"kind": "gray_code"}, "tags": ["benchmark", "scale-large"]}
+  ]
+}

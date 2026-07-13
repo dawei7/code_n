@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_470",
+  "cases": [
+    {
+      "id": "sample-first-cell",
+      "name": "sample: first grid cell maps to one",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rand7_values": [1, 1], "draws": 3},
+      "expected": [1, 1, 1],
+      "tags": ["sample", "accepted"]
+    },
+    {
+      "id": "sample-rejection",
+      "name": "sample: cell 49 is rejected before cell 2",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rand7_values": [7, 7, 1, 2], "draws": 2},
+      "expected": [2, 2],
+      "tags": ["sample", "rejection"]
+    },
+    {
+      "id": "sample-boundary",
+      "name": "sample: accepted boundary cell maps to ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rand7_values": [6, 5], "draws": 1},
+      "expected": [10],
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "trial-zero-draws",
+      "name": "trial: no requested outputs",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rand7_values": [3, 4], "draws": 0},
+      "expected": [],
+      "tags": ["trial", "empty"]
+    },
+    {
+      "id": "trial-several-cells",
+      "name": "trial: accepted cells cover several residues",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rand7_values": [1, 7, 2, 1, 3, 3], "draws": 3},
+      "expected": [7, 8, 7],
+      "tags": ["trial", "mapping"]
+    },
+    {
+      "id": "hidden-two-rejections",
+      "name": "hidden: multiple rejected pairs before acceptance",
+      "kind": "real",
+      "visible": false,
+      "input": {"rand7_values": [7, 1, 7, 2, 1, 3], "draws": 1},
+      "expected": [3],
+      "tags": ["hidden", "rejection"]
+    },
+    {
+      "id": "hidden-cycle-offset",
+      "name": "hidden: stream position carries across draws",
+      "kind": "real",
+      "visible": false,
+      "input": {"rand7_values": [6, 6, 1, 4, 2, 2], "draws": 3},
+      "expected": [4, 9, 4],
+      "tags": ["hidden", "stream"]
+    }
+  ]
+}

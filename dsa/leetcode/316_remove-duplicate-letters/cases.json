@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_316",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated prefix letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "bcabc"},
+      "expected": "abc",
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: blocked stack pop",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "cbacdcbc"},
+      "expected": "acdb",
+      "tags": ["sample", "greedy"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "a"},
+      "expected": "a",
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "trial-reverse-unique",
+      "name": "trial: unique letters cannot be reordered",
+      "kind": "trial",
+      "visible": false,
+      "input": {"s": "zyx"},
+      "expected": "zyx",
+      "tags": ["trial", "subsequence-order"]
+    },
+    {
+      "id": "trial-one-distinct",
+      "name": "trial: many copies of one letter",
+      "kind": "trial",
+      "visible": false,
+      "input": {"s": "aaaaaa"},
+      "expected": "a",
+      "tags": ["trial", "duplicates"]
+    },
+    {
+      "id": "hidden-greedy-trap",
+      "name": "hidden: smallest letter cannot lead",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "bbcaac"},
+      "expected": "bac",
+      "tags": ["hidden", "last-occurrence"]
+    },
+    {
+      "id": "hidden-several-replacements",
+      "name": "hidden: several safe replacements",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "cdadabcc"},
+      "expected": "adbc",
+      "tags": ["hidden", "monotonic-stack"]
+    },
+    {
+      "id": "hidden-unrecoverable-prefix",
+      "name": "hidden: early letter must be preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "ecbacba"},
+      "expected": "eacb",
+      "tags": ["hidden", "last-occurrence"]
+    }
+  ]
+}

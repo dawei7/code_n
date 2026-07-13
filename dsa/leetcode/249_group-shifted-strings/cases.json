@@ -1,0 +1,6 @@
+{"challenge_id":"lc_249","cases":[
+{"id":"sample-several-groups","name":"sample: several shift shapes","kind":"sample","visible":true,"input":{"strings":["abc","bcd","acef","xyz","az","ba","a","z"]},"expected":[["abc","bcd","xyz"],["acef"],["az","ba"],["a","z"]],"validator":{"kind":"unordered_nested_list"},"tags":["sample","wraparound"]},
+{"id":"sample-single","name":"sample: one string","kind":"sample","visible":true,"input":{"strings":["a"]},"expected":[["a"]],"validator":{"kind":"unordered_nested_list"},"tags":["sample","boundary"]},
+{"id":"trial-wrap","name":"wraparound differences match","kind":"trial","visible":true,"input":{"strings":["ab","za"]},"expected":[["ab","za"]],"validator":{"kind":"unordered_nested_list"},"tags":["modulo"]},
+{"id":"real-length-separates","name":"hidden: equal patterns require equal length","kind":"real","visible":false,"input":{"strings":["a","aa","b","bb","abc","bcd"]},"expected":[["a","b"],["aa","bb"],["abc","bcd"]],"validator":{"kind":"unordered_nested_list"},"tags":["hidden","length"]}
+]}

@@ -1,0 +1,96 @@
+{
+  "challenge_id": "lc_2401",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: length three nice window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          8,
+          48,
+          10
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "bitmask"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: every pair conflicts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          5,
+          11,
+          13
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: contiguous window matters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-disjoint-powers",
+      "name": "trial: all powers of two are compatible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-number",
+      "name": "hidden: one number",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

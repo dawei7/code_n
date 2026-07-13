@@ -1,0 +1,31 @@
+{
+  "challenge_id": "lc_1403",
+  "cases": [
+    {
+      "id": "benchmark-tie-values",
+      "name": "benchmark: repeated values near threshold",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          4,
+          5,
+          9
+        ]
+      },
+      "expected": [
+        9,
+        5
+      ],
+      "validator": {
+        "kind": "minimum_subsequence"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

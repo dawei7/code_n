@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_467",
+  "measurement_note": "Size is the string length. Longest-run summaries process each character once, while explicitly materializing every valid substring occurrence performs quadratic enumeration and repeated substring construction on a continuous cyclic run.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: count a continuous cyclic run of length 31",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 31,
+      "input": {
+        "p": "abcdefghijklmnopqrstuvwxyzabcde"
+      },
+      "expected": 481,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "continuous-run"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: count a continuous cyclic run of length 127",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 127,
+      "input": {
+        "p": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvw"
+      },
+      "expected": 2977,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "continuous-run"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: count a continuous cyclic run of length 255",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 255,
+      "input": {
+        "p": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstu"
+      },
+      "expected": 6305,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "continuous-run"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_2098",
+  "source": "leetcode",
+  "frontend_id": "2098",
+  "slug": "subsequence-of-size-k-with-the-largest-even-sum",
+  "title": "Subsequence of Size K With the Largest Even Sum",
+  "difficulty": "Medium",
+  "acceptance_rate": 35.61910249945977,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Greedy",
+      "slug": "greedy"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/subsequence-of-size-k-with-the-largest-even-sum/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:drw",
+    "leetcode_company:microsoft",
+    "leetcode_company:retailmenot",
+    "leetcode_topic:array",
+    "leetcode_topic:greedy",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:drw",
+    "company:microsoft",
+    "company:retailmenot",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:greedy",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "RetailMeNot",
+      "slug": "retailmenot"
+    },
+    {
+      "name": "DRW",
+      "slug": "drw"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "RetailMeNot",
+        "slug": "retailmenot",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "DRW",
+        "slug": "drw",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

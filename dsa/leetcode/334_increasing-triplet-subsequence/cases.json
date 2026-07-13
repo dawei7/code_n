@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_334",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: increasing sequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: decreasing sequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: thresholds reset before completion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          5,
+          0,
+          4,
+          6
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "reset"
+      ]
+    },
+    {
+      "id": "trial-short",
+      "name": "trial: fewer than three values",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-equal-thresholds",
+      "name": "trial: equal values do not increase",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-delayed-pair",
+      "name": "hidden: preserve earlier pair after first resets",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          20,
+          100,
+          10,
+          12,
+          5,
+          13
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "reset"
+      ]
+    },
+    {
+      "id": "hidden-negative",
+      "name": "hidden: negative triplet",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -2,
+          -1,
+          -3,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-all-equal",
+      "name": "hidden: all values equal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    }
+  ]
+}

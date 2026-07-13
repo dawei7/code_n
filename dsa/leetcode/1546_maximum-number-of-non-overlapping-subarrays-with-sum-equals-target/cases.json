@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_1546",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "target": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negative values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          3,
+          5,
+          1,
+          4,
+          2,
+          -9
+        ],
+        "target": 6
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three non-overlapping choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          7,
+          2,
+          -3,
+          1,
+          4,
+          2
+        ],
+        "target": 7
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-zero-target",
+      "name": "hidden: zero-sum windows reset the prefix set",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "target": 0
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

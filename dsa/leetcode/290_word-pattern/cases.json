@@ -1,0 +1,6 @@
+{"challenge_id":"lc_290","cases":[
+{"id":"sample-true","name":"sample: bijective pattern","kind":"sample","visible":true,"input":{"pattern":"abba","s":"dog cat cat dog"},"expected":true,"tags":["sample","bijection"]},
+{"id":"sample-forward-fail","name":"sample: one character maps to two words","kind":"sample","visible":true,"input":{"pattern":"abba","s":"dog cat cat fish"},"expected":false,"tags":["sample","forward"]},
+{"id":"trial-repeat-fail","name":"repeated character conflicts","kind":"trial","visible":true,"input":{"pattern":"aaaa","s":"dog cat cat dog"},"expected":false,"tags":["conflict"]},
+{"id":"real-reverse-fail","name":"hidden: different characters share one word","kind":"real","visible":false,"input":{"pattern":"abba","s":"dog dog dog dog"},"expected":false,"tags":["hidden","reverse"]}
+]}

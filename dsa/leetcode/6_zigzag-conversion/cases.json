@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_6",
+  "cases": [
+    {"id": "sample-1", "name": "sample: three rows", "kind": "sample", "visible": true, "input": {"s": "PAYPALISHIRING", "numRows": 3}, "expected": "PAHNAPLSIIGYIR", "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: four rows", "kind": "sample", "visible": true, "input": {"s": "PAYPALISHIRING", "numRows": 4}, "expected": "PINALSIGYAHRPI", "tags": ["sample"]},
+    {"id": "trial-single-row", "name": "single row", "kind": "trial", "visible": true, "input": {"s": "ABCD", "numRows": 1}, "expected": "ABCD", "tags": ["boundary"]},
+    {"id": "trial-more-rows-than-characters", "name": "more rows than characters", "kind": "trial", "visible": true, "input": {"s": "ABC", "numRows": 5}, "expected": "ABC", "tags": ["boundary"]},
+    {"id": "real-direction-changes", "name": "hidden: repeated direction changes", "kind": "real", "visible": false, "input": {"s": "ABCDEFG", "numRows": 3}, "expected": "AEBDFCG", "tags": ["hidden", "direction"]}
+  ]
+}

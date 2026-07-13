@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_610",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one invalid and one valid triple",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Triangle": [{"x": 13, "y": 15, "z": 30}, {"x": 10, "y": 20, "z": 15}]}},
+      "expected": {"columns": ["x", "y", "z", "triangle"], "rows": [[13, 15, 30, "No"], [10, 20, 15, "Yes"]]},
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: equilateral triangle",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Triangle": [{"x": 7, "y": 7, "z": 7}]}},
+      "expected": {"columns": ["x", "y", "z", "triangle"], "rows": [[7, 7, 7, "Yes"]]},
+      "tags": ["sample", "equilateral"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: equality is degenerate",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Triangle": [{"x": 1, "y": 1, "z": 2}]}},
+      "expected": {"columns": ["x", "y", "z", "triangle"], "rows": [[1, 1, 2, "No"]]},
+      "tags": ["sample", "strict-inequality"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: largest side in each column",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Triangle": [{"x": 9, "y": 2, "z": 3}, {"x": 2, "y": 9, "z": 3}, {"x": 2, "y": 3, "z": 9}]}},
+      "expected": {"columns": ["x", "y", "z", "triangle"], "rows": [[9, 2, 3, "No"], [2, 9, 3, "No"], [2, 3, 9, "No"]]},
+      "tags": ["trial", "all-positions"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: isosceles boundary neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Triangle": [{"x": 5, "y": 5, "z": 9}, {"x": 5, "y": 5, "z": 10}]}},
+      "expected": {"columns": ["x", "y", "z", "triangle"], "rows": [[5, 5, 9, "Yes"], [5, 5, 10, "No"]]},
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: duplicate rows remain independent",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Triangle": [{"x": 3, "y": 4, "z": 5}, {"x": 3, "y": 4, "z": 5}, {"x": 4, "y": 1, "z": 2}]}},
+      "expected": {"columns": ["x", "y", "z", "triangle"], "rows": [[3, 4, 5, "Yes"], [3, 4, 5, "Yes"], [4, 1, 2, "No"]]},
+      "tags": ["hidden", "duplicates"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: small and large valid triples",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Triangle": [{"x": 1, "y": 1, "z": 1}, {"x": 999, "y": 1000, "z": 1000}, {"x": 1, "y": 1000, "z": 1000}, {"x": 1, "y": 2, "z": 3}]}},
+      "expected": {"columns": ["x", "y", "z", "triangle"], "rows": [[1, 1, 1, "Yes"], [999, 1000, 1000, "Yes"], [1, 1000, 1000, "Yes"], [1, 2, 3, "No"]]},
+      "tags": ["hidden", "range"]
+    }
+  ]
+}

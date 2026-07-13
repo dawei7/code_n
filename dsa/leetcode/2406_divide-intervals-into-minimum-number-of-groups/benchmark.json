@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_2406",
+  "cases": [
+    {
+      "id": "benchmark-mixed-overlap",
+      "name": "benchmark: mixed overlap clusters",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "intervals": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            11,
+            12
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

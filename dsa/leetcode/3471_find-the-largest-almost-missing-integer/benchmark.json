@@ -1,0 +1,72 @@
+{
+  "challenge_id": "lc_3471",
+  "cases": [
+    {
+      "id": "benchmark-all-windows",
+      "name": "benchmark: maximum small-window scan",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          7,
+          14,
+          21,
+          28,
+          35,
+          42,
+          49,
+          5,
+          12,
+          19,
+          26,
+          33,
+          40,
+          47,
+          3,
+          10,
+          17,
+          24,
+          31,
+          38,
+          45,
+          1,
+          8,
+          15,
+          22,
+          29,
+          36,
+          43,
+          50,
+          6,
+          13,
+          20,
+          27,
+          34,
+          41,
+          48,
+          4,
+          11,
+          18,
+          25,
+          32,
+          39,
+          46,
+          2,
+          9,
+          16,
+          23,
+          30,
+          37
+        ],
+        "k": 17
+      },
+      "expected": 37,
+      "tags": [
+        "benchmark",
+        "windows"
+      ],
+      "timeout_ms": 3000
+    }
+  ]
+}

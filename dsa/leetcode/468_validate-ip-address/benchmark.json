@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_468",
+  "measurement_note": "Size is the candidate string length within the problem's input bound. A single structural scan is linear, while reparsing every growing prefix to recount delimiters repeats prior character work and becomes quadratic.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: reject a malformed string of length 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "queryIP": "aaaaaaaaaaaaaaaa"
+      },
+      "expected": "Neither",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "malformed"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: reject a malformed string of length 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "queryIP": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": "Neither",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "malformed"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: reject a malformed string of length 100",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "queryIP": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": "Neither",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "malformed"
+      ]
+    }
+  ]
+}
+

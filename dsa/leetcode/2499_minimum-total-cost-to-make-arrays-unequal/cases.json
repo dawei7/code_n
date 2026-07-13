@@ -1,0 +1,120 @@
+{
+  "challenge_id": "lc_2499",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: every index initially conflicts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "nums2": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: arrays are already unequal at every index",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "nums2": [
+          1,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: dominant conflict value makes the task impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          2,
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-conflicts",
+      "name": "trial: no swaps are necessary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-impossible-two-equal-indices",
+      "name": "hidden: two identical conflicts cannot be repaired",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          1,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

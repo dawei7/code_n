@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_578",
+  "source": "leetcode",
+  "frontend_id": "578",
+  "slug": "get-highest-answer-rate-question",
+  "title": "Get Highest Answer Rate Question",
+  "difficulty": "Medium",
+  "acceptance_rate": 40.07186341374101,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/get-highest-answer-rate-question/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:facebook",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:facebook",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

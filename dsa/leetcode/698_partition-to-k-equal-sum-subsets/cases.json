@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_698",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four equal subsets",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [4,3,2,3,5,2,1], "k": 4},
+      "expected": true,
+      "tags": ["sample", "partitionable"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: total is not divisible",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,2,3,4], "k": 3},
+      "expected": false,
+      "tags": ["sample", "non-divisible"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: element exceeds target",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3,1], "k": 2},
+      "expected": false,
+      "tags": ["sample", "oversized-element"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one requested subset",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [7,2,5], "k": 1},
+      "expected": true,
+      "tags": ["trial", "k-one"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one element per subset",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2,2,2], "k": 3},
+      "expected": true,
+      "tags": ["trial", "k-equals-n"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: divisible total but impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2,2,2,2,3,4,5], "k": 4},
+      "expected": false,
+      "tags": ["hidden", "search-required"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: repeated complementary pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2,2,2,2,3,3,3,3], "k": 4},
+      "expected": true,
+      "tags": ["hidden", "duplicates", "partitionable"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: large value blocks a divisible total",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10,1,1,1,1,1], "k": 3},
+      "expected": false,
+      "tags": ["hidden", "oversized-element"]
+    }
+  ]
+}

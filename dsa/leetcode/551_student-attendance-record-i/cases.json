@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_551",
+  "cases": [
+    {
+      "id": "sample-award",
+      "name": "sample: one absence and a two-day late streak",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "PPALLP"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "qualifies"
+      ]
+    },
+    {
+      "id": "sample-late",
+      "name": "sample: three consecutive late days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "PPALLL"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "late-streak"
+      ]
+    },
+    {
+      "id": "sample-absences",
+      "name": "sample: two absences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "AA"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "absences"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one absent day",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "A"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "single-day"
+      ]
+    },
+    {
+      "id": "trial-two-late",
+      "name": "trial: exactly two consecutive late days",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "LL"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-three-late",
+      "name": "hidden: minimum prohibited late streak",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "LLL"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "minimum-violation"
+      ]
+    },
+    {
+      "id": "hidden-separated-late",
+      "name": "hidden: separated late streaks reset",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "LLPLLALL"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "reset"
+      ]
+    },
+    {
+      "id": "hidden-separated-absences",
+      "name": "hidden: separated absences still accumulate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "PALPAL"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "global-count"
+      ]
+    }
+  ]
+}
+

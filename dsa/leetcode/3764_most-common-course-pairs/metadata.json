@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_3764",
+  "source": "leetcode",
+  "frontend_id": "3764",
+  "slug": "most-common-course-pairs",
+  "title": "Most Common Course Pairs",
+  "difficulty": "Hard",
+  "acceptance_rate": 50.216843166918814,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [],
+  "url": "https://leetcode.com/problems/most-common-course-pairs/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_555",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two reversible blocks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "strs": [
+          "abc",
+          "xyz"
+        ]
+      },
+      "expected": "zyxcba",
+      "tags": [
+        "sample",
+        "orientation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one asymmetric string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "strs": [
+          "abc"
+        ]
+      },
+      "expected": "cba",
+      "tags": [
+        "sample",
+        "orientation"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "strs": [
+          "aaa"
+        ]
+      },
+      "expected": "aaa",
+      "tags": [
+        "sample",
+        "orientation"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one-character circular rotation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      "expected": "cab",
+      "tags": [
+        "trial",
+        "rotation"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: mirrored pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "ab",
+          "ba"
+        ]
+      },
+      "expected": "bbaa",
+      "tags": [
+        "trial",
+        "rotation"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: three mixed strings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "strs": [
+          "lc",
+          "evol",
+          "cdy"
+        ]
+      },
+      "expected": "ylclovecd",
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: competing orientations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "strs": [
+          "az",
+          "by",
+          "cx"
+        ]
+      },
+      "expected": "zybxca",
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: palindromic middle block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "strs": [
+          "x",
+          "abba",
+          "y"
+        ]
+      },
+      "expected": "yxabba",
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
+  ]
+}
+

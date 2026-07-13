@@ -1,0 +1,6 @@
+{"challenge_id":"lc_225","cases":[
+{"id":"sample-lifo","name":"sample: top and pop newest value","kind":"sample","visible":true,"input":{"operations":[["push",1],["push",2],["top"],["pop"],["empty"]]},"expected":[2,2,false],"tags":["sample","design"]},
+{"id":"trial-empty","name":"new stack is empty","kind":"trial","visible":true,"input":{"operations":[["empty"]]},"expected":[true],"tags":["boundary"]},
+{"id":"trial-reuse","name":"reuse after becoming empty","kind":"trial","visible":true,"input":{"operations":[["push",3],["pop"],["empty"],["push",4],["top"]]},"expected":[3,true,4],"tags":["state"]},
+{"id":"real-three","name":"hidden: three-value LIFO sequence","kind":"real","visible":false,"input":{"operations":[["push",1],["push",2],["push",3],["pop"],["top"],["pop"]]},"expected":[3,2,2],"tags":["hidden","lifo"]}
+]}

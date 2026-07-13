@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_362",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three recent hits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "hit",
+            1
+          ],
+          [
+            "hit",
+            2
+          ],
+          [
+            "hit",
+            3
+          ],
+          [
+            "getHits",
+            4
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "sample",
+        "window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: oldest hit expires at 301",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "hit",
+            1
+          ],
+          [
+            "hit",
+            2
+          ],
+          [
+            "hit",
+            3
+          ],
+          [
+            "hit",
+            300
+          ],
+          [
+            "getHits",
+            300
+          ],
+          [
+            "getHits",
+            301
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        3
+      ],
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: query empty counter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "getHits",
+            100
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-same-second",
+      "name": "trial: several hits share one timestamp",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "hit",
+            5
+          ],
+          [
+            "hit",
+            5
+          ],
+          [
+            "hit",
+            5
+          ],
+          [
+            "getHits",
+            5
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "trial",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "trial-exact-expiry",
+      "name": "trial: difference 300 is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "hit",
+            10
+          ],
+          [
+            "getHits",
+            309
+          ],
+          [
+            "getHits",
+            310
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-slot-reuse",
+      "name": "hidden: reused ring slot resets count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "hit",
+            1
+          ],
+          [
+            "hit",
+            1
+          ],
+          [
+            "hit",
+            301
+          ],
+          [
+            "getHits",
+            301
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "hidden",
+        "reuse"
+      ]
+    },
+    {
+      "id": "hidden-mixed-bursts",
+      "name": "hidden: burst counts across window edge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "hit",
+            1
+          ],
+          [
+            "hit",
+            2
+          ],
+          [
+            "hit",
+            2
+          ],
+          [
+            "hit",
+            300
+          ],
+          [
+            "hit",
+            300
+          ],
+          [
+            "getHits",
+            300
+          ],
+          [
+            "getHits",
+            301
+          ],
+          [
+            "getHits",
+            302
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        4,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-late-empty",
+      "name": "hidden: all history eventually expires",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "hit",
+            7
+          ],
+          [
+            "hit",
+            8
+          ],
+          [
+            "getHits",
+            1000
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "hidden",
+        "expired"
+      ]
+    }
+  ]
+}
+

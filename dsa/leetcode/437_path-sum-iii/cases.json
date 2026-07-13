@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_437",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: paths begin at different depths",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [10, 5, -3, 3, 2, null, 11, 3, -2, null, 1], "targetSum": 8},
+      "expected": 3,
+      "tags": ["sample", "mixed-starts"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: several paths sum to twenty-two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1], "targetSum": 22},
+      "expected": 3,
+      "tags": ["sample", "branching"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: empty tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [], "targetSum": 0},
+      "expected": 0,
+      "tags": ["sample", "empty"]
+    },
+    {
+      "id": "trial-zeroes",
+      "name": "trial: repeated prefixes from zero values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [0, 0, 0], "targetSum": 0},
+      "expected": 5,
+      "tags": ["trial", "zeroes"]
+    },
+    {
+      "id": "trial-negative",
+      "name": "trial: negative value completes a path",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1, -1, 0], "targetSum": 0},
+      "expected": 2,
+      "tags": ["trial", "negative"]
+    },
+    {
+      "id": "hidden-single",
+      "name": "hidden: one node equals the target",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [7], "targetSum": 7},
+      "expected": 1,
+      "tags": ["hidden", "single"]
+    },
+    {
+      "id": "hidden-no-path",
+      "name": "hidden: no downward path reaches the target",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [1, 2, 3, 4, 5], "targetSum": 100},
+      "expected": 0,
+      "tags": ["hidden", "none"]
+    },
+    {
+      "id": "hidden-overlapping-paths",
+      "name": "hidden: valid paths share nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [1, 1, 1, 1, 1, 1, 1], "targetSum": 2},
+      "expected": 6,
+      "tags": ["hidden", "overlapping"]
+    }
+  ]
+}

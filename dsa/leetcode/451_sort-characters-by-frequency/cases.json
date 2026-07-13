@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_451",
+  "cases": [
+    {
+      "id": "sample-repeated-e",
+      "name": "sample: one character has highest frequency",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "tree"},
+      "expected": "eetr",
+      "validator": {"kind": "frequency_sorted_string"},
+      "tags": ["sample", "tie"]
+    },
+    {
+      "id": "sample-tied-groups",
+      "name": "sample: two groups have equal frequency",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "cccaaa"},
+      "expected": "cccaaa",
+      "validator": {"kind": "frequency_sorted_string"},
+      "tags": ["sample", "tie"]
+    },
+    {
+      "id": "sample-case-sensitive",
+      "name": "sample: uppercase and lowercase differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "Aabb"},
+      "expected": "bbAa",
+      "validator": {"kind": "frequency_sorted_string"},
+      "tags": ["sample", "case-sensitive"]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "z"},
+      "expected": "z",
+      "validator": {"kind": "frequency_sorted_string"},
+      "tags": ["trial", "single"]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: empty string",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": ""},
+      "expected": "",
+      "validator": {"kind": "frequency_sorted_string"},
+      "tags": ["trial", "empty"]
+    },
+    {
+      "id": "hidden-many-groups",
+      "name": "hidden: several frequency groups",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "loveleetcode"},
+      "expected": "eeeelloovtcd",
+      "validator": {"kind": "frequency_sorted_string"},
+      "tags": ["hidden", "groups"]
+    },
+    {
+      "id": "hidden-digits",
+      "name": "hidden: digit characters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "112233333"},
+      "expected": "333331122",
+      "validator": {"kind": "frequency_sorted_string"},
+      "tags": ["hidden", "digits"]
+    }
+  ]
+}

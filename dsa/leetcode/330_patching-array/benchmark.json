@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_330",
+  "measurement_note": "With no input values, optimal coverage doubles once per patch while explicit subset-sum tracking materializes every total; size is the target upper bound.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: empty input covering through 2^8-1",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 255,
+      "input": {
+        "nums": [],
+        "n": 255
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "empty"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: empty input covering through 2^12-1",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4095,
+      "input": {
+        "nums": [],
+        "n": 4095
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "empty"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: empty input covering through 2^16-1",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 65535,
+      "input": {
+        "nums": [],
+        "n": 65535
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "empty"
+      ]
+    }
+  ]
+}

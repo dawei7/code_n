@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "385",
+  "frontend_id": "385",
+  "title_slug": "mini-parser",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064668984",
+  "verified_at": "2026-07-12T06:27:41.476586+00:00"
+}

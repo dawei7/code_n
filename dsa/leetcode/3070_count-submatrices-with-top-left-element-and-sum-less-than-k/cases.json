@@ -1,0 +1,129 @@
+{
+  "challenge_id": "lc_3070",
+  "cases": [
+    {
+      "id": "sample-small-grid",
+      "name": "sample: top-left prefix submatrices below k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7,
+            6,
+            3
+          ],
+          [
+            6,
+            6,
+            1
+          ]
+        ],
+        "k": 18
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: every prefix submatrix reaches k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            10,
+            20
+          ],
+          [
+            30,
+            40
+          ]
+        ],
+        "k": 10
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "trial: one-row prefix sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "k": 7
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-one-column",
+      "name": "trial: one-column prefix sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ],
+        "k": 8
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-rectangular",
+      "name": "real: rectangular grid with mixed prefix sums",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            4,
+            1,
+            1
+          ]
+        ],
+        "k": 10
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "prefix-sum"
+      ]
+    }
+  ]
+}

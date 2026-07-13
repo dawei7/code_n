@@ -1,0 +1,52 @@
+{
+  "challenge_id": "lc_2569",
+  "cases": [
+    {
+      "id": "benchmark-flip-all-after-add",
+      "name": "benchmark: later add uses the flipped count of ones",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          0
+        ],
+        "nums2": [
+          1,
+          2,
+          3
+        ],
+        "queries": [
+          [
+            2,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        13
+      ],
+      "tags": [
+        "benchmark",
+        "regression"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "challenge_id": "lc_3217",
+  "cases": [
+    {
+      "id": "sample-remove-middle",
+      "name": "sample: remove values from the middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        4,
+        5
+      ],
+      "tags": [
+        "sample",
+        "linked-list"
+      ]
+    },
+    {
+      "id": "sample-remove-head",
+      "name": "sample: remove the head node",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "head": [
+          5,
+          1,
+          2,
+          5,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "head"
+      ]
+    },
+    {
+      "id": "trial-remove-none",
+      "name": "trial: no node value is removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          10
+        ],
+        "head": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-remove-all",
+      "name": "trial: every node is removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          8
+        ],
+        "head": [
+          7,
+          8,
+          7
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "empty"
+      ]
+    },
+    {
+      "id": "real-repeated-values",
+      "name": "real: repeated values in the list",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4
+        ],
+        "head": [
+          4,
+          1,
+          2,
+          3,
+          4,
+          5,
+          2,
+          6
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "tags": [
+        "real",
+        "linked-list"
+      ]
+    }
+  ]
+}

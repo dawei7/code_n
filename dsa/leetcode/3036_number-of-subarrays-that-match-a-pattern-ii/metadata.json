@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_3036",
+  "source": "leetcode",
+  "frontend_id": "3036",
+  "slug": "number-of-subarrays-that-match-a-pattern-ii",
+  "title": "Number of Subarrays That Match a Pattern II",
+  "difficulty": "Hard",
+  "acceptance_rate": 34.02549581672842,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Rolling Hash",
+      "slug": "rolling-hash"
+    },
+    {
+      "name": "String Matching",
+      "slug": "string-matching"
+    },
+    {
+      "name": "Hash Function",
+      "slug": "hash-function"
+    }
+  ],
+  "url": "https://leetcode.com/problems/number-of-subarrays-that-match-a-pattern-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:autodesk",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-function",
+    "leetcode_topic:rolling-hash",
+    "leetcode_topic:string-matching"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:autodesk",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-function",
+    "topic:rolling-hash",
+    "topic:string-matching"
+  ],
+  "company_tags": [
+    {
+      "name": "Autodesk",
+      "slug": "autodesk"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Autodesk",
+        "slug": "autodesk",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

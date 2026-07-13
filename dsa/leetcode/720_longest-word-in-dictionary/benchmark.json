@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_720",
+  "measurement_note": "Size is the total number of dictionary characters. Each workload contains complete length-ten prefix chains, listed longest-first, for several starting letters. Trie construction is linear in those characters, while checking every prefix by linear list membership repeatedly scans a growing dictionary.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 110 characters across two chains",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 110,
+      "input": {"words": [
+        "aaaaaaaaaa","aaaaaaaaa","aaaaaaaa","aaaaaaa","aaaaaa","aaaaa","aaaa","aaa","aa","a",
+        "bbbbbbbbbb","bbbbbbbbb","bbbbbbbb","bbbbbbb","bbbbbb","bbbbb","bbbb","bbb","bb","b"
+      ]},
+      "expected": "aaaaaaaaaa",
+      "tags": ["benchmark", "scaling", "prefix-membership"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 440 characters across eight chains",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 440,
+      "input": {"words": [
+        "aaaaaaaaaa","aaaaaaaaa","aaaaaaaa","aaaaaaa","aaaaaa","aaaaa","aaaa","aaa","aa","a",
+        "bbbbbbbbbb","bbbbbbbbb","bbbbbbbb","bbbbbbb","bbbbbb","bbbbb","bbbb","bbb","bb","b",
+        "cccccccccc","ccccccccc","cccccccc","ccccccc","cccccc","ccccc","cccc","ccc","cc","c",
+        "dddddddddd","ddddddddd","dddddddd","ddddddd","dddddd","ddddd","dddd","ddd","dd","d",
+        "eeeeeeeeee","eeeeeeeee","eeeeeeee","eeeeeee","eeeeee","eeeee","eeee","eee","ee","e",
+        "ffffffffff","fffffffff","ffffffff","fffffff","ffffff","fffff","ffff","fff","ff","f",
+        "gggggggggg","ggggggggg","gggggggg","ggggggg","gggggg","ggggg","gggg","ggg","gg","g",
+        "hhhhhhhhhh","hhhhhhhhh","hhhhhhhh","hhhhhhh","hhhhhh","hhhhh","hhhh","hhh","hh","h"
+      ]},
+      "expected": "aaaaaaaaaa",
+      "tags": ["benchmark", "scaling", "prefix-membership"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 880 characters across sixteen chains",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 880,
+      "input": {"words": [
+        "aaaaaaaaaa","aaaaaaaaa","aaaaaaaa","aaaaaaa","aaaaaa","aaaaa","aaaa","aaa","aa","a",
+        "bbbbbbbbbb","bbbbbbbbb","bbbbbbbb","bbbbbbb","bbbbbb","bbbbb","bbbb","bbb","bb","b",
+        "cccccccccc","ccccccccc","cccccccc","ccccccc","cccccc","ccccc","cccc","ccc","cc","c",
+        "dddddddddd","ddddddddd","dddddddd","ddddddd","dddddd","ddddd","dddd","ddd","dd","d",
+        "eeeeeeeeee","eeeeeeeee","eeeeeeee","eeeeeee","eeeeee","eeeee","eeee","eee","ee","e",
+        "ffffffffff","fffffffff","ffffffff","fffffff","ffffff","fffff","ffff","fff","ff","f",
+        "gggggggggg","ggggggggg","gggggggg","ggggggg","gggggg","ggggg","gggg","ggg","gg","g",
+        "hhhhhhhhhh","hhhhhhhhh","hhhhhhhh","hhhhhhh","hhhhhh","hhhhh","hhhh","hhh","hh","h",
+        "iiiiiiiiii","iiiiiiiii","iiiiiiii","iiiiiii","iiiiii","iiiii","iiii","iii","ii","i",
+        "jjjjjjjjjj","jjjjjjjjj","jjjjjjjj","jjjjjjj","jjjjjj","jjjjj","jjjj","jjj","jj","j",
+        "kkkkkkkkkk","kkkkkkkkk","kkkkkkkk","kkkkkkk","kkkkkk","kkkkk","kkkk","kkk","kk","k",
+        "llllllllll","lllllllll","llllllll","lllllll","llllll","lllll","llll","lll","ll","l",
+        "mmmmmmmmmm","mmmmmmmmm","mmmmmmmm","mmmmmmm","mmmmmm","mmmmm","mmmm","mmm","mm","m",
+        "nnnnnnnnnn","nnnnnnnnn","nnnnnnnn","nnnnnnn","nnnnnn","nnnnn","nnnn","nnn","nn","n",
+        "oooooooooo","ooooooooo","oooooooo","ooooooo","oooooo","ooooo","oooo","ooo","oo","o",
+        "pppppppppp","ppppppppp","pppppppp","ppppppp","pppppp","ppppp","pppp","ppp","pp","p"
+      ]},
+      "expected": "aaaaaaaaaa",
+      "tags": ["benchmark", "scaling", "prefix-membership"]
+    }
+  ]
+}

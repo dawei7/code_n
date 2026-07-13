@@ -1,0 +1,6 @@
+{"challenge_id":"lc_224","cases":[
+{"id":"sample-simple","name":"sample: addition and subtraction","kind":"sample","visible":true,"input":{"s":"1 + 1"},"expected":2,"tags":["sample","parser"]},
+{"id":"sample-parentheses","name":"sample: nested context signs","kind":"sample","visible":true,"input":{"s":"(1+(4+5+2)-3)+(6+8)"},"expected":23,"tags":["parentheses"]},
+{"id":"trial-unary","name":"leading unary minus","kind":"trial","visible":true,"input":{"s":"-2 + 1"},"expected":-1,"tags":["unary"]},
+{"id":"real-negated-group","name":"hidden: subtract negative group","kind":"real","visible":false,"input":{"s":"1-(-2+3)"},"expected":0,"tags":["hidden","nested-sign"]}
+]}

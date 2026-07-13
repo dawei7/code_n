@@ -1,0 +1,2062 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_196",
+  "measurement_note": "Growing duplicate groups exercise minimum-id retention and post-mutation state.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 person rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "id": 1,
+              "email": "user000@x.test"
+            },
+            {
+              "id": 2,
+              "email": "user001@x.test"
+            },
+            {
+              "id": 3,
+              "email": "user001@x.test"
+            },
+            {
+              "id": 4,
+              "email": "user002@x.test"
+            },
+            {
+              "id": 5,
+              "email": "user002@x.test"
+            },
+            {
+              "id": 6,
+              "email": "user003@x.test"
+            },
+            {
+              "id": 7,
+              "email": "user003@x.test"
+            },
+            {
+              "id": 8,
+              "email": "user004@x.test"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "email"
+        ],
+        "rows": [
+          [
+            1,
+            "user000@x.test"
+          ],
+          [
+            2,
+            "user001@x.test"
+          ],
+          [
+            4,
+            "user002@x.test"
+          ],
+          [
+            6,
+            "user003@x.test"
+          ],
+          [
+            8,
+            "user004@x.test"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 person rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "id": 1,
+              "email": "user000@x.test"
+            },
+            {
+              "id": 2,
+              "email": "user001@x.test"
+            },
+            {
+              "id": 3,
+              "email": "user001@x.test"
+            },
+            {
+              "id": 4,
+              "email": "user002@x.test"
+            },
+            {
+              "id": 5,
+              "email": "user002@x.test"
+            },
+            {
+              "id": 6,
+              "email": "user003@x.test"
+            },
+            {
+              "id": 7,
+              "email": "user003@x.test"
+            },
+            {
+              "id": 8,
+              "email": "user004@x.test"
+            },
+            {
+              "id": 9,
+              "email": "user004@x.test"
+            },
+            {
+              "id": 10,
+              "email": "user005@x.test"
+            },
+            {
+              "id": 11,
+              "email": "user005@x.test"
+            },
+            {
+              "id": 12,
+              "email": "user006@x.test"
+            },
+            {
+              "id": 13,
+              "email": "user006@x.test"
+            },
+            {
+              "id": 14,
+              "email": "user007@x.test"
+            },
+            {
+              "id": 15,
+              "email": "user007@x.test"
+            },
+            {
+              "id": 16,
+              "email": "user008@x.test"
+            },
+            {
+              "id": 17,
+              "email": "user008@x.test"
+            },
+            {
+              "id": 18,
+              "email": "user009@x.test"
+            },
+            {
+              "id": 19,
+              "email": "user009@x.test"
+            },
+            {
+              "id": 20,
+              "email": "user010@x.test"
+            },
+            {
+              "id": 21,
+              "email": "user010@x.test"
+            },
+            {
+              "id": 22,
+              "email": "user011@x.test"
+            },
+            {
+              "id": 23,
+              "email": "user011@x.test"
+            },
+            {
+              "id": 24,
+              "email": "user012@x.test"
+            },
+            {
+              "id": 25,
+              "email": "user012@x.test"
+            },
+            {
+              "id": 26,
+              "email": "user013@x.test"
+            },
+            {
+              "id": 27,
+              "email": "user013@x.test"
+            },
+            {
+              "id": 28,
+              "email": "user014@x.test"
+            },
+            {
+              "id": 29,
+              "email": "user014@x.test"
+            },
+            {
+              "id": 30,
+              "email": "user015@x.test"
+            },
+            {
+              "id": 31,
+              "email": "user015@x.test"
+            },
+            {
+              "id": 32,
+              "email": "user016@x.test"
+            },
+            {
+              "id": 33,
+              "email": "user016@x.test"
+            },
+            {
+              "id": 34,
+              "email": "user017@x.test"
+            },
+            {
+              "id": 35,
+              "email": "user017@x.test"
+            },
+            {
+              "id": 36,
+              "email": "user018@x.test"
+            },
+            {
+              "id": 37,
+              "email": "user018@x.test"
+            },
+            {
+              "id": 38,
+              "email": "user019@x.test"
+            },
+            {
+              "id": 39,
+              "email": "user019@x.test"
+            },
+            {
+              "id": 40,
+              "email": "user020@x.test"
+            },
+            {
+              "id": 41,
+              "email": "user020@x.test"
+            },
+            {
+              "id": 42,
+              "email": "user021@x.test"
+            },
+            {
+              "id": 43,
+              "email": "user021@x.test"
+            },
+            {
+              "id": 44,
+              "email": "user022@x.test"
+            },
+            {
+              "id": 45,
+              "email": "user022@x.test"
+            },
+            {
+              "id": 46,
+              "email": "user023@x.test"
+            },
+            {
+              "id": 47,
+              "email": "user023@x.test"
+            },
+            {
+              "id": 48,
+              "email": "user024@x.test"
+            },
+            {
+              "id": 49,
+              "email": "user024@x.test"
+            },
+            {
+              "id": 50,
+              "email": "user025@x.test"
+            },
+            {
+              "id": 51,
+              "email": "user025@x.test"
+            },
+            {
+              "id": 52,
+              "email": "user026@x.test"
+            },
+            {
+              "id": 53,
+              "email": "user026@x.test"
+            },
+            {
+              "id": 54,
+              "email": "user027@x.test"
+            },
+            {
+              "id": 55,
+              "email": "user027@x.test"
+            },
+            {
+              "id": 56,
+              "email": "user028@x.test"
+            },
+            {
+              "id": 57,
+              "email": "user028@x.test"
+            },
+            {
+              "id": 58,
+              "email": "user029@x.test"
+            },
+            {
+              "id": 59,
+              "email": "user029@x.test"
+            },
+            {
+              "id": 60,
+              "email": "user030@x.test"
+            },
+            {
+              "id": 61,
+              "email": "user030@x.test"
+            },
+            {
+              "id": 62,
+              "email": "user031@x.test"
+            },
+            {
+              "id": 63,
+              "email": "user031@x.test"
+            },
+            {
+              "id": 64,
+              "email": "user032@x.test"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "email"
+        ],
+        "rows": [
+          [
+            1,
+            "user000@x.test"
+          ],
+          [
+            2,
+            "user001@x.test"
+          ],
+          [
+            4,
+            "user002@x.test"
+          ],
+          [
+            6,
+            "user003@x.test"
+          ],
+          [
+            8,
+            "user004@x.test"
+          ],
+          [
+            10,
+            "user005@x.test"
+          ],
+          [
+            12,
+            "user006@x.test"
+          ],
+          [
+            14,
+            "user007@x.test"
+          ],
+          [
+            16,
+            "user008@x.test"
+          ],
+          [
+            18,
+            "user009@x.test"
+          ],
+          [
+            20,
+            "user010@x.test"
+          ],
+          [
+            22,
+            "user011@x.test"
+          ],
+          [
+            24,
+            "user012@x.test"
+          ],
+          [
+            26,
+            "user013@x.test"
+          ],
+          [
+            28,
+            "user014@x.test"
+          ],
+          [
+            30,
+            "user015@x.test"
+          ],
+          [
+            32,
+            "user016@x.test"
+          ],
+          [
+            34,
+            "user017@x.test"
+          ],
+          [
+            36,
+            "user018@x.test"
+          ],
+          [
+            38,
+            "user019@x.test"
+          ],
+          [
+            40,
+            "user020@x.test"
+          ],
+          [
+            42,
+            "user021@x.test"
+          ],
+          [
+            44,
+            "user022@x.test"
+          ],
+          [
+            46,
+            "user023@x.test"
+          ],
+          [
+            48,
+            "user024@x.test"
+          ],
+          [
+            50,
+            "user025@x.test"
+          ],
+          [
+            52,
+            "user026@x.test"
+          ],
+          [
+            54,
+            "user027@x.test"
+          ],
+          [
+            56,
+            "user028@x.test"
+          ],
+          [
+            58,
+            "user029@x.test"
+          ],
+          [
+            60,
+            "user030@x.test"
+          ],
+          [
+            62,
+            "user031@x.test"
+          ],
+          [
+            64,
+            "user032@x.test"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 person rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "id": 1,
+              "email": "user000@x.test"
+            },
+            {
+              "id": 2,
+              "email": "user001@x.test"
+            },
+            {
+              "id": 3,
+              "email": "user001@x.test"
+            },
+            {
+              "id": 4,
+              "email": "user002@x.test"
+            },
+            {
+              "id": 5,
+              "email": "user002@x.test"
+            },
+            {
+              "id": 6,
+              "email": "user003@x.test"
+            },
+            {
+              "id": 7,
+              "email": "user003@x.test"
+            },
+            {
+              "id": 8,
+              "email": "user004@x.test"
+            },
+            {
+              "id": 9,
+              "email": "user004@x.test"
+            },
+            {
+              "id": 10,
+              "email": "user005@x.test"
+            },
+            {
+              "id": 11,
+              "email": "user005@x.test"
+            },
+            {
+              "id": 12,
+              "email": "user006@x.test"
+            },
+            {
+              "id": 13,
+              "email": "user006@x.test"
+            },
+            {
+              "id": 14,
+              "email": "user007@x.test"
+            },
+            {
+              "id": 15,
+              "email": "user007@x.test"
+            },
+            {
+              "id": 16,
+              "email": "user008@x.test"
+            },
+            {
+              "id": 17,
+              "email": "user008@x.test"
+            },
+            {
+              "id": 18,
+              "email": "user009@x.test"
+            },
+            {
+              "id": 19,
+              "email": "user009@x.test"
+            },
+            {
+              "id": 20,
+              "email": "user010@x.test"
+            },
+            {
+              "id": 21,
+              "email": "user010@x.test"
+            },
+            {
+              "id": 22,
+              "email": "user011@x.test"
+            },
+            {
+              "id": 23,
+              "email": "user011@x.test"
+            },
+            {
+              "id": 24,
+              "email": "user012@x.test"
+            },
+            {
+              "id": 25,
+              "email": "user012@x.test"
+            },
+            {
+              "id": 26,
+              "email": "user013@x.test"
+            },
+            {
+              "id": 27,
+              "email": "user013@x.test"
+            },
+            {
+              "id": 28,
+              "email": "user014@x.test"
+            },
+            {
+              "id": 29,
+              "email": "user014@x.test"
+            },
+            {
+              "id": 30,
+              "email": "user015@x.test"
+            },
+            {
+              "id": 31,
+              "email": "user015@x.test"
+            },
+            {
+              "id": 32,
+              "email": "user016@x.test"
+            },
+            {
+              "id": 33,
+              "email": "user016@x.test"
+            },
+            {
+              "id": 34,
+              "email": "user017@x.test"
+            },
+            {
+              "id": 35,
+              "email": "user017@x.test"
+            },
+            {
+              "id": 36,
+              "email": "user018@x.test"
+            },
+            {
+              "id": 37,
+              "email": "user018@x.test"
+            },
+            {
+              "id": 38,
+              "email": "user019@x.test"
+            },
+            {
+              "id": 39,
+              "email": "user019@x.test"
+            },
+            {
+              "id": 40,
+              "email": "user020@x.test"
+            },
+            {
+              "id": 41,
+              "email": "user020@x.test"
+            },
+            {
+              "id": 42,
+              "email": "user021@x.test"
+            },
+            {
+              "id": 43,
+              "email": "user021@x.test"
+            },
+            {
+              "id": 44,
+              "email": "user022@x.test"
+            },
+            {
+              "id": 45,
+              "email": "user022@x.test"
+            },
+            {
+              "id": 46,
+              "email": "user023@x.test"
+            },
+            {
+              "id": 47,
+              "email": "user023@x.test"
+            },
+            {
+              "id": 48,
+              "email": "user024@x.test"
+            },
+            {
+              "id": 49,
+              "email": "user024@x.test"
+            },
+            {
+              "id": 50,
+              "email": "user025@x.test"
+            },
+            {
+              "id": 51,
+              "email": "user025@x.test"
+            },
+            {
+              "id": 52,
+              "email": "user026@x.test"
+            },
+            {
+              "id": 53,
+              "email": "user026@x.test"
+            },
+            {
+              "id": 54,
+              "email": "user027@x.test"
+            },
+            {
+              "id": 55,
+              "email": "user027@x.test"
+            },
+            {
+              "id": 56,
+              "email": "user028@x.test"
+            },
+            {
+              "id": 57,
+              "email": "user028@x.test"
+            },
+            {
+              "id": 58,
+              "email": "user029@x.test"
+            },
+            {
+              "id": 59,
+              "email": "user029@x.test"
+            },
+            {
+              "id": 60,
+              "email": "user030@x.test"
+            },
+            {
+              "id": 61,
+              "email": "user030@x.test"
+            },
+            {
+              "id": 62,
+              "email": "user031@x.test"
+            },
+            {
+              "id": 63,
+              "email": "user031@x.test"
+            },
+            {
+              "id": 64,
+              "email": "user032@x.test"
+            },
+            {
+              "id": 65,
+              "email": "user032@x.test"
+            },
+            {
+              "id": 66,
+              "email": "user033@x.test"
+            },
+            {
+              "id": 67,
+              "email": "user033@x.test"
+            },
+            {
+              "id": 68,
+              "email": "user034@x.test"
+            },
+            {
+              "id": 69,
+              "email": "user034@x.test"
+            },
+            {
+              "id": 70,
+              "email": "user035@x.test"
+            },
+            {
+              "id": 71,
+              "email": "user035@x.test"
+            },
+            {
+              "id": 72,
+              "email": "user036@x.test"
+            },
+            {
+              "id": 73,
+              "email": "user036@x.test"
+            },
+            {
+              "id": 74,
+              "email": "user037@x.test"
+            },
+            {
+              "id": 75,
+              "email": "user037@x.test"
+            },
+            {
+              "id": 76,
+              "email": "user038@x.test"
+            },
+            {
+              "id": 77,
+              "email": "user038@x.test"
+            },
+            {
+              "id": 78,
+              "email": "user039@x.test"
+            },
+            {
+              "id": 79,
+              "email": "user039@x.test"
+            },
+            {
+              "id": 80,
+              "email": "user040@x.test"
+            },
+            {
+              "id": 81,
+              "email": "user040@x.test"
+            },
+            {
+              "id": 82,
+              "email": "user041@x.test"
+            },
+            {
+              "id": 83,
+              "email": "user041@x.test"
+            },
+            {
+              "id": 84,
+              "email": "user042@x.test"
+            },
+            {
+              "id": 85,
+              "email": "user042@x.test"
+            },
+            {
+              "id": 86,
+              "email": "user043@x.test"
+            },
+            {
+              "id": 87,
+              "email": "user043@x.test"
+            },
+            {
+              "id": 88,
+              "email": "user044@x.test"
+            },
+            {
+              "id": 89,
+              "email": "user044@x.test"
+            },
+            {
+              "id": 90,
+              "email": "user045@x.test"
+            },
+            {
+              "id": 91,
+              "email": "user045@x.test"
+            },
+            {
+              "id": 92,
+              "email": "user046@x.test"
+            },
+            {
+              "id": 93,
+              "email": "user046@x.test"
+            },
+            {
+              "id": 94,
+              "email": "user047@x.test"
+            },
+            {
+              "id": 95,
+              "email": "user047@x.test"
+            },
+            {
+              "id": 96,
+              "email": "user048@x.test"
+            },
+            {
+              "id": 97,
+              "email": "user048@x.test"
+            },
+            {
+              "id": 98,
+              "email": "user049@x.test"
+            },
+            {
+              "id": 99,
+              "email": "user049@x.test"
+            },
+            {
+              "id": 100,
+              "email": "user050@x.test"
+            },
+            {
+              "id": 101,
+              "email": "user050@x.test"
+            },
+            {
+              "id": 102,
+              "email": "user051@x.test"
+            },
+            {
+              "id": 103,
+              "email": "user051@x.test"
+            },
+            {
+              "id": 104,
+              "email": "user052@x.test"
+            },
+            {
+              "id": 105,
+              "email": "user052@x.test"
+            },
+            {
+              "id": 106,
+              "email": "user053@x.test"
+            },
+            {
+              "id": 107,
+              "email": "user053@x.test"
+            },
+            {
+              "id": 108,
+              "email": "user054@x.test"
+            },
+            {
+              "id": 109,
+              "email": "user054@x.test"
+            },
+            {
+              "id": 110,
+              "email": "user055@x.test"
+            },
+            {
+              "id": 111,
+              "email": "user055@x.test"
+            },
+            {
+              "id": 112,
+              "email": "user056@x.test"
+            },
+            {
+              "id": 113,
+              "email": "user056@x.test"
+            },
+            {
+              "id": 114,
+              "email": "user057@x.test"
+            },
+            {
+              "id": 115,
+              "email": "user057@x.test"
+            },
+            {
+              "id": 116,
+              "email": "user058@x.test"
+            },
+            {
+              "id": 117,
+              "email": "user058@x.test"
+            },
+            {
+              "id": 118,
+              "email": "user059@x.test"
+            },
+            {
+              "id": 119,
+              "email": "user059@x.test"
+            },
+            {
+              "id": 120,
+              "email": "user060@x.test"
+            },
+            {
+              "id": 121,
+              "email": "user060@x.test"
+            },
+            {
+              "id": 122,
+              "email": "user061@x.test"
+            },
+            {
+              "id": 123,
+              "email": "user061@x.test"
+            },
+            {
+              "id": 124,
+              "email": "user062@x.test"
+            },
+            {
+              "id": 125,
+              "email": "user062@x.test"
+            },
+            {
+              "id": 126,
+              "email": "user063@x.test"
+            },
+            {
+              "id": 127,
+              "email": "user063@x.test"
+            },
+            {
+              "id": 128,
+              "email": "user064@x.test"
+            },
+            {
+              "id": 129,
+              "email": "user064@x.test"
+            },
+            {
+              "id": 130,
+              "email": "user065@x.test"
+            },
+            {
+              "id": 131,
+              "email": "user065@x.test"
+            },
+            {
+              "id": 132,
+              "email": "user066@x.test"
+            },
+            {
+              "id": 133,
+              "email": "user066@x.test"
+            },
+            {
+              "id": 134,
+              "email": "user067@x.test"
+            },
+            {
+              "id": 135,
+              "email": "user067@x.test"
+            },
+            {
+              "id": 136,
+              "email": "user068@x.test"
+            },
+            {
+              "id": 137,
+              "email": "user068@x.test"
+            },
+            {
+              "id": 138,
+              "email": "user069@x.test"
+            },
+            {
+              "id": 139,
+              "email": "user069@x.test"
+            },
+            {
+              "id": 140,
+              "email": "user070@x.test"
+            },
+            {
+              "id": 141,
+              "email": "user070@x.test"
+            },
+            {
+              "id": 142,
+              "email": "user071@x.test"
+            },
+            {
+              "id": 143,
+              "email": "user071@x.test"
+            },
+            {
+              "id": 144,
+              "email": "user072@x.test"
+            },
+            {
+              "id": 145,
+              "email": "user072@x.test"
+            },
+            {
+              "id": 146,
+              "email": "user073@x.test"
+            },
+            {
+              "id": 147,
+              "email": "user073@x.test"
+            },
+            {
+              "id": 148,
+              "email": "user074@x.test"
+            },
+            {
+              "id": 149,
+              "email": "user074@x.test"
+            },
+            {
+              "id": 150,
+              "email": "user075@x.test"
+            },
+            {
+              "id": 151,
+              "email": "user075@x.test"
+            },
+            {
+              "id": 152,
+              "email": "user076@x.test"
+            },
+            {
+              "id": 153,
+              "email": "user076@x.test"
+            },
+            {
+              "id": 154,
+              "email": "user077@x.test"
+            },
+            {
+              "id": 155,
+              "email": "user077@x.test"
+            },
+            {
+              "id": 156,
+              "email": "user078@x.test"
+            },
+            {
+              "id": 157,
+              "email": "user078@x.test"
+            },
+            {
+              "id": 158,
+              "email": "user079@x.test"
+            },
+            {
+              "id": 159,
+              "email": "user079@x.test"
+            },
+            {
+              "id": 160,
+              "email": "user080@x.test"
+            },
+            {
+              "id": 161,
+              "email": "user080@x.test"
+            },
+            {
+              "id": 162,
+              "email": "user081@x.test"
+            },
+            {
+              "id": 163,
+              "email": "user081@x.test"
+            },
+            {
+              "id": 164,
+              "email": "user082@x.test"
+            },
+            {
+              "id": 165,
+              "email": "user082@x.test"
+            },
+            {
+              "id": 166,
+              "email": "user083@x.test"
+            },
+            {
+              "id": 167,
+              "email": "user083@x.test"
+            },
+            {
+              "id": 168,
+              "email": "user084@x.test"
+            },
+            {
+              "id": 169,
+              "email": "user084@x.test"
+            },
+            {
+              "id": 170,
+              "email": "user085@x.test"
+            },
+            {
+              "id": 171,
+              "email": "user085@x.test"
+            },
+            {
+              "id": 172,
+              "email": "user086@x.test"
+            },
+            {
+              "id": 173,
+              "email": "user086@x.test"
+            },
+            {
+              "id": 174,
+              "email": "user087@x.test"
+            },
+            {
+              "id": 175,
+              "email": "user087@x.test"
+            },
+            {
+              "id": 176,
+              "email": "user088@x.test"
+            },
+            {
+              "id": 177,
+              "email": "user088@x.test"
+            },
+            {
+              "id": 178,
+              "email": "user089@x.test"
+            },
+            {
+              "id": 179,
+              "email": "user089@x.test"
+            },
+            {
+              "id": 180,
+              "email": "user090@x.test"
+            },
+            {
+              "id": 181,
+              "email": "user090@x.test"
+            },
+            {
+              "id": 182,
+              "email": "user091@x.test"
+            },
+            {
+              "id": 183,
+              "email": "user091@x.test"
+            },
+            {
+              "id": 184,
+              "email": "user092@x.test"
+            },
+            {
+              "id": 185,
+              "email": "user092@x.test"
+            },
+            {
+              "id": 186,
+              "email": "user093@x.test"
+            },
+            {
+              "id": 187,
+              "email": "user093@x.test"
+            },
+            {
+              "id": 188,
+              "email": "user094@x.test"
+            },
+            {
+              "id": 189,
+              "email": "user094@x.test"
+            },
+            {
+              "id": 190,
+              "email": "user095@x.test"
+            },
+            {
+              "id": 191,
+              "email": "user095@x.test"
+            },
+            {
+              "id": 192,
+              "email": "user096@x.test"
+            },
+            {
+              "id": 193,
+              "email": "user096@x.test"
+            },
+            {
+              "id": 194,
+              "email": "user097@x.test"
+            },
+            {
+              "id": 195,
+              "email": "user097@x.test"
+            },
+            {
+              "id": 196,
+              "email": "user098@x.test"
+            },
+            {
+              "id": 197,
+              "email": "user098@x.test"
+            },
+            {
+              "id": 198,
+              "email": "user099@x.test"
+            },
+            {
+              "id": 199,
+              "email": "user099@x.test"
+            },
+            {
+              "id": 200,
+              "email": "user100@x.test"
+            },
+            {
+              "id": 201,
+              "email": "user100@x.test"
+            },
+            {
+              "id": 202,
+              "email": "user101@x.test"
+            },
+            {
+              "id": 203,
+              "email": "user101@x.test"
+            },
+            {
+              "id": 204,
+              "email": "user102@x.test"
+            },
+            {
+              "id": 205,
+              "email": "user102@x.test"
+            },
+            {
+              "id": 206,
+              "email": "user103@x.test"
+            },
+            {
+              "id": 207,
+              "email": "user103@x.test"
+            },
+            {
+              "id": 208,
+              "email": "user104@x.test"
+            },
+            {
+              "id": 209,
+              "email": "user104@x.test"
+            },
+            {
+              "id": 210,
+              "email": "user105@x.test"
+            },
+            {
+              "id": 211,
+              "email": "user105@x.test"
+            },
+            {
+              "id": 212,
+              "email": "user106@x.test"
+            },
+            {
+              "id": 213,
+              "email": "user106@x.test"
+            },
+            {
+              "id": 214,
+              "email": "user107@x.test"
+            },
+            {
+              "id": 215,
+              "email": "user107@x.test"
+            },
+            {
+              "id": 216,
+              "email": "user108@x.test"
+            },
+            {
+              "id": 217,
+              "email": "user108@x.test"
+            },
+            {
+              "id": 218,
+              "email": "user109@x.test"
+            },
+            {
+              "id": 219,
+              "email": "user109@x.test"
+            },
+            {
+              "id": 220,
+              "email": "user110@x.test"
+            },
+            {
+              "id": 221,
+              "email": "user110@x.test"
+            },
+            {
+              "id": 222,
+              "email": "user111@x.test"
+            },
+            {
+              "id": 223,
+              "email": "user111@x.test"
+            },
+            {
+              "id": 224,
+              "email": "user112@x.test"
+            },
+            {
+              "id": 225,
+              "email": "user112@x.test"
+            },
+            {
+              "id": 226,
+              "email": "user113@x.test"
+            },
+            {
+              "id": 227,
+              "email": "user113@x.test"
+            },
+            {
+              "id": 228,
+              "email": "user114@x.test"
+            },
+            {
+              "id": 229,
+              "email": "user114@x.test"
+            },
+            {
+              "id": 230,
+              "email": "user115@x.test"
+            },
+            {
+              "id": 231,
+              "email": "user115@x.test"
+            },
+            {
+              "id": 232,
+              "email": "user116@x.test"
+            },
+            {
+              "id": 233,
+              "email": "user116@x.test"
+            },
+            {
+              "id": 234,
+              "email": "user117@x.test"
+            },
+            {
+              "id": 235,
+              "email": "user117@x.test"
+            },
+            {
+              "id": 236,
+              "email": "user118@x.test"
+            },
+            {
+              "id": 237,
+              "email": "user118@x.test"
+            },
+            {
+              "id": 238,
+              "email": "user119@x.test"
+            },
+            {
+              "id": 239,
+              "email": "user119@x.test"
+            },
+            {
+              "id": 240,
+              "email": "user120@x.test"
+            },
+            {
+              "id": 241,
+              "email": "user120@x.test"
+            },
+            {
+              "id": 242,
+              "email": "user121@x.test"
+            },
+            {
+              "id": 243,
+              "email": "user121@x.test"
+            },
+            {
+              "id": 244,
+              "email": "user122@x.test"
+            },
+            {
+              "id": 245,
+              "email": "user122@x.test"
+            },
+            {
+              "id": 246,
+              "email": "user123@x.test"
+            },
+            {
+              "id": 247,
+              "email": "user123@x.test"
+            },
+            {
+              "id": 248,
+              "email": "user124@x.test"
+            },
+            {
+              "id": 249,
+              "email": "user124@x.test"
+            },
+            {
+              "id": 250,
+              "email": "user125@x.test"
+            },
+            {
+              "id": 251,
+              "email": "user125@x.test"
+            },
+            {
+              "id": 252,
+              "email": "user126@x.test"
+            },
+            {
+              "id": 253,
+              "email": "user126@x.test"
+            },
+            {
+              "id": 254,
+              "email": "user127@x.test"
+            },
+            {
+              "id": 255,
+              "email": "user127@x.test"
+            },
+            {
+              "id": 256,
+              "email": "user128@x.test"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "email"
+        ],
+        "rows": [
+          [
+            1,
+            "user000@x.test"
+          ],
+          [
+            2,
+            "user001@x.test"
+          ],
+          [
+            4,
+            "user002@x.test"
+          ],
+          [
+            6,
+            "user003@x.test"
+          ],
+          [
+            8,
+            "user004@x.test"
+          ],
+          [
+            10,
+            "user005@x.test"
+          ],
+          [
+            12,
+            "user006@x.test"
+          ],
+          [
+            14,
+            "user007@x.test"
+          ],
+          [
+            16,
+            "user008@x.test"
+          ],
+          [
+            18,
+            "user009@x.test"
+          ],
+          [
+            20,
+            "user010@x.test"
+          ],
+          [
+            22,
+            "user011@x.test"
+          ],
+          [
+            24,
+            "user012@x.test"
+          ],
+          [
+            26,
+            "user013@x.test"
+          ],
+          [
+            28,
+            "user014@x.test"
+          ],
+          [
+            30,
+            "user015@x.test"
+          ],
+          [
+            32,
+            "user016@x.test"
+          ],
+          [
+            34,
+            "user017@x.test"
+          ],
+          [
+            36,
+            "user018@x.test"
+          ],
+          [
+            38,
+            "user019@x.test"
+          ],
+          [
+            40,
+            "user020@x.test"
+          ],
+          [
+            42,
+            "user021@x.test"
+          ],
+          [
+            44,
+            "user022@x.test"
+          ],
+          [
+            46,
+            "user023@x.test"
+          ],
+          [
+            48,
+            "user024@x.test"
+          ],
+          [
+            50,
+            "user025@x.test"
+          ],
+          [
+            52,
+            "user026@x.test"
+          ],
+          [
+            54,
+            "user027@x.test"
+          ],
+          [
+            56,
+            "user028@x.test"
+          ],
+          [
+            58,
+            "user029@x.test"
+          ],
+          [
+            60,
+            "user030@x.test"
+          ],
+          [
+            62,
+            "user031@x.test"
+          ],
+          [
+            64,
+            "user032@x.test"
+          ],
+          [
+            66,
+            "user033@x.test"
+          ],
+          [
+            68,
+            "user034@x.test"
+          ],
+          [
+            70,
+            "user035@x.test"
+          ],
+          [
+            72,
+            "user036@x.test"
+          ],
+          [
+            74,
+            "user037@x.test"
+          ],
+          [
+            76,
+            "user038@x.test"
+          ],
+          [
+            78,
+            "user039@x.test"
+          ],
+          [
+            80,
+            "user040@x.test"
+          ],
+          [
+            82,
+            "user041@x.test"
+          ],
+          [
+            84,
+            "user042@x.test"
+          ],
+          [
+            86,
+            "user043@x.test"
+          ],
+          [
+            88,
+            "user044@x.test"
+          ],
+          [
+            90,
+            "user045@x.test"
+          ],
+          [
+            92,
+            "user046@x.test"
+          ],
+          [
+            94,
+            "user047@x.test"
+          ],
+          [
+            96,
+            "user048@x.test"
+          ],
+          [
+            98,
+            "user049@x.test"
+          ],
+          [
+            100,
+            "user050@x.test"
+          ],
+          [
+            102,
+            "user051@x.test"
+          ],
+          [
+            104,
+            "user052@x.test"
+          ],
+          [
+            106,
+            "user053@x.test"
+          ],
+          [
+            108,
+            "user054@x.test"
+          ],
+          [
+            110,
+            "user055@x.test"
+          ],
+          [
+            112,
+            "user056@x.test"
+          ],
+          [
+            114,
+            "user057@x.test"
+          ],
+          [
+            116,
+            "user058@x.test"
+          ],
+          [
+            118,
+            "user059@x.test"
+          ],
+          [
+            120,
+            "user060@x.test"
+          ],
+          [
+            122,
+            "user061@x.test"
+          ],
+          [
+            124,
+            "user062@x.test"
+          ],
+          [
+            126,
+            "user063@x.test"
+          ],
+          [
+            128,
+            "user064@x.test"
+          ],
+          [
+            130,
+            "user065@x.test"
+          ],
+          [
+            132,
+            "user066@x.test"
+          ],
+          [
+            134,
+            "user067@x.test"
+          ],
+          [
+            136,
+            "user068@x.test"
+          ],
+          [
+            138,
+            "user069@x.test"
+          ],
+          [
+            140,
+            "user070@x.test"
+          ],
+          [
+            142,
+            "user071@x.test"
+          ],
+          [
+            144,
+            "user072@x.test"
+          ],
+          [
+            146,
+            "user073@x.test"
+          ],
+          [
+            148,
+            "user074@x.test"
+          ],
+          [
+            150,
+            "user075@x.test"
+          ],
+          [
+            152,
+            "user076@x.test"
+          ],
+          [
+            154,
+            "user077@x.test"
+          ],
+          [
+            156,
+            "user078@x.test"
+          ],
+          [
+            158,
+            "user079@x.test"
+          ],
+          [
+            160,
+            "user080@x.test"
+          ],
+          [
+            162,
+            "user081@x.test"
+          ],
+          [
+            164,
+            "user082@x.test"
+          ],
+          [
+            166,
+            "user083@x.test"
+          ],
+          [
+            168,
+            "user084@x.test"
+          ],
+          [
+            170,
+            "user085@x.test"
+          ],
+          [
+            172,
+            "user086@x.test"
+          ],
+          [
+            174,
+            "user087@x.test"
+          ],
+          [
+            176,
+            "user088@x.test"
+          ],
+          [
+            178,
+            "user089@x.test"
+          ],
+          [
+            180,
+            "user090@x.test"
+          ],
+          [
+            182,
+            "user091@x.test"
+          ],
+          [
+            184,
+            "user092@x.test"
+          ],
+          [
+            186,
+            "user093@x.test"
+          ],
+          [
+            188,
+            "user094@x.test"
+          ],
+          [
+            190,
+            "user095@x.test"
+          ],
+          [
+            192,
+            "user096@x.test"
+          ],
+          [
+            194,
+            "user097@x.test"
+          ],
+          [
+            196,
+            "user098@x.test"
+          ],
+          [
+            198,
+            "user099@x.test"
+          ],
+          [
+            200,
+            "user100@x.test"
+          ],
+          [
+            202,
+            "user101@x.test"
+          ],
+          [
+            204,
+            "user102@x.test"
+          ],
+          [
+            206,
+            "user103@x.test"
+          ],
+          [
+            208,
+            "user104@x.test"
+          ],
+          [
+            210,
+            "user105@x.test"
+          ],
+          [
+            212,
+            "user106@x.test"
+          ],
+          [
+            214,
+            "user107@x.test"
+          ],
+          [
+            216,
+            "user108@x.test"
+          ],
+          [
+            218,
+            "user109@x.test"
+          ],
+          [
+            220,
+            "user110@x.test"
+          ],
+          [
+            222,
+            "user111@x.test"
+          ],
+          [
+            224,
+            "user112@x.test"
+          ],
+          [
+            226,
+            "user113@x.test"
+          ],
+          [
+            228,
+            "user114@x.test"
+          ],
+          [
+            230,
+            "user115@x.test"
+          ],
+          [
+            232,
+            "user116@x.test"
+          ],
+          [
+            234,
+            "user117@x.test"
+          ],
+          [
+            236,
+            "user118@x.test"
+          ],
+          [
+            238,
+            "user119@x.test"
+          ],
+          [
+            240,
+            "user120@x.test"
+          ],
+          [
+            242,
+            "user121@x.test"
+          ],
+          [
+            244,
+            "user122@x.test"
+          ],
+          [
+            246,
+            "user123@x.test"
+          ],
+          [
+            248,
+            "user124@x.test"
+          ],
+          [
+            250,
+            "user125@x.test"
+          ],
+          [
+            252,
+            "user126@x.test"
+          ],
+          [
+            254,
+            "user127@x.test"
+          ],
+          [
+            256,
+            "user128@x.test"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

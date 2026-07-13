@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "182",
+  "frontend_id": "182",
+  "title_slug": "duplicate-emails",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2064193880",
+  "verified_at": "2026-07-11T18:25:13.719895+00:00"
+}

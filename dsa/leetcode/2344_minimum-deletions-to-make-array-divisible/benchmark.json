@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_2344",
+  "cases": [
+    {
+      "id": "benchmark-no-candidate",
+      "name": "benchmark: no nums value divides the gcd",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          10,
+          15
+        ],
+        "nums_divide": [
+          14,
+          28
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

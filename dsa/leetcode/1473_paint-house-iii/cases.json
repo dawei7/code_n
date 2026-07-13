@@ -1,0 +1,172 @@
+{
+  "challenge_id": "lc_1473",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: paint all houses",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "houses": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cost": [
+          [
+            1,
+            10
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "m": 5,
+        "n": 2,
+        "target": 3
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: fixed colors constrain result",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "houses": [
+          0,
+          2,
+          1,
+          2,
+          0
+        ],
+        "cost": [
+          [
+            1,
+            10
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "m": 5,
+        "n": 2,
+        "target": 3
+      },
+      "expected": 11,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: impossible fixed neighborhoods",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "houses": [
+          3,
+          1,
+          2,
+          3
+        ],
+        "cost": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "m": 4,
+        "n": 3,
+        "target": 3
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-small-two-color",
+      "name": "hidden: small unpainted case",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "houses": [
+          0,
+          0,
+          0
+        ],
+        "cost": [
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "m": 3,
+        "n": 2,
+        "target": 2
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

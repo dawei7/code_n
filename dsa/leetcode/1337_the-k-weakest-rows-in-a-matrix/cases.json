@@ -1,0 +1,150 @@
+{
+  "challenge_id": "lc_1337",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: five rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "k": 3
+      },
+      "expected": [
+        2,
+        0,
+        3
+      ],
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: tie by index",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "k": 2
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-civilian",
+      "name": "single empty row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0
+          ]
+        ],
+        "k": 1
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-one-column",
+      "name": "hidden: one column rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

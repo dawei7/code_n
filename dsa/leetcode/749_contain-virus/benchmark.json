@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_749",
+  "measurement_note": "Size is the number of grid cells. Each square grid contains one large infected component and one healthy corner. Discovering the component once is linear in size; restarting the same traversal from every infected cell makes the day quadratic.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 2 by 2 nearly infected grid", "kind": "benchmark", "visible": false, "size": 4, "input": {"isInfected": [[1,1],[1,0]]}, "expected": 2, "tags": ["benchmark", "scaling", "single-region"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 3 by 3 nearly infected grid", "kind": "benchmark", "visible": false, "size": 9, "input": {"isInfected": [[1,1,1],[1,1,1],[1,1,0]]}, "expected": 2, "tags": ["benchmark", "scaling", "single-region"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 4 by 4 nearly infected grid", "kind": "benchmark", "visible": false, "size": 16, "input": {"isInfected": [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,0]]}, "expected": 2, "tags": ["benchmark", "scaling", "single-region"]}
+  ]
+}

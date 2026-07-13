@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_2944",
+  "cases": [
+    {
+      "id": "sample-three-fruits",
+      "name": "sample: buy a free fruit to extend coverage",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-cheap-extension",
+      "name": "sample: cheap later extension",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          10,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-longer-prices",
+      "name": "sample: longer mixed prices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          26,
+          18,
+          6,
+          12,
+          49,
+          7,
+          45,
+          45
+        ]
+      },
+      "expected": 39,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-fruit",
+      "name": "trial: single fruit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          9
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-regression-uncovered-gap",
+      "name": "real: later purchases cannot leave a gap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          7,
+          12,
+          11,
+          2,
+          2,
+          13
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "hidden",
+        "regression"
+      ]
+    }
+  ]
+}

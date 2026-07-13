@@ -1,0 +1,82 @@
+{
+  "challenge_id": "lc_2386",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: fifth largest subsequence sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          -2
+        ],
+        "k": 5
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: larger mixed array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -2,
+          3,
+          4,
+          -10,
+          12
+        ],
+        "k": 16
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: maximum sum when k is one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          -2,
+          10
+        ],
+        "k": 1
+      },
+      "expected": 20,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-third-largest",
+      "name": "hidden: third largest sum from mixed signs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          -1,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

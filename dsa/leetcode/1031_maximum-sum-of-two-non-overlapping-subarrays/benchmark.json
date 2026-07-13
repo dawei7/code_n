@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_1031",
+  "cases": [
+    {
+      "id": "benchmark-longer-array",
+      "name": "benchmark: longer array",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          2,
+          7,
+          1,
+          9,
+          3,
+          8,
+          6,
+          5,
+          10,
+          2,
+          1
+        ],
+        "first_len": 3,
+        "second_len": 4
+      },
+      "expected": 46,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

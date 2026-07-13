@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_1385",
+  "cases": [
+    {
+      "id": "benchmark-negative-and-positive",
+      "name": "benchmark: spread around separators",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr1": [
+          -10,
+          0,
+          10,
+          20
+        ],
+        "arr2": [
+          -5,
+          5,
+          15
+        ],
+        "d": 4
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

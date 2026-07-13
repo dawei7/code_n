@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_507",
+  "cases": [
+    {"id": "sample-perfect", "name": "sample: 28 is perfect", "kind": "sample", "visible": true, "input": {"num": 28}, "expected": true, "tags": ["sample", "perfect"]},
+    {"id": "sample-prime", "name": "sample: prime number", "kind": "sample", "visible": true, "input": {"num": 7}, "expected": false, "tags": ["sample", "prime"]},
+    {"id": "sample-one", "name": "sample: one has no proper divisors", "kind": "sample", "visible": true, "input": {"num": 1}, "expected": false, "tags": ["sample", "boundary"]},
+    {"id": "trial-first-perfect", "name": "trial: smallest perfect number", "kind": "trial", "visible": true, "input": {"num": 6}, "expected": true, "tags": ["trial", "perfect"]},
+    {"id": "trial-square", "name": "trial: square root divisor is counted once", "kind": "trial", "visible": true, "input": {"num": 36}, "expected": false, "tags": ["trial", "square"]},
+    {"id": "hidden-perfect-496", "name": "hidden: third perfect number", "kind": "real", "visible": false, "input": {"num": 496}, "expected": true, "tags": ["hidden", "perfect"]},
+    {"id": "hidden-perfect-8128", "name": "hidden: fourth perfect number", "kind": "real", "visible": false, "input": {"num": 8128}, "expected": true, "tags": ["hidden", "perfect"]}
+  ]
+}

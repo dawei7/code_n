@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_2597",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: forbidden difference splits choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one element",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "small"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: mixed values across remainder groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          4,
+          5,
+          7,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 23,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-duplicates-do-not-conflict",
+      "name": "trial: duplicate values are distinct subset choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-consecutive-values",
+      "name": "hidden: consecutive values with k one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 7,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

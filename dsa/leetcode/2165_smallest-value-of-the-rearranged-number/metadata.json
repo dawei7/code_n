@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2165",
+  "source": "leetcode",
+  "frontend_id": "2165",
+  "slug": "smallest-value-of-the-rearranged-number",
+  "title": "Smallest Value of the Rearranged Number",
+  "difficulty": "Medium",
+  "acceptance_rate": 53.66123898804028,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/smallest-value-of-the-rearranged-number/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:cognizant",
+    "leetcode_company:microsoft",
+    "leetcode_company:t-mobiles",
+    "leetcode_topic:math",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:cognizant",
+    "company:microsoft",
+    "company:t-mobiles",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:math",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    },
+    {
+      "name": "Cognizant",
+      "slug": "cognizant"
+    },
+    {
+      "name": "T-mobile",
+      "slug": "t-mobiles"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Cognizant",
+        "slug": "cognizant",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "T-mobile",
+        "slug": "t-mobiles",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

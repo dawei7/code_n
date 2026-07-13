@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_278",
+  "measurement_note": "Size is version count; the first bad version at n forces linear scanning through every version while binary search remains logarithmic.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: last bad among 64 versions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 64,
+        "bad": 64
+      },
+      "expected": 64,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "last-bad"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: last bad among 512 versions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "n": 512,
+        "bad": 512
+      },
+      "expected": 512,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "last-bad"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: last bad among 4096 versions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {
+        "n": 4096,
+        "bad": 4096
+      },
+      "expected": 4096,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "last-bad"
+      ]
+    }
+  ]
+}

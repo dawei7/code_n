@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_796",
+  "measurement_note": "Size is the common string length. KMP scans O(size) characters; comparing every possible rotation character by character takes O(size^2) work on these repeated-character nonmatches.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: repeated nonmatch of length 12", "kind": "benchmark", "visible": false, "size": 12, "input": {"s": "aaaaaaaaaaab", "goal": "aaaaaaaaaaaa"}, "expected": false, "tags": ["benchmark", "scaling", "repeated", "not-rotation"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: repeated nonmatch of length 48", "kind": "benchmark", "visible": false, "size": 48, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", "goal": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "expected": false, "tags": ["benchmark", "scaling", "repeated", "not-rotation"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: repeated nonmatch of length 96", "kind": "benchmark", "visible": false, "size": 96, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", "goal": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "expected": false, "tags": ["benchmark", "scaling", "repeated", "not-rotation"]}
+  ]
+}

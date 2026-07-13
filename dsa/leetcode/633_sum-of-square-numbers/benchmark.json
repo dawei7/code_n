@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_633",
+  "measurement_note": "Size is floor(sqrt(c)). Each c is size squared minus one, which is 3 modulo 4 and has no representation, forcing the complete pointer sweep. The two-pointer method is linear in size, while a correct nested enumeration checks a quadratic number of root pairs.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: root bound 64", "kind": "benchmark", "visible": false, "size": 64, "input": {"c": 4095}, "expected": false, "tags": ["benchmark", "scaling", "impossible"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: root bound 128", "kind": "benchmark", "visible": false, "size": 128, "input": {"c": 16383}, "expected": false, "tags": ["benchmark", "scaling", "impossible"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: root bound 256", "kind": "benchmark", "visible": false, "size": 256, "input": {"c": 65535}, "expected": false, "tags": ["benchmark", "scaling", "impossible"]}
+  ]
+}

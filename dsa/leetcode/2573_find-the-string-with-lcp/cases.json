@@ -1,0 +1,221 @@
+{
+  "challenge_id": "lc_2573",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: alternating repeated suffixes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lcp": [
+          [
+            4,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": "abab",
+      "validator": {
+        "kind": "lcp_string",
+        "lcp_param": "lcp"
+      },
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one repeated character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lcp": [
+          [
+            4,
+            3,
+            2,
+            1
+          ],
+          [
+            3,
+            3,
+            2,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": "aaaa",
+      "validator": {
+        "kind": "lcp_string",
+        "lcp_param": "lcp"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: inconsistent diagonal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lcp": [
+          [
+            4,
+            3,
+            2,
+            1
+          ],
+          [
+            3,
+            3,
+            2,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": "",
+      "validator": {
+        "kind": "lcp_string",
+        "lcp_param": "lcp"
+      },
+      "tags": [
+        "sample",
+        "invalid"
+      ]
+    },
+    {
+      "id": "trial-distinct-letters",
+      "name": "trial: no shared prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lcp": [
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": "abc",
+      "validator": {
+        "kind": "lcp_string",
+        "lcp_param": "lcp"
+      },
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: single character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lcp": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": "a",
+      "validator": {
+        "kind": "lcp_string",
+        "lcp_param": "lcp"
+      },
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "real-asymmetric-matrix",
+      "name": "hidden: asymmetric values are impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lcp": [
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": "",
+      "validator": {
+        "kind": "lcp_string",
+        "lcp_param": "lcp"
+      },
+      "tags": [
+        "hidden",
+        "invalid"
+      ]
+    }
+  ]
+}

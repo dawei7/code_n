@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_2572",
+  "cases": [
+    {
+      "id": "benchmark-multiple-ones",
+      "name": "benchmark: multiple ones are independent optional factors",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          6
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "benchmark",
+        "regression"
+      ]
+    }
+  ]
+}

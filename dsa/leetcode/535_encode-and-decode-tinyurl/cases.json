@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_535",
+  "cases": [
+    {"id":"sample-single","name":"sample: encode and decode one URL","kind":"sample","visible":true,"input":{"long_urls":["https://leetcode.com/problems/design-tinyurl"],"decode_order":[0]},"expected":{"short_urls":["https://tinyurl.com/0"],"decoded_urls":["https://leetcode.com/problems/design-tinyurl"]},"tags":["sample","round-trip"]},
+    {"id":"sample-reverse","name":"sample: decode two mappings in reverse order","kind":"sample","visible":true,"input":{"long_urls":["https://example.com/a","https://example.com/b"],"decode_order":[1,0]},"expected":{"short_urls":["https://tinyurl.com/0","https://tinyurl.com/1"],"decoded_urls":["https://example.com/b","https://example.com/a"]},"tags":["sample","ordering"]},
+    {"id":"sample-duplicate","name":"sample: repeated URL reuses its short code","kind":"sample","visible":true,"input":{"long_urls":["https://example.com/a","https://example.com/b","https://example.com/a"],"decode_order":[0,2,1]},"expected":{"short_urls":["https://tinyurl.com/0","https://tinyurl.com/1","https://tinyurl.com/0"],"decoded_urls":["https://example.com/a","https://example.com/a","https://example.com/b"]},"tags":["sample","duplicate"]},
+    {"id":"trial-query","name":"trial: preserve query and fragment characters","kind":"trial","visible":true,"input":{"long_urls":["https://example.com/path?q=a%20b#section"],"decode_order":[0,0]},"expected":{"short_urls":["https://tinyurl.com/0"],"decoded_urls":["https://example.com/path?q=a%20b#section","https://example.com/path?q=a%20b#section"]},"tags":["trial","opaque"]},
+    {"id":"trial-several","name":"trial: several independent mappings","kind":"trial","visible":true,"input":{"long_urls":["http://a.test/1","http://b.test/2","http://c.test/3"],"decode_order":[2,1,0]},"expected":{"short_urls":["https://tinyurl.com/0","https://tinyurl.com/1","https://tinyurl.com/2"],"decoded_urls":["http://c.test/3","http://b.test/2","http://a.test/1"]},"tags":["trial","multiple"]},
+    {"id":"hidden-shared-prefix","name":"hidden: similar URLs remain distinct","kind":"real","visible":false,"input":{"long_urls":["https://host.test/path/a","https://host.test/path/ab","https://host.test/path/a?b=1"],"decode_order":[0,1,2]},"expected":{"short_urls":["https://tinyurl.com/0","https://tinyurl.com/1","https://tinyurl.com/2"],"decoded_urls":["https://host.test/path/a","https://host.test/path/ab","https://host.test/path/a?b=1"]},"tags":["hidden","distinct"]}
+  ]
+}

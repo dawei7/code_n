@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_415",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: unequal lengths without final carry",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": "11",
+        "num2": "123"
+      },
+      "expected": "134",
+      "tags": [
+        "sample",
+        "unequal"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: carry within the sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": "456",
+        "num2": "77"
+      },
+      "expected": "533",
+      "tags": [
+        "sample",
+        "carry"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: both values are zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": "0",
+        "num2": "0"
+      },
+      "expected": "0",
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-final-carry",
+      "name": "trial: carry creates a new leading digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "999",
+        "num2": "1"
+      },
+      "expected": "1000",
+      "tags": [
+        "trial",
+        "final-carry"
+      ]
+    },
+    {
+      "id": "trial-longer-second",
+      "name": "trial: second input has a long prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "5",
+        "num2": "100000"
+      },
+      "expected": "100005",
+      "tags": [
+        "trial",
+        "unequal"
+      ]
+    },
+    {
+      "id": "hidden-many-carries",
+      "name": "hidden: carry propagates through both inputs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num1": "999999999",
+        "num2": "999999999"
+      },
+      "expected": "1999999998",
+      "tags": [
+        "hidden",
+        "many-carries"
+      ]
+    },
+    {
+      "id": "hidden-no-carry",
+      "name": "hidden: aligned digits add independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num1": "123456789",
+        "num2": "111111111"
+      },
+      "expected": "234567900",
+      "tags": [
+        "hidden",
+        "no-carry"
+      ]
+    },
+    {
+      "id": "hidden-large",
+      "name": "hidden: values exceed machine integer precision",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num1": "98765432101234567890",
+        "num2": "12345678909876543210"
+      },
+      "expected": "111111111011111111100",
+      "tags": [
+        "hidden",
+        "large"
+      ]
+    }
+  ]
+}

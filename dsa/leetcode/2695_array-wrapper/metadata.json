@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2695",
+  "source": "leetcode",
+  "frontend_id": "2695",
+  "slug": "array-wrapper",
+  "title": "Array Wrapper",
+  "difficulty": "Easy",
+  "acceptance_rate": 89.04759678324294,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/array-wrapper/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript",
+    "leetcode_studyplan:30-days-of-javascript",
+    "leetcode_studyplan:30-days-of-javascript:30-days-of-javascript-157-z2up",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode",
+    "study_plan:30-days-of-javascript",
+    "study_plan_section:30-days-of-javascript:30-days-of-javascript-157-z2up",
+    "subset:neetcode:allNC"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-javascript",
+      "plan_name": "30 Days of JavaScript",
+      "section_slug": "30-days-of-javascript-157-z2up",
+      "section_name": "Classes",
+      "path": [
+        "Classes"
+      ],
+      "order": 29,
+      "section_order": 6,
+      "problem_order": 2,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-javascript/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "JavaScript"
+      ],
+      "order": 970,
+      "section_order": 18,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "array-wrapper",
+      "leetcode_slug": "array-wrapper",
+      "difficulty": "Easy",
+      "problem_order": 27
+    }
+  ]
+}

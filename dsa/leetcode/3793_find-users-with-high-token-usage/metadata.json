@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_3793",
+  "source": "leetcode",
+  "frontend_id": "3793",
+  "slug": "find-users-with-high-token-usage",
+  "title": "Find Users with High Token Usage",
+  "difficulty": "Easy",
+  "acceptance_rate": 56.84118455579158,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [],
+  "url": "https://leetcode.com/problems/find-users-with-high-token-usage/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

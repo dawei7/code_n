@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_193",
+  "measurement_note": "Growing line files exercise anchored full-line regex filtering.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 candidate lines",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "stdin": "",
+        "files": {
+          "file.txt": "100-200-0000\ninvalid-1\ninvalid-2\n103-203-0003\ninvalid-4\ninvalid-5\n106-206-0006\ninvalid-7\n"
+        }
+      },
+      "expected": "100-200-0000\n103-203-0003\n106-206-0006",
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 candidate lines",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "stdin": "",
+        "files": {
+          "file.txt": "100-200-0000\ninvalid-1\ninvalid-2\n103-203-0003\ninvalid-4\ninvalid-5\n106-206-0006\ninvalid-7\ninvalid-8\n109-209-0009\ninvalid-10\ninvalid-11\n112-212-0012\ninvalid-13\ninvalid-14\n115-215-0015\ninvalid-16\ninvalid-17\n118-218-0018\ninvalid-19\ninvalid-20\n121-221-0021\ninvalid-22\ninvalid-23\n124-224-0024\ninvalid-25\ninvalid-26\n127-227-0027\ninvalid-28\ninvalid-29\n130-230-0030\ninvalid-31\ninvalid-32\n133-233-0033\ninvalid-34\ninvalid-35\n136-236-0036\ninvalid-37\ninvalid-38\n139-239-0039\ninvalid-40\ninvalid-41\n142-242-0042\ninvalid-43\ninvalid-44\n145-245-0045\ninvalid-46\ninvalid-47\n148-248-0048\ninvalid-49\ninvalid-50\n151-251-0051\ninvalid-52\ninvalid-53\n154-254-0054\ninvalid-55\ninvalid-56\n157-257-0057\ninvalid-58\ninvalid-59\n160-260-0060\ninvalid-61\ninvalid-62\n163-263-0063\n"
+        }
+      },
+      "expected": "100-200-0000\n103-203-0003\n106-206-0006\n109-209-0009\n112-212-0012\n115-215-0015\n118-218-0018\n121-221-0021\n124-224-0024\n127-227-0027\n130-230-0030\n133-233-0033\n136-236-0036\n139-239-0039\n142-242-0042\n145-245-0045\n148-248-0048\n151-251-0051\n154-254-0054\n157-257-0057\n160-260-0060\n163-263-0063",
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 candidate lines",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "stdin": "",
+        "files": {
+          "file.txt": "100-200-0000\ninvalid-1\ninvalid-2\n103-203-0003\ninvalid-4\ninvalid-5\n106-206-0006\ninvalid-7\ninvalid-8\n109-209-0009\ninvalid-10\ninvalid-11\n112-212-0012\ninvalid-13\ninvalid-14\n115-215-0015\ninvalid-16\ninvalid-17\n118-218-0018\ninvalid-19\ninvalid-20\n121-221-0021\ninvalid-22\ninvalid-23\n124-224-0024\ninvalid-25\ninvalid-26\n127-227-0027\ninvalid-28\ninvalid-29\n130-230-0030\ninvalid-31\ninvalid-32\n133-233-0033\ninvalid-34\ninvalid-35\n136-236-0036\ninvalid-37\ninvalid-38\n139-239-0039\ninvalid-40\ninvalid-41\n142-242-0042\ninvalid-43\ninvalid-44\n145-245-0045\ninvalid-46\ninvalid-47\n148-248-0048\ninvalid-49\ninvalid-50\n151-251-0051\ninvalid-52\ninvalid-53\n154-254-0054\ninvalid-55\ninvalid-56\n157-257-0057\ninvalid-58\ninvalid-59\n160-260-0060\ninvalid-61\ninvalid-62\n163-263-0063\ninvalid-64\ninvalid-65\n166-266-0066\ninvalid-67\ninvalid-68\n169-269-0069\ninvalid-70\ninvalid-71\n172-272-0072\ninvalid-73\ninvalid-74\n175-275-0075\ninvalid-76\ninvalid-77\n178-278-0078\ninvalid-79\ninvalid-80\n181-281-0081\ninvalid-82\ninvalid-83\n184-284-0084\ninvalid-85\ninvalid-86\n187-287-0087\ninvalid-88\ninvalid-89\n190-290-0090\ninvalid-91\ninvalid-92\n193-293-0093\ninvalid-94\ninvalid-95\n196-296-0096\ninvalid-97\ninvalid-98\n199-299-0099\ninvalid-100\ninvalid-101\n202-302-0102\ninvalid-103\ninvalid-104\n205-305-0105\ninvalid-106\ninvalid-107\n208-308-0108\ninvalid-109\ninvalid-110\n211-311-0111\ninvalid-112\ninvalid-113\n214-314-0114\ninvalid-115\ninvalid-116\n217-317-0117\ninvalid-118\ninvalid-119\n220-320-0120\ninvalid-121\ninvalid-122\n223-323-0123\ninvalid-124\ninvalid-125\n226-326-0126\ninvalid-127\ninvalid-128\n229-329-0129\ninvalid-130\ninvalid-131\n232-332-0132\ninvalid-133\ninvalid-134\n235-335-0135\ninvalid-136\ninvalid-137\n238-338-0138\ninvalid-139\ninvalid-140\n241-341-0141\ninvalid-142\ninvalid-143\n244-344-0144\ninvalid-145\ninvalid-146\n247-347-0147\ninvalid-148\ninvalid-149\n250-350-0150\ninvalid-151\ninvalid-152\n253-353-0153\ninvalid-154\ninvalid-155\n256-356-0156\ninvalid-157\ninvalid-158\n259-359-0159\ninvalid-160\ninvalid-161\n262-362-0162\ninvalid-163\ninvalid-164\n265-365-0165\ninvalid-166\ninvalid-167\n268-368-0168\ninvalid-169\ninvalid-170\n271-371-0171\ninvalid-172\ninvalid-173\n274-374-0174\ninvalid-175\ninvalid-176\n277-377-0177\ninvalid-178\ninvalid-179\n280-380-0180\ninvalid-181\ninvalid-182\n283-383-0183\ninvalid-184\ninvalid-185\n286-386-0186\ninvalid-187\ninvalid-188\n289-389-0189\ninvalid-190\ninvalid-191\n292-392-0192\ninvalid-193\ninvalid-194\n295-395-0195\ninvalid-196\ninvalid-197\n298-398-0198\ninvalid-199\ninvalid-200\n301-401-0201\ninvalid-202\ninvalid-203\n304-404-0204\ninvalid-205\ninvalid-206\n307-407-0207\ninvalid-208\ninvalid-209\n310-410-0210\ninvalid-211\ninvalid-212\n313-413-0213\ninvalid-214\ninvalid-215\n316-416-0216\ninvalid-217\ninvalid-218\n319-419-0219\ninvalid-220\ninvalid-221\n322-422-0222\ninvalid-223\ninvalid-224\n325-425-0225\ninvalid-226\ninvalid-227\n328-428-0228\ninvalid-229\ninvalid-230\n331-431-0231\ninvalid-232\ninvalid-233\n334-434-0234\ninvalid-235\ninvalid-236\n337-437-0237\ninvalid-238\ninvalid-239\n340-440-0240\ninvalid-241\ninvalid-242\n343-443-0243\ninvalid-244\ninvalid-245\n346-446-0246\ninvalid-247\ninvalid-248\n349-449-0249\ninvalid-250\ninvalid-251\n352-452-0252\ninvalid-253\ninvalid-254\n355-455-0255\n"
+        }
+      },
+      "expected": "100-200-0000\n103-203-0003\n106-206-0006\n109-209-0009\n112-212-0012\n115-215-0015\n118-218-0018\n121-221-0021\n124-224-0024\n127-227-0027\n130-230-0030\n133-233-0033\n136-236-0036\n139-239-0039\n142-242-0042\n145-245-0045\n148-248-0048\n151-251-0051\n154-254-0054\n157-257-0057\n160-260-0060\n163-263-0063\n166-266-0066\n169-269-0069\n172-272-0072\n175-275-0075\n178-278-0078\n181-281-0081\n184-284-0084\n187-287-0087\n190-290-0090\n193-293-0093\n196-296-0096\n199-299-0099\n202-302-0102\n205-305-0105\n208-308-0108\n211-311-0111\n214-314-0114\n217-317-0117\n220-320-0120\n223-323-0123\n226-326-0126\n229-329-0129\n232-332-0132\n235-335-0135\n238-338-0138\n241-341-0141\n244-344-0144\n247-347-0147\n250-350-0150\n253-353-0153\n256-356-0156\n259-359-0159\n262-362-0162\n265-365-0165\n268-368-0168\n271-371-0171\n274-374-0174\n277-377-0177\n280-380-0180\n283-383-0183\n286-386-0186\n289-389-0189\n292-392-0192\n295-395-0195\n298-398-0198\n301-401-0201\n304-404-0204\n307-407-0207\n310-410-0210\n313-413-0213\n316-416-0216\n319-419-0219\n322-422-0222\n325-425-0225\n328-428-0228\n331-431-0231\n334-434-0234\n337-437-0237\n340-440-0240\n343-443-0243\n346-446-0246\n349-449-0249\n352-452-0252\n355-455-0255",
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

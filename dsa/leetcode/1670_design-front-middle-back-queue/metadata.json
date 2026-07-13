@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_1670",
+  "source": "leetcode",
+  "frontend_id": "1670",
+  "slug": "design-front-middle-back-queue",
+  "title": "Design Front Middle Back Queue",
+  "difficulty": "Medium",
+  "acceptance_rate": 58.25063863234428,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Linked List",
+      "slug": "linked-list"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Queue",
+      "slug": "queue"
+    },
+    {
+      "name": "Doubly-Linked List",
+      "slug": "doubly-linked-list"
+    },
+    {
+      "name": "Data Stream",
+      "slug": "data-stream"
+    }
+  ],
+  "url": "https://leetcode.com/problems/design-front-middle-back-queue/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:citadel",
+    "leetcode_topic:array",
+    "leetcode_topic:data-stream",
+    "leetcode_topic:design",
+    "leetcode_topic:doubly-linked-list",
+    "leetcode_topic:linked-list",
+    "leetcode_topic:queue"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:citadel",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:data-stream",
+    "topic:design",
+    "topic:doubly-linked-list",
+    "topic:linked-list",
+    "topic:queue"
+  ],
+  "company_tags": [
+    {
+      "name": "Citadel",
+      "slug": "citadel"
+    },
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Citadel",
+        "slug": "citadel",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

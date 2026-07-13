@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_478",
+  "cases": [
+    {"id": "sample-center", "name": "sample: zero radius draw lands at center", "kind": "sample", "visible": true, "input": {"radius": 1, "x_center": 0, "y_center": 0, "random_values": [0, 0], "draws": 2}, "expected": [[0, 0], [0, 0]], "validator": {"kind": "float_matrix_close", "tolerance": 1e-9}, "tags": ["sample", "center"]},
+    {"id": "sample-positive-x", "name": "sample: quarter-area radius on positive x-axis", "kind": "sample", "visible": true, "input": {"radius": 2, "x_center": 1, "y_center": -1, "random_values": [0.25, 0], "draws": 1}, "expected": [[2, -1]], "validator": {"kind": "float_matrix_close", "tolerance": 1e-9}, "tags": ["sample", "translation"]},
+    {"id": "sample-positive-y", "name": "sample: quarter turn from shifted center", "kind": "sample", "visible": true, "input": {"radius": 4, "x_center": -2, "y_center": 3, "random_values": [0.25, 0.25], "draws": 1}, "expected": [[-2, 5]], "validator": {"kind": "float_matrix_close", "tolerance": 1e-9}, "tags": ["sample", "angle"]},
+    {"id": "trial-zero-draws", "name": "trial: no requested points", "kind": "trial", "visible": true, "input": {"radius": 3, "x_center": 1, "y_center": 2, "random_values": [0.5, 0.5], "draws": 0}, "expected": [], "validator": {"kind": "float_matrix_close", "tolerance": 1e-9}, "tags": ["trial", "empty"]},
+    {"id": "trial-opposite-points", "name": "trial: stream position carries across draws", "kind": "trial", "visible": true, "input": {"radius": 2, "x_center": 0, "y_center": 0, "random_values": [0.25, 0, 0.25, 0.5], "draws": 2}, "expected": [[1, 0], [-1, 0]], "validator": {"kind": "float_matrix_close", "tolerance": 1e-9}, "tags": ["trial", "stream"]},
+    {"id": "hidden-shifted-center", "name": "hidden: zero radial draw preserves shifted center", "kind": "real", "visible": false, "input": {"radius": 10, "x_center": -7, "y_center": 4, "random_values": [0, 0.75], "draws": 1}, "expected": [[-7, 4]], "validator": {"kind": "float_matrix_close", "tolerance": 1e-9}, "tags": ["hidden", "center"]},
+    {"id": "hidden-diagonal", "name": "hidden: half-radius-squared diagonal draw", "kind": "real", "visible": false, "input": {"radius": 2, "x_center": 1, "y_center": 1, "random_values": [0.5, 0.125], "draws": 1}, "expected": [[2, 2]], "validator": {"kind": "float_matrix_close", "tolerance": 1e-9}, "tags": ["hidden", "diagonal"]}
+  ]
+}

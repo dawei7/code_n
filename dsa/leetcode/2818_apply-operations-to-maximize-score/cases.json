@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_2818",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: prime score chooses high values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          3,
+          9,
+          3,
+          8
+        ],
+        "k": 2
+      },
+      "tags": [
+        "sample",
+        "prime-score"
+      ],
+      "expected": 81
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one operation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          19,
+          12,
+          14,
+          6,
+          10,
+          18
+        ],
+        "k": 3
+      },
+      "tags": [
+        "sample",
+        "monotonic"
+      ],
+      "expected": 4788
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one subarray only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          30
+        ],
+        "k": 1
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 30
+    },
+    {
+      "id": "trial-tie-prime-score-leftmost",
+      "name": "trial: equal prime score uses leftmost subarray winner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15
+        ],
+        "k": 4
+      },
+      "tags": [
+        "trial",
+        "tie"
+      ],
+      "expected": 9000
+    },
+    {
+      "id": "real-mixed-prime-scores",
+      "name": "hidden: mixed prime scores and values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          12,
+          7,
+          18,
+          25,
+          30
+        ],
+        "k": 8
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 49997704
+    }
+  ]
+}

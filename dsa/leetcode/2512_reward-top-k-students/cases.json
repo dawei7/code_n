@@ -1,0 +1,156 @@
+{
+  "challenge_id": "lc_2512",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: positive feedback ranks the first student higher",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "positive_feedback": [
+          "smart",
+          "brilliant",
+          "studious"
+        ],
+        "negative_feedback": [
+          "not"
+        ],
+        "report": [
+          "this student is studious",
+          "the student is smart"
+        ],
+        "student_id": [
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negative feedback lowers the first student",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "positive_feedback": [
+          "smart",
+          "brilliant",
+          "studious"
+        ],
+        "negative_feedback": [
+          "not"
+        ],
+        "report": [
+          "this student is not studious",
+          "the student is smart"
+        ],
+        "student_id": [
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one student report",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "positive_feedback": [
+          "f"
+        ],
+        "negative_feedback": [
+          "f"
+        ],
+        "report": [
+          "f"
+        ],
+        "student_id": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-score-tie-by-id",
+      "name": "trial: tied scores sort by smaller student id",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "positive_feedback": [
+          "good"
+        ],
+        "negative_feedback": [
+          "bad"
+        ],
+        "report": [
+          "good",
+          "good"
+        ],
+        "student_id": [
+          2,
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-top-one-after-penalties",
+      "name": "hidden: top one student after negative feedback",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "positive_feedback": [
+          "excellent"
+        ],
+        "negative_feedback": [
+          "late"
+        ],
+        "report": [
+          "late late",
+          "excellent"
+        ],
+        "student_id": [
+          10,
+          5
+        ],
+        "k": 1
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

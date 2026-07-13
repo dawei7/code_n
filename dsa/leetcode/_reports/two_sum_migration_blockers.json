@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "blockers": {
+    "401": {
+      "reason": "The canonical input is one integer in the fixed domain 0..10, and every conforming implementation operates over at most 720 valid clock candidates (or 1024 LED masks), so runtime complexity is O(1) for the entire domain. Three increasing tiers spanning 4x cannot be made complexity-sensitive without changing the public solve(turned_on) contract or adding artificial repetition. Documentation, correctness cases, optimal app-local solution, and remotely Accepted native submission 2064711580 are complete; only the required scaling benchmark is blocked.",
+      "recorded_at": "2026-07-12T07:11:57.798799+00:00"
+    },
+    "405": {
+      "reason": "The canonical input is a signed 32-bit integer, so the conversion performs at most eight hexadecimal-digit steps and every conforming algorithm is O(1) over the complete domain. Three runtime tiers cannot establish a slower asymptotic class or reliably separate it within eight steps without changing the public solve(num) contract or introducing artificial repetition. Documentation, correctness cases, optimal app-local solution, and remotely Accepted native submission 2064721217 are complete; only the required scaling benchmark is blocked.",
+      "recorded_at": "2026-07-12T07:22:18.824965+00:00"
+    },
+    "479": {
+      "reason": "The canonical input is one integer in the fixed domain 1..8, and the optimal runtime artifact is an exhaustive eight-entry result table, so every conforming lookup is O(1) over the complete domain. Exactly three runtime tiers spanning 4x cannot establish a slower asymptotic class within eight possible inputs without replacing the canonical solve(n) contract with artificial repeated work. Documentation, correctness cases, optimal app-local solution, and remotely Accepted native submission 2064993265 are complete; only the required scaling benchmark is blocked.",
+      "recorded_at": "2026-07-12T12:48:47.2290443Z"
+    }
+  }
+}

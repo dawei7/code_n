@@ -1,0 +1,91 @@
+{
+  "challenge_id": "lc_3024",
+  "cases": [
+    {
+      "id": "sample-equilateral",
+      "name": "sample: all sides equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": "equilateral",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-scalene",
+      "name": "sample: three different valid sides",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": "scalene",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-none",
+      "name": "trial: triangle inequality fails",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          3
+        ]
+      },
+      "expected": "none",
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-isosceles",
+      "name": "trial: exactly two sides equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          8
+        ]
+      },
+      "expected": "isosceles",
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-unsorted-isosceles",
+      "name": "real: unsorted valid isosceles triangle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          10,
+          10
+        ]
+      },
+      "expected": "isosceles",
+      "tags": [
+        "real",
+        "constant"
+      ]
+    }
+  ]
+}

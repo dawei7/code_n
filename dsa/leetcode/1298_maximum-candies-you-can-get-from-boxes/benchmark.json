@@ -1,0 +1,56 @@
+{
+  "challenge_id": "lc_1298",
+  "cases": [
+    {
+      "id": "benchmark-key-chain",
+      "name": "benchmark: key chain",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "status": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "candies": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "keys": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          []
+        ],
+        "contained_boxes": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          []
+        ],
+        "initial_boxes": [
+          0
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

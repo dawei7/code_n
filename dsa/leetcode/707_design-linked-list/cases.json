@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_707",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: insert and delete middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["addAtHead",1],["addAtTail",3],["addAtIndex",1,2],["get",1],["deleteAtIndex",1],["get",1]]},
+      "expected": [2,3],
+      "tags": ["sample", "middle"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: empty get then head insert",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["get",0],["addAtHead",4],["get",0]]},
+      "expected": [-1,4],
+      "tags": ["sample", "empty", "head"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: ignore index beyond size",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["addAtTail",1],["addAtIndex",5,9],["get",1]]},
+      "expected": [-1],
+      "tags": ["sample", "invalid-index"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: negative insertion index means head",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["addAtTail",2],["addAtIndex",-1,1],["get",0],["get",1]]},
+      "expected": [1,2],
+      "tags": ["trial", "negative-index"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: delete only element",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["addAtHead",7],["deleteAtIndex",0],["get",0]]},
+      "expected": [-1],
+      "tags": ["trial", "empty-after-delete"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: append through index equal to size",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["addAtHead",1],["addAtIndex",1,2],["addAtIndex",2,3],["get",2]]},
+      "expected": [3],
+      "tags": ["hidden", "append-index"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: invalid deletions change nothing",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["addAtTail",5],["deleteAtIndex",-1],["deleteAtIndex",1],["get",0]]},
+      "expected": [5],
+      "tags": ["hidden", "invalid-delete"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: delete head and tail",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["addAtTail",1],["addAtTail",2],["addAtTail",3],["deleteAtIndex",0],["deleteAtIndex",1],["get",0],["get",1]]},
+      "expected": [2,-1],
+      "tags": ["hidden", "endpoint-delete"]
+    }
+  ]
+}

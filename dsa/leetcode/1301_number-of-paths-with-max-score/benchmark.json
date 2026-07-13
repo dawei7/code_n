@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1301",
+  "cases": [
+    {
+      "id": "benchmark-many-best-paths",
+      "name": "benchmark: many best paths",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "board": [
+          "E99",
+          "999",
+          "99S"
+        ]
+      },
+      "expected": [
+        27,
+        6
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

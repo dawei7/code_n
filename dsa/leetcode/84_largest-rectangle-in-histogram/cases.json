@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_84",
+  "cases": [
+    {"id": "sample-standard", "name": "sample: interior two-bar rectangle", "kind": "sample", "visible": true, "input": {"heights": [2,1,5,6,2,3]}, "expected": 10, "tags": ["sample"]},
+    {"id": "sample-two", "name": "sample: two increasing bars", "kind": "sample", "visible": true, "input": {"heights": [2,4]}, "expected": 4, "tags": ["sample"]},
+    {"id": "trial-zero", "name": "single zero-height bar", "kind": "trial", "visible": true, "input": {"heights": [0]}, "expected": 0, "tags": ["boundary"]},
+    {"id": "trial-increasing", "name": "increasing bars finalized by sentinel", "kind": "trial", "visible": true, "input": {"heights": [1,2,3,4]}, "expected": 6, "tags": ["monotonic"]},
+    {"id": "real-plateau", "name": "hidden: equal-height plateau", "kind": "real", "visible": false, "input": {"heights": [2,2,2]}, "expected": 6, "tags": ["hidden", "plateau"]}
+  ]
+}

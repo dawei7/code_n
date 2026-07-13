@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_488",
+  "cases": [
+    {"id": "sample-impossible", "name": "sample: available colors cannot clear the board", "kind": "sample", "visible": true, "input": {"board": "WRRBBW", "hand": "RB"}, "expected": -1, "tags": ["sample", "impossible"]},
+    {"id": "sample-two-steps", "name": "sample: two insertions trigger complete removal", "kind": "sample", "visible": true, "input": {"board": "WWRRBBWW", "hand": "WRBRW"}, "expected": 2, "tags": ["sample", "cascade"]},
+    {"id": "sample-single-color", "name": "sample: complete a one-ball board", "kind": "sample", "visible": true, "input": {"board": "G", "hand": "GGGGG"}, "expected": 2, "tags": ["sample", "single-color"]},
+    {"id": "trial-mixed-three", "name": "trial: mixed board needs three balls", "kind": "trial", "visible": true, "input": {"board": "RBYYBBRRB", "hand": "YRBGB"}, "expected": 3, "tags": ["trial", "mixed"]},
+    {"id": "trial-one-insertion", "name": "trial: one ball completes a pair", "kind": "trial", "visible": true, "input": {"board": "RR", "hand": "R"}, "expected": 1, "tags": ["trial", "pair"]},
+    {"id": "hidden-independent-runs", "name": "hidden: clear three independent pairs", "kind": "real", "visible": false, "input": {"board": "RRGGBB", "hand": "RGB"}, "expected": 3, "tags": ["hidden", "independent-runs"]},
+    {"id": "hidden-double-cascade", "name": "hidden: two insertions cause chained removals", "kind": "real", "visible": false, "input": {"board": "RRWWRRBBRR", "hand": "WB"}, "expected": 2, "tags": ["hidden", "cascade"]}
+  ]
+}

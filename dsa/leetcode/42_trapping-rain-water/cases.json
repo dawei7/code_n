@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_42",
+  "cases": [
+    {"id": "sample-1", "name": "sample: several basins", "kind": "sample", "visible": true, "input": {"height": [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]}, "expected": 6, "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: one irregular basin", "kind": "sample", "visible": true, "input": {"height": [4, 2, 0, 3, 2, 5]}, "expected": 9, "tags": ["sample", "basin"]},
+    {"id": "trial-empty", "name": "empty elevation map", "kind": "trial", "visible": true, "input": {"height": []}, "expected": 0, "tags": ["empty"]},
+    {"id": "trial-monotone", "name": "monotone bars trap nothing", "kind": "trial", "visible": true, "input": {"height": [1, 2, 3, 4]}, "expected": 0, "tags": ["monotone"]},
+    {"id": "real-flat-bottom", "name": "hidden: flat basin bottom", "kind": "real", "visible": false, "input": {"height": [5, 0, 0, 0, 5]}, "expected": 15, "tags": ["hidden", "basin"]}
+  ]
+}

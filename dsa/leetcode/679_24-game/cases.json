@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_679",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: multiplication of two differences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cards": [
+          4,
+          1,
+          8,
+          7
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "solvable"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no legal expression reaches 24",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cards": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "unsatisfiable"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: fractional intermediate is required",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cards": [
+          3,
+          3,
+          8,
+          8
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "division"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: sum all four cards",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cards": [
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "addition"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: repeated ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cards": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: nested fractional expression",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cards": [
+          1,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "fraction"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: exhaustive false instance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cards": [
+          1,
+          1,
+          7,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "unsatisfiable"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: subtraction order matters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cards": [
+          1,
+          3,
+          4,
+          6
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "operand-order"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: high-state false instance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cards": [
+          3,
+          4,
+          6,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "exhaustive"
+      ]
+    }
+  ]
+}
+

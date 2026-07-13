@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_559",
+  "cases": [
+    {
+      "id": "sample-branching",
+      "name": "sample: uneven three-level tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          [
+            [
+              3,
+              [
+                [
+                  5,
+                  []
+                ],
+                [
+                  6,
+                  []
+                ]
+              ]
+            ],
+            [
+              2,
+              []
+            ],
+            [
+              4,
+              []
+            ]
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "branching"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one node",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          7,
+          []
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-node"
+      ]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: empty tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": null
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-chain",
+      "name": "trial: one node per level",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          [
+            [
+              2,
+              [
+                [
+                  3,
+                  [
+                    [
+                      4,
+                      []
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "chain"
+      ]
+    },
+    {
+      "id": "trial-wide",
+      "name": "trial: many leaf children",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          10,
+          [
+            [
+              1,
+              []
+            ],
+            [
+              2,
+              []
+            ],
+            [
+              3,
+              []
+            ],
+            [
+              4,
+              []
+            ]
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "wide"
+      ]
+    },
+    {
+      "id": "hidden-uneven",
+      "name": "hidden: deepest branch is not first",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          0,
+          [
+            [
+              1,
+              []
+            ],
+            [
+              2,
+              [
+                [
+                  3,
+                  []
+                ],
+                [
+                  4,
+                  [
+                    [
+                      5,
+                      []
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              6,
+              []
+            ]
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "uneven"
+      ]
+    },
+    {
+      "id": "hidden-negative",
+      "name": "hidden: values do not affect depth",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          -1,
+          [
+            [
+              -2,
+              [
+                [
+                  -3,
+                  []
+                ]
+              ]
+            ],
+            [
+              100,
+              []
+            ]
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "values-irrelevant"
+      ]
+    }
+  ]
+}
+

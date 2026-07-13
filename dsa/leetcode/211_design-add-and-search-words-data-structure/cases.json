@@ -1,0 +1,6 @@
+{"challenge_id":"lc_211","cases":[
+{"id":"sample-wildcards","name":"sample: exact and wildcard searches","kind":"sample","visible":true,"input":{"operations":[["addWord","bad"],["addWord","dad"],["addWord","mad"],["search","pad"],["search","bad"],["search",".ad"],["search","b.."]]},"expected":[false,true,true,true],"tags":["sample","trie"]},
+{"id":"trial-empty","name":"search before any insertion","kind":"trial","visible":true,"input":{"operations":[["search","."],["search","a"]]},"expected":[false,false],"tags":["boundary"]},
+{"id":"trial-length","name":"wildcards still require equal length","kind":"trial","visible":true,"input":{"operations":[["addWord","at"],["search","."],["search",".."],["search","..."]]},"expected":[false,true,false],"tags":["length"]},
+{"id":"real-branching","name":"hidden: wildcard branches converge on terminal","kind":"real","visible":false,"input":{"operations":[["addWord","car"],["addWord","cat"],["search","ca."],["search","c.."],["search",".a."]]},"expected":[true,true,true],"tags":["hidden","wildcard"]}
+]}

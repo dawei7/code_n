@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_1365",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: duplicate middle values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        4,
+        0,
+        1,
+        1,
+        3
+      ],
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: descending values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          5,
+          4,
+          8
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        0,
+        3
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-min-and-max",
+      "name": "hidden: minimum and maximum constraints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          100
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

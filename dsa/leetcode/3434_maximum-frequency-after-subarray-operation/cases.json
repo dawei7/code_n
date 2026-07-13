@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_3434",
+  "cases": [
+    {
+      "id": "sample-make-two-ones",
+      "name": "sample: one extra target value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-make-four-tens",
+      "name": "sample: repeated transform target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          2,
+          3,
+          4,
+          5,
+          5,
+          4,
+          3,
+          2,
+          2
+        ],
+        "k": 10
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-already-targets",
+      "name": "trial: existing targets remain useful",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          1,
+          1,
+          1
+        ],
+        "k": 5
+      },
+      "expected": 5,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-many-values",
+      "name": "real: values across full small domain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          50,
+          2,
+          49,
+          3,
+          48,
+          2,
+          49,
+          50,
+          1,
+          2
+        ],
+        "k": 50
+      },
+      "expected": 4,
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

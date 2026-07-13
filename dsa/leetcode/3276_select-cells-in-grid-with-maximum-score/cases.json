@@ -1,0 +1,147 @@
+{
+  "challenge_id": "lc_3276",
+  "cases": [
+    {
+      "id": "sample-distinct-grid",
+      "name": "sample: all rows can choose high distinct values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-duplicate-value",
+      "name": "sample: duplicate high value across rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            8,
+            7,
+            6
+          ],
+          [
+            8,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "trial: one row chooses max value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            1,
+            5,
+            4
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-repeated-values",
+      "name": "trial: repeated values limit choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            4,
+            3
+          ],
+          [
+            4,
+            2,
+            2
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-tense-grid",
+      "name": "real: mixed rows with repeated high values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            9,
+            8,
+            7,
+            7
+          ],
+          [
+            9,
+            6,
+            5,
+            4
+          ],
+          [
+            8,
+            6,
+            10,
+            3
+          ],
+          [
+            2,
+            10,
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": 34,
+      "tags": [
+        "real",
+        "bitmask"
+      ]
+    }
+  ]
+}

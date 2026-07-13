@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_3309",
+  "cases": [
+    {
+      "id": "benchmark-constant-permutations",
+      "name": "benchmark: fixed-size permutation enumeration",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          123,
+          45,
+          67
+        ]
+      },
+      "expected": 1013443,
+      "tags": [
+        "benchmark",
+        "constant"
+      ]
+    }
+  ]
+}

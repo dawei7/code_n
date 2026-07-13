@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1126",
+  "source": "leetcode",
+  "frontend_id": "1126",
+  "slug": "active-businesses",
+  "title": "Active Businesses",
+  "difficulty": "Medium",
+  "acceptance_rate": 66.00622945146219,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/active-businesses/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:yelp",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:yelp",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Yelp",
+      "slug": "yelp"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Yelp",
+        "slug": "yelp",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

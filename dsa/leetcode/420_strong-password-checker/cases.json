@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_420",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one lowercase character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "password": "a"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "short"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all classes but too short",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "password": "aA1"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "short"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: already strong password",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "password": "1337C0d3"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "strong"
+      ]
+    },
+    {
+      "id": "trial-two-runs",
+      "name": "trial: two repeat runs need separate repairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "aaa111"
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "repeats"
+      ]
+    },
+    {
+      "id": "trial-one-replacement",
+      "name": "trial: one replacement breaks a run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "Aa1aaa"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "replacement"
+      ]
+    },
+    {
+      "id": "hidden-length-only",
+      "name": "hidden: overlength password without repeat runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "password": "ABABABABABABABABABAB1"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "overlength"
+      ]
+    },
+    {
+      "id": "hidden-long-run",
+      "name": "hidden: deletion and replacement costs overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "password": "aaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "long-run"
+      ]
+    },
+    {
+      "id": "hidden-mixed-remainders",
+      "name": "hidden: repeat runs have different deletion priorities",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "password": "bbaaaaaaaaaaaaaaacccccc"
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "deletion-order"
+      ]
+    },
+    {
+      "id": "hidden-missing-classes",
+      "name": "hidden: one long digit run lacks two classes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "password": "1111111111"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "missing-types"
+      ]
+    }
+  ]
+}

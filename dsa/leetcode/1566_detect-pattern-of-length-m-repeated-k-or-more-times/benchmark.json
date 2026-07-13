@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_1566",
+  "cases": [
+    {
+      "id": "benchmark-longer-pattern",
+      "name": "benchmark: length-four pattern repeats twice",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          2,
+          2,
+          3,
+          2,
+          2,
+          2,
+          3
+        ],
+        "m": 4,
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

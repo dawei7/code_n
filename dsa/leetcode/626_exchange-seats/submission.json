@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "626",
+  "frontend_id": "626",
+  "title_slug": "exchange-seats",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065488731",
+  "verified_at": "2026-07-12T23:13:16.227438+00:00"
+}

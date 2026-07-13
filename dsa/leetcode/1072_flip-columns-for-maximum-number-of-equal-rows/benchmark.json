@@ -1,0 +1,49 @@
+{
+  "challenge_id": "lc_1072",
+  "cases": [
+    {
+      "id": "benchmark-four-columns",
+      "name": "benchmark: four columns",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_3473",
+  "cases": [
+    {
+      "id": "sample-two-subarrays",
+      "name": "sample: two subarrays length at least two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          -1,
+          3,
+          3,
+          4
+        ],
+        "k": 2,
+        "m": 2
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "trial-negative-gap",
+      "name": "trial: skip negative middle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -10,
+          6,
+          7,
+          -2,
+          8
+        ],
+        "k": 2,
+        "m": 1
+      },
+      "expected": 24,
+      "tags": [
+        "trial",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-forced-length",
+      "name": "trial: forced minimum lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          -5,
+          4,
+          6,
+          -1
+        ],
+        "k": 2,
+        "m": 3
+      },
+      "expected": 15,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-three-blocks",
+      "name": "real: choose three separated blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          -1,
+          5,
+          -8,
+          6,
+          6,
+          -2,
+          7,
+          -3,
+          8
+        ],
+        "k": 3,
+        "m": 2
+      },
+      "expected": 32,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

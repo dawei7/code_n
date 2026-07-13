@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_2335",
+  "cases": [
+    {
+      "id": "benchmark-balanced-types",
+      "name": "benchmark: three equal cup types",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "amount": [
+          8,
+          8,
+          8
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

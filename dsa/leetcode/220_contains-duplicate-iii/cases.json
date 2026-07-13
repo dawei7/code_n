@@ -1,0 +1,6 @@
+{"challenge_id":"lc_220","cases":[
+{"id":"sample-equal","name":"sample: equal values within index range","kind":"sample","visible":true,"input":{"nums":[1,2,3,1],"indexDiff":3,"valueDiff":0},"expected":true,"tags":["sample","bucket"]},
+{"id":"sample-false","name":"sample: neither constraint aligns","kind":"sample","visible":true,"input":{"nums":[1,5,9,1,5,9],"indexDiff":2,"valueDiff":3},"expected":false,"tags":["sample"]},
+{"id":"trial-neighbor","name":"neighboring buckets can qualify","kind":"trial","visible":true,"input":{"nums":[1,4],"indexDiff":1,"valueDiff":3},"expected":true,"tags":["neighbor-bucket"]},
+{"id":"real-negative","name":"hidden: floor buckets for negatives","kind":"real","visible":false,"input":{"nums":[-3,-1],"indexDiff":1,"valueDiff":2},"expected":true,"tags":["hidden","negative"]}
+]}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "642",
+  "frontend_id": "642",
+  "title_slug": "design-search-autocomplete-system",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065507081",
+  "verified_at": "2026-07-13T00:19:10.960362+00:00"
+}

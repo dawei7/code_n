@@ -1,0 +1,214 @@
+{
+  "challenge_id": "lc_3459",
+  "cases": [
+    {
+      "id": "sample-long-v",
+      "name": "sample: longest V-shaped diagonal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            2,
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            2,
+            2,
+            0
+          ],
+          [
+            2,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            0,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "v-shape"
+      ]
+    },
+    {
+      "id": "sample-single-cell",
+      "name": "sample: one starting cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-straight-diagonal",
+      "name": "trial: straight alternating diagonal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "straight"
+      ]
+    },
+    {
+      "id": "trial-turn-needed",
+      "name": "trial: clockwise turn extends segment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            2,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "turn"
+      ]
+    },
+    {
+      "id": "real-dense-pattern",
+      "name": "real: dense alternating pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            0,
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1,
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            2,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            0,
+            2,
+            0,
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "diagonal-dp"
+      ]
+    }
+  ]
+}

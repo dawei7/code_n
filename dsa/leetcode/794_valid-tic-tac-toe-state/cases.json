@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_794",
+  "cases": [
+    {"id": "sample-1", "name": "sample: O moves first", "kind": "sample", "visible": true, "input": {"board": ["O  ", "   ", "   "]}, "expected": false, "tags": ["sample", "invalid-count"]},
+    {"id": "sample-2", "name": "sample: too many X marks", "kind": "sample", "visible": true, "input": {"board": ["XOX", " X ", "   "]}, "expected": false, "tags": ["sample", "invalid-count"]},
+    {"id": "sample-3", "name": "sample: legal eight-move state", "kind": "sample", "visible": true, "input": {"board": ["XOX", "O O", "XOX"]}, "expected": true, "tags": ["sample", "no-winner"]},
+    {"id": "trial-1", "name": "trial: empty board", "kind": "trial", "visible": true, "input": {"board": ["   ", "   ", "   "]}, "expected": true, "tags": ["trial", "empty"]},
+    {"id": "trial-2", "name": "trial: opening X", "kind": "trial", "visible": true, "input": {"board": ["X  ", "   ", "   "]}, "expected": true, "tags": ["trial", "opening"]},
+    {"id": "trial-3", "name": "trial: one move by each player", "kind": "trial", "visible": true, "input": {"board": ["XO ", "   ", "   "]}, "expected": true, "tags": ["trial", "no-winner"]},
+    {"id": "hidden-1", "name": "hidden: X wins on fifth move", "kind": "real", "visible": false, "input": {"board": ["XXX", "OO ", "   "]}, "expected": true, "tags": ["hidden", "x-wins"]},
+    {"id": "hidden-2", "name": "hidden: O wins on sixth move", "kind": "real", "visible": false, "input": {"board": ["XX ", "OOO", "X  "]}, "expected": true, "tags": ["hidden", "o-wins"]},
+    {"id": "hidden-3", "name": "hidden: both players have winning rows", "kind": "real", "visible": false, "input": {"board": ["XXX", "OOO", "X O"]}, "expected": false, "tags": ["hidden", "both-win"]}
+  ]
+}

@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_348","cases":[
+{"id":"sample-1","name":"sample: final bottom-row win","kind":"sample","visible":true,"input":{"n":3,"moves":[[0,0,1],[0,2,2],[2,2,1],[1,1,2],[2,0,1],[1,0,2],[2,1,1]]},"expected":[0,0,0,0,0,0,1],"tags":["sample","row"]},
+{"id":"sample-2","name":"sample: player one wins a row","kind":"sample","visible":true,"input":{"n":2,"moves":[[0,0,1],[1,0,2],[0,1,1]]},"expected":[0,0,1],"tags":["sample","row"]},
+{"id":"sample-3","name":"sample: one-cell board","kind":"sample","visible":true,"input":{"n":1,"moves":[[0,0,1]]},"expected":[1],"tags":["sample","boundary"]},
+{"id":"trial-column","name":"trial: player two wins a column","kind":"trial","visible":false,"input":{"n":2,"moves":[[0,0,1],[0,1,2],[1,0,1],[1,1,2]]},"expected":[0,0,0,2],"tags":["trial","column"]},
+{"id":"trial-main-diagonal","name":"trial: player one wins main diagonal","kind":"trial","visible":false,"input":{"n":3,"moves":[[0,0,1],[0,1,2],[1,1,1],[0,2,2],[2,2,1]]},"expected":[0,0,0,0,1],"tags":["trial","diagonal"]},
+{"id":"hidden-anti-diagonal","name":"hidden: player two wins anti-diagonal","kind":"real","visible":false,"input":{"n":3,"moves":[[0,0,1],[0,2,2],[1,0,1],[1,1,2],[2,1,1],[2,0,2]]},"expected":[0,0,0,0,0,2],"tags":["hidden","anti-diagonal"]},
+{"id":"hidden-no-winner","name":"hidden: incomplete lines","kind":"real","visible":false,"input":{"n":3,"moves":[[0,0,1],[0,1,2],[1,0,1],[2,0,2]]},"expected":[0,0,0,0],"tags":["hidden","no-winner"]},
+{"id":"hidden-cancellation","name":"hidden: opposing marks cancel without false win","kind":"real","visible":false,"input":{"n":4,"moves":[[0,0,1],[0,1,2],[0,2,1],[1,1,2],[2,2,1]]},"expected":[0,0,0,0,0],"tags":["hidden","cancellation"]}
+]}

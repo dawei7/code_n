@@ -1,0 +1,184 @@
+{
+  "challenge_id": "lc_2812",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: thief blocks the starting cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "grid"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one thief in the middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "path"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-corner-safe-path",
+      "name": "trial: thief away from one corner path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "center-thief"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-two-thieves",
+      "name": "trial: two thieves shape the safest path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "two-thieves"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-narrow-safe-corridor",
+      "name": "hidden: narrow safe corridor around thieves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "corridor"
+      ],
+      "expected": 1
+    }
+  ]
+}

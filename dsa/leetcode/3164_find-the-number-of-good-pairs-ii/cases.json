@@ -1,0 +1,123 @@
+{
+  "challenge_id": "lc_3164",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: many divisibility relations with k one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          3,
+          4
+        ],
+        "nums2": [
+          1,
+          3,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: medium version mirrors easy sample",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          4,
+          12
+        ],
+        "nums2": [
+          2,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two nums1 and two divisors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          10,
+          20
+        ],
+        "nums2": [
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: repeated nums1 and nums2 values multiply counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          12,
+          12,
+          24,
+          36
+        ],
+        "nums2": [
+          1,
+          2,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 16,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-large-divisor-gaps",
+      "name": "real: sparse matching multiples",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          30,
+          60,
+          90,
+          100,
+          150
+        ],
+        "nums2": [
+          3,
+          5,
+          10
+        ],
+        "k": 3
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "sparse"
+      ]
+    }
+  ]
+}

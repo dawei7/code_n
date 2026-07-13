@@ -1,0 +1,306 @@
+{
+  "challenge_id": "lc_2920",
+  "cases": [
+    {
+      "id": "sample-path-penalty",
+      "name": "sample: path with penalties",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "coins": [
+          10,
+          10,
+          3,
+          3
+        ],
+        "k": 5
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "tree-dp"
+      ]
+    },
+    {
+      "id": "sample-root-k-zero",
+      "name": "sample: root with no penalty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "coins": [
+          8,
+          4,
+          4
+        ],
+        "k": 0
+      },
+      "expected": 16,
+      "tags": [
+        "sample",
+        "branching"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: single node prefers halving",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [],
+        "coins": [
+          6
+        ],
+        "k": 4
+      },
+      "expected": 3,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-balanced-tree",
+      "name": "trial: balanced tree with mixed coins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "coins": [
+          30,
+          12,
+          17,
+          8,
+          24,
+          5,
+          9
+        ],
+        "k": 6
+      },
+      "expected": 69,
+      "tags": [
+        "branching"
+      ]
+    },
+    {
+      "id": "real-long-path",
+      "name": "real: long path accumulates halvings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            12,
+            13
+          ],
+          [
+            13,
+            14
+          ],
+          [
+            14,
+            15
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            16,
+            17
+          ]
+        ],
+        "coins": [
+          40,
+          37,
+          92,
+          13,
+          58,
+          21,
+          144,
+          3,
+          89,
+          55,
+          34,
+          233,
+          8,
+          5,
+          377,
+          11,
+          19,
+          610
+        ],
+        "k": 9
+      },
+      "expected": 1687,
+      "tags": [
+        "hidden",
+        "path"
+      ]
+    },
+    {
+      "id": "real-wide-root",
+      "name": "real: wide rooted tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            8,
+            10
+          ]
+        ],
+        "coins": [
+          100,
+          5,
+          200,
+          17,
+          33,
+          41,
+          12,
+          88,
+          9,
+          77,
+          123
+        ],
+        "k": 15
+      },
+      "expected": 549,
+      "tags": [
+        "hidden",
+        "branching"
+      ]
+    }
+  ]
+}

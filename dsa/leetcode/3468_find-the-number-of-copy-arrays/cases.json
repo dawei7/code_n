@@ -1,0 +1,195 @@
+{
+  "challenge_id": "lc_3468",
+  "cases": [
+    {
+      "id": "sample-two-copies",
+      "name": "sample: two valid copy starts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "original": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "bounds": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "range-intersection"
+      ]
+    },
+    {
+      "id": "sample-four-copies",
+      "name": "sample: wide bounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "original": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "bounds": [
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            7
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "wide"
+      ]
+    },
+    {
+      "id": "sample-no-copy",
+      "name": "sample: empty feasible interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "original": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "bounds": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-negative-drift",
+      "name": "trial: descending original drifts upward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "original": [
+          5,
+          3,
+          4,
+          2
+        ],
+        "bounds": [
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            1,
+            7
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "diffs"
+      ]
+    },
+    {
+      "id": "real-tight-middle",
+      "name": "real: tight middle bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "original": [
+          10,
+          7,
+          9,
+          12,
+          8
+        ],
+        "bounds": [
+          [
+            4,
+            20
+          ],
+          [
+            1,
+            14
+          ],
+          [
+            5,
+            15
+          ],
+          [
+            9,
+            18
+          ],
+          [
+            1,
+            12
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "real",
+        "interval"
+      ]
+    }
+  ]
+}

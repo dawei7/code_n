@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2789",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: merge suffix into large value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          7,
+          9,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "merge"
+      ],
+      "expected": 21
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no left merge into smaller suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          3,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "reset"
+      ],
+      "expected": 11
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 10
+    },
+    {
+      "id": "trial-all-merge",
+      "name": "trial: every value can merge rightward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          6
+        ]
+      },
+      "tags": [
+        "trial",
+        "all-merge"
+      ],
+      "expected": 12
+    },
+    {
+      "id": "real-reset-then-merge",
+      "name": "hidden: reset then later merge chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "hidden",
+        "reset"
+      ],
+      "expected": 20
+    }
+  ]
+}

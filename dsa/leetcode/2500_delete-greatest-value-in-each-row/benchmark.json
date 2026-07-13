@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2500",
+  "cases": [
+    {
+      "id": "benchmark-three-sorted-columns",
+      "name": "benchmark: three rows with staggered maxima",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            9,
+            3
+          ],
+          [
+            2,
+            8,
+            4
+          ],
+          [
+            7,
+            6,
+            5
+          ]
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

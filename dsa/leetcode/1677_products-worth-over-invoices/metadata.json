@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_1677",
+  "source": "leetcode",
+  "frontend_id": "1677",
+  "slug": "products-worth-over-invoices",
+  "title": "Product's Worth Over Invoices",
+  "difficulty": "Easy",
+  "acceptance_rate": 38.645969702637,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/products-worth-over-invoices/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

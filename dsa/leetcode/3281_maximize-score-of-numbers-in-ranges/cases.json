@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_3281",
+  "cases": [
+    {
+      "id": "sample-three-ranges",
+      "name": "sample: three overlapping ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start": [
+          6,
+          0,
+          3
+        ],
+        "d": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-duplicate-starts",
+      "name": "sample: duplicate starts with wide ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start": [
+          2,
+          6,
+          13,
+          13
+        ],
+        "d": 5
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single-range",
+      "name": "trial: one range has no pairwise gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          10
+        ],
+        "d": 7
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-tight-overlap",
+      "name": "trial: tight overlapping intervals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "d": 1
+      },
+      "expected": 1,
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-unsorted-wide",
+      "name": "real: unsorted starts and wider intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "start": [
+          40,
+          5,
+          17,
+          23,
+          11,
+          60,
+          52
+        ],
+        "d": 9
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "sorting"
+      ]
+    }
+  ]
+}

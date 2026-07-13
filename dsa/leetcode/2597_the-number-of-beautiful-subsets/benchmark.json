@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2597",
+  "cases": [
+    {
+      "id": "benchmark-duplicate-conflicts",
+      "name": "benchmark: duplicate conflict groups",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          4,
+          4,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

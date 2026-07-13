@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "506",
+  "frontend_id": "506",
+  "title_slug": "relative-ranks",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065148676",
+  "verified_at": "2026-07-12T15:32:43.963093+00:00"
+}

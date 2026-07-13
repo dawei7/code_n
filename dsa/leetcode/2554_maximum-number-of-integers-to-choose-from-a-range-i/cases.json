@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2554",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: choose two allowed numbers within the sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "banned": [
+          1,
+          6,
+          5
+        ],
+        "n": 5,
+        "maxSum": 6
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all small numbers are banned",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "banned": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "n": 8,
+        "maxSum": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no in-range banned values matter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "banned": [
+          11
+        ],
+        "n": 7,
+        "maxSum": 50
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-sum-limit-without-bans",
+      "name": "trial: sum limit stops before the upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "banned": [],
+        "n": 3,
+        "maxSum": 3
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-only-number-banned",
+      "name": "hidden: the only candidate is banned",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "banned": [
+          1
+        ],
+        "n": 1,
+        "maxSum": 10
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

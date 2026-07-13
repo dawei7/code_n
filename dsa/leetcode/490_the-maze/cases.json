@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_490",
+  "cases": [
+    {"id": "sample-reachable", "name": "sample: destination is a reachable stop", "kind": "sample", "visible": true, "input": {"maze": [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], "start": [0,4], "destination": [4,4]}, "expected": true, "tags": ["sample", "reachable"]},
+    {"id": "sample-passed-not-stopped", "name": "sample: ball cannot stop at destination", "kind": "sample", "visible": true, "input": {"maze": [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], "start": [0,4], "destination": [3,2]}, "expected": false, "tags": ["sample", "not-a-stop"]},
+    {"id": "sample-open-center", "name": "sample: open center cannot be a stop", "kind": "sample", "visible": true, "input": {"maze": [[0,0,0],[0,0,0],[0,0,0]], "start": [0,0], "destination": [1,1]}, "expected": false, "tags": ["sample", "open-room"]},
+    {"id": "trial-same-cell", "name": "trial: start already equals destination", "kind": "trial", "visible": true, "input": {"maze": [[0,1],[1,0]], "start": [0,0], "destination": [0,0]}, "expected": true, "tags": ["trial", "same-cell"]},
+    {"id": "trial-open-corner", "name": "trial: opposite corner in open room", "kind": "trial", "visible": true, "input": {"maze": [[0,0,0],[0,0,0],[0,0,0]], "start": [0,0], "destination": [2,2]}, "expected": true, "tags": ["trial", "corner"]},
+    {"id": "hidden-isolated", "name": "hidden: destination is in another component", "kind": "real", "visible": false, "input": {"maze": [[0,1,0],[1,1,0],[0,0,0]], "start": [0,0], "destination": [2,2]}, "expected": false, "tags": ["hidden", "disconnected"]},
+    {"id": "hidden-turns", "name": "hidden: route requires several rolls", "kind": "real", "visible": false, "input": {"maze": [[0,0,1,0],[1,0,1,0],[0,0,0,0],[0,1,1,0]], "start": [0,0], "destination": [3,3]}, "expected": true, "tags": ["hidden", "turns"]}
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "challenge_id": "lc_1000",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: pairwise merge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          3,
+          2,
+          4,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 20,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: impossible k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          3,
+          2,
+          4,
+          1
+        ],
+        "k": 3
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: ternary merge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          3,
+          5,
+          1,
+          2,
+          6
+        ],
+        "k": 3
+      },
+      "expected": 25,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-two-piles",
+      "name": "hidden: already mergeable pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stones": [
+          4,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 10,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

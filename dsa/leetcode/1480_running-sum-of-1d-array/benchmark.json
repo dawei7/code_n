@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_1480",
+  "cases": [
+    {
+      "id": "benchmark-zero-and-negative",
+      "name": "benchmark: zeros and a negative adjustment",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          5,
+          -2,
+          7
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        5,
+        3,
+        10
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

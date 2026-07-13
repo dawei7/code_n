@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_1444",
+  "cases": [
+    {
+      "id": "benchmark-cross-apple-grid",
+      "name": "benchmark: cross-shaped apple distribution",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "pizza": [
+          "A.A",
+          "AAA",
+          "A.A"
+        ],
+        "k": 4
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

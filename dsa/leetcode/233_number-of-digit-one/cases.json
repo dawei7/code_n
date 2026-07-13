@@ -1,0 +1,6 @@
+{"challenge_id":"lc_233","cases":[
+{"id":"sample-thirteen","name":"sample: ones across two positions","kind":"sample","visible":true,"input":{"n":13},"expected":6,"tags":["sample","two-digits"]},
+{"id":"sample-zero","name":"sample: zero contributes none","kind":"sample","visible":true,"input":{"n":0},"expected":0,"tags":["sample","boundary"]},
+{"id":"trial-two-nines","name":"complete two-digit cycles","kind":"trial","visible":true,"input":{"n":99},"expected":20,"tags":["complete-cycle"]},
+{"id":"real-partial-hundreds","name":"hidden: partial cycle at one hundred one","kind":"real","visible":false,"input":{"n":101},"expected":23,"tags":["hidden","partial-cycle"]}
+]}

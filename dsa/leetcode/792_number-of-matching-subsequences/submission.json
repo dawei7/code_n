@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "808",
+  "frontend_id": "792",
+  "title_slug": "number-of-matching-subsequences",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numMatchingSubseq",
+  "verified_submission_id": "2066165726",
+  "verified_at": "2026-07-13T13:22:42.252948+00:00"
+}

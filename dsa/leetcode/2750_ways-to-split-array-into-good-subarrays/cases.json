@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_2750",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three split choices between ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "splits"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no one means no good split",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "sample",
+        "none"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-one-one",
+      "name": "trial: one one means one whole-array split",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "tags": [
+        "trial",
+        "single-one"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-adjacent-ones",
+      "name": "trial: adjacent ones force split position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "tags": [
+        "trial",
+        "adjacent"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-many-gaps",
+      "name": "hidden: product of several zero gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "tags": [
+        "hidden",
+        "gaps"
+      ],
+      "expected": 24
+    }
+  ]
+}

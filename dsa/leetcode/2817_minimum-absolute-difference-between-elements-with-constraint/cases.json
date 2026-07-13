@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_2817",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: distance constraint skips close indices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          4
+        ],
+        "x": 2
+      },
+      "tags": [
+        "sample",
+        "constraint"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: exact duplicate at valid distance",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          3,
+          2,
+          10,
+          15
+        ],
+        "x": 1
+      },
+      "tags": [
+        "sample",
+        "diff"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-zero-x",
+      "name": "trial: zero x allows same index distance baseline",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          6
+        ],
+        "x": 0
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-negative-values",
+      "name": "trial: negative and positive values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -10,
+          5,
+          -3,
+          7,
+          4
+        ],
+        "x": 2
+      },
+      "tags": [
+        "trial",
+        "negative"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-late-close-values",
+      "name": "hidden: closest values appear far apart",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          1,
+          50,
+          52,
+          2,
+          99,
+          51
+        ],
+        "x": 3
+      },
+      "tags": [
+        "hidden",
+        "late"
+      ],
+      "expected": 1
+    }
+  ]
+}

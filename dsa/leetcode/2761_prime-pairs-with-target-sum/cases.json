@@ -1,0 +1,127 @@
+{
+  "challenge_id": "lc_2761",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one prime pair for ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "tags": [
+        "sample",
+        "prime"
+      ],
+      "expected": [
+        [
+          3,
+          7
+        ],
+        [
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two prime pairs for two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "tags": [
+        "sample",
+        "small"
+      ],
+      "expected": []
+    },
+    {
+      "id": "trial-odd-number",
+      "name": "trial: odd target has one pair with two when possible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 13
+      },
+      "tags": [
+        "trial",
+        "odd"
+      ],
+      "expected": [
+        [
+          2,
+          11
+        ]
+      ]
+    },
+    {
+      "id": "trial-several-pairs",
+      "name": "trial: several Goldbach pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 26
+      },
+      "tags": [
+        "trial",
+        "pairs"
+      ],
+      "expected": [
+        [
+          3,
+          23
+        ],
+        [
+          7,
+          19
+        ],
+        [
+          13,
+          13
+        ]
+      ]
+    },
+    {
+      "id": "real-larger-even",
+      "name": "hidden: larger even target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 100
+      },
+      "tags": [
+        "hidden",
+        "large"
+      ],
+      "expected": [
+        [
+          3,
+          97
+        ],
+        [
+          11,
+          89
+        ],
+        [
+          17,
+          83
+        ],
+        [
+          29,
+          71
+        ],
+        [
+          41,
+          59
+        ],
+        [
+          47,
+          53
+        ]
+      ]
+    }
+  ]
+}

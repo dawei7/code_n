@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1503",
+  "cases": [
+    {
+      "id": "benchmark-endpoint-ant",
+      "name": "benchmark: ant starts at the far endpoint",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 100,
+        "left": [
+          0,
+          20,
+          100
+        ],
+        "right": [
+          1,
+          99
+        ]
+      },
+      "expected": 100,
+      "tags": [
+        "benchmark",
+        "edge"
+      ]
+    }
+  ]
+}

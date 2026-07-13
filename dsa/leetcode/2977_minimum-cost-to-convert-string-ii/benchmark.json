@@ -1,0 +1,62 @@
+{
+  "challenge_id": "lc_2977",
+  "cases": [
+    {
+      "id": "benchmark-substring-dp-840",
+      "name": "benchmark: repeated substring conversion DP",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "source": "abcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbc",
+        "target": "bcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaa",
+        "original": [
+          "ab",
+          "bc",
+          "ca",
+          "abc",
+          "bca",
+          "cab",
+          "aa",
+          "bb",
+          "cc",
+          "ac",
+          "ba",
+          "cb"
+        ],
+        "changed": [
+          "abc",
+          "cc",
+          "bc",
+          "aa",
+          "cb",
+          "bca",
+          "ac",
+          "ca",
+          "bb",
+          "ab",
+          "cab",
+          "ba"
+        ],
+        "cost": [
+          1,
+          14,
+          10,
+          6,
+          2,
+          15,
+          11,
+          7,
+          3,
+          16,
+          12,
+          8
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark",
+        "trie-dp"
+      ]
+    }
+  ]
+}

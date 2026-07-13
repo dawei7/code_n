@@ -1,0 +1,193 @@
+{
+  "challenge_id": "lc_1357",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first order full price",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "discount": 50,
+        "products": [
+          1,
+          2
+        ],
+        "prices": [
+          100,
+          200
+        ],
+        "orders": [
+          [
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        100.0
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: second order full price",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "discount": 50,
+        "products": [
+          1,
+          2
+        ],
+        "prices": [
+          100,
+          200
+        ],
+        "orders": [
+          [
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        100.0,
+        400.0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: third order discounted",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "discount": 50,
+        "products": [
+          1,
+          2
+        ],
+        "prices": [
+          100,
+          200
+        ],
+        "orders": [
+          [
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        100.0,
+        400.0,
+        150.0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-discount-every-second-order",
+      "name": "hidden: discount every second order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "discount": 25,
+        "products": [
+          5,
+          6,
+          7
+        ],
+        "prices": [
+          10,
+          20,
+          30
+        ],
+        "orders": [
+          [
+            [
+              5,
+              7
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          [
+            [
+              6
+            ],
+            [
+              3
+            ]
+          ],
+          [
+            [
+              7
+            ],
+            [
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        50.0,
+        45.0,
+        30.0
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

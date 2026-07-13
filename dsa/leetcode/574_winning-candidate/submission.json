@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "574",
+  "frontend_id": "574",
+  "title_slug": "winning-candidate",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065418703",
+  "verified_at": "2026-07-12T20:06:31.489405+00:00"
+}

@@ -1,0 +1,112 @@
+{
+  "challenge_id": "lc_3287",
+  "cases": [
+    {
+      "id": "sample-four-values",
+      "name": "sample: choose two subsequences length two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "or-xor"
+      ]
+    },
+    {
+      "id": "sample-high-bits",
+      "name": "sample: high OR values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          7,
+          8,
+          9
+        ],
+        "k": 2
+      },
+      "expected": 14,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-k-one",
+      "name": "trial: length one subsequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          7
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-separated-best",
+      "name": "trial: best split requires separated subsequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          1,
+          6,
+          2,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "split"
+      ]
+    },
+    {
+      "id": "real-medium",
+      "name": "real: medium hidden OR/XOR profile",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          12,
+          3,
+          5,
+          9,
+          10,
+          6,
+          1,
+          7,
+          8,
+          15,
+          2,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 13,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

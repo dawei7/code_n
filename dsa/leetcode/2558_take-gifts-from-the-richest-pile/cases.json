@@ -1,0 +1,93 @@
+{
+  "challenge_id": "lc_2558",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeatedly reduce the richest pile",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "gifts": [
+          25,
+          64,
+          9,
+          4,
+          100
+        ],
+        "k": 4
+      },
+      "expected": 29,
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: piles of one are unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "gifts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one pile reduces to its square root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "gifts": [
+          10
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-pile-twice",
+      "name": "trial: one pile is reduced twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "gifts": [
+          16
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-one-gift",
+      "name": "hidden: one gift remains one gift",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "gifts": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

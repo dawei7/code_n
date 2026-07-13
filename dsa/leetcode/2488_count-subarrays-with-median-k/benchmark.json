@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2488",
+  "cases": [
+    {
+      "id": "benchmark-balanced-around-k",
+      "name": "benchmark: balanced values on both sides of k",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          5,
+          1,
+          4,
+          3
+        ],
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

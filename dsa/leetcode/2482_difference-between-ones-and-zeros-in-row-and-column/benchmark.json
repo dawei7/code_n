@@ -1,0 +1,40 @@
+{
+  "challenge_id": "lc_2482",
+  "cases": [
+    {
+      "id": "benchmark-rectangular-grid",
+      "name": "benchmark: rectangular grid with alternating rows",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          -1,
+          -1,
+          -1
+        ]
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

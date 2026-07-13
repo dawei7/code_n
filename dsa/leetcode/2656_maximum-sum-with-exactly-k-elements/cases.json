@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_2656",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: choose five then increment",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 3
+      },
+      "expected": 18,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one operation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          3,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value repeatedly increases",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ],
+        "k": 5
+      },
+      "expected": 60,
+      "tags": [
+        "trial",
+        "formula"
+      ]
+    },
+    {
+      "id": "trial-tied-maximums",
+      "name": "trial: tied maximums still use arithmetic series",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7
+        ],
+        "k": 4
+      },
+      "expected": 34,
+      "tags": [
+        "trial",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-large-k",
+      "name": "hidden: large k arithmetic sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          1
+        ],
+        "k": 100
+      },
+      "expected": 14950,
+      "tags": [
+        "hidden",
+        "large-k"
+      ]
+    }
+  ]
+}

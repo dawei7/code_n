@@ -1,0 +1,118 @@
+{
+  "challenge_id": "lc_1090",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one per label",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "values": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "labels": [
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "num_wanted": 3,
+        "use_limit": 1
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two per label",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "values": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "labels": [
+          1,
+          3,
+          3,
+          3,
+          2
+        ],
+        "num_wanted": 3,
+        "use_limit": 2
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-label-limit",
+      "name": "top values share one label",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          9,
+          8,
+          8,
+          7,
+          6
+        ],
+        "labels": [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "num_wanted": 3,
+        "use_limit": 1
+      },
+      "expected": 16,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-repeated-labels",
+      "name": "hidden: repeated labels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "values": [
+          6,
+          10,
+          8,
+          7,
+          9
+        ],
+        "labels": [
+          1,
+          1,
+          2,
+          2,
+          2
+        ],
+        "num_wanted": 3,
+        "use_limit": 2
+      },
+      "expected": 27,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

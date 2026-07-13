@@ -1,0 +1,166 @@
+{
+  "challenge_id": "lc_2901",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one-character words with group change",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "e",
+          "a",
+          "b"
+        ],
+        "groups": [
+          0,
+          0,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "hamming"
+      ],
+      "expected": [
+        "e",
+        "b"
+      ],
+      "validator": {
+        "kind": "hamming_alternating_subsequence"
+      }
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: choose compatible three-letter words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "bab",
+          "dab",
+          "cab"
+        ],
+        "groups": [
+          1,
+          2,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "dp"
+      ],
+      "expected": [
+        "bab",
+        "dab"
+      ],
+      "validator": {
+        "kind": "hamming_alternating_subsequence"
+      }
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all one-character adjacent words differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "groups": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "full-length"
+      ],
+      "expected": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "validator": {
+        "kind": "hamming_alternating_subsequence"
+      }
+    },
+    {
+      "id": "trial-length-mismatch-blocks-edge",
+      "name": "trial: different word lengths cannot connect",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "ab",
+          "abc",
+          "bbc"
+        ],
+        "groups": [
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "tags": [
+        "trial",
+        "length"
+      ],
+      "expected": [
+        "aa",
+        "ab"
+      ],
+      "validator": {
+        "kind": "hamming_alternating_subsequence"
+      }
+    },
+    {
+      "id": "real-long-hamming-chain",
+      "name": "hidden: dynamic programming reconstructs a longer chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aaa",
+          "aab",
+          "abb",
+          "bbb",
+          "bbc",
+          "bcc"
+        ],
+        "groups": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "tags": [
+        "hidden",
+        "dp"
+      ],
+      "expected": [
+        "aaa",
+        "aab",
+        "abb",
+        "bbb",
+        "bbc",
+        "bcc"
+      ],
+      "validator": {
+        "kind": "hamming_alternating_subsequence"
+      }
+    }
+  ]
+}

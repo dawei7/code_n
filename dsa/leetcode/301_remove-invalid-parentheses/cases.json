@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_301",
+  "cases": [
+    {
+      "id": "sample-two-results",
+      "name": "sample: two minimum-removal forms",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "()())()"
+      },
+      "expected": [
+        "(())()",
+        "()()()"
+      ],
+      "tags": [
+        "sample",
+        "multiple-results"
+      ]
+    },
+    {
+      "id": "sample-letters",
+      "name": "sample: letters remain fixed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "(a)())()"
+      },
+      "expected": [
+        "(a())()",
+        "(a)()()"
+      ],
+      "tags": [
+        "sample",
+        "letters"
+      ]
+    },
+    {
+      "id": "sample-opposite",
+      "name": "sample: both parentheses must be removed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": ")("
+      },
+      "expected": [
+        ""
+      ],
+      "tags": [
+        "sample",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-no-parentheses",
+      "name": "letters-only string is already valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
+      "expected": [
+        "abc"
+      ],
+      "tags": [
+        "already-valid"
+      ]
+    },
+    {
+      "id": "trial-extra-open",
+      "name": "multiple indistinguishable opening removals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "((()"
+      },
+      "expected": [
+        "()"
+      ],
+      "tags": [
+        "duplicates",
+        "open-removal"
+      ]
+    },
+    {
+      "id": "real-both-budgets",
+      "name": "hidden: letters with excess parentheses on both sides",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(x))((y)"
+      },
+      "expected": [
+        "(x)(y)"
+      ],
+      "tags": [
+        "hidden",
+        "both-budgets"
+      ]
+    }
+  ]
+}

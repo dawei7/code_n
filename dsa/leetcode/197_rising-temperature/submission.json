@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "197",
+  "frontend_id": "197",
+  "title_slug": "rising-temperature",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2064198404",
+  "verified_at": "2026-07-11T18:29:10.323535+00:00"
+}

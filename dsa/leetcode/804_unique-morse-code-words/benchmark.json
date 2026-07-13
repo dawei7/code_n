@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_804",
+  "measurement_note": "Size is the number of one-letter words. Hashing transformations takes expected O(size); comparing every new unique transformation with a growing list takes O(size^2).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 distinct letter codes", "kind": "benchmark", "visible": false, "size": 4, "input": {"words": ["a", "b", "c", "d"]}, "expected": 4, "tags": ["benchmark", "scaling", "all-distinct"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 distinct letter codes", "kind": "benchmark", "visible": false, "size": 16, "input": {"words": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"]}, "expected": 16, "tags": ["benchmark", "scaling", "all-distinct"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 24 distinct letter codes", "kind": "benchmark", "visible": false, "size": 24, "input": {"words": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x"]}, "expected": 24, "tags": ["benchmark", "scaling", "all-distinct"]}
+  ]
+}

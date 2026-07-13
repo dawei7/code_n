@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_469",
+  "cases": [
+    {
+      "id": "sample-square",
+      "name": "sample: convex square",
+      "kind": "sample",
+      "visible": true,
+      "input": {"points": [[0, 0], [0, 1], [1, 1], [1, 0]]},
+      "expected": true,
+      "tags": ["sample", "convex"]
+    },
+    {
+      "id": "sample-concave",
+      "name": "sample: inward final vertex creates a reflex turn",
+      "kind": "sample",
+      "visible": true,
+      "input": {"points": [[0, 0], [0, 10], [10, 10], [10, 0], [5, 5]]},
+      "expected": false,
+      "tags": ["sample", "concave"]
+    },
+    {
+      "id": "sample-triangle",
+      "name": "sample: every triangle is convex",
+      "kind": "sample",
+      "visible": true,
+      "input": {"points": [[0, 0], [2, 0], [1, 2]]},
+      "expected": true,
+      "tags": ["sample", "triangle"]
+    },
+    {
+      "id": "trial-collinear-edge",
+      "name": "trial: collinear boundary vertex is allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"points": [[0, 0], [1, 0], [2, 0], [2, 2], [0, 2]]},
+      "expected": true,
+      "tags": ["trial", "collinear"]
+    },
+    {
+      "id": "trial-clockwise",
+      "name": "trial: clockwise rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"points": [[0, 0], [0, 3], [4, 3], [4, 0]]},
+      "expected": true,
+      "tags": ["trial", "clockwise"]
+    },
+    {
+      "id": "hidden-small-notch",
+      "name": "hidden: subtle interior notch",
+      "kind": "real",
+      "visible": false,
+      "input": {"points": [[0, 0], [4, 0], [4, 4], [2, 3], [0, 4]]},
+      "expected": false,
+      "tags": ["hidden", "concave"]
+    },
+    {
+      "id": "hidden-large-coordinates",
+      "name": "hidden: convex polygon with large coordinates",
+      "kind": "real",
+      "visible": false,
+      "input": {"points": [[-10000, 0], [0, -10000], [10000, 0], [0, 10000]]},
+      "expected": true,
+      "tags": ["hidden", "large"]
+    }
+  ]
+}

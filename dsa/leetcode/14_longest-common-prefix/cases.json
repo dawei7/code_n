@@ -1,0 +1,89 @@
+{
+  "challenge_id": "lc_14",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: shared prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "strs": [
+          "flower",
+          "flow",
+          "flight"
+        ]
+      },
+      "expected": "fl",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no shared prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "strs": [
+          "dog",
+          "racecar",
+          "car"
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "alone"
+        ]
+      },
+      "expected": "alone",
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-empty-prefix",
+      "name": "one empty string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "",
+          "prefix",
+          "pre"
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-long-common",
+      "name": "hidden: long common prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "strs": [
+          "interstellar",
+          "internet",
+          "internal",
+          "interval"
+        ]
+      },
+      "expected": "inter",
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

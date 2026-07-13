@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_631",
+  "cases": [
+    {"id": "sample-1", "name": "sample: overlapping references update", "kind": "sample", "visible": true, "input": {"operations": ["Excel","set","sum","set","get"], "arguments": [[3,"C"],[1,"A",2],[3,"C",["A1","A1:B2"]],[2,"B",2],[3,"C"]]}, "expected": [null,null,4,null,6], "tags": ["sample", "overlap", "propagation"]},
+    {"id": "sample-2", "name": "sample: blank and literal cells", "kind": "sample", "visible": true, "input": {"operations": ["Excel","get","set","get","sum","get"], "arguments": [[2,"B"],[1,"A"],[1,"A",5],[1,"A"],[2,"B",["A1"]],[2,"B"]]}, "expected": [null,0,null,5,5,5], "tags": ["sample", "blank", "literal"]},
+    {"id": "trial-1", "name": "trial: dependency chain receives both paths", "kind": "trial", "visible": true, "input": {"operations": ["Excel","set","sum","sum","set","get"], "arguments": [[1,"C"],[1,"A",2],[1,"B",["A1"]],[1,"C",["A1:B1"]],[1,"A",3],[1,"C"]]}, "expected": [null,null,2,4,null,6], "tags": ["trial", "chain", "diamond"]},
+    {"id": "trial-2", "name": "trial: replacing formula removes old dependency", "kind": "trial", "visible": true, "input": {"operations": ["Excel","set","sum","sum","set","get","set","get"], "arguments": [[3,"C"],[1,"A",5],[3,"C",["A1"]],[3,"C",["B1"]],[1,"A",9],[3,"C"],[1,"B",4],[3,"C"]]}, "expected": [null,null,5,0,null,0,null,4], "tags": ["trial", "formula-replacement"]},
+    {"id": "hidden-1", "name": "hidden: range overlap preserves multiplicity", "kind": "real", "visible": false, "input": {"operations": ["Excel","set","set","set","set","sum","set","get"], "arguments": [[3,"C"],[1,"A",1],[2,"A",2],[1,"B",3],[2,"B",4],[3,"C",["A1:B2","A1","B2"]],[2,"B",10],[3,"C"]]}, "expected": [null,null,null,null,null,15,null,27], "tags": ["hidden", "range", "multiplicity"]},
+    {"id": "hidden-2", "name": "hidden: literal overwrite stops propagation", "kind": "real", "visible": false, "input": {"operations": ["Excel","set","sum","set","set","get"], "arguments": [[2,"B"],[1,"A",7],[2,"B",["A1"]],[2,"B",11],[1,"A",20],[2,"B"]]}, "expected": [null,null,7,null,null,11], "tags": ["hidden", "literal-overwrite"]}
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_584",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: other, forbidden, and null referees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "id": 1,
+              "name": "Alice",
+              "referee_id": 1
+            },
+            {
+              "id": 2,
+              "name": "Bob",
+              "referee_id": 2
+            },
+            {
+              "id": 3,
+              "name": "Cara",
+              "referee_id": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Alice"
+          ],
+          [
+            "Cara"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "null"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: customer ID two may qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "id": 2,
+              "name": "Self Id",
+              "referee_id": null
+            },
+            {
+              "id": 5,
+              "name": "Other",
+              "referee_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Self Id"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "null"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all concrete referees differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "id": 7,
+              "name": "Seven",
+              "referee_id": 3
+            },
+            {
+              "id": 8,
+              "name": "Eight",
+              "referee_id": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Eight"
+          ],
+          [
+            "Seven"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "filter"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: every customer was referred by two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "id": 1,
+              "name": "A",
+              "referee_id": 2
+            },
+            {
+              "id": 2,
+              "name": "B",
+              "referee_id": 2
+            },
+            {
+              "id": 3,
+              "name": "C",
+              "referee_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "filter"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: duplicate names remain separate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "id": 10,
+              "name": "Same",
+              "referee_id": null
+            },
+            {
+              "id": 11,
+              "name": "Same",
+              "referee_id": 4
+            },
+            {
+              "id": 12,
+              "name": "Drop",
+              "referee_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Same"
+          ],
+          [
+            "Same"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "filter"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: nonconsecutive identifiers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "id": 100,
+              "name": "Zed",
+              "referee_id": null
+            },
+            {
+              "id": 3,
+              "name": "Alpha",
+              "referee_id": 2
+            },
+            {
+              "id": 42,
+              "name": "Middle",
+              "referee_id": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Middle"
+          ],
+          [
+            "Zed"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "filter"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: only direct referee value matters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "id": 1,
+              "name": "Root",
+              "referee_id": null
+            },
+            {
+              "id": 2,
+              "name": "Target",
+              "referee_id": 1
+            },
+            {
+              "id": 3,
+              "name": "Child",
+              "referee_id": 2
+            },
+            {
+              "id": 4,
+              "name": "Grandchild",
+              "referee_id": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Grandchild"
+          ],
+          [
+            "Root"
+          ],
+          [
+            "Target"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "filter"
+      ]
+    }
+  ]
+}

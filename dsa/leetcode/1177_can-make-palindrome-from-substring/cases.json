@@ -1,0 +1,137 @@
+{
+  "challenge_id": "lc_1177",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: abcda queries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcda",
+        "queries": [
+          [
+            3,
+            3,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        true,
+        true
+      ],
+      "tags": [
+        "sample",
+        "prefix-bitmask"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: lyb queries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "lyb",
+        "queries": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        false,
+        true
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "single character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "queries": [
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-leetcode-word",
+      "name": "hidden: leetcode word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "leetcode",
+        "queries": [
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            7,
+            2
+          ],
+          [
+            1,
+            5,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

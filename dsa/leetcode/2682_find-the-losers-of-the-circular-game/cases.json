@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_2682",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two friends never receive the ball",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "k": 2
+      },
+      "tags": [
+        "sample",
+        "cycle"
+      ],
+      "expected": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: first pass returns to friend one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 4
+      },
+      "tags": [
+        "sample",
+        "cycle"
+      ],
+      "expected": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "trial-small-step",
+      "name": "trial: step one visits part of the circle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "k": 1
+      },
+      "tags": [
+        "trial",
+        "small"
+      ],
+      "expected": [
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "trial-all-receive",
+      "name": "trial: no losers in a short cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 1
+      },
+      "tags": [
+        "trial",
+        "all-receive"
+      ],
+      "expected": [
+        3
+      ]
+    },
+    {
+      "id": "real-larger-cycle",
+      "name": "hidden: larger circular game",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "k": 3
+      },
+      "tags": [
+        "hidden",
+        "larger"
+      ],
+      "expected": [
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  ]
+}

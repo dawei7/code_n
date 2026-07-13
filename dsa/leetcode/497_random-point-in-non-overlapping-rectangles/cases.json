@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_497",
+  "cases": [
+    {"id": "sample-single-point", "name": "sample: one lattice point", "kind": "sample", "visible": true, "input": {"rects": [[1,1,1,1]], "random_values": [0], "draws": 2}, "expected": [[1,1],[1,1]], "tags": ["sample", "single-point"]},
+    {"id": "sample-four-points", "name": "sample: enumerate one two-by-two rectangle", "kind": "sample", "visible": true, "input": {"rects": [[-2,-2,-1,-1]], "random_values": [0,0.25,0.5,0.75], "draws": 4}, "expected": [[-2,-2],[-1,-2],[-2,-1],[-1,-1]], "tags": ["sample", "inclusive"]},
+    {"id": "sample-weighted-rectangles", "name": "sample: weighted choice across rectangles", "kind": "sample", "visible": true, "input": {"rects": [[0,0,0,0],[2,3,3,3]], "random_values": [0,0.5,0.9], "draws": 3}, "expected": [[0,0],[2,3],[3,3]], "tags": ["sample", "weighted"]},
+    {"id": "trial-zero-draws", "name": "trial: no requested points", "kind": "trial", "visible": true, "input": {"rects": [[0,0,2,2]], "random_values": [0.5], "draws": 0}, "expected": [], "tags": ["trial", "empty"]},
+    {"id": "trial-stream-cycle", "name": "trial: deterministic stream cycles", "kind": "trial", "visible": true, "input": {"rects": [[5,7,6,7]], "random_values": [0,0.9], "draws": 3}, "expected": [[5,7],[6,7],[5,7]], "tags": ["trial", "stream"]},
+    {"id": "hidden-negative", "name": "hidden: negative single point", "kind": "real", "visible": false, "input": {"rects": [[-10,-20,-10,-20]], "random_values": [0.999], "draws": 1}, "expected": [[-10,-20]], "tags": ["hidden", "negative"]},
+    {"id": "hidden-last-ticket", "name": "hidden: highest value selects final lattice point", "kind": "real", "visible": false, "input": {"rects": [[0,0,0,0],[10,10,11,11]], "random_values": [0.999999], "draws": 1}, "expected": [[11,11]], "tags": ["hidden", "last-ticket"]}
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_368",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two tied maximum pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "largest_divisible_subset",
+        "values_param": "nums"
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: complete power-of-two chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "validator": {
+        "kind": "largest_divisible_subset",
+        "values_param": "nums"
+      },
+      "tags": [
+        "sample",
+        "chain"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: ignore incompatible value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          16,
+          8
+        ]
+      },
+      "expected": [
+        4,
+        8,
+        16
+      ],
+      "validator": {
+        "kind": "largest_divisible_subset",
+        "values_param": "nums"
+      },
+      "tags": [
+        "sample",
+        "chain"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": [
+        7
+      ],
+      "validator": {
+        "kind": "largest_divisible_subset",
+        "values_param": "nums"
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-two-long-ties",
+      "name": "trial: either factor chain is optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          6,
+          18,
+          36
+        ]
+      },
+      "expected": [
+        2,
+        6,
+        18,
+        36
+      ],
+      "validator": {
+        "kind": "largest_divisible_subset",
+        "values_param": "nums"
+      },
+      "tags": [
+        "trial",
+        "tie"
+      ]
+    },
+    {
+      "id": "hidden-unsorted",
+      "name": "hidden: reconstruction after sorting",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          72,
+          3,
+          9,
+          8,
+          24
+        ]
+      },
+      "expected": [
+        3,
+        24,
+        72
+      ],
+      "validator": {
+        "kind": "largest_divisible_subset",
+        "values_param": "nums"
+      },
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "hidden-no-pairs",
+      "name": "hidden: every value is incompatible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          7,
+          11,
+          13
+        ]
+      },
+      "expected": [
+        5
+      ],
+      "validator": {
+        "kind": "largest_divisible_subset",
+        "values_param": "nums"
+      },
+      "tags": [
+        "hidden",
+        "tie"
+      ]
+    },
+    {
+      "id": "hidden-one-bridge",
+      "name": "hidden: transitive chain through bridge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          12,
+          24,
+          72,
+          5
+        ]
+      },
+      "expected": [
+        4,
+        12,
+        24,
+        72
+      ],
+      "validator": {
+        "kind": "largest_divisible_subset",
+        "values_param": "nums"
+      },
+      "tags": [
+        "hidden",
+        "transitive"
+      ]
+    }
+  ]
+}
+

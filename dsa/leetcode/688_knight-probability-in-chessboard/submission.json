@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "688",
+  "frontend_id": "688",
+  "title_slug": "knight-probability-in-chessboard",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065574451",
+  "verified_at": "2026-07-13T03:14:12.918544+00:00"
+}

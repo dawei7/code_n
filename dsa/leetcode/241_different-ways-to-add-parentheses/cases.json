@@ -1,0 +1,6 @@
+{"challenge_id":"lc_241","cases":[
+{"id":"sample-two-results","name":"sample: two subtraction trees","kind":"sample","visible":true,"input":{"expression":"2-1-1"},"expected":[0,2],"validator":{"kind":"unordered_list"},"tags":["sample","duplicates"]},
+{"id":"sample-five-results","name":"sample: mixed operators","kind":"sample","visible":true,"input":{"expression":"2*3-4*5"},"expected":[-34,-14,-10,-10,10],"validator":{"kind":"unordered_list"},"tags":["sample","catalan"]},
+{"id":"trial-number","name":"number without operators","kind":"trial","visible":true,"input":{"expression":"11"},"expected":[11],"validator":{"kind":"unordered_list"},"tags":["boundary","multi-digit"]},
+{"id":"real-duplicate-values","name":"hidden: distinct trees share a result","kind":"real","visible":false,"input":{"expression":"1+1+1"},"expected":[3,3],"validator":{"kind":"unordered_list"},"tags":["hidden","multiplicity"]}
+]}

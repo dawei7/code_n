@@ -1,0 +1,6 @@
+{"challenge_id":"lc_259","cases":[
+{"id":"sample-two","name":"sample: two qualifying triples","kind":"sample","visible":true,"input":{"nums":[-2,0,1,3],"target":2},"expected":2,"tags":["sample","two-pointers"]},
+{"id":"sample-empty","name":"sample: empty input","kind":"sample","visible":true,"input":{"nums":[],"target":0},"expected":0,"tags":["sample","boundary"]},
+{"id":"trial-duplicates","name":"one duplicate-valued index triple","kind":"trial","visible":true,"input":{"nums":[0,0,0],"target":1},"expected":1,"tags":["duplicates"]},
+{"id":"real-strict","name":"hidden: sums equal to target are excluded","kind":"real","visible":false,"input":{"nums":[-1,1,2,2],"target":3},"expected":2,"tags":["hidden","strict"]}
+]}

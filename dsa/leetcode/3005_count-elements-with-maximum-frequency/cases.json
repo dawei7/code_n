@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_3005",
+  "cases": [
+    {
+      "id": "sample-two-max-groups",
+      "name": "sample: two values share maximum frequency",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3,
+          1,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-singletons",
+      "name": "sample: every value is tied",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-dominant",
+      "name": "trial: one dominant frequency",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          8,
+          8,
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-three-way-tie",
+      "name": "trial: three values tie at the top",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          5,
+          5,
+          6,
+          6,
+          7
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-wide-counts",
+      "name": "real: wide list with several frequency groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          1,
+          4,
+          4,
+          4,
+          5,
+          6,
+          6
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "frequency"
+      ]
+    }
+  ]
+}

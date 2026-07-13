@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_727",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: official overlapping candidates",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "abcdebdde", "s2": "bde"},
+      "expected": "bcde",
+      "tags": ["sample", "minimum-window"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: exact match",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "abc", "s2": "abc"},
+      "expected": "abc",
+      "tags": ["sample", "exact"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: target absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "abc", "s2": "d"},
+      "expected": "",
+      "tags": ["sample", "missing"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: repeated target characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s1": "aaaaa", "s2": "aa"},
+      "expected": "aa",
+      "tags": ["trial", "repeated"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: only a noncontiguous match",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s1": "axbxc", "s2": "abc"},
+      "expected": "axbxc",
+      "tags": ["trial", "subsequence"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: equal length chooses the leftmost window",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "abcxxadc", "s2": "ac"},
+      "expected": "abc",
+      "tags": ["hidden", "leftmost-tie"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: later window is shorter",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "axbyab", "s2": "ab"},
+      "expected": "ab",
+      "tags": ["hidden", "later-shorter"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: target longer than source",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "abc", "s2": "abcd"},
+      "expected": "",
+      "tags": ["hidden", "length-boundary"]
+    }
+  ]
+}

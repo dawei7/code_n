@@ -1,0 +1,63 @@
+{
+  "challenge_id": "lc_3098",
+  "cases": [
+    {
+      "id": "benchmark-subsequence-powers-42",
+      "name": "benchmark: 42 values and length 6",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          -50,
+          -13,
+          24,
+          -40,
+          -3,
+          34,
+          -30,
+          7,
+          44,
+          -20,
+          17,
+          -47,
+          -10,
+          27,
+          -37,
+          0,
+          37,
+          -27,
+          10,
+          47,
+          -17,
+          20,
+          -44,
+          -7,
+          30,
+          -34,
+          3,
+          40,
+          -24,
+          13,
+          50,
+          -14,
+          23,
+          -41,
+          -4,
+          33,
+          -31,
+          6,
+          43,
+          -21,
+          16,
+          -48
+        ],
+        "k": 6
+      },
+      "expected": 20801484,
+      "tags": [
+        "benchmark",
+        "dp"
+      ]
+    }
+  ]
+}

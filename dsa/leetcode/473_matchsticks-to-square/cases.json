@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_473",
+  "cases": [
+    {"id": "sample-possible", "name": "sample: sticks form four sides", "kind": "sample", "visible": true, "input": {"matchsticks": [1, 1, 2, 2, 2]}, "expected": true, "tags": ["sample", "possible"]},
+    {"id": "sample-impossible", "name": "sample: total divides but no partition exists", "kind": "sample", "visible": true, "input": {"matchsticks": [3, 3, 3, 3, 4]}, "expected": false, "tags": ["sample", "impossible"]},
+    {"id": "sample-reordered", "name": "sample: another valid arrangement", "kind": "sample", "visible": true, "input": {"matchsticks": [2, 2, 2, 1, 1]}, "expected": true, "tags": ["sample", "possible"]},
+    {"id": "trial-four-equal", "name": "trial: one stick per side", "kind": "trial", "visible": true, "input": {"matchsticks": [5, 5, 5, 5]}, "expected": true, "tags": ["trial", "equal"]},
+    {"id": "trial-indivisible", "name": "trial: total is not divisible by four", "kind": "trial", "visible": true, "input": {"matchsticks": [1, 1, 1, 2]}, "expected": false, "tags": ["trial", "sum"]},
+    {"id": "hidden-long-stick", "name": "hidden: one stick exceeds side length", "kind": "real", "visible": false, "input": {"matchsticks": [10, 1, 1, 1, 1, 1, 1, 1]}, "expected": false, "tags": ["hidden", "long-stick"]},
+    {"id": "hidden-many-duplicates", "name": "hidden: duplicate sticks fill every side", "kind": "real", "visible": false, "input": {"matchsticks": [1, 1, 1, 1, 2, 2, 2, 2]}, "expected": true, "tags": ["hidden", "duplicates"]}
+  ]
+}

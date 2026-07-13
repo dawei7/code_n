@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_3101",
+  "cases": [
+    {
+      "id": "sample-all-alternating",
+      "name": "sample: every subarray in a full alternating run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-breaks",
+      "name": "sample: equal adjacent values break chains",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single value contributes one subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-many-breaks",
+      "name": "trial: several short alternating chains",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-longer-pattern",
+      "name": "real: longer mixed binary pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "real",
+        "linear"
+      ]
+    }
+  ]
+}

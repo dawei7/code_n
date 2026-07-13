@@ -1,0 +1,126 @@
+{
+  "challenge_id": "lc_2509",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three cycle lengths in a heap-indexed tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "queries": [
+          [
+            5,
+            3
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        5,
+        3
+      ],
+      "tags": [
+        "sample",
+        "tree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: root connected to child",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "queries": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: leaf connected to root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "queries": [
+          [
+            7,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-sibling-leaves",
+      "name": "trial: sibling leaves produce a length three cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "queries": [
+          [
+            8,
+            9
+          ],
+          [
+            14,
+            15
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-two-children-of-root",
+      "name": "hidden: children of the root meet at node one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "queries": [
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

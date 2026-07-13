@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_1471",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two strongest around median",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 2
+      },
+      "expected": [
+        5,
+        1
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate strongest values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          3,
+          5,
+          5
+        ],
+        "k": 3
+      },
+      "expected": [
+        5,
+        5,
+        1
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: even length median",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          6,
+          7,
+          11,
+          7,
+          6,
+          8
+        ],
+        "k": 4
+      },
+      "expected": [
+        11,
+        8,
+        6,
+        6
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-even-length",
+      "name": "hidden: even length array uses lower median",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 3
+      },
+      "expected": [
+        6,
+        5,
+        1
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

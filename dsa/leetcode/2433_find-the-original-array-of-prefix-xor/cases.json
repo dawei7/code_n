@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_2433",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: reconstruct from five prefix xor values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "pref": [
+          5,
+          2,
+          0,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        5,
+        7,
+        2,
+        3,
+        2
+      ],
+      "tags": [
+        "sample",
+        "xor"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single prefix value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "pref": [
+          13
+        ]
+      },
+      "expected": [
+        13
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two prefix values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "pref": [
+          5,
+          2
+        ]
+      },
+      "expected": [
+        5,
+        7
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-zero-prefix",
+      "name": "trial: zero appears in prefix xor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pref": [
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        0
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-middle-zero-prefix",
+      "name": "hidden: prefix drops to zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "pref": [
+          1,
+          0,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        3
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "challenge_id": "lc_1610",
+  "source": "leetcode",
+  "frontend_id": "1610",
+  "slug": "maximum-number-of-visible-points",
+  "title": "Maximum Number of Visible Points",
+  "difficulty": "Hard",
+  "acceptance_rate": 38.29587621648113,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Sliding Window",
+      "slug": "sliding-window"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
+  "url": "https://leetcode.com/problems/maximum-number-of-visible-points/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:anduril",
+    "leetcode_company:aurora",
+    "leetcode_company:google",
+    "leetcode_company:nuro",
+    "leetcode_company:nvidia",
+    "leetcode_topic:array",
+    "leetcode_topic:geometry",
+    "leetcode_topic:math",
+    "leetcode_topic:sliding-window",
+    "leetcode_topic:sorting"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:anduril",
+    "company:aurora",
+    "company:google",
+    "company:nuro",
+    "company:nvidia",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:geometry",
+    "topic:math",
+    "topic:sliding-window",
+    "topic:sorting"
+  ],
+  "company_tags": [
+    {
+      "name": "Anduril",
+      "slug": "anduril"
+    },
+    {
+      "name": "Aurora",
+      "slug": "aurora"
+    },
+    {
+      "name": "Nuro",
+      "slug": "nuro"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Nvidia",
+      "slug": "nvidia"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "Nvidia",
+        "slug": "nvidia",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Anduril",
+        "slug": "anduril",
+        "timesEncountered": 5
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Aurora",
+        "slug": "aurora",
+        "timesEncountered": 2
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Nuro",
+        "slug": "nuro",
+        "timesEncountered": 3
+      }
+    ]
+  },
+  "neetcode_subsets": []
+}

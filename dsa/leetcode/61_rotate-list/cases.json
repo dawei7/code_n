@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_61",
+  "cases": [
+    {"id": "sample-five", "name": "sample: rotate by two", "kind": "sample", "visible": true, "input": {"head": [1,2,3,4,5], "k": 2}, "expected": [4,5,1,2,3], "tags": ["sample"]},
+    {"id": "sample-wrap", "name": "sample: rotation exceeds length", "kind": "sample", "visible": true, "input": {"head": [0,1,2], "k": 4}, "expected": [2,0,1], "tags": ["sample", "modulo"]},
+    {"id": "trial-empty", "name": "empty list", "kind": "trial", "visible": true, "input": {"head": [], "k": 7}, "expected": [], "tags": ["boundary"]},
+    {"id": "trial-full-cycle", "name": "full rotations preserve the list", "kind": "trial", "visible": true, "input": {"head": [1,2,3], "k": 6}, "expected": [1,2,3], "tags": ["modulo"]},
+    {"id": "real-single", "name": "hidden: one node and large rotation", "kind": "real", "visible": false, "input": {"head": [9], "k": 100}, "expected": [9], "tags": ["hidden", "boundary"]}
+  ]
+}

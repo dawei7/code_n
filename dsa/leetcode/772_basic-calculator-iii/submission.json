@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "785",
+  "frontend_id": "772",
+  "title_slug": "basic-calculator-iii",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.calculate",
+  "verified_submission_id": "2066058059",
+  "verified_at": "2026-07-13T11:24:03.410819+00:00"
+}

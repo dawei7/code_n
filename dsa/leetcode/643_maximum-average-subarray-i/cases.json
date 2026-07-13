@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_643",
+  "cases": [
+    {"id": "sample-1", "name": "sample: best middle window", "kind": "sample", "visible": true, "input": {"nums": [1,12,-5,-6,50,3], "k": 4}, "expected": 12.75, "tags": ["sample", "sliding-window"]},
+    {"id": "sample-2", "name": "sample: one element", "kind": "sample", "visible": true, "input": {"nums": [5], "k": 1}, "expected": 5.0, "tags": ["sample", "singleton"]},
+    {"id": "trial-1", "name": "trial: all negative values", "kind": "trial", "visible": true, "input": {"nums": [-5,-2,-3,-4], "k": 2}, "expected": -2.5, "tags": ["trial", "negative"]},
+    {"id": "trial-2", "name": "trial: whole array", "kind": "trial", "visible": true, "input": {"nums": [1,2,3], "k": 3}, "expected": 2.0, "tags": ["trial", "full-window"]},
+    {"id": "hidden-1", "name": "hidden: unit windows", "kind": "real", "visible": false, "input": {"nums": [0,4,0,3,2], "k": 1}, "expected": 4.0, "tags": ["hidden", "unit-window"]},
+    {"id": "hidden-2", "name": "hidden: best final window", "kind": "real", "visible": false, "input": {"nums": [-10,1,2,8,9], "k": 2}, "expected": 8.5, "tags": ["hidden", "final-window"]},
+    {"id": "hidden-3", "name": "hidden: tied window sums", "kind": "real", "visible": false, "input": {"nums": [2,0,2,0], "k": 2}, "expected": 1.0, "tags": ["hidden", "tie"]}
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_3351",
+  "cases": [
+    {
+      "id": "sample-one-two-one",
+      "name": "sample: repeated one with good subsequences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "sample",
+        "subsequence-dp"
+      ]
+    },
+    {
+      "id": "sample-three-four-five",
+      "name": "sample: increasing chain contributes all prefixes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 40,
+      "tags": [
+        "sample",
+        "subsequence-dp"
+      ]
+    },
+    {
+      "id": "trial-zero-one-zero",
+      "name": "trial: zero values still form good subsequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "edge",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicates multiply subsequences by index choice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 43,
+      "tags": [
+        "regression",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-zigzag-values",
+      "name": "real: alternating adjacent values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          5,
+          4,
+          3,
+          4,
+          5,
+          6,
+          5
+        ]
+      },
+      "expected": 1224,
+      "tags": [
+        "real",
+        "subsequence-dp"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_3113",
+  "cases": [
+    {
+      "id": "sample-one-pair",
+      "name": "sample: adjacent equal maxima form one extra subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          3,
+          3,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-equal",
+      "name": "sample: every subarray is valid when all values match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-separated-by-larger",
+      "name": "trial: larger middle value blocks equal endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          3,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-stack",
+      "name": "real: repeated maxima at several stack levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          3,
+          5,
+          2,
+          2,
+          6,
+          6
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "real",
+        "stack"
+      ]
+    }
+  ]
+}

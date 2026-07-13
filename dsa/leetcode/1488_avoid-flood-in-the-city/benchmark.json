@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_1488",
+  "cases": [
+    {
+      "id": "benchmark-multiple-repeats",
+      "name": "benchmark: repeated lakes with scheduled dry days",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "rains": [
+          1,
+          0,
+          2,
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        -1,
+        1,
+        -1,
+        2,
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "avoid_flood"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

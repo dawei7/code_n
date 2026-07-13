@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "824",
+  "frontend_id": "806",
+  "title_slug": "number-of-lines-to-write-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numberOfLines",
+  "verified_submission_id": "2066242101",
+  "verified_at": "2026-07-13T14:33:40.221995+00:00"
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_591",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: CDATA contains tag-like text",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "code": "<DIV>This is <![CDATA[<raw>]]></DIV>"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "cdata"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: properly nested tags",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "code": "<A><B></B></A>"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: closing order is wrong",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "code": "<A><B></A></B>"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: two roots are invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "code": "<A></A><B></B>"
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "single-root"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: tag name constraints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "code": "<TOOLONGTAG></TOOLONGTAG>"
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "tag-name"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: CDATA cannot be top-level",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "code": "<![CDATA[text]]>"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "cdata-scope"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: append text and multiple CDATA sections",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "code": "<ROOT>x<![CDATA[</ROOT>]]><C></C><![CDATA[<C>]]>y</ROOT>"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "mixed-content"
+      ]
+    }
+  ]
+}

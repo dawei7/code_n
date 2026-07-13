@@ -1,0 +1,136 @@
+{
+  "challenge_id": "lc_118",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: five rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num_rows": 5
+      },
+      "expected": [
+        [
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          1,
+          3,
+          3,
+          1
+        ],
+        [
+          1,
+          4,
+          6,
+          4,
+          1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num_rows": 1
+      },
+      "expected": [
+        [
+          1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-three-rows",
+      "name": "three rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num_rows": 3
+      },
+      "expected": [
+        [
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          1
+        ]
+      ],
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "real-six-rows",
+      "name": "hidden: six rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num_rows": 6
+      },
+      "expected": [
+        [
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          1,
+          3,
+          3,
+          1
+        ],
+        [
+          1,
+          4,
+          6,
+          4,
+          1
+        ],
+        [
+          1,
+          5,
+          10,
+          10,
+          5,
+          1
+        ]
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_717",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two-bit then final one-bit",
+      "kind": "sample",
+      "visible": true,
+      "input": {"bits": [1,0,0]},
+      "expected": true,
+      "tags": ["sample", "final-one-bit"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: final zero consumed by two-bit character",
+      "kind": "sample",
+      "visible": true,
+      "input": {"bits": [1,1,1,0]},
+      "expected": false,
+      "tags": ["sample", "final-two-bit"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"bits": [0]},
+      "expected": true,
+      "tags": ["sample", "minimum-length"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: two independent one-bit characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"bits": [0,0]},
+      "expected": true,
+      "tags": ["trial", "all-zero"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: shortest two-bit encoding",
+      "kind": "trial",
+      "visible": true,
+      "input": {"bits": [1,0]},
+      "expected": false,
+      "tags": ["trial", "two-bit"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: even run of trailing ones",
+      "kind": "real",
+      "visible": false,
+      "input": {"bits": [0,1,1,0]},
+      "expected": true,
+      "tags": ["hidden", "even-parity"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: odd run of trailing ones",
+      "kind": "real",
+      "visible": false,
+      "input": {"bits": [0,1,1,1,0]},
+      "expected": false,
+      "tags": ["hidden", "odd-parity"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: mixed valid boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"bits": [1,1,0,1,0,0,1,1,0]},
+      "expected": true,
+      "tags": ["hidden", "mixed-encoding"]
+    }
+  ]
+}

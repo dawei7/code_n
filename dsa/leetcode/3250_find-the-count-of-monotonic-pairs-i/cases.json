@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_3250",
+  "cases": [
+    {
+      "id": "sample-flat-small",
+      "name": "sample: flat small values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-rising",
+      "name": "sample: rising values restrict arr2",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "rising"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-zigzag",
+      "name": "trial: alternating constraints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "zigzag"
+      ]
+    },
+    {
+      "id": "real-medium-profile",
+      "name": "real: medium mixed profile",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          6,
+          4,
+          7,
+          7,
+          3,
+          8,
+          6,
+          9,
+          5,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

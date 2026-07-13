@@ -1,0 +1,140 @@
+{
+  "challenge_id": "lc_3239",
+  "cases": [
+    {
+      "id": "sample-row-cheaper",
+      "name": "sample: row palindromes are cheaper",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "sample-column-cheaper",
+      "name": "sample: column palindromes are cheaper",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "columns"
+      ]
+    },
+    {
+      "id": "trial-already-palindromic",
+      "name": "trial: already row-palindromic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "trial: single row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "row"
+      ]
+    },
+    {
+      "id": "real-rectangular-grid",
+      "name": "real: rectangular binary grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "grid"
+      ]
+    }
+  ]
+}

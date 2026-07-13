@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_129",
+  "measurement_note": "Complete all-one trees require every root-to-leaf number to be accumulated while numeric prefixes avoid path-string construction.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one node", "kind": "benchmark", "visible": false, "size": 1, "input": {"root": [1]}, "expected": 1, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: fifteen nodes", "kind": "benchmark", "visible": false, "size": 15, "input": {"root": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}, "expected": 8888, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: sixty-three nodes", "kind": "benchmark", "visible": false, "size": 63, "input": {"root": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}, "expected": 3555552, "tags": ["benchmark", "scale-large"]}
+  ]
+}

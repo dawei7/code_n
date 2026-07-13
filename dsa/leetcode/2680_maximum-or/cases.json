@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2680",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: shifting nine is best",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          9
+        ],
+        "k": 1
+      },
+      "tags": [
+        "sample",
+        "bitwise"
+      ],
+      "expected": 30
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: shifting eight dominates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "tags": [
+        "sample",
+        "bitwise"
+      ],
+      "expected": 35
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: single number can be shifted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 3
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 40
+    },
+    {
+      "id": "trial-overlapping-bits",
+      "name": "trial: overlapping bits change best choice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          3,
+          5
+        ],
+        "k": 2
+      },
+      "tags": [
+        "trial",
+        "overlap"
+      ],
+      "expected": 31
+    },
+    {
+      "id": "real-large-shift",
+      "name": "hidden: large shift with existing OR bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          16,
+          3,
+          8
+        ],
+        "k": 4
+      },
+      "tags": [
+        "hidden",
+        "large-shift"
+      ],
+      "expected": 267
+    }
+  ]
+}

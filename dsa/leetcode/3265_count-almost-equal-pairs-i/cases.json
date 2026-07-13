@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_3265",
+  "cases": [
+    {
+      "id": "sample-leading-zero-swap",
+      "name": "sample: swap can introduce leading zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          12,
+          30,
+          17,
+          21
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "sample-equal-values",
+      "name": "sample: equal values count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-one-swap-cluster",
+      "name": "trial: one-swap cluster",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          123,
+          132,
+          213,
+          321,
+          456
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "swap"
+      ]
+    },
+    {
+      "id": "trial-different-lengths",
+      "name": "trial: different digit lengths with padding",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          100,
+          1000,
+          11
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "padding"
+      ]
+    },
+    {
+      "id": "real-mixed-pairs",
+      "name": "real: mixed hidden pair groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1023,
+          1203,
+          3210,
+          2301,
+          909,
+          990,
+          99,
+          9009,
+          1234,
+          1243
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "pairs"
+      ]
+    }
+  ]
+}

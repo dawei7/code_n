@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_2577",
+  "cases": [
+    {
+      "id": "benchmark-narrow-corridor",
+      "name": "benchmark: narrow low-cost corridor",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            99,
+            99
+          ],
+          [
+            1,
+            2,
+            3,
+            99
+          ],
+          [
+            99,
+            99,
+            4,
+            5
+          ],
+          [
+            99,
+            99,
+            99,
+            6
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

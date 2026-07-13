@@ -1,0 +1,80 @@
+{
+  "challenge_id": "lc_3398",
+  "cases": [
+    {
+      "id": "sample-break-long-zero-run",
+      "name": "sample: one flip reduces longest zero run to two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "000001",
+        "numOps": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-alternating-target",
+      "name": "sample: two flips can make the string alternating",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0000",
+        "numOps": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "sample-already-alternating",
+      "name": "sample: already alternating with no operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0101",
+        "numOps": 0
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-max-len-one-special-case",
+      "name": "trial: target length one needs alternating mismatch count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111000",
+        "numOps": 3
+      },
+      "expected": 1,
+      "tags": [
+        "regression",
+        "max-len-one"
+      ]
+    },
+    {
+      "id": "real-mixed-runs",
+      "name": "real: several runs and limited operations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "0011110001111000",
+        "numOps": 3
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "runs"
+      ]
+    }
+  ]
+}

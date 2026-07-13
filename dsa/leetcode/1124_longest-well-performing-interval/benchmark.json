@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1124",
+  "cases": [
+    {
+      "id": "benchmark-whole-array",
+      "name": "benchmark: whole array is well-performing",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "hours": [
+          10,
+          6,
+          9,
+          9,
+          6,
+          10,
+          6,
+          6,
+          9
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

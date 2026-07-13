@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_1547",
+  "cases": [
+    {
+      "id": "benchmark-spread-cuts",
+      "name": "benchmark: cuts spread across the stick",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 20,
+        "cuts": [
+          2,
+          8,
+          10,
+          12,
+          18
+        ]
+      },
+      "expected": 52,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

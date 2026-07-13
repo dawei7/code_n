@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "212",
+  "frontend_id": "212",
+  "title_slug": "word-search-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064209528",
+  "verified_at": "2026-07-11T18:41:16.185268+00:00"
+}

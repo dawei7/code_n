@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_352","cases":[
+{"id":"sample-1","name":"sample: create and merge several intervals","kind":"sample","visible":true,"input":{"values":[1,3,7,2,6]},"expected":[[[1,1]],[[1,1],[3,3]],[[1,1],[3,3],[7,7]],[[1,3],[7,7]],[[1,3],[6,7]]],"tags":["sample","merge"]},
+{"id":"sample-2","name":"sample: extend one interval rightward","kind":"sample","visible":true,"input":{"values":[1,2,3]},"expected":[[[1,1]],[[1,2]],[[1,3]]],"tags":["sample","extension"]},
+{"id":"sample-3","name":"sample: duplicate insertion","kind":"sample","visible":true,"input":{"values":[5,5]},"expected":[[[5,5]],[[5,5]]],"tags":["sample","duplicate"]},
+{"id":"trial-zero","name":"trial: zero singleton","kind":"trial","visible":false,"input":{"values":[0]},"expected":[[[0,0]]],"tags":["trial","boundary"]},
+{"id":"trial-left-extension","name":"trial: descending values extend leftward","kind":"trial","visible":false,"input":{"values":[3,2,1]},"expected":[[[3,3]],[[2,3]],[[1,3]]],"tags":["trial","left-extension"]},
+{"id":"hidden-bridge","name":"hidden: one value bridges two intervals","kind":"real","visible":false,"input":{"values":[1,2,4,5,3]},"expected":[[[1,1]],[[1,2]],[[1,2],[4,4]],[[1,2],[4,5]],[[1,5]]],"tags":["hidden","bridge"]},
+{"id":"hidden-separated","name":"hidden: retain sorted disjoint intervals","kind":"real","visible":false,"input":{"values":[10,1,20,2]},"expected":[[[10,10]],[[1,1],[10,10]],[[1,1],[10,10],[20,20]],[[1,2],[10,10],[20,20]]],"tags":["hidden","ordering"]},
+{"id":"hidden-duplicate-after-merge","name":"hidden: duplicate after interval merge","kind":"real","visible":false,"input":{"values":[2,4,3,3]},"expected":[[[2,2]],[[2,2],[4,4]],[[2,4]],[[2,4]]],"tags":["hidden","duplicate","bridge"]}
+]}

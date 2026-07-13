@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_64",
+  "cases": [
+    {"id": "sample-square", "name": "sample: choose low-cost edge", "kind": "sample", "visible": true, "input": {"grid": [[1,3,1],[1,5,1],[4,2,1]]}, "expected": 7, "tags": ["sample"]},
+    {"id": "sample-rectangle", "name": "sample: rectangular grid", "kind": "sample", "visible": true, "input": {"grid": [[1,2,3],[4,5,6]]}, "expected": 12, "tags": ["sample", "rectangular"]},
+    {"id": "trial-single", "name": "single cell includes its own value", "kind": "trial", "visible": true, "input": {"grid": [[5]]}, "expected": 5, "tags": ["boundary"]},
+    {"id": "trial-zeros", "name": "zero-valued route", "kind": "trial", "visible": true, "input": {"grid": [[0,9,9],[0,0,9],[9,0,0]]}, "expected": 0, "tags": ["zeros"]},
+    {"id": "real-greedy-trap", "name": "hidden: locally cheap move is globally costly", "kind": "real", "visible": false, "input": {"grid": [[1,1,50,1],[2,1,50,1],[2,1,1,1]]}, "expected": 6, "tags": ["hidden", "greedy-trap"]}
+  ]
+}

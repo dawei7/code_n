@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_3042",
+  "cases": [
+    {
+      "id": "sample-nested-prefix-suffix",
+      "name": "sample: nested prefix-suffix words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "aba",
+          "ababa",
+          "aa",
+          "a"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-pairs",
+      "name": "sample: no word is both prefix and suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "def",
+          "ghi"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-repeated-word",
+      "name": "trial: repeated identical words count by order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "x",
+          "x",
+          "xx",
+          "xxx"
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-shorter-after-longer",
+      "name": "trial: earlier longer word cannot match a later shorter word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd",
+          "ab",
+          "abcab"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-overlapping",
+      "name": "real: overlapping prefix-suffix relationships",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "aa",
+          "aaa",
+          "aaaa",
+          "baba",
+          "ba"
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "strings"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{"challenge_id":"lc_194","cases":[
+{"id":"sample-two-by-two","name":"sample: transpose two rows","kind":"sample","visible":true,"input":{"stdin":"","files":{"file.txt":"name age\nalice 21\n"}},"expected":"name alice\nage 21","tags":["sample","matrix"]},
+{"id":"trial-one-row","name":"one row becomes one column","kind":"trial","visible":true,"input":{"stdin":"","files":{"file.txt":"a b c\n"}},"expected":"a\nb\nc","tags":["boundary"]},
+{"id":"trial-one-column","name":"one column becomes one row","kind":"trial","visible":true,"input":{"stdin":"","files":{"file.txt":"a\nb\nc\n"}},"expected":"a b c","tags":["boundary"]},
+{"id":"real-rectangular","name":"hidden: three-by-four table","kind":"real","visible":false,"input":{"stdin":"","files":{"file.txt":"a b c d\n1 2 3 4\nw x y z\n"}},"expected":"a 1 w\nb 2 x\nc 3 y\nd 4 z","tags":["hidden","rectangular"]}
+]}

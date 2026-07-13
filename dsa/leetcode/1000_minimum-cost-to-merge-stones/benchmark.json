@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1000",
+  "cases": [
+    {
+      "id": "benchmark-six-stones",
+      "name": "benchmark: six stones pairwise",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "stones": [
+          6,
+          4,
+          4,
+          6,
+          2,
+          8
+        ],
+        "k": 2
+      },
+      "expected": 76,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

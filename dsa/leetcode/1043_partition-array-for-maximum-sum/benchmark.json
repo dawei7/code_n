@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1043",
+  "cases": [
+    {
+      "id": "benchmark-eight-items",
+      "name": "benchmark: eight items",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          2,
+          9,
+          1,
+          7,
+          3,
+          8,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 65,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{"challenge_id":"lc_188","cases":[
+{"id":"sample-one-trade","name":"sample: one profitable transaction","kind":"sample","visible":true,"input":{"k":2,"prices":[2,4,1]},"expected":2,"tags":["sample"]},
+{"id":"sample-two-trades","name":"sample: two separated profits","kind":"sample","visible":true,"input":{"k":2,"prices":[3,2,6,5,0,3]},"expected":7,"tags":["dynamic-programming"]},
+{"id":"trial-zero-k","name":"zero transactions","kind":"trial","visible":true,"input":{"k":0,"prices":[1,3,5]},"expected":0,"tags":["boundary"]},
+{"id":"real-unlimited","name":"hidden: transaction limit is nonbinding","kind":"real","visible":false,"input":{"k":10,"prices":[1,2,1,4,2,7]},"expected":9,"tags":["hidden","shortcut"]}
+]}

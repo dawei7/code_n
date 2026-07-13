@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_483",
+  "cases": [
+    {"id": "sample-thirteen", "name": "sample: three ones in base three", "kind": "sample", "visible": true, "input": {"n": "13"}, "expected": "3", "tags": ["sample", "three-digits"]},
+    {"id": "sample-4681", "name": "sample: five ones in base eight", "kind": "sample", "visible": true, "input": {"n": "4681"}, "expected": "8", "tags": ["sample", "five-digits"]},
+    {"id": "sample-large", "name": "sample: large value uses fallback base", "kind": "sample", "visible": true, "input": {"n": "1000000000000000000"}, "expected": "999999999999999999", "tags": ["sample", "large"]},
+    {"id": "trial-base-two", "name": "trial: Mersenne number uses base two", "kind": "trial", "visible": true, "input": {"n": "15"}, "expected": "2", "tags": ["trial", "base-two"]},
+    {"id": "trial-base-four", "name": "trial: three ones in base four", "kind": "trial", "visible": true, "input": {"n": "21"}, "expected": "4", "tags": ["trial", "base-four"]},
+    {"id": "hidden-two-digits", "name": "hidden: only universal two-digit representation", "kind": "real", "visible": false, "input": {"n": "8"}, "expected": "7", "tags": ["hidden", "fallback"]},
+    {"id": "hidden-long-base-two", "name": "hidden: many ones in base two", "kind": "real", "visible": false, "input": {"n": "1023"}, "expected": "2", "tags": ["hidden", "base-two"]}
+  ]
+}

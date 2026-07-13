@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2741",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: only permutations through six work",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          6
+        ]
+      },
+      "tags": [
+        "sample",
+        "divisibility"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one connects otherwise incompatible values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "one"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-chain",
+      "name": "trial: divisibility chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8
+        ]
+      },
+      "tags": [
+        "trial",
+        "chain"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "trial-no-valid-adjacency",
+      "name": "trial: no adjacent divisibility edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          7,
+          11
+        ]
+      },
+      "tags": [
+        "trial",
+        "none"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "real-repeated-connectors",
+      "name": "hidden: several connector values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8,
+          3,
+          6
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 56
+    }
+  ]
+}

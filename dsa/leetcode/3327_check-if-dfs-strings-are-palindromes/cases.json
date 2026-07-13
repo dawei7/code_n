@@ -1,0 +1,169 @@
+{
+  "challenge_id": "lc_3327",
+  "cases": [
+    {
+      "id": "sample-all-palindromes",
+      "name": "sample: every subtree DFS string is a palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2
+        ],
+        "s": "aabcbab"
+      },
+      "expected": [
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "sample",
+        "tree",
+        "postorder-dfs"
+      ]
+    },
+    {
+      "id": "sample-mixed-palindromes",
+      "name": "sample: only leaf subtrees and one branch pass",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2
+        ],
+        "s": "abcdeff"
+      },
+      "expected": [
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "sample",
+        "tree",
+        "hashing"
+      ]
+    },
+    {
+      "id": "trial-tiny-two-node-chain",
+      "name": "trial: two nodes with non-palindromic root DFS string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0
+        ],
+        "s": "ab"
+      },
+      "expected": [
+        false,
+        true
+      ],
+      "tags": [
+        "edge",
+        "tree"
+      ]
+    },
+    {
+      "id": "trial-ordered-children-postorder",
+      "name": "trial: branching tree that depends on child-index postorder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          4,
+          4,
+          6
+        ],
+        "s": "abacabaazb"
+      },
+      "expected": [
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "regression",
+        "postorder-dfs"
+      ]
+    },
+    {
+      "id": "real-layered-postorder",
+      "name": "real: layered tree with mixed palindrome answers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          3,
+          3,
+          2,
+          7,
+          7,
+          8,
+          8
+        ],
+        "s": "abacabadabca"
+      },
+      "expected": [
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "real",
+        "tree",
+        "postorder-dfs"
+      ]
+    }
+  ]
+}

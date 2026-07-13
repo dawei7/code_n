@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_2561",
+  "cases": [
+    {
+      "id": "benchmark-odd-total-count",
+      "name": "benchmark: odd combined count is detected early",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "basket1": [
+          1,
+          2,
+          2,
+          3
+        ],
+        "basket2": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

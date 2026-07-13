@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_727",
+  "measurement_note": "Size is len(s1) * len(s2), the state work in the required O(nm) bound. The target is fixed at 'ab' while every source prefix is 'a' and the only 'b' is last. Dynamic programming scans each state once; retrying a subsequence scan from every possible 'a' start repeatedly traverses the long suffix.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16-character delayed completion",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s1": "aaaaaaaaaaaaaaab",
+        "s2": "ab"
+      },
+      "expected": "ab",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "delayed-target-end"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32-character delayed completion",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "s2": "ab"
+      },
+      "expected": "ab",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "delayed-target-end"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64-character delayed completion",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "s2": "ab"
+      },
+      "expected": "ab",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "delayed-target-end"
+      ]
+    }
+  ]
+}

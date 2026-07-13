@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_356","cases":[
+{"id":"sample-1","name":"sample: symmetric pair","kind":"sample","visible":true,"input":{"points":[[1,1],[-1,1]]},"expected":true,"tags":["sample"]},
+{"id":"sample-2","name":"sample: y-coordinates do not match","kind":"sample","visible":true,"input":{"points":[[1,1],[-1,-1]]},"expected":false,"tags":["sample","asymmetric"]},
+{"id":"sample-3","name":"sample: point on reflection line","kind":"sample","visible":true,"input":{"points":[[0,0],[2,0],[1,1]]},"expected":true,"tags":["sample","on-axis"]},
+{"id":"trial-half-axis","name":"trial: half-integer reflection axis","kind":"trial","visible":false,"input":{"points":[[0,2],[3,2],[1,4],[2,4]]},"expected":true,"tags":["trial","half-axis"]},
+{"id":"trial-all-on-line","name":"trial: every point lies on one vertical line","kind":"trial","visible":false,"input":{"points":[[5,1],[5,2],[5,3]]},"expected":true,"tags":["trial","on-axis"]},
+{"id":"hidden-duplicate","name":"hidden: duplicate coordinates do not alter symmetry","kind":"real","visible":false,"input":{"points":[[-2,0],[-2,0],[2,0]]},"expected":true,"tags":["hidden","duplicate"]},
+{"id":"hidden-missing-mirror","name":"hidden: one row lacks a mirror","kind":"real","visible":false,"input":{"points":[[0,0],[4,0],[1,1]]},"expected":false,"tags":["hidden","missing"]},
+{"id":"hidden-negative-axis","name":"hidden: symmetry around negative x","kind":"real","visible":false,"input":{"points":[[-5,0],[-1,0],[-4,2],[-2,2],[-3,7]]},"expected":true,"tags":["hidden","negative"]}
+]}

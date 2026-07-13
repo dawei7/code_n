@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_3022",
+  "cases": [
+    {
+      "id": "sample-two-merges",
+      "name": "sample: two operations reduce the OR",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          3,
+          2,
+          7
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-many-merges",
+      "name": "sample: four operations leave a low OR",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          3,
+          15,
+          14,
+          2,
+          8
+        ],
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-more-ops-than-needed",
+      "name": "sample: operation budget exceeds adjacent choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          12
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-operations",
+      "name": "trial: zero operations keeps original OR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "k": 0
+      },
+      "expected": 15,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-bit-patterns",
+      "name": "real: alternating bit patterns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          31,
+          14,
+          7,
+          28,
+          3,
+          24,
+          15,
+          16
+        ],
+        "k": 3
+      },
+      "expected": 31,
+      "tags": [
+        "real",
+        "bits"
+      ]
+    }
+  ]
+}

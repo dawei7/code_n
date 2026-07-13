@@ -1,0 +1,6 @@
+{"challenge_id":"lc_231","cases":[
+{"id":"sample-one","name":"sample: two to power zero","kind":"sample","visible":true,"input":{"n":1},"expected":true,"tags":["sample","boundary"]},
+{"id":"sample-sixteen","name":"sample: positive power","kind":"sample","visible":true,"input":{"n":16},"expected":true,"tags":["sample","power"]},
+{"id":"trial-non-power","name":"positive non-power","kind":"trial","visible":true,"input":{"n":3},"expected":false,"tags":["set-bits"]},
+{"id":"real-non-positive","name":"hidden: negative and zero boundary","kind":"real","visible":false,"input":{"n":0},"expected":false,"tags":["hidden","boundary"]}
+]}

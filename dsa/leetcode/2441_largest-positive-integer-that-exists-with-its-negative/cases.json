@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_2441",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: largest pair is three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          2,
+          -3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "hash-set"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: seven has its negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          10,
+          6,
+          7,
+          -7,
+          1
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no positive-negative pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -10,
+          8,
+          6,
+          7,
+          -2,
+          -3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-valid-pairs",
+      "name": "trial: choose the larger valid positive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          2,
+          -2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-only-positive",
+      "name": "hidden: positives without negatives",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

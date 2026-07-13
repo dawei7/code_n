@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_43",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one-digit product", "kind": "sample", "visible": true, "input": {"num1": "2", "num2": "3"}, "expected": "6", "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: several carries", "kind": "sample", "visible": true, "input": {"num1": "123", "num2": "456"}, "expected": "56088", "tags": ["sample", "carry"]},
+    {"id": "trial-zero", "name": "zero operand", "kind": "trial", "visible": true, "input": {"num1": "0", "num2": "999"}, "expected": "0", "tags": ["zero"]},
+    {"id": "trial-carry-chain", "name": "carry through several positions", "kind": "trial", "visible": true, "input": {"num1": "999", "num2": "999"}, "expected": "998001", "tags": ["carry"]},
+    {"id": "real-unequal-lengths", "name": "hidden: unequal operand lengths", "kind": "real", "visible": false, "input": {"num1": "123456789", "num2": "98765"}, "expected": "12193209765585", "tags": ["hidden", "unequal-length"]}
+  ]
+}

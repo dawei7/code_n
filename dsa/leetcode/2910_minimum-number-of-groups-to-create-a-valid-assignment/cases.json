@@ -1,0 +1,126 @@
+{
+  "challenge_id": "lc_2910",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two values can each use one group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          3,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "groups"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: singleton frequency forces small base size",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10,
+          10,
+          3,
+          1,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "frequency"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two frequencies with sizes two and six",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "assignment"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value needs one group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "tags": [
+        "trial",
+        "single"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-mixed-frequencies",
+      "name": "hidden: several frequencies share a valid base size",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "tags": [
+        "hidden",
+        "frequency"
+      ],
+      "expected": 10
+    }
+  ]
+}

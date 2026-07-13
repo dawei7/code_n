@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "818",
+  "frontend_id": "800",
+  "title_slug": "similar-rgb-color",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.similarRGB",
+  "verified_submission_id": "2066208742",
+  "verified_at": "2026-07-13T14:03:52.379747+00:00"
+}

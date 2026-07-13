@@ -1,0 +1,42 @@
+{
+  "challenge_id": "lc_2610",
+  "cases": [
+    {
+      "id": "benchmark-staggered-frequencies",
+      "name": "benchmark: staggered value frequencies",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        [
+          4,
+          2,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4
+        ]
+      ],
+      "validator": {
+        "kind": "minimum_unique_rows_matrix",
+        "values_param": "nums"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

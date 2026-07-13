@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "541",
+  "frontend_id": "541",
+  "title_slug": "reverse-string-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065313102",
+  "verified_at": "2026-07-12T17:59:54.440296+00:00"
+}

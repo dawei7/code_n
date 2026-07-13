@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_676",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: standard dictionary searches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "MagicDictionary",
+          "buildDict",
+          "search",
+          "search",
+          "search",
+          "search"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              "hello",
+              "leetcode"
+            ]
+          ],
+          [
+            "hello"
+          ],
+          [
+            "hhllo"
+          ],
+          [
+            "hell"
+          ],
+          [
+            "leetcoded"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        false,
+        true,
+        false,
+        false
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: exact word has a neighboring entry",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "MagicDictionary",
+          "buildDict",
+          "search",
+          "search",
+          "search"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              "hello",
+              "hallo"
+            ]
+          ],
+          [
+            "hello"
+          ],
+          [
+            "hallo"
+          ],
+          [
+            "hullo"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "sample",
+        "neighboring-words"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one-character dictionary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "MagicDictionary",
+          "buildDict",
+          "search",
+          "search",
+          "search"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              "a"
+            ]
+          ],
+          [
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "aa"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        false,
+        true,
+        false
+      ],
+      "tags": [
+        "sample",
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: change at the final position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "MagicDictionary",
+          "buildDict",
+          "search",
+          "search"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              "code"
+            ]
+          ],
+          [
+            "coda"
+          ],
+          [
+            "code"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        true,
+        false
+      ],
+      "tags": [
+        "trial",
+        "final-character"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: same prefix but two differences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "MagicDictionary",
+          "buildDict",
+          "search"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              "magic",
+              "manic"
+            ]
+          ],
+          [
+            "matic"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        true
+      ],
+      "tags": [
+        "trial",
+        "one-of-several"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: two differences do not qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "MagicDictionary",
+          "buildDict",
+          "search"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              "abcde"
+            ]
+          ],
+          [
+            "abxye"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        false
+      ],
+      "tags": [
+        "hidden",
+        "two-differences"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: different lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "MagicDictionary",
+          "buildDict",
+          "search",
+          "search"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              "ab",
+              "abcd"
+            ]
+          ],
+          [
+            "abc"
+          ],
+          [
+            "abce"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        false,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "length-filter"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: alternate word validates exact query",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "MagicDictionary",
+          "buildDict",
+          "search"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              "same",
+              "came"
+            ]
+          ],
+          [
+            "same"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "exact-query"
+      ]
+    }
+  ]
+}

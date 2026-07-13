@@ -1,0 +1,170 @@
+{
+  "challenge_id": "lc_3453",
+  "cases": [
+    {
+      "id": "sample-separated",
+      "name": "sample: separated unit squares",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "squares": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            2,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 1.0,
+      "tags": [
+        "sample",
+        "area"
+      ],
+      "validator": {
+        "type": "float_close",
+        "tolerance": 1e-05
+      }
+    },
+    {
+      "id": "sample-overlapping-counted",
+      "name": "sample: overlapping area counted twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "squares": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1.1666666666666667,
+      "tags": [
+        "sample",
+        "overlap"
+      ],
+      "validator": {
+        "type": "float_close",
+        "tolerance": 1e-05
+      }
+    },
+    {
+      "id": "trial-stacked",
+      "name": "trial: stacked vertical squares",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "squares": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            3,
+            2,
+            2
+          ],
+          [
+            6,
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": 3.0,
+      "tags": [
+        "trial",
+        "stacked"
+      ],
+      "validator": {
+        "type": "float_close",
+        "tolerance": 1e-05
+      }
+    },
+    {
+      "id": "trial-shared-baseline",
+      "name": "trial: shared baseline different sizes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "squares": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            3
+          ],
+          [
+            6,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 1.2,
+      "tags": [
+        "trial",
+        "same-bottom"
+      ],
+      "validator": {
+        "type": "float_close",
+        "tolerance": 1e-05
+      }
+    },
+    {
+      "id": "real-layered-overlaps",
+      "name": "real: layered counted overlaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "squares": [
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            5,
+            1,
+            2
+          ],
+          [
+            3,
+            5,
+            4
+          ]
+        ]
+      },
+      "expected": 3.5,
+      "tags": [
+        "real",
+        "overlap"
+      ],
+      "validator": {
+        "type": "float_close",
+        "tolerance": 1e-05
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1990",
+  "source": "leetcode",
+  "frontend_id": "1990",
+  "slug": "count-the-number-of-experiments",
+  "title": "Count the Number of Experiments",
+  "difficulty": "Medium",
+  "acceptance_rate": 48.93617021276596,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/count-the-number-of-experiments/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:strava",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:strava",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Strava",
+      "slug": "strava"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Strava",
+        "slug": "strava",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

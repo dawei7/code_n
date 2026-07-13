@@ -1,0 +1,6 @@
+{"challenge_id":"lc_205","cases":[
+{"id":"sample-true","name":"sample: consistent replacement","kind":"sample","visible":true,"input":{"s":"egg","t":"add"},"expected":true,"tags":["sample","mapping"]},
+{"id":"sample-false","name":"sample: one source maps twice","kind":"sample","visible":true,"input":{"s":"foo","t":"bar"},"expected":false,"tags":["conflict"]},
+{"id":"trial-bijection","name":"two sources cannot share target","kind":"trial","visible":true,"input":{"s":"ab","t":"aa"},"expected":false,"tags":["bijection"]},
+{"id":"real-pattern","name":"hidden: repeated pattern matches","kind":"real","visible":false,"input":{"s":"paper","t":"title"},"expected":true,"tags":["hidden","pattern"]}
+]}

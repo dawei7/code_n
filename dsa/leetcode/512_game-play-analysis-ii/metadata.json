@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_512",
+  "source": "leetcode",
+  "frontend_id": "512",
+  "slug": "game-play-analysis-ii",
+  "title": "Game Play Analysis II",
+  "difficulty": "Easy",
+  "acceptance_rate": 54.774617155842456,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/game-play-analysis-ii/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:gsn-games",
+    "leetcode_studyplan:premium-sql-50",
+    "leetcode_studyplan:premium-sql-50:premium-sql-50-126-lidf",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:gsn-games",
+    "language:sql",
+    "leetcode",
+    "study_plan:premium-sql-50",
+    "study_plan_section:premium-sql-50:premium-sql-50-126-lidf",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "GSN Games",
+      "slug": "gsn-games"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "GSN Games",
+        "slug": "gsn-games",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-sql-50",
+      "plan_name": "Advanced SQL 50",
+      "section_slug": "premium-sql-50-126-lidf",
+      "section_name": "Subqueries",
+      "path": [
+        "Subqueries"
+      ],
+      "order": 38,
+      "section_order": 6,
+      "problem_order": 3,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

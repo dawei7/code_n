@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_52",
+  "cases": [
+    {"id": "sample-one", "name": "sample: one queen", "kind": "sample", "visible": true, "input": {"n": 1}, "expected": 1, "tags": ["sample", "boundary"]},
+    {"id": "sample-four", "name": "sample: four queens", "kind": "sample", "visible": true, "input": {"n": 4}, "expected": 2, "tags": ["sample"]},
+    {"id": "trial-five", "name": "five queens", "kind": "trial", "visible": true, "input": {"n": 5}, "expected": 10, "tags": ["known-count"]},
+    {"id": "trial-impossible", "name": "no arrangement for three queens", "kind": "trial", "visible": true, "input": {"n": 3}, "expected": 0, "tags": ["impossible"]},
+    {"id": "real-six", "name": "hidden: six queens", "kind": "real", "visible": false, "input": {"n": 6}, "expected": 4, "tags": ["hidden", "backtracking"]}
+  ]
+}

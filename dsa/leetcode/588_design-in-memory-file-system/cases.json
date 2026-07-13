@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_588",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: create, list, and read",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "ls",
+            "/"
+          ],
+          [
+            "mkdir",
+            "/a/b/c"
+          ],
+          [
+            "addContentToFile",
+            "/a/b/c/d",
+            "hello"
+          ],
+          [
+            "ls",
+            "/"
+          ],
+          [
+            "readContentFromFile",
+            "/a/b/c/d"
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          "a"
+        ],
+        "hello"
+      ],
+      "tags": [
+        "sample",
+        "workflow"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: append file content",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "mkdir",
+            "/x"
+          ],
+          [
+            "addContentToFile",
+            "/x/file",
+            "ab"
+          ],
+          [
+            "addContentToFile",
+            "/x/file",
+            "cd"
+          ],
+          [
+            "readContentFromFile",
+            "/x/file"
+          ],
+          [
+            "ls",
+            "/x/file"
+          ]
+        ]
+      },
+      "expected": [
+        "abcd",
+        [
+          "file"
+        ]
+      ],
+      "tags": [
+        "sample",
+        "append"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: listing is lexicographic",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "mkdir",
+            "/b"
+          ],
+          [
+            "mkdir",
+            "/a"
+          ],
+          [
+            "mkdir",
+            "/c"
+          ],
+          [
+            "ls",
+            "/"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ],
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: mkdir creates missing ancestors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "mkdir",
+            "/a/b/c"
+          ],
+          [
+            "ls",
+            "/a"
+          ],
+          [
+            "ls",
+            "/a/b"
+          ],
+          [
+            "ls",
+            "/a/b/c"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "b"
+        ],
+        [
+          "c"
+        ],
+        []
+      ],
+      "tags": [
+        "trial",
+        "recursive"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: directories and files are siblings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "mkdir",
+            "/root/folder"
+          ],
+          [
+            "addContentToFile",
+            "/root/z.txt",
+            "z"
+          ],
+          [
+            "addContentToFile",
+            "/root/a.txt",
+            "a"
+          ],
+          [
+            "ls",
+            "/root"
+          ],
+          [
+            "readContentFromFile",
+            "/root/a.txt"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "a.txt",
+          "folder",
+          "z.txt"
+        ],
+        "a"
+      ],
+      "tags": [
+        "trial",
+        "mixed-children"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: file directly under root",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "addContentToFile",
+            "/note",
+            "one"
+          ],
+          [
+            "addContentToFile",
+            "/note",
+            " two"
+          ],
+          [
+            "ls",
+            "/note"
+          ],
+          [
+            "readContentFromFile",
+            "/note"
+          ],
+          [
+            "ls",
+            "/"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "note"
+        ],
+        "one two",
+        [
+          "note"
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "root-file"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: shared path prefixes remain independent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "mkdir",
+            "/team/alpha"
+          ],
+          [
+            "mkdir",
+            "/team/alpine"
+          ],
+          [
+            "addContentToFile",
+            "/team/alpha/log",
+            "A"
+          ],
+          [
+            "addContentToFile",
+            "/team/alpine/log",
+            "B"
+          ],
+          [
+            "ls",
+            "/team"
+          ],
+          [
+            "readContentFromFile",
+            "/team/alpha/log"
+          ],
+          [
+            "readContentFromFile",
+            "/team/alpine/log"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "alpha",
+          "alpine"
+        ],
+        "A",
+        "B"
+      ],
+      "tags": [
+        "hidden",
+        "shared-prefix"
+      ]
+    }
+  ]
+}

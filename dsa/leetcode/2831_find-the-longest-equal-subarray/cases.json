@@ -1,0 +1,120 @@
+{
+  "challenge_id": "lc_2831",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: delete one value to get three equal elements",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          3,
+          1,
+          3
+        ],
+        "k": 3
+      },
+      "tags": [
+        "sample",
+        "window"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no deletion needed for two equal values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "tags": [
+        "sample",
+        "window"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "trial-k-zero",
+      "name": "trial: k zero returns longest existing run by value positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          5,
+          2,
+          5
+        ],
+        "k": 0
+      },
+      "tags": [
+        "trial",
+        "zero-k"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-large-gap",
+      "name": "trial: deletion budget limits distant equal values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          1,
+          2,
+          3,
+          7,
+          4,
+          7
+        ],
+        "k": 2
+      },
+      "tags": [
+        "trial",
+        "gap"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-many-equals",
+      "name": "hidden: many equal values with sparse gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          9,
+          2,
+          8,
+          2,
+          7,
+          2,
+          6,
+          2,
+          5
+        ],
+        "k": 4
+      },
+      "tags": [
+        "hidden",
+        "sparse"
+      ],
+      "expected": 5
+    }
+  ]
+}

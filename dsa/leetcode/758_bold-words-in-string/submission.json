@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "760",
+  "frontend_id": "758",
+  "title_slug": "bold-words-in-string",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.boldWords",
+  "verified_submission_id": "2065974107",
+  "verified_at": "2026-07-13T09:58:44.204607+00:00"
+}

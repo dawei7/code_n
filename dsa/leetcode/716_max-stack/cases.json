@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_716",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: topmost duplicate maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["push",5],["push",1],["push",5],["top"],["popMax"],["top"],["peekMax"],["pop"],["top"]]},
+      "expected": [5,5,1,5,1,5],
+      "tags": ["sample", "duplicate-maximum"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: maximum below current top",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["push",7],["push",7],["push",3],["peekMax"],["popMax"],["top"],["pop"],["top"]]},
+      "expected": [7,7,3,3,7],
+      "tags": ["sample", "interior-removal"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: negative duplicate maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["push",-2],["push",-5],["push",-2],["popMax"],["peekMax"],["top"]]},
+      "expected": [-2,-2,-5],
+      "tags": ["sample", "negative-values"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: ordinary pop leaves stale heap entry",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["push",9],["push",12],["pop"],["peekMax"],["popMax"],["push",4],["top"]]},
+      "expected": [12,9,9,4],
+      "tags": ["trial", "lazy-deletion"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: maximum at stack bottom",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["push",10],["push",4],["push",6],["popMax"],["top"],["peekMax"]]},
+      "expected": [10,6,6],
+      "tags": ["trial", "bottom-maximum"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: repeated duplicate removals",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["push",2],["push",8],["push",8],["push",1],["popMax"],["top"],["popMax"],["peekMax"],["top"]]},
+      "expected": [8,1,8,2,1],
+      "tags": ["hidden", "duplicates"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: popped maxima are skipped",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["push",3],["push",11],["push",7],["push",13],["pop"],["pop"],["peekMax"],["popMax"],["top"]]},
+      "expected": [13,7,11,11,3],
+      "tags": ["hidden", "multiple-stale-roots"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: single element lifecycle",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["push",0],["top"],["peekMax"],["popMax"],["push",-10000000],["pop"]]},
+      "expected": [0,0,0,-10000000],
+      "tags": ["hidden", "single-element", "boundary-value"]
+    }
+  ]
+}

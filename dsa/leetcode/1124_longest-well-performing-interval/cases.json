@@ -1,0 +1,81 @@
+{
+  "challenge_id": "lc_1124",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: interval length three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "hours": [
+          9,
+          9,
+          6,
+          0,
+          6,
+          6,
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no tiring days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "hours": [
+          6,
+          6,
+          6
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-tiring-day",
+      "name": "single tiring day",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          9
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-middle-interval",
+      "name": "hidden: middle interval",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hours": [
+          6,
+          9,
+          9,
+          6,
+          9,
+          6,
+          6
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

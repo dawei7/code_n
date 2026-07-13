@@ -1,0 +1,90 @@
+{
+  "challenge_id": "lc_1184",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: adjacent stops",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "distance": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "start": 0,
+        "destination": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two steps clockwise",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "distance": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "start": 0,
+        "destination": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: shorter counterclockwise",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "distance": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "start": 0,
+        "destination": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-wrap-around",
+      "name": "hidden: wrap around route",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "distance": [
+          7,
+          10,
+          1,
+          12,
+          11,
+          14,
+          5,
+          0
+        ],
+        "start": 7,
+        "destination": 2
+      },
+      "expected": 17,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

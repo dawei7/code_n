@@ -1,0 +1,88 @@
+{
+  "challenge_id": "lc_1423",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: take best right side",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "card_points": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: equal cards",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "card_points": [
+          2,
+          2,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: take all cards",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "card_points": [
+          9,
+          7,
+          7,
+          9,
+          7,
+          7,
+          9
+        ],
+        "k": 7
+      },
+      "expected": 55,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-single-card",
+      "name": "hidden: choose one endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "card_points": [
+          100,
+          1,
+          1,
+          99
+        ],
+        "k": 1
+      },
+      "expected": 100,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

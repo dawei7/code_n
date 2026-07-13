@@ -1,0 +1,32 @@
+{
+  "challenge_id": "lc_1475",
+  "cases": [
+    {
+      "id": "benchmark-alternating-falls",
+      "name": "benchmark: alternating high and low prices",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "prices": [
+          9,
+          1,
+          8,
+          2,
+          7,
+          3
+        ]
+      },
+      "expected": [
+        8,
+        1,
+        6,
+        2,
+        4,
+        3
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_604",
+  "measurement_note": "Size is the encoded run's expanded character count. The operation trace asks only hasNext, so a lazy iterator inspects constant state without expanding the run; an eager implementation performs size construction work that the query does not require.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: inspect a lazy run of 128 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "compressedString": "x128",
+        "operations": [
+          [
+            "hasNext"
+          ]
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "lazy-run"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: inspect a lazy run of 512 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "compressedString": "x512",
+        "operations": [
+          [
+            "hasNext"
+          ]
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "lazy-run"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: inspect a lazy run of 2048 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2048,
+      "input": {
+        "compressedString": "x2048",
+        "operations": [
+          [
+            "hasNext"
+          ]
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "lazy-run"
+      ]
+    }
+  ]
+}

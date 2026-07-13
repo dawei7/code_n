@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1418",
+  "cases": [
+    {
+      "id": "benchmark-repeated-counts",
+      "name": "benchmark: repeated counts across tables",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "orders": [
+          [
+            "Ana",
+            "3",
+            "Burger"
+          ],
+          [
+            "Ben",
+            "3",
+            "Burger"
+          ],
+          [
+            "Cy",
+            "1",
+            "Cake"
+          ],
+          [
+            "Dee",
+            "1",
+            "Apple"
+          ],
+          [
+            "Eli",
+            "2",
+            "Cake"
+          ],
+          [
+            "Fay",
+            "2",
+            "Apple"
+          ],
+          [
+            "Gus",
+            "2",
+            "Apple"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "Table",
+          "Apple",
+          "Burger",
+          "Cake"
+        ],
+        [
+          "1",
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "2",
+          "2",
+          "0",
+          "1"
+        ],
+        [
+          "3",
+          "0",
+          "2",
+          "0"
+        ]
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

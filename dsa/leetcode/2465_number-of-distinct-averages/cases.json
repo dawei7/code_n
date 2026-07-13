@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_2465",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two different pair averages",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          4,
+          0,
+          3,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one pair only",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate values still produce one average",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-balanced-range",
+      "name": "trial: symmetric pairs have the same average",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-equal-pair",
+      "name": "hidden: equal pair average",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

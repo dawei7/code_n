@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_2444",
+  "cases": [
+    {
+      "id": "benchmark-many-valid-subarrays",
+      "name": "benchmark: many overlapping valid windows",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          5,
+          1,
+          5,
+          2,
+          1
+        ],
+        "min_k": 1,
+        "max_k": 5
+      },
+      "expected": 17,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

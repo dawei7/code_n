@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_780",
+  "cases": [
+    {"id": "sample-1", "name": "sample: reachable alternating moves", "kind": "sample", "visible": true, "input": {"sx": 1, "sy": 1, "tx": 3, "ty": 5}, "expected": true, "tags": ["sample", "reachable"]},
+    {"id": "sample-2", "name": "sample: equal target cannot be produced", "kind": "sample", "visible": true, "input": {"sx": 1, "sy": 1, "tx": 2, "ty": 2}, "expected": false, "tags": ["sample", "unreachable"]},
+    {"id": "sample-3", "name": "sample: target equals source", "kind": "sample", "visible": true, "input": {"sx": 1, "sy": 1, "tx": 1, "ty": 1}, "expected": true, "tags": ["sample", "zero-moves"]},
+    {"id": "trial-1", "name": "trial: only second coordinate grows", "kind": "trial", "visible": true, "input": {"sx": 1, "sy": 1, "tx": 1, "ty": 10}, "expected": true, "tags": ["trial", "boundary-divisibility"]},
+    {"id": "trial-2", "name": "trial: several alternating additions", "kind": "trial", "visible": true, "input": {"sx": 2, "sy": 3, "tx": 13, "ty": 21}, "expected": true, "tags": ["trial", "reachable"]},
+    {"id": "trial-3", "name": "trial: incompatible common divisor", "kind": "trial", "visible": true, "input": {"sx": 2, "sy": 4, "tx": 3, "ty": 6}, "expected": false, "tags": ["trial", "unreachable"]},
+    {"id": "hidden-1", "name": "hidden: very large second coordinate", "kind": "real", "visible": false, "input": {"sx": 1, "sy": 1, "tx": 1, "ty": 1000000000}, "expected": true, "tags": ["hidden", "large-target"]},
+    {"id": "hidden-2", "name": "hidden: many additions of fixed first coordinate", "kind": "real", "visible": false, "input": {"sx": 35, "sy": 13, "tx": 35, "ty": 999999993}, "expected": true, "tags": ["hidden", "large-target", "boundary-divisibility"]},
+    {"id": "hidden-3", "name": "hidden: large boundary difference not divisible", "kind": "real", "visible": false, "input": {"sx": 35, "sy": 13, "tx": 35, "ty": 999999994}, "expected": false, "tags": ["hidden", "large-target", "unreachable"]}
+  ]
+}

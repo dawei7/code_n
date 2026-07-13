@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_46",
+  "cases": [
+    {"id": "sample-1", "name": "sample: three values", "kind": "sample", "visible": true, "input": {"nums": [1, 2, 3]}, "expected": [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]], "validator": {"kind": "unordered_list"}, "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: two values", "kind": "sample", "visible": true, "input": {"nums": [0, 1]}, "expected": [[0, 1], [1, 0]], "validator": {"kind": "unordered_list"}, "tags": ["sample"]},
+    {"id": "trial-single", "name": "single value", "kind": "trial", "visible": true, "input": {"nums": [1]}, "expected": [[1]], "validator": {"kind": "unordered_list"}, "tags": ["boundary"]},
+    {"id": "trial-negative", "name": "negative values are ordinary elements", "kind": "trial", "visible": true, "input": {"nums": [-1, 2]}, "expected": [[-1, 2], [2, -1]], "validator": {"kind": "unordered_list"}, "tags": ["negative"]},
+    {"id": "real-four-values", "name": "hidden: factorial output for four values", "kind": "real", "visible": false, "input": {"nums": [1, 2, 3, 4]}, "expected": null, "validator": {"kind": "unordered_list"}, "tags": ["hidden", "factorial"]}
+  ]
+}

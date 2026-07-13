@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_1555",
+  "source": "leetcode",
+  "frontend_id": "1555",
+  "slug": "bank-account-summary",
+  "title": "Bank Account Summary",
+  "difficulty": "Medium",
+  "acceptance_rate": 52.329838199403426,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/bank-account-summary/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:optum",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:optum",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Optum",
+      "slug": "optum"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Optum",
+        "slug": "optum",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

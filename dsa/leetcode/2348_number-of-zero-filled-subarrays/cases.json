@@ -1,0 +1,80 @@
+{
+  "challenge_id": "lc_2348",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two zero blocks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-three-zero-tail",
+      "name": "hidden: larger zero block at the end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

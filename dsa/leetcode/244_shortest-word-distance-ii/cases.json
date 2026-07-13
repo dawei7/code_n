@@ -1,0 +1,6 @@
+{"challenge_id":"lc_244","cases":[
+{"id":"sample-two-queries","name":"sample: reuse one index","kind":"sample","visible":true,"input":{"wordsDict":["practice","makes","perfect","coding","makes"],"queries":[["coding","practice"],["makes","coding"]]},"expected":[3,1],"tags":["sample","multiple-queries"]},
+{"id":"trial-repeated","name":"repeated word positions","kind":"trial","visible":true,"input":{"wordsDict":["a","b","a","c"],"queries":[["a","c"],["a","b"]]},"expected":[1,1],"tags":["repeated"]},
+{"id":"trial-two","name":"one query over two words","kind":"trial","visible":true,"input":{"wordsDict":["x","y"],"queries":[["x","y"]]},"expected":[1],"tags":["boundary"]},
+{"id":"real-crossing","name":"hidden: closest pair requires pointer merge","kind":"real","visible":false,"input":{"wordsDict":["a","x","b","x","a","b","x","b"],"queries":[["a","b"],["x","b"]]},"expected":[1,1],"tags":["hidden","two-pointers"]}
+]}

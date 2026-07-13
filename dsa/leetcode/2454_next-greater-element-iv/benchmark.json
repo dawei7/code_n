@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_2454",
+  "cases": [
+    {
+      "id": "benchmark-increasing-array",
+      "name": "benchmark: increasing array",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        3,
+        4,
+        -1,
+        -1
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

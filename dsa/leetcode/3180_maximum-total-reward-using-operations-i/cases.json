@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_3180",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: choose increasing rewards",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "reward_values": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "reward"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: skip small duplicate to reach larger total",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "reward_values": [
+          1,
+          6,
+          4,
+          3,
+          2
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-duplicates",
+      "name": "trial: duplicate rewards do not add new choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "reward_values": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-chain",
+      "name": "trial: sorted chain of valid choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "reward_values": [
+          1,
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "chain"
+      ]
+    },
+    {
+      "id": "real-unsorted-mix",
+      "name": "real: unsorted rewards with gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "reward_values": [
+          9,
+          1,
+          3,
+          10,
+          2,
+          7
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "real",
+        "bitset"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_1089",
+  "cases": [
+    {
+      "id": "benchmark-tail-zeros",
+      "name": "benchmark: tail zeros",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          8,
+          4,
+          5,
+          0,
+          0,
+          0,
+          0,
+          7
+        ]
+      },
+      "expected": [
+        8,
+        4,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2748",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: five beautiful pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          1,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "gcd"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: numbers with multi-digit first digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          21,
+          12
+        ]
+      },
+      "tags": [
+        "sample",
+        "digits"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one number has no pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-zero-last-digit",
+      "name": "trial: last digit zero only pairs with first digit one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          20,
+          31,
+          42
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero-last"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "real-mixed-digits",
+      "name": "hidden: mixed first and last digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          17,
+          29,
+          83,
+          40,
+          61,
+          72
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 9
+    }
+  ]
+}

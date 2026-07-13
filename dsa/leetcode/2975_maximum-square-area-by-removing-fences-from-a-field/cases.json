@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_2975",
+  "cases": [
+    {
+      "id": "sample-basic-square",
+      "name": "sample: basic square area",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 3,
+        "hFences": [
+          2,
+          3
+        ],
+        "vFences": [
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-boundary-square",
+      "name": "sample: square from boundaries and one fence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 6,
+        "n": 7,
+        "hFences": [
+          2
+        ],
+        "vFences": [
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-unit-square",
+      "name": "sample: only unit square possible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 9,
+        "hFences": [
+          2
+        ],
+        "vFences": [
+          8,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-common-distance",
+      "name": "trial: no equal horizontal and vertical gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 5,
+        "n": 6,
+        "hFences": [
+          2
+        ],
+        "vFences": [
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-large-side",
+      "name": "real: largest shared side is internal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 10,
+        "n": 12,
+        "hFences": [
+          2,
+          6,
+          9
+        ],
+        "vFences": [
+          3,
+          7,
+          11
+        ]
+      },
+      "expected": 81,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

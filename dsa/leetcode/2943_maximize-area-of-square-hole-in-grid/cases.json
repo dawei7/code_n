@@ -1,0 +1,123 @@
+{
+  "challenge_id": "lc_2943",
+  "cases": [
+    {
+      "id": "sample-rect-small",
+      "name": "sample: two horizontal bars and one vertical bar",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "m": 1,
+        "hBars": [
+          2,
+          3
+        ],
+        "vBars": [
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-single-bars",
+      "name": "sample: one removed bar in both directions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 1,
+        "hBars": [
+          2
+        ],
+        "vBars": [
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-larger-vertical-run",
+      "name": "sample: vertical run is longer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "m": 3,
+        "hBars": [
+          2,
+          3
+        ],
+        "vBars": [
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-unsorted-bars",
+      "name": "trial: unsorted bars with separated runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "m": 7,
+        "hBars": [
+          5,
+          2,
+          4,
+          7
+        ],
+        "vBars": [
+          3,
+          6,
+          4,
+          5
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sorting"
+      ]
+    },
+    {
+      "id": "real-horizontal-limits-square",
+      "name": "real: horizontal run limits square side",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 8,
+        "m": 9,
+        "hBars": [
+          2,
+          3,
+          4,
+          8
+        ],
+        "vBars": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

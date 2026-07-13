@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_1013",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: can split",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          2,
+          1,
+          -6,
+          6,
+          -7,
+          9,
+          1,
+          2,
+          0,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: wrong total",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          2,
+          1,
+          -6,
+          6,
+          7,
+          9,
+          -1,
+          2,
+          0,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: another valid split",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          3,
+          6,
+          5,
+          -2,
+          2,
+          5,
+          1,
+          -9,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-all-zeroes",
+      "name": "hidden: all zeroes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

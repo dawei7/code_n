@@ -1,0 +1,189 @@
+{
+  "challenge_id": "lc_1472",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: visit twice then go back",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "homepage": "leetcode.com",
+        "operations": [
+          [
+            "visit",
+            [
+              "google.com"
+            ]
+          ],
+          [
+            "visit",
+            [
+              "facebook.com"
+            ]
+          ],
+          [
+            "back",
+            [
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        "google.com"
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: back then forward",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "homepage": "leetcode.com",
+        "operations": [
+          [
+            "visit",
+            [
+              "a.com"
+            ]
+          ],
+          [
+            "visit",
+            [
+              "b.com"
+            ]
+          ],
+          [
+            "back",
+            [
+              2
+            ]
+          ],
+          [
+            "forward",
+            [
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        "leetcode.com",
+        "a.com"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: visit clears forward history",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "homepage": "home.com",
+        "operations": [
+          [
+            "visit",
+            [
+              "x.com"
+            ]
+          ],
+          [
+            "back",
+            [
+              1
+            ]
+          ],
+          [
+            "visit",
+            [
+              "y.com"
+            ]
+          ],
+          [
+            "forward",
+            [
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        "home.com",
+        null,
+        "y.com"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-visit-after-back",
+      "name": "hidden: new visit after back clears future entries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "homepage": "start.com",
+        "operations": [
+          [
+            "visit",
+            [
+              "a.com"
+            ]
+          ],
+          [
+            "visit",
+            [
+              "b.com"
+            ]
+          ],
+          [
+            "back",
+            [
+              1
+            ]
+          ],
+          [
+            "visit",
+            [
+              "c.com"
+            ]
+          ],
+          [
+            "forward",
+            [
+              2
+            ]
+          ],
+          [
+            "back",
+            [
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        "a.com",
+        null,
+        "c.com",
+        "start.com"
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

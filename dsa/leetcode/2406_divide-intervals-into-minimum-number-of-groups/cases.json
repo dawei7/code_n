@@ -1,0 +1,152 @@
+{
+  "challenge_id": "lc_2406",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three overlapping groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            5,
+            10
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            10
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "sweep-line"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: separated intervals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            11,
+            13
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: disjoint single points",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-touching-closed-intervals",
+      "name": "trial: touching closed intervals overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-nested-intervals",
+      "name": "hidden: all intervals overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "intervals": [
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            7
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

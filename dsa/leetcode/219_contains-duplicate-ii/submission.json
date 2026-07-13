@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "219",
+  "frontend_id": "219",
+  "title_slug": "contains-duplicate-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064218286",
+  "verified_at": "2026-07-11T18:51:37.832712+00:00"
+}

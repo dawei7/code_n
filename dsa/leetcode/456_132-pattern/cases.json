@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_456",
+  "cases": [
+    {
+      "id": "sample-increasing",
+      "name": "sample: increasing values have no pattern",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4]},
+      "expected": false,
+      "tags": ["sample", "increasing"]
+    },
+    {
+      "id": "sample-basic-pattern",
+      "name": "sample: pattern uses interior values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 1, 4, 2]},
+      "expected": true,
+      "tags": ["sample", "pattern"]
+    },
+    {
+      "id": "sample-negative-pattern",
+      "name": "sample: pattern includes negative value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [-1, 3, 2, 0]},
+      "expected": true,
+      "tags": ["sample", "negative"]
+    },
+    {
+      "id": "trial-too-short",
+      "name": "trial: fewer than three elements",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 1]},
+      "expected": false,
+      "tags": ["trial", "short"]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: equal values do not meet strict inequalities",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 2, 1]},
+      "expected": false,
+      "tags": ["trial", "duplicates"]
+    },
+    {
+      "id": "hidden-late-pattern",
+      "name": "hidden: pattern appears after an early peak",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, 5, 0, 3, 4]},
+      "expected": true,
+      "tags": ["hidden", "late"]
+    },
+    {
+      "id": "hidden-false-mixed",
+      "name": "hidden: mixed values without a strict pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 0, 1, -4, -3]},
+      "expected": false,
+      "tags": ["hidden", "none"]
+    }
+  ]
+}

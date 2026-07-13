@@ -1,0 +1,114 @@
+{
+  "challenge_id": "lc_3396",
+  "cases": [
+    {
+      "id": "sample-two-operations",
+      "name": "sample: two prefix removals leave distinct suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          2,
+          3,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "suffix-distinct"
+      ]
+    },
+    {
+      "id": "sample-remove-all",
+      "name": "sample: final operation removes the remaining duplicate array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          5,
+          6,
+          4,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "prefix-removal"
+      ]
+    },
+    {
+      "id": "sample-already-distinct",
+      "name": "sample: already distinct requires zero operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-tail-duplicate",
+      "name": "trial: duplicate in final suffix forces one more operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "suffix-distinct"
+      ]
+    },
+    {
+      "id": "real-many-prefix-removals",
+      "name": "real: distinct suffix begins late",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          4,
+          3,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "prefix-removal"
+      ]
+    }
+  ]
+}

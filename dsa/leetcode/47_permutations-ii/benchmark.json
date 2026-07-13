@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_47",
+  "measurement_note": "All-equal inputs isolate duplicate pruning: the optimal search emits one result, while generate-then-deduplicate explores n! index orderings.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: one equal value",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1,
+      "input": {"nums": [1]},
+      "expected": [[1]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["benchmark", "scale-small", "duplicate-pruning"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: four equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"nums": [1, 1, 1, 1]},
+      "expected": [[1, 1, 1, 1]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["benchmark", "scale-medium", "duplicate-pruning"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: eight equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1]},
+      "expected": [[1, 1, 1, 1, 1, 1, 1, 1]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["benchmark", "scale-large", "duplicate-pruning"]
+    }
+  ]
+}

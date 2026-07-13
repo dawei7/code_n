@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "601",
+  "frontend_id": "601",
+  "title_slug": "human-traffic-of-stadium",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065457817",
+  "verified_at": "2026-07-12T21:34:47.092260+00:00"
+}

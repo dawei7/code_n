@@ -1,0 +1,37 @@
+{
+  "challenge_id": "lc_1349",
+  "cases": [
+    {
+      "id": "benchmark-diagonal-conflicts",
+      "name": "benchmark: diagonal conflicts",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "seats": [
+          [
+            ".",
+            "#",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            "#",
+            "."
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            "#"
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "challenge_id": "lc_281",
+  "source": "leetcode",
+  "frontend_id": "281",
+  "slug": "zigzag-iterator",
+  "title": "Zigzag Iterator",
+  "difficulty": "Medium",
+  "acceptance_rate": 67.08090079917113,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Design",
+      "slug": "design"
+    },
+    {
+      "name": "Queue",
+      "slug": "queue"
+    },
+    {
+      "name": "Iterator",
+      "slug": "iterator"
+    }
+  ],
+  "url": "https://leetcode.com/problems/zigzag-iterator/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:coinbase",
+    "leetcode_company:google",
+    "leetcode_studyplan:premium-algo-100",
+    "leetcode_studyplan:premium-algo-100:premium-algo-100-77-h64t",
+    "leetcode_topic:array",
+    "leetcode_topic:design",
+    "leetcode_topic:iterator",
+    "leetcode_topic:queue",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:coinbase",
+    "company:google",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "study_plan:premium-algo-100",
+    "study_plan_section:premium-algo-100:premium-algo-100-77-h64t",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:design",
+    "topic:iterator",
+    "topic:queue"
+  ],
+  "company_tags": [
+    {
+      "name": "Coinbase",
+      "slug": "coinbase"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 0
+      }
+    ],
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Coinbase",
+        "slug": "coinbase",
+        "timesEncountered": 4
+      }
+    ],
+    "1": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "premium-algo-100",
+      "plan_name": "Premium Algo 100",
+      "section_slug": "premium-algo-100-77-h64t",
+      "section_name": "Design",
+      "path": [
+        "Design"
+      ],
+      "order": 84,
+      "section_order": 17,
+      "problem_order": 5,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": true,
+      "section_premium_only": false,
+      "paid_only": true,
+      "source_url": "https://leetcode.com/studyplan/premium-algo-100/"
+    }
+  ],
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Arrays & Hashing"
+      ],
+      "order": 32,
+      "section_order": 0,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "zigzag-iterator",
+      "leetcode_slug": "zigzag-iterator",
+      "difficulty": "Medium",
+      "problem_order": 32
+    }
+  ]
+}

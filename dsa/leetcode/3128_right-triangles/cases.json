@@ -1,0 +1,212 @@
+{
+  "challenge_id": "lc_3128",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: vertical bar with one side point",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: diagonal has no right triangles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: left column and top row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-full-rectangle",
+      "name": "trial: full 3 by 4 rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 72,
+      "tags": [
+        "dense"
+      ]
+    },
+    {
+      "id": "trial-sparse-mixed",
+      "name": "trial: sparse mixed rows and columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "sparse"
+      ]
+    },
+    {
+      "id": "real-single-row",
+      "name": "real: one row cannot make triangles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-single-column",
+      "name": "real: one column cannot make triangles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "edge"
+      ]
+    }
+  ]
+}

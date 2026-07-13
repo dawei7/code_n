@@ -1,0 +1,6 @@
+{"challenge_id":"lc_247","cases":[
+{"id":"sample-two","name":"sample: two-digit numerals","kind":"sample","visible":true,"input":{"n":2},"expected":["11","69","88","96"],"validator":{"kind":"unordered_list"},"tags":["sample","even"]},
+{"id":"sample-one","name":"sample: valid middle digits","kind":"sample","visible":true,"input":{"n":1},"expected":["0","1","8"],"validator":{"kind":"unordered_list"},"tags":["sample","odd"]},
+{"id":"trial-three","name":"three-digit numerals","kind":"trial","visible":true,"input":{"n":3},"expected":["101","111","181","609","619","689","808","818","888","906","916","986"],"validator":{"kind":"unordered_list"},"tags":["center","internal-zero"]},
+{"id":"real-four-count","name":"hidden: four-digit construction","kind":"real","visible":false,"input":{"n":4},"expected":["1001","1111","1691","1881","1961","6009","6119","6699","6889","6969","8008","8118","8698","8888","8968","9006","9116","9696","9886","9966"],"validator":{"kind":"unordered_list"},"tags":["hidden","outer-zero"]}
+]}

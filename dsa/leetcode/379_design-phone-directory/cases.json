@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_379",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: allocate all three numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "max_numbers": 3,
+        "operations": [
+          [
+            "get"
+          ],
+          [
+            "get"
+          ],
+          [
+            "check",
+            2
+          ],
+          [
+            "get"
+          ],
+          [
+            "check",
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        true,
+        2,
+        false
+      ],
+      "validator": {
+        "kind": "phone_directory_trace",
+        "max_param": "max_numbers",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "allocation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: exhausted one-number directory",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "max_numbers": 1,
+        "operations": [
+          [
+            "get"
+          ],
+          [
+            "get"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        -1
+      ],
+      "validator": {
+        "kind": "phone_directory_trace",
+        "max_param": "max_numbers",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "exhausted"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: release and reuse",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "max_numbers": 2,
+        "operations": [
+          [
+            "get"
+          ],
+          [
+            "release",
+            0
+          ],
+          [
+            "check",
+            0
+          ],
+          [
+            "get"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        true,
+        0
+      ],
+      "validator": {
+        "kind": "phone_directory_trace",
+        "max_param": "max_numbers",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "release"
+      ]
+    },
+    {
+      "id": "trial-check-before-get",
+      "name": "trial: every number initially available",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "max_numbers": 3,
+        "operations": [
+          [
+            "check",
+            0
+          ],
+          [
+            "check",
+            2
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true
+      ],
+      "validator": {
+        "kind": "phone_directory_trace",
+        "max_param": "max_numbers",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "trial",
+        "initial"
+      ]
+    },
+    {
+      "id": "trial-redundant-release",
+      "name": "trial: releasing available number is idempotent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "max_numbers": 2,
+        "operations": [
+          [
+            "release",
+            1
+          ],
+          [
+            "get"
+          ],
+          [
+            "get"
+          ],
+          [
+            "get"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        -1
+      ],
+      "validator": {
+        "kind": "phone_directory_trace",
+        "max_param": "max_numbers",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "trial",
+        "idempotent"
+      ]
+    },
+    {
+      "id": "hidden-release-middle",
+      "name": "hidden: released allocation returns to pool",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "max_numbers": 3,
+        "operations": [
+          [
+            "get"
+          ],
+          [
+            "get"
+          ],
+          [
+            "release",
+            0
+          ],
+          [
+            "get"
+          ],
+          [
+            "get"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        0
+      ],
+      "validator": {
+        "kind": "phone_directory_trace",
+        "max_param": "max_numbers",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "hidden",
+        "release"
+      ]
+    },
+    {
+      "id": "hidden-check-transitions",
+      "name": "hidden: checks reflect allocation and release",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "max_numbers": 2,
+        "operations": [
+          [
+            "check",
+            1
+          ],
+          [
+            "get"
+          ],
+          [
+            "check",
+            0
+          ],
+          [
+            "release",
+            0
+          ],
+          [
+            "check",
+            0
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        0,
+        false,
+        true
+      ],
+      "validator": {
+        "kind": "phone_directory_trace",
+        "max_param": "max_numbers",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "hidden",
+        "check"
+      ]
+    },
+    {
+      "id": "hidden-repeated-exhaustion",
+      "name": "hidden: exhaustion remains stable",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "max_numbers": 1,
+        "operations": [
+          [
+            "get"
+          ],
+          [
+            "get"
+          ],
+          [
+            "get"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "phone_directory_trace",
+        "max_param": "max_numbers",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "hidden",
+        "exhausted"
+      ]
+    }
+  ]
+}
+

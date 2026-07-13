@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1215",
+  "source": "leetcode",
+  "frontend_id": "1215",
+  "slug": "stepping-numbers",
+  "title": "Stepping Numbers",
+  "difficulty": "Medium",
+  "acceptance_rate": 48.57750372102913,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Backtracking",
+      "slug": "backtracking"
+    },
+    {
+      "name": "Breadth-First Search",
+      "slug": "breadth-first-search"
+    }
+  ],
+  "url": "https://leetcode.com/problems/stepping-numbers/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:epic-systems",
+    "leetcode_topic:backtracking",
+    "leetcode_topic:breadth-first-search",
+    "leetcode_topic:math"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:epic-systems",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:backtracking",
+    "topic:breadth-first-search",
+    "topic:math"
+  ],
+  "company_tags": [
+    {
+      "name": "Epic Systems",
+      "slug": "epic-systems"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Epic Systems",
+        "slug": "epic-systems",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

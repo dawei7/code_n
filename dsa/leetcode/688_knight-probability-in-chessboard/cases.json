@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_688",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two moves from a corner",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 2,
+        "row": 0,
+        "column": 0
+      },
+      "expected": 0.0625,
+      "tags": [
+        "sample",
+        "corner"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: zero moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 0,
+        "row": 0,
+        "column": 0
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "zero-moves"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one-cell board",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 1,
+        "row": 0,
+        "column": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "off-board"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: center of a three-cell board",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 1,
+        "row": 1,
+        "column": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "center"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one move from a four-cell corner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 1,
+        "row": 0,
+        "column": 0
+      },
+      "expected": 0.25,
+      "tags": [
+        "trial",
+        "one-move"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: two moves on four-cell board",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "k": 2,
+        "row": 0,
+        "column": 0
+      },
+      "expected": 0.125,
+      "tags": [
+        "hidden",
+        "two-moves"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: all moves remain from central square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 8,
+        "k": 1,
+        "row": 3,
+        "column": 3
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "central-square"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: edge start on standard board",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 8,
+        "k": 2,
+        "row": 0,
+        "column": 4
+      },
+      "expected": 0.40625,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

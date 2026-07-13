@@ -1,0 +1,80 @@
+{
+  "challenge_id": "lc_1569",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one alternate ordering",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: mixed left and right subtrees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: already a chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-balanced-with-six-values",
+      "name": "hidden: balanced left and right subtrees",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2,
+          5,
+          4,
+          6
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

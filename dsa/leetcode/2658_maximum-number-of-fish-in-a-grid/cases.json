@@ -1,0 +1,169 @@
+{
+  "challenge_id": "lc_2658",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: largest component has seven fish",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            3
+          ],
+          [
+            1,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            3,
+            2,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "component"
+      ],
+      "expected": 7
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two isolated one-fish cells",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "isolated"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-all-water",
+      "name": "trial: no fish anywhere",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-solid-lake",
+      "name": "trial: one connected lake",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            1,
+            2
+          ],
+          [
+            4,
+            3,
+            0
+          ],
+          [
+            0,
+            6,
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "connected"
+      ],
+      "expected": 28
+    },
+    {
+      "id": "real-thin-bridge",
+      "name": "hidden: thin bridge connects entire lake",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            8,
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            2,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "bridge"
+      ],
+      "expected": 20
+    }
+  ]
+}

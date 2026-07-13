@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "149",
+  "frontend_id": "149",
+  "title_slug": "max-points-on-a-line",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064171830",
+  "verified_at": "2026-07-11T18:05:57.968751+00:00"
+}

@@ -1,0 +1,114 @@
+{
+  "challenge_id": "lc_596",
+  "source": "leetcode",
+  "frontend_id": "596",
+  "slug": "classes-with-at-least-5-students",
+  "title": "Classes With at Least 5 Students",
+  "difficulty": "Easy",
+  "acceptance_rate": 64.23503074986338,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/classes-with-at-least-5-students/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:google",
+    "leetcode_company:microsoft",
+    "leetcode_studyplan:30-days-of-pandas",
+    "leetcode_studyplan:30-days-of-pandas:30-days-of-pandas-163-i9nm",
+    "leetcode_studyplan:top-sql-50",
+    "leetcode_studyplan:top-sql-50:top-sql-50-131-ouut",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:google",
+    "company:microsoft",
+    "language:sql",
+    "leetcode",
+    "study_plan:30-days-of-pandas",
+    "study_plan:top-sql-50",
+    "study_plan_section:30-days-of-pandas:30-days-of-pandas-163-i9nm",
+    "study_plan_section:top-sql-50:top-sql-50-131-ouut",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "Microsoft",
+      "slug": "microsoft"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Microsoft",
+        "slug": "microsoft",
+        "timesEncountered": 3
+      }
+    ],
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "30-days-of-pandas",
+      "plan_name": "30 Days of Pandas",
+      "section_slug": "30-days-of-pandas-163-i9nm",
+      "section_name": "Data Aggregation",
+      "path": [
+        "Data Aggregation"
+      ],
+      "order": 24,
+      "section_order": 7,
+      "problem_order": 4,
+      "catalog_slug": "30-days-challenge-beginner-friendly-series",
+      "catalog_name": "30 Days Challenge",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/30-days-of-pandas/"
+    },
+    {
+      "plan_slug": "top-sql-50",
+      "plan_name": "SQL 50",
+      "section_slug": "top-sql-50-131-ouut",
+      "section_name": "Sorting and Grouping",
+      "path": [
+        "Sorting and Grouping"
+      ],
+      "order": 26,
+      "section_order": 4,
+      "problem_order": 4,
+      "catalog_slug": "cracking-coding-interview",
+      "catalog_name": "Cracking Coding Interview",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/top-sql-50/"
+    }
+  ],
+  "neetcode_subsets": []
+}

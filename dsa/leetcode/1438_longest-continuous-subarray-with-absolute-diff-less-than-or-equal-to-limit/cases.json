@@ -1,0 +1,90 @@
+{
+  "challenge_id": "lc_1438",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: short valid window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          2,
+          4,
+          7
+        ],
+        "limit": 4
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four-value window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          2,
+          4,
+          7,
+          2
+        ],
+        "limit": 5
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero limit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          2,
+          2,
+          4,
+          4,
+          2,
+          2
+        ],
+        "limit": 0
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: all values equal with zero limit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "limit": 0
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

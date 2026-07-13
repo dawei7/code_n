@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_344","cases":[
+{"id":"sample-1","name":"sample: odd-length word","kind":"sample","visible":true,"input":{"s":["h","e","l","l","o"]},"expected":["o","l","l","e","h"],"tags":["sample","in-place"]},
+{"id":"sample-2","name":"sample: even-length name","kind":"sample","visible":true,"input":{"s":["H","a","n","n","a","h"]},"expected":["h","a","n","n","a","H"],"tags":["sample","in-place"]},
+{"id":"sample-3","name":"sample: one character","kind":"sample","visible":true,"input":{"s":["x"]},"expected":["x"],"tags":["sample","boundary"]},
+{"id":"trial-empty","name":"trial: empty character array","kind":"trial","visible":false,"input":{"s":[]},"expected":[],"tags":["trial","empty"]},
+{"id":"trial-two","name":"trial: one swap","kind":"trial","visible":false,"input":{"s":["a","b"]},"expected":["b","a"],"tags":["trial","boundary"]},
+{"id":"hidden-duplicates","name":"hidden: repeated characters","kind":"real","visible":false,"input":{"s":["a","b","a","a"]},"expected":["a","a","b","a"],"tags":["hidden","duplicates"]},
+{"id":"hidden-symbols","name":"hidden: digits and punctuation","kind":"real","visible":false,"input":{"s":["1","!","?","2"]},"expected":["2","?","!","1"],"tags":["hidden","symbols"]},
+{"id":"hidden-mixed-case","name":"hidden: case is preserved","kind":"real","visible":false,"input":{"s":["A","b","C","d","E"]},"expected":["E","d","C","b","A"],"tags":["hidden","case"]}
+]}

@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_3449",
+  "cases": [
+    {
+      "id": "sample-two-cells",
+      "name": "sample: two cells with three moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          2,
+          4
+        ],
+        "m": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-three-cells",
+      "name": "sample: three cells with limited moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          1,
+          2,
+          3
+        ],
+        "m": 5
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "path"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: one cell can be revisited",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          5
+        ],
+        "m": 5
+      },
+      "expected": 15,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-tight-end",
+      "name": "trial: last cell is the bottleneck",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          3,
+          1
+        ],
+        "m": 4
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-varied-points",
+      "name": "real: varied point gains",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          5,
+          1,
+          4,
+          2,
+          7
+        ],
+        "m": 14
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "greedy-check"
+      ]
+    }
+  ]
+}

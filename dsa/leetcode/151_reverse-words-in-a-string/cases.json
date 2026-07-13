@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_151",
+  "cases": [
+    {"id": "sample-plain", "name": "sample: ordinary sentence", "kind": "sample", "visible": true, "input": {"s": "the sky is blue"}, "expected": "blue is sky the", "tags": ["sample", "string"]},
+    {"id": "sample-outer-spaces", "name": "sample: leading and trailing spaces", "kind": "sample", "visible": true, "input": {"s": "  hello world  "}, "expected": "world hello", "tags": ["sample", "spaces"]},
+    {"id": "sample-repeated-spaces", "name": "sample: repeated internal spaces", "kind": "sample", "visible": true, "input": {"s": "a good   example"}, "expected": "example good a", "tags": ["sample", "normalization"]},
+    {"id": "trial-single", "name": "single padded word", "kind": "trial", "visible": true, "input": {"s": "   solitary   "}, "expected": "solitary", "tags": ["boundary"]},
+    {"id": "real-short-words", "name": "hidden: many short words and spaces", "kind": "real", "visible": false, "input": {"s": "  a  b   c d  "}, "expected": "d c b a", "tags": ["hidden", "spaces"]}
+  ]
+}

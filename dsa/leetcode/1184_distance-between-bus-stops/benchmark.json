@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1184",
+  "cases": [
+    {
+      "id": "benchmark-opposite-side",
+      "name": "benchmark: opposite side",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "distance": [
+          3,
+          5,
+          2,
+          6,
+          4,
+          8
+        ],
+        "start": 4,
+        "destination": 1
+      },
+      "expected": 13,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

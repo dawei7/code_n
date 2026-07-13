@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "602",
+  "frontend_id": "602",
+  "title_slug": "friend-requests-ii-who-has-the-most-friends",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065458771",
+  "verified_at": "2026-07-12T21:37:26.143648+00:00"
+}

@@ -1,0 +1,141 @@
+{
+  "challenge_id": "lc_2326",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: partially filled three by five matrix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 5,
+        "head": [
+          3,
+          0,
+          2,
+          6,
+          8,
+          1,
+          7,
+          9,
+          4,
+          2,
+          5,
+          5,
+          0
+        ]
+      },
+      "expected": [
+        [
+          3,
+          0,
+          2,
+          6,
+          8
+        ],
+        [
+          5,
+          0,
+          -1,
+          -1,
+          1
+        ],
+        [
+          5,
+          2,
+          4,
+          9,
+          7
+        ]
+      ],
+      "tags": [
+        "sample",
+        "linked-list",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: short list in one row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 4,
+        "head": [
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        [
+          0,
+          1,
+          2,
+          -1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: empty linked list",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "head": []
+      },
+      "expected": [
+        [
+          -1,
+          -1
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-short-two-by-three",
+      "name": "hidden: short list leaves tail cells empty",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 2,
+        "n": 3,
+        "head": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          -1,
+          -1,
+          4
+        ]
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

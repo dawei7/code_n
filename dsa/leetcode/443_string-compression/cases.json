@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_443",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several repeated runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"chars": ["a", "a", "b", "b", "c", "c", "c"]},
+      "expected": {"length": 6, "prefix": ["a", "2", "b", "2", "c", "3"]},
+      "tags": ["sample", "mixed-runs"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one singleton",
+      "kind": "sample",
+      "visible": true,
+      "input": {"chars": ["a"]},
+      "expected": {"length": 1, "prefix": ["a"]},
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one run has a two-digit count",
+      "kind": "sample",
+      "visible": true,
+      "input": {"chars": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]},
+      "expected": {"length": 3, "prefix": ["a", "1", "2"]},
+      "tags": ["sample", "multi-digit"]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "trial: every character is a singleton run",
+      "kind": "trial",
+      "visible": true,
+      "input": {"chars": ["a", "b", "a", "b", "a"]},
+      "expected": {"length": 5, "prefix": ["a", "b", "a", "b", "a"]},
+      "tags": ["trial", "alternating"]
+    },
+    {
+      "id": "trial-ten",
+      "name": "trial: count ten writes two digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {"chars": ["z", "z", "z", "z", "z", "z", "z", "z", "z", "z"]},
+      "expected": {"length": 3, "prefix": ["z", "1", "0"]},
+      "tags": ["trial", "ten"]
+    },
+    {
+      "id": "hidden-boundaries",
+      "name": "hidden: singleton runs surround a repeated run",
+      "kind": "real",
+      "visible": false,
+      "input": {"chars": ["a", "b", "b", "b", "c"]},
+      "expected": {"length": 4, "prefix": ["a", "b", "3", "c"]},
+      "tags": ["hidden", "boundaries"]
+    },
+    {
+      "id": "hidden-case-sensitive",
+      "name": "hidden: letter case separates runs",
+      "kind": "real",
+      "visible": false,
+      "input": {"chars": ["a", "a", "A", "A", "a"]},
+      "expected": {"length": 5, "prefix": ["a", "2", "A", "2", "a"]},
+      "tags": ["hidden", "case"]
+    }
+  ]
+}

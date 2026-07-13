@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "592",
+  "frontend_id": "592",
+  "title_slug": "fraction-addition-and-subtraction",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065447747",
+  "verified_at": "2026-07-12T21:07:29.857197+00:00"
+}

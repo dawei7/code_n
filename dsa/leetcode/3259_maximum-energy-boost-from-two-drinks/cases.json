@@ -1,0 +1,135 @@
+{
+  "challenge_id": "lc_3259",
+  "cases": [
+    {
+      "id": "sample-steady-a",
+      "name": "sample: one drink dominates early",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "energyA": [
+          1,
+          3,
+          1
+        ],
+        "energyB": [
+          3,
+          1,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-switch-late",
+      "name": "sample: switch decision after cooldown",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "energyA": [
+          4,
+          1,
+          1,
+          10
+        ],
+        "energyB": [
+          1,
+          8,
+          8,
+          1
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "sample",
+        "cooldown"
+      ]
+    },
+    {
+      "id": "trial-one-hour",
+      "name": "trial: one hour chooses larger drink",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyA": [
+          5
+        ],
+        "energyB": [
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-alternating-benefit",
+      "name": "trial: alternating values with cooldown",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyA": [
+          10,
+          1,
+          10,
+          1,
+          10
+        ],
+        "energyB": [
+          1,
+          9,
+          1,
+          9,
+          1
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "cooldown"
+      ]
+    },
+    {
+      "id": "real-long-pattern",
+      "name": "real: longer energy profile",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "energyA": [
+          5,
+          6,
+          1,
+          1,
+          20,
+          1,
+          1,
+          8,
+          9,
+          2,
+          2
+        ],
+        "energyB": [
+          1,
+          1,
+          10,
+          10,
+          1,
+          7,
+          7,
+          1,
+          1,
+          12,
+          12
+        ]
+      },
+      "expected": 69,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1460",
+  "cases": [
+    {
+      "id": "benchmark-duplicate-count-mismatch",
+      "name": "benchmark: duplicate counts differ",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "target": [
+          1,
+          1,
+          2
+        ],
+        "arr": [
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

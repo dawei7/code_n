@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_461",
+  "cases": [
+    {
+      "id": "sample-separated-bits",
+      "name": "sample: two differing positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"x": 1, "y": 4},
+      "expected": 2,
+      "tags": ["sample", "bits"]
+    },
+    {
+      "id": "sample-one-bit",
+      "name": "sample: one differing position",
+      "kind": "sample",
+      "visible": true,
+      "input": {"x": 3, "y": 1},
+      "expected": 1,
+      "tags": ["sample", "one-bit"]
+    },
+    {
+      "id": "sample-equal-zero",
+      "name": "sample: equal zero values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"x": 0, "y": 0},
+      "expected": 0,
+      "tags": ["sample", "equal"]
+    },
+    {
+      "id": "trial-equal-nonzero",
+      "name": "trial: equal nonzero values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"x": 12345, "y": 12345},
+      "expected": 0,
+      "tags": ["trial", "equal"]
+    },
+    {
+      "id": "trial-all-low-bits",
+      "name": "trial: zero versus eight set bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {"x": 0, "y": 255},
+      "expected": 8,
+      "tags": ["trial", "dense"]
+    },
+    {
+      "id": "hidden-high-bit",
+      "name": "hidden: only the highest allowed bit differs",
+      "kind": "real",
+      "visible": false,
+      "input": {"x": 0, "y": 1073741824},
+      "expected": 1,
+      "tags": ["hidden", "high-bit"]
+    },
+    {
+      "id": "hidden-complementary-patterns",
+      "name": "hidden: alternating patterns differ everywhere",
+      "kind": "real",
+      "visible": false,
+      "input": {"x": 1431655765, "y": 715827882},
+      "expected": 31,
+      "tags": ["hidden", "alternating"]
+    }
+  ]
+}

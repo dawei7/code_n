@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_1413",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: negative dips",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          2,
+          -3,
+          4,
+          2
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: later negative dip",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -2,
+          -3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-negative-first",
+      "name": "hidden: lowest prefix occurs first",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -5,
+          4,
+          -2,
+          3,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

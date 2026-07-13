@@ -1,0 +1,50 @@
+{
+  "challenge_id": "lc_2397",
+  "cases": [
+    {
+      "id": "benchmark-four-columns",
+      "name": "benchmark: four-column enumeration",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ]
+        ],
+        "num_select": 2
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

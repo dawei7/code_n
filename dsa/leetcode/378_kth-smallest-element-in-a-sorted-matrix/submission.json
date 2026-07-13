@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "378",
+  "frontend_id": "378",
+  "title_slug": "kth-smallest-element-in-a-sorted-matrix",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064643009",
+  "verified_at": "2026-07-12T06:01:53.882610+00:00"
+}

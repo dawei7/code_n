@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_813",
+  "measurement_note": "Size is the array length and k is approximately size/2. Dynamic programming takes O(k * size^2); enumerating every set of k - 1 cut positions is combinatorial.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: keep 3 ones in 1 group", "kind": "benchmark", "visible": false, "size": 3, "input": {"nums": [1, 1, 1], "k": 1}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "uniform"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: split 6 ones into 3 groups", "kind": "benchmark", "visible": false, "size": 6, "input": {"nums": [1, 1, 1, 1, 1, 1], "k": 3}, "expected": 3.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "uniform"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: split 12 ones into 6 groups", "kind": "benchmark", "visible": false, "size": 12, "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "k": 6}, "expected": 6.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["benchmark", "scaling", "uniform"]}
+  ]
+}

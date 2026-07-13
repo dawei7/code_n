@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "332",
+  "frontend_id": "332",
+  "title_slug": "reconstruct-itinerary",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064418975",
+  "verified_at": "2026-07-12T02:49:42.214786+00:00"
+}

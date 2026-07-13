@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2781",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: forbidden suffix trims window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "cbaaaabc",
+        "forbidden": [
+          "aaa",
+          "cb"
+        ]
+      },
+      "tags": [
+        "sample",
+        "strings"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: several short forbidden strings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "leetcode",
+        "forbidden": [
+          "de",
+          "le",
+          "e"
+        ]
+      },
+      "tags": [
+        "sample",
+        "strings"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "trial-no-forbidden-hit",
+      "name": "trial: forbidden words do not appear",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcdef",
+        "forbidden": [
+          "gh",
+          "ij"
+        ]
+      },
+      "tags": [
+        "trial",
+        "none"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "trial-overlapping-forbidden",
+      "name": "trial: overlapping forbidden substrings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ababa",
+        "forbidden": [
+          "aba",
+          "bab"
+        ]
+      },
+      "tags": [
+        "trial",
+        "overlap"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-longer-mixed",
+      "name": "hidden: mixed forbidden lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abcdeffedcba",
+        "forbidden": [
+          "cdef",
+          "ffe",
+          "ba"
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 5
+    }
+  ]
+}

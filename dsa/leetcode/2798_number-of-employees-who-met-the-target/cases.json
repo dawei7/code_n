@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_2798",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three employees meet target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "hours": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "target": 2
+      },
+      "tags": [
+        "sample",
+        "count"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no employees meet high target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "hours": [
+          5,
+          1,
+          4,
+          2,
+          2
+        ],
+        "target": 6
+      },
+      "tags": [
+        "sample",
+        "none"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-all-meet",
+      "name": "trial: all employees meet target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          8,
+          8,
+          9
+        ],
+        "target": 8
+      },
+      "tags": [
+        "trial",
+        "all"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "trial-exact-boundary",
+      "name": "trial: exact target counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          3,
+          2,
+          3,
+          1
+        ],
+        "target": 3
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-mixed-hours",
+      "name": "hidden: mixed hours around target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hours": [
+          10,
+          0,
+          7,
+          6,
+          8,
+          5,
+          7
+        ],
+        "target": 7
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 4
+    }
+  ]
+}

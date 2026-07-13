@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2584",
+  "cases": [
+    {
+      "id": "benchmark-factor-chain",
+      "name": "benchmark: prime factors chain across the array",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15,
+          35,
+          77,
+          143
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

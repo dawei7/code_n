@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1394",
+  "cases": [
+    {
+      "id": "benchmark-many-lucky-candidates",
+      "name": "benchmark: choose largest lucky value",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          4,
+          4,
+          4,
+          4,
+          3,
+          3,
+          3,
+          2,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

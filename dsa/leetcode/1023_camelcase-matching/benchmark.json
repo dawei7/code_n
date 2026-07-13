@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_1023",
+  "cases": [
+    {
+      "id": "benchmark-uppercase-blocker",
+      "name": "benchmark: uppercase blockers",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "queries": [
+          "CodeNow",
+          "CodeNew",
+          "CoolNoodle",
+          "cooden"
+        ],
+        "pattern": "CN"
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

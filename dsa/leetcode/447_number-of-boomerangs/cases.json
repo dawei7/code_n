@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_447",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: center of three collinear points",
+      "kind": "sample",
+      "visible": true,
+      "input": {"points": [[0, 0], [1, 0], [2, 0]]},
+      "expected": 2,
+      "tags": ["sample", "collinear"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: diagonal collinear points",
+      "kind": "sample",
+      "visible": true,
+      "input": {"points": [[1, 1], [2, 2], [3, 3]]},
+      "expected": 2,
+      "tags": ["sample", "diagonal"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: right-angle pivot has two equal distances",
+      "kind": "sample",
+      "visible": true,
+      "input": {"points": [[0, 0], [1, 0], [0, 1]]},
+      "expected": 2,
+      "tags": ["sample", "right-angle"]
+    },
+    {
+      "id": "trial-square",
+      "name": "trial: every square corner has two nearest neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {"points": [[0, 0], [1, 0], [1, 1], [0, 1]]},
+      "expected": 8,
+      "tags": ["trial", "square"]
+    },
+    {
+      "id": "trial-one",
+      "name": "trial: one point",
+      "kind": "trial",
+      "visible": true,
+      "input": {"points": [[5, -2]]},
+      "expected": 0,
+      "tags": ["trial", "single"]
+    },
+    {
+      "id": "hidden-cross",
+      "name": "hidden: center and arms create several distance groups",
+      "kind": "real",
+      "visible": false,
+      "input": {"points": [[0, 0], [1, 0], [-1, 0], [0, 1], [0, -1]]},
+      "expected": 20,
+      "tags": ["hidden", "cross"]
+    },
+    {
+      "id": "hidden-no-equal-distance",
+      "name": "hidden: every pivot distance is distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {"points": [[0, 0], [1, 0], [3, 0]]},
+      "expected": 0,
+      "tags": ["hidden", "none"]
+    }
+  ]
+}

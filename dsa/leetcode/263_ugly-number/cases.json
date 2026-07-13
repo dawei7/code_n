@@ -1,0 +1,6 @@
+{"challenge_id":"lc_263","cases":[
+{"id":"sample-six","name":"sample: factors two and three","kind":"sample","visible":true,"input":{"n":6},"expected":true,"tags":["sample","ugly"]},
+{"id":"sample-one","name":"sample: one is ugly","kind":"sample","visible":true,"input":{"n":1},"expected":true,"tags":["sample","boundary"]},
+{"id":"trial-fourteen","name":"contains disallowed factor seven","kind":"trial","visible":true,"input":{"n":14},"expected":false,"tags":["factor"]},
+{"id":"real-nonpositive","name":"hidden: zero is not ugly","kind":"real","visible":false,"input":{"n":0},"expected":false,"tags":["hidden","nonpositive"]}
+]}

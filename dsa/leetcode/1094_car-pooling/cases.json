@@ -1,0 +1,106 @@
+{
+  "challenge_id": "lc_1094",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: over capacity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "trips": [
+          [
+            2,
+            1,
+            5
+          ],
+          [
+            3,
+            3,
+            7
+          ]
+        ],
+        "capacity": 4
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: exact capacity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "trips": [
+          [
+            2,
+            1,
+            5
+          ],
+          [
+            3,
+            3,
+            7
+          ]
+        ],
+        "capacity": 5
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-trip",
+      "name": "single trip fits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "trips": [
+          [
+            2,
+            1,
+            5
+          ]
+        ],
+        "capacity": 2
+      },
+      "expected": true,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-drop-before-pickup",
+      "name": "hidden: drop-off frees seats",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "trips": [
+          [
+            3,
+            2,
+            7
+          ],
+          [
+            3,
+            7,
+            9
+          ],
+          [
+            8,
+            3,
+            9
+          ]
+        ],
+        "capacity": 11
+      },
+      "expected": true,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

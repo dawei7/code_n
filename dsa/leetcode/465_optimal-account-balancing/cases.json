@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_465",
+  "cases": [
+    {
+      "id": "sample-two-transfers",
+      "name": "sample: three nonzero balances need two transfers",
+      "kind": "sample",
+      "visible": true,
+      "input": {"transactions": [[0, 1, 10], [2, 0, 5]]},
+      "expected": 2,
+      "tags": ["sample", "three-accounts"]
+    },
+    {
+      "id": "sample-one-transfer",
+      "name": "sample: netting history leaves one debt",
+      "kind": "sample",
+      "visible": true,
+      "input": {"transactions": [[0, 1, 10], [1, 0, 1], [1, 2, 5], [2, 0, 5]]},
+      "expected": 1,
+      "tags": ["sample", "netting"]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: no balances to settle",
+      "kind": "sample",
+      "visible": true,
+      "input": {"transactions": []},
+      "expected": 0,
+      "tags": ["sample", "empty"]
+    },
+    {
+      "id": "trial-chain-nets",
+      "name": "trial: a payment chain nets to one transfer",
+      "kind": "trial",
+      "visible": true,
+      "input": {"transactions": [[0, 1, 5], [1, 2, 5]]},
+      "expected": 1,
+      "tags": ["trial", "chain"]
+    },
+    {
+      "id": "trial-independent-pairs",
+      "name": "trial: two independent debts",
+      "kind": "trial",
+      "visible": true,
+      "input": {"transactions": [[0, 1, 5], [2, 3, 5]]},
+      "expected": 2,
+      "tags": ["trial", "pairs"]
+    },
+    {
+      "id": "hidden-unequal-balances",
+      "name": "hidden: unequal balances require three settlements",
+      "kind": "real",
+      "visible": false,
+      "input": {"transactions": [[0, 1, 4], [0, 2, 3], [3, 0, 2]]},
+      "expected": 3,
+      "tags": ["hidden", "unequal"]
+    },
+    {
+      "id": "hidden-cycle-history",
+      "name": "hidden: cyclic history reduces before settlement",
+      "kind": "real",
+      "visible": false,
+      "input": {"transactions": [[0, 1, 10], [1, 2, 3], [2, 0, 7]]},
+      "expected": 2,
+      "tags": ["hidden", "cycle"]
+    }
+  ]
+}

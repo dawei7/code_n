@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_597",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two of four pairs accepted",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "FriendRequest": [
+            {
+              "sender_id": 1,
+              "send_to_id": 2,
+              "request_date": "2016-06-01"
+            },
+            {
+              "sender_id": 1,
+              "send_to_id": 3,
+              "request_date": "2016-06-01"
+            },
+            {
+              "sender_id": 2,
+              "send_to_id": 3,
+              "request_date": "2016-06-02"
+            },
+            {
+              "sender_id": 3,
+              "send_to_id": 4,
+              "request_date": "2016-06-03"
+            }
+          ],
+          "RequestAccepted": [
+            {
+              "requester_id": 1,
+              "accepter_id": 2,
+              "accept_date": "2016-06-03"
+            },
+            {
+              "requester_id": 3,
+              "accepter_id": 4,
+              "accept_date": "2016-06-04"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "accept_rate"
+        ],
+        "rows": [
+          [
+            0.5
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "ratio"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate requests count once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "FriendRequest": [
+            {
+              "sender_id": 1,
+              "send_to_id": 2,
+              "request_date": "2016-01-01"
+            },
+            {
+              "sender_id": 1,
+              "send_to_id": 2,
+              "request_date": "2016-01-02"
+            }
+          ],
+          "RequestAccepted": [
+            {
+              "requester_id": 1,
+              "accepter_id": 2,
+              "accept_date": "2016-01-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "accept_rate"
+        ],
+        "rows": [
+          [
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: round two thirds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "FriendRequest": [
+            {
+              "sender_id": 1,
+              "send_to_id": 2,
+              "request_date": "2016-01-01"
+            },
+            {
+              "sender_id": 2,
+              "send_to_id": 3,
+              "request_date": "2016-01-02"
+            },
+            {
+              "sender_id": 3,
+              "send_to_id": 4,
+              "request_date": "2016-01-03"
+            }
+          ],
+          "RequestAccepted": [
+            {
+              "requester_id": 1,
+              "accepter_id": 2,
+              "accept_date": "2016-01-04"
+            },
+            {
+              "requester_id": 2,
+              "accepter_id": 3,
+              "accept_date": "2016-01-05"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "accept_rate"
+        ],
+        "rows": [
+          [
+            0.67
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "ratio"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one of four accepted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "FriendRequest": [
+            {
+              "sender_id": 1,
+              "send_to_id": 2,
+              "request_date": "2020-01-01"
+            },
+            {
+              "sender_id": 1,
+              "send_to_id": 3,
+              "request_date": "2020-01-01"
+            },
+            {
+              "sender_id": 2,
+              "send_to_id": 1,
+              "request_date": "2020-01-01"
+            },
+            {
+              "sender_id": 2,
+              "send_to_id": 3,
+              "request_date": "2020-01-01"
+            }
+          ],
+          "RequestAccepted": [
+            {
+              "requester_id": 1,
+              "accepter_id": 2,
+              "accept_date": "2020-01-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "accept_rate"
+        ],
+        "rows": [
+          [
+            0.25
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "ratio"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: directed pair orientation matters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "FriendRequest": [
+            {
+              "sender_id": 1,
+              "send_to_id": 2,
+              "request_date": "2020-01-01"
+            },
+            {
+              "sender_id": 2,
+              "send_to_id": 1,
+              "request_date": "2020-01-01"
+            }
+          ],
+          "RequestAccepted": [
+            {
+              "requester_id": 2,
+              "accepter_id": 1,
+              "accept_date": "2020-01-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "accept_rate"
+        ],
+        "rows": [
+          [
+            0.5
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "ratio"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: duplicate events in both tables",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "FriendRequest": [
+            {
+              "sender_id": 10,
+              "send_to_id": 20,
+              "request_date": "2021-01-01"
+            },
+            {
+              "sender_id": 10,
+              "send_to_id": 20,
+              "request_date": "2021-01-02"
+            },
+            {
+              "sender_id": 30,
+              "send_to_id": 40,
+              "request_date": "2021-01-03"
+            },
+            {
+              "sender_id": 50,
+              "send_to_id": 60,
+              "request_date": "2021-01-04"
+            },
+            {
+              "sender_id": 50,
+              "send_to_id": 60,
+              "request_date": "2021-01-05"
+            }
+          ],
+          "RequestAccepted": [
+            {
+              "requester_id": 10,
+              "accepter_id": 20,
+              "accept_date": "2021-02-01"
+            },
+            {
+              "requester_id": 10,
+              "accepter_id": 20,
+              "accept_date": "2021-02-02"
+            },
+            {
+              "requester_id": 50,
+              "accepter_id": 60,
+              "accept_date": "2021-02-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "accept_rate"
+        ],
+        "rows": [
+          [
+            0.67
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: round three fifths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "FriendRequest": [
+            {
+              "sender_id": 1,
+              "send_to_id": 5,
+              "request_date": "2022-01-01"
+            },
+            {
+              "sender_id": 2,
+              "send_to_id": 5,
+              "request_date": "2022-01-01"
+            },
+            {
+              "sender_id": 3,
+              "send_to_id": 5,
+              "request_date": "2022-01-01"
+            },
+            {
+              "sender_id": 4,
+              "send_to_id": 5,
+              "request_date": "2022-01-01"
+            },
+            {
+              "sender_id": 6,
+              "send_to_id": 5,
+              "request_date": "2022-01-01"
+            }
+          ],
+          "RequestAccepted": [
+            {
+              "requester_id": 1,
+              "accepter_id": 5,
+              "accept_date": "2022-02-01"
+            },
+            {
+              "requester_id": 2,
+              "accepter_id": 5,
+              "accept_date": "2022-02-01"
+            },
+            {
+              "requester_id": 3,
+              "accepter_id": 5,
+              "accept_date": "2022-02-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "accept_rate"
+        ],
+        "rows": [
+          [
+            0.6
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "ratio"
+      ]
+    }
+  ]
+}

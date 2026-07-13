@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "632",
+  "frontend_id": "632",
+  "title_slug": "smallest-range-covering-elements-from-k-lists",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065496214",
+  "verified_at": "2026-07-12T23:40:53.574707+00:00"
+}

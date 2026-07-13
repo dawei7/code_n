@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_3424",
+  "cases": [
+    {
+      "id": "sample-rearrange-cheaper",
+      "name": "sample: pay split cost and sort-match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          -7,
+          9,
+          5
+        ],
+        "brr": [
+          7,
+          -2,
+          -5
+        ],
+        "k": 2
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "sort"
+      ]
+    },
+    {
+      "id": "sample-already-equal",
+      "name": "sample: arrays already equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          1
+        ],
+        "brr": [
+          2,
+          1
+        ],
+        "k": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-no-rearrange",
+      "name": "trial: high split cost keeps original order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          100,
+          2
+        ],
+        "brr": [
+          1,
+          2,
+          100
+        ],
+        "k": 1000
+      },
+      "expected": 196,
+      "tags": [
+        "trial",
+        "cost"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "real: duplicates and negative values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          -1,
+          5,
+          10,
+          -3,
+          2
+        ],
+        "brr": [
+          -3,
+          5,
+          2,
+          5,
+          10,
+          -1
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

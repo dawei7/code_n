@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_816",
+  "cases": [
+    {"id": "sample-1", "name": "sample: three nonzero digits", "kind": "sample", "visible": true, "input": {"s": "(123)"}, "expected": ["(1, 23)", "(1, 2.3)", "(12, 3)", "(1.2, 3)"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "nonzero"]},
+    {"id": "sample-2", "name": "sample: several leading zeros", "kind": "sample", "visible": true, "input": {"s": "(00011)"}, "expected": ["(0, 0.011)", "(0.001, 1)"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "leading-zero"]},
+    {"id": "sample-3", "name": "sample: one leading zero", "kind": "sample", "visible": true, "input": {"s": "(0123)"}, "expected": ["(0, 123)", "(0, 12.3)", "(0, 1.23)", "(0.1, 23)", "(0.1, 2.3)", "(0.12, 3)"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "decimal"]},
+    {"id": "trial-1", "name": "trial: two digits ending in zero", "kind": "trial", "visible": true, "input": {"s": "(10)"}, "expected": ["(1, 0)"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "minimum-length"]},
+    {"id": "trial-2", "name": "trial: trailing-zero fragments", "kind": "trial", "visible": true, "input": {"s": "(100)"}, "expected": ["(10, 0)"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "trailing-zero"]},
+    {"id": "trial-3", "name": "trial: mixed internal and trailing zeros", "kind": "trial", "visible": true, "input": {"s": "(1010)"}, "expected": ["(10, 10)", "(101, 0)", "(1.01, 0)", "(10.1, 0)"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "mixed-zero"]},
+    {"id": "hidden-1", "name": "hidden: minimum nonzero input", "kind": "real", "visible": false, "input": {"s": "(11)"}, "expected": ["(1, 1)"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "minimum-length"]},
+    {"id": "hidden-2", "name": "hidden: only one zero-safe split", "kind": "real", "visible": false, "input": {"s": "(001)"}, "expected": ["(0, 0.1)"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "leading-zero"]},
+    {"id": "hidden-3", "name": "hidden: all punctuation placements valid", "kind": "real", "visible": false, "input": {"s": "(1234)"}, "expected": ["(1, 234)", "(1, 2.34)", "(1, 23.4)", "(12, 34)", "(12, 3.4)", "(1.2, 34)", "(1.2, 3.4)", "(123, 4)", "(1.23, 4)", "(12.3, 4)"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "maximum-branching"]}
+  ]
+}

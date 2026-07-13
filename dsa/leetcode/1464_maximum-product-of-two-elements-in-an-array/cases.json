@@ -1,0 +1,78 @@
+{
+  "challenge_id": "lc_1464",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two largest values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5,
+          2
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          4,
+          5
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single large maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          2,
+          5,
+          2
+        ]
+      },
+      "expected": 36,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-second-largest-matters",
+      "name": "hidden: second largest determines product",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          8,
+          1,
+          2
+        ]
+      },
+      "expected": 56,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

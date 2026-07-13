@@ -1,0 +1,37 @@
+{
+  "challenge_id": "lc_1470",
+  "cases": [
+    {
+      "id": "benchmark-four-wide-pairs",
+      "name": "benchmark: four separated pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80
+        ],
+        "n": 4
+      },
+      "expected": [
+        10,
+        50,
+        20,
+        60,
+        30,
+        70,
+        40,
+        80
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_3282",
+  "cases": [
+    {
+      "id": "sample-best-middle",
+      "name": "sample: jump through better middle value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          1,
+          5
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-first-dominates",
+      "name": "sample: first value dominates all jumps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: equal values accumulate each edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-zero-prefix",
+      "name": "trial: zero prefix before better value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          5,
+          1,
+          2
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "real-longer-profile",
+      "name": "real: longer hidden score profile",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          7,
+          1,
+          9,
+          3,
+          8,
+          4,
+          6,
+          10,
+          5
+        ]
+      },
+      "expected": 71,
+      "tags": [
+        "real",
+        "prefix-max"
+      ]
+    }
+  ]
+}

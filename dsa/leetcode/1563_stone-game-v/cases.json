@@ -1,0 +1,81 @@
+{
+  "challenge_id": "lc_1563",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed stone values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stone_value": [
+          6,
+          2,
+          3,
+          4,
+          5,
+          5
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all equal stones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stone_value": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one stone",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stone_value": [
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-small-increasing",
+      "name": "hidden: small increasing array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stone_value": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

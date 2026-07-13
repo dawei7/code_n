@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_73",
+  "cases": [
+    {"id": "sample-center", "name": "sample: center zero", "kind": "sample", "visible": true, "input": {"matrix": [[1,1,1],[1,0,1],[1,1,1]]}, "expected": [[1,0,1],[0,0,0],[1,0,1]], "tags": ["sample"]},
+    {"id": "sample-boundary", "name": "sample: zero in marker row and column", "kind": "sample", "visible": true, "input": {"matrix": [[0,1],[1,1]]}, "expected": [[0,0],[0,1]], "tags": ["sample", "boundary"]},
+    {"id": "trial-none", "name": "matrix without zero remains unchanged", "kind": "trial", "visible": true, "input": {"matrix": [[1,2],[3,4]]}, "expected": [[1,2],[3,4]], "tags": ["identity"]},
+    {"id": "trial-first-row", "name": "zero only in first row", "kind": "trial", "visible": true, "input": {"matrix": [[1,0,3],[4,5,6]]}, "expected": [[0,0,0],[4,0,6]], "tags": ["boundary"]},
+    {"id": "real-multiple", "name": "hidden: multiple independent zeroes", "kind": "real", "visible": false, "input": {"matrix": [[1,2,0,4],[5,6,7,8],[9,0,11,12]]}, "expected": [[0,0,0,0],[5,0,0,8],[0,0,0,0]], "tags": ["hidden", "multiple"]}
+  ]
+}

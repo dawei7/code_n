@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_509",
+  "measurement_note": "Size is n. Maintaining one rolling pair performs one pass through the indices, while rebuilding the sequence separately for every prefix performs quadratic total work.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: compute F(6)", "kind": "benchmark", "visible": false, "size": 6, "input": {"n": 6}, "expected": 8, "tags": ["benchmark", "scaling"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: compute F(15)", "kind": "benchmark", "visible": false, "size": 15, "input": {"n": 15}, "expected": 610, "tags": ["benchmark", "scaling"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: compute F(30)", "kind": "benchmark", "visible": false, "size": 30, "input": {"n": 30}, "expected": 832040, "tags": ["benchmark", "scaling"]}
+  ]
+}

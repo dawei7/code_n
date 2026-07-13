@@ -1,0 +1,32 @@
+{
+  "challenge_id": "lc_1233",
+  "cases": [
+    {
+      "id": "benchmark-sibling-roots",
+      "name": "benchmark: sibling roots",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "folder": [
+          "/a",
+          "/aa",
+          "/a/b",
+          "/aa/b",
+          "/b/c",
+          "/b"
+        ]
+      },
+      "expected": [
+        "/a",
+        "/aa",
+        "/b"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

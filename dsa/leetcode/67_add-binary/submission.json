@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "67",
+  "frontend_id": "67",
+  "title_slug": "add-binary",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064135492",
+  "verified_at": "2026-07-11T17:34:21.524261+00:00"
+}

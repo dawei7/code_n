@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_132",
+  "cases": [
+    {"id": "sample-one-cut", "name": "sample: aa and b", "kind": "sample", "visible": true, "input": {"s": "aab"}, "expected": 1, "tags": ["sample", "one-cut"]},
+    {"id": "sample-single", "name": "sample: one character", "kind": "sample", "visible": true, "input": {"s": "a"}, "expected": 0, "tags": ["sample", "boundary"]},
+    {"id": "sample-two", "name": "sample: two unequal characters", "kind": "sample", "visible": true, "input": {"s": "ab"}, "expected": 1, "tags": ["sample", "boundary"]},
+    {"id": "trial-whole-palindrome", "name": "whole string palindrome", "kind": "trial", "visible": true, "input": {"s": "racecar"}, "expected": 0, "tags": ["palindrome"]},
+    {"id": "real-mixed", "name": "hidden: several useful suffixes", "kind": "real", "visible": false, "input": {"s": "ababbbabbababa"}, "expected": 3, "tags": ["hidden", "dynamic-programming"]}
+  ]
+}

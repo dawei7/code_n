@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "339",
+  "frontend_id": "339",
+  "title_slug": "nested-list-weight-sum",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064478753",
+  "verified_at": "2026-07-12T03:18:14.463160+00:00"
+}

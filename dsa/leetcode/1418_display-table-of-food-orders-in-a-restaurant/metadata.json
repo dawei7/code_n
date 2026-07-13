@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_1418",
+  "source": "leetcode",
+  "frontend_id": "1418",
+  "slug": "display-table-of-food-orders-in-a-restaurant",
+  "title": "Display Table of Food Orders in a Restaurant",
+  "difficulty": "Medium",
+  "acceptance_rate": 76.49243301521383,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    },
+    {
+      "name": "Ordered Set",
+      "slug": "ordered-set"
+    }
+  ],
+  "url": "https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:jpmorgan",
+    "leetcode_company:nordstrom",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:ordered-set",
+    "leetcode_topic:sorting",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:jpmorgan",
+    "company:nordstrom",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:hash-table",
+    "topic:ordered-set",
+    "topic:sorting",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Nordstrom",
+      "slug": "nordstrom"
+    },
+    {
+      "name": "JPMorgan Chase",
+      "slug": "jpmorgan"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Nordstrom",
+        "slug": "nordstrom",
+        "timesEncountered": 2
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "JP Morgan",
+        "slug": "jp-morgan",
+        "timesEncountered": 0
+      },
+      {
+        "taggedByAdmin": true,
+        "name": "JPMorgan Chase",
+        "slug": "jpmorgan",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

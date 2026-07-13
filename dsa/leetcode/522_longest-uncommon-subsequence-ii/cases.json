@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_522",
+  "cases": [
+    {"id": "sample-three-unique", "name": "sample: every complete string is uncommon", "kind": "sample", "visible": true, "input": {"strs": ["aba","cdc","eae"]}, "expected": 3, "tags": ["sample", "unique"]},
+    {"id": "sample-none", "name": "sample: duplicate long strings contain the shorter string", "kind": "sample", "visible": true, "input": {"strs": ["aaa","aaa","aa"]}, "expected": -1, "tags": ["sample", "none"]},
+    {"id": "sample-short-answer", "name": "sample: a shorter reversed pair survives", "kind": "sample", "visible": true, "input": {"strs": ["aabbcc","aabbcc","cb","abc"]}, "expected": 2, "tags": ["sample", "duplicates"]},
+    {"id": "trial-unique-longest", "name": "trial: longer string cannot fit in a shorter one", "kind": "trial", "visible": true, "input": {"strs": ["abcd","abc"]}, "expected": 4, "tags": ["trial", "longest"]},
+    {"id": "trial-single-letters", "name": "trial: different single letters are uncommon", "kind": "trial", "visible": true, "input": {"strs": ["a","b","c"]}, "expected": 1, "tags": ["trial", "singletons"]},
+    {"id": "hidden-duplicate-short", "name": "hidden: a unique longer string survives", "kind": "real", "visible": false, "input": {"strs": ["a","a","bb"]}, "expected": 2, "tags": ["hidden", "duplicates"]},
+    {"id": "hidden-unique-peer", "name": "hidden: one equal-length peer is unique", "kind": "real", "visible": false, "input": {"strs": ["abc","def","abc"]}, "expected": 3, "tags": ["hidden", "equal-length"]}
+  ]
+}

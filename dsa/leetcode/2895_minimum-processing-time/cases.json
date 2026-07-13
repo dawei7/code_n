@@ -1,0 +1,140 @@
+{
+  "challenge_id": "lc_2895",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: earliest processor handles longest tasks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "processorTime": [
+          8,
+          10
+        ],
+        "tasks": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8
+        ]
+      },
+      "tags": [
+        "sample",
+        "greedy"
+      ],
+      "expected": 16
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: later processor receives smaller batch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "processorTime": [
+          10,
+          20
+        ],
+        "tasks": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          5,
+          8
+        ]
+      },
+      "tags": [
+        "sample",
+        "sorting"
+      ],
+      "expected": 23
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: equal task lengths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "processorTime": [
+          1,
+          5
+        ],
+        "tasks": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "equal-tasks"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "trial-one-processor",
+      "name": "trial: one processor gets all four tasks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "processorTime": [
+          4
+        ],
+        "tasks": [
+          2,
+          3,
+          4,
+          9
+        ]
+      },
+      "tags": [
+        "trial",
+        "single-processor"
+      ],
+      "expected": 13
+    },
+    {
+      "id": "real-three-processors",
+      "name": "hidden: three processors with mixed task lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "processorTime": [
+          1,
+          7,
+          12
+        ],
+        "tasks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "tags": [
+        "hidden",
+        "greedy"
+      ],
+      "expected": 16
+    }
+  ]
+}

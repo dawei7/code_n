@@ -1,0 +1,6 @@
+{"challenge_id":"lc_277","cases":[
+{"id":"sample-middle","name":"sample: person one is celebrity","kind":"sample","visible":true,"input":{"n":3,"knows_matrix":[[false,true,false],[false,false,false],[false,true,false]]},"expected":1,"tags":["sample","celebrity"]},
+{"id":"sample-none","name":"sample: mutual acquaintance has no celebrity","kind":"sample","visible":true,"input":{"n":2,"knows_matrix":[[false,true],[true,false]]},"expected":-1,"tags":["sample","none"]},
+{"id":"trial-single","name":"single person is celebrity","kind":"trial","visible":true,"input":{"n":1,"knows_matrix":[[false]]},"expected":0,"tags":["boundary"]},
+{"id":"real-failed-verification","name":"hidden: survivor is not known by everyone","kind":"real","visible":false,"input":{"n":4,"knows_matrix":[[false,false,true,false],[false,false,true,false],[false,false,false,false],[false,false,false,false]]},"expected":-1,"tags":["hidden","verification"]}
+]}

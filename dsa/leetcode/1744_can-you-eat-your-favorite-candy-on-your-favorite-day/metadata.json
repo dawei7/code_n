@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_1744",
+  "source": "leetcode",
+  "frontend_id": "1744",
+  "slug": "can-you-eat-your-favorite-candy-on-your-favorite-day",
+  "title": "Can You Eat Your Favorite Candy on Your Favorite Day?",
+  "difficulty": "Medium",
+  "acceptance_rate": 36.33055344958302,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Prefix Sum",
+      "slug": "prefix-sum"
+    }
+  ],
+  "url": "https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:fleetx",
+    "leetcode_topic:array",
+    "leetcode_topic:prefix-sum"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:fleetx",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:array",
+    "topic:prefix-sum"
+  ],
+  "company_tags": [
+    {
+      "name": "Fleetx",
+      "slug": "fleetx"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Fleetx",
+        "slug": "fleetx",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "486",
+  "frontend_id": "486",
+  "title_slug": "predict-the-winner",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065019249",
+  "verified_at": "2026-07-12T13:17:47.089044+00:00"
+}

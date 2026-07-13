@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_320",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four-letter word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "word"
+      },
+      "expected": [
+        "4",
+        "3d",
+        "2r1",
+        "2rd",
+        "1o2",
+        "1o1d",
+        "1or1",
+        "1ord",
+        "w3",
+        "w2d",
+        "w1r1",
+        "w1rd",
+        "wo2",
+        "wo1d",
+        "wor1",
+        "word"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "a"
+      },
+      "expected": [
+        "1",
+        "a"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "ab"
+      },
+      "expected": [
+        "2",
+        "1b",
+        "a1",
+        "ab"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-three-unique",
+      "name": "trial: three unique letters",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "word": "abc"
+      },
+      "expected": [
+        "3",
+        "2c",
+        "1b1",
+        "1bc",
+        "a2",
+        "a1c",
+        "ab1",
+        "abc"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-repeated",
+      "name": "trial: repeated source letters",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "word": "aa"
+      },
+      "expected": [
+        "2",
+        "1a",
+        "a1",
+        "aa"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "repeated-letters"
+      ]
+    },
+    {
+      "id": "hidden-code",
+      "name": "hidden: four distinct letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "code"
+      },
+      "expected": [
+        "4",
+        "3e",
+        "2d1",
+        "2de",
+        "1o2",
+        "1o1e",
+        "1od1",
+        "1ode",
+        "c3",
+        "c2e",
+        "c1d1",
+        "c1de",
+        "co2",
+        "co1e",
+        "cod1",
+        "code"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden"
+      ]
+    },
+    {
+      "id": "hidden-three",
+      "name": "hidden: another three-letter word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "xyz"
+      },
+      "expected": [
+        "3",
+        "2z",
+        "1y1",
+        "1yz",
+        "x2",
+        "x1z",
+        "xy1",
+        "xyz"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

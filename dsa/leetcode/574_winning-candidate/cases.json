@@ -1,0 +1,426 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_574",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: clear winner among three candidates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidate": [
+            {
+              "id": 1,
+              "Name": "A"
+            },
+            {
+              "id": 2,
+              "Name": "B"
+            },
+            {
+              "id": 3,
+              "Name": "C"
+            }
+          ],
+          "Vote": [
+            {
+              "id": 1,
+              "CandidateId": 1
+            },
+            {
+              "id": 2,
+              "CandidateId": 2
+            },
+            {
+              "id": 3,
+              "CandidateId": 2
+            },
+            {
+              "id": 4,
+              "CandidateId": 3
+            },
+            {
+              "id": 5,
+              "CandidateId": 2
+            },
+            {
+              "id": 6,
+              "CandidateId": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Name"
+        ],
+        "rows": [
+          [
+            "B"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one candidate and one vote",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidate": [
+            {
+              "id": 7,
+              "Name": "Solo"
+            }
+          ],
+          "Vote": [
+            {
+              "id": 10,
+              "CandidateId": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Name"
+        ],
+        "rows": [
+          [
+            "Solo"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "minimum"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: later candidate wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidate": [
+            {
+              "id": 10,
+              "Name": "First"
+            },
+            {
+              "id": 20,
+              "Name": "Second"
+            }
+          ],
+          "Vote": [
+            {
+              "id": 3,
+              "CandidateId": 10
+            },
+            {
+              "id": 1,
+              "CandidateId": 20
+            },
+            {
+              "id": 2,
+              "CandidateId": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Name"
+        ],
+        "rows": [
+          [
+            "Second"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: winner has nonconsecutive identifier",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidate": [
+            {
+              "id": 2,
+              "Name": "Red"
+            },
+            {
+              "id": 11,
+              "Name": "Green"
+            },
+            {
+              "id": 40,
+              "Name": "Blue"
+            }
+          ],
+          "Vote": [
+            {
+              "id": 8,
+              "CandidateId": 40
+            },
+            {
+              "id": 2,
+              "CandidateId": 11
+            },
+            {
+              "id": 6,
+              "CandidateId": 40
+            },
+            {
+              "id": 1,
+              "CandidateId": 2
+            },
+            {
+              "id": 4,
+              "CandidateId": 40
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Name"
+        ],
+        "rows": [
+          [
+            "Blue"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "identifiers"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: candidate with no votes is ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidate": [
+            {
+              "id": 1,
+              "Name": "No votes"
+            },
+            {
+              "id": 2,
+              "Name": "One"
+            },
+            {
+              "id": 3,
+              "Name": "Winner"
+            }
+          ],
+          "Vote": [
+            {
+              "id": 1,
+              "CandidateId": 2
+            },
+            {
+              "id": 2,
+              "CandidateId": 3
+            },
+            {
+              "id": 3,
+              "CandidateId": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Name"
+        ],
+        "rows": [
+          [
+            "Winner"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero-votes"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: input votes are unsorted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Candidate": [
+            {
+              "id": 5,
+              "Name": "Ada"
+            },
+            {
+              "id": 9,
+              "Name": "Grace"
+            },
+            {
+              "id": 12,
+              "Name": "Edsger"
+            }
+          ],
+          "Vote": [
+            {
+              "id": 6,
+              "CandidateId": 9
+            },
+            {
+              "id": 1,
+              "CandidateId": 5
+            },
+            {
+              "id": 5,
+              "CandidateId": 12
+            },
+            {
+              "id": 2,
+              "CandidateId": 9
+            },
+            {
+              "id": 4,
+              "CandidateId": 5
+            },
+            {
+              "id": 3,
+              "CandidateId": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Name"
+        ],
+        "rows": [
+          [
+            "Grace"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: close but unique maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Candidate": [
+            {
+              "id": 1,
+              "Name": "North"
+            },
+            {
+              "id": 2,
+              "Name": "South"
+            },
+            {
+              "id": 3,
+              "Name": "East"
+            },
+            {
+              "id": 4,
+              "Name": "West"
+            }
+          ],
+          "Vote": [
+            {
+              "id": 1,
+              "CandidateId": 1
+            },
+            {
+              "id": 2,
+              "CandidateId": 2
+            },
+            {
+              "id": 3,
+              "CandidateId": 3
+            },
+            {
+              "id": 4,
+              "CandidateId": 4
+            },
+            {
+              "id": 5,
+              "CandidateId": 1
+            },
+            {
+              "id": 6,
+              "CandidateId": 2
+            },
+            {
+              "id": 7,
+              "CandidateId": 3
+            },
+            {
+              "id": 8,
+              "CandidateId": 4
+            },
+            {
+              "id": 9,
+              "CandidateId": 1
+            },
+            {
+              "id": 10,
+              "CandidateId": 2
+            },
+            {
+              "id": 11,
+              "CandidateId": 3
+            },
+            {
+              "id": 12,
+              "CandidateId": 4
+            },
+            {
+              "id": 13,
+              "CandidateId": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Name"
+        ],
+        "rows": [
+          [
+            "West"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "unique-maximum"
+      ]
+    }
+  ]
+}

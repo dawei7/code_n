@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_2874",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: best triplet uses the low middle value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          6,
+          1,
+          2,
+          7
+        ]
+      },
+      "tags": [
+        "sample",
+        "triplet"
+      ],
+      "expected": 77
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: large final multiplier",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          3,
+          4,
+          19
+        ]
+      },
+      "tags": [
+        "sample",
+        "triplet"
+      ],
+      "expected": 133
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all triplets are non-positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "zero"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-repeated-values",
+      "name": "trial: repeated high values still need ordered indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          1,
+          9
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ],
+      "expected": 72
+    },
+    {
+      "id": "real-large-prefix-drop",
+      "name": "hidden: prefix maximum and best difference separate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          20,
+          3,
+          18,
+          2,
+          1,
+          30,
+          4
+        ]
+      },
+      "tags": [
+        "hidden",
+        "linear"
+      ],
+      "expected": 570
+    }
+  ]
+}

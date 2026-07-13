@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_83",
+  "cases": [
+    {"id": "sample-three", "name": "sample: one duplicate run", "kind": "sample", "visible": true, "input": {"head": [1,1,2]}, "expected": [1,2], "tags": ["sample"]},
+    {"id": "sample-several", "name": "sample: duplicate prefix and suffix", "kind": "sample", "visible": true, "input": {"head": [1,1,2,3,3]}, "expected": [1,2,3], "tags": ["sample"]},
+    {"id": "trial-empty", "name": "empty list", "kind": "trial", "visible": true, "input": {"head": []}, "expected": [], "tags": ["boundary"]},
+    {"id": "trial-unique", "name": "already unique list", "kind": "trial", "visible": true, "input": {"head": [-2,0,4]}, "expected": [-2,0,4], "tags": ["identity"]},
+    {"id": "real-one-run", "name": "hidden: every node equal", "kind": "real", "visible": false, "input": {"head": [7,7,7,7,7]}, "expected": [7], "tags": ["hidden", "duplicates"]}
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_2850",
+  "cases": [
+    {
+      "id": "benchmark-all-extra-stones-in-corner",
+      "name": "benchmark: all extra stones start in one corner",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            9,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "fixed-grid",
+        "assignment"
+      ]
+    }
+  ]
+}

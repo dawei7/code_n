@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_2683",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: xor parity is even",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "derived": [
+          1,
+          1,
+          0
+        ]
+      },
+      "tags": [
+        "sample",
+        "xor"
+      ],
+      "expected": true
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two ones are valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "derived": [
+          1,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "xor"
+      ],
+      "expected": true
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: odd xor is invalid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "derived": [
+          1,
+          0
+        ]
+      },
+      "tags": [
+        "sample",
+        "xor"
+      ],
+      "expected": false
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: all zero derived array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "derived": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": true
+    },
+    {
+      "id": "real-long-odd-xor",
+      "name": "hidden: odd parity among many bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "derived": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "tags": [
+        "hidden",
+        "parity"
+      ],
+      "expected": true
+    }
+  ]
+}

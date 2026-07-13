@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "767",
+  "frontend_id": "762",
+  "title_slug": "prime-number-of-set-bits-in-binary-representation",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countPrimeSetBits",
+  "verified_submission_id": "2066004638",
+  "verified_at": "2026-07-13T10:27:00.673641+00:00"
+}

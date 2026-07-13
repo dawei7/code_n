@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "196",
+  "frontend_id": "196",
+  "title_slug": "delete-duplicate-emails",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2064198113",
+  "verified_at": "2026-07-11T18:28:53.758921+00:00"
+}

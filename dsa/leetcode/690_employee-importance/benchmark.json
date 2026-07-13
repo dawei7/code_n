@@ -1,0 +1,5880 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_690",
+  "measurement_note": "Size is the number of employee records in a single subordinate chain rooted at id 1. Building an id map and traversing the chain is linear, while linearly searching the employee list again for every subordinate id is quadratic.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: subordinate chain of 64 employees",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "employees": [
+          {
+            "id": 1,
+            "importance": 1,
+            "subordinates": [
+              2
+            ]
+          },
+          {
+            "id": 2,
+            "importance": 1,
+            "subordinates": [
+              3
+            ]
+          },
+          {
+            "id": 3,
+            "importance": 1,
+            "subordinates": [
+              4
+            ]
+          },
+          {
+            "id": 4,
+            "importance": 1,
+            "subordinates": [
+              5
+            ]
+          },
+          {
+            "id": 5,
+            "importance": 1,
+            "subordinates": [
+              6
+            ]
+          },
+          {
+            "id": 6,
+            "importance": 1,
+            "subordinates": [
+              7
+            ]
+          },
+          {
+            "id": 7,
+            "importance": 1,
+            "subordinates": [
+              8
+            ]
+          },
+          {
+            "id": 8,
+            "importance": 1,
+            "subordinates": [
+              9
+            ]
+          },
+          {
+            "id": 9,
+            "importance": 1,
+            "subordinates": [
+              10
+            ]
+          },
+          {
+            "id": 10,
+            "importance": 1,
+            "subordinates": [
+              11
+            ]
+          },
+          {
+            "id": 11,
+            "importance": 1,
+            "subordinates": [
+              12
+            ]
+          },
+          {
+            "id": 12,
+            "importance": 1,
+            "subordinates": [
+              13
+            ]
+          },
+          {
+            "id": 13,
+            "importance": 1,
+            "subordinates": [
+              14
+            ]
+          },
+          {
+            "id": 14,
+            "importance": 1,
+            "subordinates": [
+              15
+            ]
+          },
+          {
+            "id": 15,
+            "importance": 1,
+            "subordinates": [
+              16
+            ]
+          },
+          {
+            "id": 16,
+            "importance": 1,
+            "subordinates": [
+              17
+            ]
+          },
+          {
+            "id": 17,
+            "importance": 1,
+            "subordinates": [
+              18
+            ]
+          },
+          {
+            "id": 18,
+            "importance": 1,
+            "subordinates": [
+              19
+            ]
+          },
+          {
+            "id": 19,
+            "importance": 1,
+            "subordinates": [
+              20
+            ]
+          },
+          {
+            "id": 20,
+            "importance": 1,
+            "subordinates": [
+              21
+            ]
+          },
+          {
+            "id": 21,
+            "importance": 1,
+            "subordinates": [
+              22
+            ]
+          },
+          {
+            "id": 22,
+            "importance": 1,
+            "subordinates": [
+              23
+            ]
+          },
+          {
+            "id": 23,
+            "importance": 1,
+            "subordinates": [
+              24
+            ]
+          },
+          {
+            "id": 24,
+            "importance": 1,
+            "subordinates": [
+              25
+            ]
+          },
+          {
+            "id": 25,
+            "importance": 1,
+            "subordinates": [
+              26
+            ]
+          },
+          {
+            "id": 26,
+            "importance": 1,
+            "subordinates": [
+              27
+            ]
+          },
+          {
+            "id": 27,
+            "importance": 1,
+            "subordinates": [
+              28
+            ]
+          },
+          {
+            "id": 28,
+            "importance": 1,
+            "subordinates": [
+              29
+            ]
+          },
+          {
+            "id": 29,
+            "importance": 1,
+            "subordinates": [
+              30
+            ]
+          },
+          {
+            "id": 30,
+            "importance": 1,
+            "subordinates": [
+              31
+            ]
+          },
+          {
+            "id": 31,
+            "importance": 1,
+            "subordinates": [
+              32
+            ]
+          },
+          {
+            "id": 32,
+            "importance": 1,
+            "subordinates": [
+              33
+            ]
+          },
+          {
+            "id": 33,
+            "importance": 1,
+            "subordinates": [
+              34
+            ]
+          },
+          {
+            "id": 34,
+            "importance": 1,
+            "subordinates": [
+              35
+            ]
+          },
+          {
+            "id": 35,
+            "importance": 1,
+            "subordinates": [
+              36
+            ]
+          },
+          {
+            "id": 36,
+            "importance": 1,
+            "subordinates": [
+              37
+            ]
+          },
+          {
+            "id": 37,
+            "importance": 1,
+            "subordinates": [
+              38
+            ]
+          },
+          {
+            "id": 38,
+            "importance": 1,
+            "subordinates": [
+              39
+            ]
+          },
+          {
+            "id": 39,
+            "importance": 1,
+            "subordinates": [
+              40
+            ]
+          },
+          {
+            "id": 40,
+            "importance": 1,
+            "subordinates": [
+              41
+            ]
+          },
+          {
+            "id": 41,
+            "importance": 1,
+            "subordinates": [
+              42
+            ]
+          },
+          {
+            "id": 42,
+            "importance": 1,
+            "subordinates": [
+              43
+            ]
+          },
+          {
+            "id": 43,
+            "importance": 1,
+            "subordinates": [
+              44
+            ]
+          },
+          {
+            "id": 44,
+            "importance": 1,
+            "subordinates": [
+              45
+            ]
+          },
+          {
+            "id": 45,
+            "importance": 1,
+            "subordinates": [
+              46
+            ]
+          },
+          {
+            "id": 46,
+            "importance": 1,
+            "subordinates": [
+              47
+            ]
+          },
+          {
+            "id": 47,
+            "importance": 1,
+            "subordinates": [
+              48
+            ]
+          },
+          {
+            "id": 48,
+            "importance": 1,
+            "subordinates": [
+              49
+            ]
+          },
+          {
+            "id": 49,
+            "importance": 1,
+            "subordinates": [
+              50
+            ]
+          },
+          {
+            "id": 50,
+            "importance": 1,
+            "subordinates": [
+              51
+            ]
+          },
+          {
+            "id": 51,
+            "importance": 1,
+            "subordinates": [
+              52
+            ]
+          },
+          {
+            "id": 52,
+            "importance": 1,
+            "subordinates": [
+              53
+            ]
+          },
+          {
+            "id": 53,
+            "importance": 1,
+            "subordinates": [
+              54
+            ]
+          },
+          {
+            "id": 54,
+            "importance": 1,
+            "subordinates": [
+              55
+            ]
+          },
+          {
+            "id": 55,
+            "importance": 1,
+            "subordinates": [
+              56
+            ]
+          },
+          {
+            "id": 56,
+            "importance": 1,
+            "subordinates": [
+              57
+            ]
+          },
+          {
+            "id": 57,
+            "importance": 1,
+            "subordinates": [
+              58
+            ]
+          },
+          {
+            "id": 58,
+            "importance": 1,
+            "subordinates": [
+              59
+            ]
+          },
+          {
+            "id": 59,
+            "importance": 1,
+            "subordinates": [
+              60
+            ]
+          },
+          {
+            "id": 60,
+            "importance": 1,
+            "subordinates": [
+              61
+            ]
+          },
+          {
+            "id": 61,
+            "importance": 1,
+            "subordinates": [
+              62
+            ]
+          },
+          {
+            "id": 62,
+            "importance": 1,
+            "subordinates": [
+              63
+            ]
+          },
+          {
+            "id": 63,
+            "importance": 1,
+            "subordinates": [
+              64
+            ]
+          },
+          {
+            "id": 64,
+            "importance": 1,
+            "subordinates": []
+          }
+        ],
+        "id": 1
+      },
+      "expected": 64,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "management-chain"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: subordinate chain of 256 employees",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "employees": [
+          {
+            "id": 1,
+            "importance": 1,
+            "subordinates": [
+              2
+            ]
+          },
+          {
+            "id": 2,
+            "importance": 1,
+            "subordinates": [
+              3
+            ]
+          },
+          {
+            "id": 3,
+            "importance": 1,
+            "subordinates": [
+              4
+            ]
+          },
+          {
+            "id": 4,
+            "importance": 1,
+            "subordinates": [
+              5
+            ]
+          },
+          {
+            "id": 5,
+            "importance": 1,
+            "subordinates": [
+              6
+            ]
+          },
+          {
+            "id": 6,
+            "importance": 1,
+            "subordinates": [
+              7
+            ]
+          },
+          {
+            "id": 7,
+            "importance": 1,
+            "subordinates": [
+              8
+            ]
+          },
+          {
+            "id": 8,
+            "importance": 1,
+            "subordinates": [
+              9
+            ]
+          },
+          {
+            "id": 9,
+            "importance": 1,
+            "subordinates": [
+              10
+            ]
+          },
+          {
+            "id": 10,
+            "importance": 1,
+            "subordinates": [
+              11
+            ]
+          },
+          {
+            "id": 11,
+            "importance": 1,
+            "subordinates": [
+              12
+            ]
+          },
+          {
+            "id": 12,
+            "importance": 1,
+            "subordinates": [
+              13
+            ]
+          },
+          {
+            "id": 13,
+            "importance": 1,
+            "subordinates": [
+              14
+            ]
+          },
+          {
+            "id": 14,
+            "importance": 1,
+            "subordinates": [
+              15
+            ]
+          },
+          {
+            "id": 15,
+            "importance": 1,
+            "subordinates": [
+              16
+            ]
+          },
+          {
+            "id": 16,
+            "importance": 1,
+            "subordinates": [
+              17
+            ]
+          },
+          {
+            "id": 17,
+            "importance": 1,
+            "subordinates": [
+              18
+            ]
+          },
+          {
+            "id": 18,
+            "importance": 1,
+            "subordinates": [
+              19
+            ]
+          },
+          {
+            "id": 19,
+            "importance": 1,
+            "subordinates": [
+              20
+            ]
+          },
+          {
+            "id": 20,
+            "importance": 1,
+            "subordinates": [
+              21
+            ]
+          },
+          {
+            "id": 21,
+            "importance": 1,
+            "subordinates": [
+              22
+            ]
+          },
+          {
+            "id": 22,
+            "importance": 1,
+            "subordinates": [
+              23
+            ]
+          },
+          {
+            "id": 23,
+            "importance": 1,
+            "subordinates": [
+              24
+            ]
+          },
+          {
+            "id": 24,
+            "importance": 1,
+            "subordinates": [
+              25
+            ]
+          },
+          {
+            "id": 25,
+            "importance": 1,
+            "subordinates": [
+              26
+            ]
+          },
+          {
+            "id": 26,
+            "importance": 1,
+            "subordinates": [
+              27
+            ]
+          },
+          {
+            "id": 27,
+            "importance": 1,
+            "subordinates": [
+              28
+            ]
+          },
+          {
+            "id": 28,
+            "importance": 1,
+            "subordinates": [
+              29
+            ]
+          },
+          {
+            "id": 29,
+            "importance": 1,
+            "subordinates": [
+              30
+            ]
+          },
+          {
+            "id": 30,
+            "importance": 1,
+            "subordinates": [
+              31
+            ]
+          },
+          {
+            "id": 31,
+            "importance": 1,
+            "subordinates": [
+              32
+            ]
+          },
+          {
+            "id": 32,
+            "importance": 1,
+            "subordinates": [
+              33
+            ]
+          },
+          {
+            "id": 33,
+            "importance": 1,
+            "subordinates": [
+              34
+            ]
+          },
+          {
+            "id": 34,
+            "importance": 1,
+            "subordinates": [
+              35
+            ]
+          },
+          {
+            "id": 35,
+            "importance": 1,
+            "subordinates": [
+              36
+            ]
+          },
+          {
+            "id": 36,
+            "importance": 1,
+            "subordinates": [
+              37
+            ]
+          },
+          {
+            "id": 37,
+            "importance": 1,
+            "subordinates": [
+              38
+            ]
+          },
+          {
+            "id": 38,
+            "importance": 1,
+            "subordinates": [
+              39
+            ]
+          },
+          {
+            "id": 39,
+            "importance": 1,
+            "subordinates": [
+              40
+            ]
+          },
+          {
+            "id": 40,
+            "importance": 1,
+            "subordinates": [
+              41
+            ]
+          },
+          {
+            "id": 41,
+            "importance": 1,
+            "subordinates": [
+              42
+            ]
+          },
+          {
+            "id": 42,
+            "importance": 1,
+            "subordinates": [
+              43
+            ]
+          },
+          {
+            "id": 43,
+            "importance": 1,
+            "subordinates": [
+              44
+            ]
+          },
+          {
+            "id": 44,
+            "importance": 1,
+            "subordinates": [
+              45
+            ]
+          },
+          {
+            "id": 45,
+            "importance": 1,
+            "subordinates": [
+              46
+            ]
+          },
+          {
+            "id": 46,
+            "importance": 1,
+            "subordinates": [
+              47
+            ]
+          },
+          {
+            "id": 47,
+            "importance": 1,
+            "subordinates": [
+              48
+            ]
+          },
+          {
+            "id": 48,
+            "importance": 1,
+            "subordinates": [
+              49
+            ]
+          },
+          {
+            "id": 49,
+            "importance": 1,
+            "subordinates": [
+              50
+            ]
+          },
+          {
+            "id": 50,
+            "importance": 1,
+            "subordinates": [
+              51
+            ]
+          },
+          {
+            "id": 51,
+            "importance": 1,
+            "subordinates": [
+              52
+            ]
+          },
+          {
+            "id": 52,
+            "importance": 1,
+            "subordinates": [
+              53
+            ]
+          },
+          {
+            "id": 53,
+            "importance": 1,
+            "subordinates": [
+              54
+            ]
+          },
+          {
+            "id": 54,
+            "importance": 1,
+            "subordinates": [
+              55
+            ]
+          },
+          {
+            "id": 55,
+            "importance": 1,
+            "subordinates": [
+              56
+            ]
+          },
+          {
+            "id": 56,
+            "importance": 1,
+            "subordinates": [
+              57
+            ]
+          },
+          {
+            "id": 57,
+            "importance": 1,
+            "subordinates": [
+              58
+            ]
+          },
+          {
+            "id": 58,
+            "importance": 1,
+            "subordinates": [
+              59
+            ]
+          },
+          {
+            "id": 59,
+            "importance": 1,
+            "subordinates": [
+              60
+            ]
+          },
+          {
+            "id": 60,
+            "importance": 1,
+            "subordinates": [
+              61
+            ]
+          },
+          {
+            "id": 61,
+            "importance": 1,
+            "subordinates": [
+              62
+            ]
+          },
+          {
+            "id": 62,
+            "importance": 1,
+            "subordinates": [
+              63
+            ]
+          },
+          {
+            "id": 63,
+            "importance": 1,
+            "subordinates": [
+              64
+            ]
+          },
+          {
+            "id": 64,
+            "importance": 1,
+            "subordinates": [
+              65
+            ]
+          },
+          {
+            "id": 65,
+            "importance": 1,
+            "subordinates": [
+              66
+            ]
+          },
+          {
+            "id": 66,
+            "importance": 1,
+            "subordinates": [
+              67
+            ]
+          },
+          {
+            "id": 67,
+            "importance": 1,
+            "subordinates": [
+              68
+            ]
+          },
+          {
+            "id": 68,
+            "importance": 1,
+            "subordinates": [
+              69
+            ]
+          },
+          {
+            "id": 69,
+            "importance": 1,
+            "subordinates": [
+              70
+            ]
+          },
+          {
+            "id": 70,
+            "importance": 1,
+            "subordinates": [
+              71
+            ]
+          },
+          {
+            "id": 71,
+            "importance": 1,
+            "subordinates": [
+              72
+            ]
+          },
+          {
+            "id": 72,
+            "importance": 1,
+            "subordinates": [
+              73
+            ]
+          },
+          {
+            "id": 73,
+            "importance": 1,
+            "subordinates": [
+              74
+            ]
+          },
+          {
+            "id": 74,
+            "importance": 1,
+            "subordinates": [
+              75
+            ]
+          },
+          {
+            "id": 75,
+            "importance": 1,
+            "subordinates": [
+              76
+            ]
+          },
+          {
+            "id": 76,
+            "importance": 1,
+            "subordinates": [
+              77
+            ]
+          },
+          {
+            "id": 77,
+            "importance": 1,
+            "subordinates": [
+              78
+            ]
+          },
+          {
+            "id": 78,
+            "importance": 1,
+            "subordinates": [
+              79
+            ]
+          },
+          {
+            "id": 79,
+            "importance": 1,
+            "subordinates": [
+              80
+            ]
+          },
+          {
+            "id": 80,
+            "importance": 1,
+            "subordinates": [
+              81
+            ]
+          },
+          {
+            "id": 81,
+            "importance": 1,
+            "subordinates": [
+              82
+            ]
+          },
+          {
+            "id": 82,
+            "importance": 1,
+            "subordinates": [
+              83
+            ]
+          },
+          {
+            "id": 83,
+            "importance": 1,
+            "subordinates": [
+              84
+            ]
+          },
+          {
+            "id": 84,
+            "importance": 1,
+            "subordinates": [
+              85
+            ]
+          },
+          {
+            "id": 85,
+            "importance": 1,
+            "subordinates": [
+              86
+            ]
+          },
+          {
+            "id": 86,
+            "importance": 1,
+            "subordinates": [
+              87
+            ]
+          },
+          {
+            "id": 87,
+            "importance": 1,
+            "subordinates": [
+              88
+            ]
+          },
+          {
+            "id": 88,
+            "importance": 1,
+            "subordinates": [
+              89
+            ]
+          },
+          {
+            "id": 89,
+            "importance": 1,
+            "subordinates": [
+              90
+            ]
+          },
+          {
+            "id": 90,
+            "importance": 1,
+            "subordinates": [
+              91
+            ]
+          },
+          {
+            "id": 91,
+            "importance": 1,
+            "subordinates": [
+              92
+            ]
+          },
+          {
+            "id": 92,
+            "importance": 1,
+            "subordinates": [
+              93
+            ]
+          },
+          {
+            "id": 93,
+            "importance": 1,
+            "subordinates": [
+              94
+            ]
+          },
+          {
+            "id": 94,
+            "importance": 1,
+            "subordinates": [
+              95
+            ]
+          },
+          {
+            "id": 95,
+            "importance": 1,
+            "subordinates": [
+              96
+            ]
+          },
+          {
+            "id": 96,
+            "importance": 1,
+            "subordinates": [
+              97
+            ]
+          },
+          {
+            "id": 97,
+            "importance": 1,
+            "subordinates": [
+              98
+            ]
+          },
+          {
+            "id": 98,
+            "importance": 1,
+            "subordinates": [
+              99
+            ]
+          },
+          {
+            "id": 99,
+            "importance": 1,
+            "subordinates": [
+              100
+            ]
+          },
+          {
+            "id": 100,
+            "importance": 1,
+            "subordinates": [
+              101
+            ]
+          },
+          {
+            "id": 101,
+            "importance": 1,
+            "subordinates": [
+              102
+            ]
+          },
+          {
+            "id": 102,
+            "importance": 1,
+            "subordinates": [
+              103
+            ]
+          },
+          {
+            "id": 103,
+            "importance": 1,
+            "subordinates": [
+              104
+            ]
+          },
+          {
+            "id": 104,
+            "importance": 1,
+            "subordinates": [
+              105
+            ]
+          },
+          {
+            "id": 105,
+            "importance": 1,
+            "subordinates": [
+              106
+            ]
+          },
+          {
+            "id": 106,
+            "importance": 1,
+            "subordinates": [
+              107
+            ]
+          },
+          {
+            "id": 107,
+            "importance": 1,
+            "subordinates": [
+              108
+            ]
+          },
+          {
+            "id": 108,
+            "importance": 1,
+            "subordinates": [
+              109
+            ]
+          },
+          {
+            "id": 109,
+            "importance": 1,
+            "subordinates": [
+              110
+            ]
+          },
+          {
+            "id": 110,
+            "importance": 1,
+            "subordinates": [
+              111
+            ]
+          },
+          {
+            "id": 111,
+            "importance": 1,
+            "subordinates": [
+              112
+            ]
+          },
+          {
+            "id": 112,
+            "importance": 1,
+            "subordinates": [
+              113
+            ]
+          },
+          {
+            "id": 113,
+            "importance": 1,
+            "subordinates": [
+              114
+            ]
+          },
+          {
+            "id": 114,
+            "importance": 1,
+            "subordinates": [
+              115
+            ]
+          },
+          {
+            "id": 115,
+            "importance": 1,
+            "subordinates": [
+              116
+            ]
+          },
+          {
+            "id": 116,
+            "importance": 1,
+            "subordinates": [
+              117
+            ]
+          },
+          {
+            "id": 117,
+            "importance": 1,
+            "subordinates": [
+              118
+            ]
+          },
+          {
+            "id": 118,
+            "importance": 1,
+            "subordinates": [
+              119
+            ]
+          },
+          {
+            "id": 119,
+            "importance": 1,
+            "subordinates": [
+              120
+            ]
+          },
+          {
+            "id": 120,
+            "importance": 1,
+            "subordinates": [
+              121
+            ]
+          },
+          {
+            "id": 121,
+            "importance": 1,
+            "subordinates": [
+              122
+            ]
+          },
+          {
+            "id": 122,
+            "importance": 1,
+            "subordinates": [
+              123
+            ]
+          },
+          {
+            "id": 123,
+            "importance": 1,
+            "subordinates": [
+              124
+            ]
+          },
+          {
+            "id": 124,
+            "importance": 1,
+            "subordinates": [
+              125
+            ]
+          },
+          {
+            "id": 125,
+            "importance": 1,
+            "subordinates": [
+              126
+            ]
+          },
+          {
+            "id": 126,
+            "importance": 1,
+            "subordinates": [
+              127
+            ]
+          },
+          {
+            "id": 127,
+            "importance": 1,
+            "subordinates": [
+              128
+            ]
+          },
+          {
+            "id": 128,
+            "importance": 1,
+            "subordinates": [
+              129
+            ]
+          },
+          {
+            "id": 129,
+            "importance": 1,
+            "subordinates": [
+              130
+            ]
+          },
+          {
+            "id": 130,
+            "importance": 1,
+            "subordinates": [
+              131
+            ]
+          },
+          {
+            "id": 131,
+            "importance": 1,
+            "subordinates": [
+              132
+            ]
+          },
+          {
+            "id": 132,
+            "importance": 1,
+            "subordinates": [
+              133
+            ]
+          },
+          {
+            "id": 133,
+            "importance": 1,
+            "subordinates": [
+              134
+            ]
+          },
+          {
+            "id": 134,
+            "importance": 1,
+            "subordinates": [
+              135
+            ]
+          },
+          {
+            "id": 135,
+            "importance": 1,
+            "subordinates": [
+              136
+            ]
+          },
+          {
+            "id": 136,
+            "importance": 1,
+            "subordinates": [
+              137
+            ]
+          },
+          {
+            "id": 137,
+            "importance": 1,
+            "subordinates": [
+              138
+            ]
+          },
+          {
+            "id": 138,
+            "importance": 1,
+            "subordinates": [
+              139
+            ]
+          },
+          {
+            "id": 139,
+            "importance": 1,
+            "subordinates": [
+              140
+            ]
+          },
+          {
+            "id": 140,
+            "importance": 1,
+            "subordinates": [
+              141
+            ]
+          },
+          {
+            "id": 141,
+            "importance": 1,
+            "subordinates": [
+              142
+            ]
+          },
+          {
+            "id": 142,
+            "importance": 1,
+            "subordinates": [
+              143
+            ]
+          },
+          {
+            "id": 143,
+            "importance": 1,
+            "subordinates": [
+              144
+            ]
+          },
+          {
+            "id": 144,
+            "importance": 1,
+            "subordinates": [
+              145
+            ]
+          },
+          {
+            "id": 145,
+            "importance": 1,
+            "subordinates": [
+              146
+            ]
+          },
+          {
+            "id": 146,
+            "importance": 1,
+            "subordinates": [
+              147
+            ]
+          },
+          {
+            "id": 147,
+            "importance": 1,
+            "subordinates": [
+              148
+            ]
+          },
+          {
+            "id": 148,
+            "importance": 1,
+            "subordinates": [
+              149
+            ]
+          },
+          {
+            "id": 149,
+            "importance": 1,
+            "subordinates": [
+              150
+            ]
+          },
+          {
+            "id": 150,
+            "importance": 1,
+            "subordinates": [
+              151
+            ]
+          },
+          {
+            "id": 151,
+            "importance": 1,
+            "subordinates": [
+              152
+            ]
+          },
+          {
+            "id": 152,
+            "importance": 1,
+            "subordinates": [
+              153
+            ]
+          },
+          {
+            "id": 153,
+            "importance": 1,
+            "subordinates": [
+              154
+            ]
+          },
+          {
+            "id": 154,
+            "importance": 1,
+            "subordinates": [
+              155
+            ]
+          },
+          {
+            "id": 155,
+            "importance": 1,
+            "subordinates": [
+              156
+            ]
+          },
+          {
+            "id": 156,
+            "importance": 1,
+            "subordinates": [
+              157
+            ]
+          },
+          {
+            "id": 157,
+            "importance": 1,
+            "subordinates": [
+              158
+            ]
+          },
+          {
+            "id": 158,
+            "importance": 1,
+            "subordinates": [
+              159
+            ]
+          },
+          {
+            "id": 159,
+            "importance": 1,
+            "subordinates": [
+              160
+            ]
+          },
+          {
+            "id": 160,
+            "importance": 1,
+            "subordinates": [
+              161
+            ]
+          },
+          {
+            "id": 161,
+            "importance": 1,
+            "subordinates": [
+              162
+            ]
+          },
+          {
+            "id": 162,
+            "importance": 1,
+            "subordinates": [
+              163
+            ]
+          },
+          {
+            "id": 163,
+            "importance": 1,
+            "subordinates": [
+              164
+            ]
+          },
+          {
+            "id": 164,
+            "importance": 1,
+            "subordinates": [
+              165
+            ]
+          },
+          {
+            "id": 165,
+            "importance": 1,
+            "subordinates": [
+              166
+            ]
+          },
+          {
+            "id": 166,
+            "importance": 1,
+            "subordinates": [
+              167
+            ]
+          },
+          {
+            "id": 167,
+            "importance": 1,
+            "subordinates": [
+              168
+            ]
+          },
+          {
+            "id": 168,
+            "importance": 1,
+            "subordinates": [
+              169
+            ]
+          },
+          {
+            "id": 169,
+            "importance": 1,
+            "subordinates": [
+              170
+            ]
+          },
+          {
+            "id": 170,
+            "importance": 1,
+            "subordinates": [
+              171
+            ]
+          },
+          {
+            "id": 171,
+            "importance": 1,
+            "subordinates": [
+              172
+            ]
+          },
+          {
+            "id": 172,
+            "importance": 1,
+            "subordinates": [
+              173
+            ]
+          },
+          {
+            "id": 173,
+            "importance": 1,
+            "subordinates": [
+              174
+            ]
+          },
+          {
+            "id": 174,
+            "importance": 1,
+            "subordinates": [
+              175
+            ]
+          },
+          {
+            "id": 175,
+            "importance": 1,
+            "subordinates": [
+              176
+            ]
+          },
+          {
+            "id": 176,
+            "importance": 1,
+            "subordinates": [
+              177
+            ]
+          },
+          {
+            "id": 177,
+            "importance": 1,
+            "subordinates": [
+              178
+            ]
+          },
+          {
+            "id": 178,
+            "importance": 1,
+            "subordinates": [
+              179
+            ]
+          },
+          {
+            "id": 179,
+            "importance": 1,
+            "subordinates": [
+              180
+            ]
+          },
+          {
+            "id": 180,
+            "importance": 1,
+            "subordinates": [
+              181
+            ]
+          },
+          {
+            "id": 181,
+            "importance": 1,
+            "subordinates": [
+              182
+            ]
+          },
+          {
+            "id": 182,
+            "importance": 1,
+            "subordinates": [
+              183
+            ]
+          },
+          {
+            "id": 183,
+            "importance": 1,
+            "subordinates": [
+              184
+            ]
+          },
+          {
+            "id": 184,
+            "importance": 1,
+            "subordinates": [
+              185
+            ]
+          },
+          {
+            "id": 185,
+            "importance": 1,
+            "subordinates": [
+              186
+            ]
+          },
+          {
+            "id": 186,
+            "importance": 1,
+            "subordinates": [
+              187
+            ]
+          },
+          {
+            "id": 187,
+            "importance": 1,
+            "subordinates": [
+              188
+            ]
+          },
+          {
+            "id": 188,
+            "importance": 1,
+            "subordinates": [
+              189
+            ]
+          },
+          {
+            "id": 189,
+            "importance": 1,
+            "subordinates": [
+              190
+            ]
+          },
+          {
+            "id": 190,
+            "importance": 1,
+            "subordinates": [
+              191
+            ]
+          },
+          {
+            "id": 191,
+            "importance": 1,
+            "subordinates": [
+              192
+            ]
+          },
+          {
+            "id": 192,
+            "importance": 1,
+            "subordinates": [
+              193
+            ]
+          },
+          {
+            "id": 193,
+            "importance": 1,
+            "subordinates": [
+              194
+            ]
+          },
+          {
+            "id": 194,
+            "importance": 1,
+            "subordinates": [
+              195
+            ]
+          },
+          {
+            "id": 195,
+            "importance": 1,
+            "subordinates": [
+              196
+            ]
+          },
+          {
+            "id": 196,
+            "importance": 1,
+            "subordinates": [
+              197
+            ]
+          },
+          {
+            "id": 197,
+            "importance": 1,
+            "subordinates": [
+              198
+            ]
+          },
+          {
+            "id": 198,
+            "importance": 1,
+            "subordinates": [
+              199
+            ]
+          },
+          {
+            "id": 199,
+            "importance": 1,
+            "subordinates": [
+              200
+            ]
+          },
+          {
+            "id": 200,
+            "importance": 1,
+            "subordinates": [
+              201
+            ]
+          },
+          {
+            "id": 201,
+            "importance": 1,
+            "subordinates": [
+              202
+            ]
+          },
+          {
+            "id": 202,
+            "importance": 1,
+            "subordinates": [
+              203
+            ]
+          },
+          {
+            "id": 203,
+            "importance": 1,
+            "subordinates": [
+              204
+            ]
+          },
+          {
+            "id": 204,
+            "importance": 1,
+            "subordinates": [
+              205
+            ]
+          },
+          {
+            "id": 205,
+            "importance": 1,
+            "subordinates": [
+              206
+            ]
+          },
+          {
+            "id": 206,
+            "importance": 1,
+            "subordinates": [
+              207
+            ]
+          },
+          {
+            "id": 207,
+            "importance": 1,
+            "subordinates": [
+              208
+            ]
+          },
+          {
+            "id": 208,
+            "importance": 1,
+            "subordinates": [
+              209
+            ]
+          },
+          {
+            "id": 209,
+            "importance": 1,
+            "subordinates": [
+              210
+            ]
+          },
+          {
+            "id": 210,
+            "importance": 1,
+            "subordinates": [
+              211
+            ]
+          },
+          {
+            "id": 211,
+            "importance": 1,
+            "subordinates": [
+              212
+            ]
+          },
+          {
+            "id": 212,
+            "importance": 1,
+            "subordinates": [
+              213
+            ]
+          },
+          {
+            "id": 213,
+            "importance": 1,
+            "subordinates": [
+              214
+            ]
+          },
+          {
+            "id": 214,
+            "importance": 1,
+            "subordinates": [
+              215
+            ]
+          },
+          {
+            "id": 215,
+            "importance": 1,
+            "subordinates": [
+              216
+            ]
+          },
+          {
+            "id": 216,
+            "importance": 1,
+            "subordinates": [
+              217
+            ]
+          },
+          {
+            "id": 217,
+            "importance": 1,
+            "subordinates": [
+              218
+            ]
+          },
+          {
+            "id": 218,
+            "importance": 1,
+            "subordinates": [
+              219
+            ]
+          },
+          {
+            "id": 219,
+            "importance": 1,
+            "subordinates": [
+              220
+            ]
+          },
+          {
+            "id": 220,
+            "importance": 1,
+            "subordinates": [
+              221
+            ]
+          },
+          {
+            "id": 221,
+            "importance": 1,
+            "subordinates": [
+              222
+            ]
+          },
+          {
+            "id": 222,
+            "importance": 1,
+            "subordinates": [
+              223
+            ]
+          },
+          {
+            "id": 223,
+            "importance": 1,
+            "subordinates": [
+              224
+            ]
+          },
+          {
+            "id": 224,
+            "importance": 1,
+            "subordinates": [
+              225
+            ]
+          },
+          {
+            "id": 225,
+            "importance": 1,
+            "subordinates": [
+              226
+            ]
+          },
+          {
+            "id": 226,
+            "importance": 1,
+            "subordinates": [
+              227
+            ]
+          },
+          {
+            "id": 227,
+            "importance": 1,
+            "subordinates": [
+              228
+            ]
+          },
+          {
+            "id": 228,
+            "importance": 1,
+            "subordinates": [
+              229
+            ]
+          },
+          {
+            "id": 229,
+            "importance": 1,
+            "subordinates": [
+              230
+            ]
+          },
+          {
+            "id": 230,
+            "importance": 1,
+            "subordinates": [
+              231
+            ]
+          },
+          {
+            "id": 231,
+            "importance": 1,
+            "subordinates": [
+              232
+            ]
+          },
+          {
+            "id": 232,
+            "importance": 1,
+            "subordinates": [
+              233
+            ]
+          },
+          {
+            "id": 233,
+            "importance": 1,
+            "subordinates": [
+              234
+            ]
+          },
+          {
+            "id": 234,
+            "importance": 1,
+            "subordinates": [
+              235
+            ]
+          },
+          {
+            "id": 235,
+            "importance": 1,
+            "subordinates": [
+              236
+            ]
+          },
+          {
+            "id": 236,
+            "importance": 1,
+            "subordinates": [
+              237
+            ]
+          },
+          {
+            "id": 237,
+            "importance": 1,
+            "subordinates": [
+              238
+            ]
+          },
+          {
+            "id": 238,
+            "importance": 1,
+            "subordinates": [
+              239
+            ]
+          },
+          {
+            "id": 239,
+            "importance": 1,
+            "subordinates": [
+              240
+            ]
+          },
+          {
+            "id": 240,
+            "importance": 1,
+            "subordinates": [
+              241
+            ]
+          },
+          {
+            "id": 241,
+            "importance": 1,
+            "subordinates": [
+              242
+            ]
+          },
+          {
+            "id": 242,
+            "importance": 1,
+            "subordinates": [
+              243
+            ]
+          },
+          {
+            "id": 243,
+            "importance": 1,
+            "subordinates": [
+              244
+            ]
+          },
+          {
+            "id": 244,
+            "importance": 1,
+            "subordinates": [
+              245
+            ]
+          },
+          {
+            "id": 245,
+            "importance": 1,
+            "subordinates": [
+              246
+            ]
+          },
+          {
+            "id": 246,
+            "importance": 1,
+            "subordinates": [
+              247
+            ]
+          },
+          {
+            "id": 247,
+            "importance": 1,
+            "subordinates": [
+              248
+            ]
+          },
+          {
+            "id": 248,
+            "importance": 1,
+            "subordinates": [
+              249
+            ]
+          },
+          {
+            "id": 249,
+            "importance": 1,
+            "subordinates": [
+              250
+            ]
+          },
+          {
+            "id": 250,
+            "importance": 1,
+            "subordinates": [
+              251
+            ]
+          },
+          {
+            "id": 251,
+            "importance": 1,
+            "subordinates": [
+              252
+            ]
+          },
+          {
+            "id": 252,
+            "importance": 1,
+            "subordinates": [
+              253
+            ]
+          },
+          {
+            "id": 253,
+            "importance": 1,
+            "subordinates": [
+              254
+            ]
+          },
+          {
+            "id": 254,
+            "importance": 1,
+            "subordinates": [
+              255
+            ]
+          },
+          {
+            "id": 255,
+            "importance": 1,
+            "subordinates": [
+              256
+            ]
+          },
+          {
+            "id": 256,
+            "importance": 1,
+            "subordinates": []
+          }
+        ],
+        "id": 1
+      },
+      "expected": 256,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "management-chain"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: subordinate chain of 512 employees",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "employees": [
+          {
+            "id": 1,
+            "importance": 1,
+            "subordinates": [
+              2
+            ]
+          },
+          {
+            "id": 2,
+            "importance": 1,
+            "subordinates": [
+              3
+            ]
+          },
+          {
+            "id": 3,
+            "importance": 1,
+            "subordinates": [
+              4
+            ]
+          },
+          {
+            "id": 4,
+            "importance": 1,
+            "subordinates": [
+              5
+            ]
+          },
+          {
+            "id": 5,
+            "importance": 1,
+            "subordinates": [
+              6
+            ]
+          },
+          {
+            "id": 6,
+            "importance": 1,
+            "subordinates": [
+              7
+            ]
+          },
+          {
+            "id": 7,
+            "importance": 1,
+            "subordinates": [
+              8
+            ]
+          },
+          {
+            "id": 8,
+            "importance": 1,
+            "subordinates": [
+              9
+            ]
+          },
+          {
+            "id": 9,
+            "importance": 1,
+            "subordinates": [
+              10
+            ]
+          },
+          {
+            "id": 10,
+            "importance": 1,
+            "subordinates": [
+              11
+            ]
+          },
+          {
+            "id": 11,
+            "importance": 1,
+            "subordinates": [
+              12
+            ]
+          },
+          {
+            "id": 12,
+            "importance": 1,
+            "subordinates": [
+              13
+            ]
+          },
+          {
+            "id": 13,
+            "importance": 1,
+            "subordinates": [
+              14
+            ]
+          },
+          {
+            "id": 14,
+            "importance": 1,
+            "subordinates": [
+              15
+            ]
+          },
+          {
+            "id": 15,
+            "importance": 1,
+            "subordinates": [
+              16
+            ]
+          },
+          {
+            "id": 16,
+            "importance": 1,
+            "subordinates": [
+              17
+            ]
+          },
+          {
+            "id": 17,
+            "importance": 1,
+            "subordinates": [
+              18
+            ]
+          },
+          {
+            "id": 18,
+            "importance": 1,
+            "subordinates": [
+              19
+            ]
+          },
+          {
+            "id": 19,
+            "importance": 1,
+            "subordinates": [
+              20
+            ]
+          },
+          {
+            "id": 20,
+            "importance": 1,
+            "subordinates": [
+              21
+            ]
+          },
+          {
+            "id": 21,
+            "importance": 1,
+            "subordinates": [
+              22
+            ]
+          },
+          {
+            "id": 22,
+            "importance": 1,
+            "subordinates": [
+              23
+            ]
+          },
+          {
+            "id": 23,
+            "importance": 1,
+            "subordinates": [
+              24
+            ]
+          },
+          {
+            "id": 24,
+            "importance": 1,
+            "subordinates": [
+              25
+            ]
+          },
+          {
+            "id": 25,
+            "importance": 1,
+            "subordinates": [
+              26
+            ]
+          },
+          {
+            "id": 26,
+            "importance": 1,
+            "subordinates": [
+              27
+            ]
+          },
+          {
+            "id": 27,
+            "importance": 1,
+            "subordinates": [
+              28
+            ]
+          },
+          {
+            "id": 28,
+            "importance": 1,
+            "subordinates": [
+              29
+            ]
+          },
+          {
+            "id": 29,
+            "importance": 1,
+            "subordinates": [
+              30
+            ]
+          },
+          {
+            "id": 30,
+            "importance": 1,
+            "subordinates": [
+              31
+            ]
+          },
+          {
+            "id": 31,
+            "importance": 1,
+            "subordinates": [
+              32
+            ]
+          },
+          {
+            "id": 32,
+            "importance": 1,
+            "subordinates": [
+              33
+            ]
+          },
+          {
+            "id": 33,
+            "importance": 1,
+            "subordinates": [
+              34
+            ]
+          },
+          {
+            "id": 34,
+            "importance": 1,
+            "subordinates": [
+              35
+            ]
+          },
+          {
+            "id": 35,
+            "importance": 1,
+            "subordinates": [
+              36
+            ]
+          },
+          {
+            "id": 36,
+            "importance": 1,
+            "subordinates": [
+              37
+            ]
+          },
+          {
+            "id": 37,
+            "importance": 1,
+            "subordinates": [
+              38
+            ]
+          },
+          {
+            "id": 38,
+            "importance": 1,
+            "subordinates": [
+              39
+            ]
+          },
+          {
+            "id": 39,
+            "importance": 1,
+            "subordinates": [
+              40
+            ]
+          },
+          {
+            "id": 40,
+            "importance": 1,
+            "subordinates": [
+              41
+            ]
+          },
+          {
+            "id": 41,
+            "importance": 1,
+            "subordinates": [
+              42
+            ]
+          },
+          {
+            "id": 42,
+            "importance": 1,
+            "subordinates": [
+              43
+            ]
+          },
+          {
+            "id": 43,
+            "importance": 1,
+            "subordinates": [
+              44
+            ]
+          },
+          {
+            "id": 44,
+            "importance": 1,
+            "subordinates": [
+              45
+            ]
+          },
+          {
+            "id": 45,
+            "importance": 1,
+            "subordinates": [
+              46
+            ]
+          },
+          {
+            "id": 46,
+            "importance": 1,
+            "subordinates": [
+              47
+            ]
+          },
+          {
+            "id": 47,
+            "importance": 1,
+            "subordinates": [
+              48
+            ]
+          },
+          {
+            "id": 48,
+            "importance": 1,
+            "subordinates": [
+              49
+            ]
+          },
+          {
+            "id": 49,
+            "importance": 1,
+            "subordinates": [
+              50
+            ]
+          },
+          {
+            "id": 50,
+            "importance": 1,
+            "subordinates": [
+              51
+            ]
+          },
+          {
+            "id": 51,
+            "importance": 1,
+            "subordinates": [
+              52
+            ]
+          },
+          {
+            "id": 52,
+            "importance": 1,
+            "subordinates": [
+              53
+            ]
+          },
+          {
+            "id": 53,
+            "importance": 1,
+            "subordinates": [
+              54
+            ]
+          },
+          {
+            "id": 54,
+            "importance": 1,
+            "subordinates": [
+              55
+            ]
+          },
+          {
+            "id": 55,
+            "importance": 1,
+            "subordinates": [
+              56
+            ]
+          },
+          {
+            "id": 56,
+            "importance": 1,
+            "subordinates": [
+              57
+            ]
+          },
+          {
+            "id": 57,
+            "importance": 1,
+            "subordinates": [
+              58
+            ]
+          },
+          {
+            "id": 58,
+            "importance": 1,
+            "subordinates": [
+              59
+            ]
+          },
+          {
+            "id": 59,
+            "importance": 1,
+            "subordinates": [
+              60
+            ]
+          },
+          {
+            "id": 60,
+            "importance": 1,
+            "subordinates": [
+              61
+            ]
+          },
+          {
+            "id": 61,
+            "importance": 1,
+            "subordinates": [
+              62
+            ]
+          },
+          {
+            "id": 62,
+            "importance": 1,
+            "subordinates": [
+              63
+            ]
+          },
+          {
+            "id": 63,
+            "importance": 1,
+            "subordinates": [
+              64
+            ]
+          },
+          {
+            "id": 64,
+            "importance": 1,
+            "subordinates": [
+              65
+            ]
+          },
+          {
+            "id": 65,
+            "importance": 1,
+            "subordinates": [
+              66
+            ]
+          },
+          {
+            "id": 66,
+            "importance": 1,
+            "subordinates": [
+              67
+            ]
+          },
+          {
+            "id": 67,
+            "importance": 1,
+            "subordinates": [
+              68
+            ]
+          },
+          {
+            "id": 68,
+            "importance": 1,
+            "subordinates": [
+              69
+            ]
+          },
+          {
+            "id": 69,
+            "importance": 1,
+            "subordinates": [
+              70
+            ]
+          },
+          {
+            "id": 70,
+            "importance": 1,
+            "subordinates": [
+              71
+            ]
+          },
+          {
+            "id": 71,
+            "importance": 1,
+            "subordinates": [
+              72
+            ]
+          },
+          {
+            "id": 72,
+            "importance": 1,
+            "subordinates": [
+              73
+            ]
+          },
+          {
+            "id": 73,
+            "importance": 1,
+            "subordinates": [
+              74
+            ]
+          },
+          {
+            "id": 74,
+            "importance": 1,
+            "subordinates": [
+              75
+            ]
+          },
+          {
+            "id": 75,
+            "importance": 1,
+            "subordinates": [
+              76
+            ]
+          },
+          {
+            "id": 76,
+            "importance": 1,
+            "subordinates": [
+              77
+            ]
+          },
+          {
+            "id": 77,
+            "importance": 1,
+            "subordinates": [
+              78
+            ]
+          },
+          {
+            "id": 78,
+            "importance": 1,
+            "subordinates": [
+              79
+            ]
+          },
+          {
+            "id": 79,
+            "importance": 1,
+            "subordinates": [
+              80
+            ]
+          },
+          {
+            "id": 80,
+            "importance": 1,
+            "subordinates": [
+              81
+            ]
+          },
+          {
+            "id": 81,
+            "importance": 1,
+            "subordinates": [
+              82
+            ]
+          },
+          {
+            "id": 82,
+            "importance": 1,
+            "subordinates": [
+              83
+            ]
+          },
+          {
+            "id": 83,
+            "importance": 1,
+            "subordinates": [
+              84
+            ]
+          },
+          {
+            "id": 84,
+            "importance": 1,
+            "subordinates": [
+              85
+            ]
+          },
+          {
+            "id": 85,
+            "importance": 1,
+            "subordinates": [
+              86
+            ]
+          },
+          {
+            "id": 86,
+            "importance": 1,
+            "subordinates": [
+              87
+            ]
+          },
+          {
+            "id": 87,
+            "importance": 1,
+            "subordinates": [
+              88
+            ]
+          },
+          {
+            "id": 88,
+            "importance": 1,
+            "subordinates": [
+              89
+            ]
+          },
+          {
+            "id": 89,
+            "importance": 1,
+            "subordinates": [
+              90
+            ]
+          },
+          {
+            "id": 90,
+            "importance": 1,
+            "subordinates": [
+              91
+            ]
+          },
+          {
+            "id": 91,
+            "importance": 1,
+            "subordinates": [
+              92
+            ]
+          },
+          {
+            "id": 92,
+            "importance": 1,
+            "subordinates": [
+              93
+            ]
+          },
+          {
+            "id": 93,
+            "importance": 1,
+            "subordinates": [
+              94
+            ]
+          },
+          {
+            "id": 94,
+            "importance": 1,
+            "subordinates": [
+              95
+            ]
+          },
+          {
+            "id": 95,
+            "importance": 1,
+            "subordinates": [
+              96
+            ]
+          },
+          {
+            "id": 96,
+            "importance": 1,
+            "subordinates": [
+              97
+            ]
+          },
+          {
+            "id": 97,
+            "importance": 1,
+            "subordinates": [
+              98
+            ]
+          },
+          {
+            "id": 98,
+            "importance": 1,
+            "subordinates": [
+              99
+            ]
+          },
+          {
+            "id": 99,
+            "importance": 1,
+            "subordinates": [
+              100
+            ]
+          },
+          {
+            "id": 100,
+            "importance": 1,
+            "subordinates": [
+              101
+            ]
+          },
+          {
+            "id": 101,
+            "importance": 1,
+            "subordinates": [
+              102
+            ]
+          },
+          {
+            "id": 102,
+            "importance": 1,
+            "subordinates": [
+              103
+            ]
+          },
+          {
+            "id": 103,
+            "importance": 1,
+            "subordinates": [
+              104
+            ]
+          },
+          {
+            "id": 104,
+            "importance": 1,
+            "subordinates": [
+              105
+            ]
+          },
+          {
+            "id": 105,
+            "importance": 1,
+            "subordinates": [
+              106
+            ]
+          },
+          {
+            "id": 106,
+            "importance": 1,
+            "subordinates": [
+              107
+            ]
+          },
+          {
+            "id": 107,
+            "importance": 1,
+            "subordinates": [
+              108
+            ]
+          },
+          {
+            "id": 108,
+            "importance": 1,
+            "subordinates": [
+              109
+            ]
+          },
+          {
+            "id": 109,
+            "importance": 1,
+            "subordinates": [
+              110
+            ]
+          },
+          {
+            "id": 110,
+            "importance": 1,
+            "subordinates": [
+              111
+            ]
+          },
+          {
+            "id": 111,
+            "importance": 1,
+            "subordinates": [
+              112
+            ]
+          },
+          {
+            "id": 112,
+            "importance": 1,
+            "subordinates": [
+              113
+            ]
+          },
+          {
+            "id": 113,
+            "importance": 1,
+            "subordinates": [
+              114
+            ]
+          },
+          {
+            "id": 114,
+            "importance": 1,
+            "subordinates": [
+              115
+            ]
+          },
+          {
+            "id": 115,
+            "importance": 1,
+            "subordinates": [
+              116
+            ]
+          },
+          {
+            "id": 116,
+            "importance": 1,
+            "subordinates": [
+              117
+            ]
+          },
+          {
+            "id": 117,
+            "importance": 1,
+            "subordinates": [
+              118
+            ]
+          },
+          {
+            "id": 118,
+            "importance": 1,
+            "subordinates": [
+              119
+            ]
+          },
+          {
+            "id": 119,
+            "importance": 1,
+            "subordinates": [
+              120
+            ]
+          },
+          {
+            "id": 120,
+            "importance": 1,
+            "subordinates": [
+              121
+            ]
+          },
+          {
+            "id": 121,
+            "importance": 1,
+            "subordinates": [
+              122
+            ]
+          },
+          {
+            "id": 122,
+            "importance": 1,
+            "subordinates": [
+              123
+            ]
+          },
+          {
+            "id": 123,
+            "importance": 1,
+            "subordinates": [
+              124
+            ]
+          },
+          {
+            "id": 124,
+            "importance": 1,
+            "subordinates": [
+              125
+            ]
+          },
+          {
+            "id": 125,
+            "importance": 1,
+            "subordinates": [
+              126
+            ]
+          },
+          {
+            "id": 126,
+            "importance": 1,
+            "subordinates": [
+              127
+            ]
+          },
+          {
+            "id": 127,
+            "importance": 1,
+            "subordinates": [
+              128
+            ]
+          },
+          {
+            "id": 128,
+            "importance": 1,
+            "subordinates": [
+              129
+            ]
+          },
+          {
+            "id": 129,
+            "importance": 1,
+            "subordinates": [
+              130
+            ]
+          },
+          {
+            "id": 130,
+            "importance": 1,
+            "subordinates": [
+              131
+            ]
+          },
+          {
+            "id": 131,
+            "importance": 1,
+            "subordinates": [
+              132
+            ]
+          },
+          {
+            "id": 132,
+            "importance": 1,
+            "subordinates": [
+              133
+            ]
+          },
+          {
+            "id": 133,
+            "importance": 1,
+            "subordinates": [
+              134
+            ]
+          },
+          {
+            "id": 134,
+            "importance": 1,
+            "subordinates": [
+              135
+            ]
+          },
+          {
+            "id": 135,
+            "importance": 1,
+            "subordinates": [
+              136
+            ]
+          },
+          {
+            "id": 136,
+            "importance": 1,
+            "subordinates": [
+              137
+            ]
+          },
+          {
+            "id": 137,
+            "importance": 1,
+            "subordinates": [
+              138
+            ]
+          },
+          {
+            "id": 138,
+            "importance": 1,
+            "subordinates": [
+              139
+            ]
+          },
+          {
+            "id": 139,
+            "importance": 1,
+            "subordinates": [
+              140
+            ]
+          },
+          {
+            "id": 140,
+            "importance": 1,
+            "subordinates": [
+              141
+            ]
+          },
+          {
+            "id": 141,
+            "importance": 1,
+            "subordinates": [
+              142
+            ]
+          },
+          {
+            "id": 142,
+            "importance": 1,
+            "subordinates": [
+              143
+            ]
+          },
+          {
+            "id": 143,
+            "importance": 1,
+            "subordinates": [
+              144
+            ]
+          },
+          {
+            "id": 144,
+            "importance": 1,
+            "subordinates": [
+              145
+            ]
+          },
+          {
+            "id": 145,
+            "importance": 1,
+            "subordinates": [
+              146
+            ]
+          },
+          {
+            "id": 146,
+            "importance": 1,
+            "subordinates": [
+              147
+            ]
+          },
+          {
+            "id": 147,
+            "importance": 1,
+            "subordinates": [
+              148
+            ]
+          },
+          {
+            "id": 148,
+            "importance": 1,
+            "subordinates": [
+              149
+            ]
+          },
+          {
+            "id": 149,
+            "importance": 1,
+            "subordinates": [
+              150
+            ]
+          },
+          {
+            "id": 150,
+            "importance": 1,
+            "subordinates": [
+              151
+            ]
+          },
+          {
+            "id": 151,
+            "importance": 1,
+            "subordinates": [
+              152
+            ]
+          },
+          {
+            "id": 152,
+            "importance": 1,
+            "subordinates": [
+              153
+            ]
+          },
+          {
+            "id": 153,
+            "importance": 1,
+            "subordinates": [
+              154
+            ]
+          },
+          {
+            "id": 154,
+            "importance": 1,
+            "subordinates": [
+              155
+            ]
+          },
+          {
+            "id": 155,
+            "importance": 1,
+            "subordinates": [
+              156
+            ]
+          },
+          {
+            "id": 156,
+            "importance": 1,
+            "subordinates": [
+              157
+            ]
+          },
+          {
+            "id": 157,
+            "importance": 1,
+            "subordinates": [
+              158
+            ]
+          },
+          {
+            "id": 158,
+            "importance": 1,
+            "subordinates": [
+              159
+            ]
+          },
+          {
+            "id": 159,
+            "importance": 1,
+            "subordinates": [
+              160
+            ]
+          },
+          {
+            "id": 160,
+            "importance": 1,
+            "subordinates": [
+              161
+            ]
+          },
+          {
+            "id": 161,
+            "importance": 1,
+            "subordinates": [
+              162
+            ]
+          },
+          {
+            "id": 162,
+            "importance": 1,
+            "subordinates": [
+              163
+            ]
+          },
+          {
+            "id": 163,
+            "importance": 1,
+            "subordinates": [
+              164
+            ]
+          },
+          {
+            "id": 164,
+            "importance": 1,
+            "subordinates": [
+              165
+            ]
+          },
+          {
+            "id": 165,
+            "importance": 1,
+            "subordinates": [
+              166
+            ]
+          },
+          {
+            "id": 166,
+            "importance": 1,
+            "subordinates": [
+              167
+            ]
+          },
+          {
+            "id": 167,
+            "importance": 1,
+            "subordinates": [
+              168
+            ]
+          },
+          {
+            "id": 168,
+            "importance": 1,
+            "subordinates": [
+              169
+            ]
+          },
+          {
+            "id": 169,
+            "importance": 1,
+            "subordinates": [
+              170
+            ]
+          },
+          {
+            "id": 170,
+            "importance": 1,
+            "subordinates": [
+              171
+            ]
+          },
+          {
+            "id": 171,
+            "importance": 1,
+            "subordinates": [
+              172
+            ]
+          },
+          {
+            "id": 172,
+            "importance": 1,
+            "subordinates": [
+              173
+            ]
+          },
+          {
+            "id": 173,
+            "importance": 1,
+            "subordinates": [
+              174
+            ]
+          },
+          {
+            "id": 174,
+            "importance": 1,
+            "subordinates": [
+              175
+            ]
+          },
+          {
+            "id": 175,
+            "importance": 1,
+            "subordinates": [
+              176
+            ]
+          },
+          {
+            "id": 176,
+            "importance": 1,
+            "subordinates": [
+              177
+            ]
+          },
+          {
+            "id": 177,
+            "importance": 1,
+            "subordinates": [
+              178
+            ]
+          },
+          {
+            "id": 178,
+            "importance": 1,
+            "subordinates": [
+              179
+            ]
+          },
+          {
+            "id": 179,
+            "importance": 1,
+            "subordinates": [
+              180
+            ]
+          },
+          {
+            "id": 180,
+            "importance": 1,
+            "subordinates": [
+              181
+            ]
+          },
+          {
+            "id": 181,
+            "importance": 1,
+            "subordinates": [
+              182
+            ]
+          },
+          {
+            "id": 182,
+            "importance": 1,
+            "subordinates": [
+              183
+            ]
+          },
+          {
+            "id": 183,
+            "importance": 1,
+            "subordinates": [
+              184
+            ]
+          },
+          {
+            "id": 184,
+            "importance": 1,
+            "subordinates": [
+              185
+            ]
+          },
+          {
+            "id": 185,
+            "importance": 1,
+            "subordinates": [
+              186
+            ]
+          },
+          {
+            "id": 186,
+            "importance": 1,
+            "subordinates": [
+              187
+            ]
+          },
+          {
+            "id": 187,
+            "importance": 1,
+            "subordinates": [
+              188
+            ]
+          },
+          {
+            "id": 188,
+            "importance": 1,
+            "subordinates": [
+              189
+            ]
+          },
+          {
+            "id": 189,
+            "importance": 1,
+            "subordinates": [
+              190
+            ]
+          },
+          {
+            "id": 190,
+            "importance": 1,
+            "subordinates": [
+              191
+            ]
+          },
+          {
+            "id": 191,
+            "importance": 1,
+            "subordinates": [
+              192
+            ]
+          },
+          {
+            "id": 192,
+            "importance": 1,
+            "subordinates": [
+              193
+            ]
+          },
+          {
+            "id": 193,
+            "importance": 1,
+            "subordinates": [
+              194
+            ]
+          },
+          {
+            "id": 194,
+            "importance": 1,
+            "subordinates": [
+              195
+            ]
+          },
+          {
+            "id": 195,
+            "importance": 1,
+            "subordinates": [
+              196
+            ]
+          },
+          {
+            "id": 196,
+            "importance": 1,
+            "subordinates": [
+              197
+            ]
+          },
+          {
+            "id": 197,
+            "importance": 1,
+            "subordinates": [
+              198
+            ]
+          },
+          {
+            "id": 198,
+            "importance": 1,
+            "subordinates": [
+              199
+            ]
+          },
+          {
+            "id": 199,
+            "importance": 1,
+            "subordinates": [
+              200
+            ]
+          },
+          {
+            "id": 200,
+            "importance": 1,
+            "subordinates": [
+              201
+            ]
+          },
+          {
+            "id": 201,
+            "importance": 1,
+            "subordinates": [
+              202
+            ]
+          },
+          {
+            "id": 202,
+            "importance": 1,
+            "subordinates": [
+              203
+            ]
+          },
+          {
+            "id": 203,
+            "importance": 1,
+            "subordinates": [
+              204
+            ]
+          },
+          {
+            "id": 204,
+            "importance": 1,
+            "subordinates": [
+              205
+            ]
+          },
+          {
+            "id": 205,
+            "importance": 1,
+            "subordinates": [
+              206
+            ]
+          },
+          {
+            "id": 206,
+            "importance": 1,
+            "subordinates": [
+              207
+            ]
+          },
+          {
+            "id": 207,
+            "importance": 1,
+            "subordinates": [
+              208
+            ]
+          },
+          {
+            "id": 208,
+            "importance": 1,
+            "subordinates": [
+              209
+            ]
+          },
+          {
+            "id": 209,
+            "importance": 1,
+            "subordinates": [
+              210
+            ]
+          },
+          {
+            "id": 210,
+            "importance": 1,
+            "subordinates": [
+              211
+            ]
+          },
+          {
+            "id": 211,
+            "importance": 1,
+            "subordinates": [
+              212
+            ]
+          },
+          {
+            "id": 212,
+            "importance": 1,
+            "subordinates": [
+              213
+            ]
+          },
+          {
+            "id": 213,
+            "importance": 1,
+            "subordinates": [
+              214
+            ]
+          },
+          {
+            "id": 214,
+            "importance": 1,
+            "subordinates": [
+              215
+            ]
+          },
+          {
+            "id": 215,
+            "importance": 1,
+            "subordinates": [
+              216
+            ]
+          },
+          {
+            "id": 216,
+            "importance": 1,
+            "subordinates": [
+              217
+            ]
+          },
+          {
+            "id": 217,
+            "importance": 1,
+            "subordinates": [
+              218
+            ]
+          },
+          {
+            "id": 218,
+            "importance": 1,
+            "subordinates": [
+              219
+            ]
+          },
+          {
+            "id": 219,
+            "importance": 1,
+            "subordinates": [
+              220
+            ]
+          },
+          {
+            "id": 220,
+            "importance": 1,
+            "subordinates": [
+              221
+            ]
+          },
+          {
+            "id": 221,
+            "importance": 1,
+            "subordinates": [
+              222
+            ]
+          },
+          {
+            "id": 222,
+            "importance": 1,
+            "subordinates": [
+              223
+            ]
+          },
+          {
+            "id": 223,
+            "importance": 1,
+            "subordinates": [
+              224
+            ]
+          },
+          {
+            "id": 224,
+            "importance": 1,
+            "subordinates": [
+              225
+            ]
+          },
+          {
+            "id": 225,
+            "importance": 1,
+            "subordinates": [
+              226
+            ]
+          },
+          {
+            "id": 226,
+            "importance": 1,
+            "subordinates": [
+              227
+            ]
+          },
+          {
+            "id": 227,
+            "importance": 1,
+            "subordinates": [
+              228
+            ]
+          },
+          {
+            "id": 228,
+            "importance": 1,
+            "subordinates": [
+              229
+            ]
+          },
+          {
+            "id": 229,
+            "importance": 1,
+            "subordinates": [
+              230
+            ]
+          },
+          {
+            "id": 230,
+            "importance": 1,
+            "subordinates": [
+              231
+            ]
+          },
+          {
+            "id": 231,
+            "importance": 1,
+            "subordinates": [
+              232
+            ]
+          },
+          {
+            "id": 232,
+            "importance": 1,
+            "subordinates": [
+              233
+            ]
+          },
+          {
+            "id": 233,
+            "importance": 1,
+            "subordinates": [
+              234
+            ]
+          },
+          {
+            "id": 234,
+            "importance": 1,
+            "subordinates": [
+              235
+            ]
+          },
+          {
+            "id": 235,
+            "importance": 1,
+            "subordinates": [
+              236
+            ]
+          },
+          {
+            "id": 236,
+            "importance": 1,
+            "subordinates": [
+              237
+            ]
+          },
+          {
+            "id": 237,
+            "importance": 1,
+            "subordinates": [
+              238
+            ]
+          },
+          {
+            "id": 238,
+            "importance": 1,
+            "subordinates": [
+              239
+            ]
+          },
+          {
+            "id": 239,
+            "importance": 1,
+            "subordinates": [
+              240
+            ]
+          },
+          {
+            "id": 240,
+            "importance": 1,
+            "subordinates": [
+              241
+            ]
+          },
+          {
+            "id": 241,
+            "importance": 1,
+            "subordinates": [
+              242
+            ]
+          },
+          {
+            "id": 242,
+            "importance": 1,
+            "subordinates": [
+              243
+            ]
+          },
+          {
+            "id": 243,
+            "importance": 1,
+            "subordinates": [
+              244
+            ]
+          },
+          {
+            "id": 244,
+            "importance": 1,
+            "subordinates": [
+              245
+            ]
+          },
+          {
+            "id": 245,
+            "importance": 1,
+            "subordinates": [
+              246
+            ]
+          },
+          {
+            "id": 246,
+            "importance": 1,
+            "subordinates": [
+              247
+            ]
+          },
+          {
+            "id": 247,
+            "importance": 1,
+            "subordinates": [
+              248
+            ]
+          },
+          {
+            "id": 248,
+            "importance": 1,
+            "subordinates": [
+              249
+            ]
+          },
+          {
+            "id": 249,
+            "importance": 1,
+            "subordinates": [
+              250
+            ]
+          },
+          {
+            "id": 250,
+            "importance": 1,
+            "subordinates": [
+              251
+            ]
+          },
+          {
+            "id": 251,
+            "importance": 1,
+            "subordinates": [
+              252
+            ]
+          },
+          {
+            "id": 252,
+            "importance": 1,
+            "subordinates": [
+              253
+            ]
+          },
+          {
+            "id": 253,
+            "importance": 1,
+            "subordinates": [
+              254
+            ]
+          },
+          {
+            "id": 254,
+            "importance": 1,
+            "subordinates": [
+              255
+            ]
+          },
+          {
+            "id": 255,
+            "importance": 1,
+            "subordinates": [
+              256
+            ]
+          },
+          {
+            "id": 256,
+            "importance": 1,
+            "subordinates": [
+              257
+            ]
+          },
+          {
+            "id": 257,
+            "importance": 1,
+            "subordinates": [
+              258
+            ]
+          },
+          {
+            "id": 258,
+            "importance": 1,
+            "subordinates": [
+              259
+            ]
+          },
+          {
+            "id": 259,
+            "importance": 1,
+            "subordinates": [
+              260
+            ]
+          },
+          {
+            "id": 260,
+            "importance": 1,
+            "subordinates": [
+              261
+            ]
+          },
+          {
+            "id": 261,
+            "importance": 1,
+            "subordinates": [
+              262
+            ]
+          },
+          {
+            "id": 262,
+            "importance": 1,
+            "subordinates": [
+              263
+            ]
+          },
+          {
+            "id": 263,
+            "importance": 1,
+            "subordinates": [
+              264
+            ]
+          },
+          {
+            "id": 264,
+            "importance": 1,
+            "subordinates": [
+              265
+            ]
+          },
+          {
+            "id": 265,
+            "importance": 1,
+            "subordinates": [
+              266
+            ]
+          },
+          {
+            "id": 266,
+            "importance": 1,
+            "subordinates": [
+              267
+            ]
+          },
+          {
+            "id": 267,
+            "importance": 1,
+            "subordinates": [
+              268
+            ]
+          },
+          {
+            "id": 268,
+            "importance": 1,
+            "subordinates": [
+              269
+            ]
+          },
+          {
+            "id": 269,
+            "importance": 1,
+            "subordinates": [
+              270
+            ]
+          },
+          {
+            "id": 270,
+            "importance": 1,
+            "subordinates": [
+              271
+            ]
+          },
+          {
+            "id": 271,
+            "importance": 1,
+            "subordinates": [
+              272
+            ]
+          },
+          {
+            "id": 272,
+            "importance": 1,
+            "subordinates": [
+              273
+            ]
+          },
+          {
+            "id": 273,
+            "importance": 1,
+            "subordinates": [
+              274
+            ]
+          },
+          {
+            "id": 274,
+            "importance": 1,
+            "subordinates": [
+              275
+            ]
+          },
+          {
+            "id": 275,
+            "importance": 1,
+            "subordinates": [
+              276
+            ]
+          },
+          {
+            "id": 276,
+            "importance": 1,
+            "subordinates": [
+              277
+            ]
+          },
+          {
+            "id": 277,
+            "importance": 1,
+            "subordinates": [
+              278
+            ]
+          },
+          {
+            "id": 278,
+            "importance": 1,
+            "subordinates": [
+              279
+            ]
+          },
+          {
+            "id": 279,
+            "importance": 1,
+            "subordinates": [
+              280
+            ]
+          },
+          {
+            "id": 280,
+            "importance": 1,
+            "subordinates": [
+              281
+            ]
+          },
+          {
+            "id": 281,
+            "importance": 1,
+            "subordinates": [
+              282
+            ]
+          },
+          {
+            "id": 282,
+            "importance": 1,
+            "subordinates": [
+              283
+            ]
+          },
+          {
+            "id": 283,
+            "importance": 1,
+            "subordinates": [
+              284
+            ]
+          },
+          {
+            "id": 284,
+            "importance": 1,
+            "subordinates": [
+              285
+            ]
+          },
+          {
+            "id": 285,
+            "importance": 1,
+            "subordinates": [
+              286
+            ]
+          },
+          {
+            "id": 286,
+            "importance": 1,
+            "subordinates": [
+              287
+            ]
+          },
+          {
+            "id": 287,
+            "importance": 1,
+            "subordinates": [
+              288
+            ]
+          },
+          {
+            "id": 288,
+            "importance": 1,
+            "subordinates": [
+              289
+            ]
+          },
+          {
+            "id": 289,
+            "importance": 1,
+            "subordinates": [
+              290
+            ]
+          },
+          {
+            "id": 290,
+            "importance": 1,
+            "subordinates": [
+              291
+            ]
+          },
+          {
+            "id": 291,
+            "importance": 1,
+            "subordinates": [
+              292
+            ]
+          },
+          {
+            "id": 292,
+            "importance": 1,
+            "subordinates": [
+              293
+            ]
+          },
+          {
+            "id": 293,
+            "importance": 1,
+            "subordinates": [
+              294
+            ]
+          },
+          {
+            "id": 294,
+            "importance": 1,
+            "subordinates": [
+              295
+            ]
+          },
+          {
+            "id": 295,
+            "importance": 1,
+            "subordinates": [
+              296
+            ]
+          },
+          {
+            "id": 296,
+            "importance": 1,
+            "subordinates": [
+              297
+            ]
+          },
+          {
+            "id": 297,
+            "importance": 1,
+            "subordinates": [
+              298
+            ]
+          },
+          {
+            "id": 298,
+            "importance": 1,
+            "subordinates": [
+              299
+            ]
+          },
+          {
+            "id": 299,
+            "importance": 1,
+            "subordinates": [
+              300
+            ]
+          },
+          {
+            "id": 300,
+            "importance": 1,
+            "subordinates": [
+              301
+            ]
+          },
+          {
+            "id": 301,
+            "importance": 1,
+            "subordinates": [
+              302
+            ]
+          },
+          {
+            "id": 302,
+            "importance": 1,
+            "subordinates": [
+              303
+            ]
+          },
+          {
+            "id": 303,
+            "importance": 1,
+            "subordinates": [
+              304
+            ]
+          },
+          {
+            "id": 304,
+            "importance": 1,
+            "subordinates": [
+              305
+            ]
+          },
+          {
+            "id": 305,
+            "importance": 1,
+            "subordinates": [
+              306
+            ]
+          },
+          {
+            "id": 306,
+            "importance": 1,
+            "subordinates": [
+              307
+            ]
+          },
+          {
+            "id": 307,
+            "importance": 1,
+            "subordinates": [
+              308
+            ]
+          },
+          {
+            "id": 308,
+            "importance": 1,
+            "subordinates": [
+              309
+            ]
+          },
+          {
+            "id": 309,
+            "importance": 1,
+            "subordinates": [
+              310
+            ]
+          },
+          {
+            "id": 310,
+            "importance": 1,
+            "subordinates": [
+              311
+            ]
+          },
+          {
+            "id": 311,
+            "importance": 1,
+            "subordinates": [
+              312
+            ]
+          },
+          {
+            "id": 312,
+            "importance": 1,
+            "subordinates": [
+              313
+            ]
+          },
+          {
+            "id": 313,
+            "importance": 1,
+            "subordinates": [
+              314
+            ]
+          },
+          {
+            "id": 314,
+            "importance": 1,
+            "subordinates": [
+              315
+            ]
+          },
+          {
+            "id": 315,
+            "importance": 1,
+            "subordinates": [
+              316
+            ]
+          },
+          {
+            "id": 316,
+            "importance": 1,
+            "subordinates": [
+              317
+            ]
+          },
+          {
+            "id": 317,
+            "importance": 1,
+            "subordinates": [
+              318
+            ]
+          },
+          {
+            "id": 318,
+            "importance": 1,
+            "subordinates": [
+              319
+            ]
+          },
+          {
+            "id": 319,
+            "importance": 1,
+            "subordinates": [
+              320
+            ]
+          },
+          {
+            "id": 320,
+            "importance": 1,
+            "subordinates": [
+              321
+            ]
+          },
+          {
+            "id": 321,
+            "importance": 1,
+            "subordinates": [
+              322
+            ]
+          },
+          {
+            "id": 322,
+            "importance": 1,
+            "subordinates": [
+              323
+            ]
+          },
+          {
+            "id": 323,
+            "importance": 1,
+            "subordinates": [
+              324
+            ]
+          },
+          {
+            "id": 324,
+            "importance": 1,
+            "subordinates": [
+              325
+            ]
+          },
+          {
+            "id": 325,
+            "importance": 1,
+            "subordinates": [
+              326
+            ]
+          },
+          {
+            "id": 326,
+            "importance": 1,
+            "subordinates": [
+              327
+            ]
+          },
+          {
+            "id": 327,
+            "importance": 1,
+            "subordinates": [
+              328
+            ]
+          },
+          {
+            "id": 328,
+            "importance": 1,
+            "subordinates": [
+              329
+            ]
+          },
+          {
+            "id": 329,
+            "importance": 1,
+            "subordinates": [
+              330
+            ]
+          },
+          {
+            "id": 330,
+            "importance": 1,
+            "subordinates": [
+              331
+            ]
+          },
+          {
+            "id": 331,
+            "importance": 1,
+            "subordinates": [
+              332
+            ]
+          },
+          {
+            "id": 332,
+            "importance": 1,
+            "subordinates": [
+              333
+            ]
+          },
+          {
+            "id": 333,
+            "importance": 1,
+            "subordinates": [
+              334
+            ]
+          },
+          {
+            "id": 334,
+            "importance": 1,
+            "subordinates": [
+              335
+            ]
+          },
+          {
+            "id": 335,
+            "importance": 1,
+            "subordinates": [
+              336
+            ]
+          },
+          {
+            "id": 336,
+            "importance": 1,
+            "subordinates": [
+              337
+            ]
+          },
+          {
+            "id": 337,
+            "importance": 1,
+            "subordinates": [
+              338
+            ]
+          },
+          {
+            "id": 338,
+            "importance": 1,
+            "subordinates": [
+              339
+            ]
+          },
+          {
+            "id": 339,
+            "importance": 1,
+            "subordinates": [
+              340
+            ]
+          },
+          {
+            "id": 340,
+            "importance": 1,
+            "subordinates": [
+              341
+            ]
+          },
+          {
+            "id": 341,
+            "importance": 1,
+            "subordinates": [
+              342
+            ]
+          },
+          {
+            "id": 342,
+            "importance": 1,
+            "subordinates": [
+              343
+            ]
+          },
+          {
+            "id": 343,
+            "importance": 1,
+            "subordinates": [
+              344
+            ]
+          },
+          {
+            "id": 344,
+            "importance": 1,
+            "subordinates": [
+              345
+            ]
+          },
+          {
+            "id": 345,
+            "importance": 1,
+            "subordinates": [
+              346
+            ]
+          },
+          {
+            "id": 346,
+            "importance": 1,
+            "subordinates": [
+              347
+            ]
+          },
+          {
+            "id": 347,
+            "importance": 1,
+            "subordinates": [
+              348
+            ]
+          },
+          {
+            "id": 348,
+            "importance": 1,
+            "subordinates": [
+              349
+            ]
+          },
+          {
+            "id": 349,
+            "importance": 1,
+            "subordinates": [
+              350
+            ]
+          },
+          {
+            "id": 350,
+            "importance": 1,
+            "subordinates": [
+              351
+            ]
+          },
+          {
+            "id": 351,
+            "importance": 1,
+            "subordinates": [
+              352
+            ]
+          },
+          {
+            "id": 352,
+            "importance": 1,
+            "subordinates": [
+              353
+            ]
+          },
+          {
+            "id": 353,
+            "importance": 1,
+            "subordinates": [
+              354
+            ]
+          },
+          {
+            "id": 354,
+            "importance": 1,
+            "subordinates": [
+              355
+            ]
+          },
+          {
+            "id": 355,
+            "importance": 1,
+            "subordinates": [
+              356
+            ]
+          },
+          {
+            "id": 356,
+            "importance": 1,
+            "subordinates": [
+              357
+            ]
+          },
+          {
+            "id": 357,
+            "importance": 1,
+            "subordinates": [
+              358
+            ]
+          },
+          {
+            "id": 358,
+            "importance": 1,
+            "subordinates": [
+              359
+            ]
+          },
+          {
+            "id": 359,
+            "importance": 1,
+            "subordinates": [
+              360
+            ]
+          },
+          {
+            "id": 360,
+            "importance": 1,
+            "subordinates": [
+              361
+            ]
+          },
+          {
+            "id": 361,
+            "importance": 1,
+            "subordinates": [
+              362
+            ]
+          },
+          {
+            "id": 362,
+            "importance": 1,
+            "subordinates": [
+              363
+            ]
+          },
+          {
+            "id": 363,
+            "importance": 1,
+            "subordinates": [
+              364
+            ]
+          },
+          {
+            "id": 364,
+            "importance": 1,
+            "subordinates": [
+              365
+            ]
+          },
+          {
+            "id": 365,
+            "importance": 1,
+            "subordinates": [
+              366
+            ]
+          },
+          {
+            "id": 366,
+            "importance": 1,
+            "subordinates": [
+              367
+            ]
+          },
+          {
+            "id": 367,
+            "importance": 1,
+            "subordinates": [
+              368
+            ]
+          },
+          {
+            "id": 368,
+            "importance": 1,
+            "subordinates": [
+              369
+            ]
+          },
+          {
+            "id": 369,
+            "importance": 1,
+            "subordinates": [
+              370
+            ]
+          },
+          {
+            "id": 370,
+            "importance": 1,
+            "subordinates": [
+              371
+            ]
+          },
+          {
+            "id": 371,
+            "importance": 1,
+            "subordinates": [
+              372
+            ]
+          },
+          {
+            "id": 372,
+            "importance": 1,
+            "subordinates": [
+              373
+            ]
+          },
+          {
+            "id": 373,
+            "importance": 1,
+            "subordinates": [
+              374
+            ]
+          },
+          {
+            "id": 374,
+            "importance": 1,
+            "subordinates": [
+              375
+            ]
+          },
+          {
+            "id": 375,
+            "importance": 1,
+            "subordinates": [
+              376
+            ]
+          },
+          {
+            "id": 376,
+            "importance": 1,
+            "subordinates": [
+              377
+            ]
+          },
+          {
+            "id": 377,
+            "importance": 1,
+            "subordinates": [
+              378
+            ]
+          },
+          {
+            "id": 378,
+            "importance": 1,
+            "subordinates": [
+              379
+            ]
+          },
+          {
+            "id": 379,
+            "importance": 1,
+            "subordinates": [
+              380
+            ]
+          },
+          {
+            "id": 380,
+            "importance": 1,
+            "subordinates": [
+              381
+            ]
+          },
+          {
+            "id": 381,
+            "importance": 1,
+            "subordinates": [
+              382
+            ]
+          },
+          {
+            "id": 382,
+            "importance": 1,
+            "subordinates": [
+              383
+            ]
+          },
+          {
+            "id": 383,
+            "importance": 1,
+            "subordinates": [
+              384
+            ]
+          },
+          {
+            "id": 384,
+            "importance": 1,
+            "subordinates": [
+              385
+            ]
+          },
+          {
+            "id": 385,
+            "importance": 1,
+            "subordinates": [
+              386
+            ]
+          },
+          {
+            "id": 386,
+            "importance": 1,
+            "subordinates": [
+              387
+            ]
+          },
+          {
+            "id": 387,
+            "importance": 1,
+            "subordinates": [
+              388
+            ]
+          },
+          {
+            "id": 388,
+            "importance": 1,
+            "subordinates": [
+              389
+            ]
+          },
+          {
+            "id": 389,
+            "importance": 1,
+            "subordinates": [
+              390
+            ]
+          },
+          {
+            "id": 390,
+            "importance": 1,
+            "subordinates": [
+              391
+            ]
+          },
+          {
+            "id": 391,
+            "importance": 1,
+            "subordinates": [
+              392
+            ]
+          },
+          {
+            "id": 392,
+            "importance": 1,
+            "subordinates": [
+              393
+            ]
+          },
+          {
+            "id": 393,
+            "importance": 1,
+            "subordinates": [
+              394
+            ]
+          },
+          {
+            "id": 394,
+            "importance": 1,
+            "subordinates": [
+              395
+            ]
+          },
+          {
+            "id": 395,
+            "importance": 1,
+            "subordinates": [
+              396
+            ]
+          },
+          {
+            "id": 396,
+            "importance": 1,
+            "subordinates": [
+              397
+            ]
+          },
+          {
+            "id": 397,
+            "importance": 1,
+            "subordinates": [
+              398
+            ]
+          },
+          {
+            "id": 398,
+            "importance": 1,
+            "subordinates": [
+              399
+            ]
+          },
+          {
+            "id": 399,
+            "importance": 1,
+            "subordinates": [
+              400
+            ]
+          },
+          {
+            "id": 400,
+            "importance": 1,
+            "subordinates": [
+              401
+            ]
+          },
+          {
+            "id": 401,
+            "importance": 1,
+            "subordinates": [
+              402
+            ]
+          },
+          {
+            "id": 402,
+            "importance": 1,
+            "subordinates": [
+              403
+            ]
+          },
+          {
+            "id": 403,
+            "importance": 1,
+            "subordinates": [
+              404
+            ]
+          },
+          {
+            "id": 404,
+            "importance": 1,
+            "subordinates": [
+              405
+            ]
+          },
+          {
+            "id": 405,
+            "importance": 1,
+            "subordinates": [
+              406
+            ]
+          },
+          {
+            "id": 406,
+            "importance": 1,
+            "subordinates": [
+              407
+            ]
+          },
+          {
+            "id": 407,
+            "importance": 1,
+            "subordinates": [
+              408
+            ]
+          },
+          {
+            "id": 408,
+            "importance": 1,
+            "subordinates": [
+              409
+            ]
+          },
+          {
+            "id": 409,
+            "importance": 1,
+            "subordinates": [
+              410
+            ]
+          },
+          {
+            "id": 410,
+            "importance": 1,
+            "subordinates": [
+              411
+            ]
+          },
+          {
+            "id": 411,
+            "importance": 1,
+            "subordinates": [
+              412
+            ]
+          },
+          {
+            "id": 412,
+            "importance": 1,
+            "subordinates": [
+              413
+            ]
+          },
+          {
+            "id": 413,
+            "importance": 1,
+            "subordinates": [
+              414
+            ]
+          },
+          {
+            "id": 414,
+            "importance": 1,
+            "subordinates": [
+              415
+            ]
+          },
+          {
+            "id": 415,
+            "importance": 1,
+            "subordinates": [
+              416
+            ]
+          },
+          {
+            "id": 416,
+            "importance": 1,
+            "subordinates": [
+              417
+            ]
+          },
+          {
+            "id": 417,
+            "importance": 1,
+            "subordinates": [
+              418
+            ]
+          },
+          {
+            "id": 418,
+            "importance": 1,
+            "subordinates": [
+              419
+            ]
+          },
+          {
+            "id": 419,
+            "importance": 1,
+            "subordinates": [
+              420
+            ]
+          },
+          {
+            "id": 420,
+            "importance": 1,
+            "subordinates": [
+              421
+            ]
+          },
+          {
+            "id": 421,
+            "importance": 1,
+            "subordinates": [
+              422
+            ]
+          },
+          {
+            "id": 422,
+            "importance": 1,
+            "subordinates": [
+              423
+            ]
+          },
+          {
+            "id": 423,
+            "importance": 1,
+            "subordinates": [
+              424
+            ]
+          },
+          {
+            "id": 424,
+            "importance": 1,
+            "subordinates": [
+              425
+            ]
+          },
+          {
+            "id": 425,
+            "importance": 1,
+            "subordinates": [
+              426
+            ]
+          },
+          {
+            "id": 426,
+            "importance": 1,
+            "subordinates": [
+              427
+            ]
+          },
+          {
+            "id": 427,
+            "importance": 1,
+            "subordinates": [
+              428
+            ]
+          },
+          {
+            "id": 428,
+            "importance": 1,
+            "subordinates": [
+              429
+            ]
+          },
+          {
+            "id": 429,
+            "importance": 1,
+            "subordinates": [
+              430
+            ]
+          },
+          {
+            "id": 430,
+            "importance": 1,
+            "subordinates": [
+              431
+            ]
+          },
+          {
+            "id": 431,
+            "importance": 1,
+            "subordinates": [
+              432
+            ]
+          },
+          {
+            "id": 432,
+            "importance": 1,
+            "subordinates": [
+              433
+            ]
+          },
+          {
+            "id": 433,
+            "importance": 1,
+            "subordinates": [
+              434
+            ]
+          },
+          {
+            "id": 434,
+            "importance": 1,
+            "subordinates": [
+              435
+            ]
+          },
+          {
+            "id": 435,
+            "importance": 1,
+            "subordinates": [
+              436
+            ]
+          },
+          {
+            "id": 436,
+            "importance": 1,
+            "subordinates": [
+              437
+            ]
+          },
+          {
+            "id": 437,
+            "importance": 1,
+            "subordinates": [
+              438
+            ]
+          },
+          {
+            "id": 438,
+            "importance": 1,
+            "subordinates": [
+              439
+            ]
+          },
+          {
+            "id": 439,
+            "importance": 1,
+            "subordinates": [
+              440
+            ]
+          },
+          {
+            "id": 440,
+            "importance": 1,
+            "subordinates": [
+              441
+            ]
+          },
+          {
+            "id": 441,
+            "importance": 1,
+            "subordinates": [
+              442
+            ]
+          },
+          {
+            "id": 442,
+            "importance": 1,
+            "subordinates": [
+              443
+            ]
+          },
+          {
+            "id": 443,
+            "importance": 1,
+            "subordinates": [
+              444
+            ]
+          },
+          {
+            "id": 444,
+            "importance": 1,
+            "subordinates": [
+              445
+            ]
+          },
+          {
+            "id": 445,
+            "importance": 1,
+            "subordinates": [
+              446
+            ]
+          },
+          {
+            "id": 446,
+            "importance": 1,
+            "subordinates": [
+              447
+            ]
+          },
+          {
+            "id": 447,
+            "importance": 1,
+            "subordinates": [
+              448
+            ]
+          },
+          {
+            "id": 448,
+            "importance": 1,
+            "subordinates": [
+              449
+            ]
+          },
+          {
+            "id": 449,
+            "importance": 1,
+            "subordinates": [
+              450
+            ]
+          },
+          {
+            "id": 450,
+            "importance": 1,
+            "subordinates": [
+              451
+            ]
+          },
+          {
+            "id": 451,
+            "importance": 1,
+            "subordinates": [
+              452
+            ]
+          },
+          {
+            "id": 452,
+            "importance": 1,
+            "subordinates": [
+              453
+            ]
+          },
+          {
+            "id": 453,
+            "importance": 1,
+            "subordinates": [
+              454
+            ]
+          },
+          {
+            "id": 454,
+            "importance": 1,
+            "subordinates": [
+              455
+            ]
+          },
+          {
+            "id": 455,
+            "importance": 1,
+            "subordinates": [
+              456
+            ]
+          },
+          {
+            "id": 456,
+            "importance": 1,
+            "subordinates": [
+              457
+            ]
+          },
+          {
+            "id": 457,
+            "importance": 1,
+            "subordinates": [
+              458
+            ]
+          },
+          {
+            "id": 458,
+            "importance": 1,
+            "subordinates": [
+              459
+            ]
+          },
+          {
+            "id": 459,
+            "importance": 1,
+            "subordinates": [
+              460
+            ]
+          },
+          {
+            "id": 460,
+            "importance": 1,
+            "subordinates": [
+              461
+            ]
+          },
+          {
+            "id": 461,
+            "importance": 1,
+            "subordinates": [
+              462
+            ]
+          },
+          {
+            "id": 462,
+            "importance": 1,
+            "subordinates": [
+              463
+            ]
+          },
+          {
+            "id": 463,
+            "importance": 1,
+            "subordinates": [
+              464
+            ]
+          },
+          {
+            "id": 464,
+            "importance": 1,
+            "subordinates": [
+              465
+            ]
+          },
+          {
+            "id": 465,
+            "importance": 1,
+            "subordinates": [
+              466
+            ]
+          },
+          {
+            "id": 466,
+            "importance": 1,
+            "subordinates": [
+              467
+            ]
+          },
+          {
+            "id": 467,
+            "importance": 1,
+            "subordinates": [
+              468
+            ]
+          },
+          {
+            "id": 468,
+            "importance": 1,
+            "subordinates": [
+              469
+            ]
+          },
+          {
+            "id": 469,
+            "importance": 1,
+            "subordinates": [
+              470
+            ]
+          },
+          {
+            "id": 470,
+            "importance": 1,
+            "subordinates": [
+              471
+            ]
+          },
+          {
+            "id": 471,
+            "importance": 1,
+            "subordinates": [
+              472
+            ]
+          },
+          {
+            "id": 472,
+            "importance": 1,
+            "subordinates": [
+              473
+            ]
+          },
+          {
+            "id": 473,
+            "importance": 1,
+            "subordinates": [
+              474
+            ]
+          },
+          {
+            "id": 474,
+            "importance": 1,
+            "subordinates": [
+              475
+            ]
+          },
+          {
+            "id": 475,
+            "importance": 1,
+            "subordinates": [
+              476
+            ]
+          },
+          {
+            "id": 476,
+            "importance": 1,
+            "subordinates": [
+              477
+            ]
+          },
+          {
+            "id": 477,
+            "importance": 1,
+            "subordinates": [
+              478
+            ]
+          },
+          {
+            "id": 478,
+            "importance": 1,
+            "subordinates": [
+              479
+            ]
+          },
+          {
+            "id": 479,
+            "importance": 1,
+            "subordinates": [
+              480
+            ]
+          },
+          {
+            "id": 480,
+            "importance": 1,
+            "subordinates": [
+              481
+            ]
+          },
+          {
+            "id": 481,
+            "importance": 1,
+            "subordinates": [
+              482
+            ]
+          },
+          {
+            "id": 482,
+            "importance": 1,
+            "subordinates": [
+              483
+            ]
+          },
+          {
+            "id": 483,
+            "importance": 1,
+            "subordinates": [
+              484
+            ]
+          },
+          {
+            "id": 484,
+            "importance": 1,
+            "subordinates": [
+              485
+            ]
+          },
+          {
+            "id": 485,
+            "importance": 1,
+            "subordinates": [
+              486
+            ]
+          },
+          {
+            "id": 486,
+            "importance": 1,
+            "subordinates": [
+              487
+            ]
+          },
+          {
+            "id": 487,
+            "importance": 1,
+            "subordinates": [
+              488
+            ]
+          },
+          {
+            "id": 488,
+            "importance": 1,
+            "subordinates": [
+              489
+            ]
+          },
+          {
+            "id": 489,
+            "importance": 1,
+            "subordinates": [
+              490
+            ]
+          },
+          {
+            "id": 490,
+            "importance": 1,
+            "subordinates": [
+              491
+            ]
+          },
+          {
+            "id": 491,
+            "importance": 1,
+            "subordinates": [
+              492
+            ]
+          },
+          {
+            "id": 492,
+            "importance": 1,
+            "subordinates": [
+              493
+            ]
+          },
+          {
+            "id": 493,
+            "importance": 1,
+            "subordinates": [
+              494
+            ]
+          },
+          {
+            "id": 494,
+            "importance": 1,
+            "subordinates": [
+              495
+            ]
+          },
+          {
+            "id": 495,
+            "importance": 1,
+            "subordinates": [
+              496
+            ]
+          },
+          {
+            "id": 496,
+            "importance": 1,
+            "subordinates": [
+              497
+            ]
+          },
+          {
+            "id": 497,
+            "importance": 1,
+            "subordinates": [
+              498
+            ]
+          },
+          {
+            "id": 498,
+            "importance": 1,
+            "subordinates": [
+              499
+            ]
+          },
+          {
+            "id": 499,
+            "importance": 1,
+            "subordinates": [
+              500
+            ]
+          },
+          {
+            "id": 500,
+            "importance": 1,
+            "subordinates": [
+              501
+            ]
+          },
+          {
+            "id": 501,
+            "importance": 1,
+            "subordinates": [
+              502
+            ]
+          },
+          {
+            "id": 502,
+            "importance": 1,
+            "subordinates": [
+              503
+            ]
+          },
+          {
+            "id": 503,
+            "importance": 1,
+            "subordinates": [
+              504
+            ]
+          },
+          {
+            "id": 504,
+            "importance": 1,
+            "subordinates": [
+              505
+            ]
+          },
+          {
+            "id": 505,
+            "importance": 1,
+            "subordinates": [
+              506
+            ]
+          },
+          {
+            "id": 506,
+            "importance": 1,
+            "subordinates": [
+              507
+            ]
+          },
+          {
+            "id": 507,
+            "importance": 1,
+            "subordinates": [
+              508
+            ]
+          },
+          {
+            "id": 508,
+            "importance": 1,
+            "subordinates": [
+              509
+            ]
+          },
+          {
+            "id": 509,
+            "importance": 1,
+            "subordinates": [
+              510
+            ]
+          },
+          {
+            "id": 510,
+            "importance": 1,
+            "subordinates": [
+              511
+            ]
+          },
+          {
+            "id": 511,
+            "importance": 1,
+            "subordinates": [
+              512
+            ]
+          },
+          {
+            "id": 512,
+            "importance": 1,
+            "subordinates": []
+          }
+        ],
+        "id": 1
+      },
+      "expected": 512,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "management-chain"
+      ]
+    }
+  ]
+}
+

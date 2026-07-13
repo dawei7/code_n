@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_1128",
+  "cases": [
+    {
+      "id": "benchmark-three-plus-three",
+      "name": "benchmark: two groups of three",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "dominoes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

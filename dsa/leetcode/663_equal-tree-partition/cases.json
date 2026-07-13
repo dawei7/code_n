@@ -1,0 +1,9 @@
+{"schema_version":1,"challenge_id":"lc_663","cases":[
+{"id":"sample-1","name":"sample: right subtree is half","kind":"sample","visible":true,"input":{"root":[5,10,10,null,null,2,3]},"expected":true,"tags":["sample","partition"]},
+{"id":"sample-2","name":"sample: no half-sum subtree","kind":"sample","visible":true,"input":{"root":[1,2,10,null,null,2,20]},"expected":false,"tags":["sample","invalid"]},
+{"id":"sample-3","name":"sample: proper zero subtree","kind":"sample","visible":true,"input":{"root":[0,0]},"expected":true,"tags":["sample","zero"]},
+{"id":"trial-1","name":"trial: single zero root is not a cut","kind":"trial","visible":true,"input":{"root":[0]},"expected":false,"tags":["trial","boundary","zero"]},
+{"id":"trial-2","name":"trial: zero total without zero subtree","kind":"trial","visible":true,"input":{"root":[0,-1,1]},"expected":false,"tags":["trial","zero-total"]},
+{"id":"hidden-1","name":"hidden: two-node equal split","kind":"real","visible":false,"input":{"root":[1,1]},"expected":true,"tags":["hidden","small"]},
+{"id":"hidden-2","name":"hidden: negative mirror of valid tree","kind":"real","visible":false,"input":{"root":[-5,-10,-10,null,null,-2,-3]},"expected":true,"tags":["hidden","negative"]}
+]}

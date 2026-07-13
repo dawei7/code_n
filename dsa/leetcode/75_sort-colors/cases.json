@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_75",
+  "cases": [
+    {"id": "sample-mixed", "name": "sample: repeated colors", "kind": "sample", "visible": true, "input": {"nums": [2,0,2,1,1,0]}, "expected": [0,0,1,1,2,2], "tags": ["sample"]},
+    {"id": "sample-three", "name": "sample: one of each color", "kind": "sample", "visible": true, "input": {"nums": [2,0,1]}, "expected": [0,1,2], "tags": ["sample"]},
+    {"id": "trial-single", "name": "single value", "kind": "trial", "visible": true, "input": {"nums": [1]}, "expected": [1], "tags": ["boundary"]},
+    {"id": "trial-sorted", "name": "already partitioned", "kind": "trial", "visible": true, "input": {"nums": [0,0,1,1,2,2]}, "expected": [0,0,1,1,2,2], "tags": ["identity"]},
+    {"id": "real-reversed", "name": "hidden: reverse color blocks", "kind": "real", "visible": false, "input": {"nums": [2,2,2,1,1,0,0,0]}, "expected": [0,0,0,1,1,2,2,2], "tags": ["hidden", "partition"]}
+  ]
+}

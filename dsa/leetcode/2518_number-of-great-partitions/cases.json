@@ -1,0 +1,93 @@
+{
+  "challenge_id": "lc_2518",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: six great ordered partitions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 4
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: total can satisfy only one side at a time",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two large values can be split either way",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-ones",
+      "name": "trial: two ones split into two ordered partitions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-total-too-small",
+      "name": "hidden: total sum is below twice k",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

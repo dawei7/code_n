@@ -1,0 +1,130 @@
+{
+  "challenge_id": "lc_2742",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one expensive paid wall can cover free work",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cost": [
+          1,
+          2,
+          3,
+          2
+        ],
+        "time": [
+          1,
+          2,
+          3,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "dp"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: equal free times",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cost": [
+          2,
+          3,
+          4,
+          2
+        ],
+        "time": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "dp"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "trial-zero-free-time",
+      "name": "trial: zero free time requires paying each wall",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          5,
+          1,
+          4
+        ],
+        "time": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 10
+    },
+    {
+      "id": "trial-cheap-long-time",
+      "name": "trial: cheap painter covers many free walls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          10,
+          1,
+          8,
+          7
+        ],
+        "time": [
+          0,
+          3,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "trial",
+        "coverage"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-mixed-costs",
+      "name": "hidden: mix of cost and free coverage",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cost": [
+          4,
+          2,
+          7,
+          3,
+          6
+        ],
+        "time": [
+          1,
+          2,
+          0,
+          1,
+          2
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 5
+    }
+  ]
+}

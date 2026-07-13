@@ -1,0 +1,204 @@
+{
+  "challenge_id": "lc_3380",
+  "cases": [
+    {
+      "id": "sample-clean-square",
+      "name": "sample: clean four-corner rectangle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "geometry"
+      ]
+    },
+    {
+      "id": "sample-interior-blocks",
+      "name": "sample: interior point invalidates rectangle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "interior-point"
+      ]
+    },
+    {
+      "id": "sample-boundary-smaller",
+      "name": "sample: boundary points force smaller valid rectangle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-edge-point-blocks",
+      "name": "trial: point on horizontal edge invalidates the large rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "regression",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-many-small-points",
+      "name": "real: several possible rectangles under n ten",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "geometry"
+      ]
+    }
+  ]
+}

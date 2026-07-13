@@ -1,0 +1,118 @@
+{
+  "challenge_id": "lc_2553",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: split each two-digit number in order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          13,
+          25,
+          83,
+          77
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        2,
+        5,
+        8,
+        3,
+        7,
+        7
+      ],
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one-digit numbers remain unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          1,
+          3,
+          9
+        ]
+      },
+      "expected": [
+        7,
+        1,
+        3,
+        9
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero digits are preserved",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        2,
+        0,
+        3,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-hundreds-and-one-digit",
+      "name": "trial: three digits followed by a one-digit value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          5
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0,
+        5
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-digit",
+      "name": "hidden: one number with one digit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

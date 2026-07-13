@@ -1,0 +1,2340 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_197",
+  "measurement_note": "Growing daily histories exercise calendar adjacency and temperature comparisons.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 weather rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "id": 1,
+              "recordDate": "2020-01-01",
+              "temperature": 0
+            },
+            {
+              "id": 2,
+              "recordDate": "2020-01-02",
+              "temperature": 37
+            },
+            {
+              "id": 3,
+              "recordDate": "2020-01-03",
+              "temperature": 74
+            },
+            {
+              "id": 4,
+              "recordDate": "2020-01-04",
+              "temperature": 10
+            },
+            {
+              "id": 5,
+              "recordDate": "2020-01-05",
+              "temperature": 47
+            },
+            {
+              "id": 6,
+              "recordDate": "2020-01-06",
+              "temperature": 84
+            },
+            {
+              "id": 7,
+              "recordDate": "2020-01-07",
+              "temperature": 20
+            },
+            {
+              "id": 8,
+              "recordDate": "2020-01-08",
+              "temperature": 57
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            8
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 weather rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "id": 1,
+              "recordDate": "2020-01-01",
+              "temperature": 0
+            },
+            {
+              "id": 2,
+              "recordDate": "2020-01-02",
+              "temperature": 37
+            },
+            {
+              "id": 3,
+              "recordDate": "2020-01-03",
+              "temperature": 74
+            },
+            {
+              "id": 4,
+              "recordDate": "2020-01-04",
+              "temperature": 10
+            },
+            {
+              "id": 5,
+              "recordDate": "2020-01-05",
+              "temperature": 47
+            },
+            {
+              "id": 6,
+              "recordDate": "2020-01-06",
+              "temperature": 84
+            },
+            {
+              "id": 7,
+              "recordDate": "2020-01-07",
+              "temperature": 20
+            },
+            {
+              "id": 8,
+              "recordDate": "2020-01-08",
+              "temperature": 57
+            },
+            {
+              "id": 9,
+              "recordDate": "2020-01-09",
+              "temperature": 94
+            },
+            {
+              "id": 10,
+              "recordDate": "2020-01-10",
+              "temperature": 30
+            },
+            {
+              "id": 11,
+              "recordDate": "2020-01-11",
+              "temperature": 67
+            },
+            {
+              "id": 12,
+              "recordDate": "2020-01-12",
+              "temperature": 3
+            },
+            {
+              "id": 13,
+              "recordDate": "2020-01-13",
+              "temperature": 40
+            },
+            {
+              "id": 14,
+              "recordDate": "2020-01-14",
+              "temperature": 77
+            },
+            {
+              "id": 15,
+              "recordDate": "2020-01-15",
+              "temperature": 13
+            },
+            {
+              "id": 16,
+              "recordDate": "2020-01-16",
+              "temperature": 50
+            },
+            {
+              "id": 17,
+              "recordDate": "2020-01-17",
+              "temperature": 87
+            },
+            {
+              "id": 18,
+              "recordDate": "2020-01-18",
+              "temperature": 23
+            },
+            {
+              "id": 19,
+              "recordDate": "2020-01-19",
+              "temperature": 60
+            },
+            {
+              "id": 20,
+              "recordDate": "2020-01-20",
+              "temperature": 97
+            },
+            {
+              "id": 21,
+              "recordDate": "2020-01-21",
+              "temperature": 33
+            },
+            {
+              "id": 22,
+              "recordDate": "2020-01-22",
+              "temperature": 70
+            },
+            {
+              "id": 23,
+              "recordDate": "2020-01-23",
+              "temperature": 6
+            },
+            {
+              "id": 24,
+              "recordDate": "2020-01-24",
+              "temperature": 43
+            },
+            {
+              "id": 25,
+              "recordDate": "2020-01-25",
+              "temperature": 80
+            },
+            {
+              "id": 26,
+              "recordDate": "2020-01-26",
+              "temperature": 16
+            },
+            {
+              "id": 27,
+              "recordDate": "2020-01-27",
+              "temperature": 53
+            },
+            {
+              "id": 28,
+              "recordDate": "2020-01-28",
+              "temperature": 90
+            },
+            {
+              "id": 29,
+              "recordDate": "2020-01-29",
+              "temperature": 26
+            },
+            {
+              "id": 30,
+              "recordDate": "2020-01-30",
+              "temperature": 63
+            },
+            {
+              "id": 31,
+              "recordDate": "2020-01-31",
+              "temperature": 100
+            },
+            {
+              "id": 32,
+              "recordDate": "2020-02-01",
+              "temperature": 36
+            },
+            {
+              "id": 33,
+              "recordDate": "2020-02-02",
+              "temperature": 73
+            },
+            {
+              "id": 34,
+              "recordDate": "2020-02-03",
+              "temperature": 9
+            },
+            {
+              "id": 35,
+              "recordDate": "2020-02-04",
+              "temperature": 46
+            },
+            {
+              "id": 36,
+              "recordDate": "2020-02-05",
+              "temperature": 83
+            },
+            {
+              "id": 37,
+              "recordDate": "2020-02-06",
+              "temperature": 19
+            },
+            {
+              "id": 38,
+              "recordDate": "2020-02-07",
+              "temperature": 56
+            },
+            {
+              "id": 39,
+              "recordDate": "2020-02-08",
+              "temperature": 93
+            },
+            {
+              "id": 40,
+              "recordDate": "2020-02-09",
+              "temperature": 29
+            },
+            {
+              "id": 41,
+              "recordDate": "2020-02-10",
+              "temperature": 66
+            },
+            {
+              "id": 42,
+              "recordDate": "2020-02-11",
+              "temperature": 2
+            },
+            {
+              "id": 43,
+              "recordDate": "2020-02-12",
+              "temperature": 39
+            },
+            {
+              "id": 44,
+              "recordDate": "2020-02-13",
+              "temperature": 76
+            },
+            {
+              "id": 45,
+              "recordDate": "2020-02-14",
+              "temperature": 12
+            },
+            {
+              "id": 46,
+              "recordDate": "2020-02-15",
+              "temperature": 49
+            },
+            {
+              "id": 47,
+              "recordDate": "2020-02-16",
+              "temperature": 86
+            },
+            {
+              "id": 48,
+              "recordDate": "2020-02-17",
+              "temperature": 22
+            },
+            {
+              "id": 49,
+              "recordDate": "2020-02-18",
+              "temperature": 59
+            },
+            {
+              "id": 50,
+              "recordDate": "2020-02-19",
+              "temperature": 96
+            },
+            {
+              "id": 51,
+              "recordDate": "2020-02-20",
+              "temperature": 32
+            },
+            {
+              "id": 52,
+              "recordDate": "2020-02-21",
+              "temperature": 69
+            },
+            {
+              "id": 53,
+              "recordDate": "2020-02-22",
+              "temperature": 5
+            },
+            {
+              "id": 54,
+              "recordDate": "2020-02-23",
+              "temperature": 42
+            },
+            {
+              "id": 55,
+              "recordDate": "2020-02-24",
+              "temperature": 79
+            },
+            {
+              "id": 56,
+              "recordDate": "2020-02-25",
+              "temperature": 15
+            },
+            {
+              "id": 57,
+              "recordDate": "2020-02-26",
+              "temperature": 52
+            },
+            {
+              "id": 58,
+              "recordDate": "2020-02-27",
+              "temperature": 89
+            },
+            {
+              "id": 59,
+              "recordDate": "2020-02-28",
+              "temperature": 25
+            },
+            {
+              "id": 60,
+              "recordDate": "2020-02-29",
+              "temperature": 62
+            },
+            {
+              "id": 61,
+              "recordDate": "2020-03-01",
+              "temperature": 99
+            },
+            {
+              "id": 62,
+              "recordDate": "2020-03-02",
+              "temperature": 35
+            },
+            {
+              "id": 63,
+              "recordDate": "2020-03-03",
+              "temperature": 72
+            },
+            {
+              "id": 64,
+              "recordDate": "2020-03-04",
+              "temperature": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            16
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            20
+          ],
+          [
+            22
+          ],
+          [
+            24
+          ],
+          [
+            25
+          ],
+          [
+            27
+          ],
+          [
+            28
+          ],
+          [
+            30
+          ],
+          [
+            31
+          ],
+          [
+            33
+          ],
+          [
+            35
+          ],
+          [
+            36
+          ],
+          [
+            38
+          ],
+          [
+            39
+          ],
+          [
+            41
+          ],
+          [
+            43
+          ],
+          [
+            44
+          ],
+          [
+            46
+          ],
+          [
+            47
+          ],
+          [
+            49
+          ],
+          [
+            50
+          ],
+          [
+            52
+          ],
+          [
+            54
+          ],
+          [
+            55
+          ],
+          [
+            57
+          ],
+          [
+            58
+          ],
+          [
+            60
+          ],
+          [
+            61
+          ],
+          [
+            63
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 weather rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "id": 1,
+              "recordDate": "2020-01-01",
+              "temperature": 0
+            },
+            {
+              "id": 2,
+              "recordDate": "2020-01-02",
+              "temperature": 37
+            },
+            {
+              "id": 3,
+              "recordDate": "2020-01-03",
+              "temperature": 74
+            },
+            {
+              "id": 4,
+              "recordDate": "2020-01-04",
+              "temperature": 10
+            },
+            {
+              "id": 5,
+              "recordDate": "2020-01-05",
+              "temperature": 47
+            },
+            {
+              "id": 6,
+              "recordDate": "2020-01-06",
+              "temperature": 84
+            },
+            {
+              "id": 7,
+              "recordDate": "2020-01-07",
+              "temperature": 20
+            },
+            {
+              "id": 8,
+              "recordDate": "2020-01-08",
+              "temperature": 57
+            },
+            {
+              "id": 9,
+              "recordDate": "2020-01-09",
+              "temperature": 94
+            },
+            {
+              "id": 10,
+              "recordDate": "2020-01-10",
+              "temperature": 30
+            },
+            {
+              "id": 11,
+              "recordDate": "2020-01-11",
+              "temperature": 67
+            },
+            {
+              "id": 12,
+              "recordDate": "2020-01-12",
+              "temperature": 3
+            },
+            {
+              "id": 13,
+              "recordDate": "2020-01-13",
+              "temperature": 40
+            },
+            {
+              "id": 14,
+              "recordDate": "2020-01-14",
+              "temperature": 77
+            },
+            {
+              "id": 15,
+              "recordDate": "2020-01-15",
+              "temperature": 13
+            },
+            {
+              "id": 16,
+              "recordDate": "2020-01-16",
+              "temperature": 50
+            },
+            {
+              "id": 17,
+              "recordDate": "2020-01-17",
+              "temperature": 87
+            },
+            {
+              "id": 18,
+              "recordDate": "2020-01-18",
+              "temperature": 23
+            },
+            {
+              "id": 19,
+              "recordDate": "2020-01-19",
+              "temperature": 60
+            },
+            {
+              "id": 20,
+              "recordDate": "2020-01-20",
+              "temperature": 97
+            },
+            {
+              "id": 21,
+              "recordDate": "2020-01-21",
+              "temperature": 33
+            },
+            {
+              "id": 22,
+              "recordDate": "2020-01-22",
+              "temperature": 70
+            },
+            {
+              "id": 23,
+              "recordDate": "2020-01-23",
+              "temperature": 6
+            },
+            {
+              "id": 24,
+              "recordDate": "2020-01-24",
+              "temperature": 43
+            },
+            {
+              "id": 25,
+              "recordDate": "2020-01-25",
+              "temperature": 80
+            },
+            {
+              "id": 26,
+              "recordDate": "2020-01-26",
+              "temperature": 16
+            },
+            {
+              "id": 27,
+              "recordDate": "2020-01-27",
+              "temperature": 53
+            },
+            {
+              "id": 28,
+              "recordDate": "2020-01-28",
+              "temperature": 90
+            },
+            {
+              "id": 29,
+              "recordDate": "2020-01-29",
+              "temperature": 26
+            },
+            {
+              "id": 30,
+              "recordDate": "2020-01-30",
+              "temperature": 63
+            },
+            {
+              "id": 31,
+              "recordDate": "2020-01-31",
+              "temperature": 100
+            },
+            {
+              "id": 32,
+              "recordDate": "2020-02-01",
+              "temperature": 36
+            },
+            {
+              "id": 33,
+              "recordDate": "2020-02-02",
+              "temperature": 73
+            },
+            {
+              "id": 34,
+              "recordDate": "2020-02-03",
+              "temperature": 9
+            },
+            {
+              "id": 35,
+              "recordDate": "2020-02-04",
+              "temperature": 46
+            },
+            {
+              "id": 36,
+              "recordDate": "2020-02-05",
+              "temperature": 83
+            },
+            {
+              "id": 37,
+              "recordDate": "2020-02-06",
+              "temperature": 19
+            },
+            {
+              "id": 38,
+              "recordDate": "2020-02-07",
+              "temperature": 56
+            },
+            {
+              "id": 39,
+              "recordDate": "2020-02-08",
+              "temperature": 93
+            },
+            {
+              "id": 40,
+              "recordDate": "2020-02-09",
+              "temperature": 29
+            },
+            {
+              "id": 41,
+              "recordDate": "2020-02-10",
+              "temperature": 66
+            },
+            {
+              "id": 42,
+              "recordDate": "2020-02-11",
+              "temperature": 2
+            },
+            {
+              "id": 43,
+              "recordDate": "2020-02-12",
+              "temperature": 39
+            },
+            {
+              "id": 44,
+              "recordDate": "2020-02-13",
+              "temperature": 76
+            },
+            {
+              "id": 45,
+              "recordDate": "2020-02-14",
+              "temperature": 12
+            },
+            {
+              "id": 46,
+              "recordDate": "2020-02-15",
+              "temperature": 49
+            },
+            {
+              "id": 47,
+              "recordDate": "2020-02-16",
+              "temperature": 86
+            },
+            {
+              "id": 48,
+              "recordDate": "2020-02-17",
+              "temperature": 22
+            },
+            {
+              "id": 49,
+              "recordDate": "2020-02-18",
+              "temperature": 59
+            },
+            {
+              "id": 50,
+              "recordDate": "2020-02-19",
+              "temperature": 96
+            },
+            {
+              "id": 51,
+              "recordDate": "2020-02-20",
+              "temperature": 32
+            },
+            {
+              "id": 52,
+              "recordDate": "2020-02-21",
+              "temperature": 69
+            },
+            {
+              "id": 53,
+              "recordDate": "2020-02-22",
+              "temperature": 5
+            },
+            {
+              "id": 54,
+              "recordDate": "2020-02-23",
+              "temperature": 42
+            },
+            {
+              "id": 55,
+              "recordDate": "2020-02-24",
+              "temperature": 79
+            },
+            {
+              "id": 56,
+              "recordDate": "2020-02-25",
+              "temperature": 15
+            },
+            {
+              "id": 57,
+              "recordDate": "2020-02-26",
+              "temperature": 52
+            },
+            {
+              "id": 58,
+              "recordDate": "2020-02-27",
+              "temperature": 89
+            },
+            {
+              "id": 59,
+              "recordDate": "2020-02-28",
+              "temperature": 25
+            },
+            {
+              "id": 60,
+              "recordDate": "2020-02-29",
+              "temperature": 62
+            },
+            {
+              "id": 61,
+              "recordDate": "2020-03-01",
+              "temperature": 99
+            },
+            {
+              "id": 62,
+              "recordDate": "2020-03-02",
+              "temperature": 35
+            },
+            {
+              "id": 63,
+              "recordDate": "2020-03-03",
+              "temperature": 72
+            },
+            {
+              "id": 64,
+              "recordDate": "2020-03-04",
+              "temperature": 8
+            },
+            {
+              "id": 65,
+              "recordDate": "2020-03-05",
+              "temperature": 45
+            },
+            {
+              "id": 66,
+              "recordDate": "2020-03-06",
+              "temperature": 82
+            },
+            {
+              "id": 67,
+              "recordDate": "2020-03-07",
+              "temperature": 18
+            },
+            {
+              "id": 68,
+              "recordDate": "2020-03-08",
+              "temperature": 55
+            },
+            {
+              "id": 69,
+              "recordDate": "2020-03-09",
+              "temperature": 92
+            },
+            {
+              "id": 70,
+              "recordDate": "2020-03-10",
+              "temperature": 28
+            },
+            {
+              "id": 71,
+              "recordDate": "2020-03-11",
+              "temperature": 65
+            },
+            {
+              "id": 72,
+              "recordDate": "2020-03-12",
+              "temperature": 1
+            },
+            {
+              "id": 73,
+              "recordDate": "2020-03-13",
+              "temperature": 38
+            },
+            {
+              "id": 74,
+              "recordDate": "2020-03-14",
+              "temperature": 75
+            },
+            {
+              "id": 75,
+              "recordDate": "2020-03-15",
+              "temperature": 11
+            },
+            {
+              "id": 76,
+              "recordDate": "2020-03-16",
+              "temperature": 48
+            },
+            {
+              "id": 77,
+              "recordDate": "2020-03-17",
+              "temperature": 85
+            },
+            {
+              "id": 78,
+              "recordDate": "2020-03-18",
+              "temperature": 21
+            },
+            {
+              "id": 79,
+              "recordDate": "2020-03-19",
+              "temperature": 58
+            },
+            {
+              "id": 80,
+              "recordDate": "2020-03-20",
+              "temperature": 95
+            },
+            {
+              "id": 81,
+              "recordDate": "2020-03-21",
+              "temperature": 31
+            },
+            {
+              "id": 82,
+              "recordDate": "2020-03-22",
+              "temperature": 68
+            },
+            {
+              "id": 83,
+              "recordDate": "2020-03-23",
+              "temperature": 4
+            },
+            {
+              "id": 84,
+              "recordDate": "2020-03-24",
+              "temperature": 41
+            },
+            {
+              "id": 85,
+              "recordDate": "2020-03-25",
+              "temperature": 78
+            },
+            {
+              "id": 86,
+              "recordDate": "2020-03-26",
+              "temperature": 14
+            },
+            {
+              "id": 87,
+              "recordDate": "2020-03-27",
+              "temperature": 51
+            },
+            {
+              "id": 88,
+              "recordDate": "2020-03-28",
+              "temperature": 88
+            },
+            {
+              "id": 89,
+              "recordDate": "2020-03-29",
+              "temperature": 24
+            },
+            {
+              "id": 90,
+              "recordDate": "2020-03-30",
+              "temperature": 61
+            },
+            {
+              "id": 91,
+              "recordDate": "2020-03-31",
+              "temperature": 98
+            },
+            {
+              "id": 92,
+              "recordDate": "2020-04-01",
+              "temperature": 34
+            },
+            {
+              "id": 93,
+              "recordDate": "2020-04-02",
+              "temperature": 71
+            },
+            {
+              "id": 94,
+              "recordDate": "2020-04-03",
+              "temperature": 7
+            },
+            {
+              "id": 95,
+              "recordDate": "2020-04-04",
+              "temperature": 44
+            },
+            {
+              "id": 96,
+              "recordDate": "2020-04-05",
+              "temperature": 81
+            },
+            {
+              "id": 97,
+              "recordDate": "2020-04-06",
+              "temperature": 17
+            },
+            {
+              "id": 98,
+              "recordDate": "2020-04-07",
+              "temperature": 54
+            },
+            {
+              "id": 99,
+              "recordDate": "2020-04-08",
+              "temperature": 91
+            },
+            {
+              "id": 100,
+              "recordDate": "2020-04-09",
+              "temperature": 27
+            },
+            {
+              "id": 101,
+              "recordDate": "2020-04-10",
+              "temperature": 64
+            },
+            {
+              "id": 102,
+              "recordDate": "2020-04-11",
+              "temperature": 0
+            },
+            {
+              "id": 103,
+              "recordDate": "2020-04-12",
+              "temperature": 37
+            },
+            {
+              "id": 104,
+              "recordDate": "2020-04-13",
+              "temperature": 74
+            },
+            {
+              "id": 105,
+              "recordDate": "2020-04-14",
+              "temperature": 10
+            },
+            {
+              "id": 106,
+              "recordDate": "2020-04-15",
+              "temperature": 47
+            },
+            {
+              "id": 107,
+              "recordDate": "2020-04-16",
+              "temperature": 84
+            },
+            {
+              "id": 108,
+              "recordDate": "2020-04-17",
+              "temperature": 20
+            },
+            {
+              "id": 109,
+              "recordDate": "2020-04-18",
+              "temperature": 57
+            },
+            {
+              "id": 110,
+              "recordDate": "2020-04-19",
+              "temperature": 94
+            },
+            {
+              "id": 111,
+              "recordDate": "2020-04-20",
+              "temperature": 30
+            },
+            {
+              "id": 112,
+              "recordDate": "2020-04-21",
+              "temperature": 67
+            },
+            {
+              "id": 113,
+              "recordDate": "2020-04-22",
+              "temperature": 3
+            },
+            {
+              "id": 114,
+              "recordDate": "2020-04-23",
+              "temperature": 40
+            },
+            {
+              "id": 115,
+              "recordDate": "2020-04-24",
+              "temperature": 77
+            },
+            {
+              "id": 116,
+              "recordDate": "2020-04-25",
+              "temperature": 13
+            },
+            {
+              "id": 117,
+              "recordDate": "2020-04-26",
+              "temperature": 50
+            },
+            {
+              "id": 118,
+              "recordDate": "2020-04-27",
+              "temperature": 87
+            },
+            {
+              "id": 119,
+              "recordDate": "2020-04-28",
+              "temperature": 23
+            },
+            {
+              "id": 120,
+              "recordDate": "2020-04-29",
+              "temperature": 60
+            },
+            {
+              "id": 121,
+              "recordDate": "2020-04-30",
+              "temperature": 97
+            },
+            {
+              "id": 122,
+              "recordDate": "2020-05-01",
+              "temperature": 33
+            },
+            {
+              "id": 123,
+              "recordDate": "2020-05-02",
+              "temperature": 70
+            },
+            {
+              "id": 124,
+              "recordDate": "2020-05-03",
+              "temperature": 6
+            },
+            {
+              "id": 125,
+              "recordDate": "2020-05-04",
+              "temperature": 43
+            },
+            {
+              "id": 126,
+              "recordDate": "2020-05-05",
+              "temperature": 80
+            },
+            {
+              "id": 127,
+              "recordDate": "2020-05-06",
+              "temperature": 16
+            },
+            {
+              "id": 128,
+              "recordDate": "2020-05-07",
+              "temperature": 53
+            },
+            {
+              "id": 129,
+              "recordDate": "2020-05-08",
+              "temperature": 90
+            },
+            {
+              "id": 130,
+              "recordDate": "2020-05-09",
+              "temperature": 26
+            },
+            {
+              "id": 131,
+              "recordDate": "2020-05-10",
+              "temperature": 63
+            },
+            {
+              "id": 132,
+              "recordDate": "2020-05-11",
+              "temperature": 100
+            },
+            {
+              "id": 133,
+              "recordDate": "2020-05-12",
+              "temperature": 36
+            },
+            {
+              "id": 134,
+              "recordDate": "2020-05-13",
+              "temperature": 73
+            },
+            {
+              "id": 135,
+              "recordDate": "2020-05-14",
+              "temperature": 9
+            },
+            {
+              "id": 136,
+              "recordDate": "2020-05-15",
+              "temperature": 46
+            },
+            {
+              "id": 137,
+              "recordDate": "2020-05-16",
+              "temperature": 83
+            },
+            {
+              "id": 138,
+              "recordDate": "2020-05-17",
+              "temperature": 19
+            },
+            {
+              "id": 139,
+              "recordDate": "2020-05-18",
+              "temperature": 56
+            },
+            {
+              "id": 140,
+              "recordDate": "2020-05-19",
+              "temperature": 93
+            },
+            {
+              "id": 141,
+              "recordDate": "2020-05-20",
+              "temperature": 29
+            },
+            {
+              "id": 142,
+              "recordDate": "2020-05-21",
+              "temperature": 66
+            },
+            {
+              "id": 143,
+              "recordDate": "2020-05-22",
+              "temperature": 2
+            },
+            {
+              "id": 144,
+              "recordDate": "2020-05-23",
+              "temperature": 39
+            },
+            {
+              "id": 145,
+              "recordDate": "2020-05-24",
+              "temperature": 76
+            },
+            {
+              "id": 146,
+              "recordDate": "2020-05-25",
+              "temperature": 12
+            },
+            {
+              "id": 147,
+              "recordDate": "2020-05-26",
+              "temperature": 49
+            },
+            {
+              "id": 148,
+              "recordDate": "2020-05-27",
+              "temperature": 86
+            },
+            {
+              "id": 149,
+              "recordDate": "2020-05-28",
+              "temperature": 22
+            },
+            {
+              "id": 150,
+              "recordDate": "2020-05-29",
+              "temperature": 59
+            },
+            {
+              "id": 151,
+              "recordDate": "2020-05-30",
+              "temperature": 96
+            },
+            {
+              "id": 152,
+              "recordDate": "2020-05-31",
+              "temperature": 32
+            },
+            {
+              "id": 153,
+              "recordDate": "2020-06-01",
+              "temperature": 69
+            },
+            {
+              "id": 154,
+              "recordDate": "2020-06-02",
+              "temperature": 5
+            },
+            {
+              "id": 155,
+              "recordDate": "2020-06-03",
+              "temperature": 42
+            },
+            {
+              "id": 156,
+              "recordDate": "2020-06-04",
+              "temperature": 79
+            },
+            {
+              "id": 157,
+              "recordDate": "2020-06-05",
+              "temperature": 15
+            },
+            {
+              "id": 158,
+              "recordDate": "2020-06-06",
+              "temperature": 52
+            },
+            {
+              "id": 159,
+              "recordDate": "2020-06-07",
+              "temperature": 89
+            },
+            {
+              "id": 160,
+              "recordDate": "2020-06-08",
+              "temperature": 25
+            },
+            {
+              "id": 161,
+              "recordDate": "2020-06-09",
+              "temperature": 62
+            },
+            {
+              "id": 162,
+              "recordDate": "2020-06-10",
+              "temperature": 99
+            },
+            {
+              "id": 163,
+              "recordDate": "2020-06-11",
+              "temperature": 35
+            },
+            {
+              "id": 164,
+              "recordDate": "2020-06-12",
+              "temperature": 72
+            },
+            {
+              "id": 165,
+              "recordDate": "2020-06-13",
+              "temperature": 8
+            },
+            {
+              "id": 166,
+              "recordDate": "2020-06-14",
+              "temperature": 45
+            },
+            {
+              "id": 167,
+              "recordDate": "2020-06-15",
+              "temperature": 82
+            },
+            {
+              "id": 168,
+              "recordDate": "2020-06-16",
+              "temperature": 18
+            },
+            {
+              "id": 169,
+              "recordDate": "2020-06-17",
+              "temperature": 55
+            },
+            {
+              "id": 170,
+              "recordDate": "2020-06-18",
+              "temperature": 92
+            },
+            {
+              "id": 171,
+              "recordDate": "2020-06-19",
+              "temperature": 28
+            },
+            {
+              "id": 172,
+              "recordDate": "2020-06-20",
+              "temperature": 65
+            },
+            {
+              "id": 173,
+              "recordDate": "2020-06-21",
+              "temperature": 1
+            },
+            {
+              "id": 174,
+              "recordDate": "2020-06-22",
+              "temperature": 38
+            },
+            {
+              "id": 175,
+              "recordDate": "2020-06-23",
+              "temperature": 75
+            },
+            {
+              "id": 176,
+              "recordDate": "2020-06-24",
+              "temperature": 11
+            },
+            {
+              "id": 177,
+              "recordDate": "2020-06-25",
+              "temperature": 48
+            },
+            {
+              "id": 178,
+              "recordDate": "2020-06-26",
+              "temperature": 85
+            },
+            {
+              "id": 179,
+              "recordDate": "2020-06-27",
+              "temperature": 21
+            },
+            {
+              "id": 180,
+              "recordDate": "2020-06-28",
+              "temperature": 58
+            },
+            {
+              "id": 181,
+              "recordDate": "2020-06-29",
+              "temperature": 95
+            },
+            {
+              "id": 182,
+              "recordDate": "2020-06-30",
+              "temperature": 31
+            },
+            {
+              "id": 183,
+              "recordDate": "2020-07-01",
+              "temperature": 68
+            },
+            {
+              "id": 184,
+              "recordDate": "2020-07-02",
+              "temperature": 4
+            },
+            {
+              "id": 185,
+              "recordDate": "2020-07-03",
+              "temperature": 41
+            },
+            {
+              "id": 186,
+              "recordDate": "2020-07-04",
+              "temperature": 78
+            },
+            {
+              "id": 187,
+              "recordDate": "2020-07-05",
+              "temperature": 14
+            },
+            {
+              "id": 188,
+              "recordDate": "2020-07-06",
+              "temperature": 51
+            },
+            {
+              "id": 189,
+              "recordDate": "2020-07-07",
+              "temperature": 88
+            },
+            {
+              "id": 190,
+              "recordDate": "2020-07-08",
+              "temperature": 24
+            },
+            {
+              "id": 191,
+              "recordDate": "2020-07-09",
+              "temperature": 61
+            },
+            {
+              "id": 192,
+              "recordDate": "2020-07-10",
+              "temperature": 98
+            },
+            {
+              "id": 193,
+              "recordDate": "2020-07-11",
+              "temperature": 34
+            },
+            {
+              "id": 194,
+              "recordDate": "2020-07-12",
+              "temperature": 71
+            },
+            {
+              "id": 195,
+              "recordDate": "2020-07-13",
+              "temperature": 7
+            },
+            {
+              "id": 196,
+              "recordDate": "2020-07-14",
+              "temperature": 44
+            },
+            {
+              "id": 197,
+              "recordDate": "2020-07-15",
+              "temperature": 81
+            },
+            {
+              "id": 198,
+              "recordDate": "2020-07-16",
+              "temperature": 17
+            },
+            {
+              "id": 199,
+              "recordDate": "2020-07-17",
+              "temperature": 54
+            },
+            {
+              "id": 200,
+              "recordDate": "2020-07-18",
+              "temperature": 91
+            },
+            {
+              "id": 201,
+              "recordDate": "2020-07-19",
+              "temperature": 27
+            },
+            {
+              "id": 202,
+              "recordDate": "2020-07-20",
+              "temperature": 64
+            },
+            {
+              "id": 203,
+              "recordDate": "2020-07-21",
+              "temperature": 0
+            },
+            {
+              "id": 204,
+              "recordDate": "2020-07-22",
+              "temperature": 37
+            },
+            {
+              "id": 205,
+              "recordDate": "2020-07-23",
+              "temperature": 74
+            },
+            {
+              "id": 206,
+              "recordDate": "2020-07-24",
+              "temperature": 10
+            },
+            {
+              "id": 207,
+              "recordDate": "2020-07-25",
+              "temperature": 47
+            },
+            {
+              "id": 208,
+              "recordDate": "2020-07-26",
+              "temperature": 84
+            },
+            {
+              "id": 209,
+              "recordDate": "2020-07-27",
+              "temperature": 20
+            },
+            {
+              "id": 210,
+              "recordDate": "2020-07-28",
+              "temperature": 57
+            },
+            {
+              "id": 211,
+              "recordDate": "2020-07-29",
+              "temperature": 94
+            },
+            {
+              "id": 212,
+              "recordDate": "2020-07-30",
+              "temperature": 30
+            },
+            {
+              "id": 213,
+              "recordDate": "2020-07-31",
+              "temperature": 67
+            },
+            {
+              "id": 214,
+              "recordDate": "2020-08-01",
+              "temperature": 3
+            },
+            {
+              "id": 215,
+              "recordDate": "2020-08-02",
+              "temperature": 40
+            },
+            {
+              "id": 216,
+              "recordDate": "2020-08-03",
+              "temperature": 77
+            },
+            {
+              "id": 217,
+              "recordDate": "2020-08-04",
+              "temperature": 13
+            },
+            {
+              "id": 218,
+              "recordDate": "2020-08-05",
+              "temperature": 50
+            },
+            {
+              "id": 219,
+              "recordDate": "2020-08-06",
+              "temperature": 87
+            },
+            {
+              "id": 220,
+              "recordDate": "2020-08-07",
+              "temperature": 23
+            },
+            {
+              "id": 221,
+              "recordDate": "2020-08-08",
+              "temperature": 60
+            },
+            {
+              "id": 222,
+              "recordDate": "2020-08-09",
+              "temperature": 97
+            },
+            {
+              "id": 223,
+              "recordDate": "2020-08-10",
+              "temperature": 33
+            },
+            {
+              "id": 224,
+              "recordDate": "2020-08-11",
+              "temperature": 70
+            },
+            {
+              "id": 225,
+              "recordDate": "2020-08-12",
+              "temperature": 6
+            },
+            {
+              "id": 226,
+              "recordDate": "2020-08-13",
+              "temperature": 43
+            },
+            {
+              "id": 227,
+              "recordDate": "2020-08-14",
+              "temperature": 80
+            },
+            {
+              "id": 228,
+              "recordDate": "2020-08-15",
+              "temperature": 16
+            },
+            {
+              "id": 229,
+              "recordDate": "2020-08-16",
+              "temperature": 53
+            },
+            {
+              "id": 230,
+              "recordDate": "2020-08-17",
+              "temperature": 90
+            },
+            {
+              "id": 231,
+              "recordDate": "2020-08-18",
+              "temperature": 26
+            },
+            {
+              "id": 232,
+              "recordDate": "2020-08-19",
+              "temperature": 63
+            },
+            {
+              "id": 233,
+              "recordDate": "2020-08-20",
+              "temperature": 100
+            },
+            {
+              "id": 234,
+              "recordDate": "2020-08-21",
+              "temperature": 36
+            },
+            {
+              "id": 235,
+              "recordDate": "2020-08-22",
+              "temperature": 73
+            },
+            {
+              "id": 236,
+              "recordDate": "2020-08-23",
+              "temperature": 9
+            },
+            {
+              "id": 237,
+              "recordDate": "2020-08-24",
+              "temperature": 46
+            },
+            {
+              "id": 238,
+              "recordDate": "2020-08-25",
+              "temperature": 83
+            },
+            {
+              "id": 239,
+              "recordDate": "2020-08-26",
+              "temperature": 19
+            },
+            {
+              "id": 240,
+              "recordDate": "2020-08-27",
+              "temperature": 56
+            },
+            {
+              "id": 241,
+              "recordDate": "2020-08-28",
+              "temperature": 93
+            },
+            {
+              "id": 242,
+              "recordDate": "2020-08-29",
+              "temperature": 29
+            },
+            {
+              "id": 243,
+              "recordDate": "2020-08-30",
+              "temperature": 66
+            },
+            {
+              "id": 244,
+              "recordDate": "2020-08-31",
+              "temperature": 2
+            },
+            {
+              "id": 245,
+              "recordDate": "2020-09-01",
+              "temperature": 39
+            },
+            {
+              "id": 246,
+              "recordDate": "2020-09-02",
+              "temperature": 76
+            },
+            {
+              "id": 247,
+              "recordDate": "2020-09-03",
+              "temperature": 12
+            },
+            {
+              "id": 248,
+              "recordDate": "2020-09-04",
+              "temperature": 49
+            },
+            {
+              "id": 249,
+              "recordDate": "2020-09-05",
+              "temperature": 86
+            },
+            {
+              "id": 250,
+              "recordDate": "2020-09-06",
+              "temperature": 22
+            },
+            {
+              "id": 251,
+              "recordDate": "2020-09-07",
+              "temperature": 59
+            },
+            {
+              "id": 252,
+              "recordDate": "2020-09-08",
+              "temperature": 96
+            },
+            {
+              "id": 253,
+              "recordDate": "2020-09-09",
+              "temperature": 32
+            },
+            {
+              "id": 254,
+              "recordDate": "2020-09-10",
+              "temperature": 69
+            },
+            {
+              "id": 255,
+              "recordDate": "2020-09-11",
+              "temperature": 5
+            },
+            {
+              "id": 256,
+              "recordDate": "2020-09-12",
+              "temperature": 42
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            16
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            20
+          ],
+          [
+            22
+          ],
+          [
+            24
+          ],
+          [
+            25
+          ],
+          [
+            27
+          ],
+          [
+            28
+          ],
+          [
+            30
+          ],
+          [
+            31
+          ],
+          [
+            33
+          ],
+          [
+            35
+          ],
+          [
+            36
+          ],
+          [
+            38
+          ],
+          [
+            39
+          ],
+          [
+            41
+          ],
+          [
+            43
+          ],
+          [
+            44
+          ],
+          [
+            46
+          ],
+          [
+            47
+          ],
+          [
+            49
+          ],
+          [
+            50
+          ],
+          [
+            52
+          ],
+          [
+            54
+          ],
+          [
+            55
+          ],
+          [
+            57
+          ],
+          [
+            58
+          ],
+          [
+            60
+          ],
+          [
+            61
+          ],
+          [
+            63
+          ],
+          [
+            65
+          ],
+          [
+            66
+          ],
+          [
+            68
+          ],
+          [
+            69
+          ],
+          [
+            71
+          ],
+          [
+            73
+          ],
+          [
+            74
+          ],
+          [
+            76
+          ],
+          [
+            77
+          ],
+          [
+            79
+          ],
+          [
+            80
+          ],
+          [
+            82
+          ],
+          [
+            84
+          ],
+          [
+            85
+          ],
+          [
+            87
+          ],
+          [
+            88
+          ],
+          [
+            90
+          ],
+          [
+            91
+          ],
+          [
+            93
+          ],
+          [
+            95
+          ],
+          [
+            96
+          ],
+          [
+            98
+          ],
+          [
+            99
+          ],
+          [
+            101
+          ],
+          [
+            103
+          ],
+          [
+            104
+          ],
+          [
+            106
+          ],
+          [
+            107
+          ],
+          [
+            109
+          ],
+          [
+            110
+          ],
+          [
+            112
+          ],
+          [
+            114
+          ],
+          [
+            115
+          ],
+          [
+            117
+          ],
+          [
+            118
+          ],
+          [
+            120
+          ],
+          [
+            121
+          ],
+          [
+            123
+          ],
+          [
+            125
+          ],
+          [
+            126
+          ],
+          [
+            128
+          ],
+          [
+            129
+          ],
+          [
+            131
+          ],
+          [
+            132
+          ],
+          [
+            134
+          ],
+          [
+            136
+          ],
+          [
+            137
+          ],
+          [
+            139
+          ],
+          [
+            140
+          ],
+          [
+            142
+          ],
+          [
+            144
+          ],
+          [
+            145
+          ],
+          [
+            147
+          ],
+          [
+            148
+          ],
+          [
+            150
+          ],
+          [
+            151
+          ],
+          [
+            153
+          ],
+          [
+            155
+          ],
+          [
+            156
+          ],
+          [
+            158
+          ],
+          [
+            159
+          ],
+          [
+            161
+          ],
+          [
+            162
+          ],
+          [
+            164
+          ],
+          [
+            166
+          ],
+          [
+            167
+          ],
+          [
+            169
+          ],
+          [
+            170
+          ],
+          [
+            172
+          ],
+          [
+            174
+          ],
+          [
+            175
+          ],
+          [
+            177
+          ],
+          [
+            178
+          ],
+          [
+            180
+          ],
+          [
+            181
+          ],
+          [
+            183
+          ],
+          [
+            185
+          ],
+          [
+            186
+          ],
+          [
+            188
+          ],
+          [
+            189
+          ],
+          [
+            191
+          ],
+          [
+            192
+          ],
+          [
+            194
+          ],
+          [
+            196
+          ],
+          [
+            197
+          ],
+          [
+            199
+          ],
+          [
+            200
+          ],
+          [
+            202
+          ],
+          [
+            204
+          ],
+          [
+            205
+          ],
+          [
+            207
+          ],
+          [
+            208
+          ],
+          [
+            210
+          ],
+          [
+            211
+          ],
+          [
+            213
+          ],
+          [
+            215
+          ],
+          [
+            216
+          ],
+          [
+            218
+          ],
+          [
+            219
+          ],
+          [
+            221
+          ],
+          [
+            222
+          ],
+          [
+            224
+          ],
+          [
+            226
+          ],
+          [
+            227
+          ],
+          [
+            229
+          ],
+          [
+            230
+          ],
+          [
+            232
+          ],
+          [
+            233
+          ],
+          [
+            235
+          ],
+          [
+            237
+          ],
+          [
+            238
+          ],
+          [
+            240
+          ],
+          [
+            241
+          ],
+          [
+            243
+          ],
+          [
+            245
+          ],
+          [
+            246
+          ],
+          [
+            248
+          ],
+          [
+            249
+          ],
+          [
+            251
+          ],
+          [
+            252
+          ],
+          [
+            254
+          ],
+          [
+            256
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

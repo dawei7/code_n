@@ -1,0 +1,274 @@
+{
+  "challenge_id": "lc_2353",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: official operation stream",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "commands": [
+          "FoodRatings",
+          "highestRated",
+          "highestRated",
+          "changeRating",
+          "highestRated",
+          "changeRating",
+          "highestRated"
+        ],
+        "inputs": [
+          [
+            [
+              "kimchi",
+              "miso",
+              "sushi",
+              "moussaka",
+              "ramen",
+              "bulgogi"
+            ],
+            [
+              "korean",
+              "japanese",
+              "japanese",
+              "greek",
+              "japanese",
+              "korean"
+            ],
+            [
+              9,
+              12,
+              8,
+              15,
+              14,
+              7
+            ]
+          ],
+          [
+            "korean"
+          ],
+          [
+            "japanese"
+          ],
+          [
+            "sushi",
+            16
+          ],
+          [
+            "japanese"
+          ],
+          [
+            "ramen",
+            16
+          ],
+          [
+            "japanese"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        "kimchi",
+        "ramen",
+        null,
+        "sushi",
+        null,
+        "ramen"
+      ],
+      "tags": [
+        "sample",
+        "design",
+        "heap"
+      ]
+    },
+    {
+      "id": "trial-lexicographic-tie",
+      "name": "trial: lexicographic tie after rating changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "commands": [
+          "FoodRatings",
+          "highestRated",
+          "changeRating",
+          "highestRated",
+          "changeRating",
+          "highestRated"
+        ],
+        "inputs": [
+          [
+            [
+              "a",
+              "b",
+              "c"
+            ],
+            [
+              "x",
+              "x",
+              "y"
+            ],
+            [
+              5,
+              7,
+              9
+            ]
+          ],
+          [
+            "x"
+          ],
+          [
+            "a",
+            10
+          ],
+          [
+            "x"
+          ],
+          [
+            "a",
+            7
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        "b",
+        null,
+        "a",
+        null,
+        "a"
+      ],
+      "tags": [
+        "trial",
+        "ties"
+      ]
+    },
+    {
+      "id": "trial-two-cuisines",
+      "name": "trial: updates do not affect another cuisine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "commands": [
+          "FoodRatings",
+          "highestRated",
+          "changeRating",
+          "changeRating",
+          "highestRated",
+          "highestRated"
+        ],
+        "inputs": [
+          [
+            [
+              "taco",
+              "tofu",
+              "tea"
+            ],
+            [
+              "mexican",
+              "vegan",
+              "vegan"
+            ],
+            [
+              8,
+              8,
+              5
+            ]
+          ],
+          [
+            "vegan"
+          ],
+          [
+            "tea",
+            9
+          ],
+          [
+            "tofu",
+            9
+          ],
+          [
+            "vegan"
+          ],
+          [
+            "mexican"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        "tofu",
+        null,
+        null,
+        "tea",
+        "taco"
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-rating-update-tie",
+      "name": "hidden: rating update creates and removes a tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "commands": [
+          "FoodRatings",
+          "highestRated",
+          "changeRating",
+          "highestRated",
+          "changeRating",
+          "highestRated"
+        ],
+        "inputs": [
+          [
+            [
+              "a",
+              "b",
+              "c"
+            ],
+            [
+              "x",
+              "x",
+              "y"
+            ],
+            [
+              5,
+              7,
+              9
+            ]
+          ],
+          [
+            "x"
+          ],
+          [
+            "a",
+            10
+          ],
+          [
+            "x"
+          ],
+          [
+            "a",
+            7
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        "b",
+        null,
+        "a",
+        null,
+        "a"
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "challenge_id": "lc_558",
+  "source": "leetcode",
+  "frontend_id": "558",
+  "slug": "logical-or-of-two-binary-grids-represented-as-quad-trees",
+  "title": "Logical OR of Two Binary Grids Represented as Quad-Trees",
+  "difficulty": "Medium",
+  "acceptance_rate": 52.861519450093965,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Divide and Conquer",
+      "slug": "divide-and-conquer"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    }
+  ],
+  "url": "https://leetcode.com/problems/logical-or-of-two-binary-grids-represented-as-quad-trees/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_topic:divide-and-conquer",
+    "leetcode_topic:tree"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:divide-and-conquer",
+    "topic:tree"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

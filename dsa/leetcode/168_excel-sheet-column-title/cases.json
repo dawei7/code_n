@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_168",
+  "cases": [
+    {"id": "sample-first", "name": "sample: first column", "kind": "sample", "visible": true, "input": {"column_number": 1}, "expected": "A", "tags": ["sample", "boundary"]},
+    {"id": "sample-two-letters", "name": "sample: two-letter title", "kind": "sample", "visible": true, "input": {"column_number": 28}, "expected": "AB", "tags": ["sample", "base-26"]},
+    {"id": "trial-before-wrap", "name": "last one-letter title", "kind": "trial", "visible": true, "input": {"column_number": 26}, "expected": "Z", "tags": ["boundary"]},
+    {"id": "trial-large-two", "name": "high two-letter title", "kind": "trial", "visible": true, "input": {"column_number": 701}, "expected": "ZY", "tags": ["conversion"]},
+    {"id": "real-three-letter-wrap", "name": "hidden: transition after ZZ", "kind": "real", "visible": false, "input": {"column_number": 703}, "expected": "AAA", "tags": ["hidden", "wrap"]}
+  ]
+}

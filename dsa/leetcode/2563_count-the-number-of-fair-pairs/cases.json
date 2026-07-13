@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_2563",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: six pairs fall in the target sum range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          7,
+          4,
+          4,
+          5
+        ],
+        "lower": 3,
+        "upper": 6
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: exactly one pair sums to eleven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          7,
+          9,
+          2,
+          5
+        ],
+        "lower": 11,
+        "upper": 11
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no pair can sum to one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "lower": 1,
+        "upper": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-zeroes",
+      "name": "trial: one pair of zeroes is fair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ],
+        "lower": 0,
+        "upper": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-value",
+      "name": "hidden: one value cannot form a pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5
+        ],
+        "lower": 0,
+        "upper": 10
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

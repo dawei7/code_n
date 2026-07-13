@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_650",
+  "cases": [
+    {"id": "sample-1", "name": "sample: prime target three", "kind": "sample", "visible": true, "input": {"n": 3}, "expected": 3, "tags": ["sample", "prime"]},
+    {"id": "sample-2", "name": "sample: initial state", "kind": "sample", "visible": true, "input": {"n": 1}, "expected": 0, "tags": ["sample", "boundary"]},
+    {"id": "sample-3", "name": "sample: repeated and distinct factors", "kind": "sample", "visible": true, "input": {"n": 12}, "expected": 7, "tags": ["sample", "composite"]},
+    {"id": "trial-1", "name": "trial: perfect square", "kind": "trial", "visible": true, "input": {"n": 9}, "expected": 6, "tags": ["trial", "repeated-factor"]},
+    {"id": "trial-2", "name": "trial: power of two", "kind": "trial", "visible": true, "input": {"n": 8}, "expected": 6, "tags": ["trial", "power"]},
+    {"id": "hidden-1", "name": "hidden: two distinct factors", "kind": "real", "visible": false, "input": {"n": 6}, "expected": 5, "tags": ["hidden", "composite"]},
+    {"id": "hidden-2", "name": "hidden: large repeated factors", "kind": "real", "visible": false, "input": {"n": 1000}, "expected": 21, "tags": ["hidden", "upper-bound"]},
+    {"id": "hidden-3", "name": "hidden: large prime", "kind": "real", "visible": false, "input": {"n": 997}, "expected": 997, "tags": ["hidden", "prime"]}
+  ]
+}

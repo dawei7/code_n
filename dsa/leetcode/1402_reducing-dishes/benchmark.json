@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_1402",
+  "cases": [
+    {
+      "id": "benchmark-positive-tail",
+      "name": "benchmark: positive tail with negatives",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "satisfaction": [
+          -5,
+          -1,
+          4,
+          2,
+          3
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

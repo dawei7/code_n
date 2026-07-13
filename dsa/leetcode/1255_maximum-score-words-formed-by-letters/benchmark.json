@@ -1,0 +1,59 @@
+{
+  "challenge_id": "lc_1255",
+  "cases": [
+    {
+      "id": "benchmark-letter-counts",
+      "name": "benchmark: repeated letter counts",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "add",
+          "dda",
+          "bb",
+          "ba"
+        ],
+        "letters": [
+          "a",
+          "a",
+          "d",
+          "d",
+          "b",
+          "b"
+        ],
+        "score": [
+          2,
+          3,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

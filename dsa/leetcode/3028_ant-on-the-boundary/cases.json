@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_3028",
+  "cases": [
+    {
+      "id": "sample-one-return",
+      "name": "sample: one return to the boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          -5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-many-returns",
+      "name": "sample: several zero prefix sums",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          -3,
+          -4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-never-returns",
+      "name": "trial: never reaches zero after moving",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "trial: alternating steps visit zero repeatedly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          1,
+          -1,
+          1,
+          -1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-longer-walk",
+      "name": "real: longer walk with mixed jumps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          -1,
+          -3,
+          2,
+          -2,
+          5,
+          -5,
+          6,
+          -1,
+          -5
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "prefix"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_177",
+  "cases": [
+    {"id": "sample-second", "name": "sample: second of three distinct salaries", "kind": "sample", "visible": true, "input": {"tables": {"Employee": [{"id": 1, "salary": 100}, {"id": 2, "salary": 200}, {"id": 3, "salary": 300}], "Request": [{"N": 2}]}}, "expected": {"columns": ["getNthHighestSalary"], "rows": [[200]]}, "tags": ["sample", "ranking"]},
+    {"id": "sample-missing-rank", "name": "sample: requested rank absent", "kind": "sample", "visible": true, "input": {"tables": {"Employee": [{"id": 1, "salary": 100}], "Request": [{"N": 2}]}}, "expected": {"columns": ["getNthHighestSalary"], "rows": [[null]]}, "tags": ["sample", "null"]},
+    {"id": "trial-first", "name": "first rank returns maximum", "kind": "trial", "visible": true, "input": {"tables": {"Employee": [{"id": 1, "salary": 10}, {"id": 2, "salary": 30}, {"id": 3, "salary": 20}], "Request": [{"N": 1}]}}, "expected": {"columns": ["getNthHighestSalary"], "rows": [[30]]}, "tags": ["boundary"]},
+    {"id": "trial-duplicates", "name": "duplicates occupy one rank", "kind": "trial", "visible": true, "input": {"tables": {"Employee": [{"id": 1, "salary": 200}, {"id": 2, "salary": 200}, {"id": 3, "salary": 100}], "Request": [{"N": 2}]}}, "expected": {"columns": ["getNthHighestSalary"], "rows": [[100]]}, "tags": ["duplicates"]},
+    {"id": "real-last-rank", "name": "hidden: request lowest available distinct salary", "kind": "real", "visible": false, "input": {"tables": {"Employee": [{"id": 1, "salary": 9}, {"id": 2, "salary": 7}, {"id": 3, "salary": 8}, {"id": 4, "salary": 9}], "Request": [{"N": 3}]}}, "expected": {"columns": ["getNthHighestSalary"], "rows": [[7]]}, "tags": ["hidden", "last-rank"]}
+  ]
+}

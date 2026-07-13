@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_2919",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: raise one value to cover adjacent windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          0,
+          0,
+          2
+        ],
+        "k": 4
+      },
+      "tags": [
+        "sample",
+        "dp"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one incremented value can satisfy both windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          3,
+          3
+        ],
+        "k": 5
+      },
+      "tags": [
+        "sample",
+        "windows"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every length-three window is already beautiful",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2
+        ],
+        "k": 1
+      },
+      "tags": [
+        "sample",
+        "zero-cost"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-existing-endpoints",
+      "name": "trial: endpoints already cover the windows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          1,
+          5
+        ],
+        "k": 5
+      },
+      "tags": [
+        "trial",
+        "covered"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "real-overlapping-windows",
+      "name": "hidden: best increment position covers several windows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ],
+        "k": 6
+      },
+      "tags": [
+        "hidden",
+        "overlap"
+      ],
+      "expected": 8
+    }
+  ]
+}

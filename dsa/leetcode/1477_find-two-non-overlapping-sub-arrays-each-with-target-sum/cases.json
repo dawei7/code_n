@@ -1,0 +1,87 @@
+{
+  "challenge_id": "lc_1477",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two singletons",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          2,
+          2,
+          4,
+          3
+        ],
+        "target": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: endpoints",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          7,
+          3,
+          4,
+          7
+        ],
+        "target": 7
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: only one valid subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          4,
+          3,
+          2,
+          6,
+          2,
+          3,
+          4
+        ],
+        "target": 6
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-two-length-two-windows",
+      "name": "hidden: two length-two windows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "target": 2
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

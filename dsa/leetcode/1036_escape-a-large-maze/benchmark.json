@@ -1,0 +1,39 @@
+{
+  "challenge_id": "lc_1036",
+  "cases": [
+    {
+      "id": "benchmark-distant-open",
+      "name": "benchmark: distant open path",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "blocked": [
+          [
+            10,
+            10
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            11,
+            10
+          ]
+        ],
+        "source": [
+          0,
+          0
+        ],
+        "target": [
+          20,
+          20
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

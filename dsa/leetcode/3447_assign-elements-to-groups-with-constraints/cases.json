@@ -1,0 +1,185 @@
+{
+  "challenge_id": "lc_3447",
+  "cases": [
+    {
+      "id": "sample-basic-divisors",
+      "name": "sample: smallest divisible element",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "groups": [
+          8,
+          4,
+          3,
+          2,
+          4
+        ],
+        "elements": [
+          4,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        -1,
+        1,
+        0
+      ],
+      "tags": [
+        "sample",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "sample-duplicate-elements",
+      "name": "sample: duplicate element indices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "groups": [
+          2,
+          3,
+          5,
+          7
+        ],
+        "elements": [
+          5,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        -1,
+        1,
+        0,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-one-divides-all",
+      "name": "sample: one handles unmatched divisors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "groups": [
+          10,
+          21,
+          30,
+          41
+        ],
+        "elements": [
+          2,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "tags": [
+        "sample",
+        "fallback-divisor"
+      ]
+    },
+    {
+      "id": "trial-repeated-groups",
+      "name": "trial: repeated group values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "groups": [
+          6,
+          6,
+          10,
+          15
+        ],
+        "elements": [
+          3,
+          5,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-no-matching-divisor",
+      "name": "trial: no element divides a group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "groups": [
+          7,
+          11,
+          13
+        ],
+        "elements": [
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": [
+        -1,
+        -1,
+        -1
+      ],
+      "tags": [
+        "trial",
+        "unmatched"
+      ]
+    },
+    {
+      "id": "real-mixed-large-divisors",
+      "name": "real: mixed divisors and first indices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "groups": [
+          96,
+          121,
+          143,
+          221,
+          256,
+          997
+        ],
+        "elements": [
+          11,
+          13,
+          2,
+          17,
+          11,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        0,
+        0,
+        1,
+        2,
+        5
+      ],
+      "tags": [
+        "real",
+        "first-index"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_134",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: unique start",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "gas": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "cost": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: impossible circuit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "gas": [
+          2,
+          3,
+          4
+        ],
+        "cost": [
+          3,
+          4,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-single-station",
+      "name": "single station can start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "gas": [
+          5
+        ],
+        "cost": [
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-late-start",
+      "name": "hidden: late valid start",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "gas": [
+          5,
+          1,
+          2,
+          3,
+          4
+        ],
+        "cost": [
+          4,
+          4,
+          1,
+          5,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

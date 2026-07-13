@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "819",
+  "frontend_id": "801",
+  "title_slug": "minimum-swaps-to-make-sequences-increasing",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minSwap",
+  "verified_submission_id": "2066216058",
+  "verified_at": "2026-07-13T14:10:36.117193+00:00"
+}

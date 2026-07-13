@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_2389",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three query budgets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          5,
+          2,
+          1
+        ],
+        "queries": [
+          3,
+          10,
+          21
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no element fits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "queries": [
+          1
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one element fits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "queries": [
+          100
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-mixed-budgets",
+      "name": "hidden: query below the smallest value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3
+        ],
+        "queries": [
+          0,
+          3,
+          6
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        3
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

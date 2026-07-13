@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "40",
+  "frontend_id": "40",
+  "title_slug": "combination-sum-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2063781427",
+  "verified_at": "2026-07-11T10:57:14.096Z"
+}

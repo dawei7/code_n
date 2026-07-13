@@ -1,0 +1,46 @@
+{
+  "challenge_id": "lc_2456",
+  "cases": [
+    {
+      "id": "benchmark-three-creators",
+      "name": "benchmark: one creator has largest total",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "creators": [
+          "m",
+          "n",
+          "m",
+          "o",
+          "n"
+        ],
+        "ids": [
+          "m2",
+          "n1",
+          "m1",
+          "o1",
+          "n0"
+        ],
+        "views": [
+          4,
+          6,
+          4,
+          7,
+          1
+        ]
+      },
+      "expected": [
+        [
+          "m",
+          "m1"
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

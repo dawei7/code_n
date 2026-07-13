@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_3570",
+  "source": "leetcode",
+  "frontend_id": "3570",
+  "slug": "find-books-with-no-available-copies",
+  "title": "Find Books with No Available Copies",
+  "difficulty": "Easy",
+  "acceptance_rate": 54.25058073865695,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/find-books-with-no-available-copies/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

@@ -1,0 +1,73 @@
+{
+  "challenge_id": "lc_2546",
+  "source": "leetcode",
+  "frontend_id": "2546",
+  "slug": "apply-bitwise-operations-to-make-strings-equal",
+  "title": "Apply Bitwise Operations to Make Strings Equal",
+  "difficulty": "Medium",
+  "acceptance_rate": 42.79307544662631,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "String",
+      "slug": "string"
+    },
+    {
+      "name": "Bit Manipulation",
+      "slug": "bit-manipulation"
+    }
+  ],
+  "url": "https://leetcode.com/problems/apply-bitwise-operations-to-make-strings-equal/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:sprinklr",
+    "leetcode_topic:bit-manipulation",
+    "leetcode_topic:string"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:sprinklr",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:bit-manipulation",
+    "topic:string"
+  ],
+  "company_tags": [
+    {
+      "name": "Sprinklr",
+      "slug": "sprinklr"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Sprinklr",
+        "slug": "sprinklr",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

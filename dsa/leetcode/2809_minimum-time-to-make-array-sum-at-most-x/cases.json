@@ -1,0 +1,123 @@
+{
+  "challenge_id": "lc_2809",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two operations make sum small enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3
+        ],
+        "nums2": [
+          1,
+          2,
+          3
+        ],
+        "x": 4
+      },
+      "tags": [
+        "sample",
+        "dp"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: impossible within n operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3
+        ],
+        "nums2": [
+          3,
+          3,
+          3
+        ],
+        "x": 4
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-already-small",
+      "name": "trial: initial sum already at most x",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          5,
+          5
+        ],
+        "x": 2
+      },
+      "tags": [
+        "trial",
+        "zero-time"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-growth-order-matters",
+      "name": "trial: growth rate order matters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0,
+          5
+        ],
+        "nums2": [
+          3,
+          4
+        ],
+        "x": 0
+      },
+      "tags": [
+        "trial",
+        "order"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "real-four-elements",
+      "name": "hidden: four elements with mixed growth",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          6,
+          1,
+          4,
+          2
+        ],
+        "nums2": [
+          2,
+          8,
+          1,
+          5
+        ],
+        "x": 10
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": -1
+    }
+  ]
+}

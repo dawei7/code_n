@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_679",
+  "measurement_note": "The contract always supplies exactly four bounded cards, so asymptotic input-length scaling is not legal. Size records the number of distinct canonical exact-rational multiset states reached by exhaustive memoized search for each unsatisfiable instance (24, 200, and 1020); all tiers must exhaust their finite state spaces before returning false.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 24 canonical states",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "cards": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "finite-state",
+        "unsatisfiable"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 200 canonical states",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 200,
+      "input": {
+        "cards": [
+          1,
+          1,
+          7,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "finite-state",
+        "unsatisfiable"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 1020 canonical states",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1020,
+      "input": {
+        "cards": [
+          3,
+          4,
+          6,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "finite-state",
+        "unsatisfiable"
+      ]
+    }
+  ]
+}
+

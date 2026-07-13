@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_1267",
+  "cases": [
+    {
+      "id": "benchmark-cross-isolated-center",
+      "name": "benchmark: corner servers communicate",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

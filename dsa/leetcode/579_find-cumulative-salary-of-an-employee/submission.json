@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "579",
+  "frontend_id": "579",
+  "title_slug": "find-cumulative-salary-of-an-employee",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065428048",
+  "verified_at": "2026-07-12T20:24:28.811261+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_88",
+  "cases": [
+    {"id": "sample-standard", "name": "sample: interleaved values", "kind": "sample", "visible": true, "input": {"nums1": [1,2,3,0,0,0], "m": 3, "nums2": [2,5,6], "n": 3}, "expected": [1,2,2,3,5,6], "tags": ["sample"]},
+    {"id": "sample-empty-second", "name": "sample: second array empty", "kind": "sample", "visible": true, "input": {"nums1": [1], "m": 1, "nums2": [], "n": 0}, "expected": [1], "tags": ["sample", "boundary"]},
+    {"id": "trial-empty-first", "name": "first valid prefix empty", "kind": "trial", "visible": true, "input": {"nums1": [0], "m": 0, "nums2": [1], "n": 1}, "expected": [1], "tags": ["boundary"]},
+    {"id": "trial-negative", "name": "negative and duplicate values", "kind": "trial", "visible": true, "input": {"nums1": [-3,-1,2,0,0], "m": 3, "nums2": [-2,2], "n": 2}, "expected": [-3,-2,-1,2,2], "tags": ["negative", "duplicates"]},
+    {"id": "real-prefix-copy", "name": "hidden: all second values come first", "kind": "real", "visible": false, "input": {"nums1": [5,6,7,0,0,0], "m": 3, "nums2": [1,2,3], "n": 3}, "expected": [1,2,3,5,6,7], "tags": ["hidden", "prefix"]}
+  ]
+}

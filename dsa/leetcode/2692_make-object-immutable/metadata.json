@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2692",
+  "source": "leetcode",
+  "frontend_id": "2692",
+  "slug": "make-object-immutable",
+  "title": "Make Object Immutable",
+  "difficulty": "Medium",
+  "acceptance_rate": 62.880658436213984,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/make-object-immutable/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

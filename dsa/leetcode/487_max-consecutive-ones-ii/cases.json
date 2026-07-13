@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_487",
+  "cases": [
+    {"id": "sample-two-zero-runs", "name": "sample: bridge the better pair of runs", "kind": "sample", "visible": true, "input": {"nums": [1, 0, 1, 1, 0]}, "expected": 4, "tags": ["sample", "two-zeros"]},
+    {"id": "sample-middle-run", "name": "sample: choose one of two zeros", "kind": "sample", "visible": true, "input": {"nums": [1, 0, 1, 1, 0, 1]}, "expected": 4, "tags": ["sample", "mixed"]},
+    {"id": "sample-all-one", "name": "sample: no flip needed", "kind": "sample", "visible": true, "input": {"nums": [1, 1, 1]}, "expected": 3, "tags": ["sample", "all-one"]},
+    {"id": "trial-single-zero", "name": "trial: flip the only element", "kind": "trial", "visible": true, "input": {"nums": [0]}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "trial-two-zeros", "name": "trial: only one of two zeros can flip", "kind": "trial", "visible": true, "input": {"nums": [0, 0]}, "expected": 1, "tags": ["trial", "all-zero"]},
+    {"id": "hidden-one-zero", "name": "hidden: one zero joins the whole array", "kind": "real", "visible": false, "input": {"nums": [1, 0, 1, 1, 1]}, "expected": 5, "tags": ["hidden", "one-zero"]},
+    {"id": "hidden-later-zero", "name": "hidden: exclude the first zero", "kind": "real", "visible": false, "input": {"nums": [0, 1, 1, 0, 1, 1, 1]}, "expected": 6, "tags": ["hidden", "window-shift"]}
+  ]
+}

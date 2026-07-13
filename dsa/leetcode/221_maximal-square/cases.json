@@ -1,0 +1,6 @@
+{"challenge_id":"lc_221","cases":[
+{"id":"sample-four","name":"sample: largest side two","kind":"sample","visible":true,"input":{"matrix":[["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]},"expected":4,"tags":["sample","dynamic-programming"]},
+{"id":"trial-diagonal","name":"diagonal ones do not form square side two","kind":"trial","visible":true,"input":{"matrix":[["0","1"],["1","0"]]},"expected":1,"tags":["boundary"]},
+{"id":"trial-zero","name":"all-zero matrix","kind":"trial","visible":true,"input":{"matrix":[["0"]]},"expected":0,"tags":["zero"]},
+{"id":"real-full","name":"hidden: full three-by-three square","kind":"real","visible":false,"input":{"matrix":[["1","1","1"],["1","1","1"],["1","1","1"]]},"expected":9,"tags":["hidden","full-square"]}
+]}

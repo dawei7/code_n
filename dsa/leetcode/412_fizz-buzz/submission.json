@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "412",
+  "frontend_id": "412",
+  "title_slug": "fizz-buzz",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064740741",
+  "verified_at": "2026-07-12T07:44:20.970563+00:00"
+}

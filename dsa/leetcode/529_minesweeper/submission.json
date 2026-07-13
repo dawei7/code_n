@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "529",
+  "frontend_id": "529",
+  "title_slug": "minesweeper",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065246387",
+  "verified_at": "2026-07-12T17:03:57.395230+00:00"
+}

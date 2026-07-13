@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_540",
+  "cases": [
+    {"id":"sample-middle","name":"sample: singleton near the beginning","kind":"sample","visible":true,"input":{"nums":[1,1,2,3,3,4,4,8,8]},"expected":2,"tags":["sample","middle"]},
+    {"id":"sample-later","name":"sample: singleton after two pairs","kind":"sample","visible":true,"input":{"nums":[3,3,7,7,10,11,11]},"expected":10,"tags":["sample","later"]},
+    {"id":"sample-single","name":"sample: one-element array","kind":"sample","visible":true,"input":{"nums":[1]},"expected":1,"tags":["sample","singleton"]},
+    {"id":"trial-first","name":"trial: unique value is first","kind":"trial","visible":true,"input":{"nums":[0,1,1,2,2]},"expected":0,"tags":["trial","first"]},
+    {"id":"trial-last","name":"trial: unique value is last","kind":"trial","visible":true,"input":{"nums":[1,1,2,2,3]},"expected":3,"tags":["trial","last"]},
+    {"id":"hidden-negative","name":"hidden: negative singleton","kind":"real","visible":false,"input":{"nums":[-3,-3,-2,-1,-1]},"expected":-2,"tags":["hidden","negative"]},
+    {"id":"hidden-longer","name":"hidden: several pairs on both sides","kind":"real","visible":false,"input":{"nums":[0,0,2,2,3,4,4,5,5,9,9]},"expected":3,"tags":["hidden","balanced"]}
+  ]
+}

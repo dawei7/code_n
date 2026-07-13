@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_2342",
+  "cases": [
+    {
+      "id": "benchmark-large-digit-sums",
+      "name": "benchmark: larger values share digit sums",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          99,
+          90,
+          9,
+          81,
+          18
+        ]
+      },
+      "expected": 171,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

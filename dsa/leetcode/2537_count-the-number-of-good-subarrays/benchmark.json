@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2537",
+  "cases": [
+    {
+      "id": "benchmark-overlapping-pairs",
+      "name": "benchmark: overlapping duplicate pairs across a window",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

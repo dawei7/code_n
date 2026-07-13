@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_91",
+  "cases": [
+    {"id": "sample-twelve", "name": "sample: one or two tokens", "kind": "sample", "visible": true, "input": {"s": "12"}, "expected": 2, "tags": ["sample"]},
+    {"id": "sample-226", "name": "sample: three decodings", "kind": "sample", "visible": true, "input": {"s": "226"}, "expected": 3, "tags": ["sample"]},
+    {"id": "trial-leading-zero", "name": "leading zero is invalid", "kind": "trial", "visible": true, "input": {"s": "06"}, "expected": 0, "tags": ["zero", "invalid"]},
+    {"id": "trial-internal-zero", "name": "zero only pairs with preceding two", "kind": "trial", "visible": true, "input": {"s": "2101"}, "expected": 1, "tags": ["zero"]},
+    {"id": "real-mixed-zero", "name": "hidden: valid and invalid pair choices", "kind": "real", "visible": false, "input": {"s": "11106"}, "expected": 2, "tags": ["hidden", "zero"]}
+  ]
+}

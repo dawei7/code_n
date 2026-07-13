@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_507",
+  "measurement_note": "Size is num itself. Pairing complementary divisors tests only values through sqrt(num), while a full proper-divisor scan grows linearly with num.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: test 2000", "kind": "benchmark", "visible": false, "size": 2000, "input": {"num": 2000}, "expected": false, "tags": ["benchmark", "scaling", "composite"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: test 8000", "kind": "benchmark", "visible": false, "size": 8000, "input": {"num": 8000}, "expected": false, "tags": ["benchmark", "scaling", "composite"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: test 32000", "kind": "benchmark", "visible": false, "size": 32000, "input": {"num": 32000}, "expected": false, "tags": ["benchmark", "scaling", "composite"]}
+  ]
+}

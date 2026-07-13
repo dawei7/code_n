@@ -1,0 +1,80 @@
+{
+  "challenge_id": "lc_1160",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: cat and hat",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "cat",
+          "bt",
+          "hat",
+          "tree"
+        ],
+        "chars": "atach"
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: hello and world",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "hello",
+          "world",
+          "leetcode"
+        ],
+        "chars": "welldonehoneyr"
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-insufficient-letters",
+      "name": "insufficient letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "ab"
+        ],
+        "chars": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-reused-letters",
+      "name": "hidden: reused letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abc",
+          "aabb",
+          "bc",
+          "cab"
+        ],
+        "chars": "aabbcc"
+      },
+      "expected": 12,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

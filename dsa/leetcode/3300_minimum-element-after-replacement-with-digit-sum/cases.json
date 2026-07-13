@@ -1,0 +1,96 @@
+{
+  "challenge_id": "lc_3300",
+  "cases": [
+    {
+      "id": "sample-small-values",
+      "name": "sample: minimum digit sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          12,
+          13,
+          14
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-single-digit",
+      "name": "sample: single digits stay themselves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-zero",
+      "name": "trial: zero has digit sum zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          999,
+          100
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-large-digits",
+      "name": "trial: large digit sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          987654321,
+          111111111,
+          700000000
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "large"
+      ]
+    },
+    {
+      "id": "real-mixed-digits",
+      "name": "real: mixed hidden digit sums",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9999,
+          12345,
+          100000,
+          808080,
+          42
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "digits"
+      ]
+    }
+  ]
+}

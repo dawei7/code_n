@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_171",
+  "measurement_note": "Increasing title lengths require one Horner update per character while retaining constant auxiliary state.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 1-letter title",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1,
+      "input": {
+        "column_title": "A"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 4-letter title",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "column_title": "AAAA"
+      },
+      "expected": 18279,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 7-letter title",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 7,
+      "input": {
+        "column_title": "AAAAAAA"
+      },
+      "expected": 321272407,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

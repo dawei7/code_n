@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_2875",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: subarray inside the base array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "target": 5
+      },
+      "tags": [
+        "sample",
+        "prefix"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: shortest sum crosses small values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          3
+        ],
+        "target": 4
+      },
+      "tags": [
+        "sample",
+        "sliding-window"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: target cannot be formed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8
+        ],
+        "target": 3
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-full-cycles-only",
+      "name": "trial: target is exactly whole-array cycles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "target": 15
+      },
+      "tags": [
+        "trial",
+        "cycles"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "real-wraparound-remainder",
+      "name": "hidden: shortest remainder wraps across the boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          1,
+          5,
+          2,
+          4
+        ],
+        "target": 37
+      },
+      "tags": [
+        "hidden",
+        "wraparound"
+      ],
+      "expected": 9
+    }
+  ]
+}

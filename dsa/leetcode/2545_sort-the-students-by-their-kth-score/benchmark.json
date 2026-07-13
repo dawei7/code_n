@@ -1,0 +1,51 @@
+{
+  "challenge_id": "lc_2545",
+  "cases": [
+    {
+      "id": "benchmark-third-column-order",
+      "name": "benchmark: sort three rows by the last subject",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "score": [
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            2,
+            2,
+            6
+          ],
+          [
+            3,
+            1,
+            4
+          ]
+        ],
+        "k": 2
+      },
+      "expected": [
+        [
+          2,
+          2,
+          6
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          3,
+          1,
+          4
+        ]
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

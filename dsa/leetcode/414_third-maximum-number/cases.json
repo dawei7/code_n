@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_414",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: exactly three distinct values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "three"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: maximum fallback",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "fallback"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate does not affect rank",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "trial-one-distinct",
+      "name": "trial: every value is equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "one-distinct"
+      ]
+    },
+    {
+      "id": "trial-negative",
+      "name": "trial: negative ordering",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3,
+          -4
+        ]
+      },
+      "expected": -3,
+      "tags": [
+        "trial",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-extremes",
+      "name": "hidden: full signed range values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -2147483648,
+          2147483647,
+          0,
+          2147483647
+        ]
+      },
+      "expected": -2147483648,
+      "tags": [
+        "hidden",
+        "extremes"
+      ]
+    },
+    {
+      "id": "hidden-duplicate-third",
+      "name": "hidden: duplicates around every rank",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          9,
+          8,
+          8,
+          7,
+          7,
+          6
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "many-duplicates"
+      ]
+    },
+    {
+      "id": "hidden-two-negative",
+      "name": "hidden: two distinct negative values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -5,
+          -5,
+          -9
+        ]
+      },
+      "expected": -5,
+      "tags": [
+        "hidden",
+        "negative-fallback"
+      ]
+    }
+  ]
+}

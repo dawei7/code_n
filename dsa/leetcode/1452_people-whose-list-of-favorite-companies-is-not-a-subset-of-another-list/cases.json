@@ -1,0 +1,127 @@
+{
+  "challenge_id": "lc_1452",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several subset relationships",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "favorite_companies": [
+          [
+            "leetcode",
+            "google",
+            "facebook"
+          ],
+          [
+            "google",
+            "microsoft"
+          ],
+          [
+            "google",
+            "facebook"
+          ],
+          [
+            "google"
+          ],
+          [
+            "amazon"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        4
+      ],
+      "tags": [
+        "sample",
+        "sets"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one subset removed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "favorite_companies": [
+          [
+            "leetcode",
+            "google",
+            "facebook"
+          ],
+          [
+            "leetcode",
+            "amazon"
+          ],
+          [
+            "facebook",
+            "google"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate singleton lists",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "favorite_companies": [
+          [
+            "a"
+          ],
+          [
+            "a"
+          ],
+          [
+            "a",
+            "b"
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-equal-sets-excluded",
+      "name": "hidden: equal sets are subsets too",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "favorite_companies": [
+          [
+            "a"
+          ],
+          [
+            "a"
+          ],
+          [
+            "a",
+            "b"
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "hidden",
+        "regression"
+      ]
+    }
+  ]
+}

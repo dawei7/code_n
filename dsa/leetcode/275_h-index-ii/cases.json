@@ -1,0 +1,6 @@
+{"challenge_id":"lc_275","cases":[
+{"id":"sample-three","name":"sample: sorted h-index three","kind":"sample","visible":true,"input":{"citations":[0,1,3,5,6]},"expected":3,"tags":["sample","binary-search"]},
+{"id":"sample-two","name":"sample: sorted h-index two","kind":"sample","visible":true,"input":{"citations":[1,2,100]},"expected":2,"tags":["sample"]},
+{"id":"trial-empty","name":"no papers","kind":"trial","visible":true,"input":{"citations":[]},"expected":0,"tags":["boundary"]},
+{"id":"real-all-high","name":"hidden: all papers qualify","kind":"real","visible":false,"input":{"citations":[5,6,7,8]},"expected":4,"tags":["hidden","all-high"]}
+]}

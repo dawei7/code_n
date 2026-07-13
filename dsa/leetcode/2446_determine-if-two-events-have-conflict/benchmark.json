@@ -1,0 +1,25 @@
+{
+  "challenge_id": "lc_2446",
+  "cases": [
+    {
+      "id": "benchmark-one-minute-gap",
+      "name": "benchmark: one-minute gap means no conflict",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "event1": [
+          "08:00",
+          "08:59"
+        ],
+        "event2": [
+          "09:00",
+          "09:30"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

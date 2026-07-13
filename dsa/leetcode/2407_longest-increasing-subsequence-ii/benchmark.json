@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_2407",
+  "cases": [
+    {
+      "id": "benchmark-interleaved-chain",
+      "name": "benchmark: interleaved values build a long chain",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          5,
+          2,
+          3,
+          4,
+          8,
+          6,
+          7
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

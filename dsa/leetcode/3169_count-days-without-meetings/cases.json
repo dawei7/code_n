@@ -1,0 +1,139 @@
+{
+  "challenge_id": "lc_3169",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three separated meeting blocks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "days": 10,
+        "meetings": [
+          [
+            5,
+            7
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            9,
+            10
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "intervals"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one interval leaves both sides free",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "days": 5,
+        "meetings": [
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all days covered",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "days": 6,
+        "meetings": [
+          [
+            1,
+            6
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "full-cover"
+      ]
+    },
+    {
+      "id": "trial-overlap-and-contiguous",
+      "name": "trial: overlapping and touching meetings merge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "days": 12,
+        "meetings": [
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            9,
+            9
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "merge"
+      ]
+    },
+    {
+      "id": "real-unsorted-nested",
+      "name": "real: unsorted nested intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "days": 20,
+        "meetings": [
+          [
+            10,
+            12
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            15,
+            20
+          ],
+          [
+            8,
+            8
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "nested"
+      ]
+    }
+  ]
+}

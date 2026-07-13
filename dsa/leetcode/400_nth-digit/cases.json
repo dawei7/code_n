@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_400",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: inside one-digit block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "one-digit"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: second digit of ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 11
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: first three-digit number",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 190
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "block-start"
+      ]
+    },
+    {
+      "id": "trial-nine",
+      "name": "trial: end of one-digit block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 9
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-ten",
+      "name": "trial: start of two-digit block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-189",
+      "name": "hidden: end of two-digit block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 189
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "block-end"
+      ]
+    },
+    {
+      "id": "hidden-middle",
+      "name": "hidden: middle digit of a larger number",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10000
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "middle"
+      ]
+    },
+    {
+      "id": "hidden-int-max",
+      "name": "hidden: maximum input position",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2147483647
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "large"
+      ]
+    }
+  ]
+}

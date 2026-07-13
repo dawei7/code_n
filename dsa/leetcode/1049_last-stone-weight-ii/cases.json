@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1049",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: classic stones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          2,
+          7,
+          4,
+          1,
+          8,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three stones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          14,
+          2,
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-perfect-pair",
+      "name": "perfect pair cancellation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-larger-weights",
+      "name": "hidden: larger weights",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stones": [
+          31,
+          26,
+          33,
+          21,
+          40
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

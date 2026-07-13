@@ -1,0 +1,123 @@
+{
+  "challenge_id": "lc_3404",
+  "cases": [
+    {
+      "id": "sample-one-special",
+      "name": "sample: one valid spaced quadruple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          3,
+          6,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "ratio"
+      ]
+    },
+    {
+      "id": "sample-three-special",
+      "name": "sample: three valid spaced quadruples",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          3,
+          4,
+          3,
+          4,
+          3,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "ratio"
+      ]
+    },
+    {
+      "id": "trial-no-match",
+      "name": "trial: no spaced product match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          5,
+          7,
+          11,
+          13,
+          17
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-many-equal",
+      "name": "trial: repeated equal values create many choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          9,
+          2,
+          9,
+          2,
+          9,
+          2,
+          9,
+          2
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-mixed-ratios",
+      "name": "real: mixed ratios and required gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          5,
+          4,
+          10,
+          8,
+          20,
+          4,
+          10,
+          2,
+          5,
+          4,
+          10
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "real",
+        "ratios"
+      ]
+    }
+  ]
+}

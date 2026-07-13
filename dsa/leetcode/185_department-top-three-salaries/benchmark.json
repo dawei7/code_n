@@ -1,0 +1,2267 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_185",
+  "measurement_note": "Growing employee partitions exercise dense top-three salary selection across four departments.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 employees",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "Employee001",
+              "salary": 1037,
+              "departmentId": 1
+            },
+            {
+              "id": 2,
+              "name": "Employee002",
+              "salary": 1074,
+              "departmentId": 2
+            },
+            {
+              "id": 3,
+              "name": "Employee003",
+              "salary": 1111,
+              "departmentId": 3
+            },
+            {
+              "id": 4,
+              "name": "Employee004",
+              "salary": 1148,
+              "departmentId": 4
+            },
+            {
+              "id": 5,
+              "name": "Employee005",
+              "salary": 1185,
+              "departmentId": 1
+            },
+            {
+              "id": 6,
+              "name": "Employee006",
+              "salary": 1222,
+              "departmentId": 2
+            },
+            {
+              "id": 7,
+              "name": "Employee007",
+              "salary": 1259,
+              "departmentId": 3
+            },
+            {
+              "id": 8,
+              "name": "Employee008",
+              "salary": 1296,
+              "departmentId": 4
+            }
+          ],
+          "Department": [
+            {
+              "id": 1,
+              "name": "Department1"
+            },
+            {
+              "id": 2,
+              "name": "Department2"
+            },
+            {
+              "id": 3,
+              "name": "Department3"
+            },
+            {
+              "id": 4,
+              "name": "Department4"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Department",
+          "Employee",
+          "Salary"
+        ],
+        "rows": [
+          [
+            "Department1",
+            "Employee005",
+            1185
+          ],
+          [
+            "Department1",
+            "Employee001",
+            1037
+          ],
+          [
+            "Department2",
+            "Employee006",
+            1222
+          ],
+          [
+            "Department2",
+            "Employee002",
+            1074
+          ],
+          [
+            "Department3",
+            "Employee007",
+            1259
+          ],
+          [
+            "Department3",
+            "Employee003",
+            1111
+          ],
+          [
+            "Department4",
+            "Employee008",
+            1296
+          ],
+          [
+            "Department4",
+            "Employee004",
+            1148
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 employees",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "Employee001",
+              "salary": 1037,
+              "departmentId": 1
+            },
+            {
+              "id": 2,
+              "name": "Employee002",
+              "salary": 1074,
+              "departmentId": 2
+            },
+            {
+              "id": 3,
+              "name": "Employee003",
+              "salary": 1111,
+              "departmentId": 3
+            },
+            {
+              "id": 4,
+              "name": "Employee004",
+              "salary": 1148,
+              "departmentId": 4
+            },
+            {
+              "id": 5,
+              "name": "Employee005",
+              "salary": 1185,
+              "departmentId": 1
+            },
+            {
+              "id": 6,
+              "name": "Employee006",
+              "salary": 1222,
+              "departmentId": 2
+            },
+            {
+              "id": 7,
+              "name": "Employee007",
+              "salary": 1259,
+              "departmentId": 3
+            },
+            {
+              "id": 8,
+              "name": "Employee008",
+              "salary": 1296,
+              "departmentId": 4
+            },
+            {
+              "id": 9,
+              "name": "Employee009",
+              "salary": 1333,
+              "departmentId": 1
+            },
+            {
+              "id": 10,
+              "name": "Employee010",
+              "salary": 1370,
+              "departmentId": 2
+            },
+            {
+              "id": 11,
+              "name": "Employee011",
+              "salary": 1407,
+              "departmentId": 3
+            },
+            {
+              "id": 12,
+              "name": "Employee012",
+              "salary": 1444,
+              "departmentId": 4
+            },
+            {
+              "id": 13,
+              "name": "Employee013",
+              "salary": 1481,
+              "departmentId": 1
+            },
+            {
+              "id": 14,
+              "name": "Employee014",
+              "salary": 1518,
+              "departmentId": 2
+            },
+            {
+              "id": 15,
+              "name": "Employee015",
+              "salary": 1555,
+              "departmentId": 3
+            },
+            {
+              "id": 16,
+              "name": "Employee016",
+              "salary": 1592,
+              "departmentId": 4
+            },
+            {
+              "id": 17,
+              "name": "Employee017",
+              "salary": 1629,
+              "departmentId": 1
+            },
+            {
+              "id": 18,
+              "name": "Employee018",
+              "salary": 1666,
+              "departmentId": 2
+            },
+            {
+              "id": 19,
+              "name": "Employee019",
+              "salary": 1703,
+              "departmentId": 3
+            },
+            {
+              "id": 20,
+              "name": "Employee020",
+              "salary": 1740,
+              "departmentId": 4
+            },
+            {
+              "id": 21,
+              "name": "Employee021",
+              "salary": 1777,
+              "departmentId": 1
+            },
+            {
+              "id": 22,
+              "name": "Employee022",
+              "salary": 1814,
+              "departmentId": 2
+            },
+            {
+              "id": 23,
+              "name": "Employee023",
+              "salary": 1851,
+              "departmentId": 3
+            },
+            {
+              "id": 24,
+              "name": "Employee024",
+              "salary": 1888,
+              "departmentId": 4
+            },
+            {
+              "id": 25,
+              "name": "Employee025",
+              "salary": 1925,
+              "departmentId": 1
+            },
+            {
+              "id": 26,
+              "name": "Employee026",
+              "salary": 1962,
+              "departmentId": 2
+            },
+            {
+              "id": 27,
+              "name": "Employee027",
+              "salary": 1002,
+              "departmentId": 3
+            },
+            {
+              "id": 28,
+              "name": "Employee028",
+              "salary": 1039,
+              "departmentId": 4
+            },
+            {
+              "id": 29,
+              "name": "Employee029",
+              "salary": 1076,
+              "departmentId": 1
+            },
+            {
+              "id": 30,
+              "name": "Employee030",
+              "salary": 1113,
+              "departmentId": 2
+            },
+            {
+              "id": 31,
+              "name": "Employee031",
+              "salary": 1150,
+              "departmentId": 3
+            },
+            {
+              "id": 32,
+              "name": "Employee032",
+              "salary": 1187,
+              "departmentId": 4
+            },
+            {
+              "id": 33,
+              "name": "Employee033",
+              "salary": 1224,
+              "departmentId": 1
+            },
+            {
+              "id": 34,
+              "name": "Employee034",
+              "salary": 1261,
+              "departmentId": 2
+            },
+            {
+              "id": 35,
+              "name": "Employee035",
+              "salary": 1298,
+              "departmentId": 3
+            },
+            {
+              "id": 36,
+              "name": "Employee036",
+              "salary": 1335,
+              "departmentId": 4
+            },
+            {
+              "id": 37,
+              "name": "Employee037",
+              "salary": 1372,
+              "departmentId": 1
+            },
+            {
+              "id": 38,
+              "name": "Employee038",
+              "salary": 1409,
+              "departmentId": 2
+            },
+            {
+              "id": 39,
+              "name": "Employee039",
+              "salary": 1446,
+              "departmentId": 3
+            },
+            {
+              "id": 40,
+              "name": "Employee040",
+              "salary": 1483,
+              "departmentId": 4
+            },
+            {
+              "id": 41,
+              "name": "Employee041",
+              "salary": 1520,
+              "departmentId": 1
+            },
+            {
+              "id": 42,
+              "name": "Employee042",
+              "salary": 1557,
+              "departmentId": 2
+            },
+            {
+              "id": 43,
+              "name": "Employee043",
+              "salary": 1594,
+              "departmentId": 3
+            },
+            {
+              "id": 44,
+              "name": "Employee044",
+              "salary": 1631,
+              "departmentId": 4
+            },
+            {
+              "id": 45,
+              "name": "Employee045",
+              "salary": 1668,
+              "departmentId": 1
+            },
+            {
+              "id": 46,
+              "name": "Employee046",
+              "salary": 1705,
+              "departmentId": 2
+            },
+            {
+              "id": 47,
+              "name": "Employee047",
+              "salary": 1742,
+              "departmentId": 3
+            },
+            {
+              "id": 48,
+              "name": "Employee048",
+              "salary": 1779,
+              "departmentId": 4
+            },
+            {
+              "id": 49,
+              "name": "Employee049",
+              "salary": 1816,
+              "departmentId": 1
+            },
+            {
+              "id": 50,
+              "name": "Employee050",
+              "salary": 1853,
+              "departmentId": 2
+            },
+            {
+              "id": 51,
+              "name": "Employee051",
+              "salary": 1890,
+              "departmentId": 3
+            },
+            {
+              "id": 52,
+              "name": "Employee052",
+              "salary": 1927,
+              "departmentId": 4
+            },
+            {
+              "id": 53,
+              "name": "Employee053",
+              "salary": 1964,
+              "departmentId": 1
+            },
+            {
+              "id": 54,
+              "name": "Employee054",
+              "salary": 1004,
+              "departmentId": 2
+            },
+            {
+              "id": 55,
+              "name": "Employee055",
+              "salary": 1041,
+              "departmentId": 3
+            },
+            {
+              "id": 56,
+              "name": "Employee056",
+              "salary": 1078,
+              "departmentId": 4
+            },
+            {
+              "id": 57,
+              "name": "Employee057",
+              "salary": 1115,
+              "departmentId": 1
+            },
+            {
+              "id": 58,
+              "name": "Employee058",
+              "salary": 1152,
+              "departmentId": 2
+            },
+            {
+              "id": 59,
+              "name": "Employee059",
+              "salary": 1189,
+              "departmentId": 3
+            },
+            {
+              "id": 60,
+              "name": "Employee060",
+              "salary": 1226,
+              "departmentId": 4
+            },
+            {
+              "id": 61,
+              "name": "Employee061",
+              "salary": 1263,
+              "departmentId": 1
+            },
+            {
+              "id": 62,
+              "name": "Employee062",
+              "salary": 1300,
+              "departmentId": 2
+            },
+            {
+              "id": 63,
+              "name": "Employee063",
+              "salary": 1337,
+              "departmentId": 3
+            },
+            {
+              "id": 64,
+              "name": "Employee064",
+              "salary": 1374,
+              "departmentId": 4
+            }
+          ],
+          "Department": [
+            {
+              "id": 1,
+              "name": "Department1"
+            },
+            {
+              "id": 2,
+              "name": "Department2"
+            },
+            {
+              "id": 3,
+              "name": "Department3"
+            },
+            {
+              "id": 4,
+              "name": "Department4"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Department",
+          "Employee",
+          "Salary"
+        ],
+        "rows": [
+          [
+            "Department1",
+            "Employee053",
+            1964
+          ],
+          [
+            "Department1",
+            "Employee025",
+            1925
+          ],
+          [
+            "Department1",
+            "Employee049",
+            1816
+          ],
+          [
+            "Department2",
+            "Employee026",
+            1962
+          ],
+          [
+            "Department2",
+            "Employee050",
+            1853
+          ],
+          [
+            "Department2",
+            "Employee022",
+            1814
+          ],
+          [
+            "Department3",
+            "Employee051",
+            1890
+          ],
+          [
+            "Department3",
+            "Employee023",
+            1851
+          ],
+          [
+            "Department3",
+            "Employee047",
+            1742
+          ],
+          [
+            "Department4",
+            "Employee052",
+            1927
+          ],
+          [
+            "Department4",
+            "Employee024",
+            1888
+          ],
+          [
+            "Department4",
+            "Employee048",
+            1779
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 employees",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "Employee001",
+              "salary": 1037,
+              "departmentId": 1
+            },
+            {
+              "id": 2,
+              "name": "Employee002",
+              "salary": 1074,
+              "departmentId": 2
+            },
+            {
+              "id": 3,
+              "name": "Employee003",
+              "salary": 1111,
+              "departmentId": 3
+            },
+            {
+              "id": 4,
+              "name": "Employee004",
+              "salary": 1148,
+              "departmentId": 4
+            },
+            {
+              "id": 5,
+              "name": "Employee005",
+              "salary": 1185,
+              "departmentId": 1
+            },
+            {
+              "id": 6,
+              "name": "Employee006",
+              "salary": 1222,
+              "departmentId": 2
+            },
+            {
+              "id": 7,
+              "name": "Employee007",
+              "salary": 1259,
+              "departmentId": 3
+            },
+            {
+              "id": 8,
+              "name": "Employee008",
+              "salary": 1296,
+              "departmentId": 4
+            },
+            {
+              "id": 9,
+              "name": "Employee009",
+              "salary": 1333,
+              "departmentId": 1
+            },
+            {
+              "id": 10,
+              "name": "Employee010",
+              "salary": 1370,
+              "departmentId": 2
+            },
+            {
+              "id": 11,
+              "name": "Employee011",
+              "salary": 1407,
+              "departmentId": 3
+            },
+            {
+              "id": 12,
+              "name": "Employee012",
+              "salary": 1444,
+              "departmentId": 4
+            },
+            {
+              "id": 13,
+              "name": "Employee013",
+              "salary": 1481,
+              "departmentId": 1
+            },
+            {
+              "id": 14,
+              "name": "Employee014",
+              "salary": 1518,
+              "departmentId": 2
+            },
+            {
+              "id": 15,
+              "name": "Employee015",
+              "salary": 1555,
+              "departmentId": 3
+            },
+            {
+              "id": 16,
+              "name": "Employee016",
+              "salary": 1592,
+              "departmentId": 4
+            },
+            {
+              "id": 17,
+              "name": "Employee017",
+              "salary": 1629,
+              "departmentId": 1
+            },
+            {
+              "id": 18,
+              "name": "Employee018",
+              "salary": 1666,
+              "departmentId": 2
+            },
+            {
+              "id": 19,
+              "name": "Employee019",
+              "salary": 1703,
+              "departmentId": 3
+            },
+            {
+              "id": 20,
+              "name": "Employee020",
+              "salary": 1740,
+              "departmentId": 4
+            },
+            {
+              "id": 21,
+              "name": "Employee021",
+              "salary": 1777,
+              "departmentId": 1
+            },
+            {
+              "id": 22,
+              "name": "Employee022",
+              "salary": 1814,
+              "departmentId": 2
+            },
+            {
+              "id": 23,
+              "name": "Employee023",
+              "salary": 1851,
+              "departmentId": 3
+            },
+            {
+              "id": 24,
+              "name": "Employee024",
+              "salary": 1888,
+              "departmentId": 4
+            },
+            {
+              "id": 25,
+              "name": "Employee025",
+              "salary": 1925,
+              "departmentId": 1
+            },
+            {
+              "id": 26,
+              "name": "Employee026",
+              "salary": 1962,
+              "departmentId": 2
+            },
+            {
+              "id": 27,
+              "name": "Employee027",
+              "salary": 1002,
+              "departmentId": 3
+            },
+            {
+              "id": 28,
+              "name": "Employee028",
+              "salary": 1039,
+              "departmentId": 4
+            },
+            {
+              "id": 29,
+              "name": "Employee029",
+              "salary": 1076,
+              "departmentId": 1
+            },
+            {
+              "id": 30,
+              "name": "Employee030",
+              "salary": 1113,
+              "departmentId": 2
+            },
+            {
+              "id": 31,
+              "name": "Employee031",
+              "salary": 1150,
+              "departmentId": 3
+            },
+            {
+              "id": 32,
+              "name": "Employee032",
+              "salary": 1187,
+              "departmentId": 4
+            },
+            {
+              "id": 33,
+              "name": "Employee033",
+              "salary": 1224,
+              "departmentId": 1
+            },
+            {
+              "id": 34,
+              "name": "Employee034",
+              "salary": 1261,
+              "departmentId": 2
+            },
+            {
+              "id": 35,
+              "name": "Employee035",
+              "salary": 1298,
+              "departmentId": 3
+            },
+            {
+              "id": 36,
+              "name": "Employee036",
+              "salary": 1335,
+              "departmentId": 4
+            },
+            {
+              "id": 37,
+              "name": "Employee037",
+              "salary": 1372,
+              "departmentId": 1
+            },
+            {
+              "id": 38,
+              "name": "Employee038",
+              "salary": 1409,
+              "departmentId": 2
+            },
+            {
+              "id": 39,
+              "name": "Employee039",
+              "salary": 1446,
+              "departmentId": 3
+            },
+            {
+              "id": 40,
+              "name": "Employee040",
+              "salary": 1483,
+              "departmentId": 4
+            },
+            {
+              "id": 41,
+              "name": "Employee041",
+              "salary": 1520,
+              "departmentId": 1
+            },
+            {
+              "id": 42,
+              "name": "Employee042",
+              "salary": 1557,
+              "departmentId": 2
+            },
+            {
+              "id": 43,
+              "name": "Employee043",
+              "salary": 1594,
+              "departmentId": 3
+            },
+            {
+              "id": 44,
+              "name": "Employee044",
+              "salary": 1631,
+              "departmentId": 4
+            },
+            {
+              "id": 45,
+              "name": "Employee045",
+              "salary": 1668,
+              "departmentId": 1
+            },
+            {
+              "id": 46,
+              "name": "Employee046",
+              "salary": 1705,
+              "departmentId": 2
+            },
+            {
+              "id": 47,
+              "name": "Employee047",
+              "salary": 1742,
+              "departmentId": 3
+            },
+            {
+              "id": 48,
+              "name": "Employee048",
+              "salary": 1779,
+              "departmentId": 4
+            },
+            {
+              "id": 49,
+              "name": "Employee049",
+              "salary": 1816,
+              "departmentId": 1
+            },
+            {
+              "id": 50,
+              "name": "Employee050",
+              "salary": 1853,
+              "departmentId": 2
+            },
+            {
+              "id": 51,
+              "name": "Employee051",
+              "salary": 1890,
+              "departmentId": 3
+            },
+            {
+              "id": 52,
+              "name": "Employee052",
+              "salary": 1927,
+              "departmentId": 4
+            },
+            {
+              "id": 53,
+              "name": "Employee053",
+              "salary": 1964,
+              "departmentId": 1
+            },
+            {
+              "id": 54,
+              "name": "Employee054",
+              "salary": 1004,
+              "departmentId": 2
+            },
+            {
+              "id": 55,
+              "name": "Employee055",
+              "salary": 1041,
+              "departmentId": 3
+            },
+            {
+              "id": 56,
+              "name": "Employee056",
+              "salary": 1078,
+              "departmentId": 4
+            },
+            {
+              "id": 57,
+              "name": "Employee057",
+              "salary": 1115,
+              "departmentId": 1
+            },
+            {
+              "id": 58,
+              "name": "Employee058",
+              "salary": 1152,
+              "departmentId": 2
+            },
+            {
+              "id": 59,
+              "name": "Employee059",
+              "salary": 1189,
+              "departmentId": 3
+            },
+            {
+              "id": 60,
+              "name": "Employee060",
+              "salary": 1226,
+              "departmentId": 4
+            },
+            {
+              "id": 61,
+              "name": "Employee061",
+              "salary": 1263,
+              "departmentId": 1
+            },
+            {
+              "id": 62,
+              "name": "Employee062",
+              "salary": 1300,
+              "departmentId": 2
+            },
+            {
+              "id": 63,
+              "name": "Employee063",
+              "salary": 1337,
+              "departmentId": 3
+            },
+            {
+              "id": 64,
+              "name": "Employee064",
+              "salary": 1374,
+              "departmentId": 4
+            },
+            {
+              "id": 65,
+              "name": "Employee065",
+              "salary": 1411,
+              "departmentId": 1
+            },
+            {
+              "id": 66,
+              "name": "Employee066",
+              "salary": 1448,
+              "departmentId": 2
+            },
+            {
+              "id": 67,
+              "name": "Employee067",
+              "salary": 1485,
+              "departmentId": 3
+            },
+            {
+              "id": 68,
+              "name": "Employee068",
+              "salary": 1522,
+              "departmentId": 4
+            },
+            {
+              "id": 69,
+              "name": "Employee069",
+              "salary": 1559,
+              "departmentId": 1
+            },
+            {
+              "id": 70,
+              "name": "Employee070",
+              "salary": 1596,
+              "departmentId": 2
+            },
+            {
+              "id": 71,
+              "name": "Employee071",
+              "salary": 1633,
+              "departmentId": 3
+            },
+            {
+              "id": 72,
+              "name": "Employee072",
+              "salary": 1670,
+              "departmentId": 4
+            },
+            {
+              "id": 73,
+              "name": "Employee073",
+              "salary": 1707,
+              "departmentId": 1
+            },
+            {
+              "id": 74,
+              "name": "Employee074",
+              "salary": 1744,
+              "departmentId": 2
+            },
+            {
+              "id": 75,
+              "name": "Employee075",
+              "salary": 1781,
+              "departmentId": 3
+            },
+            {
+              "id": 76,
+              "name": "Employee076",
+              "salary": 1818,
+              "departmentId": 4
+            },
+            {
+              "id": 77,
+              "name": "Employee077",
+              "salary": 1855,
+              "departmentId": 1
+            },
+            {
+              "id": 78,
+              "name": "Employee078",
+              "salary": 1892,
+              "departmentId": 2
+            },
+            {
+              "id": 79,
+              "name": "Employee079",
+              "salary": 1929,
+              "departmentId": 3
+            },
+            {
+              "id": 80,
+              "name": "Employee080",
+              "salary": 1966,
+              "departmentId": 4
+            },
+            {
+              "id": 81,
+              "name": "Employee081",
+              "salary": 1006,
+              "departmentId": 1
+            },
+            {
+              "id": 82,
+              "name": "Employee082",
+              "salary": 1043,
+              "departmentId": 2
+            },
+            {
+              "id": 83,
+              "name": "Employee083",
+              "salary": 1080,
+              "departmentId": 3
+            },
+            {
+              "id": 84,
+              "name": "Employee084",
+              "salary": 1117,
+              "departmentId": 4
+            },
+            {
+              "id": 85,
+              "name": "Employee085",
+              "salary": 1154,
+              "departmentId": 1
+            },
+            {
+              "id": 86,
+              "name": "Employee086",
+              "salary": 1191,
+              "departmentId": 2
+            },
+            {
+              "id": 87,
+              "name": "Employee087",
+              "salary": 1228,
+              "departmentId": 3
+            },
+            {
+              "id": 88,
+              "name": "Employee088",
+              "salary": 1265,
+              "departmentId": 4
+            },
+            {
+              "id": 89,
+              "name": "Employee089",
+              "salary": 1302,
+              "departmentId": 1
+            },
+            {
+              "id": 90,
+              "name": "Employee090",
+              "salary": 1339,
+              "departmentId": 2
+            },
+            {
+              "id": 91,
+              "name": "Employee091",
+              "salary": 1376,
+              "departmentId": 3
+            },
+            {
+              "id": 92,
+              "name": "Employee092",
+              "salary": 1413,
+              "departmentId": 4
+            },
+            {
+              "id": 93,
+              "name": "Employee093",
+              "salary": 1450,
+              "departmentId": 1
+            },
+            {
+              "id": 94,
+              "name": "Employee094",
+              "salary": 1487,
+              "departmentId": 2
+            },
+            {
+              "id": 95,
+              "name": "Employee095",
+              "salary": 1524,
+              "departmentId": 3
+            },
+            {
+              "id": 96,
+              "name": "Employee096",
+              "salary": 1561,
+              "departmentId": 4
+            },
+            {
+              "id": 97,
+              "name": "Employee097",
+              "salary": 1598,
+              "departmentId": 1
+            },
+            {
+              "id": 98,
+              "name": "Employee098",
+              "salary": 1635,
+              "departmentId": 2
+            },
+            {
+              "id": 99,
+              "name": "Employee099",
+              "salary": 1672,
+              "departmentId": 3
+            },
+            {
+              "id": 100,
+              "name": "Employee100",
+              "salary": 1709,
+              "departmentId": 4
+            },
+            {
+              "id": 101,
+              "name": "Employee101",
+              "salary": 1746,
+              "departmentId": 1
+            },
+            {
+              "id": 102,
+              "name": "Employee102",
+              "salary": 1783,
+              "departmentId": 2
+            },
+            {
+              "id": 103,
+              "name": "Employee103",
+              "salary": 1820,
+              "departmentId": 3
+            },
+            {
+              "id": 104,
+              "name": "Employee104",
+              "salary": 1857,
+              "departmentId": 4
+            },
+            {
+              "id": 105,
+              "name": "Employee105",
+              "salary": 1894,
+              "departmentId": 1
+            },
+            {
+              "id": 106,
+              "name": "Employee106",
+              "salary": 1931,
+              "departmentId": 2
+            },
+            {
+              "id": 107,
+              "name": "Employee107",
+              "salary": 1968,
+              "departmentId": 3
+            },
+            {
+              "id": 108,
+              "name": "Employee108",
+              "salary": 1008,
+              "departmentId": 4
+            },
+            {
+              "id": 109,
+              "name": "Employee109",
+              "salary": 1045,
+              "departmentId": 1
+            },
+            {
+              "id": 110,
+              "name": "Employee110",
+              "salary": 1082,
+              "departmentId": 2
+            },
+            {
+              "id": 111,
+              "name": "Employee111",
+              "salary": 1119,
+              "departmentId": 3
+            },
+            {
+              "id": 112,
+              "name": "Employee112",
+              "salary": 1156,
+              "departmentId": 4
+            },
+            {
+              "id": 113,
+              "name": "Employee113",
+              "salary": 1193,
+              "departmentId": 1
+            },
+            {
+              "id": 114,
+              "name": "Employee114",
+              "salary": 1230,
+              "departmentId": 2
+            },
+            {
+              "id": 115,
+              "name": "Employee115",
+              "salary": 1267,
+              "departmentId": 3
+            },
+            {
+              "id": 116,
+              "name": "Employee116",
+              "salary": 1304,
+              "departmentId": 4
+            },
+            {
+              "id": 117,
+              "name": "Employee117",
+              "salary": 1341,
+              "departmentId": 1
+            },
+            {
+              "id": 118,
+              "name": "Employee118",
+              "salary": 1378,
+              "departmentId": 2
+            },
+            {
+              "id": 119,
+              "name": "Employee119",
+              "salary": 1415,
+              "departmentId": 3
+            },
+            {
+              "id": 120,
+              "name": "Employee120",
+              "salary": 1452,
+              "departmentId": 4
+            },
+            {
+              "id": 121,
+              "name": "Employee121",
+              "salary": 1489,
+              "departmentId": 1
+            },
+            {
+              "id": 122,
+              "name": "Employee122",
+              "salary": 1526,
+              "departmentId": 2
+            },
+            {
+              "id": 123,
+              "name": "Employee123",
+              "salary": 1563,
+              "departmentId": 3
+            },
+            {
+              "id": 124,
+              "name": "Employee124",
+              "salary": 1600,
+              "departmentId": 4
+            },
+            {
+              "id": 125,
+              "name": "Employee125",
+              "salary": 1637,
+              "departmentId": 1
+            },
+            {
+              "id": 126,
+              "name": "Employee126",
+              "salary": 1674,
+              "departmentId": 2
+            },
+            {
+              "id": 127,
+              "name": "Employee127",
+              "salary": 1711,
+              "departmentId": 3
+            },
+            {
+              "id": 128,
+              "name": "Employee128",
+              "salary": 1748,
+              "departmentId": 4
+            },
+            {
+              "id": 129,
+              "name": "Employee129",
+              "salary": 1785,
+              "departmentId": 1
+            },
+            {
+              "id": 130,
+              "name": "Employee130",
+              "salary": 1822,
+              "departmentId": 2
+            },
+            {
+              "id": 131,
+              "name": "Employee131",
+              "salary": 1859,
+              "departmentId": 3
+            },
+            {
+              "id": 132,
+              "name": "Employee132",
+              "salary": 1896,
+              "departmentId": 4
+            },
+            {
+              "id": 133,
+              "name": "Employee133",
+              "salary": 1933,
+              "departmentId": 1
+            },
+            {
+              "id": 134,
+              "name": "Employee134",
+              "salary": 1970,
+              "departmentId": 2
+            },
+            {
+              "id": 135,
+              "name": "Employee135",
+              "salary": 1010,
+              "departmentId": 3
+            },
+            {
+              "id": 136,
+              "name": "Employee136",
+              "salary": 1047,
+              "departmentId": 4
+            },
+            {
+              "id": 137,
+              "name": "Employee137",
+              "salary": 1084,
+              "departmentId": 1
+            },
+            {
+              "id": 138,
+              "name": "Employee138",
+              "salary": 1121,
+              "departmentId": 2
+            },
+            {
+              "id": 139,
+              "name": "Employee139",
+              "salary": 1158,
+              "departmentId": 3
+            },
+            {
+              "id": 140,
+              "name": "Employee140",
+              "salary": 1195,
+              "departmentId": 4
+            },
+            {
+              "id": 141,
+              "name": "Employee141",
+              "salary": 1232,
+              "departmentId": 1
+            },
+            {
+              "id": 142,
+              "name": "Employee142",
+              "salary": 1269,
+              "departmentId": 2
+            },
+            {
+              "id": 143,
+              "name": "Employee143",
+              "salary": 1306,
+              "departmentId": 3
+            },
+            {
+              "id": 144,
+              "name": "Employee144",
+              "salary": 1343,
+              "departmentId": 4
+            },
+            {
+              "id": 145,
+              "name": "Employee145",
+              "salary": 1380,
+              "departmentId": 1
+            },
+            {
+              "id": 146,
+              "name": "Employee146",
+              "salary": 1417,
+              "departmentId": 2
+            },
+            {
+              "id": 147,
+              "name": "Employee147",
+              "salary": 1454,
+              "departmentId": 3
+            },
+            {
+              "id": 148,
+              "name": "Employee148",
+              "salary": 1491,
+              "departmentId": 4
+            },
+            {
+              "id": 149,
+              "name": "Employee149",
+              "salary": 1528,
+              "departmentId": 1
+            },
+            {
+              "id": 150,
+              "name": "Employee150",
+              "salary": 1565,
+              "departmentId": 2
+            },
+            {
+              "id": 151,
+              "name": "Employee151",
+              "salary": 1602,
+              "departmentId": 3
+            },
+            {
+              "id": 152,
+              "name": "Employee152",
+              "salary": 1639,
+              "departmentId": 4
+            },
+            {
+              "id": 153,
+              "name": "Employee153",
+              "salary": 1676,
+              "departmentId": 1
+            },
+            {
+              "id": 154,
+              "name": "Employee154",
+              "salary": 1713,
+              "departmentId": 2
+            },
+            {
+              "id": 155,
+              "name": "Employee155",
+              "salary": 1750,
+              "departmentId": 3
+            },
+            {
+              "id": 156,
+              "name": "Employee156",
+              "salary": 1787,
+              "departmentId": 4
+            },
+            {
+              "id": 157,
+              "name": "Employee157",
+              "salary": 1824,
+              "departmentId": 1
+            },
+            {
+              "id": 158,
+              "name": "Employee158",
+              "salary": 1861,
+              "departmentId": 2
+            },
+            {
+              "id": 159,
+              "name": "Employee159",
+              "salary": 1898,
+              "departmentId": 3
+            },
+            {
+              "id": 160,
+              "name": "Employee160",
+              "salary": 1935,
+              "departmentId": 4
+            },
+            {
+              "id": 161,
+              "name": "Employee161",
+              "salary": 1972,
+              "departmentId": 1
+            },
+            {
+              "id": 162,
+              "name": "Employee162",
+              "salary": 1012,
+              "departmentId": 2
+            },
+            {
+              "id": 163,
+              "name": "Employee163",
+              "salary": 1049,
+              "departmentId": 3
+            },
+            {
+              "id": 164,
+              "name": "Employee164",
+              "salary": 1086,
+              "departmentId": 4
+            },
+            {
+              "id": 165,
+              "name": "Employee165",
+              "salary": 1123,
+              "departmentId": 1
+            },
+            {
+              "id": 166,
+              "name": "Employee166",
+              "salary": 1160,
+              "departmentId": 2
+            },
+            {
+              "id": 167,
+              "name": "Employee167",
+              "salary": 1197,
+              "departmentId": 3
+            },
+            {
+              "id": 168,
+              "name": "Employee168",
+              "salary": 1234,
+              "departmentId": 4
+            },
+            {
+              "id": 169,
+              "name": "Employee169",
+              "salary": 1271,
+              "departmentId": 1
+            },
+            {
+              "id": 170,
+              "name": "Employee170",
+              "salary": 1308,
+              "departmentId": 2
+            },
+            {
+              "id": 171,
+              "name": "Employee171",
+              "salary": 1345,
+              "departmentId": 3
+            },
+            {
+              "id": 172,
+              "name": "Employee172",
+              "salary": 1382,
+              "departmentId": 4
+            },
+            {
+              "id": 173,
+              "name": "Employee173",
+              "salary": 1419,
+              "departmentId": 1
+            },
+            {
+              "id": 174,
+              "name": "Employee174",
+              "salary": 1456,
+              "departmentId": 2
+            },
+            {
+              "id": 175,
+              "name": "Employee175",
+              "salary": 1493,
+              "departmentId": 3
+            },
+            {
+              "id": 176,
+              "name": "Employee176",
+              "salary": 1530,
+              "departmentId": 4
+            },
+            {
+              "id": 177,
+              "name": "Employee177",
+              "salary": 1567,
+              "departmentId": 1
+            },
+            {
+              "id": 178,
+              "name": "Employee178",
+              "salary": 1604,
+              "departmentId": 2
+            },
+            {
+              "id": 179,
+              "name": "Employee179",
+              "salary": 1641,
+              "departmentId": 3
+            },
+            {
+              "id": 180,
+              "name": "Employee180",
+              "salary": 1678,
+              "departmentId": 4
+            },
+            {
+              "id": 181,
+              "name": "Employee181",
+              "salary": 1715,
+              "departmentId": 1
+            },
+            {
+              "id": 182,
+              "name": "Employee182",
+              "salary": 1752,
+              "departmentId": 2
+            },
+            {
+              "id": 183,
+              "name": "Employee183",
+              "salary": 1789,
+              "departmentId": 3
+            },
+            {
+              "id": 184,
+              "name": "Employee184",
+              "salary": 1826,
+              "departmentId": 4
+            },
+            {
+              "id": 185,
+              "name": "Employee185",
+              "salary": 1863,
+              "departmentId": 1
+            },
+            {
+              "id": 186,
+              "name": "Employee186",
+              "salary": 1900,
+              "departmentId": 2
+            },
+            {
+              "id": 187,
+              "name": "Employee187",
+              "salary": 1937,
+              "departmentId": 3
+            },
+            {
+              "id": 188,
+              "name": "Employee188",
+              "salary": 1974,
+              "departmentId": 4
+            },
+            {
+              "id": 189,
+              "name": "Employee189",
+              "salary": 1014,
+              "departmentId": 1
+            },
+            {
+              "id": 190,
+              "name": "Employee190",
+              "salary": 1051,
+              "departmentId": 2
+            },
+            {
+              "id": 191,
+              "name": "Employee191",
+              "salary": 1088,
+              "departmentId": 3
+            },
+            {
+              "id": 192,
+              "name": "Employee192",
+              "salary": 1125,
+              "departmentId": 4
+            },
+            {
+              "id": 193,
+              "name": "Employee193",
+              "salary": 1162,
+              "departmentId": 1
+            },
+            {
+              "id": 194,
+              "name": "Employee194",
+              "salary": 1199,
+              "departmentId": 2
+            },
+            {
+              "id": 195,
+              "name": "Employee195",
+              "salary": 1236,
+              "departmentId": 3
+            },
+            {
+              "id": 196,
+              "name": "Employee196",
+              "salary": 1273,
+              "departmentId": 4
+            },
+            {
+              "id": 197,
+              "name": "Employee197",
+              "salary": 1310,
+              "departmentId": 1
+            },
+            {
+              "id": 198,
+              "name": "Employee198",
+              "salary": 1347,
+              "departmentId": 2
+            },
+            {
+              "id": 199,
+              "name": "Employee199",
+              "salary": 1384,
+              "departmentId": 3
+            },
+            {
+              "id": 200,
+              "name": "Employee200",
+              "salary": 1421,
+              "departmentId": 4
+            },
+            {
+              "id": 201,
+              "name": "Employee201",
+              "salary": 1458,
+              "departmentId": 1
+            },
+            {
+              "id": 202,
+              "name": "Employee202",
+              "salary": 1495,
+              "departmentId": 2
+            },
+            {
+              "id": 203,
+              "name": "Employee203",
+              "salary": 1532,
+              "departmentId": 3
+            },
+            {
+              "id": 204,
+              "name": "Employee204",
+              "salary": 1569,
+              "departmentId": 4
+            },
+            {
+              "id": 205,
+              "name": "Employee205",
+              "salary": 1606,
+              "departmentId": 1
+            },
+            {
+              "id": 206,
+              "name": "Employee206",
+              "salary": 1643,
+              "departmentId": 2
+            },
+            {
+              "id": 207,
+              "name": "Employee207",
+              "salary": 1680,
+              "departmentId": 3
+            },
+            {
+              "id": 208,
+              "name": "Employee208",
+              "salary": 1717,
+              "departmentId": 4
+            },
+            {
+              "id": 209,
+              "name": "Employee209",
+              "salary": 1754,
+              "departmentId": 1
+            },
+            {
+              "id": 210,
+              "name": "Employee210",
+              "salary": 1791,
+              "departmentId": 2
+            },
+            {
+              "id": 211,
+              "name": "Employee211",
+              "salary": 1828,
+              "departmentId": 3
+            },
+            {
+              "id": 212,
+              "name": "Employee212",
+              "salary": 1865,
+              "departmentId": 4
+            },
+            {
+              "id": 213,
+              "name": "Employee213",
+              "salary": 1902,
+              "departmentId": 1
+            },
+            {
+              "id": 214,
+              "name": "Employee214",
+              "salary": 1939,
+              "departmentId": 2
+            },
+            {
+              "id": 215,
+              "name": "Employee215",
+              "salary": 1976,
+              "departmentId": 3
+            },
+            {
+              "id": 216,
+              "name": "Employee216",
+              "salary": 1016,
+              "departmentId": 4
+            },
+            {
+              "id": 217,
+              "name": "Employee217",
+              "salary": 1053,
+              "departmentId": 1
+            },
+            {
+              "id": 218,
+              "name": "Employee218",
+              "salary": 1090,
+              "departmentId": 2
+            },
+            {
+              "id": 219,
+              "name": "Employee219",
+              "salary": 1127,
+              "departmentId": 3
+            },
+            {
+              "id": 220,
+              "name": "Employee220",
+              "salary": 1164,
+              "departmentId": 4
+            },
+            {
+              "id": 221,
+              "name": "Employee221",
+              "salary": 1201,
+              "departmentId": 1
+            },
+            {
+              "id": 222,
+              "name": "Employee222",
+              "salary": 1238,
+              "departmentId": 2
+            },
+            {
+              "id": 223,
+              "name": "Employee223",
+              "salary": 1275,
+              "departmentId": 3
+            },
+            {
+              "id": 224,
+              "name": "Employee224",
+              "salary": 1312,
+              "departmentId": 4
+            },
+            {
+              "id": 225,
+              "name": "Employee225",
+              "salary": 1349,
+              "departmentId": 1
+            },
+            {
+              "id": 226,
+              "name": "Employee226",
+              "salary": 1386,
+              "departmentId": 2
+            },
+            {
+              "id": 227,
+              "name": "Employee227",
+              "salary": 1423,
+              "departmentId": 3
+            },
+            {
+              "id": 228,
+              "name": "Employee228",
+              "salary": 1460,
+              "departmentId": 4
+            },
+            {
+              "id": 229,
+              "name": "Employee229",
+              "salary": 1497,
+              "departmentId": 1
+            },
+            {
+              "id": 230,
+              "name": "Employee230",
+              "salary": 1534,
+              "departmentId": 2
+            },
+            {
+              "id": 231,
+              "name": "Employee231",
+              "salary": 1571,
+              "departmentId": 3
+            },
+            {
+              "id": 232,
+              "name": "Employee232",
+              "salary": 1608,
+              "departmentId": 4
+            },
+            {
+              "id": 233,
+              "name": "Employee233",
+              "salary": 1645,
+              "departmentId": 1
+            },
+            {
+              "id": 234,
+              "name": "Employee234",
+              "salary": 1682,
+              "departmentId": 2
+            },
+            {
+              "id": 235,
+              "name": "Employee235",
+              "salary": 1719,
+              "departmentId": 3
+            },
+            {
+              "id": 236,
+              "name": "Employee236",
+              "salary": 1756,
+              "departmentId": 4
+            },
+            {
+              "id": 237,
+              "name": "Employee237",
+              "salary": 1793,
+              "departmentId": 1
+            },
+            {
+              "id": 238,
+              "name": "Employee238",
+              "salary": 1830,
+              "departmentId": 2
+            },
+            {
+              "id": 239,
+              "name": "Employee239",
+              "salary": 1867,
+              "departmentId": 3
+            },
+            {
+              "id": 240,
+              "name": "Employee240",
+              "salary": 1904,
+              "departmentId": 4
+            },
+            {
+              "id": 241,
+              "name": "Employee241",
+              "salary": 1941,
+              "departmentId": 1
+            },
+            {
+              "id": 242,
+              "name": "Employee242",
+              "salary": 1978,
+              "departmentId": 2
+            },
+            {
+              "id": 243,
+              "name": "Employee243",
+              "salary": 1018,
+              "departmentId": 3
+            },
+            {
+              "id": 244,
+              "name": "Employee244",
+              "salary": 1055,
+              "departmentId": 4
+            },
+            {
+              "id": 245,
+              "name": "Employee245",
+              "salary": 1092,
+              "departmentId": 1
+            },
+            {
+              "id": 246,
+              "name": "Employee246",
+              "salary": 1129,
+              "departmentId": 2
+            },
+            {
+              "id": 247,
+              "name": "Employee247",
+              "salary": 1166,
+              "departmentId": 3
+            },
+            {
+              "id": 248,
+              "name": "Employee248",
+              "salary": 1203,
+              "departmentId": 4
+            },
+            {
+              "id": 249,
+              "name": "Employee249",
+              "salary": 1240,
+              "departmentId": 1
+            },
+            {
+              "id": 250,
+              "name": "Employee250",
+              "salary": 1277,
+              "departmentId": 2
+            },
+            {
+              "id": 251,
+              "name": "Employee251",
+              "salary": 1314,
+              "departmentId": 3
+            },
+            {
+              "id": 252,
+              "name": "Employee252",
+              "salary": 1351,
+              "departmentId": 4
+            },
+            {
+              "id": 253,
+              "name": "Employee253",
+              "salary": 1388,
+              "departmentId": 1
+            },
+            {
+              "id": 254,
+              "name": "Employee254",
+              "salary": 1425,
+              "departmentId": 2
+            },
+            {
+              "id": 255,
+              "name": "Employee255",
+              "salary": 1462,
+              "departmentId": 3
+            },
+            {
+              "id": 256,
+              "name": "Employee256",
+              "salary": 1499,
+              "departmentId": 4
+            }
+          ],
+          "Department": [
+            {
+              "id": 1,
+              "name": "Department1"
+            },
+            {
+              "id": 2,
+              "name": "Department2"
+            },
+            {
+              "id": 3,
+              "name": "Department3"
+            },
+            {
+              "id": 4,
+              "name": "Department4"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Department",
+          "Employee",
+          "Salary"
+        ],
+        "rows": [
+          [
+            "Department1",
+            "Employee161",
+            1972
+          ],
+          [
+            "Department1",
+            "Employee053",
+            1964
+          ],
+          [
+            "Department1",
+            "Employee241",
+            1941
+          ],
+          [
+            "Department2",
+            "Employee242",
+            1978
+          ],
+          [
+            "Department2",
+            "Employee134",
+            1970
+          ],
+          [
+            "Department2",
+            "Employee026",
+            1962
+          ],
+          [
+            "Department3",
+            "Employee215",
+            1976
+          ],
+          [
+            "Department3",
+            "Employee107",
+            1968
+          ],
+          [
+            "Department3",
+            "Employee187",
+            1937
+          ],
+          [
+            "Department4",
+            "Employee188",
+            1974
+          ],
+          [
+            "Department4",
+            "Employee080",
+            1966
+          ],
+          [
+            "Department4",
+            "Employee160",
+            1935
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

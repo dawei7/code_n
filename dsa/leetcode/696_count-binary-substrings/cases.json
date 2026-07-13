@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_696",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated paired runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "00110011"},
+      "expected": 6,
+      "tags": ["sample", "multiple-runs"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: fully alternating",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "10101"},
+      "expected": 4,
+      "tags": ["sample", "alternating"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two equal runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "000111"},
+      "expected": 3,
+      "tags": ["sample", "single-boundary"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: shortest valid string",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "01"},
+      "expected": 1,
+      "tags": ["trial", "minimum-valid"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: uniform string",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "0000"},
+      "expected": 0,
+      "tags": ["trial", "no-boundary"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: unequal adjacent runs",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "00111"},
+      "expected": 2,
+      "tags": ["hidden", "unequal-runs"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: three run contributions",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "11100011"},
+      "expected": 5,
+      "tags": ["hidden", "run-boundaries"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: one-character input",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "1"},
+      "expected": 0,
+      "tags": ["hidden", "single-character"]
+    }
+  ]
+}

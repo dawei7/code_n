@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_2441",
+  "cases": [
+    {
+      "id": "benchmark-largest-pair",
+      "name": "benchmark: largest valid pair is ten",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          -8,
+          8,
+          -6,
+          6,
+          -10,
+          9,
+          10
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

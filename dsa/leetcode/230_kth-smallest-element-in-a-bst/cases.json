@@ -1,0 +1,6 @@
+{"challenge_id":"lc_230","cases":[
+{"id":"sample-smallest","name":"sample: smallest value","kind":"sample","visible":true,"input":{"root":[3,1,4,null,2],"k":1},"expected":1,"tags":["sample","smallest"]},
+{"id":"sample-deeper","name":"sample: rank below root","kind":"sample","visible":true,"input":{"root":[5,3,6,2,4,null,null,1],"k":3},"expected":3,"tags":["sample","inorder"]},
+{"id":"trial-single","name":"single-node tree","kind":"trial","visible":true,"input":{"root":[9],"k":1},"expected":9,"tags":["boundary"]},
+{"id":"real-largest-skew","name":"hidden: largest in right-skewed tree","kind":"real","visible":false,"input":{"root":[1,null,2,null,3,null,4,null,5],"k":5},"expected":5,"tags":["hidden","skewed","largest"]}
+]}

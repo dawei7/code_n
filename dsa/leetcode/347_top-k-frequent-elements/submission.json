@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "347",
+  "frontend_id": "347",
+  "title_slug": "top-k-frequent-elements",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064527027",
+  "verified_at": "2026-07-12T03:47:30.854704+00:00"
+}

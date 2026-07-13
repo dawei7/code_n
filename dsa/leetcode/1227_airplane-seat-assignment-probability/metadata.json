@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_1227",
+  "source": "leetcode",
+  "frontend_id": "1227",
+  "slug": "airplane-seat-assignment-probability",
+  "title": "Airplane Seat Assignment Probability",
+  "difficulty": "Medium",
+  "acceptance_rate": 67.51587363800266,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Math",
+      "slug": "math"
+    },
+    {
+      "name": "Dynamic Programming",
+      "slug": "dynamic-programming"
+    },
+    {
+      "name": "Brainteaser",
+      "slug": "brainteaser"
+    },
+    {
+      "name": "Probability and Statistics",
+      "slug": "probability-and-statistics"
+    }
+  ],
+  "url": "https://leetcode.com/problems/airplane-seat-assignment-probability/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:microstrategy",
+    "leetcode_topic:brainteaser",
+    "leetcode_topic:dynamic-programming",
+    "leetcode_topic:math",
+    "leetcode_topic:probability-and-statistics"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:microstrategy",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "topic:brainteaser",
+    "topic:dynamic-programming",
+    "topic:math",
+    "topic:probability-and-statistics"
+  ],
+  "company_tags": [
+    {
+      "name": "Microstrategy",
+      "slug": "microstrategy"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Microstrategy",
+        "slug": "microstrategy",
+        "timesEncountered": 0
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

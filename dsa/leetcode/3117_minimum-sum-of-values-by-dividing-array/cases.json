@@ -1,0 +1,178 @@
+{
+  "challenge_id": "lc_3117",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four required partitions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          3,
+          3,
+          2
+        ],
+        "and_values": [
+          0,
+          3,
+          3,
+          2
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "partition"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three partitions over repeated sevens",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          7,
+          7,
+          7,
+          5
+        ],
+        "and_values": [
+          0,
+          7,
+          5
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: impossible single target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "and_values": [
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-one-partition",
+      "name": "trial: whole array forms one partition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          3,
+          3,
+          1
+        ],
+        "and_values": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-partition"
+      ]
+    },
+    {
+      "id": "trial-minimize-last-values",
+      "name": "trial: choose cuts that minimize ending values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          15,
+          7,
+          3,
+          3,
+          12,
+          4,
+          4
+        ],
+        "and_values": [
+          3,
+          4
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "minimize"
+      ]
+    },
+    {
+      "id": "real-many-zero-ands",
+      "name": "real: repeated zero targets with several valid cuts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          14,
+          12,
+          10,
+          8,
+          7,
+          3,
+          15,
+          1,
+          5
+        ],
+        "and_values": [
+          8,
+          3,
+          1
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "real",
+        "and"
+      ]
+    },
+    {
+      "id": "real-more-targets-than-possible",
+      "name": "real: too many required partitions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "and_values": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "impossible"
+      ]
+    }
+  ]
+}

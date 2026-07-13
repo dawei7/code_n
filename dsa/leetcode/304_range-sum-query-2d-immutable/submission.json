@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "304",
+  "frontend_id": "304",
+  "title_slug": "range-sum-query-2d-immutable",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064362015",
+  "verified_at": "2026-07-12T01:03:37.590725+00:00"
+}

@@ -1,0 +1,173 @@
+{
+  "challenge_id": "lc_2857",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two xor-distance pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "k": 5
+      },
+      "tags": [
+        "sample",
+        "xor"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate points with zero distance",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "k": 0
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ],
+      "expected": 10
+    },
+    {
+      "id": "trial-no-pair",
+      "name": "trial: no xor components sum to k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            6,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "k": 1
+      },
+      "tags": [
+        "trial",
+        "no-pair"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-multiple-splits",
+      "name": "trial: pairs come from different xor component splits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "k": 3
+      },
+      "tags": [
+        "trial",
+        "xor-splits"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "real-duplicates-and-mixed-points",
+      "name": "hidden: duplicates interact with nonzero xor distance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coordinates": [
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "k": 3
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ],
+      "expected": 6
+    }
+  ]
+}

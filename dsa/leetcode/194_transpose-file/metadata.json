@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_194",
+  "source": "leetcode",
+  "frontend_id": "194",
+  "slug": "transpose-file",
+  "title": "Transpose File",
+  "difficulty": "Medium",
+  "acceptance_rate": 32.41801437556154,
+  "category": "shell",
+  "category_title": "Shell",
+  "topics": [
+    {
+      "name": "Shell",
+      "slug": "shell"
+    }
+  ],
+  "url": "https://leetcode.com/problems/transpose-file/",
+  "supported_languages": [
+    "bash"
+  ],
+  "primary_language": "bash",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:shell",
+    "leetcode_company:google",
+    "leetcode_topic:shell"
+  ],
+  "tags": [
+    "category:shell",
+    "company:google",
+    "language:bash",
+    "leetcode",
+    "topic:shell"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "1": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 3
+      }
+    ],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

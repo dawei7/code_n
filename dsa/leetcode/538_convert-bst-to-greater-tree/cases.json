@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_538",
+  "cases": [
+    {"id":"sample-large","name":"sample: balanced tree with several levels","kind":"sample","visible":true,"input":{"root":[4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]},"expected":[30,36,21,36,35,26,15,null,null,null,33,null,null,null,8],"tags":["sample","balanced"]},
+    {"id":"sample-three","name":"sample: three-node tree","kind":"sample","visible":true,"input":{"root":[1,0,2]},"expected":[3,3,2],"tags":["sample","small"]},
+    {"id":"sample-right","name":"sample: root with one greater child","kind":"sample","visible":true,"input":{"root":[0,null,1]},"expected":[1,null,1],"tags":["sample","right-child"]},
+    {"id":"trial-single","name":"trial: one node remains unchanged","kind":"trial","visible":true,"input":{"root":[5]},"expected":[5],"tags":["trial","singleton"]},
+    {"id":"trial-left","name":"trial: minimum lies on a left chain","kind":"trial","visible":true,"input":{"root":[3,2,4,1]},"expected":[7,9,4,10],"tags":["trial","left-chain"]},
+    {"id":"hidden-negative","name":"hidden: negative and zero values","kind":"real","visible":false,"input":{"root":[-1,-2,0]},"expected":[-1,-3,0],"tags":["hidden","negative"]},
+    {"id":"hidden-right-skew","name":"hidden: increasing right-only chain","kind":"real","visible":false,"input":{"root":[1,null,2,null,3]},"expected":[6,null,5,null,3],"tags":["hidden","skewed"]}
+  ]
+}

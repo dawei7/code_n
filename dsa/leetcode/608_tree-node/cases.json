@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_608",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: root, inner, and leaf",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "id": 1,
+              "p_id": null
+            },
+            {
+              "id": 2,
+              "p_id": 1
+            },
+            {
+              "id": 3,
+              "p_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "type"
+        ],
+        "rows": [
+          [
+            1,
+            "Root"
+          ],
+          [
+            2,
+            "Inner"
+          ],
+          [
+            3,
+            "Leaf"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "classification"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one-node tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "id": 9,
+              "p_id": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "type"
+        ],
+        "rows": [
+          [
+            9,
+            "Root"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "classification"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: root with two leaves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "id": 1,
+              "p_id": null
+            },
+            {
+              "id": 2,
+              "p_id": 1
+            },
+            {
+              "id": 3,
+              "p_id": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "type"
+        ],
+        "rows": [
+          [
+            1,
+            "Root"
+          ],
+          [
+            2,
+            "Leaf"
+          ],
+          [
+            3,
+            "Leaf"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "classification"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: two-level branching",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "id": 10,
+              "p_id": null
+            },
+            {
+              "id": 4,
+              "p_id": 10
+            },
+            {
+              "id": 20,
+              "p_id": 10
+            },
+            {
+              "id": 3,
+              "p_id": 4
+            },
+            {
+              "id": 7,
+              "p_id": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "type"
+        ],
+        "rows": [
+          [
+            3,
+            "Leaf"
+          ],
+          [
+            4,
+            "Inner"
+          ],
+          [
+            7,
+            "Leaf"
+          ],
+          [
+            10,
+            "Root"
+          ],
+          [
+            20,
+            "Leaf"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "classification"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: nonconsecutive identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "id": 100,
+              "p_id": null
+            },
+            {
+              "id": 5,
+              "p_id": 100
+            },
+            {
+              "id": 77,
+              "p_id": 5
+            },
+            {
+              "id": 90,
+              "p_id": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "type"
+        ],
+        "rows": [
+          [
+            5,
+            "Inner"
+          ],
+          [
+            77,
+            "Leaf"
+          ],
+          [
+            90,
+            "Leaf"
+          ],
+          [
+            100,
+            "Root"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "classification"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: unsorted rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "id": 4,
+              "p_id": 2
+            },
+            {
+              "id": 1,
+              "p_id": null
+            },
+            {
+              "id": 3,
+              "p_id": 1
+            },
+            {
+              "id": 2,
+              "p_id": 1
+            },
+            {
+              "id": 5,
+              "p_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "type"
+        ],
+        "rows": [
+          [
+            1,
+            "Root"
+          ],
+          [
+            2,
+            "Inner"
+          ],
+          [
+            3,
+            "Leaf"
+          ],
+          [
+            4,
+            "Leaf"
+          ],
+          [
+            5,
+            "Leaf"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "classification"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: several inner nodes and leaves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "id": 8,
+              "p_id": null
+            },
+            {
+              "id": 3,
+              "p_id": 8
+            },
+            {
+              "id": 12,
+              "p_id": 8
+            },
+            {
+              "id": 1,
+              "p_id": 3
+            },
+            {
+              "id": 5,
+              "p_id": 3
+            },
+            {
+              "id": 10,
+              "p_id": 12
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "type"
+        ],
+        "rows": [
+          [
+            1,
+            "Leaf"
+          ],
+          [
+            3,
+            "Inner"
+          ],
+          [
+            5,
+            "Leaf"
+          ],
+          [
+            8,
+            "Root"
+          ],
+          [
+            10,
+            "Leaf"
+          ],
+          [
+            12,
+            "Inner"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "classification"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_66",
+  "cases": [
+    {"id": "sample-simple", "name": "sample: no carry chain", "kind": "sample", "visible": true, "input": {"digits": [1,2,3]}, "expected": [1,2,4], "tags": ["sample"]},
+    {"id": "sample-long", "name": "sample: increment final digit", "kind": "sample", "visible": true, "input": {"digits": [4,3,2,1]}, "expected": [4,3,2,2], "tags": ["sample"]},
+    {"id": "trial-single-nine", "name": "single-digit overflow", "kind": "trial", "visible": true, "input": {"digits": [9]}, "expected": [1,0], "tags": ["boundary", "carry"]},
+    {"id": "trial-partial-carry", "name": "carry through a suffix", "kind": "trial", "visible": true, "input": {"digits": [1,9,9]}, "expected": [2,0,0], "tags": ["carry"]},
+    {"id": "real-all-nine", "name": "hidden: carry through every digit", "kind": "real", "visible": false, "input": {"digits": [9,9,9,9,9]}, "expected": [1,0,0,0,0,0], "tags": ["hidden", "carry"]}
+  ]
+}

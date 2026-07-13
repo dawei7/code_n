@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_674",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: increase then reset",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          4,
+          7
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "reset"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: constant array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "equal-values"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: entire array increases",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "single-run"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: strictly decreasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: equality starts the best suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "equality-break"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: single element",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "single-element"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: negative runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -2,
+          -1,
+          0,
+          -3,
+          -2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: longest run in the middle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "middle-run"
+      ]
+    }
+  ]
+}
+

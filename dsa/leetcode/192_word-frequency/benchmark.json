@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_192",
+  "measurement_note": "Growing word files exercise tokenization, grouping, counting, and frequency sorting.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 word occurrences",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "stdin": "",
+        "files": {
+          "words.txt": "word00 word01 word00 word01 word00 word01 word00 word01\n"
+        }
+      },
+      "expected": "word01 4\nword00 4",
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 word occurrences",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "stdin": "",
+        "files": {
+          "words.txt": "word00 word01 word02 word03 word04 word05 word06 word07 word00 word01 word02 word03 word04 word05 word06 word07 word00 word01 word02 word03 word04 word05 word06 word07 word00 word01 word02 word03 word04 word05 word06 word07 word00 word01 word02 word03 word04 word05 word06 word07 word00 word01 word02 word03 word04 word05 word06 word07 word00 word01 word02 word03 word04 word05 word06 word07 word00 word01 word02 word03 word04 word05 word06 word07\n"
+        }
+      },
+      "expected": "word07 8\nword06 8\nword05 8\nword04 8\nword03 8\nword02 8\nword01 8\nword00 8",
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 word occurrences",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "stdin": "",
+        "files": {
+          "words.txt": "word00 word01 word02 word03 word04 word05 word06 word07 word08 word09 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word00 word01 word02 word03 word04 word05 word06 word07 word08 word09 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word00 word01 word02 word03 word04 word05 word06 word07 word08 word09 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word00 word01 word02 word03 word04 word05 word06 word07 word08 word09 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word00 word01 word02 word03 word04 word05 word06 word07 word08 word09 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word00 word01 word02 word03 word04 word05 word06 word07 word08 word09 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word00 word01 word02 word03 word04 word05 word06 word07 word08 word09 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word00 word01 word02 word03 word04 word05 word06 word07 word08 word09 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31\n"
+        }
+      },
+      "expected": "word31 8\nword30 8\nword29 8\nword28 8\nword27 8\nword26 8\nword25 8\nword24 8\nword23 8\nword22 8\nword21 8\nword20 8\nword19 8\nword18 8\nword17 8\nword16 8\nword15 8\nword14 8\nword13 8\nword12 8\nword11 8\nword10 8\nword09 8\nword08 8\nword07 8\nword06 8\nword05 8\nword04 8\nword03 8\nword02 8\nword01 8\nword00 8",
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

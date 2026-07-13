@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_341",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: sibling lists around an integer",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nested_list": [[1, 1], 2, [1, 1]]},
+      "expected": [1, 1, 2, 1, 1],
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: increasing nesting depth",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nested_list": [1, [4, [6]]]},
+      "expected": [1, 4, 6],
+      "tags": ["sample", "depth"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: only empty branches",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nested_list": [[], [[]]]},
+      "expected": [],
+      "tags": ["sample", "empty"]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: empty outer list",
+      "kind": "trial",
+      "visible": false,
+      "input": {"nested_list": []},
+      "expected": [],
+      "tags": ["trial", "empty"]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one integer",
+      "kind": "trial",
+      "visible": false,
+      "input": {"nested_list": [7]},
+      "expected": [7],
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "hidden-empty-between-values",
+      "name": "hidden: empty branches do not interrupt order",
+      "kind": "real",
+      "visible": false,
+      "input": {"nested_list": [[], 1, [[], 2], [[]], 3]},
+      "expected": [1, 2, 3],
+      "tags": ["hidden", "empty"]
+    },
+    {
+      "id": "hidden-signed-values",
+      "name": "hidden: zero and negative integers",
+      "kind": "real",
+      "visible": false,
+      "input": {"nested_list": [[-1], 0, [2, [-3]]]},
+      "expected": [-1, 0, 2, -3],
+      "tags": ["hidden", "signed"]
+    },
+    {
+      "id": "hidden-order",
+      "name": "hidden: preserve depth-first left-to-right order",
+      "kind": "real",
+      "visible": false,
+      "input": {"nested_list": [1, [2, [3], 4], 5]},
+      "expected": [1, 2, 3, 4, 5],
+      "tags": ["hidden", "order"]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_2541",
+  "cases": [
+    {
+      "id": "benchmark-two-negative-balancers",
+      "name": "benchmark: one large surplus balances two deficits",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          7,
+          3,
+          3
+        ],
+        "nums2": [
+          1,
+          6,
+          6
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

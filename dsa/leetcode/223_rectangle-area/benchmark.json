@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_223",
+  "measurement_note": "Coordinate scales confirm constant-work overlap arithmetic.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 coordinate units",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "ax1": 0,
+        "ay1": 0,
+        "ax2": 8,
+        "ay2": 8,
+        "bx1": 4,
+        "by1": 4,
+        "bx2": 12,
+        "by2": 12
+      },
+      "expected": 112,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 coordinate units",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "ax1": 0,
+        "ay1": 0,
+        "ax2": 64,
+        "ay2": 64,
+        "bx1": 32,
+        "by1": 32,
+        "bx2": 96,
+        "by2": 96
+      },
+      "expected": 7168,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 coordinate units",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "ax1": 0,
+        "ay1": 0,
+        "ax2": 256,
+        "ay2": 256,
+        "bx1": 128,
+        "by1": 128,
+        "bx2": 384,
+        "by2": 384
+      },
+      "expected": 114688,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

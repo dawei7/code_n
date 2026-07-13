@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_2717",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one and n cross during swaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "permutation"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one starts after n",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          1,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "overlap"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "trial-already-semi-ordered",
+      "name": "trial: already semi-ordered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          4,
+          2,
+          5
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-n-at-front",
+      "name": "trial: largest starts at the front",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "trial",
+        "swaps"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "real-reversed",
+      "name": "hidden: fully reversed permutation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "tags": [
+        "hidden",
+        "reversed"
+      ],
+      "expected": 9
+    }
+  ]
+}

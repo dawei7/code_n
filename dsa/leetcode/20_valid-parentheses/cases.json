@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_20",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one pair", "kind": "sample", "visible": true, "input": {"s": "()"}, "expected": true, "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: adjacent bracket types", "kind": "sample", "visible": true, "input": {"s": "()[]{}"}, "expected": true, "tags": ["sample"]},
+    {"id": "trial-mismatched-type", "name": "mismatched bracket types", "kind": "trial", "visible": true, "input": {"s": "(]"}, "expected": false, "tags": ["mismatch"]},
+    {"id": "trial-crossed-order", "name": "crossed nesting order", "kind": "trial", "visible": true, "input": {"s": "([)]"}, "expected": false, "tags": ["nesting"]},
+    {"id": "real-unclosed-opener", "name": "hidden: valid prefix has an unmatched opener", "kind": "real", "visible": false, "input": {"s": "{[]}"}, "expected": true, "tags": ["hidden", "nested"]},
+    {"id": "real-extra-opener", "name": "hidden: unmatched opening bracket", "kind": "real", "visible": false, "input": {"s": "(()"}, "expected": false, "tags": ["hidden", "unmatched"]}
+  ]
+}

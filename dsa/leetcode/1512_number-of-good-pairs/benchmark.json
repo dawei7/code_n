@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_1512",
+  "cases": [
+    {
+      "id": "benchmark-one-large-group",
+      "name": "benchmark: one group of ten equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 45,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

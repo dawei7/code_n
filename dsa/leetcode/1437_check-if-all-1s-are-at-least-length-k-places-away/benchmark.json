@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_1437",
+  "cases": [
+    {
+      "id": "benchmark-late-short-gap",
+      "name": "benchmark: final gap is too short",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

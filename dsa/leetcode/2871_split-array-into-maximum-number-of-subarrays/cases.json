@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_2871",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three zero-AND segments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          2,
+          0,
+          1,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "bitwise-and"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: total AND positive forces one segment",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          7,
+          1,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "positive-and"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-all-zero-values",
+      "name": "trial: each zero can stand alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "trial",
+        "zeros"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "trial-positive-identical-values",
+      "name": "trial: identical positive values still stay together",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7
+        ]
+      },
+      "tags": [
+        "trial",
+        "positive-and"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-many-reset-points",
+      "name": "hidden: greedy resets whenever running AND reaches zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          3,
+          0,
+          12,
+          10,
+          8,
+          1,
+          0,
+          5,
+          4
+        ]
+      },
+      "tags": [
+        "hidden",
+        "greedy"
+      ],
+      "expected": 3
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "challenge_id": "lc_1504",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three by three matrix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: mixed rectangular matrix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two by two all ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-two-row-mixed",
+      "name": "hidden: two rows with separated columns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

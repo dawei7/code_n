@@ -1,0 +1,6 @@
+{"challenge_id":"lc_234","cases":[
+{"id":"sample-even-palindrome","name":"sample: even palindrome","kind":"sample","visible":true,"input":{"head":[1,2,2,1]},"expected":true,"tags":["sample","even"]},
+{"id":"sample-mismatch","name":"sample: two unequal values","kind":"sample","visible":true,"input":{"head":[1,2]},"expected":false,"tags":["sample","mismatch"]},
+{"id":"trial-single","name":"single node","kind":"trial","visible":true,"input":{"head":[7]},"expected":true,"tags":["boundary"]},
+{"id":"real-odd-palindrome","name":"hidden: odd palindrome","kind":"real","visible":false,"input":{"head":[1,2,3,2,1]},"expected":true,"tags":["hidden","odd"]}
+]}

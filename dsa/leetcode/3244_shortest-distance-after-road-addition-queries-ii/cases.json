@@ -1,0 +1,153 @@
+{
+  "challenge_id": "lc_3244",
+  "cases": [
+    {
+      "id": "sample-non-crossing-shortcuts",
+      "name": "sample: non-crossing shortcuts remove path nodes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        2
+      ],
+      "tags": [
+        "sample",
+        "path"
+      ]
+    },
+    {
+      "id": "sample-contained-ignored",
+      "name": "sample: already bypassed segment stays ignored",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        2
+      ],
+      "tags": [
+        "sample",
+        "non-crossing"
+      ]
+    },
+    {
+      "id": "trial-no-effect-adjacent",
+      "name": "trial: adjacent road changes nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        4,
+        4
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-full-shortcut",
+      "name": "trial: full shortcut makes distance one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "queries": [
+          [
+            0,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "shortcut"
+      ]
+    },
+    {
+      "id": "real-segment-chain",
+      "name": "real: chain of disjoint shortcuts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 12,
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            10,
+            11
+          ]
+        ]
+      },
+      "expected": [
+        9,
+        7,
+        4,
+        4
+      ],
+      "tags": [
+        "real",
+        "path"
+      ]
+    }
+  ]
+}

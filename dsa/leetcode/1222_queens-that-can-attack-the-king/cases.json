@@ -1,0 +1,342 @@
+{
+  "challenge_id": "lc_1222",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: king in corner",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queens": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "king": [
+          0,
+          0
+        ]
+      },
+      "expected": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: nearby blockers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queens": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "king": [
+          3,
+          3
+        ]
+      },
+      "expected": [
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: crowded board",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queens": [
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            1,
+            7
+          ]
+        ],
+        "king": [
+          3,
+          4
+        ]
+      },
+      "expected": [
+        [
+          5,
+          4
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-single-diagonal",
+      "name": "hidden: single diagonal queen",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queens": [
+          [
+            1,
+            1
+          ]
+        ],
+        "king": [
+          0,
+          0
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

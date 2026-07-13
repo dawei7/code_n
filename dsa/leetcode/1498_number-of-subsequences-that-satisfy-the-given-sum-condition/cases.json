@@ -1,0 +1,84 @@
+{
+  "challenge_id": "lc_1498",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four valid subsequences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          6,
+          7
+        ],
+        "target": 9
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          6,
+          8
+        ],
+        "target": 10
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: many combinations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          3,
+          4,
+          6,
+          7
+        ],
+        "target": 12
+      },
+      "expected": 61,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-small-bruteforceable",
+      "name": "hidden: small sorted range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "target": 5
+      },
+      "expected": 10,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

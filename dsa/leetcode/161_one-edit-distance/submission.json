@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "161",
+  "frontend_id": "161",
+  "title_slug": "one-edit-distance",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064181181",
+  "verified_at": "2026-07-11T18:14:06.757382+00:00"
+}

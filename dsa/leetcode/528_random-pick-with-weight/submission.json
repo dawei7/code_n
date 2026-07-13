@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "912",
+  "frontend_id": "528",
+  "title_slug": "random-pick-with-weight",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065242403",
+  "verified_at": "2026-07-12T17:00:37.809692+00:00"
+}

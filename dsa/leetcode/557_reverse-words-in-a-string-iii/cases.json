@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_557",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: sentence with punctuation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "Let's take LeetCode contest"
+      },
+      "expected": "s'teL ekat edoCteeL tsetnoc",
+      "tags": [
+        "sample",
+        "word-reversal"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "Mr Ding"
+      },
+      "expected": "rM gniD",
+      "tags": [
+        "sample",
+        "word-reversal"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "a",
+      "tags": [
+        "sample",
+        "word-reversal"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: two ordinary words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "hello world"
+      },
+      "expected": "olleh dlrow",
+      "tags": [
+        "trial",
+        "multiple-words"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: equal-length words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab cd ef"
+      },
+      "expected": "ba dc fe",
+      "tags": [
+        "trial",
+        "multiple-words"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: apostrophe reverses with its word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "can't stop"
+      },
+      "expected": "t'nac pots",
+      "tags": [
+        "hidden",
+        "characters"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: capitalization moves within words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "A bc DEF"
+      },
+      "expected": "A cb FED",
+      "tags": [
+        "hidden",
+        "characters"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: one lowercase character",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "z"
+      },
+      "expected": "z",
+      "tags": [
+        "hidden",
+        "characters"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,79 @@
+{
+  "challenge_id": "lc_1442",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed xor values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          3,
+          1,
+          6,
+          7
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "prefix-xor"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no valid triplets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-repeated-same-value",
+      "name": "hidden: repeated equal values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

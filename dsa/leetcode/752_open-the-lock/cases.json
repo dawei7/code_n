@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_752",
+  "cases": [
+    {"id": "sample-1", "name": "sample: route around several deadends", "kind": "sample", "visible": true, "input": {"deadends": ["0201", "0101", "0102", "1212", "2002"], "target": "0202"}, "expected": 6, "tags": ["sample", "detour"]},
+    {"id": "sample-2", "name": "sample: one wrapped turn", "kind": "sample", "visible": true, "input": {"deadends": ["8888"], "target": "0009"}, "expected": 1, "tags": ["sample", "wraparound"]},
+    {"id": "sample-3", "name": "sample: target surrounded by deadends", "kind": "sample", "visible": true, "input": {"deadends": ["8887", "8889", "8878", "8898", "8788", "8988", "7888", "9888"], "target": "8888"}, "expected": -1, "tags": ["sample", "unreachable"]},
+    {"id": "trial-1", "name": "trial: target is the start", "kind": "trial", "visible": true, "input": {"deadends": [], "target": "0000"}, "expected": 0, "tags": ["trial", "zero-distance"]},
+    {"id": "trial-2", "name": "trial: start is blocked", "kind": "trial", "visible": true, "input": {"deadends": ["0000"], "target": "8888"}, "expected": -1, "tags": ["trial", "blocked-start"]},
+    {"id": "hidden-1", "name": "hidden: wrap first wheel backward", "kind": "real", "visible": false, "input": {"deadends": [], "target": "9000"}, "expected": 1, "tags": ["hidden", "wraparound"]},
+    {"id": "hidden-2", "name": "hidden: target itself is blocked", "kind": "real", "visible": false, "input": {"deadends": ["0001"], "target": "0001"}, "expected": -1, "tags": ["hidden", "blocked-target"]},
+    {"id": "hidden-3", "name": "hidden: turns required on every wheel", "kind": "real", "visible": false, "input": {"deadends": [], "target": "2222"}, "expected": 8, "tags": ["hidden", "multi-wheel"]}
+  ]
+}

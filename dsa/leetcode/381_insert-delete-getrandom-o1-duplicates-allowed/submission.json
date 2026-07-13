@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "381",
+  "frontend_id": "381",
+  "title_slug": "insert-delete-getrandom-o1-duplicates-allowed",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064653512",
+  "verified_at": "2026-07-12T06:12:27.646947+00:00"
+}

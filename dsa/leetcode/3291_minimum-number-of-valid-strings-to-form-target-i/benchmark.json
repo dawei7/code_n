@@ -1,0 +1,28 @@
+{
+  "challenge_id": "lc_3291",
+  "cases": [
+    {
+      "id": "benchmark-trie-dp-i",
+      "name": "benchmark: long target with prefix trie I",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+          "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+          "bcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabca",
+          "cabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabc",
+          "dabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabc",
+          "abcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcad"
+        ],
+        "target": "abcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcabcabcabcad"
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark",
+        "trie",
+        "dp"
+      ]
+    }
+  ]
+}

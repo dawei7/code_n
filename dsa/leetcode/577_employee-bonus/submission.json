@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "577",
+  "frontend_id": "577",
+  "title_slug": "employee-bonus",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065424656",
+  "verified_at": "2026-07-12T20:18:02.409390+00:00"
+}

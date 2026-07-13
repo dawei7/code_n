@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "754",
+  "frontend_id": "753",
+  "title_slug": "cracking-the-safe",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.crackSafe",
+  "verified_submission_id": "2065941447",
+  "verified_at": "2026-07-13T09:28:55.769249+00:00"
+}

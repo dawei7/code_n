@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_800",
+  "measurement_note": "Size is the number of ascending shorthand channel levels inspected before passing each target byte. Arithmetic rounding takes constant work; an incremental candidate scan grows with size.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: inspect 2 channel levels", "kind": "benchmark", "visible": false, "size": 2, "input": {"color": "#010101"}, "expected": "#000000", "tags": ["benchmark", "scaling", "low-channel"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: inspect 8 channel levels", "kind": "benchmark", "visible": false, "size": 8, "input": {"color": "#676767"}, "expected": "#666666", "tags": ["benchmark", "scaling", "middle-channel"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: inspect 16 channel levels", "kind": "benchmark", "visible": false, "size": 16, "input": {"color": "#efefef"}, "expected": "#eeeeee", "tags": ["benchmark", "scaling", "high-channel"]}
+  ]
+}

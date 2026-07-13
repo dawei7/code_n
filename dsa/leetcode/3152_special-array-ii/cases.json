@@ -1,0 +1,211 @@
+{
+  "challenge_id": "lc_3152",
+  "cases": [
+    {
+      "id": "sample-basic",
+      "name": "sample: mixed query answers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          1,
+          2,
+          6
+        ],
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        false,
+        true,
+        false
+      ],
+      "tags": [
+        "sample",
+        "queries"
+      ]
+    },
+    {
+      "id": "sample-singletons",
+      "name": "sample: singleton ranges are always special",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "sample",
+        "singletons"
+      ]
+    },
+    {
+      "id": "trial-boundary-violations",
+      "name": "trial: violations at both range boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          5,
+          7,
+          8
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-all-alternating",
+      "name": "trial: all queried ranges are special",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "valid"
+      ]
+    },
+    {
+      "id": "real-many-short-ranges",
+      "name": "real: many short ranges around violations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          7,
+          8,
+          9,
+          10,
+          12,
+          13,
+          15
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            6,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "real",
+        "mixed"
+      ]
+    }
+  ]
+}

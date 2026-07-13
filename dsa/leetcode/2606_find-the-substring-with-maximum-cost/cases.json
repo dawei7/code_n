@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_2606",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: expensive negative custom value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "adaa",
+        "chars": "d",
+        "vals": [
+          -1000
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "kadane"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: empty substring is best",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "chars": "abc",
+        "vals": [
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: negative c resets the run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "bcacc",
+        "chars": "c",
+        "vals": [
+          -1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-custom-positive-and-negative",
+      "name": "trial: custom values dominate alphabet cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "leetcode",
+        "chars": "lt",
+        "vals": [
+          100,
+          -100
+        ]
+      },
+      "expected": 110,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-negative-high-letter",
+      "name": "hidden: negative z leaves small positive suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzza",
+        "chars": "z",
+        "vals": [
+          -5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

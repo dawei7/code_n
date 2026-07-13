@@ -1,0 +1,48 @@
+{
+  "challenge_id": "lc_2759",
+  "source": "leetcode",
+  "frontend_id": "2759",
+  "slug": "convert-json-string-to-object",
+  "title": "Convert JSON String to Object",
+  "difficulty": "Hard",
+  "acceptance_rate": 62.189688096753656,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/convert-json-string-to-object/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript",
+    "leetcode_company:mongodb"
+  ],
+  "tags": [
+    "category:javascript",
+    "company:mongodb",
+    "language:javascript",
+    "leetcode"
+  ],
+  "company_tags": [
+    {
+      "name": "MongoDB",
+      "slug": "mongodb"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "MongoDB",
+        "slug": "mongodb",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

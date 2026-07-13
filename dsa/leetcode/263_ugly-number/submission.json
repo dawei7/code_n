@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "263",
+  "frontend_id": "263",
+  "title_slug": "ugly-number",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064289202",
+  "verified_at": "2026-07-11T20:43:14.274854+00:00"
+}

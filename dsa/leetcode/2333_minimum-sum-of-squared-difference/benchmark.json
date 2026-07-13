@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_2333",
+  "cases": [
+    {
+      "id": "benchmark-three-large-differences",
+      "name": "benchmark: distribute operations across large gaps",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          10,
+          20,
+          30
+        ],
+        "nums2": [
+          1,
+          2,
+          3
+        ],
+        "k1": 5,
+        "k2": 5
+      },
+      "expected": 694,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

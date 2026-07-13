@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2746",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: shared endpoints reduce concatenation length",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "ab",
+          "bc"
+        ]
+      },
+      "tags": [
+        "sample",
+        "dp"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: choose prepend or append order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "b"
+        ]
+      },
+      "tags": [
+        "sample",
+        "edge"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-no-overlap",
+      "name": "trial: no endpoint overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "cd",
+          "ef"
+        ]
+      },
+      "tags": [
+        "trial",
+        "no-overlap"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "trial-overlap-chain",
+      "name": "trial: chain of endpoint overlaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "ca",
+          "ad",
+          "db"
+        ]
+      },
+      "tags": [
+        "trial",
+        "chain"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "real-mixed-word-lengths",
+      "name": "hidden: mixed word lengths and endpoint choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "cab",
+          "bc",
+          "ca",
+          "aa",
+          "ab"
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 7
+    }
+  ]
+}

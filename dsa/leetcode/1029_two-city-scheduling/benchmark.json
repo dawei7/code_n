@@ -1,0 +1,51 @@
+{
+  "challenge_id": "lc_1029",
+  "cases": [
+    {
+      "id": "benchmark-eight-people",
+      "name": "benchmark: eight people",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "costs": [
+          [
+            100,
+            10
+          ],
+          [
+            20,
+            200
+          ],
+          [
+            30,
+            50
+          ],
+          [
+            400,
+            40
+          ],
+          [
+            60,
+            70
+          ],
+          [
+            10,
+            90
+          ],
+          [
+            200,
+            30
+          ],
+          [
+            55,
+            65
+          ]
+        ]
+      },
+      "expected": 265,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

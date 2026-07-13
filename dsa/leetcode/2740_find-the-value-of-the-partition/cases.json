@@ -1,0 +1,100 @@
+{
+  "challenge_id": "lc_2740",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: adjacent sorted values differ by one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "partition"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: sparse three values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1,
+          10
+        ]
+      },
+      "tags": [
+        "sample",
+        "partition"
+      ],
+      "expected": 9
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate values produce zero partition value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          3,
+          5,
+          9
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-negative-values",
+      "name": "trial: negative and positive values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -10,
+          0,
+          7,
+          -3
+        ]
+      },
+      "tags": [
+        "trial",
+        "negative"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "real-large-gap",
+      "name": "hidden: large values with a close pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000,
+          250,
+          251,
+          999,
+          10
+        ]
+      },
+      "tags": [
+        "hidden",
+        "large"
+      ],
+      "expected": 1
+    }
+  ]
+}

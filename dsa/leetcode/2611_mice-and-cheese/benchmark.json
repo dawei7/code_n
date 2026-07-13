@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_2611",
+  "cases": [
+    {
+      "id": "benchmark-original-sample",
+      "name": "benchmark: sample-sized reward arrays",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "reward1": [
+          1,
+          1,
+          3,
+          4
+        ],
+        "reward2": [
+          4,
+          4,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 15,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

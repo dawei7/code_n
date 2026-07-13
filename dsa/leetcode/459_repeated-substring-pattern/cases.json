@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_459",
+  "cases": [
+    {
+      "id": "sample-two-copies",
+      "name": "sample: two copies of a short block",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abab"},
+      "expected": true,
+      "tags": ["sample", "repeat"]
+    },
+    {
+      "id": "sample-no-repeat",
+      "name": "sample: border does not tile the string",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aba"},
+      "expected": false,
+      "tags": ["sample", "none"]
+    },
+    {
+      "id": "sample-four-copies",
+      "name": "sample: four copies of a three-character block",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abcabcabcabc"},
+      "expected": true,
+      "tags": ["sample", "repeat"]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "a"},
+      "expected": false,
+      "tags": ["trial", "single"]
+    },
+    {
+      "id": "trial-one-character-block",
+      "name": "trial: repeated one-character block",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "bb"},
+      "expected": true,
+      "tags": ["trial", "uniform"]
+    },
+    {
+      "id": "hidden-five-character-block",
+      "name": "hidden: nontrivial block repeated twice",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abaababaab"},
+      "expected": true,
+      "tags": ["hidden", "repeat"]
+    },
+    {
+      "id": "hidden-near-repeat",
+      "name": "hidden: long border without complete tiling",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aabaaba"},
+      "expected": false,
+      "tags": ["hidden", "border"]
+    }
+  ]
+}

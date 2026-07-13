@@ -1,0 +1,67 @@
+{
+  "challenge_id": "lc_3283",
+  "cases": [
+    {
+      "id": "benchmark-eleven-pawns",
+      "name": "benchmark: eleven-pawn minimax state",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "kx": 24,
+        "ky": 24,
+        "positions": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            8,
+            14
+          ],
+          [
+            12,
+            21
+          ],
+          [
+            16,
+            28
+          ],
+          [
+            20,
+            35
+          ],
+          [
+            24,
+            42
+          ],
+          [
+            28,
+            49
+          ],
+          [
+            32,
+            6
+          ],
+          [
+            36,
+            13
+          ],
+          [
+            1,
+            20
+          ]
+        ]
+      },
+      "expected": 124,
+      "tags": [
+        "benchmark",
+        "bfs",
+        "bitmask-dp"
+      ]
+    }
+  ]
+}

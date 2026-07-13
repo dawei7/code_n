@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_486",
+  "measurement_note": "Size is the number of scores. Score-difference dynamic programming evaluates each interval in constant transition time, while an absolute-score table that separately sums every interval performs cubic work.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: solve a 3-score game", "kind": "benchmark", "visible": false, "size": 3, "input": {"nums": [12, 49, 86]}, "expected": true, "tags": ["benchmark", "scaling", "odd-length"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: solve a 9-score game", "kind": "benchmark", "visible": false, "size": 9, "input": {"nums": [12, 49, 86, 26, 63, 3, 40, 77, 17]}, "expected": false, "tags": ["benchmark", "scaling", "odd-length"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: solve a 20-score game", "kind": "benchmark", "visible": false, "size": 20, "input": {"nums": [12, 49, 86, 26, 63, 3, 40, 77, 17, 54, 91, 31, 68, 8, 45, 82, 22, 59, 96, 36]}, "expected": true, "tags": ["benchmark", "scaling", "maximum-length"]}
+  ]
+}

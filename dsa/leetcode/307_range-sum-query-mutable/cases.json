@@ -1,0 +1,280 @@
+{
+  "challenge_id": "lc_307",
+  "cases": [
+    {
+      "id": "sample-update",
+      "name": "sample: update changes full sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          3,
+          5
+        ],
+        "n": 3,
+        "queries": [
+          [
+            "sum",
+            0,
+            2
+          ],
+          [
+            "update",
+            1,
+            2
+          ],
+          [
+            "sum",
+            0,
+            2
+          ]
+        ],
+        "q": 3
+      },
+      "expected": [
+        9,
+        8
+      ],
+      "tags": [
+        "sample",
+        "update"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one-value update",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          4
+        ],
+        "n": 1,
+        "queries": [
+          [
+            "sum",
+            0,
+            0
+          ],
+          [
+            "update",
+            0,
+            7
+          ],
+          [
+            "sum",
+            0,
+            0
+          ]
+        ],
+        "q": 3
+      },
+      "expected": [
+        4,
+        7
+      ],
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-two-ranges",
+      "name": "sample: update affects overlapping ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          4,
+          6,
+          8
+        ],
+        "n": 4,
+        "queries": [
+          [
+            "sum",
+            1,
+            3
+          ],
+          [
+            "update",
+            2,
+            1
+          ],
+          [
+            "sum",
+            0,
+            2
+          ],
+          [
+            "sum",
+            2,
+            3
+          ]
+        ],
+        "q": 4
+      },
+      "expected": [
+        18,
+        7,
+        9
+      ],
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-negative",
+      "name": "negative replacement and repeated index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          5,
+          -2,
+          4
+        ],
+        "n": 3,
+        "queries": [
+          [
+            "sum",
+            0,
+            2
+          ],
+          [
+            "update",
+            0,
+            -5
+          ],
+          [
+            "sum",
+            0,
+            1
+          ],
+          [
+            "update",
+            0,
+            -5
+          ],
+          [
+            "sum",
+            0,
+            0
+          ]
+        ],
+        "q": 5
+      },
+      "expected": [
+        7,
+        -7,
+        -5
+      ],
+      "tags": [
+        "negative",
+        "repeat-update"
+      ]
+    },
+    {
+      "id": "trial-active-prefix",
+      "name": "only the declared array prefix is active",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          100
+        ],
+        "n": 3,
+        "queries": [
+          [
+            "sum",
+            0,
+            2
+          ],
+          [
+            "update",
+            2,
+            8
+          ],
+          [
+            "sum",
+            1,
+            2
+          ]
+        ],
+        "q": 3
+      },
+      "expected": [
+        6,
+        10
+      ],
+      "tags": [
+        "active-prefix"
+      ]
+    },
+    {
+      "id": "real-interleaved",
+      "name": "hidden: interleaved boundary updates and sums",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          3,
+          1,
+          4,
+          1,
+          5
+        ],
+        "n": 5,
+        "queries": [
+          [
+            "sum",
+            0,
+            4
+          ],
+          [
+            "update",
+            4,
+            -5
+          ],
+          [
+            "sum",
+            3,
+            4
+          ],
+          [
+            "update",
+            0,
+            9
+          ],
+          [
+            "sum",
+            0,
+            2
+          ],
+          [
+            "sum",
+            0,
+            4
+          ]
+        ],
+        "q": 6
+      },
+      "expected": [
+        14,
+        -4,
+        14,
+        10
+      ],
+      "tags": [
+        "hidden",
+        "boundaries"
+      ]
+    }
+  ]
+}

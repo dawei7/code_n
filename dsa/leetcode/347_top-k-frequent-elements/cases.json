@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_347","cases":[
+{"id":"sample-1","name":"sample: two frequency leaders","kind":"sample","visible":true,"input":{"nums":[1,1,1,2,2,3],"k":2},"expected":[1,2],"validator":{"kind":"unordered_list"},"tags":["sample"]},
+{"id":"sample-2","name":"sample: one value","kind":"sample","visible":true,"input":{"nums":[1],"k":1},"expected":[1],"validator":{"kind":"unordered_list"},"tags":["sample","boundary"]},
+{"id":"sample-3","name":"sample: clear first and second place","kind":"sample","visible":true,"input":{"nums":[4,4,4,4,2,2,2,3],"k":2},"expected":[4,2],"validator":{"kind":"unordered_list"},"tags":["sample"]},
+{"id":"trial-negative","name":"trial: negative values","kind":"trial","visible":false,"input":{"nums":[-1,-1,2,2,2,3],"k":1},"expected":[2],"validator":{"kind":"unordered_list"},"tags":["trial","negative"]},
+{"id":"trial-all-distinct","name":"trial: return every distinct value","kind":"trial","visible":false,"input":{"nums":[5,6,7],"k":3},"expected":[5,6,7],"validator":{"kind":"unordered_list"},"tags":["trial","all-values"]},
+{"id":"hidden-four-ranks","name":"hidden: four distinct frequency ranks","kind":"real","visible":false,"input":{"nums":[1,1,1,1,2,2,2,3,3,4],"k":3},"expected":[1,2,3],"validator":{"kind":"unordered_list"},"tags":["hidden","ranking"]},
+{"id":"hidden-zero","name":"hidden: zero is most frequent","kind":"real","visible":false,"input":{"nums":[0,0,0,-2,-2,4],"k":2},"expected":[0,-2],"validator":{"kind":"unordered_list"},"tags":["hidden","zero"]},
+{"id":"hidden-late-leader","name":"hidden: most frequent value appears late","kind":"real","visible":false,"input":{"nums":[1,2,3,9,9,9,9,2,2],"k":2},"expected":[9,2],"validator":{"kind":"unordered_list"},"tags":["hidden","order"]}
+]}

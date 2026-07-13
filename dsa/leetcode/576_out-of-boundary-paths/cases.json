@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_576",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: corner of a two-by-two grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "maxMove": 2,
+        "startRow": 0,
+        "startColumn": 0
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: middle of a single row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 3,
+        "maxMove": 3,
+        "startRow": 0,
+        "startColumn": 1
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero move budget",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 4,
+        "maxMove": 0,
+        "startRow": 1,
+        "startColumn": 2
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-moves"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one-cell grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 1,
+        "maxMove": 5,
+        "startRow": 0,
+        "startColumn": 0
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: narrow grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 2,
+        "maxMove": 2,
+        "startRow": 0,
+        "startColumn": 0
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: center start",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "maxMove": 3,
+        "startRow": 1,
+        "startColumn": 1
+      },
+      "expected": 20,
+      "tags": [
+        "real",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: edge start with four moves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 2,
+        "n": 4,
+        "maxMove": 4,
+        "startRow": 0,
+        "startColumn": 2
+      },
+      "expected": 45,
+      "tags": [
+        "real",
+        "dynamic-programming"
+      ]
+    }
+  ]
+}

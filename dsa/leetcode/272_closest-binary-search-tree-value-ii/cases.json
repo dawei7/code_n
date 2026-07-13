@@ -1,0 +1,6 @@
+{"challenge_id":"lc_272","cases":[
+{"id":"sample-two","name":"sample: two closest values","kind":"sample","visible":true,"input":{"root":[4,2,5,1,3],"target":3.714286,"k":2},"expected":[3,4],"validator":{"kind":"unordered_list"},"tags":["sample","bst"]},
+{"id":"sample-single","name":"sample: only tree value","kind":"sample","visible":true,"input":{"root":[1],"target":0.0,"k":1},"expected":[1],"validator":{"kind":"unordered_list"},"tags":["sample","boundary"]},
+{"id":"trial-both-sides","name":"merge predecessors and successors","kind":"trial","visible":true,"input":{"root":[4,2,6,1,3,5,7],"target":4.5,"k":3},"expected":[3,4,5],"validator":{"kind":"unordered_list"},"tags":["merge"]},
+{"id":"real-all","name":"hidden: request every node","kind":"real","visible":false,"input":{"root":[2,1,3],"target":10.0,"k":3},"expected":[1,2,3],"validator":{"kind":"unordered_list"},"tags":["hidden","all-values"]}
+]}

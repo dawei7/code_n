@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_29",
+  "cases": [
+    {"id": "sample-1", "name": "sample: positive truncation", "kind": "sample", "visible": true, "input": {"dividend": 10, "divisor": 3}, "expected": 3, "tags": ["sample", "truncate"]},
+    {"id": "sample-2", "name": "sample: negative truncation toward zero", "kind": "sample", "visible": true, "input": {"dividend": 7, "divisor": -3}, "expected": -2, "tags": ["sample", "negative"]},
+    {"id": "trial-overflow", "name": "only overflowing quotient clamps", "kind": "trial", "visible": true, "input": {"dividend": -2147483648, "divisor": -1}, "expected": 2147483647, "tags": ["overflow", "boundary"]},
+    {"id": "trial-zero-dividend", "name": "zero dividend", "kind": "trial", "visible": true, "input": {"dividend": 0, "divisor": 5}, "expected": 0, "tags": ["zero"]},
+    {"id": "real-minimum-divisor", "name": "hidden: equal minimum magnitudes", "kind": "real", "visible": false, "input": {"dividend": -2147483648, "divisor": -2147483648}, "expected": 1, "tags": ["hidden", "boundary"]}
+  ]
+}

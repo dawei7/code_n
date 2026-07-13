@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 distinct characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": " !\"#$%&'()*+,-./"
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 48 distinct characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "s": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNO"
+      },
+      "expected": 48,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 94 distinct characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 94,
+      "input": {
+        "s": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}"
+      },
+      "expected": 94,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,6 @@
+{"challenge_id":"lc_269","cases":[
+{"id":"sample-order","name":"sample: unique alien order","kind":"sample","visible":true,"input":{"words":["wrt","wrf","er","ett","rftt"]},"expected":"wertf","tags":["sample","topological-sort"]},
+{"id":"sample-cycle","name":"sample: cyclic constraints","kind":"sample","visible":true,"input":{"words":["z","x","z"]},"expected":"","tags":["sample","cycle"]},
+{"id":"trial-prefix","name":"longer word cannot precede its prefix","kind":"trial","visible":true,"input":{"words":["abc","ab"]},"expected":"","tags":["invalid-prefix"]},
+{"id":"real-chain","name":"hidden: simple unique chain","kind":"real","visible":false,"input":{"words":["a","b","c","d"]},"expected":"abcd","tags":["hidden","chain"]}
+]}

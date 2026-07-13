@@ -1,0 +1,43 @@
+{
+  "challenge_id": "lc_1333",
+  "cases": [
+    {
+      "id": "benchmark-no-match",
+      "name": "benchmark: no restaurants match",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "restaurants": [
+          [
+            10,
+            5,
+            1,
+            20,
+            5
+          ],
+          [
+            11,
+            5,
+            1,
+            20,
+            5
+          ],
+          [
+            12,
+            7,
+            1,
+            30,
+            1
+          ]
+        ],
+        "vegan_friendly": 1,
+        "max_price": 10,
+        "max_distance": 5
+      },
+      "expected": [],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_338",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: counts through two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2},
+      "expected": [0, 1, 1],
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: counts through five",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 5},
+      "expected": [0, 1, 1, 2, 1, 2],
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 0},
+      "expected": [0],
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "trial-one",
+      "name": "trial: first positive integer",
+      "kind": "trial",
+      "visible": false,
+      "input": {"n": 1},
+      "expected": [0, 1],
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "trial-power-of-two",
+      "name": "trial: cross a power-of-two boundary",
+      "kind": "trial",
+      "visible": false,
+      "input": {"n": 8},
+      "expected": [0, 1, 1, 2, 1, 2, 2, 3, 1],
+      "tags": ["trial", "power-of-two"]
+    },
+    {
+      "id": "hidden-four-bit-block",
+      "name": "hidden: complete four-bit range",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 15},
+      "expected": [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4],
+      "tags": ["hidden", "block"]
+    },
+    {
+      "id": "hidden-next-power",
+      "name": "hidden: count resets at sixteen",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 16},
+      "expected": [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4, 1],
+      "tags": ["hidden", "power-of-two"]
+    },
+    {
+      "id": "hidden-five-bit-block",
+      "name": "hidden: complete five-bit range",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 31},
+      "expected": [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5],
+      "tags": ["hidden", "block"]
+    }
+  ]
+}

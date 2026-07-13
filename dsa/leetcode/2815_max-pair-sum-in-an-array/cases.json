@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_2815",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: pair with max digit seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          51,
+          71,
+          17,
+          24,
+          42
+        ]
+      },
+      "tags": [
+        "sample",
+        "digits"
+      ],
+      "expected": 88
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no matching max digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "none"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-large-digits",
+      "name": "trial: choose largest pair in digit bucket",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          99,
+          19,
+          91,
+          55,
+          65
+        ]
+      },
+      "tags": [
+        "trial",
+        "bucket"
+      ],
+      "expected": 190
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value has no pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          88
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "real-mixed-buckets",
+      "name": "hidden: mixed digit buckets",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          123,
+          456,
+          654,
+          321,
+          98,
+          89
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 1110
+    }
+  ]
+}

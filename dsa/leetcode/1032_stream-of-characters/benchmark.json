@@ -1,0 +1,45 @@
+{
+  "challenge_id": "lc_1032",
+  "cases": [
+    {
+      "id": "benchmark-longer-words",
+      "name": "benchmark: longer dictionary words",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "hello",
+          "world",
+          "leetcode"
+        ],
+        "queries": [
+          "h",
+          "e",
+          "l",
+          "l",
+          "o",
+          "w",
+          "o",
+          "r",
+          "l",
+          "d"
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

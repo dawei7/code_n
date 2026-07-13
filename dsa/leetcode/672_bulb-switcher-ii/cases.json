@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_672",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one bulb and one press", "kind": "sample", "visible": true, "input": {"n": 1, "presses": 1}, "expected": 2, "tags": ["sample", "one-bulb"]},
+    {"id": "sample-2", "name": "sample: two bulbs and one press", "kind": "sample", "visible": true, "input": {"n": 2, "presses": 1}, "expected": 3, "tags": ["sample", "one-press"]},
+    {"id": "sample-3", "name": "sample: three bulbs and two presses", "kind": "sample", "visible": true, "input": {"n": 3, "presses": 2}, "expected": 7, "tags": ["sample", "two-presses"]},
+    {"id": "trial-1", "name": "trial: no presses", "kind": "trial", "visible": true, "input": {"n": 100, "presses": 0}, "expected": 1, "tags": ["trial", "zero-presses"]},
+    {"id": "trial-2", "name": "trial: all three-bit states", "kind": "trial", "visible": true, "input": {"n": 3, "presses": 3}, "expected": 8, "tags": ["trial", "saturated"]},
+    {"id": "hidden-1", "name": "hidden: two bulbs after cancelling presses", "kind": "real", "visible": false, "input": {"n": 2, "presses": 4}, "expected": 4, "tags": ["hidden", "two-bulbs"]},
+    {"id": "hidden-2", "name": "hidden: one bulb after many presses", "kind": "real", "visible": false, "input": {"n": 1, "presses": 1000}, "expected": 2, "tags": ["hidden", "large-press-count"]},
+    {"id": "hidden-3", "name": "hidden: many bulbs after two presses", "kind": "real", "visible": false, "input": {"n": 1000, "presses": 2}, "expected": 7, "tags": ["hidden", "large-n"]}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_647",
+  "cases": [
+    {"id": "sample-1", "name": "sample: only singleton palindromes", "kind": "sample", "visible": true, "input": {"s": "abc"}, "expected": 3, "tags": ["sample", "singletons"]},
+    {"id": "sample-2", "name": "sample: repeated characters", "kind": "sample", "visible": true, "input": {"s": "aaa"}, "expected": 6, "tags": ["sample", "overlap"]},
+    {"id": "trial-1", "name": "trial: one character", "kind": "trial", "visible": true, "input": {"s": "a"}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: even outer palindrome", "kind": "trial", "visible": true, "input": {"s": "abba"}, "expected": 6, "tags": ["trial", "even"]},
+    {"id": "hidden-1", "name": "hidden: odd nested palindromes", "kind": "real", "visible": false, "input": {"s": "racecar"}, "expected": 10, "tags": ["hidden", "odd"]},
+    {"id": "hidden-2", "name": "hidden: four equal characters", "kind": "real", "visible": false, "input": {"s": "aaaa"}, "expected": 10, "tags": ["hidden", "all-equal"]},
+    {"id": "hidden-3", "name": "hidden: repeated text at different positions", "kind": "real", "visible": false, "input": {"s": "ababa"}, "expected": 9, "tags": ["hidden", "overlap"]}
+  ]
+}

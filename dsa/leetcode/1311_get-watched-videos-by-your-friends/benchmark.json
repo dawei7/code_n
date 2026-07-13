@@ -1,0 +1,63 @@
+{
+  "challenge_id": "lc_1311",
+  "cases": [
+    {
+      "id": "benchmark-frequency-order",
+      "name": "benchmark: frequency then lexical order",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "watched_videos": [
+          [
+            "m",
+            "n"
+          ],
+          [
+            "n"
+          ],
+          [
+            "m"
+          ],
+          [
+            "a",
+            "n"
+          ],
+          [
+            "a"
+          ]
+        ],
+        "friends": [
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            3,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        "id": 0,
+        "level": 2
+      },
+      "expected": [
+        "n",
+        "a"
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

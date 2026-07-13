@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_2606",
+  "cases": [
+    {
+      "id": "benchmark-mixed-custom-tail",
+      "name": "benchmark: mixed custom tail values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "abcxyz",
+        "chars": "xyz",
+        "vals": [
+          10,
+          -20,
+          30
+        ]
+      },
+      "expected": 30,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

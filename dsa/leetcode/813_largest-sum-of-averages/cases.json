@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_813",
+  "cases": [
+    {"id": "sample-1", "name": "sample: isolate large endpoints", "kind": "sample", "visible": true, "input": {"nums": [9, 1, 2, 3, 9], "k": 3}, "expected": 20.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "partition"]},
+    {"id": "sample-2", "name": "sample: four increasing groups", "kind": "sample", "visible": true, "input": {"nums": [1, 2, 3, 4, 5, 6, 7], "k": 4}, "expected": 20.5, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "partition"]},
+    {"id": "sample-3", "name": "sample: one full-array group", "kind": "sample", "visible": true, "input": {"nums": [1, 2, 3], "k": 1}, "expected": 2.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "one-group"]},
+    {"id": "trial-1", "name": "trial: singleton", "kind": "trial", "visible": true, "input": {"nums": [7], "k": 1}, "expected": 7.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: every value is its own group", "kind": "trial", "visible": true, "input": {"nums": [1, 2, 3], "k": 3}, "expected": 6.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "all-groups"]},
+    {"id": "trial-3", "name": "trial: isolate leading outlier", "kind": "trial", "visible": true, "input": {"nums": [10, 1, 1, 1], "k": 2}, "expected": 11.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "outlier"]},
+    {"id": "hidden-1", "name": "hidden: varied seven-value sequence", "kind": "real", "visible": false, "input": {"nums": [4, 1, 7, 5, 6, 2, 3], "k": 4}, "expected": 18.166666666666668, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["hidden", "partition"]},
+    {"id": "hidden-2", "name": "hidden: equal values", "kind": "real", "visible": false, "input": {"nums": [2, 2, 2, 2], "k": 3}, "expected": 6.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["hidden", "uniform"]},
+    {"id": "hidden-3", "name": "hidden: isolate one endpoint outlier", "kind": "real", "visible": false, "input": {"nums": [100, 1, 1, 1, 100], "k": 2}, "expected": 125.75, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["hidden", "outliers"]}
+  ]
+}

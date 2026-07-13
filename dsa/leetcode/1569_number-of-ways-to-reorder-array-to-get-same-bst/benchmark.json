@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1569",
+  "cases": [
+    {
+      "id": "benchmark-perfect-seven-node-tree",
+      "name": "benchmark: perfect seven-node tree",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          2,
+          1,
+          3,
+          6,
+          5,
+          7
+        ]
+      },
+      "expected": 79,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

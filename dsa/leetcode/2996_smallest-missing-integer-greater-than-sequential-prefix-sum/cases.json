@@ -1,0 +1,97 @@
+{
+  "challenge_id": "lc_2996",
+  "cases": [
+    {
+      "id": "sample-prefix-sum-missing",
+      "name": "sample: prefix sum is missing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          2,
+          5
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-skip-existing-values",
+      "name": "sample: skip existing values after prefix sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          12,
+          14,
+          13
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-short-prefix",
+      "name": "trial: short sequential prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "corrected-doc-case"
+      ]
+    },
+    {
+      "id": "trial-prefix-sum-present",
+      "name": "trial: prefix sum appears later",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          5,
+          9,
+          10,
+          11
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "set-lookup"
+      ]
+    },
+    {
+      "id": "real-single-value",
+      "name": "real: one value only",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

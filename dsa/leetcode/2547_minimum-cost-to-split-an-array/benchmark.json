@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_2547",
+  "cases": [
+    {
+      "id": "benchmark-all-equal",
+      "name": "benchmark: repeated equal values are cheaper when split",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

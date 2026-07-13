@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_78",
+  "measurement_note": "Input sizes span the legal domain and produce exactly 2^n outputs; runtime is necessarily output-sensitive, and the benchmark verifies complete power-set growth.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 2 subsets", "kind": "benchmark", "visible": false, "size": 1, "input": {"nums": [1]}, "expected": null, "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 subsets", "kind": "benchmark", "visible": false, "size": 4, "input": {"nums": [1,2,3,4]}, "expected": null, "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 1024 subsets", "kind": "benchmark", "visible": false, "size": 10, "input": {"nums": [1,2,3,4,5,6,7,8,9,10]}, "expected": null, "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scale-large"]}
+  ]
+}

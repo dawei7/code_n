@@ -1,0 +1,5 @@
+{"schema_version":1,"challenge_id":"lc_233","measurement_note":"Size is the number of decimal digits; all-nines inputs exercise every position and have a closed-form expected count.","cases":[
+{"id":"benchmark-scale-1","name":"benchmark: 1 digit","kind":"benchmark","visible":false,"size":1,"input":{"n":9},"expected":1,"tags":["benchmark","scale-small"]},
+{"id":"benchmark-scale-2","name":"benchmark: 4 digits","kind":"benchmark","visible":false,"size":4,"input":{"n":9999},"expected":4000,"tags":["benchmark","scale-medium"]},
+{"id":"benchmark-scale-3","name":"benchmark: 9 digits","kind":"benchmark","visible":false,"size":9,"input":{"n":999999999},"expected":900000000,"tags":["benchmark","scale-large"]}
+]}

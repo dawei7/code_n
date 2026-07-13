@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_3292",
+  "cases": [
+    {
+      "id": "sample-prefix-composition-ii",
+      "name": "sample: prefixes compose target II",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "aaaaa",
+          "bcfg"
+        ],
+        "target": "abcdabc"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "trie"
+      ]
+    },
+    {
+      "id": "sample-impossible-ii",
+      "name": "sample: impossible target II",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcdef"
+        ],
+        "target": "xyz"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-greedy-counterexample",
+      "name": "trial: interval-cover greedy counterexample",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "bbb",
+          "abc",
+          "aba",
+          "aaa",
+          "ccbba"
+        ],
+        "target": "abbccab"
+      },
+      "expected": 4,
+      "tags": [
+        "counterexample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-single-letter-prefixes",
+      "name": "trial: single-letter prefixes cover all",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ax",
+          "by",
+          "cz"
+        ],
+        "target": "abc"
+      },
+      "expected": 3,
+      "tags": [
+        "prefix"
+      ]
+    },
+    {
+      "id": "real-overlapping-prefixes-ii",
+      "name": "real: longer hidden prefix cover",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "leet",
+          "leetcode",
+          "code",
+          "co",
+          "deer",
+          "target"
+        ],
+        "target": "leetcodeleetco"
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "greedy"
+      ]
+    }
+  ]
+}

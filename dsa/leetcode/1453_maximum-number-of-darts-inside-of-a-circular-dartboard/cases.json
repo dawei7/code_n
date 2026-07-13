@@ -1,0 +1,134 @@
+{
+  "challenge_id": "lc_1453",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four points on circle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "darts": [
+          [
+            -2,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            -2
+          ]
+        ],
+        "r": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "geometry"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: five darts fit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "darts": [
+          [
+            -3,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "r": 5
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two of three darts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "darts": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            1,
+            -1
+          ]
+        ],
+        "r": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-collinear-cluster",
+      "name": "hidden: best circle covers three collinear points",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "darts": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "r": 1
+      },
+      "expected": 3,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_779",
+  "cases": [
+    {"id": "sample-1", "name": "sample: first row", "kind": "sample", "visible": true, "input": {"n": 1, "k": 1}, "expected": 0, "tags": ["sample", "root"]},
+    {"id": "sample-2", "name": "sample: first child", "kind": "sample", "visible": true, "input": {"n": 2, "k": 1}, "expected": 0, "tags": ["sample", "left-child"]},
+    {"id": "sample-3", "name": "sample: second child", "kind": "sample", "visible": true, "input": {"n": 2, "k": 2}, "expected": 1, "tags": ["sample", "right-child"]},
+    {"id": "trial-1", "name": "trial: middle of third row", "kind": "trial", "visible": true, "input": {"n": 3, "k": 3}, "expected": 1, "tags": ["trial", "set-bit-parity"]},
+    {"id": "trial-2", "name": "trial: odd parity in fourth row", "kind": "trial", "visible": true, "input": {"n": 4, "k": 5}, "expected": 1, "tags": ["trial", "set-bit-parity"]},
+    {"id": "trial-3", "name": "trial: last symbol of fourth row", "kind": "trial", "visible": true, "input": {"n": 4, "k": 8}, "expected": 1, "tags": ["trial", "last-position"]},
+    {"id": "hidden-1", "name": "hidden: first position of largest row", "kind": "real", "visible": false, "input": {"n": 30, "k": 1}, "expected": 0, "tags": ["hidden", "large-row"]},
+    {"id": "hidden-2", "name": "hidden: last position of largest row", "kind": "real", "visible": false, "input": {"n": 30, "k": 536870912}, "expected": 1, "tags": ["hidden", "large-row", "last-position"]},
+    {"id": "hidden-3", "name": "hidden: even parity near row end", "kind": "real", "visible": false, "input": {"n": 30, "k": 536870911}, "expected": 0, "tags": ["hidden", "large-row", "set-bit-parity"]}
+  ]
+}

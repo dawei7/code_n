@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_521",
+  "cases": [
+    {"id": "sample-equal-length-different", "name": "sample: different complete strings are uncommon", "kind": "sample", "visible": true, "input": {"a": "aba", "b": "cdc"}, "expected": 3, "tags": ["sample", "equal-length"]},
+    {"id": "sample-repeated-different", "name": "sample: repeated characters still differ", "kind": "sample", "visible": true, "input": {"a": "aaa", "b": "bbb"}, "expected": 3, "tags": ["sample", "repeated"]},
+    {"id": "sample-identical", "name": "sample: identical strings have no uncommon subsequence", "kind": "sample", "visible": true, "input": {"a": "aaa", "b": "aaa"}, "expected": -1, "tags": ["sample", "identical"]},
+    {"id": "trial-single-different", "name": "trial: different one-character strings", "kind": "trial", "visible": true, "input": {"a": "a", "b": "b"}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "trial-different-lengths", "name": "trial: longer whole string is uncommon", "kind": "trial", "visible": true, "input": {"a": "abcd", "b": "abc"}, "expected": 4, "tags": ["trial", "different-length"]},
+    {"id": "hidden-single-identical", "name": "hidden: identical single characters", "kind": "real", "visible": false, "input": {"a": "z", "b": "z"}, "expected": -1, "tags": ["hidden", "identical"]},
+    {"id": "hidden-prefix", "name": "hidden: one input is a prefix of the longer one", "kind": "real", "visible": false, "input": {"a": "xy", "b": "xyzxyz"}, "expected": 6, "tags": ["hidden", "different-length"]}
+  ]
+}

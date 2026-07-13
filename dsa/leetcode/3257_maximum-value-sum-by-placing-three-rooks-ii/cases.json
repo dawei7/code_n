@@ -1,0 +1,204 @@
+{
+  "challenge_id": "lc_3257",
+  "cases": [
+    {
+      "id": "sample-negative-mix-ii",
+      "name": "sample: choose around negative cells II",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            -3,
+            1,
+            1,
+            1
+          ],
+          [
+            -3,
+            1,
+            -3,
+            1
+          ],
+          [
+            -3,
+            2,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-ascending-ii",
+      "name": "sample: ascending 3 by 3 II",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-column-conflicts",
+      "name": "trial: best cells share columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            100,
+            1,
+            1,
+            1
+          ],
+          [
+            99,
+            2,
+            2,
+            2
+          ],
+          [
+            98,
+            3,
+            3,
+            3
+          ],
+          [
+            97,
+            4,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 107,
+      "tags": [
+        "conflict"
+      ]
+    },
+    {
+      "id": "trial-wide-negative",
+      "name": "trial: wide board with negatives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            4,
+            -8,
+            6,
+            1,
+            9
+          ],
+          [
+            -5,
+            7,
+            -2,
+            8,
+            0
+          ],
+          [
+            3,
+            10,
+            -9,
+            2,
+            11
+          ],
+          [
+            -1,
+            5,
+            12,
+            -4,
+            6
+          ]
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "wide",
+        "negative"
+      ]
+    },
+    {
+      "id": "real-medium-conflicts",
+      "name": "real: medium mixed conflicts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "board": [
+          [
+            20,
+            1,
+            1,
+            19,
+            2
+          ],
+          [
+            18,
+            17,
+            3,
+            4,
+            5
+          ],
+          [
+            16,
+            6,
+            15,
+            7,
+            8
+          ],
+          [
+            9,
+            14,
+            10,
+            13,
+            11
+          ],
+          [
+            12,
+            0,
+            -1,
+            21,
+            -2
+          ],
+          [
+            22,
+            -3,
+            23,
+            -4,
+            24
+          ]
+        ]
+      },
+      "expected": 65,
+      "tags": [
+        "real",
+        "conflict"
+      ]
+    }
+  ]
+}

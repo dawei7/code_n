@@ -1,0 +1,120 @@
+{
+  "challenge_id": "lc_302",
+  "cases": [
+    {
+      "id": "sample-component",
+      "name": "sample: connected component spans three rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "image": [
+          "0010",
+          "0110",
+          "0100"
+        ],
+        "x": 0,
+        "y": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "component"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one black pixel",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "image": [
+          "1"
+        ],
+        "x": 0,
+        "y": 0
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-horizontal",
+      "name": "sample: horizontal component",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "image": [
+          "01110"
+        ],
+        "x": 0,
+        "y": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "one-row"
+      ]
+    },
+    {
+      "id": "trial-vertical",
+      "name": "vertical component",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": [
+          "1",
+          "1",
+          "1"
+        ],
+        "x": 1,
+        "y": 0
+      },
+      "expected": 3,
+      "tags": [
+        "one-column"
+      ]
+    },
+    {
+      "id": "trial-irregular",
+      "name": "irregular connected component",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": [
+          "0100",
+          "1110",
+          "0010"
+        ],
+        "x": 1,
+        "y": 1
+      },
+      "expected": 9,
+      "tags": [
+        "irregular"
+      ]
+    },
+    {
+      "id": "real-asymmetric",
+      "name": "hidden: asymmetric component inside white border",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "image": [
+          "00000",
+          "00110",
+          "01110",
+          "01000"
+        ],
+        "x": 2,
+        "y": 2
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "asymmetric"
+      ]
+    }
+  ]
+}

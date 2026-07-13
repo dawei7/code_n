@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_2416",
+  "cases": [
+    {
+      "id": "benchmark-overlapping-families",
+      "name": "benchmark: overlapping app and bat families",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "apple",
+          "app",
+          "ape",
+          "bat",
+          "bath"
+        ]
+      },
+      "expected": [
+        10,
+        8,
+        7,
+        6,
+        7
+      ],
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

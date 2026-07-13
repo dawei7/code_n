@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_789",
+  "cases": [
+    {"id": "sample-1", "name": "sample: player reaches target first", "kind": "sample", "visible": true, "input": {"ghosts": [[1, 0], [0, 3]], "target": [0, 1]}, "expected": true, "tags": ["sample", "safe"]},
+    {"id": "sample-2", "name": "sample: ghost reaches target first", "kind": "sample", "visible": true, "input": {"ghosts": [[1, 0]], "target": [2, 0]}, "expected": false, "tags": ["sample", "earlier-ghost"]},
+    {"id": "sample-3", "name": "sample: tied arrival", "kind": "sample", "visible": true, "input": {"ghosts": [[2, 0]], "target": [1, 0]}, "expected": false, "tags": ["sample", "tie"]},
+    {"id": "trial-1", "name": "trial: distant ghost", "kind": "trial", "visible": true, "input": {"ghosts": [[10, 10]], "target": [1, 2]}, "expected": true, "tags": ["trial", "safe"]},
+    {"id": "trial-2", "name": "trial: ghost begins at target", "kind": "trial", "visible": true, "input": {"ghosts": [[3, -2]], "target": [3, -2]}, "expected": false, "tags": ["trial", "ghost-at-target"]},
+    {"id": "trial-3", "name": "trial: target is origin", "kind": "trial", "visible": true, "input": {"ghosts": [[1, 0], [0, -1]], "target": [0, 0]}, "expected": true, "tags": ["trial", "zero-distance"]},
+    {"id": "hidden-1", "name": "hidden: negative target and safe ghost", "kind": "real", "visible": false, "input": {"ghosts": [[5, 5]], "target": [-2, -3]}, "expected": true, "tags": ["hidden", "negative-coordinates"]},
+    {"id": "hidden-2", "name": "hidden: one of several ghosts ties", "kind": "real", "visible": false, "input": {"ghosts": [[100, 100], [-4, 0], [8, 8]], "target": [-2, 0]}, "expected": false, "tags": ["hidden", "tie", "multiple-ghosts"]},
+    {"id": "hidden-3", "name": "hidden: closest ghost is still too far", "kind": "real", "visible": false, "input": {"ghosts": [[-5, -5], [4, 4], [0, 8]], "target": [2, 1]}, "expected": true, "tags": ["hidden", "multiple-ghosts", "safe"]}
+  ]
+}

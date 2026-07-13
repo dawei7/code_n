@@ -1,0 +1,30 @@
+{
+  "challenge_id": "lc_1471",
+  "cases": [
+    {
+      "id": "benchmark-negative-and-positive",
+      "name": "benchmark: negative and positive extremes",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          -7,
+          22,
+          17,
+          3
+        ],
+        "k": 2
+      },
+      "expected": [
+        22,
+        17
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

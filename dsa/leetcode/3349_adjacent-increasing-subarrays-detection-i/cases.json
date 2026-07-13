@@ -1,0 +1,125 @@
+{
+  "challenge_id": "lc_3349",
+  "cases": [
+    {
+      "id": "sample-true-adjacent-triplets",
+      "name": "sample: adjacent increasing triplets exist",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          7,
+          8,
+          9,
+          2,
+          3,
+          4,
+          3,
+          1
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "increasing-runs"
+      ]
+    },
+    {
+      "id": "sample-false-length-five",
+      "name": "sample: no adjacent increasing length five blocks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          4,
+          4,
+          5,
+          6,
+          7
+        ],
+        "k": 5
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "increasing-runs"
+      ]
+    },
+    {
+      "id": "trial-k-one",
+      "name": "trial: length one blocks are always increasing when adjacent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7
+        ],
+        "k": 1
+      },
+      "expected": true,
+      "tags": [
+        "edge",
+        "k-one"
+      ]
+    },
+    {
+      "id": "trial-split-inside-long-run",
+      "name": "trial: split one long run into two adjacent blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "regression",
+        "single-run"
+      ]
+    },
+    {
+      "id": "real-mixed-runs",
+      "name": "real: mixed increases and breaks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          6,
+          7,
+          1,
+          2,
+          3,
+          4,
+          0,
+          1,
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "increasing-runs"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "challenge_id": "lc_2890",
+  "source": "leetcode",
+  "frontend_id": "2890",
+  "slug": "reshape-data-melt",
+  "title": "Reshape Data: Melt",
+  "difficulty": "Easy",
+  "acceptance_rate": 85.89822505164636,
+  "category": "pandas",
+  "category_title": "pandas",
+  "topics": [],
+  "url": "https://leetcode.com/problems/reshape-data-melt/",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:pandas",
+    "leetcode_company:amazon",
+    "leetcode_studyplan:introduction-to-pandas",
+    "leetcode_studyplan:introduction-to-pandas:introduction-to-pandas-173-e1wz"
+  ],
+  "tags": [
+    "category:pandas",
+    "company:amazon",
+    "language:python",
+    "leetcode",
+    "study_plan:introduction-to-pandas",
+    "study_plan_section:introduction-to-pandas:introduction-to-pandas-173-e1wz"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "3": []
+  },
+  "study_plans": [
+    {
+      "plan_slug": "introduction-to-pandas",
+      "plan_name": "Introduction to Pandas",
+      "section_slug": "introduction-to-pandas-173-e1wz",
+      "section_name": "Table Reshaping",
+      "path": [
+        "Table Reshaping"
+      ],
+      "order": 14,
+      "section_order": 5,
+      "problem_order": 3,
+      "catalog_slug": "introduction-to",
+      "catalog_name": "Introduction To",
+      "premium_only": false,
+      "section_premium_only": false,
+      "paid_only": false,
+      "source_url": "https://leetcode.com/studyplan/introduction-to-pandas/"
+    }
+  ],
+  "neetcode_subsets": []
+}

@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_1535",
+  "cases": [
+    {
+      "id": "benchmark-descending-array",
+      "name": "benchmark: descending array with large k",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          10,
+          9,
+          8,
+          7
+        ],
+        "k": 5
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

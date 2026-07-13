@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_294",
+  "measurement_note": "Size is the length of one plus run. Grundy dynamic programming is quadratic while memoizing complete board states has exponential growth.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: plus run n=6", "kind": "benchmark", "visible": false, "size": 6, "input": {"currentState": "++++++"}, "expected": true, "tags": ["benchmark", "scale-small", "grundy"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: plus run n=12", "kind": "benchmark", "visible": false, "size": 12, "input": {"currentState": "++++++++++++"}, "expected": true, "tags": ["benchmark", "scale-medium", "grundy"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: plus run n=24", "kind": "benchmark", "visible": false, "size": 24, "input": {"currentState": "++++++++++++++++++++++++"}, "expected": true, "tags": ["benchmark", "scale-large", "grundy"]}
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_680",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: already a palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aba"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "unchanged"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: delete either mismatch endpoint",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abca"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "one-deletion"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one deletion is insufficient",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "two-mismatches"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: delete the leading character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "deeee"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "delete-left"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: two-character string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "short-string"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: single character",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "z"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "single-character"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: delete an interior character",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "raceacar"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "interior-deletion"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: repeated characters still fail",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "cbbcc"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "delete-center"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: separated mismatches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abecbea"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "multiple-mismatches"
+      ]
+    }
+  ]
+}
+

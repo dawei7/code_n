@@ -1,0 +1,109 @@
+{
+  "challenge_id": "lc_2425",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: odd nums1 and even nums2",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          1,
+          3
+        ],
+        "nums2": [
+          10,
+          2,
+          5,
+          0
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "xor"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: both arrays even length cancel",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          3,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single value paired with three values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5
+        ],
+        "nums2": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-pair",
+      "name": "trial: one explicit pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-even-even-cancel",
+      "name": "hidden: even lengths cancel completely",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          7,
+          8
+        ],
+        "nums2": [
+          1,
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

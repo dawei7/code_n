@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_659","cases":[
+{"id":"sample-1","name":"sample: two length-three sequences","kind":"sample","visible":true,"input":{"nums":[1,2,3,3,4,5]},"expected":true,"tags":["sample","partition"]},
+{"id":"sample-2","name":"sample: overlapping value ranges","kind":"sample","visible":true,"input":{"nums":[1,2,3,3,4,4,5,5]},"expected":true,"tags":["sample","duplicates"]},
+{"id":"sample-3","name":"sample: stranded duplicate","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,4,5]},"expected":false,"tags":["sample","invalid"]},
+{"id":"trial-1","name":"trial: one minimum-length sequence","kind":"trial","visible":true,"input":{"nums":[1,2,3]},"expected":true,"tags":["trial","boundary"]},
+{"id":"trial-2","name":"trial: too few values","kind":"trial","visible":true,"input":{"nums":[1,2]},"expected":false,"tags":["trial","short"]},
+{"id":"hidden-1","name":"hidden: every value duplicated","kind":"real","visible":false,"input":{"nums":[1,1,2,2,3,3]},"expected":true,"tags":["hidden","parallel"]},
+{"id":"hidden-2","name":"hidden: extension must precede new start","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,5,6,7]},"expected":true,"tags":["hidden","greedy"]},
+{"id":"hidden-3","name":"hidden: negative consecutive groups","kind":"real","visible":false,"input":{"nums":[-3,-2,-1,1,2,3]},"expected":true,"tags":["hidden","negative","gap"]}
+]}

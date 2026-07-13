@@ -1,0 +1,131 @@
+{
+  "challenge_id": "lc_3467",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: mixed parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "parity"
+      ]
+    },
+    {
+      "id": "sample-more-odds",
+      "name": "sample: more odd values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          1,
+          4,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "trial-all-even",
+      "name": "trial: all even becomes zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "all-even"
+      ]
+    },
+    {
+      "id": "trial-all-odd",
+      "name": "trial: all odd becomes ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "all-odd"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: large mixed values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          101,
+          0,
+          999,
+          42,
+          77,
+          88
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "real",
+        "parity"
+      ]
+    }
+  ]
+}

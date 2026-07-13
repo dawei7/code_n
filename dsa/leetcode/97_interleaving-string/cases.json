@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_97",
+  "cases": [
+    {"id": "sample-true", "name": "sample: valid interleaving", "kind": "sample", "visible": true, "input": {"s1": "aabcc", "s2": "dbbca", "s3": "aadbbcbcac"}, "expected": true, "tags": ["sample", "valid"]},
+    {"id": "sample-false", "name": "sample: order conflict", "kind": "sample", "visible": true, "input": {"s1": "aabcc", "s2": "dbbca", "s3": "aadbbbaccc"}, "expected": false, "tags": ["sample", "invalid"]},
+    {"id": "sample-empty", "name": "sample: all empty", "kind": "sample", "visible": true, "input": {"s1": "", "s2": "", "s3": ""}, "expected": true, "tags": ["sample", "boundary"]},
+    {"id": "trial-one-empty", "name": "one empty source", "kind": "trial", "visible": true, "input": {"s1": "abc", "s2": "", "s3": "abc"}, "expected": true, "tags": ["boundary"]},
+    {"id": "real-length", "name": "hidden: wrong total length", "kind": "real", "visible": false, "input": {"s1": "abc", "s2": "def", "s3": "abcdefg"}, "expected": false, "tags": ["hidden", "length"]},
+    {"id": "real-ambiguous", "name": "hidden: ambiguous prefixes fail late", "kind": "real", "visible": false, "input": {"s1": "aaaa", "s2": "aaaa", "s3": "aaaaaaab"}, "expected": false, "tags": ["hidden", "branching"]}
+  ]
+}

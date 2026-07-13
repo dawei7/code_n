@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "199",
+  "frontend_id": "199",
+  "title_slug": "binary-tree-right-side-view",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064199011",
+  "verified_at": "2026-07-11T18:29:40.040580+00:00"
+}

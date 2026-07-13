@@ -1,0 +1,89 @@
+{
+  "challenge_id": "lc_1437",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: enough zeroes between ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one gap too short",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one required zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "k": 1
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-zero-distance-required",
+      "name": "hidden: adjacent ones allowed when k is zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 0
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

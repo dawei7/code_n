@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_365",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: classic four-unit measurement",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": 3,
+        "y": 5,
+        "target": 4
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "reachable"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: target not divisible by gcd",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": 2,
+        "y": 6,
+        "target": 5
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "gcd"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: target equals total capacity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": 1,
+        "y": 2,
+        "target": 3
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "capacity"
+      ]
+    },
+    {
+      "id": "trial-zero-target",
+      "name": "trial: leave both jugs empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 0,
+        "y": 0,
+        "target": 0
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-one-zero-jug",
+      "name": "trial: zero-capacity jug cannot form intermediate amount",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 0,
+        "y": 5,
+        "target": 4
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "hidden-one-full-jug",
+      "name": "hidden: other jug alone measures target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "x": 0,
+        "y": 5,
+        "target": 5
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-even-gcd",
+      "name": "hidden: nontrivial gcd reaches target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "x": 6,
+        "y": 10,
+        "target": 8
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "gcd"
+      ]
+    },
+    {
+      "id": "hidden-over-capacity",
+      "name": "hidden: divisible target exceeds total capacity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "x": 6,
+        "y": 10,
+        "target": 20
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "capacity"
+      ]
+    }
+  ]
+}
+

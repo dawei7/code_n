@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_408",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several literal and skip tokens",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "internationalization",
+        "abbr": "i12iz4n"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "multi-token"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: literal mismatch after skip",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "apple",
+        "abbr": "a2e"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: multi-digit skip",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "substitution",
+        "abbr": "s10n"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "multi-digit"
+      ]
+    },
+    {
+      "id": "trial-all-skipped",
+      "name": "trial: one token skips whole word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "word",
+        "abbr": "4"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "full-skip"
+      ]
+    },
+    {
+      "id": "trial-leading-zero",
+      "name": "trial: numeric token has leading zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "word",
+        "abbr": "w02d"
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "hidden-overshoot",
+      "name": "hidden: skip exceeds remaining word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "hello",
+        "abbr": "6"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "overshoot"
+      ]
+    },
+    {
+      "id": "hidden-exact-literals",
+      "name": "hidden: abbreviation contains only matching letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "testing",
+        "abbr": "testing"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "literal"
+      ]
+    },
+    {
+      "id": "hidden-unconsumed-word",
+      "name": "hidden: abbreviation ends too early",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "testing",
+        "abbr": "t5"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "unconsumed"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "challenge_id": "lc_3242",
+  "cases": [
+    {
+      "id": "sample-center-adjacent",
+      "name": "sample: adjacent sum for center value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            6,
+            7,
+            8
+          ]
+        ],
+        "value": 4,
+        "query_type": "adjacent"
+      },
+      "expected": 16,
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-corner-diagonal",
+      "name": "sample: diagonal sum for corner value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            6,
+            7,
+            8
+          ]
+        ],
+        "value": 0,
+        "query_type": "diagonal"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "diagonal"
+      ]
+    },
+    {
+      "id": "trial-edge-adjacent",
+      "name": "trial: edge value has three adjacent neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            11,
+            12,
+            13
+          ]
+        ],
+        "value": 6,
+        "query_type": "adjacent"
+      },
+      "expected": 21,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-center-diagonal",
+      "name": "trial: center has four diagonal neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            11,
+            12,
+            13
+          ]
+        ],
+        "value": 9,
+        "query_type": "diagonal"
+      },
+      "expected": 36,
+      "tags": [
+        "diagonal"
+      ]
+    },
+    {
+      "id": "real-four-by-four",
+      "name": "real: four by four unique grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            12,
+            13,
+            14,
+            15
+          ]
+        ],
+        "value": 10,
+        "query_type": "adjacent"
+      },
+      "expected": 40,
+      "tags": [
+        "real",
+        "design"
+      ]
+    }
+  ]
+}

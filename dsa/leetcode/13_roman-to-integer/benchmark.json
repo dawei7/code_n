@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_13",
+  "measurement_note": "Canonical inputs for 1 through 3999 have bounded length, so tiers span the legal representation sizes but cannot provide an unbounded asymptotic experiment.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: two symbols", "kind": "benchmark", "visible": false, "size": 2, "input": {"s": "IV"}, "expected": 4, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: six symbols", "kind": "benchmark", "visible": false, "size": 6, "input": {"s": "DCCLXX"}, "expected": 770, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: fifteen symbols", "kind": "benchmark", "visible": false, "size": 15, "input": {"s": "MMMDCCCLXXXVIII"}, "expected": 3888, "tags": ["benchmark", "scale-large"]}
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_2607",
+  "cases": [
+    {
+      "id": "benchmark-two-long-cycles",
+      "name": "benchmark: two long cycles use medians",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          8,
+          1,
+          6,
+          3,
+          5,
+          7
+        ],
+        "k": 4
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

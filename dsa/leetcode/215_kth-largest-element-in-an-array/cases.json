@@ -1,0 +1,6 @@
+{"challenge_id":"lc_215","cases":[
+{"id":"sample-six","name":"sample: second largest","kind":"sample","visible":true,"input":{"nums":[3,2,1,5,6,4],"k":2},"expected":5,"tags":["sample","quickselect"]},
+{"id":"sample-duplicates","name":"sample: duplicates count separately","kind":"sample","visible":true,"input":{"nums":[3,2,3,1,2,4,5,5,6],"k":4},"expected":4,"tags":["duplicates"]},
+{"id":"trial-single","name":"single value","kind":"trial","visible":true,"input":{"nums":[7],"k":1},"expected":7,"tags":["boundary"]},
+{"id":"real-all-equal","name":"hidden: all values equal","kind":"real","visible":false,"input":{"nums":[2,2,2,2],"k":3},"expected":2,"tags":["hidden","three-way"]}
+]}

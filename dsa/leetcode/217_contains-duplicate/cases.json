@@ -1,0 +1,6 @@
+{"challenge_id":"lc_217","cases":[
+{"id":"sample-duplicate","name":"sample: duplicate endpoints","kind":"sample","visible":true,"input":{"nums":[1,2,3,1]},"expected":true,"tags":["sample","hash-set"]},
+{"id":"trial-distinct","name":"all values distinct","kind":"trial","visible":true,"input":{"nums":[1,2,3,4]},"expected":false,"tags":["boundary"]},
+{"id":"trial-adjacent","name":"adjacent duplicate","kind":"trial","visible":true,"input":{"nums":[5,5]},"expected":true,"tags":["duplicate"]},
+{"id":"real-negative","name":"hidden: repeated negative value","kind":"real","visible":false,"input":{"nums":[-1,0,2,-1]},"expected":true,"tags":["hidden","negative"]}
+]}

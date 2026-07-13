@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "694",
+  "frontend_id": "694",
+  "title_slug": "number-of-distinct-islands",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065588298",
+  "verified_at": "2026-07-13T03:38:01.937212+00:00"
+}

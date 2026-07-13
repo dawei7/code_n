@@ -1,0 +1,24 @@
+{
+  "challenge_id": "lc_1046",
+  "cases": [
+    {
+      "id": "benchmark-five-stones",
+      "name": "benchmark: five stones",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "stones": [
+          31,
+          26,
+          33,
+          21,
+          40
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

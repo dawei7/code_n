@@ -1,0 +1,122 @@
+{
+  "challenge_id": "lc_1942",
+  "source": "leetcode",
+  "frontend_id": "1942",
+  "slug": "the-number-of-the-smallest-unoccupied-chair",
+  "title": "The Number of the Smallest Unoccupied Chair",
+  "difficulty": "Medium",
+  "acceptance_rate": 60.318013970663465,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [
+    {
+      "name": "Array",
+      "slug": "array"
+    },
+    {
+      "name": "Hash Table",
+      "slug": "hash-table"
+    },
+    {
+      "name": "Heap (Priority Queue)",
+      "slug": "heap-priority-queue"
+    }
+  ],
+  "url": "https://leetcode.com/problems/the-number-of-the-smallest-unoccupied-chair/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms",
+    "leetcode_company:amazon",
+    "leetcode_company:google",
+    "leetcode_company:spinny",
+    "leetcode_topic:array",
+    "leetcode_topic:hash-table",
+    "leetcode_topic:heap-priority-queue",
+    "neetcode:allNC"
+  ],
+  "tags": [
+    "category:algorithms",
+    "company:amazon",
+    "company:google",
+    "company:spinny",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode",
+    "subset:neetcode:allNC",
+    "topic:array",
+    "topic:hash-table",
+    "topic:heap-priority-queue"
+  ],
+  "company_tags": [
+    {
+      "name": "Amazon",
+      "slug": "amazon"
+    },
+    {
+      "name": "Google",
+      "slug": "google"
+    },
+    {
+      "name": "spinny",
+      "slug": "spinny"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Amazon",
+        "slug": "amazon",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 4
+      },
+      {
+        "taggedByAdmin": false,
+        "name": "spinny",
+        "slug": "spinny",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": [
+    {
+      "kind": "neetcode",
+      "subset_slug": "allNC",
+      "subset_name": "NeetCode All",
+      "subset_order": 4,
+      "path": [
+        "Intervals"
+      ],
+      "order": 841,
+      "section_order": 15,
+      "source_url": "https://neetcode.io/practice/practice/allNC",
+      "neetcode_slug": "the-number-of-the-smallest-unoccupied-chair",
+      "leetcode_slug": "the-number-of-the-smallest-unoccupied-chair",
+      "difficulty": "Medium",
+      "problem_order": 13
+    }
+  ]
+}

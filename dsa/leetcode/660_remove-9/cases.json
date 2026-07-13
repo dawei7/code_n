@@ -1,0 +1,9 @@
+{"schema_version":1,"challenge_id":"lc_660","cases":[
+{"id":"sample-1","name":"sample: first base-nine carry","kind":"sample","visible":true,"input":{"n":9},"expected":10,"tags":["sample","carry"]},
+{"id":"sample-2","name":"sample: first retained integer","kind":"sample","visible":true,"input":{"n":1},"expected":1,"tags":["sample","boundary"]},
+{"id":"sample-3","name":"sample: second tens block","kind":"sample","visible":true,"input":{"n":18},"expected":20,"tags":["sample","conversion"]},
+{"id":"trial-1","name":"trial: final one-digit rank","kind":"trial","visible":true,"input":{"n":8},"expected":8,"tags":["trial","boundary"]},
+{"id":"trial-2","name":"trial: two base-nine digits","kind":"trial","visible":true,"input":{"n":73},"expected":81,"tags":["trial","conversion"]},
+{"id":"hidden-1","name":"hidden: exact power of nine","kind":"real","visible":false,"input":{"n":81},"expected":100,"tags":["hidden","power"]},
+{"id":"hidden-2","name":"hidden: mixed digits","kind":"real","visible":false,"input":{"n":100},"expected":121,"tags":["hidden","conversion"]}
+]}

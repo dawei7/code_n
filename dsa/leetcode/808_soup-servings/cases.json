@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_808",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two scaled units", "kind": "sample", "visible": true, "input": {"n": 50}, "expected": 0.625, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "probability"]},
+    {"id": "sample-2", "name": "sample: four scaled units", "kind": "sample", "visible": true, "input": {"n": 100}, "expected": 0.71875, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "probability"]},
+    {"id": "sample-3", "name": "sample: initially empty soups", "kind": "sample", "visible": true, "input": {"n": 0}, "expected": 0.5, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["sample", "tie", "zero"]},
+    {"id": "trial-1", "name": "trial: partial first unit", "kind": "trial", "visible": true, "input": {"n": 1}, "expected": 0.625, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "round-up"]},
+    {"id": "trial-2", "name": "trial: three scaled units", "kind": "trial", "visible": true, "input": {"n": 75}, "expected": 0.65625, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "probability"]},
+    {"id": "trial-3", "name": "trial: eight scaled units", "kind": "trial", "visible": true, "input": {"n": 200}, "expected": 0.796875, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["trial", "probability"]},
+    {"id": "hidden-1", "name": "hidden: twenty scaled units", "kind": "real", "visible": false, "input": {"n": 500}, "expected": 0.916344165802002, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["hidden", "memoization"]},
+    {"id": "hidden-2", "name": "hidden: convergence cutoff", "kind": "real", "visible": false, "input": {"n": 4800}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 1e-5}, "tags": ["hidden", "cutoff"]},
+    {"id": "hidden-3", "name": "hidden: value beyond cutoff", "kind": "real", "visible": false, "input": {"n": 10000}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 1e-9}, "tags": ["hidden", "cutoff"]}
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "challenge_id": "lc_2681",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three heroes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "subsequence"
+      ],
+      "expected": 141
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: equal heroes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ],
+      "expected": 7
+    },
+    {
+      "id": "trial-single-hero",
+      "name": "trial: one hero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 125
+    },
+    {
+      "id": "trial-two-heroes",
+      "name": "trial: two heroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          7
+        ]
+      },
+      "tags": [
+        "trial",
+        "pair"
+      ],
+      "expected": 517
+    },
+    {
+      "id": "real-duplicates-and-large",
+      "name": "hidden: duplicate powers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          5,
+          10
+        ]
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ],
+      "expected": 2999
+    }
+  ]
+}

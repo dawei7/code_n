@@ -1,0 +1,26 @@
+{
+  "challenge_id": "lc_1509",
+  "cases": [
+    {
+      "id": "benchmark-keep-low-window",
+      "name": "benchmark: best to keep the low window",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          100,
+          101,
+          102
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

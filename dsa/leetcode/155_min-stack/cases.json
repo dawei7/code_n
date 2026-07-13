@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_155",
+  "cases": [
+    {
+      "id": "sample-minimum-restores",
+      "name": "sample: pop restores previous minimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": ["MinStack", "push", "push", "push", "getMin", "pop", "top", "getMin"], "arguments": [[], [-2], [0], [-3], [], [], [], []]},
+      "expected": [null, null, null, null, -3, null, 0, -2],
+      "tags": ["sample", "design"]
+    },
+    {
+      "id": "trial-single",
+      "name": "single value supports both queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": ["MinStack", "push", "getMin", "top"], "arguments": [[], [1], [], []]},
+      "expected": [null, null, 1, 1],
+      "tags": ["boundary"]
+    },
+    {
+      "id": "trial-duplicate-minimum",
+      "name": "duplicate minimum survives one pop",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": ["MinStack", "push", "push", "pop", "getMin"], "arguments": [[], [-5], [-5], [], []]},
+      "expected": [null, null, null, null, -5],
+      "tags": ["duplicates"]
+    },
+    {
+      "id": "real-minimum-between-larger-values",
+      "name": "hidden: minimum lies below several larger values",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": ["MinStack", "push", "push", "push", "getMin", "top", "pop", "getMin"], "arguments": [[], [4], [-7], [2], [], [], [], []]},
+      "expected": [null, null, null, null, -7, 2, null, -7],
+      "tags": ["hidden", "minimum"]
+    }
+  ]
+}

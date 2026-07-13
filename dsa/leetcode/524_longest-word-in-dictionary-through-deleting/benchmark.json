@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_524",
+  "measurement_note": "Size is the source-string length with one complete-string dictionary candidate. A two-pointer membership test is linear, while generating the full subsequence set grows exponentially on distinct characters.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: select a length-4 source", "kind": "benchmark", "visible": false, "size": 4, "input": {"s": "abcd", "dictionary": ["abcd"]}, "expected": "abcd", "tags": ["benchmark", "scaling", "complete"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: select a length-8 source", "kind": "benchmark", "visible": false, "size": 8, "input": {"s": "abcdefgh", "dictionary": ["abcdefgh"]}, "expected": "abcdefgh", "tags": ["benchmark", "scaling", "complete"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: select a length-16 source", "kind": "benchmark", "visible": false, "size": 16, "input": {"s": "abcdefghijklmnop", "dictionary": ["abcdefghijklmnop"]}, "expected": "abcdefghijklmnop", "tags": ["benchmark", "scaling", "complete"]}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "245",
+  "frontend_id": "245",
+  "title_slug": "shortest-word-distance-iii",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064261279",
+  "verified_at": "2026-07-11T19:52:27.869476+00:00"
+}

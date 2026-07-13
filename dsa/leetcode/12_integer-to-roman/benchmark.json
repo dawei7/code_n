@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_12",
+  "measurement_note": "The legal domain is fixed at 1 through 3999 and canonical output length is bounded, so tiers emphasize representation scale and edge rules rather than unbounded asymptotic growth.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one decimal digit", "kind": "benchmark", "visible": false, "size": 1, "input": {"num": 3}, "expected": "III", "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: two decimal digits", "kind": "benchmark", "visible": false, "size": 2, "input": {"num": 58}, "expected": "LVIII", "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: four decimal digits", "kind": "benchmark", "visible": false, "size": 4, "input": {"num": 1994}, "expected": "MCMXCIV", "tags": ["benchmark", "scale-large"]}
+  ]
+}

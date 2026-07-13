@@ -1,0 +1,149 @@
+{
+  "challenge_id": "lc_3355",
+  "cases": [
+    {
+      "id": "sample-can-zero",
+      "name": "sample: one query covers both positive indices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "difference-array"
+      ]
+    },
+    {
+      "id": "sample-cannot-zero",
+      "name": "sample: insufficient coverage for first element",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "queries": [
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "difference-array"
+      ]
+    },
+    {
+      "id": "trial-already-zero",
+      "name": "trial: zero array remains zero under any queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "edge",
+        "zero-array"
+      ]
+    },
+    {
+      "id": "trial-overlapping-coverage",
+      "name": "trial: overlapping ranges provide enough independent decrements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          0
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "regression",
+        "coverage"
+      ]
+    },
+    {
+      "id": "real-coverage-gap",
+      "name": "real: one position is just short of coverage",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "difference-array"
+      ]
+    }
+  ]
+}

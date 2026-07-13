@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_2575",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: long numeric word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "998244353",
+        "m": 3
+      },
+      "expected": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "modulo"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: alternating prefix divisibility",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "1010",
+        "m": 10
+      },
+      "expected": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: divisor one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "1",
+        "m": 1
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-leading-zero-prefixes",
+      "name": "trial: zero prefixes are divisible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "0000",
+        "m": 7
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-divisible-by-nine",
+      "name": "hidden: divisibility by digit sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "123456789",
+        "m": 9
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

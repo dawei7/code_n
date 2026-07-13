@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_3475",
+  "source": "leetcode",
+  "frontend_id": "3475",
+  "slug": "dna-pattern-recognition",
+  "title": "DNA Pattern Recognition ",
+  "difficulty": "Medium",
+  "acceptance_rate": 84.95809711609563,
+  "category": "database",
+  "category_title": "Database",
+  "topics": [
+    {
+      "name": "Database",
+      "slug": "database"
+    }
+  ],
+  "url": "https://leetcode.com/problems/dna-pattern-recognition/",
+  "supported_languages": [
+    "sql"
+  ],
+  "primary_language": "sql",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:database",
+    "leetcode_company:google",
+    "leetcode_topic:database"
+  ],
+  "tags": [
+    "category:database",
+    "company:google",
+    "language:sql",
+    "leetcode",
+    "topic:database"
+  ],
+  "company_tags": [
+    {
+      "name": "Google",
+      "slug": "google"
+    }
+  ],
+  "company_tag_stats": {
+    "3": [
+      {
+        "taggedByAdmin": false,
+        "name": "Google",
+        "slug": "google",
+        "timesEncountered": 2
+      }
+    ],
+    "1": [],
+    "2": []
+  },
+  "neetcode_subsets": []
+}

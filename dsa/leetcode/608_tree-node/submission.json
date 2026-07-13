@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "608",
+  "frontend_id": "608",
+  "title_slug": "tree-node",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2065466348",
+  "verified_at": "2026-07-12T21:59:48.925125+00:00"
+}

@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_2383",
+  "cases": [
+    {
+      "id": "benchmark-experience-only-after-first",
+      "name": "benchmark: only the first opponent needs experience training",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "initial_energy": 10,
+        "initial_experience": 1,
+        "energy": [
+          1,
+          2,
+          3
+        ],
+        "experience": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

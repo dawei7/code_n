@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_3470",
+  "cases": [
+    {
+      "id": "sample-four-sixth",
+      "name": "sample: sixth alternating permutation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 6
+      },
+      "expected": [
+        3,
+        4,
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "sample-three-second",
+      "name": "sample: second permutation with odd majority",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 2
+      },
+      "expected": [
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "odd-majority"
+      ]
+    },
+    {
+      "id": "trial-impossible-rank",
+      "name": "trial: rank beyond available permutations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 3
+      },
+      "expected": [],
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 1
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-six-middle-rank",
+      "name": "real: six values middle rank",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "k": 17
+      },
+      "expected": [
+        2,
+        3,
+        4,
+        1,
+        6,
+        5
+      ],
+      "tags": [
+        "real",
+        "factorial"
+      ]
+    }
+  ]
+}

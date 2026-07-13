@@ -1,0 +1,81 @@
+{
+  "challenge_id": "lc_1005",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one negation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          3
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two negations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          -1,
+          0,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: many negatives",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          -3,
+          -1,
+          5,
+          -4
+        ],
+        "k": 2
+      },
+      "expected": 13,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-leftover-odd",
+      "name": "hidden: leftover odd flip",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

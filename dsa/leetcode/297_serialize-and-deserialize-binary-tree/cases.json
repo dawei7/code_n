@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_297",
+  "cases": [
+    {"id": "sample-sparse", "name": "sample: sparse two-level subtrees", "kind": "sample", "visible": true, "input": {"root": [1,2,3,null,null,4,5]}, "expected": [1,2,3,null,null,4,5], "tags": ["sample", "shape"]},
+    {"id": "sample-empty", "name": "sample: empty tree", "kind": "sample", "visible": true, "input": {"root": []}, "expected": [], "tags": ["sample", "boundary"]},
+    {"id": "sample-single", "name": "sample: one node", "kind": "sample", "visible": true, "input": {"root": [1]}, "expected": [1], "tags": ["sample"]},
+    {"id": "trial-right-left", "name": "right child with a left descendant", "kind": "trial", "visible": true, "input": {"root": [1,null,2,3]}, "expected": [1,null,2,3], "tags": ["sparse", "null-markers"]},
+    {"id": "trial-negative-duplicates", "name": "negative and duplicate values", "kind": "trial", "visible": true, "input": {"root": [-1,-1,2,null,3]}, "expected": [-1,-1,2,null,3], "tags": ["negative", "duplicates"]},
+    {"id": "real-asymmetric", "name": "hidden: asymmetric four-level tree", "kind": "real", "visible": false, "input": {"root": [7,3,11,null,5,9,null,4,6]}, "expected": [7,3,11,null,5,9,null,4,6], "tags": ["hidden", "shape"]}
+  ]
+}

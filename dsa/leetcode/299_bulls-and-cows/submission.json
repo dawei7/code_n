@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "299",
+  "frontend_id": "299",
+  "title_slug": "bulls-and-cows",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064356922",
+  "verified_at": "2026-07-12T00:44:06.145142+00:00"
+}

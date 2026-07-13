@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_359",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two independent message windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "shouldPrintMessage",
+            1,
+            "foo"
+          ],
+          [
+            "shouldPrintMessage",
+            2,
+            "bar"
+          ],
+          [
+            "shouldPrintMessage",
+            3,
+            "foo"
+          ],
+          [
+            "shouldPrintMessage",
+            8,
+            "bar"
+          ],
+          [
+            "shouldPrintMessage",
+            10,
+            "foo"
+          ],
+          [
+            "shouldPrintMessage",
+            11,
+            "foo"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false,
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "sample",
+        "window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: exact ten-second boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "shouldPrintMessage",
+            1,
+            "notice"
+          ],
+          [
+            "shouldPrintMessage",
+            11,
+            "notice"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true
+      ],
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: same-timestamp messages",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "shouldPrintMessage",
+            5,
+            "a"
+          ],
+          [
+            "shouldPrintMessage",
+            5,
+            "b"
+          ],
+          [
+            "shouldPrintMessage",
+            5,
+            "a"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "sample",
+        "independent"
+      ]
+    },
+    {
+      "id": "trial-rejection-does-not-reset",
+      "name": "trial: rejected arrivals do not extend cooldown",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "shouldPrintMessage",
+            1,
+            "x"
+          ],
+          [
+            "shouldPrintMessage",
+            9,
+            "x"
+          ],
+          [
+            "shouldPrintMessage",
+            10,
+            "x"
+          ],
+          [
+            "shouldPrintMessage",
+            11,
+            "x"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "trial",
+        "state"
+      ]
+    },
+    {
+      "id": "trial-case-sensitive",
+      "name": "trial: message keys are case-sensitive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "shouldPrintMessage",
+            1,
+            "Error"
+          ],
+          [
+            "shouldPrintMessage",
+            2,
+            "error"
+          ],
+          [
+            "shouldPrintMessage",
+            11,
+            "Error"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "trial",
+        "keys"
+      ]
+    },
+    {
+      "id": "hidden-repeated-boundaries",
+      "name": "hidden: successive accepted boundary events",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "shouldPrintMessage",
+            0,
+            "tick"
+          ],
+          [
+            "shouldPrintMessage",
+            10,
+            "tick"
+          ],
+          [
+            "shouldPrintMessage",
+            19,
+            "tick"
+          ],
+          [
+            "shouldPrintMessage",
+            20,
+            "tick"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-interleaved",
+      "name": "hidden: interleaved independent cooldowns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "shouldPrintMessage",
+            1,
+            "a"
+          ],
+          [
+            "shouldPrintMessage",
+            2,
+            "b"
+          ],
+          [
+            "shouldPrintMessage",
+            10,
+            "b"
+          ],
+          [
+            "shouldPrintMessage",
+            11,
+            "a"
+          ],
+          [
+            "shouldPrintMessage",
+            12,
+            "b"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false,
+        true,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "interleaved"
+      ]
+    },
+    {
+      "id": "hidden-large-time",
+      "name": "hidden: large timestamp remains ordinary arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "shouldPrintMessage",
+            1000000000,
+            "z"
+          ],
+          [
+            "shouldPrintMessage",
+            1000000009,
+            "z"
+          ],
+          [
+            "shouldPrintMessage",
+            1000000010,
+            "z"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
+  ]
+}
+

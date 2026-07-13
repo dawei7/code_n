@@ -1,0 +1,117 @@
+{
+  "challenge_id": "lc_2352",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one row-column pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            2,
+            1
+          ],
+          [
+            1,
+            7,
+            6
+          ],
+          [
+            2,
+            7,
+            7
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated rows and columns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            4,
+            4,
+            5
+          ],
+          [
+            2,
+            4,
+            2,
+            2
+          ],
+          [
+            2,
+            4,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: symmetric diagonal values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            11,
+            1
+          ],
+          [
+            1,
+            11
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-two-by-two-symmetric",
+      "name": "hidden: both rows match columns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

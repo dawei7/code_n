@@ -1,0 +1,149 @@
+{
+  "challenge_id": "lc_2640",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: increasing maximum changes twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          7,
+          6,
+          1
+        ]
+      },
+      "expected": [
+        4,
+        10,
+        24,
+        37,
+        45
+      ],
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: powers of two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          4,
+          8,
+          16
+        ]
+      },
+      "expected": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64
+      ],
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-leading-maximum",
+      "name": "trial: first value remains the maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          2,
+          5,
+          1
+        ]
+      },
+      "expected": [
+        20,
+        32,
+        47,
+        58
+      ],
+      "tags": [
+        "trial",
+        "max-prefix"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: single value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": [
+        10
+      ],
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-repeated-highs",
+      "name": "hidden: repeated highs reset no state",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          1,
+          9,
+          1,
+          9
+        ]
+      },
+      "expected": [
+        18,
+        28,
+        46,
+        56,
+        74
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: large integer accumulation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          1000000000
+        ]
+      },
+      "expected": [
+        2000000000,
+        3000000001,
+        5000000001
+      ],
+      "tags": [
+        "hidden",
+        "large"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_117",
+  "cases": [
+    {"id": "sample-sparse", "name": "sample: missing child", "kind": "sample", "visible": true, "input": {"root": [1, 2, 3, 4, 5, null, 7]}, "expected": [1, 2, 3, 4, 5, null, 7], "validator": {"kind": "next_right_pointers"}, "tags": ["sample", "sparse"]},
+    {"id": "sample-empty", "name": "sample: empty tree", "kind": "sample", "visible": true, "input": {"root": []}, "expected": [], "validator": {"kind": "next_right_pointers"}, "tags": ["sample", "boundary"]},
+    {"id": "sample-single", "name": "sample: single node", "kind": "sample", "visible": true, "input": {"root": [1]}, "expected": [1], "validator": {"kind": "next_right_pointers"}, "tags": ["sample", "boundary"]},
+    {"id": "trial-cross-gap", "name": "children linked across absent positions", "kind": "trial", "visible": true, "input": {"root": [1, 2, 3, null, 5, 6, null]}, "expected": [1, 2, 3, null, 5, 6], "validator": {"kind": "next_right_pointers"}, "tags": ["gap", "cross-parent"]},
+    {"id": "real-deep-sparse", "name": "hidden: multiple sparse levels", "kind": "real", "visible": false, "input": {"root": [1, 2, 3, 4, null, null, 7, null, 5, 6]}, "expected": [1, 2, 3, 4, null, null, 7, null, 5, 6], "validator": {"kind": "next_right_pointers"}, "tags": ["hidden", "sparse"]}
+  ]
+}

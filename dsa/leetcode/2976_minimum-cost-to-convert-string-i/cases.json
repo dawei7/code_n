@@ -1,0 +1,145 @@
+{
+  "challenge_id": "lc_2976",
+  "cases": [
+    {
+      "id": "sample-chain-cost",
+      "name": "sample: character conversions with shortest paths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "abcd",
+        "target": "acbe",
+        "original": [
+          "a",
+          "b",
+          "c",
+          "c",
+          "e",
+          "d"
+        ],
+        "changed": [
+          "b",
+          "c",
+          "b",
+          "e",
+          "b",
+          "e"
+        ],
+        "cost": [
+          2,
+          5,
+          5,
+          1,
+          2,
+          20
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-repeated-source",
+      "name": "sample: repeated source conversion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "aaaa",
+        "target": "bbbb",
+        "original": [
+          "a",
+          "c"
+        ],
+        "changed": [
+          "c",
+          "b"
+        ],
+        "cost": [
+          1,
+          2
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: impossible conversion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "abcd",
+        "target": "abdc",
+        "original": [
+          "a",
+          "b"
+        ],
+        "changed": [
+          "b",
+          "c"
+        ],
+        "cost": [
+          1,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-cheaper-indirect",
+      "name": "trial: indirect conversion is cheaper",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "abc",
+        "target": "ddd",
+        "original": [
+          "a",
+          "a",
+          "b",
+          "c"
+        ],
+        "changed": [
+          "d",
+          "b",
+          "d",
+          "d"
+        ],
+        "cost": [
+          10,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "shortest-path"
+      ]
+    },
+    {
+      "id": "real-identical-with-missing-rules",
+      "name": "real: identical characters need no rule",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "source": "abc",
+        "target": "abc",
+        "original": [],
+        "changed": [],
+        "cost": []
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

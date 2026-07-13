@@ -1,0 +1,120 @@
+{
+  "challenge_id": "lc_3418",
+  "cases": [
+    {
+      "id": "sample-neutralize-robbers",
+      "name": "sample: neutralize two robbers on best path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            1,
+            -2,
+            3
+          ],
+          [
+            2,
+            -3,
+            4
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "sample-all-positive",
+      "name": "sample: no neutralization needed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10
+          ]
+        ]
+      },
+      "expected": 40,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-negative",
+      "name": "trial: choose where neutralizations matter most",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          [
+            -5,
+            -10
+          ],
+          [
+            -20,
+            -1
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "negative"
+      ]
+    },
+    {
+      "id": "real-mixed-grid",
+      "name": "real: mixed gains and robber cells",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          [
+            5,
+            -8,
+            4,
+            1
+          ],
+          [
+            -2,
+            10,
+            -20,
+            3
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            -30,
+            5,
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

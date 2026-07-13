@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1577",
+  "cases": [
+    {
+      "id": "benchmark-all-threes",
+      "name": "benchmark: all duplicate factors match",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          3,
+          3,
+          3
+        ],
+        "nums2": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

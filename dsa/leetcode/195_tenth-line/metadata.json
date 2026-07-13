@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_195",
+  "source": "leetcode",
+  "frontend_id": "195",
+  "slug": "tenth-line",
+  "title": "Tenth Line",
+  "difficulty": "Easy",
+  "acceptance_rate": 37.03342906274601,
+  "category": "shell",
+  "category_title": "Shell",
+  "topics": [
+    {
+      "name": "Shell",
+      "slug": "shell"
+    }
+  ],
+  "url": "https://leetcode.com/problems/tenth-line/",
+  "supported_languages": [
+    "bash"
+  ],
+  "primary_language": "bash",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:shell",
+    "leetcode_company:adobe",
+    "leetcode_company:facebook",
+    "leetcode_topic:shell"
+  ],
+  "tags": [
+    "category:shell",
+    "company:adobe",
+    "company:facebook",
+    "language:bash",
+    "leetcode",
+    "topic:shell"
+  ],
+  "company_tags": [
+    {
+      "name": "Meta",
+      "slug": "facebook"
+    },
+    {
+      "name": "Adobe",
+      "slug": "adobe"
+    }
+  ],
+  "company_tag_stats": {
+    "2": [
+      {
+        "taggedByAdmin": false,
+        "name": "Meta",
+        "slug": "facebook",
+        "timesEncountered": 4
+      }
+    ],
+    "3": [
+      {
+        "taggedByAdmin": true,
+        "name": "Adobe",
+        "slug": "adobe",
+        "timesEncountered": 0
+      }
+    ],
+    "1": []
+  },
+  "neetcode_subsets": []
+}

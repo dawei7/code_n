@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_276",
+  "measurement_note": "Size is post count; constant-state recurrence advances once per post while recomputing every prefix produces quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 posts with three colors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 32,
+        "k": 3
+      },
+      "expected": 109807018278912,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "dp"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 posts with three colors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 128,
+        "k": 3
+      },
+      "expected": 87811656984269669721804383180848259655147848855948623872,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "dp"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 posts with three colors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "n": 512,
+        "k": 3
+      },
+      "expected": 35912072251348234687370183935259049569112872792544360685841627663554495020271801180233149729839356059853379467655735899219951353007933505660748611045707913488203264885369427195447496782841663429579567899213803175193935347712,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "dp"
+      ]
+    }
+  ]
+}

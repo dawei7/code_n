@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_1343",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: threshold windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          2,
+          2,
+          2,
+          5,
+          5,
+          5,
+          8
+        ],
+        "k": 3,
+        "threshold": 4
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: many high windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          11,
+          13,
+          17,
+          23,
+          29,
+          31,
+          7,
+          5,
+          2,
+          3
+        ],
+        "k": 3,
+        "threshold": 5
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-k-one",
+      "name": "window size one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 1,
+        "threshold": 1
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-whole-array",
+      "name": "hidden: whole array window",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 5,
+        "threshold": 3
+      },
+      "expected": 1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

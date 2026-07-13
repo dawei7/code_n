@@ -1,0 +1,118 @@
+{
+  "challenge_id": "lc_1036",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: corner blocked in",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "blocked": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "source": [
+          0,
+          0
+        ],
+        "target": [
+          0,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "bfs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no blocked cells",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "blocked": [],
+        "source": [
+          0,
+          0
+        ],
+        "target": [
+          999999,
+          999999
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-block",
+      "name": "single block cannot trap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "blocked": [
+          [
+            1,
+            1
+          ]
+        ],
+        "source": [
+          0,
+          0
+        ],
+        "target": [
+          2,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-source-trapped",
+      "name": "hidden: source is trapped",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "blocked": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "source": [
+          0,
+          0
+        ],
+        "target": [
+          2,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "edge"
+      ]
+    }
+  ]
+}

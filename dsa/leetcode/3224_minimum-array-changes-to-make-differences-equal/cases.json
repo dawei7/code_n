@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_3224",
+  "cases": [
+    {
+      "id": "sample-one-change",
+      "name": "sample: one change makes pair differences equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          2,
+          4,
+          3
+        ],
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "pairs"
+      ]
+    },
+    {
+      "id": "sample-already-equal",
+      "name": "sample: mirrored pairs already agree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          3,
+          3,
+          0
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-change"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "trial: single pair can already define target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "k": 8
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-needs-two-changes",
+      "name": "trial: target may require two changes for a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          8,
+          8
+        ],
+        "k": 8
+      },
+      "expected": 0,
+      "tags": [
+        "two-change"
+      ]
+    },
+    {
+      "id": "real-mixed-pairs",
+      "name": "real: mixed mirrored pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          7,
+          3,
+          2,
+          6,
+          4,
+          0
+        ],
+        "k": 7
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "sweep"
+      ]
+    }
+  ]
+}

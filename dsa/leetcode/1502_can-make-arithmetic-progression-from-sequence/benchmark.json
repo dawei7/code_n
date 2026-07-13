@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_1502",
+  "cases": [
+    {
+      "id": "benchmark-duplicates-break-gap",
+      "name": "benchmark: duplicates break a nonzero gap",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

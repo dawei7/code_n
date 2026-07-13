@@ -1,0 +1,219 @@
+{
+  "challenge_id": "lc_3071",
+  "cases": [
+    {
+      "id": "sample-small-y",
+      "name": "sample: small grid already close to a Y",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-one",
+      "name": "sample: all cells share one value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-five-grid",
+      "name": "trial: five by five mixed grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            2,
+            0,
+            2
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            0,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-already-y",
+      "name": "trial: Y and background already differ",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-seven-grid",
+      "name": "real: seven by seven grid with noisy Y",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            0,
+            1,
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            1,
+            2,
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            0,
+            1,
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            1,
+            2,
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": 29,
+      "tags": [
+        "real",
+        "grid"
+      ]
+    }
+  ]
+}

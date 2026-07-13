@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_329",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: path climbs around duplicates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            9,
+            9,
+            4
+          ],
+          [
+            6,
+            6,
+            8
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: increasing turn",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            3,
+            2,
+            6
+          ],
+          [
+            2,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-plateau",
+      "name": "trial: uniform plateau",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            7
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "equal-values"
+      ]
+    },
+    {
+      "id": "trial-row",
+      "name": "trial: one increasing row",
+      "kind": "trial",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "chain"
+      ]
+    },
+    {
+      "id": "hidden-snake",
+      "name": "hidden: path visits every cell",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            6,
+            5,
+            4
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "snake"
+      ]
+    },
+    {
+      "id": "hidden-negative",
+      "name": "hidden: negative increasing path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            -3,
+            -2
+          ],
+          [
+            -4,
+            -1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-separated",
+      "name": "hidden: duplicate values separate climbs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            3,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    }
+  ]
+}

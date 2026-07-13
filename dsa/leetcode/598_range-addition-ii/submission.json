@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "598",
+  "frontend_id": "598",
+  "title_slug": "range-addition-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065454152",
+  "verified_at": "2026-07-12T21:24:28.816124+00:00"
+}

@@ -1,0 +1,102 @@
+{
+  "challenge_id": "lc_2404",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: tie chooses smaller even",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          2,
+          4,
+          4,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one dominant even",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          9,
+          2,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no even values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          29,
+          47,
+          21,
+          41,
+          13,
+          37,
+          25,
+          7
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-exact-tie",
+      "name": "trial: exact tie between even values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          4,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-odd",
+      "name": "hidden: single odd value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

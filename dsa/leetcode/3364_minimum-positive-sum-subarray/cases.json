@@ -1,0 +1,114 @@
+{
+  "challenge_id": "lc_3364",
+  "cases": [
+    {
+      "id": "sample-positive-one",
+      "name": "sample: minimum positive sum is one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          -2,
+          1,
+          4
+        ],
+        "l": 2,
+        "r": 3
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no positive sum in length range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          2,
+          -3,
+          1
+        ],
+        "l": 2,
+        "r": 3
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "sample-all-positive",
+      "name": "sample: shortest positive pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "l": 2,
+        "r": 4
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "positive"
+      ]
+    },
+    {
+      "id": "trial-single-length",
+      "name": "trial: exact length window only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -6,
+          4,
+          1
+        ],
+        "l": 3,
+        "r": 3
+      },
+      "expected": 3,
+      "tags": [
+        "edge",
+        "exact-length"
+      ]
+    },
+    {
+      "id": "real-mixed-ranges",
+      "name": "real: several competing positive windows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          -9,
+          4,
+          -1,
+          2,
+          -3,
+          6,
+          -2
+        ],
+        "l": 2,
+        "r": 5
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "prefix-sum"
+      ]
+    }
+  ]
+}

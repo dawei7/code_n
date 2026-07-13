@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_1046",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several smashes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          2,
+          7,
+          4,
+          1,
+          8,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two stones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          50,
+          98
+        ]
+      },
+      "expected": 48,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-stone",
+      "name": "single stone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-paired-stones",
+      "name": "hidden: paired stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stones": [
+          10,
+          10,
+          3,
+          3,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_572",
+  "cases": [
+    {
+      "id": "sample-present",
+      "name": "sample: complete matching subtree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "sub_root": [
+          4,
+          1,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "present"
+      ]
+    },
+    {
+      "id": "sample-extra-node",
+      "name": "sample: extra descendant prevents identity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          3,
+          4,
+          5,
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "sub_root": [
+          4,
+          1,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "extra-node"
+      ]
+    },
+    {
+      "id": "sample-identical",
+      "name": "sample: whole tree is the subtree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3
+        ],
+        "sub_root": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "identical"
+      ]
+    },
+    {
+      "id": "trial-leaf",
+      "name": "trial: matching leaf",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3
+        ],
+        "sub_root": [
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "leaf"
+      ]
+    },
+    {
+      "id": "trial-internal-not-leaf",
+      "name": "trial: equal value is not a leaf match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          null,
+          3
+        ],
+        "sub_root": [
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "structure"
+      ]
+    },
+    {
+      "id": "hidden-side",
+      "name": "hidden: child appears on the wrong side",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2
+        ],
+        "sub_root": [
+          1,
+          null,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "orientation"
+      ]
+    },
+    {
+      "id": "hidden-duplicates",
+      "name": "hidden: duplicate values with one structural match",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1
+        ],
+        "sub_root": [
+          1,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-negative",
+      "name": "hidden: negative values and structure match",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          0,
+          -1,
+          2,
+          null,
+          -3
+        ],
+        "sub_root": [
+          -1,
+          null,
+          -3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "negative-values"
+      ]
+    }
+  ]
+}

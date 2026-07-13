@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_740",
+  "cases": [
+    {"id": "sample-1", "name": "sample: take separated values", "kind": "sample", "visible": true, "input": {"nums": [3,4,2]}, "expected": 6, "tags": ["sample", "adjacent"]},
+    {"id": "sample-2", "name": "sample: duplicates favor middle value", "kind": "sample", "visible": true, "input": {"nums": [2,2,3,3,3,4]}, "expected": 9, "tags": ["sample", "duplicates"]},
+    {"id": "sample-3", "name": "sample: outer neighbors beat middle", "kind": "sample", "visible": true, "input": {"nums": [10,10,9,9,11]}, "expected": 29, "tags": ["sample", "outer-values"]},
+    {"id": "trial-1", "name": "trial: one value", "kind": "trial", "visible": true, "input": {"nums": [1]}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: separated value groups", "kind": "trial", "visible": true, "input": {"nums": [2,2,100,100]}, "expected": 204, "tags": ["trial", "gap"]},
+    {"id": "hidden-1", "name": "hidden: duplicate groups with gaps", "kind": "real", "visible": false, "input": {"nums": [1,1,1,2,4,5,5,5,6]}, "expected": 18, "tags": ["hidden", "groups"]},
+    {"id": "hidden-2", "name": "hidden: several adjacent totals", "kind": "real", "visible": false, "input": {"nums": [1,2,2,3,3,3,4,4,5]}, "expected": 15, "tags": ["hidden", "dynamic-programming"]},
+    {"id": "hidden-3", "name": "hidden: maximum value duplicates", "kind": "real", "visible": false, "input": {"nums": [10000,10000,10000]}, "expected": 30000, "tags": ["hidden", "upper-boundary"]}
+  ]
+}

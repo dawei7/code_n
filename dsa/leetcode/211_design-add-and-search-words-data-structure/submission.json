@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "211",
+  "frontend_id": "211",
+  "title_slug": "design-add-and-search-words-data-structure",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064209301",
+  "verified_at": "2026-07-11T18:40:55.902770+00:00"
+}

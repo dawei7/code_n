@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_563",
+  "cases": [
+    {
+      "id": "sample-small",
+      "name": "sample: two leaf subtrees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "small"
+      ]
+    },
+    {
+      "id": "sample-mixed",
+      "name": "sample: tilts at several levels",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          4,
+          2,
+          9,
+          3,
+          5,
+          null,
+          7
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "multi-level"
+      ]
+    },
+    {
+      "id": "sample-deep",
+      "name": "sample: deeper balanced branches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          21,
+          7,
+          14,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "deep"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-chain",
+      "name": "trial: one-sided three-node chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          null,
+          3
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "skewed"
+      ]
+    },
+    {
+      "id": "hidden-zero",
+      "name": "hidden: all subtree sums are zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "zeros"
+      ]
+    },
+    {
+      "id": "hidden-asymmetric",
+      "name": "hidden: asymmetric subtree sizes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          10,
+          4,
+          6,
+          1,
+          2,
+          null,
+          9,
+          3
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "hidden",
+        "asymmetric"
+      ]
+    }
+  ]
+}

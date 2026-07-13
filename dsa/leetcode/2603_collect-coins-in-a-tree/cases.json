@@ -1,0 +1,167 @@
+{
+  "challenge_id": "lc_2603",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: coins at both ends of a path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "tree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: branching tree with three coins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coins": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-coins",
+      "name": "trial: no coins need no travel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          0,
+          0
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: one node with a coin",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          1
+        ],
+        "edges": []
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "small"
+      ]
+    },
+    {
+      "id": "real-short-path-all-coins",
+      "name": "hidden: all coins within distance two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          1,
+          1,
+          1
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

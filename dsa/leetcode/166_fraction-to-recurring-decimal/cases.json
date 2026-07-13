@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_166",
+  "cases": [
+    {"id": "sample-terminating", "name": "sample: finite half", "kind": "sample", "visible": true, "input": {"numerator": 1, "denominator": 2}, "expected": "0.5", "tags": ["sample", "terminating"]},
+    {"id": "sample-single-cycle", "name": "sample: one repeating digit", "kind": "sample", "visible": true, "input": {"numerator": 2, "denominator": 3}, "expected": "0.(6)", "tags": ["sample", "recurring"]},
+    {"id": "trial-leading-cycle-zero", "name": "cycle begins with zero", "kind": "trial", "visible": true, "input": {"numerator": 4, "denominator": 333}, "expected": "0.(012)", "tags": ["cycle"]},
+    {"id": "trial-negative", "name": "exact negative quotient", "kind": "trial", "visible": true, "input": {"numerator": -50, "denominator": 8}, "expected": "-6.25", "tags": ["negative"]},
+    {"id": "real-zero", "name": "hidden: zero numerator", "kind": "real", "visible": false, "input": {"numerator": 0, "denominator": -7}, "expected": "0", "tags": ["hidden", "zero"]}
+  ]
+}

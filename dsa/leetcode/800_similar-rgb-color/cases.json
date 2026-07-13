@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_800",
+  "cases": [
+    {"id": "sample-1", "name": "sample: mixed rounding directions", "kind": "sample", "visible": true, "input": {"color": "#09f166"}, "expected": "#11ee66", "tags": ["sample", "mixed-rounding"]},
+    {"id": "sample-2", "name": "sample: all channels change", "kind": "sample", "visible": true, "input": {"color": "#4e3fe1"}, "expected": "#5544dd", "tags": ["sample", "mixed-rounding"]},
+    {"id": "sample-3", "name": "sample: consecutive hexadecimal pairs", "kind": "sample", "visible": true, "input": {"color": "#abcdef"}, "expected": "#aaccee", "tags": ["sample", "round-down"]},
+    {"id": "trial-1", "name": "trial: black is already shorthand", "kind": "trial", "visible": true, "input": {"color": "#000000"}, "expected": "#000000", "tags": ["trial", "boundary", "exact"]},
+    {"id": "trial-2", "name": "trial: white is already shorthand", "kind": "trial", "visible": true, "input": {"color": "#ffffff"}, "expected": "#ffffff", "tags": ["trial", "boundary", "exact"]},
+    {"id": "trial-3", "name": "trial: eight rounds down", "kind": "trial", "visible": true, "input": {"color": "#080808"}, "expected": "#000000", "tags": ["trial", "round-down"]},
+    {"id": "hidden-1", "name": "hidden: nine rounds up", "kind": "real", "visible": false, "input": {"color": "#090909"}, "expected": "#111111", "tags": ["hidden", "round-up"]},
+    {"id": "hidden-2", "name": "hidden: exact middle-range shorthand", "kind": "real", "visible": false, "input": {"color": "#88aa44"}, "expected": "#88aa44", "tags": ["hidden", "exact"]},
+    {"id": "hidden-3", "name": "hidden: three distinct channels", "kind": "real", "visible": false, "input": {"color": "#123456"}, "expected": "#113355", "tags": ["hidden", "mixed-rounding"]}
+  ]
+}

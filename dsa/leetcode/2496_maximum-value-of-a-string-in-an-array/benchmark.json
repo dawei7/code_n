@@ -1,0 +1,22 @@
+{
+  "challenge_id": "lc_2496",
+  "cases": [
+    {
+      "id": "benchmark-mixed-leading-zeroes",
+      "name": "benchmark: numeric value beats longer text",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "strs": [
+          "99",
+          "abcde",
+          "000001"
+        ]
+      },
+      "expected": 99,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

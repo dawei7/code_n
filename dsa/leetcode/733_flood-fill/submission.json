@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "733",
+  "frontend_id": "733",
+  "title_slug": "flood-fill",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.floodFill",
+  "verified_submission_id": "2065805666",
+  "verified_at": "2026-07-13T07:10:11.076622+00:00"
+}

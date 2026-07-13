@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_2540",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first common value appears in the middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3
+        ],
+        "nums2": [
+          2,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: smaller common value wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "nums2": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: arrays have no common value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          3,
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-duplicate-common-minimum",
+      "name": "trial: duplicate minimum common value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2
+        ],
+        "nums2": [
+          1,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-common-value",
+      "name": "hidden: one value in each array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          5
+        ],
+        "nums2": [
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

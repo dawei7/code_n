@@ -1,0 +1,6 @@
+{"challenge_id":"lc_193","cases":[
+{"id":"sample-mixed","name":"sample: two valid forms","kind":"sample","visible":true,"input":{"stdin":"","files":{"file.txt":"987-123-4567\n123 456 7890\n(123) 456-7890\n"}},"expected":"987-123-4567\n(123) 456-7890","tags":["sample","regex"]},
+{"id":"trial-parentheses","name":"parenthesized format","kind":"trial","visible":true,"input":{"stdin":"","files":{"file.txt":"(555) 000-1234\n"}},"expected":"(555) 000-1234","tags":["format"]},
+{"id":"trial-none","name":"no line is valid","kind":"trial","visible":true,"input":{"stdin":"","files":{"file.txt":"555.000.1234\n55-5000-1234\n"}},"expected":"","tags":["boundary"]},
+{"id":"real-anchors","name":"hidden: reject valid substring with suffix","kind":"real","visible":false,"input":{"stdin":"","files":{"file.txt":"x123-456-7890\n123-456-7890x\n123-456-7890\n"}},"expected":"123-456-7890","tags":["hidden","anchors"]}
+]}

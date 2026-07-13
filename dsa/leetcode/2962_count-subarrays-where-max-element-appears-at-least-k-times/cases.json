@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_2962",
+  "cases": [
+    {
+      "id": "sample-two-maxima",
+      "name": "sample: global maximum appears at least twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          3,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-not-enough-maxima",
+      "name": "sample: not enough maximum values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-maximum",
+      "name": "sample: every element is maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-k-three",
+      "name": "trial: threshold reached late",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          1,
+          5,
+          3,
+          5,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "real-single-max",
+      "name": "real: only one global maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          9,
+          3,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 9,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

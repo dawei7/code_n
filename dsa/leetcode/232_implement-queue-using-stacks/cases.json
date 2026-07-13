@@ -1,0 +1,6 @@
+{"challenge_id":"lc_232","cases":[
+{"id":"sample-fifo","name":"sample: two pushes and front reads","kind":"sample","visible":true,"input":{"operations":["push","push","peek","pop","empty"],"values":[1,2,null,null,null]},"expected":[null,null,1,1,false],"tags":["sample","fifo"]},
+{"id":"trial-empty-cycle","name":"empty before and after one value","kind":"trial","visible":true,"input":{"operations":["empty","push","pop","empty"],"values":[null,7,null,null]},"expected":[true,null,7,true],"tags":["boundary"]},
+{"id":"trial-repeated-peek","name":"peek does not remove front","kind":"trial","visible":true,"input":{"operations":["push","peek","peek","pop"],"values":[4,null,null,null]},"expected":[null,4,4,4],"tags":["peek"]},
+{"id":"real-interleaved","name":"hidden: interleaved transfer boundary","kind":"real","visible":false,"input":{"operations":["push","push","pop","push","peek","pop","pop","empty"],"values":[1,2,null,3,null,null,null,null]},"expected":[null,null,1,null,2,2,3,true],"tags":["hidden","transfer"]}
+]}

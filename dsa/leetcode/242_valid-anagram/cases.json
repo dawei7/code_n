@@ -1,0 +1,6 @@
+{"challenge_id":"lc_242","cases":[
+{"id":"sample-valid","name":"sample: reordered letters","kind":"sample","visible":true,"input":{"s":"anagram","t":"nagaram"},"expected":true,"tags":["sample","valid"]},
+{"id":"sample-invalid","name":"sample: different letters","kind":"sample","visible":true,"input":{"s":"rat","t":"car"},"expected":false,"tags":["sample","invalid"]},
+{"id":"trial-empty","name":"two empty strings","kind":"trial","visible":true,"input":{"s":"","t":""},"expected":true,"tags":["boundary"]},
+{"id":"real-count-mismatch","name":"hidden: same set but different counts","kind":"real","visible":false,"input":{"s":"aacc","t":"ccac"},"expected":false,"tags":["hidden","multiplicity"]}
+]}

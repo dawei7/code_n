@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_537",
+  "cases": [
+    {"id":"sample-positive","name":"sample: square one plus i","kind":"sample","visible":true,"input":{"num1":"1+1i","num2":"1+1i"},"expected":"0+2i","tags":["sample","positive"]},
+    {"id":"sample-negative-imaginary","name":"sample: square one minus i","kind":"sample","visible":true,"input":{"num1":"1+-1i","num2":"1+-1i"},"expected":"0+-2i","tags":["sample","negative"]},
+    {"id":"sample-conjugates","name":"sample: maximum-magnitude conjugates","kind":"sample","visible":true,"input":{"num1":"100+100i","num2":"100+-100i"},"expected":"20000+0i","tags":["sample","conjugate"]},
+    {"id":"trial-zero","name":"trial: zero complex number","kind":"trial","visible":true,"input":{"num1":"0+0i","num2":"-7+9i"},"expected":"0+0i","tags":["trial","zero"]},
+    {"id":"trial-mixed-signs","name":"trial: negative real and imaginary values","kind":"trial","visible":true,"input":{"num1":"-1+-1i","num2":"1+1i"},"expected":"0+-2i","tags":["trial","signs"]},
+    {"id":"hidden-real","name":"hidden: purely real result","kind":"real","visible":false,"input":{"num1":"0+5i","num2":"0+-3i"},"expected":"15+0i","tags":["hidden","real"]},
+    {"id":"hidden-general","name":"hidden: no component cancels","kind":"real","visible":false,"input":{"num1":"3+4i","num2":"5+6i"},"expected":"-9+38i","tags":["hidden","general"]}
+  ]
+}

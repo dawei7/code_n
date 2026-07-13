@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_407",
+  "measurement_note": "Size is the side length of a square basin, so cell count is size squared. Multi-source heap flooding processes the grid once, while independently finding a minimax escape path from every interior cell repeats whole-grid searches and grows by another quadratic factor in size.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: flood 3 by 3 basin",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "height_map": [
+          [
+            100,
+            100,
+            100
+          ],
+          [
+            100,
+            0,
+            100
+          ],
+          [
+            100,
+            100,
+            100
+          ]
+        ]
+      },
+      "expected": 100,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "basin"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: flood 6 by 6 basin",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "height_map": [
+          [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        ]
+      },
+      "expected": 1600,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "basin"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: flood 12 by 12 basin",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "height_map": [
+          [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100
+          ],
+          [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        ]
+      },
+      "expected": 10000,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "basin"
+      ]
+    }
+  ]
+}

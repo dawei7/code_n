@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_68",
+  "cases": [
+    {"id": "sample-standard", "name": "sample: standard paragraph", "kind": "sample", "visible": true, "input": {"words": ["This","is","an","example","of","text","justification."], "max_width": 16}, "expected": ["This    is    an","example  of text","justification.  "], "tags": ["sample"]},
+    {"id": "sample-single-line", "name": "sample: single-word middle line", "kind": "sample", "visible": true, "input": {"words": ["What","must","be","acknowledgment","shall","be"], "max_width": 16}, "expected": ["What   must   be","acknowledgment  ","shall be        "], "tags": ["sample"]},
+    {"id": "trial-one-word", "name": "one-word final line", "kind": "trial", "visible": true, "input": {"words": ["word"], "max_width": 8}, "expected": ["word    "], "tags": ["boundary"]},
+    {"id": "trial-left-bias", "name": "extra space goes to the left", "kind": "trial", "visible": true, "input": {"words": ["a","b","c","d"], "max_width": 6}, "expected": ["a  b c","d     "], "tags": ["spacing"]},
+    {"id": "real-exact", "name": "hidden: exact-width words", "kind": "real", "visible": false, "input": {"words": ["abcd","efgh","i","j"], "max_width": 4}, "expected": ["abcd","efgh","i j "], "tags": ["hidden", "exact-width"]}
+  ]
+}

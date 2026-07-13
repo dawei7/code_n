@@ -1,0 +1,32 @@
+{
+  "challenge_id": "lc_1450",
+  "cases": [
+    {
+      "id": "benchmark-left-end-inclusive",
+      "name": "benchmark: query equals several left endpoints",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "start_time": [
+          1,
+          1,
+          2,
+          3,
+          4
+        ],
+        "end_time": [
+          10,
+          1,
+          2,
+          3,
+          4
+        ],
+        "query_time": 1
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

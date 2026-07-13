@@ -1,0 +1,34 @@
+{
+  "challenge_id": "lc_2774",
+  "source": "leetcode",
+  "frontend_id": "2774",
+  "slug": "array-upper-bound",
+  "title": "Array Upper Bound",
+  "difficulty": "Easy",
+  "acceptance_rate": 82.4567474048443,
+  "category": "javascript",
+  "category_title": "JavaScript",
+  "topics": [],
+  "url": "https://leetcode.com/problems/array-upper-bound/",
+  "supported_languages": [
+    "javascript"
+  ],
+  "primary_language": "javascript",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:javascript"
+  ],
+  "tags": [
+    "category:javascript",
+    "language:javascript",
+    "leetcode"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

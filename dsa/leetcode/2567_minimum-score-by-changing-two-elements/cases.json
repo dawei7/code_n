@@ -1,0 +1,94 @@
+{
+  "challenge_id": "lc_2567",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three values can all be made equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: changing two extremes leaves range three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          7,
+          8,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: best change removes the two smallest values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          50,
+          75,
+          100
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-three-values",
+      "name": "trial: exactly three values can be normalized",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          100
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: equal values already have score zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

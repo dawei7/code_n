@@ -1,0 +1,38 @@
+{
+  "challenge_id": "lc_1115",
+  "source": "leetcode",
+  "frontend_id": "1115",
+  "slug": "print-foobar-alternately",
+  "title": "Print FooBar Alternately",
+  "difficulty": "Medium",
+  "acceptance_rate": 72.77141105334258,
+  "category": "concurrency",
+  "category_title": "Concurrency",
+  "topics": [
+    {
+      "name": "Concurrency",
+      "slug": "concurrency"
+    }
+  ],
+  "url": "https://leetcode.com/problems/print-foobar-alternately/",
+  "supported_languages": [],
+  "primary_language": "",
+  "runnable_in_coden": false,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:concurrency",
+    "leetcode_topic:concurrency"
+  ],
+  "tags": [
+    "category:concurrency",
+    "leetcode",
+    "topic:concurrency"
+  ],
+  "company_tags": [],
+  "company_tag_stats": {
+    "1": [],
+    "2": [],
+    "3": []
+  },
+  "neetcode_subsets": []
+}

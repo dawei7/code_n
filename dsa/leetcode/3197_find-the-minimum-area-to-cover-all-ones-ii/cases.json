@@ -1,0 +1,174 @@
+{
+  "challenge_id": "lc_3197",
+  "cases": [
+    {
+      "id": "sample-two-by-three",
+      "name": "sample: compact two-row grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "sample-diagonal",
+      "name": "sample: three isolated cells",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "isolated"
+      ]
+    },
+    {
+      "id": "trial-l-shape",
+      "name": "trial: split an L-shape",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "partition"
+      ]
+    },
+    {
+      "id": "trial-four-corners",
+      "name": "trial: four corners need grouping",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "corners"
+      ]
+    },
+    {
+      "id": "real-five-by-five",
+      "name": "real: mixed clusters in a five by five grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "real",
+        "grid"
+      ]
+    }
+  ]
+}

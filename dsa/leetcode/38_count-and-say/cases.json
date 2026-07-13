@@ -1,0 +1,72 @@
+{
+  "challenge_id": "lc_38",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: base term",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": "1",
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: fourth term",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": "1211",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-fifth-term",
+      "name": "multiple runs of ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": "111221",
+      "tags": [
+        "runs"
+      ]
+    },
+    {
+      "id": "trial-sixth-term",
+      "name": "run description continues",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6
+      },
+      "expected": "312211",
+      "tags": [
+        "runs"
+      ]
+    },
+    {
+      "id": "real-tenth-term",
+      "name": "hidden: longer generated term",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10
+      },
+      "expected": "13211311123113112211",
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}
+

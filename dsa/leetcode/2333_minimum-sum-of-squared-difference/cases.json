@@ -1,0 +1,117 @@
+{
+  "challenge_id": "lc_2333",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: reduce two unit differences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "nums2": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "k1": 1,
+        "k2": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "nums2": [
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "k1": 0,
+        "k2": 0
+      },
+      "expected": 405,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: larger mixed arrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          7,
+          10,
+          8,
+          10,
+          3,
+          10,
+          3,
+          5
+        ],
+        "nums2": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k1": 10,
+        "k2": 10
+      },
+      "expected": 97,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "real-two-differences",
+      "name": "hidden: reduce the largest difference first",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          5,
+          5
+        ],
+        "nums2": [
+          1,
+          10
+        ],
+        "k1": 3,
+        "k2": 0
+      },
+      "expected": 18,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

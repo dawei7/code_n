@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "564",
+  "frontend_id": "564",
+  "title_slug": "find-the-closest-palindrome",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065395864",
+  "verified_at": "2026-07-12T19:29:43.790535+00:00"
+}

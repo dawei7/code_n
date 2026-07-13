@@ -1,0 +1,212 @@
+{
+  "challenge_id": "lc_2933",
+  "cases": [
+    {
+      "id": "sample-single-employee",
+      "name": "sample: one high-access employee",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "a",
+            "0549"
+          ],
+          [
+            "b",
+            "0457"
+          ],
+          [
+            "a",
+            "0532"
+          ],
+          [
+            "a",
+            "0615"
+          ],
+          [
+            "a",
+            "0559"
+          ]
+        ]
+      },
+      "expected": [
+        "a"
+      ],
+      "tags": [
+        "sample"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      }
+    },
+    {
+      "id": "sample-tight-triple",
+      "name": "sample: tight triple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "d",
+            "0002"
+          ],
+          [
+            "c",
+            "0808"
+          ],
+          [
+            "c",
+            "0809"
+          ],
+          [
+            "c",
+            "0810"
+          ]
+        ]
+      },
+      "expected": [
+        "c"
+      ],
+      "tags": [
+        "sample"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      }
+    },
+    {
+      "id": "sample-two-employees",
+      "name": "sample: two employees qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "cd",
+            "1025"
+          ],
+          [
+            "ig",
+            "1025"
+          ],
+          [
+            "cd",
+            "1026"
+          ],
+          [
+            "cd",
+            "1027"
+          ],
+          [
+            "ig",
+            "1028"
+          ],
+          [
+            "ig",
+            "1029"
+          ]
+        ]
+      },
+      "expected": [
+        "cd",
+        "ig"
+      ],
+      "tags": [
+        "sample"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      }
+    },
+    {
+      "id": "trial-exactly-sixty-minutes",
+      "name": "trial: exactly sixty minutes is not high-access",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "a",
+            "0100"
+          ],
+          [
+            "a",
+            "0130"
+          ],
+          [
+            "a",
+            "0200"
+          ]
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      }
+    },
+    {
+      "id": "real-unsorted-multiple-names",
+      "name": "real: unsorted records with multiple names",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "access_times": [
+          [
+            "alice",
+            "1230"
+          ],
+          [
+            "bob",
+            "0900"
+          ],
+          [
+            "alice",
+            "1310"
+          ],
+          [
+            "alice",
+            "1259"
+          ],
+          [
+            "bob",
+            "0959"
+          ],
+          [
+            "bob",
+            "1000"
+          ],
+          [
+            "bob",
+            "1015"
+          ],
+          [
+            "cara",
+            "0000"
+          ],
+          [
+            "cara",
+            "0059"
+          ],
+          [
+            "cara",
+            "0100"
+          ]
+        ]
+      },
+      "expected": [
+        "alice",
+        "bob"
+      ],
+      "tags": [
+        "hidden"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      }
+    }
+  ]
+}

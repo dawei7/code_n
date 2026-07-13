@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_758",
+  "cases": [
+    {"id": "sample-1", "name": "sample: overlapping matches merge", "kind": "sample", "visible": true, "input": {"words": ["ab", "bc"], "s": "aabcd"}, "expected": "a<b>abc</b>d", "tags": ["sample", "overlap"]},
+    {"id": "sample-2", "name": "sample: one dictionary word matches", "kind": "sample", "visible": true, "input": {"words": ["ab", "cb"], "s": "aabcd"}, "expected": "a<b>ab</b>cd", "tags": ["sample", "single-match"]},
+    {"id": "trial-1", "name": "trial: adjacent matches merge", "kind": "trial", "visible": true, "input": {"words": ["ab", "cd"], "s": "abcd"}, "expected": "<b>abcd</b>", "tags": ["trial", "adjacent"]},
+    {"id": "trial-2", "name": "trial: no word occurs", "kind": "trial", "visible": true, "input": {"words": ["xy", "z"], "s": "abc"}, "expected": "abc", "tags": ["trial", "no-match"]},
+    {"id": "trial-3", "name": "trial: repeated overlapping occurrence", "kind": "trial", "visible": true, "input": {"words": ["aa"], "s": "aaaa"}, "expected": "<b>aaaa</b>", "tags": ["trial", "repeated"]},
+    {"id": "hidden-1", "name": "hidden: match at the final character", "kind": "real", "visible": false, "input": {"words": ["end"], "s": "theend"}, "expected": "the<b>end</b>", "tags": ["hidden", "final"]},
+    {"id": "hidden-2", "name": "hidden: separated bold ranges", "kind": "real", "visible": false, "input": {"words": ["ab"], "s": "abxxab"}, "expected": "<b>ab</b>xx<b>ab</b>", "tags": ["hidden", "separate"]},
+    {"id": "hidden-3", "name": "hidden: shorter match inside longer match", "kind": "real", "visible": false, "input": {"words": ["bc", "abcd"], "s": "zabcdz"}, "expected": "z<b>abcd</b>z", "tags": ["hidden", "nested-match"]}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_761",
+  "measurement_note": "Size is the binary-string length. The workload consists of many top-level primitive blocks, so sorting canonical sibling blocks scales within O(size^2), while repeatedly scanning the remaining siblings for the next maximum adds a quadratic selection layer.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 primitive blocks", "kind": "benchmark", "visible": false, "size": 8, "input": {"s": "10101010"}, "expected": "10101010", "tags": ["benchmark", "scaling", "siblings"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 12 primitive blocks", "kind": "benchmark", "visible": false, "size": 24, "input": {"s": "101010101010101010101010"}, "expected": "101010101010101010101010", "tags": ["benchmark", "scaling", "siblings"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 24 primitive blocks", "kind": "benchmark", "visible": false, "size": 48, "input": {"s": "101010101010101010101010101010101010101010101010"}, "expected": "101010101010101010101010101010101010101010101010", "tags": ["benchmark", "scaling", "siblings"]}
+  ]
+}

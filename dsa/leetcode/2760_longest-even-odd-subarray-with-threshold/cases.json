@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_2760",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: even-start alternating subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          5,
+          4
+        ],
+        "threshold": 5
+      },
+      "tags": [
+        "sample",
+        "alternating"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: threshold blocks longer subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "threshold": 2
+      },
+      "tags": [
+        "sample",
+        "start-even"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no valid even start",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "threshold": 4
+      },
+      "tags": [
+        "sample",
+        "threshold"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "trial-reset-on-threshold",
+      "name": "trial: values above threshold reset window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4,
+          7,
+          6,
+          5,
+          8
+        ],
+        "threshold": 6
+      },
+      "tags": [
+        "trial",
+        "reset"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "real-long-alternation",
+      "name": "hidden: long alternating run begins after odd value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          4,
+          3,
+          2,
+          1,
+          6,
+          5,
+          4
+        ],
+        "threshold": 6
+      },
+      "tags": [
+        "hidden",
+        "run"
+      ],
+      "expected": 7
+    }
+  ]
+}

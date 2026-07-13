@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_201",
+  "measurement_note": "Growing interval widths exercise removal of unstable binary suffix bits.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 range width",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "left": 32891,
+        "right": 32899
+      },
+      "expected": 32768,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 range width",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "left": 262267,
+        "right": 262331
+      },
+      "expected": 262144,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 range width",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "left": 1048699,
+        "right": 1048955
+      },
+      "expected": 1048576,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

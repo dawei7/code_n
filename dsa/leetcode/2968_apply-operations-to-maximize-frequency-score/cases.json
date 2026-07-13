@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_2968",
+  "cases": [
+    {
+      "id": "sample-two-frequency",
+      "name": "sample: budget allows frequency two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          8,
+          13
+        ],
+        "k": 5
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-pair",
+      "name": "sample: no pair within budget",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          9,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-frequency-three",
+      "name": "sample: budget allows three equal values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          6,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-zero-budget",
+      "name": "trial: zero budget counts duplicates only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3,
+          3,
+          3
+        ],
+        "k": 0
+      },
+      "expected": 3,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-regression-sign",
+      "name": "real: median-cost sign regression",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          10,
+          20
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "regression"
+      ]
+    }
+  ]
+}

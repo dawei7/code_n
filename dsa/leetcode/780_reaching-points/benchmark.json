@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_780",
+  "measurement_note": "Size is the larger target coordinate. Modulo batches repeated reverse moves in O(log size); subtracting the fixed second coordinate once per move takes O(size) on these reachable boundary targets.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: target coordinate 8", "kind": "benchmark", "visible": false, "size": 8, "input": {"sx": 2, "sy": 3, "tx": 8, "ty": 3}, "expected": true, "tags": ["benchmark", "scaling", "boundary-divisibility"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: target coordinate 32", "kind": "benchmark", "visible": false, "size": 32, "input": {"sx": 2, "sy": 3, "tx": 32, "ty": 3}, "expected": true, "tags": ["benchmark", "scaling", "boundary-divisibility"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: target coordinate 47", "kind": "benchmark", "visible": false, "size": 47, "input": {"sx": 2, "sy": 3, "tx": 47, "ty": 3}, "expected": true, "tags": ["benchmark", "scaling", "boundary-divisibility"]}
+  ]
+}

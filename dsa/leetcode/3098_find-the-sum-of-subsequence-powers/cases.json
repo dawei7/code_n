@@ -1,0 +1,98 @@
+{
+  "challenge_id": "lc_3098",
+  "cases": [
+    {
+      "id": "sample-single-subsequence",
+      "name": "sample: one length-three subsequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-pair-powers",
+      "name": "sample: all length-two pair differences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          4,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-duplicates-zero",
+      "name": "sample: duplicate values have zero power",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-negative-values",
+      "name": "trial: negative values and mixed gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          -1
+        ],
+        "k": 2
+      },
+      "expected": 10,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-many-gaps",
+      "name": "real: several subsequence powers with repeated gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          9,
+          3,
+          7
+        ],
+        "k": 3
+      },
+      "expected": 22,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    }
+  ]
+}

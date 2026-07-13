@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_10",
+  "cases": [
+    {"id": "sample-1", "name": "sample: literal is too short", "kind": "sample", "visible": true, "input": {"s": "aa", "p": "a"}, "expected": false, "tags": ["sample"]},
+    {"id": "sample-2", "name": "sample: starred literal", "kind": "sample", "visible": true, "input": {"s": "aa", "p": "a*"}, "expected": true, "tags": ["sample", "star"]},
+    {"id": "trial-wildcard-star", "name": "dot star consumes the string", "kind": "trial", "visible": true, "input": {"s": "ab", "p": ".*"}, "expected": true, "tags": ["wildcard", "star"]},
+    {"id": "trial-zero-and-many", "name": "stars use zero and multiple copies", "kind": "trial", "visible": true, "input": {"s": "aab", "p": "c*a*b"}, "expected": true, "tags": ["zero-copies", "many-copies"]},
+    {"id": "real-ambiguous-failure", "name": "hidden: locally plausible stars cannot complete", "kind": "real", "visible": false, "input": {"s": "mississippi", "p": "mis*is*p*."}, "expected": false, "tags": ["hidden", "backtracking"]},
+    {"id": "real-empty-string", "name": "hidden: starred element matches empty", "kind": "real", "visible": false, "input": {"s": "", "p": "c*"}, "expected": true, "tags": ["hidden", "empty"]}
+  ]
+}

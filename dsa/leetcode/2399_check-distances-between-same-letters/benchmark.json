@@ -1,0 +1,46 @@
+{
+  "challenge_id": "lc_2399",
+  "cases": [
+    {
+      "id": "benchmark-all-letters",
+      "name": "benchmark: all letters repeated once",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
+        "distance": [
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

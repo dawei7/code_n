@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_1295",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two even digit counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          345,
+          2,
+          6,
+          7896
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one even digit count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          555,
+          901,
+          482,
+          1771
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-digit",
+      "name": "single one-digit value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-powers-of-ten",
+      "name": "hidden: powers of ten",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          100,
+          1000,
+          10000
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

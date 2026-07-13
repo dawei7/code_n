@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_380",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: insert remove and random selection",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            1
+          ],
+          [
+            "remove",
+            2
+          ],
+          [
+            "insert",
+            2
+          ],
+          [
+            "getRandom"
+          ],
+          [
+            "remove",
+            1
+          ],
+          [
+            "insert",
+            2
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true,
+        1,
+        true,
+        false,
+        2
+      ],
+      "validator": {
+        "kind": "randomized_set_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "random"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate insertion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            5
+          ],
+          [
+            "insert",
+            5
+          ],
+          [
+            "remove",
+            5
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "validator": {
+        "kind": "randomized_set_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one negative member",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            -3
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        -3
+      ],
+      "validator": {
+        "kind": "randomized_set_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-remove-last",
+      "name": "trial: remove final array member",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            1
+          ],
+          [
+            "insert",
+            2
+          ],
+          [
+            "remove",
+            2
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        1
+      ],
+      "validator": {
+        "kind": "randomized_set_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "trial",
+        "remove"
+      ]
+    },
+    {
+      "id": "trial-reinsert",
+      "name": "trial: removed value can be inserted again",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            4
+          ],
+          [
+            "remove",
+            4
+          ],
+          [
+            "insert",
+            4
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        4
+      ],
+      "validator": {
+        "kind": "randomized_set_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "trial",
+        "reinsert"
+      ]
+    },
+    {
+      "id": "hidden-swap",
+      "name": "hidden: removing middle value updates moved index",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            10
+          ],
+          [
+            "insert",
+            20
+          ],
+          [
+            "insert",
+            30
+          ],
+          [
+            "remove",
+            20
+          ],
+          [
+            "remove",
+            30
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        10
+      ],
+      "validator": {
+        "kind": "randomized_set_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "hidden",
+        "swap"
+      ]
+    },
+    {
+      "id": "hidden-missing",
+      "name": "hidden: repeated missing removal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            7
+          ],
+          [
+            "remove",
+            8
+          ],
+          [
+            "remove",
+            8
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        7
+      ],
+      "validator": {
+        "kind": "randomized_set_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "hidden",
+        "missing"
+      ]
+    },
+    {
+      "id": "hidden-two-random",
+      "name": "hidden: either current member is random-valid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "insert",
+            1
+          ],
+          [
+            "insert",
+            2
+          ],
+          [
+            "getRandom"
+          ],
+          [
+            "getRandom"
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "randomized_set_trace",
+        "operations_param": "operations"
+      },
+      "tags": [
+        "hidden",
+        "random"
+      ]
+    }
+  ]
+}
+

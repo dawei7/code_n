@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_145",
+  "cases": [
+    {"id": "sample-right-left", "name": "sample: left child below right node", "kind": "sample", "visible": true, "input": {"root": [1, null, 2, 3]}, "expected": [3, 2, 1], "tags": ["sample", "sparse"]},
+    {"id": "sample-empty", "name": "sample: empty tree", "kind": "sample", "visible": true, "input": {"root": []}, "expected": [], "tags": ["sample", "boundary"]},
+    {"id": "trial-complete", "name": "complete three-level tree", "kind": "trial", "visible": true, "input": {"root": [1, 2, 3, 4, 5, 6, 7]}, "expected": [4, 5, 2, 6, 7, 3, 1], "tags": ["balanced"]},
+    {"id": "trial-single", "name": "single node", "kind": "trial", "visible": true, "input": {"root": [9]}, "expected": [9], "tags": ["boundary"]},
+    {"id": "real-duplicates", "name": "hidden: duplicate values", "kind": "real", "visible": false, "input": {"root": [2, 2, 2, null, 2]}, "expected": [2, 2, 2, 2], "tags": ["hidden", "duplicates"]}
+  ]
+}

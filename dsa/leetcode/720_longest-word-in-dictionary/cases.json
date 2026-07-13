@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_720",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one complete prefix chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["w","wo","wor","worl","world"]},
+      "expected": "world",
+      "tags": ["sample", "prefix-chain"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: lexicographic tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["a","banana","app","appl","ap","apply","apple"]},
+      "expected": "apple",
+      "tags": ["sample", "tie-break"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: incomplete and complete branches",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["t","to","tea","ted","ten","i","in","inn"]},
+      "expected": "inn",
+      "tags": ["sample", "missing-prefixes"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: input order does not matter",
+      "kind": "trial",
+      "visible": true,
+      "input": {"words": ["coder","c","code","co","cod"]},
+      "expected": "coder",
+      "tags": ["trial", "unsorted-input"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: only one-letter candidates are buildable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"words": ["zebra","z","alpha","a"]},
+      "expected": "a",
+      "tags": ["trial", "one-letter-tie"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: no valid starting word",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["ab","abc","xyz"]},
+      "expected": "",
+      "tags": ["hidden", "empty-answer"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: deep lexicographic tie",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["a","at","ate","b","be","bet"]},
+      "expected": "ate",
+      "tags": ["hidden", "deep-tie"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: missing middle prefix blocks longer word",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["p","pl","plan","plane","q","qu","qui"]},
+      "expected": "qui",
+      "tags": ["hidden", "blocked-branch"]
+    }
+  ]
+}

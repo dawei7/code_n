@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_2461",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: best distinct window appears before duplicates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          4,
+          2,
+          9,
+          9,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all values repeat inside the only window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: distinct window after repeated prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          7,
+          8,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 24,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-late-distinct-window",
+      "name": "trial: only the final window has three distinct values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-window-longer-than-array",
+      "name": "hidden: k is longer than the input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          6
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

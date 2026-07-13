@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_434",
+  "measurement_note": "Size is the string length within the canonical maximum of 300. Adjacent-character transition checks are linear, while walking backward from every character to rediscover the beginning of the same long segment performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: count one 16-character segment",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"s": "aaaaaaaaaaaaaaaa"},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "long-segment"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: count one 64-character segment",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "long-segment"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: count one 256-character segment",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "long-segment"]
+    }
+  ]
+}

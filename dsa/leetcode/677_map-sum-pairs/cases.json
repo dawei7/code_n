@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_677",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: insert and shared-prefix sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "MapSum",
+          "insert",
+          "sum",
+          "insert",
+          "sum"
+        ],
+        "arguments": [
+          [],
+          [
+            "apple",
+            3
+          ],
+          [
+            "ap"
+          ],
+          [
+            "app",
+            2
+          ],
+          [
+            "ap"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        3,
+        null,
+        5
+      ],
+      "tags": [
+        "sample",
+        "shared-prefix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: replace an existing key",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "MapSum",
+          "insert",
+          "sum",
+          "insert",
+          "sum"
+        ],
+        "arguments": [
+          [],
+          [
+            "apple",
+            3
+          ],
+          [
+            "ap"
+          ],
+          [
+            "apple",
+            2
+          ],
+          [
+            "ap"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        3,
+        null,
+        2
+      ],
+      "tags": [
+        "sample",
+        "replacement"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: missing prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "MapSum",
+          "insert",
+          "sum",
+          "sum"
+        ],
+        "arguments": [
+          [],
+          [
+            "apple",
+            3
+          ],
+          [
+            "apple"
+          ],
+          [
+            "b"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        3,
+        0
+      ],
+      "tags": [
+        "sample",
+        "missing-prefix"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: nested keys",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "MapSum",
+          "insert",
+          "insert",
+          "insert",
+          "sum",
+          "sum"
+        ],
+        "arguments": [
+          [],
+          [
+            "a",
+            1
+          ],
+          [
+            "ab",
+            2
+          ],
+          [
+            "abc",
+            3
+          ],
+          [
+            "a"
+          ],
+          [
+            "ab"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        6,
+        5
+      ],
+      "tags": [
+        "trial",
+        "nested-prefixes"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: replace with a smaller value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "MapSum",
+          "insert",
+          "insert",
+          "sum",
+          "insert",
+          "sum"
+        ],
+        "arguments": [
+          [],
+          [
+            "car",
+            9
+          ],
+          [
+            "cart",
+            4
+          ],
+          [
+            "car"
+          ],
+          [
+            "car",
+            1
+          ],
+          [
+            "car"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        13,
+        null,
+        5
+      ],
+      "tags": [
+        "trial",
+        "negative-delta"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: disjoint prefixes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "MapSum",
+          "insert",
+          "insert",
+          "sum",
+          "sum"
+        ],
+        "arguments": [
+          [],
+          [
+            "dog",
+            5
+          ],
+          [
+            "cat",
+            7
+          ],
+          [
+            "d"
+          ],
+          [
+            "c"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        5,
+        7
+      ],
+      "tags": [
+        "hidden",
+        "disjoint-prefixes"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: replacement preserves descendants",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "MapSum",
+          "insert",
+          "insert",
+          "insert",
+          "sum"
+        ],
+        "arguments": [
+          [],
+          [
+            "go",
+            2
+          ],
+          [
+            "gone",
+            8
+          ],
+          [
+            "go",
+            6
+          ],
+          [
+            "go"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        14
+      ],
+      "tags": [
+        "hidden",
+        "replacement-with-descendant"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: exact key prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "MapSum",
+          "insert",
+          "insert",
+          "sum"
+        ],
+        "arguments": [
+          [],
+          [
+            "x",
+            4
+          ],
+          [
+            "xy",
+            5
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        9
+      ],
+      "tags": [
+        "hidden",
+        "exact-prefix"
+      ]
+    }
+  ]
+}
+

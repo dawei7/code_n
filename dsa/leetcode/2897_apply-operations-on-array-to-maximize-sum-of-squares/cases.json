@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_2897",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: concentrate bits from three values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          6,
+          5
+        ],
+        "k": 2
+      },
+      "tags": [
+        "sample",
+        "bits"
+      ],
+      "expected": 85
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two selected values from four numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          3,
+          9,
+          12
+        ],
+        "k": 2
+      },
+      "tags": [
+        "sample",
+        "greedy"
+      ],
+      "expected": 346
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated unit bits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-select-one-value",
+      "name": "trial: k one concentrates every available bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          8,
+          3
+        ],
+        "k": 1
+      },
+      "tags": [
+        "trial",
+        "single-selection"
+      ],
+      "expected": 225
+    },
+    {
+      "id": "real-wide-bit-counts",
+      "name": "hidden: overlapping bit counts across many values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          31,
+          14,
+          7,
+          28,
+          19,
+          3,
+          12
+        ],
+        "k": 4
+      },
+      "tags": [
+        "hidden",
+        "bit-counts"
+      ],
+      "expected": 3108
+    }
+  ]
+}

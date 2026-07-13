@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_729",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: overlap followed by touching interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["book",10,20],["book",15,25],["book",20,30]]},
+      "expected": [true, false, true],
+      "tags": ["sample", "overlap"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: intervals touch on both sides",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["book",1,2],["book",2,3],["book",0,1]]},
+      "expected": [true, true, true],
+      "tags": ["sample", "half-open"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate booking",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": [["book",5,10],["book",5,10]]},
+      "expected": [true, false],
+      "tags": ["sample", "duplicate"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: contained and containing requests",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["book",10,30],["book",15,20],["book",5,35]]},
+      "expected": [true, false, false],
+      "tags": ["trial", "containment"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: rejected request changes no state",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": [["book",10,20],["book",15,25],["book",20,25],["book",5,10]]},
+      "expected": [true, false, true, true],
+      "tags": ["trial", "transactional"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: coordinate extremes",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["book",0,1],["book",999999999,1000000000],["book",0,1000000000]]},
+      "expected": [true, true, false],
+      "tags": ["hidden", "domain-boundary"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: one-unit gap remains available",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["book",1,3],["book",4,6],["book",3,4],["book",2,5]]},
+      "expected": [true, true, true, false],
+      "tags": ["hidden", "gap"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: alternating disjoint and overlapping calls",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": [["book",100,200],["book",300,400],["book",150,350],["book",200,300],["book",50,100]]},
+      "expected": [true, true, false, true, true],
+      "tags": ["hidden", "mixed-trace"]
+    }
+  ]
+}

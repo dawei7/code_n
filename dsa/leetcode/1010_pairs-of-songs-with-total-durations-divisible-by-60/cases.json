@@ -1,0 +1,78 @@
+{
+  "challenge_id": "lc_1010",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "time": [
+          30,
+          20,
+          150,
+          100,
+          40
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "modulo"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all multiples",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "time": [
+          60,
+          60,
+          60
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-pairs",
+      "name": "no valid pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "time": [
+          10,
+          20,
+          30
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "real-complementary-remainders",
+      "name": "hidden: complementary remainders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "time": [
+          10,
+          50,
+          20,
+          40,
+          30
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

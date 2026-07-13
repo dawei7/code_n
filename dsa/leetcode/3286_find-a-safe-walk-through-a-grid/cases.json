@@ -1,0 +1,168 @@
+{
+  "challenge_id": "lc_3286",
+  "cases": [
+    {
+      "id": "sample-safe-corridor",
+      "name": "sample: safe corridor exists",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "health": 1
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "zero-one-bfs"
+      ]
+    },
+    {
+      "id": "sample-too-costly",
+      "name": "sample: every path costs too much",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        "health": 3
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "blocked"
+      ]
+    },
+    {
+      "id": "trial-start-cost",
+      "name": "trial: hazardous start consumes health",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ],
+        "health": 1
+      },
+      "expected": false,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-narrow-path",
+      "name": "trial: narrow cheap path around hazards",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ],
+        "health": 2
+      },
+      "expected": true,
+      "tags": [
+        "path"
+      ]
+    },
+    {
+      "id": "real-detour-needed",
+      "name": "real: detour beats direct hazardous route",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "health": 3
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "shortest-path"
+      ]
+    }
+  ]
+}

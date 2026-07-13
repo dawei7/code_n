@@ -1,0 +1,460 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_570",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one manager with five reports",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "John",
+              "department": "A",
+              "managerId": null
+            },
+            {
+              "id": 2,
+              "name": "Dan",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 3,
+              "name": "James",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 4,
+              "name": "Amy",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 5,
+              "name": "Anne",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 6,
+              "name": "Ron",
+              "department": "B",
+              "managerId": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "John"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "grouping"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four reports do not qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "Four",
+              "department": "A",
+              "managerId": null
+            },
+            {
+              "id": 2,
+              "name": "A",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 3,
+              "name": "B",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 4,
+              "name": "C",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 5,
+              "name": "D",
+              "department": "A",
+              "managerId": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "sample",
+        "grouping"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two qualifying managers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "Alpha",
+              "department": "A",
+              "managerId": null
+            },
+            {
+              "id": 2,
+              "name": "Beta",
+              "department": "B",
+              "managerId": null
+            },
+            {
+              "id": 10,
+              "name": "A0",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 11,
+              "name": "A1",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 12,
+              "name": "A2",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 13,
+              "name": "A3",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 14,
+              "name": "A4",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 20,
+              "name": "B0",
+              "department": "B",
+              "managerId": 2
+            },
+            {
+              "id": 21,
+              "name": "B1",
+              "department": "B",
+              "managerId": 2
+            },
+            {
+              "id": 22,
+              "name": "B2",
+              "department": "B",
+              "managerId": 2
+            },
+            {
+              "id": 23,
+              "name": "B3",
+              "department": "B",
+              "managerId": 2
+            },
+            {
+              "id": 24,
+              "name": "B4",
+              "department": "B",
+              "managerId": 2
+            },
+            {
+              "id": 25,
+              "name": "B5",
+              "department": "B",
+              "managerId": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Alpha"
+          ],
+          [
+            "Beta"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "grouping"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: indirect reports do not count for root",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "Root",
+              "department": "A",
+              "managerId": null
+            },
+            {
+              "id": 2,
+              "name": "Middle",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 3,
+              "name": "Leaf1",
+              "department": "A",
+              "managerId": 2
+            },
+            {
+              "id": 4,
+              "name": "Leaf2",
+              "department": "A",
+              "managerId": 2
+            },
+            {
+              "id": 5,
+              "name": "Leaf3",
+              "department": "A",
+              "managerId": 2
+            },
+            {
+              "id": 6,
+              "name": "Leaf4",
+              "department": "A",
+              "managerId": 2
+            },
+            {
+              "id": 7,
+              "name": "Leaf5",
+              "department": "A",
+              "managerId": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Middle"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "direct-reports"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: exactly five reports",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "Exact",
+              "department": "A",
+              "managerId": null
+            },
+            {
+              "id": 2,
+              "name": "R0",
+              "department": "B",
+              "managerId": 1
+            },
+            {
+              "id": 3,
+              "name": "R1",
+              "department": "B",
+              "managerId": 1
+            },
+            {
+              "id": 4,
+              "name": "R2",
+              "department": "B",
+              "managerId": 1
+            },
+            {
+              "id": 5,
+              "name": "R3",
+              "department": "B",
+              "managerId": 1
+            },
+            {
+              "id": 6,
+              "name": "R4",
+              "department": "B",
+              "managerId": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Exact"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "direct-reports"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: six reports plus unrelated employee",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "Six",
+              "department": "A",
+              "managerId": null
+            },
+            {
+              "id": 2,
+              "name": "R0",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 3,
+              "name": "R1",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 4,
+              "name": "R2",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 5,
+              "name": "R3",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 6,
+              "name": "R4",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 7,
+              "name": "R5",
+              "department": "A",
+              "managerId": 1
+            },
+            {
+              "id": 20,
+              "name": "Other",
+              "department": "A",
+              "managerId": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Six"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "threshold"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: no report relationships",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "id": 1,
+              "name": "None",
+              "department": "A",
+              "managerId": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "threshold"
+      ]
+    }
+  ]
+}
+

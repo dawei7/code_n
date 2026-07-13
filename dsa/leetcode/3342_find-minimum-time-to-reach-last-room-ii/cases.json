@@ -1,0 +1,166 @@
+{
+  "challenge_id": "lc_3342",
+  "cases": [
+    {
+      "id": "sample-alternating-costs",
+      "name": "sample: alternating one- and two-second moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "moveTime": [
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "dijkstra"
+      ]
+    },
+    {
+      "id": "sample-open-grid",
+      "name": "sample: open rectangle with alternating move costs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "moveTime": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "sample-small-waits",
+      "name": "sample: waits plus alternating costs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "moveTime": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "grid"
+      ]
+    },
+    {
+      "id": "trial-detour-with-parity",
+      "name": "trial: detour interacts with alternating move duration",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moveTime": [
+          [
+            0,
+            5,
+            1
+          ],
+          [
+            0,
+            6,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "test",
+        "parity-state"
+      ]
+    },
+    {
+      "id": "trial-single-room",
+      "name": "trial: already at destination",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moveTime": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "single-cell"
+      ]
+    },
+    {
+      "id": "real-grid-parity-waits",
+      "name": "real: parity state changes the best route",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "moveTime": [
+          [
+            0,
+            4,
+            1,
+            9
+          ],
+          [
+            0,
+            8,
+            2,
+            5
+          ],
+          [
+            3,
+            3,
+            7,
+            1
+          ],
+          [
+            6,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "real",
+        "grid",
+        "parity"
+      ]
+    }
+  ]
+}

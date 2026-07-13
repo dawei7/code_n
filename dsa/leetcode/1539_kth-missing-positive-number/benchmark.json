@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_1539",
+  "cases": [
+    {
+      "id": "benchmark-large-leading-gap",
+      "name": "benchmark: large gap before the first value",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          10,
+          20,
+          30
+        ],
+        "k": 15
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

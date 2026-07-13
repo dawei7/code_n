@@ -1,0 +1,168 @@
+{
+  "challenge_id": "lc_3243",
+  "cases": [
+    {
+      "id": "sample-simple-shortcuts",
+      "name": "sample: shortcuts reduce the path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "queries": [
+          [
+            2,
+            4
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "bfs"
+      ]
+    },
+    {
+      "id": "sample-late-shortcut",
+      "name": "sample: late edge does not always help",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "queries": [
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        3,
+        1
+      ],
+      "tags": [
+        "sample",
+        "roads"
+      ]
+    },
+    {
+      "id": "trial-direct-edge",
+      "name": "trial: direct edge reaches distance one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "queries": [
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-many-edges",
+      "name": "trial: many overlapping edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-medium-graph",
+      "name": "real: medium road additions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 9,
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        2,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "real",
+        "bfs"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_458",
+  "cases": [
+    {
+      "id": "sample-four-rounds",
+      "name": "sample: four death rounds plus survival",
+      "kind": "sample",
+      "visible": true,
+      "input": {"buckets": 1000, "minutesToDie": 15, "minutesToTest": 60},
+      "expected": 5,
+      "tags": ["sample", "multiple-rounds"]
+    },
+    {
+      "id": "sample-one-round",
+      "name": "sample: one testing round",
+      "kind": "sample",
+      "visible": true,
+      "input": {"buckets": 4, "minutesToDie": 15, "minutesToTest": 15},
+      "expected": 2,
+      "tags": ["sample", "one-round"]
+    },
+    {
+      "id": "sample-two-rounds",
+      "name": "sample: two testing rounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {"buckets": 4, "minutesToDie": 15, "minutesToTest": 30},
+      "expected": 2,
+      "tags": ["sample", "two-rounds"]
+    },
+    {
+      "id": "trial-one-bucket",
+      "name": "trial: no distinction is needed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"buckets": 1, "minutesToDie": 15, "minutesToTest": 60},
+      "expected": 0,
+      "tags": ["trial", "single"]
+    },
+    {
+      "id": "trial-exact-power",
+      "name": "trial: capacity is an exact power",
+      "kind": "trial",
+      "visible": true,
+      "input": {"buckets": 25, "minutesToDie": 15, "minutesToTest": 60},
+      "expected": 2,
+      "tags": ["trial", "exact-power"]
+    },
+    {
+      "id": "hidden-three-pigs",
+      "name": "hidden: four states per pig",
+      "kind": "real",
+      "visible": false,
+      "input": {"buckets": 64, "minutesToDie": 15, "minutesToTest": 45},
+      "expected": 3,
+      "tags": ["hidden", "exact-power"]
+    },
+    {
+      "id": "hidden-ten-pigs",
+      "name": "hidden: binary outcomes near the constraint limit",
+      "kind": "real",
+      "visible": false,
+      "input": {"buckets": 1000, "minutesToDie": 1, "minutesToTest": 1},
+      "expected": 10,
+      "tags": ["hidden", "one-round"]
+    }
+  ]
+}

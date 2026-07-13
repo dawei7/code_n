@@ -1,0 +1,27 @@
+{
+  "challenge_id": "lc_1508",
+  "cases": [
+    {
+      "id": "benchmark-full-range-equal-values",
+      "name": "benchmark: full range with equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "n": 5,
+        "left": 1,
+        "right": 15
+      },
+      "expected": 35,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

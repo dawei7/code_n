@@ -1,0 +1,148 @@
+{
+  "challenge_id": "lc_3402",
+  "cases": [
+    {
+      "id": "sample-two-columns",
+      "name": "sample: two columns need fifteen increments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "columns"
+      ]
+    },
+    {
+      "id": "sample-three-columns",
+      "name": "sample: three columns need twelve increments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "columns"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "trial: one row is already strictly increasing by column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            0,
+            7
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-already-increasing",
+      "name": "trial: no increments needed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "already-valid"
+      ]
+    },
+    {
+      "id": "real-flat-columns",
+      "name": "real: flat columns accumulate increasing increments",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "real",
+        "columns"
+      ]
+    }
+  ]
+}

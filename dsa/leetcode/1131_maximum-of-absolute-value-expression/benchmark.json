@@ -1,0 +1,31 @@
+{
+  "challenge_id": "lc_1131",
+  "cases": [
+    {
+      "id": "benchmark-five-points",
+      "name": "benchmark: five mixed points",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr1": [
+          8,
+          1,
+          -6,
+          4,
+          2
+        ],
+        "arr2": [
+          -2,
+          7,
+          3,
+          -5,
+          6
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

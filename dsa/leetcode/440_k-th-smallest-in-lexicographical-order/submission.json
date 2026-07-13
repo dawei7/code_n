@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "440",
+  "frontend_id": "440",
+  "title_slug": "k-th-smallest-in-lexicographical-order",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064820556",
+  "verified_at": "2026-07-12T09:24:39.692675+00:00"
+}

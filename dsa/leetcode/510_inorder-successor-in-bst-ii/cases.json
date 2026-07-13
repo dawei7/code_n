@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_510",
+  "cases": [
+    {"id": "sample-parent", "name": "sample: parent is the successor", "kind": "sample", "visible": true, "input": {"node": {"tree": [2,1,3], "target_index": 1}}, "expected": 2, "validator": {"kind": "node_value"}, "tags": ["sample", "parent"]},
+    {"id": "sample-maximum", "name": "sample: maximum has no successor", "kind": "sample", "visible": true, "input": {"node": {"tree": [5,3,6,2,4,null,null,1], "target_index": 2}}, "expected": null, "validator": {"kind": "node_value"}, "tags": ["sample", "maximum"]},
+    {"id": "sample-climb", "name": "sample: climb to first greater ancestor", "kind": "sample", "visible": true, "input": {"node": {"tree": [5,3,6,2,4,null,null,1], "target_index": 4}}, "expected": 5, "validator": {"kind": "node_value"}, "tags": ["sample", "ancestor"]},
+    {"id": "trial-right-subtree", "name": "trial: successor is right-subtree minimum", "kind": "trial", "visible": true, "input": {"node": {"tree": [5,3,7,2,4,6,8], "target_index": 0}}, "expected": 6, "validator": {"kind": "node_value"}, "tags": ["trial", "right-subtree"]},
+    {"id": "trial-single", "name": "trial: one-node tree", "kind": "trial", "visible": true, "input": {"node": {"tree": [1], "target_index": 0}}, "expected": null, "validator": {"kind": "node_value"}, "tags": ["trial", "singleton"]},
+    {"id": "hidden-direct-parent", "name": "hidden: immediate parent follows a leaf", "kind": "real", "visible": false, "input": {"node": {"tree": [5,3,7,2,4,6,8], "target_index": 3}}, "expected": 3, "validator": {"kind": "node_value"}, "tags": ["hidden", "parent"]},
+    {"id": "hidden-right-child-climb", "name": "hidden: climb through a right-child chain", "kind": "real", "visible": false, "input": {"node": {"tree": [8,4,12,2,6,10,14,1,3,5,7,9,11,13,15], "target_index": 10}}, "expected": 8, "validator": {"kind": "node_value"}, "tags": ["hidden", "ancestor"]}
+  ]
+}

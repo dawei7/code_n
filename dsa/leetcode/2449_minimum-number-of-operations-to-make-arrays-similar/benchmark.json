@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_2449",
+  "cases": [
+    {
+      "id": "benchmark-mixed-parity",
+      "name": "benchmark: mixed parity transfers",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          3,
+          4,
+          2
+        ],
+        "target": [
+          1,
+          9,
+          6,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

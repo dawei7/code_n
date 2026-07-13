@@ -1,0 +1,135 @@
+{
+  "challenge_id": "lc_1282",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one singleton and groups of three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "group_sizes": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          1,
+          3
+        ]
+      },
+      "expected": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          5
+        ],
+        [
+          3,
+          4,
+          6
+        ]
+      ],
+      "validator": {
+        "kind": "group_people"
+      },
+      "tags": [
+        "sample",
+        "hash-map"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: mixed group sizes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "group_sizes": [
+          2,
+          1,
+          3,
+          3,
+          3,
+          2
+        ]
+      },
+      "expected": [
+        [
+          1
+        ],
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "validator": {
+        "kind": "group_people"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-person",
+      "name": "single person group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "group_sizes": [
+          1
+        ]
+      },
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "group_people"
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-two-singletons",
+      "name": "hidden: two singleton groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "group_sizes": [
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "group_people"
+      },
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

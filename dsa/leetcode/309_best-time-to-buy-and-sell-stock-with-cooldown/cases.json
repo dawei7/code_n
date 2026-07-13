@@ -1,0 +1,114 @@
+{
+  "challenge_id": "lc_309",
+  "cases": [
+    {
+      "id": "sample-cooldown",
+      "name": "sample: cooldown changes the best transactions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          2,
+          3,
+          0,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "cooldown"
+      ]
+    },
+    {
+      "id": "sample-decreasing",
+      "name": "sample: no profitable transaction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          49,
+          27,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "sample-two-days",
+      "name": "sample: one profitable sale",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          37,
+          49
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "single-transaction"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one day cannot complete a transaction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-valleys",
+      "name": "separated valleys with cooldown",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          2,
+          1,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "valley"
+      ]
+    },
+    {
+      "id": "real-multiple",
+      "name": "hidden: several competing transaction plans",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          6,
+          1,
+          6,
+          4,
+          3,
+          0,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "multiple-transactions"
+      ]
+    }
+  ]
+}

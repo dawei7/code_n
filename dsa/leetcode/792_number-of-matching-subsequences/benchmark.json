@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_792",
+  "measurement_note": "Size is both the source length and word count; every word has length one. Waiting buckets process O(size) total characters, while scanning the source separately for every word takes O(size^2) because the match is at the end.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 words await final z", "kind": "benchmark", "visible": false, "size": 4, "input": {"s": "aaaz", "words": ["z", "z", "z", "z"]}, "expected": 4, "tags": ["benchmark", "scaling", "duplicates"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 words await final z", "kind": "benchmark", "visible": false, "size": 16, "input": {"s": "aaaaaaaaaaaaaaaz", "words": ["z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z"]}, "expected": 16, "tags": ["benchmark", "scaling", "duplicates"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 24 words await final z", "kind": "benchmark", "visible": false, "size": 24, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaz", "words": ["z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z", "z"]}, "expected": 24, "tags": ["benchmark", "scaling", "duplicates"]}
+  ]
+}

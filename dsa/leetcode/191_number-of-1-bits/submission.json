@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "191",
+  "frontend_id": "191",
+  "title_slug": "number-of-1-bits",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064196671",
+  "verified_at": "2026-07-11T18:27:38.883347+00:00"
+}

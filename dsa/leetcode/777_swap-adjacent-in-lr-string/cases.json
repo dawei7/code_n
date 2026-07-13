@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_777",
+  "cases": [
+    {"id": "sample-1", "name": "sample: several legal moves", "kind": "sample", "visible": true, "input": {"start": "RXXLRXRXL", "end": "XRLXXRRLX"}, "expected": true, "tags": ["sample", "transformable"]},
+    {"id": "sample-2", "name": "sample: token cannot be created", "kind": "sample", "visible": true, "input": {"start": "X", "end": "L"}, "expected": false, "tags": ["sample", "token-mismatch"]},
+    {"id": "sample-3", "name": "sample: left token would move right", "kind": "sample", "visible": true, "input": {"start": "LXX", "end": "XXL"}, "expected": false, "tags": ["sample", "wrong-direction"]},
+    {"id": "trial-1", "name": "trial: unchanged mixed string", "kind": "trial", "visible": true, "input": {"start": "XLRXRL", "end": "XLRXRL"}, "expected": true, "tags": ["trial", "unchanged"]},
+    {"id": "trial-2", "name": "trial: left token moves to front", "kind": "trial", "visible": true, "input": {"start": "XXL", "end": "LXX"}, "expected": true, "tags": ["trial", "left-move"]},
+    {"id": "trial-3", "name": "trial: nonempty token order changes", "kind": "trial", "visible": true, "input": {"start": "LRXX", "end": "RLXX"}, "expected": false, "tags": ["trial", "order-mismatch"]},
+    {"id": "hidden-1", "name": "hidden: right token moves to end", "kind": "real", "visible": false, "input": {"start": "RXX", "end": "XXR"}, "expected": true, "tags": ["hidden", "right-move"]},
+    {"id": "hidden-2", "name": "hidden: right token would move left", "kind": "real", "visible": false, "input": {"start": "XXR", "end": "RXX"}, "expected": false, "tags": ["hidden", "wrong-direction"]},
+    {"id": "hidden-3", "name": "hidden: all positions empty", "kind": "real", "visible": false, "input": {"start": "XXXX", "end": "XXXX"}, "expected": true, "tags": ["hidden", "all-empty"]}
+  ]
+}

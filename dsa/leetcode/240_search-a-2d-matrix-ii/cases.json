@@ -1,0 +1,6 @@
+{"challenge_id":"lc_240","cases":[
+{"id":"sample-found","name":"sample: target inside matrix","kind":"sample","visible":true,"input":{"matrix":[[1,4,7],[2,5,8],[3,6,9]],"target":5},"expected":true,"tags":["sample","found"]},
+{"id":"sample-missing","name":"sample: target above maximum","kind":"sample","visible":true,"input":{"matrix":[[1,4,7],[2,5,8],[3,6,9]],"target":10},"expected":false,"tags":["sample","missing"]},
+{"id":"trial-single","name":"single negative cell","kind":"trial","visible":true,"input":{"matrix":[[-5]],"target":-5},"expected":true,"tags":["boundary"]},
+{"id":"real-empty","name":"hidden: empty matrix","kind":"real","visible":false,"input":{"matrix":[],"target":1},"expected":false,"tags":["hidden","empty"]}
+]}

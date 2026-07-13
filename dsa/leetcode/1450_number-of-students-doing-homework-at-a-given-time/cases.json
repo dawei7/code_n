@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_1450",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one active student",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start_time": [
+          1,
+          2,
+          3
+        ],
+        "end_time": [
+          3,
+          2,
+          7
+        ],
+        "query_time": 4
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "intervals"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single inclusive interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start_time": [
+          4
+        ],
+        "end_time": [
+          4
+        ],
+        "query_time": 4
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no active students",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start_time": [
+          9,
+          8,
+          7
+        ],
+        "end_time": [
+          10,
+          9,
+          8
+        ],
+        "query_time": 6
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-right-end-inclusive",
+      "name": "hidden: query equals right endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "start_time": [
+          1,
+          2,
+          5
+        ],
+        "end_time": [
+          2,
+          5,
+          6
+        ],
+        "query_time": 5
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "782",
+  "frontend_id": "771",
+  "title_slug": "jewels-and-stones",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numJewelsInStones",
+  "verified_submission_id": "2066052275",
+  "verified_at": "2026-07-13T11:17:41.293583+00:00"
+}

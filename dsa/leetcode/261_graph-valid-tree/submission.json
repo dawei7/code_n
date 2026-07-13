@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "261",
+  "frontend_id": "261",
+  "title_slug": "graph-valid-tree",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2064285350",
+  "verified_at": "2026-07-11T20:35:10.265222+00:00"
+}

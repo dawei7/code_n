@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_313",
+  "measurement_note": "Fixed mixed primes generate many duplicate stream heads; size is the requested sequence rank n.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: rank 32 over four primes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 32,
+        "primes": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": 54,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "duplicate-streams"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: rank 128 over four primes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 128,
+        "primes": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": 784,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "duplicate-streams"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: rank 256 over four primes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "n": 256,
+        "primes": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": 4500,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "duplicate-streams"
+      ]
+    }
+  ]
+}

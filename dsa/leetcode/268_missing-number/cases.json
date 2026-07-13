@@ -1,0 +1,6 @@
+{"challenge_id":"lc_268","cases":[
+{"id":"sample-middle","name":"sample: missing interior value","kind":"sample","visible":true,"input":{"nums":[3,0,1]},"expected":2,"tags":["sample","xor"]},
+{"id":"sample-upper","name":"sample: missing upper endpoint","kind":"sample","visible":true,"input":{"nums":[0,1]},"expected":2,"tags":["sample","boundary"]},
+{"id":"trial-larger","name":"larger shuffled range","kind":"trial","visible":true,"input":{"nums":[9,6,4,2,3,5,7,0,1]},"expected":8,"tags":["shuffled"]},
+{"id":"real-zero","name":"hidden: missing zero","kind":"real","visible":false,"input":{"nums":[1]},"expected":0,"tags":["hidden","boundary"]}
+]}

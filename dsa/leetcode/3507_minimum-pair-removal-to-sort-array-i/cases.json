@@ -1,0 +1,81 @@
+{
+  "challenge_id": "lc_3507",
+  "cases": [
+    {
+      "id": "sample-two-removals",
+      "name": "sample: two minimum-pair removals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "simulation"
+      ]
+    },
+    {
+      "id": "sample-already-sorted",
+      "name": "sample: already non-decreasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "sorted"
+      ]
+    },
+    {
+      "id": "trial-leftmost-tie",
+      "name": "trial: leftmost minimum pair tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-negatives",
+      "name": "real: negative values affect pair sums",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          -5,
+          4,
+          -1,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "simulation"
+      ]
+    }
+  ]
+}

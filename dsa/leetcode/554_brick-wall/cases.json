@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_554",
+  "cases": [
+    {
+      "id": "sample-wall",
+      "name": "sample: best edge avoids four of six rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "wall": [
+          [
+            1,
+            2,
+            2,
+            1
+          ],
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            1,
+            3,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-solid",
+      "name": "sample: every row is one brick",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "wall": [
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "no-edges"
+      ]
+    },
+    {
+      "id": "sample-one-row",
+      "name": "sample: one row has an internal edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "wall": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-aligned",
+      "name": "trial: all rows share an edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "wall": [
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "aligned"
+      ]
+    },
+    {
+      "id": "trial-one-match",
+      "name": "trial: best position is shared by two rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "wall": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "partial-alignment"
+      ]
+    },
+    {
+      "id": "hidden-wide-bricks",
+      "name": "hidden: widths rather than indices determine edges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "wall": [
+          [
+            5,
+            1,
+            4
+          ],
+          [
+            2,
+            3,
+            5
+          ],
+          [
+            1,
+            4,
+            2,
+            3
+          ],
+          [
+            6,
+            4
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "cumulative-width"
+      ]
+    },
+    {
+      "id": "hidden-no-shared",
+      "name": "hidden: every internal edge is unique",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "wall": [
+          [
+            1,
+            9
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "unique-edges"
+      ]
+    },
+    {
+      "id": "hidden-outer-edge",
+      "name": "hidden: the common right boundary is illegal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "wall": [
+          [
+            10
+          ],
+          [
+            10
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "outer-boundary"
+      ]
+    }
+  ]
+}
+

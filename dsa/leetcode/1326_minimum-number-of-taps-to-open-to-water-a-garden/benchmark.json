@@ -1,0 +1,29 @@
+{
+  "challenge_id": "lc_1326",
+  "cases": [
+    {
+      "id": "benchmark-sparse-coverage",
+      "name": "benchmark: sparse coverage",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "n": 8,
+        "ranges": [
+          0,
+          1,
+          0,
+          2,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

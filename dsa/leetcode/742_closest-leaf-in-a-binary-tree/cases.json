@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_742",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two closest leaves tie", "kind": "sample", "visible": true, "input": {"root": [1,3,2], "k": 1}, "expected": 3, "validator": {"kind": "closest_leaf"}, "tags": ["sample", "tie"]},
+    {"id": "sample-2", "name": "sample: one-node tree", "kind": "sample", "visible": true, "input": {"root": [1], "k": 1}, "expected": 1, "validator": {"kind": "closest_leaf"}, "tags": ["sample", "singleton"]},
+    {"id": "sample-3", "name": "sample: closest leaf lies through parent", "kind": "sample", "visible": true, "input": {"root": [1,2,3,4,null,null,null,5,null,6], "k": 2}, "expected": 3, "validator": {"kind": "closest_leaf"}, "tags": ["sample", "ancestor-path"]},
+    {"id": "trial-1", "name": "trial: sibling leaves tie below target", "kind": "trial", "visible": true, "input": {"root": [1,2,3,4,5], "k": 2}, "expected": 4, "validator": {"kind": "closest_leaf"}, "tags": ["trial", "tie"]},
+    {"id": "trial-2", "name": "trial: target is a leaf", "kind": "trial", "visible": true, "input": {"root": [1,2,3,null,4], "k": 4}, "expected": 4, "validator": {"kind": "closest_leaf"}, "tags": ["trial", "target-leaf"]},
+    {"id": "hidden-1", "name": "hidden: shallow sibling branch wins", "kind": "real", "visible": false, "input": {"root": [1,2,3,4,null,null,null,5,null,6], "k": 2}, "expected": 3, "validator": {"kind": "closest_leaf"}, "tags": ["hidden", "outside-subtree"]},
+    {"id": "hidden-2", "name": "hidden: descendant is uniquely closest", "kind": "real", "visible": false, "input": {"root": [1,2,3,4,null,null,null,5,null,6], "k": 4}, "expected": 6, "validator": {"kind": "closest_leaf"}, "tags": ["hidden", "descendant"]},
+    {"id": "hidden-3", "name": "hidden: root chooses shallowest leaf", "kind": "real", "visible": false, "input": {"root": [1,2,3,4,5,null,null,6], "k": 1}, "expected": 3, "validator": {"kind": "closest_leaf"}, "tags": ["hidden", "unequal-depths"]}
+  ]
+}

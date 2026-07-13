@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "781",
+  "frontend_id": "770",
+  "title_slug": "basic-calculator-iv",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.basicCalculatorIV",
+  "verified_submission_id": "2066047388",
+  "verified_at": "2026-07-13T11:12:14.256787+00:00"
+}

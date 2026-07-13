@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_767",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one separator", "kind": "sample", "visible": true, "input": {"s": "aab"}, "expected": "aba", "validator": {"kind": "reorganized_string"}, "tags": ["sample", "possible"]},
+    {"id": "sample-2", "name": "sample: dominant character impossible", "kind": "sample", "visible": true, "input": {"s": "aaab"}, "expected": "", "validator": {"kind": "reorganized_string"}, "tags": ["sample", "impossible"]},
+    {"id": "sample-3", "name": "sample: several valid arrangements", "kind": "sample", "visible": true, "input": {"s": "vvvlo"}, "expected": "vlvov", "validator": {"kind": "reorganized_string"}, "tags": ["sample", "alternatives"]},
+    {"id": "trial-1", "name": "trial: one character", "kind": "trial", "visible": true, "input": {"s": "z"}, "expected": "z", "validator": {"kind": "reorganized_string"}, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: two equal characters impossible", "kind": "trial", "visible": true, "input": {"s": "aa"}, "expected": "", "validator": {"kind": "reorganized_string"}, "tags": ["trial", "impossible"]},
+    {"id": "trial-3", "name": "trial: dominant count at feasibility bound", "kind": "trial", "visible": true, "input": {"s": "aaabbc"}, "expected": "ababac", "validator": {"kind": "reorganized_string"}, "tags": ["trial", "boundary"]},
+    {"id": "hidden-1", "name": "hidden: all distinct characters", "kind": "real", "visible": false, "input": {"s": "abcdef"}, "expected": "abcdef", "validator": {"kind": "reorganized_string"}, "tags": ["hidden", "distinct"]},
+    {"id": "hidden-2", "name": "hidden: tied frequency groups", "kind": "real", "visible": false, "input": {"s": "aabbccdd"}, "expected": "acacbdbd", "validator": {"kind": "reorganized_string"}, "tags": ["hidden", "ties"]},
+    {"id": "hidden-3", "name": "hidden: one count beyond feasibility", "kind": "real", "visible": false, "input": {"s": "aaaaabbc"}, "expected": "", "validator": {"kind": "reorganized_string"}, "tags": ["hidden", "impossible"]}
+  ]
+}

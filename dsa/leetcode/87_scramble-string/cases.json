@@ -1,0 +1,10 @@
+{
+  "challenge_id": "lc_87",
+  "cases": [
+    {"id": "sample-true", "name": "sample: swap an internal prefix", "kind": "sample", "visible": true, "input": {"s1": "great", "s2": "rgeat"}, "expected": true, "tags": ["sample"]},
+    {"id": "sample-false", "name": "sample: equal inventory but invalid structure", "kind": "sample", "visible": true, "input": {"s1": "abcde", "s2": "caebd"}, "expected": false, "tags": ["sample"]},
+    {"id": "trial-single", "name": "single equal character", "kind": "trial", "visible": true, "input": {"s1": "a", "s2": "a"}, "expected": true, "tags": ["boundary"]},
+    {"id": "trial-root-swap", "name": "swap at the root", "kind": "trial", "visible": true, "input": {"s1": "abc", "s2": "bca"}, "expected": true, "tags": ["swap"]},
+    {"id": "real-inventory", "name": "hidden: unequal character inventory", "kind": "real", "visible": false, "input": {"s1": "abcd", "s2": "abce"}, "expected": false, "tags": ["hidden", "pruning"]}
+  ]
+}

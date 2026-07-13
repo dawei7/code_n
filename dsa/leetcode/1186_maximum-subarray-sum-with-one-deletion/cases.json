@@ -1,0 +1,81 @@
+{
+  "challenge_id": "lc_1186",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: delete negative middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          -2,
+          0,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no helpful deletion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          -2,
+          -2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "real-two-positive-runs",
+      "name": "hidden: connect two positive runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          1,
+          -2,
+          3,
+          -5,
+          4
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

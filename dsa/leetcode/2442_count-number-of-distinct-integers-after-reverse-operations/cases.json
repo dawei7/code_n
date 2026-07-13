@@ -1,0 +1,89 @@
+{
+  "challenge_id": "lc_2442",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: reversals add one new value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          13,
+          10,
+          12,
+          31
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "hash-set"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all repeated single digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two values reverse into each other",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          71,
+          17
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-trailing-zero",
+      "name": "trial: trailing zero disappears on reverse",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-shared-reversal",
+      "name": "hidden: reversal already exists",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_719",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: duplicate minimum distance",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,3,1], "k": 1},
+      "expected": 0,
+      "tags": ["sample", "duplicate"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all distances zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,1,1], "k": 2},
+      "expected": 0,
+      "tags": ["sample", "multiplicity"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: largest rank with duplicate values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,6,1], "k": 3},
+      "expected": 5,
+      "tags": ["sample", "largest-rank"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: middle rank among unique values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1,2,4], "k": 2},
+      "expected": 2,
+      "tags": ["trial", "middle-rank"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: unsorted input",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [9,0,5,3], "k": 4},
+      "expected": 5,
+      "tags": ["trial", "sorting"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: two values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100,4], "k": 1},
+      "expected": 96,
+      "tags": ["hidden", "minimum-length"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: multiple zero pairs before positive distance",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2,2,2,8,8], "k": 5},
+      "expected": 6,
+      "tags": ["hidden", "duplicate-groups"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: coordinate boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0,1000000,500000], "k": 3},
+      "expected": 1000000,
+      "tags": ["hidden", "boundary-values"]
+    }
+  ]
+}

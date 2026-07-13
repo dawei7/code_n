@@ -1,0 +1,270 @@
+{
+  "challenge_id": "lc_3245",
+  "cases": [
+    {
+      "id": "sample-update-then-count",
+      "name": "sample: update creates short alternating groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "queries": [
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample",
+        "update"
+      ]
+    },
+    {
+      "id": "sample-query-update-query",
+      "name": "sample: count before and after mutation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "colors": [
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "queries": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3,
+            0
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "tags": [
+        "sample",
+        "mutation"
+      ]
+    },
+    {
+      "id": "trial-perfect-ring",
+      "name": "trial: fully alternating even ring",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "queries": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            4,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4,
+            0
+          ],
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        6,
+        3,
+        6
+      ],
+      "tags": [
+        "all-alternating",
+        "wrap"
+      ]
+    },
+    {
+      "id": "trial-repeated-noop-updates",
+      "name": "trial: no-op updates do not disturb counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          1,
+          1,
+          0,
+          1,
+          0,
+          0
+        ],
+        "queries": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            5,
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        2,
+        0
+      ],
+      "tags": [
+        "noop",
+        "breaks"
+      ]
+    },
+    {
+      "id": "real-dense-mixed-queries",
+      "name": "real: dense updates and varied lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": [
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "queries": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3,
+            0
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            7,
+            1
+          ],
+          [
+            2,
+            8,
+            0
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            12,
+            1
+          ],
+          [
+            1,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        0,
+        1,
+        0,
+        7,
+        0
+      ],
+      "tags": [
+        "real",
+        "mixed"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "challenge_id": "lc_2873",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: best middle value is one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          6,
+          1,
+          2,
+          7
+        ]
+      },
+      "tags": [
+        "sample",
+        "triplet"
+      ],
+      "expected": 77
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: large final multiplier",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          3,
+          4,
+          19
+        ]
+      },
+      "tags": [
+        "sample",
+        "triplet"
+      ],
+      "expected": 133
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all triplets are non-positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "zero"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-late-maximum-prefix",
+      "name": "trial: prefix maximum before the middle matters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          8,
+          2,
+          10
+        ]
+      },
+      "tags": [
+        "trial",
+        "prefix"
+      ],
+      "expected": 80
+    },
+    {
+      "id": "real-repeated-values",
+      "name": "hidden: repeated values create several equal candidates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          1,
+          5,
+          9,
+          2,
+          9
+        ]
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ],
+      "expected": 63
+    }
+  ]
+}

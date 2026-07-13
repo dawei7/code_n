@@ -1,0 +1,6 @@
+{"challenge_id":"lc_214","cases":[
+{"id":"sample-prefix","name":"sample: long palindromic prefix","kind":"sample","visible":true,"input":{"s":"aacecaaa"},"expected":"aaacecaaa","tags":["sample","kmp"]},
+{"id":"sample-none","name":"sample: only first character is prefix palindrome","kind":"sample","visible":true,"input":{"s":"abcd"},"expected":"dcbabcd","tags":["sample"]},
+{"id":"trial-empty","name":"empty string","kind":"trial","visible":true,"input":{"s":""},"expected":"","tags":["boundary"]},
+{"id":"real-already","name":"hidden: already palindrome","kind":"real","visible":false,"input":{"s":"racecar"},"expected":"racecar","tags":["hidden","palindrome"]}
+]}

@@ -1,0 +1,107 @@
+{
+  "challenge_id": "lc_2808",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated value spreads around circle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "circle"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          3,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "spread"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ]
+      },
+      "tags": [
+        "trial",
+        "edge"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-opposite-anchors",
+      "name": "trial: anchors on opposite sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          1,
+          5,
+          2,
+          2
+        ]
+      },
+      "tags": [
+        "trial",
+        "anchors"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-long-gap",
+      "name": "hidden: one value has a long circular gap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          3,
+          3,
+          3,
+          7,
+          2,
+          2,
+          7,
+          4,
+          4,
+          4
+        ]
+      },
+      "tags": [
+        "hidden",
+        "gap"
+      ],
+      "expected": 2
+    }
+  ]
+}

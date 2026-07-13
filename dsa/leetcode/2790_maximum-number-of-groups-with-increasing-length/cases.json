@@ -1,0 +1,99 @@
+{
+  "challenge_id": "lc_2790",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three groups possible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "usageLimits": [
+          1,
+          2,
+          5
+        ]
+      },
+      "tags": [
+        "sample",
+        "groups"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: each value can appear once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "usageLimits": [
+          2,
+          1,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "groups"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: only one group possible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "usageLimits": [
+          1,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "small"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-zero-limits",
+      "name": "trial: zero limits do not help",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "usageLimits": [
+          0,
+          0,
+          3,
+          3
+        ]
+      },
+      "tags": [
+        "trial",
+        "zeros"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-many-limits",
+      "name": "hidden: many varied limits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "usageLimits": [
+          4,
+          1,
+          7,
+          2,
+          6,
+          3,
+          5
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "expected": 7
+    }
+  ]
+}

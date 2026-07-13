@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_431",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: branching tree round trip",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tree": [1, [[3, [[5, []], [6, []]]], [2, []], [4, []]]]},
+      "expected": [1, [[3, [[5, []], [6, []]]], [2, []], [4, []]]],
+      "tags": ["sample", "branching"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: leaf round trip",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tree": [7, []]},
+      "expected": [7, []],
+      "tags": ["sample", "leaf"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: empty round trip",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tree": null},
+      "expected": null,
+      "tags": ["sample", "empty"]
+    },
+    {
+      "id": "trial-chain",
+      "name": "trial: one child per node",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tree": [1, [[2, [[3, [[4, []]]]]]]]},
+      "expected": [1, [[2, [[3, [[4, []]]]]]]],
+      "tags": ["trial", "chain"]
+    },
+    {
+      "id": "trial-wide",
+      "name": "trial: several ordered siblings",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tree": [10, [[9, []], [1, []], [8, []], [2, []]]]},
+      "expected": [10, [[9, []], [1, []], [8, []], [2, []]]],
+      "tags": ["trial", "wide"]
+    },
+    {
+      "id": "hidden-repeated-values",
+      "name": "hidden: structure distinguishes repeated values",
+      "kind": "real",
+      "visible": false,
+      "input": {"tree": [0, [[0, []], [0, [[0, []]]]]]},
+      "expected": [0, [[0, []], [0, [[0, []]]]]],
+      "tags": ["hidden", "repeated-values"]
+    },
+    {
+      "id": "hidden-multiple-branches",
+      "name": "hidden: siblings have independent descendants",
+      "kind": "real",
+      "visible": false,
+      "input": {"tree": [5, [[1, [[3, []], [4, []]]], [2, [[6, []]]]]]},
+      "expected": [5, [[1, [[3, []], [4, []]]], [2, [[6, []]]]]],
+      "tags": ["hidden", "branches"]
+    }
+  ]
+}

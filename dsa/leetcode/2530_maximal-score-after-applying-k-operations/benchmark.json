@@ -1,0 +1,23 @@
+{
+  "challenge_id": "lc_2530",
+  "cases": [
+    {
+      "id": "benchmark-several-reinsertions",
+      "name": "benchmark: heap order changes after reinsertion",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          6,
+          4
+        ],
+        "k": 4
+      },
+      "expected": 21,
+      "tags": [
+        "benchmark"
+      ]
+    }
+  ]
+}

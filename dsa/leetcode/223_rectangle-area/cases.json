@@ -1,0 +1,6 @@
+{"challenge_id":"lc_223","cases":[
+{"id":"sample-overlap","name":"sample: partial overlap","kind":"sample","visible":true,"input":{"ax1":-3,"ay1":0,"ax2":3,"ay2":4,"bx1":0,"by1":-1,"bx2":9,"by2":2},"expected":45,"tags":["sample","geometry"]},
+{"id":"trial-identical","name":"identical rectangles count once","kind":"trial","visible":true,"input":{"ax1":0,"ay1":0,"ax2":2,"ay2":2,"bx1":0,"by1":0,"bx2":2,"by2":2},"expected":4,"tags":["overlap"]},
+{"id":"trial-disjoint","name":"disjoint rectangles add","kind":"trial","visible":true,"input":{"ax1":0,"ay1":0,"ax2":1,"ay2":1,"bx1":2,"by1":2,"bx2":4,"by2":4},"expected":5,"tags":["boundary"]},
+{"id":"real-touching","name":"hidden: touching edge has zero overlap","kind":"real","visible":false,"input":{"ax1":-2,"ay1":-2,"ax2":0,"ay2":1,"bx1":0,"by1":-1,"bx2":3,"by2":2},"expected":15,"tags":["hidden","touching"]}
+]}

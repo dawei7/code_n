@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "663",
+  "frontend_id": "663",
+  "title_slug": "equal-tree-partition",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2065533058",
+  "verified_at": "2026-07-13T01:39:57.953714+00:00"
+}

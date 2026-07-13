@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_2856",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all values can be paired away",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "pairing"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: balanced duplicate counts vanish",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: dominant smallest value remains",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "dominant"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-odd-balanced-length",
+      "name": "trial: odd length leaves one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "tags": [
+        "trial",
+        "odd"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-large-dominant-block",
+      "name": "hidden: one value appears more than half the time",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "tags": [
+        "hidden",
+        "dominant"
+      ],
+      "expected": 3
+    }
+  ]
+}
