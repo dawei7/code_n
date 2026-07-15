@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1228",
+  "cases": [
+    {"id":"sample-increasing","name":"sample: missing middle term in an increasing progression","kind":"sample","visible":true,"input":{"arr":[5,7,11,13]},"expected":9,"tags":["sample","increasing"]},
+    {"id":"sample-decreasing","name":"sample: missing term in a decreasing progression","kind":"sample","visible":true,"input":{"arr":[15,13,12]},"expected":14,"tags":["sample","decreasing"]},
+    {"id":"sample-constant","name":"sample: constant progression has no visible gap","kind":"sample","visible":true,"input":{"arr":[0,0,0,0,0]},"expected":0,"tags":["sample","zero-difference"]},
+    {"id":"trial-near-end","name":"missing value lies near the final endpoint","kind":"trial","visible":true,"input":{"arr":[1,4,7,13]},"expected":10,"tags":["near-end"]},
+    {"id":"real-minimum-length","name":"hidden: minimum remaining length","kind":"real","visible":false,"input":{"arr":[1,3,7]},"expected":5,"tags":["hidden","minimum-length"]},
+    {"id":"real-descending-longer","name":"hidden: larger negative common difference","kind":"real","visible":false,"input":{"arr":[100,80,60,20,0]},"expected":40,"tags":["hidden","descending"]},
+    {"id":"real-second-value","name":"hidden: the second original value was removed","kind":"real","visible":false,"input":{"arr":[10,30,40,50,60]},"expected":20,"tags":["hidden","near-start"]}
+  ]
+}

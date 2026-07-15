@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "930",
+  "frontend_id": "894",
+  "title_slug": "all-possible-full-binary-trees",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.allPossibleFBT",
+  "verified_submission_id": "2066782445",
+  "verified_at": "2026-07-14T02:58:20.818205+00:00"
+}

@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1253",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: one valid reconstruction",
+      "id": "sample-flexible",
+      "name": "sample: distribute three flexible columns",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -31,13 +32,12 @@
         "kind": "reconstruct_two_row_matrix"
       },
       "tags": [
-        "sample",
-        "greedy"
+        "sample"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: impossible totals",
+      "id": "sample-impossible",
+      "name": "sample: incompatible requested totals",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -59,20 +59,52 @@
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: impossible fixed twos",
+      "id": "sample-mixed",
+      "name": "sample: forced flexible and zero columns",
       "kind": "sample",
       "visible": true,
       "input": {
-        "upper": 2,
-        "lower": 1,
+        "upper": 5,
+        "lower": 5,
         "colsum": [
           2,
           1,
-          2
+          2,
+          0,
+          1,
+          0,
+          1,
+          2,
+          0,
+          1
         ]
       },
-      "expected": [],
+      "expected": [
+        [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
       "validator": {
         "kind": "reconstruct_two_row_matrix"
       },
@@ -81,10 +113,10 @@
       ]
     },
     {
-      "id": "real-all-zero-columns",
-      "name": "hidden: all zero columns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-zero",
+      "name": "trial: both rows contain only zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "upper": 0,
         "lower": 0,
@@ -110,8 +142,91 @@
         "kind": "reconstruct_two_row_matrix"
       },
       "tags": [
-        "hidden",
-        "edge"
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-forced-too-large",
+      "name": "trial: forced column exceeds a target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "upper": 0,
+        "lower": 1,
+        "colsum": [
+          2
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "reconstruct_two_row_matrix"
+      },
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-one-row",
+      "name": "hidden: every flexible one goes to top",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "upper": 4,
+        "lower": 0,
+        "colsum": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": [
+        [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "reconstruct_two_row_matrix"
+      },
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-total-shortage",
+      "name": "hidden: not enough flexible columns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "upper": 3,
+        "lower": 3,
+        "colsum": [
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "reconstruct_two_row_matrix"
+      },
+      "tags": [
+        "real"
       ]
     }
   ]

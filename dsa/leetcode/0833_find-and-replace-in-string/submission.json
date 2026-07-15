@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "862",
+  "frontend_id": "833",
+  "title_slug": "find-and-replace-in-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findReplaceString",
+  "verified_submission_id": "2066690974",
+  "verified_at": "2026-07-13T22:34:30.268792+00:00"
+}

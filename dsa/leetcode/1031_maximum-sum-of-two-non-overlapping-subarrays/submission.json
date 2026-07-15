@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1096",
+  "frontend_id": "1031",
+  "title_slug": "maximum-sum-of-two-non-overlapping-subarrays",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxSumTwoNoOverlap",
+  "verified_submission_id": "2067340355",
+  "verified_at": "2026-07-14T12:24:50.274326+00:00"
+}

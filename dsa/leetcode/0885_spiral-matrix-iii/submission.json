@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "921",
+  "frontend_id": "885",
+  "title_slug": "spiral-matrix-iii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.spiralMatrixIII",
+  "verified_submission_id": "2066762181",
+  "verified_at": "2026-07-14T02:15:47.394063+00:00"
+}

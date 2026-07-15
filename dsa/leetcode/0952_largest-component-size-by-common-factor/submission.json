@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "989",
+  "frontend_id": "952",
+  "title_slug": "largest-component-size-by-common-factor",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.largestComponentSize",
+  "verified_submission_id": "2067075837",
+  "verified_at": "2026-07-14T07:47:26.940444+00:00"
+}

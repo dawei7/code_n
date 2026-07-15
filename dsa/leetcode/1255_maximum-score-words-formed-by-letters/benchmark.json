@@ -1,59 +1,190 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1255",
+  "measurement_note": "Size is the number of candidate words, with every subset feasible. Incremental backtracking updates counts along each decision path; rebuilding all letter counts from scratch for every subset adds a factor proportional to the word count while returning the same optimum.",
   "cases": [
     {
-      "id": "benchmark-letter-counts",
-      "name": "benchmark: repeated letter counts",
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 3 independently feasible words",
       "kind": "benchmark",
       "visible": false,
       "input": {
         "words": [
-          "add",
-          "dda",
-          "bb",
-          "ba"
+          "a",
+          "b",
+          "c"
         ],
         "letters": [
           "a",
-          "a",
-          "d",
-          "d",
           "b",
-          "b"
+          "c"
         ],
         "score": [
-          2,
-          3,
-          0,
-          4,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
         ]
       },
-      "expected": 16,
+      "expected": 3,
       "tags": [
-        "benchmark"
-      ]
+        "benchmark",
+        "scale-small",
+        "all-subsets-feasible"
+      ],
+      "size": 3
+    },
+    {
+      "id": "benchmark-scale-6",
+      "name": "benchmark: 6 independently feasible words",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f"
+        ],
+        "letters": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f"
+        ],
+        "score": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "all-subsets-feasible"
+      ],
+      "size": 6
+    },
+    {
+      "id": "benchmark-scale-12",
+      "name": "benchmark: 12 independently feasible words",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l"
+        ],
+        "letters": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l"
+        ],
+        "score": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "all-subsets-feasible"
+      ],
+      "size": 12
     }
   ]
 }

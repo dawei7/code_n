@@ -1,9 +1,12 @@
-def solve(arr):
-    keep = arr[0]
-    delete = 0
+def solve(arr: list[int]) -> int:
+    kept = arr[0]
+    deleted = float("-inf")
     answer = arr[0]
+
     for value in arr[1:]:
-        delete = max(delete + value, keep)
-        keep = max(keep + value, value)
-        answer = max(answer, keep, delete)
+        previous_kept = kept
+        kept = max(value, kept + value)
+        deleted = max(previous_kept, deleted + value)
+        answer = max(answer, kept, deleted)
+
     return answer

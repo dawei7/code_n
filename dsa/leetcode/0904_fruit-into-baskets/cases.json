@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_904",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two alternating types",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "fruits": [
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "two-types"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: best suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "fruits": [
+          0,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "suffix"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: middle optimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "fruits": [
+          1,
+          2,
+          3,
+          2,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "middle"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one type",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "one-type"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: exactly two types",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          0,
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "two-types"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: frequent third types",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          0,
+          1,
+          2,
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "three-types"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: long trailing run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          1,
+          2,
+          1,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "trailing-run"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: type zero and boundary type",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          5,
+          0,
+          5,
+          0,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "zero"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: overlapping optimal windows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          3,
+          3,
+          1,
+          2,
+          1,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "overlap"
+      ]
+    }
+  ]
+}

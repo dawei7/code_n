@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "904",
+  "frontend_id": "872",
+  "title_slug": "leaf-similar-trees",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.leafSimilar",
+  "verified_submission_id": "2066741181",
+  "verified_at": "2026-07-14T01:23:41.196428+00:00"
+}

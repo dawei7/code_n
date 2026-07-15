@@ -1,7 +1,11 @@
-"""Optimal solution for LeetCode 1030: Matrix Cells in Distance Order."""
+"""Optimal app-local solution for LeetCode 1030."""
 
 
-def solve(rows: int, cols: int, r_center: int, c_center: int) -> list[list[int]]:
-    cells = [[r, c] for r in range(rows) for c in range(cols)]
-    cells.sort(key=lambda cell: abs(cell[0] - r_center) + abs(cell[1] - c_center))
-    return cells
+def solve(rows, cols, r_center, c_center):
+    buckets = [[] for _ in range(rows + cols - 1)]
+    for row in range(rows):
+        for col in range(cols):
+            distance = abs(row - r_center) + abs(col - c_center)
+            buckets[distance].append([row, col])
+
+    return [cell for bucket in buckets for cell in bucket]

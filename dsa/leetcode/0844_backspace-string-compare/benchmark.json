@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_844",
+  "measurement_note": "Size is the length of each input string. Reverse skip-count comparison takes O(size) time and O(1) space. Rebuilding an immutable output through a fresh join after every letter takes O(size squared) time on these equal backspace-free strings.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: equal 16-letter strings", "kind": "benchmark", "visible": false, "size": 16, "input": {"s": "aaaaaaaaaaaaaaaa", "t": "aaaaaaaaaaaaaaaa"}, "expected": true, "tags": ["benchmark", "scale-small", "no-backspace"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: equal 64-letter strings", "kind": "benchmark", "visible": false, "size": 64, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "t": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "expected": true, "tags": ["benchmark", "scale-medium", "no-backspace"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: equal 200-letter strings", "kind": "benchmark", "visible": false, "size": 200, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "t": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "expected": true, "tags": ["benchmark", "scale-large", "no-backspace"]}
+  ]
+}

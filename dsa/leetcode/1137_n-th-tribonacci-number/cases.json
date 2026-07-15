@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1137",
+  "cases": [
+    {"id":"sample-1","name":"sample: fourth term","kind":"sample","visible":true,"input":{"n":4},"expected":4,"tags":["sample","recurrence"]},
+    {"id":"sample-2","name":"sample: twenty-fifth term","kind":"sample","visible":true,"input":{"n":25},"expected":1389537,"tags":["sample","large-index"]},
+    {"id":"trial-zero","name":"base term T0","kind":"trial","visible":true,"input":{"n":0},"expected":0,"tags":["trial","base"]},
+    {"id":"trial-one","name":"base term T1","kind":"trial","visible":true,"input":{"n":1},"expected":1,"tags":["trial","base"]},
+    {"id":"trial-two","name":"base term T2","kind":"trial","visible":true,"input":{"n":2},"expected":1,"tags":["trial","base"]},
+    {"id":"trial-first-derived","name":"first derived term","kind":"trial","visible":true,"input":{"n":3},"expected":2,"tags":["trial","boundary"]},
+    {"id":"real-five","name":"hidden: rolling state after two updates","kind":"real","visible":false,"input":{"n":5},"expected":7,"tags":["real","rolling"]},
+    {"id":"real-ten","name":"hidden: middle sequence value","kind":"real","visible":false,"input":{"n":10},"expected":149,"tags":["real","sequence"]},
+    {"id":"real-thirty","name":"hidden: high valid index","kind":"real","visible":false,"input":{"n":30},"expected":29249425,"tags":["real","high-index"]},
+    {"id":"real-upper-bound","name":"hidden: maximum public index","kind":"real","visible":false,"input":{"n":37},"expected":2082876103,"tags":["real","upper-bound"]}
+  ]
+}

@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_991","cases":[
+{"id":"sample-1","name":"sample: one double and one decrement","kind":"sample","visible":true,"input":{"startValue":2,"target":3},"expected":2,"tags":["sample"]},
+{"id":"sample-2","name":"sample: decrement before doubling","kind":"sample","visible":true,"input":{"startValue":5,"target":8},"expected":2,"tags":["sample"]},
+{"id":"sample-3","name":"sample: alternating operations","kind":"sample","visible":true,"input":{"startValue":3,"target":10},"expected":3,"tags":["sample"]},
+{"id":"trial-1","name":"trial: target below start","kind":"trial","visible":true,"input":{"startValue":10,"target":1},"expected":9,"tags":["trial","decrement-only"]},
+{"id":"trial-2","name":"trial: equal values","kind":"trial","visible":true,"input":{"startValue":7,"target":7},"expected":0,"tags":["trial","equal"]},
+{"id":"trial-3","name":"trial: odd target above one","kind":"trial","visible":true,"input":{"startValue":1,"target":15},"expected":5,"tags":["trial","odd"]},
+{"id":"hidden-1","name":"hidden: reverse drops below start","kind":"real","visible":false,"input":{"startValue":7,"target":31},"expected":7,"tags":["hidden","overshoot"]},
+{"id":"hidden-2","name":"hidden: exact power of two","kind":"real","visible":false,"input":{"startValue":1,"target":1024},"expected":10,"tags":["hidden","power-of-two"]},
+{"id":"hidden-3","name":"hidden: maximum start and minimum target","kind":"real","visible":false,"input":{"startValue":1000000000,"target":1},"expected":999999999,"tags":["hidden","bounds"]}
+]}

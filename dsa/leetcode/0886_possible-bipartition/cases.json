@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_886",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: valid split across four people",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "dislikes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "bipartite"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: triangle requires three groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "dislikes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "odd-cycle"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one person and no dislikes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "dislikes": []
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "isolated"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: five-person odd cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "dislikes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "odd-cycle"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: two disconnected dislike pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "dislikes": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "disconnected"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: even cycle alternates successfully",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "dislikes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "even-cycle"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: odd cycle in one disconnected component",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "dislikes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "disconnected",
+        "odd-cycle"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: star graph",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "dislikes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "star"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: complete bipartite graph",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "dislikes": [
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "dense"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: path with isolated people",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 8,
+        "dislikes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "path",
+        "isolated"
+      ]
+    }
+  ]
+}

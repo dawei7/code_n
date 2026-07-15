@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1357",
+  "frontend_id": "1225",
+  "title_slug": "report-contiguous-dates",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2067955881",
+  "verified_at": "2026-07-15T01:19:51.485886+00:00"
+}

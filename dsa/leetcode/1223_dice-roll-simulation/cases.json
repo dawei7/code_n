@@ -1,91 +1,12 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1223",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: mixed limits",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "n": 2,
-        "roll_max": [
-          1,
-          1,
-          2,
-          2,
-          2,
-          3
-        ]
-      },
-      "expected": 34,
-      "tags": [
-        "sample",
-        "dynamic-programming"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: all limits one",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "n": 2,
-        "roll_max": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1
-        ]
-      },
-      "expected": 30,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: length three",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "n": 3,
-        "roll_max": [
-          1,
-          1,
-          1,
-          2,
-          2,
-          3
-        ]
-      },
-      "expected": 181,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-one-roll",
-      "name": "hidden: one roll",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "n": 1,
-        "roll_max": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1
-        ]
-      },
-      "expected": 6,
-      "tags": [
-        "hidden",
-        "edge"
-      ]
-    }
+    {"id":"sample-mixed-limits","name":"sample: two double rolls are forbidden","kind":"sample","visible":true,"input":{"n":2,"roll_max":[1,1,2,2,2,3]},"expected":34,"tags":["sample","mixed-limits"]},
+    {"id":"sample-no-repeats","name":"sample: every adjacent roll must differ","kind":"sample","visible":true,"input":{"n":2,"roll_max":[1,1,1,1,1,1]},"expected":30,"tags":["sample","no-repeats"]},
+    {"id":"sample-length-three","name":"sample: run limits interact at length three","kind":"sample","visible":true,"input":{"n":3,"roll_max":[1,1,1,2,2,3]},"expected":181,"tags":["sample"]},
+    {"id":"trial-one-roll","name":"one roll permits every face","kind":"trial","visible":true,"input":{"n":1,"roll_max":[1,2,3,4,5,6]},"expected":6,"tags":["base-case"]},
+    {"id":"real-four-no-repeats","name":"hidden: closed form when all limits are one","kind":"real","visible":false,"input":{"n":4,"roll_max":[1,1,1,1,1,1]},"expected":750,"tags":["hidden","no-repeats"]},
+    {"id":"real-no-effective-limit","name":"hidden: large limits permit every sequence","kind":"real","visible":false,"input":{"n":4,"roll_max":[15,15,15,15,15,15]},"expected":1296,"tags":["hidden","unrestricted"]}
   ]
 }

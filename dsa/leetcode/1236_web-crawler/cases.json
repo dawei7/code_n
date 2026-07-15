@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1236",
+  "cases": [
+    {
+      "id": "sample-yahoo",
+      "name": "sample: crawl reachable pages on the Yahoo hostname",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "urls": [
+          "http://news.yahoo.com",
+          "http://news.yahoo.com/news",
+          "http://news.yahoo.com/news/topics/",
+          "http://news.google.com",
+          "http://news.yahoo.com/us"
+        ],
+        "edges": [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "start_url": "http://news.yahoo.com/news/topics/"
+      },
+      "expected": [
+        "http://news.yahoo.com/news/topics/",
+        "http://news.yahoo.com",
+        "http://news.yahoo.com/news",
+        "http://news.yahoo.com/us"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "hostname-filter"
+      ]
+    },
+    {
+      "id": "sample-google",
+      "name": "sample: reject every outgoing cross-host link",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "urls": [
+          "http://news.yahoo.com",
+          "http://news.yahoo.com/news",
+          "http://news.yahoo.com/news/topics/",
+          "http://news.google.com"
+        ],
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "start_url": "http://news.google.com"
+      },
+      "expected": [
+        "http://news.google.com"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "cross-host"
+      ]
+    },
+    {
+      "id": "trial-cycle",
+      "name": "cycle visits every same-host page exactly once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "urls": [
+          "http://a.com",
+          "http://a.com/x",
+          "http://a.com/y"
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "start_url": "http://a.com"
+      },
+      "expected": [
+        "http://a.com",
+        "http://a.com/x",
+        "http://a.com/y"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "cycle"
+      ]
+    },
+    {
+      "id": "trial-no-links",
+      "name": "start page with no links is returned alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "urls": [
+          "http://solo.com/home"
+        ],
+        "edges": [],
+        "start_url": "http://solo.com/home"
+      },
+      "expected": [
+        "http://solo.com/home"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "no-links"
+      ]
+    },
+    {
+      "id": "real-duplicate-edges",
+      "name": "hidden: duplicate links do not duplicate results",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "urls": [
+          "http://a.com",
+          "http://a.com/x"
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "start_url": "http://a.com"
+      },
+      "expected": [
+        "http://a.com",
+        "http://a.com/x"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "duplicate-links"
+      ]
+    },
+    {
+      "id": "real-lookalike-host",
+      "name": "hidden: hostname lookalike is not accepted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "urls": [
+          "http://a.com",
+          "http://a.com.evil/x",
+          "http://a.com/good"
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "start_url": "http://a.com"
+      },
+      "expected": [
+        "http://a.com",
+        "http://a.com/good"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "hostname-boundary"
+      ]
+    },
+    {
+      "id": "real-off-host-bridge",
+      "name": "hidden: traversal cannot cross another host and return",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "urls": [
+          "http://a.com",
+          "http://b.com/x",
+          "http://a.com/hidden"
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "start_url": "http://a.com"
+      },
+      "expected": [
+        "http://a.com"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "off-host-bridge"
+      ]
+    }
+  ]
+}

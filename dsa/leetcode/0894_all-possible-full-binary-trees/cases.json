@@ -1,0 +1,473 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_894",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: seven nodes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7
+      },
+      "expected": [
+        [
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "sample",
+        "five-shapes"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three nodes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "sample",
+        "single-shape"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "trial",
+        "leaf"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: even node count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": [],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "trial",
+        "impossible-even"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: five nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": [
+        [
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "trial",
+        "two-shapes"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: four nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4
+      },
+      "expected": [],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "hidden",
+        "impossible-even"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: nine nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 9
+      },
+      "expected": [
+        [
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "hidden",
+        "fourteen-shapes"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: eight nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 8
+      },
+      "expected": [],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "hidden",
+        "impossible-even"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: maximum even node count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20
+      },
+      "expected": [],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "hidden",
+        "maximum",
+        "impossible-even"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: ten nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10
+      },
+      "expected": [],
+      "validator": {
+        "kind": "forest_roots"
+      },
+      "tags": [
+        "hidden",
+        "impossible-even"
+      ]
+    }
+  ]
+}

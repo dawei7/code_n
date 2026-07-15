@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "867",
+  "frontend_id": "837",
+  "title_slug": "new-21-game",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.new21Game",
+  "verified_submission_id": "2066695639",
+  "verified_at": "2026-07-13T22:49:48.654785+00:00"
+}

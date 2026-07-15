@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1260",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: one shift",
+      "id": "sample-one",
+      "name": "sample: one row-major shift",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -44,13 +45,12 @@
         ]
       ],
       "tags": [
-        "sample",
-        "array"
+        "sample"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: four shifts",
+      "id": "sample-row",
+      "name": "sample: shift by one complete row",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -113,9 +113,9 @@
       ]
     },
     {
-      "id": "trial-full-cycle",
-      "name": "full cycle",
-      "kind": "trial",
+      "id": "sample-cycle",
+      "name": "sample: one complete grid cycle",
+      "kind": "sample",
       "visible": true,
       "input": {
         "grid": [
@@ -155,31 +155,145 @@
         ]
       ],
       "tags": [
-        "trial",
-        "edge"
+        "sample"
       ]
     },
     {
-      "id": "real-single-cell",
-      "name": "hidden: single cell",
+      "id": "trial-zero",
+      "name": "trial: zero shifts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "k": 0
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "trial: single row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "k": 2
+      },
+      "expected": [
+        [
+          4,
+          5,
+          1,
+          2,
+          3
+        ]
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-column",
+      "name": "hidden: single column",
       "kind": "real",
       "visible": false,
       "input": {
         "grid": [
           [
             1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ],
+        "k": 3
+      },
+      "expected": [
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4
+        ],
+        [
+          1
+        ]
+      ],
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-many-cycles",
+      "name": "hidden: shift exceeds cell count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -1,
+            0,
+            1
+          ],
+          [
+            2,
+            3,
+            4
           ]
         ],
         "k": 100
       },
       "expected": [
         [
-          1
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          -1,
+          0
         ]
       ],
       "tags": [
-        "hidden",
-        "edge"
+        "real"
       ]
     }
   ]

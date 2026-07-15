@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_848",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three overlapping prefixes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "shifts": [
+          3,
+          5,
+          9
+        ]
+      },
+      "expected": "rpl",
+      "tags": [
+        "sample",
+        "prefixes"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated starting letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "shifts": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": "gfd",
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single wraparound",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "z",
+        "shifts": [
+          1
+        ]
+      },
+      "expected": "a",
+      "tags": [
+        "sample",
+        "wrap"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: all zero shifts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "shifts": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": "abcd",
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: multiples and wraparound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "az",
+        "shifts": [
+          26,
+          27
+        ]
+      },
+      "expected": "ba",
+      "tags": [
+        "trial",
+        "modulo"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: every result wraps to a",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xyz",
+        "shifts": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": "aaa",
+      "tags": [
+        "trial",
+        "wrap"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: maximum shift value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "s",
+        "shifts": [
+          1000000000
+        ]
+      },
+      "expected": "e",
+      "tags": [
+        "hidden",
+        "large"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: mixed large and small shifts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "code",
+        "shifts": [
+          1000000000,
+          0,
+          25,
+          1
+        ]
+      },
+      "expected": "oodf",
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: descending suffix totals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzzz",
+        "shifts": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": "jigd",
+      "tags": [
+        "hidden",
+        "suffix"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: only final operation is nonzero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaa",
+        "shifts": [
+          0,
+          0,
+          0,
+          0,
+          2
+        ]
+      },
+      "expected": "ccccc",
+      "tags": [
+        "hidden",
+        "full-prefix"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: only first operation is nonzero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaa",
+        "shifts": [
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": "caaaa",
+      "tags": [
+        "hidden",
+        "first-prefix"
+      ]
+    },
+    {
+      "id": "hidden-6",
+      "name": "hidden: exact alphabet cycles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "leetcode",
+        "shifts": [
+          26,
+          52,
+          78,
+          104,
+          130,
+          156,
+          182,
+          208
+        ]
+      },
+      "expected": "leetcode",
+      "tags": [
+        "hidden",
+        "cycles"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1074",
+  "frontend_id": "1086",
+  "title_slug": "high-five",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.highFive",
+  "verified_submission_id": "2067558275",
+  "verified_at": "2026-07-14T15:48:40.138001+00:00"
+}

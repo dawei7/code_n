@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_838",
+  "cases": [
+    {"id": "sample-1", "name": "sample: balanced middle force", "kind": "sample", "visible": true, "input": {"dominoes": "RR.L"}, "expected": "RR.L", "tags": ["sample", "balanced"]},
+    {"id": "sample-2", "name": "sample: mixed force segments", "kind": "sample", "visible": true, "input": {"dominoes": ".L.R...LR..L.."}, "expected": "LL.RR.LLRRLL..", "tags": ["sample", "mixed"]},
+    {"id": "trial-1", "name": "trial: one upright domino", "kind": "trial", "visible": true, "input": {"dominoes": "."}, "expected": ".", "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: right force crosses suffix", "kind": "trial", "visible": true, "input": {"dominoes": "R..."}, "expected": "RRRR", "tags": ["trial", "rightward"]},
+    {"id": "trial-3", "name": "trial: left force crosses prefix", "kind": "trial", "visible": true, "input": {"dominoes": "...L"}, "expected": "LLLL", "tags": ["trial", "leftward"]},
+    {"id": "trial-4", "name": "trial: odd inward gap", "kind": "trial", "visible": true, "input": {"dominoes": "R...L"}, "expected": "RR.LL", "tags": ["trial", "odd-center"]},
+    {"id": "hidden-1", "name": "hidden: even inward gap", "kind": "real", "visible": false, "input": {"dominoes": "R....L"}, "expected": "RRRLLL", "tags": ["hidden", "even-gap"]},
+    {"id": "hidden-2", "name": "hidden: forces point outward", "kind": "real", "visible": false, "input": {"dominoes": "L...R"}, "expected": "L...R", "tags": ["hidden", "outward"]},
+    {"id": "hidden-3", "name": "hidden: no pushes", "kind": "real", "visible": false, "input": {"dominoes": "........"}, "expected": "........", "tags": ["hidden", "all-upright"]},
+    {"id": "hidden-4", "name": "hidden: repeated same-direction boundaries", "kind": "real", "visible": false, "input": {"dominoes": "L..L.R..R"}, "expected": "LLLL.RRRR", "tags": ["hidden", "same-direction"]},
+    {"id": "hidden-5", "name": "hidden: adjacent opposing pushes", "kind": "real", "visible": false, "input": {"dominoes": "RL.LR"}, "expected": "RLLLR", "tags": ["hidden", "adjacent"]}
+  ]
+}

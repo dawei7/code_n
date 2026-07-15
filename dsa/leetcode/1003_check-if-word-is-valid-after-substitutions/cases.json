@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_1003","cases":[
+{"id":"sample-1","name":"sample: nested insertion","kind":"sample","visible":true,"input":{"s":"aabcbc"},"expected":true,"tags":["sample"]},
+{"id":"sample-2","name":"sample: several nested and adjacent insertions","kind":"sample","visible":true,"input":{"s":"abcabcababcc"},"expected":true,"tags":["sample"]},
+{"id":"sample-3","name":"sample: reversed suffix","kind":"sample","visible":true,"input":{"s":"abccba"},"expected":false,"tags":["sample"]},
+{"id":"trial-1","name":"trial: one insertion","kind":"trial","visible":true,"input":{"s":"abc"},"expected":true,"tags":["trial","minimum-valid"]},
+{"id":"trial-2","name":"trial: incomplete triple","kind":"trial","visible":true,"input":{"s":"ab"},"expected":false,"tags":["trial","length"]},
+{"id":"trial-3","name":"trial: nested depth three","kind":"trial","visible":true,"input":{"s":"aaabcbcbc"},"expected":true,"tags":["trial","nested"]},
+{"id":"hidden-1","name":"hidden: adjacent triples","kind":"real","visible":false,"input":{"s":"abcabc"},"expected":true,"tags":["hidden","adjacent"]},
+{"id":"hidden-2","name":"hidden: balanced counts wrong order","kind":"real","visible":false,"input":{"s":"aabbcc"},"expected":false,"tags":["hidden","order"]},
+{"id":"hidden-3","name":"hidden: starts with wrong character","kind":"real","visible":false,"input":{"s":"bac"},"expected":false,"tags":["hidden","prefix"]}
+]}

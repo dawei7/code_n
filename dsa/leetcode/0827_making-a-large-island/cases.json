@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_827",
+  "cases": [
+    {"id": "sample-1", "name": "sample: connect diagonal singleton islands", "kind": "sample", "visible": true, "input": {"grid": [[1, 0], [0, 1]]}, "expected": 3, "tags": ["sample", "bridge"]},
+    {"id": "sample-2", "name": "sample: fill the only water cell", "kind": "sample", "visible": true, "input": {"grid": [[1, 1], [1, 0]]}, "expected": 4, "tags": ["sample", "single-zero"]},
+    {"id": "sample-3", "name": "sample: grid is already all land", "kind": "sample", "visible": true, "input": {"grid": [[1, 1], [1, 1]]}, "expected": 4, "tags": ["sample", "all-land"]},
+    {"id": "trial-1", "name": "trial: one water cell", "kind": "trial", "visible": true, "input": {"grid": [[0]]}, "expected": 1, "tags": ["trial", "singleton", "all-water"]},
+    {"id": "trial-2", "name": "trial: one land cell", "kind": "trial", "visible": true, "input": {"grid": [[1]]}, "expected": 1, "tags": ["trial", "singleton", "all-land"]},
+    {"id": "trial-3", "name": "trial: two-by-two all water", "kind": "trial", "visible": true, "input": {"grid": [[0, 0], [0, 0]]}, "expected": 1, "tags": ["trial", "all-water"]},
+    {"id": "trial-4", "name": "trial: surrounding island counted once", "kind": "trial", "visible": true, "input": {"grid": [[1, 1, 1], [1, 0, 1], [1, 1, 1]]}, "expected": 9, "tags": ["trial", "deduplicate-component"]},
+    {"id": "hidden-1", "name": "hidden: bridge two three-cell columns", "kind": "real", "visible": false, "input": {"grid": [[1, 0, 1], [1, 0, 1], [1, 0, 1]]}, "expected": 7, "tags": ["hidden", "bridge", "multiple-components"]},
+    {"id": "hidden-2", "name": "hidden: diagonal chain is not connected", "kind": "real", "visible": false, "input": {"grid": [[1, 0, 0], [0, 1, 0], [0, 0, 1]]}, "expected": 3, "tags": ["hidden", "diagonal"]},
+    {"id": "hidden-3", "name": "hidden: irregular components", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 0, 0], [1, 0, 0, 1], [0, 0, 1, 1], [0, 1, 1, 0]]}, "expected": 6, "tags": ["hidden", "irregular", "multiple-components"]},
+    {"id": "hidden-4", "name": "hidden: one change joins two parts of a diagonal pattern", "kind": "real", "visible": false, "input": {"grid": [[1, 0, 1], [0, 0, 0], [1, 0, 1]]}, "expected": 3, "tags": ["hidden", "diagonal", "choice"]},
+    {"id": "hidden-5", "name": "hidden: changed cell joins a large and singleton island", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 0], [0, 1, 0], [0, 0, 1]]}, "expected": 5, "tags": ["hidden", "bridge", "component-sizes"]}
+  ]
+}

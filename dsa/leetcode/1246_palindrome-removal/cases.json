@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1246",
+  "cases": [
+    {
+      "id": "sample-two-values",
+      "name": "sample: unequal pair needs two moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-middle-removal",
+      "name": "sample: middle removal creates a larger palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          3,
+          4,
+          1,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "merge-after-removal"
+      ]
+    },
+    {
+      "id": "trial-palindrome",
+      "name": "whole array is removed in one move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "palindrome"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single value needs one move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "real-all-distinct",
+      "name": "hidden: distinct values are removed separately",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "distinct"
+      ]
+    },
+    {
+      "id": "real-adjacent-pairs",
+      "name": "hidden: adjacent equal values combine",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "adjacent-pairs"
+      ]
+    },
+    {
+      "id": "real-nested-merges",
+      "name": "hidden: nested equal values reward interval planning",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          1,
+          3,
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "nested"
+      ]
+    }
+  ]
+}

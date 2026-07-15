@@ -1,118 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1200",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: consecutive sorted pairs",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          4,
-          2,
-          1,
-          3
-        ]
-      },
-      "expected": [
-        [
-          1,
-          2
-        ],
-        [
-          2,
-          3
-        ],
-        [
-          3,
-          4
-        ]
-      ],
-      "tags": [
-        "sample",
-        "sorting"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: one closest pair",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          3,
-          6,
-          10,
-          15
-        ]
-      },
-      "expected": [
-        [
-          1,
-          3
-        ]
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: negative values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          3,
-          8,
-          -10,
-          23,
-          19,
-          -4,
-          -14,
-          27
-        ]
-      },
-      "expected": [
-        [
-          -14,
-          -10
-        ],
-        [
-          19,
-          23
-        ],
-        [
-          23,
-          27
-        ]
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-two-values",
-      "name": "hidden: two values",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          10,
-          20
-        ]
-      },
-      "expected": [
-        [
-          10,
-          20
-        ]
-      ],
-      "tags": [
-        "hidden",
-        "edge"
-      ]
-    }
+    {"id":"sample-consecutive","name":"sample: three equal minimum gaps","kind":"sample","visible":true,"input":{"arr":[4,2,1,3]},"expected":[[1,2],[2,3],[3,4]],"tags":["sample","sorting"]},
+    {"id":"sample-one-pair","name":"sample: one closest pair","kind":"sample","visible":true,"input":{"arr":[1,3,6,10,15]},"expected":[[1,3]],"tags":["sample","unique"]},
+    {"id":"sample-negative-values","name":"sample: minimum pairs across negative and positive values","kind":"sample","visible":true,"input":{"arr":[3,8,-10,23,19,-4,-14,27]},"expected":[[-14,-10],[19,23],[23,27]],"tags":["sample","negative"]},
+    {"id":"trial-two-values","name":"two values produce their sole pair","kind":"trial","visible":true,"input":{"arr":[10,20]},"expected":[[10,20]],"tags":["boundary","two-values"]},
+    {"id":"trial-cross-zero","name":"closest pair crosses zero","kind":"trial","visible":true,"input":{"arr":[-8,7,-1,1]},"expected":[[-1,1]],"tags":["cross-zero"]},
+    {"id":"real-extreme-values","name":"hidden: full coordinate extremes","kind":"real","visible":false,"input":{"arr":[-1000000,1000000,999999]},"expected":[[999999,1000000]],"tags":["hidden","extreme"]},
+    {"id":"real-unsorted-many","name":"hidden: several minimum pairs from unsorted input","kind":"real","visible":false,"input":{"arr":[20,5,11,8,2,14]},"expected":[[2,5],[5,8],[8,11],[11,14]],"tags":["hidden","multiple"]},
+    {"id":"real-negative-only","name":"hidden: all values are negative","kind":"real","visible":false,"input":{"arr":[-30,-2,-10,-11]},"expected":[[-11,-10]],"tags":["hidden","negative-only"]}
   ]
 }

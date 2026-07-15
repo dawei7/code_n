@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_825",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two people of age sixteen", "kind": "sample", "visible": true, "input": {"ages": [16, 16]}, "expected": 2, "tags": ["sample", "equal-age"]},
+    {"id": "sample-2", "name": "sample: directed adjacent ages", "kind": "sample", "visible": true, "input": {"ages": [16, 17, 18]}, "expected": 2, "tags": ["sample", "directed"]},
+    {"id": "sample-3", "name": "sample: requests around age one hundred", "kind": "sample", "visible": true, "input": {"ages": [20, 30, 100, 110, 120]}, "expected": 3, "tags": ["sample", "age-100"]},
+    {"id": "trial-1", "name": "trial: age fourteen cannot send", "kind": "trial", "visible": true, "input": {"ages": [14, 14]}, "expected": 0, "tags": ["trial", "lower-threshold"]},
+    {"id": "trial-2", "name": "trial: age fifteen peers are eligible", "kind": "trial", "visible": true, "input": {"ages": [15, 15]}, "expected": 2, "tags": ["trial", "threshold-boundary"]},
+    {"id": "trial-3", "name": "trial: younger sender cannot request older person", "kind": "trial", "visible": true, "input": {"ages": [99, 100]}, "expected": 1, "tags": ["trial", "directed", "age-100"]},
+    {"id": "trial-4", "name": "trial: three oldest-age peers", "kind": "trial", "visible": true, "input": {"ages": [120, 120, 120]}, "expected": 6, "tags": ["trial", "upper-bound", "equal-age"]},
+    {"id": "hidden-1", "name": "hidden: opposite age extremes", "kind": "real", "visible": false, "input": {"ages": [1, 120]}, "expected": 0, "tags": ["hidden", "age-extremes"]},
+    {"id": "hidden-2", "name": "hidden: threshold excludes age fifteen", "kind": "real", "visible": false, "input": {"ages": [15, 16, 16]}, "expected": 2, "tags": ["hidden", "threshold-boundary", "duplicates"]},
+    {"id": "hidden-3", "name": "hidden: one request across consecutive ages", "kind": "real", "visible": false, "input": {"ages": [15, 16, 17]}, "expected": 1, "tags": ["hidden", "directed"]},
+    {"id": "hidden-4", "name": "hidden: duplicates across several valid ages", "kind": "real", "visible": false, "input": {"ages": [16, 16, 17, 18]}, "expected": 5, "tags": ["hidden", "duplicates", "multiple-ages"]},
+    {"id": "hidden-5", "name": "hidden: dense equal-age groups", "kind": "real", "visible": false, "input": {"ages": [20, 20, 21, 21, 21]}, "expected": 14, "tags": ["hidden", "equal-age", "directed"]},
+    {"id": "hidden-6", "name": "hidden: crossing above one hundred is one-way", "kind": "real", "visible": false, "input": {"ages": [99, 101]}, "expected": 1, "tags": ["hidden", "age-100", "directed"]}
+  ]
+}

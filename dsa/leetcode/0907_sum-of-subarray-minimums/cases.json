@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_907",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: late global minimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          11,
+          81,
+          94,
+          43,
+          3
+        ]
+      },
+      "expected": 444,
+      "tags": [
+        "sample",
+        "late-minimum"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: single value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: strictly increasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: strictly decreasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: all equal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: adjacent equal minima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          3,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "hidden",
+        "tie-breaking"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: repeated separated minima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "hidden",
+        "repeated-minima"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: maximum single value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          30000
+        ]
+      },
+      "expected": 30000,
+      "tags": [
+        "hidden",
+        "value-bound"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: maximum values around minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          30000,
+          1,
+          30000
+        ]
+      },
+      "expected": 60004,
+      "tags": [
+        "hidden",
+        "value-bound",
+        "valley"
+      ]
+    },
+    {
+      "id": "hidden-6",
+      "name": "hidden: alternating plateaus",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          4,
+          5,
+          4,
+          5
+        ]
+      },
+      "expected": 63,
+      "tags": [
+        "hidden",
+        "plateau"
+      ]
+    }
+  ]
+}

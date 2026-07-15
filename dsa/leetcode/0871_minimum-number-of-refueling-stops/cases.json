@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_871",
+  "cases": [
+    {"id": "sample-1", "name": "sample: initial fuel reaches target", "kind": "sample", "visible": true, "input": {"target": 1, "startFuel": 1, "stations": []}, "expected": 0, "tags": ["sample", "zero-stops"]},
+    {"id": "sample-2", "name": "sample: first station unreachable", "kind": "sample", "visible": true, "input": {"target": 100, "startFuel": 1, "stations": [[10, 100]]}, "expected": -1, "tags": ["sample", "impossible"]},
+    {"id": "sample-3", "name": "sample: two strategic stops", "kind": "sample", "visible": true, "input": {"target": 100, "startFuel": 10, "stations": [[10, 60], [20, 30], [30, 30], [60, 40]]}, "expected": 2, "tags": ["sample", "heap"]},
+    {"id": "trial-1", "name": "trial: exact arrival without stations", "kind": "trial", "visible": true, "input": {"target": 10, "startFuel": 10, "stations": []}, "expected": 0, "tags": ["trial", "exact"]},
+    {"id": "trial-2", "name": "trial: refuel with empty tank", "kind": "trial", "visible": true, "input": {"target": 20, "startFuel": 10, "stations": [[10, 10]]}, "expected": 1, "tags": ["trial", "zero-fuel"]},
+    {"id": "trial-3", "name": "trial: reachable station still insufficient", "kind": "trial", "visible": true, "input": {"target": 100, "startFuel": 50, "stations": [[25, 25]]}, "expected": -1, "tags": ["trial", "insufficient"]},
+    {"id": "hidden-1", "name": "hidden: ignore all stations", "kind": "real", "visible": false, "input": {"target": 100, "startFuel": 100, "stations": [[10, 1], [20, 1], [30, 1]]}, "expected": 0, "tags": ["hidden", "zero-stops"]},
+    {"id": "hidden-2", "name": "hidden: use both exact-reach stations", "kind": "real", "visible": false, "input": {"target": 100, "startFuel": 25, "stations": [[25, 25], [50, 50]]}, "expected": 2, "tags": ["hidden", "exact"]},
+    {"id": "hidden-3", "name": "hidden: skip a small earlier station", "kind": "real", "visible": false, "input": {"target": 100, "startFuel": 50, "stations": [[25, 10], [50, 60]]}, "expected": 1, "tags": ["hidden", "skip"]},
+    {"id": "hidden-4", "name": "hidden: defer then choose largest fuel", "kind": "real", "visible": false, "input": {"target": 100, "startFuel": 10, "stations": [[10, 20], [20, 20], [30, 70]]}, "expected": 2, "tags": ["hidden", "largest-first"]},
+    {"id": "hidden-5", "name": "hidden: maximum target reached initially", "kind": "real", "visible": false, "input": {"target": 1000000000, "startFuel": 1000000000, "stations": []}, "expected": 0, "tags": ["hidden", "bounds"]},
+    {"id": "hidden-6", "name": "hidden: maximum fuel station at position one", "kind": "real", "visible": false, "input": {"target": 1000000000, "startFuel": 1, "stations": [[1, 999999999]]}, "expected": 1, "tags": ["hidden", "bounds"]}
+  ]
+}

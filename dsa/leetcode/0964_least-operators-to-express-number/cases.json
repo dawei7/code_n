@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_964","cases":[
+{"id":"sample-1","name":"sample: combine two squares and one","kind":"sample","visible":true,"input":{"x":3,"target":19},"expected":5,"tags":["sample","mixed"]},
+{"id":"sample-2","name":"sample: subtract a lower power","kind":"sample","visible":true,"input":{"x":5,"target":501},"expected":8,"tags":["sample","carry"]},
+{"id":"sample-3","name":"sample: exact fourth power","kind":"sample","visible":true,"input":{"x":100,"target":100000000},"expected":3,"tags":["sample","power"]},
+{"id":"trial-1","name":"trial: express one by division","kind":"trial","visible":true,"input":{"x":3,"target":1},"expected":1,"tags":["trial","unit"]},
+{"id":"trial-2","name":"trial: target is x","kind":"trial","visible":true,"input":{"x":2,"target":2},"expected":0,"tags":["trial","zero-operators"]},
+{"id":"trial-3","name":"trial: one above x","kind":"trial","visible":true,"input":{"x":2,"target":3},"expected":2,"tags":["trial","division"]},
+{"id":"hidden-1","name":"hidden: one below a square","kind":"real","visible":false,"input":{"x":10,"target":99},"expected":3,"tags":["hidden","complement"]},
+{"id":"hidden-2","name":"hidden: base four complement","kind":"real","visible":false,"input":{"x":4,"target":15},"expected":3,"tags":["hidden","carry"]},
+{"id":"hidden-3","name":"hidden: mixed base seven digits","kind":"real","visible":false,"input":{"x":7,"target":100},"expected":7,"tags":["hidden","mixed"]}
+]}

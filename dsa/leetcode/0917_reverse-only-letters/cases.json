@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_917",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one fixed hyphen",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "ab-cd"
+      },
+      "expected": "dc-ba",
+      "tags": [
+        "sample",
+        "hyphen"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: mixed case and hyphens",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "a-bC-dEf-ghIj"
+      },
+      "expected": "j-Ih-gfE-dCba",
+      "tags": [
+        "sample",
+        "mixed-case"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: digits and punctuation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "Test1ng-Leet=code-Q!"
+      },
+      "expected": "Qedo1ct-eeLg=ntse-T!",
+      "tags": [
+        "sample",
+        "symbols"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: all letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "AbCd"
+      },
+      "expected": "dCbA",
+      "tags": [
+        "trial",
+        "all-letters"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: no letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1-2=3!"
+      },
+      "expected": "1-2=3!",
+      "tags": [
+        "trial",
+        "no-letters"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: one letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1-a-2"
+      },
+      "expected": "1-a-2",
+      "tags": [
+        "trial",
+        "single-letter"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: symbols at both ends",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "!a-bC?"
+      },
+      "expected": "!C-ba?",
+      "tags": [
+        "hidden",
+        "anchored-ends"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: case travels with letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "A1b2C3d"
+      },
+      "expected": "d1C2b3A",
+      "tags": [
+        "hidden",
+        "case"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: adjacent punctuation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ab!!CD--e"
+      },
+      "expected": "eD!!Cb--a",
+      "tags": [
+        "hidden",
+        "repeated-symbols"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: ASCII boundary punctuation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "!aZz~"
+      },
+      "expected": "!zZa~",
+      "tags": [
+        "hidden",
+        "ascii-bounds"
+      ]
+    }
+  ]
+}
+

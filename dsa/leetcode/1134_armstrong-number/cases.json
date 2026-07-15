@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1134",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three-digit Armstrong number",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 153
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "three-digit"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three-digit non-Armstrong number",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 123
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "false"
+      ]
+    },
+    {
+      "id": "trial-single-digit",
+      "name": "single-digit number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-internal-zero",
+      "name": "Armstrong number containing zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 407
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "zero-digit"
+      ]
+    },
+    {
+      "id": "trial-four-digit",
+      "name": "four-digit Armstrong number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 9474
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "four-digit"
+      ]
+    },
+    {
+      "id": "real-four-digit-false",
+      "name": "hidden: near a four-digit Armstrong number",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 9475
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "false"
+      ]
+    },
+    {
+      "id": "real-five-digit",
+      "name": "hidden: five-digit Armstrong number",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 54748
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "five-digit"
+      ]
+    },
+    {
+      "id": "real-seven-digit",
+      "name": "hidden: seven-digit Armstrong number",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1741725
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "seven-digit"
+      ]
+    },
+    {
+      "id": "real-eight-digit",
+      "name": "hidden: eight-digit Armstrong number",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 88593477
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "eight-digit"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "hidden: maximum allowed input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 100000000
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "upper-bound"
+      ]
+    }
+  ]
+}

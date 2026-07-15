@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_892",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four towers of increasing height",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 34,
+      "tags": [
+        "sample",
+        "dense"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: unit-height ring around an empty center",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "sample",
+        "hole"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: height-two square with a lower center",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 46,
+      "tags": [
+        "sample",
+        "height-difference"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one empty position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one unit cube",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "single-cube"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: one maximum-height tower",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            50
+          ]
+        ]
+      },
+      "expected": 202,
+      "tags": [
+        "trial",
+        "maximum-height"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: all positions empty",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "all-zero"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: equal adjacent towers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "hidden",
+        "shared-face"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: unequal adjacent towers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "hidden",
+        "height-difference"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: separated diagonal towers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "disconnected"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: dense equal-height block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "hidden",
+        "dense"
+      ]
+    }
+  ]
+}

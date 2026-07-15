@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_913",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeating position is a draw",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "graph": [
+          [
+            2,
+            5
+          ],
+          [
+            3
+          ],
+          [
+            0,
+            4,
+            5
+          ],
+          [
+            1,
+            4,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "draw"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: direct route to the hole",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "graph": [
+          [
+            1,
+            3
+          ],
+          [
+            0
+          ],
+          [
+            3
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "mouse-win"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: forced move onto Cat",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "graph": [
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "cat-win"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: three-node path to the hole",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "graph": [
+          [
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "immediate-hole"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: Mouse escapes along a long path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "graph": [
+          [
+            3
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "forced-path"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: four-node cycle with a hole edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "graph": [
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "cycle"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: Cat controls Mouse's only neighbor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "graph": [
+          [
+            3
+          ],
+          [
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "forced-capture"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: branching graph with a forced outcome",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "graph": [
+          [
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "branching"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: official draw with reordered adjacency",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "graph": [
+          [
+            5,
+            2
+          ],
+          [
+            3
+          ],
+          [
+            5,
+            4,
+            0
+          ],
+          [
+            5,
+            4,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "adjacency-order"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: longer forced escape",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "graph": [
+          [
+            3
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "long-path"
+      ]
+    }
+  ]
+}
+

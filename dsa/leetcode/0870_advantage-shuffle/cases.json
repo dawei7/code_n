@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_870",
+  "cases": [
+    {"id": "sample-1", "name": "sample: win every position", "kind": "sample", "visible": true, "input": {"nums1": [2, 7, 11, 15], "nums2": [1, 10, 4, 11]}, "expected": [2, 11, 7, 15], "validator": {"kind": "advantage_shuffle"}, "tags": ["sample", "all-wins"]},
+    {"id": "sample-2", "name": "sample: sacrifice against largest target", "kind": "sample", "visible": true, "input": {"nums1": [12, 24, 8, 32], "nums2": [13, 25, 32, 11]}, "expected": [24, 32, 8, 12], "validator": {"kind": "advantage_shuffle"}, "tags": ["sample", "sacrifice"]},
+    {"id": "sample-3", "name": "sample: duplicated winners", "kind": "sample", "visible": true, "input": {"nums1": [2, 2, 3], "nums2": [1, 1, 2]}, "expected": [2, 2, 3], "validator": {"kind": "advantage_shuffle"}, "tags": ["sample", "duplicates"]},
+    {"id": "trial-1", "name": "trial: every comparison loses", "kind": "trial", "visible": true, "input": {"nums1": [1, 1], "nums2": [2, 2]}, "expected": [1, 1], "validator": {"kind": "advantage_shuffle"}, "tags": ["trial", "no-wins"]},
+    {"id": "trial-2", "name": "trial: every comparison wins", "kind": "trial", "visible": true, "input": {"nums1": [3, 4], "nums2": [1, 2]}, "expected": [3, 4], "validator": {"kind": "advantage_shuffle"}, "tags": ["trial", "all-wins"]},
+    {"id": "trial-3", "name": "trial: ties are not advantages", "kind": "trial", "visible": true, "input": {"nums1": [1, 2, 2], "nums2": [2, 2, 2]}, "expected": [2, 2, 1], "validator": {"kind": "advantage_shuffle"}, "tags": ["trial", "ties"]},
+    {"id": "hidden-1", "name": "hidden: singleton win", "kind": "real", "visible": false, "input": {"nums1": [5], "nums2": [4]}, "expected": [5], "validator": {"kind": "advantage_shuffle"}, "tags": ["hidden", "singleton"]},
+    {"id": "hidden-2", "name": "hidden: zeros and duplicate losses", "kind": "real", "visible": false, "input": {"nums1": [0, 0, 1], "nums2": [0, 1, 1]}, "expected": [1, 0, 0], "validator": {"kind": "advantage_shuffle"}, "tags": ["hidden", "zeros"]},
+    {"id": "hidden-3", "name": "hidden: duplicated middle values", "kind": "real", "visible": false, "input": {"nums1": [4, 4, 6, 6], "nums2": [5, 5, 3, 7]}, "expected": [6, 6, 4, 4], "validator": {"kind": "advantage_shuffle"}, "tags": ["hidden", "duplicates"]},
+    {"id": "hidden-4", "name": "hidden: value bounds", "kind": "real", "visible": false, "input": {"nums1": [0, 1000000000], "nums2": [0, 999999999]}, "expected": [0, 1000000000], "validator": {"kind": "advantage_shuffle"}, "tags": ["hidden", "bounds"]},
+    {"id": "hidden-5", "name": "hidden: one unavoidable sacrifice", "kind": "real", "visible": false, "input": {"nums1": [2, 3, 4], "nums2": [1, 10, 2]}, "expected": [3, 2, 4], "validator": {"kind": "advantage_shuffle"}, "tags": ["hidden", "sacrifice"]},
+    {"id": "hidden-6", "name": "hidden: equal multisets with cyclic wins", "kind": "real", "visible": false, "input": {"nums1": [1, 2, 3, 4], "nums2": [2, 3, 4, 1]}, "expected": [3, 4, 1, 2], "validator": {"kind": "advantage_shuffle"}, "tags": ["hidden", "cycle"]}
+  ]
+}

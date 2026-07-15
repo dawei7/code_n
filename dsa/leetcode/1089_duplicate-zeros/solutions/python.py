@@ -1,25 +1,24 @@
 """Optimal solution for LeetCode 1089: Duplicate Zeros."""
 
 
-def solve(arr: list[int]) -> list[int]:
-    n = len(arr)
-    possible_dups = 0
-    last = n - 1
-    left = 0
-    while left <= last - possible_dups:
-        if arr[left] == 0:
-            if left == last - possible_dups:
+def solve(arr: list[int]) -> None:
+    duplicates = 0
+    last = len(arr) - 1
+    source = 0
+
+    while source <= last - duplicates:
+        if arr[source] == 0:
+            if source == last - duplicates:
                 arr[last] = 0
                 last -= 1
                 break
-            possible_dups += 1
-        left += 1
+            duplicates += 1
+        source += 1
 
-    for i in range(last - possible_dups, -1, -1):
-        if arr[i] == 0:
-            arr[i + possible_dups] = 0
-            possible_dups -= 1
-            arr[i + possible_dups] = 0
+    for source in range(last - duplicates, -1, -1):
+        if arr[source] == 0:
+            arr[source + duplicates] = 0
+            duplicates -= 1
+            arr[source + duplicates] = 0
         else:
-            arr[i + possible_dups] = arr[i]
-    return arr
+            arr[source + duplicates] = arr[source]

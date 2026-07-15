@@ -1,54 +1,41 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1222",
+  "measurement_note": "Size is the number of queens placed along attack rays from a central king. Hash-backed ray scans build the lookup once, while directly testing every aligned queen against every other queen for an intervening blocker takes quadratic time in the queen count.",
   "cases": [
     {
-      "id": "benchmark-edge-king",
-      "name": "benchmark: king on edge",
+      "id": "benchmark-scale-4",
+      "name": "benchmark: 4 queens on king attack rays",
       "kind": "benchmark",
       "visible": false,
+      "size": 4,
       "input": {
         "queens": [
           [
-            0,
-            7
-          ],
-          [
-            7,
-            0
-          ],
-          [
-            7,
-            7
-          ],
-          [
-            3,
+            4,
             3
           ],
           [
-            3,
-            0
+            5,
+            3
           ],
           [
-            0,
+            6,
+            3
+          ],
+          [
+            7,
             3
           ]
         ],
         "king": [
           3,
-          7
+          3
         ]
       },
       "expected": [
         [
-          7,
-          7
-        ],
-        [
-          0,
-          7
-        ],
-        [
-          3,
+          4,
           3
         ]
       ],
@@ -56,7 +43,247 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scale-small",
+        "aligned"
+      ]
+    },
+    {
+      "id": "benchmark-scale-12",
+      "name": "benchmark: 12 queens on king attack rays",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "queens": [
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "king": [
+          3,
+          3
+        ]
+      },
+      "expected": [
+        [
+          4,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "aligned"
+      ]
+    },
+    {
+      "id": "benchmark-scale-24",
+      "name": "benchmark: 24 queens on king attack rays",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "queens": [
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            0,
+            6
+          ]
+        ],
+        "king": [
+          3,
+          3
+        ]
+      },
+      "expected": [
+        [
+          4,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "aligned"
       ]
     }
   ]

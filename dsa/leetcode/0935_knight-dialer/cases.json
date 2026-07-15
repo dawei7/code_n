@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_935",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "base"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one knight jump",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 20,
+      "tags": [
+        "sample",
+        "moves"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: long sequence modulo",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3131
+      },
+      "expected": 136006598,
+      "tags": [
+        "sample",
+        "modulo"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: two jumps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 46,
+      "tags": [
+        "trial",
+        "short"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: three jumps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": 104,
+      "tags": [
+        "trial",
+        "short"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: five digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": 240,
+      "tags": [
+        "trial",
+        "odd"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: ten digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10
+      },
+      "expected": 14912,
+      "tags": [
+        "hidden",
+        "medium"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: fifty digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 50
+      },
+      "expected": 267287516,
+      "tags": [
+        "hidden",
+        "modulo"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: maximum length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5000
+      },
+      "expected": 406880451,
+      "tags": [
+        "hidden",
+        "upper-bound"
+      ]
+    }
+  ]
+}

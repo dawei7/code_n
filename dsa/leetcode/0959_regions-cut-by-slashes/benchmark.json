@@ -1,0 +1,5 @@
+{"challenge_id":"lc_959","cases":[
+{"id":"benchmark-scale-1","name":"benchmark: blank grid at 4 cells","kind":"benchmark","visible":false,"size":4,"input":{"grid":["  ","  "]},"expected":1,"tags":["benchmark","scale-small"]},
+{"id":"benchmark-scale-2","name":"benchmark: blank grid at 9 cells","kind":"benchmark","visible":false,"size":9,"input":{"grid":["   ","   ","   "]},"expected":1,"tags":["benchmark","scale-medium"]},
+{"id":"benchmark-scale-3","name":"benchmark: blank grid at 16 cells","kind":"benchmark","visible":false,"size":16,"input":{"grid":["    ","    ","    ","    "]},"expected":1,"tags":["benchmark","scale-large"]}
+]}

@@ -1,0 +1,384 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_911",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: official query order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "persons": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        "times": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30
+        ],
+        "queries": [
+          3,
+          12,
+          25,
+          15,
+          24,
+          8
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "tags": [
+        "sample",
+        "ties"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one candidate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "persons": [
+          0
+        ],
+        "times": [
+          5
+        ],
+        "queries": [
+          5,
+          100
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: alternating ties",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "persons": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "times": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "queries": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "tags": [
+        "sample",
+        "tie-recency"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: unanimous election",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "persons": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "times": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "queries": [
+          0,
+          3,
+          6
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "unanimous"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: queries between votes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "persons": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "times": [
+          10,
+          20,
+          30,
+          40
+        ],
+        "queries": [
+          10,
+          19,
+          20,
+          29,
+          39,
+          40
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "trial",
+        "between-times"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: nonconsecutive candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "persons": [
+          4,
+          1,
+          4,
+          1,
+          3
+        ],
+        "times": [
+          0,
+          3,
+          8,
+          15,
+          24
+        ],
+        "queries": [
+          0,
+          7,
+          8,
+          16,
+          24
+        ]
+      },
+      "expected": [
+        4,
+        1,
+        4,
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "candidate-ids"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: maximum query time",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "persons": [
+          0,
+          1,
+          1
+        ],
+        "times": [
+          0,
+          500000000,
+          1000000000
+        ],
+        "queries": [
+          1000000000
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "hidden",
+        "time-bound"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: queries in reverse order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "persons": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          2
+        ],
+        "times": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16
+        ],
+        "queries": [
+          16,
+          13,
+          10,
+          7,
+          4,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "query-order"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: leader survives minority votes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "persons": [
+          2,
+          2,
+          2,
+          1,
+          1,
+          0
+        ],
+        "times": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "queries": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "leader-streak"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: repeated tie changes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "persons": [
+          0,
+          1,
+          2,
+          0,
+          1,
+          2
+        ],
+        "times": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12
+        ],
+        "queries": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "multiway-ties"
+      ]
+    }
+  ]
+}

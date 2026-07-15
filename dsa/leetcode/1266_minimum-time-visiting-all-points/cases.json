@@ -1,103 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1266",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: three points",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "points": [
-          [
-            1,
-            1
-          ],
-          [
-            3,
-            4
-          ],
-          [
-            -1,
-            0
-          ]
-        ]
-      },
-      "expected": 7,
-      "tags": [
-        "sample",
-        "geometry"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: horizontal movement",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "points": [
-          [
-            3,
-            2
-          ],
-          [
-            -2,
-            2
-          ]
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-single-point",
-      "name": "single point",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "points": [
-          [
-            0,
-            0
-          ]
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-mixed-steps",
-      "name": "hidden: mixed steps",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "points": [
-          [
-            0,
-            0
-          ],
-          [
-            1,
-            1
-          ],
-          [
-            1,
-            2
-          ],
-          [
-            3,
-            2
-          ]
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-three", "name": "sample: three points", "kind": "sample", "visible": true, "input": {"points": [[1, 1], [3, 4], [-1, 0]]}, "expected": 7, "tags": ["sample", "mixed-moves"]},
+    {"id": "sample-horizontal", "name": "sample: horizontal movement", "kind": "sample", "visible": true, "input": {"points": [[3, 2], [-2, 2]]}, "expected": 5, "tags": ["sample", "horizontal"]},
+    {"id": "sample-repeated", "name": "sample: repeated point then diagonal", "kind": "sample", "visible": true, "input": {"points": [[0, 0], [0, 0], [2, 1]]}, "expected": 2, "tags": ["sample", "duplicate"]},
+    {"id": "trial-single", "name": "trial: one point", "kind": "trial", "visible": true, "input": {"points": [[-8, 12]]}, "expected": 0, "tags": ["trial", "singleton"]},
+    {"id": "trial-vertical", "name": "trial: vertical movement", "kind": "trial", "visible": true, "input": {"points": [[5, -7], [5, 9]]}, "expected": 16, "tags": ["trial", "vertical"]},
+    {"id": "hidden-boundaries", "name": "hidden: coordinate boundaries", "kind": "real", "visible": false, "input": {"points": [[-1000, -1000], [1000, 1000], [-1000, 1000]]}, "expected": 4000, "tags": ["hidden", "boundaries"]},
+    {"id": "hidden-pass-through", "name": "hidden: pass through a later point early", "kind": "real", "visible": false, "input": {"points": [[0, 0], [4, 4], [2, 2]]}, "expected": 6, "tags": ["hidden", "ordered-visits"]}
   ]
 }

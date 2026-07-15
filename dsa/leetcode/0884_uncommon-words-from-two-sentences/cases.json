@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_884",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two shared words and two uncommon words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s1": "this apple is sweet",
+        "s2": "this apple is sour"
+      },
+      "expected": [
+        "sweet",
+        "sour"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "shared"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated word in the first sentence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s1": "apple apple",
+        "s2": "banana"
+      },
+      "expected": [
+        "banana"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one distinct word in each sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "alpha",
+        "s2": "beta"
+      },
+      "expected": [
+        "alpha",
+        "beta"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "all-uncommon"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: every occurrence belongs to one repeated word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "same same",
+        "s2": "same"
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: repeats within and across sentences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "red blue red",
+        "s2": "green blue gold"
+      },
+      "expected": [
+        "green",
+        "gold"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "mixed-counts"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: shared middle words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "a b c",
+        "s2": "b c d"
+      },
+      "expected": [
+        "a",
+        "d"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "shared"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: separate duplicate groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "a a b",
+        "s2": "c c d"
+      },
+      "expected": [
+        "b",
+        "d"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: no frequency equals one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "x y x y",
+        "s2": "z z"
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: longer words with one shared word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "longword tiny",
+        "s2": "tiny another"
+      },
+      "expected": [
+        "longword",
+        "another"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "word-length"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: the only word is shared",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "a",
+        "s2": "a"
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "single-word"
+      ]
+    }
+  ]
+}

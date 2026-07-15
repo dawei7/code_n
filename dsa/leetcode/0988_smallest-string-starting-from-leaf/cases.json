@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_988","cases":[
+{"id":"sample-1","name":"sample: smallest left leaf","kind":"sample","visible":true,"input":{"root":[0,1,2,3,4,3,4]},"expected":"dba","tags":["sample"]},
+{"id":"sample-2","name":"sample: a-valued leaf","kind":"sample","visible":true,"input":{"root":[25,1,3,1,3,0,2]},"expected":"adz","tags":["sample"]},
+{"id":"sample-3","name":"sample: sparse competing paths","kind":"sample","visible":true,"input":{"root":[2,2,1,null,1,0,null,0]},"expected":"abc","tags":["sample"]},
+{"id":"trial-1","name":"trial: single node","kind":"trial","visible":true,"input":{"root":[25]},"expected":"z","tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: left chain","kind":"trial","visible":true,"input":{"root":[0,1,null,2]},"expected":"cba","tags":["trial","chain"]},
+{"id":"trial-3","name":"trial: shorter prefix wins","kind":"trial","visible":true,"input":{"root":[0,0,0,null,null,0]},"expected":"aa","tags":["trial","prefix"]},
+{"id":"hidden-1","name":"hidden: right leaf is smaller","kind":"real","visible":false,"input":{"root":[0,25,1]},"expected":"ba","tags":["hidden","right"]},
+{"id":"hidden-2","name":"hidden: duplicate leaf strings","kind":"real","visible":false,"input":{"root":[2,1,1,0,0,0,0]},"expected":"abc","tags":["hidden","duplicates"]},
+{"id":"hidden-3","name":"hidden: value bounds","kind":"real","visible":false,"input":{"root":[25,25,0]},"expected":"az","tags":["hidden","bounds"]}
+]}

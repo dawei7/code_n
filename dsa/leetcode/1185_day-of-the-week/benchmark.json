@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1185",
+  "measurement_note": "Size is the number of elapsed days since the statement's January 1, 1971 reference date. Calendar congruence is constant time, while a source-native day-by-day simulation grows linearly with this distance.",
+  "cases": [
+    {
+      "id": "benchmark-scale-365",
+      "name": "benchmark: date 365 days after the reference",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 365,
+      "input": {
+        "day": 1,
+        "month": 1,
+        "year": 1972
+      },
+      "expected": "Saturday",
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-4096",
+      "name": "benchmark: date 4096 days after the reference",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {
+        "day": 20,
+        "month": 3,
+        "year": 1982
+      },
+      "expected": "Saturday",
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-32768",
+      "name": "benchmark: date 32768 days after the reference",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32768,
+      "input": {
+        "day": 18,
+        "month": 9,
+        "year": 2060
+      },
+      "expected": "Saturday",
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

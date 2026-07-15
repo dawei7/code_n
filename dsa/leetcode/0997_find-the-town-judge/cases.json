@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_997","cases":[
+{"id":"sample-1","name":"sample: two-person town","kind":"sample","visible":true,"input":{"n":2,"trust":[[1,2]]},"expected":2,"tags":["sample"]},
+{"id":"sample-2","name":"sample: everyone trusts person three","kind":"sample","visible":true,"input":{"n":3,"trust":[[1,3],[2,3]]},"expected":3,"tags":["sample"]},
+{"id":"sample-3","name":"sample: candidate trusts another person","kind":"sample","visible":true,"input":{"n":3,"trust":[[1,3],[2,3],[3,1]]},"expected":-1,"tags":["sample"]},
+{"id":"trial-1","name":"trial: one-person town","kind":"trial","visible":true,"input":{"n":1,"trust":[]},"expected":1,"tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: no relationships","kind":"trial","visible":true,"input":{"n":2,"trust":[]},"expected":-1,"tags":["trial","empty"]},
+{"id":"trial-3","name":"trial: directed cycle","kind":"trial","visible":true,"input":{"n":3,"trust":[[1,2],[2,3],[3,1]]},"expected":-1,"tags":["trial","cycle"]},
+{"id":"hidden-1","name":"hidden: judge label one","kind":"real","visible":false,"input":{"n":4,"trust":[[2,1],[3,1],[4,1]]},"expected":1,"tags":["hidden","label-one"]},
+{"id":"hidden-2","name":"hidden: almost universally trusted","kind":"real","visible":false,"input":{"n":4,"trust":[[1,4],[2,4]]},"expected":-1,"tags":["hidden","missing-edge"]},
+{"id":"hidden-3","name":"hidden: unrelated relationships preserve judge","kind":"real","visible":false,"input":{"n":5,"trust":[[1,5],[2,5],[3,5],[4,5],[1,2],[2,3]]},"expected":5,"tags":["hidden","extra-edges"]}
+]}

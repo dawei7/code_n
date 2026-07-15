@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "951",
+  "frontend_id": "915",
+  "title_slug": "partition-array-into-disjoint-intervals",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.partitionDisjoint",
+  "verified_submission_id": "2066932439",
+  "verified_at": "2026-07-14T05:41:57.627075+00:00"
+}

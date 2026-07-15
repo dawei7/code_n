@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_946",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: valid interleaving",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "pushed": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "popped": [
+          4,
+          5,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: blocked pop order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "pushed": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "popped": [
+          4,
+          3,
+          5,
+          1,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "invalid"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pushed": [
+          0
+        ],
+        "popped": [
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: pop immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pushed": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "popped": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "immediate-pops"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: pop after every pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pushed": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "popped": [
+          2,
+          1,
+          4,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "paired"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: full reverse order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "pushed": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "popped": [
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "reverse"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: lower value blocked",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "pushed": [
+          1,
+          2,
+          3
+        ],
+        "popped": [
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "blocked"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: late obstruction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "pushed": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "popped": [
+          2,
+          4,
+          1,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "late-invalid"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: longer mixed valid sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "pushed": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "popped": [
+          30,
+          20,
+          50,
+          60,
+          40,
+          10
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
+  ]
+}

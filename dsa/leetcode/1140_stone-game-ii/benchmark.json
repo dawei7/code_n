@@ -1,25 +1,99 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1140",
+  "measurement_note": "Size is the number of piles n. Equal positive piles exercise the memoized game state graph; precomputed suffix totals keep each move transition constant time, while the calibrated implementation recomputes the remaining sum with a Python loop inside every transition.",
   "cases": [
     {
-      "id": "benchmark-seven-piles",
-      "name": "benchmark: seven piles",
+      "id": "benchmark-scale-6",
+      "name": "benchmark: 6 equal piles",
       "kind": "benchmark",
       "visible": false,
+      "size": 6,
       "input": {
         "piles": [
-          4,
-          10,
-          3,
-          8,
-          2,
-          7,
-          6
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
         ]
       },
-      "expected": 20,
+      "expected": 3,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scaling",
+        "recomputed-suffix"
+      ]
+    },
+    {
+      "id": "benchmark-scale-12",
+      "name": "benchmark: 12 equal piles",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "piles": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "recomputed-suffix"
+      ]
+    },
+    {
+      "id": "benchmark-scale-24",
+      "name": "benchmark: 24 equal piles",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "piles": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "recomputed-suffix"
       ]
     }
   ]

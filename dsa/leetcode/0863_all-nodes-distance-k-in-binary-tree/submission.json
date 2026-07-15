@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "893",
+  "frontend_id": "863",
+  "title_slug": "all-nodes-distance-k-in-binary-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.distanceK",
+  "verified_submission_id": "2066727209",
+  "verified_at": "2026-07-14T00:42:14.670414+00:00"
+}

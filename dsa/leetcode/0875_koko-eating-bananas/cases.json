@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_875",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: eight hours across four piles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "piles": [
+          3,
+          6,
+          7,
+          11
+        ],
+        "h": 8
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: exactly one hour per pile",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "piles": [
+          30,
+          11,
+          23,
+          4,
+          20
+        ],
+        "h": 5
+      },
+      "expected": 30,
+      "tags": [
+        "sample",
+        "maximum"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one additional hour",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "piles": [
+          30,
+          11,
+          23,
+          4,
+          20
+        ],
+        "h": 6
+      },
+      "expected": 23,
+      "tags": [
+        "sample",
+        "ceilings"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one banana in one hour",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          1
+        ],
+        "h": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: single pile must be finished immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          10
+        ],
+        "h": 1
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "single-pile"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: speed one is sufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          5,
+          5,
+          5
+        ],
+        "h": 15
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "slowest"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: largest pile controls one-hour-per-pile case",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "piles": [
+          2,
+          8,
+          4
+        ],
+        "h": 3
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: total hours equal total bananas",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "piles": [
+          2,
+          8,
+          4
+        ],
+        "h": 14
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "speed-one"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: upper-bound single pile",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "piles": [
+          1000000000
+        ],
+        "h": 1
+      },
+      "expected": 1000000000,
+      "tags": [
+        "hidden",
+        "bounds"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: ceiling division across equal piles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "piles": [
+          9,
+          9
+        ],
+        "h": 6
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "ceilings"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: mixed pile ceiling boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "piles": [
+          4,
+          9,
+          15
+        ],
+        "h": 9
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
+  ]
+}

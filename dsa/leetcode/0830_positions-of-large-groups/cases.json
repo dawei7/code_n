@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_830",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one interior large group", "kind": "sample", "visible": true, "input": {"s": "abbxxxxzzy"}, "expected": [[3, 6]], "tags": ["sample", "interior-group"]},
+    {"id": "sample-2", "name": "sample: no repeated group", "kind": "sample", "visible": true, "input": {"s": "abc"}, "expected": [], "tags": ["sample", "no-large-group"]},
+    {"id": "sample-3", "name": "sample: several separated large groups", "kind": "sample", "visible": true, "input": {"s": "abcdddeeeeaabbbcd"}, "expected": [[3, 5], [6, 9], [12, 14]], "tags": ["sample", "multiple-groups"]},
+    {"id": "trial-1", "name": "trial: singleton string", "kind": "trial", "visible": true, "input": {"s": "a"}, "expected": [], "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: threshold-length run", "kind": "trial", "visible": true, "input": {"s": "aaa"}, "expected": [[0, 2]], "tags": ["trial", "threshold", "whole-string"]},
+    {"id": "trial-3", "name": "trial: run just below threshold", "kind": "trial", "visible": true, "input": {"s": "aa"}, "expected": [], "tags": ["trial", "below-threshold"]},
+    {"id": "trial-4", "name": "trial: large groups at start and middle", "kind": "trial", "visible": true, "input": {"s": "aaabcccccdd"}, "expected": [[0, 2], [4, 8]], "tags": ["trial", "boundary-group", "multiple-groups"]},
+    {"id": "hidden-1", "name": "hidden: large group at the end", "kind": "real", "visible": false, "input": {"s": "abbb"}, "expected": [[1, 3]], "tags": ["hidden", "end-boundary"]},
+    {"id": "hidden-2", "name": "hidden: large group at the start", "kind": "real", "visible": false, "input": {"s": "bbba"}, "expected": [[0, 2]], "tags": ["hidden", "start-boundary"]},
+    {"id": "hidden-3", "name": "hidden: adjacent large groups of different letters", "kind": "real", "visible": false, "input": {"s": "aaabbbccc"}, "expected": [[0, 2], [3, 5], [6, 8]], "tags": ["hidden", "adjacent-groups"]},
+    {"id": "hidden-4", "name": "hidden: several runs below threshold", "kind": "real", "visible": false, "input": {"s": "aabbaa"}, "expected": [], "tags": ["hidden", "below-threshold"]},
+    {"id": "hidden-5", "name": "hidden: threshold and longer boundary groups", "kind": "real", "visible": false, "input": {"s": "bbbccaaaaa"}, "expected": [[0, 2], [5, 9]], "tags": ["hidden", "multiple-groups", "boundaries"]}
+  ]
+}

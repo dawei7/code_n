@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_979","cases":[
+{"id":"sample-1","name":"sample: root supplies children","kind":"sample","visible":true,"input":{"root":[3,0,0]},"expected":2,"tags":["sample"]},
+{"id":"sample-2","name":"sample: child supplies sibling","kind":"sample","visible":true,"input":{"root":[0,3,0]},"expected":3,"tags":["sample"]},
+{"id":"trial-1","name":"trial: one balanced node","kind":"trial","visible":true,"input":{"root":[1]},"expected":0,"tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: right child supplies left","kind":"trial","visible":true,"input":{"root":[1,0,2]},"expected":2,"tags":["trial","sibling"]},
+{"id":"trial-3","name":"trial: nested surplus","kind":"trial","visible":true,"input":{"root":[0,1,0,null,3]},"expected":5,"tags":["trial","nested"]},
+{"id":"hidden-1","name":"hidden: left chain","kind":"real","visible":false,"input":{"root":[0,0,null,0,null,4]},"expected":6,"tags":["hidden","chain"]},
+{"id":"hidden-2","name":"hidden: balanced tree needs movement","kind":"real","visible":false,"input":{"root":[6,0,0,0,0,0]},"expected":8,"tags":["hidden","balanced-shape"]},
+{"id":"hidden-3","name":"hidden: already distributed","kind":"real","visible":false,"input":{"root":[1,1,1,1,1,1,1]},"expected":0,"tags":["hidden","no-moves"]}
+]}

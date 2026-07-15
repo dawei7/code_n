@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_981","cases":[
+{"id":"sample-1","name":"sample: version remains current","kind":"sample","visible":true,"input":{"operations":[["set","foo","bar",1],["get","foo",1],["get","foo",3],["set","foo","bar2",4],["get","foo",4],["get","foo",5]]},"expected":[null,"bar","bar",null,"bar2","bar2"],"tags":["sample"]},
+{"id":"sample-2","name":"sample: query before first version","kind":"sample","visible":true,"input":{"operations":[["set","x","a",5],["get","x",4],["get","x",5]]},"expected":[null,"","a"],"tags":["sample","early-query"]},
+{"id":"trial-1","name":"trial: unknown key","kind":"trial","visible":true,"input":{"operations":[["get","missing",1]]},"expected":[""],"tags":["trial","missing"]},
+{"id":"trial-2","name":"trial: independent keys","kind":"trial","visible":true,"input":{"operations":[["set","a","one",1],["set","b","two",2],["get","a",2],["get","b",2]]},"expected":[null,null,"one","two"],"tags":["trial","multiple-keys"]},
+{"id":"trial-3","name":"trial: several versions","kind":"trial","visible":true,"input":{"operations":[["set","k","v1",2],["set","k","v2",6],["set","k","v3",10],["get","k",9],["get","k",10]]},"expected":[null,null,null,"v2","v3"],"tags":["trial","binary-search"]},
+{"id":"hidden-1","name":"hidden: latest value","kind":"real","visible":false,"input":{"operations":[["set","z","a1",1],["set","z","a2",10000000],["get","z",10000000]]},"expected":[null,null,"a2"],"tags":["hidden","timestamp-bound"]},
+{"id":"hidden-2","name":"hidden: interleaved histories","kind":"real","visible":false,"input":{"operations":[["set","a","x1",1],["set","b","y1",3],["set","a","x2",5],["get","a",4],["get","b",6]]},"expected":[null,null,null,"x1","y1"],"tags":["hidden","interleaved"]},
+{"id":"hidden-3","name":"hidden: repeated queries do not mutate","kind":"real","visible":false,"input":{"operations":[["set","q","old",7],["set","q","new",9],["get","q",8],["get","q",8],["get","q",99]]},"expected":[null,null,"old","old","new"],"tags":["hidden","repeat-query"]}
+]}

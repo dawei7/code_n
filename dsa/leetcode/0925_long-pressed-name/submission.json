@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "961",
+  "frontend_id": "925",
+  "title_slug": "long-pressed-name",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isLongPressedName",
+  "verified_submission_id": "2066972490",
+  "verified_at": "2026-07-14T06:13:44.510118+00:00"
+}

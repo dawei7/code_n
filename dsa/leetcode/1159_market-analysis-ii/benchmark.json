@@ -1,0 +1,3060 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1159",
+  "measurement_note": "Size is one seller's number of sales on distinct dates. Window ranking orders the sales once, while the calibrated self-join materializes every earlier/later pair before retaining the sale with exactly one predecessor.",
+  "cases": [
+    {
+      "id": "benchmark-scale-32",
+      "name": "benchmark: one seller with 32 chronological sales",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "join_date": "2018-01-01",
+              "favorite_brand": "Fav"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2019-01-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2019-01-02",
+              "item_id": 2,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 3,
+              "order_date": "2019-01-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 4,
+              "order_date": "2019-01-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 5,
+              "order_date": "2019-01-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 6,
+              "order_date": "2019-01-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 7,
+              "order_date": "2019-01-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 8,
+              "order_date": "2019-01-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 9,
+              "order_date": "2019-01-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 10,
+              "order_date": "2019-01-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 11,
+              "order_date": "2019-01-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 12,
+              "order_date": "2019-01-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 13,
+              "order_date": "2019-01-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 14,
+              "order_date": "2019-01-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 15,
+              "order_date": "2019-01-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 16,
+              "order_date": "2019-01-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 17,
+              "order_date": "2019-01-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 18,
+              "order_date": "2019-01-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 19,
+              "order_date": "2019-01-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 20,
+              "order_date": "2019-01-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 21,
+              "order_date": "2019-01-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 22,
+              "order_date": "2019-01-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 23,
+              "order_date": "2019-01-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 24,
+              "order_date": "2019-01-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 25,
+              "order_date": "2019-01-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 26,
+              "order_date": "2019-01-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 27,
+              "order_date": "2019-01-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 28,
+              "order_date": "2019-01-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 29,
+              "order_date": "2019-01-29",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 30,
+              "order_date": "2019-01-30",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 31,
+              "order_date": "2019-01-31",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 32,
+              "order_date": "2019-02-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            }
+          ],
+          "Items": [
+            {
+              "item_id": 1,
+              "item_brand": "Other"
+            },
+            {
+              "item_id": 2,
+              "item_brand": "Fav"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_id",
+          "2nd_item_fav_brand"
+        ],
+        "rows": [
+          [
+            1,
+            "yes"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "correlated-ranking"
+      ]
+    },
+    {
+      "id": "benchmark-scale-128",
+      "name": "benchmark: one seller with 128 chronological sales",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "join_date": "2018-01-01",
+              "favorite_brand": "Fav"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2019-01-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2019-01-02",
+              "item_id": 2,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 3,
+              "order_date": "2019-01-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 4,
+              "order_date": "2019-01-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 5,
+              "order_date": "2019-01-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 6,
+              "order_date": "2019-01-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 7,
+              "order_date": "2019-01-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 8,
+              "order_date": "2019-01-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 9,
+              "order_date": "2019-01-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 10,
+              "order_date": "2019-01-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 11,
+              "order_date": "2019-01-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 12,
+              "order_date": "2019-01-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 13,
+              "order_date": "2019-01-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 14,
+              "order_date": "2019-01-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 15,
+              "order_date": "2019-01-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 16,
+              "order_date": "2019-01-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 17,
+              "order_date": "2019-01-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 18,
+              "order_date": "2019-01-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 19,
+              "order_date": "2019-01-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 20,
+              "order_date": "2019-01-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 21,
+              "order_date": "2019-01-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 22,
+              "order_date": "2019-01-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 23,
+              "order_date": "2019-01-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 24,
+              "order_date": "2019-01-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 25,
+              "order_date": "2019-01-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 26,
+              "order_date": "2019-01-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 27,
+              "order_date": "2019-01-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 28,
+              "order_date": "2019-01-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 29,
+              "order_date": "2019-01-29",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 30,
+              "order_date": "2019-01-30",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 31,
+              "order_date": "2019-01-31",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 32,
+              "order_date": "2019-02-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 33,
+              "order_date": "2019-02-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 34,
+              "order_date": "2019-02-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 35,
+              "order_date": "2019-02-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 36,
+              "order_date": "2019-02-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 37,
+              "order_date": "2019-02-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 38,
+              "order_date": "2019-02-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 39,
+              "order_date": "2019-02-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 40,
+              "order_date": "2019-02-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 41,
+              "order_date": "2019-02-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 42,
+              "order_date": "2019-02-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 43,
+              "order_date": "2019-02-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 44,
+              "order_date": "2019-02-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 45,
+              "order_date": "2019-02-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 46,
+              "order_date": "2019-02-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 47,
+              "order_date": "2019-02-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 48,
+              "order_date": "2019-02-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 49,
+              "order_date": "2019-02-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 50,
+              "order_date": "2019-02-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 51,
+              "order_date": "2019-02-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 52,
+              "order_date": "2019-02-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 53,
+              "order_date": "2019-02-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 54,
+              "order_date": "2019-02-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 55,
+              "order_date": "2019-02-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 56,
+              "order_date": "2019-02-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 57,
+              "order_date": "2019-02-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 58,
+              "order_date": "2019-02-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 59,
+              "order_date": "2019-02-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 60,
+              "order_date": "2019-03-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 61,
+              "order_date": "2019-03-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 62,
+              "order_date": "2019-03-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 63,
+              "order_date": "2019-03-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 64,
+              "order_date": "2019-03-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 65,
+              "order_date": "2019-03-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 66,
+              "order_date": "2019-03-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 67,
+              "order_date": "2019-03-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 68,
+              "order_date": "2019-03-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 69,
+              "order_date": "2019-03-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 70,
+              "order_date": "2019-03-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 71,
+              "order_date": "2019-03-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 72,
+              "order_date": "2019-03-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 73,
+              "order_date": "2019-03-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 74,
+              "order_date": "2019-03-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 75,
+              "order_date": "2019-03-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 76,
+              "order_date": "2019-03-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 77,
+              "order_date": "2019-03-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 78,
+              "order_date": "2019-03-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 79,
+              "order_date": "2019-03-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 80,
+              "order_date": "2019-03-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 81,
+              "order_date": "2019-03-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 82,
+              "order_date": "2019-03-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 83,
+              "order_date": "2019-03-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 84,
+              "order_date": "2019-03-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 85,
+              "order_date": "2019-03-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 86,
+              "order_date": "2019-03-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 87,
+              "order_date": "2019-03-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 88,
+              "order_date": "2019-03-29",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 89,
+              "order_date": "2019-03-30",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 90,
+              "order_date": "2019-03-31",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 91,
+              "order_date": "2019-04-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 92,
+              "order_date": "2019-04-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 93,
+              "order_date": "2019-04-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 94,
+              "order_date": "2019-04-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 95,
+              "order_date": "2019-04-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 96,
+              "order_date": "2019-04-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 97,
+              "order_date": "2019-04-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 98,
+              "order_date": "2019-04-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 99,
+              "order_date": "2019-04-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 100,
+              "order_date": "2019-04-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 101,
+              "order_date": "2019-04-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 102,
+              "order_date": "2019-04-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 103,
+              "order_date": "2019-04-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 104,
+              "order_date": "2019-04-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 105,
+              "order_date": "2019-04-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 106,
+              "order_date": "2019-04-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 107,
+              "order_date": "2019-04-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 108,
+              "order_date": "2019-04-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 109,
+              "order_date": "2019-04-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 110,
+              "order_date": "2019-04-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 111,
+              "order_date": "2019-04-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 112,
+              "order_date": "2019-04-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 113,
+              "order_date": "2019-04-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 114,
+              "order_date": "2019-04-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 115,
+              "order_date": "2019-04-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 116,
+              "order_date": "2019-04-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 117,
+              "order_date": "2019-04-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 118,
+              "order_date": "2019-04-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 119,
+              "order_date": "2019-04-29",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 120,
+              "order_date": "2019-04-30",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 121,
+              "order_date": "2019-05-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 122,
+              "order_date": "2019-05-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 123,
+              "order_date": "2019-05-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 124,
+              "order_date": "2019-05-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 125,
+              "order_date": "2019-05-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 126,
+              "order_date": "2019-05-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 127,
+              "order_date": "2019-05-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 128,
+              "order_date": "2019-05-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            }
+          ],
+          "Items": [
+            {
+              "item_id": 1,
+              "item_brand": "Other"
+            },
+            {
+              "item_id": 2,
+              "item_brand": "Fav"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_id",
+          "2nd_item_fav_brand"
+        ],
+        "rows": [
+          [
+            1,
+            "yes"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "correlated-ranking"
+      ]
+    },
+    {
+      "id": "benchmark-scale-256",
+      "name": "benchmark: one seller with 256 chronological sales",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "join_date": "2018-01-01",
+              "favorite_brand": "Fav"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2019-01-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2019-01-02",
+              "item_id": 2,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 3,
+              "order_date": "2019-01-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 4,
+              "order_date": "2019-01-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 5,
+              "order_date": "2019-01-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 6,
+              "order_date": "2019-01-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 7,
+              "order_date": "2019-01-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 8,
+              "order_date": "2019-01-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 9,
+              "order_date": "2019-01-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 10,
+              "order_date": "2019-01-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 11,
+              "order_date": "2019-01-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 12,
+              "order_date": "2019-01-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 13,
+              "order_date": "2019-01-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 14,
+              "order_date": "2019-01-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 15,
+              "order_date": "2019-01-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 16,
+              "order_date": "2019-01-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 17,
+              "order_date": "2019-01-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 18,
+              "order_date": "2019-01-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 19,
+              "order_date": "2019-01-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 20,
+              "order_date": "2019-01-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 21,
+              "order_date": "2019-01-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 22,
+              "order_date": "2019-01-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 23,
+              "order_date": "2019-01-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 24,
+              "order_date": "2019-01-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 25,
+              "order_date": "2019-01-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 26,
+              "order_date": "2019-01-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 27,
+              "order_date": "2019-01-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 28,
+              "order_date": "2019-01-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 29,
+              "order_date": "2019-01-29",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 30,
+              "order_date": "2019-01-30",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 31,
+              "order_date": "2019-01-31",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 32,
+              "order_date": "2019-02-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 33,
+              "order_date": "2019-02-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 34,
+              "order_date": "2019-02-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 35,
+              "order_date": "2019-02-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 36,
+              "order_date": "2019-02-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 37,
+              "order_date": "2019-02-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 38,
+              "order_date": "2019-02-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 39,
+              "order_date": "2019-02-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 40,
+              "order_date": "2019-02-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 41,
+              "order_date": "2019-02-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 42,
+              "order_date": "2019-02-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 43,
+              "order_date": "2019-02-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 44,
+              "order_date": "2019-02-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 45,
+              "order_date": "2019-02-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 46,
+              "order_date": "2019-02-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 47,
+              "order_date": "2019-02-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 48,
+              "order_date": "2019-02-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 49,
+              "order_date": "2019-02-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 50,
+              "order_date": "2019-02-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 51,
+              "order_date": "2019-02-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 52,
+              "order_date": "2019-02-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 53,
+              "order_date": "2019-02-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 54,
+              "order_date": "2019-02-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 55,
+              "order_date": "2019-02-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 56,
+              "order_date": "2019-02-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 57,
+              "order_date": "2019-02-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 58,
+              "order_date": "2019-02-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 59,
+              "order_date": "2019-02-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 60,
+              "order_date": "2019-03-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 61,
+              "order_date": "2019-03-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 62,
+              "order_date": "2019-03-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 63,
+              "order_date": "2019-03-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 64,
+              "order_date": "2019-03-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 65,
+              "order_date": "2019-03-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 66,
+              "order_date": "2019-03-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 67,
+              "order_date": "2019-03-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 68,
+              "order_date": "2019-03-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 69,
+              "order_date": "2019-03-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 70,
+              "order_date": "2019-03-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 71,
+              "order_date": "2019-03-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 72,
+              "order_date": "2019-03-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 73,
+              "order_date": "2019-03-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 74,
+              "order_date": "2019-03-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 75,
+              "order_date": "2019-03-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 76,
+              "order_date": "2019-03-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 77,
+              "order_date": "2019-03-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 78,
+              "order_date": "2019-03-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 79,
+              "order_date": "2019-03-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 80,
+              "order_date": "2019-03-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 81,
+              "order_date": "2019-03-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 82,
+              "order_date": "2019-03-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 83,
+              "order_date": "2019-03-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 84,
+              "order_date": "2019-03-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 85,
+              "order_date": "2019-03-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 86,
+              "order_date": "2019-03-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 87,
+              "order_date": "2019-03-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 88,
+              "order_date": "2019-03-29",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 89,
+              "order_date": "2019-03-30",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 90,
+              "order_date": "2019-03-31",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 91,
+              "order_date": "2019-04-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 92,
+              "order_date": "2019-04-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 93,
+              "order_date": "2019-04-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 94,
+              "order_date": "2019-04-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 95,
+              "order_date": "2019-04-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 96,
+              "order_date": "2019-04-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 97,
+              "order_date": "2019-04-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 98,
+              "order_date": "2019-04-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 99,
+              "order_date": "2019-04-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 100,
+              "order_date": "2019-04-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 101,
+              "order_date": "2019-04-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 102,
+              "order_date": "2019-04-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 103,
+              "order_date": "2019-04-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 104,
+              "order_date": "2019-04-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 105,
+              "order_date": "2019-04-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 106,
+              "order_date": "2019-04-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 107,
+              "order_date": "2019-04-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 108,
+              "order_date": "2019-04-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 109,
+              "order_date": "2019-04-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 110,
+              "order_date": "2019-04-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 111,
+              "order_date": "2019-04-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 112,
+              "order_date": "2019-04-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 113,
+              "order_date": "2019-04-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 114,
+              "order_date": "2019-04-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 115,
+              "order_date": "2019-04-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 116,
+              "order_date": "2019-04-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 117,
+              "order_date": "2019-04-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 118,
+              "order_date": "2019-04-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 119,
+              "order_date": "2019-04-29",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 120,
+              "order_date": "2019-04-30",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 121,
+              "order_date": "2019-05-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 122,
+              "order_date": "2019-05-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 123,
+              "order_date": "2019-05-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 124,
+              "order_date": "2019-05-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 125,
+              "order_date": "2019-05-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 126,
+              "order_date": "2019-05-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 127,
+              "order_date": "2019-05-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 128,
+              "order_date": "2019-05-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 129,
+              "order_date": "2019-05-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 130,
+              "order_date": "2019-05-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 131,
+              "order_date": "2019-05-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 132,
+              "order_date": "2019-05-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 133,
+              "order_date": "2019-05-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 134,
+              "order_date": "2019-05-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 135,
+              "order_date": "2019-05-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 136,
+              "order_date": "2019-05-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 137,
+              "order_date": "2019-05-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 138,
+              "order_date": "2019-05-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 139,
+              "order_date": "2019-05-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 140,
+              "order_date": "2019-05-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 141,
+              "order_date": "2019-05-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 142,
+              "order_date": "2019-05-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 143,
+              "order_date": "2019-05-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 144,
+              "order_date": "2019-05-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 145,
+              "order_date": "2019-05-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 146,
+              "order_date": "2019-05-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 147,
+              "order_date": "2019-05-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 148,
+              "order_date": "2019-05-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 149,
+              "order_date": "2019-05-29",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 150,
+              "order_date": "2019-05-30",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 151,
+              "order_date": "2019-05-31",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 152,
+              "order_date": "2019-06-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 153,
+              "order_date": "2019-06-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 154,
+              "order_date": "2019-06-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 155,
+              "order_date": "2019-06-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 156,
+              "order_date": "2019-06-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 157,
+              "order_date": "2019-06-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 158,
+              "order_date": "2019-06-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 159,
+              "order_date": "2019-06-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 160,
+              "order_date": "2019-06-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 161,
+              "order_date": "2019-06-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 162,
+              "order_date": "2019-06-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 163,
+              "order_date": "2019-06-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 164,
+              "order_date": "2019-06-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 165,
+              "order_date": "2019-06-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 166,
+              "order_date": "2019-06-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 167,
+              "order_date": "2019-06-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 168,
+              "order_date": "2019-06-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 169,
+              "order_date": "2019-06-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 170,
+              "order_date": "2019-06-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 171,
+              "order_date": "2019-06-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 172,
+              "order_date": "2019-06-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 173,
+              "order_date": "2019-06-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 174,
+              "order_date": "2019-06-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 175,
+              "order_date": "2019-06-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 176,
+              "order_date": "2019-06-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 177,
+              "order_date": "2019-06-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 178,
+              "order_date": "2019-06-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 179,
+              "order_date": "2019-06-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 180,
+              "order_date": "2019-06-29",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 181,
+              "order_date": "2019-06-30",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 182,
+              "order_date": "2019-07-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 183,
+              "order_date": "2019-07-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 184,
+              "order_date": "2019-07-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 185,
+              "order_date": "2019-07-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 186,
+              "order_date": "2019-07-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 187,
+              "order_date": "2019-07-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 188,
+              "order_date": "2019-07-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 189,
+              "order_date": "2019-07-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 190,
+              "order_date": "2019-07-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 191,
+              "order_date": "2019-07-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 192,
+              "order_date": "2019-07-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 193,
+              "order_date": "2019-07-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 194,
+              "order_date": "2019-07-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 195,
+              "order_date": "2019-07-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 196,
+              "order_date": "2019-07-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 197,
+              "order_date": "2019-07-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 198,
+              "order_date": "2019-07-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 199,
+              "order_date": "2019-07-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 200,
+              "order_date": "2019-07-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 201,
+              "order_date": "2019-07-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 202,
+              "order_date": "2019-07-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 203,
+              "order_date": "2019-07-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 204,
+              "order_date": "2019-07-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 205,
+              "order_date": "2019-07-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 206,
+              "order_date": "2019-07-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 207,
+              "order_date": "2019-07-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 208,
+              "order_date": "2019-07-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 209,
+              "order_date": "2019-07-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 210,
+              "order_date": "2019-07-29",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 211,
+              "order_date": "2019-07-30",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 212,
+              "order_date": "2019-07-31",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 213,
+              "order_date": "2019-08-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 214,
+              "order_date": "2019-08-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 215,
+              "order_date": "2019-08-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 216,
+              "order_date": "2019-08-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 217,
+              "order_date": "2019-08-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 218,
+              "order_date": "2019-08-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 219,
+              "order_date": "2019-08-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 220,
+              "order_date": "2019-08-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 221,
+              "order_date": "2019-08-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 222,
+              "order_date": "2019-08-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 223,
+              "order_date": "2019-08-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 224,
+              "order_date": "2019-08-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 225,
+              "order_date": "2019-08-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 226,
+              "order_date": "2019-08-14",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 227,
+              "order_date": "2019-08-15",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 228,
+              "order_date": "2019-08-16",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 229,
+              "order_date": "2019-08-17",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 230,
+              "order_date": "2019-08-18",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 231,
+              "order_date": "2019-08-19",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 232,
+              "order_date": "2019-08-20",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 233,
+              "order_date": "2019-08-21",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 234,
+              "order_date": "2019-08-22",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 235,
+              "order_date": "2019-08-23",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 236,
+              "order_date": "2019-08-24",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 237,
+              "order_date": "2019-08-25",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 238,
+              "order_date": "2019-08-26",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 239,
+              "order_date": "2019-08-27",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 240,
+              "order_date": "2019-08-28",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 241,
+              "order_date": "2019-08-29",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 242,
+              "order_date": "2019-08-30",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 243,
+              "order_date": "2019-08-31",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 244,
+              "order_date": "2019-09-01",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 245,
+              "order_date": "2019-09-02",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 246,
+              "order_date": "2019-09-03",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 247,
+              "order_date": "2019-09-04",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 248,
+              "order_date": "2019-09-05",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 249,
+              "order_date": "2019-09-06",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 250,
+              "order_date": "2019-09-07",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 251,
+              "order_date": "2019-09-08",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 252,
+              "order_date": "2019-09-09",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 253,
+              "order_date": "2019-09-10",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 254,
+              "order_date": "2019-09-11",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 255,
+              "order_date": "2019-09-12",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            },
+            {
+              "order_id": 256,
+              "order_date": "2019-09-13",
+              "item_id": 1,
+              "buyer_id": 1,
+              "seller_id": 1
+            }
+          ],
+          "Items": [
+            {
+              "item_id": 1,
+              "item_brand": "Other"
+            },
+            {
+              "item_id": 2,
+              "item_brand": "Fav"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_id",
+          "2nd_item_fav_brand"
+        ],
+        "rows": [
+          [
+            1,
+            "yes"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "correlated-ranking"
+      ]
+    }
+  ]
+}

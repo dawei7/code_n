@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1301",
+  "frontend_id": "1179",
+  "title_slug": "reformat-department-table",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2067897425",
+  "verified_at": "2026-07-14T22:07:35.004513+00:00"
+}

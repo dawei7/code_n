@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1341",
+  "frontend_id": "1221",
+  "title_slug": "split-a-string-in-balanced-strings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.balancedStringSplit",
+  "verified_submission_id": "2067949796",
+  "verified_at": "2026-07-15T01:03:19.077401+00:00"
+}

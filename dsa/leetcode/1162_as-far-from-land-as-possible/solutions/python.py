@@ -1,26 +1,34 @@
+"""Optimal app-local solution for LeetCode 1162."""
+
 from collections import deque
 
 
-def solve(grid):
-    n = len(grid)
+def solve(grid: list[list[int]]) -> int:
+    size = len(grid)
     queue = deque()
-    seen = [[False] * n for _ in range(n)]
-    for r in range(n):
-        for c in range(n):
-            if grid[r][c] == 1:
-                queue.append((r, c, 0))
-                seen[r][c] = True
+    seen = [[False] * size for _ in range(size)]
+    for row in range(size):
+        for column in range(size):
+            if grid[row][column] == 1:
+                queue.append((row, column))
+                seen[row][column] = True
 
-    if not queue or len(queue) == n * n:
+    if not queue or len(queue) == size * size:
         return -1
 
-    answer = 0
+    distance = -1
     while queue:
-        r, c, distance = queue.popleft()
-        answer = max(answer, distance)
-        for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            nr, nc = r + dr, c + dc
-            if 0 <= nr < n and 0 <= nc < n and not seen[nr][nc]:
-                seen[nr][nc] = True
-                queue.append((nr, nc, distance + 1))
-    return answer
+        for _ in range(len(queue)):
+            row, column = queue.popleft()
+            for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                next_row = row + row_step
+                next_column = column + column_step
+                if (
+                    0 <= next_row < size
+                    and 0 <= next_column < size
+                    and not seen[next_row][next_column]
+                ):
+                    seen[next_row][next_column] = True
+                    queue.append((next_row, next_column))
+        distance += 1
+    return distance

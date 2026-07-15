@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1089",
+  "frontend_id": "1119",
+  "title_slug": "remove-vowels-from-a-string",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.removeVowels",
+  "verified_submission_id": "2067728718",
+  "verified_at": "2026-07-14T17:55:00.511029+00:00"
+}

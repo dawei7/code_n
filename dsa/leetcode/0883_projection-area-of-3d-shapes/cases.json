@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_883",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four towers of increasing height",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1, 2], [3, 4]]},
+      "expected": 17,
+      "tags": ["sample", "dense"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one tower of height two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[2]]},
+      "expected": 5,
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two diagonal towers",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1, 0], [0, 2]]},
+      "expected": 8,
+      "tags": ["sample", "sparse"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one empty position",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[0]]},
+      "expected": 0,
+      "tags": ["trial", "zero"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one maximum-height tower",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[50]]},
+      "expected": 101,
+      "tags": ["trial", "maximum-height"]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: uniform unit towers",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 1], [1, 1]]},
+      "expected": 8,
+      "tags": ["trial", "uniform"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: all positions are empty",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[0, 0], [0, 0]]},
+      "expected": 0,
+      "tags": ["hidden", "all-zero"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: equal diagonal peaks",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[5, 0], [0, 5]]},
+      "expected": 22,
+      "tags": ["hidden", "diagonal"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: asymmetric row and column maxima",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 2, 0], [0, 3, 4], [5, 0, 0]]},
+      "expected": 28,
+      "tags": ["hidden", "asymmetric"]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: cross-shaped sparse towers",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[0, 2, 0], [3, 0, 4], [0, 5, 0]]},
+      "expected": 27,
+      "tags": ["hidden", "sparse"]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: dense maximum-height square",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[50, 50], [50, 50]]},
+      "expected": 204,
+      "tags": ["hidden", "maximum-height", "dense"]
+    }
+  ]
+}

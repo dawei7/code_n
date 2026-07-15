@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_976","cases":[
+{"id":"sample-1","name":"sample: valid triangle","kind":"sample","visible":true,"input":{"nums":[2,1,2]},"expected":5,"tags":["sample"]},
+{"id":"sample-2","name":"sample: no triangle","kind":"sample","visible":true,"input":{"nums":[1,2,1,10]},"expected":0,"tags":["sample"]},
+{"id":"trial-1","name":"trial: equilateral triangle","kind":"trial","visible":true,"input":{"nums":[3,3,3]},"expected":9,"tags":["trial","equal"]},
+{"id":"trial-2","name":"trial: choose smaller valid triple","kind":"trial","visible":true,"input":{"nums":[10,5,4,4]},"expected":13,"tags":["trial","greedy"]},
+{"id":"trial-3","name":"trial: reject degenerate lengths","kind":"trial","visible":true,"input":{"nums":[1,2,3]},"expected":0,"tags":["trial","degenerate"]},
+{"id":"hidden-1","name":"hidden: repeated sides","kind":"real","visible":false,"input":{"nums":[2,2,3,4]},"expected":9,"tags":["hidden","repeated"]},
+{"id":"hidden-2","name":"hidden: maximum values","kind":"real","visible":false,"input":{"nums":[1000000,1000000,1000000,1]},"expected":3000000,"tags":["hidden","bounds"]},
+{"id":"hidden-3","name":"hidden: valid triple after large gaps","kind":"real","visible":false,"input":{"nums":[100,50,25,12,7,6]},"expected":25,"tags":["hidden","scan"]}
+]}

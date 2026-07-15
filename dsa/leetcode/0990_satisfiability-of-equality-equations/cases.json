@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_990","cases":[
+{"id":"sample-1","name":"sample: direct contradiction","kind":"sample","visible":true,"input":{"equations":["a==b","b!=a"]},"expected":false,"tags":["sample"]},
+{"id":"sample-2","name":"sample: equivalent equalities","kind":"sample","visible":true,"input":{"equations":["b==a","a==b"]},"expected":true,"tags":["sample"]},
+{"id":"trial-1","name":"trial: transitive contradiction","kind":"trial","visible":true,"input":{"equations":["a==b","b==c","a!=c"]},"expected":false,"tags":["trial","transitive"]},
+{"id":"trial-2","name":"trial: separate components","kind":"trial","visible":true,"input":{"equations":["a==b","c==d","a!=d","b!=c"]},"expected":true,"tags":["trial","components"]},
+{"id":"trial-3","name":"trial: self inequality","kind":"trial","visible":true,"input":{"equations":["z!=z"]},"expected":false,"tags":["trial","self"]},
+{"id":"hidden-1","name":"hidden: inequality precedes connecting equalities","kind":"real","visible":false,"input":{"equations":["a!=d","a==b","b==c","c==d"]},"expected":false,"tags":["hidden","order"]},
+{"id":"hidden-2","name":"hidden: self equalities are harmless","kind":"real","visible":false,"input":{"equations":["a==a","z==z","a!=z"]},"expected":true,"tags":["hidden","self"]},
+{"id":"hidden-3","name":"hidden: long compatible chain","kind":"real","visible":false,"input":{"equations":["a==b","b==c","c==d","d==e","e!=f","f==g","g==h","a!=h"]},"expected":true,"tags":["hidden","chain"]}
+]}

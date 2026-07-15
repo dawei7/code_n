@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_862",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one qualifying element", "kind": "sample", "visible": true, "input": {"nums": [1], "k": 1}, "expected": 1, "tags": ["sample", "single"]},
+    {"id": "sample-2", "name": "sample: total below threshold", "kind": "sample", "visible": true, "input": {"nums": [1, 2], "k": 4}, "expected": -1, "tags": ["sample", "impossible"]},
+    {"id": "sample-3", "name": "sample: negative value requires full array", "kind": "sample", "visible": true, "input": {"nums": [2, -1, 2], "k": 3}, "expected": 3, "tags": ["sample", "negative"]},
+    {"id": "trial-1", "name": "trial: shortest qualifying suffix", "kind": "trial", "visible": true, "input": {"nums": [84, -37, 32, 40, 95], "k": 167}, "expected": 3, "tags": ["trial", "suffix"]},
+    {"id": "trial-2", "name": "trial: adjacent positive pair", "kind": "trial", "visible": true, "input": {"nums": [17, 85, 93, -45, -21], "k": 150}, "expected": 2, "tags": ["trial", "pair"]},
+    {"id": "trial-3", "name": "trial: all values negative", "kind": "trial", "visible": true, "input": {"nums": [-5, -2, -3], "k": 1}, "expected": -1, "tags": ["trial", "all-negative"]},
+    {"id": "hidden-1", "name": "hidden: qualifying element after deep negative", "kind": "real", "visible": false, "input": {"nums": [5, -10, 6], "k": 6}, "expected": 1, "tags": ["hidden", "dominance"]},
+    {"id": "hidden-2", "name": "hidden: mixed suffix of length three", "kind": "real", "visible": false, "input": {"nums": [1, -1, 5, -2, 3], "k": 6}, "expected": 3, "tags": ["hidden", "mixed"]},
+    {"id": "hidden-3", "name": "hidden: only full array qualifies", "kind": "real", "visible": false, "input": {"nums": [3, -2, 5], "k": 6}, "expected": 3, "tags": ["hidden", "full-array"]},
+    {"id": "hidden-4", "name": "hidden: single large positive after loss", "kind": "real", "visible": false, "input": {"nums": [10, -20, 30, -5, 1], "k": 25}, "expected": 1, "tags": ["hidden", "single"]},
+    {"id": "hidden-5", "name": "hidden: positive fixed window", "kind": "real", "visible": false, "input": {"nums": [1, 1, 1, 1], "k": 3}, "expected": 3, "tags": ["hidden", "positive"]},
+    {"id": "hidden-6", "name": "hidden: lower-bound negative then maximum positive", "kind": "real", "visible": false, "input": {"nums": [-100000, 100000], "k": 100000}, "expected": 1, "tags": ["hidden", "bounds"]}
+  ]
+}

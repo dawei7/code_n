@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_891",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three distinct unsorted values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one nonzero two-value width",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "two-values"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: all values equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "duplicates",
+        "zero-width"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: one duplicated maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: arithmetic progression",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "distinct"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: four unsorted values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          1,
+          7,
+          2
+        ]
+      },
+      "expected": 46,
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: duplicate groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          4,
+          4,
+          7
+        ]
+      },
+      "expected": 87,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: values near the maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          99999,
+          100000,
+          1
+        ]
+      },
+      "expected": 699995,
+      "tags": [
+        "hidden",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: descending sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 3084,
+      "tags": [
+        "hidden",
+        "descending"
+      ]
+    }
+  ]
+}

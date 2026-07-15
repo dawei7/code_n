@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1255",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: choose dad and good",
+      "id": "sample-family",
+      "name": "sample: dad and good form the optimum",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -17,11 +18,9 @@
           "a",
           "a",
           "c",
-          "c",
           "d",
           "d",
           "d",
-          "g",
           "g",
           "o",
           "o"
@@ -57,13 +56,12 @@
       },
       "expected": 23,
       "tags": [
-        "sample",
-        "backtracking"
+        "sample"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: high x and z scores",
+      "id": "sample-overlap",
+      "name": "sample: overlapping x requirements",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -117,8 +115,8 @@
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: impossible word",
+      "id": "sample-unformable",
+      "name": "sample: only word lacks a letter",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -136,24 +134,24 @@
         "score": [
           0,
           0,
+          1,
+          1,
+          1,
           0,
           0,
           0,
           0,
           0,
           0,
+          1,
+          0,
+          0,
+          1,
           0,
           0,
           0,
           0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
+          1,
           0,
           0,
           0,
@@ -164,28 +162,175 @@
       },
       "expected": 0,
       "tags": [
-        "sample",
-        "edge"
+        "sample"
       ]
     },
     {
-      "id": "real-combined-word",
-      "name": "hidden: combined word beats separate words equally",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-none",
+      "name": "trial: no word can be formed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
-          "a",
-          "b",
-          "ab"
+          "aa",
+          "bb"
+        ],
+        "letters": [
+          "c"
+        ],
+        "score": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate words are separate choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ab",
+          "a"
         ],
         "letters": [
           "a",
+          "a",
+          "b",
           "b"
         ],
         "score": [
           1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-competing",
+      "name": "hidden: one long word competes with two short words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abc",
+          "ab",
+          "c"
+        ],
+        "letters": [
+          "a",
+          "b",
+          "c"
+        ],
+        "score": [
+          1,
           2,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-zero-score",
+      "name": "hidden: zero-score letters still constrain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "az",
+          "a",
+          "z"
+        ],
+        "letters": [
+          "a",
+          "z"
+        ],
+        "score": [
+          5,
+          0,
           0,
           0,
           0,
@@ -212,9 +357,9 @@
           0
         ]
       },
-      "expected": 3,
+      "expected": 5,
       "tags": [
-        "hidden"
+        "real"
       ]
     }
   ]

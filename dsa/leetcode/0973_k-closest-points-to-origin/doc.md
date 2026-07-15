@@ -8,51 +8,77 @@
 | Category | Algorithms |
 | Topics | Array, Math, Divide and Conquer, Geometry, Sorting, Heap (Priority Queue), Quickselect |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [k-closest-points-to-origin](https://leetcode.com/problems/k-closest-points-to-origin/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/k-closest-points-to-origin/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/k-closest-points-to-origin/).
 
 ### Goal
-Given an array of `points` (each `[x, y]`) and integer `k`, return the `k` points closest to the origin (0,0). Distance = sqrt(x^2 + y^2) but we compare x^2 + y^2.
+
+An array `points` describes points on the X-Y plane, where `points[i] = [x_i, y_i]`, and an integer `k` specifies how many points to choose. Return the `k` points that are closest to the origin `[0, 0]`.
+
+Closeness is measured by Euclidean distance. For a point $(x_i,y_i)$, that distance is $\sqrt{x_i^2+y_i^2}$. The answer may list the selected points in any order. The selected set is guaranteed to be unique, although its ordering is not.
 
 ### Function Contract
+
 **Inputs**
 
-- `points`: List[List[int]] - [x,y] coordinates
-- `k`: int
+- `points`: a list of $N$ integer coordinate pairs `[x_i, y_i]`, with $1 \le N \le 10^4$ and $-10^4 \le x_i,y_i \le 10^4$.
+- `k`: the number of points to return, where $1 \le K = \texttt{k} \le N$.
+
+For comparison, define the squared distance
+
+$$
+d_i = x_i^2 + y_i^2.
+$$
+
+Because the square-root function is increasing on nonnegative values, ordering points by $d_i$ gives the same order as their Euclidean distances.
 
 **Return value**
 
-List[List[int]] - k closest points
+- A list containing exactly the $K$ closest points. Their order does not matter.
 
 ### Examples
+
 **Example 1**
 
 - Input: `points = [[1, 3], [-2, 2]], k = 1`
 - Output: `[[-2, 2]]`
+- Explanation: the squared distances are $10$ and $8$, so `[-2, 2]` is closer.
 
 **Example 2**
 
-- Input: `points = [[-2, 94], [7, -90]], k = 1`
-- Output: `[[7, -90]]`
+- Input: `points = [[3, 3], [5, -1], [-2, 4]], k = 2`
+- Output: `[[3, 3], [-2, 4]]`
+- Explanation: `[[-2, 4], [3, 3]]` is equally valid because answer order is unrestricted.
 
-**Example 3**
+### Required Complexity
 
-- Input: `points = [[-66, 45], [95, -84]], k = 1`
-- Output: `[[-66, 45]]`
+- **Time:** $O(N)$
+- **Space:** $O(K)$
 
----
+<details>
+<summary>Approach</summary>
 
-## Solution
-### Approach
-- [Kth largest with heap](heap_02_kth-largest-element.md)
-- [Top-K frequent elements](heap_03_top-k-frequent-elements.md)
-- [Median in a stream](heap_04_median-in-a-stream.md)
+#### General
 
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(n)` auxiliary space, excluding the output object unless the output itself is the constructed result.
+**Compare squared distances:** Computing a square root cannot change which of two nonnegative squared distances is smaller. The selection can therefore use `x * x + y * y`, avoiding floating-point arithmetic.
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Partition around a candidate distance:** Quickselect uses the same partitioning idea as quicksort. Choose a pivot distance, then move every point with a smaller distance before it and every point with a larger distance after it. Once partitioning finishes, the target index `k - 1` lies either in the left region, in the right region, or between their boundaries. Only the region containing that index can still affect the answer, so the algorithm discards the other region.
+
+The implementation repeats this process until the first `k` positions contain precisely the points whose distances have the $K$ smallest ranks. The uniqueness guarantee rules out an ambiguous tie at the selection boundary. Returning the slice `points[:k]` is valid because the requested order is arbitrary.
+
+**Why the selected prefix is correct:** Each partition permanently separates values below the pivot from values above it. If `k - 1` is left of the completed partition, no point in the discarded right region can belong ahead of that rank; the symmetric argument applies when the target is on the right. When the target falls between the two scan boundaries, every point before the prefix boundary is no farther than every point after it, so the prefix contains exactly the required set.
+
+#### Complexity detail
+
+Let $N$ be the number of points and $K$ the requested count. A partition scans the active region once. With representative pivots, the active region shrinks geometrically, giving expected $O(N)$ time. Deterministic pivot choices can produce a worst case of $O(N^2)$ on adversarial orderings. Partitioning itself uses $O(1)$ auxiliary space; the returned list contains $K$ points, so total result space is $O(K)$.
+
+#### Alternatives and edge cases
+
+- **Sort all points:** Sorting by squared distance is concise and deterministic, but it spends $O(N\log N)$ time even though only the first $K$ ranks are required.
+- **Size-$K$ max-heap:** Keeping the closest $K$ points seen so far gives $O(N\log K)$ time and $O(K)$ space, with predictable performance when adversarial quickselect behavior is a concern.
+- **All points requested:** When $K=N$, every input point belongs in the answer; its order remains unrestricted.
+- **Negative and zero coordinates:** Squaring each coordinate handles every quadrant and points on either axis without special cases.
+- **Equal internal distances:** Several points may share a distance away from the cutoff; the guarantee only ensures that the final selected set is unique.
+
+</details>

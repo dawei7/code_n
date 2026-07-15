@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1132",
+  "frontend_id": "1181",
+  "title_slug": "before-and-after-puzzle",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.beforeAndAfterPuzzles",
+  "verified_submission_id": "2067900460",
+  "verified_at": "2026-07-14T22:17:31.733225+00:00"
+}

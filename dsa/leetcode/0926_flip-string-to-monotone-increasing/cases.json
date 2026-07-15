@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_926",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: flip final zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "00110"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "suffix-flip"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two optimal constructions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "010110"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: make every character zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "00011000"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "flip-ones"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: already monotone transition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000111"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "already-monotone"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: shortest decreasing pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "one-flip"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: all ones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "111111"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "all-ones"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: equal opposing blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "111000"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "opposing-blocks"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: leading one before zeros",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "1000001"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "leading-one"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: alternating bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "101010"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    }
+  ]
+}
+

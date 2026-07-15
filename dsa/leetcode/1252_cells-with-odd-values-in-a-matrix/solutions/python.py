@@ -1,4 +1,7 @@
-def solve(m, n, indices):
+from typing import List
+
+
+def solve(m: int, n: int, indices: List[List[int]]) -> int:
     rows = [0] * m
     cols = [0] * n
     for r, c in indices:

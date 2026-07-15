@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1175",
+  "measurement_note": "Size is n within its public 1..100 domain. The sieve marks prime multiples, while the calibrated slower candidate tests every smaller divisor for every value.",
+  "cases": [
+    {
+      "id": "benchmark-scale-6",
+      "name": "benchmark: count primes through 6",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "n": 6
+      },
+      "expected": 36,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-24",
+      "name": "benchmark: count primes through 24",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "n": 24
+      },
+      "expected": 338137903,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-96",
+      "name": "benchmark: count primes through 96",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "n": 96
+      },
+      "expected": 500763245,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

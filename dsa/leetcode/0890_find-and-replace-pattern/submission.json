@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "926",
+  "frontend_id": "890",
+  "title_slug": "find-and-replace-pattern",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findAndReplacePattern",
+  "verified_submission_id": "2066772352",
+  "verified_at": "2026-07-14T02:37:50.966507+00:00"
+}

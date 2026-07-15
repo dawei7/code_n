@@ -1,80 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1160",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: cat and hat",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "cat",
-          "bt",
-          "hat",
-          "tree"
-        ],
-        "chars": "atach"
-      },
-      "expected": 6,
-      "tags": [
-        "sample",
-        "counting"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: hello and world",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "hello",
-          "world",
-          "leetcode"
-        ],
-        "chars": "welldonehoneyr"
-      },
-      "expected": 10,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-insufficient-letters",
-      "name": "insufficient letters",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "words": [
-          "a",
-          "b",
-          "ab"
-        ],
-        "chars": "a"
-      },
-      "expected": 1,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-reused-letters",
-      "name": "hidden: reused letters",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "words": [
-          "abc",
-          "aabb",
-          "bc",
-          "cab"
-        ],
-        "chars": "aabbcc"
-      },
-      "expected": 12,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: cat and hat are good","kind":"sample","visible":true,"input":{"words":["cat","bt","hat","tree"],"chars":"atach"},"expected":6,"tags":["sample","mixed"]},
+    {"id":"sample-2","name":"sample: hello and world are good","kind":"sample","visible":true,"input":{"words":["hello","world","leetcode"],"chars":"welldonehoneyr"},"expected":10,"tags":["sample","multiplicity"]},
+    {"id":"sample-3","name":"sample: pool resets for every word","kind":"sample","visible":true,"input":{"words":["a","aa","aaa"],"chars":"aa"},"expected":3,"tags":["sample","pool-reset"]},
+    {"id":"trial-insufficient-repeat","name":"one missing repeated letter rejects a word","kind":"trial","visible":true,"input":{"words":["book","boo","bo"],"chars":"bok"},"expected":2,"tags":["trial","frequency"]},
+    {"id":"trial-exact-pool","name":"word uses the entire pool exactly","kind":"trial","visible":true,"input":{"words":["abc","cba","abcd"],"chars":"abc"},"expected":6,"tags":["trial","exact-use"]},
+    {"id":"real-duplicate-words","name":"hidden: duplicate good entries each contribute","kind":"real","visible":false,"input":{"words":["zz","zz","zzz"],"chars":"zz"},"expected":4,"tags":["real","duplicate-words"]},
+    {"id":"real-single-letter","name":"hidden: minimum-sized pool and words","kind":"real","visible":false,"input":{"words":["a","b","a"],"chars":"a"},"expected":2,"tags":["real","minimum-length"]},
+    {"id":"real-unrelated-extra","name":"hidden: unused pool letters are harmless","kind":"real","visible":false,"input":{"words":["cab","dad","fade"],"chars":"abcdef"},"expected":7,"tags":["real","extra-characters"]}
   ]
 }

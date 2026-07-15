@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1163",
+  "cases": [
+    {"id": "example-alternating", "name": "sample with repeated candidates", "kind": "sample", "visible": true, "input": {"s": "abab"}, "expected": "bab"},
+    {"id": "example-distinct-maximum", "name": "sample with unique maximum character", "kind": "sample", "visible": true, "input": {"s": "leetcode"}, "expected": "tcode"},
+    {"id": "single-character", "name": "single character", "kind": "trial", "visible": true, "input": {"s": "a"}, "expected": "a"},
+    {"id": "all-equal", "name": "all characters equal", "kind": "trial", "visible": true, "input": {"s": "zzzz"}, "expected": "zzzz"},
+    {"id": "strictly-increasing", "name": "maximum starts at final character", "kind": "real", "visible": false, "input": {"s": "abcdef"}, "expected": "f"},
+    {"id": "strictly-decreasing", "name": "maximum is the entire string", "kind": "real", "visible": false, "input": {"s": "fedcba"}, "expected": "fedcba"},
+    {"id": "overlapping-equal-prefixes", "name": "overlapping repetitive candidates", "kind": "real", "visible": false, "input": {"s": "banana"}, "expected": "nana"},
+    {"id": "late-tie-break", "name": "long shared prefix before mismatch", "kind": "real", "visible": false, "input": {"s": "zzazzzb"}, "expected": "zzzb"}
+  ]
+}

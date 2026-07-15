@@ -14,21 +14,30 @@ from server.app.engine_runner import (
     _anagram_mapping_match,
     _anagram_groups_match,
     _avoid_flood_match,
+    _advantage_shuffle_match,
+    _fair_candy_swap_match,
     _beautiful_arrangement_ii_match,
+    _beautiful_array_match,
     _circular_doubly_tree_match,
     _closest_leaf_match,
     _custom_sorted_string_match,
     _de_bruijn_sequence_match,
+    _di_string_match,
     _duplicate_subtrees_match,
     _float_close_match,
     _float_list_close_match,
     _float_matrix_close_match,
     _flattened_multilevel_list_match,
+    _fibonacci_split_match,
     _frequency_sorted_string_match,
     _gray_code_match,
+    _circular_gray_code_match,
     _good_subset_matrix_match,
     _hamming_alternating_subsequence_match,
     _index_value_pair_match,
+    _indexed_parity_match,
+    _immutable_list_node_from_values,
+    _immutable_list_print_match,
     _k_smallest_pairs_match,
     _list_node_param_names,
     _list_node_from_values,
@@ -39,11 +48,15 @@ from server.app.engine_runner import (
     _minimum_unique_rows_matrix_match,
     _minimum_subsequence_match,
     _minimum_unique_abbreviation_match,
+    _master_guessed_match,
     _next_right_pointers_match,
     _neither_min_nor_max_match,
     _ordered_unordered_groups_match,
+    _parity_partition_match,
+    _pancake_sort_match,
     _peak_index_match,
     _parent_tree_node_from_fixture,
+    _pre_post_tree_match,
     _phone_directory_trace_match,
     _prepare_validated_kwargs,
     _randomized_set_trace_match,
@@ -55,18 +68,26 @@ from server.app.engine_runner import (
     _rearranged_k_distance_match,
     _robot_room_cleaner_match,
     _sudoku_solution_match,
+    _stamping_sequence_match,
+    _string_without_triples_match,
+    _three_equal_parts_match,
     _runtime_check_from_scaling,
     _runtime_check_python_cases,
     _shuffle_array_trace_match,
+    _shortest_common_supersequence_match,
+    _shortest_superstring_match,
     _split_bst_match,
     _returns_in_place,
     _returns_list_node,
     _returns_tree,
     _tree_param_names,
     _tree_from_level_order,
+    _three_equal_binary_parts_match,
+    _JudgeMaster,
     _unique_bsts_match,
     _unordered_nested_list_matches,
     _validated_case_matches,
+    _vps_split_match,
     _wiggle_sort_matches,
 )
 from server.app.validated_cases import NoValidatedCases, ValidatedCase, _load_case_file, load_case_suite
@@ -86,6 +107,29 @@ def solve(nums: list[int], target: int) -> list[int]:
 
 
 class ValidatedCasesTest(conftest._Base):
+    def test_master_validator_requires_secret_within_guess_budget(self) -> None:
+        words = ["acckzz", "ccbazz", "eiowzz", "abcczz"]
+        master = _JudgeMaster("acckzz", words, 2)
+
+        self.assertEqual(master.guess("ccbazz"), 3)
+        self.assertEqual(master.guess("acckzz"), 6)
+        self.assertTrue(_master_guessed_match(master))
+
+        over_budget = _JudgeMaster("acckzz", words, 1)
+        over_budget.guess("ccbazz")
+        over_budget.guess("acckzz")
+        self.assertFalse(_master_guessed_match(over_budget))
+
+    def test_fibonacci_split_validator_accepts_any_valid_full_split(self) -> None:
+        digits = "1101111"
+
+        self.assertTrue(_fibonacci_split_match([11, 0, 11, 11], [11, 0, 11, 11], digits))
+        self.assertTrue(_fibonacci_split_match([110, 1, 111], [11, 0, 11, 11], digits))
+        self.assertFalse(_fibonacci_split_match([11, 0, 11], [11, 0, 11, 11], digits))
+        self.assertFalse(_fibonacci_split_match([1, 10, 11, 11], [11, 0, 11, 11], digits))
+        self.assertFalse(_fibonacci_split_match([2**31, 0, 2**31], [], str(2**31) * 2))
+        self.assertTrue(_fibonacci_split_match([], [], "0123"))
+
     def test_anagram_mapping_validator_accepts_any_matching_duplicate_index(self) -> None:
         left = [12, 28, 12]
         right = [28, 12, 12]
@@ -218,6 +262,19 @@ ORDER BY activity.player_id;
         self.assertFalse(_robot_room_cleaner_match(robot, 3))
         robot.clean()
         self.assertTrue(_robot_room_cleaner_match(robot, 3))
+
+    def test_immutable_list_fixture_exposes_only_judge_methods_and_captures_prints(self) -> None:
+        head = _immutable_list_node_from_values([1, 2, 3])
+
+        self.assertFalse(hasattr(head, "val"))
+        self.assertFalse(hasattr(head, "next"))
+        tail = head.getNext().getNext()
+        tail.printValue()
+        head.getNext().printValue()
+        head.printValue()
+
+        self.assertTrue(_immutable_list_print_match(head, [3, 2, 1]))
+        self.assertFalse(_immutable_list_print_match(head, [1, 2, 3]))
 
     def test_challenge_detail_exposes_visible_cases(self) -> None:
         self.client.put("/api/progress", json={"active_set": "leetcode"})
@@ -506,11 +563,14 @@ ORDER BY activity.player_id;
         benchmark = next(case for case in load_case_suite("lc_2615") if case.kind == "benchmark")
         self.assertEqual(len(benchmark.input["nums"]), 6500)
         self.assertEqual(benchmark.input["nums"][:3], [4, 4, 4])
-        stats_benchmark = next(case for case in load_case_suite("lc_1093") if case.kind == "benchmark")
+        stats_benchmarks = [case for case in load_case_suite("lc_1093") if case.kind == "benchmark"]
+        self.assertEqual(len(stats_benchmarks), 3)
+        stats_benchmark = stats_benchmarks[0]
         self.assertEqual(len(stats_benchmark.input["count"]), 256)
-        self.assertEqual(stats_benchmark.input["count"][50], 2)
-        self.assertEqual(stats_benchmark.input["count"][100], 3)
-        self.assertEqual(stats_benchmark.input["count"][200], 1)
+        self.assertEqual(stats_benchmark.size, 128)
+        self.assertEqual(stats_benchmark.input["count"][128], 64)
+        self.assertEqual(stats_benchmark.input["count"][64], 16)
+        self.assertEqual(stats_benchmark.input["count"][192], 32)
 
     def test_main_case_file_rejects_inline_benchmark_cases(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -589,10 +649,14 @@ ORDER BY activity.player_id;
                 _load_case_file(path, "demo", benchmark_sidecar=True)
 
     def test_challenge_without_cases_returns_no_fallback_error(self) -> None:
-        response = self.client.post(
-            "/api/challenges/lc_1003/run",
-            json={"source": CHALLENGE_REGISTRY["lc_1003"]()._spec.source},
-        )
+        with patch(
+            "server.app.routes.run.select_cases_for_run",
+            side_effect=NoValidatedCases("fixture has no validated test cases"),
+        ):
+            response = self.client.post(
+                "/api/challenges/lc_1003/run",
+                json={"source": CHALLENGE_REGISTRY["lc_1003"]()._spec.source},
+            )
         self.assertEqual(response.status_code, 422, response.text)
         detail = response.json()["detail"]
         self.assertEqual(detail["error"], "no_validated_cases")
@@ -623,10 +687,223 @@ def solve(nums):
         self.assertTrue(body["passed"], body)
         self.assertIn("[3, 1]", body["return_value_repr"])
 
+    def test_pre_post_tree_validator_accepts_single_child_orientation_ties(self) -> None:
+        preorder = [1, 2, 3]
+        postorder = [3, 2, 1]
+
+        self.assertTrue(_pre_post_tree_match([1, 2, None, 3], preorder, postorder))
+        self.assertTrue(_pre_post_tree_match([1, None, 2, None, 3], preorder, postorder))
+        self.assertFalse(_pre_post_tree_match([1, 3, 2], preorder, postorder))
+        self.assertFalse(_pre_post_tree_match([1, 2, None, 3, 4], preorder, postorder))
+
     def test_wiggle_sort_validator_supports_non_strict_problem_variant(self) -> None:
         self.assertTrue(_wiggle_sort_matches([2, 2, 2], [2, 2, 2], strict=False))
         self.assertFalse(_wiggle_sort_matches([2, 2, 2], [2, 2, 2], strict=True))
         self.assertTrue(_wiggle_sort_matches([1, 3, 2, 4], [1, 2, 3, 4], strict=False))
+
+    def test_parity_partition_validator_accepts_any_valid_permutation(self) -> None:
+        values = [3, 1, 2, 4, 2]
+        case = ValidatedCase(
+            id="parity",
+            name="parity",
+            kind="sample",
+            input={"nums": values},
+            expected=[2, 4, 2, 3, 1],
+            validator={"kind": "parity_partition"},
+        )
+
+        self.assertTrue(_parity_partition_match([4, 2, 2, 1, 3], values))
+        self.assertTrue(_validated_case_matches(case, [2, 2, 4, 3, 1], case.expected))
+        self.assertFalse(_parity_partition_match([2, 3, 4, 2, 1], values))
+        self.assertFalse(_parity_partition_match([4, 2, 2, 1, 1], values))
+        self.assertFalse(_parity_partition_match([4, 2, True, 1, 3], values))
+
+    def test_indexed_parity_validator_accepts_any_valid_permutation(self) -> None:
+        values = [4, 2, 5, 7]
+        case = ValidatedCase(
+            id="indexed-parity",
+            name="indexed parity",
+            kind="sample",
+            input={"nums": values},
+            expected=[4, 5, 2, 7],
+            validator={"kind": "indexed_parity"},
+        )
+
+        self.assertTrue(_indexed_parity_match([2, 7, 4, 5], values))
+        self.assertTrue(_validated_case_matches(case, [4, 7, 2, 5], case.expected))
+        self.assertFalse(_indexed_parity_match([2, 4, 5, 7], values))
+        self.assertFalse(_indexed_parity_match([2, 7, 4, 7], values))
+        self.assertFalse(_indexed_parity_match([2, 7, True, 5], values))
+
+    def test_three_equal_binary_parts_validator_accepts_any_valid_split(self) -> None:
+        values = [0, 0, 0, 0, 0]
+        case = ValidatedCase(
+            id="three-parts",
+            name="three equal binary parts",
+            kind="sample",
+            input={"arr": values},
+            expected=[0, 2],
+            validator={"kind": "three_equal_binary_parts"},
+        )
+
+        self.assertTrue(_three_equal_binary_parts_match([1, 3], values))
+        self.assertTrue(_validated_case_matches(case, [2, 4], case.expected))
+        self.assertFalse(_three_equal_binary_parts_match([-1, -1], values))
+        self.assertTrue(_three_equal_binary_parts_match([-1, -1], [1, 0, 1, 0]))
+        self.assertFalse(_three_equal_binary_parts_match([0, 2], [1, 0, 1, 0, 1]))
+
+    def test_beautiful_array_validator_accepts_any_valid_permutation(self) -> None:
+        case = ValidatedCase(
+            id="beautiful-array",
+            name="beautiful array",
+            kind="sample",
+            input={"n": 4},
+            expected=[2, 1, 4, 3],
+            validator={"kind": "beautiful_array"},
+        )
+
+        self.assertTrue(_beautiful_array_match([1, 3, 2, 4], 4))
+        self.assertTrue(_validated_case_matches(case, [3, 1, 2, 4], case.expected))
+        self.assertFalse(_beautiful_array_match([1, 2, 3, 4], 4))
+        self.assertFalse(_beautiful_array_match([1, 3, 2, 2], 4))
+        self.assertFalse(_beautiful_array_match([1, 3, True, 4], 4))
+
+    def test_di_string_validator_accepts_any_matching_permutation(self) -> None:
+        case = ValidatedCase(
+            id="di-string",
+            name="DI string",
+            kind="sample",
+            input={"s": "IDID"},
+            expected=[0, 4, 1, 3, 2],
+            validator={"kind": "di_string"},
+        )
+
+        self.assertTrue(_di_string_match([0, 4, 1, 3, 2], "IDID"))
+        self.assertTrue(_validated_case_matches(case, [1, 4, 0, 3, 2], case.expected))
+        self.assertFalse(_di_string_match([0, 1, 2, 3, 4], "IDID"))
+        self.assertFalse(_di_string_match([0, 4, 1, 3, 3], "IDID"))
+        self.assertFalse(_di_string_match([0, 4, 1, 3, True], "IDID"))
+
+    def test_vps_split_validator_accepts_any_optimal_assignment(self) -> None:
+        case = ValidatedCase(
+            id="vps-split",
+            name="VPS split",
+            kind="sample",
+            input={"seq": "(()())"},
+            expected=[0, 1, 1, 1, 1, 0],
+            validator={"kind": "vps_split"},
+        )
+
+        self.assertTrue(_vps_split_match([1, 0, 0, 0, 0, 1], "(()())"))
+        self.assertTrue(_validated_case_matches(case, [0, 1, 1, 1, 1, 0], case.expected))
+        self.assertFalse(_vps_split_match([0, 0, 0, 0, 0, 0], "(()())"))
+        self.assertFalse(_vps_split_match([0, 1, 1, 0, 1, 0], "(()())"))
+        self.assertFalse(_vps_split_match([0, 1, 1, 1, 1, True], "(()())"))
+
+    def test_shortest_superstring_validator_accepts_optimal_ties(self) -> None:
+        words = ["abc", "bca", "cab"]
+        case = ValidatedCase(
+            id="shortest-superstring",
+            name="shortest superstring",
+            kind="sample",
+            input={"words": words},
+            expected="abcab",
+            validator={"kind": "shortest_superstring"},
+        )
+
+        self.assertTrue(_shortest_superstring_match("bcabc", case.expected, words))
+        self.assertTrue(_validated_case_matches(case, "cabca", case.expected))
+        self.assertFalse(_shortest_superstring_match("abcabc", case.expected, words))
+        self.assertFalse(_shortest_superstring_match("abcax", case.expected, words))
+        self.assertFalse(_shortest_superstring_match(["abcab"], case.expected, words))
+
+    def test_shortest_common_supersequence_validator_accepts_optimal_ties(self) -> None:
+        case = ValidatedCase(
+            id="shortest-common-supersequence",
+            name="shortest common supersequence",
+            kind="sample",
+            input={"str1": "ab", "str2": "ac"},
+            expected="acb",
+            validator={"kind": "shortest_common_supersequence"},
+        )
+
+        self.assertTrue(_shortest_common_supersequence_match("abc", "ab", "ac"))
+        self.assertTrue(_validated_case_matches(case, "acb", case.expected))
+        self.assertFalse(_shortest_common_supersequence_match("abac", "ab", "ac"))
+        self.assertFalse(_shortest_common_supersequence_match("abc", "ab", "ca"))
+        self.assertFalse(_shortest_common_supersequence_match(["abc"], "ab", "ac"))
+
+    def test_stamping_sequence_validator_accepts_any_valid_move_order(self) -> None:
+        case = ValidatedCase(
+            id="stamping",
+            name="stamping sequence",
+            kind="sample",
+            input={"stamp": "abc", "target": "ababc"},
+            expected=[0, 2],
+            validator={"kind": "stamping_sequence"},
+        )
+
+        self.assertTrue(_stamping_sequence_match([1, 0, 2], case.expected, "abc", "ababc"))
+        self.assertTrue(_validated_case_matches(case, [0, 2], case.expected))
+        self.assertFalse(_stamping_sequence_match([0], case.expected, "abc", "ababc"))
+        self.assertFalse(_stamping_sequence_match([3], case.expected, "abc", "ababc"))
+        self.assertTrue(_stamping_sequence_match([], [], "ab", "ac"))
+        self.assertFalse(_stamping_sequence_match([], [0], "a", "a"))
+
+    def test_pancake_sort_validator_accepts_any_bounded_sorting_sequence(self) -> None:
+        case = ValidatedCase(
+            id="pancake-sort",
+            name="pancake sort",
+            kind="sample",
+            input={"arr": [3, 2, 4, 1]},
+            expected=[4, 2, 4, 3],
+            validator={"kind": "pancake_sort"},
+        )
+
+        self.assertTrue(_pancake_sort_match([3, 4, 2, 3, 2], case.input["arr"]))
+        self.assertTrue(_validated_case_matches(case, [4, 2, 4, 3], case.expected))
+        self.assertTrue(_pancake_sort_match([], [1, 2, 3]))
+        self.assertFalse(_pancake_sort_match([0], [2, 1]))
+        self.assertFalse(_pancake_sort_match([3], [2, 1]))
+        self.assertFalse(_pancake_sort_match([True], [2, 1]))
+        self.assertFalse(_pancake_sort_match([2] * 21, [2, 1]))
+
+    def test_string_without_triples_validator_accepts_any_valid_arrangement(self) -> None:
+        case = ValidatedCase(
+            id="semantic",
+            name="semantic",
+            kind="trial",
+            visible=True,
+            input={"a": 2, "b": 2},
+            expected="aabb",
+            validator={"kind": "string_without_triples"},
+        )
+
+        self.assertTrue(_validated_case_matches(case, "abba", case.expected))
+        self.assertTrue(_string_without_triples_match("aabaa", 4, 1))
+        self.assertFalse(_string_without_triples_match("aaabb", 3, 2))
+        self.assertFalse(_string_without_triples_match("aabb", 3, 1))
+        self.assertFalse(_string_without_triples_match("aabc", 2, 2))
+        self.assertFalse(_string_without_triples_match(123, 1, 2))
+
+    def test_three_equal_parts_validator_accepts_alternate_zero_splits(self) -> None:
+        bits = [0, 0, 0, 0, 0]
+        case = ValidatedCase(
+            id="three-parts",
+            name="three parts",
+            kind="sample",
+            input={"arr": bits},
+            expected=[0, 2],
+            validator={"kind": "three_equal_parts"},
+        )
+
+        self.assertTrue(_three_equal_parts_match([1, 3], case.expected, bits))
+        self.assertTrue(_validated_case_matches(case, [1, 3], case.expected))
+        self.assertFalse(_three_equal_parts_match([0, 1], case.expected, bits))
+        self.assertFalse(_three_equal_parts_match([0, 5], case.expected, bits))
+        self.assertFalse(_three_equal_parts_match([True, 3], case.expected, bits))
+        self.assertTrue(_three_equal_parts_match([-1, -1], [-1, -1], [1, 1, 0, 1, 1]))
+        self.assertFalse(_three_equal_parts_match([-1, -1], [0, 3], [1, 0, 1, 0, 1]))
 
     def test_distance_order_validator_accepts_alternate_tie_order(self) -> None:
         source = '''
@@ -792,6 +1069,12 @@ def solve(n):
         self.assertTrue(_gray_code_match([0, 2, 3, 1], 2))
         self.assertFalse(_gray_code_match([0, 1, 2, 3], 2))
         self.assertFalse(_gray_code_match([0, 1, 3, 3], 2))
+
+    def test_circular_gray_code_validator_respects_requested_start(self) -> None:
+        self.assertTrue(_circular_gray_code_match([3, 2, 0, 1], 2, 3))
+        self.assertTrue(_circular_gray_code_match([3, 1, 0, 2], 2, 3))
+        self.assertFalse(_circular_gray_code_match([0, 1, 3, 2], 2, 3))
+        self.assertFalse(_circular_gray_code_match([3, 2, 1, 0], 2, 3))
 
     def test_unordered_nested_list_validator_ignores_both_ordering_levels(self) -> None:
         expected = [[], [1], [2], [1, 2]]
@@ -976,6 +1259,26 @@ def solve(n):
         self.assertFalse(_queue_reconstruction_match([[7, 0], [5, 0], [5, 2], [6, 1], [4, 4], [7, 1]], people))
         self.assertFalse(_queue_reconstruction_match([[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [6, 1]], people))
         self.assertFalse(_queue_reconstruction_match([[5, 0], [7, 0]], people))
+
+    def test_advantage_shuffle_validator_checks_permutation_and_optimal_wins(self) -> None:
+        nums1 = [2, 7, 11, 15]
+        nums2 = [1, 10, 4, 11]
+        self.assertTrue(_advantage_shuffle_match([2, 11, 7, 15], nums1, nums2))
+        self.assertFalse(_advantage_shuffle_match([15, 11, 7, 2], nums1, nums2))
+        self.assertFalse(_advantage_shuffle_match([2, 11, 7, 16], nums1, nums2))
+        self.assertTrue(_advantage_shuffle_match([2, 2, 3], [2, 2, 3], [1, 1, 2]))
+        self.assertFalse(_advantage_shuffle_match([True], [1], [0]))
+
+    def test_fair_candy_swap_validator_accepts_any_balancing_pair(self) -> None:
+        alice_sizes = [1, 2, 3, 4]
+        bob_sizes = [3, 4, 5, 6]
+
+        self.assertTrue(_fair_candy_swap_match([1, 5], alice_sizes, bob_sizes))
+        self.assertTrue(_fair_candy_swap_match([2, 6], alice_sizes, bob_sizes))
+        self.assertTrue(_fair_candy_swap_match((1, 5), alice_sizes, bob_sizes))
+        self.assertFalse(_fair_candy_swap_match([1, 6], alice_sizes, bob_sizes))
+        self.assertFalse(_fair_candy_swap_match([9, 13], alice_sizes, bob_sizes))
+        self.assertFalse(_fair_candy_swap_match([True, 5], alice_sizes, bob_sizes))
 
     def test_minimum_unique_abbreviation_validator_checks_meaning_and_token_length(self) -> None:
         self.assertTrue(_minimum_unique_abbreviation_match("a4", "a4", "apple", ["blade"]))

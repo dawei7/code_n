@@ -1,7 +1,8 @@
 from collections import Counter
+from typing import List
 
 
-def solve(words, letters, score):
+def solve(words: List[str], letters: List[str], score: List[int]) -> int:
     available = Counter(letters)
     word_counts = [Counter(word) for word in words]
     word_scores = [sum(score[ord(ch) - ord("a")] * count for ch, count in counts.items()) for counts in word_counts]

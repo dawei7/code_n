@@ -1,6 +1,6 @@
 from collections import Counter
 
 
-def solve(arr):
+def solve(arr: list[int]) -> bool:
     frequencies = Counter(arr).values()
-    return len(set(frequencies)) == len(list(frequencies))
+    return len(set(frequencies)) == len(frequencies)

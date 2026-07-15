@@ -1,38 +1,29 @@
-"""Optimal solution for LeetCode 1095: Find in Mountain Array."""
+"""Optimal app-local solution for LeetCode 1095."""
 
 
-def solve(target: int, mountain_arr) -> int:
-    def get(index: int) -> int:
-        if isinstance(mountain_arr, list):
-            return mountain_arr[index]
-        return mountain_arr.get(index)
-
-    def length() -> int:
-        if isinstance(mountain_arr, list):
-            return len(mountain_arr)
-        return mountain_arr.length()
-
-    n = length()
-    left, right = 0, n - 1
+def solve(target: int, mountain_arr: list[int]) -> int:
+    left, right = 0, len(mountain_arr) - 1
     while left < right:
         mid = (left + right) // 2
-        if get(mid) < get(mid + 1):
+        if mountain_arr[mid] < mountain_arr[mid + 1]:
             left = mid + 1
         else:
             right = mid
     peak = left
 
-    def search(lo: int, hi: int, ascending: bool) -> int:
-        while lo <= hi:
-            mid = (lo + hi) // 2
-            value = get(mid)
+    def binary_search(low: int, high: int, ascending: bool) -> int:
+        while low <= high:
+            mid = (low + high) // 2
+            value = mountain_arr[mid]
             if value == target:
                 return mid
             if (value < target) == ascending:
-                lo = mid + 1
+                low = mid + 1
             else:
-                hi = mid - 1
+                high = mid - 1
         return -1
 
-    answer = search(0, peak, True)
-    return answer if answer != -1 else search(peak + 1, n - 1, False)
+    answer = binary_search(0, peak, True)
+    if answer != -1:
+        return answer
+    return binary_search(peak + 1, len(mountain_arr) - 1, False)

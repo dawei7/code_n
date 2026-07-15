@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1261",
+  "frontend_id": "1156",
+  "title_slug": "swap-for-longest-repeated-character-substring",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxRepOpt1",
+  "verified_submission_id": "2067863632",
+  "verified_at": "2026-07-14T20:34:35.031740+00:00"
+}

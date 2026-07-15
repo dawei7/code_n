@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_966","cases":[
+{"id":"sample-1","name":"sample: all precedence levels","kind":"sample","visible":true,"input":{"wordlist":["KiTe","kite","hare","Hare"],"queries":["kite","Kite","KiTe","Hare","HARE","Hear","hear","keti","keet","keto"]},"expected":["kite","KiTe","KiTe","Hare","hare","","","KiTe","","KiTe"],"tags":["sample","precedence"]},
+{"id":"sample-2","name":"sample: capitalization correction","kind":"sample","visible":true,"input":{"wordlist":["yellow"],"queries":["YellOw"]},"expected":["yellow"],"tags":["sample","case"]},
+{"id":"trial-1","name":"trial: exact later word beats first lowercase match","kind":"trial","visible":true,"input":{"wordlist":["abc","ABC"],"queries":["ABC","Abc"]},"expected":["ABC","abc"],"tags":["trial","exact"]},
+{"id":"trial-2","name":"trial: vowel replacement preserves length","kind":"trial","visible":true,"input":{"wordlist":["YellOw"],"queries":["yollow","yeellow","yllw"]},"expected":["YellOw","",""] ,"tags":["trial","vowels"]},
+{"id":"trial-3","name":"trial: unmatched query","kind":"trial","visible":true,"input":{"wordlist":["alpha"],"queries":["omega"]},"expected":[""],"tags":["trial","none"]},
+{"id":"hidden-1","name":"hidden: first vowel-equivalent word wins","kind":"real","visible":false,"input":{"wordlist":["mAke","mike","moke"],"queries":["muke"]},"expected":["mAke"],"tags":["hidden","first-match"]},
+{"id":"hidden-2","name":"hidden: consonants cannot change","kind":"real","visible":false,"input":{"wordlist":["cat"],"queries":["cot","cap"]},"expected":["cat",""] ,"tags":["hidden","consonants"]},
+{"id":"hidden-3","name":"hidden: repeated queries preserve order","kind":"real","visible":false,"input":{"wordlist":["Data","date"],"queries":["dite","DATA","date","none"]},"expected":["Data","Data","date",""] ,"tags":["hidden","order"]}
+]}

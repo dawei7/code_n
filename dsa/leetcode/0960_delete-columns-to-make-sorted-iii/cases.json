@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_960","cases":[
+{"id":"sample-1","name":"sample: two rows require three deletions","kind":"sample","visible":true,"input":{"strs":["babca","bbazb"]},"expected":3,"tags":["sample","mixed"]},
+{"id":"sample-2","name":"sample: one descending row","kind":"sample","visible":true,"input":{"strs":["edcba"]},"expected":4,"tags":["sample","descending"]},
+{"id":"sample-3","name":"sample: every row already ordered","kind":"sample","visible":true,"input":{"strs":["ghi","def","abc"]},"expected":0,"tags":["sample","ordered"]},
+{"id":"trial-1","name":"trial: one character","kind":"trial","visible":true,"input":{"strs":["a"]},"expected":0,"tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: conflicting two-column rows","kind":"trial","visible":true,"input":{"strs":["ab","ba"]},"expected":1,"tags":["trial","conflict"]},
+{"id":"trial-3","name":"trial: all characters equal","kind":"trial","visible":true,"input":{"strs":["aaaa","aaaa"]},"expected":0,"tags":["trial","equality"]},
+{"id":"hidden-1","name":"hidden: every row strictly descending","kind":"real","visible":false,"input":{"strs":["zyx","wvu"]},"expected":2,"tags":["hidden","descending"]},
+{"id":"hidden-2","name":"hidden: nonadjacent compatible subsequence","kind":"real","visible":false,"input":{"strs":["azbya","byczb"]},"expected":2,"tags":["hidden","subsequence"]},
+{"id":"hidden-3","name":"hidden: duplicate plateaus remain","kind":"real","visible":false,"input":{"strs":["aabbcc","aaabcc","abbccc"]},"expected":0,"tags":["hidden","duplicates"]}
+]}

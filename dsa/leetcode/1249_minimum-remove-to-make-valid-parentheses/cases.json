@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1249",
+  "cases": [
+    {
+      "id": "sample-trailing-close",
+      "name": "sample: trailing unmatched closing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "lee(t(c)o)de)"
+      },
+      "expected": "lee(t(c)o)de",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-middle-close",
+      "name": "sample: unmatched closing among letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "a)b(c)d"
+      },
+      "expected": "ab(c)d",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-invalid",
+      "name": "sample: all parentheses unmatched",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "))(("
+      },
+      "expected": "",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-already-valid",
+      "name": "trial: already valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "(a(b)c)"
+      },
+      "expected": "(a(b)c)",
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-letters",
+      "name": "trial: letters only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "leetcode"
+      },
+      "expected": "leetcode",
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-surplus-open",
+      "name": "hidden: surplus openings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "((a)(b"
+      },
+      "expected": "(a)b",
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-interleaved",
+      "name": "hidden: both mismatch directions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": ")a((b)c)("
+      },
+      "expected": "a((b)c)",
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

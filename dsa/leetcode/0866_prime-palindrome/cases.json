@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_866",
+  "cases": [
+    {"id": "sample-1", "name": "sample: next single-digit prime", "kind": "sample", "visible": true, "input": {"n": 6}, "expected": 7, "tags": ["sample", "single-digit"]},
+    {"id": "sample-2", "name": "sample: special even-length prime palindrome", "kind": "sample", "visible": true, "input": {"n": 8}, "expected": 11, "tags": ["sample", "eleven"]},
+    {"id": "sample-3", "name": "sample: skip composite two-digit palindromes", "kind": "sample", "visible": true, "input": {"n": 13}, "expected": 101, "tags": ["sample", "odd-length"]},
+    {"id": "trial-1", "name": "trial: minimum lower bound", "kind": "trial", "visible": true, "input": {"n": 1}, "expected": 2, "tags": ["trial", "minimum"]},
+    {"id": "trial-2", "name": "trial: input already smallest prime", "kind": "trial", "visible": true, "input": {"n": 2}, "expected": 2, "tags": ["trial", "already-valid"]},
+    {"id": "trial-3", "name": "trial: input already eleven", "kind": "trial", "visible": true, "input": {"n": 11}, "expected": 11, "tags": ["trial", "already-valid"]},
+    {"id": "hidden-1", "name": "hidden: just above eleven", "kind": "real", "visible": false, "input": {"n": 12}, "expected": 101, "tags": ["hidden", "digit-transition"]},
+    {"id": "hidden-2", "name": "hidden: lower bound immediately before palindrome", "kind": "real", "visible": false, "input": {"n": 100}, "expected": 101, "tags": ["hidden", "adjacent"]},
+    {"id": "hidden-3", "name": "hidden: three-digit input already valid", "kind": "real", "visible": false, "input": {"n": 101}, "expected": 101, "tags": ["hidden", "already-valid"]},
+    {"id": "hidden-4", "name": "hidden: next three-digit prime palindrome", "kind": "real", "visible": false, "input": {"n": 102}, "expected": 131, "tags": ["hidden", "composite"]},
+    {"id": "hidden-5", "name": "hidden: large gap after seven-digit palindromes", "kind": "real", "visible": false, "input": {"n": 9989900}, "expected": 100030001, "tags": ["hidden", "large"]},
+    {"id": "hidden-6", "name": "hidden: maximum lower bound", "kind": "real", "visible": false, "input": {"n": 100000000}, "expected": 100030001, "tags": ["hidden", "maximum"]}
+  ]
+}

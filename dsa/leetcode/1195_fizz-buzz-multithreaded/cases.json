@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1195",
+  "cases": [
+    {"id":"sample-through-fizzbuzz","name":"sample: sequence through first fizzbuzz","kind":"sample","visible":true,"input":{"n":15,"threads":["fizz","buzz","fizzbuzz","number"]},"expected":[1,2,"fizz",4,"buzz","fizz",7,8,"fizz","buzz",11,"fizz",13,14,"fizzbuzz"],"tags":["sample","four-threads"]},
+    {"id":"sample-through-buzz","name":"sample: short sequence through buzz","kind":"sample","visible":true,"input":{"n":5,"threads":["fizz","buzz","fizzbuzz","number"]},"expected":[1,2,"fizz",4,"buzz"],"tags":["sample","short"]},
+    {"id":"trial-single-number","name":"only the number worker produces output","kind":"trial","visible":true,"input":{"n":1,"threads":["number","fizzbuzz","buzz","fizz"]},"expected":[1],"tags":["boundary","startup-order"]},
+    {"id":"real-first-fizz","name":"hidden: sequence ends on fizz","kind":"real","visible":false,"input":{"n":3,"threads":["fizzbuzz","number","buzz","fizz"]},"expected":[1,2,"fizz"],"tags":["hidden","termination"]},
+    {"id":"real-after-fizzbuzz","name":"hidden: workers continue after a multiple of fifteen","kind":"real","visible":false,"input":{"n":16,"threads":["buzz","fizz","number","fizzbuzz"]},"expected":[1,2,"fizz",4,"buzz","fizz",7,8,"fizz","buzz",11,"fizz",13,14,"fizzbuzz",16],"tags":["hidden","handoff"]},
+    {"id":"real-maximum","name":"hidden: maximum sequence length","kind":"real","visible":false,"input":{"n":50,"threads":["number","buzz","fizz","fizzbuzz"]},"expected":[1,2,"fizz",4,"buzz","fizz",7,8,"fizz","buzz",11,"fizz",13,14,"fizzbuzz",16,17,"fizz",19,"buzz","fizz",22,23,"fizz","buzz",26,"fizz",28,29,"fizzbuzz",31,32,"fizz",34,"buzz","fizz",37,38,"fizz","buzz",41,"fizz",43,44,"fizzbuzz",46,47,"fizz",49,"buzz"],"tags":["hidden","maximum","deadlock"]}
+  ]
+}

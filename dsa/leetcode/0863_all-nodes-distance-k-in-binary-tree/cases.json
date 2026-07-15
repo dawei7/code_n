@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_863",
+  "cases": [
+    {"id": "sample-1", "name": "sample: descendants and opposite subtree", "kind": "sample", "visible": true, "input": {"root": [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4], "target": 5, "k": 2}, "expected": [7, 4, 1], "validator": {"kind": "unordered_list"}, "tags": ["sample", "mixed-directions"]},
+    {"id": "sample-2", "name": "sample: distance exceeds singleton tree", "kind": "sample", "visible": true, "input": {"root": [1], "target": 1, "k": 3}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["sample", "empty"]},
+    {"id": "sample-3", "name": "sample: distance zero", "kind": "sample", "visible": true, "input": {"root": [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4], "target": 5, "k": 0}, "expected": [5], "validator": {"kind": "unordered_list"}, "tags": ["sample", "zero"]},
+    {"id": "trial-1", "name": "trial: children of root target", "kind": "trial", "visible": true, "input": {"root": [1, 2, 3], "target": 1, "k": 1}, "expected": [2, 3], "validator": {"kind": "unordered_list"}, "tags": ["trial", "root-target"]},
+    {"id": "trial-2", "name": "trial: leaf reaches opposite leaf", "kind": "trial", "visible": true, "input": {"root": [1, 2, 3], "target": 2, "k": 2}, "expected": [3], "validator": {"kind": "unordered_list"}, "tags": ["trial", "through-parent"]},
+    {"id": "trial-3", "name": "trial: distance beyond tree diameter", "kind": "trial", "visible": true, "input": {"root": [1, 2, 3], "target": 2, "k": 4}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["trial", "empty"]},
+    {"id": "hidden-1", "name": "hidden: parent and children at distance one", "kind": "real", "visible": false, "input": {"root": [10, 5, 15, 3, 7, 12, 18], "target": 5, "k": 1}, "expected": [3, 7, 10], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "neighbors"]},
+    {"id": "hidden-2", "name": "hidden: leaf reaches ancestor and cousin branch", "kind": "real", "visible": false, "input": {"root": [10, 5, 15, 3, 7, 12, 18], "target": 7, "k": 2}, "expected": [3, 10], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "upward"]},
+    {"id": "hidden-3", "name": "hidden: cross from right subtree to left root", "kind": "real", "visible": false, "input": {"root": [10, 5, 15, 3, 7, 12, 18], "target": 12, "k": 3}, "expected": [5], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "cross-subtree"]},
+    {"id": "hidden-4", "name": "hidden: right-skewed chain", "kind": "real", "visible": false, "input": {"root": [0, null, 1, null, 2, null, 3], "target": 1, "k": 2}, "expected": [3], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "chain"]},
+    {"id": "hidden-5", "name": "hidden: all leaves at depth two", "kind": "real", "visible": false, "input": {"root": [10, 5, 15, 3, 7, 12, 18], "target": 10, "k": 2}, "expected": [3, 7, 12, 18], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "balanced"]},
+    {"id": "hidden-6", "name": "hidden: singleton at distance zero", "kind": "real", "visible": false, "input": {"root": [500], "target": 500, "k": 0}, "expected": [500], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "bounds"]}
+  ]
+}

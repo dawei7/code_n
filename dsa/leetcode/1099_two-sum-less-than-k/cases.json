@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_1099",
+  "cases": [
+    {"id": "sample-best-interior-pair", "name": "sample: best pair is below threshold", "kind": "sample", "visible": true, "input": {"nums": [34, 23, 1, 24, 75, 33, 54, 8], "k": 60}, "expected": 58, "tags": ["sample", "two-pointers"]},
+    {"id": "sample-no-valid-pair", "name": "sample: every pair reaches threshold", "kind": "sample", "visible": true, "input": {"nums": [10, 20, 30], "k": 15}, "expected": -1, "tags": ["sample", "no-pair"]},
+    {"id": "trial-single-value", "name": "trial: one value cannot form a pair", "kind": "trial", "visible": true, "input": {"nums": [7], "k": 20}, "expected": -1, "tags": ["trial", "minimum-length"]},
+    {"id": "trial-duplicate-values", "name": "trial: equal values at distinct indices", "kind": "trial", "visible": true, "input": {"nums": [5, 5, 8], "k": 11}, "expected": 10, "tags": ["trial", "duplicates"]},
+    {"id": "real-strict-threshold", "name": "hidden: exact threshold pair is excluded", "kind": "real", "visible": false, "input": {"nums": [1, 2, 3, 4], "k": 6}, "expected": 5, "tags": ["hidden", "strict-bound"]},
+    {"id": "real-unsorted-boundaries", "name": "hidden: large unsorted values and small valid pair", "kind": "real", "visible": false, "input": {"nums": [1000, 2, 998, 1, 500], "k": 1000}, "expected": 999, "tags": ["hidden", "unsorted", "value-boundary"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1131",
+  "frontend_id": "1180",
+  "title_slug": "count-substrings-with-only-one-distinct-letter",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countLetters",
+  "verified_submission_id": "2067898495",
+  "verified_at": "2026-07-14T22:11:10.432185+00:00"
+}

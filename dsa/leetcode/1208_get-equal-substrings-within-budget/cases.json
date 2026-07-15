@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1208",
+  "cases": [
+    {"id":"sample-budget-three","name":"sample: three adjacent unit costs fit","kind":"sample","visible":true,"input":{"s":"abcd","t":"bcdf","maxCost":3},"expected":3,"tags":["sample","sliding-window"]},
+    {"id":"sample-cost-two","name":"sample: only one cost-two change fits","kind":"sample","visible":true,"input":{"s":"abcd","t":"cdef","maxCost":3},"expected":1,"tags":["sample","budget"]},
+    {"id":"sample-zero-budget","name":"sample: one unchanged position with zero budget","kind":"sample","visible":true,"input":{"s":"abcd","t":"acde","maxCost":0},"expected":1,"tags":["sample","zero-budget"]},
+    {"id":"trial-none-affordable","name":"no single character is affordable","kind":"trial","visible":true,"input":{"s":"aaa","t":"zzz","maxCost":24},"expected":0,"tags":["no-window"]},
+    {"id":"real-identical","name":"hidden: identical strings use the full length","kind":"real","visible":false,"input":{"s":"leetcode","t":"leetcode","maxCost":0},"expected":8,"tags":["hidden","zero-cost"]},
+    {"id":"real-shrink-many","name":"hidden: expensive middle position forces several removals","kind":"real","visible":false,"input":{"s":"aaaaab","t":"aaaaza","maxCost":2},"expected":4,"tags":["hidden","shrink"]},
+    {"id":"real-exact-budget","name":"hidden: full interval spends the budget exactly","kind":"real","visible":false,"input":{"s":"azby","t":"bycz","maxCost":4},"expected":4,"tags":["hidden","exact-budget"]}
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "challenge_id": "lc_1066",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: four bike-mask states",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "workers": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "bikes": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "factorial-backtracking"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: sixteen bike-mask states",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "workers": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            0
+          ]
+        ],
+        "bikes": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "factorial-backtracking"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: sixty-four bike-mask states",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "workers": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            10,
+            0
+          ]
+        ],
+        "bikes": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "factorial-backtracking"
+      ]
+    }
+  ]
+}

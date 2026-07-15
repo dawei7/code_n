@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "878",
+  "frontend_id": "848",
+  "title_slug": "shifting-letters",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.shiftingLetters",
+  "verified_submission_id": "2066709680",
+  "verified_at": "2026-07-13T23:41:17.686854+00:00"
+}

@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_899",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: smallest rotation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "cba",
+        "k": 1
+      },
+      "expected": "acb",
+      "tags": [
+        "sample",
+        "rotation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: sortable prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "baaca",
+        "k": 3
+      },
+      "expected": "aaabc",
+      "tags": [
+        "sample",
+        "permutation"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: already smallest rotation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "k": 1
+      },
+      "expected": "abc",
+      "tags": [
+        "sample",
+        "zero-moves"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z",
+        "k": 1
+      },
+      "expected": "z",
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: repeated characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "k": 2
+      },
+      "expected": "aaaa",
+      "tags": [
+        "trial",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: two choices sort",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "dcab",
+        "k": 2
+      },
+      "expected": "abcd",
+      "tags": [
+        "trial",
+        "k-two"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: full selectable prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zyxwv",
+        "k": 5
+      },
+      "expected": "vwxyz",
+      "tags": [
+        "hidden",
+        "full-prefix"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: repeated minimum rotation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "bbaaccaadd",
+        "k": 1
+      },
+      "expected": "aaccaaddbb",
+      "tags": [
+        "hidden",
+        "rotation",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: alternating letters with two choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zazazaza",
+        "k": 2
+      },
+      "expected": "aaaazzzz",
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: late smallest rotation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "bcdefga",
+        "k": 1
+      },
+      "expected": "abcdefg",
+      "tags": [
+        "hidden",
+        "late-minimum"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_986","cases":[
+{"id":"sample-1","name":"sample: several overlaps and touches","kind":"sample","visible":true,"input":{"firstList":[[0,2],[5,10],[13,23],[24,25]],"secondList":[[1,5],[8,12],[15,24],[25,26]]},"expected":[[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]],"tags":["sample"]},
+{"id":"sample-2","name":"sample: empty second list","kind":"sample","visible":true,"input":{"firstList":[[1,3],[5,9]],"secondList":[]},"expected":[],"tags":["sample","empty"]},
+{"id":"trial-1","name":"trial: touching endpoints","kind":"trial","visible":true,"input":{"firstList":[[1,2]],"secondList":[[2,3]]},"expected":[[2,2]],"tags":["trial","closed"]},
+{"id":"trial-2","name":"trial: contained interval","kind":"trial","visible":true,"input":{"firstList":[[1,10]],"secondList":[[3,5]]},"expected":[[3,5]],"tags":["trial","contained"]},
+{"id":"trial-3","name":"trial: no overlap","kind":"trial","visible":true,"input":{"firstList":[[1,2],[5,6]],"secondList":[[3,4],[7,8]]},"expected":[],"tags":["trial","disjoint"]},
+{"id":"hidden-1","name":"hidden: one interval crosses several","kind":"real","visible":false,"input":{"firstList":[[2,20]],"secondList":[[0,3],[5,7],[10,12],[18,30]]},"expected":[[2,3],[5,7],[10,12],[18,20]],"tags":["hidden","multiple"]},
+{"id":"hidden-2","name":"hidden: endpoint bounds","kind":"real","visible":false,"input":{"firstList":[[0,1000000000]],"secondList":[[1,999999999]]},"expected":[[1,999999999]],"tags":["hidden","bounds"]},
+{"id":"hidden-3","name":"hidden: empty first list","kind":"real","visible":false,"input":{"firstList":[],"secondList":[[4,9]]},"expected":[],"tags":["hidden","empty"]}
+]}

@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1132",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: average of fifty and one hundred percent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 1,
+              "action_date": "2019-07-01",
+              "action": "view",
+              "extra": null
+            },
+            {
+              "user_id": 1,
+              "post_id": 1,
+              "action_date": "2019-07-01",
+              "action": "like",
+              "extra": null
+            },
+            {
+              "user_id": 1,
+              "post_id": 1,
+              "action_date": "2019-07-01",
+              "action": "share",
+              "extra": null
+            },
+            {
+              "user_id": 2,
+              "post_id": 2,
+              "action_date": "2019-07-04",
+              "action": "view",
+              "extra": null
+            },
+            {
+              "user_id": 2,
+              "post_id": 2,
+              "action_date": "2019-07-04",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 3,
+              "post_id": 4,
+              "action_date": "2019-07-04",
+              "action": "view",
+              "extra": null
+            },
+            {
+              "user_id": 3,
+              "post_id": 4,
+              "action_date": "2019-07-04",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 4,
+              "post_id": 3,
+              "action_date": "2019-07-02",
+              "action": "view",
+              "extra": null
+            },
+            {
+              "user_id": 4,
+              "post_id": 3,
+              "action_date": "2019-07-02",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 5,
+              "post_id": 2,
+              "action_date": "2019-07-03",
+              "action": "view",
+              "extra": null
+            },
+            {
+              "user_id": 5,
+              "post_id": 2,
+              "action_date": "2019-07-03",
+              "action": "report",
+              "extra": "racism"
+            },
+            {
+              "user_id": 5,
+              "post_id": 5,
+              "action_date": "2019-07-03",
+              "action": "view",
+              "extra": null
+            },
+            {
+              "user_id": 5,
+              "post_id": 5,
+              "action_date": "2019-07-03",
+              "action": "report",
+              "extra": "racism"
+            }
+          ],
+          "Removals": [
+            {
+              "post_id": 2,
+              "remove_date": "2019-07-20"
+            },
+            {
+              "post_id": 3,
+              "remove_date": "2019-07-18"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_daily_percent"
+        ],
+        "rows": [
+          [
+            75.0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "daily-average"
+      ]
+    },
+    {
+      "id": "trial-all-removed",
+      "name": "every spam-reported post is removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 10,
+              "action_date": "2020-01-01",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 2,
+              "post_id": 11,
+              "action_date": "2020-01-01",
+              "action": "report",
+              "extra": "spam"
+            }
+          ],
+          "Removals": [
+            {
+              "post_id": 10,
+              "remove_date": "2020-02-01"
+            },
+            {
+              "post_id": 11,
+              "remove_date": "2020-02-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_daily_percent"
+        ],
+        "rows": [
+          [
+            100.0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "hundred-percent"
+      ]
+    },
+    {
+      "id": "trial-none-removed",
+      "name": "no spam-reported post is removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 20,
+              "action_date": "2020-03-01",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 2,
+              "post_id": 21,
+              "action_date": "2020-03-01",
+              "action": "report",
+              "extra": "spam"
+            }
+          ],
+          "Removals": [
+            {
+              "post_id": 99,
+              "remove_date": "2020-04-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_daily_percent"
+        ],
+        "rows": [
+          [
+            0.0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero-percent"
+      ]
+    },
+    {
+      "id": "trial-duplicate-reports",
+      "name": "duplicate rows and users count one post",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 30,
+              "action_date": "2021-01-01",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 1,
+              "post_id": 30,
+              "action_date": "2021-01-01",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 2,
+              "post_id": 30,
+              "action_date": "2021-01-01",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 3,
+              "post_id": 31,
+              "action_date": "2021-01-01",
+              "action": "report",
+              "extra": "spam"
+            }
+          ],
+          "Removals": [
+            {
+              "post_id": 30,
+              "remove_date": "2021-02-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_daily_percent"
+        ],
+        "rows": [
+          [
+            50.0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-unweighted-days",
+      "name": "hidden: daily percentages are averaged equally",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 40,
+              "action_date": "2022-01-01",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 2,
+              "post_id": 41,
+              "action_date": "2022-01-02",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 3,
+              "post_id": 42,
+              "action_date": "2022-01-02",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 4,
+              "post_id": 43,
+              "action_date": "2022-01-02",
+              "action": "report",
+              "extra": "spam"
+            }
+          ],
+          "Removals": [
+            {
+              "post_id": 40,
+              "remove_date": "2022-02-01"
+            },
+            {
+              "post_id": 41,
+              "remove_date": "2022-02-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_daily_percent"
+        ],
+        "rows": [
+          [
+            66.67
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "unweighted-average"
+      ]
+    },
+    {
+      "id": "real-same-post-two-days",
+      "name": "hidden: same post participates on two dates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 50,
+              "action_date": "2023-01-01",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 2,
+              "post_id": 50,
+              "action_date": "2023-01-02",
+              "action": "report",
+              "extra": "spam"
+            }
+          ],
+          "Removals": [
+            {
+              "post_id": 50,
+              "remove_date": "2023-02-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_daily_percent"
+        ],
+        "rows": [
+          [
+            100.0
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "multiple-dates"
+      ]
+    },
+    {
+      "id": "real-filter-action",
+      "name": "hidden: spam text on a non-report action is excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 60,
+              "action_date": "2024-01-01",
+              "action": "comment",
+              "extra": "spam"
+            },
+            {
+              "user_id": 2,
+              "post_id": 61,
+              "action_date": "2024-01-01",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 3,
+              "post_id": 62,
+              "action_date": "2024-01-01",
+              "action": "report",
+              "extra": "spam"
+            }
+          ],
+          "Removals": [
+            {
+              "post_id": 60,
+              "remove_date": "2024-02-01"
+            },
+            {
+              "post_id": 61,
+              "remove_date": "2024-02-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_daily_percent"
+        ],
+        "rows": [
+          [
+            50.0
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "action-filter"
+      ]
+    }
+  ]
+}

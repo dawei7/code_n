@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_865",
+  "cases": [
+    {"id": "sample-1", "name": "sample: deepest siblings under node two", "kind": "sample", "visible": true, "input": {"root": [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4]}, "expected": [2, 7, 4], "tags": ["sample", "shared-ancestor"]},
+    {"id": "sample-2", "name": "sample: singleton tree", "kind": "sample", "visible": true, "input": {"root": [1]}, "expected": [1], "tags": ["sample", "singleton"]},
+    {"id": "sample-3", "name": "sample: one deepest node", "kind": "sample", "visible": true, "input": {"root": [0, 1, 3, null, 2]}, "expected": [2], "tags": ["sample", "unique-deepest"]},
+    {"id": "trial-1", "name": "trial: all leaves equally deep", "kind": "trial", "visible": true, "input": {"root": [1, 2, 3, 4, 5, 6, 7]}, "expected": [1, 2, 3, 4, 5, 6, 7], "tags": ["trial", "whole-tree"]},
+    {"id": "trial-2", "name": "trial: unique deepest leaf in left branch", "kind": "trial", "visible": true, "input": {"root": [1, 2, 3, 4]}, "expected": [4], "tags": ["trial", "unique-deepest"]},
+    {"id": "trial-3", "name": "trial: deepest sibling leaves", "kind": "trial", "visible": true, "input": {"root": [1, 2, 3, 4, 5]}, "expected": [2, 4, 5], "tags": ["trial", "siblings"]},
+    {"id": "hidden-1", "name": "hidden: deepest nodes in opposite root branches", "kind": "real", "visible": false, "input": {"root": [1, 2, 3, 4, null, null, 5]}, "expected": [1, 2, 3, 4, null, null, 5], "tags": ["hidden", "whole-tree"]},
+    {"id": "hidden-2", "name": "hidden: right-skewed chain", "kind": "real", "visible": false, "input": {"root": [0, null, 1, null, 2, null, 3]}, "expected": [3], "tags": ["hidden", "chain"]},
+    {"id": "hidden-3", "name": "hidden: deepest siblings inside right subtree", "kind": "real", "visible": false, "input": {"root": [10, 5, 15, null, null, 12, 18, 11, 13]}, "expected": [12, 11, 13], "tags": ["hidden", "nested"]},
+    {"id": "hidden-4", "name": "hidden: root with one child", "kind": "real", "visible": false, "input": {"root": [5, 4]}, "expected": [4], "tags": ["hidden", "one-child"]},
+    {"id": "hidden-5", "name": "hidden: all deepest leaves under left subtree", "kind": "real", "visible": false, "input": {"root": [8, 4, 12, 2, 6, null, null, 1, 3, 5, 7]}, "expected": [4, 2, 6, 1, 3, 5, 7], "tags": ["hidden", "nested"]},
+    {"id": "hidden-6", "name": "hidden: maximum-valued singleton", "kind": "real", "visible": false, "input": {"root": [500]}, "expected": [500], "tags": ["hidden", "bounds"]}
+  ]
+}

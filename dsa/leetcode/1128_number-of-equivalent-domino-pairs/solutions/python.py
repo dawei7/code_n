@@ -1,13 +1,11 @@
-"""Optimal solution for LeetCode 1128: Number of Equivalent Domino Pairs."""
-
-from collections import Counter
+"""Optimal app-local solution for LeetCode 1128."""
 
 
 def solve(dominoes: list[list[int]]) -> int:
-    counts: Counter[tuple[int, int]] = Counter()
+    counts = [0] * 100
     pairs = 0
-    for a, b in dominoes:
-        key = (a, b) if a <= b else (b, a)
+    for left, right in dominoes:
+        key = 10 * min(left, right) + max(left, right)
         pairs += counts[key]
         counts[key] += 1
     return pairs

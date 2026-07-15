@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1215",
+  "cases": [
+    {"id":"sample-through-21","name":"sample: zero through the first reversed pair","kind":"sample","visible":true,"input":{"low":0,"high":21},"expected":[0,1,2,3,4,5,6,7,8,9,10,12,21],"tags":["sample","zero","inclusive"]},
+    {"id":"sample-narrow","name":"sample: narrow two-digit interval","kind":"sample","visible":true,"input":{"low":10,"high":15},"expected":[10,12],"tags":["sample","narrow"]},
+    {"id":"trial-single-digit","name":"single qualifying endpoint","kind":"trial","visible":true,"input":{"low":7,"high":7},"expected":[7],"tags":["single-digit","endpoint"]},
+    {"id":"trial-empty","name":"interval contains no stepping number","kind":"trial","visible":true,"input":{"low":14,"high":20},"expected":[],"tags":["empty"]},
+    {"id":"real-zero-only","name":"hidden: zero is handled without a leading-zero branch","kind":"real","visible":false,"input":{"low":0,"high":0},"expected":[0],"tags":["hidden","zero"]},
+    {"id":"real-cross-hundred","name":"hidden: generation crosses a power of ten","kind":"real","visible":false,"input":{"low":90,"high":105},"expected":[98,101],"tags":["hidden","three-digit"]},
+    {"id":"real-several-prefixes","name":"hidden: several three-digit prefixes qualify","kind":"real","visible":false,"input":{"low":100,"high":130},"expected":[101,121,123],"tags":["hidden","ordered"]}
+  ]
+}

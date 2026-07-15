@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1183",
+  "cases": [
+    {"id":"sample-one-per-square","name":"sample: one one per constrained square","kind":"sample","visible":true,"input":{"width":3,"height":3,"sideLength":2,"maxOnes":1},"expected":4,"tags":["sample","partial-tiles"]},
+    {"id":"sample-two-per-square","name":"sample: two ones per constrained square","kind":"sample","visible":true,"input":{"width":3,"height":3,"sideLength":2,"maxOnes":2},"expected":6,"tags":["sample","greedy"]},
+    {"id":"trial-zero-ones","name":"zero allowed ones","kind":"trial","visible":true,"input":{"width":5,"height":4,"sideLength":2,"maxOnes":0},"expected":0,"tags":["boundary","zero"]},
+    {"id":"trial-single-cell-tile","name":"side length one fills the whole matrix","kind":"trial","visible":true,"input":{"width":4,"height":3,"sideLength":1,"maxOnes":1},"expected":12,"tags":["boundary","unit-tile"]},
+    {"id":"real-unequal-frequencies","name":"hidden: partial width makes residue values unequal","kind":"real","visible":false,"input":{"width":5,"height":4,"sideLength":2,"maxOnes":1},"expected":6,"tags":["hidden","partial-tiles"]},
+    {"id":"real-several-classes","name":"hidden: choose several highest frequencies","kind":"real","visible":false,"input":{"width":7,"height":5,"sideLength":3,"maxOnes":4},"expected":20,"tags":["hidden","frequency-order"]},
+    {"id":"real-all-classes","name":"hidden: allowing every residue fills the matrix","kind":"real","visible":false,"input":{"width":5,"height":6,"sideLength":3,"maxOnes":9},"expected":30,"tags":["hidden","all-classes"]},
+    {"id":"real-overlapping-squares","name":"hidden: overlapping full-size windows","kind":"real","visible":false,"input":{"width":4,"height":3,"sideLength":3,"maxOnes":5},"expected":8,"tags":["hidden","overlap"]}
+  ]
+}

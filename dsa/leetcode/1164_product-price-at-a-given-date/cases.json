@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1164",
+  "cases": [
+    {"id":"sample-1","name":"sample: past, target-date, and future changes","kind":"sample","visible":true,"input":{"tables":{"Products":[{"product_id":1,"new_price":20,"change_date":"2019-08-14"},{"product_id":2,"new_price":50,"change_date":"2019-08-14"},{"product_id":1,"new_price":30,"change_date":"2019-08-15"},{"product_id":1,"new_price":35,"change_date":"2019-08-16"},{"product_id":2,"new_price":65,"change_date":"2019-08-17"},{"product_id":3,"new_price":20,"change_date":"2019-08-18"}]}},"expected":{"columns":["product_id","price"],"rows":[[1,35],[2,50],[3,10]]},"tags":["sample","target-date"]},
+    {"id":"trial-all-future","name":"all products retain initial price","kind":"trial","visible":true,"input":{"tables":{"Products":[{"product_id":4,"new_price":99,"change_date":"2019-08-17"},{"product_id":5,"new_price":7,"change_date":"2020-01-01"}]}},"expected":{"columns":["product_id","price"],"rows":[[4,10],[5,10]]},"tags":["trial","default-price"]},
+    {"id":"trial-one-change","name":"single eligible change","kind":"trial","visible":true,"input":{"tables":{"Products":[{"product_id":8,"new_price":42,"change_date":"2019-01-01"}]}},"expected":{"columns":["product_id","price"],"rows":[[8,42]]},"tags":["trial","single-row"]},
+    {"id":"real-latest-before-target","name":"hidden: choose latest eligible change","kind":"real","visible":false,"input":{"tables":{"Products":[{"product_id":1,"new_price":11,"change_date":"2019-01-01"},{"product_id":1,"new_price":22,"change_date":"2019-08-15"},{"product_id":1,"new_price":33,"change_date":"2019-08-20"}]}},"expected":{"columns":["product_id","price"],"rows":[[1,22]]},"tags":["real","latest-eligible"]},
+    {"id":"real-interleaved-products","name":"hidden: group products independently","kind":"real","visible":false,"input":{"tables":{"Products":[{"product_id":10,"new_price":15,"change_date":"2019-08-10"},{"product_id":20,"new_price":25,"change_date":"2019-08-11"},{"product_id":10,"new_price":19,"change_date":"2019-08-16"},{"product_id":20,"new_price":29,"change_date":"2019-08-16"}]}},"expected":{"columns":["product_id","price"],"rows":[[10,19],[20,29]]},"tags":["real","grouping"]}
+  ]
+}

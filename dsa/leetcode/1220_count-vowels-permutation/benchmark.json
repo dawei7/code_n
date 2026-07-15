@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1220",
+  "measurement_note": "Size is the requested string length. Rolling transition counts perform constant work per position, whereas recursively enumerating every legal vowel string follows an exponentially growing number of prefixes.",
+  "cases": [
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: count valid strings of length 3",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "n": 3
+      },
+      "expected": 19,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "transition-growth"
+      ]
+    },
+    {
+      "id": "benchmark-scale-6",
+      "name": "benchmark: count valid strings of length 6",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "n": 6
+      },
+      "expected": 129,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "transition-growth"
+      ]
+    },
+    {
+      "id": "benchmark-scale-12",
+      "name": "benchmark: count valid strings of length 12",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "n": 12
+      },
+      "expected": 6377,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "transition-growth"
+      ]
+    }
+  ]
+}

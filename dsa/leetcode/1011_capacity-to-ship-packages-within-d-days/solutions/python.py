@@ -1,8 +1,8 @@
-"""Optimal solution for LeetCode 1011: Capacity To Ship Packages Within D Days."""
+"""Optimal app-local solution for LeetCode 1011."""
 
 
-def solve(weights: list[int], days: int) -> int:
-    def can_ship(capacity: int) -> bool:
+def solve(weights, days):
+    def can_ship(capacity):
         used_days = 1
         load = 0
         for weight in weights:
@@ -15,9 +15,9 @@ def solve(weights: list[int], days: int) -> int:
     low = max(weights)
     high = sum(weights)
     while low < high:
-        mid = (low + high) // 2
-        if can_ship(mid):
-            high = mid
+        middle = (low + high) // 2
+        if can_ship(middle):
+            high = middle
         else:
-            low = mid + 1
+            low = middle + 1
     return low

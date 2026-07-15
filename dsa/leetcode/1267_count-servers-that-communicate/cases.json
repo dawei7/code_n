@@ -1,106 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1267",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: diagonal isolated servers",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0
-          ],
-          [
-            0,
-            1
-          ]
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "sample",
-        "counting"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: shared row and column",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0
-          ],
-          [
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: column pair and row pair",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            1,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            1,
-            0
-          ],
-          [
-            0,
-            0,
-            1,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            1
-          ]
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-single-server",
-      "name": "hidden: single server",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "grid": [
-          [
-            1
-          ]
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "hidden",
-        "edge"
-      ]
-    }
+    {"id": "sample-isolated-diagonal", "name": "sample: isolated diagonal servers", "kind": "sample", "visible": true, "input": {"grid": [[1, 0], [0, 1]]}, "expected": 0, "tags": ["sample", "isolated"]},
+    {"id": "sample-all-communicate", "name": "sample: shared row and column", "kind": "sample", "visible": true, "input": {"grid": [[1, 0], [1, 1]]}, "expected": 3, "tags": ["sample", "all-communicate"]},
+    {"id": "sample-mixed", "name": "sample: communicating pairs and isolated corner", "kind": "sample", "visible": true, "input": {"grid": [[1, 1, 0, 0], [0, 0, 1, 0], [0, 0, 1, 0], [0, 0, 0, 1]]}, "expected": 4, "tags": ["sample", "mixed"]},
+    {"id": "trial-single", "name": "trial: single server", "kind": "trial", "visible": true, "input": {"grid": [[1]]}, "expected": 0, "tags": ["trial", "singleton"]},
+    {"id": "trial-empty", "name": "trial: no servers", "kind": "trial", "visible": true, "input": {"grid": [[0, 0, 0], [0, 0, 0]]}, "expected": 0, "tags": ["trial", "empty"]},
+    {"id": "hidden-both-axes", "name": "hidden: center communicates on both axes", "kind": "real", "visible": false, "input": {"grid": [[0, 1, 0], [1, 1, 1], [0, 1, 0]]}, "expected": 5, "tags": ["hidden", "cross"]},
+    {"id": "hidden-separated", "name": "hidden: intervening empty cells", "kind": "real", "visible": false, "input": {"grid": [[1, 0, 0, 1], [0, 1, 0, 0], [0, 1, 0, 0]]}, "expected": 4, "tags": ["hidden", "gaps"]}
   ]
 }

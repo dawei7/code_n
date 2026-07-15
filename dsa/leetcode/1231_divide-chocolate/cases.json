@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1231",
+  "cases": [
+    {"id":"sample-increasing","name":"sample: divide increasing chunks among six people","kind":"sample","visible":true,"input":{"sweetness":[1,2,3,4,5,6,7,8,9],"k":5},"expected":6,"tags":["sample","binary-search"]},
+    {"id":"sample-every-chunk","name":"sample: every chunk becomes one piece","kind":"sample","visible":true,"input":{"sweetness":[5,6,7,8,9,1,2,3,4],"k":8},"expected":1,"tags":["sample","maximum-cuts"]},
+    {"id":"sample-equal-groups","name":"sample: three equal-sweetness groups","kind":"sample","visible":true,"input":{"sweetness":[1,2,2,1,2,2,1,2,2],"k":2},"expected":5,"tags":["sample","equal-groups"]},
+    {"id":"trial-no-cuts","name":"no cuts retain the whole chocolate bar","kind":"trial","visible":true,"input":{"sweetness":[2,3,5],"k":0},"expected":10,"tags":["no-cuts"]},
+    {"id":"trial-equal-chunks","name":"equal chunks split into two balanced pieces","kind":"trial","visible":true,"input":{"sweetness":[5,5,5,5],"k":1},"expected":10,"tags":["balanced"]},
+    {"id":"real-dominant-middle","name":"hidden: a dominant middle chunk cannot balance both sides","kind":"real","visible":false,"input":{"sweetness":[1,2,100,1,2],"k":1},"expected":3,"tags":["hidden","uneven"]},
+    {"id":"real-two-people","name":"hidden: choose the strongest boundary for two people","kind":"real","visible":false,"input":{"sweetness":[6,3,2,8,7,5],"k":1},"expected":12,"tags":["hidden","boundary-choice"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1054",
+  "frontend_id": "1009",
+  "title_slug": "complement-of-base-10-integer",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.bitwiseComplement",
+  "verified_submission_id": "2067279387",
+  "verified_at": "2026-07-14T11:14:00.539962+00:00"
+}

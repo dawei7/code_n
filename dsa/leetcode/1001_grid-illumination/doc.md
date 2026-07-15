@@ -8,26 +8,30 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [grid-illumination](https://leetcode.com/problems/grid-illumination/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/grid-illumination/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/grid-illumination/).
 
 ### Goal
-On an `n x n` grid, lamps illuminate their row, column, and both diagonals. For each query cell, report whether it is illuminated, then switch off any lamps in that cell or its eight neighboring cells.
+
+An $n\times n$ grid initially has every lamp turned off. Each position `[row, col]` in `lamps` turns on that cell's lamp; listing the same position more than once still represents only one active lamp. An active lamp illuminates its own cell and every cell sharing its row, column, or either diagonal.
+
+For each query, first report whether its cell is currently illuminated. Then turn off any active lamp in the queried cell and in its eight side-or-corner adjacent cells, when those positions exist. Return the query answers in order, using `1` for illuminated and `0` for unilluminated.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: int grid size
-- `lamps`: List[List[int]] lamp coordinates
-- `queries`: List[List[int]] queried coordinates
+- `n`: the grid side length, where $1\le\texttt{n}\le10^9$.
+- `lamps`: a list of $L$ valid grid coordinates, where $0\le L\le2\cdot10^4$; duplicate coordinates are allowed.
+- `queries`: a list of $Q$ valid grid coordinates, where $0\le Q\le2\cdot10^4$.
 
 **Return value**
 
-List[int] - `1` for illuminated query cells, otherwise `0`
+- A length-$Q$ list whose $j$th value is `1` if the $j$th query cell was illuminated before its shutdown step, and `0` otherwise.
 
 ### Examples
+
 **Example 1**
 
 - Input: `n = 5, lamps = [[0, 0], [4, 4]], queries = [[1, 1], [1, 0]]`
@@ -37,61 +41,39 @@ List[int] - `1` for illuminated query cells, otherwise `0`
 
 - Input: `n = 5, lamps = [[0, 0], [4, 4]], queries = [[1, 1], [1, 1]]`
 - Output: `[1, 1]`
+- Explanation: The first shutdown removes the lamp at `[0, 0]`, but the other diagonal lamp still illuminates the repeated query.
 
 **Example 3**
 
-- Input: `n = 3, lamps = [[0, 0], [1, 1]], queries = [[1, 1], [2, 2]]`
-- Output: `[1, 0]`
+- Input: `n = 5, lamps = [[0, 0], [0, 4]], queries = [[0, 4], [0, 1], [1, 4]]`
+- Output: `[1, 1, 0]`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Hash maps for row, column, and diagonal illumination counts.
+- **Time:** $O(L+Q)$
+- **Space:** $O(L)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(l + q)` for `l` lamps and `q` queries
-- **Space Complexity**: `O(l)`
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-"""Optimal solution for LeetCode 1001: Grid Illumination."""
+#### General
 
-from collections import Counter
+**Index every illuminated line:** Maintain counters for active lamps in each row, column, main diagonal `row - col`, and anti-diagonal `row + col`. Also keep a set of active coordinates. Insert a listed lamp only if its coordinate is not already active, preventing duplicates from inflating the counters.
 
+**Answer a query from four counters:** A query cell is illuminated exactly when at least one of its row, column, or two diagonal counters is positive. Record that answer before changing any lamp state, preserving the required query order.
 
-def solve(n: int, lamps: list[list[int]], queries: list[list[int]]) -> list[int]:
-    active = set()
-    rows: Counter[int] = Counter()
-    cols: Counter[int] = Counter()
-    diag: Counter[int] = Counter()
-    anti: Counter[int] = Counter()
+**Remove only the local neighborhood:** Examine the query cell and its eight neighboring coordinates. When one is active, remove it from the set and decrement all four corresponding line counters. There are always only nine candidate shutdown positions, so no grid-sized work is needed. The counters remain equal to the active-lamp incidence on every indexed line, which proves each subsequent answer is accurate.
 
-    for r, c in lamps:
-        if (r, c) in active:
-            continue
-        active.add((r, c))
-        rows[r] += 1
-        cols[c] += 1
-        diag[r - c] += 1
-        anti[r + c] += 1
+#### Complexity detail
 
-    answer: list[int] = []
-    for r, c in queries:
-        answer.append(1 if rows[r] or cols[c] or diag[r - c] or anti[r + c] else 0)
-        for dr in (-1, 0, 1):
-            for dc in (-1, 0, 1):
-                nr, nc = r + dr, c + dc
-                if not (0 <= nr < n and 0 <= nc < n) or (nr, nc) not in active:
-                    continue
-                active.remove((nr, nc))
-                rows[nr] -= 1
-                cols[nc] -= 1
-                diag[nr - nc] -= 1
-                anti[nr + nc] -= 1
-    return answer
-```
+Deduplicating and indexing the $L$ listed lamps takes $O(L)$ time. Each of the $Q$ queries performs constant-time counter lookups and at most nine set removals, so total time is $O(L+Q)$. The active set and line counters use $O(L)$ space.
+
+#### Alternatives and edge cases
+
+- **Scan every active lamp per query:** Directly testing all rows, columns, and diagonals is correct but takes $O(LQ)$ time when shutdowns remove nothing.
+- **Materialize the grid:** The side length can be $10^9$, so an $n\times n$ matrix is infeasible and unnecessary.
+- **Duplicate lamp positions:** Count a coordinate once; one shutdown removes that lamp completely.
+- **Answer-before-shutdown order:** A lamp in the queried cell illuminates that query before being turned off.
+- **Repeated queries:** Their answers may change because earlier queries mutate the active lamp set.
+
 </details>

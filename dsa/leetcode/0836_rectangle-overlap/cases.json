@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_836",
+  "cases": [
+    {"id": "sample-1", "name": "sample: positive square intersection", "kind": "sample", "visible": true, "input": {"rec1": [0, 0, 2, 2], "rec2": [1, 1, 3, 3]}, "expected": true, "tags": ["sample", "overlap"]},
+    {"id": "sample-2", "name": "sample: shared vertical edge", "kind": "sample", "visible": true, "input": {"rec1": [0, 0, 1, 1], "rec2": [1, 0, 2, 1]}, "expected": false, "tags": ["sample", "edge-touch"]},
+    {"id": "sample-3", "name": "sample: separated on both axes", "kind": "sample", "visible": true, "input": {"rec1": [0, 0, 1, 1], "rec2": [2, 2, 3, 3]}, "expected": false, "tags": ["sample", "separate"]},
+    {"id": "trial-1", "name": "trial: shared corner", "kind": "trial", "visible": true, "input": {"rec1": [-1, -1, 0, 0], "rec2": [0, 0, 2, 2]}, "expected": false, "tags": ["trial", "corner-touch"]},
+    {"id": "trial-2", "name": "trial: first rectangle contains second", "kind": "trial", "visible": true, "input": {"rec1": [-5, -4, 8, 9], "rec2": [-1, 0, 2, 3]}, "expected": true, "tags": ["trial", "containment"]},
+    {"id": "trial-3", "name": "trial: cross-shaped intersection", "kind": "trial", "visible": true, "input": {"rec1": [-3, -1, 3, 1], "rec2": [-1, -3, 1, 3]}, "expected": true, "tags": ["trial", "crossing"]},
+    {"id": "hidden-1", "name": "hidden: identical rectangles", "kind": "real", "visible": false, "input": {"rec1": [-2, -3, 4, 5], "rec2": [-2, -3, 4, 5]}, "expected": true, "tags": ["hidden", "identical"]},
+    {"id": "hidden-2", "name": "hidden: horizontal overlap but vertical gap", "kind": "real", "visible": false, "input": {"rec1": [0, 0, 10, 1], "rec2": [2, 2, 8, 3]}, "expected": false, "tags": ["hidden", "vertical-gap"]},
+    {"id": "hidden-3", "name": "hidden: vertical overlap but horizontal gap", "kind": "real", "visible": false, "input": {"rec1": [0, 0, 1, 10], "rec2": [2, 2, 3, 8]}, "expected": false, "tags": ["hidden", "horizontal-gap"]},
+    {"id": "hidden-4", "name": "hidden: one-unit overlap", "kind": "real", "visible": false, "input": {"rec1": [-4, -4, 1, 1], "rec2": [0, 0, 7, 9]}, "expected": true, "tags": ["hidden", "unit-overlap"]},
+    {"id": "hidden-5", "name": "hidden: extreme coordinate range", "kind": "real", "visible": false, "input": {"rec1": [-1000000000, -1000000000, 0, 0], "rec2": [-1, -1, 1000000000, 1000000000]}, "expected": true, "tags": ["hidden", "large-coordinates"]}
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_850",
+  "measurement_note": "Size is the number of rectangles. The sweep-line segment tree takes O(size log size) time. Inclusion-exclusion over every nonempty rectangle subset takes O(size times 2 to the size) time on these nested rectangles; both return the area of the outer square.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3 nested rectangles",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            6,
+            6
+          ],
+          [
+            1,
+            1,
+            5,
+            5
+          ],
+          [
+            2,
+            2,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 36,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "nested"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6 nested rectangles",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            12,
+            12
+          ],
+          [
+            1,
+            1,
+            11,
+            11
+          ],
+          [
+            2,
+            2,
+            10,
+            10
+          ],
+          [
+            3,
+            3,
+            9,
+            9
+          ],
+          [
+            4,
+            4,
+            8,
+            8
+          ],
+          [
+            5,
+            5,
+            7,
+            7
+          ]
+        ]
+      },
+      "expected": 144,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "nested"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 12 nested rectangles",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            24,
+            24
+          ],
+          [
+            1,
+            1,
+            23,
+            23
+          ],
+          [
+            2,
+            2,
+            22,
+            22
+          ],
+          [
+            3,
+            3,
+            21,
+            21
+          ],
+          [
+            4,
+            4,
+            20,
+            20
+          ],
+          [
+            5,
+            5,
+            19,
+            19
+          ],
+          [
+            6,
+            6,
+            18,
+            18
+          ],
+          [
+            7,
+            7,
+            17,
+            17
+          ],
+          [
+            8,
+            8,
+            16,
+            16
+          ],
+          [
+            9,
+            9,
+            15,
+            15
+          ],
+          [
+            10,
+            10,
+            14,
+            14
+          ],
+          [
+            11,
+            11,
+            13,
+            13
+          ]
+        ]
+      },
+      "expected": 576,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "nested"
+      ]
+    }
+  ]
+}

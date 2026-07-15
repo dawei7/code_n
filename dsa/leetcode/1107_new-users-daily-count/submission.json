@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1204",
+  "frontend_id": "1107",
+  "title_slug": "new-users-daily-count",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2067675168",
+  "verified_at": "2026-07-14T17:17:02.194786+00:00"
+}

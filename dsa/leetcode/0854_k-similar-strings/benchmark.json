@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_854",
+  "measurement_note": "Size is P, the number of distinct anagram states. The tiers use distinct-letter cyclic shifts of lengths 3, 4, and 6, so P is 6, 24, and 720. First-mismatch BFS follows a narrow correction frontier, while an unpruned BFS explores arbitrary swaps across the permutation state graph.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3-letter cyclic shift",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "s1": "abc",
+        "s2": "bca"
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "distinct",
+        "cycle"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 4-letter cyclic shift",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "s1": "abcd",
+        "s2": "bcda"
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "distinct",
+        "cycle"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 6-letter cyclic shift",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 720,
+      "input": {
+        "s1": "abcdef",
+        "s2": "bcdefa"
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "distinct",
+        "cycle"
+      ]
+    }
+  ]
+}

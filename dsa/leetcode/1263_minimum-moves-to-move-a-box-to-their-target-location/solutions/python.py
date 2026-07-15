@@ -1,7 +1,8 @@
 from collections import deque
+from typing import List
 
 
-def solve(grid):
+def solve(grid: List[List[str]]) -> int:
     rows = len(grid)
     cols = len(grid[0]) if rows else 0
     box = player = target = None

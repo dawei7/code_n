@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_837",
+  "measurement_note": "Size is n, the largest successful terminal score. Sliding-window dynamic programming takes O(size) time. Directly summing every eligible predecessor takes O(size times maxPts), and maxPts grows proportionally with size in all tiers.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: n 32 with draw range 16", "kind": "benchmark", "visible": false, "size": 32, "input": {"n": 32, "k": 24, "maxPts": 16}, "expected": 0.8048797043340004, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["benchmark", "scale-small", "sliding-window"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: n 64 with draw range 32", "kind": "benchmark", "visible": false, "size": 64, "input": {"n": 64, "k": 48, "maxPts": 32}, "expected": 0.7828028721152602, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["benchmark", "scale-medium", "sliding-window"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: n 128 with draw range 64", "kind": "benchmark", "visible": false, "size": 128, "input": {"n": 128, "k": 96, "maxPts": 64}, "expected": 0.7711648804374223, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["benchmark", "scale-large", "sliding-window"]}
+  ]
+}

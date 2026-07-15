@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1057",
+  "frontend_id": "1012",
+  "title_slug": "numbers-with-repeated-digits",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numDupDigitsAtMostN",
+  "verified_submission_id": "2067289086",
+  "verified_at": "2026-07-14T11:25:02.699545+00:00"
+}

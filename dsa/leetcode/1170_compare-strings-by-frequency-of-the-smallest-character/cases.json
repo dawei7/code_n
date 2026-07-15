@@ -1,100 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1170",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: one query",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "queries": [
-          "cbd"
-        ],
-        "words": [
-          "zaaaz"
-        ]
-      },
-      "expected": [
-        1
-      ],
-      "tags": [
-        "sample",
-        "binary-search"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: two queries",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "queries": [
-          "bbb",
-          "cc"
-        ],
-        "words": [
-          "a",
-          "aa",
-          "aaa",
-          "aaaa"
-        ]
-      },
-      "expected": [
-        1,
-        2
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-single-query",
-      "name": "single query against several words",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "queries": [
-          "a"
-        ],
-        "words": [
-          "b",
-          "cc",
-          "ddd"
-        ]
-      },
-      "expected": [
-        2
-      ],
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-mixed-frequencies",
-      "name": "hidden: mixed frequencies",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "queries": [
-          "abcd",
-          "aabc",
-          "zzzz"
-        ],
-        "words": [
-          "aaa",
-          "aa",
-          "z",
-          "bbbb"
-        ]
-      },
-      "expected": [
-        3,
-        2,
-        0
-      ],
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: one query","kind":"sample","visible":true,"input":{"queries":["cbd"],"words":["zaaaz"]},"expected":[1],"tags":["sample","frequency"]},
+    {"id":"sample-2","name":"sample: two queries","kind":"sample","visible":true,"input":{"queries":["bbb","cc"],"words":["a","aa","aaa","aaaa"]},"expected":[1,2],"tags":["sample","strict-comparison"]},
+    {"id":"trial-mixed","name":"mixed frequencies and ties","kind":"trial","visible":true,"input":{"queries":["abcd","aabb"],"words":["zzzz","abc","aa"]},"expected":[2,1],"tags":["trial","ties"]},
+    {"id":"trial-smallest-late","name":"smallest character appears after larger letters","kind":"trial","visible":true,"input":{"queries":["zzzaa"],"words":["bbb","cccc","dada"]},"expected":[2],"tags":["trial","reset"]},
+    {"id":"real-maximum-frequency","name":"hidden: frequency ten has no greater word","kind":"real","visible":false,"input":{"queries":["aaaaaaaaaa"],"words":["bbbbbbbbbb","ccccccccc"]},"expected":[0],"tags":["real","maximum"]},
+    {"id":"real-all-greater","name":"hidden: every word exceeds frequency one","kind":"real","visible":false,"input":{"queries":["az"],"words":["aa","bbb","cccc"]},"expected":[3],"tags":["real","all-greater"]},
+    {"id":"real-query-order","name":"hidden: preserve query order","kind":"real","visible":false,"input":{"queries":["aaaa","a","aa","aaa"],"words":["x","yy","zzz","wwww"]},"expected":[0,3,2,1],"tags":["real","order"]}
   ]
 }

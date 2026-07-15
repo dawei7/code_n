@@ -1,12 +1,12 @@
-def solve(queens, king):
+def solve(queens: list[list[int]], king: list[int]) -> list[list[int]]:
     occupied = {tuple(queen) for queen in queens}
     answer = []
-    for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)):
-        r, c = king[0] + dr, king[1] + dc
-        while 0 <= r < 8 and 0 <= c < 8:
-            if (r, c) in occupied:
-                answer.append([r, c])
+    for row_change, column_change in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)):
+        row, column = king[0] + row_change, king[1] + column_change
+        while 0 <= row < 8 and 0 <= column < 8:
+            if (row, column) in occupied:
+                answer.append([row, column])
                 break
-            r += dr
-            c += dc
+            row += row_change
+            column += column_change
     return answer

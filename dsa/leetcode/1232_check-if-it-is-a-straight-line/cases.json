@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1232",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: diagonal line",
+      "id": "sample-diagonal",
+      "name": "sample: points share one diagonal",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -37,12 +38,12 @@
       "expected": true,
       "tags": [
         "sample",
-        "geometry"
+        "diagonal"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: bent line",
+      "id": "sample-bent",
+      "name": "sample: one point bends the sequence",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -75,12 +76,13 @@
       },
       "expected": false,
       "tags": [
-        "sample"
+        "sample",
+        "non-collinear"
       ]
     },
     {
-      "id": "trial-vertical-line",
-      "name": "vertical line",
+      "id": "trial-vertical",
+      "name": "vertical line crosses negative coordinates",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -91,48 +93,148 @@
           ],
           [
             0,
-            1
+            5
           ],
           [
             0,
             -2
+          ],
+          [
+            0,
+            100
           ]
         ]
       },
       "expected": true,
       "tags": [
-        "trial",
-        "edge"
+        "vertical"
       ]
     },
     {
-      "id": "real-negative-coordinates",
-      "name": "hidden: negative coordinates",
+      "id": "trial-horizontal",
+      "name": "horizontal line in arbitrary input order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            7,
+            -3
+          ],
+          [
+            -2,
+            -3
+          ],
+          [
+            100,
+            -3
+          ],
+          [
+            0,
+            -3
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "horizontal"
+      ]
+    },
+    {
+      "id": "real-two-points",
+      "name": "hidden: exactly two points determine a line",
       "kind": "real",
       "visible": false,
       "input": {
         "coordinates": [
+          [
+            -10000,
+            10000
+          ],
+          [
+            10000,
+            -10000
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-negative-diagonal",
+      "name": "hidden: collinear points with a negative slope",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coordinates": [
+          [
+            -3,
+            8
+          ],
+          [
+            -1,
+            4
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            -6
+          ],
+          [
+            7,
+            -12
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "negative-slope"
+      ]
+    },
+    {
+      "id": "real-late-outlier",
+      "name": "hidden: final point departs from the line",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coordinates": [
+          [
+            -5,
+            -13
+          ],
+          [
+            -4,
+            -10
+          ],
+          [
+            -3,
+            -7
+          ],
+          [
+            -2,
+            -4
+          ],
           [
             -1,
             -1
           ],
           [
             0,
-            0
-          ],
-          [
-            1,
-            1
-          ],
-          [
-            2,
-            2
+            3
           ]
         ]
       },
-      "expected": true,
+      "expected": false,
       "tags": [
-        "hidden"
+        "hidden",
+        "late-outlier"
       ]
     }
   ]

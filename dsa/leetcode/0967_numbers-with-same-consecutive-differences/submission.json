@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1007",
+  "frontend_id": "967",
+  "title_slug": "numbers-with-same-consecutive-differences",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numsSameConsecDiff",
+  "verified_submission_id": "2067123146",
+  "verified_at": "2026-07-14T08:39:15.237099+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_831",
+  "measurement_note": "Size is the valid email string length. Whole-string lowercasing and slicing takes O(size) time; rebuilding the normalized immutable prefix after every character takes O(size^2). The tiers span the legal 8-to-40 email range.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: valid email of length 8", "kind": "benchmark", "visible": false, "size": 8, "input": {"s": "ab@c.def"}, "expected": "a*****b@c.def", "tags": ["benchmark", "scale-small", "email-normalization"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: valid email of length 16", "kind": "benchmark", "visible": false, "size": 16, "input": {"s": "abcdefghij@c.def"}, "expected": "a*****j@c.def", "tags": ["benchmark", "scale-medium", "email-normalization"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: valid email of length 32", "kind": "benchmark", "visible": false, "size": 32, "input": {"s": "abcdefghijklmnopqrstuvwxyz@c.def"}, "expected": "a*****z@c.def", "tags": ["benchmark", "scale-large", "email-normalization"]}
+  ]
+}

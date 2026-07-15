@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1063",
+  "frontend_id": "1014",
+  "title_slug": "best-sightseeing-pair",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxScoreSightseeingPair",
+  "verified_submission_id": "2067294272",
+  "verified_at": "2026-07-14T11:31:13.026644+00:00"
+}

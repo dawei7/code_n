@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_830",
+  "measurement_note": "Size is the string length. A boundary scan visits each character once; rediscovering the complete run around every index takes O(size^2). One maximal run prevents the repeated expansion from stopping early.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one run of length 6", "kind": "benchmark", "visible": false, "size": 6, "input": {"s": "aaaaaa"}, "expected": [[0, 5]], "tags": ["benchmark", "scale-small", "single-run"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: one run of length 12", "kind": "benchmark", "visible": false, "size": 12, "input": {"s": "aaaaaaaaaaaa"}, "expected": [[0, 11]], "tags": ["benchmark", "scale-medium", "single-run"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: one run of length 24", "kind": "benchmark", "visible": false, "size": 24, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaa"}, "expected": [[0, 23]], "tags": ["benchmark", "scale-large", "single-run"]}
+  ]
+}

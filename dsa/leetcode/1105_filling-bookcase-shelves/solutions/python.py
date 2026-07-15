@@ -1,16 +1,20 @@
-"""Optimal solution for LeetCode 1105: Filling Bookcase Shelves."""
+"""Optimal app-local solution for LeetCode 1105."""
 
 
 def solve(books: list[list[int]], shelf_width: int) -> int:
-    n = len(books)
-    dp = [0] + [10**18] * n
-    for i in range(1, n + 1):
+    book_count = len(books)
+    minimum_height = [0] + [10**18] * book_count
+
+    for end in range(1, book_count + 1):
         width = 0
-        height = 0
-        for j in range(i, 0, -1):
-            width += books[j - 1][0]
+        shelf_height = 0
+        for start in range(end - 1, -1, -1):
+            thickness, height = books[start]
+            width += thickness
             if width > shelf_width:
                 break
-            height = max(height, books[j - 1][1])
-            dp[i] = min(dp[i], dp[j - 1] + height)
-    return dp[n]
+            shelf_height = max(shelf_height, height)
+            minimum_height[end] = min(
+                minimum_height[end], minimum_height[start] + shelf_height
+            )
+    return minimum_height[book_count]

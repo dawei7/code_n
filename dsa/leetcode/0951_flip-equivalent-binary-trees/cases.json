@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_951",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: flips at several nodes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root1": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          null,
+          null,
+          null,
+          7,
+          8
+        ],
+        "root2": [
+          1,
+          3,
+          2,
+          null,
+          6,
+          4,
+          5,
+          null,
+          null,
+          null,
+          null,
+          8,
+          7
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "multiple-flips"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: both empty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root1": [],
+        "root2": []
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one empty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root1": [],
+        "root2": [
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "one-empty"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: identical trees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root1": [
+          1,
+          2,
+          3
+        ],
+        "root2": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "identical"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: root flip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root1": [
+          1,
+          2,
+          3
+        ],
+        "root2": [
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "root-flip"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: different root values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          1
+        ],
+        "root2": [
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "value-mismatch"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: child cannot be aligned",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "root2": [
+          1,
+          3,
+          2,
+          null,
+          null,
+          null,
+          5
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "structure-mismatch"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: one-child orientation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          1,
+          2
+        ],
+        "root2": [
+          1,
+          null,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "one-child"
+      ]
+    }
+  ]
+}

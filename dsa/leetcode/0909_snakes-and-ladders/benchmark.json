@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_909",
+  "measurement_note": "Size is the number of labeled board squares. Breadth-first search examines at most six edges per square, so its work is linear in size. A correct slower frontier search scans every labeled square for each visited position, producing quadratic work on empty boards.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: empty 3 by 3 board",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9,
+      "input": {
+        "board": [
+          [
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "empty-board"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: empty 6 by 6 board",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36,
+      "input": {
+        "board": [
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "empty-board"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: empty 12 by 12 board",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 144,
+      "input": {
+        "board": [
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ]
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "empty-board"
+      ]
+    }
+  ]
+}

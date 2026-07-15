@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1114",
+  "frontend_id": "1038",
+  "title_slug": "binary-search-tree-to-greater-sum-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.bstToGst",
+  "verified_submission_id": "2067362457",
+  "verified_at": "2026-07-14T12:48:53.556582+00:00"
+}

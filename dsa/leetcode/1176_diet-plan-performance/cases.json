@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1176",
+  "cases": [
+    {"id":"sample-single-day-windows","name":"sample: losses and gains cancel","kind":"sample","visible":true,"input":{"calories":[1,2,3,4,5],"k":1,"lower":3,"upper":3},"expected":0,"tags":["sample","window-one"]},
+    {"id":"sample-whole-array-gain","name":"sample: whole array exceeds upper","kind":"sample","visible":true,"input":{"calories":[3,2],"k":2,"lower":0,"upper":1},"expected":1,"tags":["sample","whole-array"]},
+    {"id":"sample-three-outcomes","name":"sample: gain neutral and loss","kind":"sample","visible":true,"input":{"calories":[6,5,0,0],"k":2,"lower":1,"upper":5},"expected":0,"tags":["sample","all-outcomes"]},
+    {"id":"trial-threshold-equality","name":"both threshold equalities are neutral","kind":"trial","visible":true,"input":{"calories":[1,2,3],"k":2,"lower":3,"upper":5},"expected":0,"tags":["boundary","equality"]},
+    {"id":"trial-negative-score","name":"score may be negative","kind":"trial","visible":true,"input":{"calories":[0,0,0],"k":2,"lower":1,"upper":2},"expected":-2,"tags":["negative","zero"]},
+    {"id":"real-overlapping-gains","name":"hidden: every overlapping window gains","kind":"real","visible":false,"input":{"calories":[5,5,5,5],"k":3,"lower":0,"upper":10},"expected":2,"tags":["hidden","overlap"]},
+    {"id":"real-one-window-neutral","name":"hidden: whole-array total is neutral","kind":"real","visible":false,"input":{"calories":[2,4,6],"k":3,"lower":12,"upper":12},"expected":0,"tags":["hidden","whole-array"]}
+  ]
+}

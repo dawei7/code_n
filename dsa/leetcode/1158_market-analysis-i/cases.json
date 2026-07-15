@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1158",
+  "cases": [
+    {
+      "id": "sample-1", "name": "sample: report every user", "kind": "sample", "visible": true,
+      "input": {"tables": {
+        "Users": [{"user_id":1,"join_date":"2018-01-01","favorite_brand":"Lenovo"},{"user_id":2,"join_date":"2018-02-09","favorite_brand":"Samsung"},{"user_id":3,"join_date":"2018-01-19","favorite_brand":"LG"},{"user_id":4,"join_date":"2018-05-21","favorite_brand":"HP"}],
+        "Orders": [{"order_id":1,"order_date":"2019-08-01","item_id":4,"buyer_id":1,"seller_id":2},{"order_id":2,"order_date":"2018-08-02","item_id":2,"buyer_id":1,"seller_id":3},{"order_id":3,"order_date":"2019-08-03","item_id":3,"buyer_id":2,"seller_id":3},{"order_id":4,"order_date":"2018-08-04","item_id":1,"buyer_id":4,"seller_id":2},{"order_id":5,"order_date":"2018-08-04","item_id":1,"buyer_id":3,"seller_id":4},{"order_id":6,"order_date":"2019-08-05","item_id":2,"buyer_id":2,"seller_id":4}],
+        "Items": [{"item_id":1,"item_brand":"Samsung"},{"item_id":2,"item_brand":"Lenovo"},{"item_id":3,"item_brand":"LG"},{"item_id":4,"item_brand":"HP"}]
+      }},
+      "expected": {"columns":["buyer_id","join_date","orders_in_2019"],"rows":[[1,"2018-01-01",1],[2,"2018-02-09",2],[3,"2018-01-19",0],[4,"2018-05-21",0]]}, "tags":["sample","zero-orders"]
+    },
+    {"id":"trial-year-boundaries","name":"both 2019 boundaries qualify","kind":"trial","visible":true,"input":{"tables":{"Users":[{"user_id":1,"join_date":"2017-01-01","favorite_brand":"A"},{"user_id":2,"join_date":"2017-01-02","favorite_brand":"B"}],"Orders":[{"order_id":1,"order_date":"2019-01-01","item_id":1,"buyer_id":1,"seller_id":2},{"order_id":2,"order_date":"2019-12-31","item_id":1,"buyer_id":1,"seller_id":2},{"order_id":3,"order_date":"2020-01-01","item_id":1,"buyer_id":1,"seller_id":2}],"Items":[{"item_id":1,"item_brand":"A"}]}},"expected":{"columns":["buyer_id","join_date","orders_in_2019"],"rows":[[1,"2017-01-01",2],[2,"2017-01-02",0]]},"tags":["trial","date-boundary"]},
+    {"id":"trial-seller-only","name":"seller activity does not count as buying","kind":"trial","visible":true,"input":{"tables":{"Users":[{"user_id":1,"join_date":"2019-02-01","favorite_brand":"A"},{"user_id":2,"join_date":"2019-02-02","favorite_brand":"B"}],"Orders":[{"order_id":1,"order_date":"2019-06-01","item_id":1,"buyer_id":2,"seller_id":1}],"Items":[{"item_id":1,"item_brand":"A"}]}},"expected":{"columns":["buyer_id","join_date","orders_in_2019"],"rows":[[1,"2019-02-01",0],[2,"2019-02-02",1]]},"tags":["trial","buyer-role"]},
+    {"id":"real-no-orders","name":"hidden: no qualifying order preserves the user","kind":"real","visible":false,"input":{"tables":{"Users":[{"user_id":7,"join_date":"2016-07-07","favorite_brand":"X"}],"Orders":[{"order_id":1,"order_date":"2018-07-07","item_id":1,"buyer_id":7,"seller_id":7}],"Items":[{"item_id":1,"item_brand":"X"}]}},"expected":{"columns":["buyer_id","join_date","orders_in_2019"],"rows":[[7,"2016-07-07",0]]},"tags":["real","zero-qualifying-orders"]},
+    {"id":"real-mixed-years","name":"hidden: only buyer orders in 2019 count","kind":"real","visible":false,"input":{"tables":{"Users":[{"user_id":3,"join_date":"2015-03-03","favorite_brand":"X"},{"user_id":8,"join_date":"2015-08-08","favorite_brand":"Y"}],"Orders":[{"order_id":1,"order_date":"2018-12-31","item_id":1,"buyer_id":3,"seller_id":8},{"order_id":2,"order_date":"2019-04-01","item_id":1,"buyer_id":3,"seller_id":8},{"order_id":3,"order_date":"2019-05-01","item_id":1,"buyer_id":8,"seller_id":3},{"order_id":4,"order_date":"2019-06-01","item_id":1,"buyer_id":8,"seller_id":3}],"Items":[{"item_id":1,"item_brand":"X"}]}},"expected":{"columns":["buyer_id","join_date","orders_in_2019"],"rows":[[3,"2015-03-03",1],[8,"2015-08-08",2]]},"tags":["real","mixed-years"]}
+  ]
+}

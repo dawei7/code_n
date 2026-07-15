@@ -1,0 +1,9 @@
+{"schema_version":1,"challenge_id":"lc_967","cases":[
+{"id":"sample-1","name":"sample: three digits with difference seven","kind":"sample","visible":true,"input":{"n":3,"k":7},"expected":[181,292,707,818,929],"validator":{"kind":"unordered_list"},"tags":["sample","leading-zero"]},
+{"id":"sample-2","name":"sample: two digits with difference one","kind":"sample","visible":true,"input":{"n":2,"k":1},"expected":[10,12,21,23,32,34,43,45,54,56,65,67,76,78,87,89,98],"validator":{"kind":"unordered_list"},"tags":["sample","two-digit"]},
+{"id":"trial-1","name":"trial: zero difference","kind":"trial","visible":true,"input":{"n":2,"k":0},"expected":[11,22,33,44,55,66,77,88,99],"validator":{"kind":"unordered_list"},"tags":["trial","duplicates"]},
+{"id":"trial-2","name":"trial: maximum difference","kind":"trial","visible":true,"input":{"n":2,"k":9},"expected":[90],"validator":{"kind":"unordered_list"},"tags":["trial","maximum"]},
+{"id":"trial-3","name":"trial: difference eight permits internal zero","kind":"trial","visible":true,"input":{"n":3,"k":8},"expected":[191,808,919],"validator":{"kind":"unordered_list"},"tags":["trial","zero"]},
+{"id":"hidden-1","name":"hidden: branching difference three","kind":"real","visible":false,"input":{"n":3,"k":3},"expected":[141,147,252,258,303,363,369,414,474,525,585,630,636,696,741,747,852,858,963,969],"validator":{"kind":"unordered_list"},"tags":["hidden","branching"]},
+{"id":"hidden-2","name":"hidden: alternating difference five","kind":"real","visible":false,"input":{"n":4,"k":5},"expected":[1616,2727,3838,4949,5050,6161,7272,8383,9494],"validator":{"kind":"unordered_list"},"tags":["hidden","alternating"]}
+]}

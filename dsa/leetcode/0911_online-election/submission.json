@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "947",
+  "frontend_id": "911",
+  "title_slug": "online-election",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "TopVotedCandidate",
+  "verified_submission_id": "2066861699",
+  "verified_at": "2026-07-14T04:39:56.027890+00:00"
+}

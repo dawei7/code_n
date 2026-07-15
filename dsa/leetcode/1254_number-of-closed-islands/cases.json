@@ -1,8 +1,9 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1254",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-two",
       "name": "sample: two closed islands",
       "kind": "sample",
       "visible": true,
@@ -62,13 +63,12 @@
       },
       "expected": 2,
       "tags": [
-        "sample",
-        "dfs"
+        "sample"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: one closed island",
+      "id": "sample-one",
+      "name": "sample: one interior island",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -102,9 +102,9 @@
       ]
     },
     {
-      "id": "trial-single-closed-cell",
-      "name": "single closed cell",
-      "kind": "trial",
+      "id": "sample-center",
+      "name": "sample: single closed land cell",
+      "kind": "sample",
       "visible": true,
       "input": {
         "grid": [
@@ -127,14 +127,43 @@
       },
       "expected": 1,
       "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-water",
+      "name": "trial: all water",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
         "trial"
       ]
     },
     {
-      "id": "real-all-border-connected",
-      "name": "hidden: all land touches border",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-land",
+      "name": "trial: all land touches boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -156,8 +185,105 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
-        "edge"
+        "trial"
+      ]
+    },
+    {
+      "id": "real-diagonal",
+      "name": "hidden: diagonal cells are separate islands",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-open-and-closed",
+      "name": "hidden: open component beside closed component",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real"
       ]
     }
   ]

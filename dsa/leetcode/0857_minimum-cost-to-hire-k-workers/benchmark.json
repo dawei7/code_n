@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_857",
+  "measurement_note": "Size is the number of k-worker subsets. The tiers use n and k pairs (6,3), (10,5), and (16,8), yielding 20, 252, and 12870 candidate groups. Sorting plus a quality heap is polynomial in n, while exhaustive subset evaluation scales with this authored size.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: choose 3 of 6 identical-rate workers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "quality": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "wage": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "combinations"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: choose 5 of 10 identical-rate workers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 252,
+      "input": {
+        "quality": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "wage": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 5
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "combinations"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: choose 8 of 16 identical-rate workers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12870,
+      "input": {
+        "quality": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "wage": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 8
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "combinations"
+      ]
+    }
+  ]
+}

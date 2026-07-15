@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1147",
+  "frontend_id": "1072",
+  "title_slug": "flip-columns-for-maximum-number-of-equal-rows",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxEqualRowsAfterFlips",
+  "verified_submission_id": "2067499790",
+  "verified_at": "2026-07-14T14:57:33.721292+00:00"
+}

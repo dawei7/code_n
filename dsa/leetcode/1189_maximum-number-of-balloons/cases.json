@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1189",
+  "cases": [
+    {"id":"sample-one-copy","name":"sample: one shuffled copy","kind":"sample","visible":true,"input":{"text":"nlaebolko"},"expected":1,"tags":["sample","counting"]},
+    {"id":"sample-two-copies","name":"sample: two copies with surplus letters","kind":"sample","visible":true,"input":{"text":"loonbalxballpoon"},"expected":2,"tags":["sample","surplus"]},
+    {"id":"sample-no-copy","name":"sample: required letters are missing","kind":"sample","visible":true,"input":{"text":"leetcode"},"expected":0,"tags":["sample","missing-letter"]},
+    {"id":"trial-exact-word","name":"one exact word","kind":"trial","visible":true,"input":{"text":"balloon"},"expected":1,"tags":["exact-match"]},
+    {"id":"trial-single-character","name":"single character cannot form the word","kind":"trial","visible":true,"input":{"text":"b"},"expected":0,"tags":["boundary","short-input"]},
+    {"id":"real-missing-duplicates","name":"hidden: one l and one o are insufficient","kind":"real","visible":false,"input":{"text":"balon"},"expected":0,"tags":["hidden","multiplicity"]},
+    {"id":"real-three-exact-copies","name":"hidden: three concatenated copies","kind":"real","visible":false,"input":{"text":"balloonballoonballoon"},"expected":3,"tags":["hidden","repetition"]},
+    {"id":"real-limited-by-pairs","name":"hidden: doubled letters limit surplus singles","kind":"real","visible":false,"input":{"text":"bbbbaaaalllloooonnnnxyz"},"expected":2,"tags":["hidden","limiting-resource","irrelevant-letters"]}
+  ]
+}

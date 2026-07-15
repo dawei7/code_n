@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1039",
+  "frontend_id": "997",
+  "title_slug": "find-the-town-judge",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findJudge",
+  "verified_submission_id": "2067240833",
+  "verified_at": "2026-07-14T10:31:56.737262+00:00"
+}

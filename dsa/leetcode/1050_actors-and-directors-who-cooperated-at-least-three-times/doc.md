@@ -8,25 +8,29 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [actors-and-directors-who-cooperated-at-least-three-times](https://leetcode.com/problems/actors-and-directors-who-cooperated-at-least-three-times/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/actors-and-directors-who-cooperated-at-least-three-times/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/actors-and-directors-who-cooperated-at-least-three-times/).
 
 ### Goal
-From a table of actor-director collaborations, return every actor and director pair that has worked together at least three times.
 
-### Query Contract
-**Input table**
+The `ActorDirector` table records collaborations using `actor_id`, `director_id`, and a unique `timestamp`. Each row represents one occasion on which that actor and director worked together.
 
-- `ActorDirector(actor_id, director_id, timestamp)`: One row per collaboration event.
+Find every distinct `(actor_id, director_id)` pair having at least three collaboration rows. The timestamp values distinguish events but do not need to be consecutive. Return the two identifier columns; the platform permits the qualifying pairs in any order.
 
-**Output columns**
+### Function Contract
 
-- `actor_id`
-- `director_id`
+**Inputs**
+
+- `ActorDirector(actor_id, director_id, timestamp)`: $R$ collaboration rows whose `timestamp` values are unique.
+
+**Return value**
+
+- One `actor_id, director_id` row for each pair appearing at least three times.
+- Result order is unrestricted; the local reference orders both identifiers ascending for deterministic validation.
 
 ### Examples
+
 **Example 1**
 
 `ActorDirector`
@@ -47,17 +51,39 @@ Output:
 |---:|---:|
 | 1 | 1 |
 
----
+Only actor `1` and director `1` have collaborated three times.
 
-## Solution
-### Approach
-Group rows by `(actor_id, director_id)` and keep only groups whose row count is at least `3`.
+### Required Complexity
 
-In SQL, this is a straightforward `GROUP BY actor_id, director_id` with `HAVING COUNT(*) >= 3`.
+- **Time:** $O(R log R)$
+- **Space:** $O(R)$
 
-### Complexity Analysis
-- **Time Complexity**: Depends on the database engine; logically, the query groups all rows in `ActorDirector`.
-- **Space Complexity**: Depends on the database execution plan and indexes.
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Form one group per pair:** Group rows by both `actor_id` and `director_id`. Grouping by only one column would mix collaborations with different partners and answer a different question.
+
+**Count collaboration rows:** Apply `COUNT(*)` to each pair's group. The unique timestamp ensures rows are distinct events, but its numeric value and ordering do not affect the count.
+
+**Filter at the inclusive threshold:** Retain groups with `COUNT(*) >= 3`. Selecting the grouping columns produces one result row per qualifying pair. The final ascending order is used only for stable local fixtures.
+
+Every output pair owns at least three source rows because it passes the `HAVING` predicate. Conversely, all rows for any pair are collected into one group, so a pair with at least three collaborations has a count of at least three and cannot be omitted.
+
+#### Complexity detail
+
+For $R$ rows, a sort-based grouping plan takes $O(R log R)$ time and $O(R)$ execution space in the worst case. Hash aggregation can reduce expected grouping time to $O(R)$, while indexes may alter the physical plan.
+
+#### Alternatives and edge cases
+
+- **Correlated count:** Select distinct pairs and count matching rows in a correlated subquery. It is correct but can rescan all $R$ rows for each source row, taking $O(R^2)$ time.
+- **Self-join three copies:** Join three distinct timestamps for the same pair to prove at least three events. It creates many combinations when a pair collaborates often.
+- **Window count:** Compute `COUNT(*) OVER (PARTITION BY actor_id, director_id)`, filter, and deduplicate. It is valid but less direct than grouped aggregation.
+- **Exactly three rows:** The pair qualifies because the threshold is inclusive.
+- **Two rows:** The pair does not qualify.
+- **Same actor, different directors:** Each actor-director combination is counted independently.
+- **Same director, different actors:** These are also separate groups.
+- **Timestamp values:** Only their uniqueness distinguishes events; gaps or input order do not matter.
+
+</details>

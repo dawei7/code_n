@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1399",
+  "frontend_id": "1264",
+  "title_slug": "page-recommendations",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2068038675",
+  "verified_at": "2026-07-15T03:52:22.019194+00:00"
+}

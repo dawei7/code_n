@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_880",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeat two words then append and repeat",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leet2code3",
+        "k": 10
+      },
+      "expected": "o",
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: consecutive repetitions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "ha22",
+        "k": 5
+      },
+      "expected": "h",
+      "tags": [
+        "sample",
+        "repeated-digits"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: enormous single-letter tape",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "a2345678999999999999999",
+        "k": 1
+      },
+      "expected": "a",
+      "tags": [
+        "sample",
+        "huge"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: plain letters without expansion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "k": 2
+      },
+      "expected": "b",
+      "tags": [
+        "trial",
+        "plain"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: final position of a repeated word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc3",
+        "k": 9
+      },
+      "expected": "c",
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: letter appended after a repetition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab2c",
+        "k": 5
+      },
+      "expected": "c",
+      "tags": [
+        "trial",
+        "append"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: boundary between repeated five-letter blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ab2c3",
+        "k": 10
+      },
+      "expected": "c",
+      "tags": [
+        "hidden",
+        "copy-boundary"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: first position of the second copy",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abc2",
+        "k": 4
+      },
+      "expected": "a",
+      "tags": [
+        "hidden",
+        "copy-start"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: final position of the second copy",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abc2",
+        "k": 6
+      },
+      "expected": "c",
+      "tags": [
+        "hidden",
+        "copy-end"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: nested repetitions with appended letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "a2b3c4d5",
+        "k": 100
+      },
+      "expected": "a",
+      "tags": [
+        "hidden",
+        "nested"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: repeated multi-letter prefix and suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "xy3z2",
+        "k": 8
+      },
+      "expected": "x",
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
+  ]
+}

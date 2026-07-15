@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_962","cases":[
+{"id":"sample-1","name":"sample: interior minimum to suffix","kind":"sample","visible":true,"input":{"nums":[6,0,8,2,1,5]},"expected":4,"tags":["sample","interior"]},
+{"id":"sample-2","name":"sample: equal endpoints give widest ramp","kind":"sample","visible":true,"input":{"nums":[9,8,1,0,1,9,4,0,4,1]},"expected":7,"tags":["sample","equality"]},
+{"id":"trial-1","name":"trial: increasing pair","kind":"trial","visible":true,"input":{"nums":[1,2]},"expected":1,"tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: decreasing pair","kind":"trial","visible":true,"input":{"nums":[2,1]},"expected":0,"tags":["trial","no-ramp"]},
+{"id":"trial-3","name":"trial: all values equal","kind":"trial","visible":true,"input":{"nums":[5,5,5]},"expected":2,"tags":["trial","equality"]},
+{"id":"hidden-1","name":"hidden: short interior ramp","kind":"real","visible":false,"input":{"nums":[3,1,2]},"expected":1,"tags":["hidden","interior"]},
+{"id":"hidden-2","name":"hidden: late largest endpoint","kind":"real","visible":false,"input":{"nums":[8,1,6,2,7]},"expected":3,"tags":["hidden","suffix"]},
+{"id":"hidden-3","name":"hidden: decreasing prefix then rise","kind":"real","visible":false,"input":{"nums":[4,3,2,5,1]},"expected":3,"tags":["hidden","prefix"]},
+{"id":"hidden-4","name":"hidden: ramp only in low suffix","kind":"real","visible":false,"input":{"nums":[10,9,8,1,2,3,4]},"expected":3,"tags":["hidden","suffix"]}
+]}

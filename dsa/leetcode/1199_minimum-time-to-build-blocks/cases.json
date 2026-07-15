@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1199",
+  "cases": [
+    {"id":"sample-single-block","name":"sample: one worker builds one block","kind":"sample","visible":true,"input":{"blocks":[1],"split":1},"expected":1,"tags":["sample","single"]},
+    {"id":"sample-two-blocks","name":"sample: one split for two blocks","kind":"sample","visible":true,"input":{"blocks":[1,2],"split":5},"expected":7,"tags":["sample","parallel"]},
+    {"id":"sample-three-blocks","name":"sample: split one branch again","kind":"sample","visible":true,"input":{"blocks":[1,2,3],"split":1},"expected":4,"tags":["sample","greedy"]},
+    {"id":"trial-single-maximum","name":"single maximum-time block needs no split","kind":"trial","visible":true,"input":{"blocks":[100000],"split":100},"expected":100000,"tags":["boundary","maximum-time"]},
+    {"id":"trial-four-equal","name":"four equal blocks form a balanced tree","kind":"trial","visible":true,"input":{"blocks":[1,1,1,1],"split":2},"expected":5,"tags":["equal","balanced"]},
+    {"id":"real-long-block","name":"hidden: leave one long block until the final merge","kind":"real","visible":false,"input":{"blocks":[1,2,100],"split":1},"expected":101,"tags":["hidden","long-block"]},
+    {"id":"real-expensive-split","name":"hidden: expensive splits dominate equal blocks","kind":"real","visible":false,"input":{"blocks":[5,5,5],"split":10},"expected":25,"tags":["hidden","split-cost"]},
+    {"id":"real-unsorted","name":"hidden: input order does not determine merge order","kind":"real","visible":false,"input":{"blocks":[20,1,8,2],"split":3},"expected":23,"tags":["hidden","heap","unsorted"]}
+  ]
+}

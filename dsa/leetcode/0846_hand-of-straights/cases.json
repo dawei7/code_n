@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_846",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three valid consecutive groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "hand": [
+          1,
+          2,
+          3,
+          6,
+          2,
+          3,
+          4,
+          7,
+          8
+        ],
+        "group_size": 3
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: hand size is not divisible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "hand": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "group_size": 4
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "not-divisible"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: duplicate parallel groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "hand": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          4
+        ],
+        "group_size": 3
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: unordered consecutive groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hand": [
+          1,
+          6,
+          2,
+          3,
+          7,
+          5
+        ],
+        "group_size": 3
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "unordered"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: every card is its own group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hand": [
+          9,
+          1,
+          9,
+          100
+        ],
+        "group_size": 1
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "group-one"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: missing final successor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hand": [
+          1,
+          2,
+          3,
+          3,
+          4,
+          4
+        ],
+        "group_size": 3
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "missing"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: separated valid pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hand": [
+          10,
+          1,
+          11,
+          2
+        ],
+        "group_size": 2
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "gaps"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: zero begins a valid partition",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hand": [
+          0,
+          1,
+          1,
+          2
+        ],
+        "group_size": 2
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "zero"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: duplicate starts lack successors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hand": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          3
+        ],
+        "group_size": 3
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "duplicate-shortage"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: one complete group",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hand": [
+          4,
+          2,
+          3,
+          1
+        ],
+        "group_size": 4
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "whole-hand"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: equal cards cannot be consecutive",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hand": [
+          5,
+          5
+        ],
+        "group_size": 2
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "equal"
+      ]
+    },
+    {
+      "id": "hidden-6",
+      "name": "hidden: many parallel groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hand": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3
+        ],
+        "group_size": 3
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "multiplicity"
+      ]
+    }
+  ]
+}

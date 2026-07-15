@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "957",
+  "frontend_id": "921",
+  "title_slug": "minimum-add-to-make-parentheses-valid",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minAddToMakeValid",
+  "verified_submission_id": "2066954899",
+  "verified_at": "2026-07-14T06:00:08.236226+00:00"
+}

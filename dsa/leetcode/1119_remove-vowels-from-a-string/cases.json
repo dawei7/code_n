@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1119",
+  "cases": [
+    {"id":"sample-1","name":"sample: vowels throughout a sentence-like string","kind":"sample","visible":true,"input":{"s":"leetcodeisacommunityforcoders"},"expected":"ltcdscmmntyfrcdrs","tags":["sample","mixed"]},
+    {"id":"sample-2","name":"sample: one occurrence of every vowel","kind":"sample","visible":true,"input":{"s":"aeiou"},"expected":"","tags":["sample","all-vowels"]},
+    {"id":"trial-no-vowels","name":"trial: consonants including y are preserved","kind":"trial","visible":true,"input":{"s":"rhythm"},"expected":"rhythm","tags":["trial","no-vowels"]},
+    {"id":"trial-single-vowel","name":"trial: minimum input removed","kind":"trial","visible":true,"input":{"s":"a"},"expected":"","tags":["trial","minimum"]},
+    {"id":"real-single-consonant","name":"hidden: minimum retained input","kind":"real","visible":false,"input":{"s":"z"},"expected":"z","tags":["hidden","minimum"]},
+    {"id":"real-alternating","name":"hidden: alternating consonants and vowels","kind":"real","visible":false,"input":{"s":"abecidofug"},"expected":"bcdfg","tags":["hidden","alternating"]},
+    {"id":"real-repeated-vowels","name":"hidden: repeated vowels around consonants","kind":"real","visible":false,"input":{"s":"aaabooookeeeper"},"expected":"bkpr","tags":["hidden","repetition"]}
+  ]
+}

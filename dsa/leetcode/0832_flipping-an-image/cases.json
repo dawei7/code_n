@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_832",
+  "cases": [
+    {"id": "sample-1", "name": "sample: three by three image", "kind": "sample", "visible": true, "input": {"image": [[1, 1, 0], [1, 0, 1], [0, 0, 0]]}, "expected": [[1, 0, 0], [0, 1, 0], [1, 1, 1]], "tags": ["sample", "odd-side"]},
+    {"id": "sample-2", "name": "sample: four by four image", "kind": "sample", "visible": true, "input": {"image": [[1, 1, 0, 0], [1, 0, 0, 1], [0, 1, 1, 1], [1, 0, 1, 0]]}, "expected": [[1, 1, 0, 0], [0, 1, 1, 0], [0, 0, 0, 1], [1, 0, 1, 0]], "tags": ["sample", "even-side"]},
+    {"id": "sample-3", "name": "sample: one zero cell", "kind": "sample", "visible": true, "input": {"image": [[0]]}, "expected": [[1]], "tags": ["sample", "singleton"]},
+    {"id": "trial-1", "name": "trial: one one cell", "kind": "trial", "visible": true, "input": {"image": [[1]]}, "expected": [[0]], "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: complementary symmetric rows", "kind": "trial", "visible": true, "input": {"image": [[0, 1], [1, 0]]}, "expected": [[0, 1], [1, 0]], "tags": ["trial", "symmetric"]},
+    {"id": "trial-3", "name": "trial: odd rows with center inversion", "kind": "trial", "visible": true, "input": {"image": [[1, 0, 0], [0, 1, 0], [1, 1, 1]]}, "expected": [[1, 1, 0], [1, 0, 1], [0, 0, 0]], "tags": ["trial", "center-cell"]},
+    {"id": "hidden-1", "name": "hidden: all-zero image", "kind": "real", "visible": false, "input": {"image": [[0, 0, 0], [0, 0, 0], [0, 0, 0]]}, "expected": [[1, 1, 1], [1, 1, 1], [1, 1, 1]], "tags": ["hidden", "all-zero"]},
+    {"id": "hidden-2", "name": "hidden: all-one image", "kind": "real", "visible": false, "input": {"image": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]}, "expected": [[0, 0, 0], [0, 0, 0], [0, 0, 0]], "tags": ["hidden", "all-one"]},
+    {"id": "hidden-3", "name": "hidden: alternating four by four rows", "kind": "real", "visible": false, "input": {"image": [[0, 1, 0, 1], [1, 0, 1, 0], [0, 0, 1, 1], [1, 1, 0, 0]]}, "expected": [[0, 1, 0, 1], [1, 0, 1, 0], [0, 0, 1, 1], [1, 1, 0, 0]], "tags": ["hidden", "symmetric"]},
+    {"id": "hidden-4", "name": "hidden: asymmetric two by two image", "kind": "real", "visible": false, "input": {"image": [[1, 1], [0, 1]]}, "expected": [[0, 0], [0, 1]], "tags": ["hidden", "asymmetric"]}
+  ]
+}

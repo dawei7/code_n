@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1149",
+  "frontend_id": "1213",
+  "title_slug": "intersection-of-three-sorted-arrays",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.arraysIntersection",
+  "verified_submission_id": "2067939837",
+  "verified_at": "2026-07-15T00:34:06.575448+00:00"
+}

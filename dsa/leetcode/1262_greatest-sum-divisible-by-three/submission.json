@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1388",
+  "frontend_id": "1262",
+  "title_slug": "greatest-sum-divisible-by-three",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxSumDivThree",
+  "verified_submission_id": "2068031452",
+  "verified_at": "2026-07-15T03:43:22.292288+00:00"
+}

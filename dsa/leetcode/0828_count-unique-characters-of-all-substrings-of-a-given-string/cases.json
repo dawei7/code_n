@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_828",
+  "cases": [
+    {"id": "sample-1", "name": "sample: three distinct letters", "kind": "sample", "visible": true, "input": {"s": "ABC"}, "expected": 10, "tags": ["sample", "all-distinct"]},
+    {"id": "sample-2", "name": "sample: repeated endpoint letter", "kind": "sample", "visible": true, "input": {"s": "ABA"}, "expected": 8, "tags": ["sample", "repeated-letter"]},
+    {"id": "sample-3", "name": "sample: several repeated letters", "kind": "sample", "visible": true, "input": {"s": "LEETCODE"}, "expected": 92, "tags": ["sample", "mixed-frequency"]},
+    {"id": "trial-1", "name": "trial: one character", "kind": "trial", "visible": true, "input": {"s": "A"}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: two equal characters", "kind": "trial", "visible": true, "input": {"s": "AA"}, "expected": 2, "tags": ["trial", "all-equal"]},
+    {"id": "trial-3", "name": "trial: four equal characters", "kind": "trial", "visible": true, "input": {"s": "AAAA"}, "expected": 4, "tags": ["trial", "all-equal"]},
+    {"id": "trial-4", "name": "trial: repeated first letter at the end", "kind": "trial", "visible": true, "input": {"s": "ABCA"}, "expected": 18, "tags": ["trial", "endpoint-repeat"]},
+    {"id": "hidden-1", "name": "hidden: complete uppercase alphabet", "kind": "real", "visible": false, "input": {"s": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"}, "expected": 3276, "tags": ["hidden", "all-distinct", "alphabet"]},
+    {"id": "hidden-2", "name": "hidden: alternating pair", "kind": "real", "visible": false, "input": {"s": "ABAB"}, "expected": 12, "tags": ["hidden", "alternating"]},
+    {"id": "hidden-3", "name": "hidden: adjacent and separated repeats", "kind": "real", "visible": false, "input": {"s": "AABCA"}, "expected": 24, "tags": ["hidden", "mixed-frequency"]},
+    {"id": "hidden-4", "name": "hidden: repeated three-letter block", "kind": "real", "visible": false, "input": {"s": "ABCABC"}, "expected": 36, "tags": ["hidden", "repeated-substring"]},
+    {"id": "hidden-5", "name": "hidden: clustered endpoint repeats", "kind": "real", "visible": false, "input": {"s": "ZZXYZZ"}, "expected": 32, "tags": ["hidden", "endpoint-repeat", "clustered"]}
+  ]
+}

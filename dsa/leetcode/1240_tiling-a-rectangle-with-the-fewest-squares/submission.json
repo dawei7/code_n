@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1361",
+  "frontend_id": "1240",
+  "title_slug": "tiling-a-rectangle-with-the-fewest-squares",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.tilingRectangle",
+  "verified_submission_id": "2067982006",
+  "verified_at": "2026-07-15T02:19:25.594949+00:00"
+}

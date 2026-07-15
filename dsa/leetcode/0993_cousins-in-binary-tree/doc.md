@@ -8,48 +8,73 @@
 | Category | Algorithms |
 | Topics | Tree, Depth-First Search, Breadth-First Search, Binary Tree |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [cousins-in-binary-tree](https://leetcode.com/problems/cousins-in-binary-tree/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/cousins-in-binary-tree/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/cousins-in-binary-tree/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given the root of a binary tree whose node values are unique, together with the values `x` and `y` of two different nodes that both occur in the tree. Two nodes are cousins when they have the same depth but different parents.
+
+The root has depth $0$, and every child of a node at depth $d$ has depth $d+1$. Return `true` when the nodes identified by `x` and `y` satisfy both cousin conditions, and return `false` otherwise.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `root`: the root of a binary tree containing $N$ nodes, where $2\le N\le100$; every node value is unique and lies from $1$ through $100$.
+- `x` and `y`: different values of nodes present in the tree.
 
 **Return value**
 
-TODO
+- `true` if the two selected nodes have the same depth and different parents; otherwise, `false`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [1, 2, 3, 4], x = 4, y = 3`
+- Output: `false`
+- Explanation: Node $4$ is deeper than node $3$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [1, 2, 3, null, 4, null, 5], x = 5, y = 4`
+- Output: `true`
+- Explanation: The selected nodes share a depth and have different parents.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [1, 2, 3, null, 4], x = 2, y = 3`
+- Output: `false`
+- Explanation: Nodes $2$ and $3$ are siblings, so their parent is the same.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(N)$
+- **Space:** $O(N)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Carry each node's parent through a level traversal:** Begin a breadth-first traversal with the root paired with no parent. All entries processed in one outer iteration have the same depth. For that level, record the parent whenever a node's value equals `x` or `y`, and enqueue every child together with its current node.
+
+**Decide as soon as a relevant level ends:** If both values were found in the same level, they are cousins exactly when their recorded parent objects differ. If only one was found, the other node must occur at another depth, so the answer is immediately `false`. If neither appears, continue to the next level.
+
+Because both selected values are guaranteed to exist and node values are unique, encountering both nodes at one level with distinct parents is sufficient and no later tree structure can change the result.
+
+#### Complexity detail
+
+Each of the $N$ nodes enters and leaves the queue at most once, giving $O(N)$ time. The widest tree level can contain $O(N)$ nodes, so the queue uses $O(N)$ space.
+
+#### Alternatives and edge cases
+
+- **Depth-first search with parent and depth records:** One traversal can locate both nodes and compare the same two attributes; recursion may use $O(N)$ call-stack space in a skewed tree.
+- **Materialize every root-to-node path:** Comparing paths reveals depth and parent information, but repeatedly copying long paths can take $O(N^2)$ time on deep trees.
+- **Siblings:** Nodes at the same depth are not cousins when their parent is identical.
+- **Different depths:** Different parents alone are insufficient; both nodes must also share a depth.
+- **Root selected:** The root cannot be a cousin of another node because no other node has depth $0$.
+
+</details>

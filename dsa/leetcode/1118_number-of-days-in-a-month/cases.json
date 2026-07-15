@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1118",
+  "cases": [
+    {"id":"sample-1","name":"sample: 31-day summer month","kind":"sample","visible":true,"input":{"year":1992,"month":7},"expected":31,"tags":["sample","31-days"]},
+    {"id":"sample-2","name":"sample: century divisible by 400","kind":"sample","visible":true,"input":{"year":2000,"month":2},"expected":29,"tags":["sample","leap-century"]},
+    {"id":"sample-3","name":"sample: century not divisible by 400","kind":"sample","visible":true,"input":{"year":1900,"month":2},"expected":28,"tags":["sample","ordinary-century"]},
+    {"id":"trial-noncentury-leap","name":"trial: non-century leap year","kind":"trial","visible":true,"input":{"year":1992,"month":2},"expected":29,"tags":["trial","leap-year"]},
+    {"id":"trial-thirty-days","name":"trial: September has thirty days","kind":"trial","visible":true,"input":{"year":2024,"month":9},"expected":30,"tags":["trial","30-days"]},
+    {"id":"real-boundary-start","name":"hidden: first permitted year","kind":"real","visible":false,"input":{"year":1583,"month":1},"expected":31,"tags":["hidden","boundary"]},
+    {"id":"real-boundary-end","name":"hidden: 2100 is not a leap year","kind":"real","visible":false,"input":{"year":2100,"month":2},"expected":28,"tags":["hidden","boundary"]},
+    {"id":"real-december","name":"hidden: final month","kind":"real","visible":false,"input":{"year":2023,"month":12},"expected":31,"tags":["hidden","month-boundary"]}
+  ]
+}

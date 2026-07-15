@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1262",
+  "frontend_id": "1157",
+  "title_slug": "online-majority-element-in-subarray",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "MajorityChecker",
+  "verified_submission_id": "2067865216",
+  "verified_at": "2026-07-14T20:38:11.869565+00:00"
+}

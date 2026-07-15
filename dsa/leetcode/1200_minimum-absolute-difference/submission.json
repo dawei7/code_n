@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1306",
+  "frontend_id": "1200",
+  "title_slug": "minimum-absolute-difference",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumAbsDifference",
+  "verified_submission_id": "2067923336",
+  "verified_at": "2026-07-14T23:39:26.405782+00:00"
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_858",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first reflection reaches receptor 2",
+      "kind": "sample",
+      "visible": true,
+      "input": {"p": 2, "q": 1},
+      "expected": 2,
+      "tags": ["sample", "west"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: northeast receptor",
+      "kind": "sample",
+      "visible": true,
+      "input": {"p": 3, "q": 1},
+      "expected": 1,
+      "tags": ["sample", "northeast"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: southeast receptor",
+      "kind": "sample",
+      "visible": true,
+      "input": {"p": 3, "q": 2},
+      "expected": 0,
+      "tags": ["sample", "southeast"]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: direct corner hit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"p": 1, "q": 1},
+      "expected": 1,
+      "tags": ["trial", "direct"]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: reduce a common factor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"p": 6, "q": 4},
+      "expected": 0,
+      "tags": ["trial", "gcd"]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: vertical midpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"p": 6, "q": 3},
+      "expected": 2,
+      "tags": ["trial", "midpoint"]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: coprime odd dimensions",
+      "kind": "real",
+      "visible": false,
+      "input": {"p": 5, "q": 3},
+      "expected": 1,
+      "tags": ["hidden", "coprime"]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: even horizontal count",
+      "kind": "real",
+      "visible": false,
+      "input": {"p": 8, "q": 6},
+      "expected": 2,
+      "tags": ["hidden", "west"]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: odd horizontal and even vertical counts",
+      "kind": "real",
+      "visible": false,
+      "input": {"p": 5, "q": 4},
+      "expected": 0,
+      "tags": ["hidden", "southeast"]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: reduction preserves northeast parity",
+      "kind": "real",
+      "visible": false,
+      "input": {"p": 10, "q": 2},
+      "expected": 1,
+      "tags": ["hidden", "gcd"]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: larger shared factor",
+      "kind": "real",
+      "visible": false,
+      "input": {"p": 10, "q": 6},
+      "expected": 1,
+      "tags": ["hidden", "gcd"]
+    },
+    {
+      "id": "hidden-6",
+      "name": "hidden: maximum equal values",
+      "kind": "real",
+      "visible": false,
+      "input": {"p": 1000, "q": 1000},
+      "expected": 1,
+      "tags": ["hidden", "maximum"]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1209",
+  "measurement_note": "Size is the alternating input length with k = 2, so no group disappears. The run stack processes each character once, while an implementation that rescans the accumulated reduced prefix for every new character performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-32",
+      "name": "benchmark: alternating survivor string of length 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "abababababababababababababababab",
+        "k": 2
+      },
+      "expected": "abababababababababababababababab",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "no-removals"
+      ]
+    },
+    {
+      "id": "benchmark-scale-128",
+      "name": "benchmark: alternating survivor string of length 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+        "k": 2
+      },
+      "expected": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "no-removals"
+      ]
+    },
+    {
+      "id": "benchmark-scale-512",
+      "name": "benchmark: alternating survivor string of length 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+        "k": 2
+      },
+      "expected": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "no-removals"
+      ]
+    }
+  ]
+}

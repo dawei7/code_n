@@ -2,15 +2,17 @@
 
 
 def solve(values: list[int], labels: list[int], num_wanted: int, use_limit: int) -> int:
-    used: dict[int, int] = {}
+    label_usage: dict[int, int] = {}
     total = 0
-    chosen = 0
+    selected = 0
+
     for value, label in sorted(zip(values, labels), reverse=True):
-        if chosen == num_wanted:
+        if selected == num_wanted:
             break
-        if used.get(label, 0) == use_limit:
+        if label_usage.get(label, 0) == use_limit:
             continue
-        used[label] = used.get(label, 0) + 1
+        label_usage[label] = label_usage.get(label, 0) + 1
         total += value
-        chosen += 1
+        selected += 1
+
     return total

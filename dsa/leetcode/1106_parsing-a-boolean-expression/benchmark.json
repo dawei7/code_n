@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1106",
+  "measurement_note": "Size is n, the expression length. Each expression nests unary NOT groups. The optimal stack scans once, while the calibrated slower implementation repeatedly locates an innermost group and explicitly rebuilds the remaining expression character by character, causing quadratic copied text.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 nested NOT operators",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 49,
+      "input": {
+        "expression": "!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(t))))))))))))))))"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "text-replacement"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 nested NOT operators",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 193,
+      "input": {
+        "expression": "!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(t))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "text-replacement"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 nested NOT operators",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 769,
+      "input": {
+        "expression": "!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(!(t))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "text-replacement"
+      ]
+    }
+  ]
+}

@@ -1,20 +1,17 @@
-"""Optimal solution for LeetCode 1019: Next Greater Node In Linked List."""
-
-from __future__ import annotations
-
-from typing import Any
+"""Optimal app-local solution for LeetCode 1019."""
 
 
-def solve(head: Any | None) -> list[int]:
-    values: list[int] = []
+def solve(head):
+    values = []
     while head is not None:
         values.append(head.val)
         head = head.next
 
     answer = [0] * len(values)
-    stack: list[int] = []
-    for i, value in enumerate(values):
+    stack = []
+    for index, value in enumerate(values):
         while stack and values[stack[-1]] < value:
             answer[stack.pop()] = value
-        stack.append(i)
+        stack.append(index)
+
     return answer

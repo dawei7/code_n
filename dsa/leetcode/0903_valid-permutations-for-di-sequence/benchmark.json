@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_903",
+  "measurement_note": "Size is n, the DI string length. Prefix and suffix accumulation evaluates each shrinking DP row in linear time for O(n squared) total work; a correct slower baseline recomputes every range sum separately and takes O(n cubed) time.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8-relation alternating sequence",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "IDIDIDID"
+      },
+      "expected": 7936,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "recomputed-range-sums"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32-relation alternating sequence",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "IDIDIDIDIDIDIDIDIDIDIDIDIDIDIDID"
+      },
+      "expected": 778831298,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "recomputed-range-sums"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128-relation alternating sequence",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "IDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDIDID"
+      },
+      "expected": 917911821,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "recomputed-range-sums"
+      ]
+    }
+  ]
+}

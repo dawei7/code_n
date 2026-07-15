@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1180",
+  "cases": [
+    {"id":"sample-mixed-runs","name":"sample: long and single-character runs","kind":"sample","visible":true,"input":{"s":"aaaba"},"expected":8,"tags":["sample","runs"]},
+    {"id":"sample-all-equal","name":"sample: every substring qualifies","kind":"sample","visible":true,"input":{"s":"aaaaaaaaaa"},"expected":55,"tags":["sample","all-equal"]},
+    {"id":"trial-all-distinct","name":"only length-one substrings qualify","kind":"trial","visible":true,"input":{"s":"abc"},"expected":3,"tags":["all-distinct"]},
+    {"id":"trial-single-character","name":"minimum-length string","kind":"trial","visible":true,"input":{"s":"z"},"expected":1,"tags":["boundary","single"]},
+    {"id":"real-several-runs","name":"hidden: sum several triangular run counts","kind":"real","visible":false,"input":{"s":"aabbccccdd"},"expected":19,"tags":["hidden","multiple-runs"]},
+    {"id":"real-returning-character","name":"hidden: separated equal letters form different runs","kind":"real","visible":false,"input":{"s":"aaabaaa"},"expected":13,"tags":["hidden","separated-runs"]}
+  ]
+}

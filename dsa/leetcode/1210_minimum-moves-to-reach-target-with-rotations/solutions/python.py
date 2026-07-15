@@ -1,7 +1,7 @@
 from collections import deque
 
 
-def solve(grid):
+def solve(grid: list[list[int]]) -> int:
     n = len(grid)
     start = (0, 0, 0)
     target = (n - 1, n - 2, 0)

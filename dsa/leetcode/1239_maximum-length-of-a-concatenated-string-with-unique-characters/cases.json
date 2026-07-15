@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1239",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: un iq ue",
+      "id": "sample-short-words",
+      "name": "sample: choose either of two four-letter concatenations",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,12 +17,12 @@
       "expected": 4,
       "tags": [
         "sample",
-        "backtracking"
+        "overlap"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: cha r act ers",
+      "id": "sample-longer-words",
+      "name": "sample: combine compatible longer strings",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -34,12 +35,13 @@
       },
       "expected": 6,
       "tags": [
-        "sample"
+        "sample",
+        "backtracking"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: full alphabet",
+      "id": "sample-alphabet",
+      "name": "sample: one word contains the full alphabet",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -49,24 +51,82 @@
       },
       "expected": 26,
       "tags": [
-        "sample"
+        "sample",
+        "full-alphabet"
       ]
     },
     {
-      "id": "real-invalid-words",
-      "name": "hidden: repeated letters inside words",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-invalid",
+      "name": "all words repeat characters internally",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           "aa",
-          "bb"
+          "bb",
+          "cc"
         ]
       },
       "expected": 0,
       "tags": [
+        "internal-duplicates"
+      ]
+    },
+    {
+      "id": "trial-disjoint",
+      "name": "all pairwise-disjoint words may be selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          "ab",
+          "cd",
+          "efg"
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "disjoint"
+      ]
+    },
+    {
+      "id": "real-mixed-invalid",
+      "name": "hidden: ignore invalid words among useful choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          "ab",
+          "cc",
+          "def",
+          "fa",
+          "zz"
+        ]
+      },
+      "expected": 5,
+      "tags": [
         "hidden",
-        "edge"
+        "mixed-validity"
+      ]
+    },
+    {
+      "id": "real-order-independent-length",
+      "name": "hidden: overlaps force a nonadjacent subsequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          "abc",
+          "de",
+          "cdef",
+          "gh",
+          "aij"
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "overlap"
       ]
     }
   ]

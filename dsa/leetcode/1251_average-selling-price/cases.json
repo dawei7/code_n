@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1251",
+  "cases": [
+    {
+      "id": "sample-weighted",
+      "name": "sample: weighted prices across intervals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Prices": [
+            {
+              "product_id": 1,
+              "start_date": "2019-02-17",
+              "end_date": "2019-02-28",
+              "price": 5
+            },
+            {
+              "product_id": 1,
+              "start_date": "2019-03-01",
+              "end_date": "2019-03-22",
+              "price": 20
+            },
+            {
+              "product_id": 2,
+              "start_date": "2019-02-01",
+              "end_date": "2019-02-20",
+              "price": 15
+            },
+            {
+              "product_id": 2,
+              "start_date": "2019-02-21",
+              "end_date": "2019-03-31",
+              "price": 30
+            }
+          ],
+          "UnitsSold": [
+            {
+              "product_id": 1,
+              "purchase_date": "2019-02-25",
+              "units": 100
+            },
+            {
+              "product_id": 1,
+              "purchase_date": "2019-03-01",
+              "units": 15
+            },
+            {
+              "product_id": 2,
+              "purchase_date": "2019-02-10",
+              "units": 200
+            },
+            {
+              "product_id": 2,
+              "purchase_date": "2019-03-22",
+              "units": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "average_price"
+        ],
+        "rows": [
+          [
+            1,
+            6.96
+          ],
+          [
+            2,
+            16.96
+          ]
+        ]
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-sales",
+      "name": "sample: product without sales",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Prices": [
+            {
+              "product_id": 1,
+              "start_date": "2020-01-01",
+              "end_date": "2020-12-31",
+              "price": 9
+            },
+            {
+              "product_id": 2,
+              "start_date": "2020-01-01",
+              "end_date": "2020-12-31",
+              "price": 10
+            }
+          ],
+          "UnitsSold": [
+            {
+              "product_id": 2,
+              "purchase_date": "2020-06-01",
+              "units": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "average_price"
+        ],
+        "rows": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            10.0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "zero-sales"
+      ]
+    },
+    {
+      "id": "sample-boundaries",
+      "name": "sample: inclusive interval boundaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Prices": [
+            {
+              "product_id": 1,
+              "start_date": "2020-01-01",
+              "end_date": "2020-01-31",
+              "price": 10
+            }
+          ],
+          "UnitsSold": [
+            {
+              "product_id": 1,
+              "purchase_date": "2020-01-01",
+              "units": 2
+            },
+            {
+              "product_id": 1,
+              "purchase_date": "2020-01-31",
+              "units": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "average_price"
+        ],
+        "rows": [
+          [
+            1,
+            10.0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "trial-one-sale",
+      "name": "single product and sale",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Prices": [
+            {
+              "product_id": 7,
+              "start_date": "2021-01-01",
+              "end_date": "2021-12-31",
+              "price": 13
+            }
+          ],
+          "UnitsSold": [
+            {
+              "product_id": 7,
+              "purchase_date": "2021-06-01",
+              "units": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "average_price"
+        ],
+        "rows": [
+          [
+            7,
+            13.0
+          ]
+        ]
+      },
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-rounding",
+      "name": "weighted result requires rounding",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Prices": [
+            {
+              "product_id": 3,
+              "start_date": "2022-01-01",
+              "end_date": "2022-01-15",
+              "price": 1
+            },
+            {
+              "product_id": 3,
+              "start_date": "2022-01-16",
+              "end_date": "2022-01-31",
+              "price": 2
+            }
+          ],
+          "UnitsSold": [
+            {
+              "product_id": 3,
+              "purchase_date": "2022-01-05",
+              "units": 1
+            },
+            {
+              "product_id": 3,
+              "purchase_date": "2022-01-20",
+              "units": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "average_price"
+        ],
+        "rows": [
+          [
+            3,
+            1.67
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "rounding"
+      ]
+    },
+    {
+      "id": "real-mixed-empty",
+      "name": "hidden: sold and unsold products",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Prices": [
+            {
+              "product_id": 1,
+              "start_date": "2023-01-01",
+              "end_date": "2023-12-31",
+              "price": 4
+            },
+            {
+              "product_id": 2,
+              "start_date": "2023-01-01",
+              "end_date": "2023-12-31",
+              "price": 8
+            }
+          ],
+          "UnitsSold": [
+            {
+              "product_id": 2,
+              "purchase_date": "2023-05-01",
+              "units": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "average_price"
+        ],
+        "rows": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            8.0
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "zero-sales"
+      ]
+    },
+    {
+      "id": "real-multiple-sales",
+      "name": "hidden: several quantities in one interval",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Prices": [
+            {
+              "product_id": 9,
+              "start_date": "2024-01-01",
+              "end_date": "2024-12-31",
+              "price": 6
+            }
+          ],
+          "UnitsSold": [
+            {
+              "product_id": 9,
+              "purchase_date": "2024-02-01",
+              "units": 7
+            },
+            {
+              "product_id": 9,
+              "purchase_date": "2024-08-01",
+              "units": 11
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "average_price"
+        ],
+        "rows": [
+          [
+            9,
+            6.0
+          ]
+        ]
+      },
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

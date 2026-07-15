@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1292",
+  "frontend_id": "1174",
+  "title_slug": "immediate-food-delivery-ii",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2067891555",
+  "verified_at": "2026-07-14T21:48:57.417283+00:00"
+}

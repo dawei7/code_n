@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_835",
+  "cases": [
+    {"id": "sample-1", "name": "sample: shift right and down", "kind": "sample", "visible": true, "input": {"img1": [[1, 1, 0], [0, 1, 0], [0, 1, 0]], "img2": [[0, 0, 0], [0, 1, 1], [0, 0, 1]]}, "expected": 3, "tags": ["sample", "two-axis-shift"]},
+    {"id": "sample-2", "name": "sample: matching singleton ones", "kind": "sample", "visible": true, "input": {"img1": [[1]], "img2": [[1]]}, "expected": 1, "tags": ["sample", "singleton"]},
+    {"id": "sample-3", "name": "sample: singleton zeros", "kind": "sample", "visible": true, "input": {"img1": [[0]], "img2": [[0]]}, "expected": 0, "tags": ["sample", "all-zero"]},
+    {"id": "trial-1", "name": "trial: one image is all zero", "kind": "trial", "visible": true, "input": {"img1": [[0, 0], [0, 0]], "img2": [[1, 1], [1, 1]]}, "expected": 0, "tags": ["trial", "all-zero"]},
+    {"id": "trial-2", "name": "trial: identical checkerboards", "kind": "trial", "visible": true, "input": {"img1": [[1, 0, 1], [0, 1, 0], [1, 0, 1]], "img2": [[1, 0, 1], [0, 1, 0], [1, 0, 1]]}, "expected": 5, "tags": ["trial", "zero-shift"]},
+    {"id": "trial-3", "name": "trial: opposite corner single bits", "kind": "trial", "visible": true, "input": {"img1": [[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]], "img2": [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]]}, "expected": 1, "tags": ["trial", "maximum-shift"]},
+    {"id": "hidden-1", "name": "hidden: diagonal versus anti-diagonal", "kind": "real", "visible": false, "input": {"img1": [[1, 0, 0], [0, 1, 0], [0, 0, 1]], "img2": [[0, 0, 1], [0, 1, 0], [1, 0, 0]]}, "expected": 1, "tags": ["hidden", "diagonals"]},
+    {"id": "hidden-2", "name": "hidden: dense versus checkerboard", "kind": "real", "visible": false, "input": {"img1": [[1, 1], [1, 1]], "img2": [[1, 0], [0, 1]]}, "expected": 2, "tags": ["hidden", "dense"]},
+    {"id": "hidden-3", "name": "hidden: complementary checkerboards", "kind": "real", "visible": false, "input": {"img1": [[1, 0, 1], [0, 1, 0], [1, 0, 1]], "img2": [[0, 1, 0], [1, 0, 1], [0, 1, 0]]}, "expected": 3, "tags": ["hidden", "horizontal-shift"]},
+    {"id": "hidden-4", "name": "hidden: translated corner triomino", "kind": "real", "visible": false, "input": {"img1": [[1, 1, 0], [1, 0, 0], [0, 0, 0]], "img2": [[0, 0, 0], [0, 1, 1], [0, 1, 0]]}, "expected": 3, "tags": ["hidden", "translated-shape"]},
+    {"id": "hidden-5", "name": "hidden: unequal counts limit overlap", "kind": "real", "visible": false, "input": {"img1": [[1, 1, 1], [1, 1, 1], [1, 1, 1]], "img2": [[0, 1, 0], [1, 1, 1], [0, 1, 0]]}, "expected": 5, "tags": ["hidden", "count-bound"]}
+  ]
+}

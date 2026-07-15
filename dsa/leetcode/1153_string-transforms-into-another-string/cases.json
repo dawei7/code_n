@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1153",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: ordered conversions succeed",
+      "kind": "sample",
+      "visible": true,
+      "input": {"str1": "aabcc", "str2": "ccdee"},
+      "expected": true,
+      "tags": ["sample", "possible"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: source mapping conflicts",
+      "kind": "sample",
+      "visible": true,
+      "input": {"str1": "leetcode", "str2": "codeleet"},
+      "expected": false,
+      "tags": ["sample", "conflict"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: full alphabet cycle has no spare",
+      "kind": "sample",
+      "visible": true,
+      "input": {"str1": "abcdefghijklmnopqrstuvwxyz", "str2": "bcdefghijklmnopqrstuvwxyza"},
+      "expected": false,
+      "tags": ["sample", "cycle", "full-alphabet"]
+    },
+    {
+      "id": "trial-equal-full-alphabet",
+      "name": "equal strings need zero conversions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"str1": "abcdefghijklmnopqrstuvwxyz", "str2": "abcdefghijklmnopqrstuvwxyz"},
+      "expected": true,
+      "tags": ["trial", "already-equal", "full-alphabet"]
+    },
+    {
+      "id": "trial-many-to-one",
+      "name": "multiple source letters may merge",
+      "kind": "trial",
+      "visible": true,
+      "input": {"str1": "ab", "str2": "cc"},
+      "expected": true,
+      "tags": ["trial", "many-to-one"]
+    },
+    {
+      "id": "real-direct-conflict",
+      "name": "hidden: repeated source needs two targets",
+      "kind": "real",
+      "visible": false,
+      "input": {"str1": "aa", "str2": "bc"},
+      "expected": false,
+      "tags": ["real", "conflict"]
+    },
+    {
+      "id": "real-cycle-with-spare",
+      "name": "hidden: cycle succeeds with an unused letter",
+      "kind": "real",
+      "visible": false,
+      "input": {"str1": "abcabc", "str2": "bcabca"},
+      "expected": true,
+      "tags": ["real", "cycle", "spare-letter"]
+    },
+    {
+      "id": "real-single-character",
+      "name": "hidden: one character changes",
+      "kind": "real",
+      "visible": false,
+      "input": {"str1": "a", "str2": "z"},
+      "expected": true,
+      "tags": ["real", "minimum-length"]
+    }
+  ]
+}

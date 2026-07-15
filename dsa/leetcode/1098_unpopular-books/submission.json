@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1198",
+  "frontend_id": "1098",
+  "title_slug": "unpopular-books",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2067621969",
+  "verified_at": "2026-07-14T16:38:45.711948+00:00"
+}

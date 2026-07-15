@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_910",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: separated endpoints",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          10
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "gap"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three sign choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          6
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "mixed-signs"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: zero adjustment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          4
+        ],
+        "k": 0
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "zero-k"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: equal values can split signs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: duplicate low values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          7,
+          2
+        ],
+        "k": 4
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: one-unit remaining gap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "gap"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: maximum input and adjustment",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          10000
+        ],
+        "k": 10000
+      },
+      "expected": 10000,
+      "tags": [
+        "hidden",
+        "bounds"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: unsorted interior values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          1,
+          5,
+          9
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: duplicate extrema",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          8,
+          8
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: crossing changed groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          4,
+          8
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "crossing"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_856",
+  "measurement_note": "Size is the string length. A depth scan takes O(size) time and O(1) space. Recomputing nesting depth from the start for every primitive pair takes O(size squared) time on these concatenated primitive strings; both return size divided by two.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3 concatenated primitive pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "s": "()()()"
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "flat"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 12 concatenated primitive pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "s": "()()()()()()()()()()()()"
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "flat"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 24 concatenated primitive pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "s": "()()()()()()()()()()()()()()()()()()()()()()()()"
+      },
+      "expected": 24,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "flat"
+      ]
+    }
+  ]
+}

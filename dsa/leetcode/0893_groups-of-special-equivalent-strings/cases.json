@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_893",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three maximal groups of four-letter words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd",
+          "cdab",
+          "cbad",
+          "xyzz",
+          "zzxy",
+          "zzyx"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "mixed-groups"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all permutations of three letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "acb",
+          "bac",
+          "bca",
+          "cab",
+          "cba"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-word"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: duplicate strings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "aa",
+          "aa"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: swapping across parity is forbidden",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ba"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "parity"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: example transformation and one separate word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "zzxy",
+          "xyzz",
+          "zzyx"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "mixed-groups"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: same overall multiset but different parity multisets",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abcd",
+          "badc"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "parity"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: both parity classes can be reordered",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aabb",
+          "bbaa"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "equivalent"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: odd-length reversal preserves parity multisets",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abc",
+          "cba"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: duplicates across two groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abcd",
+          "cdab",
+          "abcd",
+          "badc",
+          "badc"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "mixed-groups"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1137",
+  "frontend_id": "1051",
+  "title_slug": "height-checker",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.heightChecker",
+  "verified_submission_id": "2067414067",
+  "verified_at": "2026-07-14T13:39:28.188003+00:00"
+}

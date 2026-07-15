@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_921",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one extra closing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "())"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "unmatched-close"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three unmatched openings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "((("
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "unmatched-open"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: already valid concatenation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "()()"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: reversed pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": ")("
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "prefix-order"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one opening",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "("
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-open"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: one closing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": ")"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-close"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: nested valid string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(((())))"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "nested"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: alternating unmatched prefixes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": ")())(("
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "mixed-unmatched"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: all closings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "))))))"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "all-close"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: deep imbalance around valid core",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "((()())))))"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "deep-prefix"
+      ]
+    }
+  ]
+}
+

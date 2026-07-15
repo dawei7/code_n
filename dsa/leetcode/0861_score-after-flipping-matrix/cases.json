@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_861",
+  "cases": [
+    {"id": "sample-1", "name": "sample: official three-row matrix", "kind": "sample", "visible": true, "input": {"grid": [[0, 0, 1, 1], [1, 0, 1, 0], [1, 1, 0, 0]]}, "expected": 39, "tags": ["sample", "mixed"]},
+    {"id": "sample-2", "name": "sample: single zero", "kind": "sample", "visible": true, "input": {"grid": [[0]]}, "expected": 1, "tags": ["sample", "single"]},
+    {"id": "sample-3", "name": "sample: complementary constant rows", "kind": "sample", "visible": true, "input": {"grid": [[1, 1], [0, 0]]}, "expected": 6, "tags": ["sample", "row-flip"]},
+    {"id": "trial-1", "name": "trial: single one", "kind": "trial", "visible": true, "input": {"grid": [[1]]}, "expected": 1, "tags": ["trial", "single"]},
+    {"id": "trial-2", "name": "trial: complementary two-bit rows", "kind": "trial", "visible": true, "input": {"grid": [[0, 1], [1, 0]]}, "expected": 6, "tags": ["trial", "column-flip"]},
+    {"id": "trial-3", "name": "trial: one three-bit row", "kind": "trial", "visible": true, "input": {"grid": [[1, 0, 1]]}, "expected": 7, "tags": ["trial", "single-row"]},
+    {"id": "hidden-1", "name": "hidden: all zeros", "kind": "real", "visible": false, "input": {"grid": [[0, 0], [0, 0]]}, "expected": 6, "tags": ["hidden", "all-zero"]},
+    {"id": "hidden-2", "name": "hidden: majority choice after row flips", "kind": "real", "visible": false, "input": {"grid": [[1, 0], [1, 1], [0, 1]]}, "expected": 8, "tags": ["hidden", "majority"]},
+    {"id": "hidden-3", "name": "hidden: tied lower columns", "kind": "real", "visible": false, "input": {"grid": [[0, 1, 0], [1, 1, 0]]}, "expected": 11, "tags": ["hidden", "tie"]},
+    {"id": "hidden-4", "name": "hidden: one-column matrix", "kind": "real", "visible": false, "input": {"grid": [[0], [1], [0]]}, "expected": 3, "tags": ["hidden", "single-column"]},
+    {"id": "hidden-5", "name": "hidden: all ones", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]}, "expected": 21, "tags": ["hidden", "optimal"]},
+    {"id": "hidden-6", "name": "hidden: checkerboard rows", "kind": "real", "visible": false, "input": {"grid": [[0, 1, 0], [1, 0, 1], [0, 1, 0]]}, "expected": 21, "tags": ["hidden", "checkerboard"]}
+  ]
+}

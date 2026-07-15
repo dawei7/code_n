@@ -1,14 +1,14 @@
-"""Optimal solution for LeetCode 1023: Camelcase Matching."""
+"""Optimal app-local solution for LeetCode 1023."""
 
 
-def solve(queries: list[str], pattern: str) -> list[bool]:
-    def matches(query: str) -> bool:
-        i = 0
-        for char in query:
-            if i < len(pattern) and char == pattern[i]:
-                i += 1
-            elif char.isupper():
+def solve(queries, pattern):
+    def matches(query):
+        pattern_index = 0
+        for character in query:
+            if pattern_index < len(pattern) and character == pattern[pattern_index]:
+                pattern_index += 1
+            elif character.isupper():
                 return False
-        return i == len(pattern)
+        return pattern_index == len(pattern)
 
     return [matches(query) for query in queries]

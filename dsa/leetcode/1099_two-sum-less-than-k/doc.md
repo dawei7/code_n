@@ -8,51 +8,70 @@
 | Category | Algorithms |
 | Topics | Array, Two Pointers, Binary Search, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [two-sum-less-than-k](https://leetcode.com/problems/two-sum-less-than-k/) |
+| LeetCode | [Open](https://leetcode.com/problems/two-sum-less-than-k/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/two-sum-less-than-k/).
 
 ### Goal
-Find the largest possible sum of two distinct array elements that is strictly less than `k`. Return `-1` if no such pair exists.
+
+Given an integer array `nums` and an integer `k`, choose indices $i < j$ and let their values form the sum `nums[i] + nums[j]`. Among every such pair whose sum is strictly less than `k`, return the maximum sum.
+
+The two values must come from different indices, although their numeric values may be equal. If no pair has a sum strictly below `k`, return `-1`.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: List of integers.
-- `k`: Strict upper bound for the pair sum.
+- `nums`: an array of $n$ integers, where $1 \leq n \leq 100$ and $1 \leq \texttt{nums[i]} \leq 1000$.
+- `k`: the strict upper bound for the pair sum, where $1 \leq \texttt{k} \leq 2000$.
 
 **Return value**
 
-Maximum valid pair sum, or `-1`.
+The greatest value of `nums[i] + nums[j]` over distinct indices $i < j$ for which the sum is less than `k`, or `-1` when no valid pair exists.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [34, 23, 1, 24, 75, 33, 54, 8], k = 60`
 - Output: `58`
+
+Values 34 and 24 produce 58, and no valid pair has a larger sum below 60.
 
 **Example 2**
 
 - Input: `nums = [10, 20, 30], k = 15`
 - Output: `-1`
 
-**Example 3**
+### Required Complexity
 
-- Input: `nums = [1, 2, 3, 4], k = 6`
-- Output: `5`
+- **Time:** $O(n \log n)$
+- **Space:** $O(n)$
 
----
+<details>
+<summary>Approach</summary>
 
-## Solution
-### Approach
-Sort the array and use two pointers. If `nums[left] + nums[right]` is less than `k`, it is a candidate answer, and increasing `left` may produce a larger sum. If the sum is at least `k`, decrease `right` to make the sum smaller.
+#### General
 
-The best candidate seen during the scan is the answer.
+**Sort to expose monotonic choices.** Work with a sorted copy of `nums`. Place `left` at the smallest value and `right` at the largest. The current pair is the widest remaining combination, but its sum determines which endpoint can safely be discarded.
 
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)` for sorting.
-- **Space Complexity**: `O(1)` extra space if sorting in place, aside from language-specific sort overhead.
+**Advance the smaller endpoint after a valid sum.** If `values[left] + values[right] < k`, record it as a candidate. Keeping the same left value while moving `right` inward cannot improve that sum, so every pair using this left endpoint is no better. Increment `left` to seek a larger candidate.
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Reduce the larger endpoint after an invalid sum.** If the current sum is at least `k`, pairing `values[right]` with any index between `left` and `right` only keeps or increases the sum. Therefore this right endpoint cannot participate in a valid remaining pair and can be decremented.
+
+Each step discards one endpoint only after proving that it cannot yield a better valid answer. The pointers eventually cover all potentially optimal pair boundaries, and the best recorded candidate is consequently the maximum valid pair sum. If no candidate is recorded, no valid pair exists.
+
+#### Complexity detail
+
+Sorting the $n$ values costs $O(n \log n)$ time, and the two pointers make one $O(n)$ pass. The sorted copy uses $O(n)$ auxiliary space; the pointer state itself is constant-size.
+
+#### Alternatives and edge cases
+
+- **Check every pair:** A double loop is direct and correct but takes $O(n^2)$ time.
+- **Sorting plus binary search:** For each left value, binary-search the largest compatible right value, also giving $O(n \log n)$ time.
+- **Strict threshold:** A pair summing exactly to `k` is invalid and must force the right pointer inward.
+- **Duplicate values:** Equal values may form a pair when they occupy different indices.
+- **Fewer than two elements:** No pair exists, so the result is `-1`.
+- **All sums too large:** The initialized `-1` remains unchanged.
+
+</details>

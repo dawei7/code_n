@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1126",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two above-average event types",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Events": [
+            {
+              "business_id": 1,
+              "event_type": "reviews",
+              "occurrences": 7
+            },
+            {
+              "business_id": 3,
+              "event_type": "reviews",
+              "occurrences": 3
+            },
+            {
+              "business_id": 1,
+              "event_type": "ads",
+              "occurrences": 11
+            },
+            {
+              "business_id": 2,
+              "event_type": "ads",
+              "occurrences": 7
+            },
+            {
+              "business_id": 3,
+              "event_type": "ads",
+              "occurrences": 6
+            },
+            {
+              "business_id": 1,
+              "event_type": "page views",
+              "occurrences": 3
+            },
+            {
+              "business_id": 2,
+              "event_type": "page views",
+              "occurrences": 12
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "business_id"
+        ],
+        "rows": [
+          [
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "strict-average"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "one event recorded by one business",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Events": [
+            {
+              "business_id": 1,
+              "event_type": "views",
+              "occurrences": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "business_id"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-equal-averages",
+      "name": "all rows equal their event averages",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Events": [
+            {
+              "business_id": 1,
+              "event_type": "a",
+              "occurrences": 5
+            },
+            {
+              "business_id": 2,
+              "event_type": "a",
+              "occurrences": 5
+            },
+            {
+              "business_id": 1,
+              "event_type": "b",
+              "occurrences": 8
+            },
+            {
+              "business_id": 2,
+              "event_type": "b",
+              "occurrences": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "business_id"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "strict-comparison"
+      ]
+    },
+    {
+      "id": "trial-one-qualifying-type",
+      "name": "above average for only one event type",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Events": [
+            {
+              "business_id": 1,
+              "event_type": "a",
+              "occurrences": 9
+            },
+            {
+              "business_id": 2,
+              "event_type": "a",
+              "occurrences": 1
+            },
+            {
+              "business_id": 1,
+              "event_type": "b",
+              "occurrences": 4
+            },
+            {
+              "business_id": 2,
+              "event_type": "b",
+              "occurrences": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "business_id"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "one-qualifier"
+      ]
+    },
+    {
+      "id": "real-two-active",
+      "name": "hidden: two active businesses",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Events": [
+            {
+              "business_id": 1,
+              "event_type": "a",
+              "occurrences": 9
+            },
+            {
+              "business_id": 2,
+              "event_type": "a",
+              "occurrences": 8
+            },
+            {
+              "business_id": 3,
+              "event_type": "a",
+              "occurrences": 1
+            },
+            {
+              "business_id": 1,
+              "event_type": "b",
+              "occurrences": 9
+            },
+            {
+              "business_id": 2,
+              "event_type": "b",
+              "occurrences": 2
+            },
+            {
+              "business_id": 3,
+              "event_type": "b",
+              "occurrences": 1
+            },
+            {
+              "business_id": 1,
+              "event_type": "c",
+              "occurrences": 1
+            },
+            {
+              "business_id": 2,
+              "event_type": "c",
+              "occurrences": 9
+            },
+            {
+              "business_id": 3,
+              "event_type": "c",
+              "occurrences": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "business_id"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "multiple-businesses"
+      ]
+    },
+    {
+      "id": "real-missing-event-rows",
+      "name": "hidden: averages include only recorded businesses",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Events": [
+            {
+              "business_id": 1,
+              "event_type": "a",
+              "occurrences": 10
+            },
+            {
+              "business_id": 2,
+              "event_type": "a",
+              "occurrences": 2
+            },
+            {
+              "business_id": 1,
+              "event_type": "b",
+              "occurrences": 12
+            },
+            {
+              "business_id": 3,
+              "event_type": "b",
+              "occurrences": 4
+            },
+            {
+              "business_id": 1,
+              "event_type": "c",
+              "occurrences": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "business_id"
+        ],
+        "rows": [
+          [
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "sparse-events"
+      ]
+    },
+    {
+      "id": "real-three-qualifiers",
+      "name": "hidden: one business qualifies in three groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Events": [
+            {
+              "business_id": 7,
+              "event_type": "a",
+              "occurrences": 100
+            },
+            {
+              "business_id": 8,
+              "event_type": "a",
+              "occurrences": 0
+            },
+            {
+              "business_id": 7,
+              "event_type": "b",
+              "occurrences": 80
+            },
+            {
+              "business_id": 8,
+              "event_type": "b",
+              "occurrences": 20
+            },
+            {
+              "business_id": 7,
+              "event_type": "c",
+              "occurrences": 60
+            },
+            {
+              "business_id": 8,
+              "event_type": "c",
+              "occurrences": 40
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "business_id"
+        ],
+        "rows": [
+          [
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "three-qualifiers"
+      ]
+    }
+  ]
+}

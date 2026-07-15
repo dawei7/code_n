@@ -1,82 +1,11 @@
-{
-  "challenge_id": "lc_1000",
-  "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: pairwise merge",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "stones": [
-          3,
-          2,
-          4,
-          1
-        ],
-        "k": 2
-      },
-      "expected": 20,
-      "tags": [
-        "sample",
-        "dynamic-programming"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: impossible k",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "stones": [
-          3,
-          2,
-          4,
-          1
-        ],
-        "k": 3
-      },
-      "expected": -1,
-      "tags": [
-        "sample",
-        "impossible"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: ternary merge",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "stones": [
-          3,
-          5,
-          1,
-          2,
-          6
-        ],
-        "k": 3
-      },
-      "expected": 25,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-two-piles",
-      "name": "hidden: already mergeable pair",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "stones": [
-          4,
-          6
-        ],
-        "k": 2
-      },
-      "expected": 10,
-      "tags": [
-        "hidden"
-      ]
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_1000","cases":[
+{"id":"sample-1","name":"sample: pairwise merging","kind":"sample","visible":true,"input":{"stones":[3,2,4,1],"k":2},"expected":20,"tags":["sample"]},
+{"id":"sample-2","name":"sample: impossible pile count","kind":"sample","visible":true,"input":{"stones":[3,2,4,1],"k":3},"expected":-1,"tags":["sample"]},
+{"id":"sample-3","name":"sample: two three-pile merges","kind":"sample","visible":true,"input":{"stones":[3,5,1,2,6],"k":3},"expected":25,"tags":["sample"]},
+{"id":"trial-1","name":"trial: already one pile","kind":"trial","visible":true,"input":{"stones":[7],"k":2},"expected":0,"tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: merge two piles once","kind":"trial","visible":true,"input":{"stones":[1,2],"k":2},"expected":3,"tags":["trial","single-merge"]},
+{"id":"trial-3","name":"trial: choose cheaper adjacent pair first","kind":"trial","visible":true,"input":{"stones":[1,2,3],"k":2},"expected":9,"tags":["trial","order"]},
+{"id":"hidden-1","name":"hidden: merge entire row","kind":"real","visible":false,"input":{"stones":[1,2,3,4],"k":4},"expected":10,"tags":["hidden","full-row"]},
+{"id":"hidden-2","name":"hidden: symmetric pairwise costs","kind":"real","visible":false,"input":{"stones":[6,4,4,6],"k":2},"expected":40,"tags":["hidden","pairwise"]},
+{"id":"hidden-3","name":"hidden: repeated three-way merges","kind":"real","visible":false,"input":{"stones":[1,1,1,1,1],"k":3},"expected":8,"tags":["hidden","three-way"]}
+]}

@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_982","cases":[
+{"id":"sample-1","name":"sample: mixed two-bit values","kind":"sample","visible":true,"input":{"nums":[2,1,3]},"expected":12,"tags":["sample"]},
+{"id":"sample-2","name":"sample: all zeros","kind":"sample","visible":true,"input":{"nums":[0,0,0]},"expected":27,"tags":["sample"]},
+{"id":"trial-1","name":"trial: one zero","kind":"trial","visible":true,"input":{"nums":[0]},"expected":1,"tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: one nonzero value","kind":"trial","visible":true,"input":{"nums":[1]},"expected":0,"tags":["trial","nonzero"]},
+{"id":"trial-3","name":"trial: disjoint single bits","kind":"trial","visible":true,"input":{"nums":[1,2]},"expected":6,"tags":["trial","ordered"]},
+{"id":"hidden-1","name":"hidden: zero and nonzero","kind":"real","visible":false,"input":{"nums":[0,5]},"expected":7,"tags":["hidden","zero"]},
+{"id":"hidden-2","name":"hidden: sixteen-bit boundary","kind":"real","visible":false,"input":{"nums":[65535,0,32768]},"expected":19,"tags":["hidden","bounds"]},
+{"id":"hidden-3","name":"hidden: repeated values and indices","kind":"real","visible":false,"input":{"nums":[1,1,2,2]},"expected":48,"tags":["hidden","duplicates"]},
+{"id":"hidden-4","name":"hidden: no qualifying triple","kind":"real","visible":false,"input":{"nums":[7,3,5]},"expected":0,"tags":["hidden","none"]}
+]}

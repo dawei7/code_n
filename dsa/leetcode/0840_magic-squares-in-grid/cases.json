@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_840",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one magic window among two", "kind": "sample", "visible": true, "input": {"grid": [[4, 3, 8, 4], [9, 5, 1, 9], [2, 7, 6, 2]]}, "expected": 1, "tags": ["sample", "overlapping-windows"]},
+    {"id": "sample-2", "name": "sample: grid too small", "kind": "sample", "visible": true, "input": {"grid": [[8]]}, "expected": 0, "tags": ["sample", "small-grid"]},
+    {"id": "trial-1", "name": "trial: canonical Lo Shu square", "kind": "trial", "visible": true, "input": {"grid": [[8, 1, 6], [3, 5, 7], [4, 9, 2]]}, "expected": 1, "tags": ["trial", "magic"]},
+    {"id": "trial-2", "name": "trial: rotated magic square", "kind": "trial", "visible": true, "input": {"grid": [[2, 7, 6], [9, 5, 1], [4, 3, 8]]}, "expected": 1, "tags": ["trial", "rotation"]},
+    {"id": "trial-3", "name": "trial: duplicate breaks value set", "kind": "trial", "visible": true, "input": {"grid": [[4, 3, 8], [9, 5, 1], [2, 7, 7]]}, "expected": 0, "tags": ["trial", "duplicate"]},
+    {"id": "hidden-1", "name": "hidden: two side-by-side magic squares", "kind": "real", "visible": false, "input": {"grid": [[8, 1, 6, 8, 1, 6], [3, 5, 7, 3, 5, 7], [4, 9, 2, 4, 9, 2]]}, "expected": 2, "tags": ["hidden", "multiple"]},
+    {"id": "hidden-2", "name": "hidden: reflected magic square", "kind": "real", "visible": false, "input": {"grid": [[4, 9, 2], [3, 5, 7], [8, 1, 6]]}, "expected": 1, "tags": ["hidden", "reflection"]},
+    {"id": "hidden-3", "name": "hidden: all zeros", "kind": "real", "visible": false, "input": {"grid": [[0, 0, 0], [0, 0, 0], [0, 0, 0]]}, "expected": 0, "tags": ["hidden", "out-of-range"]},
+    {"id": "hidden-4", "name": "hidden: repeated fives have equal sums", "kind": "real", "visible": false, "input": {"grid": [[5, 5, 5], [5, 5, 5], [5, 5, 5]]}, "expected": 0, "tags": ["hidden", "distinctness"]},
+    {"id": "hidden-5", "name": "hidden: narrow grid", "kind": "real", "visible": false, "input": {"grid": [[1, 2], [3, 4], [5, 6], [7, 8]]}, "expected": 0, "tags": ["hidden", "narrow"]}
+  ]
+}

@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1112",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: unique maxima and one tied maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Enrollments": [
+            {
+              "student_id": 2,
+              "course_id": 2,
+              "grade": 95
+            },
+            {
+              "student_id": 2,
+              "course_id": 3,
+              "grade": 95
+            },
+            {
+              "student_id": 1,
+              "course_id": 1,
+              "grade": 90
+            },
+            {
+              "student_id": 1,
+              "course_id": 2,
+              "grade": 99
+            },
+            {
+              "student_id": 3,
+              "course_id": 1,
+              "grade": 80
+            },
+            {
+              "student_id": 3,
+              "course_id": 2,
+              "grade": 75
+            },
+            {
+              "student_id": 3,
+              "course_id": 3,
+              "grade": 82
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "course_id",
+          "grade"
+        ],
+        "rows": [
+          [
+            1,
+            2,
+            99
+          ],
+          [
+            2,
+            2,
+            95
+          ],
+          [
+            3,
+            3,
+            82
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-one-enrollment",
+      "name": "trial: one student with one course",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Enrollments": [
+            {
+              "student_id": 7,
+              "course_id": 40,
+              "grade": 88
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "course_id",
+          "grade"
+        ],
+        "rows": [
+          [
+            7,
+            40,
+            88
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-all-tied",
+      "name": "trial: smallest course wins a complete grade tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Enrollments": [
+            {
+              "student_id": 5,
+              "course_id": 30,
+              "grade": 100
+            },
+            {
+              "student_id": 5,
+              "course_id": 10,
+              "grade": 100
+            },
+            {
+              "student_id": 5,
+              "course_id": 20,
+              "grade": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "course_id",
+          "grade"
+        ],
+        "rows": [
+          [
+            5,
+            10,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "all-tied"
+      ]
+    },
+    {
+      "id": "real-grade-before-course",
+      "name": "hidden: higher grade beats smaller course",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Enrollments": [
+            {
+              "student_id": 1,
+              "course_id": 1,
+              "grade": 70
+            },
+            {
+              "student_id": 1,
+              "course_id": 99,
+              "grade": 71
+            },
+            {
+              "student_id": 2,
+              "course_id": 1,
+              "grade": 50
+            },
+            {
+              "student_id": 2,
+              "course_id": 2,
+              "grade": 49
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "course_id",
+          "grade"
+        ],
+        "rows": [
+          [
+            1,
+            99,
+            71
+          ],
+          [
+            2,
+            1,
+            50
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "key-priority"
+      ]
+    },
+    {
+      "id": "real-unsorted-students",
+      "name": "hidden: result order ignores input order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Enrollments": [
+            {
+              "student_id": 9,
+              "course_id": 3,
+              "grade": 80
+            },
+            {
+              "student_id": 3,
+              "course_id": 8,
+              "grade": 90
+            },
+            {
+              "student_id": 9,
+              "course_id": 1,
+              "grade": 82
+            },
+            {
+              "student_id": 3,
+              "course_id": 2,
+              "grade": 90
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "course_id",
+          "grade"
+        ],
+        "rows": [
+          [
+            3,
+            2,
+            90
+          ],
+          [
+            9,
+            1,
+            82
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-low-grades",
+      "name": "hidden: ranking works across low grade values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Enrollments": [
+            {
+              "student_id": 4,
+              "course_id": 1,
+              "grade": 0
+            },
+            {
+              "student_id": 4,
+              "course_id": 2,
+              "grade": 1
+            },
+            {
+              "student_id": 6,
+              "course_id": 5,
+              "grade": 0
+            },
+            {
+              "student_id": 6,
+              "course_id": 3,
+              "grade": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "course_id",
+          "grade"
+        ],
+        "rows": [
+          [
+            4,
+            2,
+            1
+          ],
+          [
+            6,
+            3,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "grade-range"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_940",
+  "cases": [
+    {"id":"sample-1","name":"sample: all distinct","kind":"sample","visible":true,"input":{"s":"abc"},"expected":7,"tags":["sample","distinct"]},
+    {"id":"sample-2","name":"sample: separated repeat","kind":"sample","visible":true,"input":{"s":"aba"},"expected":6,"tags":["sample","duplicate"]},
+    {"id":"sample-3","name":"sample: one repeated letter","kind":"sample","visible":true,"input":{"s":"aaa"},"expected":3,"tags":["sample","repeat"]},
+    {"id":"trial-1","name":"trial: one character","kind":"trial","visible":true,"input":{"s":"z"},"expected":1,"tags":["trial","minimum"]},
+    {"id":"trial-2","name":"trial: repeat after distinct prefix","kind":"trial","visible":true,"input":{"s":"abca"},"expected":14,"tags":["trial","duplicate"]},
+    {"id":"hidden-1","name":"hidden: alternating repeats","kind":"real","visible":false,"input":{"s":"abab"},"expected":11,"tags":["hidden","alternating"]},
+    {"id":"hidden-2","name":"hidden: all alphabet letters","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyz"},"expected":67108863,"tags":["hidden","alphabet"]},
+    {"id":"hidden-3","name":"hidden: long one-letter string","kind":"real","visible":false,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":64,"tags":["hidden","repeat"]}
+  ]
+}

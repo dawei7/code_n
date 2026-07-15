@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1240",
+  "measurement_note": "Size is rectangle area n*m. Skyline memoization merges repeated partial tilings, while the calibrated slower search performs the same exact branching and bounds validation but deliberately revisits identical skyline states.",
+  "cases": [
+    {"id":"benchmark-scale-6","name":"benchmark: two by three rectangle","kind":"benchmark","visible":false,"size":6,"input":{"n":2,"m":3},"expected":3,"tags":["benchmark","scale-small"]},
+    {"id":"benchmark-scale-56","name":"benchmark: seven by eight rectangle","kind":"benchmark","visible":false,"size":56,"input":{"n":7,"m":8},"expected":7,"tags":["benchmark","scale-medium"]},
+    {"id":"benchmark-scale-90","name":"benchmark: nine by ten rectangle","kind":"benchmark","visible":false,"size":90,"input":{"n":9,"m":10},"expected":6,"tags":["benchmark","scale-large"]}
+  ]
+}

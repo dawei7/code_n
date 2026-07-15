@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_959","cases":[
+{"id":"sample-1","name":"sample: two forward slashes","kind":"sample","visible":true,"input":{"grid":[" /","/ "]},"expected":2,"tags":["sample","slash"]},
+{"id":"sample-2","name":"sample: connected around one slash","kind":"sample","visible":true,"input":{"grid":[" /","  "]},"expected":1,"tags":["sample","connected"]},
+{"id":"sample-3","name":"sample: crossed diagonal pattern","kind":"sample","visible":true,"input":{"grid":["/\\","\\/"]},"expected":5,"tags":["sample","both-directions"]},
+{"id":"trial-1","name":"trial: one blank cell","kind":"trial","visible":true,"input":{"grid":[" "]},"expected":1,"tags":["trial","blank"]},
+{"id":"trial-2","name":"trial: one forward slash","kind":"trial","visible":true,"input":{"grid":["/"]},"expected":2,"tags":["trial","slash"]},
+{"id":"trial-3","name":"trial: one backslash","kind":"trial","visible":true,"input":{"grid":["\\"]},"expected":2,"tags":["trial","backslash"]},
+{"id":"hidden-1","name":"hidden: alternating enclosed center","kind":"real","visible":false,"input":{"grid":["\\/","/\\"]},"expected":4,"tags":["hidden","alternating"]},
+{"id":"hidden-2","name":"hidden: three forward slashes","kind":"real","visible":false,"input":{"grid":["//","/ "]},"expected":3,"tags":["hidden","multiple"]},
+{"id":"hidden-3","name":"hidden: all blank three by three","kind":"real","visible":false,"input":{"grid":["   ","   ","   "]},"expected":1,"tags":["hidden","blank"]}
+]}

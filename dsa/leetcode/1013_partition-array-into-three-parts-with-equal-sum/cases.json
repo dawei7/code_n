@@ -1,98 +1,11 @@
-{
-  "challenge_id": "lc_1013",
-  "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: can split",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          0,
-          2,
-          1,
-          -6,
-          6,
-          -7,
-          9,
-          1,
-          2,
-          0,
-          1
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: wrong total",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          0,
-          2,
-          1,
-          -6,
-          6,
-          7,
-          9,
-          -1,
-          2,
-          0,
-          1
-        ]
-      },
-      "expected": false,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: another valid split",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          3,
-          3,
-          6,
-          5,
-          -2,
-          2,
-          5,
-          1,
-          -9,
-          4
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-all-zeroes",
-      "name": "hidden: all zeroes",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          0,
-          0,
-          0,
-          0
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "hidden",
-        "edge"
-      ]
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_1013","cases":[
+{"id":"sample-1","name":"sample: negative values form three equal parts","kind":"sample","visible":true,"input":{"arr":[0,2,1,-6,6,-7,9,1,2,0,1]},"expected":true,"tags":["sample"]},
+{"id":"sample-2","name":"sample: no equal partition","kind":"sample","visible":true,"input":{"arr":[0,2,1,-6,6,7,9,-1,2,0,1]},"expected":false,"tags":["sample"]},
+{"id":"sample-3","name":"sample: three parts sum to six","kind":"sample","visible":true,"input":{"arr":[3,3,6,5,-2,2,5,1,-9,4]},"expected":true,"tags":["sample"]},
+{"id":"trial-1","name":"trial: minimum three elements","kind":"trial","visible":true,"input":{"arr":[1,1,1]},"expected":true,"tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: total not divisible by three","kind":"trial","visible":true,"input":{"arr":[1,1,2]},"expected":false,"tags":["trial","total"]},
+{"id":"trial-3","name":"trial: four zero-sum groups","kind":"trial","visible":true,"input":{"arr":[0,0,0,0]},"expected":true,"tags":["trial","zero-target"]},
+{"id":"hidden-1","name":"hidden: zero target with cancelling values","kind":"real","visible":false,"input":{"arr":[1,-1,1,-1,1,-1]},"expected":true,"tags":["hidden","negative"]},
+{"id":"hidden-2","name":"hidden: divisible total but missing boundaries","kind":"real","visible":false,"input":{"arr":[1,-1,3,-2,2,0]},"expected":false,"tags":["hidden","boundaries"]},
+{"id":"hidden-3","name":"hidden: equal negative parts","kind":"real","visible":false,"input":{"arr":[-2,-2,-2]},"expected":true,"tags":["hidden","negative-target"]}
+]}

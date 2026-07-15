@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1209",
+  "cases": [
+    {"id":"sample-no-removal","name":"sample: no adjacent pair exists","kind":"sample","visible":true,"input":{"s":"abcd","k":2},"expected":"abcd","tags":["sample","unchanged"]},
+    {"id":"sample-cascade-three","name":"sample: several size-three removals cascade","kind":"sample","visible":true,"input":{"s":"deeedbbcccbdaa","k":3},"expected":"aa","tags":["sample","cascade"]},
+    {"id":"sample-cascade-pairs","name":"sample: pair removals reduce to endpoints","kind":"sample","visible":true,"input":{"s":"pbbcggttciiippooaais","k":2},"expected":"ps","tags":["sample","cascade"]},
+    {"id":"trial-entire-string","name":"one exact run removes the entire string","kind":"trial","visible":true,"input":{"s":"aaaa","k":4},"expected":"","tags":["empty-result"]},
+    {"id":"real-run-remainder","name":"hidden: a long run leaves its remainder","kind":"real","visible":false,"input":{"s":"aaaaa","k":3},"expected":"aa","tags":["hidden","remainder"]},
+    {"id":"real-bridge-cascade","name":"hidden: deleting the middle joins equal outer runs","kind":"real","visible":false,"input":{"s":"aabbbaccc","k":3},"expected":"","tags":["hidden","bridge"]},
+    {"id":"real-k-too-large","name":"hidden: group size exceeds string length","kind":"real","visible":false,"input":{"s":"zzxyzz","k":10},"expected":"zzxyzz","tags":["hidden","large-k"]},
+    {"id":"real-repeated-groups","name":"hidden: consecutive full groups vanish independently","kind":"real","visible":false,"input":{"s":"bbbbbb","k":3},"expected":"","tags":["hidden","multiple-groups"]}
+  ]
+}

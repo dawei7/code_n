@@ -22,7 +22,15 @@ Return the length of the shortest possible reference string. One stored word can
 
 **Inputs**
 
-- `words`: a nonempty list of nonempty lowercase English words. Let $W$ denote this input collection and $S = \sum_{w \in W} \lvert w \rvert$ denote its total number of characters.
+- `words`: a nonempty list of nonempty lowercase English words.
+
+Let
+
+$$
+S = \sum_{w \in \texttt{words}} \lvert w \rvert.
+$$
+
+Then $S$ is the total number of input characters.
 
 **Return value**
 
@@ -74,7 +82,7 @@ Every leaf word must be written explicitly: if it were recovered from some other
 
 #### Complexity detail
 
-Let $W$ denote the input collection and $S = \sum_{w \in W} \lvert w \rvert$, its total number of characters. Hashing the words and inserting the distinct reversed words visit $O(S)$ characters. Inspecting one terminal per distinct word is also bounded by $O(S)$, so total time is $O(S)$. The distinct-word set, trie nodes, and terminal references use $O(S)$ space.
+Hashing the words and inserting the distinct reversed words visit $O(S)$ characters. Inspecting one terminal per distinct word is also bounded by $O(S)$, so total time is $O(S)$. The distinct-word set, trie nodes, and terminal references use $O(S)$ space.
 
 #### Alternatives and edge cases
 

@@ -8,50 +8,71 @@
 | Category | Algorithms |
 | Topics | Array, Sliding Window |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-swaps-to-group-all-1s-together](https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/).
 
 ### Goal
-Given a binary array, return the fewest swaps needed so that every `1` appears in one contiguous block. A swap may exchange any two positions.
+
+Given a binary array `data`, group every `1` present in the array into one contiguous block located anywhere in the array. A swap may exchange the values at any two positions; the positions do not need to be adjacent.
+
+Return the minimum number of swaps required. The relative order of equal values is irrelevant, and the array may already satisfy the condition. In particular, zero or one occurrence of `1` is already grouped and requires no swap.
 
 ### Function Contract
+
 **Inputs**
 
-- `data`: List containing only `0` and `1`.
+- `data`: a binary array of length $n$, where $1 \le n \le 10^5$ and every element is `0` or `1`.
+- Let $k$ be the total number of `1` values in `data`.
 
 **Return value**
 
-Minimum number of swaps required.
+The fewest arbitrary-position swaps needed to place all $k$ ones in one contiguous block.
 
 ### Examples
+
 **Example 1**
 
-- Input: `data = [1, 0, 1, 0, 1]`
+- Input: `data = [1,0,1,0,1]`
 - Output: `1`
 
 **Example 2**
 
-- Input: `data = [0, 0, 0, 1, 0]`
+- Input: `data = [0,0,0,1,0]`
 - Output: `0`
 
 **Example 3**
 
-- Input: `data = [1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1]`
+- Input: `data = [1,0,1,0,1,0,0,1,1,0,1]`
 - Output: `3`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Let `ones` be the total number of `1` values. Any final grouped block must have length `ones`, and every `0` inside that block must be swapped with a `1` outside it.
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-Slide a window of length `ones` across the array and count how many `0` values it contains. The minimum such count is the answer.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of `data`.
-- **Space Complexity**: `O(1)`.
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Fix the final block length.** The number of ones never changes under swaps, so any completed block has exactly $k$ positions. Choosing its location is therefore equivalent to choosing a length-$k$ window.
+
+**Count the misplaced values.** Every zero inside a chosen window must be exchanged with a one outside it. Their counts are equal, and one arbitrary-position swap fixes one pair, so the window's zero count is both necessary and sufficient. The answer is the minimum zero count over all length-$k$ windows.
+
+**Reuse adjacent-window work.** Count zeros in the first window, then slide its boundaries one position at a time. Remove the contribution of the departing value and add the entering value. This examines every possible block, and taking the smallest maintained count proves optimality.
+
+#### Complexity detail
+
+Counting $k$ and scanning all windows each take $O(n)$ time. The window boundaries, current zero count, and best value use $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Recount every window:** Correctly finds the minimum but takes $O(nk)$ time in the worst case.
+- **Simulate swaps:** Constructing each resulting array adds work without changing the zero-count criterion.
+- **No ones:** The empty collection is already grouped, so return `0`.
+- **One one:** A single value is already a contiguous block.
+- **All ones:** The only length-$n$ window contains no zeros.
+- **Arbitrary versus adjacent swaps:** Distance does not affect the cost because one swap may exchange any two positions.
+
+</details>

@@ -1,0 +1,12 @@
+{"schema_version":1,"challenge_id":"lc_930","cases":[
+{"id":"sample-1","name":"sample: four subarrays with two ones","kind":"sample","visible":true,"input":{"nums":[1,0,1,0,1],"goal":2},"expected":4,"tags":["sample","overlap"]},
+{"id":"sample-2","name":"sample: every all-zero range","kind":"sample","visible":true,"input":{"nums":[0,0,0,0,0],"goal":0},"expected":15,"tags":["sample","zero-goal"]},
+{"id":"trial-1","name":"trial: single matching one","kind":"trial","visible":true,"input":{"nums":[1],"goal":1},"expected":1,"tags":["trial","single"]},
+{"id":"trial-2","name":"trial: single zero for zero goal","kind":"trial","visible":true,"input":{"nums":[0],"goal":0},"expected":1,"tags":["trial","single-zero"]},
+{"id":"trial-3","name":"trial: goal exceeds total sum","kind":"trial","visible":true,"input":{"nums":[1,0,0],"goal":3},"expected":0,"tags":["trial","unreachable"]},
+{"id":"hidden-1","name":"hidden: all ones","kind":"real","visible":false,"input":{"nums":[1,1,1,1],"goal":2},"expected":3,"tags":["hidden","all-one"]},
+{"id":"hidden-2","name":"hidden: zeros multiply one-sum ranges","kind":"real","visible":false,"input":{"nums":[0,0,1,0,0],"goal":1},"expected":9,"tags":["hidden","zero-padding"]},
+{"id":"hidden-3","name":"hidden: mixed zero-sum runs","kind":"real","visible":false,"input":{"nums":[0,0,1,0,0,0,1,0],"goal":0},"expected":10,"tags":["hidden","zero-runs"]},
+{"id":"hidden-4","name":"hidden: entire array is sole full-sum range","kind":"real","visible":false,"input":{"nums":[1,0,1,1],"goal":3},"expected":1,"tags":["hidden","full-array"]},
+{"id":"hidden-5","name":"hidden: alternating array with one-sum target","kind":"real","visible":false,"input":{"nums":[1,0,1,0,1,0],"goal":1},"expected":10,"tags":["hidden","alternating"]}
+]}

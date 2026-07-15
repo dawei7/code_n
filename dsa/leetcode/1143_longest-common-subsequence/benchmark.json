@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1143",
+  "measurement_note": "Size is the common string length. Disjoint repeated characters force every dynamic-programming state; index-based two-row DP performs constant work per state, while the calibrated memoized recursion allocates new suffix slices throughout the state graph.",
+  "cases": [
+    {
+      "id": "benchmark-scale-10",
+      "name": "benchmark: two disjoint strings of length 10",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "text1": "aaaaaaaaaa",
+        "text2": "bbbbbbbbbb"
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "substring-slicing"
+      ]
+    },
+    {
+      "id": "benchmark-scale-30",
+      "name": "benchmark: two disjoint strings of length 30",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 30,
+      "input": {
+        "text1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "text2": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "substring-slicing"
+      ]
+    },
+    {
+      "id": "benchmark-scale-60",
+      "name": "benchmark: two disjoint strings of length 60",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 60,
+      "input": {
+        "text1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "text2": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "substring-slicing"
+      ]
+    }
+  ]
+}

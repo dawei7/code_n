@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_900",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: official mixed trace",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "encoding": [
+          3,
+          8,
+          0,
+          9,
+          2,
+          5
+        ],
+        "operations": [
+          [
+            "next",
+            2
+          ],
+          [
+            "next",
+            1
+          ],
+          [
+            "next",
+            1
+          ],
+          [
+            "next",
+            2
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        8,
+        5,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "zero-run",
+        "past-end"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one encoded element",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "encoding": [
+          1,
+          4
+        ],
+        "operations": [
+          [
+            "next",
+            1
+          ]
+        ]
+      },
+      "expected": [
+        4
+      ],
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: leading zero run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "encoding": [
+          0,
+          7,
+          2,
+          3
+        ],
+        "operations": [
+          [
+            "next",
+            1
+          ],
+          [
+            "next",
+            1
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "tags": [
+        "sample",
+        "zero-run"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: exact run exhaustion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "encoding": [
+          2,
+          6,
+          3,
+          9
+        ],
+        "operations": [
+          [
+            "next",
+            2
+          ],
+          [
+            "next",
+            3
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        9
+      ],
+      "tags": [
+        "trial",
+        "exact"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: request beyond total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "encoding": [
+          1,
+          5,
+          1,
+          6
+        ],
+        "operations": [
+          [
+            "next",
+            3
+          ]
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "trial",
+        "past-end"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: adjacent equal-valued runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "encoding": [
+          2,
+          4,
+          3,
+          4
+        ],
+        "operations": [
+          [
+            "next",
+            4
+          ],
+          [
+            "next",
+            1
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        4
+      ],
+      "tags": [
+        "trial",
+        "adjacent-equal"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: several zero runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "encoding": [
+          0,
+          1,
+          0,
+          2,
+          3,
+          7,
+          0,
+          8,
+          2,
+          9
+        ],
+        "operations": [
+          [
+            "next",
+            1
+          ],
+          [
+            "next",
+            2
+          ],
+          [
+            "next",
+            1
+          ]
+        ]
+      },
+      "expected": [
+        7,
+        7,
+        9
+      ],
+      "tags": [
+        "hidden",
+        "zero-runs"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: repeated calls after exhaustion",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "encoding": [
+          2,
+          10
+        ],
+        "operations": [
+          [
+            "next",
+            2
+          ],
+          [
+            "next",
+            1
+          ],
+          [
+            "next",
+            5
+          ]
+        ]
+      },
+      "expected": [
+        10,
+        -1,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "exhausted"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: moderately large count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "encoding": [
+          1000,
+          12,
+          2,
+          13
+        ],
+        "operations": [
+          [
+            "next",
+            999
+          ],
+          [
+            "next",
+            2
+          ],
+          [
+            "next",
+            1
+          ]
+        ]
+      },
+      "expected": [
+        12,
+        13,
+        13
+      ],
+      "tags": [
+        "hidden",
+        "large-count"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: cross multiple run boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "encoding": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4
+        ],
+        "operations": [
+          [
+            "next",
+            2
+          ],
+          [
+            "next",
+            3
+          ],
+          [
+            "next",
+            4
+          ],
+          [
+            "next",
+            1
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        4,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "multiple-boundaries"
+      ]
+    }
+  ]
+}

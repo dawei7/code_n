@@ -8,24 +8,30 @@
 | Category | Algorithms |
 | Topics | Math, Tree, Binary Tree |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [path-in-zigzag-labelled-binary-tree](https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/) |
+| LeetCode | [Open](https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/).
 
 ### Goal
-In a perfect binary tree, labels are assigned level by level, but every other level is labelled right-to-left. Given a label, return the path of labels from the root to that node.
+
+Consider an infinite binary tree in which every node has two children. Nodes are labelled one row at a time. Odd-numbered rows—the first, third, fifth, and so on—are labelled from left to right, while even-numbered rows are labelled from right to left.
+
+Given one node's `label`, return the sequence of labels on the unique path from the root to that node, including both endpoints.
 
 ### Function Contract
+
 **Inputs**
 
-- `label`: Positive node label in the zigzag-labelled tree.
+- `label`: the target label $L$, where $1 \leq L \leq 10^6$.
+
+The zero-based depth of the target is $d = \lfloor \log_2 L \rfloor$.
 
 **Return value**
 
-List of labels on the path from root to `label`.
+A list of $d+1$ labels ordered from the root to the node labelled $L$.
 
 ### Examples
+
 **Example 1**
 
 - Input: `label = 14`
@@ -36,22 +42,40 @@ List of labels on the path from root to `label`.
 - Input: `label = 26`
 - Output: `[1, 2, 6, 10, 26]`
 
-**Example 3**
+### Required Complexity
 
-- Input: `label = 1`
-- Output: `[1]`
+- **Time:** $O(\log L)$
+- **Space:** $O(\log L)$
 
----
+<details>
+<summary>Approach</summary>
 
-## Solution
-### Approach
-Work upward from `label` to the root. For a normal labelled tree, the parent would be `label // 2`. In zigzag labelling, first map the current label to its mirror position within the level, move to the parent in the normal tree, then continue.
+#### General
 
-For a level with labels from `start` to `end`, the mirrored label is `start + end - label`. Repeating this computation produces the path in reverse, which is then reversed for the answer.
+**Identify the current level's numeric range.** A label $x$ at zero-based depth $h=\lfloor\log_2 x\rfloor$ belongs to the ordinary row range
 
-### Complexity Analysis
-- **Time Complexity**: `O(log label)`.
-- **Space Complexity**: `O(log label)` for the path.
+$$
+[2^h,\;2^{h+1}-1].
+$$
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Zigzag ordering reverses positions on alternating rows, but the same labels remain in that range.
+
+**Mirror before moving to the parent.** Within a row whose endpoints are `start` and `end`, the mirror of `x` is `start + end - x`. In ordinary left-to-right labelling, the mirrored node's parent is obtained by integer division by two. Therefore the zigzag parent is computed directly as `label = (start + end - label) // 2`.
+
+**Climb and reverse.** Append the current label, replace it by its zigzag parent, and repeat until the root has been appended. This produces the path from target to root; reversing it gives the requested order.
+
+Mirroring maps the displayed zigzag position to the corresponding ordinary-tree label at the same position. Ordinary integer division then selects exactly that position's parent. Applying this transformation at every depth follows the unique tree edges to the root, so reversing the collected labels yields precisely the root-to-target path.
+
+#### Complexity detail
+
+Each parent step decreases the depth by one, so there are $d+1=O(\log L)$ iterations. The returned path stores one label per level and therefore uses $O(\log L)$ space; all other state is constant-size.
+
+#### Alternatives and edge cases
+
+- **Materialize labelled rows:** Building every row through the target preserves tree positions but costs $O(L)$ time and space.
+- **Convert the entire path to ordinary labels:** Mirror the target based on row parity, compute ordinary ancestors, then mirror selected levels back; it has the same asymptotic complexity but more parity bookkeeping.
+- **Root label:** For `label = 1`, the loop records only `[1]`.
+- **Level endpoints:** The leftmost and rightmost numeric labels mirror to one another, so both powers of two and values just below them test the formula's boundaries.
+- **Alternating direction:** The endpoint-sum formula works on every row without a separate odd/even branch.
+
+</details>

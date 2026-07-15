@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1058",
+  "frontend_id": "1061",
+  "title_slug": "lexicographically-smallest-equivalent-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.smallestEquivalentString",
+  "verified_submission_id": "2067459590",
+  "verified_at": "2026-07-14T14:21:09.031142+00:00"
+}

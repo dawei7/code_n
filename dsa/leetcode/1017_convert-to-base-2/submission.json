@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1070",
+  "frontend_id": "1017",
+  "title_slug": "convert-to-base-2",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.baseNeg2",
+  "verified_submission_id": "2067302052",
+  "verified_at": "2026-07-14T11:40:38.471604+00:00"
+}

@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_889",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: complete three-level tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "preorder": [
+          1,
+          2,
+          4,
+          5,
+          3,
+          6,
+          7
+        ],
+        "postorder": [
+          4,
+          5,
+          2,
+          6,
+          7,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "validator": {
+        "kind": "pre_post_tree"
+      },
+      "tags": [
+        "sample",
+        "full-tree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one node",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "preorder": [
+          1
+        ],
+        "postorder": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "validator": {
+        "kind": "pre_post_tree"
+      },
+      "tags": [
+        "sample",
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one ambiguous child",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [
+          1,
+          2
+        ],
+        "postorder": [
+          2,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "pre_post_tree"
+      },
+      "tags": [
+        "trial",
+        "ambiguous"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: four-node single-child chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "postorder": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        null,
+        3,
+        null,
+        4
+      ],
+      "validator": {
+        "kind": "pre_post_tree"
+      },
+      "tags": [
+        "trial",
+        "skewed",
+        "ambiguous"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: root with two leaves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [
+          1,
+          2,
+          3
+        ],
+        "postorder": [
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "pre_post_tree"
+      },
+      "tags": [
+        "trial",
+        "two-children"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: mixed full and single-child subtrees",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "preorder": [
+          1,
+          2,
+          4,
+          5,
+          3,
+          6
+        ],
+        "postorder": [
+          4,
+          5,
+          2,
+          6,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "validator": {
+        "kind": "pre_post_tree"
+      },
+      "tags": [
+        "hidden",
+        "mixed-shape"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: complete four-level tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "preorder": [
+          1,
+          2,
+          4,
+          8,
+          9,
+          5,
+          10,
+          11,
+          3,
+          6,
+          12,
+          13,
+          7,
+          14,
+          15
+        ],
+        "postorder": [
+          8,
+          9,
+          4,
+          10,
+          11,
+          5,
+          2,
+          12,
+          13,
+          6,
+          14,
+          15,
+          7,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "validator": {
+        "kind": "pre_post_tree"
+      },
+      "tags": [
+        "hidden",
+        "balanced"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: six-node ambiguous chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "preorder": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "postorder": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        null,
+        3,
+        null,
+        4,
+        null,
+        5,
+        null,
+        6
+      ],
+      "validator": {
+        "kind": "pre_post_tree"
+      },
+      "tags": [
+        "hidden",
+        "skewed",
+        "ambiguous"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: unequal subtree sizes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "preorder": [
+          1,
+          2,
+          4,
+          5,
+          3
+        ],
+        "postorder": [
+          4,
+          5,
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "validator": {
+        "kind": "pre_post_tree"
+      },
+      "tags": [
+        "hidden",
+        "unequal-subtrees"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: nested first child and right leaf",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "preorder": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "postorder": [
+          3,
+          2,
+          4,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        4,
+        3
+      ],
+      "validator": {
+        "kind": "pre_post_tree"
+      },
+      "tags": [
+        "hidden",
+        "mixed-shape"
+      ]
+    }
+  ]
+}

@@ -8,28 +8,33 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [fixed-point](https://leetcode.com/problems/fixed-point/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/fixed-point/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/fixed-point/).
 
 ### Goal
-Given a sorted array of distinct integers, return the smallest index `i` such that `arr[i] == i`. Return `-1` if no such index exists.
+
+Given an array `arr` of distinct integers sorted in **ascending order**, find an index `i` whose stored value equals the index itself, so `arr[i] == i`. Such an index is called a fixed point.
+
+Return the smallest index satisfying that equality. More than one fixed point may exist, so finding any match is insufficient when an earlier match is present. If the array contains no fixed point, return `-1`.
 
 ### Function Contract
+
 **Inputs**
 
-- `arr`: Sorted list of distinct integers.
+- `arr`: an ascending array of $N$ distinct integers, where $1 \le N < 10^4$ and each value lies between $-10^9$ and $10^9$.
 
 **Return value**
 
-Smallest fixed-point index, or `-1`.
+- The smallest index `i` for which `arr[i] == i`, or `-1` if no such index exists.
 
 ### Examples
+
 **Example 1**
 
 - Input: `arr = [-10, -5, 0, 3, 7]`
 - Output: `3`
+- Explanation: `arr[3]` equals `3`.
 
 **Example 2**
 
@@ -41,17 +46,34 @@ Smallest fixed-point index, or `-1`.
 - Input: `arr = [-10, -5, 3, 4, 7, 9]`
 - Output: `-1`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Because `arr` is sorted with distinct values, the function `arr[i] - i` is nondecreasing. Use binary search to find the leftmost index where `arr[i] - i >= 0`; that index is a fixed point only if `arr[i] == i`.
+- **Time:** $O(\log N)$
+- **Space:** $O(1)$
 
-A linear scan also works, but binary search uses the sorted distinct property directly.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: `O(log n)`.
-- **Space Complexity**: `O(1)`.
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Create a monotone comparison:** Compare each value with its index. Because `arr` contains distinct integers in ascending order, moving from one index to the next increases the array value by at least one. Therefore `arr[i] - i` never decreases.
+
+**Search for the left boundary:** Binary-search for the first index where `arr[i] >= i`. If `arr[mid] < mid`, every earlier index also has `arr[index] < index`, so the search moves right. Otherwise, `mid` might be the first fixed point or lie after it, so retain it and move the right boundary left.
+
+**Verify the candidate:** At the lower-bound index, equality may hold, in which case it is the smallest fixed point by construction. If the value is strictly greater than its index, monotonicity means all later differences are also positive, so no fixed point exists.
+
+#### Complexity detail
+
+Each comparison discards at least half of the remaining indices, requiring $O(\log N)$ time. The search stores only two boundaries and a midpoint, so it uses $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Linear scan:** Check indices from left to right and return the first match. It is simple but takes $O(N)$ time when the match is late or absent.
+- **Search for any equality:** A conventional binary search that returns immediately can miss a smaller fixed point; the lower-bound formulation preserves the minimum-index requirement.
+- **First index fixed:** The lower-bound candidate is zero and is returned immediately after verification.
+- **Several fixed points:** The first index where `arr[i] >= i` is the smallest equality.
+- **No candidate below the array length:** If every value is below its index, the lower boundary moves past the array and the answer is `-1`.
+- **Candidate strictly above its index:** Since later differences cannot decrease, equality is impossible afterward.
+- **Negative values:** They participate normally and often force the lower-bound search toward later indices.
+
+</details>

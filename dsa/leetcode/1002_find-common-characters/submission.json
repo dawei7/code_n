@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1044",
+  "frontend_id": "1002",
+  "title_slug": "find-common-characters",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.commonChars",
+  "verified_submission_id": "2067255723",
+  "verified_at": "2026-07-14T10:47:50.104372+00:00"
+}

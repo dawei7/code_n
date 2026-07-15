@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1113",
+  "frontend_id": "1040",
+  "title_slug": "moving-stones-until-consecutive-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numMovesStonesII",
+  "verified_submission_id": "2067370229",
+  "verified_at": "2026-07-14T12:56:56.564794+00:00"
+}

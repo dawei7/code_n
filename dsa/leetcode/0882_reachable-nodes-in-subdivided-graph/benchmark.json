@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_882",
+  "measurement_note": "Size is the subdivision count c on one edge. The compressed graph always has two original nodes and one weighted edge, so Dijkstra plus edge accounting is constant here, while a correct expanded-graph BFS constructs and traverses all c new nodes.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: traverse one chain with 32 subdivision nodes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            32
+          ]
+        ],
+        "maxMoves": 33,
+        "n": 2
+      },
+      "expected": 34,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "expanded-bfs"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: traverse one chain with 512 subdivision nodes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            512
+          ]
+        ],
+        "maxMoves": 513,
+        "n": 2
+      },
+      "expected": 514,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "expanded-bfs"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: traverse one chain with 8192 subdivision nodes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8192,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            8192
+          ]
+        ],
+        "maxMoves": 8193,
+        "n": 2
+      },
+      "expected": 8194,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "expanded-bfs"
+      ]
+    }
+  ]
+}

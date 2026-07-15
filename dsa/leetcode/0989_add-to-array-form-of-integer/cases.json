@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_989","cases":[
+{"id":"sample-1","name":"sample: add into trailing zeros","kind":"sample","visible":true,"input":{"num":[1,2,0,0],"k":34},"expected":[1,2,3,4],"tags":["sample"]},
+{"id":"sample-2","name":"sample: internal carry","kind":"sample","visible":true,"input":{"num":[2,7,4],"k":181},"expected":[4,5,5],"tags":["sample"]},
+{"id":"sample-3","name":"sample: new leading digit","kind":"sample","visible":true,"input":{"num":[2,1,5],"k":806},"expected":[1,0,2,1],"tags":["sample"]},
+{"id":"trial-1","name":"trial: zero array-form","kind":"trial","visible":true,"input":{"num":[0],"k":23},"expected":[2,3],"tags":["trial","zero"]},
+{"id":"trial-2","name":"trial: carry across all digits","kind":"trial","visible":true,"input":{"num":[9,9,9],"k":1},"expected":[1,0,0,0],"tags":["trial","carry"]},
+{"id":"trial-3","name":"trial: no carry propagation","kind":"trial","visible":true,"input":{"num":[4,0],"k":2},"expected":[4,2],"tags":["trial","simple"]},
+{"id":"hidden-1","name":"hidden: maximum k","kind":"real","visible":false,"input":{"num":[1],"k":10000},"expected":[1,0,0,0,1],"tags":["hidden","k-bound"]},
+{"id":"hidden-2","name":"hidden: several carry positions","kind":"real","visible":false,"input":{"num":[8,9,9,9],"k":2},"expected":[9,0,0,1],"tags":["hidden","carry"]},
+{"id":"hidden-3","name":"hidden: leading digit unchanged","kind":"real","visible":false,"input":{"num":[7,0,0,0],"k":999},"expected":[7,9,9,9],"tags":["hidden","length"]}
+]}

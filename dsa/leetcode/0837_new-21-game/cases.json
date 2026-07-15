@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_837",
+  "cases": [
+    {"id": "sample-1", "name": "sample: every one-draw outcome succeeds", "kind": "sample", "visible": true, "input": {"n": 10, "k": 1, "maxPts": 10}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["sample", "certain"]},
+    {"id": "sample-2", "name": "sample: six successful one-draw outcomes", "kind": "sample", "visible": true, "input": {"n": 6, "k": 1, "maxPts": 10}, "expected": 0.6, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["sample", "single-draw"]},
+    {"id": "sample-3", "name": "sample: multiple draws", "kind": "sample", "visible": true, "input": {"n": 21, "k": 17, "maxPts": 10}, "expected": 0.7327777870686082, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["sample", "sliding-window"]},
+    {"id": "trial-1", "name": "trial: no draws", "kind": "trial", "visible": true, "input": {"n": 0, "k": 0, "maxPts": 1}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["trial", "zero-threshold"]},
+    {"id": "trial-2", "name": "trial: deterministic unit draws", "kind": "trial", "visible": true, "input": {"n": 5, "k": 5, "maxPts": 1}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["trial", "deterministic"]},
+    {"id": "trial-3", "name": "trial: two-point draw range", "kind": "trial", "visible": true, "input": {"n": 5, "k": 5, "maxPts": 2}, "expected": 0.65625, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["trial", "small-range"]},
+    {"id": "hidden-1", "name": "hidden: exact maximum terminal bound", "kind": "real", "visible": false, "input": {"n": 10, "k": 7, "maxPts": 4}, "expected": 1.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["hidden", "upper-bound"]},
+    {"id": "hidden-2", "name": "hidden: broad terminal interval", "kind": "real", "visible": false, "input": {"n": 15, "k": 10, "maxPts": 10}, "expected": 0.8042586146, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["hidden", "probability"]},
+    {"id": "hidden-3", "name": "hidden: short multi-draw game", "kind": "real", "visible": false, "input": {"n": 3, "k": 2, "maxPts": 3}, "expected": 0.8888888888888888, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["hidden", "multi-draw"]},
+    {"id": "hidden-4", "name": "hidden: wide draw range at threshold", "kind": "real", "visible": false, "input": {"n": 100, "k": 100, "maxPts": 100}, "expected": 0.026780334944767583, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["hidden", "wide-range"]}
+  ]
+}

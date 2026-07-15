@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1142",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one, one, and two sessions per user",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-07-20",
+              "activity_type": "scroll_down"
+            },
+            {
+              "user_id": 2,
+              "session_id": 4,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 2,
+              "session_id": 4,
+              "activity_date": "2019-07-21",
+              "activity_type": "send_message"
+            },
+            {
+              "user_id": 3,
+              "session_id": 2,
+              "activity_date": "2019-07-21",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 3,
+              "session_id": 2,
+              "activity_date": "2019-07-21",
+              "activity_type": "send_message"
+            },
+            {
+              "user_id": 3,
+              "session_id": 5,
+              "activity_date": "2019-07-21",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 4,
+              "session_id": 3,
+              "activity_date": "2019-06-25",
+              "activity_type": "open_session"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            1.33
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "per-user-average"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "empty qualifying window returns zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-06-27",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 2,
+              "session_id": 2,
+              "activity_date": "2019-07-28",
+              "activity_type": "open_session"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "duplicate events do not duplicate sessions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-07-10",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-07-10",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-07-10",
+              "activity_type": "end_session"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            1.0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundaries",
+      "name": "sessions on both endpoints qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-06-28",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 2,
+              "activity_date": "2019-07-27",
+              "activity_type": "open_session"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            2.0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "real-unweighted-users",
+      "name": "hidden: users receive equal average weight",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-07-15",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 2,
+              "activity_date": "2019-07-15",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 3,
+              "activity_date": "2019-07-15",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 2,
+              "session_id": 4,
+              "activity_date": "2019-07-15",
+              "activity_type": "open_session"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            2.0
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "user-grain"
+      ]
+    },
+    {
+      "id": "real-session-several-dates",
+      "name": "hidden: one session across dates counts once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 7,
+              "activity_date": "2019-07-01",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 7,
+              "activity_date": "2019-07-02",
+              "activity_type": "send_message"
+            },
+            {
+              "user_id": 2,
+              "session_id": 8,
+              "activity_date": "2019-07-03",
+              "activity_type": "open_session"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            1.0
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "session-dedup"
+      ]
+    },
+    {
+      "id": "real-outside-session",
+      "name": "hidden: outside-only session is excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-06-27",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 2,
+              "activity_date": "2019-06-28",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 2,
+              "session_id": 3,
+              "activity_date": "2019-07-27",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 2,
+              "session_id": 4,
+              "activity_date": "2019-07-28",
+              "activity_type": "open_session"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            1.0
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "date-filter"
+      ]
+    }
+  ]
+}

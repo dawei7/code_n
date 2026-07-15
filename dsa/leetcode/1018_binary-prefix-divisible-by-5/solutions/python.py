@@ -1,10 +1,12 @@
-"""Optimal solution for LeetCode 1018: Binary Prefix Divisible By 5."""
+"""Optimal app-local solution for LeetCode 1018."""
 
 
-def solve(nums: list[int]) -> list[bool]:
-    value = 0
-    answer: list[bool] = []
+def solve(nums):
+    remainder = 0
+    answer = []
+
     for bit in nums:
-        value = ((value << 1) + bit) % 5
-        answer.append(value == 0)
+        remainder = (remainder * 2 + bit) % 5
+        answer.append(remainder == 0)
+
     return answer

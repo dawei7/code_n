@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1201",
+  "measurement_note": "Size is n for divisors 2, 3, and 5. Inclusion-exclusion binary search is logarithmic in the answer bound, while explicitly merging the three multiple streams performs one iteration per output position and is linear in n.",
+  "cases": [
+    {
+      "id": "benchmark-scale-100",
+      "name": "benchmark: position 100 in the 2-3-5 union",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "n": 100,
+        "a": 2,
+        "b": 3,
+        "c": 5
+      },
+      "expected": 136,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "merged-multiples"
+      ]
+    },
+    {
+      "id": "benchmark-scale-1000",
+      "name": "benchmark: position 1000 in the 2-3-5 union",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "n": 1000,
+        "a": 2,
+        "b": 3,
+        "c": 5
+      },
+      "expected": 1364,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "merged-multiples"
+      ]
+    },
+    {
+      "id": "benchmark-scale-10000",
+      "name": "benchmark: position 10000 in the 2-3-5 union",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {
+        "n": 10000,
+        "a": 2,
+        "b": 3,
+        "c": 5
+      },
+      "expected": 13636,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "merged-multiples"
+      ]
+    }
+  ]
+}

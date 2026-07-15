@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_878",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first magical number",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "a": 2,
+        "b": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "first"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: fourth multiple from two divisors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "a": 2,
+        "b": 3
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one divisor contains the other",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "a": 2,
+        "b": 4
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "divides"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: interleaved multiples of four and six",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "a": 6,
+        "b": 4
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "merge"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: tenth magical number for two and three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "a": 2,
+        "b": 3
+      },
+      "expected": 15,
+      "tags": [
+        "trial",
+        "sequence"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: equal divisors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "a": 5,
+        "b": 5
+      },
+      "expected": 35,
+      "tags": [
+        "trial",
+        "equal"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: larger coprime divisors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20,
+        "a": 7,
+        "b": 11
+      },
+      "expected": 91,
+      "tags": [
+        "hidden",
+        "coprime"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: one divisor is twice the other",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "a": 3,
+        "b": 6
+      },
+      "expected": 30,
+      "tags": [
+        "hidden",
+        "divides"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: overlapping composite divisors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 50,
+        "a": 14,
+        "b": 21
+      },
+      "expected": 525,
+      "tags": [
+        "hidden",
+        "lcm"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: upper-bound equal divisors and modulo",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000000000,
+        "a": 40000,
+        "b": 40000
+      },
+      "expected": 999720007,
+      "tags": [
+        "hidden",
+        "bounds",
+        "modulo"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: neighboring maximum divisors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 100,
+        "a": 39999,
+        "b": 40000
+      },
+      "expected": 2000000,
+      "tags": [
+        "hidden",
+        "bounds"
+      ]
+    }
+  ]
+}

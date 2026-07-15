@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_943",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: words without useful overlap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "alex",
+          "loves",
+          "leetcode"
+        ]
+      },
+      "expected": "alexlovesleetcode",
+      "tags": [
+        "sample",
+        "no-overlap"
+      ],
+      "validator": {
+        "kind": "shortest_superstring"
+      }
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: overlapping words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "catg",
+          "ctaagt",
+          "gcta",
+          "ttca",
+          "atgcatc"
+        ]
+      },
+      "expected": "gctaagttcatgcatc",
+      "tags": [
+        "sample",
+        "overlap"
+      ],
+      "validator": {
+        "kind": "shortest_superstring"
+      }
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "solo"
+        ]
+      },
+      "expected": "solo",
+      "tags": [
+        "trial",
+        "minimum-count"
+      ],
+      "validator": {
+        "kind": "shortest_superstring"
+      }
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: simple suffix-prefix overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "bcd"
+        ]
+      },
+      "expected": "abcd",
+      "tags": [
+        "trial",
+        "single-overlap"
+      ],
+      "validator": {
+        "kind": "shortest_superstring"
+      }
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: overlap chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "cat",
+          "atg",
+          "tgc"
+        ]
+      },
+      "expected": "catgc",
+      "tags": [
+        "trial",
+        "chain"
+      ],
+      "validator": {
+        "kind": "shortest_superstring"
+      }
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: cyclic optimal ties",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abc",
+          "bca",
+          "cab"
+        ]
+      },
+      "expected": "abcab",
+      "tags": [
+        "hidden",
+        "tie"
+      ],
+      "validator": {
+        "kind": "shortest_superstring"
+      }
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: repeated-character rotations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aaab",
+          "aaba",
+          "abaa",
+          "baaa"
+        ]
+      },
+      "expected": "aaabaaa",
+      "tags": [
+        "hidden",
+        "dense-overlap"
+      ],
+      "validator": {
+        "kind": "shortest_superstring"
+      }
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: no overlaps among short words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "dog",
+          "fish",
+          "urn"
+        ]
+      },
+      "expected": "dogfishurn",
+      "tags": [
+        "hidden",
+        "no-overlap"
+      ],
+      "validator": {
+        "kind": "shortest_superstring"
+      }
+    }
+  ]
+}

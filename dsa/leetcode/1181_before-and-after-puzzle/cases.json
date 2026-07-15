@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1181",
+  "cases": [
+    {"id":"sample-simple-merge","name":"sample: one compatible ordered pair","kind":"sample","visible":true,"input":{"phrases":["writing code","code rocks"]},"expected":["writing code rocks"],"tags":["sample","merge"]},
+    {"id":"sample-many-phrases","name":"sample: several boundary words","kind":"sample","visible":true,"input":{"phrases":["mission statement","a quick bite to eat","a chip off the old block","chocolate bar","mission impossible","a man on a mission","block party","eat my words","bar of soap"]},"expected":["a chip off the old block party","a man on a mission impossible","a man on a mission statement","a quick bite to eat my words","chocolate bar of soap"],"tags":["sample","sorting"]},
+    {"id":"sample-duplicate-single-word","name":"sample: equal text at different indices may pair","kind":"sample","visible":true,"input":{"phrases":["a","b","a"]},"expected":["a"],"tags":["sample","duplicate-indices"]},
+    {"id":"trial-both-directions","name":"both ordered directions produce results","kind":"trial","visible":true,"input":{"phrases":["ab ba","ba ab","ab ba"]},"expected":["ab ba ab","ba ab ba"],"tags":["direction","deduplication"]},
+    {"id":"trial-no-match","name":"no boundary words match","kind":"trial","visible":true,"input":{"phrases":["alpha beta","gamma delta"]},"expected":[],"tags":["empty-result"]},
+    {"id":"real-same-index-forbidden","name":"hidden: one self-matching phrase cannot pair alone","kind":"real","visible":false,"input":{"phrases":["echo echo"]},"expected":[],"tags":["hidden","index-rule"]},
+    {"id":"real-duplicate-output","name":"hidden: distinct pairs collapse to one output string","kind":"real","visible":false,"input":{"phrases":["a b","b c","a b c"]},"expected":["a b c"],"tags":["hidden","deduplication"]}
+  ]
+}

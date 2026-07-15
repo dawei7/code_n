@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1203",
+  "cases": [
+    {"id":"sample-valid","name":"sample: dependencies and group blocks can be satisfied","kind":"sample","visible":true,"input":{"n":8,"m":2,"group":[-1,-1,1,0,0,1,0,-1],"beforeItems":[[],[6],[5],[6],[3,6],[],[],[]]},"expected":[6,3,4,5,2,0,7,1],"tags":["sample","multiple-orders"]},
+    {"id":"sample-impossible","name":"sample: cross-group constraints make contiguity impossible","kind":"sample","visible":true,"input":{"n":8,"m":2,"group":[-1,-1,1,0,0,1,0,-1],"beforeItems":[[],[6],[5],[6],[3],[],[4],[]]},"expected":[],"tags":["sample","group-cycle"]},
+    {"id":"trial-one-group-chain","name":"one group with a unique dependency chain","kind":"trial","visible":true,"input":{"n":3,"m":1,"group":[0,0,0],"beforeItems":[[],[0],[1]]},"expected":[0,1,2],"tags":["same-group","chain"]},
+    {"id":"trial-all-ungrouped","name":"ungrouped items receive independent blocks","kind":"trial","visible":true,"input":{"n":4,"m":1,"group":[-1,-1,-1,-1],"beforeItems":[[],[0],[1],[2]]},"expected":[0,1,2,3],"tags":["ungrouped","chain"]},
+    {"id":"real-empty-groups","name":"hidden: unused original groups do not affect the item order","kind":"real","visible":false,"input":{"n":3,"m":3,"group":[2,2,2],"beforeItems":[[],[0],[1]]},"expected":[0,1,2],"tags":["hidden","empty-groups"]},
+    {"id":"real-cross-group-chain","name":"hidden: chain crosses groups and singleton blocks","kind":"real","visible":false,"input":{"n":6,"m":2,"group":[0,0,1,1,-1,-1],"beforeItems":[[],[0],[1],[2],[3],[4]]},"expected":[0,1,2,3,4,5],"tags":["hidden","cross-group"]},
+    {"id":"real-item-cycle","name":"hidden: same-group item cycle has no ordering","kind":"real","visible":false,"input":{"n":3,"m":1,"group":[0,0,0],"beforeItems":[[],[2],[1]]},"expected":[],"tags":["hidden","item-cycle"]},
+    {"id":"real-group-only-cycle","name":"hidden: acyclic items still induce a group cycle","kind":"real","visible":false,"input":{"n":4,"m":2,"group":[0,0,1,1],"beforeItems":[[2],[],[],[1]]},"expected":[],"tags":["hidden","group-cycle"]}
+  ]
+}

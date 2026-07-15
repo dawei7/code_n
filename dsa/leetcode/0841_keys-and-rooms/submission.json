@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "871",
+  "frontend_id": "841",
+  "title_slug": "keys-and-rooms",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.canVisitAllRooms",
+  "verified_submission_id": "2066700013",
+  "verified_at": "2026-07-13T23:05:09.771294+00:00"
+}

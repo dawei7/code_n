@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "905",
+  "frontend_id": "873",
+  "title_slug": "length-of-longest-fibonacci-subsequence",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.lenLongestFibSubseq",
+  "verified_submission_id": "2066742545",
+  "verified_at": "2026-07-14T01:27:14.823103+00:00"
+}

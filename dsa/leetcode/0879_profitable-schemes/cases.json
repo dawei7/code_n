@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_879",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one crime or both reach the threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "minProfit": 3,
+        "group": [
+          2,
+          2
+        ],
+        "profit": [
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "subset"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: every nonempty subset qualifies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "minProfit": 5,
+        "group": [
+          2,
+          3,
+          5
+        ],
+        "profit": [
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "all-nonempty"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero threshold includes empty subset",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "minProfit": 0,
+        "group": [
+          1
+        ],
+        "profit": [
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "empty-subset"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one feasible profitable crime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "minProfit": 1,
+        "group": [
+          1
+        ],
+        "profit": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one crime misses the profit threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "minProfit": 2,
+        "group": [
+          1
+        ],
+        "profit": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: only empty subset fits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "minProfit": 0,
+        "group": [
+          3
+        ],
+        "profit": [
+          100
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "oversized"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: overlapping qualifying combinations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "minProfit": 5,
+        "group": [
+          2,
+          2,
+          2
+        ],
+        "profit": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "combinations"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: all three crimes required for profit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "minProfit": 3,
+        "group": [
+          1,
+          1,
+          1
+        ],
+        "profit": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "exact-threshold"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: one crime uses all members and profit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 100,
+        "minProfit": 100,
+        "group": [
+          100
+        ],
+        "profit": [
+          100
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "bounds"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: zero-profit crimes create distinct schemes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "minProfit": 0,
+        "group": [
+          1,
+          2
+        ],
+        "profit": [
+          0,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "zero-profit"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: identical crimes remain distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "minProfit": 1,
+        "group": [
+          1,
+          1
+        ],
+        "profit": [
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "duplicate-data"
+      ]
+    }
+  ]
+}

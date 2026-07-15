@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1114",
+  "cases": [
+    {"id":"permutation-123","name":"arrival permutation 1,2,3","kind":"sample","visible":true,"input":{"nums":[1,2,3]},"expected":"firstsecondthird","tags":["sample","concurrency"]},
+    {"id":"permutation-132","name":"arrival permutation 1,3,2","kind":"sample","visible":true,"input":{"nums":[1,3,2]},"expected":"firstsecondthird","tags":["sample","concurrency"]},
+    {"id":"permutation-213","name":"arrival permutation 2,1,3","kind":"trial","visible":true,"input":{"nums":[2,1,3]},"expected":"firstsecondthird","tags":["trial","concurrency"]},
+    {"id":"permutation-231","name":"arrival permutation 2,3,1","kind":"trial","visible":true,"input":{"nums":[2,3,1]},"expected":"firstsecondthird","tags":["trial","concurrency"]},
+    {"id":"permutation-312","name":"arrival permutation 3,1,2","kind":"real","visible":false,"input":{"nums":[3,1,2]},"expected":"firstsecondthird","tags":["hidden","concurrency"]},
+    {"id":"permutation-321","name":"arrival permutation 3,2,1","kind":"real","visible":false,"input":{"nums":[3,2,1]},"expected":"firstsecondthird","tags":["hidden","concurrency"]}
+  ]
+}

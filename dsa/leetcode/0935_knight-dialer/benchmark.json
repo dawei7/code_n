@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_935",
+  "measurement_note": "Size is n, the dialed number length. Fixed-size transition-matrix exponentiation takes logarithmic time in n. A correct rolling dynamic program applies the keypad edges once for every sequence length and therefore performs linear work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: knight sequences at n=125",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 125,
+      "input": {
+        "n": 125
+      },
+      "expected": 1716894,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "linear-dynamic-programming"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: knight sequences at n=1000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "n": 1000
+      },
+      "expected": 88106097,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "linear-dynamic-programming"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: knight sequences at n=5000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5000,
+      "input": {
+        "n": 5000
+      },
+      "expected": 406880451,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "linear-dynamic-programming"
+      ]
+    }
+  ]
+}

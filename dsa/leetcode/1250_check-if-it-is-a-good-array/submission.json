@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1372",
+  "frontend_id": "1250",
+  "title_slug": "check-if-it-is-a-good-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isGoodArray",
+  "verified_submission_id": "2068001527",
+  "verified_at": "2026-07-15T02:56:39.387160+00:00"
+}

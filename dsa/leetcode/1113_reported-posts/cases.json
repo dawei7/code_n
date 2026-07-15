@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1113",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated reporters and two reasons",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 1,
+              "action_date": "2019-07-01",
+              "action": "view",
+              "extra": null
+            },
+            {
+              "user_id": 1,
+              "post_id": 1,
+              "action_date": "2019-07-01",
+              "action": "like",
+              "extra": null
+            },
+            {
+              "user_id": 2,
+              "post_id": 4,
+              "action_date": "2019-07-04",
+              "action": "view",
+              "extra": null
+            },
+            {
+              "user_id": 2,
+              "post_id": 4,
+              "action_date": "2019-07-04",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 3,
+              "post_id": 4,
+              "action_date": "2019-07-04",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 4,
+              "post_id": 3,
+              "action_date": "2019-07-02",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 5,
+              "post_id": 2,
+              "action_date": "2019-07-04",
+              "action": "report",
+              "extra": "racism"
+            },
+            {
+              "user_id": 5,
+              "post_id": 5,
+              "action_date": "2019-07-04",
+              "action": "report",
+              "extra": "racism"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "report_reason",
+          "report_count"
+        ],
+        "rows": [
+          [
+            "racism",
+            2
+          ],
+          [
+            "spam",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "distinct-posts"
+      ]
+    },
+    {
+      "id": "trial-one-report",
+      "name": "trial: one report row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 10,
+              "action_date": "2019-07-04",
+              "action": "report",
+              "extra": "spam"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "report_reason",
+          "report_count"
+        ],
+        "rows": [
+          [
+            "spam",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-same-post-different-reasons",
+      "name": "trial: one post appears in two reason groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 7,
+              "action_date": "2019-07-04",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 2,
+              "post_id": 7,
+              "action_date": "2019-07-04",
+              "action": "report",
+              "extra": "abuse"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "report_reason",
+          "report_count"
+        ],
+        "rows": [
+          [
+            "abuse",
+            1
+          ],
+          [
+            "spam",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "reason-groups"
+      ]
+    },
+    {
+      "id": "real-ignore-nonreports",
+      "name": "hidden: target-day non-report actions are ignored",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 1,
+              "action_date": "2019-07-04",
+              "action": "view",
+              "extra": null
+            },
+            {
+              "user_id": 1,
+              "post_id": 1,
+              "action_date": "2019-07-04",
+              "action": "comment",
+              "extra": "spam"
+            },
+            {
+              "user_id": 2,
+              "post_id": 2,
+              "action_date": "2019-07-04",
+              "action": "report",
+              "extra": "spam"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "report_reason",
+          "report_count"
+        ],
+        "rows": [
+          [
+            "spam",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "action-filter"
+      ]
+    },
+    {
+      "id": "real-ignore-other-days",
+      "name": "hidden: reports outside the target day are ignored",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 1,
+              "action_date": "2019-07-03",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 2,
+              "post_id": 2,
+              "action_date": "2019-07-05",
+              "action": "report",
+              "extra": "spam"
+            },
+            {
+              "user_id": 3,
+              "post_id": 3,
+              "action_date": "2019-07-04",
+              "action": "report",
+              "extra": "abuse"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "report_reason",
+          "report_count"
+        ],
+        "rows": [
+          [
+            "abuse",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "date-filter"
+      ]
+    },
+    {
+      "id": "real-no-target-reports",
+      "name": "hidden: schema-bearing rows produce an empty result",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Actions": [
+            {
+              "user_id": 1,
+              "post_id": 1,
+              "action_date": "2019-07-04",
+              "action": "share",
+              "extra": null
+            },
+            {
+              "user_id": 2,
+              "post_id": 2,
+              "action_date": "2019-07-03",
+              "action": "report",
+              "extra": "spam"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "report_reason",
+          "report_count"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "empty-result"
+      ]
+    }
+  ]
+}

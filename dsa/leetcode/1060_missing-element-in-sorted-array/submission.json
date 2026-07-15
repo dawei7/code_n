@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1059",
+  "frontend_id": "1060",
+  "title_slug": "missing-element-in-sorted-array",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.missingElement",
+  "verified_submission_id": "2067455345",
+  "verified_at": "2026-07-14T14:17:12.177785+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1065",
+  "frontend_id": "1016",
+  "title_slug": "binary-string-with-substrings-representing-1-to-n",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.queryString",
+  "verified_submission_id": "2067299574",
+  "verified_at": "2026-07-14T11:37:39.097072+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "969",
+  "frontend_id": "933",
+  "title_slug": "number-of-recent-calls",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "RecentCounter",
+  "verified_submission_id": "2067002287",
+  "verified_at": "2026-07-14T06:37:01.211892+00:00"
+}

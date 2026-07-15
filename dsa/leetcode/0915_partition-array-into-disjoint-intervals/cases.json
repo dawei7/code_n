@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_915",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: boundary after three values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          0,
+          3,
+          8,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "interior-boundary"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: late zero extends left",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          0,
+          6,
+          12
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "late-minimum"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: minimum array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: equal values across boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: boundary before final value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "maximal-left"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: already separated ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "sorted"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: repeated violations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          2,
+          8,
+          1,
+          9,
+          12,
+          11
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "boundary-repair"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: large boundary values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          0,
+          1000000
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "value-bounds"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: equality after a low value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          5,
+          6
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "equal-left-max"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: multiple later minima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          3,
+          8,
+          2,
+          9,
+          1,
+          10
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "repeated-extension"
+      ]
+    }
+  ]
+}
+

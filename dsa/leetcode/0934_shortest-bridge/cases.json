@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_934",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: diagonal single-cell islands",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "diagonal"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: separated corners",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "distance-two"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: island inside a ring",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: full rows separated by water",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "one-gap"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: opposite single-cell corners",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "long-bridge"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: vertical island slabs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "slabs"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: irregular island boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "irregular"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: bridge departs away from first discovered cell",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "multi-source"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: islands near matrix boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
+  ]
+}

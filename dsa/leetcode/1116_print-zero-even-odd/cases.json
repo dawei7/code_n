@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1116",
+  "cases": [
+    {"id":"trial-minimum","name":"trial: only the odd thread prints a number","kind":"trial","visible":true,"input":{"n":1},"expected":"01","tags":["trial","minimum"]},
+    {"id":"sample-1","name":"sample: one odd and one even value","kind":"sample","visible":true,"input":{"n":2},"expected":"0102","tags":["sample"]},
+    {"id":"sample-2","name":"sample: five values","kind":"sample","visible":true,"input":{"n":5},"expected":"0102030405","tags":["sample","odd-terminal"]},
+    {"id":"real-even-terminal","name":"hidden: terminal value belongs to even thread","kind":"real","visible":false,"input":{"n":6},"expected":"010203040506","tags":["hidden","even-terminal"]},
+    {"id":"real-more-handoffs","name":"hidden: ten alternating numeric handoffs","kind":"real","visible":false,"input":{"n":10},"expected":"010203040506070809010","tags":["hidden","handoff"]}
+  ]
+}

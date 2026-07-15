@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1321",
+  "frontend_id": "1208",
+  "title_slug": "get-equal-substrings-within-budget",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.equalSubstring",
+  "verified_submission_id": "2067933976",
+  "verified_at": "2026-07-15T00:15:45.638021+00:00"
+}

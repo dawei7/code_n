@@ -1,11 +1,14 @@
-"""Optimal solution for LeetCode 1010: Pairs of Songs With Total Durations Divisible by 60."""
+"""Optimal app-local solution for LeetCode 1010."""
 
 
-def solve(time: list[int]) -> int:
+def solve(time):
     counts = [0] * 60
     pairs = 0
+
     for duration in time:
         remainder = duration % 60
-        pairs += counts[-remainder % 60]
+        complement = (-remainder) % 60
+        pairs += counts[complement]
         counts[remainder] += 1
+
     return pairs

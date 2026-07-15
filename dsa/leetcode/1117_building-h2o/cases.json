@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1117",
+  "cases": [
+    {"id":"sample-1","name":"sample: one molecule in mixed arrival order","kind":"sample","visible":true,"input":{"water":"HOH"},"expected":"HHO","tags":["sample","one-molecule"]},
+    {"id":"sample-2","name":"sample: oxygen threads arrive first","kind":"sample","visible":true,"input":{"water":"OOHHHH"},"expected":"HHOHHO","tags":["sample","oxygen-first"]},
+    {"id":"trial-hydrogen-first","name":"trial: all hydrogens precede oxygens","kind":"trial","visible":true,"input":{"water":"HHHHOO"},"expected":"HHOHHO","tags":["trial","hydrogen-first"]},
+    {"id":"real-interleaved","name":"hidden: three molecules with interleaved arrivals","kind":"real","visible":false,"input":{"water":"HOHHOHHOH"},"expected":"HHOHHOHHO","tags":["hidden","three-molecules"]}
+  ]
+}

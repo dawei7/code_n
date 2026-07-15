@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1102",
+  "frontend_id": "1150",
+  "title_slug": "check-if-a-number-is-majority-element-in-a-sorted-array",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isMajorityElement",
+  "verified_submission_id": "2067850321",
+  "verified_at": "2026-07-14T20:07:20.558659+00:00"
+}

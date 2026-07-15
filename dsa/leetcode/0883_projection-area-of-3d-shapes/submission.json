@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "919",
+  "frontend_id": "883",
+  "title_slug": "projection-area-of-3d-shapes",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.projectionArea",
+  "verified_submission_id": "2066758405",
+  "verified_at": "2026-07-14T02:07:11.698063+00:00"
+}

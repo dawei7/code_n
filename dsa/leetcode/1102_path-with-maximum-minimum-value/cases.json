@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_1102",
+  "cases": [
+    {"id": "sample-detour-around-low-cells", "name": "sample: best path avoids low interior", "kind": "sample", "visible": true, "input": {"grid": [[5,4,5],[1,2,6],[7,4,6]]}, "expected": 4, "tags": ["sample", "heap"]},
+    {"id": "sample-two-row-corridor", "name": "sample: maximum bottleneck is two", "kind": "sample", "visible": true, "input": {"grid": [[2,2,1,2,2,2],[1,2,2,2,1,2]]}, "expected": 2, "tags": ["sample", "detour"]},
+    {"id": "sample-larger-grid", "name": "sample: winding larger-grid path", "kind": "sample", "visible": true, "input": {"grid": [[3,4,6,3,4],[0,2,1,1,7],[8,8,3,2,7],[3,2,4,9,8],[4,1,2,0,0],[4,6,5,4,3]]}, "expected": 3, "tags": ["sample", "larger-grid"]},
+    {"id": "trial-single-cell", "name": "trial: start is destination", "kind": "trial", "visible": true, "input": {"grid": [[42]]}, "expected": 42, "tags": ["trial", "single-cell"]},
+    {"id": "real-diagonal-does-not-connect", "name": "hidden: high diagonal requires low cardinal step", "kind": "real", "visible": false, "input": {"grid": [[5,1],[1,5]]}, "expected": 1, "tags": ["hidden", "cardinal-only"]},
+    {"id": "real-long-high-detour", "name": "hidden: longer route has stronger bottleneck", "kind": "real", "visible": false, "input": {"grid": [[8,7,1,1],[1,7,7,7],[1,1,1,7],[9,9,9,8]]}, "expected": 7, "tags": ["hidden", "detour"]}
+  ]
+}

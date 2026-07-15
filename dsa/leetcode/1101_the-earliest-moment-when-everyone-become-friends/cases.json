@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_1101",
+  "cases": [
+    {"id": "sample-two-components-merge", "name": "sample: final two friendship circles merge", "kind": "sample", "visible": true, "input": {"logs": [[20190101,0,1],[20190104,3,4],[20190107,2,3],[20190211,1,5],[20190224,2,4],[20190301,0,3],[20190312,1,2],[20190322,4,5]], "n": 6}, "expected": 20190301, "tags": ["sample", "union-find"]},
+    {"id": "sample-four-people", "name": "sample: everyone connects at third event", "kind": "sample", "visible": true, "input": {"logs": [[0,2,0],[1,0,1],[3,0,3],[4,1,2],[7,3,1]], "n": 4}, "expected": 3, "tags": ["sample", "early-completion"]},
+    {"id": "trial-never-connected", "name": "trial: isolated person remains", "kind": "trial", "visible": true, "input": {"logs": [[1,0,1],[2,1,2],[3,0,2]], "n": 4}, "expected": -1, "tags": ["trial", "disconnected"]},
+    {"id": "trial-two-people", "name": "trial: minimum group connects directly", "kind": "trial", "visible": true, "input": {"logs": [[99,0,1]], "n": 2}, "expected": 99, "tags": ["trial", "minimum-n"]},
+    {"id": "real-unsorted-timestamps", "name": "hidden: chronological order differs from input", "kind": "real", "visible": false, "input": {"logs": [[30,2,3],[10,0,1],[40,0,3],[20,1,2]], "n": 4}, "expected": 30, "tags": ["hidden", "unsorted"]},
+    {"id": "real-redundant-edge", "name": "hidden: transitive edge does not reduce components", "kind": "real", "visible": false, "input": {"logs": [[1,0,1],[2,1,2],[3,0,2],[4,3,4],[5,2,3]], "n": 5}, "expected": 5, "tags": ["hidden", "redundant-edge"]}
+  ]
+}

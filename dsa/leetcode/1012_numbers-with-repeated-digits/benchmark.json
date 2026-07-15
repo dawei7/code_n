@@ -1,0 +1,5 @@
+{"challenge_id":"lc_1012","cases":[
+{"id":"benchmark-scale-1","name":"benchmark: enumerate through 200","kind":"benchmark","visible":false,"size":200,"input":{"n":200},"expected":38,"tags":["benchmark","scale-small","direct-enumeration"]},
+{"id":"benchmark-scale-2","name":"benchmark: enumerate through 800","kind":"benchmark","visible":false,"size":800,"input":{"n":800},"expected":206,"tags":["benchmark","scale-medium","direct-enumeration"]},
+{"id":"benchmark-scale-3","name":"benchmark: enumerate through 3200","kind":"benchmark","visible":false,"size":3200,"input":{"n":3200},"expected":1342,"tags":["benchmark","scale-large","direct-enumeration"]}
+]}

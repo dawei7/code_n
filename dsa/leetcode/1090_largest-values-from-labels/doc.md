@@ -8,72 +8,78 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Greedy, Sorting, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [largest-values-from-labels](https://leetcode.com/problems/largest-values-from-labels/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/largest-values-from-labels/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/largest-values-from-labels/).
 
 ### Goal
-Pick at most `numWanted` items to maximize the total value, while using no more than `useLimit` items with the same label.
+
+There are $n$ items. Item `i` has value `values[i]` and label `labels[i]`, so the two arrays describe the same items by matching index. Values and labels are nonnegative integers.
+
+Choose a subset whose value sum is as large as possible. The subset may contain at most `numWanted` items, and for every label it may contain at most `useLimit` items carrying that label. Return the maximum attainable sum; the subset itself is not required.
 
 ### Function Contract
+
 **Inputs**
 
-- `values`: item values.
-- `labels`: label for each item at the same index.
-- `numWanted`: maximum number of chosen items.
-- `useLimit`: maximum chosen items allowed for any single label.
+- `values`: a list of $n$ nonnegative item values, where $1 \le n \le 2\cdot 10^4$.
+- `labels`: a length-$n$ list whose entry at each index is that item's nonnegative label.
+- `numWanted`: the maximum total number of selected items, from 1 through $n$.
+- `useLimit`: the maximum selected count for any one label, from 1 through $n$.
 
 **Return value**
 
-The largest possible sum of selected values.
+- The greatest possible sum of values among subsets satisfying both selection limits.
 
 ### Examples
+
 **Example 1**
 
-- Input: `values = [5,4,3,2,1]`, `labels = [1,1,2,2,3]`, `numWanted = 3`, `useLimit = 1`
+- Input: `values = [5, 4, 3, 2, 1]`, `labels = [1, 1, 2, 2, 3]`, `numWanted = 3`, `useLimit = 1`
 - Output: `9`
+
+Select values 5, 3, and 1, one from each label.
 
 **Example 2**
 
-- Input: `values = [5,4,3,2,1]`, `labels = [1,3,3,3,2]`, `numWanted = 3`, `useLimit = 2`
+- Input: `values = [5, 4, 3, 2, 1]`, `labels = [1, 3, 3, 3, 2]`, `numWanted = 3`, `useLimit = 2`
 - Output: `12`
 
 **Example 3**
 
-- Input: `values = [9,8,8,7,6]`, `labels = [0,0,0,1,1]`, `numWanted = 4`, `useLimit = 2`
-- Output: `30`
+- Input: `values = [9, 8, 8, 7, 6]`, `labels = [0, 0, 0, 1, 1]`, `numWanted = 3`, `useLimit = 1`
+- Output: `16`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Greedy sorting with per-label counting.
+- **Time:** $O(n\log n)$
+- **Space:** $O(n)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(n)` for sorting and label counts.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-"""Optimal solution for LeetCode 1090: Largest Values From Labels."""
+#### General
 
+**Consider value before every other property:** Pair each value with its label and sort all items by value in descending order. A label matters only for feasibility; among currently feasible items, taking the greatest remaining value can never reduce the options more than taking a smaller item with the same label usage.
 
-def solve(values: list[int], labels: list[int], num_wanted: int, use_limit: int) -> int:
-    used: dict[int, int] = {}
-    total = 0
-    chosen = 0
-    for value, label in sorted(zip(values, labels), reverse=True):
-        if chosen == num_wanted:
-            break
-        if used.get(label, 0) == use_limit:
-            continue
-        used[label] = used.get(label, 0) + 1
-        total += value
-        chosen += 1
-    return total
-```
+**Track both limits while scanning:** Maintain how many selected items use each label and the total selected count. Accept an item when its label count is below `useLimit`; otherwise skip it. Stop after selecting `numWanted` items or exhausting the sorted list.
+
+**Why a greedy choice is safe:** Compare the greedy subset with any optimal subset at the first sorted item chosen by the greedy scan but omitted by the optimum. If the optimum has room, adding it is no worse. Otherwise, replace a later item: the replacement has no greater value, and the greedy item's label still had capacity at that point. Repeating the exchange transforms an optimum to include every greedy choice without decreasing its sum.
+
+Because values are nonnegative, accepting a feasible item until the total limit is reached cannot lower the sum. The accumulated value is therefore maximal.
+
+#### Complexity detail
+
+Sorting $n$ item pairs takes $O(n\log n)$ time. The greedy scan and label-count updates take $O(n)$ expected time. The sorted pairs and at most $n$ label counters require $O(n)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Group and merge label lists:** Sort values within each label and repeatedly choose the best available head. It can be implemented with a heap but is more elaborate than one global sort.
+- **Selection sort before greedy scanning:** It preserves correctness but takes $O(n^2)$ time.
+- **Take the globally largest `numWanted` values first:** It can violate `useLimit` and miss smaller feasible items from other labels.
+- **One dominant label:** Select at most `useLimit` of its values even when more are globally largest.
+- **`numWanted` larger than feasible positive choices:** The subset is allowed to contain fewer than `numWanted` items.
+- **Zero-valued items:** Selecting them does not change the maximum sum.
+- **Equal values:** Their order is irrelevant; any feasible tie choice gives the same immediate contribution.
+
 </details>

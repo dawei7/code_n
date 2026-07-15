@@ -2,16 +2,18 @@
 
 
 def solve(arr: list[int]) -> list[int]:
-    i = len(arr) - 2
-    while i >= 0 and arr[i] <= arr[i + 1]:
-        i -= 1
-    if i < 0:
+    pivot = len(arr) - 2
+    while pivot >= 0 and arr[pivot] <= arr[pivot + 1]:
+        pivot -= 1
+
+    if pivot < 0:
         return arr
 
-    j = len(arr) - 1
-    while arr[j] >= arr[i]:
-        j -= 1
-    while j > i and arr[j] == arr[j - 1]:
-        j -= 1
-    arr[i], arr[j] = arr[j], arr[i]
+    target = len(arr) - 1
+    while arr[target] >= arr[pivot]:
+        target -= 1
+    while target > pivot + 1 and arr[target] == arr[target - 1]:
+        target -= 1
+
+    arr[pivot], arr[target] = arr[target], arr[pivot]
     return arr

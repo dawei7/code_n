@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1258",
+  "cases": [
+    {
+      "id": "sample-transitive",
+      "name": "sample: transitive and independent groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "synonyms": [
+          [
+            "happy",
+            "joy"
+          ],
+          [
+            "sad",
+            "sorrow"
+          ],
+          [
+            "joy",
+            "cheerful"
+          ]
+        ],
+        "text": "I am happy today but was sad yesterday"
+      },
+      "expected": [
+        "I am cheerful today but was sad yesterday",
+        "I am cheerful today but was sorrow yesterday",
+        "I am happy today but was sad yesterday",
+        "I am happy today but was sorrow yesterday",
+        "I am joy today but was sad yesterday",
+        "I am joy today but was sorrow yesterday"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-repeat-group",
+      "name": "sample: one transitive group at two positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "synonyms": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "b",
+            "c"
+          ]
+        ],
+        "text": "a is c"
+      },
+      "expected": [
+        "a is a",
+        "a is b",
+        "a is c",
+        "b is a",
+        "b is b",
+        "b is c",
+        "c is a",
+        "c is b",
+        "c is c"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no synonym pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "synonyms": [],
+        "text": "no replacements"
+      },
+      "expected": [
+        "no replacements"
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-pair",
+      "name": "trial: one replaceable position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "synonyms": [
+          [
+            "fast",
+            "quick"
+          ]
+        ],
+        "text": "run fast"
+      },
+      "expected": [
+        "run fast",
+        "run quick"
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-unrelated",
+      "name": "trial: text outside synonym graph",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "synonyms": [
+          [
+            "hot",
+            "warm"
+          ]
+        ],
+        "text": "cold day"
+      },
+      "expected": [
+        "cold day"
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-merged",
+      "name": "hidden: pair order merges two components",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "synonyms": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            "d"
+          ],
+          [
+            "b",
+            "c"
+          ]
+        ],
+        "text": "d a"
+      },
+      "expected": [
+        "a a",
+        "a b",
+        "a c",
+        "a d",
+        "b a",
+        "b b",
+        "b c",
+        "b d",
+        "c a",
+        "c b",
+        "c c",
+        "c d",
+        "d a",
+        "d b",
+        "d c",
+        "d d"
+      ],
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-repeated",
+      "name": "hidden: repeated word choices are independent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "synonyms": [
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "text": "x x x"
+      },
+      "expected": [
+        "x x x",
+        "x x y",
+        "x y x",
+        "x y y",
+        "y x x",
+        "y x y",
+        "y y x",
+        "y y y"
+      ],
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

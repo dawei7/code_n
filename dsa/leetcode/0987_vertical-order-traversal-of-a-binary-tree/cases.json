@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_987","cases":[
+{"id":"sample-1","name":"sample: sparse tree columns","kind":"sample","visible":true,"input":{"root":[3,9,20,null,null,15,7]},"expected":[[9],[3,15],[20],[7]],"tags":["sample"]},
+{"id":"sample-2","name":"sample: same-position value order","kind":"sample","visible":true,"input":{"root":[1,2,3,4,5,6,7]},"expected":[[4],[2],[1,5,6],[3],[7]],"tags":["sample"]},
+{"id":"sample-3","name":"sample: swapped same-position values","kind":"sample","visible":true,"input":{"root":[1,2,3,4,6,5,7]},"expected":[[4],[2],[1,5,6],[3],[7]],"tags":["sample"]},
+{"id":"trial-1","name":"trial: single node","kind":"trial","visible":true,"input":{"root":[8]},"expected":[[8]],"tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: left chain","kind":"trial","visible":true,"input":{"root":[1,2,null,3]},"expected":[[3],[2],[1]],"tags":["trial","left-chain"]},
+{"id":"trial-3","name":"trial: right chain","kind":"trial","visible":true,"input":{"root":[1,null,2,null,3]},"expected":[[1],[2],[3]],"tags":["trial","right-chain"]},
+{"id":"hidden-1","name":"hidden: duplicate same-position values","kind":"real","visible":false,"input":{"root":[0,1,2,null,5,5,null]},"expected":[[1],[0,5,5],[2]],"tags":["hidden","duplicates"]},
+{"id":"hidden-2","name":"hidden: values need tie sorting","kind":"real","visible":false,"input":{"root":[10,20,30,null,9,1,null]},"expected":[[20],[10,1,9],[30]],"tags":["hidden","tie-order"]},
+{"id":"hidden-3","name":"hidden: value bounds","kind":"real","visible":false,"input":{"root":[1000,0,1000]},"expected":[[0],[1000],[1000]],"tags":["hidden","bounds"]}
+]}

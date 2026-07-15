@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1164",
+  "frontend_id": "1228",
+  "title_slug": "missing-number-in-arithmetic-progression",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.missingNumber",
+  "verified_submission_id": "2067959367",
+  "verified_at": "2026-07-15T01:28:58.048145+00:00"
+}

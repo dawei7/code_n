@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "958",
+  "frontend_id": "922",
+  "title_slug": "sort-array-by-parity-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.sortArrayByParityII",
+  "verified_submission_id": "2066959742",
+  "verified_at": "2026-07-14T06:03:53.686391+00:00"
+}

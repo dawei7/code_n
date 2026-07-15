@@ -1,4 +1,13 @@
-def solve(arr):
-    arr.sort()
-    best = min(arr[i + 1] - arr[i] for i in range(len(arr) - 1))
-    return [[arr[i], arr[i + 1]] for i in range(len(arr) - 1) if arr[i + 1] - arr[i] == best]
+def solve(arr: list[int]) -> list[list[int]]:
+    values = sorted(arr)
+    best_gap = float("inf")
+    pairs = []
+
+    for left, right in zip(values, values[1:]):
+        gap = right - left
+        if gap < best_gap:
+            best_gap = gap
+            pairs = [[left, right]]
+        elif gap == best_gap:
+            pairs.append([left, right])
+    return pairs

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_826",
+  "measurement_note": "Size is both the number of jobs and the number of workers. Sorting and sweeping takes O(size log size) time; scanning every job for every fully capable worker takes O(size^2) and cannot stop early.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 8 jobs and 8 fully capable workers", "kind": "benchmark", "visible": false, "size": 8, "input": {"difficulty": [1, 2, 3, 4, 5, 6, 7, 8], "profit": [1, 2, 3, 4, 5, 6, 7, 8], "worker": [8, 8, 8, 8, 8, 8, 8, 8]}, "expected": 64, "tags": ["benchmark", "scale-small", "all-jobs-eligible"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 jobs and 16 fully capable workers", "kind": "benchmark", "visible": false, "size": 16, "input": {"difficulty": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], "profit": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], "worker": [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16]}, "expected": 256, "tags": ["benchmark", "scale-medium", "all-jobs-eligible"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 32 jobs and 32 fully capable workers", "kind": "benchmark", "visible": false, "size": 32, "input": {"difficulty": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32], "profit": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32], "worker": [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32]}, "expected": 1024, "tags": ["benchmark", "scale-large", "all-jobs-eligible"]}
+  ]
+}

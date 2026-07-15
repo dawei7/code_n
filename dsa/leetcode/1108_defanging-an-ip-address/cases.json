@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1108",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one-digit octets",
+      "kind": "sample",
+      "visible": true,
+      "input": {"address": "1.1.1.1"},
+      "expected": "1[.]1[.]1[.]1",
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: octets of different widths",
+      "kind": "sample",
+      "visible": true,
+      "input": {"address": "255.100.50.0"},
+      "expected": "255[.]100[.]50[.]0",
+      "tags": ["sample"]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: minimum numeric address",
+      "kind": "trial",
+      "visible": true,
+      "input": {"address": "0.0.0.0"},
+      "expected": "0[.]0[.]0[.]0",
+      "tags": ["trial", "zero"]
+    },
+    {
+      "id": "trial-all-maximum",
+      "name": "trial: maximum-length address",
+      "kind": "trial",
+      "visible": true,
+      "input": {"address": "255.255.255.255"},
+      "expected": "255[.]255[.]255[.]255",
+      "tags": ["trial", "maximum-length"]
+    },
+    {
+      "id": "real-loopback",
+      "name": "hidden: loopback address",
+      "kind": "real",
+      "visible": false,
+      "input": {"address": "127.0.0.1"},
+      "expected": "127[.]0[.]0[.]1",
+      "tags": ["hidden", "mixed-width"]
+    },
+    {
+      "id": "real-private-network",
+      "name": "hidden: private network address",
+      "kind": "real",
+      "visible": false,
+      "input": {"address": "192.168.10.24"},
+      "expected": "192[.]168[.]10[.]24",
+      "tags": ["hidden", "mixed-width"]
+    },
+    {
+      "id": "real-alternating-widths",
+      "name": "hidden: alternating octet widths",
+      "kind": "real",
+      "visible": false,
+      "input": {"address": "9.87.6.123"},
+      "expected": "9[.]87[.]6[.]123",
+      "tags": ["hidden", "text-preservation"]
+    }
+  ]
+}

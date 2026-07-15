@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_941",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: too short",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "length"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: plateau at peak",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          5,
+          5
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "plateau"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: valid short mountain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: minimum valid mountain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: strictly increasing only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "no-descent"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: strictly decreasing only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          1,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "no-climb"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: second rise after descent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          2,
+          1,
+          2,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "second-rise"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: longer valid mountain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          1,
+          2,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "valid"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: interior plateau",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "plateau"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: maximum value at peak",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          10000,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "upper-bound"
+      ]
+    }
+  ]
+}

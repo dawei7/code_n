@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_983","cases":[
+{"id":"sample-1","name":"sample: mixed travel gaps","kind":"sample","visible":true,"input":{"days":[1,4,6,7,8,20],"costs":[2,7,15]},"expected":11,"tags":["sample"]},
+{"id":"sample-2","name":"sample: month pass plus one day","kind":"sample","visible":true,"input":{"days":[1,2,3,4,5,6,7,8,9,10,30,31],"costs":[2,7,15]},"expected":17,"tags":["sample"]},
+{"id":"trial-1","name":"trial: long pass cheapest","kind":"trial","visible":true,"input":{"days":[100],"costs":[3,2,1]},"expected":1,"tags":["trial","single"]},
+{"id":"trial-2","name":"trial: sparse monthly trips","kind":"trial","visible":true,"input":{"days":[1,31,61],"costs":[2,7,15]},"expected":6,"tags":["trial","sparse"]},
+{"id":"trial-3","name":"trial: full week","kind":"trial","visible":true,"input":{"days":[1,2,3,4,5,6,7],"costs":[2,7,15]},"expected":7,"tags":["trial","week"]},
+{"id":"hidden-1","name":"hidden: outside seven-day boundary","kind":"real","visible":false,"input":{"days":[1,8],"costs":[5,6,100]},"expected":10,"tags":["hidden","boundary"]},
+{"id":"hidden-2","name":"hidden: year endpoints","kind":"real","visible":false,"input":{"days":[1,365],"costs":[1,1000,1000]},"expected":2,"tags":["hidden","bounds"]},
+{"id":"hidden-3","name":"hidden: exact thirty-day coverage","kind":"real","visible":false,"input":{"days":[10,39],"costs":[10,50,12]},"expected":12,"tags":["hidden","month-boundary"]}
+]}

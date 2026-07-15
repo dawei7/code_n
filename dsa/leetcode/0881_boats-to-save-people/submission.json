@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "917",
+  "frontend_id": "881",
+  "title_slug": "boats-to-save-people",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numRescueBoats",
+  "verified_submission_id": "2066753836",
+  "verified_at": "2026-07-14T01:55:58.736117+00:00"
+}

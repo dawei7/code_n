@@ -2,89 +2,58 @@
   "challenge_id": "lc_1095",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: target on increasing side",
+      "id": "sample-target-both-slopes",
+      "name": "sample: minimum of two matching indices",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "target": 3,
-        "mountain_arr": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          3,
-          1
-        ]
-      },
+      "input": {"target": 3, "mountain_arr": [1, 2, 3, 4, 5, 3, 1]},
       "expected": 2,
-      "tags": [
-        "sample",
-        "binary-search"
-      ]
+      "tags": ["sample", "both-slopes"]
     },
     {
-      "id": "sample-2",
-      "name": "sample: target missing",
+      "id": "sample-target-absent",
+      "name": "sample: target absent",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "target": 3,
-        "mountain_arr": [
-          0,
-          1,
-          2,
-          4,
-          2,
-          1
-        ]
-      },
+      "input": {"target": 3, "mountain_arr": [0, 1, 2, 4, 2, 1]},
       "expected": -1,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "absent"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: target absent in tiny mountain",
-      "kind": "sample",
+      "id": "trial-peak",
+      "name": "trial: target is the peak",
+      "kind": "trial",
       "visible": true,
-      "input": {
-        "target": 4,
-        "mountain_arr": [
-          1,
-          5,
-          2
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "sample",
-        "edge"
-      ]
+      "input": {"target": 9, "mountain_arr": [1, 4, 7, 9, 6, 2]},
+      "expected": 3,
+      "tags": ["trial", "peak"]
     },
     {
-      "id": "real-target-before-peak",
-      "name": "hidden: target before peak",
+      "id": "trial-descending-only",
+      "name": "trial: target appears only after peak",
+      "kind": "trial",
+      "visible": true,
+      "input": {"target": 6, "mountain_arr": [1, 3, 8, 12, 10, 6, 2]},
+      "expected": 5,
+      "tags": ["trial", "descending"]
+    },
+    {
+      "id": "real-minimum-length",
+      "name": "hidden: three-element mountain",
       "kind": "real",
       "visible": false,
-      "input": {
-        "target": 5,
-        "mountain_arr": [
-          1,
-          3,
-          5,
-          7,
-          6,
-          4,
-          2
-        ]
-      },
+      "input": {"target": 2, "mountain_arr": [0, 5, 2]},
       "expected": 2,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "minimum-length"]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: large values and absent target",
+      "kind": "real",
+      "visible": false,
+      "input": {"target": 999999999, "mountain_arr": [100000000, 500000000, 1000000000, 700000000, 200000000]},
+      "expected": -1,
+      "tags": ["hidden", "large-values", "absent"]
     }
   ]
 }

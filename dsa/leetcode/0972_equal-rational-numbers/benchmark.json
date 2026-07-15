@@ -1,0 +1,5 @@
+{"challenge_id":"lc_972","cases":[
+{"id":"benchmark-scale-1","name":"benchmark: two one-character integers","kind":"benchmark","visible":false,"size":2,"input":{"s":"0","t":"0"},"expected":true,"tags":["benchmark","scale-small"]},
+{"id":"benchmark-scale-2","name":"benchmark: two four-digit integers","kind":"benchmark","visible":false,"size":8,"input":{"s":"1234","t":"1234"},"expected":true,"tags":["benchmark","scale-medium"]},
+{"id":"benchmark-scale-3","name":"benchmark: maximum-length repeated forms","kind":"benchmark","visible":false,"size":30,"input":{"s":"1234.5678(9012)","t":"1234.5678(9012)"},"expected":true,"tags":["benchmark","scale-large"]}
+]}

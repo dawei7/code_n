@@ -1,78 +1,10 @@
-{
-  "challenge_id": "lc_1014",
-  "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: best middle pair",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "values": [
-          8,
-          1,
-          5,
-          2,
-          6
-        ]
-      },
-      "expected": 11,
-      "tags": [
-        "sample",
-        "dynamic-programming"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: two values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "values": [
-          1,
-          2
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "trial-descending",
-      "name": "descending values",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "values": [
-          5,
-          4,
-          3
-        ]
-      },
-      "expected": 8,
-      "tags": [
-        "small"
-      ]
-    },
-    {
-      "id": "real-late-high-value",
-      "name": "hidden: late high value",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "values": [
-          1,
-          2,
-          10,
-          1,
-          10
-        ]
-      },
-      "expected": 18,
-      "tags": [
-        "hidden"
-      ]
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_1014","cases":[
+{"id":"sample-1","name":"sample: best separated pair","kind":"sample","visible":true,"input":{"values":[8,1,5,2,6]},"expected":11,"tags":["sample"]},
+{"id":"sample-2","name":"sample: only one pair","kind":"sample","visible":true,"input":{"values":[1,2]},"expected":2,"tags":["sample"]},
+{"id":"trial-1","name":"trial: descending values","kind":"trial","visible":true,"input":{"values":[5,4,3]},"expected":8,"tags":["trial","descending"]},
+{"id":"trial-2","name":"trial: equal values favor adjacency","kind":"trial","visible":true,"input":{"values":[7,7,7,7]},"expected":13,"tags":["trial","equal"]},
+{"id":"trial-3","name":"trial: increasing values","kind":"trial","visible":true,"input":{"values":[1,2,3,4]},"expected":6,"tags":["trial","increasing"]},
+{"id":"hidden-1","name":"hidden: two late high values","kind":"real","visible":false,"input":{"values":[1,2,10,1,10]},"expected":18,"tags":["hidden","late"]},
+{"id":"hidden-2","name":"hidden: early value offsets distance","kind":"real","visible":false,"input":{"values":[100,1,1,1,98]},"expected":194,"tags":["hidden","distance"]},
+{"id":"hidden-3","name":"hidden: interior adjacent pair wins","kind":"real","visible":false,"input":{"values":[2,9,9,2]},"expected":17,"tags":["hidden","interior"]}
+]}

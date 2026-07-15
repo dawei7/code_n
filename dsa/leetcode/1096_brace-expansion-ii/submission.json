@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1188",
+  "frontend_id": "1096",
+  "title_slug": "brace-expansion-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.braceExpansionII",
+  "verified_submission_id": "2067611783",
+  "verified_at": "2026-07-14T16:31:03.400054+00:00"
+}

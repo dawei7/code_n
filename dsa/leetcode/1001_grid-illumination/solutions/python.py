@@ -1,35 +1,45 @@
-"""Optimal solution for LeetCode 1001: Grid Illumination."""
+"""Optimal app-local solution for LeetCode 1001."""
 
 from collections import Counter
 
 
-def solve(n: int, lamps: list[list[int]], queries: list[list[int]]) -> list[int]:
+def solve(n, lamps, queries):
     active = set()
-    rows: Counter[int] = Counter()
-    cols: Counter[int] = Counter()
-    diag: Counter[int] = Counter()
-    anti: Counter[int] = Counter()
+    rows = Counter()
+    columns = Counter()
+    diagonals = Counter()
+    anti_diagonals = Counter()
 
-    for r, c in lamps:
-        if (r, c) in active:
+    for row, column in lamps:
+        if (row, column) in active:
             continue
-        active.add((r, c))
-        rows[r] += 1
-        cols[c] += 1
-        diag[r - c] += 1
-        anti[r + c] += 1
+        active.add((row, column))
+        rows[row] += 1
+        columns[column] += 1
+        diagonals[row - column] += 1
+        anti_diagonals[row + column] += 1
 
-    answer: list[int] = []
-    for r, c in queries:
-        answer.append(1 if rows[r] or cols[c] or diag[r - c] or anti[r + c] else 0)
-        for dr in (-1, 0, 1):
-            for dc in (-1, 0, 1):
-                nr, nc = r + dr, c + dc
-                if not (0 <= nr < n and 0 <= nc < n) or (nr, nc) not in active:
+    answer = []
+    for row, column in queries:
+        answer.append(
+            int(
+                rows[row] > 0
+                or columns[column] > 0
+                or diagonals[row - column] > 0
+                or anti_diagonals[row + column] > 0
+            )
+        )
+
+        for row_step in (-1, 0, 1):
+            for column_step in (-1, 0, 1):
+                neighbor = (row + row_step, column + column_step)
+                if neighbor not in active:
                     continue
-                active.remove((nr, nc))
-                rows[nr] -= 1
-                cols[nc] -= 1
-                diag[nr - nc] -= 1
-                anti[nr + nc] -= 1
+                active.remove(neighbor)
+                lamp_row, lamp_column = neighbor
+                rows[lamp_row] -= 1
+                columns[lamp_column] -= 1
+                diagonals[lamp_row - lamp_column] -= 1
+                anti_diagonals[lamp_row + lamp_column] -= 1
+
     return answer

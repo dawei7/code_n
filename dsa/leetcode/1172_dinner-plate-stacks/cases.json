@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1172",
+  "cases": [
+    {"id":"sample-reuse-left-hole","name":"sample: reuse the leftmost opened stack","kind":"sample","visible":true,"input":{"capacity":2,"operations":[["push",[1]],["push",[2]],["push",[3]],["push",[4]],["push",[5]],["popAtStack",[0]],["push",[20]],["push",[21]],["popAtStack",[0]],["popAtStack",[2]],["pop",[]],["pop",[]],["pop",[]],["pop",[]],["pop",[]]]},"expected":[null,null,null,null,null,2,null,null,20,21,5,4,3,1,-1],"tags":["sample","design"]},
+    {"id":"trial-empty","name":"pop from an empty structure","kind":"trial","visible":true,"input":{"capacity":1,"operations":[["pop",[]],["popAtStack",[0]]]},"expected":[-1,-1],"tags":["empty"]},
+    {"id":"trial-capacity-one","name":"capacity one with a middle hole","kind":"trial","visible":true,"input":{"capacity":1,"operations":[["push",[4]],["push",[5]],["push",[6]],["popAtStack",[1]],["push",[7]],["pop",[]],["pop",[]],["pop",[]]]},"expected":[null,null,null,5,null,6,7,4],"tags":["capacity-one","hole"]},
+    {"id":"real-leftmost-choice","name":"hidden: choose the smaller of two holes","kind":"real","visible":false,"input":{"capacity":2,"operations":[["push",[1]],["push",[2]],["push",[3]],["push",[4]],["push",[5]],["push",[6]],["popAtStack",[2]],["popAtStack",[0]],["push",[8]],["push",[9]],["popAtStack",[0]],["popAtStack",[2]]]},"expected":[null,null,null,null,null,null,6,2,null,null,8,9],"tags":["hidden","leftmost"]},
+    {"id":"real-trim-and-recreate","name":"hidden: trim an empty suffix and recreate indices","kind":"real","visible":false,"input":{"capacity":2,"operations":[["push",[1]],["push",[2]],["push",[3]],["popAtStack",[1]],["push",[4]],["pop",[]],["pop",[]],["push",[5]],["popAtStack",[1]],["pop",[]]]},"expected":[null,null,null,3,null,4,2,null,-1,5],"tags":["hidden","trim"]},
+    {"id":"real-invalid-index","name":"hidden: invalid index leaves state unchanged","kind":"real","visible":false,"input":{"capacity":3,"operations":[["push",[10]],["popAtStack",[100000]],["popAtStack",[0]],["pop",[]]]},"expected":[null,-1,10,-1],"tags":["hidden","invalid-index"]}
+  ]
+}

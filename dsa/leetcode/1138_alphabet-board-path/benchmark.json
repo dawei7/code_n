@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1138",
+  "measurement_note": "Size is the target length L. Alternating z and b forces long valid segments; fragment accumulation and one final join are linear, while the calibrated implementation copies the growing command string after every emitted command.",
+  "cases": [
+    {
+      "id": "benchmark-scale-12",
+      "name": "benchmark: 12 alternating z/b letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "target": "zbzbzbzbzbzb"
+      },
+      "expected": "DDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "repeated-copy"
+      ]
+    },
+    {
+      "id": "benchmark-scale-48",
+      "name": "benchmark: 48 alternating z/b letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "target": "zbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzb"
+      },
+      "expected": "DDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "repeated-copy"
+      ]
+    },
+    {
+      "id": "benchmark-scale-100",
+      "name": "benchmark: 100 alternating z/b letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "target": "zbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzb"
+      },
+      "expected": "DDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!LDDDDD!UUUUUR!",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "repeated-copy"
+      ]
+    }
+  ]
+}

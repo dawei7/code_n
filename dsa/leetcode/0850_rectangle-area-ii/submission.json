@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "880",
+  "frontend_id": "850",
+  "title_slug": "rectangle-area-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.rectangleArea",
+  "verified_submission_id": "2066711889",
+  "verified_at": "2026-07-13T23:49:16.195393+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_842",
+  "cases": [
+    {"id": "sample-1", "name": "sample: multiple valid splits", "kind": "sample", "visible": true, "input": {"num": "1101111"}, "expected": [11, 0, 11, 11], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["sample", "multiple-answers"]},
+    {"id": "sample-2", "name": "sample: final value breaks recurrence", "kind": "sample", "visible": true, "input": {"num": "112358130"}, "expected": [], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["sample", "impossible"]},
+    {"id": "sample-3", "name": "sample: forbidden leading zero", "kind": "sample", "visible": true, "input": {"num": "0123"}, "expected": [], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["sample", "leading-zero"]},
+    {"id": "trial-1", "name": "trial: three large values", "kind": "trial", "visible": true, "input": {"num": "123456579"}, "expected": [123, 456, 579], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["trial", "three-values"]},
+    {"id": "trial-2", "name": "trial: repeated zeros", "kind": "trial", "visible": true, "input": {"num": "0000"}, "expected": [0, 0, 0, 0], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["trial", "zero"]},
+    {"id": "trial-3", "name": "trial: zero as second value", "kind": "trial", "visible": true, "input": {"num": "1011"}, "expected": [1, 0, 1, 1], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["trial", "zero-term"]},
+    {"id": "hidden-1", "name": "hidden: classic sequence", "kind": "real", "visible": false, "input": {"num": "11235813"}, "expected": [1, 1, 2, 3, 5, 8, 13], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["hidden", "classic"]},
+    {"id": "hidden-2", "name": "hidden: value above 32-bit limit", "kind": "real", "visible": false, "input": {"num": "214748364821474836482147483648"}, "expected": [], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["hidden", "overflow"]},
+    {"id": "hidden-3", "name": "hidden: too short for three pieces", "kind": "real", "visible": false, "input": {"num": "11"}, "expected": [], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["hidden", "short"]},
+    {"id": "hidden-4", "name": "hidden: long valid sequence", "kind": "real", "visible": false, "input": {"num": "1123581321345589"}, "expected": [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89], "validator": {"kind": "fibonacci_split", "digits_param": "num"}, "tags": ["hidden", "long"]}
+  ]
+}

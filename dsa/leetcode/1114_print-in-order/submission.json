@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1203",
+  "frontend_id": "1114",
+  "title_slug": "print-in-order",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Foo",
+  "verified_submission_id": "2067707142",
+  "verified_at": "2026-07-14T17:39:34.474145+00:00"
+}

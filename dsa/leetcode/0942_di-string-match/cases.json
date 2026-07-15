@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_942",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: alternating directions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "IDID"
+      },
+      "expected": [
+        0,
+        4,
+        1,
+        3,
+        2
+      ],
+      "tags": [
+        "sample",
+        "alternating"
+      ],
+      "validator": {
+        "kind": "di_string"
+      }
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all increases",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "III"
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "increasing"
+      ],
+      "validator": {
+        "kind": "di_string"
+      }
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: decreases then increase",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "DDI"
+      },
+      "expected": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "tags": [
+        "sample",
+        "direction-change"
+      ],
+      "validator": {
+        "kind": "di_string"
+      }
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: single increase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "I"
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "trial",
+        "minimum-length"
+      ],
+      "validator": {
+        "kind": "di_string"
+      }
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: single decrease",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "D"
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "trial",
+        "minimum-length"
+      ],
+      "validator": {
+        "kind": "di_string"
+      }
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: increasing prefix and decreasing suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "IIDDD"
+      },
+      "expected": [
+        0,
+        1,
+        5,
+        4,
+        3,
+        2
+      ],
+      "tags": [
+        "trial",
+        "mixed-run"
+      ],
+      "validator": {
+        "kind": "di_string"
+      }
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: alternating from a decrease",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "DIDID"
+      },
+      "expected": [
+        5,
+        0,
+        4,
+        1,
+        3,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "alternating"
+      ],
+      "validator": {
+        "kind": "di_string"
+      }
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: long decreasing run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "DDDDDDDD"
+      },
+      "expected": [
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "all-decreasing"
+      ],
+      "validator": {
+        "kind": "di_string"
+      }
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: several direction changes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "IIDDIDDIID"
+      },
+      "expected": [
+        0,
+        1,
+        10,
+        9,
+        2,
+        8,
+        7,
+        3,
+        4,
+        6,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "mixed"
+      ],
+      "validator": {
+        "kind": "di_string"
+      }
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: long increasing run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "IIIIIIIIIIII"
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "tags": [
+        "hidden",
+        "all-increasing"
+      ],
+      "validator": {
+        "kind": "di_string"
+      }
+    }
+  ]
+}

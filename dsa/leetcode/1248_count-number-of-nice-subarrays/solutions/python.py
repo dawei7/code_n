@@ -1,7 +1,8 @@
 from collections import Counter
+from typing import List
 
 
-def solve(nums, k):
+def solve(nums: List[int], k: int) -> int:
     counts = Counter({0: 1})
     odd_prefix = 0
     answer = 0

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "875",
+  "frontend_id": "845",
+  "title_slug": "longest-mountain-in-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.longestMountain",
+  "verified_submission_id": "2066706022",
+  "verified_at": "2026-07-13T23:27:36.591125+00:00"
+}

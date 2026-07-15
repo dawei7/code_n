@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "974",
+  "frontend_id": "937",
+  "title_slug": "reorder-data-in-log-files",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.reorderLogFiles",
+  "verified_submission_id": "2067021539",
+  "verified_at": "2026-07-14T06:53:13.350686+00:00"
+}

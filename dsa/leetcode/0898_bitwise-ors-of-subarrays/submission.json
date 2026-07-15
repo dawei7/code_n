@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "934",
+  "frontend_id": "898",
+  "title_slug": "bitwise-ors-of-subarrays",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.subarrayBitwiseORs",
+  "verified_submission_id": "2066791411",
+  "verified_at": "2026-07-14T03:14:07.102620+00:00"
+}

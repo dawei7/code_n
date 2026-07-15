@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1198",
+  "cases": [
+    {"id":"sample-one-common","name":"sample: one value appears in every row","kind":"sample","visible":true,"input":{"mat":[[1,2,3,4,5],[2,4,5,8,10],[3,5,7,9,11],[1,3,5,7,9]]},"expected":5,"tags":["sample","counting"]},
+    {"id":"sample-several-common","name":"sample: choose the smaller common value","kind":"sample","visible":true,"input":{"mat":[[1,2,3],[2,3,4],[2,3,5]]},"expected":2,"tags":["sample","smallest"]},
+    {"id":"trial-no-common","name":"disjoint rows have no common element","kind":"trial","visible":true,"input":{"mat":[[1,2,3],[4,5,6]]},"expected":-1,"tags":["no-common"]},
+    {"id":"trial-single-row","name":"first value of a single row is smallest","kind":"trial","visible":true,"input":{"mat":[[4,8,12]]},"expected":4,"tags":["boundary","single-row"]},
+    {"id":"real-one-column-common","name":"hidden: equal one-column rows","kind":"real","visible":false,"input":{"mat":[[7],[7],[7]]},"expected":7,"tags":["hidden","single-column"]},
+    {"id":"real-one-column-different","name":"hidden: unequal one-column rows","kind":"real","visible":false,"input":{"mat":[[1],[2],[3]]},"expected":-1,"tags":["hidden","single-column","no-common"]},
+    {"id":"real-late-common","name":"hidden: common value appears late in each row","kind":"real","visible":false,"input":{"mat":[[1,4,9,20],[2,5,10,20],[3,6,11,20]]},"expected":20,"tags":["hidden","late-match"]},
+    {"id":"real-maximum-value","name":"hidden: maximum allowed value is common","kind":"real","visible":false,"input":{"mat":[[1,9999,10000],[2,9998,10000]]},"expected":10000,"tags":["hidden","maximum-value"]}
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1256",
+  "cases": [
+    {
+      "id": "sample-23",
+      "name": "sample: four-bit encoding",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 23
+      },
+      "expected": "1000",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-107",
+      "name": "sample: six-bit encoding",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 107
+      },
+      "expected": "101100",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-zero",
+      "name": "sample: zero uses the empty encoding",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 0
+      },
+      "expected": "",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-first",
+      "name": "trial: first one-bit encoding",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1
+      },
+      "expected": "0",
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-group-boundary",
+      "name": "trial: start of a new length group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 7
+      },
+      "expected": "000",
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-before-boundary",
+      "name": "hidden: end of a length group",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 62
+      },
+      "expected": "11111",
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-large",
+      "name": "hidden: large permitted value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 1000000000
+      },
+      "expected": "11011100110101100101000000001",
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

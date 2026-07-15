@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1184",
+  "frontend_id": "1094",
+  "title_slug": "car-pooling",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.carPooling",
+  "verified_submission_id": "2067603190",
+  "verified_at": "2026-07-14T16:24:35.776557+00:00"
+}

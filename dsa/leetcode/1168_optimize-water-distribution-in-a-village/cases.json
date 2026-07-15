@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1168",
+  "cases": [
+    {"id":"sample-1","name":"sample: one well and two pipes","kind":"sample","visible":true,"input":{"n":3,"wells":[1,2,2],"pipes":[[1,2,1],[2,3,1]]},"expected":3,"tags":["sample","mst"]},
+    {"id":"sample-2","name":"sample: equal well and pipe choices","kind":"sample","visible":true,"input":{"n":2,"wells":[1,1],"pipes":[[1,2,1],[1,2,2]]},"expected":2,"tags":["sample","parallel-pipes"]},
+    {"id":"trial-all-wells","name":"pipes are more expensive than wells","kind":"trial","visible":true,"input":{"n":3,"wells":[2,2,2],"pipes":[[1,2,10],[2,3,10]]},"expected":6,"tags":["trial","all-wells"]},
+    {"id":"trial-zero-cost","name":"zero-cost water network","kind":"trial","visible":true,"input":{"n":3,"wells":[0,5,5],"pipes":[[1,2,0],[2,3,0]]},"expected":0,"tags":["trial","zero-cost"]},
+    {"id":"real-disconnected-pipe-groups","name":"hidden: each pipe component needs water access","kind":"real","visible":false,"input":{"n":5,"wells":[5,4,6,2,3],"pipes":[[1,2,1],[2,3,2],[4,5,1]]},"expected":10,"tags":["real","components"]},
+    {"id":"real-parallel-cheaper","name":"hidden: select cheapest parallel offer","kind":"real","visible":false,"input":{"n":3,"wells":[10,10,10],"pipes":[[1,2,8],[1,2,1],[2,3,2]]},"expected":13,"tags":["real","parallel"]},
+    {"id":"real-multiple-wells","name":"hidden: separate well can beat connection","kind":"real","visible":false,"input":{"n":3,"wells":[1,100,2],"pipes":[[1,2,1],[2,3,50]]},"expected":4,"tags":["real","multiple-wells"]}
+  ]
+}

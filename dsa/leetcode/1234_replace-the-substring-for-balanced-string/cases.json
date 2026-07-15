@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1234",
+  "cases": [
+    {
+      "id": "sample-balanced",
+      "name": "sample: already balanced string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "QWER"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "balanced"
+      ]
+    },
+    {
+      "id": "sample-one-change",
+      "name": "sample: one character replacement",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "QQWE"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-replacement"
+      ]
+    },
+    {
+      "id": "sample-two-change",
+      "name": "sample: two character replacement",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "QQQW"
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-same",
+      "name": "all positions contain the same character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "QQQQQQQQ"
+      },
+      "expected": 6,
+      "tags": [
+        "all-same"
+      ]
+    },
+    {
+      "id": "trial-middle-window",
+      "name": "shortest replacement lies inside the string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "WQWRQQQW"
+      },
+      "expected": 3,
+      "tags": [
+        "interior-window"
+      ]
+    },
+    {
+      "id": "real-long-balanced",
+      "name": "hidden: repeated balanced blocks need no replacement",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "QWERQWERQWER"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "balanced"
+      ]
+    },
+    {
+      "id": "real-excess-two-kinds",
+      "name": "hidden: replacement absorbs excess from two characters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "QQQQWWWW"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "multiple-excess"
+      ]
+    }
+  ]
+}

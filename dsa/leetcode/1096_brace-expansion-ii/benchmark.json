@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1096",
+  "measurement_note": "Size is the number of adjacent duplicate-union factors. Each factor is {a,a}, so the distinct result has one word. The optimal parser deduplicates each factor immediately, while the calibrated slower parser retains 2^size duplicate products until its final conversion to a set.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 3 duplicate-union factors", "kind": "benchmark", "visible": false, "size": 3, "input": {"expression": "{a,a}{a,a}{a,a}"}, "expected": ["aaa"], "tags": ["benchmark", "scale-small", "late-deduplication"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 6 duplicate-union factors", "kind": "benchmark", "visible": false, "size": 6, "input": {"expression": "{a,a}{a,a}{a,a}{a,a}{a,a}{a,a}"}, "expected": ["aaaaaa"], "tags": ["benchmark", "scale-medium", "late-deduplication"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 12 duplicate-union factors", "kind": "benchmark", "visible": false, "size": 12, "input": {"expression": "{a,a}{a,a}{a,a}{a,a}{a,a}{a,a}{a,a}{a,a}{a,a}{a,a}{a,a}{a,a}"}, "expected": ["aaaaaaaaaaaa"], "tags": ["benchmark", "scale-large", "late-deduplication"]}
+  ]
+}

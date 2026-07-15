@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1206",
+  "cases": [
+    {"id":"sample-basic","name":"sample: add search and erase","kind":"sample","visible":true,"input":{"operations":["Skiplist","add","add","add","search","add","search","erase","erase","search"],"arguments":[[],[1],[2],[3],[0],[4],[1],[0],[1],[1]]},"expected":[null,null,null,null,false,null,true,false,true,false],"tags":["sample","design"]},
+    {"id":"trial-duplicates","name":"duplicate remains after erasing one occurrence","kind":"trial","visible":true,"input":{"operations":["Skiplist","add","add","search","erase","search","erase","search"],"arguments":[[],[5],[5],[5],[5],[5],[5],[5]]},"expected":[null,null,null,true,true,true,true,false],"tags":["duplicates"]},
+    {"id":"trial-empty","name":"search and erase in an empty skiplist","kind":"trial","visible":true,"input":{"operations":["Skiplist","search","erase"],"arguments":[[],[10],[10]]},"expected":[null,false,false],"tags":["empty"]},
+    {"id":"real-boundaries","name":"hidden: minimum and maximum keys","kind":"real","visible":false,"input":{"operations":["Skiplist","add","add","search","search","erase","search"],"arguments":[[],[0],[20000],[0],[20000],[0],[0]]},"expected":[null,null,null,true,true,true,false],"tags":["hidden","boundaries"]},
+    {"id":"real-unsorted-adds","name":"hidden: insertion order does not affect membership","kind":"real","visible":false,"input":{"operations":["Skiplist","add","add","add","add","search","erase","search","search"],"arguments":[[],[9],[1],[7],[3],[7],[3],[3],[9]]},"expected":[null,null,null,null,null,true,true,false,true],"tags":["hidden","unsorted"]},
+    {"id":"real-missing-between","name":"hidden: absent key between stored neighbors","kind":"real","visible":false,"input":{"operations":["Skiplist","add","add","add","search","erase"],"arguments":[[],[2],[4],[6],[5],[5]]},"expected":[null,null,null,null,false,false],"tags":["hidden","missing"]},
+    {"id":"real-readd","name":"hidden: erased value can be inserted again","kind":"real","visible":false,"input":{"operations":["Skiplist","add","erase","search","add","search"],"arguments":[[],[8],[8],[8],[8],[8]]},"expected":[null,null,true,false,null,true],"tags":["hidden","reinsert"]}
+  ]
+}

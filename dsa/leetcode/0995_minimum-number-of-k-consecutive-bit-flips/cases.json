@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_995","cases":[
+{"id":"sample-1","name":"sample: individual flips","kind":"sample","visible":true,"input":{"nums":[0,1,0],"k":1},"expected":2,"tags":["sample"]},
+{"id":"sample-2","name":"sample: impossible suffix","kind":"sample","visible":true,"input":{"nums":[1,1,0],"k":2},"expected":-1,"tags":["sample"]},
+{"id":"sample-3","name":"sample: overlapping windows","kind":"sample","visible":true,"input":{"nums":[0,0,0,1,0,1,1,0],"k":3},"expected":3,"tags":["sample"]},
+{"id":"trial-1","name":"trial: already all ones","kind":"trial","visible":true,"input":{"nums":[1,1,1,1],"k":3},"expected":0,"tags":["trial","complete"]},
+{"id":"trial-2","name":"trial: one full-array flip","kind":"trial","visible":true,"input":{"nums":[0,0],"k":2},"expected":1,"tags":["trial","full-window"]},
+{"id":"trial-3","name":"trial: full-array flip cannot fix mixed bits","kind":"trial","visible":true,"input":{"nums":[0,1],"k":2},"expected":-1,"tags":["trial","impossible"]},
+{"id":"hidden-1","name":"hidden: two disjoint windows","kind":"real","visible":false,"input":{"nums":[0,0,0,0],"k":2},"expected":2,"tags":["hidden","disjoint"]},
+{"id":"hidden-2","name":"hidden: forced adjacent starts","kind":"real","visible":false,"input":{"nums":[1,0,0,1,0,0],"k":3},"expected":2,"tags":["hidden","forced"]},
+{"id":"hidden-3","name":"hidden: failure after an earlier flip","kind":"real","visible":false,"input":{"nums":[0,1,1],"k":2},"expected":-1,"tags":["hidden","suffix"]}
+]}

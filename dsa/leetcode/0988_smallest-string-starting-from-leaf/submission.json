@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1030",
+  "frontend_id": "988",
+  "title_slug": "smallest-string-starting-from-leaf",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.smallestFromLeaf",
+  "verified_submission_id": "2067207950",
+  "verified_at": "2026-07-14T09:59:57.321109+00:00"
+}

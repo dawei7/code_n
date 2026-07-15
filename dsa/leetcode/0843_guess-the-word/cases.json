@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_843",
+  "cases": [
+    {"id": "sample-1", "name": "sample: four candidate words", "kind": "sample", "visible": true, "input": {"words": ["acckzz", "ccbazz", "eiowzz", "abcczz"], "master": {"secret": "acckzz", "allowed_guesses": 10}}, "expected": true, "validator": {"kind": "master_guessed"}, "tags": ["sample", "interactive"]},
+    {"id": "sample-2", "name": "sample: two candidate words", "kind": "sample", "visible": true, "input": {"words": ["hamada", "khaled"], "master": {"secret": "hamada", "allowed_guesses": 10}}, "expected": true, "validator": {"kind": "master_guessed"}, "tags": ["sample", "small-list"]},
+    {"id": "trial-1", "name": "trial: one candidate", "kind": "trial", "visible": true, "input": {"words": ["secret"], "master": {"secret": "secret", "allowed_guesses": 10}}, "expected": true, "validator": {"kind": "master_guessed"}, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: secret last in binary family", "kind": "trial", "visible": true, "input": {"words": ["aaaaaa", "aaaaab", "aaaaba", "aaaabb", "aaabaa", "aaabab", "aaabba", "aaabbb"], "master": {"secret": "aaabbb", "allowed_guesses": 10}}, "expected": true, "validator": {"kind": "master_guessed"}, "tags": ["trial", "partition"]},
+    {"id": "trial-3", "name": "trial: similar suffixes", "kind": "trial", "visible": true, "input": {"words": ["planet", "planer", "planes", "plated", "placer", "player"], "master": {"secret": "player", "allowed_guesses": 10}}, "expected": true, "validator": {"kind": "master_guessed"}, "tags": ["trial", "similar-words"]},
+    {"id": "hidden-1", "name": "hidden: secret is initial minimax choice", "kind": "real", "visible": false, "input": {"words": ["aaaaaa", "aaaaab", "aaaaba", "aaaabb"], "master": {"secret": "aaaaaa", "allowed_guesses": 10}}, "expected": true, "validator": {"kind": "master_guessed"}, "tags": ["hidden", "first-guess"]},
+    {"id": "hidden-2", "name": "hidden: mixed unrelated words", "kind": "real", "visible": false, "input": {"words": ["python", "garden", "silver", "bridge", "window", "little", "forest", "orange"], "master": {"secret": "window", "allowed_guesses": 10}}, "expected": true, "validator": {"kind": "master_guessed"}, "tags": ["hidden", "mixed"]},
+    {"id": "hidden-3", "name": "hidden: common prefix family", "kind": "real", "visible": false, "input": {"words": ["abcdef", "abcdeg", "abcdfg", "abcefg", "abdefg", "acdefg", "bcdefg"], "master": {"secret": "bcdefg", "allowed_guesses": 10}}, "expected": true, "validator": {"kind": "master_guessed"}, "tags": ["hidden", "common-prefix"]}
+  ]
+}

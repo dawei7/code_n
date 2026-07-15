@@ -8,36 +8,43 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [active-businesses](https://leetcode.com/problems/active-businesses/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/active-businesses/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/active-businesses/).
 
 ### Goal
-A business is active if it has more than one event type whose occurrence count is above the average occurrence count for that same event type across all businesses. Return the active business ids.
 
-### Query Contract
+The `Events` table records, for each `(business_id, event_type)` pair, how many times that event occurred at the business. Its composite primary key makes every business-and-event pair unique. For a particular `event_type`, define its average activity as the average `occurrences` among all businesses that have a row for that event type; businesses without that event are not included in its average.
+
+A business is active when it has more than one event type whose own `occurrences` value is strictly greater than the average activity for that same event type. Find the identifiers of all active businesses and return them in any order. Equality with an event's average does not qualify as above average.
+
+### Function Contract
+
 **Input table**
 
-- `Events(business_id, event_type, occurrences)`: Occurrence counts for each business and event type.
+- `Events(business_id, event_type, occurrences)`: one row per business and event type, with `(business_id, event_type)` as the primary key.
 
-**Output columns**
+Let $R$ be the number of rows in `Events`.
 
-- `business_id`
+**Return value**
+
+A result table with one column, `business_id`, containing every business that is strictly above its event-type average for at least two event types. Row order is not significant.
 
 ### Examples
+
 **Example 1**
 
 `Events`
 
 | business_id | event_type | occurrences |
 |---:|---|---:|
-| 1 | reviews | 10 |
-| 1 | ads | 20 |
-| 2 | reviews | 5 |
-| 2 | ads | 5 |
-| 3 | reviews | 1 |
-| 3 | ads | 15 |
+| 1 | reviews | 7 |
+| 3 | reviews | 3 |
+| 1 | ads | 11 |
+| 2 | ads | 7 |
+| 3 | ads | 6 |
+| 1 | page views | 3 |
+| 2 | page views | 12 |
 
 Output:
 
@@ -45,17 +52,34 @@ Output:
 |---:|
 | 1 |
 
----
+The averages are $5$ for `reviews`, $8$ for `ads`, and $7.5$ for `page views`. Business `1` is strictly above average for both `reviews` and `ads`, so it is active.
 
-## Solution
-### Approach
-Compute the average `occurrences` for each `event_type`, then join those averages back to the original rows. For each business, count how many event types have `occurrences` greater than that event type's average.
+### Required Complexity
 
-Keep businesses whose above-average count is greater than `1`.
+- **Time:** $O(R \log R)$
+- **Space:** $O(R)$
 
-### Complexity Analysis
-- **Time Complexity**: Depends on the database engine; logically, the query groups by event type and then groups by business.
-- **Space Complexity**: Depends on the database execution plan and indexes.
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Compare each row with the correct peer group.** Use `AVG(occurrences) OVER (PARTITION BY event_type)` to attach the average for an event type to every row of that type. The partition excludes businesses that have no row for the event, matching the definition directly.
+
+**Filter before counting.** Keep only rows satisfying `occurrences > average_occurrences`. The strict operator is essential: a row equal to its event average contributes nothing toward active status.
+
+**Count qualifying event types per business.** Because `(business_id, event_type)` is unique, every surviving row represents one distinct qualifying event type. Group those rows by `business_id` and retain groups with `COUNT(*) > 1`. Thus every returned business has at least two above-average event types, while every active business necessarily contributes at least two surviving rows and is returned.
+
+#### Complexity detail
+
+The window calculation partitions and may sort the $R$ rows, giving a conservative logical bound of $O(R \log R)$ time; the final filter and grouping are linear after that organization. Window and grouping state can require $O(R)$ space. A database optimizer may use indexes, hashing, or external storage, so physical costs can differ.
+
+#### Alternatives and edge cases
+
+- **Grouped averages joined back:** Compute one average per `event_type`, join those averages to `Events`, then filter and group; this has the same semantics and may be preferable on engines without window functions.
+- **Correlated average subquery:** Recomputing the matching event average for every row is concise but can repeatedly scan `Events` and degrade toward $O(R^2)$ without optimizer decorrelation or a useful index.
+- **Exactly average:** `occurrences = average_occurrences` is not strictly greater and must be excluded.
+- **Only one qualifying event:** A business above average for exactly one type is not active because the requirement is more than one.
+- **Event recorded by one business:** Its occurrence count equals that event's average, so that row can never qualify.
+
+</details>

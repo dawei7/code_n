@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_1103",
+  "cases": [
+    {"id": "sample-partial-first-round", "name": "sample: final partial gift in first round", "kind": "sample", "visible": true, "input": {"candies": 7, "num_people": 4}, "expected": [1,2,3,1], "tags": ["sample", "partial-gift"]},
+    {"id": "sample-wrap-to-first", "name": "sample: distribution wraps to first person", "kind": "sample", "visible": true, "input": {"candies": 10, "num_people": 3}, "expected": [5,2,3], "tags": ["sample", "wraparound"]},
+    {"id": "trial-exact-triangular-total", "name": "trial: supply ends after complete gift", "kind": "trial", "visible": true, "input": {"candies": 6, "num_people": 4}, "expected": [1,2,3,0], "tags": ["trial", "triangular-boundary"]},
+    {"id": "trial-one-person", "name": "trial: all candies accumulate at one person", "kind": "trial", "visible": true, "input": {"candies": 1000000000, "num_people": 1}, "expected": [1000000000], "tags": ["trial", "maximum-candies", "one-person"]},
+    {"id": "real-many-complete-gifts", "name": "hidden: multiple rounds and partial gift", "kind": "real", "visible": false, "input": {"candies": 60, "num_people": 4}, "expected": [15,18,15,12], "tags": ["hidden", "multiple-rounds"]},
+    {"id": "real-partial-later-person", "name": "hidden: partial gift lands inside later round", "kind": "real", "visible": false, "input": {"candies": 100, "num_people": 5}, "expected": [18,21,24,22,15], "tags": ["hidden", "partial-gift"]}
+  ]
+}

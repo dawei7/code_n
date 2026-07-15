@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1281",
+  "frontend_id": "1177",
+  "title_slug": "can-make-palindrome-from-substring",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.canMakePaliQueries",
+  "verified_submission_id": "2067894877",
+  "verified_at": "2026-07-14T21:59:24.939125+00:00"
+}

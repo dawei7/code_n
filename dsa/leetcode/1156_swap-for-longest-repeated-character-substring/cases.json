@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1156",
+  "cases": [
+    {"id": "sample-1", "name": "sample: alternating letters", "kind": "sample", "visible": true, "input": {"text": "ababa"}, "expected": 3, "tags": ["sample", "swap"]},
+    {"id": "sample-2", "name": "sample: join runs across one gap", "kind": "sample", "visible": true, "input": {"text": "aaabaaa"}, "expected": 6, "tags": ["sample", "join-runs"]},
+    {"id": "sample-3", "name": "sample: already one repeated run", "kind": "sample", "visible": true, "input": {"text": "aaaaa"}, "expected": 5, "tags": ["sample", "no-swap"]},
+    {"id": "trial-wide-gap", "name": "two-character gap cannot be removed", "kind": "trial", "visible": true, "input": {"text": "aaabbaaa"}, "expected": 4, "tags": ["trial", "wide-gap"]},
+    {"id": "trial-all-distinct", "name": "all characters occur once", "kind": "trial", "visible": true, "input": {"text": "abcdef"}, "expected": 1, "tags": ["trial", "all-distinct"]},
+    {"id": "real-use-all-copies", "name": "hidden: joining runs uses every copy", "kind": "real", "visible": false, "input": {"text": "aaabaa"}, "expected": 5, "tags": ["real", "frequency-cap"]},
+    {"id": "real-extend-edge", "name": "hidden: move an outside copy to an edge run", "kind": "real", "visible": false, "input": {"text": "baaac"}, "expected": 3, "tags": ["real", "edge-run"]},
+    {"id": "real-single", "name": "hidden: minimum length", "kind": "real", "visible": false, "input": {"text": "z"}, "expected": 1, "tags": ["real", "minimum-length"]}
+  ]
+}

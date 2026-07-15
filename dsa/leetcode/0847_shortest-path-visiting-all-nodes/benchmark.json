@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_847",
+  "measurement_note": "Size is 2^n, the number of possible visited-node masks. The tiers are complete graphs with n equal to 4, 6, and 8. Multi-source state BFS uses O(n squared times size) time, whereas enumerating all node orders after all-pairs shortest paths takes factorial time; both return n - 1.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: complete graph on 4 nodes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "graph": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "complete"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: complete graph on 6 nodes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "graph": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            0,
+            1,
+            3,
+            4,
+            5
+          ],
+          [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            5
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "complete"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: complete graph on 8 nodes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "graph": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            7
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "complete"
+      ]
+    }
+  ]
+}

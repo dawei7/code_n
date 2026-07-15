@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1124",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: interval length three",
+      "name": "sample: maximum interval has length three",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -20,7 +21,7 @@
       "expected": 3,
       "tags": [
         "sample",
-        "prefix-sum"
+        "mixed"
       ]
     },
     {
@@ -37,12 +38,13 @@
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "sample",
+        "none"
       ]
     },
     {
-      "id": "trial-single-tiring-day",
-      "name": "single tiring day",
+      "id": "trial-single-tiring",
+      "name": "one tiring day",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -53,12 +55,66 @@
       "expected": 1,
       "tags": [
         "trial",
-        "edge"
+        "singleton"
       ]
     },
     {
-      "id": "real-middle-interval",
-      "name": "hidden: middle interval",
+      "id": "trial-threshold",
+      "name": "eight hours is non-tiring",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          8,
+          9,
+          8
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "strict-threshold"
+      ]
+    },
+    {
+      "id": "trial-whole-array",
+      "name": "whole array has a tiring majority",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          6,
+          9,
+          9,
+          6,
+          9
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "real-single-nontiring",
+      "name": "hidden: one non-tiring day",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hours": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "singleton"
+      ]
+    },
+    {
+      "id": "real-middle",
+      "name": "hidden: longest interval begins after index zero",
       "kind": "real",
       "visible": false,
       "input": {
@@ -74,7 +130,51 @@
       },
       "expected": 5,
       "tags": [
-        "hidden"
+        "real",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-late-recovery",
+      "name": "hidden: late tiring run overcomes prefix deficit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hours": [
+          6,
+          6,
+          6,
+          9,
+          9,
+          9,
+          9
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "prefix-balance"
+      ]
+    },
+    {
+      "id": "real-hour-bounds",
+      "name": "hidden: lower and upper hour bounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hours": [
+          0,
+          16,
+          8,
+          16,
+          0,
+          16
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "bounds"
       ]
     }
   ]

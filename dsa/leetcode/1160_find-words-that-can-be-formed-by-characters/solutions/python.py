@@ -1,11 +1,13 @@
+"""Optimal app-local solution for LeetCode 1160."""
+
 from collections import Counter
 
 
-def solve(words, chars):
+def solve(words: list[str], chars: str) -> int:
     available = Counter(chars)
-    total = 0
+    answer = 0
     for word in words:
-        counts = Counter(word)
-        if all(counts[ch] <= available[ch] for ch in counts):
-            total += len(word)
-    return total
+        required = Counter(word)
+        if all(count <= available[letter] for letter, count in required.items()):
+            answer += len(word)
+    return answer

@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_977","cases":[
+{"id":"sample-1","name":"sample: mixed signs and zero","kind":"sample","visible":true,"input":{"nums":[-4,-1,0,3,10]},"expected":[0,1,9,16,100],"tags":["sample"]},
+{"id":"sample-2","name":"sample: duplicate square","kind":"sample","visible":true,"input":{"nums":[-7,-3,2,3,11]},"expected":[4,9,9,49,121],"tags":["sample"]},
+{"id":"trial-1","name":"trial: one value","kind":"trial","visible":true,"input":{"nums":[-5]},"expected":[25],"tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: all negative","kind":"trial","visible":true,"input":{"nums":[-5,-3,-1]},"expected":[1,9,25],"tags":["trial","negative"]},
+{"id":"trial-3","name":"trial: all nonnegative","kind":"trial","visible":true,"input":{"nums":[0,2,4]},"expected":[0,4,16],"tags":["trial","nonnegative"]},
+{"id":"hidden-1","name":"hidden: symmetric duplicates","kind":"real","visible":false,"input":{"nums":[-3,-3,0,3,3]},"expected":[0,9,9,9,9],"tags":["hidden","duplicates"]},
+{"id":"hidden-2","name":"hidden: coordinate bounds","kind":"real","visible":false,"input":{"nums":[-10000,10000]},"expected":[100000000,100000000],"tags":["hidden","bounds"]},
+{"id":"hidden-3","name":"hidden: negative magnitude dominates","kind":"real","visible":false,"input":{"nums":[-9,-2,1,4,8]},"expected":[1,4,16,64,81],"tags":["hidden","mixed"]}
+]}

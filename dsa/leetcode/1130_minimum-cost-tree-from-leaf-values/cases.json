@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1130",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: three leaves",
+      "name": "sample: three leaves with two groupings",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,7 +17,7 @@
       "expected": 32,
       "tags": [
         "sample",
-        "stack"
+        "grouping"
       ]
     },
     {
@@ -33,12 +34,12 @@
       "expected": 44,
       "tags": [
         "sample",
-        "edge"
+        "two-leaves"
       ]
     },
     {
       "id": "trial-four-leaves",
-      "name": "four leaves",
+      "name": "four mixed leaves",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -51,14 +52,15 @@
       },
       "expected": 284,
       "tags": [
-        "trial"
+        "trial",
+        "mixed"
       ]
     },
     {
-      "id": "real-increasing",
-      "name": "hidden: increasing leaves",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-increasing",
+      "name": "strictly increasing leaves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -69,7 +71,108 @@
       },
       "expected": 20,
       "tags": [
-        "hidden"
+        "trial",
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "strictly decreasing leaves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 40,
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: all leaf values equal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 75,
+      "tags": [
+        "real",
+        "equal"
+      ]
+    },
+    {
+      "id": "real-small-between-large",
+      "name": "hidden: small leaves between equal maxima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          15,
+          1,
+          2,
+          15
+        ]
+      },
+      "expected": 257,
+      "tags": [
+        "real",
+        "equal-boundaries"
+      ]
+    },
+    {
+      "id": "real-value-bounds",
+      "name": "hidden: minimum and maximum leaf values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          15,
+          1,
+          15,
+          1
+        ]
+      },
+      "expected": 270,
+      "tags": [
+        "real",
+        "bounds"
+      ]
+    },
+    {
+      "id": "real-zigzag",
+      "name": "hidden: repeated rises and falls",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          9,
+          2,
+          8,
+          3,
+          7,
+          4,
+          6
+        ]
+      },
+      "expected": 231,
+      "tags": [
+        "real",
+        "zigzag"
       ]
     }
   ]

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "920",
+  "frontend_id": "884",
+  "title_slug": "uncommon-words-from-two-sentences",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.uncommonFromSentences",
+  "verified_submission_id": "2066760232",
+  "verified_at": "2026-07-14T02:11:35.640827+00:00"
+}

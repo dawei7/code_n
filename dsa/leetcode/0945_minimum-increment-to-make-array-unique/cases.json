@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_945",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one duplicate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-move"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: interacting duplicates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1,
+          2,
+          1,
+          7
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "carry-collision"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: already unique with gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "already-unique"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: all values equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: duplicate chain reaches occupied values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "chain"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: duplicates at upper input bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          100000,
+          100000
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: two duplicate groups interact",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          4,
+          4
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: unsorted values with sparse duplicates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          1,
+          9,
+          3,
+          1,
+          20
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    }
+  ]
+}

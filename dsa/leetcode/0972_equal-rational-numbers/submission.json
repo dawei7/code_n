@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1012",
+  "frontend_id": "972",
+  "title_slug": "equal-rational-numbers",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isRationalEqual",
+  "verified_submission_id": "2067145786",
+  "verified_at": "2026-07-14T09:01:45.807949+00:00"
+}

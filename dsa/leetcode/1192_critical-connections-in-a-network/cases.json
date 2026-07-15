@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1192",
+  "cases": [
+    {"id":"sample-cycle-tail","name":"sample: one bridge leaves a cycle","kind":"sample","visible":true,"input":{"n":4,"connections":[[0,1],[1,2],[2,0],[1,3]]},"expected":[[1,3]],"tags":["sample","cycle","bridge"]},
+    {"id":"sample-single-edge","name":"sample: the only edge is critical","kind":"sample","visible":true,"input":{"n":2,"connections":[[0,1]]},"expected":[[0,1]],"tags":["sample","boundary"]},
+    {"id":"trial-tree","name":"every edge of a tree is critical","kind":"trial","visible":true,"input":{"n":4,"connections":[[0,1],[1,2],[1,3]]},"expected":[[1,2],[1,3],[0,1]],"tags":["tree","all-bridges"]},
+    {"id":"trial-cycle","name":"a cycle has no critical edge","kind":"trial","visible":true,"input":{"n":5,"connections":[[0,1],[1,2],[2,3],[3,4],[4,0]]},"expected":[],"tags":["cycle","no-bridges"]},
+    {"id":"real-two-components-after-one-cut","name":"hidden: bridge joins two cyclic regions","kind":"real","visible":false,"input":{"n":6,"connections":[[0,1],[1,2],[2,0],[2,3],[3,4],[4,5],[5,3]]},"expected":[[2,3]],"tags":["hidden","two-cycles"]},
+    {"id":"real-several-tail-bridges","name":"hidden: several tail edges leave a cycle","kind":"real","visible":false,"input":{"n":6,"connections":[[0,1],[1,2],[2,0],[2,3],[3,4],[4,5]]},"expected":[[4,5],[3,4],[2,3]],"tags":["hidden","tail"]},
+    {"id":"real-dense-no-bridges","name":"hidden: dense alternate routes","kind":"real","visible":false,"input":{"n":4,"connections":[[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]]},"expected":[],"tags":["hidden","dense"]}
+  ]
+}

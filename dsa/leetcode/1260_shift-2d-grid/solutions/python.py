@@ -1,4 +1,7 @@
-def solve(grid, k):
+from typing import List
+
+
+def solve(grid: List[List[int]], k: int) -> List[List[int]]:
     rows = len(grid)
     cols = len(grid[0]) if rows else 0
     total = rows * cols

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1170",
+  "frontend_id": "1092",
+  "title_slug": "shortest-common-supersequence",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.shortestCommonSupersequence",
+  "verified_submission_id": "2067589578",
+  "verified_at": "2026-07-14T16:13:58.067947+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1386",
+  "frontend_id": "1260",
+  "title_slug": "shift-2d-grid",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.shiftGrid",
+  "verified_submission_id": "2068026326",
+  "verified_at": "2026-07-15T03:36:23.715012+00:00"
+}

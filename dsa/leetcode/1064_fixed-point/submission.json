@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1066",
+  "frontend_id": "1064",
+  "title_slug": "fixed-point",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.fixedPoint",
+  "verified_submission_id": "2067470816",
+  "verified_at": "2026-07-14T14:31:13.405791+00:00"
+}

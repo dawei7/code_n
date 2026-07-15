@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1260",
+  "frontend_id": "1154",
+  "title_slug": "day-of-the-year",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.dayOfYear",
+  "verified_submission_id": "2067859686",
+  "verified_at": "2026-07-14T20:25:59.663303+00:00"
+}

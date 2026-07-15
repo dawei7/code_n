@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1147",
+  "cases": [
+    {"id":"sample-1","name":"sample: seven mixed-length chunks","kind":"sample","visible":true,"input":{"text":"ghiabcdefhelloadamhelloabcdefghi"},"expected":7,"tags":["sample","mixed-length"]},
+    {"id":"sample-2","name":"sample: no proper outer match","kind":"sample","visible":true,"input":{"text":"merchant"},"expected":1,"tags":["sample","single-chunk"]},
+    {"id":"sample-3","name":"sample: eleven chunks","kind":"sample","visible":true,"input":{"text":"antaprezatepzapreanta"},"expected":11,"tags":["sample","many-chunks"]},
+    {"id":"trial-single","name":"one character forms one chunk","kind":"trial","visible":true,"input":{"text":"z"},"expected":1,"tags":["trial","singleton"]},
+    {"id":"trial-repeated","name":"every repeated character can be a chunk","kind":"trial","visible":true,"input":{"text":"aaaa"},"expected":4,"tags":["trial","single-character-chunks"]},
+    {"id":"real-conventional-palindrome","name":"hidden: ordinary palindrome splits into characters","kind":"real","visible":false,"input":{"text":"abcba"},"expected":5,"tags":["real","palindrome"]},
+    {"id":"real-two-halves","name":"hidden: only the equal halves match","kind":"real","visible":false,"input":{"text":"elvtoelvto"},"expected":2,"tags":["real","even","two-chunks"]},
+    {"id":"real-near-match","name":"hidden: long near-matching ends still form one chunk","kind":"real","visible":false,"input":{"text":"aaaaab"},"expected":1,"tags":["real","late-mismatch"]}
+  ]
+}

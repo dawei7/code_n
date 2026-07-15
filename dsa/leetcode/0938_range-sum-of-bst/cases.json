@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_938",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: inclusive middle range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          10,
+          5,
+          15,
+          3,
+          7,
+          null,
+          18
+        ],
+        "low": 7,
+        "high": 15
+      },
+      "expected": 32,
+      "tags": [
+        "sample",
+        "inclusive"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: lower branch range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          10,
+          5,
+          15,
+          3,
+          7,
+          13,
+          18,
+          1,
+          null,
+          6
+        ],
+        "low": 6,
+        "high": 10
+      },
+      "expected": 23,
+      "tags": [
+        "sample",
+        "pruning"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single node in range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          5
+        ],
+        "low": 1,
+        "high": 10
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: range below every value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          3,
+          7
+        ],
+        "low": 1,
+        "high": 2
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "empty-range"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: both boundaries present",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          3,
+          7,
+          2,
+          4,
+          6,
+          8
+        ],
+        "low": 3,
+        "high": 7
+      },
+      "expected": 25,
+      "tags": [
+        "trial",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: exact root value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          8,
+          4,
+          12,
+          2,
+          6,
+          10,
+          14
+        ],
+        "low": 8,
+        "high": 8
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "exact"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: every node included",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          8,
+          4,
+          12,
+          2,
+          6,
+          10,
+          14,
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15
+        ],
+        "low": 1,
+        "high": 15
+      },
+      "expected": 120,
+      "tags": [
+        "hidden",
+        "full-range"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: narrow left-subtree interval",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          20,
+          10,
+          30,
+          5,
+          15,
+          25,
+          35,
+          2,
+          7,
+          12,
+          17
+        ],
+        "low": 7,
+        "high": 12
+      },
+      "expected": 29,
+      "tags": [
+        "hidden",
+        "narrow"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: range above every value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          4,
+          2,
+          6,
+          1,
+          3,
+          5,
+          7
+        ],
+        "low": 8,
+        "high": 9
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "empty-range"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "911",
+  "frontend_id": "879",
+  "title_slug": "profitable-schemes",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.profitableSchemes",
+  "verified_submission_id": "2066750995",
+  "verified_at": "2026-07-14T01:49:09.355617+00:00"
+}

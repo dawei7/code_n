@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1220",
+  "cases": [
+    {"id":"sample-length-one","name":"sample: every single vowel is valid","kind":"sample","visible":true,"input":{"n":1},"expected":5,"tags":["sample","base-case"]},
+    {"id":"sample-length-two","name":"sample: ten legal adjacent pairs","kind":"sample","visible":true,"input":{"n":2},"expected":10,"tags":["sample","transitions"]},
+    {"id":"sample-length-five","name":"sample: five transition rounds","kind":"sample","visible":true,"input":{"n":5},"expected":68,"tags":["sample"]},
+    {"id":"trial-length-three","name":"a short independently countable length","kind":"trial","visible":true,"input":{"n":3},"expected":19,"tags":["short"]},
+    {"id":"real-length-ten","name":"hidden: several transition rounds","kind":"real","visible":false,"input":{"n":10},"expected":1739,"tags":["hidden"]},
+    {"id":"real-length-twelve","name":"hidden: count grows beyond manual enumeration","kind":"real","visible":false,"input":{"n":12},"expected":6377,"tags":["hidden"]},
+    {"id":"real-transition-growth","name":"hidden: another transition length is counted exactly","kind":"real","visible":false,"input":{"n":7},"expected":249,"tags":["hidden","growth"]}
+  ]
+}

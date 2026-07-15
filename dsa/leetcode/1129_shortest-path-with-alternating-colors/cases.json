@@ -1,0 +1,308 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1129",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: consecutive red edges cannot continue",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "redEdges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "blueEdges": []
+      },
+      "expected": [
+        0,
+        1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "same-color-block"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: blue edge points toward an unreachable source",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "redEdges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "blueEdges": [
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "unreachable"
+      ]
+    },
+    {
+      "id": "trial-alternating-chain",
+      "name": "red-blue-red chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "redEdges": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "blueEdges": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "trial",
+        "alternating-chain"
+      ]
+    },
+    {
+      "id": "trial-blue-first",
+      "name": "first edge is blue",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "redEdges": [
+          [
+            1,
+            2
+          ]
+        ],
+        "blueEdges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "trial",
+        "blue-first"
+      ]
+    },
+    {
+      "id": "trial-color-state",
+      "name": "same node must retain both arrival colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "redEdges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "blueEdges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "trial",
+        "state-color"
+      ]
+    },
+    {
+      "id": "real-self-edge",
+      "name": "hidden: self-edge and continuation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "redEdges": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "blueEdges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "real",
+        "self-edge"
+      ]
+    },
+    {
+      "id": "real-parallel",
+      "name": "hidden: parallel edges do not duplicate states",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "redEdges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "blueEdges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "real",
+        "parallel-edges"
+      ]
+    },
+    {
+      "id": "real-cycle",
+      "name": "hidden: alternating cycle and outgoing branch",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "redEdges": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "blueEdges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        2
+      ],
+      "tags": [
+        "real",
+        "cycle"
+      ]
+    },
+    {
+      "id": "real-single-node",
+      "name": "hidden: graph contains only node zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "redEdges": [
+          [
+            0,
+            0
+          ]
+        ],
+        "blueEdges": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "real",
+        "singleton"
+      ]
+    }
+  ]
+}

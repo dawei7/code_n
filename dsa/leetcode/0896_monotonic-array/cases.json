@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_896",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: monotone increasing with equality",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "increasing",
+        "equality"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: monotone decreasing with equality",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          5,
+          4,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "decreasing",
+        "equality"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: direction reversal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "reversal"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: all values equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "constant"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: two descending values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "two-elements"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: alternating directions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: increasing after equal prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -3,
+          -3,
+          -1,
+          0,
+          0,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "increasing",
+        "plateaus"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: late decrease after rising prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "late-reversal"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: full value range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -100000,
+          0,
+          100000
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "boundaries"
+      ]
+    }
+  ]
+}

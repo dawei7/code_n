@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_929","cases":[
+{"id":"sample-1","name":"sample: local aliases and distinct domains","kind":"sample","visible":true,"input":{"emails":["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]},"expected":2,"tags":["sample","normalization"]},
+{"id":"sample-2","name":"sample: three distinct local names","kind":"sample","visible":true,"input":{"emails":["a@leetcode.com","b@leetcode.com","c@leetcode.com"]},"expected":3,"tags":["sample","distinct"]},
+{"id":"trial-1","name":"trial: periods only affect local name","kind":"trial","visible":true,"input":{"emails":["a.b@x.com","ab@x.com","a.b@x.y.com"]},"expected":2,"tags":["trial","domain-period"]},
+{"id":"trial-2","name":"trial: first plus starts ignored suffix","kind":"trial","visible":true,"input":{"emails":["user+one+two@mail.com","user@mail.com"]},"expected":1,"tags":["trial","plus"]},
+{"id":"trial-3","name":"trial: single address","kind":"trial","visible":true,"input":{"emails":["plain@domain.com"]},"expected":1,"tags":["trial","single"]},
+{"id":"hidden-1","name":"hidden: combined dot and plus rules","kind":"real","visible":false,"input":{"emails":["m.y+name@email.com","my@email.com","m.y+other@email.com"]},"expected":1,"tags":["hidden","combined-rules"]},
+{"id":"hidden-2","name":"hidden: same local name at different domains","kind":"real","visible":false,"input":{"emails":["a+b@one.com","a+c@two.com"]},"expected":2,"tags":["hidden","domain"]},
+{"id":"hidden-3","name":"hidden: all entries already canonical","kind":"real","visible":false,"input":{"emails":["aa@x.com","ab@x.com","ac@x.com","ad@x.com"]},"expected":4,"tags":["hidden","canonical"]},
+{"id":"hidden-4","name":"hidden: duplicate identical address","kind":"real","visible":false,"input":{"emails":["same@x.com","same@x.com","same@x.com"]},"expected":1,"tags":["hidden","duplicate"]}
+]}

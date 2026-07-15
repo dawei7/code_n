@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_1012","cases":[
+{"id":"sample-1","name":"sample: only eleven repeats","kind":"sample","visible":true,"input":{"n":20},"expected":1,"tags":["sample"]},
+{"id":"sample-2","name":"sample: two and three digit boundary","kind":"sample","visible":true,"input":{"n":100},"expected":10,"tags":["sample"]},
+{"id":"sample-3","name":"sample: one thousand","kind":"sample","visible":true,"input":{"n":1000},"expected":262,"tags":["sample"]},
+{"id":"trial-1","name":"trial: single digit maximum","kind":"trial","visible":true,"input":{"n":9},"expected":0,"tags":["trial","single-digit"]},
+{"id":"trial-2","name":"trial: first repeated value","kind":"trial","visible":true,"input":{"n":11},"expected":1,"tags":["trial","boundary"]},
+{"id":"trial-3","name":"trial: all two-digit values","kind":"trial","visible":true,"input":{"n":99},"expected":9,"tags":["trial","two-digit"]},
+{"id":"hidden-1","name":"hidden: repeated prefix near one hundred","kind":"real","visible":false,"input":{"n":101},"expected":11,"tags":["hidden","prefix"]},
+{"id":"hidden-2","name":"hidden: distinct upper bound","kind":"real","visible":false,"input":{"n":321},"expected":69,"tags":["hidden","distinct-bound"]},
+{"id":"hidden-3","name":"hidden: five-digit transition","kind":"real","visible":false,"input":{"n":10000},"expected":4726,"tags":["hidden","digit-length"]}
+]}

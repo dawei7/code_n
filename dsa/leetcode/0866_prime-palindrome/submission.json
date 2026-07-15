@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "897",
+  "frontend_id": "866",
+  "title_slug": "prime-palindrome",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.primePalindrome",
+  "verified_submission_id": "2066731841",
+  "verified_at": "2026-07-14T00:57:40.749105+00:00"
+}

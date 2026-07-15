@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_970","cases":[
+{"id":"sample-1","name":"sample: powers of two and three","kind":"sample","visible":true,"input":{"x":2,"y":3,"bound":10},"expected":[2,3,4,5,7,9,10],"validator":{"kind":"unordered_list"},"tags":["sample","duplicates"]},
+{"id":"sample-2","name":"sample: powers of three and five","kind":"sample","visible":true,"input":{"x":3,"y":5,"bound":15},"expected":[2,4,6,8,10,14],"validator":{"kind":"unordered_list"},"tags":["sample","mixed"]},
+{"id":"trial-1","name":"trial: both bases equal one","kind":"trial","visible":true,"input":{"x":1,"y":1,"bound":2},"expected":[2],"validator":{"kind":"unordered_list"},"tags":["trial","base-one"]},
+{"id":"trial-2","name":"trial: one fixed base","kind":"trial","visible":true,"input":{"x":1,"y":2,"bound":10},"expected":[2,3,5,9],"validator":{"kind":"unordered_list"},"tags":["trial","base-one"]},
+{"id":"trial-3","name":"trial: bound below minimum sum","kind":"trial","visible":true,"input":{"x":2,"y":3,"bound":1},"expected":[],"validator":{"kind":"unordered_list"},"tags":["trial","empty"]},
+{"id":"hidden-1","name":"hidden: equal bases create collisions","kind":"real","visible":false,"input":{"x":2,"y":2,"bound":10},"expected":[2,3,4,5,6,8,9,10],"validator":{"kind":"unordered_list"},"tags":["hidden","duplicates"]},
+{"id":"hidden-2","name":"hidden: large equal bases","kind":"real","visible":false,"input":{"x":100,"y":100,"bound":1000000},"expected":[2,101,200,10001,10100,20000],"validator":{"kind":"unordered_list"},"tags":["hidden","large"]},
+{"id":"hidden-3","name":"hidden: exact minimum bound","kind":"real","visible":false,"input":{"x":2,"y":3,"bound":2},"expected":[2],"validator":{"kind":"unordered_list"},"tags":["hidden","boundary"]}
+]}
