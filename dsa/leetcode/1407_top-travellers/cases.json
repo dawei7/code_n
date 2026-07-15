@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1407",
+  "cases": [
+    {"id": "sample-multiple-rides", "name": "sample: aggregate and rank travelers", "kind": "sample", "visible": true, "input": {"tables": {"Users": [{"id": 1, "name": "Ann"}, {"id": 2, "name": "Bob"}], "Rides": [{"id": 1, "user_id": 1, "distance": 10}, {"id": 2, "user_id": 1, "distance": 15}, {"id": 3, "user_id": 2, "distance": 20}]}}, "expected": {"columns": ["name", "travelled_distance"], "rows": [["Ann", 25], ["Bob", 20]]}, "tags": ["sample", "aggregate"]},
+    {"id": "sample-no-rides", "name": "sample: preserve user with zero distance", "kind": "sample", "visible": true, "input": {"tables": {"Users": [{"id": 3, "name": "Cara"}, {"id": 4, "name": "Dan"}], "Rides": [{"id": 1, "user_id": 4, "distance": 1}]}}, "expected": {"columns": ["name", "travelled_distance"], "rows": [["Dan", 1], ["Cara", 0]]}, "tags": ["sample", "zero"]},
+    {"id": "sample-name-tie-break", "name": "sample: names order equal totals", "kind": "sample", "visible": true, "input": {"tables": {"Users": [{"id": 4, "name": "Zoe"}, {"id": 5, "name": "Amy"}], "Rides": [{"id": 1, "user_id": 4, "distance": 12}, {"id": 2, "user_id": 5, "distance": 12}]}}, "expected": {"columns": ["name", "travelled_distance"], "rows": [["Amy", 12], ["Zoe", 12]]}, "tags": ["sample", "ordering"]},
+    {"id": "trial-mixed-zero", "name": "users with and without rides share one result", "kind": "trial", "visible": true, "input": {"tables": {"Users": [{"id": 1, "name": "A"}, {"id": 2, "name": "B"}, {"id": 3, "name": "C"}], "Rides": [{"id": 1, "user_id": 2, "distance": 1}]}}, "expected": {"columns": ["name", "travelled_distance"], "rows": [["B", 1], ["A", 0], ["C", 0]]}, "tags": ["trial", "left-join"]},
+    {"id": "real-same-name", "name": "hidden: distinct IDs with same name do not merge", "kind": "real", "visible": false, "input": {"tables": {"Users": [{"id": 7, "name": "Same"}, {"id": 8, "name": "Same"}], "Rides": [{"id": 1, "user_id": 7, "distance": 9}, {"id": 2, "user_id": 8, "distance": 4}]}}, "expected": {"columns": ["name", "travelled_distance"], "rows": [["Same", 9], ["Same", 4]]}, "tags": ["hidden", "identity"]}
+  ]
+}

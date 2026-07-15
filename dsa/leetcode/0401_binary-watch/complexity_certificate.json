@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_401",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The legal input domain has eleven values and every execution examines at most the 1024 four-hour/six-minute LED masks, so asymptotic runtime scaling is not defined for this contract.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 1024,
+    "unit": "LED masks",
+    "source_constraint": "turned_on is an integer from 0 through 10"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Four hour LEDs and six minute LEDs produce exactly 2^10 possible masks."},
+    {"kind": "exhaustive_domain", "evidence": "The certificate regression evaluates every turned_on value from 0 through 10 against a direct clock enumeration."}
+  ]
+}

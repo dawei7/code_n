@@ -1,78 +1,2197 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1418",
+  "measurement_note": "Size is N = TF, the order count. Every table-food pair appears once, so both dimensions and the complete output matrix grow; the 16/64/256 tiers span 16x. Hash aggregation plus sorting and output takes O(N + F log F + T log T + TF) time. Correctly rescanning all N orders for each of the TF cells takes O(NTF) time and completes normally.",
   "cases": [
     {
-      "id": "benchmark-repeated-counts",
-      "name": "benchmark: repeated counts across tables",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 tables by 4 foods",
       "kind": "benchmark",
       "visible": false,
+      "size": 16,
       "input": {
         "orders": [
           [
-            "Ana",
-            "3",
-            "Burger"
-          ],
-          [
-            "Ben",
-            "3",
-            "Burger"
-          ],
-          [
-            "Cy",
+            "Customer 1-1",
             "1",
-            "Cake"
+            "Food 01"
           ],
           [
-            "Dee",
+            "Customer 1-2",
             "1",
-            "Apple"
+            "Food 02"
           ],
           [
-            "Eli",
-            "2",
-            "Cake"
+            "Customer 1-3",
+            "1",
+            "Food 03"
           ],
           [
-            "Fay",
-            "2",
-            "Apple"
+            "Customer 1-4",
+            "1",
+            "Food 04"
           ],
           [
-            "Gus",
+            "Customer 2-1",
             "2",
-            "Apple"
+            "Food 01"
+          ],
+          [
+            "Customer 2-2",
+            "2",
+            "Food 02"
+          ],
+          [
+            "Customer 2-3",
+            "2",
+            "Food 03"
+          ],
+          [
+            "Customer 2-4",
+            "2",
+            "Food 04"
+          ],
+          [
+            "Customer 3-1",
+            "3",
+            "Food 01"
+          ],
+          [
+            "Customer 3-2",
+            "3",
+            "Food 02"
+          ],
+          [
+            "Customer 3-3",
+            "3",
+            "Food 03"
+          ],
+          [
+            "Customer 3-4",
+            "3",
+            "Food 04"
+          ],
+          [
+            "Customer 4-1",
+            "4",
+            "Food 01"
+          ],
+          [
+            "Customer 4-2",
+            "4",
+            "Food 02"
+          ],
+          [
+            "Customer 4-3",
+            "4",
+            "Food 03"
+          ],
+          [
+            "Customer 4-4",
+            "4",
+            "Food 04"
           ]
         ]
       },
       "expected": [
         [
           "Table",
-          "Apple",
-          "Burger",
-          "Cake"
+          "Food 01",
+          "Food 02",
+          "Food 03",
+          "Food 04"
         ],
         [
           "1",
           "1",
-          "0",
+          "1",
+          "1",
           "1"
         ],
         [
           "2",
-          "2",
-          "0",
+          "1",
+          "1",
+          "1",
           "1"
         ],
         [
           "3",
-          "0",
-          "2",
-          "0"
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "4",
+          "1",
+          "1",
+          "1",
+          "1"
         ]
       ],
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scale-small",
+        "dense-table"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 tables by 8 foods",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "orders": [
+          [
+            "Customer 1-1",
+            "1",
+            "Food 01"
+          ],
+          [
+            "Customer 1-2",
+            "1",
+            "Food 02"
+          ],
+          [
+            "Customer 1-3",
+            "1",
+            "Food 03"
+          ],
+          [
+            "Customer 1-4",
+            "1",
+            "Food 04"
+          ],
+          [
+            "Customer 1-5",
+            "1",
+            "Food 05"
+          ],
+          [
+            "Customer 1-6",
+            "1",
+            "Food 06"
+          ],
+          [
+            "Customer 1-7",
+            "1",
+            "Food 07"
+          ],
+          [
+            "Customer 1-8",
+            "1",
+            "Food 08"
+          ],
+          [
+            "Customer 2-1",
+            "2",
+            "Food 01"
+          ],
+          [
+            "Customer 2-2",
+            "2",
+            "Food 02"
+          ],
+          [
+            "Customer 2-3",
+            "2",
+            "Food 03"
+          ],
+          [
+            "Customer 2-4",
+            "2",
+            "Food 04"
+          ],
+          [
+            "Customer 2-5",
+            "2",
+            "Food 05"
+          ],
+          [
+            "Customer 2-6",
+            "2",
+            "Food 06"
+          ],
+          [
+            "Customer 2-7",
+            "2",
+            "Food 07"
+          ],
+          [
+            "Customer 2-8",
+            "2",
+            "Food 08"
+          ],
+          [
+            "Customer 3-1",
+            "3",
+            "Food 01"
+          ],
+          [
+            "Customer 3-2",
+            "3",
+            "Food 02"
+          ],
+          [
+            "Customer 3-3",
+            "3",
+            "Food 03"
+          ],
+          [
+            "Customer 3-4",
+            "3",
+            "Food 04"
+          ],
+          [
+            "Customer 3-5",
+            "3",
+            "Food 05"
+          ],
+          [
+            "Customer 3-6",
+            "3",
+            "Food 06"
+          ],
+          [
+            "Customer 3-7",
+            "3",
+            "Food 07"
+          ],
+          [
+            "Customer 3-8",
+            "3",
+            "Food 08"
+          ],
+          [
+            "Customer 4-1",
+            "4",
+            "Food 01"
+          ],
+          [
+            "Customer 4-2",
+            "4",
+            "Food 02"
+          ],
+          [
+            "Customer 4-3",
+            "4",
+            "Food 03"
+          ],
+          [
+            "Customer 4-4",
+            "4",
+            "Food 04"
+          ],
+          [
+            "Customer 4-5",
+            "4",
+            "Food 05"
+          ],
+          [
+            "Customer 4-6",
+            "4",
+            "Food 06"
+          ],
+          [
+            "Customer 4-7",
+            "4",
+            "Food 07"
+          ],
+          [
+            "Customer 4-8",
+            "4",
+            "Food 08"
+          ],
+          [
+            "Customer 5-1",
+            "5",
+            "Food 01"
+          ],
+          [
+            "Customer 5-2",
+            "5",
+            "Food 02"
+          ],
+          [
+            "Customer 5-3",
+            "5",
+            "Food 03"
+          ],
+          [
+            "Customer 5-4",
+            "5",
+            "Food 04"
+          ],
+          [
+            "Customer 5-5",
+            "5",
+            "Food 05"
+          ],
+          [
+            "Customer 5-6",
+            "5",
+            "Food 06"
+          ],
+          [
+            "Customer 5-7",
+            "5",
+            "Food 07"
+          ],
+          [
+            "Customer 5-8",
+            "5",
+            "Food 08"
+          ],
+          [
+            "Customer 6-1",
+            "6",
+            "Food 01"
+          ],
+          [
+            "Customer 6-2",
+            "6",
+            "Food 02"
+          ],
+          [
+            "Customer 6-3",
+            "6",
+            "Food 03"
+          ],
+          [
+            "Customer 6-4",
+            "6",
+            "Food 04"
+          ],
+          [
+            "Customer 6-5",
+            "6",
+            "Food 05"
+          ],
+          [
+            "Customer 6-6",
+            "6",
+            "Food 06"
+          ],
+          [
+            "Customer 6-7",
+            "6",
+            "Food 07"
+          ],
+          [
+            "Customer 6-8",
+            "6",
+            "Food 08"
+          ],
+          [
+            "Customer 7-1",
+            "7",
+            "Food 01"
+          ],
+          [
+            "Customer 7-2",
+            "7",
+            "Food 02"
+          ],
+          [
+            "Customer 7-3",
+            "7",
+            "Food 03"
+          ],
+          [
+            "Customer 7-4",
+            "7",
+            "Food 04"
+          ],
+          [
+            "Customer 7-5",
+            "7",
+            "Food 05"
+          ],
+          [
+            "Customer 7-6",
+            "7",
+            "Food 06"
+          ],
+          [
+            "Customer 7-7",
+            "7",
+            "Food 07"
+          ],
+          [
+            "Customer 7-8",
+            "7",
+            "Food 08"
+          ],
+          [
+            "Customer 8-1",
+            "8",
+            "Food 01"
+          ],
+          [
+            "Customer 8-2",
+            "8",
+            "Food 02"
+          ],
+          [
+            "Customer 8-3",
+            "8",
+            "Food 03"
+          ],
+          [
+            "Customer 8-4",
+            "8",
+            "Food 04"
+          ],
+          [
+            "Customer 8-5",
+            "8",
+            "Food 05"
+          ],
+          [
+            "Customer 8-6",
+            "8",
+            "Food 06"
+          ],
+          [
+            "Customer 8-7",
+            "8",
+            "Food 07"
+          ],
+          [
+            "Customer 8-8",
+            "8",
+            "Food 08"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "Table",
+          "Food 01",
+          "Food 02",
+          "Food 03",
+          "Food 04",
+          "Food 05",
+          "Food 06",
+          "Food 07",
+          "Food 08"
+        ],
+        [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "2",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "3",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "4",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "5",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "6",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "7",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "8",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "dense-table"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 tables by 16 foods",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "orders": [
+          [
+            "Customer 1-1",
+            "1",
+            "Food 01"
+          ],
+          [
+            "Customer 1-2",
+            "1",
+            "Food 02"
+          ],
+          [
+            "Customer 1-3",
+            "1",
+            "Food 03"
+          ],
+          [
+            "Customer 1-4",
+            "1",
+            "Food 04"
+          ],
+          [
+            "Customer 1-5",
+            "1",
+            "Food 05"
+          ],
+          [
+            "Customer 1-6",
+            "1",
+            "Food 06"
+          ],
+          [
+            "Customer 1-7",
+            "1",
+            "Food 07"
+          ],
+          [
+            "Customer 1-8",
+            "1",
+            "Food 08"
+          ],
+          [
+            "Customer 1-9",
+            "1",
+            "Food 09"
+          ],
+          [
+            "Customer 1-10",
+            "1",
+            "Food 10"
+          ],
+          [
+            "Customer 1-11",
+            "1",
+            "Food 11"
+          ],
+          [
+            "Customer 1-12",
+            "1",
+            "Food 12"
+          ],
+          [
+            "Customer 1-13",
+            "1",
+            "Food 13"
+          ],
+          [
+            "Customer 1-14",
+            "1",
+            "Food 14"
+          ],
+          [
+            "Customer 1-15",
+            "1",
+            "Food 15"
+          ],
+          [
+            "Customer 1-16",
+            "1",
+            "Food 16"
+          ],
+          [
+            "Customer 2-1",
+            "2",
+            "Food 01"
+          ],
+          [
+            "Customer 2-2",
+            "2",
+            "Food 02"
+          ],
+          [
+            "Customer 2-3",
+            "2",
+            "Food 03"
+          ],
+          [
+            "Customer 2-4",
+            "2",
+            "Food 04"
+          ],
+          [
+            "Customer 2-5",
+            "2",
+            "Food 05"
+          ],
+          [
+            "Customer 2-6",
+            "2",
+            "Food 06"
+          ],
+          [
+            "Customer 2-7",
+            "2",
+            "Food 07"
+          ],
+          [
+            "Customer 2-8",
+            "2",
+            "Food 08"
+          ],
+          [
+            "Customer 2-9",
+            "2",
+            "Food 09"
+          ],
+          [
+            "Customer 2-10",
+            "2",
+            "Food 10"
+          ],
+          [
+            "Customer 2-11",
+            "2",
+            "Food 11"
+          ],
+          [
+            "Customer 2-12",
+            "2",
+            "Food 12"
+          ],
+          [
+            "Customer 2-13",
+            "2",
+            "Food 13"
+          ],
+          [
+            "Customer 2-14",
+            "2",
+            "Food 14"
+          ],
+          [
+            "Customer 2-15",
+            "2",
+            "Food 15"
+          ],
+          [
+            "Customer 2-16",
+            "2",
+            "Food 16"
+          ],
+          [
+            "Customer 3-1",
+            "3",
+            "Food 01"
+          ],
+          [
+            "Customer 3-2",
+            "3",
+            "Food 02"
+          ],
+          [
+            "Customer 3-3",
+            "3",
+            "Food 03"
+          ],
+          [
+            "Customer 3-4",
+            "3",
+            "Food 04"
+          ],
+          [
+            "Customer 3-5",
+            "3",
+            "Food 05"
+          ],
+          [
+            "Customer 3-6",
+            "3",
+            "Food 06"
+          ],
+          [
+            "Customer 3-7",
+            "3",
+            "Food 07"
+          ],
+          [
+            "Customer 3-8",
+            "3",
+            "Food 08"
+          ],
+          [
+            "Customer 3-9",
+            "3",
+            "Food 09"
+          ],
+          [
+            "Customer 3-10",
+            "3",
+            "Food 10"
+          ],
+          [
+            "Customer 3-11",
+            "3",
+            "Food 11"
+          ],
+          [
+            "Customer 3-12",
+            "3",
+            "Food 12"
+          ],
+          [
+            "Customer 3-13",
+            "3",
+            "Food 13"
+          ],
+          [
+            "Customer 3-14",
+            "3",
+            "Food 14"
+          ],
+          [
+            "Customer 3-15",
+            "3",
+            "Food 15"
+          ],
+          [
+            "Customer 3-16",
+            "3",
+            "Food 16"
+          ],
+          [
+            "Customer 4-1",
+            "4",
+            "Food 01"
+          ],
+          [
+            "Customer 4-2",
+            "4",
+            "Food 02"
+          ],
+          [
+            "Customer 4-3",
+            "4",
+            "Food 03"
+          ],
+          [
+            "Customer 4-4",
+            "4",
+            "Food 04"
+          ],
+          [
+            "Customer 4-5",
+            "4",
+            "Food 05"
+          ],
+          [
+            "Customer 4-6",
+            "4",
+            "Food 06"
+          ],
+          [
+            "Customer 4-7",
+            "4",
+            "Food 07"
+          ],
+          [
+            "Customer 4-8",
+            "4",
+            "Food 08"
+          ],
+          [
+            "Customer 4-9",
+            "4",
+            "Food 09"
+          ],
+          [
+            "Customer 4-10",
+            "4",
+            "Food 10"
+          ],
+          [
+            "Customer 4-11",
+            "4",
+            "Food 11"
+          ],
+          [
+            "Customer 4-12",
+            "4",
+            "Food 12"
+          ],
+          [
+            "Customer 4-13",
+            "4",
+            "Food 13"
+          ],
+          [
+            "Customer 4-14",
+            "4",
+            "Food 14"
+          ],
+          [
+            "Customer 4-15",
+            "4",
+            "Food 15"
+          ],
+          [
+            "Customer 4-16",
+            "4",
+            "Food 16"
+          ],
+          [
+            "Customer 5-1",
+            "5",
+            "Food 01"
+          ],
+          [
+            "Customer 5-2",
+            "5",
+            "Food 02"
+          ],
+          [
+            "Customer 5-3",
+            "5",
+            "Food 03"
+          ],
+          [
+            "Customer 5-4",
+            "5",
+            "Food 04"
+          ],
+          [
+            "Customer 5-5",
+            "5",
+            "Food 05"
+          ],
+          [
+            "Customer 5-6",
+            "5",
+            "Food 06"
+          ],
+          [
+            "Customer 5-7",
+            "5",
+            "Food 07"
+          ],
+          [
+            "Customer 5-8",
+            "5",
+            "Food 08"
+          ],
+          [
+            "Customer 5-9",
+            "5",
+            "Food 09"
+          ],
+          [
+            "Customer 5-10",
+            "5",
+            "Food 10"
+          ],
+          [
+            "Customer 5-11",
+            "5",
+            "Food 11"
+          ],
+          [
+            "Customer 5-12",
+            "5",
+            "Food 12"
+          ],
+          [
+            "Customer 5-13",
+            "5",
+            "Food 13"
+          ],
+          [
+            "Customer 5-14",
+            "5",
+            "Food 14"
+          ],
+          [
+            "Customer 5-15",
+            "5",
+            "Food 15"
+          ],
+          [
+            "Customer 5-16",
+            "5",
+            "Food 16"
+          ],
+          [
+            "Customer 6-1",
+            "6",
+            "Food 01"
+          ],
+          [
+            "Customer 6-2",
+            "6",
+            "Food 02"
+          ],
+          [
+            "Customer 6-3",
+            "6",
+            "Food 03"
+          ],
+          [
+            "Customer 6-4",
+            "6",
+            "Food 04"
+          ],
+          [
+            "Customer 6-5",
+            "6",
+            "Food 05"
+          ],
+          [
+            "Customer 6-6",
+            "6",
+            "Food 06"
+          ],
+          [
+            "Customer 6-7",
+            "6",
+            "Food 07"
+          ],
+          [
+            "Customer 6-8",
+            "6",
+            "Food 08"
+          ],
+          [
+            "Customer 6-9",
+            "6",
+            "Food 09"
+          ],
+          [
+            "Customer 6-10",
+            "6",
+            "Food 10"
+          ],
+          [
+            "Customer 6-11",
+            "6",
+            "Food 11"
+          ],
+          [
+            "Customer 6-12",
+            "6",
+            "Food 12"
+          ],
+          [
+            "Customer 6-13",
+            "6",
+            "Food 13"
+          ],
+          [
+            "Customer 6-14",
+            "6",
+            "Food 14"
+          ],
+          [
+            "Customer 6-15",
+            "6",
+            "Food 15"
+          ],
+          [
+            "Customer 6-16",
+            "6",
+            "Food 16"
+          ],
+          [
+            "Customer 7-1",
+            "7",
+            "Food 01"
+          ],
+          [
+            "Customer 7-2",
+            "7",
+            "Food 02"
+          ],
+          [
+            "Customer 7-3",
+            "7",
+            "Food 03"
+          ],
+          [
+            "Customer 7-4",
+            "7",
+            "Food 04"
+          ],
+          [
+            "Customer 7-5",
+            "7",
+            "Food 05"
+          ],
+          [
+            "Customer 7-6",
+            "7",
+            "Food 06"
+          ],
+          [
+            "Customer 7-7",
+            "7",
+            "Food 07"
+          ],
+          [
+            "Customer 7-8",
+            "7",
+            "Food 08"
+          ],
+          [
+            "Customer 7-9",
+            "7",
+            "Food 09"
+          ],
+          [
+            "Customer 7-10",
+            "7",
+            "Food 10"
+          ],
+          [
+            "Customer 7-11",
+            "7",
+            "Food 11"
+          ],
+          [
+            "Customer 7-12",
+            "7",
+            "Food 12"
+          ],
+          [
+            "Customer 7-13",
+            "7",
+            "Food 13"
+          ],
+          [
+            "Customer 7-14",
+            "7",
+            "Food 14"
+          ],
+          [
+            "Customer 7-15",
+            "7",
+            "Food 15"
+          ],
+          [
+            "Customer 7-16",
+            "7",
+            "Food 16"
+          ],
+          [
+            "Customer 8-1",
+            "8",
+            "Food 01"
+          ],
+          [
+            "Customer 8-2",
+            "8",
+            "Food 02"
+          ],
+          [
+            "Customer 8-3",
+            "8",
+            "Food 03"
+          ],
+          [
+            "Customer 8-4",
+            "8",
+            "Food 04"
+          ],
+          [
+            "Customer 8-5",
+            "8",
+            "Food 05"
+          ],
+          [
+            "Customer 8-6",
+            "8",
+            "Food 06"
+          ],
+          [
+            "Customer 8-7",
+            "8",
+            "Food 07"
+          ],
+          [
+            "Customer 8-8",
+            "8",
+            "Food 08"
+          ],
+          [
+            "Customer 8-9",
+            "8",
+            "Food 09"
+          ],
+          [
+            "Customer 8-10",
+            "8",
+            "Food 10"
+          ],
+          [
+            "Customer 8-11",
+            "8",
+            "Food 11"
+          ],
+          [
+            "Customer 8-12",
+            "8",
+            "Food 12"
+          ],
+          [
+            "Customer 8-13",
+            "8",
+            "Food 13"
+          ],
+          [
+            "Customer 8-14",
+            "8",
+            "Food 14"
+          ],
+          [
+            "Customer 8-15",
+            "8",
+            "Food 15"
+          ],
+          [
+            "Customer 8-16",
+            "8",
+            "Food 16"
+          ],
+          [
+            "Customer 9-1",
+            "9",
+            "Food 01"
+          ],
+          [
+            "Customer 9-2",
+            "9",
+            "Food 02"
+          ],
+          [
+            "Customer 9-3",
+            "9",
+            "Food 03"
+          ],
+          [
+            "Customer 9-4",
+            "9",
+            "Food 04"
+          ],
+          [
+            "Customer 9-5",
+            "9",
+            "Food 05"
+          ],
+          [
+            "Customer 9-6",
+            "9",
+            "Food 06"
+          ],
+          [
+            "Customer 9-7",
+            "9",
+            "Food 07"
+          ],
+          [
+            "Customer 9-8",
+            "9",
+            "Food 08"
+          ],
+          [
+            "Customer 9-9",
+            "9",
+            "Food 09"
+          ],
+          [
+            "Customer 9-10",
+            "9",
+            "Food 10"
+          ],
+          [
+            "Customer 9-11",
+            "9",
+            "Food 11"
+          ],
+          [
+            "Customer 9-12",
+            "9",
+            "Food 12"
+          ],
+          [
+            "Customer 9-13",
+            "9",
+            "Food 13"
+          ],
+          [
+            "Customer 9-14",
+            "9",
+            "Food 14"
+          ],
+          [
+            "Customer 9-15",
+            "9",
+            "Food 15"
+          ],
+          [
+            "Customer 9-16",
+            "9",
+            "Food 16"
+          ],
+          [
+            "Customer 10-1",
+            "10",
+            "Food 01"
+          ],
+          [
+            "Customer 10-2",
+            "10",
+            "Food 02"
+          ],
+          [
+            "Customer 10-3",
+            "10",
+            "Food 03"
+          ],
+          [
+            "Customer 10-4",
+            "10",
+            "Food 04"
+          ],
+          [
+            "Customer 10-5",
+            "10",
+            "Food 05"
+          ],
+          [
+            "Customer 10-6",
+            "10",
+            "Food 06"
+          ],
+          [
+            "Customer 10-7",
+            "10",
+            "Food 07"
+          ],
+          [
+            "Customer 10-8",
+            "10",
+            "Food 08"
+          ],
+          [
+            "Customer 10-9",
+            "10",
+            "Food 09"
+          ],
+          [
+            "Customer 10-10",
+            "10",
+            "Food 10"
+          ],
+          [
+            "Customer 10-11",
+            "10",
+            "Food 11"
+          ],
+          [
+            "Customer 10-12",
+            "10",
+            "Food 12"
+          ],
+          [
+            "Customer 10-13",
+            "10",
+            "Food 13"
+          ],
+          [
+            "Customer 10-14",
+            "10",
+            "Food 14"
+          ],
+          [
+            "Customer 10-15",
+            "10",
+            "Food 15"
+          ],
+          [
+            "Customer 10-16",
+            "10",
+            "Food 16"
+          ],
+          [
+            "Customer 11-1",
+            "11",
+            "Food 01"
+          ],
+          [
+            "Customer 11-2",
+            "11",
+            "Food 02"
+          ],
+          [
+            "Customer 11-3",
+            "11",
+            "Food 03"
+          ],
+          [
+            "Customer 11-4",
+            "11",
+            "Food 04"
+          ],
+          [
+            "Customer 11-5",
+            "11",
+            "Food 05"
+          ],
+          [
+            "Customer 11-6",
+            "11",
+            "Food 06"
+          ],
+          [
+            "Customer 11-7",
+            "11",
+            "Food 07"
+          ],
+          [
+            "Customer 11-8",
+            "11",
+            "Food 08"
+          ],
+          [
+            "Customer 11-9",
+            "11",
+            "Food 09"
+          ],
+          [
+            "Customer 11-10",
+            "11",
+            "Food 10"
+          ],
+          [
+            "Customer 11-11",
+            "11",
+            "Food 11"
+          ],
+          [
+            "Customer 11-12",
+            "11",
+            "Food 12"
+          ],
+          [
+            "Customer 11-13",
+            "11",
+            "Food 13"
+          ],
+          [
+            "Customer 11-14",
+            "11",
+            "Food 14"
+          ],
+          [
+            "Customer 11-15",
+            "11",
+            "Food 15"
+          ],
+          [
+            "Customer 11-16",
+            "11",
+            "Food 16"
+          ],
+          [
+            "Customer 12-1",
+            "12",
+            "Food 01"
+          ],
+          [
+            "Customer 12-2",
+            "12",
+            "Food 02"
+          ],
+          [
+            "Customer 12-3",
+            "12",
+            "Food 03"
+          ],
+          [
+            "Customer 12-4",
+            "12",
+            "Food 04"
+          ],
+          [
+            "Customer 12-5",
+            "12",
+            "Food 05"
+          ],
+          [
+            "Customer 12-6",
+            "12",
+            "Food 06"
+          ],
+          [
+            "Customer 12-7",
+            "12",
+            "Food 07"
+          ],
+          [
+            "Customer 12-8",
+            "12",
+            "Food 08"
+          ],
+          [
+            "Customer 12-9",
+            "12",
+            "Food 09"
+          ],
+          [
+            "Customer 12-10",
+            "12",
+            "Food 10"
+          ],
+          [
+            "Customer 12-11",
+            "12",
+            "Food 11"
+          ],
+          [
+            "Customer 12-12",
+            "12",
+            "Food 12"
+          ],
+          [
+            "Customer 12-13",
+            "12",
+            "Food 13"
+          ],
+          [
+            "Customer 12-14",
+            "12",
+            "Food 14"
+          ],
+          [
+            "Customer 12-15",
+            "12",
+            "Food 15"
+          ],
+          [
+            "Customer 12-16",
+            "12",
+            "Food 16"
+          ],
+          [
+            "Customer 13-1",
+            "13",
+            "Food 01"
+          ],
+          [
+            "Customer 13-2",
+            "13",
+            "Food 02"
+          ],
+          [
+            "Customer 13-3",
+            "13",
+            "Food 03"
+          ],
+          [
+            "Customer 13-4",
+            "13",
+            "Food 04"
+          ],
+          [
+            "Customer 13-5",
+            "13",
+            "Food 05"
+          ],
+          [
+            "Customer 13-6",
+            "13",
+            "Food 06"
+          ],
+          [
+            "Customer 13-7",
+            "13",
+            "Food 07"
+          ],
+          [
+            "Customer 13-8",
+            "13",
+            "Food 08"
+          ],
+          [
+            "Customer 13-9",
+            "13",
+            "Food 09"
+          ],
+          [
+            "Customer 13-10",
+            "13",
+            "Food 10"
+          ],
+          [
+            "Customer 13-11",
+            "13",
+            "Food 11"
+          ],
+          [
+            "Customer 13-12",
+            "13",
+            "Food 12"
+          ],
+          [
+            "Customer 13-13",
+            "13",
+            "Food 13"
+          ],
+          [
+            "Customer 13-14",
+            "13",
+            "Food 14"
+          ],
+          [
+            "Customer 13-15",
+            "13",
+            "Food 15"
+          ],
+          [
+            "Customer 13-16",
+            "13",
+            "Food 16"
+          ],
+          [
+            "Customer 14-1",
+            "14",
+            "Food 01"
+          ],
+          [
+            "Customer 14-2",
+            "14",
+            "Food 02"
+          ],
+          [
+            "Customer 14-3",
+            "14",
+            "Food 03"
+          ],
+          [
+            "Customer 14-4",
+            "14",
+            "Food 04"
+          ],
+          [
+            "Customer 14-5",
+            "14",
+            "Food 05"
+          ],
+          [
+            "Customer 14-6",
+            "14",
+            "Food 06"
+          ],
+          [
+            "Customer 14-7",
+            "14",
+            "Food 07"
+          ],
+          [
+            "Customer 14-8",
+            "14",
+            "Food 08"
+          ],
+          [
+            "Customer 14-9",
+            "14",
+            "Food 09"
+          ],
+          [
+            "Customer 14-10",
+            "14",
+            "Food 10"
+          ],
+          [
+            "Customer 14-11",
+            "14",
+            "Food 11"
+          ],
+          [
+            "Customer 14-12",
+            "14",
+            "Food 12"
+          ],
+          [
+            "Customer 14-13",
+            "14",
+            "Food 13"
+          ],
+          [
+            "Customer 14-14",
+            "14",
+            "Food 14"
+          ],
+          [
+            "Customer 14-15",
+            "14",
+            "Food 15"
+          ],
+          [
+            "Customer 14-16",
+            "14",
+            "Food 16"
+          ],
+          [
+            "Customer 15-1",
+            "15",
+            "Food 01"
+          ],
+          [
+            "Customer 15-2",
+            "15",
+            "Food 02"
+          ],
+          [
+            "Customer 15-3",
+            "15",
+            "Food 03"
+          ],
+          [
+            "Customer 15-4",
+            "15",
+            "Food 04"
+          ],
+          [
+            "Customer 15-5",
+            "15",
+            "Food 05"
+          ],
+          [
+            "Customer 15-6",
+            "15",
+            "Food 06"
+          ],
+          [
+            "Customer 15-7",
+            "15",
+            "Food 07"
+          ],
+          [
+            "Customer 15-8",
+            "15",
+            "Food 08"
+          ],
+          [
+            "Customer 15-9",
+            "15",
+            "Food 09"
+          ],
+          [
+            "Customer 15-10",
+            "15",
+            "Food 10"
+          ],
+          [
+            "Customer 15-11",
+            "15",
+            "Food 11"
+          ],
+          [
+            "Customer 15-12",
+            "15",
+            "Food 12"
+          ],
+          [
+            "Customer 15-13",
+            "15",
+            "Food 13"
+          ],
+          [
+            "Customer 15-14",
+            "15",
+            "Food 14"
+          ],
+          [
+            "Customer 15-15",
+            "15",
+            "Food 15"
+          ],
+          [
+            "Customer 15-16",
+            "15",
+            "Food 16"
+          ],
+          [
+            "Customer 16-1",
+            "16",
+            "Food 01"
+          ],
+          [
+            "Customer 16-2",
+            "16",
+            "Food 02"
+          ],
+          [
+            "Customer 16-3",
+            "16",
+            "Food 03"
+          ],
+          [
+            "Customer 16-4",
+            "16",
+            "Food 04"
+          ],
+          [
+            "Customer 16-5",
+            "16",
+            "Food 05"
+          ],
+          [
+            "Customer 16-6",
+            "16",
+            "Food 06"
+          ],
+          [
+            "Customer 16-7",
+            "16",
+            "Food 07"
+          ],
+          [
+            "Customer 16-8",
+            "16",
+            "Food 08"
+          ],
+          [
+            "Customer 16-9",
+            "16",
+            "Food 09"
+          ],
+          [
+            "Customer 16-10",
+            "16",
+            "Food 10"
+          ],
+          [
+            "Customer 16-11",
+            "16",
+            "Food 11"
+          ],
+          [
+            "Customer 16-12",
+            "16",
+            "Food 12"
+          ],
+          [
+            "Customer 16-13",
+            "16",
+            "Food 13"
+          ],
+          [
+            "Customer 16-14",
+            "16",
+            "Food 14"
+          ],
+          [
+            "Customer 16-15",
+            "16",
+            "Food 15"
+          ],
+          [
+            "Customer 16-16",
+            "16",
+            "Food 16"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "Table",
+          "Food 01",
+          "Food 02",
+          "Food 03",
+          "Food 04",
+          "Food 05",
+          "Food 06",
+          "Food 07",
+          "Food 08",
+          "Food 09",
+          "Food 10",
+          "Food 11",
+          "Food 12",
+          "Food 13",
+          "Food 14",
+          "Food 15",
+          "Food 16"
+        ],
+        [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "2",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "3",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "4",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "5",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "6",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "7",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "8",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "9",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "10",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "11",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "12",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "13",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "14",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "15",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "16",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "dense-table"
       ]
     }
   ]

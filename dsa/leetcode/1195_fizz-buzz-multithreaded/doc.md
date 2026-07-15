@@ -7,7 +7,7 @@
 | Difficulty | Medium |
 | Category | Concurrency |
 | Topics | Concurrency |
-| Supported Languages | Tracked only |
+| Supported Languages | Python |
 | Official Link | [LeetCode](https://leetcode.com/problems/fizz-buzz-multithreaded/) |
 
 ## Problem Description

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1483",
+  "frontend_id": "1366",
+  "title_slug": "rank-teams-by-votes",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.rankTeams",
+  "verified_submission_id": "2068731697",
+  "verified_at": "2026-07-15T14:40:41.739512+00:00"
+}

@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1412",
+  "cases": [
+    {
+      "id": "sample-multiple-exams",
+      "name": "sample: only consistently non-extreme student qualifies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "Daniel"
+            },
+            {
+              "student_id": 2,
+              "student_name": "Jade"
+            },
+            {
+              "student_id": 3,
+              "student_name": "Stella"
+            },
+            {
+              "student_id": 4,
+              "student_name": "Jonathan"
+            },
+            {
+              "student_id": 5,
+              "student_name": "Will"
+            }
+          ],
+          "Exam": [
+            {
+              "exam_id": 10,
+              "student_id": 1,
+              "score": 70
+            },
+            {
+              "exam_id": 10,
+              "student_id": 2,
+              "score": 80
+            },
+            {
+              "exam_id": 10,
+              "student_id": 3,
+              "score": 90
+            },
+            {
+              "exam_id": 20,
+              "student_id": 1,
+              "score": 80
+            },
+            {
+              "exam_id": 30,
+              "student_id": 1,
+              "score": 70
+            },
+            {
+              "exam_id": 30,
+              "student_id": 3,
+              "score": 80
+            },
+            {
+              "exam_id": 30,
+              "student_id": 4,
+              "score": 90
+            },
+            {
+              "exam_id": 40,
+              "student_id": 1,
+              "score": 60
+            },
+            {
+              "exam_id": 40,
+              "student_id": 2,
+              "score": 70
+            },
+            {
+              "exam_id": 40,
+              "student_id": 4,
+              "score": 80
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name"
+        ],
+        "rows": [
+          [
+            2,
+            "Jade"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "multiple-exams"
+      ]
+    },
+    {
+      "id": "sample-one-middle",
+      "name": "sample: one middle score",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "Low"
+            },
+            {
+              "student_id": 2,
+              "student_name": "Middle"
+            },
+            {
+              "student_id": 3,
+              "student_name": "High"
+            }
+          ],
+          "Exam": [
+            {
+              "exam_id": 1,
+              "student_id": 1,
+              "score": 70
+            },
+            {
+              "exam_id": 1,
+              "student_id": 2,
+              "score": 80
+            },
+            {
+              "exam_id": 1,
+              "student_id": 3,
+              "score": 90
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name"
+        ],
+        "rows": [
+          [
+            2,
+            "Middle"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "middle"
+      ]
+    },
+    {
+      "id": "sample-tied-minimum",
+      "name": "sample: tied minimum disqualifies every participant",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "A"
+            },
+            {
+              "student_id": 2,
+              "student_name": "B"
+            },
+            {
+              "student_id": 3,
+              "student_name": "C"
+            }
+          ],
+          "Exam": [
+            {
+              "exam_id": 1,
+              "student_id": 1,
+              "score": 50
+            },
+            {
+              "exam_id": 1,
+              "student_id": 2,
+              "score": 50
+            },
+            {
+              "exam_id": 1,
+              "student_id": 3,
+              "score": 70
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "sample",
+        "ties"
+      ]
+    },
+    {
+      "id": "trial-two-middle",
+      "name": "two middle scores both qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "A"
+            },
+            {
+              "student_id": 2,
+              "student_name": "B"
+            },
+            {
+              "student_id": 3,
+              "student_name": "C"
+            },
+            {
+              "student_id": 4,
+              "student_name": "D"
+            }
+          ],
+          "Exam": [
+            {
+              "exam_id": 8,
+              "student_id": 1,
+              "score": 10
+            },
+            {
+              "exam_id": 8,
+              "student_id": 2,
+              "score": 20
+            },
+            {
+              "exam_id": 8,
+              "student_id": 3,
+              "score": 30
+            },
+            {
+              "exam_id": 8,
+              "student_id": 4,
+              "score": 40
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name"
+        ],
+        "rows": [
+          [
+            2,
+            "B"
+          ],
+          [
+            3,
+            "C"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "multiple-quiet"
+      ]
+    },
+    {
+      "id": "real-extreme-later",
+      "name": "hidden: one later extreme disqualifies student",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "student_id": 1,
+              "student_name": "A"
+            },
+            {
+              "student_id": 2,
+              "student_name": "B"
+            },
+            {
+              "student_id": 3,
+              "student_name": "C"
+            },
+            {
+              "student_id": 4,
+              "student_name": "NoExam"
+            }
+          ],
+          "Exam": [
+            {
+              "exam_id": 1,
+              "student_id": 1,
+              "score": 10
+            },
+            {
+              "exam_id": 1,
+              "student_id": 2,
+              "score": 20
+            },
+            {
+              "exam_id": 1,
+              "student_id": 3,
+              "score": 30
+            },
+            {
+              "exam_id": 2,
+              "student_id": 1,
+              "score": 10
+            },
+            {
+              "exam_id": 2,
+              "student_id": 2,
+              "score": 30
+            },
+            {
+              "exam_id": 2,
+              "student_id": 3,
+              "score": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "all-exams",
+        "no-exam"
+      ]
+    },
+    {
+      "id": "real-single-participant",
+      "name": "hidden: sole participant is both extremes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Student": [
+            {
+              "student_id": 7,
+              "student_name": "Solo"
+            }
+          ],
+          "Exam": [
+            {
+              "exam_id": 99,
+              "student_id": 7,
+              "score": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "single-participant"
+      ]
+    }
+  ]
+}

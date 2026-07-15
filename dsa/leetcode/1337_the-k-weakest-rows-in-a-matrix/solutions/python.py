@@ -1,4 +1,19 @@
+"""Optimal app-local solution for LeetCode 1337."""
+
+
 def solve(mat, k):
-    strengths = [(sum(row), i) for i, row in enumerate(mat)]
+    strengths = []
+
+    for row_index, row in enumerate(mat):
+        left = 0
+        right = len(row)
+        while left < right:
+            middle = (left + right) // 2
+            if row[middle] == 1:
+                left = middle + 1
+            else:
+                right = middle
+        strengths.append((left, row_index))
+
     strengths.sort()
-    return [i for _, i in strengths[:k]]
+    return [row_index for _, row_index in strengths[:k]]

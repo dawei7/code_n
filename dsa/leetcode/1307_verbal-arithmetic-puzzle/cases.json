@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1307",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: send more money",
+      "name": "sample: SEND plus MORE equals MONEY",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,12 +17,13 @@
       "expected": true,
       "tags": [
         "sample",
-        "backtracking"
+        "backtracking",
+        "carry"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: six plus seven",
+      "name": "sample: three addends form TWENTY",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -34,12 +36,13 @@
       },
       "expected": true,
       "tags": [
-        "sample"
+        "sample",
+        "multiple-addends"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: this is too funny",
+      "name": "sample: THIS plus IS plus TOO equals FUNNY",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -52,14 +55,15 @@
       },
       "expected": true,
       "tags": [
-        "sample"
+        "sample",
+        "multiple-addends"
       ]
     },
     {
-      "id": "real-unsatisfiable",
-      "name": "hidden: no assignment exists",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsatisfiable",
+      "name": "trial: LEET plus CODE cannot equal POINT",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "LEET",
@@ -69,7 +73,82 @@
       },
       "expected": false,
       "tags": [
-        "hidden"
+        "trial",
+        "unsatisfiable"
+      ]
+    },
+    {
+      "id": "trial-single-letter-zero",
+      "name": "trial: a single-letter addend may be zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "A",
+          "B"
+        ],
+        "result": "A"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "zero",
+        "single-letter"
+      ]
+    },
+    {
+      "id": "hidden-repeated-addend",
+      "name": "hidden: repeated addend letter keeps one digit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "A",
+          "A"
+        ],
+        "result": "B"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "repeated-letter"
+      ]
+    },
+    {
+      "id": "hidden-ten-letter-solution",
+      "name": "hidden: all ten digits participate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "DONALD",
+          "GERALD"
+        ],
+        "result": "ROBERT"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "ten-letters",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-result-too-short",
+      "name": "hidden: result cannot hold the addend magnitude",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "AB"
+        ],
+        "result": "A"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "leading-zero",
+        "length"
       ]
     }
   ]

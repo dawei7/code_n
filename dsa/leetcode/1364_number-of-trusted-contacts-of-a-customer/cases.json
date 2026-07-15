@@ -1,0 +1,514 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1364",
+  "cases": [
+    {
+      "id": "sample-mixed-trust",
+      "name": "sample: mixed trusted and external contacts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "Alice",
+              "email": "alice@example.com"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "Bob",
+              "email": "bob@example.com"
+            },
+            {
+              "customer_id": 3,
+              "customer_name": "Alex",
+              "email": "alex@example.com"
+            },
+            {
+              "customer_id": 4,
+              "customer_name": "Donald",
+              "email": "donald@example.com"
+            }
+          ],
+          "Contacts": [
+            {
+              "user_id": 1,
+              "contact_name": "Bob",
+              "contact_email": "bob@example.com"
+            },
+            {
+              "user_id": 1,
+              "contact_name": "John",
+              "contact_email": "john@outside.com"
+            },
+            {
+              "user_id": 2,
+              "contact_name": "Alice",
+              "contact_email": "alice@example.com"
+            },
+            {
+              "user_id": 4,
+              "contact_name": "Alex",
+              "contact_email": "alex@example.com"
+            },
+            {
+              "user_id": 4,
+              "contact_name": "Bob",
+              "contact_email": "bob@example.com"
+            }
+          ],
+          "Invoices": [
+            {
+              "invoice_id": 77,
+              "price": 100,
+              "user_id": 1
+            },
+            {
+              "invoice_id": 88,
+              "price": 200,
+              "user_id": 2
+            },
+            {
+              "invoice_id": 99,
+              "price": 300,
+              "user_id": 3
+            },
+            {
+              "invoice_id": 66,
+              "price": 400,
+              "user_id": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "invoice_id",
+          "customer_name",
+          "price",
+          "contacts_cnt",
+          "trusted_contacts_cnt"
+        ],
+        "rows": [
+          [
+            66,
+            "Donald",
+            400,
+            2,
+            2
+          ],
+          [
+            77,
+            "Alice",
+            100,
+            2,
+            1
+          ],
+          [
+            88,
+            "Bob",
+            200,
+            1,
+            1
+          ],
+          [
+            99,
+            "Alex",
+            300,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "mixed-trust"
+      ]
+    },
+    {
+      "id": "sample-no-trusted",
+      "name": "sample: all contacts are external",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "A",
+              "email": "a@shop.com"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "B",
+              "email": "b@shop.com"
+            }
+          ],
+          "Contacts": [
+            {
+              "user_id": 1,
+              "contact_name": "X",
+              "contact_email": "x@outside.com"
+            },
+            {
+              "user_id": 2,
+              "contact_name": "Y",
+              "contact_email": "y@outside.com"
+            }
+          ],
+          "Invoices": [
+            {
+              "invoice_id": 1,
+              "price": 10,
+              "user_id": 1
+            },
+            {
+              "invoice_id": 2,
+              "price": 20,
+              "user_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "invoice_id",
+          "customer_name",
+          "price",
+          "contacts_cnt",
+          "trusted_contacts_cnt"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            10,
+            1,
+            0
+          ],
+          [
+            2,
+            "B",
+            20,
+            1,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "external"
+      ]
+    },
+    {
+      "id": "sample-no-contacts",
+      "name": "sample: invoiced customer has no contacts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "A",
+              "email": "a@shop.com"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "B",
+              "email": "b@shop.com"
+            }
+          ],
+          "Contacts": [
+            {
+              "user_id": 2,
+              "contact_name": "A",
+              "contact_email": "a@shop.com"
+            }
+          ],
+          "Invoices": [
+            {
+              "invoice_id": 5,
+              "price": 50,
+              "user_id": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "invoice_id",
+          "customer_name",
+          "price",
+          "contacts_cnt",
+          "trusted_contacts_cnt"
+        ],
+        "rows": [
+          [
+            5,
+            "A",
+            50,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "zero-contacts"
+      ]
+    },
+    {
+      "id": "trial-repeat-invoices",
+      "name": "trial: two invoices reuse owner counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "A",
+              "email": "a@shop.com"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "B",
+              "email": "b@shop.com"
+            }
+          ],
+          "Contacts": [
+            {
+              "user_id": 1,
+              "contact_name": "B",
+              "contact_email": "b@shop.com"
+            }
+          ],
+          "Invoices": [
+            {
+              "invoice_id": 9,
+              "price": 90,
+              "user_id": 1
+            },
+            {
+              "invoice_id": 3,
+              "price": 30,
+              "user_id": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "invoice_id",
+          "customer_name",
+          "price",
+          "contacts_cnt",
+          "trusted_contacts_cnt"
+        ],
+        "rows": [
+          [
+            3,
+            "A",
+            30,
+            1,
+            1
+          ],
+          [
+            9,
+            "A",
+            90,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "multiple-invoices"
+      ]
+    },
+    {
+      "id": "trial-name-does-not-match",
+      "name": "trial: email determines trust despite alias",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "A",
+              "email": "a@shop.com"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "Registered",
+              "email": "trusted@shop.com"
+            }
+          ],
+          "Contacts": [
+            {
+              "user_id": 1,
+              "contact_name": "Different Alias",
+              "contact_email": "trusted@shop.com"
+            }
+          ],
+          "Invoices": [
+            {
+              "invoice_id": 4,
+              "price": 44,
+              "user_id": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "invoice_id",
+          "customer_name",
+          "price",
+          "contacts_cnt",
+          "trusted_contacts_cnt"
+        ],
+        "rows": [
+          [
+            4,
+            "A",
+            44,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "email-match"
+      ]
+    },
+    {
+      "id": "hidden-self-email",
+      "name": "hidden: registered owner email is trusted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "A",
+              "email": "a@shop.com"
+            }
+          ],
+          "Contacts": [
+            {
+              "user_id": 1,
+              "contact_name": "Self",
+              "contact_email": "a@shop.com"
+            }
+          ],
+          "Invoices": [
+            {
+              "invoice_id": 2,
+              "price": 12,
+              "user_id": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "invoice_id",
+          "customer_name",
+          "price",
+          "contacts_cnt",
+          "trusted_contacts_cnt"
+        ],
+        "rows": [
+          [
+            2,
+            "A",
+            12,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "registered-email"
+      ]
+    },
+    {
+      "id": "hidden-order-and-zero",
+      "name": "hidden: invoice ordering with zero contacts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "A",
+              "email": "a@shop.com"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "B",
+              "email": "b@shop.com"
+            }
+          ],
+          "Contacts": [
+            {
+              "user_id": 1,
+              "contact_name": "B",
+              "contact_email": "b@shop.com"
+            }
+          ],
+          "Invoices": [
+            {
+              "invoice_id": 20,
+              "price": 2,
+              "user_id": 1
+            },
+            {
+              "invoice_id": 10,
+              "price": 1,
+              "user_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "invoice_id",
+          "customer_name",
+          "price",
+          "contacts_cnt",
+          "trusted_contacts_cnt"
+        ],
+        "rows": [
+          [
+            10,
+            "B",
+            1,
+            0,
+            0
+          ],
+          [
+            20,
+            "A",
+            2,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    }
+  ]
+}

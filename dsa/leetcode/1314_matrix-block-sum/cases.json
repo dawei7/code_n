@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1314",
   "cases": [
     {
@@ -50,7 +51,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: radius covers matrix",
+      "name": "sample: radius covers the matrix",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -91,13 +92,14 @@
         ]
       ],
       "tags": [
-        "sample"
+        "sample",
+        "clipping"
       ]
     },
     {
-      "id": "trial-single-cell",
-      "name": "single cell matrix",
-      "kind": "trial",
+      "id": "sample-3",
+      "name": "sample: single-cell matrix",
+      "kind": "sample",
       "visible": true,
       "input": {
         "mat": [
@@ -105,7 +107,7 @@
             5
           ]
         ],
-        "k": 0
+        "k": 1
       },
       "expected": [
         [
@@ -113,15 +115,52 @@
         ]
       ],
       "tags": [
-        "trial",
-        "edge"
+        "sample",
+        "boundary"
       ]
     },
     {
-      "id": "real-two-by-two",
-      "name": "hidden: every cell covers all values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-rectangular",
+      "name": "trial: two-by-three matrix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            2,
+            1,
+            3
+          ],
+          [
+            4,
+            6,
+            5
+          ]
+        ],
+        "k": 1
+      },
+      "expected": [
+        [
+          13,
+          21,
+          15
+        ],
+        [
+          13,
+          21,
+          15
+        ]
+      ],
+      "tags": [
+        "trial",
+        "rectangular"
+      ]
+    },
+    {
+      "id": "trial-large-radius",
+      "name": "trial: radius far exceeds both dimensions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -133,7 +172,7 @@
             4
           ]
         ],
-        "k": 1
+        "k": 100
       },
       "expected": [
         [
@@ -146,7 +185,80 @@
         ]
       ],
       "tags": [
-        "hidden"
+        "trial",
+        "maximum-radius"
+      ]
+    },
+    {
+      "id": "hidden-row-matrix",
+      "name": "hidden: one-row matrix clips vertically",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "k": 1
+      },
+      "expected": [
+        [
+          3,
+          6,
+          9,
+          12,
+          9
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "single-row"
+      ]
+    },
+    {
+      "id": "hidden-column-matrix",
+      "name": "hidden: one-column matrix clips horizontally",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            2
+          ],
+          [
+            4
+          ],
+          [
+            6
+          ],
+          [
+            8
+          ]
+        ],
+        "k": 2
+      },
+      "expected": [
+        [
+          12
+        ],
+        [
+          20
+        ],
+        [
+          20
+        ],
+        [
+          18
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "single-column"
       ]
     }
   ]

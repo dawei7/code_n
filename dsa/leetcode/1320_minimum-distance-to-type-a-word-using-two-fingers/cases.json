@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1320",
+  "cases": [
+    {"id":"sample-1","name":"sample: alternate fingers across rows","kind":"sample","visible":true,"input":{"word":"CAKE"},"expected":3,"tags":["sample","alternation"]},
+    {"id":"sample-2","name":"sample: repeated middle key","kind":"sample","visible":true,"input":{"word":"HAPPY"},"expected":6,"tags":["sample","repetition"]},
+    {"id":"trial-same-key","name":"trial: repeated single key","kind":"trial","visible":true,"input":{"word":"AA"},"expected":0,"tags":["trial","zero-cost"]},
+    {"id":"trial-free-starts","name":"trial: distant keys use free placements","kind":"trial","visible":true,"input":{"word":"AZ"},"expected":0,"tags":["trial","initial-placement"]},
+    {"id":"trial-four-letters","name":"trial: optimal finger reassignment","kind":"trial","visible":true,"input":{"word":"TYPE"},"expected":5,"tags":["trial","dynamic-programming"]},
+    {"id":"hidden-alphabetical","name":"hidden: traverse the full alphabet","kind":"real","visible":false,"input":{"word":"ABCDEFGHIJKLMNOPQRSTUVWXYZ"},"expected":36,"tags":["hidden","all-keys"]},
+    {"id":"hidden-keyboard-pattern","name":"hidden: nonalphabetical full-key pattern","kind":"real","visible":false,"input":{"word":"QWERTYUIOPASDFGHJKLZXCVBNM"},"expected":52,"tags":["hidden","all-keys","reordering"]}
+  ]
+}

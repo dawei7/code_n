@@ -5,31 +5,30 @@
 | Source | LeetCode |
 | Frontend ID | 1295 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array, Math |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-numbers-with-even-number-of-digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/).
-
 ### Goal
-Count how many integers in the array have an even number of decimal digits.
+Given an array `nums` of positive integers, inspect the ordinary decimal representation of every value. A number qualifies when its representation contains an even number of digits. For example, a two-digit or four-digit value qualifies, whereas a one-digit or three-digit value does not. The representations have no leading zeroes, so each value's magnitude determines its digit count unambiguously.
+
+Return how many array elements qualify. Repeated values count separately because the question counts elements, not distinct integers.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: array of positive integers.
+- `nums`: an integer array of length $n$, where $1 \le n \le 500$ and $1 \le \texttt{nums[i]} \le 10^5$.
 
 **Return value**
 
-The count of numbers whose decimal representation length is even.
+The number of indices whose value has two, four, or six decimal digits.
 
 ### Examples
 **Example 1**
 
 - Input: `nums = [12,345,2,6,7896]`
 - Output: `2`
+- Explanation: Only 12 and 7896 have even digit counts.
 
 **Example 2**
 
@@ -41,22 +40,29 @@ The count of numbers whose decimal representation length is even.
 - Input: `nums = [10,100,1000]`
 - Output: `2`
 
----
+### Required Complexity
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-## Solution
-### Approach
-Digit counting.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n * d)` with string conversion, where `d` is max digit count.
-- **Space Complexity**: `O(1)` aside from temporary digit strings.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(nums):
-    return sum(len(str(abs(value))) % 2 == 0 for value in nums)
-```
+#### General
+
+The constraint $1 \le x \le 100000$ permits only one through six decimal digits. The even-length ranges are therefore $[10,99]$ for two digits, $[1000,9999]$ for four digits, and the single six-digit value $100000$.
+
+Scan the array once. Increment the answer whenever the current value lies in one of those three ranges. These ranges are disjoint and collectively contain every legal value with an even number of digits, so each qualifying element is counted exactly once and every nonqualifying element is excluded.
+
+#### Complexity detail
+
+The scan performs a constant number of comparisons for each of the $n$ values, giving $O(n)$ time. The counter and current value use $O(1)$ auxiliary space; no string representation or frequency table is created.
+
+#### Alternatives and edge cases
+
+- **String conversion:** Testing `len(str(value)) % 2` is concise, but creates a temporary representation and ignores the small fixed value domain.
+- **Repeated division by ten:** Counting digits arithmetically works in $O(d)$ per value, where $d$ is its digit count, but the fixed range checks are simpler here.
+- **Powers of ten:** Values 10, 1000, and 100000 begin even-digit ranges, while 100 and 10000 begin odd-digit ranges.
+- **Repeated values:** Every occurrence contributes independently to the result.
+- **Smallest value:** One has one decimal digit and does not qualify.
+
 </details>

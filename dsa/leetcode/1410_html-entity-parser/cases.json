@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_1410",
+  "cases": [
+    {
+      "id": "sample-amp-unknown",
+      "name": "sample: recognized ampersand beside unknown entity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": "&amp; is an HTML entity but &ambassador; is not."
+      },
+      "expected": "& is an HTML entity but &ambassador; is not.",
+      "tags": [
+        "sample",
+        "unknown"
+      ]
+    },
+    {
+      "id": "sample-comparisons",
+      "name": "sample: comparison and ampersand entities",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": "x &gt; y &amp;&amp; x &lt; y is false"
+      },
+      "expected": "x > y && x < y is false",
+      "tags": [
+        "sample",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "sample-slashes",
+      "name": "sample: slash entities in a path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": "leetcode.com&frasl;problemset&frasl;all"
+      },
+      "expected": "leetcode.com/problemset/all",
+      "tags": [
+        "sample",
+        "slash"
+      ]
+    },
+    {
+      "id": "trial-quotes",
+      "name": "quotes and apostrophe",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "&quot;Tom&apos;s&quot;"
+      },
+      "expected": "\"Tom's\"",
+      "tags": [
+        "trial",
+        "quotes"
+      ]
+    },
+    {
+      "id": "trial-unchanged",
+      "name": "plain text remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "Stay home! Practice on Leetcode :)"
+      },
+      "expected": "Stay home! Practice on Leetcode :)",
+      "tags": [
+        "trial",
+        "plain"
+      ]
+    },
+    {
+      "id": "real-single-pass",
+      "name": "hidden: decoded ampersand is not parsed again",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "text": "&amp;gt;&amp;amp;"
+      },
+      "expected": "&gt;&amp;",
+      "tags": [
+        "hidden",
+        "single-pass"
+      ]
+    },
+    {
+      "id": "real-incomplete",
+      "name": "hidden: unknown and incomplete spellings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "text": "a &unknown; b &amp c &lt;"
+      },
+      "expected": "a &unknown; b &amp c <",
+      "tags": [
+        "hidden",
+        "incomplete"
+      ]
+    }
+  ]
+}

@@ -8,52 +8,72 @@
 | Category | Algorithms |
 | Topics | String, Greedy, Heap (Priority Queue) |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [longest-happy-string](https://leetcode.com/problems/longest-happy-string/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/longest-happy-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/longest-happy-string/).
 
 ### Goal
-Given integers `a`, `b`, `c` (counts of 'a', 'b', 'c'), return the longest string using those characters such that there are no three consecutive same characters.
+
+Three integers `a`, `b`, and `c` give the available quantities of the letters `"a"`, `"b"`, and `"c"`. Construct a string using no more than each available quantity.
+
+The string is happy when it contains none of `"aaa"`, `"bbb"`, or `"ccc"` as a substring. Return any happy string with the maximum possible length. Not every available character must be used when one letter is too numerous to separate safely, and different maximum-length answers are allowed.
 
 ### Function Contract
+
 **Inputs**
 
-- `a`: int - count of 'a'
-- `b`: int - count of 'b'
-- `c`: int - count of 'c'
+- `a`, `b`, and `c`: available nonnegative counts, each at most 100, with at least one character available.
+
+Let $N = a + b + c$.
 
 **Return value**
 
-str - longest happy string
+- Any longest string over `"a"`, `"b"`, and `"c"` that respects the three budgets and has no run of three equal letters.
 
 ### Examples
+
 **Example 1**
 
 - Input: `a = 1, b = 1, c = 7`
-- Output: `"ccbccacc"`
+- Output: one valid answer is `"ccaccbcc"`.
 
 **Example 2**
 
-- Input: `a = 1, b = 1, c = 0`
-- Output: `'ab'`
+- Input: `a = 7, b = 1, c = 0`
+- Output: one valid answer is `"aabaa"`.
 
 **Example 3**
 
-- Input: `a = 0, b = 2, c = 0`
-- Output: `'bb'`
+- Input: `a = 2, b = 2, c = 2`
+- Output: any six-character happy arrangement within the budgets.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-- [Kth largest with heap](heap_02_kth-largest-element.md)
-- [Top-K frequent elements](heap_03_top-k-frequent-elements.md)
-- [Median in a stream](heap_04_median-in-a-stream.md)
+- **Time:** $O(N)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(n)` auxiliary space, excluding the output object unless the output itself is the constructed result.
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+Store the positive remaining counts in a max-heap of at most three `(count, letter)` entries. At each step, tentatively take the most abundant letter.
+
+If appending it would create three equal trailing characters, take the second-most abundant letter instead. Append that fallback, decrement and reinsert it when copies remain, then restore the blocked first entry unchanged. If no fallback exists, no character can be appended and construction stops. Otherwise append the most abundant letter normally and reinsert its reduced count.
+
+Choosing the largest currently legal count prevents the dominant supply from becoming harder to separate later. When the largest is temporarily illegal, some different letter is necessary; choosing the largest alternative preserves the same balance. If the heap offers no alternative, every remaining character equals the forbidden trailing pair, proving that no longer happy extension exists. Thus the greedy process reaches maximum possible length.
+
+#### Complexity detail
+
+Each appended character performs a constant number of heap operations on at most three entries, so $O(\log 3)=O(1)$ work per output character and $O(N)$ total time. The heap has at most three entries and uses $O(1)$ auxiliary space, excluding the returned string.
+
+#### Alternatives and edge cases
+
+- **Memoized exhaustive search:** Try every legal next letter for every remaining-count state. It finds an optimum but can require $O(abc)$ states and store long suffix results.
+- **Always take the largest:** Ignoring the last two output characters can create a forbidden triple even when another letter remains available.
+- **Dominant letter:** Some copies must remain unused when the other letters cannot provide enough separators.
+- **Only one letter:** At most two copies can be returned.
+- **Balanced counts:** Every character can be used.
+- **Multiple answers:** Character order need not match a sample; validity and maximum length determine correctness.
+
+</details>

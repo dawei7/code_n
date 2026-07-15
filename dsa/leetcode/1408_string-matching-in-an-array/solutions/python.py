@@ -1,9 +1,12 @@
-"""Optimal solution for LeetCode 1408: String Matching in an Array."""
+"""Optimal app-local solution for LeetCode 1408."""
 
 
 def solve(words: list[str]) -> list[str]:
-    answer: list[str] = []
-    for i, word in enumerate(words):
-        if any(i != j and word in other for j, other in enumerate(words)):
-            answer.append(word)
-    return answer
+    matches: list[str] = []
+    for index, word in enumerate(words):
+        if any(
+            index != other_index and word in other
+            for other_index, other in enumerate(words)
+        ):
+            matches.append(word)
+    return matches

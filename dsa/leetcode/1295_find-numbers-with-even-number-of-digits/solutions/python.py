@@ -1,2 +1,6 @@
 def solve(nums):
-    return sum(len(str(abs(value))) % 2 == 0 for value in nums)
+    count = 0
+    for value in nums:
+        if 10 <= value <= 99 or 1000 <= value <= 9999 or value == 100000:
+            count += 1
+    return count

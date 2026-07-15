@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1360",
+  "cases": [
+    {
+      "id": "sample-adjacent",
+      "name": "sample: adjacent summer dates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "date1": "2019-06-29",
+        "date2": "2019-06-30"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "sample-cross-year",
+      "name": "sample: reverse order across year",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "date1": "2020-01-15",
+        "date2": "2019-12-31"
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "reverse-order"
+      ]
+    },
+    {
+      "id": "sample-leap-day",
+      "name": "sample: leap day is included",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "date1": "2020-02-28",
+        "date2": "2020-03-01"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "leap-year"
+      ]
+    },
+    {
+      "id": "trial-same-date",
+      "name": "trial: identical dates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date1": "2000-02-29",
+        "date2": "2000-02-29"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "same-date"
+      ]
+    },
+    {
+      "id": "trial-non-leap",
+      "name": "trial: ordinary February boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date1": "2019-02-28",
+        "date2": "2019-03-01"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "non-leap"
+      ]
+    },
+    {
+      "id": "hidden-century",
+      "name": "hidden: 2100 is not a leap year",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "date1": "2100-02-28",
+        "date2": "2100-03-01"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "century"
+      ]
+    },
+    {
+      "id": "hidden-four-century",
+      "name": "hidden: 2000 is a leap year",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "date1": "2000-02-28",
+        "date2": "2000-03-01"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "divisible-by-400"
+      ]
+    }
+  ]
+}

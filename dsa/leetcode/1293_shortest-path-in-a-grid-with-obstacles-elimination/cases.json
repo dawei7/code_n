@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1293",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one obstacle elimination",
+      "name": "sample: one elimination shortens the route",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -44,7 +45,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: impossible with one elimination",
+      "name": "sample: one elimination is insufficient",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -69,12 +70,13 @@
       },
       "expected": -1,
       "tags": [
-        "sample"
+        "sample",
+        "unreachable"
       ]
     },
     {
-      "id": "trial-single-cell",
-      "name": "single cell start is target",
+      "id": "trial-single",
+      "name": "trial: start is target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -83,17 +85,72 @@
             0
           ]
         ],
-        "k": 0
+        "k": 1
       },
       "expected": 0,
       "tags": [
         "trial",
-        "edge"
+        "boundary"
       ]
     },
     {
-      "id": "real-no-elimination-needed",
-      "name": "hidden: no elimination needed",
+      "id": "trial-two-by-two",
+      "name": "trial: obstacle can be avoided",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "small"
+      ]
+    },
+    {
+      "id": "trial-direct-removal",
+      "name": "trial: budget permits a Manhattan route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "large-budget"
+      ]
+    },
+    {
+      "id": "hidden-open-route",
+      "name": "hidden: obstacles do not need removal",
       "kind": "real",
       "visible": false,
       "input": {
@@ -114,11 +171,52 @@
             0
           ]
         ],
-        "k": 0
+        "k": 1
       },
       "expected": 4,
       "tags": [
-        "hidden"
+        "hidden",
+        "open-route"
+      ]
+    },
+    {
+      "id": "hidden-budget-choice",
+      "name": "hidden: preserve elimination for a later obstacle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "dominance"
       ]
     }
   ]

@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1286",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all pairs from three letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "characters": "abc",
+        "combination_length": 2,
+        "operations": [
+          [
+            "next",
+            []
+          ],
+          [
+            "hasNext",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "hasNext",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "hasNext",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        "ab",
+        true,
+        "ac",
+        true,
+        "bc",
+        false
+      ],
+      "tags": [
+        "sample",
+        "trace"
+      ]
+    },
+    {
+      "id": "sample-three-of-four",
+      "name": "sample: first two triples",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "characters": "abcd",
+        "combination_length": 3,
+        "operations": [
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        "abc",
+        "abd"
+      ],
+      "tags": [
+        "sample",
+        "lexicographical"
+      ]
+    },
+    {
+      "id": "trial-full-length",
+      "name": "trial: exactly one full-length combination",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "characters": "xy",
+        "combination_length": 2,
+        "operations": [
+          [
+            "hasNext",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "hasNext",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        "xy",
+        false
+      ],
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-length-one",
+      "name": "trial: one-character combinations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "characters": "ace",
+        "combination_length": 1,
+        "operations": [
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "hasNext",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        "a",
+        "c",
+        "e",
+        false
+      ],
+      "tags": [
+        "trial",
+        "length-one"
+      ]
+    },
+    {
+      "id": "trial-observational-checks",
+      "name": "trial: repeated availability checks do not advance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "characters": "abcd",
+        "combination_length": 2,
+        "operations": [
+          [
+            "hasNext",
+            []
+          ],
+          [
+            "hasNext",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "hasNext",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        "ab",
+        true
+      ],
+      "tags": [
+        "trial",
+        "has-next"
+      ]
+    },
+    {
+      "id": "hidden-middle-successor",
+      "name": "hidden: carry advances an earlier index",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "characters": "abcde",
+        "combination_length": 3,
+        "operations": [
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        "abc",
+        "abd",
+        "abe",
+        "acd",
+        "ace"
+      ],
+      "tags": [
+        "hidden",
+        "carry"
+      ]
+    },
+    {
+      "id": "hidden-exhaustion",
+      "name": "hidden: consume every pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "characters": "abcd",
+        "combination_length": 2,
+        "operations": [
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "next",
+            []
+          ],
+          [
+            "hasNext",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        "ab",
+        "ac",
+        "ad",
+        "bc",
+        "bd",
+        "cd",
+        false
+      ],
+      "tags": [
+        "hidden",
+        "exhaustion"
+      ]
+    }
+  ]
+}

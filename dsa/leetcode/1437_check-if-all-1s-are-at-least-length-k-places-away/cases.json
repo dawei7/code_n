@@ -2,8 +2,8 @@
   "challenge_id": "lc_1437",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: enough zeroes between ones",
+      "id": "sample-valid",
+      "name": "sample: every consecutive gap is large enough",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -22,12 +22,12 @@
       "expected": true,
       "tags": [
         "sample",
-        "array"
+        "valid"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: one gap too short",
+      "id": "sample-invalid",
+      "name": "sample: final pair is too close",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -43,12 +43,13 @@
       },
       "expected": false,
       "tags": [
-        "sample"
+        "sample",
+        "invalid"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one required zero",
+      "id": "sample-leading-zero",
+      "name": "sample: leading zero does not affect spacing",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -63,16 +64,18 @@
       },
       "expected": true,
       "tags": [
-        "sample"
+        "sample",
+        "leading-zero"
       ]
     },
     {
-      "id": "real-zero-distance-required",
-      "name": "hidden: adjacent ones allowed when k is zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-k",
+      "name": "adjacent ones allowed when k is zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
+          1,
           1,
           1,
           1
@@ -81,8 +84,67 @@
       },
       "expected": true,
       "tags": [
+        "trial",
+        "zero-k"
+      ]
+    },
+    {
+      "id": "trial-one-one",
+      "name": "single one is vacuously valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "k": 4
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "real-exact",
+      "name": "hidden: exactly k positions between ones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
         "hidden",
-        "edge"
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-off-by-one",
+      "name": "hidden: one fewer than k positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "off-by-one"
       ]
     }
   ]

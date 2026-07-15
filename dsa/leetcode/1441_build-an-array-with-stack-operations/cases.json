@@ -2,8 +2,8 @@
   "challenge_id": "lc_1441",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: skip one value",
+      "id": "sample-gap",
+      "name": "sample: discard one missing value",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -21,12 +21,12 @@
       ],
       "tags": [
         "sample",
-        "stack"
+        "gap"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: no skipped values",
+      "id": "sample-consecutive",
+      "name": "sample: keep every streamed value",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -43,12 +43,13 @@
         "Push"
       ],
       "tags": [
-        "sample"
+        "sample",
+        "consecutive"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: skip first value",
+      "id": "sample-leading-gap",
+      "name": "sample: discard before first target value",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -67,21 +68,45 @@
         "Push"
       ],
       "tags": [
-        "sample"
+        "sample",
+        "leading-gap"
       ]
     },
     {
-      "id": "real-only-last-needed",
-      "name": "hidden: only final stream value is kept",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-stop-early",
+      "name": "stop before the stream reaches n",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": [
-          3
+          1,
+          2
         ],
-        "n": 3
+        "n": 10
       },
       "expected": [
+        "Push",
+        "Push"
+      ],
+      "tags": [
+        "trial",
+        "early-stop"
+      ]
+    },
+    {
+      "id": "trial-single-late",
+      "name": "single target after several discarded values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": [
+          4
+        ],
+        "n": 8
+      },
+      "expected": [
+        "Push",
+        "Pop",
         "Push",
         "Pop",
         "Push",
@@ -89,7 +114,64 @@
         "Push"
       ],
       "tags": [
-        "hidden"
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternate discarded and retained values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": [
+          2,
+          4,
+          6
+        ],
+        "n": 10
+      },
+      "expected": [
+        "Push",
+        "Pop",
+        "Push",
+        "Push",
+        "Pop",
+        "Push",
+        "Push",
+        "Pop",
+        "Push"
+      ],
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-final-n",
+      "name": "hidden: target ends at stream boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": [
+          1,
+          5
+        ],
+        "n": 5
+      },
+      "expected": [
+        "Push",
+        "Push",
+        "Pop",
+        "Push",
+        "Pop",
+        "Push",
+        "Pop",
+        "Push"
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
       ]
     }
   ]

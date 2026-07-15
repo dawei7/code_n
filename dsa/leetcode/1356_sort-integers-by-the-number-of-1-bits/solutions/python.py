@@ -1,5 +1,5 @@
-"""Optimal solution for LeetCode 1356: Sort Integers by The Number of 1 Bits."""
+"""Optimal app-local solution for LeetCode 1356."""
 
 
-def solve(arr: list[int]) -> list[int]:
+def solve(arr):
     return sorted(arr, key=lambda value: (value.bit_count(), value))

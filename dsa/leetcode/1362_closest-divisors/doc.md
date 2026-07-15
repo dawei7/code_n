@@ -8,48 +8,74 @@
 | Category | Algorithms |
 | Topics | Math |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [closest-divisors](https://leetcode.com/problems/closest-divisors/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/closest-divisors/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/closest-divisors/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a positive integer `num`, consider the two consecutive values `num + 1` and `num + 2`. Choose two positive integers whose product equals either one of those values.
+
+Among every eligible factor pair for both products, return a pair whose two members have the smallest absolute difference. Either order is acceptable. If more than one pair has the same minimum difference, any such pair may be returned.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `num`: a positive integer.
+- Let $n=	exttt{num}+2$, the larger of the two candidate products.
 
 **Return value**
 
-TODO
+- Two positive integers `[a, b]` such that $ab$ equals `num + 1` or `num + 2`, minimizing $lvert a-bvert$ across both products.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 8`
+- Output: `[3,3]`
+- Explanation: $3\cdot3=9=	exttt{num}+1$, and the difference is zero.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 123`
+- Output: `[5,25]`
+- Explanation: $5\cdot25=125=	exttt{num}+2$ is closer than every factor pair of 124.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 999`
+- Output: `[25,40]`
+- Explanation: $25\cdot40=1000=	exttt{num}+1$.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(sqrt{n})$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Closest factors surround the square root.** For a fixed product $x$, write a factor pair as $a\le b$ with $ab=x$. As $a$ increases toward $sqrt{x}$, its partner $b=x/a$ decreases, so their difference becomes smaller. Consequently, the largest divisor no greater than $sqrt{x}$ produces that product's closest pair.
+
+**Evaluate both permitted products.** For each of `num + 1` and `num + 2`, begin at $lfloor\sqrt{x}\rfloor$ and scan downward until finding a divisor. Pair it with the exact quotient. Compare the two resulting absolute differences and return the better pair.
+
+The downward scan finds the largest possible lower factor for each product, which proves optimality within that product. Since the contract permits only those two products, selecting the better of their two optimal pairs proves global optimality.
+
+#### Complexity detail
+
+Each downward search examines at most $O(sqrt{x})$ candidate divisors, and both products are at most $n$. The total running time is $O(sqrt{n})$. Only the current divisor, quotient, and best pair are stored, so auxiliary space is $O(1)$.
+
+#### Alternatives and edge cases
+
+- **Enumerate every divisor:** Test all integers through each complete product and retain the closest factor pair. This is correct but takes $O(n)$ time.
+- **Prime factorization:** Factor each candidate and combine prime powers to approach its square root. This adds complexity without improving the worst-case trial-division bound here.
+- **Perfect square:** When either candidate is a square, its equal factors have difference zero and are globally optimal.
+- **Prime candidate:** Its only positive pair is `[1, x]`; the other candidate may therefore win by a wide margin.
+- **Smallest input:** Factor one is always legal, so both candidates always have at least one pair.
+- **Output order:** Returning the smaller factor first is convenient but not required by the contract.
+
+</details>

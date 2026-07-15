@@ -1,77 +1,61 @@
 {
   "schema_version": 1,
   "blockers": {
-    "401": {
-      "reason": "The canonical input is one integer in the fixed domain 0..10, and every conforming implementation operates over at most 720 valid clock candidates (or 1024 LED masks), so runtime complexity is O(1) for the entire domain. Three increasing tiers spanning 4x cannot be made complexity-sensitive without changing the public solve(turned_on) contract or adding artificial repetition. Documentation, correctness cases, optimal app-local solution, and remotely Accepted native submission 2064711580 are complete; only the required scaling benchmark is blocked.",
-      "recorded_at": "2026-07-12T07:11:57.798799+00:00"
+    "1413": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:11:59.879235+00:00"
     },
-    "405": {
-      "reason": "The canonical input is a signed 32-bit integer, so the conversion performs at most eight hexadecimal-digit steps and every conforming algorithm is O(1) over the complete domain. Three runtime tiers cannot establish a slower asymptotic class or reliably separate it within eight steps without changing the public solve(num) contract or introducing artificial repetition. Documentation, correctness cases, optimal app-local solution, and remotely Accepted native submission 2064721217 are complete; only the required scaling benchmark is blocked.",
-      "recorded_at": "2026-07-12T07:22:18.824965+00:00"
+    "1414": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:15:40.194040+00:00"
     },
-    "479": {
-      "reason": "The canonical input is one integer in the fixed domain 1..8, and the optimal runtime artifact is an exhaustive eight-entry result table, so every conforming lookup is O(1) over the complete domain. Exactly three runtime tiers spanning 4x cannot establish a slower asymptotic class within eight possible inputs without replacing the canonical solve(n) contract with artificial repeated work. Documentation, correctness cases, optimal app-local solution, and remotely Accepted native submission 2064993265 are complete; only the required scaling benchmark is blocked.",
-      "recorded_at": "2026-07-12T12:48:47.2290443Z"
+    "1415": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:19:10.304698+00:00"
     },
-    "999": {
-      "reason": "The canonical input is always exactly one 8x8 chessboard, so every conforming implementation examines at most 64 cells plus four rays of at most seven squares and runs in O(1) over the complete public domain. Exactly three positive increasing workload sizes spanning at least 4x cannot be authored without changing the canonical solve(board) contract, using invalid board dimensions, or adding artificial repeated work. Documentation, nine correctness cases, the optimal app-local solution, and remotely Accepted native submission 2067246645 are complete; only the required scaling benchmark is blocked.",
-      "recorded_at": "2026-07-14T10:38:25.750281+00:00"
+    "1416": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:22:12.176414+00:00"
     },
-    "1108": {
-      "reason": "The canonical input is one valid IPv4 address, which always has exactly four octets, three separators, and a total length from 7 through 15 characters. Every conforming defanging implementation therefore processes a bounded constant-size string and runs in O(1) over the complete public domain. Exactly three positive increasing workload sizes spanning at least 4x cannot be made complexity-sensitive without violating IPv4 syntax, changing the canonical solve(address) contract, or introducing artificial repeated work. Documentation, seven correctness cases, the optimal app-local solution, and remotely Accepted native submission 2067678676 are complete; only the required scaling benchmark is blocked.",
-      "recorded_at": "2026-07-14T17:19:37.2062737Z"
+    "1417": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:27:24.514883+00:00"
     },
-    "1114": {
-      "reason": "This is a concurrency class contract executed by exactly three threads, not a function-call challenge. Canonical metadata intentionally has no supported languages and runnable_in_coden is false because the app has no concurrency harness capable of constructing one shared Foo, scheduling its three methods, and validating callback happens-before behavior. The public input domain is only the six permutations of [1,2,3], so exactly three complexity-sensitive tiers spanning at least 4x also cannot be authored without artificial repetition or changing the contract. Source-faithful documentation, all six permutation fixtures, reference and native Python synchronization artifacts, and remotely Accepted native submission 2067707142 are complete; app-local execution and the scaling benchmark are blocked.",
-      "recorded_at": "2026-07-14T17:39:41.3566211Z"
+    "1418": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:30:37.812372+00:00"
     },
-    "1115": {
-      "reason": "This is a concurrency class contract requiring one shared FooBar instance and two asynchronously scheduled method calls. Canonical metadata intentionally has no supported languages and runnable_in_coden is false; the app has no concurrency harness that can invoke both methods, capture interleaved callback side effects, detect deadlocks, or time synchronized executions. Although n scales from 1 through 1000, three benchmark tiers cannot be honestly calibrated or regression-gated without that missing runtime. Source-faithful documentation, four correctness fixtures, reference and native semaphore artifacts, and remotely Accepted native submission 2067710449 are complete; app-local execution and the required benchmark are blocked.",
-      "recorded_at": "2026-07-14T17:42:01.4692838Z"
+    "1419": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:34:04.302405+00:00"
     },
-    "1116": {
-      "reason": "This is a concurrency class contract requiring one shared ZeroEvenOdd instance and three asynchronously scheduled method calls with callback ordering and deadlock semantics. Canonical metadata intentionally has no supported languages and runnable_in_coden is false; the app has no concurrency harness capable of invoking the three methods, capturing interleaved integer callbacks, detecting deadlocks, or timing synchronized executions. Although n scales from 1 through 1000, three benchmark tiers cannot be honestly calibrated or regression-gated without that runtime. Source-faithful documentation, five correctness fixtures, reference and native semaphore artifacts, and remotely Accepted native submission 2067714727 are complete; app-local execution and the required benchmark are blocked.",
-      "recorded_at": "2026-07-14T17:45:01.6505792Z"
+    "1420": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:37:55.459888+00:00"
     },
-    "1117": {
-      "reason": "This is a concurrency class contract requiring one shared H2O instance and up to 60 asynchronously scheduled atom threads, with per-generation stoichiometry, barrier, callback completion, and deadlock semantics. Canonical metadata intentionally has no supported languages and runnable_in_coden is false; the app has no concurrency harness capable of scheduling those calls, accepting any valid HHO permutation per group, detecting overlapping generations or deadlocks, or timing synchronized executions. Although the molecule count scales from 1 through 20, three benchmark tiers cannot be honestly calibrated or regression-gated without that runtime. Source-faithful documentation, four balanced arrival fixtures, reference and native semaphore/barrier artifacts, and remotely Accepted native submission 2067718244 are complete; app-local execution and the required benchmark are blocked.",
-      "recorded_at": "2026-07-14T17:47:37.3821160Z"
+    "1421": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:41:39.897751+00:00"
     },
-    "1118": {
-      "reason": "The canonical input consists of one Gregorian year in the fixed range 1583..2100 and one month in 1..12. Every conforming implementation performs a bounded number of divisibility tests and a constant-size month classification, so runtime is O(1) across the complete public domain. Exactly three positive increasing workload tiers spanning at least 4x cannot establish a slower asymptotic class without changing solve(year, month), using invalid inputs, or adding artificial repetition. Source-faithful documentation, eight correctness cases, the optimal app-local solution, and remotely Accepted native submission 2067722513 are complete; only the required scaling benchmark is blocked.",
-      "recorded_at": "2026-07-14T17:50:40.8764252Z"
+    "1422": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:44:23.790201+00:00"
     },
-    "1134": {
-      "reason": "The canonical input is one integer in the fixed range 1..100000000, so every valid input has only 1 through 9 decimal digits. The optimal arithmetic solution performs at most two nine-step digit passes and is O(1) over the complete public domain; even a nominally quadratic digit implementation has at most 81 digit interactions, which cannot support a reliable complexity-sensitive three-tier verdict. Using n itself as benchmark size would misrepresent the workload because runtime depends only on digit count, while artificial repetition would change solve(n). Source-faithful documentation, ten correctness cases, the optimal app-local solution, and remotely Accepted native submission 2067809543 are complete; only the required scaling benchmark is blocked.",
-      "recorded_at": "2026-07-14T19:04:16.175979+00:00"
+    "1423": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:48:14.093757+00:00"
     },
-    "1137": {
-      "reason": "The canonical input is one integer in the fixed range 0..37, so the optimal rolling recurrence performs at most 35 updates over the complete public domain. This bounded workload cannot support a reliable three-tier complexity-sensitive scaling verdict: polynomial slower variants remain dominated by harness overhead, while naive exponential recursion reaches the execution safety cap instead of producing a valid scaling-only failure. Repeating the recurrence or extending n beyond 37 would change solve(n) or violate the source contract. Source-faithful documentation, ten correctness cases, the optimal app-local solution, and remotely Accepted native submission 2067819650 are complete; only the required scaling benchmark is blocked.",
-      "recorded_at": "2026-07-14T19:17:41.471340+00:00"
+    "1424": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:51:43.733956+00:00"
     },
-    "1154": {
-      "reason": "Benchmark blocked by the source domain: date.length is exactly 10, every input is one valid Gregorian date between 1900-01-01 and 2019-12-31, and the required O(1) algorithm examines at most 12 months. There is no legal scalable workload variable, so exactly three positive unique increasing benchmark sizes with at least a 4x span cannot be authored without changing the problem semantics. Documentation, correctness cases, app-local solution, native artifact, and Accepted submission 2067859686 are complete.",
-      "recorded_at": "2026-07-14T20:26:30.265623+00:00"
+    "1425": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:56:33.694150+00:00"
     },
-    "1165": {
-      "reason": "Benchmark blocker: word length m is the only scalable input (1..10000), every correct solution must inspect all m characters, and every alternative key lookup or cursor simulation is bounded by the fixed 26-key alphabet / maximum move 25. Therefore keyboard.index per character and step-by-step movement are still O(m), so no source-valid correct slower asymptotic class exists for three complexity-sensitive tiers. Documentation, correctness cases, optimal app-local solution, native Python3 artifact, and remote Accepted submission 2067877821 are complete.",
-      "recorded_at": "2026-07-14T21:10:53.170279+00:00"
-    },
-    "1188": {
-      "reason": "This is a concurrency class contract requiring one shared BoundedBlockingQueue instance, 1 through 8 producer threads, 1 through 8 consumer threads, blocking full/empty calls, scheduler-independent FIFO validation, and deadlock detection. Canonical metadata intentionally has no supported languages and runnable_in_coden is false; the app has no concurrency harness capable of scheduling those calls, observing blocked progress, accepting nondeterministic producer arrival orders, or timing synchronized executions. Although up to 40 method calls are permitted, three complexity-sensitive benchmark tiers cannot be honestly calibrated or regression-gated without that runtime. Source-faithful documentation, six concurrency fixtures, semaphore/mutex reference and native Python artifacts, a 200-round local thread stress check, and remotely Accepted submission 2067908712 are complete; app-local execution and the required benchmark are blocked.",
-      "recorded_at": "2026-07-14T22:45:32.336032+00:00"
-    },
-    "1195": {
-      "reason": "This is a concurrency class contract requiring one shared FizzBuzz instance and four asynchronously scheduled method calls with ordered callback side effects and deadlock detection. Canonical metadata intentionally has no supported languages and runnable_in_coden is false; the app has no concurrency harness capable of invoking the four methods, capturing interleaved callbacks, validating exact global order under arbitrary scheduling, detecting deadlocks, or timing synchronized executions. Although n scales from 1 through 50, exactly three complexity-sensitive benchmark tiers cannot be honestly calibrated or regression-gated without that runtime. Source-faithful documentation, six concurrency fixtures, condition-variable reference and native Python artifacts, a 500-round randomized thread-start stress check, and remotely Accepted submission 2067918277 are complete; app-local execution and the required benchmark are blocked.",
-      "recorded_at": "2026-07-14T23:21:42.216089+00:00"
-    },
-    "1226": {
-      "reason": "This is a concurrency class contract requiring one shared DiningPhilosophers instance and up to 300 overlapping wantsToEat calls from five philosopher threads, with exclusive fork ownership, callback ordering, progress, starvation, and deadlock semantics. Canonical metadata intentionally has no supported languages and runnable_in_coden is false; the app has no concurrency harness capable of scheduling repeated same-philosopher calls, validating scheduler-dependent callback interleavings, detecting starvation or deadlock, or timing synchronized executions. Although n scales from 1 through 60, exactly three complexity-sensitive benchmark tiers cannot be honestly calibrated or regression-gated without that runtime. Source-faithful documentation, six concurrency fixtures, mutex-serialized reference and native Python artifacts, a 500-round randomized thread-start stress check, and remotely Accepted submission 2067956708 are complete; app-local execution and the required benchmark are blocked.",
-      "recorded_at": "2026-07-15T01:23:10.341160+00:00"
-    },
-    "1242": {
-      "reason": "This is a multithreaded crawler contract requiring a shared thread-safe HtmlParser whose blocking getUrls calls overlap across worker threads, with scheduler-independent visited-state coordination, hostname filtering, progress, exception propagation, and deadlock detection. Canonical metadata intentionally has no supported app languages and runnable_in_coden is false; the app has no concurrency harness capable of constructing the parser, measuring overlapping fetches, validating exactly-once scheduling under arbitrary completion order, or timing synchronized executions. Although reachable graph size scales, exactly three complexity-sensitive benchmark tiers cannot be honestly calibrated or regression-gated without that runtime. Source-faithful documentation, seven concurrency fixtures, thread-pool reference and native Python artifacts, a 500-round randomized local concurrency stress check, and remotely Accepted submission 2067985115 are complete; app-local execution and the required benchmark are blocked.",
-      "recorded_at": "2026-07-15T02:25:56.091338+00:00"
+    "1426": {
+      "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
+      "recorded_at": "2026-07-15T18:59:53.179438+00:00"
     }
   }
 }

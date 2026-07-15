@@ -45,7 +45,7 @@ export function Workspace() {
 
   const topics: { id: Topic; label: string; title: string; className?: string }[] = [
     { id: 'reference', label: '≡', title: language === 'en' ? 'Reference' : 'Referenz', className: 'font-serif text-lg' },
-    { id: 'complexity', label: 'O', title: 'Runtime Analysis', className: 'font-serif italic text-lg' },
+    { id: 'complexity', label: 'O', title: 'Complexity Analysis', className: 'font-serif italic text-lg' },
     { id: 'coden', label: '</>', title: 'cOde(n)', className: 'font-mono text-sm tracking-tight' },
     { id: 'ai', label: 'AI', title: 'AI Tutor', className: 'font-mono text-xs tracking-tight' },
     ...(activeSetOption.hasCareerPath

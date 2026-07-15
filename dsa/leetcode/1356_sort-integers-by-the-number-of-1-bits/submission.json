@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1458",
+  "frontend_id": "1356",
+  "title_slug": "sort-integers-by-the-number-of-1-bits",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.sortByBits",
+  "verified_submission_id": "2068685420",
+  "verified_at": "2026-07-15T14:00:06.353669+00:00"
+}

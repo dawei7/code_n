@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1269",
+  "measurement_note": "Size is N = steps * w, the number of relevant dynamic-programming states. Array lengths grow quadratically with steps so a full-array update remains legal and correct but adds an avoidable factor while the reachable-prefix method stays linear in N.",
+  "cases": [
+    {
+      "id": "benchmark-scale-840",
+      "name": "benchmark: 40 moves with a 1600-position array",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"steps": 40, "arr_len": 1600},
+      "expected": 449344104,
+      "tags": ["benchmark", "scale-small", "reachable-prefix"],
+      "size": 840,
+      "timeout_ms": 8000
+    },
+    {
+      "id": "benchmark-scale-5100",
+      "name": "benchmark: 100 moves with a 10000-position array",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"steps": 100, "arr_len": 10000},
+      "expected": 345787718,
+      "tags": ["benchmark", "scale-medium", "reachable-prefix"],
+      "size": 5100,
+      "timeout_ms": 8000
+    },
+    {
+      "id": "benchmark-scale-31500",
+      "name": "benchmark: 250 moves with a 62500-position array",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"steps": 250, "arr_len": 62500},
+      "expected": 266783101,
+      "tags": ["benchmark", "scale-large", "reachable-prefix"],
+      "size": 31500,
+      "timeout_ms": 8000
+    }
+  ]
+}

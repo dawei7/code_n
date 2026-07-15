@@ -1,102 +1,12 @@
 {
   "challenge_id": "lc_1403",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: two largest values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          4,
-          3,
-          10,
-          9,
-          8
-        ]
-      },
-      "expected": [
-        10,
-        9
-      ],
-      "validator": {
-        "kind": "minimum_subsequence"
-      },
-      "tags": [
-        "sample",
-        "greedy"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: three selected values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          4,
-          4,
-          7,
-          6,
-          7
-        ]
-      },
-      "expected": [
-        7,
-        7,
-        6
-      ],
-      "validator": {
-        "kind": "minimum_subsequence"
-      },
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-single-value",
-      "name": "single value",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          6
-        ]
-      },
-      "expected": [
-        6
-      ],
-      "validator": {
-        "kind": "minimum_subsequence"
-      },
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-one-dominant-value",
-      "name": "hidden: one dominant value",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          1,
-          1,
-          1,
-          1,
-          10
-        ]
-      },
-      "expected": [
-        10
-      ],
-      "validator": {
-        "kind": "minimum_subsequence"
-      },
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-distinct", "name": "sample: two largest values suffice", "kind": "sample", "visible": true, "input": {"nums": [4, 3, 10, 9, 8]}, "expected": [10, 9], "tags": ["sample", "greedy"]},
+    {"id": "sample-duplicates", "name": "sample: duplicates and tie handling", "kind": "sample", "visible": true, "input": {"nums": [4, 4, 7, 6, 7]}, "expected": [7, 7, 6], "tags": ["sample", "duplicates"]},
+    {"id": "sample-single", "name": "sample: one input element", "kind": "sample", "visible": true, "input": {"nums": [6]}, "expected": [6], "tags": ["sample", "boundary"]},
+    {"id": "trial-equality-not-enough", "name": "strictly exceed half the total", "kind": "trial", "visible": true, "input": {"nums": [5, 5, 5, 5]}, "expected": [5, 5, 5], "tags": ["trial", "strict"]},
+    {"id": "trial-one-dominates", "name": "largest value alone dominates", "kind": "trial", "visible": true, "input": {"nums": [100, 1, 1, 1]}, "expected": [100], "tags": ["trial", "dominant"]},
+    {"id": "real-minimum-length", "name": "hidden: do not take an unnecessary extra value", "kind": "real", "visible": false, "input": {"nums": [8, 7, 6, 1, 1, 1]}, "expected": [8, 7], "tags": ["hidden", "minimum-length"]},
+    {"id": "real-order", "name": "hidden: result is non-increasing", "kind": "real", "visible": false, "input": {"nums": [2, 9, 4, 8, 3]}, "expected": [9, 8], "tags": ["hidden", "order"]}
   ]
 }

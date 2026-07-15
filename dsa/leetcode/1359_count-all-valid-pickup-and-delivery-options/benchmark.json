@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1359",
+  "measurement_note": "Size is the number of labeled orders n. The multiplicative insertion recurrence performs O(n) modular updates. A correct slower dynamic program tracks every feasible pair of pickup and delivery counts and therefore uses O(n^2) transitions. The three tiers remain within n <= 500 and the slower implementation completes without reaching the instruction safety cap.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 10 labeled orders",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "n": 10
+      },
+      "expected": 850728840,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "labeled-orders"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 40 labeled orders",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {
+        "n": 40
+      },
+      "expected": 159858698,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "labeled-orders"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 100 labeled orders",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "n": 100
+      },
+      "expected": 14159051,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "labeled-orders"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1462",
+  "frontend_id": "1327",
+  "title_slug": "list-the-products-ordered-in-a-period",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2068507227",
+  "verified_at": "2026-07-15T10:56:42.847920+00:00"
+}

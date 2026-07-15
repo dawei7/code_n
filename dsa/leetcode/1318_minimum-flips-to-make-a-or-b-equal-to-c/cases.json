@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1318",
+  "cases": [
+    {
+      "id": "sample-1", "name": "sample: both clearing and setting bits", "kind": "sample", "visible": true,
+      "input": {"a": 2, "b": 6, "c": 5}, "expected": 3,
+      "tags": ["sample", "mixed-flips"]
+    },
+    {
+      "id": "sample-2", "name": "sample: one missing target bit", "kind": "sample", "visible": true,
+      "input": {"a": 4, "b": 2, "c": 7}, "expected": 1,
+      "tags": ["sample", "set-bit"]
+    },
+    {
+      "id": "sample-3", "name": "sample: no flips required", "kind": "sample", "visible": true,
+      "input": {"a": 1, "b": 2, "c": 3}, "expected": 0,
+      "tags": ["sample", "already-valid"]
+    },
+    {
+      "id": "trial-overlapping-ones", "name": "trial: both inputs provide the same bit", "kind": "trial", "visible": true,
+      "input": {"a": 1, "b": 1, "c": 1}, "expected": 0,
+      "tags": ["trial", "overlap"]
+    },
+    {
+      "id": "trial-mixed-widths", "name": "trial: target and inputs use different positions", "kind": "trial", "visible": true,
+      "input": {"a": 8, "b": 3, "c": 5}, "expected": 3,
+      "tags": ["trial", "bit-width"]
+    },
+    {
+      "id": "hidden-clear-large", "name": "hidden: clear two copies of every large set bit", "kind": "real", "visible": false,
+      "input": {"a": 1000000000, "b": 1000000000, "c": 1}, "expected": 27,
+      "tags": ["hidden", "upper-boundary", "clear-bits"]
+    },
+    {
+      "id": "hidden-set-large", "name": "hidden: create the large target pattern", "kind": "real", "visible": false,
+      "input": {"a": 1, "b": 1, "c": 1000000000}, "expected": 15,
+      "tags": ["hidden", "upper-boundary", "set-bits"]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1328",
+  "measurement_note": "Size is n, the palindrome length. The greedy reference scans once and changes the last character on these all-a inputs. A correct slower alternative tests the smallest relevant replacement at every position and explicitly checks each candidate for palindrome symmetry, taking O(n squared) time; every tier completes and returns the same string.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 24 lowercase a characters","kind":"benchmark","visible":false,"size":24,"input":{"palindrome":"aaaaaaaaaaaaaaaaaaaaaaaa"},"expected":"aaaaaaaaaaaaaaaaaaaaaaab","tags":["benchmark","scale-small","all-a"]},
+    {"id":"benchmark-scale-2","name":"benchmark: 96 lowercase a characters","kind":"benchmark","visible":false,"size":96,"input":{"palindrome":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab","tags":["benchmark","scale-medium","all-a"]},
+    {"id":"benchmark-scale-3","name":"benchmark: 384 lowercase a characters","kind":"benchmark","visible":false,"size":384,"input":{"palindrome":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab","tags":["benchmark","scale-large","all-a"]}
+  ]
+}

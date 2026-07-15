@@ -1,4 +1,4 @@
-"""Synchronization reference for LeetCode 1117 (not app-runnable)."""
+"""Source-native synchronization reference for LeetCode 1117."""
 
 from threading import Barrier, Semaphore
 

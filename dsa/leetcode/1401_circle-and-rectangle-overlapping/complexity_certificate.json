@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1401",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(1)",
+  "summary": "The contract contains a fixed seven-scalar geometry query, so input arity cannot scale and the constant-time upper bound matches the unavoidable constant output decision.",
+  "optimality": {
+    "symbol": "q",
+    "lower_bound": "Omega(1)",
+    "upper_bound": "O(1)",
+    "argument": "Producing the boolean overlap decision requires at least one operation, while clamping the center to two fixed coordinate intervals and comparing one squared distance uses a fixed number of operations."
+  },
+  "replacement_checks": [
+    {"kind": "lower_bound_proof", "evidence": "Any correct implementation must produce one boolean decision for the fixed-arity query, establishing an Omega(1) lower bound."},
+    {"kind": "upper_bound_proof", "evidence": "The reference performs two clamps, two coordinate differences, and one squared-distance comparison regardless of coordinate magnitudes."},
+    {"kind": "boundary_property_cases", "evidence": "Regression exhaustively compares small centers, radii, and valid rectangles against an independent axis-gap oracle, including separation, containment, and tangency."}
+  ]
+}

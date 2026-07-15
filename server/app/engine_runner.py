@@ -24,11 +24,12 @@ the same minimal namespace shape used by the optimal reference. The runtime op c
 ``TrackedList`` / ``TrackedGrid`` wrappers) was removed in
 v0.8.5. The player's input is now a plain list / dict / set.
 
-**Verdict is runtime-based.** Multi-tier benchmark packages compare how the
-user/reference runtime ratio grows with authored input size, tolerating
-constant-factor implementation differences. Legacy single-tier packages use
-``runtime <= 1.5 * optimal_reference_runtime`` until migrated. Missing optimal
-references are reported directly instead of falling back to static estimates.
+**Complexity verification is explicit.** Multi-tier benchmark packages compare
+how the user/reference runtime ratio grows with authored input size, tolerating
+constant-factor implementation differences. Strict non-scaling certificates
+cover only bounded or proof-optimal source contracts and are reported as
+certificates, never as runtime measurements. Legacy single-tier packages use
+``runtime <= 1.5 * optimal_reference_runtime`` until migrated.
 
 **Step limit is a safety cap.** The tracer raises
 ``ExecutionStepLimitExceeded`` after a fixed number of Python
@@ -67,6 +68,7 @@ from engine.execution_trace import (
     run_with_trace,
 )
 from server.app.optimal_sources import load_optimal_source
+from server.app.challenge_packages import leetcode_complexity_certificate_status
 from server.app.validated_cases import ValidatedCase
 
 from .external_programs import run_function_program
@@ -113,6 +115,27 @@ class RuntimeCheck:
     message: str = ""
     benchmark_correct: bool = True
     scaling_data: list[dict[str, float | int]] = field(default_factory=list)
+
+
+@dataclass
+class ComplexityCheck:
+    checked: bool = False
+    passed: bool = False
+    method: str = ""
+    message: str = ""
+
+
+def _complexity_certificate_check(challenge_id: str) -> ComplexityCheck:
+    status = leetcode_complexity_certificate_status(challenge_id)
+    if not status.complete:
+        return ComplexityCheck()
+    label = status.method.replace("_", " ")
+    return ComplexityCheck(
+        checked=True,
+        passed=True,
+        method=status.method,
+        message=f"Complexity verified by {label} certificate. {status.summary}",
+    )
 
 
 def _benchmark_n(challenge: Any, requested_n: int) -> int:
@@ -274,6 +297,105 @@ class _JudgeRobot:
 
     def __repr__(self) -> str:
         return f"Robot(cleaned={len(self._cleaned)}/{len(self.reachable_cells)})"
+
+
+class _JudgePoint:
+    """Coordinate object used by LeetCode's Sea interface."""
+
+    def __init__(self, x: int, y: int):
+        if any(not isinstance(value, int) or isinstance(value, bool) for value in (x, y)):
+            raise ValueError("point coordinates must be integers")
+        self.x = x
+        self.y = y
+
+
+class _JudgeSea:
+    """Hidden-ship simulator for LeetCode's Sea query interface."""
+
+    def __init__(self, ships: list[list[int]], max_queries: int = 400):
+        if not isinstance(ships, list):
+            raise ValueError("sea ships must be a list of coordinate pairs")
+        parsed: set[tuple[int, int]] = set()
+        for point in ships:
+            if (
+                not isinstance(point, list)
+                or len(point) != 2
+                or any(not isinstance(value, int) or isinstance(value, bool) for value in point)
+            ):
+                raise ValueError("every sea ship must be an integer coordinate pair")
+            parsed.add((point[0], point[1]))
+        if len(parsed) != len(ships):
+            raise ValueError("sea ships must occupy distinct coordinates")
+        if not isinstance(max_queries, int) or isinstance(max_queries, bool) or max_queries < 0:
+            raise ValueError("sea max_queries must be a non-negative integer")
+        self._ships = frozenset(parsed)
+        self._max_queries = max_queries
+        self._query_count = 0
+
+    def hasShips(self, topRight: _JudgePoint, bottomLeft: _JudgePoint) -> bool:
+        def parse_point(point: Any, name: str) -> tuple[int, int]:
+            if not isinstance(point, _JudgePoint):
+                raise ValueError(f"{name} must be a Point")
+            return point.x, point.y
+
+        right, top = parse_point(topRight, "topRight")
+        left, bottom = parse_point(bottomLeft, "bottomLeft")
+        if left > right or bottom > top:
+            raise ValueError("sea query rectangle must have ordered corners")
+        self._query_count += 1
+        if self._query_count > self._max_queries:
+            raise RuntimeError(f"Sea.hasShips exceeded the {self._max_queries}-query limit")
+        return any(left <= x <= right and bottom <= y <= top for x, y in self._ships)
+
+    @property
+    def query_count(self) -> int:
+        return self._query_count
+
+
+class _JudgeBinaryMatrix:
+    """Read-only binary-matrix interface used by LeetCode 1428."""
+
+    def __init__(self, matrix: list[list[int]], max_queries: int = 1000):
+        if not isinstance(matrix, list) or not matrix:
+            raise ValueError("binary matrix must be nonempty")
+        if not all(isinstance(row, list) and row for row in matrix):
+            raise ValueError("binary matrix rows must be nonempty lists")
+        width = len(matrix[0])
+        if any(
+            len(row) != width or any(value not in {0, 1} for value in row)
+            for row in matrix
+        ):
+            raise ValueError("binary matrix must be rectangular and contain only zeroes and ones")
+        if any(row != sorted(row) for row in matrix):
+            raise ValueError("binary matrix rows must be sorted in non-decreasing order")
+        if not isinstance(max_queries, int) or isinstance(max_queries, bool) or max_queries < 0:
+            raise ValueError("binary matrix max_queries must be a non-negative integer")
+        self._matrix = tuple(tuple(row) for row in matrix)
+        self._max_queries = max_queries
+        self._query_count = 0
+
+    def get(self, row: int, col: int) -> int:
+        if any(not isinstance(value, int) or isinstance(value, bool) for value in (row, col)):
+            raise ValueError("BinaryMatrix.get indices must be integers")
+        if not 0 <= row < len(self._matrix) or not 0 <= col < len(self._matrix[0]):
+            raise ValueError("BinaryMatrix.get indices are outside the matrix")
+        self._query_count += 1
+        if self._query_count > self._max_queries:
+            raise RuntimeError(
+                f"BinaryMatrix.get exceeded the {self._max_queries}-query limit"
+            )
+        return self._matrix[row][col]
+
+    def dimensions(self) -> list[int]:
+        return [len(self._matrix), len(self._matrix[0])]
+
+    @property
+    def query_count(self) -> int:
+        return self._query_count
+
+    def __repr__(self) -> str:
+        rows, cols = self.dimensions()
+        return f"BinaryMatrix({rows}x{cols}, queries={self._query_count})"
 
 
 class _JudgeMaster:
@@ -527,6 +649,41 @@ def _parent_tree_node_from_fixture(fixture: Any) -> Any:
     if target is None:
         raise ValueError("parent-tree fixture target_index must select a node")
     return target
+
+
+def _cloned_tree_triplet_from_fixture(fixture: Any) -> tuple[Any, Any, Any]:
+    if not isinstance(fixture, dict) or "tree" not in fixture:
+        raise ValueError("cloned-tree fixture requires a level-order tree")
+    values = fixture.get("tree")
+    target_index = fixture.get("target_index")
+    if not isinstance(values, list) or not values:
+        raise ValueError("cloned-tree fixture requires a nonempty level-order tree")
+    if not isinstance(target_index, int) or not 0 <= target_index < len(values):
+        raise ValueError("cloned-tree fixture target_index is outside the level-order tree")
+
+    original_nodes = [
+        None if value is None else _JudgeTreeNode(value) for value in values
+    ]
+    cloned_nodes = [
+        None if value is None else _JudgeTreeNode(value) for value in values
+    ]
+    child_index = 1
+    for original, cloned in zip(original_nodes, cloned_nodes, strict=True):
+        if original is None:
+            continue
+        if child_index < len(values):
+            original.left = original_nodes[child_index]
+            cloned.left = cloned_nodes[child_index]
+            child_index += 1
+        if child_index < len(values):
+            original.right = original_nodes[child_index]
+            cloned.right = cloned_nodes[child_index]
+            child_index += 1
+
+    target = original_nodes[target_index]
+    if target is None:
+        raise ValueError("cloned-tree fixture target_index must select a node")
+    return original_nodes[0], cloned_nodes[0], target
 
 
 def _trim_level_order(values: list[Any]) -> list[Any]:
@@ -790,6 +947,44 @@ def _string_without_triples_match(actual: Any, a: Any, b: Any) -> bool:
         and actual.count("b") == b
         and "aaa" not in actual
         and "bbb" not in actual
+    )
+
+
+def _reformatted_string_match(actual: Any, source: Any) -> bool:
+    if not isinstance(actual, str) or not isinstance(source, str):
+        return False
+    digit_count = sum(character.isdigit() for character in source)
+    letter_count = len(source) - digit_count
+    if abs(digit_count - letter_count) > 1:
+        return actual == ""
+    return (
+        len(actual) == len(source)
+        and Counter(actual) == Counter(source)
+        and all(left.isdigit() != right.isdigit() for left, right in zip(actual, actual[1:]))
+    )
+
+
+def _longest_happy_string_match(actual: Any, a: Any, b: Any, c: Any) -> bool:
+    counts = (a, b, c)
+    if (
+        not isinstance(actual, str)
+        or any(not isinstance(count, int) or isinstance(count, bool) or count < 0 for count in counts)
+        or any(character not in "abc" for character in actual)
+    ):
+        return False
+
+    total = sum(counts)
+    largest = max(counts)
+    nonmajority = total - largest
+    optimal_length = min(total, 3 * nonmajority + 2)
+    return (
+        len(actual) == optimal_length
+        and actual.count("a") <= a
+        and actual.count("b") <= b
+        and actual.count("c") <= c
+        and "aaa" not in actual
+        and "bbb" not in actual
+        and "ccc" not in actual
     )
 
 
@@ -1687,6 +1882,22 @@ def _unique_sum_zero_match(actual: Any, n: Any) -> bool:
     )
 
 
+def _no_zero_sum_match(actual: Any, n: Any) -> bool:
+    return (
+        isinstance(n, int)
+        and isinstance(actual, list)
+        and len(actual) == 2
+        and all(
+            isinstance(value, int)
+            and not isinstance(value, bool)
+            and value > 0
+            and "0" not in str(value)
+            for value in actual
+        )
+        and sum(actual) == n
+    )
+
+
 def _sufficient_team_match(actual: Any, expected: Any, req_skills: Any, people: Any) -> bool:
     if not isinstance(actual, list) or not isinstance(expected, list):
         return False
@@ -2099,12 +2310,101 @@ def _robot_room_cleaner_match(actual: Any, expected: Any) -> bool:
     return actual.cleaned_cells == reachable
 
 
+def _h2o_groups_match(actual: Any) -> bool:
+    return (
+        isinstance(actual, str)
+        and len(actual) % 3 == 0
+        and all(Counter(actual[index:index + 3]) == Counter("HHO") for index in range(0, len(actual), 3))
+    )
+
+
+def _bounded_blocking_queue_match(actual: Any, expected: Any) -> bool:
+    if not isinstance(actual, dict) or not isinstance(expected, dict):
+        return False
+    dequeued = actual.get("dequeued")
+    if not isinstance(dequeued, list) or actual.get("final_size") != expected.get("final_size"):
+        return False
+    if "dequeued" in expected:
+        return dequeued == expected["dequeued"]
+    if "dequeued_multiset" in expected:
+        return Counter(dequeued) == Counter(expected["dequeued_multiset"])
+    return True
+
+
+def _dining_philosophers_match(actual: Any, expected: Any) -> bool:
+    if not isinstance(actual, dict) or not isinstance(expected, dict):
+        return False
+    calls = actual.get("calls")
+    if not isinstance(calls, list) or actual.get("violations"):
+        return False
+    expected_calls = expected.get("calls")
+    if isinstance(expected_calls, int) and len(calls) != expected_calls:
+        return False
+    required = {"pick-left", "pick-right", "eat", "put-left", "put-right"}
+    for call in calls:
+        if not isinstance(call, dict) or not isinstance(call.get("events"), list):
+            return False
+        events = call["events"]
+        if len(events) != 5 or set(events) != required:
+            return False
+        if events.index("eat") < max(events.index("pick-left"), events.index("pick-right")):
+            return False
+        if events.index("eat") > min(events.index("put-left"), events.index("put-right")):
+            return False
+    return True
+
+
+def _crawler_concurrency_match(actual: Any, expected: Any) -> bool:
+    if not isinstance(actual, dict) or not isinstance(expected, dict):
+        return False
+    graph = actual.get("graph")
+    start = actual.get("start_url")
+    urls = actual.get("urls")
+    fetches = actual.get("fetches")
+    if not isinstance(graph, dict) or not isinstance(start, str) or not isinstance(urls, list) or not isinstance(fetches, list):
+        return False
+    hostname = start.split("/", 3)[2]
+    reachable = {start}
+    pending = [start]
+    while pending:
+        url = pending.pop()
+        for neighbor in graph.get(url, []):
+            if neighbor.split("/", 3)[2] == hostname and neighbor not in reachable:
+                reachable.add(neighbor)
+                pending.append(neighbor)
+    if not (
+        set(urls) == reachable
+        and len(urls) == len(set(urls))
+        and set(fetches) == reachable
+        and len(fetches) == len(set(fetches))
+    ):
+        return False
+    properties = expected.get("properties", [])
+    if "overlapping-parser-calls" in properties and actual.get("max_active", 0) <= 1:
+        return False
+    if "bounded-workers" in properties and actual.get("max_active", 0) > 8:
+        return False
+    expected_urls = expected.get("urls")
+    return expected_urls is None or set(urls) == set(expected_urls)
+
+
 def _immutable_list_print_match(actual: Any, expected: Any) -> bool:
     return (
         isinstance(actual, _JudgeImmutableListNode)
         and isinstance(expected, list)
         and list(actual.printed_values) == expected
     )
+
+
+def _traffic_light_match(actual: Any, expected: Any) -> bool:
+    if not isinstance(actual, dict) or not isinstance(expected, dict):
+        return False
+    events = actual.get("events")
+    expected_cars = expected.get("cars")
+    if not isinstance(events, list) or not isinstance(expected_cars, list) or actual.get("violations"):
+        return False
+    crossed = [event.get("car") for event in events if isinstance(event, dict) and event.get("kind") == "cross"]
+    return Counter(crossed) == Counter(expected_cars) and len(crossed) == len(expected_cars)
 
 
 def _fibonacci_split_match(actual: Any, expected: Any, digits: Any) -> bool:
@@ -2140,7 +2440,10 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
     kind = str(validator.get("kind") or "")
     if kind == "balanced_bst":
         values_param = str(validator.get("values_param") or "nums")
-        return _balanced_bst_matches_values(actual, case.input.get(values_param))
+        values = case.input.get(values_param)
+        if validator.get("values_from_tree") is True and isinstance(values, list):
+            values = sorted(value for value in values if value is not None)
+        return _balanced_bst_matches_values(actual, values)
     if kind == "pre_post_tree":
         return _pre_post_tree_match(
             actual,
@@ -2198,6 +2501,13 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             actual,
             case.input.get(str(validator.get("a_param") or "a")),
             case.input.get(str(validator.get("b_param") or "b")),
+        )
+    if kind == "longest_happy_string":
+        return _longest_happy_string_match(
+            actual,
+            case.input.get(str(validator.get("a_param") or "a")),
+            case.input.get(str(validator.get("b_param") or "b")),
+            case.input.get(str(validator.get("c_param") or "c")),
         )
     if kind == "ordered_unordered_groups":
         return _ordered_unordered_groups_match(actual, expected)
@@ -2371,6 +2681,11 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             case.input.get(str(validator.get("string_param") or "s")),
             2,
         )
+    if kind == "reformatted_string":
+        return _reformatted_string_match(
+            actual,
+            case.input.get(str(validator.get("string_param") or "s")),
+        )
     if kind == "split_bst":
         return _split_bst_match(actual, expected)
     if kind == "reconstruct_two_row_matrix":
@@ -2387,6 +2702,9 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
     if kind == "unique_sum_zero":
         n_param = str(validator.get("n_param") or "n")
         return _unique_sum_zero_match(actual, case.input.get(n_param))
+    if kind == "no_zero_sum":
+        n_param = str(validator.get("n_param") or "n")
+        return _no_zero_sum_match(actual, case.input.get(n_param))
     if kind == "sufficient_team":
         return _sufficient_team_match(
             actual,
@@ -2461,8 +2779,18 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
         )
     if kind == "robot_room_cleaner":
         return _robot_room_cleaner_match(actual, expected)
+    if kind == "h2o_groups":
+        return _h2o_groups_match(actual)
+    if kind == "bounded_blocking_queue":
+        return _bounded_blocking_queue_match(actual, expected)
+    if kind == "dining_philosophers":
+        return _dining_philosophers_match(actual, expected)
+    if kind == "crawler_concurrency":
+        return _crawler_concurrency_match(actual, expected)
     if kind == "immutable_list_print":
         return _immutable_list_print_match(actual, expected)
+    if kind == "traffic_light":
+        return _traffic_light_match(actual, expected)
     if kind == "node_value":
         if actual is None:
             return expected is None
@@ -2480,6 +2808,16 @@ def _prepare_validated_kwargs(
     tree_param_names: list[str] | tuple[str, ...],
     list_node_param_names: list[str] | tuple[str, ...] = (),
 ) -> dict[str, Any]:
+    original_fixture = kwargs.get("original")
+    if (
+        isinstance(original_fixture, dict)
+        and kwargs.get("cloned") == {"clone_of": "original"}
+        and kwargs.get("target") == {"target_of": "original"}
+    ):
+        original, cloned, target = _cloned_tree_triplet_from_fixture(original_fixture)
+        kwargs["original"] = original
+        kwargs["cloned"] = cloned
+        kwargs["target"] = target
     if "node" in kwargs:
         kwargs["node"] = _parent_tree_node_from_fixture(kwargs["node"])
     robot_fixture = kwargs.get("robot")
@@ -2490,6 +2828,23 @@ def _prepare_validated_kwargs(
             int(robot_fixture.get("col", 0)),
             int(robot_fixture.get("direction", 0)),
         )
+    sea_fixture = kwargs.get("sea")
+    if isinstance(sea_fixture, dict) and "ships" in sea_fixture:
+        kwargs["sea"] = _JudgeSea(
+            sea_fixture["ships"],
+            int(sea_fixture.get("max_queries", 400)),
+        )
+        for corner_name in ("top_right", "bottom_left"):
+            corner = kwargs.get(corner_name)
+            if isinstance(corner, list) and len(corner) == 2:
+                kwargs[corner_name] = _JudgePoint(corner[0], corner[1])
+    for matrix_name in ("binary_matrix", "binaryMatrix"):
+        matrix_fixture = kwargs.get(matrix_name)
+        if isinstance(matrix_fixture, dict) and "matrix" in matrix_fixture:
+            kwargs[matrix_name] = _JudgeBinaryMatrix(
+                matrix_fixture["matrix"],
+                int(matrix_fixture.get("max_queries", 1000)),
+            )
     master_fixture = kwargs.get("master")
     if isinstance(master_fixture, dict) and "secret" in master_fixture:
         words = kwargs.get("words")
@@ -2650,6 +3005,7 @@ def _load_python_optimal_solve(challenge: Any) -> tuple[Optional[Any], str]:
         "__name__": f"optimal.{challenge.info.id}",
         "__file__": f"{challenge.info.id}_optimal.py",
         "__package__": None,
+        "Point": _JudgePoint,
     }
     filename = f"{challenge.info.id}_optimal.py"
     try:
@@ -3132,6 +3488,7 @@ def _run_python_validated_cases(
             "__name__": "player_solution",
             "__file__": player_filename,
             "__package__": None,
+            "Point": _JudgePoint,
         }
         exec(  # noqa: S102 - player solution is intentionally executed by the local judge
             compile(player_source, player_filename, "exec", dont_inherit=True),
@@ -3189,7 +3546,8 @@ def _run_python_validated_cases(
         and len(case_results) == len(run_cases)
     )
     runtime_check = RuntimeCheck(checked=False, passed=False, message=error_message)
-    if correct:
+    complexity_check = ComplexityCheck()
+    if correct and benchmark_cases:
         runtime_check = _runtime_check_python_cases(
             solve_fn=solve_fn,
             reference_solve=reference_solve,
@@ -3201,9 +3559,17 @@ def _run_python_validated_cases(
             returns_tree=returns_tree,
             returns_list_node=returns_list_node,
         )
+    elif correct:
+        complexity_check = _complexity_certificate_check(challenge.info.id)
 
     required_complexity = challenge.info.required_complexity
-    within_threshold = runtime_check.passed if runtime_check.checked else False
+    within_threshold = (
+        runtime_check.passed
+        if runtime_check.checked
+        else complexity_check.passed
+        if complexity_check.checked
+        else False
+    )
     passed = correct and within_threshold
     message = _build_message(
         error_message=error_message,
@@ -3240,6 +3606,10 @@ def _run_python_validated_cases(
         runtime_message=runtime_check.message,
         benchmark_correct=runtime_check.benchmark_correct,
         runtime_scaling_data=runtime_check.scaling_data,
+        complexity_check=complexity_check.checked,
+        complexity_passed=complexity_check.passed if complexity_check.checked else None,
+        complexity_method=complexity_check.method,
+        complexity_message=complexity_check.message,
         message=message,
         return_value_repr=headline_case.return_value_repr if headline_case else "",
         reference_return_value_repr=headline_case.expected_repr if headline_case else _format_return_value(first_expected),
@@ -3686,7 +4056,7 @@ def run_player_code(
         solution_path.write_text(source, encoding="utf-8")
 
     try:
-        if run_cases is not None and special_category in {"database", "pandas", "shell"}:
+        if run_cases is not None and special_category in {"concurrency", "database", "pandas", "shell"}:
             return _run_special_environment_cases(
                 challenge=challenge,
                 source=source,
@@ -3701,7 +4071,7 @@ def run_player_code(
                 mode=mode,
                 language=language_id,
                 run_cases=run_cases,
-                benchmark_cases=benchmark_cases or run_cases,
+                benchmark_cases=benchmark_cases if benchmark_cases is not None else run_cases,
             )
 
         if language_id != "python":
@@ -3722,7 +4092,7 @@ def run_player_code(
                 seed=seed,
                 mode=mode,
                 run_cases=run_cases,
-                benchmark_cases=benchmark_cases or run_cases,
+                benchmark_cases=benchmark_cases if benchmark_cases is not None else run_cases,
             )
 
         # --- 3. Exec the source in a fresh namespace ---
@@ -4006,6 +4376,96 @@ def _runtime_check_database_cases(
     return _runtime_check_from_scaling(samples, trials=trials, language="sql")
 
 
+def _runtime_check_concurrency_cases(
+    *,
+    challenge: Any,
+    source: str,
+    cases: list[ValidatedCase],
+) -> RuntimeCheck:
+    if len(cases) < 2 or any(case.size is None or case.size <= 0 for case in cases):
+        return RuntimeCheck(
+            checked=False,
+            passed=False,
+            message="Concurrency scaling requires at least two positive-size benchmark tiers.",
+        )
+    spec = getattr(challenge, "_spec", None)
+    if spec is None:
+        return RuntimeCheck(checked=False, passed=False, message="No challenge spec is available for timing.")
+    reference_source = load_optimal_source(challenge.info.id, spec, language="python")
+    if not reference_source:
+        return RuntimeCheck(
+            checked=False,
+            passed=False,
+            message="No Python concurrency reference is available for timing.",
+        )
+
+    samples: list[dict[str, float | int]] = []
+    trials = 3
+    for case in sorted(cases, key=lambda item: int(item.size or 0)):
+        reference_times: list[float] = []
+        user_times: list[float] = []
+        for trial in range(trials):
+            ordered_sources = (
+                (("reference", reference_source), ("user", source))
+                if trial % 2 == 0
+                else (("user", source), ("reference", reference_source))
+            )
+            timings: dict[str, float] = {}
+            for label, candidate_source in ordered_sources:
+                result = run_special_environment(
+                    category="concurrency",
+                    source=candidate_source,
+                    input_data=case.input,
+                    challenge_id=challenge.info.id,
+                    timeout_seconds=max(0.1, (case.timeout_ms or 8000) / 1000.0),
+                )
+                if not result.ok:
+                    return RuntimeCheck(
+                        checked=False,
+                        passed=False,
+                        n=int(case.size or 0),
+                        message=f"{label.title()} concurrency benchmark failed: {result.error_message}",
+                    )
+                if case.expected is not None and not _validated_case_matches(case, result.value, case.expected):
+                    if label == "reference":
+                        return RuntimeCheck(
+                            checked=False,
+                            passed=False,
+                            n=int(case.size or 0),
+                            trials=trial,
+                            message=f"Reference concurrency output mismatched on {case.id}.",
+                        )
+                    return RuntimeCheck(
+                        checked=True,
+                        passed=False,
+                        n=int(case.size or 0),
+                        trials=trial,
+                        message=f"User concurrency output mismatched on {case.id}.",
+                        benchmark_correct=False,
+                    )
+                timings[label] = float(result.runtime_ms or 0.0)
+            reference_times.append(timings["reference"])
+            user_times.append(timings["user"])
+        reference_ms = _median(reference_times)
+        user_ms = _median(user_times)
+        if reference_ms is None or user_ms is None or reference_ms <= 0:
+            return RuntimeCheck(
+                checked=False,
+                passed=False,
+                n=int(case.size or 0),
+                message=f"Concurrency benchmark tier {case.id} did not produce comparable timings.",
+            )
+        samples.append(
+            {
+                "size": int(case.size or 0),
+                "reference_ms": reference_ms,
+                "user_ms": user_ms,
+                "ratio": user_ms / reference_ms,
+            }
+        )
+    return _runtime_check_from_scaling(samples, trials=trials, language="python")
+
+
 def _run_special_environment_cases(
     *,
     challenge: Any,
@@ -4022,6 +4482,7 @@ def _run_special_environment_cases(
             category=category,
             source=source,
             input_data=case.input,
+            challenge_id=challenge.info.id,
             timeout_seconds=max(0.1, (case.timeout_ms or 8000) / 1000.0),
         )
         if first_value is None:
@@ -4061,21 +4522,43 @@ def _run_special_environment_cases(
         and all(case.correct for case in verdict_results)
         and len(case_results) == len(run_cases)
     )
-    environment_label = {"database": "SQL", "pandas": "Pandas", "shell": "Bash"}.get(category, category)
+    environment_label = {
+        "concurrency": "Concurrency",
+        "database": "SQL",
+        "pandas": "Pandas",
+        "shell": "Bash",
+    }.get(category, category)
     benchmark_cases = [case for case in run_cases if case.kind == "benchmark"]
     runtime_check = RuntimeCheck(checked=False, passed=False)
+    complexity_check = ComplexityCheck()
     if correct and category == "database" and benchmark_cases:
         runtime_check = _runtime_check_database_cases(
             challenge=challenge,
             source=source,
             cases=benchmark_cases,
         )
-    within_threshold = correct and (not runtime_check.checked or runtime_check.passed)
+    if correct and category == "concurrency" and benchmark_cases:
+        runtime_check = _runtime_check_concurrency_cases(
+            challenge=challenge,
+            source=source,
+            cases=benchmark_cases,
+        )
+    if correct and not benchmark_cases:
+        complexity_check = _complexity_certificate_check(challenge.info.id)
+    within_threshold = correct and (
+        runtime_check.passed
+        if runtime_check.checked
+        else complexity_check.passed
+        if complexity_check.checked
+        else True
+    )
     passed = correct and within_threshold
     if first_error:
         message = first_error
     elif runtime_check.checked:
         message = runtime_check.message
+    elif complexity_check.checked:
+        message = complexity_check.message
     else:
         message = f"{environment_label} run completed successfully."
     required = challenge.info.required_complexity.value
@@ -4113,6 +4596,10 @@ def _run_special_environment_cases(
         ),
         benchmark_correct=runtime_check.benchmark_correct,
         runtime_scaling_data=runtime_check.scaling_data,
+        complexity_check=complexity_check.checked,
+        complexity_passed=complexity_check.passed if complexity_check.checked else None,
+        complexity_method=complexity_check.method,
+        complexity_message=complexity_check.message,
     )
 
 
@@ -4308,7 +4795,8 @@ def _run_external_validated_cases(
         and len(case_results) == len(run_cases)
     )
     runtime_check = RuntimeCheck(checked=False, passed=False, message=error_message)
-    if correct:
+    complexity_check = ComplexityCheck()
+    if correct and benchmark_cases:
         runtime_check = _runtime_check_external_cases(
             challenge=challenge,
             source=source,
@@ -4322,9 +4810,17 @@ def _run_external_validated_cases(
             returns_tree=returns_tree,
             returns_list_node=returns_list_node,
         )
+    elif correct:
+        complexity_check = _complexity_certificate_check(challenge.info.id)
 
     required_complexity = challenge.info.required_complexity
-    within_threshold = runtime_check.passed if runtime_check.checked else False
+    within_threshold = (
+        runtime_check.passed
+        if runtime_check.checked
+        else complexity_check.passed
+        if complexity_check.checked
+        else False
+    )
     passed = correct and within_threshold
     message = _build_message(
         error_message=error_message,
@@ -4361,6 +4857,10 @@ def _run_external_validated_cases(
         runtime_message=runtime_check.message,
         benchmark_correct=runtime_check.benchmark_correct,
         runtime_scaling_data=runtime_check.scaling_data,
+        complexity_check=complexity_check.checked,
+        complexity_passed=complexity_check.passed if complexity_check.checked else None,
+        complexity_method=complexity_check.method,
+        complexity_message=complexity_check.message,
         message=message,
         return_value_repr=headline_case.return_value_repr if headline_case else _format_return_value(first_result),
         reference_return_value_repr=headline_case.expected_repr if headline_case else _format_return_value(first_expected),

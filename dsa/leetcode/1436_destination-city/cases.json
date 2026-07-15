@@ -2,8 +2,8 @@
   "challenge_id": "lc_1436",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: three-city chain",
+      "id": "sample-chain",
+      "name": "sample: paths already follow route order",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -25,12 +25,12 @@
       "expected": "Sao Paulo",
       "tags": [
         "sample",
-        "hash-set"
+        "chain"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: shuffled chain",
+      "id": "sample-shuffled",
+      "name": "sample: shuffled path entries",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -51,12 +51,13 @@
       },
       "expected": "A",
       "tags": [
-        "sample"
+        "sample",
+        "unordered"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: single path",
+      "id": "sample-single",
+      "name": "sample: one directed path",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -70,12 +71,62 @@
       "expected": "Z",
       "tags": [
         "sample",
-        "edge"
+        "boundary"
       ]
     },
     {
-      "id": "real-unordered-chain",
-      "name": "hidden: unordered chain edges",
+      "id": "trial-reversed-list",
+      "name": "array order is reverse route order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "paths": [
+          [
+            "Delta",
+            "End"
+          ],
+          [
+            "Center",
+            "Delta"
+          ],
+          [
+            "Start",
+            "Center"
+          ]
+        ]
+      },
+      "expected": "End",
+      "tags": [
+        "trial",
+        "order"
+      ]
+    },
+    {
+      "id": "trial-spaces",
+      "name": "city names contain spaces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "paths": [
+          [
+            "New Port",
+            "Lake"
+          ],
+          [
+            "Lake",
+            "Old Bay"
+          ]
+        ]
+      },
+      "expected": "Old Bay",
+      "tags": [
+        "trial",
+        "strings"
+      ]
+    },
+    {
+      "id": "real-unordered",
+      "name": "hidden: endpoint edge occurs in the middle",
       "kind": "real",
       "visible": false,
       "input": {
@@ -96,7 +147,43 @@
       },
       "expected": "D",
       "tags": [
-        "hidden"
+        "hidden",
+        "unordered"
+      ]
+    },
+    {
+      "id": "real-longer",
+      "name": "hidden: five-edge shuffled chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "paths": [
+          [
+            "C",
+            "D"
+          ],
+          [
+            "A",
+            "B"
+          ],
+          [
+            "E",
+            "F"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "D",
+            "E"
+          ]
+        ]
+      },
+      "expected": "F",
+      "tags": [
+        "hidden",
+        "chain"
       ]
     }
   ]

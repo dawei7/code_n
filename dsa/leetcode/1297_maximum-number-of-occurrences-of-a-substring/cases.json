@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1297",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated valid substring",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aababcaab",
+        "maxLetters": 2,
+        "minSize": 3,
+        "maxSize": 4
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: overlapping occurrences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "maxLetters": 1,
+        "minSize": 3,
+        "maxSize": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-no-valid-window",
+      "name": "trial: distinct-character limit rejects every window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcde",
+        "maxLetters": 2,
+        "minSize": 3,
+        "maxSize": 3
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-minimum-length-dominates",
+      "name": "trial: shortest valid substring is most frequent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ababab",
+        "maxLetters": 2,
+        "minSize": 2,
+        "maxSize": 5
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one-character string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z",
+        "maxLetters": 1,
+        "minSize": 1,
+        "maxSize": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-periodic",
+      "name": "hidden: periodic three-letter pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcabcabc",
+        "maxLetters": 3,
+        "minSize": 3,
+        "maxSize": 5
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "periodic"
+      ]
+    },
+    {
+      "id": "hidden-repeated-letter",
+      "name": "hidden: repeated letter with a length range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaa",
+        "maxLetters": 1,
+        "minSize": 2,
+        "maxSize": 4
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "overlap"
+      ]
+    }
+  ]
+}

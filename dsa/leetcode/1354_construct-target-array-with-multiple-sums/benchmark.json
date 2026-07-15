@@ -1,20 +1,67 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1354",
+  "measurement_note": "Size is b, the bit length of M, for target [M, 2] with M = 2^(b-1) + 1. Modulo compresses all repeated reverse replacements and the heap method runs within O(n log n log M). A correct slower alternative undoes only one addition of the remaining sum at a time, taking Theta(M) reverse steps on these constructible targets; the calibrated largest tier needs 2048 subtractions and completes below the safety cap.",
   "cases": [
     {
-      "id": "benchmark-single-two",
-      "name": "benchmark: single value above one",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3-bit largest value with remainder two",
       "kind": "benchmark",
       "visible": false,
+      "size": 3,
       "input": {
         "target": [
+          5,
           2
         ]
       },
-      "expected": false,
+      "expected": true,
       "tags": [
-        "benchmark"
-      ]
+        "benchmark",
+        "scale-small",
+        "modulo-compression"
+      ],
+      "timeout_ms": 12000
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 7-bit largest value with remainder two",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 7,
+      "input": {
+        "target": [
+          65,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "modulo-compression"
+      ],
+      "timeout_ms": 12000
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 13-bit largest value with remainder two",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 13,
+      "input": {
+        "target": [
+          4097,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "modulo-compression"
+      ],
+      "timeout_ms": 12000
     }
   ]
 }

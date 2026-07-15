@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1279",
+  "status": "verified",
+  "method": "bounded_concurrency",
+  "required_time": "O(1)",
+  "summary": "The source contract permits at most 20 car-arrival calls, while correctness is defined by mutual exclusion, valid light transitions, and deadlock freedom rather than scalable runtime growth.",
+  "workload_bound": {
+    "symbol": "C",
+    "maximum": 20,
+    "unit": "concurrent car-arrival calls",
+    "source_constraint": "cars contains between 1 and 20 unique identifiers"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Each method call takes one lock, compares one road identifier, invokes at most one light callback and exactly one crossing callback, then releases the lock."},
+    {"kind": "scheduler_stress", "evidence": "Cases include equal arrival times, all four directions, alternating roads, grouped roads, and the maximum twenty calls."},
+    {"kind": "semantic_validator", "evidence": "The isolated judge detects redundant green changes, red-road crossings, light changes during crossings, cross-road overlap, and missing or duplicate car callbacks."},
+    {"kind": "deadlock_timeout", "evidence": "Every source-native run uses daemon worker joins inside an isolated subprocess with a hard timeout."}
+  ]
+}

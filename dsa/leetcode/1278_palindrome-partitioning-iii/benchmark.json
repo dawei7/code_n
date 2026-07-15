@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1278",
+  "measurement_note": "Size is k*n^2, the state-transition workload in the required dynamic program. All tiers keep k=2 while increasing n; precomputed substring costs give linear growth in size, whereas rescanning every candidate piece adds another factor of n.",
+  "cases": [
+    {"id": "benchmark-scale-1250", "name": "benchmark: length 25 with two parts", "kind": "benchmark", "visible": false, "input": {"s": "abcdefghijklmnopqrstuvwxy", "k": 2}, "expected": 12, "tags": ["benchmark", "scale-small"], "size": 1250, "timeout_ms": 8000},
+    {"id": "benchmark-scale-5000", "name": "benchmark: length 50 with two parts", "kind": "benchmark", "visible": false, "input": {"s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx", "k": 2}, "expected": 23, "tags": ["benchmark", "scale-medium"], "size": 5000, "timeout_ms": 8000},
+    {"id": "benchmark-scale-20000", "name": "benchmark: length 100 with two parts", "kind": "benchmark", "visible": false, "input": {"s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv", "k": 2}, "expected": 46, "tags": ["benchmark", "scale-large"], "size": 20000, "timeout_ms": 8000}
+  ]
+}

@@ -1,10 +1,13 @@
 def solve(nums, threshold):
-    left, right = 1, max(nums)
+    left = 1
+    right = max(nums)
+
     while left < right:
-        mid = (left + right) // 2
-        total = sum((value + mid - 1) // mid for value in nums)
-        if total <= threshold:
-            right = mid
+        divisor = (left + right) // 2
+        rounded_sum = sum((value + divisor - 1) // divisor for value in nums)
+        if rounded_sum <= threshold:
+            right = divisor
         else:
-            left = mid + 1
+            left = divisor + 1
+
     return left

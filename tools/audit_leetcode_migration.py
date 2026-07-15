@@ -10,13 +10,19 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from engine.complexity_certificates import validate_complexity_certificate  # noqa: E402
+
+
 LEETCODE_ROOT = ROOT / "dsa" / "leetcode"
 REPORT_ROOT = LEETCODE_ROOT / "_reports"
 REPORT_JSON = REPORT_ROOT / "two_sum_migration_progress.json"
@@ -114,6 +120,7 @@ def _doc_status(path: Path) -> dict[str, Any]:
         line.startswith("- ") or line.startswith("  ") for line in alternatives_lines
     )
     complete = complete and alternatives_as_list
+    time_match = re.search(r"^- \*\*Time:\*\* \$(O\([^$]+\))\$\s*$", text, flags=re.MULTILINE)
     return {
         "complete": complete,
         "missing_sections": [
@@ -128,6 +135,7 @@ def _doc_status(path: Path) -> dict[str, Any]:
         "approach_headings": list(approach_headings),
         "alternatives_as_list": alternatives_as_list,
         "alternative_bullet_count": alternative_bullet_count,
+        "required_time": time_match.group(1) if time_match else "",
     }
 
 
@@ -156,6 +164,55 @@ def _benchmark_status(path: Path) -> dict[str, Any]:
         "benchmark_only": benchmark_only,
         "ordered_unique_positive_sizes": ordered,
         "span_at_least_4x": span_ok,
+    }
+
+
+def _complexity_certificate_status(
+    path: Path,
+    challenge_id: str,
+    required_time: str,
+) -> dict[str, Any]:
+    if not path.is_file():
+        return {
+            "complete": False,
+            "method": "",
+            "required_time": "",
+            "summary": "",
+            "replacement_checks": [],
+            "errors": [],
+            "path": str(path.relative_to(ROOT)).replace("\\", "/"),
+        }
+    payload = _load_json(path)
+    status = validate_complexity_certificate(
+        payload,
+        expected_challenge_id=challenge_id,
+        expected_required_time=required_time,
+    )
+    return {
+        "complete": status.complete,
+        "method": status.method,
+        "required_time": status.required_time,
+        "summary": status.summary,
+        "replacement_checks": list(status.check_kinds),
+        "errors": list(status.errors),
+        "path": str(path.relative_to(ROOT)).replace("\\", "/"),
+    }
+
+
+def _complexity_status(benchmark: dict[str, Any], certificate: dict[str, Any]) -> dict[str, Any]:
+    conflict = bool(benchmark["complete"] and certificate["complete"])
+    if benchmark["complete"]:
+        method = "scaling_benchmark"
+    elif certificate["complete"]:
+        method = str(certificate["method"])
+    else:
+        method = ""
+    return {
+        "complete": bool((benchmark["complete"] or certificate["complete"]) and not conflict),
+        "method": method,
+        "benchmark_complete": bool(benchmark["complete"]),
+        "certificate_complete": bool(certificate["complete"]),
+        "conflict": conflict,
     }
 
 
@@ -223,14 +280,26 @@ def build_report() -> dict[str, Any]:
         metadata = _load_json(package / "metadata.json")
         metadata = metadata if isinstance(metadata, dict) else {}
         frontend_id = str(metadata.get("frontend_id") or package.name.split("_", 1)[0])
+        doc = _doc_status(package / "doc.md")
+        benchmark = _benchmark_status(package / "benchmark.json")
+        certificate = _complexity_certificate_status(
+            package / "complexity_certificate.json",
+            str(metadata.get("challenge_id") or f"lc_{int(frontend_id)}"),
+            str(doc.get("required_time") or ""),
+        )
         checks = {
-            "doc": _doc_status(package / "doc.md"),
+            "doc": doc,
             "cases": _cases_status(package / "cases.json"),
-            "benchmarks": _benchmark_status(package / "benchmark.json"),
+            "benchmarks": benchmark,
+            "complexity_certificate": certificate,
+            "complexity": _complexity_status(benchmark, certificate),
             "optimal_solution": _solution_status(package, metadata),
             "leetcode_submission": _submission_status(package, metadata),
         }
-        local_complete = all(checks[name]["complete"] for name in ("doc", "cases", "benchmarks", "optimal_solution"))
+        local_complete = all(
+            checks[name]["complete"]
+            for name in ("doc", "cases", "complexity", "optimal_solution")
+        )
         complete = local_complete and checks["leetcode_submission"]["complete"]
         blocker = blockers.get(frontend_id)
         entries.append(
@@ -255,6 +324,10 @@ def build_report() -> dict[str, Any]:
     }
     for name in ("doc", "cases", "benchmarks", "optimal_solution", "leetcode_submission"):
         counts[f"{name}_complete"] = sum(entry["checks"][name]["complete"] for entry in entries)
+    counts["complexity_certified"] = sum(
+        entry["checks"]["complexity_certificate"]["complete"] for entry in entries
+    )
+    counts["complexity_complete"] = sum(entry["checks"]["complexity"]["complete"] for entry in entries)
     first_incomplete = next((entry for entry in entries if not entry["complete"] and not entry["blocked"]), None)
     return {
         "schema_version": 1,
@@ -285,7 +358,7 @@ def _write_report(report: dict[str, Any]) -> None:
         "",
         "## Completion criteria",
         "",
-        "A package is locally complete only when its canonical document (including a source-like Goal narrative of at least two paragraphs and 60 words), visible/hidden cases, exactly three ordered benchmark tiers, and optimal app-local solution pass the audit. Full completion additionally requires an exact platform-native source recorded as remotely Accepted in `submission.json`.",
+        "A package is locally complete only when its canonical document (including a source-like Goal narrative of at least two paragraphs and 60 words), visible/hidden cases, complexity verification, and optimal app-local solution pass the audit. Complexity verification normally requires exactly three ordered benchmark tiers; a strictly validated `complexity_certificate.json` replaces scaling only when the legal source domain cannot support an honest scaling verdict. Full completion additionally requires an exact platform-native source recorded as remotely Accepted in `submission.json`.",
         "",
         "## Counts",
         "",

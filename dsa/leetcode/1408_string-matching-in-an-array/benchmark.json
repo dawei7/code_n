@@ -1,32 +1,101 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1408",
+  "measurement_note": "Size is n, the number of words; all words have the same fixed length six and are distinct, so every candidate exhausts all other comparisons and none qualifies. The 5/10/20 tiers span 4x. One pairwise pass has O(n^2 L^2) required work. A correct implementation that recomputes that complete answer once for every word takes O(n^3 L^2) time and completes normally.",
   "cases": [
     {
-      "id": "benchmark-shared-prefixes",
-      "name": "benchmark: shared prefixes and single letters",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 5 equal-length words",
       "kind": "benchmark",
       "visible": false,
+      "size": 5,
       "input": {
         "words": [
-          "a",
-          "aa",
-          "aaa",
-          "aaaa",
-          "b",
-          "baaa"
+          "aaaaaa",
+          "aaaaab",
+          "aaaaac",
+          "aaaaad",
+          "aaaaae"
         ]
       },
-      "expected": [
-        "a",
-        "aa",
-        "aaa",
-        "b"
-      ],
+      "expected": [],
       "validator": {
         "kind": "unordered_list"
       },
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scale-small",
+        "no-matches"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 10 equal-length words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "words": [
+          "aaaaaa",
+          "aaaaab",
+          "aaaaac",
+          "aaaaad",
+          "aaaaae",
+          "aaaaaf",
+          "aaaaag",
+          "aaaaah",
+          "aaaaai",
+          "aaaaaj"
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "no-matches"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 20 equal-length words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "words": [
+          "aaaaaa",
+          "aaaaab",
+          "aaaaac",
+          "aaaaad",
+          "aaaaae",
+          "aaaaaf",
+          "aaaaag",
+          "aaaaah",
+          "aaaaai",
+          "aaaaaj",
+          "aaaaak",
+          "aaaaal",
+          "aaaaam",
+          "aaaaan",
+          "aaaaao",
+          "aaaaap",
+          "aaaaaq",
+          "aaaaar",
+          "aaaaas",
+          "aaaaat"
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "no-matches"
       ]
     }
   ]

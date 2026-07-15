@@ -5,31 +5,30 @@
 | Source | LeetCode |
 | Frontend ID | 1288 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [remove-covered-intervals](https://leetcode.com/problems/remove-covered-intervals/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/remove-covered-intervals/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/remove-covered-intervals/).
-
 ### Goal
-Remove every interval that is fully covered by another interval and return how many intervals remain.
+You are given a collection of unique half-open intervals `[left, right)`. An interval `[a, b)` is covered by another interval `[c, d)` exactly when $c \le a$ and $b \le d$; equality at either boundary is allowed.
+
+Remove every interval covered by some other interval in the collection. Return the number of intervals that remain after all covered intervals are excluded.
 
 ### Function Contract
 **Inputs**
 
-- `intervals`: list of `[start, end]` intervals.
+- `intervals`: an array of $n$ unique pairs `[left, right]`, representing half-open intervals, where $1 \le n \le 1000$ and $0 \le \texttt{left} < \texttt{right} \le 10^5$.
 
 **Return value**
 
-The count of intervals not covered by another interval.
+The number of intervals for which no distinct input interval starts no later and ends no earlier.
 
 ### Examples
 **Example 1**
 
 - Input: `intervals = [[1,4],[3,6],[2,8]]`
 - Output: `2`
+- Explanation: `[3,6)` is covered by `[2,8)`; the other two intervals remain.
 
 **Example 2**
 
@@ -40,30 +39,31 @@ The count of intervals not covered by another interval.
 
 - Input: `intervals = [[0,10],[5,12]]`
 - Output: `2`
+- Explanation: The intervals overlap, but neither covers the other.
 
----
+### Required Complexity
+- **Time:** $O(n \log n)$
+- **Space:** $O(n)$
 
-## Solution
-### Approach
-Sorting with sweep-line maximum endpoint tracking.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(n)` or `O(1)` extra depending on sort implementation.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(intervals):
-    intervals.sort(key=lambda item: (item[0], -item[1]))
-    remaining = 0
-    farthest_end = -1
-    for _, end in intervals:
-        if end > farthest_end:
-            remaining += 1
-            farthest_end = end
-    return remaining
-```
+#### General
+
+**Choose an order that exposes every possible cover.** Sort intervals by ascending left endpoint and, when left endpoints tie, by descending right endpoint. Thus any interval capable of covering the current one appears earlier. The descending tie-break is essential: the widest interval with a shared start must be processed before the narrower ones it covers.
+
+Sweep through this order while storing the farthest right endpoint seen. If the current right endpoint is at most that maximum, an earlier interval starts no later and ends no earlier, so the current interval is covered. Otherwise it cannot be covered by any earlier interval, and no later interval starts early enough to cover it; count it as remaining and update the maximum. These two cases prove that the sweep counts exactly the uncovered intervals.
+
+#### Complexity detail
+
+Sorting $n$ intervals takes $O(n \log n)$ time, and the subsequent sweep is $O(n)$. Building a sorted copy uses $O(n)$ auxiliary space and leaves the caller's input order unchanged. The sweep itself stores only a counter and one endpoint.
+
+#### Alternatives and edge cases
+
+- **Compare every pair:** Testing each interval against every other interval is direct but takes $O(n^2)$ time.
+- **Ascending end tie-break:** With equal starts, processing the shorter interval first can count it before discovering the longer interval that covers it.
+- **Overlap without coverage:** Crossing intervals such as `[0,10)` and `[5,12)` both remain.
+- **Equal right endpoints:** Of intervals ending together, only one with the earliest start can remain.
+- **Half-open boundaries:** Coverage uses the given endpoints directly; equality at a boundary still permits coverage.
+
 </details>

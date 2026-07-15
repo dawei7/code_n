@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1345",
+  "frontend_id": "1427",
+  "title_slug": "perform-string-shifts",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.stringShift",
+  "verified_submission_id": "2069064960",
+  "verified_at": "2026-07-15T19:04:15.915902+00:00"
+}

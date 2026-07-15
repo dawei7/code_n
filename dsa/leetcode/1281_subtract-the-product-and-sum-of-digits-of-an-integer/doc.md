@@ -5,51 +5,66 @@
 | Source | LeetCode |
 | Frontend ID | 1281 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Math |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [subtract-the-product-and-sum-of-digits-of-an-integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a positive integer `n`, consider the digits in its ordinary decimal representation. Use every digit exactly once to form two quantities: multiply the digits together to obtain their product, and add the same digits together to obtain their sum. A zero digit therefore makes the product zero while contributing zero to the sum.
+
+Return the difference obtained by subtracting the digit sum from the digit product. The input is always positive, so its representation contains at least one digit and no sign character needs to be considered.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: an integer satisfying $1 \le n \le 10^5$.
+- Let $d$ be the number of decimal digits in `n`.
 
 **Return value**
 
-TODO
+An integer equal to the product of `n`'s decimal digits minus their sum.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 234`
+- Output: `15`
+- Explanation: The digit product is $2 \cdot 3 \cdot 4 = 24$, while the digit sum is $2 + 3 + 4 = 9$; their difference is $15$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4421`
+- Output: `21`
+- Explanation: The product is $32$ and the sum is $11$.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 10`
+- Output: `-1`
+- Explanation: A zero digit makes the product $0$, while the sum is $1$.
 
----
+### Required Complexity
+- **Time:** $O(d)$
+- **Space:** $O(1)$
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Repeated division by ten exposes the decimal digits without building a string. Start the product at one—the multiplicative identity—and the sum at zero. For each iteration, `n % 10` is the current last digit; multiply it into the product and add it to the sum, then discard that digit with integer division by ten.
+
+Every decimal digit is exposed exactly once. The accumulators therefore contain respectively the product and sum of all processed digits. When no digits remain, all original digits have been processed, so subtracting the accumulated sum from the accumulated product gives precisely the requested value. Initializing the product to zero would break this reasoning because it would force every result's product to zero.
+
+#### Complexity detail
+
+Each of the $d$ decimal digits causes one constant-time arithmetic step, giving $O(d)$ time. The two accumulators and current integer use $O(1)$ auxiliary space. Since the legal input is at most $10^5$, $d \le 6$; this fixed domain is too narrow for an honest empirical scaling verdict, so the package uses a bounded-domain certificate backed by exhaustive regression.
+
+#### Alternatives and edge cases
+
+- **String conversion:** Iterating over `str(n)` is also $O(d)$ time, but it allocates an $O(d)$ character representation instead of using constant auxiliary space.
+- **Zero digit:** Any zero makes the entire digit product zero; it must still contribute normally to the sum.
+- **Single digit:** Its product and sum are equal, so every one-digit input returns zero.
+- **Upper boundary:** `100000` has six digits and returns $-1$, demonstrating that leading-place zeros are real digits after the initial one.
+
+</details>

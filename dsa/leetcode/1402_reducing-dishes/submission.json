@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1503",
+  "frontend_id": "1402",
+  "title_slug": "reducing-dishes",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxSatisfaction",
+  "verified_submission_id": "2068889803",
+  "verified_at": "2026-07-15T16:49:07.484679+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "pending",
+  "question_id": "1536",
+  "frontend_id": "1420",
+  "title_slug": "build-array-where-you-can-find-the-maximum-exactly-k-comparisons",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numOfArrays"
+}

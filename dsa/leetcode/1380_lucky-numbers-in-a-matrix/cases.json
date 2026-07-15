@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1380",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: lucky fifteen",
+      "id": "sample-bottom-left",
+      "name": "sample: lucky value at bottom left",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -28,17 +29,14 @@
       "expected": [
         15
       ],
-      "validator": {
-        "kind": "unordered_list"
-      },
       "tags": [
         "sample",
-        "matrix"
+        "bottom-left"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: lucky twelve",
+      "id": "sample-bottom-right",
+      "name": "sample: lucky value at bottom right",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -66,16 +64,14 @@
       "expected": [
         12
       ],
-      "validator": {
-        "kind": "unordered_list"
-      },
       "tags": [
-        "sample"
+        "sample",
+        "bottom-right"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: lucky seven",
+      "id": "sample-top-left",
+      "name": "sample: lucky value at top left",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -93,45 +89,114 @@
       "expected": [
         7
       ],
-      "validator": {
-        "kind": "unordered_list"
-      },
       "tags": [
-        "sample"
+        "sample",
+        "top-left"
       ]
     },
     {
-      "id": "real-increasing-matrix",
-      "name": "hidden: increasing matrix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-row",
+      "name": "trial: one row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
-            1,
-            2,
-            3
-          ],
-          [
-            4,
             5,
-            6
-          ],
-          [
-            7,
-            8,
+            3,
             9
           ]
         ]
       },
       "expected": [
-        7
+        3
       ],
-      "validator": {
-        "kind": "unordered_list"
-      },
       "tags": [
-        "hidden"
+        "trial",
+        "one-row"
+      ]
+    },
+    {
+      "id": "trial-one-column",
+      "name": "trial: one column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            5
+          ],
+          [
+            3
+          ],
+          [
+            9
+          ]
+        ]
+      },
+      "expected": [
+        9
+      ],
+      "tags": [
+        "trial",
+        "one-column"
+      ]
+    },
+    {
+      "id": "hidden-none",
+      "name": "hidden: no lucky value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            10,
+            2,
+            8
+          ],
+          [
+            7,
+            6,
+            5
+          ]
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "empty"
+      ]
+    },
+    {
+      "id": "hidden-middle",
+      "name": "hidden: lucky value in middle column",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "matrix": [
+          [
+            9,
+            1,
+            8
+          ],
+          [
+            7,
+            5,
+            6
+          ],
+          [
+            4,
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "hidden",
+        "middle"
       ]
     }
   ]

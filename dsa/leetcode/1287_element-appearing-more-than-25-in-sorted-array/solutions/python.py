@@ -1,6 +1,11 @@
+from bisect import bisect_left, bisect_right
+
+
 def solve(arr):
-    n = len(arr)
-    for candidate in (arr[n // 4], arr[n // 2], arr[(3 * n) // 4]):
-        if arr.count(candidate) * 4 > n:
+    length = len(arr)
+    for index in (length // 4, length // 2, 3 * length // 4):
+        candidate = arr[index]
+        frequency = bisect_right(arr, candidate) - bisect_left(arr, candidate)
+        if 4 * frequency > length:
             return candidate
-    return arr[0]
+    raise ValueError("the required over-quarter element is missing")

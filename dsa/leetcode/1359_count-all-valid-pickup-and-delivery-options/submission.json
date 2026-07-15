@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1461",
+  "frontend_id": "1359",
+  "title_slug": "count-all-valid-pickup-and-delivery-options",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countOrders",
+  "verified_submission_id": "2068705667",
+  "verified_at": "2026-07-15T14:18:02.539013+00:00"
+}

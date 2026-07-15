@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1282",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: one singleton and groups of three",
+      "id": "sample-multiple-threes",
+      "name": "sample: singleton and two groups of three",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,12 +20,12 @@
       },
       "expected": [
         [
+          5
+        ],
+        [
           0,
           1,
           2
-        ],
-        [
-          5
         ],
         [
           3,
@@ -37,12 +38,12 @@
       },
       "tags": [
         "sample",
-        "hash-map"
+        "multiple-groups"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: mixed group sizes",
+      "name": "sample: groups of one, two, and three",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -60,25 +61,26 @@
           1
         ],
         [
+          0,
+          5
+        ],
+        [
           2,
           3,
           4
-        ],
-        [
-          0,
-          5
         ]
       ],
       "validator": {
         "kind": "group_people"
       },
       "tags": [
-        "sample"
+        "sample",
+        "mixed"
       ]
     },
     {
       "id": "trial-single-person",
-      "name": "single person group",
+      "name": "trial: one person",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -96,25 +98,27 @@
       },
       "tags": [
         "trial",
-        "edge"
+        "boundary"
       ]
     },
     {
-      "id": "real-two-singletons",
-      "name": "hidden: two singleton groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-singletons",
+      "name": "trial: every person is a singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "group_sizes": [
-          2,
-          2,
+          1,
+          1,
           1,
           1
         ]
       },
       "expected": [
         [
-          0,
+          0
+        ],
+        [
           1
         ],
         [
@@ -128,7 +132,123 @@
         "kind": "group_people"
       },
       "tags": [
-        "hidden"
+        "trial",
+        "singletons"
+      ]
+    },
+    {
+      "id": "trial-one-large-group",
+      "name": "trial: everyone belongs together",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "group_sizes": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "validator": {
+        "kind": "group_people"
+      },
+      "tags": [
+        "trial",
+        "one-group"
+      ]
+    },
+    {
+      "id": "hidden-interleaved-pairs",
+      "name": "hidden: interleaved pair requests",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "group_sizes": [
+          2,
+          3,
+          2,
+          3,
+          3,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "validator": {
+        "kind": "group_people"
+      },
+      "tags": [
+        "hidden",
+        "interleaved"
+      ]
+    },
+    {
+      "id": "hidden-repeated-groups",
+      "name": "hidden: several groups share a size",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "group_sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          6,
+          7,
+          8
+        ]
+      ],
+      "validator": {
+        "kind": "group_people"
+      },
+      "tags": [
+        "hidden",
+        "multiple-groups"
       ]
     }
   ]

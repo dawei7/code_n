@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1288",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one covered interval",
+      "name": "sample: one middle interval is covered",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,12 +48,13 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "nested"
       ]
     },
     {
-      "id": "trial-overlap-not-covered",
-      "name": "overlap but not covered",
+      "id": "trial-overlap",
+      "name": "trial: overlap without coverage",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -69,12 +71,59 @@
       },
       "expected": 2,
       "tags": [
-        "trial"
+        "trial",
+        "overlap"
       ]
     },
     {
-      "id": "real-same-start",
-      "name": "hidden: same start",
+      "id": "trial-single",
+      "name": "trial: one interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            7,
+            9
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-disjoint",
+      "name": "trial: all intervals are disjoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            8,
+            10
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "hidden-same-start",
+      "name": "hidden: widest shared-start interval comes first logically",
       "kind": "real",
       "visible": false,
       "input": {
@@ -95,7 +144,39 @@
       },
       "expected": 1,
       "tags": [
-        "hidden"
+        "hidden",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "hidden-same-end",
+      "name": "hidden: earliest start covers equal-end intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "intervals": [
+          [
+            4,
+            9
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            10,
+            12
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "equal-end"
       ]
     }
   ]

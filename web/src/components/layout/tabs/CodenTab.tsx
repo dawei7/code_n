@@ -1965,6 +1965,11 @@ function EditorFeedbackPanel({
           {result.runtime_message}
         </div>
       )}
+      {result.complexity_message && (
+        <div className="mt-2 rounded bg-coden-inner px-3 py-2 text-xs text-coden-text">
+          {result.complexity_message}
+        </div>
+      )}
     </div>
   );
 }
@@ -1981,7 +1986,7 @@ function EditorSubmissionPanel({
     <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
       <EditorSummaryTile label="Status" value={result.passed ? 'Accepted' : result.correct ? 'Runtime failed' : 'Wrong answer'} />
       <EditorSummaryTile label="Cases" value={String(result.case_results?.length || result.selected_case_ids?.length || 1)} />
-      <EditorSummaryTile label="Runtime" value={formatMs(result.runtime_user_ms)} />
+      <EditorSummaryTile label="Complexity" value={result.complexity_check ? 'Certified' : formatMs(result.runtime_user_ms)} />
     </div>
   );
 }

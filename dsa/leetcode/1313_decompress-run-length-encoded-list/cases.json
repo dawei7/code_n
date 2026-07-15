@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1313",
   "cases": [
     {
@@ -22,12 +23,12 @@
       ],
       "tags": [
         "sample",
-        "array"
+        "run-length"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: repeated output",
+      "name": "sample: two encoded runs",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -44,51 +45,225 @@
         3
       ],
       "tags": [
-        "sample"
+        "sample",
+        "expansion"
       ]
     },
     {
-      "id": "trial-zero-frequency",
-      "name": "zero frequency emits nothing",
+      "id": "sample-3",
+      "name": "sample: frequency two then one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          1,
+          9
+        ]
+      },
+      "expected": [
+        5,
+        5,
+        9
+      ],
+      "tags": [
+        "sample",
+        "pair-order"
+      ]
+    },
+    {
+      "id": "trial-frequency-one",
+      "name": "trial: minimum legal frequency",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          0,
-          5
+          1,
+          100
         ]
       },
-      "expected": [],
+      "expected": [
+        100
+      ],
       "tags": [
         "trial",
-        "edge"
+        "boundary"
       ]
     },
     {
-      "id": "real-multiple-runs",
-      "name": "hidden: multiple run lengths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-adjacent-same-value",
+      "name": "trial: separate pairs share a value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
           7,
-          1,
-          8,
           3,
-          9
+          7
         ]
       },
       "expected": [
         7,
         7,
-        8,
-        9,
-        9,
-        9
+        7,
+        7,
+        7
       ],
       "tags": [
-        "hidden"
+        "trial",
+        "repeated-value"
+      ]
+    },
+    {
+      "id": "hidden-maximum-frequency",
+      "name": "hidden: maximum legal frequency",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "maximum-frequency"
+      ]
+    },
+    {
+      "id": "hidden-many-runs",
+      "name": "hidden: preserve order across several runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          1,
+          2,
+          3,
+          6,
+          2,
+          4
+        ]
+      },
+      "expected": [
+        4,
+        4,
+        2,
+        6,
+        6,
+        6,
+        4,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "multiple-runs"
       ]
     }
   ]

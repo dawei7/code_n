@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1242",
+  "measurement_note": "Size is the reachable vertex count in a dense same-host directed acyclic graph. Hash-set discovery runs in O(V+E); list membership adds a factor of V to duplicate detection.",
+  "cases": [
+    {
+      "id": "benchmark-scale-8",
+      "name": "benchmark: concurrency workload 8",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nodes": 8,
+        "shape": "dense",
+        "parser_delay": 0
+      },
+      "expected": {
+        "properties": [
+          "scheduler-independent",
+          "complete",
+          "unique"
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "concurrency"
+      ],
+      "size": 8,
+      "timeout_ms": 8000,
+      "validator": {
+        "kind": "crawler_concurrency"
+      }
+    },
+    {
+      "id": "benchmark-scale-32",
+      "name": "benchmark: concurrency workload 32",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nodes": 32,
+        "shape": "dense",
+        "parser_delay": 0
+      },
+      "expected": {
+        "properties": [
+          "scheduler-independent",
+          "complete",
+          "unique"
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "concurrency"
+      ],
+      "size": 32,
+      "timeout_ms": 8000,
+      "validator": {
+        "kind": "crawler_concurrency"
+      }
+    },
+    {
+      "id": "benchmark-scale-128",
+      "name": "benchmark: concurrency workload 128",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nodes": 128,
+        "shape": "dense",
+        "parser_delay": 0
+      },
+      "expected": {
+        "properties": [
+          "scheduler-independent",
+          "complete",
+          "unique"
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "concurrency"
+      ],
+      "size": 128,
+      "timeout_ms": 8000,
+      "validator": {
+        "kind": "crawler_concurrency"
+      }
+    }
+  ]
+}

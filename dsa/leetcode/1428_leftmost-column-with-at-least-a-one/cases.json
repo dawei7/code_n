@@ -1,0 +1,204 @@
+{
+  "challenge_id": "lc_1428",
+  "cases": [
+    {
+      "id": "sample-left-edge",
+      "name": "sample: one in the first column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "binary_matrix": {
+          "matrix": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "max_queries": 1000
+        }
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "left-edge"
+      ]
+    },
+    {
+      "id": "sample-last-column",
+      "name": "sample: one only in the last column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "binary_matrix": {
+          "matrix": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "max_queries": 1000
+        }
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "last-column"
+      ]
+    },
+    {
+      "id": "sample-all-zero",
+      "name": "sample: matrix has no one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "binary_matrix": {
+          "matrix": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "max_queries": 1000
+        }
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "absent"
+      ]
+    },
+    {
+      "id": "trial-staircase",
+      "name": "multiple row boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "binary_matrix": {
+          "matrix": [
+            [
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              1,
+              1
+            ]
+          ],
+          "max_queries": 1000
+        }
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "staircase"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "single cell containing one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "binary_matrix": {
+          "matrix": [
+            [
+              1
+            ]
+          ],
+          "max_queries": 1000
+        }
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-single-zero",
+      "name": "hidden: single zero cell",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "binary_matrix": {
+          "matrix": [
+            [
+              0
+            ]
+          ],
+          "max_queries": 1000
+        }
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-tall",
+      "name": "hidden: earliest one appears late",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "binary_matrix": {
+          "matrix": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "max_queries": 1000
+        }
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "tall"
+      ]
+    }
+  ]
+}

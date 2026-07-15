@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1297",
+  "measurement_note": "Size is n, the string length. The fixed minimum-length sliding window takes O(n) time because substring length is bounded by 26. A correct alternative that compares and recounts every distinct minimum-length window takes O(n squared) time on these pseudorandom strings; both methods produce the same frequency.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 64-character pseudorandom string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "vorunanctqbsvmveredyrivyrerwfmjmxgjyrqfirynixsrubsxiribalqhehohy",
+        "maxLetters": 26,
+        "minSize": 10,
+        "maxSize": 26
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "distinct-windows"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128-character pseudorandom string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "vorunanctqbsvmveredyrivyrerwfmjmxgjyrqfirynixsrubsxiribalqhehohyxwtcpshkjuvyryvwvybgbudqpsvyjqrijsngrgtqxknklmxabanadejofqjylixq",
+        "maxLetters": 26,
+        "minSize": 10,
+        "maxSize": 26
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "distinct-windows"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256-character pseudorandom string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "vorunanctqbsvmveredyrivyrerwfmjmxgjyrqfirynixsrubsxiribalqhehohyxwtcpshkjuvyryvwvybgbudqpsvyjqrijsngrgtqxknklmxabanadejofqjylixqhotgjqvmhclunavyxodypkdatmdangjmhudmnwlwvazurwrsrmrwjyrovobutabetkhmbepwbavoradqpqnqdsdshofilylyzsxivazwjwfilmfcvelqhenuvanyfcds",
+        "maxLetters": 26,
+        "minSize": 10,
+        "maxSize": 26
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "distinct-windows"
+      ]
+    }
+  ]
+}

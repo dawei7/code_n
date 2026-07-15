@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1492",
+  "frontend_id": "1376",
+  "title_slug": "time-needed-to-inform-all-employees",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numOfMinutes",
+  "verified_submission_id": "2068771174",
+  "verified_at": "2026-07-15T15:15:54.653973+00:00"
+}

@@ -1,8 +1,9 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1363",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-remove-one",
       "name": "sample: remove one digit",
       "kind": "sample",
       "visible": true,
@@ -16,12 +17,12 @@
       "expected": "981",
       "tags": [
         "sample",
-        "greedy"
+        "remainder-repair"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: includes zero",
+      "id": "sample-includes-zero",
+      "name": "sample: largest arrangement includes zero",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,13 +36,14 @@
       },
       "expected": "8760",
       "tags": [
-        "sample"
+        "sample",
+        "descending-order"
       ]
     },
     {
-      "id": "trial-no-multiple",
-      "name": "single non-divisible digit",
-      "kind": "trial",
+      "id": "sample-no-answer",
+      "name": "sample: one unusable digit",
+      "kind": "sample",
       "visible": true,
       "input": {
         "digits": [
@@ -50,15 +52,15 @@
       },
       "expected": "",
       "tags": [
-        "trial",
-        "edge"
+        "sample",
+        "empty-answer"
       ]
     },
     {
-      "id": "real-all-zeroes",
-      "name": "hidden: all zeroes collapse to one zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-zeroes",
+      "name": "trial: all zeroes normalize",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digits": [
           0,
@@ -69,7 +71,69 @@
       },
       "expected": "0",
       "tags": [
-        "hidden"
+        "trial",
+        "zero-normalization"
+      ]
+    },
+    {
+      "id": "trial-remove-two",
+      "name": "trial: repair requires two digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          9,
+          8,
+          6,
+          8,
+          6
+        ]
+      },
+      "expected": "966",
+      "tags": [
+        "trial",
+        "remove-two"
+      ]
+    },
+    {
+      "id": "hidden-zero-after-repair",
+      "name": "hidden: repair leaves only zeroes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "digits": [
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": "0",
+      "tags": [
+        "hidden",
+        "zero-normalization"
+      ]
+    },
+    {
+      "id": "hidden-duplicates",
+      "name": "hidden: duplicate counts remain ordered",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "digits": [
+          5,
+          5,
+          5,
+          4,
+          4,
+          4,
+          3,
+          0
+        ]
+      },
+      "expected": "55544430",
+      "tags": [
+        "hidden",
+        "duplicates"
       ]
     }
   ]

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1512",
+  "frontend_id": "1396",
+  "title_slug": "design-underground-system",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "UndergroundSystem",
+  "verified_submission_id": "2068862234",
+  "verified_at": "2026-07-15T16:29:17.858267+00:00"
+}

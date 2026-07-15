@@ -1,27 +1,27 @@
-from collections import defaultdict
+"""Optimal app-local solution for LeetCode 1434."""
+
+MODULUS = 1_000_000_007
 
 
-def solve(hats):
-    mod = 1_000_000_007
+def solve(hats: list[list[int]]) -> int:
     people = len(hats)
-    if people == 0:
-        return 1
-    by_hat = defaultdict(list)
+    people_by_hat = [[] for _ in range(41)]
     for person, choices in enumerate(hats):
-        if not isinstance(choices, list):
-            choices = [choices]
         for hat in choices:
-            by_hat[int(hat)].append(person)
-    if people > len(by_hat):
-        return 0
-    dp = {0: 1}
-    full = (1 << people) - 1
-    for hat in sorted(by_hat):
-        next_dp = dict(dp)
-        for mask, count in dp.items():
-            for person in by_hat[hat]:
+            people_by_hat[hat].append(person)
+
+    dp = [0] * (1 << people)
+    dp[0] = 1
+    for hat in range(1, 41):
+        next_dp = dp.copy()
+        for mask, count in enumerate(dp):
+            if count == 0:
+                continue
+            for person in people_by_hat[hat]:
                 bit = 1 << person
-                if not mask & bit:
-                    next_dp[mask | bit] = (next_dp.get(mask | bit, 0) + count) % mod
+                if mask & bit == 0:
+                    next_mask = mask | bit
+                    next_dp[next_mask] = (next_dp[next_mask] + count) % MODULUS
         dp = next_dp
-    return dp.get(full, 0)
+
+    return dp[-1]

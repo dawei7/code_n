@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1318",
+  "measurement_note": "Size is W, the number of significant bit positions. The reference performs constant work per bit. A correct slower alternative rescans all lower positions while processing each bit, taking O(W squared) time; every tier uses legal positive integers, completes, and returns the same count.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1", "name": "benchmark: four significant bits", "kind": "benchmark", "visible": false,
+      "size": 4, "input": {"a": 15, "b": 15, "c": 1}, "expected": 6,
+      "tags": ["benchmark", "scale-small", "dense-bits"]
+    },
+    {
+      "id": "benchmark-scale-2", "name": "benchmark: twelve significant bits", "kind": "benchmark", "visible": false,
+      "size": 12, "input": {"a": 4095, "b": 4095, "c": 1}, "expected": 22,
+      "tags": ["benchmark", "scale-medium", "dense-bits"]
+    },
+    {
+      "id": "benchmark-scale-3", "name": "benchmark: twenty-eight significant bits", "kind": "benchmark", "visible": false,
+      "size": 28, "input": {"a": 268435455, "b": 268435455, "c": 1}, "expected": 54,
+      "tags": ["benchmark", "scale-large", "dense-bits"]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1316",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three rotations of one repeated block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": "abcabcabc"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "rolling-hash"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: short and whole-string echoes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": "leetcodeleetcode"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: nested repeated-character echoes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": "aaaa"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "repetition"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: no even-length substring fits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-no-echo",
+      "name": "trial: all characters differ",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "abcdefg"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "no-match"
+      ]
+    },
+    {
+      "id": "hidden-alternating",
+      "name": "hidden: repeated alternating blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "text": "ababab"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "overlap"
+      ]
+    },
+    {
+      "id": "hidden-one-character-run",
+      "name": "hidden: three nested echo lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "text": "zzzzzz"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    }
+  ]
+}

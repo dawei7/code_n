@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1463",
+  "frontend_id": "1337",
+  "title_slug": "the-k-weakest-rows-in-a-matrix",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.kWeakestRows",
+  "verified_submission_id": "2068614061",
+  "verified_at": "2026-07-15T12:53:25.090863+00:00"
+}

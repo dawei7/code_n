@@ -1,107 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1353",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: chain of events",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "events": [
-          [
-            1,
-            2
-          ],
-          [
-            2,
-            3
-          ],
-          [
-            3,
-            4
-          ]
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample",
-        "heap"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: duplicate interval",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "events": [
-          [
-            1,
-            2
-          ],
-          [
-            2,
-            3
-          ],
-          [
-            3,
-            4
-          ],
-          [
-            1,
-            2
-          ]
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-single-event",
-      "name": "single event",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "events": [
-          [
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-same-day-conflict",
-      "name": "hidden: all events same day",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "events": [
-          [
-            1,
-            1
-          ],
-          [
-            1,
-            1
-          ],
-          [
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-chain","name":"sample: overlapping event chain","kind":"sample","visible":true,"input":{"events":[[1,2],[2,3],[3,4]]},"expected":3,"tags":["sample","heap"]},
+    {"id":"sample-extra-early-event","name":"sample: four assignable events","kind":"sample","visible":true,"input":{"events":[[1,2],[2,3],[3,4],[1,2]]},"expected":4,"tags":["sample","greedy"]},
+    {"id":"sample-same-day","name":"sample: all events share one day","kind":"sample","visible":true,"input":{"events":[[1,1],[1,1],[1,1]]},"expected":1,"tags":["sample","conflict"]},
+    {"id":"trial-single-event","name":"trial: one event","kind":"trial","visible":true,"input":{"events":[[5,9]]},"expected":1,"tags":["trial","boundary"]},
+    {"id":"trial-calendar-gap","name":"trial: jump across unused days","kind":"trial","visible":true,"input":{"events":[[1,1],[100000,100000]]},"expected":2,"tags":["trial","gap"]},
+    {"id":"hidden-nested-deadlines","name":"hidden: short deadline before flexible events","kind":"real","visible":false,"input":{"events":[[1,10],[1,10],[2,2],[2,3]]},"expected":4,"tags":["hidden","nested"]},
+    {"id":"hidden-too-many-for-window","name":"hidden: attendance window limits total","kind":"real","visible":false,"input":{"events":[[1,2],[1,2],[1,2],[1,2]]},"expected":2,"tags":["hidden","capacity"]}
   ]
 }

@@ -1,117 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1356",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: small range",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8
-        ]
-      },
-      "expected": [
-        0,
-        1,
-        2,
-        4,
-        8,
-        3,
-        5,
-        6,
-        7
-      ],
-      "tags": [
-        "sample",
-        "sorting"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: powers of two",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1024,
-          512,
-          256,
-          128,
-          64,
-          32,
-          16,
-          8,
-          4,
-          2,
-          1
-        ]
-      },
-      "expected": [
-        1,
-        2,
-        4,
-        8,
-        16,
-        32,
-        64,
-        128,
-        256,
-        512,
-        1024
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-single-value",
-      "name": "single value",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "arr": [
-          5
-        ]
-      },
-      "expected": [
-        5
-      ],
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-decimal-values",
-      "name": "hidden: decimal values",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          10,
-          100,
-          1000,
-          10000
-        ]
-      },
-      "expected": [
-        10,
-        100,
-        10000,
-        1000
-      ],
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-small-range","name":"sample: values zero through eight","kind":"sample","visible":true,"input":{"arr":[0,1,2,3,4,5,6,7,8]},"expected":[0,1,2,4,8,3,5,6,7],"tags":["sample","sorting"]},
+    {"id":"sample-powers-of-two","name":"sample: numeric tie-break across equal counts","kind":"sample","visible":true,"input":{"arr":[1024,512,256,128,64,32,16,8,4,2,1]},"expected":[1,2,4,8,16,32,64,128,256,512,1024],"tags":["sample","tie-break"]},
+    {"id":"sample-duplicates","name":"sample: duplicate values are preserved","kind":"sample","visible":true,"input":{"arr":[2,2,1]},"expected":[1,2,2],"tags":["sample","duplicates"]},
+    {"id":"trial-single-value","name":"trial: one value","kind":"trial","visible":true,"input":{"arr":[5]},"expected":[5],"tags":["trial","boundary"]},
+    {"id":"trial-zero-and-dense","name":"trial: zero precedes dense bit patterns","kind":"trial","visible":true,"input":{"arr":[7,0,3,1]},"expected":[0,1,3,7],"tags":["trial","zero"]},
+    {"id":"hidden-numeric-ties","name":"hidden: several equal population counts","kind":"real","visible":false,"input":{"arr":[10,9,6,5,3]},"expected":[3,5,6,9,10],"tags":["hidden","numeric-order"]},
+    {"id":"hidden-decimal-values","name":"hidden: differing decimal magnitudes","kind":"real","visible":false,"input":{"arr":[10,100,1000,10000]},"expected":[10,100,10000,1000],"tags":["hidden","bit-counts"]}
   ]
 }

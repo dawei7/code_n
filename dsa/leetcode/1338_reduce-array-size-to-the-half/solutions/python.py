@@ -1,13 +1,17 @@
+"""Optimal app-local solution for LeetCode 1338."""
+
 from collections import Counter
 
 
 def solve(arr):
-    removed = 0
-    answer = 0
     target = len(arr) // 2
-    for count in sorted(Counter(arr).values(), reverse=True):
-        removed += count
-        answer += 1
+    removed = 0
+
+    for selected, frequency in enumerate(
+        sorted(Counter(arr).values(), reverse=True), start=1
+    ):
+        removed += frequency
         if removed >= target:
-            return answer
-    return answer
+            return selected
+
+    raise AssertionError("A non-empty legal array must reach its removal target")

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1424",
+  "frontend_id": "1298",
+  "title_slug": "maximum-candies-you-can-get-from-boxes",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxCandies",
+  "verified_submission_id": "2068386935",
+  "verified_at": "2026-07-15T09:06:33.612662+00:00"
+}

@@ -1,0 +1,380 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1369",
+  "cases": [
+    {
+      "id": "sample-mixed-history",
+      "name": "sample: one multi-activity and one single-activity user",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "UserActivity": [
+            {
+              "username": "Alice",
+              "activity": "Reading",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "Alice",
+              "activity": "Hiking",
+              "startDate": "2020-02-10",
+              "endDate": "2020-02-12"
+            },
+            {
+              "username": "Alice",
+              "activity": "Coding",
+              "startDate": "2020-03-20",
+              "endDate": "2020-03-21"
+            },
+            {
+              "username": "Bob",
+              "activity": "Swimming",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "username",
+          "activity",
+          "startDate",
+          "endDate"
+        ],
+        "rows": [
+          [
+            "Alice",
+            "Hiking",
+            "2020-02-10",
+            "2020-02-12"
+          ],
+          [
+            "Bob",
+            "Swimming",
+            "2020-04-01",
+            "2020-04-03"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "fallback"
+      ]
+    },
+    {
+      "id": "sample-exactly-two",
+      "name": "sample: exactly two activities returns older",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "UserActivity": [
+            {
+              "username": "Cara",
+              "activity": "New",
+              "startDate": "2022-06-10",
+              "endDate": "2022-06-11"
+            },
+            {
+              "username": "Cara",
+              "activity": "Old",
+              "startDate": "2021-05-01",
+              "endDate": "2021-05-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "username",
+          "activity",
+          "startDate",
+          "endDate"
+        ],
+        "rows": [
+          [
+            "Cara",
+            "Old",
+            "2021-05-01",
+            "2021-05-02"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "two-activities"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one row is returned unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "UserActivity": [
+            {
+              "username": "Dan",
+              "activity": "Chess",
+              "startDate": "2019-08-08",
+              "endDate": "2019-08-09"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "username",
+          "activity",
+          "startDate",
+          "endDate"
+        ],
+        "rows": [
+          [
+            "Dan",
+            "Chess",
+            "2019-08-08",
+            "2019-08-09"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-scrambled-input",
+      "name": "trial: physical input order is irrelevant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "UserActivity": [
+            {
+              "username": "Eve",
+              "activity": "Latest",
+              "startDate": "2023-12-01",
+              "endDate": "2023-12-02"
+            },
+            {
+              "username": "Eve",
+              "activity": "Earliest",
+              "startDate": "2021-01-01",
+              "endDate": "2021-01-02"
+            },
+            {
+              "username": "Eve",
+              "activity": "Middle",
+              "startDate": "2022-07-01",
+              "endDate": "2022-07-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "username",
+          "activity",
+          "startDate",
+          "endDate"
+        ],
+        "rows": [
+          [
+            "Eve",
+            "Middle",
+            "2022-07-01",
+            "2022-07-02"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-two-users",
+      "name": "trial: partitions rank independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "UserActivity": [
+            {
+              "username": "A",
+              "activity": "A1",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "A",
+              "activity": "A2",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "B",
+              "activity": "B1",
+              "startDate": "2018-01-01",
+              "endDate": "2018-01-02"
+            },
+            {
+              "username": "B",
+              "activity": "B2",
+              "startDate": "2019-01-01",
+              "endDate": "2019-01-02"
+            },
+            {
+              "username": "B",
+              "activity": "B3",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "username",
+          "activity",
+          "startDate",
+          "endDate"
+        ],
+        "rows": [
+          [
+            "A",
+            "A1",
+            "2020-01-01",
+            "2020-01-02"
+          ],
+          [
+            "B",
+            "B2",
+            "2019-01-01",
+            "2019-01-02"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "partitions"
+      ]
+    },
+    {
+      "id": "hidden-four-activities",
+      "name": "hidden: choose second among four",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "UserActivity": [
+            {
+              "username": "Fay",
+              "activity": "One",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "Fay",
+              "activity": "Four",
+              "startDate": "2020-04-01",
+              "endDate": "2020-04-02"
+            },
+            {
+              "username": "Fay",
+              "activity": "Two",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            },
+            {
+              "username": "Fay",
+              "activity": "Three",
+              "startDate": "2020-03-01",
+              "endDate": "2020-03-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "username",
+          "activity",
+          "startDate",
+          "endDate"
+        ],
+        "rows": [
+          [
+            "Fay",
+            "Three",
+            "2020-03-01",
+            "2020-03-02"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "four-rows"
+      ]
+    },
+    {
+      "id": "hidden-alphabetical-output",
+      "name": "hidden: output is stable by username",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "UserActivity": [
+            {
+              "username": "Zoe",
+              "activity": "Z only",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "Amy",
+              "activity": "A old",
+              "startDate": "2020-01-01",
+              "endDate": "2020-01-02"
+            },
+            {
+              "username": "Amy",
+              "activity": "A new",
+              "startDate": "2020-02-01",
+              "endDate": "2020-02-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "username",
+          "activity",
+          "startDate",
+          "endDate"
+        ],
+        "rows": [
+          [
+            "Amy",
+            "A old",
+            "2020-01-01",
+            "2020-01-02"
+          ],
+          [
+            "Zoe",
+            "Z only",
+            "2020-01-01",
+            "2020-01-02"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "multiple-users"
+      ]
+    }
+  ]
+}

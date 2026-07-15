@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1420",
+  "frontend_id": "1285",
+  "title_slug": "find-the-start-and-end-number-of-continuous-ranges",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2068331983",
+  "verified_at": "2026-07-15T08:14:33.515402+00:00"
+}

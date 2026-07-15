@@ -1,0 +1,139 @@
+{
+  "challenge_id": "lc_1426",
+  "cases": [
+    {
+      "id": "sample-chain",
+      "name": "sample: consecutive chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "chain"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no successors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          3,
+          3,
+          5,
+          5,
+          7,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "sample-mixed",
+      "name": "sample: several qualifying values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          3,
+          2,
+          3,
+          5,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "duplicate qualifying occurrences all count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single value has no successor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-successor-once",
+      "name": "hidden: one successor qualifies many copies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          4,
+          4,
+          4,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "real-upper",
+      "name": "hidden: upper-bound values cannot qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          999,
+          1000,
+          1000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "upper-bound"
+      ]
+    }
+  ]
+}

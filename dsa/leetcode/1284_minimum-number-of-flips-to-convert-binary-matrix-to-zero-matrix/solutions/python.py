@@ -3,34 +3,37 @@ from collections import deque
 
 def solve(mat):
     rows = len(mat)
-    cols = len(mat[0]) if rows else 0
+    columns = len(mat[0])
     start = 0
-    for r in range(rows):
-        for c in range(cols):
-            if mat[r][c]:
-                start |= 1 << (r * cols + c)
+    for row in range(rows):
+        for column in range(columns):
+            if mat[row][column]:
+                start |= 1 << (row * columns + column)
+
     if start == 0:
         return 0
 
-    flips = []
-    for r in range(rows):
-        for c in range(cols):
-            mask = 0
-            for dr, dc in ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)):
-                nr, nc = r + dr, c + dc
-                if 0 <= nr < rows and 0 <= nc < cols:
-                    mask ^= 1 << (nr * cols + nc)
-            flips.append(mask)
+    flip_masks = []
+    for row in range(rows):
+        for column in range(columns):
+            flip_mask = 0
+            for row_delta, column_delta in ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)):
+                next_row = row + row_delta
+                next_column = column + column_delta
+                if 0 <= next_row < rows and 0 <= next_column < columns:
+                    flip_mask ^= 1 << (next_row * columns + next_column)
+            flip_masks.append(flip_mask)
 
     queue = deque([(start, 0)])
     seen = {start}
     while queue:
-        mask, steps = queue.popleft()
-        for flip in flips:
-            nxt = mask ^ flip
-            if nxt == 0:
+        state, steps = queue.popleft()
+        for flip_mask in flip_masks:
+            next_state = state ^ flip_mask
+            if next_state == 0:
                 return steps + 1
-            if nxt not in seen:
-                seen.add(nxt)
-                queue.append((nxt, steps + 1))
+            if next_state not in seen:
+                seen.add(next_state)
+                queue.append((next_state, steps + 1))
+
     return -1

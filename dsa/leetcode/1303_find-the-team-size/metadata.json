@@ -19,7 +19,7 @@
     "sql"
   ],
   "primary_language": "sql",
-  "runnable_in_coden": false,
+  "runnable_in_coden": true,
   "subsets": [
     "leetcode_all",
     "leetcode_category:database",
@@ -44,6 +44,8 @@
     }
   ],
   "company_tag_stats": {
+    "1": [],
+    "2": [],
     "3": [
       {
         "taggedByAdmin": true,
@@ -51,9 +53,7 @@
         "slug": "amazon",
         "timesEncountered": 0
       }
-    ],
-    "1": [],
-    "2": []
+    ]
   },
   "study_plans": [
     {

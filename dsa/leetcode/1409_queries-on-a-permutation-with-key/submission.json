@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1525",
+  "frontend_id": "1409",
+  "title_slug": "queries-on-a-permutation-with-key",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.processQueries",
+  "verified_submission_id": "2068923846",
+  "verified_at": "2026-07-15T17:12:59.517929+00:00"
+}

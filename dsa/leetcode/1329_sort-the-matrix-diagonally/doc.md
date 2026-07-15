@@ -5,25 +5,27 @@
 | Source | LeetCode |
 | Frontend ID | 1329 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Sorting, Matrix |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [sort-the-matrix-diagonally](https://leetcode.com/problems/sort-the-matrix-diagonally/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/sort-the-matrix-diagonally/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sort-the-matrix-diagonally/).
-
 ### Goal
-Sort every top-left to bottom-right diagonal of a matrix in ascending order while keeping values on their original diagonals.
+In a matrix, a diagonal begins in either the top row or the leftmost column and continues one row down and one column right until it reaches an edge. Cells belong to the same such diagonal exactly when their row-minus-column difference is equal.
+
+Given an integer matrix `mat`, sort the values on every top-left-to-bottom-right diagonal independently in ascending order. Values must remain on their original diagonal; only their order along that diagonal changes.
+
+Return the resulting matrix. Diagonals of length one and diagonals whose values are already ascending remain unchanged.
 
 ### Function Contract
 **Inputs**
 
-- `mat`: integer matrix.
+- `mat`: an $m\times n$ integer matrix, where $1\le m,n\le100$ and $1\le\texttt{mat[i][j]}\le100$.
+
+Let $L=\min(m,n)$ be the maximum diagonal length.
 
 **Return value**
 
-The matrix after independently sorting each diagonal.
+The matrix after each diagonal has been independently sorted in ascending order from its top-left end toward its bottom-right end.
 
 ### Examples
 **Example 1**
@@ -40,37 +42,36 @@ The matrix after independently sorting each diagonal.
 
 - Input: `mat = [[2,1],[1,2]]`
 - Output: `[[2,1],[1,2]]`
+- Explanation: Every diagonal is already ascending.
 
----
+### Required Complexity
+- **Time:** $O(mn\log L)$
+- **Space:** $O(mn)$
 
-## Solution
-### Approach
-Diagonal grouping and sorting.
-
-### Complexity Analysis
-- **Time Complexity**: `O(m * n * log(min(m, n)))`
-- **Space Complexity**: `O(m * n)` for diagonal groups.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-from collections import defaultdict
+#### General
 
+**Group cells by a stable diagonal key**
 
-def solve(mat):
-    diagonals = defaultdict(list)
-    rows = len(mat)
-    cols = len(mat[0]) if rows else 0
-    for r in range(rows):
-        for c in range(cols):
-            diagonals[r - c].append(mat[r][c])
-    for values in diagonals.values():
-        values.sort(reverse=True)
-    for r in range(rows):
-        for c in range(cols):
-            mat[r][c] = diagonals[r - c].pop()
-    return mat
-```
+Moving from `(row, column)` to `(row + 1, column + 1)` preserves `row - column`, so use that difference as the key for a list of diagonal values. Scan the matrix once and append every value to its key's list.
+
+Sort each list in descending order. Then scan matrix cells again in normal row-major order and replace each cell by popping from the end of its diagonal list. Row-major order encounters cells of a fixed diagonal from top-left to bottom-right, while each pop returns the smallest remaining value. Consequently every diagonal is written back in ascending order and no value crosses to another diagonal.
+
+The grouping partitions all cells by their unique difference key, sorting preserves each group's multiset, and the second traversal assigns that multiset in the required order. These facts establish both value preservation and the ordering condition.
+
+#### Complexity detail
+
+There are $mn$ stored values. Sorting a diagonal of length at most $L$ costs $O(k\log k)$ for its length $k$; summed across diagonals, this is bounded by $O(mn\log L)$. The groups collectively store $mn$ values, so auxiliary space is $O(mn)$.
+
+#### Alternatives and edge cases
+
+- **Counting sort per diagonal:** Since values lie between 1 and 100, frequency arrays can reduce sorting to $O(mn)$ time, but the comparison-sort grouping is more general.
+- **Sort from each boundary start:** Extracting, sorting, and replacing each diagonal directly uses only $O(L)$ temporary space and the same comparison-sort time bound.
+- **Selection sort each diagonal:** It avoids a library sort but can take $O(mnL)$ time.
+- **One row or one column:** Every diagonal contains one cell, so the matrix is unchanged.
+- **Duplicate values:** They remain duplicated and their relative identity is irrelevant.
+- **Rectangular matrices:** Top-row and left-column starts together cover every diagonal exactly once.
+
 </details>

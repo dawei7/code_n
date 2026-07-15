@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1547",
+  "frontend_id": "1436",
+  "title_slug": "destination-city",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.destCity",
+  "verified_submission_id": "2069091570",
+  "verified_at": "2026-07-15T19:43:36.726966+00:00"
+}

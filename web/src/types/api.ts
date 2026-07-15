@@ -126,7 +126,7 @@ export interface RunResponse {
   required_complexity: string;
   /** Practice uses selected visible cases; real_test runs the full submission suite. */
   mode: 'practice' | 'real_test';
-  /** Legacy flag. Runtime/correctness is the current verdict gate. */
+  /** Legacy flag. Correctness plus explicit complexity verification is the verdict gate. */
   too_efficient: boolean;
   too_efficient_reason: string;
   message: string;
@@ -158,6 +158,11 @@ export interface RunResponse {
   runtime_trials: number;
   runtime_message: string;
   benchmark_correct: boolean;
+  /** Non-scaling complexity verification for bounded or proof-optimal contracts. */
+  complexity_check: boolean;
+  complexity_passed?: boolean | null;
+  complexity_method: string;
+  complexity_message: string;
   case_results: RunCaseResult[];
   selected_case_ids: string[];
 }

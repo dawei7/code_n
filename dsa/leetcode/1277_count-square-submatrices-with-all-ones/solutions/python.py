@@ -1,10 +1,17 @@
 def solve(matrix):
-    rows = len(matrix)
-    cols = len(matrix[0]) if rows else 0
+    columns = len(matrix[0])
+    dp = [0] * (columns + 1)
     total = 0
-    for r in range(rows):
-        for c in range(cols):
-            if matrix[r][c] and r and c:
-                matrix[r][c] = 1 + min(matrix[r - 1][c], matrix[r][c - 1], matrix[r - 1][c - 1])
-            total += matrix[r][c]
+
+    for row in matrix:
+        above_left = 0
+        for column, value in enumerate(row, start=1):
+            above = dp[column]
+            if value == 1:
+                dp[column] = 1 + min(above, dp[column - 1], above_left)
+                total += dp[column]
+            else:
+                dp[column] = 0
+            above_left = above
+
     return total

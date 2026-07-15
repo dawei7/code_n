@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1316",
+  "measurement_note": "Size is n, the text length. Dual rolling hashes test all O(n squared) candidates in constant time each. A correct alternative that compares the two halves character by character takes O(n cubed) time on these single-character strings; every tier completes and returns n/2 distinct echoes.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 24 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "repetitive"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 48 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 24,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "repetitive"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 96 repeated characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 48,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "repetitive"
+      ]
+    }
+  ]
+}

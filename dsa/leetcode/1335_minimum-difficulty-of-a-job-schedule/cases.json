@@ -1,84 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1335",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: descending jobs",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "job_difficulty": [
-          6,
-          5,
-          4,
-          3,
-          2,
-          1
-        ],
-        "d": 2
-      },
-      "expected": 7,
-      "tags": [
-        "sample",
-        "dynamic-programming"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: impossible schedule",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "job_difficulty": [
-          9,
-          9,
-          9
-        ],
-        "d": 4
-      },
-      "expected": -1,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: one job per day",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "job_difficulty": [
-          1,
-          1,
-          1
-        ],
-        "d": 3
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-alternating",
-      "name": "hidden: alternating difficulties",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "job_difficulty": [
-          7,
-          1,
-          7,
-          1,
-          7,
-          1
-        ],
-        "d": 3
-      },
-      "expected": 15,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: descending jobs","kind":"sample","visible":true,"input":{"job_difficulty":[6,5,4,3,2,1],"d":2},"expected":7,"tags":["sample","dynamic-programming"]},
+    {"id":"sample-2","name":"sample: impossible schedule","kind":"sample","visible":true,"input":{"job_difficulty":[9,9,9],"d":4},"expected":-1,"tags":["sample","impossible"]},
+    {"id":"sample-3","name":"sample: one job per day","kind":"sample","visible":true,"input":{"job_difficulty":[1,1,1],"d":3},"expected":3,"tags":["sample","forced-boundaries"]},
+    {"id":"trial-one-day","name":"trial: one day takes global maximum","kind":"trial","visible":true,"input":{"job_difficulty":[3,1,8,2],"d":1},"expected":8,"tags":["trial","one-day"]},
+    {"id":"trial-zero","name":"trial: zero difficulties","kind":"trial","visible":true,"input":{"job_difficulty":[0,0,0,0],"d":2},"expected":0,"tags":["trial","zero"]},
+    {"id":"hidden-alternating","name":"hidden: alternating difficulties","kind":"real","visible":false,"input":{"job_difficulty":[7,1,7,1,7,1],"d":3},"expected":15,"tags":["hidden","partition"]},
+    {"id":"hidden-order-sensitive","name":"hidden: best late boundary","kind":"real","visible":false,"input":{"job_difficulty":[1,2,3,4,10,1],"d":3},"expected":12,"tags":["hidden","order"]}
   ]
 }

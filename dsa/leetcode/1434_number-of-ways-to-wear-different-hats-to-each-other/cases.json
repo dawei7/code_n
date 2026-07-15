@@ -2,8 +2,8 @@
   "challenge_id": "lc_1434",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: single assignment",
+      "id": "sample-single-way",
+      "name": "sample: forced chain leaves one assignment",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,12 +24,12 @@
       "expected": 1,
       "tags": [
         "sample",
-        "bitmask-dp"
+        "forced"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: two people",
+      "id": "sample-two-people",
+      "name": "sample: four distinct assignments",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,12 +47,13 @@
       },
       "expected": 4,
       "tags": [
-        "sample"
+        "sample",
+        "overlap"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: three overlapping choices",
+      "id": "sample-three",
+      "name": "sample: three overlapping preference lists",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -74,14 +75,60 @@
           ]
         ]
       },
-      "expected": 8,
+      "expected": 11,
       "tags": [
-        "sample"
+        "sample",
+        "bitmask"
       ]
     },
     {
-      "id": "real-cycle-overlap",
-      "name": "hidden: cycle of overlapping choices",
+      "id": "trial-disjoint",
+      "name": "disjoint singleton preferences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hats": [
+          [
+            1
+          ],
+          [
+            20
+          ],
+          [
+            40
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "singletons"
+      ]
+    },
+    {
+      "id": "trial-impossible",
+      "name": "two people share their only hat",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hats": [
+          [
+            7
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-cycle",
+      "name": "hidden: cycle of pairwise overlaps",
       "kind": "real",
       "visible": false,
       "input": {
@@ -102,7 +149,65 @@
       },
       "expected": 2,
       "tags": [
-        "hidden"
+        "hidden",
+        "cycle"
+      ]
+    },
+    {
+      "id": "real-factorial",
+      "name": "hidden: every person likes every available hat",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hats": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "factorial"
+      ]
+    },
+    {
+      "id": "real-unused-boundary",
+      "name": "hidden: boundary hat can remain unused",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hats": [
+          [
+            1,
+            40
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            40
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "hat-40"
       ]
     }
   ]

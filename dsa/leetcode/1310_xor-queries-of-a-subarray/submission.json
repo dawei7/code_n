@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1435",
+  "frontend_id": "1310",
+  "title_slug": "xor-queries-of-a-subarray",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.xorQueries",
+  "verified_submission_id": "2068455042",
+  "verified_at": "2026-07-15T10:06:36.604793+00:00"
+}

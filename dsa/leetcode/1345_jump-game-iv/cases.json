@@ -1,87 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1345",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: repeated teleport values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          100,
-          -23,
-          -23,
-          404,
-          100,
-          23,
-          23,
-          23,
-          3,
-          404
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample",
-        "bfs"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: single value",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          7
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "trial-teleport-to-end",
-      "name": "same value jumps near end",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "arr": [
-          7,
-          6,
-          9,
-          6,
-          9,
-          6,
-          9,
-          7
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-no-teleports",
-      "name": "hidden: no repeated values",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-repeated-teleports","name":"sample: repeated teleport values","kind":"sample","visible":true,"input":{"arr":[100,-23,-23,404,100,23,23,23,3,404]},"expected":3,"tags":["sample","bfs"]},
+    {"id":"sample-single","name":"sample: single value","kind":"sample","visible":true,"input":{"arr":[7]},"expected":0,"tags":["sample","boundary"]},
+    {"id":"sample-direct-teleport","name":"sample: matching endpoints","kind":"sample","visible":true,"input":{"arr":[7,6,9,6,9,6,9,7]},"expected":1,"tags":["sample","same-value"]},
+    {"id":"trial-adjacent-only","name":"trial: two adjacent jumps","kind":"trial","visible":true,"input":{"arr":[6,1,9]},"expected":2,"tags":["trial","adjacent"]},
+    {"id":"trial-all-equal","name":"trial: all values equal","kind":"trial","visible":true,"input":{"arr":[4,4,4,4]},"expected":1,"tags":["trial","same-value"]},
+    {"id":"hidden-distinct","name":"hidden: no teleport edges","kind":"real","visible":false,"input":{"arr":[1,2,3,4,5]},"expected":4,"tags":["hidden","distinct"]},
+    {"id":"hidden-negative-groups","name":"hidden: negative repeated groups","kind":"real","visible":false,"input":{"arr":[-1,-2,-1,-3,-3]},"expected":3,"tags":["hidden","negative-values"]}
   ]
 }

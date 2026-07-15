@@ -19,7 +19,7 @@
     "sql"
   ],
   "primary_language": "sql",
-  "runnable_in_coden": false,
+  "runnable_in_coden": true,
   "subsets": [
     "leetcode_all",
     "leetcode_category:database",

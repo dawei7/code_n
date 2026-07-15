@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1453",
+  "frontend_id": "1322",
+  "title_slug": "ads-performance",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2068495154",
+  "verified_at": "2026-07-15T10:44:26.108855+00:00"
+}

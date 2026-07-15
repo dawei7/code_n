@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1299",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: replace by suffix maximum",
+      "name": "sample: mixed suffix maxima",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -26,7 +27,7 @@
       ],
       "tags": [
         "sample",
-        "array"
+        "suffix-maximum"
       ]
     },
     {
@@ -44,12 +45,12 @@
       ],
       "tags": [
         "sample",
-        "edge"
+        "boundary"
       ]
     },
     {
       "id": "trial-increasing",
-      "name": "increasing array",
+      "name": "trial: strictly increasing array",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -67,14 +68,15 @@
         -1
       ],
       "tags": [
-        "trial"
+        "trial",
+        "increasing"
       ]
     },
     {
-      "id": "real-decreasing",
-      "name": "hidden: decreasing array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-decreasing",
+      "name": "trial: strictly decreasing array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           9,
@@ -88,7 +90,80 @@
         -1
       ],
       "tags": [
-        "hidden"
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-repeated-maximum",
+      "name": "trial: repeated maximum values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          5,
+          1,
+          5,
+          3,
+          2
+        ]
+      },
+      "expected": [
+        5,
+        5,
+        3,
+        2,
+        -1
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-two-values",
+      "name": "hidden: two-element boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          10
+        ]
+      },
+      "expected": [
+        10,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-far-right-maximum",
+      "name": "hidden: maximum remains at far right",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          4,
+          2,
+          3,
+          1,
+          100
+        ]
+      },
+      "expected": [
+        100,
+        100,
+        100,
+        100,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "suffix"
       ]
     }
   ]

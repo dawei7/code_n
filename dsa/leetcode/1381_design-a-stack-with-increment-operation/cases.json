@@ -1,8 +1,9 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1381",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-push-pop",
       "name": "sample: push then pop",
       "kind": "sample",
       "visible": true,
@@ -34,12 +35,12 @@
       ],
       "tags": [
         "sample",
-        "design"
+        "basic"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: increment bottom elements",
+      "id": "sample-increment",
+      "name": "sample: increment both stored values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -77,11 +78,12 @@
         7
       ],
       "tags": [
-        "sample"
+        "sample",
+        "increment"
       ]
     },
     {
-      "id": "sample-3",
+      "id": "sample-empty",
       "name": "sample: pop empty stack",
       "kind": "sample",
       "visible": true,
@@ -99,14 +101,14 @@
       ],
       "tags": [
         "sample",
-        "edge"
+        "empty"
       ]
     },
     {
-      "id": "real-capacity-limit",
-      "name": "hidden: push beyond capacity is ignored",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-capacity",
+      "name": "trial: push beyond capacity is ignored",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "max_size": 2,
         "operations": [
@@ -159,7 +161,168 @@
         -1
       ],
       "tags": [
-        "hidden"
+        "trial",
+        "capacity"
+      ]
+    },
+    {
+      "id": "trial-overlap",
+      "name": "trial: overlapping increments propagate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "max_size": 4,
+        "operations": [
+          [
+            "push",
+            [
+              1
+            ]
+          ],
+          [
+            "push",
+            [
+              2
+            ]
+          ],
+          [
+            "push",
+            [
+              3
+            ]
+          ],
+          [
+            "increment",
+            [
+              3,
+              10
+            ]
+          ],
+          [
+            "increment",
+            [
+              2,
+              100
+            ]
+          ],
+          [
+            "pop",
+            []
+          ],
+          [
+            "pop",
+            []
+          ],
+          [
+            "pop",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        13,
+        112,
+        111
+      ],
+      "tags": [
+        "trial",
+        "overlap"
+      ]
+    },
+    {
+      "id": "hidden-future-push",
+      "name": "hidden: old increment does not affect later push",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "max_size": 3,
+        "operations": [
+          [
+            "push",
+            [
+              5
+            ]
+          ],
+          [
+            "increment",
+            [
+              1,
+              7
+            ]
+          ],
+          [
+            "push",
+            [
+              2
+            ]
+          ],
+          [
+            "pop",
+            []
+          ],
+          [
+            "pop",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        2,
+        12
+      ],
+      "tags": [
+        "hidden",
+        "timing"
+      ]
+    },
+    {
+      "id": "hidden-empty-increment",
+      "name": "hidden: increment while empty is discarded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "max_size": 2,
+        "operations": [
+          [
+            "increment",
+            [
+              2,
+              9
+            ]
+          ],
+          [
+            "push",
+            [
+              4
+            ]
+          ],
+          [
+            "pop",
+            []
+          ],
+          [
+            "pop",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        4,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "empty"
       ]
     }
   ]

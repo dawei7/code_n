@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1531",
+  "frontend_id": "1434",
+  "title_slug": "number-of-ways-to-wear-different-hats-to-each-other",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numberWays",
+  "verified_submission_id": "2069087010",
+  "verified_at": "2026-07-15T19:35:44.390096+00:00"
+}

@@ -1,0 +1,284 @@
+{
+  "challenge_id": "lc_1429",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: initial uniques become duplicates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "FirstUnique",
+          "showFirstUnique",
+          "add",
+          "showFirstUnique",
+          "add",
+          "showFirstUnique",
+          "add",
+          "showFirstUnique"
+        ],
+        "arguments": [
+          [
+            [
+              2,
+              3,
+              5
+            ]
+          ],
+          [],
+          [
+            5
+          ],
+          [],
+          [
+            2
+          ],
+          [],
+          [
+            3
+          ],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        2,
+        null,
+        2,
+        null,
+        3,
+        null,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "sample-none-then-new",
+      "name": "sample: no initial unique then add one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "FirstUnique",
+          "showFirstUnique",
+          "add",
+        "add",
+        "add",
+        "add",
+        "add",
+        "showFirstUnique"
+        ],
+        "arguments": [
+          [
+            [
+              7,
+              7,
+              7,
+              7,
+              7,
+              7
+            ]
+          ],
+          [],
+          [
+            7
+          ],
+          [
+            3
+          ],
+          [
+            3
+          ],
+          [
+            7
+          ],
+          [
+            17
+          ],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        -1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        17
+      ],
+      "tags": [
+        "sample",
+        "repeated"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: single value becomes duplicate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "FirstUnique",
+          "showFirstUnique",
+          "add",
+          "showFirstUnique"
+        ],
+        "arguments": [
+          [
+            [
+              809
+            ]
+          ],
+          [],
+          [
+            809
+          ],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        809,
+        null,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "empty stream gains its first unique",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "FirstUnique",
+          "showFirstUnique",
+          "add",
+          "showFirstUnique"
+        ],
+        "arguments": [
+          [
+            []
+          ],
+          [],
+          [
+            4
+          ],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        -1,
+        null,
+        4
+      ],
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-order",
+      "name": "later unique does not overtake earlier one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "FirstUnique",
+          "add",
+          "add",
+          "showFirstUnique",
+          "add",
+          "showFirstUnique"
+        ],
+        "arguments": [
+          [
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [],
+          [
+            1
+          ],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        1,
+        null,
+        2
+      ],
+      "tags": [
+        "trial",
+        "order"
+      ]
+    },
+    {
+      "id": "real-many-counts",
+      "name": "hidden: counts above two stay non-unique",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "FirstUnique",
+          "add",
+          "add",
+          "showFirstUnique",
+          "add",
+          "showFirstUnique"
+        ],
+        "arguments": [
+          [
+            [
+              5,
+              6
+            ]
+          ],
+          [
+            5
+          ],
+          [
+            5
+          ],
+          [],
+          [
+            6
+          ],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        6,
+        null,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "frequency"
+      ]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1296",
   "cases": [
     {
@@ -27,23 +28,30 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: two groups of three",
+      "name": "sample: four groups of three",
       "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
           3,
-          3,
-          2,
           2,
           1,
-          1
+          2,
+          3,
+          4,
+          3,
+          4,
+          5,
+          9,
+          10,
+          11
         ],
         "k": 3
       },
       "expected": true,
       "tags": [
-        "sample"
+        "sample",
+        "multiple-groups"
       ]
     },
     {
@@ -62,24 +70,92 @@
       },
       "expected": false,
       "tags": [
-        "sample"
+        "sample",
+        "divisibility"
       ]
     },
     {
-      "id": "real-single-value",
-      "name": "hidden: single value group",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-singletons",
+      "name": "trial: every value is its own set",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
-          1
+          1000000000,
+          1,
+          7,
+          7
         ],
         "k": 1
       },
       "expected": true,
       "tags": [
+        "trial",
+        "k-one"
+      ]
+    },
+    {
+      "id": "trial-overlapping-duplicates",
+      "name": "trial: duplicate starts need duplicate successors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-gap",
+      "name": "hidden: missing value inside a required run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
         "hidden",
-        "edge"
+        "gap"
+      ]
+    },
+    {
+      "id": "hidden-insufficient-successor",
+      "name": "hidden: successor multiplicity is too small",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          4
+        ],
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "frequency"
       ]
     }
   ]

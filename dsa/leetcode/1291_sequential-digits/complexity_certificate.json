@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1291",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "All valid outputs come from only 36 fixed substrings of the nine-character decimal sequence, so runtime scaling is not meaningful.",
+  "workload_bound": {
+    "symbol": "c",
+    "maximum": 36,
+    "unit": "sequential-digit candidates",
+    "source_constraint": "low and high are at most 10^9, so candidates use at most digits 1 through 9"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The implementation enumerates the fixed 36 substrings once, performs constant-bounded conversion work, and filters each candidate once."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "Regression independently constructs all 36 candidates numerically and checks every interval formed by candidate-adjacent legal boundaries."
+    }
+  ]
+}

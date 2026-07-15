@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1469",
+  "frontend_id": "1347",
+  "title_slug": "minimum-number-of-steps-to-make-two-strings-anagram",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minSteps",
+  "verified_submission_id": "2068650593",
+  "verified_at": "2026-07-15T13:28:25.330657+00:00"
+}

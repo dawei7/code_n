@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1276",
+  "cases": [
+    {"id": "sample-mixed", "name": "sample: one jumbo and six small burgers", "kind": "sample", "visible": true, "input": {"tomato_slices": 16, "cheese_slices": 7}, "expected": [1, 6], "tags": ["sample", "mixed"]},
+    {"id": "sample-odd", "name": "sample: odd tomato count", "kind": "sample", "visible": true, "input": {"tomato_slices": 17, "cheese_slices": 4}, "expected": [], "tags": ["sample", "parity"]},
+    {"id": "sample-too-few", "name": "sample: too few tomatoes for the cheese", "kind": "sample", "visible": true, "input": {"tomato_slices": 4, "cheese_slices": 17}, "expected": [], "tags": ["sample", "lower-bound"]},
+    {"id": "trial-zero", "name": "trial: no ingredients", "kind": "trial", "visible": true, "input": {"tomato_slices": 0, "cheese_slices": 0}, "expected": [0, 0], "tags": ["trial", "zero"]},
+    {"id": "trial-all-small", "name": "trial: every burger is small", "kind": "trial", "visible": true, "input": {"tomato_slices": 20, "cheese_slices": 10}, "expected": [0, 10], "tags": ["trial", "all-small"]},
+    {"id": "hidden-too-many", "name": "hidden: too many tomatoes for the cheese", "kind": "real", "visible": false, "input": {"tomato_slices": 42, "cheese_slices": 10}, "expected": [], "tags": ["hidden", "upper-bound"]},
+    {"id": "hidden-maximum", "name": "hidden: maximum tomato boundary without cheese", "kind": "real", "visible": false, "input": {"tomato_slices": 10000000, "cheese_slices": 0}, "expected": [], "tags": ["hidden", "maximum", "no-cheese"]}
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1269",
+  "cases": [
+    {
+      "id": "sample-three-steps-two-positions",
+      "name": "sample: four returning walks in a two-position array",
+      "kind": "sample",
+      "visible": true,
+      "input": {"steps": 3, "arr_len": 2},
+      "expected": 4,
+      "tags": ["sample", "stay-and-move"]
+    },
+    {
+      "id": "sample-two-steps-long-array",
+      "name": "sample: distant positions are unreachable",
+      "kind": "sample",
+      "visible": true,
+      "input": {"steps": 2, "arr_len": 4},
+      "expected": 2,
+      "tags": ["sample", "reachable-prefix"]
+    },
+    {
+      "id": "sample-four-steps-two-positions",
+      "name": "sample: repeated boundary interactions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"steps": 4, "arr_len": 2},
+      "expected": 8,
+      "tags": ["sample", "right-boundary"]
+    },
+    {
+      "id": "trial-single-position",
+      "name": "trial: every move must stay",
+      "kind": "trial",
+      "visible": true,
+      "input": {"steps": 500, "arr_len": 1},
+      "expected": 1,
+      "tags": ["trial", "single-position", "maximum-steps"]
+    },
+    {
+      "id": "trial-one-step",
+      "name": "trial: one step can only stay to return",
+      "kind": "trial",
+      "visible": true,
+      "input": {"steps": 1, "arr_len": 100},
+      "expected": 1,
+      "tags": ["trial", "minimum-steps"]
+    },
+    {
+      "id": "real-third-position-matters",
+      "name": "hidden: the reachable prefix includes index two",
+      "kind": "real",
+      "visible": false,
+      "input": {"steps": 4, "arr_len": 3},
+      "expected": 9,
+      "tags": ["hidden", "reachable-boundary"]
+    },
+    {
+      "id": "real-four-position-array",
+      "name": "hidden: all positions are potentially reachable",
+      "kind": "real",
+      "visible": false,
+      "input": {"steps": 6, "arr_len": 4},
+      "expected": 51,
+      "tags": ["hidden", "full-reachable-prefix"]
+    },
+    {
+      "id": "real-modulo-growth",
+      "name": "hidden: a long walk exercises repeated modular transitions",
+      "kind": "real",
+      "visible": false,
+      "input": {"steps": 100, "arr_len": 997},
+      "expected": 345787718,
+      "tags": ["hidden", "modulo", "long-walk", "irrelevant-tail"]
+    }
+  ]
+}

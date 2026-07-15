@@ -1,0 +1,6133 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1322",
+  "measurement_note": "Size is r = a, with one Ads row for each distinct advertisement. Conditional aggregation plus result ordering takes O(r log r) time. A correct correlated-count query rescans Ads for every distinct ad and takes O(r squared) time; all tiers complete and return the same ordered rates.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 distinct advertisements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Ads": [
+            {
+              "ad_id": 1,
+              "user_id": 10000,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 2,
+              "user_id": 10001,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 3,
+              "user_id": 10002,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 4,
+              "user_id": 10003,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 5,
+              "user_id": 10004,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 6,
+              "user_id": 10005,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 7,
+              "user_id": 10006,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 8,
+              "user_id": 10007,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 9,
+              "user_id": 10008,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 10,
+              "user_id": 10009,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 11,
+              "user_id": 10010,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 12,
+              "user_id": 10011,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 13,
+              "user_id": 10012,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 14,
+              "user_id": 10013,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 15,
+              "user_id": 10014,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 16,
+              "user_id": 10015,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 17,
+              "user_id": 10016,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 18,
+              "user_id": 10017,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 19,
+              "user_id": 10018,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 20,
+              "user_id": 10019,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 21,
+              "user_id": 10020,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 22,
+              "user_id": 10021,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 23,
+              "user_id": 10022,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 24,
+              "user_id": 10023,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 25,
+              "user_id": 10024,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 26,
+              "user_id": 10025,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 27,
+              "user_id": 10026,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 28,
+              "user_id": 10027,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 29,
+              "user_id": 10028,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 30,
+              "user_id": 10029,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 31,
+              "user_id": 10030,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 32,
+              "user_id": 10031,
+              "action": "Viewed"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": [
+          [
+            1,
+            100
+          ],
+          [
+            3,
+            100
+          ],
+          [
+            5,
+            100
+          ],
+          [
+            7,
+            100
+          ],
+          [
+            9,
+            100
+          ],
+          [
+            11,
+            100
+          ],
+          [
+            13,
+            100
+          ],
+          [
+            15,
+            100
+          ],
+          [
+            17,
+            100
+          ],
+          [
+            19,
+            100
+          ],
+          [
+            21,
+            100
+          ],
+          [
+            23,
+            100
+          ],
+          [
+            25,
+            100
+          ],
+          [
+            27,
+            100
+          ],
+          [
+            29,
+            100
+          ],
+          [
+            31,
+            100
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            14,
+            0
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            18,
+            0
+          ],
+          [
+            20,
+            0
+          ],
+          [
+            22,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            26,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            30,
+            0
+          ],
+          [
+            32,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "distinct-ads"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 distinct advertisements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Ads": [
+            {
+              "ad_id": 1,
+              "user_id": 10000,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 2,
+              "user_id": 10001,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 3,
+              "user_id": 10002,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 4,
+              "user_id": 10003,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 5,
+              "user_id": 10004,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 6,
+              "user_id": 10005,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 7,
+              "user_id": 10006,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 8,
+              "user_id": 10007,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 9,
+              "user_id": 10008,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 10,
+              "user_id": 10009,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 11,
+              "user_id": 10010,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 12,
+              "user_id": 10011,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 13,
+              "user_id": 10012,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 14,
+              "user_id": 10013,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 15,
+              "user_id": 10014,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 16,
+              "user_id": 10015,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 17,
+              "user_id": 10016,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 18,
+              "user_id": 10017,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 19,
+              "user_id": 10018,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 20,
+              "user_id": 10019,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 21,
+              "user_id": 10020,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 22,
+              "user_id": 10021,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 23,
+              "user_id": 10022,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 24,
+              "user_id": 10023,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 25,
+              "user_id": 10024,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 26,
+              "user_id": 10025,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 27,
+              "user_id": 10026,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 28,
+              "user_id": 10027,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 29,
+              "user_id": 10028,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 30,
+              "user_id": 10029,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 31,
+              "user_id": 10030,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 32,
+              "user_id": 10031,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 33,
+              "user_id": 10032,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 34,
+              "user_id": 10033,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 35,
+              "user_id": 10034,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 36,
+              "user_id": 10035,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 37,
+              "user_id": 10036,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 38,
+              "user_id": 10037,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 39,
+              "user_id": 10038,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 40,
+              "user_id": 10039,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 41,
+              "user_id": 10040,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 42,
+              "user_id": 10041,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 43,
+              "user_id": 10042,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 44,
+              "user_id": 10043,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 45,
+              "user_id": 10044,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 46,
+              "user_id": 10045,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 47,
+              "user_id": 10046,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 48,
+              "user_id": 10047,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 49,
+              "user_id": 10048,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 50,
+              "user_id": 10049,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 51,
+              "user_id": 10050,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 52,
+              "user_id": 10051,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 53,
+              "user_id": 10052,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 54,
+              "user_id": 10053,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 55,
+              "user_id": 10054,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 56,
+              "user_id": 10055,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 57,
+              "user_id": 10056,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 58,
+              "user_id": 10057,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 59,
+              "user_id": 10058,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 60,
+              "user_id": 10059,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 61,
+              "user_id": 10060,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 62,
+              "user_id": 10061,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 63,
+              "user_id": 10062,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 64,
+              "user_id": 10063,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 65,
+              "user_id": 10064,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 66,
+              "user_id": 10065,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 67,
+              "user_id": 10066,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 68,
+              "user_id": 10067,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 69,
+              "user_id": 10068,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 70,
+              "user_id": 10069,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 71,
+              "user_id": 10070,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 72,
+              "user_id": 10071,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 73,
+              "user_id": 10072,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 74,
+              "user_id": 10073,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 75,
+              "user_id": 10074,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 76,
+              "user_id": 10075,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 77,
+              "user_id": 10076,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 78,
+              "user_id": 10077,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 79,
+              "user_id": 10078,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 80,
+              "user_id": 10079,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 81,
+              "user_id": 10080,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 82,
+              "user_id": 10081,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 83,
+              "user_id": 10082,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 84,
+              "user_id": 10083,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 85,
+              "user_id": 10084,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 86,
+              "user_id": 10085,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 87,
+              "user_id": 10086,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 88,
+              "user_id": 10087,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 89,
+              "user_id": 10088,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 90,
+              "user_id": 10089,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 91,
+              "user_id": 10090,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 92,
+              "user_id": 10091,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 93,
+              "user_id": 10092,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 94,
+              "user_id": 10093,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 95,
+              "user_id": 10094,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 96,
+              "user_id": 10095,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 97,
+              "user_id": 10096,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 98,
+              "user_id": 10097,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 99,
+              "user_id": 10098,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 100,
+              "user_id": 10099,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 101,
+              "user_id": 10100,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 102,
+              "user_id": 10101,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 103,
+              "user_id": 10102,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 104,
+              "user_id": 10103,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 105,
+              "user_id": 10104,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 106,
+              "user_id": 10105,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 107,
+              "user_id": 10106,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 108,
+              "user_id": 10107,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 109,
+              "user_id": 10108,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 110,
+              "user_id": 10109,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 111,
+              "user_id": 10110,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 112,
+              "user_id": 10111,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 113,
+              "user_id": 10112,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 114,
+              "user_id": 10113,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 115,
+              "user_id": 10114,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 116,
+              "user_id": 10115,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 117,
+              "user_id": 10116,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 118,
+              "user_id": 10117,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 119,
+              "user_id": 10118,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 120,
+              "user_id": 10119,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 121,
+              "user_id": 10120,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 122,
+              "user_id": 10121,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 123,
+              "user_id": 10122,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 124,
+              "user_id": 10123,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 125,
+              "user_id": 10124,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 126,
+              "user_id": 10125,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 127,
+              "user_id": 10126,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 128,
+              "user_id": 10127,
+              "action": "Viewed"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": [
+          [
+            1,
+            100
+          ],
+          [
+            3,
+            100
+          ],
+          [
+            5,
+            100
+          ],
+          [
+            7,
+            100
+          ],
+          [
+            9,
+            100
+          ],
+          [
+            11,
+            100
+          ],
+          [
+            13,
+            100
+          ],
+          [
+            15,
+            100
+          ],
+          [
+            17,
+            100
+          ],
+          [
+            19,
+            100
+          ],
+          [
+            21,
+            100
+          ],
+          [
+            23,
+            100
+          ],
+          [
+            25,
+            100
+          ],
+          [
+            27,
+            100
+          ],
+          [
+            29,
+            100
+          ],
+          [
+            31,
+            100
+          ],
+          [
+            33,
+            100
+          ],
+          [
+            35,
+            100
+          ],
+          [
+            37,
+            100
+          ],
+          [
+            39,
+            100
+          ],
+          [
+            41,
+            100
+          ],
+          [
+            43,
+            100
+          ],
+          [
+            45,
+            100
+          ],
+          [
+            47,
+            100
+          ],
+          [
+            49,
+            100
+          ],
+          [
+            51,
+            100
+          ],
+          [
+            53,
+            100
+          ],
+          [
+            55,
+            100
+          ],
+          [
+            57,
+            100
+          ],
+          [
+            59,
+            100
+          ],
+          [
+            61,
+            100
+          ],
+          [
+            63,
+            100
+          ],
+          [
+            65,
+            100
+          ],
+          [
+            67,
+            100
+          ],
+          [
+            69,
+            100
+          ],
+          [
+            71,
+            100
+          ],
+          [
+            73,
+            100
+          ],
+          [
+            75,
+            100
+          ],
+          [
+            77,
+            100
+          ],
+          [
+            79,
+            100
+          ],
+          [
+            81,
+            100
+          ],
+          [
+            83,
+            100
+          ],
+          [
+            85,
+            100
+          ],
+          [
+            87,
+            100
+          ],
+          [
+            89,
+            100
+          ],
+          [
+            91,
+            100
+          ],
+          [
+            93,
+            100
+          ],
+          [
+            95,
+            100
+          ],
+          [
+            97,
+            100
+          ],
+          [
+            99,
+            100
+          ],
+          [
+            101,
+            100
+          ],
+          [
+            103,
+            100
+          ],
+          [
+            105,
+            100
+          ],
+          [
+            107,
+            100
+          ],
+          [
+            109,
+            100
+          ],
+          [
+            111,
+            100
+          ],
+          [
+            113,
+            100
+          ],
+          [
+            115,
+            100
+          ],
+          [
+            117,
+            100
+          ],
+          [
+            119,
+            100
+          ],
+          [
+            121,
+            100
+          ],
+          [
+            123,
+            100
+          ],
+          [
+            125,
+            100
+          ],
+          [
+            127,
+            100
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            14,
+            0
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            18,
+            0
+          ],
+          [
+            20,
+            0
+          ],
+          [
+            22,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            26,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            30,
+            0
+          ],
+          [
+            32,
+            0
+          ],
+          [
+            34,
+            0
+          ],
+          [
+            36,
+            0
+          ],
+          [
+            38,
+            0
+          ],
+          [
+            40,
+            0
+          ],
+          [
+            42,
+            0
+          ],
+          [
+            44,
+            0
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            48,
+            0
+          ],
+          [
+            50,
+            0
+          ],
+          [
+            52,
+            0
+          ],
+          [
+            54,
+            0
+          ],
+          [
+            56,
+            0
+          ],
+          [
+            58,
+            0
+          ],
+          [
+            60,
+            0
+          ],
+          [
+            62,
+            0
+          ],
+          [
+            64,
+            0
+          ],
+          [
+            66,
+            0
+          ],
+          [
+            68,
+            0
+          ],
+          [
+            70,
+            0
+          ],
+          [
+            72,
+            0
+          ],
+          [
+            74,
+            0
+          ],
+          [
+            76,
+            0
+          ],
+          [
+            78,
+            0
+          ],
+          [
+            80,
+            0
+          ],
+          [
+            82,
+            0
+          ],
+          [
+            84,
+            0
+          ],
+          [
+            86,
+            0
+          ],
+          [
+            88,
+            0
+          ],
+          [
+            90,
+            0
+          ],
+          [
+            92,
+            0
+          ],
+          [
+            94,
+            0
+          ],
+          [
+            96,
+            0
+          ],
+          [
+            98,
+            0
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            102,
+            0
+          ],
+          [
+            104,
+            0
+          ],
+          [
+            106,
+            0
+          ],
+          [
+            108,
+            0
+          ],
+          [
+            110,
+            0
+          ],
+          [
+            112,
+            0
+          ],
+          [
+            114,
+            0
+          ],
+          [
+            116,
+            0
+          ],
+          [
+            118,
+            0
+          ],
+          [
+            120,
+            0
+          ],
+          [
+            122,
+            0
+          ],
+          [
+            124,
+            0
+          ],
+          [
+            126,
+            0
+          ],
+          [
+            128,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "distinct-ads"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 distinct advertisements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Ads": [
+            {
+              "ad_id": 1,
+              "user_id": 10000,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 2,
+              "user_id": 10001,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 3,
+              "user_id": 10002,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 4,
+              "user_id": 10003,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 5,
+              "user_id": 10004,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 6,
+              "user_id": 10005,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 7,
+              "user_id": 10006,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 8,
+              "user_id": 10007,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 9,
+              "user_id": 10008,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 10,
+              "user_id": 10009,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 11,
+              "user_id": 10010,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 12,
+              "user_id": 10011,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 13,
+              "user_id": 10012,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 14,
+              "user_id": 10013,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 15,
+              "user_id": 10014,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 16,
+              "user_id": 10015,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 17,
+              "user_id": 10016,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 18,
+              "user_id": 10017,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 19,
+              "user_id": 10018,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 20,
+              "user_id": 10019,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 21,
+              "user_id": 10020,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 22,
+              "user_id": 10021,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 23,
+              "user_id": 10022,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 24,
+              "user_id": 10023,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 25,
+              "user_id": 10024,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 26,
+              "user_id": 10025,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 27,
+              "user_id": 10026,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 28,
+              "user_id": 10027,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 29,
+              "user_id": 10028,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 30,
+              "user_id": 10029,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 31,
+              "user_id": 10030,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 32,
+              "user_id": 10031,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 33,
+              "user_id": 10032,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 34,
+              "user_id": 10033,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 35,
+              "user_id": 10034,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 36,
+              "user_id": 10035,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 37,
+              "user_id": 10036,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 38,
+              "user_id": 10037,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 39,
+              "user_id": 10038,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 40,
+              "user_id": 10039,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 41,
+              "user_id": 10040,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 42,
+              "user_id": 10041,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 43,
+              "user_id": 10042,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 44,
+              "user_id": 10043,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 45,
+              "user_id": 10044,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 46,
+              "user_id": 10045,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 47,
+              "user_id": 10046,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 48,
+              "user_id": 10047,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 49,
+              "user_id": 10048,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 50,
+              "user_id": 10049,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 51,
+              "user_id": 10050,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 52,
+              "user_id": 10051,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 53,
+              "user_id": 10052,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 54,
+              "user_id": 10053,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 55,
+              "user_id": 10054,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 56,
+              "user_id": 10055,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 57,
+              "user_id": 10056,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 58,
+              "user_id": 10057,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 59,
+              "user_id": 10058,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 60,
+              "user_id": 10059,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 61,
+              "user_id": 10060,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 62,
+              "user_id": 10061,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 63,
+              "user_id": 10062,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 64,
+              "user_id": 10063,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 65,
+              "user_id": 10064,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 66,
+              "user_id": 10065,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 67,
+              "user_id": 10066,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 68,
+              "user_id": 10067,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 69,
+              "user_id": 10068,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 70,
+              "user_id": 10069,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 71,
+              "user_id": 10070,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 72,
+              "user_id": 10071,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 73,
+              "user_id": 10072,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 74,
+              "user_id": 10073,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 75,
+              "user_id": 10074,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 76,
+              "user_id": 10075,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 77,
+              "user_id": 10076,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 78,
+              "user_id": 10077,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 79,
+              "user_id": 10078,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 80,
+              "user_id": 10079,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 81,
+              "user_id": 10080,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 82,
+              "user_id": 10081,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 83,
+              "user_id": 10082,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 84,
+              "user_id": 10083,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 85,
+              "user_id": 10084,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 86,
+              "user_id": 10085,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 87,
+              "user_id": 10086,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 88,
+              "user_id": 10087,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 89,
+              "user_id": 10088,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 90,
+              "user_id": 10089,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 91,
+              "user_id": 10090,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 92,
+              "user_id": 10091,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 93,
+              "user_id": 10092,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 94,
+              "user_id": 10093,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 95,
+              "user_id": 10094,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 96,
+              "user_id": 10095,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 97,
+              "user_id": 10096,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 98,
+              "user_id": 10097,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 99,
+              "user_id": 10098,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 100,
+              "user_id": 10099,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 101,
+              "user_id": 10100,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 102,
+              "user_id": 10101,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 103,
+              "user_id": 10102,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 104,
+              "user_id": 10103,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 105,
+              "user_id": 10104,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 106,
+              "user_id": 10105,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 107,
+              "user_id": 10106,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 108,
+              "user_id": 10107,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 109,
+              "user_id": 10108,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 110,
+              "user_id": 10109,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 111,
+              "user_id": 10110,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 112,
+              "user_id": 10111,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 113,
+              "user_id": 10112,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 114,
+              "user_id": 10113,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 115,
+              "user_id": 10114,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 116,
+              "user_id": 10115,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 117,
+              "user_id": 10116,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 118,
+              "user_id": 10117,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 119,
+              "user_id": 10118,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 120,
+              "user_id": 10119,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 121,
+              "user_id": 10120,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 122,
+              "user_id": 10121,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 123,
+              "user_id": 10122,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 124,
+              "user_id": 10123,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 125,
+              "user_id": 10124,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 126,
+              "user_id": 10125,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 127,
+              "user_id": 10126,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 128,
+              "user_id": 10127,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 129,
+              "user_id": 10128,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 130,
+              "user_id": 10129,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 131,
+              "user_id": 10130,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 132,
+              "user_id": 10131,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 133,
+              "user_id": 10132,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 134,
+              "user_id": 10133,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 135,
+              "user_id": 10134,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 136,
+              "user_id": 10135,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 137,
+              "user_id": 10136,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 138,
+              "user_id": 10137,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 139,
+              "user_id": 10138,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 140,
+              "user_id": 10139,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 141,
+              "user_id": 10140,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 142,
+              "user_id": 10141,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 143,
+              "user_id": 10142,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 144,
+              "user_id": 10143,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 145,
+              "user_id": 10144,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 146,
+              "user_id": 10145,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 147,
+              "user_id": 10146,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 148,
+              "user_id": 10147,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 149,
+              "user_id": 10148,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 150,
+              "user_id": 10149,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 151,
+              "user_id": 10150,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 152,
+              "user_id": 10151,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 153,
+              "user_id": 10152,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 154,
+              "user_id": 10153,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 155,
+              "user_id": 10154,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 156,
+              "user_id": 10155,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 157,
+              "user_id": 10156,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 158,
+              "user_id": 10157,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 159,
+              "user_id": 10158,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 160,
+              "user_id": 10159,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 161,
+              "user_id": 10160,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 162,
+              "user_id": 10161,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 163,
+              "user_id": 10162,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 164,
+              "user_id": 10163,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 165,
+              "user_id": 10164,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 166,
+              "user_id": 10165,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 167,
+              "user_id": 10166,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 168,
+              "user_id": 10167,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 169,
+              "user_id": 10168,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 170,
+              "user_id": 10169,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 171,
+              "user_id": 10170,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 172,
+              "user_id": 10171,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 173,
+              "user_id": 10172,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 174,
+              "user_id": 10173,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 175,
+              "user_id": 10174,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 176,
+              "user_id": 10175,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 177,
+              "user_id": 10176,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 178,
+              "user_id": 10177,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 179,
+              "user_id": 10178,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 180,
+              "user_id": 10179,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 181,
+              "user_id": 10180,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 182,
+              "user_id": 10181,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 183,
+              "user_id": 10182,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 184,
+              "user_id": 10183,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 185,
+              "user_id": 10184,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 186,
+              "user_id": 10185,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 187,
+              "user_id": 10186,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 188,
+              "user_id": 10187,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 189,
+              "user_id": 10188,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 190,
+              "user_id": 10189,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 191,
+              "user_id": 10190,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 192,
+              "user_id": 10191,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 193,
+              "user_id": 10192,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 194,
+              "user_id": 10193,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 195,
+              "user_id": 10194,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 196,
+              "user_id": 10195,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 197,
+              "user_id": 10196,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 198,
+              "user_id": 10197,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 199,
+              "user_id": 10198,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 200,
+              "user_id": 10199,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 201,
+              "user_id": 10200,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 202,
+              "user_id": 10201,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 203,
+              "user_id": 10202,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 204,
+              "user_id": 10203,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 205,
+              "user_id": 10204,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 206,
+              "user_id": 10205,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 207,
+              "user_id": 10206,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 208,
+              "user_id": 10207,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 209,
+              "user_id": 10208,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 210,
+              "user_id": 10209,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 211,
+              "user_id": 10210,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 212,
+              "user_id": 10211,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 213,
+              "user_id": 10212,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 214,
+              "user_id": 10213,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 215,
+              "user_id": 10214,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 216,
+              "user_id": 10215,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 217,
+              "user_id": 10216,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 218,
+              "user_id": 10217,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 219,
+              "user_id": 10218,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 220,
+              "user_id": 10219,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 221,
+              "user_id": 10220,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 222,
+              "user_id": 10221,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 223,
+              "user_id": 10222,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 224,
+              "user_id": 10223,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 225,
+              "user_id": 10224,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 226,
+              "user_id": 10225,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 227,
+              "user_id": 10226,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 228,
+              "user_id": 10227,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 229,
+              "user_id": 10228,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 230,
+              "user_id": 10229,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 231,
+              "user_id": 10230,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 232,
+              "user_id": 10231,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 233,
+              "user_id": 10232,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 234,
+              "user_id": 10233,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 235,
+              "user_id": 10234,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 236,
+              "user_id": 10235,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 237,
+              "user_id": 10236,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 238,
+              "user_id": 10237,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 239,
+              "user_id": 10238,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 240,
+              "user_id": 10239,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 241,
+              "user_id": 10240,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 242,
+              "user_id": 10241,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 243,
+              "user_id": 10242,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 244,
+              "user_id": 10243,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 245,
+              "user_id": 10244,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 246,
+              "user_id": 10245,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 247,
+              "user_id": 10246,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 248,
+              "user_id": 10247,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 249,
+              "user_id": 10248,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 250,
+              "user_id": 10249,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 251,
+              "user_id": 10250,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 252,
+              "user_id": 10251,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 253,
+              "user_id": 10252,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 254,
+              "user_id": 10253,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 255,
+              "user_id": 10254,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 256,
+              "user_id": 10255,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 257,
+              "user_id": 10256,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 258,
+              "user_id": 10257,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 259,
+              "user_id": 10258,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 260,
+              "user_id": 10259,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 261,
+              "user_id": 10260,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 262,
+              "user_id": 10261,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 263,
+              "user_id": 10262,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 264,
+              "user_id": 10263,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 265,
+              "user_id": 10264,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 266,
+              "user_id": 10265,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 267,
+              "user_id": 10266,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 268,
+              "user_id": 10267,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 269,
+              "user_id": 10268,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 270,
+              "user_id": 10269,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 271,
+              "user_id": 10270,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 272,
+              "user_id": 10271,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 273,
+              "user_id": 10272,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 274,
+              "user_id": 10273,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 275,
+              "user_id": 10274,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 276,
+              "user_id": 10275,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 277,
+              "user_id": 10276,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 278,
+              "user_id": 10277,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 279,
+              "user_id": 10278,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 280,
+              "user_id": 10279,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 281,
+              "user_id": 10280,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 282,
+              "user_id": 10281,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 283,
+              "user_id": 10282,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 284,
+              "user_id": 10283,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 285,
+              "user_id": 10284,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 286,
+              "user_id": 10285,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 287,
+              "user_id": 10286,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 288,
+              "user_id": 10287,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 289,
+              "user_id": 10288,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 290,
+              "user_id": 10289,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 291,
+              "user_id": 10290,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 292,
+              "user_id": 10291,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 293,
+              "user_id": 10292,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 294,
+              "user_id": 10293,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 295,
+              "user_id": 10294,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 296,
+              "user_id": 10295,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 297,
+              "user_id": 10296,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 298,
+              "user_id": 10297,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 299,
+              "user_id": 10298,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 300,
+              "user_id": 10299,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 301,
+              "user_id": 10300,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 302,
+              "user_id": 10301,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 303,
+              "user_id": 10302,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 304,
+              "user_id": 10303,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 305,
+              "user_id": 10304,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 306,
+              "user_id": 10305,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 307,
+              "user_id": 10306,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 308,
+              "user_id": 10307,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 309,
+              "user_id": 10308,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 310,
+              "user_id": 10309,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 311,
+              "user_id": 10310,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 312,
+              "user_id": 10311,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 313,
+              "user_id": 10312,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 314,
+              "user_id": 10313,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 315,
+              "user_id": 10314,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 316,
+              "user_id": 10315,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 317,
+              "user_id": 10316,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 318,
+              "user_id": 10317,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 319,
+              "user_id": 10318,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 320,
+              "user_id": 10319,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 321,
+              "user_id": 10320,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 322,
+              "user_id": 10321,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 323,
+              "user_id": 10322,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 324,
+              "user_id": 10323,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 325,
+              "user_id": 10324,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 326,
+              "user_id": 10325,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 327,
+              "user_id": 10326,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 328,
+              "user_id": 10327,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 329,
+              "user_id": 10328,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 330,
+              "user_id": 10329,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 331,
+              "user_id": 10330,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 332,
+              "user_id": 10331,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 333,
+              "user_id": 10332,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 334,
+              "user_id": 10333,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 335,
+              "user_id": 10334,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 336,
+              "user_id": 10335,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 337,
+              "user_id": 10336,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 338,
+              "user_id": 10337,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 339,
+              "user_id": 10338,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 340,
+              "user_id": 10339,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 341,
+              "user_id": 10340,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 342,
+              "user_id": 10341,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 343,
+              "user_id": 10342,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 344,
+              "user_id": 10343,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 345,
+              "user_id": 10344,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 346,
+              "user_id": 10345,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 347,
+              "user_id": 10346,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 348,
+              "user_id": 10347,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 349,
+              "user_id": 10348,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 350,
+              "user_id": 10349,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 351,
+              "user_id": 10350,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 352,
+              "user_id": 10351,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 353,
+              "user_id": 10352,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 354,
+              "user_id": 10353,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 355,
+              "user_id": 10354,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 356,
+              "user_id": 10355,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 357,
+              "user_id": 10356,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 358,
+              "user_id": 10357,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 359,
+              "user_id": 10358,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 360,
+              "user_id": 10359,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 361,
+              "user_id": 10360,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 362,
+              "user_id": 10361,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 363,
+              "user_id": 10362,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 364,
+              "user_id": 10363,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 365,
+              "user_id": 10364,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 366,
+              "user_id": 10365,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 367,
+              "user_id": 10366,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 368,
+              "user_id": 10367,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 369,
+              "user_id": 10368,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 370,
+              "user_id": 10369,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 371,
+              "user_id": 10370,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 372,
+              "user_id": 10371,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 373,
+              "user_id": 10372,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 374,
+              "user_id": 10373,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 375,
+              "user_id": 10374,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 376,
+              "user_id": 10375,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 377,
+              "user_id": 10376,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 378,
+              "user_id": 10377,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 379,
+              "user_id": 10378,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 380,
+              "user_id": 10379,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 381,
+              "user_id": 10380,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 382,
+              "user_id": 10381,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 383,
+              "user_id": 10382,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 384,
+              "user_id": 10383,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 385,
+              "user_id": 10384,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 386,
+              "user_id": 10385,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 387,
+              "user_id": 10386,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 388,
+              "user_id": 10387,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 389,
+              "user_id": 10388,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 390,
+              "user_id": 10389,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 391,
+              "user_id": 10390,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 392,
+              "user_id": 10391,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 393,
+              "user_id": 10392,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 394,
+              "user_id": 10393,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 395,
+              "user_id": 10394,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 396,
+              "user_id": 10395,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 397,
+              "user_id": 10396,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 398,
+              "user_id": 10397,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 399,
+              "user_id": 10398,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 400,
+              "user_id": 10399,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 401,
+              "user_id": 10400,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 402,
+              "user_id": 10401,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 403,
+              "user_id": 10402,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 404,
+              "user_id": 10403,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 405,
+              "user_id": 10404,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 406,
+              "user_id": 10405,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 407,
+              "user_id": 10406,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 408,
+              "user_id": 10407,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 409,
+              "user_id": 10408,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 410,
+              "user_id": 10409,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 411,
+              "user_id": 10410,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 412,
+              "user_id": 10411,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 413,
+              "user_id": 10412,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 414,
+              "user_id": 10413,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 415,
+              "user_id": 10414,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 416,
+              "user_id": 10415,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 417,
+              "user_id": 10416,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 418,
+              "user_id": 10417,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 419,
+              "user_id": 10418,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 420,
+              "user_id": 10419,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 421,
+              "user_id": 10420,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 422,
+              "user_id": 10421,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 423,
+              "user_id": 10422,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 424,
+              "user_id": 10423,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 425,
+              "user_id": 10424,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 426,
+              "user_id": 10425,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 427,
+              "user_id": 10426,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 428,
+              "user_id": 10427,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 429,
+              "user_id": 10428,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 430,
+              "user_id": 10429,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 431,
+              "user_id": 10430,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 432,
+              "user_id": 10431,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 433,
+              "user_id": 10432,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 434,
+              "user_id": 10433,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 435,
+              "user_id": 10434,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 436,
+              "user_id": 10435,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 437,
+              "user_id": 10436,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 438,
+              "user_id": 10437,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 439,
+              "user_id": 10438,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 440,
+              "user_id": 10439,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 441,
+              "user_id": 10440,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 442,
+              "user_id": 10441,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 443,
+              "user_id": 10442,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 444,
+              "user_id": 10443,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 445,
+              "user_id": 10444,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 446,
+              "user_id": 10445,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 447,
+              "user_id": 10446,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 448,
+              "user_id": 10447,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 449,
+              "user_id": 10448,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 450,
+              "user_id": 10449,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 451,
+              "user_id": 10450,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 452,
+              "user_id": 10451,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 453,
+              "user_id": 10452,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 454,
+              "user_id": 10453,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 455,
+              "user_id": 10454,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 456,
+              "user_id": 10455,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 457,
+              "user_id": 10456,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 458,
+              "user_id": 10457,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 459,
+              "user_id": 10458,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 460,
+              "user_id": 10459,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 461,
+              "user_id": 10460,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 462,
+              "user_id": 10461,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 463,
+              "user_id": 10462,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 464,
+              "user_id": 10463,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 465,
+              "user_id": 10464,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 466,
+              "user_id": 10465,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 467,
+              "user_id": 10466,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 468,
+              "user_id": 10467,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 469,
+              "user_id": 10468,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 470,
+              "user_id": 10469,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 471,
+              "user_id": 10470,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 472,
+              "user_id": 10471,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 473,
+              "user_id": 10472,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 474,
+              "user_id": 10473,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 475,
+              "user_id": 10474,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 476,
+              "user_id": 10475,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 477,
+              "user_id": 10476,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 478,
+              "user_id": 10477,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 479,
+              "user_id": 10478,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 480,
+              "user_id": 10479,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 481,
+              "user_id": 10480,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 482,
+              "user_id": 10481,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 483,
+              "user_id": 10482,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 484,
+              "user_id": 10483,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 485,
+              "user_id": 10484,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 486,
+              "user_id": 10485,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 487,
+              "user_id": 10486,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 488,
+              "user_id": 10487,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 489,
+              "user_id": 10488,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 490,
+              "user_id": 10489,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 491,
+              "user_id": 10490,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 492,
+              "user_id": 10491,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 493,
+              "user_id": 10492,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 494,
+              "user_id": 10493,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 495,
+              "user_id": 10494,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 496,
+              "user_id": 10495,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 497,
+              "user_id": 10496,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 498,
+              "user_id": 10497,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 499,
+              "user_id": 10498,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 500,
+              "user_id": 10499,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 501,
+              "user_id": 10500,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 502,
+              "user_id": 10501,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 503,
+              "user_id": 10502,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 504,
+              "user_id": 10503,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 505,
+              "user_id": 10504,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 506,
+              "user_id": 10505,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 507,
+              "user_id": 10506,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 508,
+              "user_id": 10507,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 509,
+              "user_id": 10508,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 510,
+              "user_id": 10509,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 511,
+              "user_id": 10510,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 512,
+              "user_id": 10511,
+              "action": "Viewed"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": [
+          [
+            1,
+            100
+          ],
+          [
+            3,
+            100
+          ],
+          [
+            5,
+            100
+          ],
+          [
+            7,
+            100
+          ],
+          [
+            9,
+            100
+          ],
+          [
+            11,
+            100
+          ],
+          [
+            13,
+            100
+          ],
+          [
+            15,
+            100
+          ],
+          [
+            17,
+            100
+          ],
+          [
+            19,
+            100
+          ],
+          [
+            21,
+            100
+          ],
+          [
+            23,
+            100
+          ],
+          [
+            25,
+            100
+          ],
+          [
+            27,
+            100
+          ],
+          [
+            29,
+            100
+          ],
+          [
+            31,
+            100
+          ],
+          [
+            33,
+            100
+          ],
+          [
+            35,
+            100
+          ],
+          [
+            37,
+            100
+          ],
+          [
+            39,
+            100
+          ],
+          [
+            41,
+            100
+          ],
+          [
+            43,
+            100
+          ],
+          [
+            45,
+            100
+          ],
+          [
+            47,
+            100
+          ],
+          [
+            49,
+            100
+          ],
+          [
+            51,
+            100
+          ],
+          [
+            53,
+            100
+          ],
+          [
+            55,
+            100
+          ],
+          [
+            57,
+            100
+          ],
+          [
+            59,
+            100
+          ],
+          [
+            61,
+            100
+          ],
+          [
+            63,
+            100
+          ],
+          [
+            65,
+            100
+          ],
+          [
+            67,
+            100
+          ],
+          [
+            69,
+            100
+          ],
+          [
+            71,
+            100
+          ],
+          [
+            73,
+            100
+          ],
+          [
+            75,
+            100
+          ],
+          [
+            77,
+            100
+          ],
+          [
+            79,
+            100
+          ],
+          [
+            81,
+            100
+          ],
+          [
+            83,
+            100
+          ],
+          [
+            85,
+            100
+          ],
+          [
+            87,
+            100
+          ],
+          [
+            89,
+            100
+          ],
+          [
+            91,
+            100
+          ],
+          [
+            93,
+            100
+          ],
+          [
+            95,
+            100
+          ],
+          [
+            97,
+            100
+          ],
+          [
+            99,
+            100
+          ],
+          [
+            101,
+            100
+          ],
+          [
+            103,
+            100
+          ],
+          [
+            105,
+            100
+          ],
+          [
+            107,
+            100
+          ],
+          [
+            109,
+            100
+          ],
+          [
+            111,
+            100
+          ],
+          [
+            113,
+            100
+          ],
+          [
+            115,
+            100
+          ],
+          [
+            117,
+            100
+          ],
+          [
+            119,
+            100
+          ],
+          [
+            121,
+            100
+          ],
+          [
+            123,
+            100
+          ],
+          [
+            125,
+            100
+          ],
+          [
+            127,
+            100
+          ],
+          [
+            129,
+            100
+          ],
+          [
+            131,
+            100
+          ],
+          [
+            133,
+            100
+          ],
+          [
+            135,
+            100
+          ],
+          [
+            137,
+            100
+          ],
+          [
+            139,
+            100
+          ],
+          [
+            141,
+            100
+          ],
+          [
+            143,
+            100
+          ],
+          [
+            145,
+            100
+          ],
+          [
+            147,
+            100
+          ],
+          [
+            149,
+            100
+          ],
+          [
+            151,
+            100
+          ],
+          [
+            153,
+            100
+          ],
+          [
+            155,
+            100
+          ],
+          [
+            157,
+            100
+          ],
+          [
+            159,
+            100
+          ],
+          [
+            161,
+            100
+          ],
+          [
+            163,
+            100
+          ],
+          [
+            165,
+            100
+          ],
+          [
+            167,
+            100
+          ],
+          [
+            169,
+            100
+          ],
+          [
+            171,
+            100
+          ],
+          [
+            173,
+            100
+          ],
+          [
+            175,
+            100
+          ],
+          [
+            177,
+            100
+          ],
+          [
+            179,
+            100
+          ],
+          [
+            181,
+            100
+          ],
+          [
+            183,
+            100
+          ],
+          [
+            185,
+            100
+          ],
+          [
+            187,
+            100
+          ],
+          [
+            189,
+            100
+          ],
+          [
+            191,
+            100
+          ],
+          [
+            193,
+            100
+          ],
+          [
+            195,
+            100
+          ],
+          [
+            197,
+            100
+          ],
+          [
+            199,
+            100
+          ],
+          [
+            201,
+            100
+          ],
+          [
+            203,
+            100
+          ],
+          [
+            205,
+            100
+          ],
+          [
+            207,
+            100
+          ],
+          [
+            209,
+            100
+          ],
+          [
+            211,
+            100
+          ],
+          [
+            213,
+            100
+          ],
+          [
+            215,
+            100
+          ],
+          [
+            217,
+            100
+          ],
+          [
+            219,
+            100
+          ],
+          [
+            221,
+            100
+          ],
+          [
+            223,
+            100
+          ],
+          [
+            225,
+            100
+          ],
+          [
+            227,
+            100
+          ],
+          [
+            229,
+            100
+          ],
+          [
+            231,
+            100
+          ],
+          [
+            233,
+            100
+          ],
+          [
+            235,
+            100
+          ],
+          [
+            237,
+            100
+          ],
+          [
+            239,
+            100
+          ],
+          [
+            241,
+            100
+          ],
+          [
+            243,
+            100
+          ],
+          [
+            245,
+            100
+          ],
+          [
+            247,
+            100
+          ],
+          [
+            249,
+            100
+          ],
+          [
+            251,
+            100
+          ],
+          [
+            253,
+            100
+          ],
+          [
+            255,
+            100
+          ],
+          [
+            257,
+            100
+          ],
+          [
+            259,
+            100
+          ],
+          [
+            261,
+            100
+          ],
+          [
+            263,
+            100
+          ],
+          [
+            265,
+            100
+          ],
+          [
+            267,
+            100
+          ],
+          [
+            269,
+            100
+          ],
+          [
+            271,
+            100
+          ],
+          [
+            273,
+            100
+          ],
+          [
+            275,
+            100
+          ],
+          [
+            277,
+            100
+          ],
+          [
+            279,
+            100
+          ],
+          [
+            281,
+            100
+          ],
+          [
+            283,
+            100
+          ],
+          [
+            285,
+            100
+          ],
+          [
+            287,
+            100
+          ],
+          [
+            289,
+            100
+          ],
+          [
+            291,
+            100
+          ],
+          [
+            293,
+            100
+          ],
+          [
+            295,
+            100
+          ],
+          [
+            297,
+            100
+          ],
+          [
+            299,
+            100
+          ],
+          [
+            301,
+            100
+          ],
+          [
+            303,
+            100
+          ],
+          [
+            305,
+            100
+          ],
+          [
+            307,
+            100
+          ],
+          [
+            309,
+            100
+          ],
+          [
+            311,
+            100
+          ],
+          [
+            313,
+            100
+          ],
+          [
+            315,
+            100
+          ],
+          [
+            317,
+            100
+          ],
+          [
+            319,
+            100
+          ],
+          [
+            321,
+            100
+          ],
+          [
+            323,
+            100
+          ],
+          [
+            325,
+            100
+          ],
+          [
+            327,
+            100
+          ],
+          [
+            329,
+            100
+          ],
+          [
+            331,
+            100
+          ],
+          [
+            333,
+            100
+          ],
+          [
+            335,
+            100
+          ],
+          [
+            337,
+            100
+          ],
+          [
+            339,
+            100
+          ],
+          [
+            341,
+            100
+          ],
+          [
+            343,
+            100
+          ],
+          [
+            345,
+            100
+          ],
+          [
+            347,
+            100
+          ],
+          [
+            349,
+            100
+          ],
+          [
+            351,
+            100
+          ],
+          [
+            353,
+            100
+          ],
+          [
+            355,
+            100
+          ],
+          [
+            357,
+            100
+          ],
+          [
+            359,
+            100
+          ],
+          [
+            361,
+            100
+          ],
+          [
+            363,
+            100
+          ],
+          [
+            365,
+            100
+          ],
+          [
+            367,
+            100
+          ],
+          [
+            369,
+            100
+          ],
+          [
+            371,
+            100
+          ],
+          [
+            373,
+            100
+          ],
+          [
+            375,
+            100
+          ],
+          [
+            377,
+            100
+          ],
+          [
+            379,
+            100
+          ],
+          [
+            381,
+            100
+          ],
+          [
+            383,
+            100
+          ],
+          [
+            385,
+            100
+          ],
+          [
+            387,
+            100
+          ],
+          [
+            389,
+            100
+          ],
+          [
+            391,
+            100
+          ],
+          [
+            393,
+            100
+          ],
+          [
+            395,
+            100
+          ],
+          [
+            397,
+            100
+          ],
+          [
+            399,
+            100
+          ],
+          [
+            401,
+            100
+          ],
+          [
+            403,
+            100
+          ],
+          [
+            405,
+            100
+          ],
+          [
+            407,
+            100
+          ],
+          [
+            409,
+            100
+          ],
+          [
+            411,
+            100
+          ],
+          [
+            413,
+            100
+          ],
+          [
+            415,
+            100
+          ],
+          [
+            417,
+            100
+          ],
+          [
+            419,
+            100
+          ],
+          [
+            421,
+            100
+          ],
+          [
+            423,
+            100
+          ],
+          [
+            425,
+            100
+          ],
+          [
+            427,
+            100
+          ],
+          [
+            429,
+            100
+          ],
+          [
+            431,
+            100
+          ],
+          [
+            433,
+            100
+          ],
+          [
+            435,
+            100
+          ],
+          [
+            437,
+            100
+          ],
+          [
+            439,
+            100
+          ],
+          [
+            441,
+            100
+          ],
+          [
+            443,
+            100
+          ],
+          [
+            445,
+            100
+          ],
+          [
+            447,
+            100
+          ],
+          [
+            449,
+            100
+          ],
+          [
+            451,
+            100
+          ],
+          [
+            453,
+            100
+          ],
+          [
+            455,
+            100
+          ],
+          [
+            457,
+            100
+          ],
+          [
+            459,
+            100
+          ],
+          [
+            461,
+            100
+          ],
+          [
+            463,
+            100
+          ],
+          [
+            465,
+            100
+          ],
+          [
+            467,
+            100
+          ],
+          [
+            469,
+            100
+          ],
+          [
+            471,
+            100
+          ],
+          [
+            473,
+            100
+          ],
+          [
+            475,
+            100
+          ],
+          [
+            477,
+            100
+          ],
+          [
+            479,
+            100
+          ],
+          [
+            481,
+            100
+          ],
+          [
+            483,
+            100
+          ],
+          [
+            485,
+            100
+          ],
+          [
+            487,
+            100
+          ],
+          [
+            489,
+            100
+          ],
+          [
+            491,
+            100
+          ],
+          [
+            493,
+            100
+          ],
+          [
+            495,
+            100
+          ],
+          [
+            497,
+            100
+          ],
+          [
+            499,
+            100
+          ],
+          [
+            501,
+            100
+          ],
+          [
+            503,
+            100
+          ],
+          [
+            505,
+            100
+          ],
+          [
+            507,
+            100
+          ],
+          [
+            509,
+            100
+          ],
+          [
+            511,
+            100
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            14,
+            0
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            18,
+            0
+          ],
+          [
+            20,
+            0
+          ],
+          [
+            22,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            26,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            30,
+            0
+          ],
+          [
+            32,
+            0
+          ],
+          [
+            34,
+            0
+          ],
+          [
+            36,
+            0
+          ],
+          [
+            38,
+            0
+          ],
+          [
+            40,
+            0
+          ],
+          [
+            42,
+            0
+          ],
+          [
+            44,
+            0
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            48,
+            0
+          ],
+          [
+            50,
+            0
+          ],
+          [
+            52,
+            0
+          ],
+          [
+            54,
+            0
+          ],
+          [
+            56,
+            0
+          ],
+          [
+            58,
+            0
+          ],
+          [
+            60,
+            0
+          ],
+          [
+            62,
+            0
+          ],
+          [
+            64,
+            0
+          ],
+          [
+            66,
+            0
+          ],
+          [
+            68,
+            0
+          ],
+          [
+            70,
+            0
+          ],
+          [
+            72,
+            0
+          ],
+          [
+            74,
+            0
+          ],
+          [
+            76,
+            0
+          ],
+          [
+            78,
+            0
+          ],
+          [
+            80,
+            0
+          ],
+          [
+            82,
+            0
+          ],
+          [
+            84,
+            0
+          ],
+          [
+            86,
+            0
+          ],
+          [
+            88,
+            0
+          ],
+          [
+            90,
+            0
+          ],
+          [
+            92,
+            0
+          ],
+          [
+            94,
+            0
+          ],
+          [
+            96,
+            0
+          ],
+          [
+            98,
+            0
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            102,
+            0
+          ],
+          [
+            104,
+            0
+          ],
+          [
+            106,
+            0
+          ],
+          [
+            108,
+            0
+          ],
+          [
+            110,
+            0
+          ],
+          [
+            112,
+            0
+          ],
+          [
+            114,
+            0
+          ],
+          [
+            116,
+            0
+          ],
+          [
+            118,
+            0
+          ],
+          [
+            120,
+            0
+          ],
+          [
+            122,
+            0
+          ],
+          [
+            124,
+            0
+          ],
+          [
+            126,
+            0
+          ],
+          [
+            128,
+            0
+          ],
+          [
+            130,
+            0
+          ],
+          [
+            132,
+            0
+          ],
+          [
+            134,
+            0
+          ],
+          [
+            136,
+            0
+          ],
+          [
+            138,
+            0
+          ],
+          [
+            140,
+            0
+          ],
+          [
+            142,
+            0
+          ],
+          [
+            144,
+            0
+          ],
+          [
+            146,
+            0
+          ],
+          [
+            148,
+            0
+          ],
+          [
+            150,
+            0
+          ],
+          [
+            152,
+            0
+          ],
+          [
+            154,
+            0
+          ],
+          [
+            156,
+            0
+          ],
+          [
+            158,
+            0
+          ],
+          [
+            160,
+            0
+          ],
+          [
+            162,
+            0
+          ],
+          [
+            164,
+            0
+          ],
+          [
+            166,
+            0
+          ],
+          [
+            168,
+            0
+          ],
+          [
+            170,
+            0
+          ],
+          [
+            172,
+            0
+          ],
+          [
+            174,
+            0
+          ],
+          [
+            176,
+            0
+          ],
+          [
+            178,
+            0
+          ],
+          [
+            180,
+            0
+          ],
+          [
+            182,
+            0
+          ],
+          [
+            184,
+            0
+          ],
+          [
+            186,
+            0
+          ],
+          [
+            188,
+            0
+          ],
+          [
+            190,
+            0
+          ],
+          [
+            192,
+            0
+          ],
+          [
+            194,
+            0
+          ],
+          [
+            196,
+            0
+          ],
+          [
+            198,
+            0
+          ],
+          [
+            200,
+            0
+          ],
+          [
+            202,
+            0
+          ],
+          [
+            204,
+            0
+          ],
+          [
+            206,
+            0
+          ],
+          [
+            208,
+            0
+          ],
+          [
+            210,
+            0
+          ],
+          [
+            212,
+            0
+          ],
+          [
+            214,
+            0
+          ],
+          [
+            216,
+            0
+          ],
+          [
+            218,
+            0
+          ],
+          [
+            220,
+            0
+          ],
+          [
+            222,
+            0
+          ],
+          [
+            224,
+            0
+          ],
+          [
+            226,
+            0
+          ],
+          [
+            228,
+            0
+          ],
+          [
+            230,
+            0
+          ],
+          [
+            232,
+            0
+          ],
+          [
+            234,
+            0
+          ],
+          [
+            236,
+            0
+          ],
+          [
+            238,
+            0
+          ],
+          [
+            240,
+            0
+          ],
+          [
+            242,
+            0
+          ],
+          [
+            244,
+            0
+          ],
+          [
+            246,
+            0
+          ],
+          [
+            248,
+            0
+          ],
+          [
+            250,
+            0
+          ],
+          [
+            252,
+            0
+          ],
+          [
+            254,
+            0
+          ],
+          [
+            256,
+            0
+          ],
+          [
+            258,
+            0
+          ],
+          [
+            260,
+            0
+          ],
+          [
+            262,
+            0
+          ],
+          [
+            264,
+            0
+          ],
+          [
+            266,
+            0
+          ],
+          [
+            268,
+            0
+          ],
+          [
+            270,
+            0
+          ],
+          [
+            272,
+            0
+          ],
+          [
+            274,
+            0
+          ],
+          [
+            276,
+            0
+          ],
+          [
+            278,
+            0
+          ],
+          [
+            280,
+            0
+          ],
+          [
+            282,
+            0
+          ],
+          [
+            284,
+            0
+          ],
+          [
+            286,
+            0
+          ],
+          [
+            288,
+            0
+          ],
+          [
+            290,
+            0
+          ],
+          [
+            292,
+            0
+          ],
+          [
+            294,
+            0
+          ],
+          [
+            296,
+            0
+          ],
+          [
+            298,
+            0
+          ],
+          [
+            300,
+            0
+          ],
+          [
+            302,
+            0
+          ],
+          [
+            304,
+            0
+          ],
+          [
+            306,
+            0
+          ],
+          [
+            308,
+            0
+          ],
+          [
+            310,
+            0
+          ],
+          [
+            312,
+            0
+          ],
+          [
+            314,
+            0
+          ],
+          [
+            316,
+            0
+          ],
+          [
+            318,
+            0
+          ],
+          [
+            320,
+            0
+          ],
+          [
+            322,
+            0
+          ],
+          [
+            324,
+            0
+          ],
+          [
+            326,
+            0
+          ],
+          [
+            328,
+            0
+          ],
+          [
+            330,
+            0
+          ],
+          [
+            332,
+            0
+          ],
+          [
+            334,
+            0
+          ],
+          [
+            336,
+            0
+          ],
+          [
+            338,
+            0
+          ],
+          [
+            340,
+            0
+          ],
+          [
+            342,
+            0
+          ],
+          [
+            344,
+            0
+          ],
+          [
+            346,
+            0
+          ],
+          [
+            348,
+            0
+          ],
+          [
+            350,
+            0
+          ],
+          [
+            352,
+            0
+          ],
+          [
+            354,
+            0
+          ],
+          [
+            356,
+            0
+          ],
+          [
+            358,
+            0
+          ],
+          [
+            360,
+            0
+          ],
+          [
+            362,
+            0
+          ],
+          [
+            364,
+            0
+          ],
+          [
+            366,
+            0
+          ],
+          [
+            368,
+            0
+          ],
+          [
+            370,
+            0
+          ],
+          [
+            372,
+            0
+          ],
+          [
+            374,
+            0
+          ],
+          [
+            376,
+            0
+          ],
+          [
+            378,
+            0
+          ],
+          [
+            380,
+            0
+          ],
+          [
+            382,
+            0
+          ],
+          [
+            384,
+            0
+          ],
+          [
+            386,
+            0
+          ],
+          [
+            388,
+            0
+          ],
+          [
+            390,
+            0
+          ],
+          [
+            392,
+            0
+          ],
+          [
+            394,
+            0
+          ],
+          [
+            396,
+            0
+          ],
+          [
+            398,
+            0
+          ],
+          [
+            400,
+            0
+          ],
+          [
+            402,
+            0
+          ],
+          [
+            404,
+            0
+          ],
+          [
+            406,
+            0
+          ],
+          [
+            408,
+            0
+          ],
+          [
+            410,
+            0
+          ],
+          [
+            412,
+            0
+          ],
+          [
+            414,
+            0
+          ],
+          [
+            416,
+            0
+          ],
+          [
+            418,
+            0
+          ],
+          [
+            420,
+            0
+          ],
+          [
+            422,
+            0
+          ],
+          [
+            424,
+            0
+          ],
+          [
+            426,
+            0
+          ],
+          [
+            428,
+            0
+          ],
+          [
+            430,
+            0
+          ],
+          [
+            432,
+            0
+          ],
+          [
+            434,
+            0
+          ],
+          [
+            436,
+            0
+          ],
+          [
+            438,
+            0
+          ],
+          [
+            440,
+            0
+          ],
+          [
+            442,
+            0
+          ],
+          [
+            444,
+            0
+          ],
+          [
+            446,
+            0
+          ],
+          [
+            448,
+            0
+          ],
+          [
+            450,
+            0
+          ],
+          [
+            452,
+            0
+          ],
+          [
+            454,
+            0
+          ],
+          [
+            456,
+            0
+          ],
+          [
+            458,
+            0
+          ],
+          [
+            460,
+            0
+          ],
+          [
+            462,
+            0
+          ],
+          [
+            464,
+            0
+          ],
+          [
+            466,
+            0
+          ],
+          [
+            468,
+            0
+          ],
+          [
+            470,
+            0
+          ],
+          [
+            472,
+            0
+          ],
+          [
+            474,
+            0
+          ],
+          [
+            476,
+            0
+          ],
+          [
+            478,
+            0
+          ],
+          [
+            480,
+            0
+          ],
+          [
+            482,
+            0
+          ],
+          [
+            484,
+            0
+          ],
+          [
+            486,
+            0
+          ],
+          [
+            488,
+            0
+          ],
+          [
+            490,
+            0
+          ],
+          [
+            492,
+            0
+          ],
+          [
+            494,
+            0
+          ],
+          [
+            496,
+            0
+          ],
+          [
+            498,
+            0
+          ],
+          [
+            500,
+            0
+          ],
+          [
+            502,
+            0
+          ],
+          [
+            504,
+            0
+          ],
+          [
+            506,
+            0
+          ],
+          [
+            508,
+            0
+          ],
+          [
+            510,
+            0
+          ],
+          [
+            512,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "distinct-ads"
+      ]
+    }
+  ]
+}

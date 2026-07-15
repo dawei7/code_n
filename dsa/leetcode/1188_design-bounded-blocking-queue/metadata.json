@@ -15,9 +15,9 @@
     }
   ],
   "url": "https://leetcode.com/problems/design-bounded-blocking-queue/",
-  "supported_languages": [],
-  "primary_language": "",
-  "runnable_in_coden": false,
+  "supported_languages": ["python"],
+  "primary_language": "python",
+  "runnable_in_coden": true,
   "subsets": [
     "leetcode_all",
     "leetcode_category:concurrency",

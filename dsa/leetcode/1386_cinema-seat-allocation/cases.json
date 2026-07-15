@@ -1,8 +1,9 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1386",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-three-rows",
       "name": "sample: three rows with reservations",
       "kind": "sample",
       "visible": true,
@@ -38,11 +39,11 @@
       "expected": 4,
       "tags": [
         "sample",
-        "bitmask"
+        "mixed"
       ]
     },
     {
-      "id": "sample-2",
+      "id": "sample-two-rows",
       "name": "sample: two rows",
       "kind": "sample",
       "visible": true,
@@ -65,12 +66,13 @@
       },
       "expected": 2,
       "tags": [
-        "sample"
+        "sample",
+        "edge-seat"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: four rows",
+      "id": "sample-four-rows",
+      "name": "sample: two touched rows",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -96,22 +98,95 @@
       },
       "expected": 4,
       "tags": [
-        "sample"
+        "sample",
+        "mixed"
       ]
     },
     {
-      "id": "real-empty-reservations",
-      "name": "hidden: no reservations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty",
+      "name": "trial: no reservations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2,
         "reserved_seats": []
       },
       "expected": 4,
       "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-middle-only",
+      "name": "trial: only middle block remains",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "reserved_seats": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            8
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "middle"
+      ]
+    },
+    {
+      "id": "hidden-irrelevant",
+      "name": "hidden: only seats one and ten reserved",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "reserved_seats": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            10
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
         "hidden",
-        "edge"
+        "irrelevant"
+      ]
+    },
+    {
+      "id": "hidden-blocked",
+      "name": "hidden: every family block obstructed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "reserved_seats": [
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            6
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "blocked"
       ]
     }
   ]

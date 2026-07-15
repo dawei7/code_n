@@ -1,73 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1354",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: constructible target",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "target": [
-          9,
-          3,
-          5
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "sample",
-        "heap"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: impossible target",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "target": [
-          1,
-          1,
-          1,
-          2
-        ]
-      },
-      "expected": false,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: two values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "target": [
-          8,
-          5
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-single-one",
-      "name": "hidden: single one",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "target": [
-          1
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "hidden",
-        "edge"
-      ]
-    }
+    {"id":"sample-three-values","name":"sample: constructible three-value target","kind":"sample","visible":true,"input":{"target":[9,3,5]},"expected":true,"tags":["sample","heap"]},
+    {"id":"sample-impossible-two","name":"sample: replacement sum cannot be two","kind":"sample","visible":true,"input":{"target":[1,1,1,2]},"expected":false,"tags":["sample","impossible"]},
+    {"id":"sample-two-values","name":"sample: Euclidean reductions","kind":"sample","visible":true,"input":{"target":[8,5]},"expected":true,"tags":["sample","modulo"]},
+    {"id":"trial-single-one","name":"trial: initial one-element state","kind":"trial","visible":true,"input":{"target":[1]},"expected":true,"tags":["trial","boundary"]},
+    {"id":"trial-single-above-one","name":"trial: one element cannot change","kind":"trial","visible":true,"input":{"target":[2]},"expected":false,"tags":["trial","single"]},
+    {"id":"trial-equal-values","name":"trial: equal values above one","kind":"trial","visible":true,"input":{"target":[2,2]},"expected":false,"tags":["trial","zero-remainder"]},
+    {"id":"hidden-rest-one","name":"hidden: large value with remaining sum one","kind":"real","visible":false,"input":{"target":[1000000000,1]},"expected":true,"tags":["hidden","rest-one"]},
+    {"id":"hidden-largest-not-dominant","name":"hidden: largest does not exceed remaining sum","kind":"real","visible":false,"input":{"target":[2,3,3]},"expected":false,"tags":["hidden","dominance"]}
   ]
 }

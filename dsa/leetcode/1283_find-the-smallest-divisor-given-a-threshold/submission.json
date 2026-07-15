@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1408",
+  "frontend_id": "1283",
+  "title_slug": "find-the-smallest-divisor-given-a-threshold",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.smallestDivisor",
+  "verified_submission_id": "2068324305",
+  "verified_at": "2026-07-15T08:06:11.175343+00:00"
+}

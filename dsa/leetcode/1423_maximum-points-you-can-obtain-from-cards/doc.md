@@ -8,66 +8,72 @@
 | Category | Algorithms |
 | Topics | Array, Sliding Window, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-points-you-can-obtain-from-cards](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/).
 
 ### Goal
-Take exactly `k` cards from either the left end or right end of the row. Maximize the sum of the taken card points.
+
+A row of cards has point values in `cardPoints`. On each move, take exactly one card from either the left end or the right end of the remaining row. Continue until exactly `k` cards have been taken.
+
+Return the maximum total value of the selected cards. Choices at the two ends interact because removing a card exposes the next card on that same side, and all `k` moves are required.
 
 ### Function Contract
+
 **Inputs**
 
-- `cardPoints`: a list of card values.
-- `k`: the number of cards that must be taken.
+- `card_points`: an array of $n$ positive card values, where $1 \le n \le 10^5$ and $1 \le \texttt{card_points[i]} \le 10^4$.
+- `k`: the exact number of cards to take, where $1 \le k \le n$.
 
 **Return value**
 
-The maximum total points obtainable by taking `k` end cards.
+- The maximum sum obtainable by taking exactly `k` cards from the two ends.
 
 ### Examples
+
 **Example 1**
 
-- Input: `cardPoints = [1,2,3,4,5,6,1], k = 3`
+- Input: `card_points = [1,2,3,4,5,6,1], k = 3`
 - Output: `12`
 
 **Example 2**
 
-- Input: `cardPoints = [2,2,2], k = 2`
+- Input: `card_points = [2,2,2], k = 2`
 - Output: `4`
 
 **Example 3**
 
-- Input: `cardPoints = [9,7,7,9,7,7,9], k = 7`
+- Input: `card_points = [9,7,7,9,7,7,9], k = 7`
 - Output: `55`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Complement sliding window. Taking `k` cards from the ends is the same as leaving one contiguous middle block of length `n - k`; minimize that block's sum and subtract it from the total.
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(card_points, k):
-    n = len(card_points)
-    k = max(0, min(int(k), n))
-    if k == n:
-        return sum(card_points)
-    window = n - k
-    current = sum(card_points[:window])
-    best_middle = current
-    for right in range(window, n):
-        current += card_points[right] - card_points[right - window]
-        best_middle = min(best_middle, current)
-    return sum(card_points) - best_middle
-```
+#### General
+
+**Choose the contiguous block that remains.** Any sequence of $k$ end removals leaves exactly $n-k$ consecutive cards in the middle. Conversely, every contiguous block of that length can be left by taking all cards before it from the left and all cards after it from the right. Maximizing the taken sum is therefore equivalent to minimizing the sum of the block that remains.
+
+**Slide every possible remainder.** Compute the total card sum and the sum of the first window of length $n-k$. Slide that fixed-length window across the array by adding the entering card and subtracting the leaving card, retaining the smallest window sum. Subtract that minimum from the total.
+
+**Why the complement is optimal.** The correspondence between end choices and remaining windows is exact, so every legal strategy is represented once by a window position. The smallest remaining sum yields the largest complementary taken sum. When $k=n$, the remaining window is empty and the answer is simply the total.
+
+#### Complexity detail
+
+Computing the total and sliding the remaining window across $n$ cards takes $O(n)$ time. Only totals, a window sum, and indices are stored, so auxiliary space is $O(1)$.
+
+#### Alternatives and edge cases
+
+- **Enumerate left/right counts:** For every number taken from the left, sum the matching right suffix. Repeated slicing and summing takes $O(k^2)$ time.
+- **Prefix and suffix arrays:** Precompute all end sums and combine them in $O(n)$ time, but this uses $O(n)$ extra space.
+- **Take every card:** If $k=n$, no middle block remains and the total is mandatory.
+- **Take one card:** Choose the larger endpoint.
+- **All equal values:** Every distribution between the ends has the same score.
+- **Positive values:** Minimizing the complement remains valid without special handling for sign.
+- **Exact move count:** Taking fewer than `k` cards is never permitted.
+
 </details>

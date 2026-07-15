@@ -7,7 +7,7 @@
 | Difficulty | Medium |
 | Category | Concurrency |
 | Topics | Depth-First Search, Breadth-First Search, Concurrency |
-| Supported Languages | Tracked only |
+| Supported Languages | Python |
 | Official Link | [LeetCode](https://leetcode.com/problems/web-crawler-multithreaded/) |
 
 ## Problem Description

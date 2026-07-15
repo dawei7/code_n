@@ -1,0 +1,438 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1294",
+  "cases": [
+    {
+      "id": "sample-all-countries",
+      "name": "sample: all three classifications and excluded dates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Countries": [
+            {
+              "country_id": 2,
+              "country_name": "USA"
+            },
+            {
+              "country_id": 3,
+              "country_name": "Australia"
+            },
+            {
+              "country_id": 7,
+              "country_name": "Peru"
+            },
+            {
+              "country_id": 5,
+              "country_name": "China"
+            },
+            {
+              "country_id": 8,
+              "country_name": "Morocco"
+            },
+            {
+              "country_id": 9,
+              "country_name": "Spain"
+            }
+          ],
+          "Weather": [
+            {
+              "country_id": 2,
+              "weather_state": 15,
+              "day": "2019-11-01"
+            },
+            {
+              "country_id": 2,
+              "weather_state": 12,
+              "day": "2019-10-28"
+            },
+            {
+              "country_id": 2,
+              "weather_state": 12,
+              "day": "2019-10-27"
+            },
+            {
+              "country_id": 3,
+              "weather_state": -2,
+              "day": "2019-11-10"
+            },
+            {
+              "country_id": 3,
+              "weather_state": 0,
+              "day": "2019-11-11"
+            },
+            {
+              "country_id": 3,
+              "weather_state": 3,
+              "day": "2019-11-12"
+            },
+            {
+              "country_id": 5,
+              "weather_state": 16,
+              "day": "2019-11-07"
+            },
+            {
+              "country_id": 5,
+              "weather_state": 18,
+              "day": "2019-11-09"
+            },
+            {
+              "country_id": 5,
+              "weather_state": 21,
+              "day": "2019-11-23"
+            },
+            {
+              "country_id": 7,
+              "weather_state": 25,
+              "day": "2019-11-28"
+            },
+            {
+              "country_id": 7,
+              "weather_state": 22,
+              "day": "2019-12-01"
+            },
+            {
+              "country_id": 7,
+              "weather_state": 20,
+              "day": "2019-12-02"
+            },
+            {
+              "country_id": 8,
+              "weather_state": 25,
+              "day": "2019-11-05"
+            },
+            {
+              "country_id": 8,
+              "weather_state": 27,
+              "day": "2019-11-15"
+            },
+            {
+              "country_id": 8,
+              "weather_state": 31,
+              "day": "2019-11-25"
+            },
+            {
+              "country_id": 9,
+              "weather_state": 7,
+              "day": "2019-10-23"
+            },
+            {
+              "country_id": 9,
+              "weather_state": 3,
+              "day": "2019-12-23"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country_name",
+          "weather_type"
+        ],
+        "rows": [
+          [
+            "Australia",
+            "Cold"
+          ],
+          [
+            "China",
+            "Warm"
+          ],
+          [
+            "Morocco",
+            "Hot"
+          ],
+          [
+            "Peru",
+            "Hot"
+          ],
+          [
+            "USA",
+            "Cold"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-cold-boundary",
+      "name": "trial: average exactly fifteen",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Countries": [
+            {
+              "country_id": 1,
+              "country_name": "Coldland"
+            }
+          ],
+          "Weather": [
+            {
+              "country_id": 1,
+              "weather_state": 10,
+              "day": "2019-11-01"
+            },
+            {
+              "country_id": 1,
+              "weather_state": 20,
+              "day": "2019-11-30"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country_name",
+          "weather_type"
+        ],
+        "rows": [
+          [
+            "Coldland",
+            "Cold"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-hot-boundary",
+      "name": "trial: average exactly twenty-five",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Countries": [
+            {
+              "country_id": 1,
+              "country_name": "Hotland"
+            }
+          ],
+          "Weather": [
+            {
+              "country_id": 1,
+              "weather_state": 20,
+              "day": "2019-11-01"
+            },
+            {
+              "country_id": 1,
+              "weather_state": 30,
+              "day": "2019-11-30"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country_name",
+          "weather_type"
+        ],
+        "rows": [
+          [
+            "Hotland",
+            "Hot"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-warm",
+      "name": "trial: average between boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Countries": [
+            {
+              "country_id": 1,
+              "country_name": "Mild"
+            }
+          ],
+          "Weather": [
+            {
+              "country_id": 1,
+              "weather_state": 16,
+              "day": "2019-11-15"
+            },
+            {
+              "country_id": 1,
+              "weather_state": 24,
+              "day": "2019-11-16"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country_name",
+          "weather_type"
+        ],
+        "rows": [
+          [
+            "Mild",
+            "Warm"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "warm"
+      ]
+    },
+    {
+      "id": "trial-empty-month",
+      "name": "trial: no November records",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Countries": [
+            {
+              "country_id": 1,
+              "country_name": "Elsewhere"
+            }
+          ],
+          "Weather": [
+            {
+              "country_id": 1,
+              "weather_state": 30,
+              "day": "2019-10-31"
+            },
+            {
+              "country_id": 1,
+              "weather_state": 30,
+              "day": "2019-12-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country_name",
+          "weather_type"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "hidden-negative",
+      "name": "hidden: negative cold average",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Countries": [
+            {
+              "country_id": 1,
+              "country_name": "North"
+            },
+            {
+              "country_id": 2,
+              "country_name": "South"
+            }
+          ],
+          "Weather": [
+            {
+              "country_id": 1,
+              "weather_state": -20,
+              "day": "2019-11-05"
+            },
+            {
+              "country_id": 1,
+              "weather_state": -10,
+              "day": "2019-11-20"
+            },
+            {
+              "country_id": 2,
+              "weather_state": 28,
+              "day": "2019-11-05"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country_name",
+          "weather_type"
+        ],
+        "rows": [
+          [
+            "North",
+            "Cold"
+          ],
+          [
+            "South",
+            "Hot"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-date-boundaries",
+      "name": "hidden: both November endpoint dates count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Countries": [
+            {
+              "country_id": 1,
+              "country_name": "Edges"
+            }
+          ],
+          "Weather": [
+            {
+              "country_id": 1,
+              "weather_state": 18,
+              "day": "2019-11-01"
+            },
+            {
+              "country_id": 1,
+              "weather_state": 22,
+              "day": "2019-11-30"
+            },
+            {
+              "country_id": 1,
+              "weather_state": 99,
+              "day": "2019-12-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country_name",
+          "weather_type"
+        ],
+        "rows": [
+          [
+            "Edges",
+            "Warm"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "dates"
+      ]
+    }
+  ]
+}

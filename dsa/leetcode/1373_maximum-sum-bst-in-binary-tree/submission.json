@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1475",
+  "frontend_id": "1373",
+  "title_slug": "maximum-sum-bst-in-binary-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxSumBST",
+  "verified_submission_id": "2068763101",
+  "verified_at": "2026-07-15T15:08:40.759979+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1507",
+  "frontend_id": "1391",
+  "title_slug": "check-if-there-is-a-valid-path-in-a-grid",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.hasValidPath",
+  "verified_submission_id": "2068841616",
+  "verified_at": "2026-07-15T16:13:55.832549+00:00"
+}

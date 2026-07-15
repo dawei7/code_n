@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1274",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(s \\log C)",
+  "summary": "The target has at most 10 ships, each coordinate is at most 1000, and the interactive contract imposes a fixed ceiling of 400 oracle calls, so a runtime scaling benchmark cannot honestly model an unbounded workload.",
+  "workload_bound": {
+    "symbol": "Q",
+    "maximum": 400,
+    "unit": "Sea.hasShips oracle calls",
+    "source_constraint": "at most 10 ships in a 0-through-1000 coordinate grid and at most 400 hasShips calls"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Four-way subdivision halves both coordinate spans; only quadrants containing one of at most ten ships continue, and the judge rejects any execution beyond 400 oracle calls."},
+    {"kind": "boundary_property_cases", "evidence": "Regression covers empty and singleton rectangles, inclusive edges, one-cell-wide regions, the full 1001-by-1001 grid, ten ships, exact brute-force counts, and query-cap enforcement."}
+  ]
+}

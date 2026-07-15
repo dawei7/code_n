@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1287",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: six appears often",
+      "name": "sample: six occupies the middle block",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -22,12 +23,12 @@
       "expected": 6,
       "tags": [
         "sample",
-        "binary-search"
+        "middle"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: two equal values",
+      "name": "sample: both entries equal",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -38,32 +39,31 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "small"
       ]
     },
     {
-      "id": "trial-tail-majority",
-      "name": "tail majority",
+      "id": "trial-single",
+      "name": "trial: one array element",
       "kind": "trial",
       "visible": true,
       "input": {
         "arr": [
-          1,
-          2,
-          3,
-          3
+          7
         ]
       },
-      "expected": 3,
+      "expected": 7,
       "tags": [
-        "trial"
+        "trial",
+        "boundary"
       ]
     },
     {
-      "id": "real-front-majority",
-      "name": "hidden: front majority",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-front-block",
+      "name": "trial: special value at the front",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           4,
@@ -77,7 +77,79 @@
       },
       "expected": 4,
       "tags": [
-        "hidden"
+        "trial",
+        "front"
+      ]
+    },
+    {
+      "id": "trial-tail-block",
+      "name": "trial: special value at the tail",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "tail"
+      ]
+    },
+    {
+      "id": "hidden-three-candidates",
+      "name": "hidden: distractors occupy other quartiles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "quartiles"
+      ]
+    },
+    {
+      "id": "hidden-zero",
+      "name": "hidden: zero is the special value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "zero"
       ]
     }
   ]

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1397",
+  "frontend_id": "1268",
+  "title_slug": "search-suggestions-system",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.suggestedProducts",
+  "verified_submission_id": "2068233787",
+  "verified_at": "2026-07-15T06:39:48.829383+00:00"
+}

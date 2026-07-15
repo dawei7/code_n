@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1564",
+  "frontend_id": "1435",
+  "title_slug": "create-a-session-bar-chart",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2069089789",
+  "verified_at": "2026-07-15T19:40:28.167183+00:00"
+}

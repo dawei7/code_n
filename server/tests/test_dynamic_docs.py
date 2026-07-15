@@ -3,12 +3,18 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from challenges.algorithms.leetcode import _parse_complexity
+from engine.counter import ComplexityClass
 from server.app.challenge_packages import leetcode_package_dir, leetcode_package_id
 
 from . import conftest
 
 
 class DynamicDocsTest(conftest._Base):
+    def test_latex_linearithmic_complexity_is_parsed(self) -> None:
+        text = "### Required Complexity\n- **Time:** $O(n \\log n)$\n- **Space:** $O(n)$"
+        self.assertEqual(_parse_complexity(text), ComplexityClass.O_N_LOG_N)
+
     def test_reference_doc_resolves_from_challenge_package(self) -> None:
         response = self.client.get("/api/docs/by-id/lc_1")
         self.assertEqual(response.status_code, 200, response.text)

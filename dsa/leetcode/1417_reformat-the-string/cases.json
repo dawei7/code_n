@@ -1,0 +1,124 @@
+{
+  "challenge_id": "lc_1417",
+  "cases": [
+    {
+      "id": "sample-balanced",
+      "name": "sample: balanced letters and digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "a0b1c2"
+      },
+      "expected": "0a1b2c",
+      "validator": {
+        "kind": "reformatted_string"
+      },
+      "tags": [
+        "sample",
+        "balanced"
+      ]
+    },
+    {
+      "id": "sample-only-letters",
+      "name": "sample: letters cannot alternate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcode"
+      },
+      "expected": "",
+      "validator": {
+        "kind": "reformatted_string"
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-one-extra-letter",
+      "name": "sample: one extra letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "covid2019"
+      },
+      "expected": "c2o0v1i9d",
+      "validator": {
+        "kind": "reformatted_string"
+      },
+      "tags": [
+        "sample",
+        "letter-first"
+      ]
+    },
+    {
+      "id": "trial-one-character",
+      "name": "single character is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "7"
+      },
+      "expected": "7",
+      "validator": {
+        "kind": "reformatted_string"
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-one-extra-digit",
+      "name": "one extra digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab123"
+      },
+      "expected": "1a2b3",
+      "validator": {
+        "kind": "reformatted_string"
+      },
+      "tags": [
+        "trial",
+        "digit-first"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "hidden: repeated characters preserve multiplicity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaa111"
+      },
+      "expected": "1a1a1a",
+      "validator": {
+        "kind": "reformatted_string"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-imbalanced",
+      "name": "hidden: two extra digits are impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "a123"
+      },
+      "expected": "",
+      "validator": {
+        "kind": "reformatted_string"
+      },
+      "tags": [
+        "hidden",
+        "impossible"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1323",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(d)",
+  "summary": "Every legal input contains at most four decimal digits, which is too narrow for an honest runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "d",
+    "maximum": 4,
+    "unit": "decimal digits",
+    "source_constraint": "num is at most 10000 and contains only digits 6 and 9"
+  },
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"The implementation scans the decimal representation once, replaces at most the first 6, and parses the d-digit result."},
+    {"kind":"boundary_property_cases","evidence":"Regression exhaustively checks every legal 6/9 string of lengths one through four against independent enumeration of no change and every single flipped digit."}
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1362",
+  "measurement_note": "Size is n = num + 2, the larger permitted product. The reference scans downward from each integer square root and therefore takes O(sqrt(n)) time. These inputs keep both closest divisors far below their square roots, exercising the full trial-division path. A correct slower implementation enumerates every divisor through both complete products in O(n) time; it completes all tiers and preserves the exact result.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: exhaustive factors through 83",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 83,
+      "input": {
+        "num": 81
+      },
+      "expected": [
+        2,
+        41
+      ],
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "deep-divisor-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: exhaustive factors through 1523",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1523,
+      "input": {
+        "num": 1521
+      },
+      "expected": [
+        2,
+        761
+      ],
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "deep-divisor-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: exhaustive factors through 9818",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9818,
+      "input": {
+        "num": 9816
+      },
+      "expected": [
+        2,
+        4909
+      ],
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "deep-divisor-scan"
+      ]
+    }
+  ]
+}

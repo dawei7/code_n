@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1371",
+  "cases": [
+    {
+      "id": "sample-long-middle",
+      "name": "sample: longest valid middle substring",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "eleetminicoworoep"
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "parity-mask"
+      ]
+    },
+    {
+      "id": "sample-shorter",
+      "name": "sample: mixed vowel parities",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcodeisgreat"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-no-vowels",
+      "name": "sample: complete consonant string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "bcbcbc"
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "no-vowels"
+      ]
+    },
+    {
+      "id": "trial-one-vowel",
+      "name": "trial: one odd vowel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-paired-vowels",
+      "name": "trial: each vowel appears twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aeiouaeiou"
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "whole-string"
+      ]
+    },
+    {
+      "id": "hidden-grouped-pairs",
+      "name": "hidden: grouped vowel pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaeeiioouu"
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "whole-string"
+      ]
+    },
+    {
+      "id": "hidden-consonant-suffix",
+      "name": "hidden: consonants after one odd vowel",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abc"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "zero-counts"
+      ]
+    }
+  ]
+}

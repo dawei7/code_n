@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1414",
+  "measurement_note": "Size is k, the target sum. These targets require multiple greedy terms while the available Fibonacci list grows; the 1000/4000/16000 tiers span 16x. Generating and reverse-scanning the values once takes O(log k) time. A correct implementation that rescans the complete Fibonacci list to select every term takes O(log^2 k) time and completes normally on all tiers and correctness boundaries.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: target 1000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "k": 1000
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "greedy-gap"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: target 4000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4000,
+      "input": {
+        "k": 4000
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "greedy-gap"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: target 16000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16000,
+      "input": {
+        "k": 16000
+      },
+      "expected": 7,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "greedy-gap"
+      ]
+    }
+  ]
+}

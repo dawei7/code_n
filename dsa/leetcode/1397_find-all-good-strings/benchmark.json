@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1397",
+  "measurement_note": "Size is n, the bounded string length; evil has fixed length four. The legal interval widths are 26, 260, and 4056 strings while n spans 4/8/16. None contains 'zzzz'. The KMP digit DP uses O(26nm) work independent of interval width; a correct implementation that advances through and checks every bounded string performs work proportional to the exponentially growing interval and completes normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 26 bounded candidates of length 4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "n": 4,
+        "s1": "aaaa",
+        "s2": "aaaz",
+        "evil": "zzzz"
+      },
+      "expected": 26,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "bounded-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 260 bounded candidates of length 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "n": 8,
+        "s1": "aaaaaaaa",
+        "s2": "aaaaaajz",
+        "evil": "zzzz"
+      },
+      "expected": 260,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "bounded-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 4056 bounded candidates of length 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "n": 16,
+        "s1": "aaaaaaaaaaaaaaaa",
+        "s2": "aaaaaaaaaaaaafzz",
+        "evil": "zzzz"
+      },
+      "expected": 4056,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "bounded-enumeration"
+      ]
+    }
+  ]
+}

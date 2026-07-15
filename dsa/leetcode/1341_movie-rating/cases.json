@@ -1,0 +1,496 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1341",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: tied user counts and movie averages",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Movies": [
+            {
+              "movie_id": 1,
+              "title": "Avengers"
+            },
+            {
+              "movie_id": 2,
+              "title": "Frozen 2"
+            },
+            {
+              "movie_id": 3,
+              "title": "Joker"
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "name": "Daniel"
+            },
+            {
+              "user_id": 2,
+              "name": "Monica"
+            },
+            {
+              "user_id": 3,
+              "name": "Maria"
+            },
+            {
+              "user_id": 4,
+              "name": "James"
+            }
+          ],
+          "MovieRating": [
+            {
+              "movie_id": 1,
+              "user_id": 1,
+              "rating": 3,
+              "created_at": "2020-01-12"
+            },
+            {
+              "movie_id": 1,
+              "user_id": 2,
+              "rating": 4,
+              "created_at": "2020-02-11"
+            },
+            {
+              "movie_id": 1,
+              "user_id": 3,
+              "rating": 2,
+              "created_at": "2020-02-12"
+            },
+            {
+              "movie_id": 1,
+              "user_id": 4,
+              "rating": 1,
+              "created_at": "2020-01-01"
+            },
+            {
+              "movie_id": 2,
+              "user_id": 1,
+              "rating": 5,
+              "created_at": "2020-02-17"
+            },
+            {
+              "movie_id": 2,
+              "user_id": 2,
+              "rating": 2,
+              "created_at": "2020-02-01"
+            },
+            {
+              "movie_id": 2,
+              "user_id": 3,
+              "rating": 2,
+              "created_at": "2020-03-01"
+            },
+            {
+              "movie_id": 3,
+              "user_id": 1,
+              "rating": 3,
+              "created_at": "2020-02-22"
+            },
+            {
+              "movie_id": 3,
+              "user_id": 2,
+              "rating": 4,
+              "created_at": "2020-02-25"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "results"
+        ],
+        "rows": [
+          [
+            "Daniel"
+          ],
+          [
+            "Frozen 2"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "aggregation",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-boundary-dates",
+      "name": "trial: February date boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Movies": [
+            {
+              "movie_id": 1,
+              "title": "Inside"
+            },
+            {
+              "movie_id": 2,
+              "title": "Outside"
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "name": "Amy"
+            },
+            {
+              "user_id": 2,
+              "name": "Bob"
+            }
+          ],
+          "MovieRating": [
+            {
+              "movie_id": 1,
+              "user_id": 1,
+              "rating": 5,
+              "created_at": "2020-02-01"
+            },
+            {
+              "movie_id": 1,
+              "user_id": 2,
+              "rating": 3,
+              "created_at": "2020-02-29"
+            },
+            {
+              "movie_id": 2,
+              "user_id": 1,
+              "rating": 5,
+              "created_at": "2020-03-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "results"
+        ],
+        "rows": [
+          [
+            "Amy"
+          ],
+          [
+            "Inside"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "date-boundary"
+      ]
+    },
+    {
+      "id": "trial-user-all-dates",
+      "name": "trial: user count includes every date",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Movies": [
+            {
+              "movie_id": 1,
+              "title": "A Film"
+            },
+            {
+              "movie_id": 2,
+              "title": "B Film"
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "name": "All Year"
+            },
+            {
+              "user_id": 2,
+              "name": "February"
+            }
+          ],
+          "MovieRating": [
+            {
+              "movie_id": 1,
+              "user_id": 1,
+              "rating": 1,
+              "created_at": "2019-12-01"
+            },
+            {
+              "movie_id": 2,
+              "user_id": 1,
+              "rating": 1,
+              "created_at": "2021-01-01"
+            },
+            {
+              "movie_id": 1,
+              "user_id": 2,
+              "rating": 5,
+              "created_at": "2020-02-10"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "results"
+        ],
+        "rows": [
+          [
+            "All Year"
+          ],
+          [
+            "A Film"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "all-dates"
+      ]
+    },
+    {
+      "id": "trial-lexical-user",
+      "name": "trial: lexical user tie-break",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Movies": [
+            {
+              "movie_id": 1,
+              "title": "Only"
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "name": "Zoe"
+            },
+            {
+              "user_id": 2,
+              "name": "Alice"
+            }
+          ],
+          "MovieRating": [
+            {
+              "movie_id": 1,
+              "user_id": 1,
+              "rating": 4,
+              "created_at": "2020-02-01"
+            },
+            {
+              "movie_id": 1,
+              "user_id": 2,
+              "rating": 4,
+              "created_at": "2020-02-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "results"
+        ],
+        "rows": [
+          [
+            "Alice"
+          ],
+          [
+            "Only"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "user-tie"
+      ]
+    },
+    {
+      "id": "hidden-movie-average",
+      "name": "hidden: average not rating sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Movies": [
+            {
+              "movie_id": 1,
+              "title": "Many"
+            },
+            {
+              "movie_id": 2,
+              "title": "High"
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "name": "A"
+            },
+            {
+              "user_id": 2,
+              "name": "B"
+            },
+            {
+              "user_id": 3,
+              "name": "C"
+            }
+          ],
+          "MovieRating": [
+            {
+              "movie_id": 1,
+              "user_id": 1,
+              "rating": 5,
+              "created_at": "2020-02-01"
+            },
+            {
+              "movie_id": 1,
+              "user_id": 2,
+              "rating": 1,
+              "created_at": "2020-02-02"
+            },
+            {
+              "movie_id": 2,
+              "user_id": 3,
+              "rating": 4,
+              "created_at": "2020-02-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "results"
+        ],
+        "rows": [
+          [
+            "A"
+          ],
+          [
+            "High"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "average"
+      ]
+    },
+    {
+      "id": "hidden-movie-lexical",
+      "name": "hidden: lexical movie tie-break",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Movies": [
+            {
+              "movie_id": 1,
+              "title": "Zulu"
+            },
+            {
+              "movie_id": 2,
+              "title": "Alpha"
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "name": "Viewer"
+            },
+            {
+              "user_id": 2,
+              "name": "Other"
+            }
+          ],
+          "MovieRating": [
+            {
+              "movie_id": 1,
+              "user_id": 1,
+              "rating": 5,
+              "created_at": "2020-02-01"
+            },
+            {
+              "movie_id": 2,
+              "user_id": 2,
+              "rating": 5,
+              "created_at": "2020-02-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "results"
+        ],
+        "rows": [
+          [
+            "Other"
+          ],
+          [
+            "Alpha"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "movie-tie"
+      ]
+    },
+    {
+      "id": "hidden-output-order",
+      "name": "hidden: user row precedes movie row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Movies": [
+            {
+              "movie_id": 1,
+              "title": "User-like Title"
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "name": "Movie-like Name"
+            },
+            {
+              "user_id": 2,
+              "name": "Zed"
+            }
+          ],
+          "MovieRating": [
+            {
+              "movie_id": 1,
+              "user_id": 1,
+              "rating": 5,
+              "created_at": "2020-02-15"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "results"
+        ],
+        "rows": [
+          [
+            "Movie-like Name"
+          ],
+          [
+            "User-like Title"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "row-order"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_1433",
+  "cases": [
+    {
+      "id": "sample-first",
+      "name": "sample: second string can break first",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s1": "abc",
+        "s2": "xya"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "breakable"
+      ]
+    },
+    {
+      "id": "sample-neither",
+      "name": "sample: prefix dominance changes direction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s1": "abe",
+        "s2": "acd"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-longer",
+      "name": "sample: repeated letters remain comparable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s1": "leetcode",
+        "s2": "interview"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-anagrams",
+      "name": "anagrams tie after sorting",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "listen",
+        "s2": "silent"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "anagram"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single characters are always comparable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "a",
+        "s2": "z"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-sign-change",
+      "name": "hidden: neither prefix direction persists",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "az",
+        "s2": "by"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "sign-change"
+      ]
+    },
+    {
+      "id": "real-one-direction",
+      "name": "hidden: first string dominates with ties",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "zzzyyy",
+        "s2": "zyxabc"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "dominance"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1309",
+  "measurement_note": "Size is n, the encoded string length. An indexed left-to-right scan takes O(n) time. A correct alternative that revalidates the entire consumed prefix whenever it decodes a marked token takes O(n squared) time on these repeated 10# encodings.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: decode 10 marked tokens",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 30,
+      "input": {
+        "s": "10#10#10#10#10#10#10#10#10#10#"
+      },
+      "expected": "jjjjjjjjjj",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "marked-tokens"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: decode 40 marked tokens",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 120,
+      "input": {
+        "s": "10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#"
+      },
+      "expected": "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "marked-tokens"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: decode 160 marked tokens",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 480,
+      "input": {
+        "s": "10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#10#"
+      },
+      "expected": "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "marked-tokens"
+      ]
+    }
+  ]
+}

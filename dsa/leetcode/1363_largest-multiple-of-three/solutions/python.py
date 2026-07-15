@@ -1,22 +1,22 @@
-"""Optimal solution for LeetCode 1363: Largest Multiple of Three."""
+"""Reference solution for LeetCode 1363."""
 
 
-def solve(digits: list[int]) -> str:
+def solve(digits):
     counts = [0] * 10
     total = 0
     for digit in digits:
         counts[digit] += 1
         total += digit
 
-    def remove_one(remainder: int) -> bool:
+    def remove_one(remainder):
         for digit in range(remainder, 10, 3):
             if counts[digit]:
                 counts[digit] -= 1
                 return True
         return False
 
-    def remove_two(remainder: int) -> bool:
-        removed: list[int] = []
+    def remove_two(remainder):
+        removed = []
         for digit in range(remainder, 10, 3):
             while counts[digit] and len(removed) < 2:
                 counts[digit] -= 1

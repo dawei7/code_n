@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_1422",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: mixed binary string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "011101"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-grouped",
+      "name": "sample: zeros then ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "00111"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "grouped"
+      ]
+    },
+    {
+      "id": "sample-all-ones",
+      "name": "sample: all ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1111"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "ones"
+      ]
+    },
+    {
+      "id": "trial-zero-score",
+      "name": "minimum score can be zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-all-zeros",
+      "name": "all zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00000"
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "zeros"
+      ]
+    },
+    {
+      "id": "real-late-boundary",
+      "name": "hidden: best split is near the end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "01000"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "late"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "hidden: maximum-length all-zero string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": 499,
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    }
+  ]
+}

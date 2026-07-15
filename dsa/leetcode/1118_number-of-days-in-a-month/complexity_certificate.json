@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1118",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Every call performs fixed leap-year tests and selects among twelve months, so the complete Gregorian input range has a constant operation bound unsuitable for scaling.",
+  "workload_bound": {
+    "symbol": "M",
+    "maximum": 12,
+    "unit": "month classifications",
+    "source_constraint": "year is 1583 through 2100 and month is 1 through 12"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Leap-year divisibility and membership in the four 30-day months use constant-size tests."},
+    {"kind": "exhaustive_domain", "evidence": "The certificate regression checks all 6216 legal year/month pairs against the calendar library."}
+  ]
+}

@@ -1,8 +1,9 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1366",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-close-race",
       "name": "sample: close first-place race",
       "kind": "sample",
       "visible": true,
@@ -18,12 +19,12 @@
       "expected": "ACB",
       "tags": [
         "sample",
-        "sorting"
+        "positional-counts"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: two ballots",
+      "id": "sample-two-ballots",
+      "name": "sample: two ballots require later ranks",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -34,12 +35,13 @@
       },
       "expected": "XWYZ",
       "tags": [
-        "sample"
+        "sample",
+        "later-ranks"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one ballot",
+      "id": "sample-one-ballot",
+      "name": "sample: one complete ballot",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -50,12 +52,48 @@
       "expected": "ZMNAGUEDSJYLBOPHRQICWFXTVK",
       "tags": [
         "sample",
-        "edge"
+        "single-ballot"
       ]
     },
     {
-      "id": "real-tie-break-by-letter",
-      "name": "hidden: final tie uses team letter",
+      "id": "trial-single-team",
+      "name": "trial: one team across several ballots",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "votes": [
+          "M",
+          "M",
+          "M"
+        ]
+      },
+      "expected": "M",
+      "tags": [
+        "trial",
+        "single-team"
+      ]
+    },
+    {
+      "id": "trial-alphabetical-tie",
+      "name": "trial: complete vectors tie alphabetically",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "votes": [
+          "ABC",
+          "BCA",
+          "CAB"
+        ]
+      },
+      "expected": "ABC",
+      "tags": [
+        "trial",
+        "alphabetical"
+      ]
+    },
+    {
+      "id": "hidden-complete-tie",
+      "name": "hidden: six ballots tie every position",
       "kind": "real",
       "visible": false,
       "input": {
@@ -70,7 +108,27 @@
       },
       "expected": "ABC",
       "tags": [
-        "hidden"
+        "hidden",
+        "complete-tie"
+      ]
+    },
+    {
+      "id": "hidden-first-position",
+      "name": "hidden: first-place majority dominates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "votes": [
+          "BACD",
+          "BACD",
+          "ABCD",
+          "CBAD"
+        ]
+      },
+      "expected": "BACD",
+      "tags": [
+        "hidden",
+        "first-place"
       ]
     }
   ]

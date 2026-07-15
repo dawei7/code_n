@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1360",
+  "measurement_note": "Size is the absolute day gap D. The ordinal-conversion reference uses a fixed number of Gregorian arithmetic operations and therefore runs in O(1) time. A correct slower implementation advances a calendar date one day at a time and takes O(D) time. The 365-, 3,650-, and 36,500-day gaps are legal within the supported date range, and the slower implementation completes without reaching the instruction safety cap.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 365-day gap",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 365,
+      "input": {
+        "date1": "1971-01-01",
+        "date2": "1972-01-01"
+      },
+      "expected": 365,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "day-gap"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 3650-day gap",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3650,
+      "input": {
+        "date1": "1971-01-01",
+        "date2": "1980-12-29"
+      },
+      "expected": 3650,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "day-gap"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 36500-day gap",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36500,
+      "input": {
+        "date1": "1971-01-01",
+        "date2": "2070-12-07"
+      },
+      "expected": 36500,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "day-gap"
+      ]
+    }
+  ]
+}

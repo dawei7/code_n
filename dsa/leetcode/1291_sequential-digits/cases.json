@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1291",
+  "cases": [
+    {
+      "id": "sample-100-300",
+      "name": "sample: two three-digit values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "low": 100,
+        "high": 300
+      },
+      "expected": [
+        123,
+        234
+      ],
+      "tags": [
+        "sample",
+        "three-digit"
+      ]
+    },
+    {
+      "id": "sample-1000-13000",
+      "name": "sample: six four-digit values and one five-digit value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "low": 1000,
+        "high": 13000
+      },
+      "expected": [
+        1234,
+        2345,
+        3456,
+        4567,
+        5678,
+        6789,
+        12345
+      ],
+      "tags": [
+        "sample",
+        "mixed-length"
+      ]
+    },
+    {
+      "id": "trial-exact",
+      "name": "trial: one exact endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 12,
+        "high": 12
+      },
+      "expected": [
+        12
+      ],
+      "tags": [
+        "trial",
+        "inclusive"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: no candidate in range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 90,
+        "high": 100
+      },
+      "expected": [],
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-four-digit-band",
+      "name": "trial: all four-digit candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 1234,
+        "high": 6789
+      },
+      "expected": [
+        1234,
+        2345,
+        3456,
+        4567,
+        5678,
+        6789
+      ],
+      "tags": [
+        "trial",
+        "four-digit"
+      ]
+    },
+    {
+      "id": "hidden-lower-bound",
+      "name": "hidden: smallest candidate near lower bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "low": 10,
+        "high": 12
+      },
+      "expected": [
+        12
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-full-domain",
+      "name": "hidden: every possible candidate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "low": 10,
+        "high": 1000000000
+      },
+      "expected": [
+        12,
+        23,
+        34,
+        45,
+        56,
+        67,
+        78,
+        89,
+        123,
+        234,
+        345,
+        456,
+        567,
+        678,
+        789,
+        1234,
+        2345,
+        3456,
+        4567,
+        5678,
+        6789,
+        12345,
+        23456,
+        34567,
+        45678,
+        56789,
+        123456,
+        234567,
+        345678,
+        456789,
+        1234567,
+        2345678,
+        3456789,
+        12345678,
+        23456789,
+        123456789
+      ],
+      "tags": [
+        "hidden",
+        "full-domain"
+      ]
+    }
+  ]
+}

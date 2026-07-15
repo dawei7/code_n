@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1332",
+  "measurement_note": "Size is n, the string length. The optimal two-pointer palindrome test takes O(n) time. A correct slower alternative computes the longest palindromic subsequence length with dynamic programming before returning 1 or 2, taking O(n squared) time; every tier is a legal non-palindrome and completes with the correct answer 2.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: length 32 late mismatch","kind":"benchmark","visible":false,"size":32,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"},"expected":2,"tags":["benchmark","scale-small","late-mismatch"]},
+    {"id":"benchmark-scale-2","name":"benchmark: length 128 late mismatch","kind":"benchmark","visible":false,"size":128,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"},"expected":2,"tags":["benchmark","scale-medium","late-mismatch"]},
+    {"id":"benchmark-scale-3","name":"benchmark: length 512 late mismatch","kind":"benchmark","visible":false,"size":512,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"},"expected":2,"tags":["benchmark","scale-large","late-mismatch"]}
+  ]
+}

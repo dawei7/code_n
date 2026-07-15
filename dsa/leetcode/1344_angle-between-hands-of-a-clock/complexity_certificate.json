@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1344",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The complete legal input domain contains only 720 clock times, so no honest runtime-scaling workload exists.",
+  "workload_bound": {
+    "symbol": "t",
+    "maximum": 720,
+    "unit": "legal clock times",
+    "source_constraint": "hour is from 1 through 12 and minutes is from 0 through 59"
+  },
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"The implementation computes both hand positions and their smaller circular difference with a fixed number of arithmetic operations."},
+    {"kind":"boundary_property_cases","evidence":"Regression exhaustively checks all 720 legal times against an independent exact-arithmetic oracle expressed in half-degree units."}
+  ]
+}

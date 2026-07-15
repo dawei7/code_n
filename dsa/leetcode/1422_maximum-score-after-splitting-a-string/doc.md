@@ -8,48 +8,71 @@
 | Category | Algorithms |
 | Topics | String, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-score-after-splitting-a-string](https://leetcode.com/problems/maximum-score-after-splitting-a-string/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/maximum-score-after-splitting-a-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-score-after-splitting-a-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Split the binary string `s` into two nonempty contiguous parts. The score of a split is the number of `0` characters in its left part plus the number of `1` characters in its right part.
+
+Evaluate every legal boundary between adjacent characters and return the maximum score. Neither part may be empty, so the split must occur after the first character and before the last character.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: a binary string of length $n$, where $2 \le n \le 500$.
 
 **Return value**
 
-TODO
+- The greatest possible value of left-side zeros plus right-side ones over all nonempty two-part splits.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "011101"`
+- Output: `5`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "00111"`
+- Output: `5`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "1111"`
+- Output: `3`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Count right-side ones before splitting.** Initially, every `1` belongs to the unsplit right side. Store their total, along with a left-zero count starting at zero.
+
+Move the split boundary from left to right, processing positions zero through `n - 2` so the final character always remains in the right part. When the crossed character is `0`, increment the left-zero count. When it is `1`, decrement the right-one count. Their sum is then the score of the boundary immediately after that character; retain the largest sum.
+
+Each update transfers exactly the crossed character from right to left. Thus the two counters equal the score definition at every legal boundary, and every legal boundary is considered once. The maximum recorded value is therefore the optimal score.
+
+#### Complexity detail
+
+Counting the initial ones and scanning the $n-1$ legal boundary positions take $O(n)$ time. The two counters and maximum use $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Count both substrings per split:** Slicing and recounting each side is direct but takes $O(n^2)$ time.
+- **Prefix arrays:** Store zero prefixes and one suffixes. This also takes $O(n)$ time but uses $O(n)$ extra space unnecessarily.
+- **Length two:** There is exactly one legal split.
+- **All zeros:** The best boundary leaves one character on the right and scores $n-1$.
+- **All ones:** The best boundary leaves one `1` on the right and also scores $n-1$.
+- **Zero score:** The string `"10"` has a legal split whose two counted categories are both absent.
+- **Nonempty parts:** Never evaluate a boundary after the last character.
+
+</details>

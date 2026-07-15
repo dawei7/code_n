@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1421",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: stored and missing values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "NPV": [
+            {
+              "id": 1,
+              "year": 2018,
+              "npv": 100
+            },
+            {
+              "id": 1,
+              "year": 2019,
+              "npv": 113
+            },
+            {
+              "id": 7,
+              "year": 2019,
+              "npv": 0
+            },
+            {
+              "id": 7,
+              "year": 2020,
+              "npv": 30
+            }
+          ],
+          "Queries": [
+            {
+              "id": 1,
+              "year": 2019
+            },
+            {
+              "id": 7,
+              "year": 2018
+            },
+            {
+              "id": 7,
+              "year": 2019
+            },
+            {
+              "id": 7,
+              "year": 2020
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "year",
+          "npv"
+        ],
+        "rows": [
+          [
+            1,
+            2019,
+            113
+          ],
+          [
+            7,
+            2018,
+            0
+          ],
+          [
+            7,
+            2019,
+            0
+          ],
+          [
+            7,
+            2020,
+            30
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "missing"
+      ]
+    },
+    {
+      "id": "sample-all-matched",
+      "name": "sample: every query is stored",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "NPV": [
+            {
+              "id": 2,
+              "year": 2008,
+              "npv": 121
+            },
+            {
+              "id": 3,
+              "year": 2009,
+              "npv": 12
+            }
+          ],
+          "Queries": [
+            {
+              "id": 3,
+              "year": 2009
+            },
+            {
+              "id": 2,
+              "year": 2008
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "year",
+          "npv"
+        ],
+        "rows": [
+          [
+            2,
+            2008,
+            121
+          ],
+          [
+            3,
+            2009,
+            12
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "matched"
+      ]
+    },
+    {
+      "id": "sample-empty-npv",
+      "name": "sample: all requested pairs are missing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+            "NPV": [
+              {
+                "id": 99,
+                "year": 1999,
+                "npv": 1
+              }
+            ],
+          "Queries": [
+            {
+              "id": 4,
+              "year": 2020
+            },
+            {
+              "id": 5,
+              "year": 2021
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "year",
+          "npv"
+        ],
+        "rows": [
+          [
+            4,
+            2020,
+            0
+          ],
+          [
+            5,
+            2021,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-same-id-years",
+      "name": "same identifier uses year in key",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "NPV": [
+            {
+              "id": 9,
+              "year": 2019,
+              "npv": 10
+            },
+            {
+              "id": 9,
+              "year": 2020,
+              "npv": 20
+            }
+          ],
+          "Queries": [
+            {
+              "id": 9,
+              "year": 2020
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "year",
+          "npv"
+        ],
+        "rows": [
+          [
+            9,
+            2020,
+            20
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "composite-key"
+      ]
+    },
+    {
+      "id": "real-stored-zero",
+      "name": "hidden: stored zero remains zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "NPV": [
+            {
+              "id": 1,
+              "year": 2000,
+              "npv": 0
+            }
+          ],
+          "Queries": [
+            {
+              "id": 1,
+              "year": 2000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "year",
+          "npv"
+        ],
+        "rows": [
+          [
+            1,
+            2000,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-unqueried",
+      "name": "hidden: unrequested NPV rows are omitted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "NPV": [
+            {
+              "id": 1,
+              "year": 2000,
+              "npv": 5
+            },
+            {
+              "id": 2,
+              "year": 2000,
+              "npv": 6
+            }
+          ],
+          "Queries": [
+            {
+              "id": 2,
+              "year": 2000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "year",
+          "npv"
+        ],
+        "rows": [
+          [
+            2,
+            2000,
+            6
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "left-side"
+      ]
+    }
+  ]
+}

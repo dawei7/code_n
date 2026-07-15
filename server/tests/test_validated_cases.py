@@ -42,6 +42,7 @@ from server.app.engine_runner import (
     _list_node_param_names,
     _list_node_from_values,
     _list_node_to_values,
+    _longest_happy_string_match,
     _lcp_string_match,
     _largest_divisible_subset_match,
     _linked_list_random_draws_match,
@@ -83,6 +84,9 @@ from server.app.engine_runner import (
     _tree_param_names,
     _tree_from_level_order,
     _three_equal_binary_parts_match,
+    _JudgeSea,
+    _JudgeBinaryMatrix,
+    _JudgePoint,
     _JudgeMaster,
     _unique_bsts_match,
     _unordered_nested_list_matches,
@@ -245,6 +249,25 @@ ORDER BY activity.player_id;
         self.assertFalse(_validated_case_matches(case, node, 2))
         self.assertTrue(_validated_case_matches(case, None, None))
 
+    def test_cloned_tree_fixture_preserves_original_target_identity(self) -> None:
+        kwargs = _prepare_validated_kwargs(
+            {
+                "original": {"tree": [7, 4, 7, None, None, 6, 8], "target_index": 2},
+                "cloned": {"clone_of": "original"},
+                "target": {"target_of": "original"},
+            },
+            ("original", "cloned", "target"),
+            (),
+        )
+        original = kwargs["original"]
+        cloned = kwargs["cloned"]
+        target = kwargs["target"]
+
+        self.assertIs(target, original.right)
+        self.assertIsNot(target, cloned.right)
+        self.assertEqual(target.val, cloned.right.val)
+        self.assertEqual(target.left.val, cloned.right.left.val)
+
     def test_robot_room_cleaner_fixture_preserves_interface_and_checks_reachability(self) -> None:
         kwargs = _prepare_validated_kwargs(
             {"robot": {"room": [[1, 1, 1]], "row": 0, "col": 1, "direction": 1}},
@@ -262,6 +285,47 @@ ORDER BY activity.player_id;
         self.assertFalse(_robot_room_cleaner_match(robot, 3))
         robot.clean()
         self.assertTrue(_robot_room_cleaner_match(robot, 3))
+
+    def test_sea_fixture_preserves_inclusive_queries_and_enforces_the_budget(self) -> None:
+        kwargs = _prepare_validated_kwargs(
+            {"sea": {"ships": [[0, 0], [3, 2]], "max_queries": 2}},
+            (),
+            (),
+        )
+        sea = kwargs["sea"]
+        self.assertIsInstance(sea, _JudgeSea)
+        self.assertTrue(sea.hasShips(_JudgePoint(3, 2), _JudgePoint(3, 2)))
+        self.assertFalse(sea.hasShips(_JudgePoint(2, 2), _JudgePoint(1, 1)))
+        self.assertEqual(sea.query_count, 2)
+        with self.assertRaisesRegex(RuntimeError, "2-query limit"):
+            sea.hasShips(_JudgePoint(0, 0), _JudgePoint(0, 0))
+
+        with self.assertRaisesRegex(ValueError, "ordered corners"):
+            _JudgeSea([]).hasShips(_JudgePoint(0, 0), _JudgePoint(1, 0))
+
+    def test_binary_matrix_fixture_exposes_judge_methods_and_enforces_the_budget(self) -> None:
+        kwargs = _prepare_validated_kwargs(
+            {
+                "binary_matrix": {
+                    "matrix": [[0, 0, 1], [0, 1, 1]],
+                    "max_queries": 2,
+                }
+            },
+            (),
+            (),
+        )
+        binary_matrix = kwargs["binary_matrix"]
+        self.assertIsInstance(binary_matrix, _JudgeBinaryMatrix)
+        self.assertEqual(binary_matrix.dimensions(), [2, 3])
+        self.assertEqual(binary_matrix.get(0, 2), 1)
+        self.assertEqual(binary_matrix.get(1, 0), 0)
+        self.assertEqual(binary_matrix.query_count, 2)
+        with self.assertRaisesRegex(RuntimeError, "2-query limit"):
+            binary_matrix.get(1, 1)
+        with self.assertRaisesRegex(ValueError, "outside the matrix"):
+            _JudgeBinaryMatrix([[0]]).get(0, 1)
+        with self.assertRaisesRegex(ValueError, "non-decreasing"):
+            _JudgeBinaryMatrix([[1, 0]])
 
     def test_immutable_list_fixture_exposes_only_judge_methods_and_captures_prints(self) -> None:
         head = _immutable_list_node_from_values([1, 2, 3])
@@ -687,6 +751,21 @@ def solve(nums):
         self.assertTrue(body["passed"], body)
         self.assertIn("[3, 1]", body["return_value_repr"])
 
+        tree_case = ValidatedCase(
+            id="tree-input",
+            name="tree input",
+            kind="sample",
+            input={"root": [1, None, 2, None, 3]},
+            expected=[2, 1, 3],
+            validator={
+                "kind": "balanced_bst",
+                "values_param": "root",
+                "values_from_tree": True,
+            },
+        )
+        self.assertTrue(_validated_case_matches(tree_case, [2, 1, 3], tree_case.expected))
+        self.assertFalse(_validated_case_matches(tree_case, [1, None, 2, None, 3], tree_case.expected))
+
     def test_pre_post_tree_validator_accepts_single_child_orientation_ties(self) -> None:
         preorder = [1, 2, 3]
         postorder = [3, 2, 1]
@@ -886,6 +965,25 @@ def solve(nums):
         self.assertFalse(_string_without_triples_match("aabc", 2, 2))
         self.assertFalse(_string_without_triples_match(123, 1, 2))
 
+    def test_longest_happy_string_validator_accepts_any_optimal_arrangement(self) -> None:
+        case = ValidatedCase(
+            id="longest-happy",
+            name="longest happy",
+            kind="trial",
+            visible=True,
+            input={"a": 1, "b": 1, "c": 7},
+            expected="ccaccbcc",
+            validator={"kind": "longest_happy_string"},
+        )
+
+        self.assertTrue(_validated_case_matches(case, "ccbccacc", case.expected))
+        self.assertTrue(_longest_happy_string_match("aabbcc", 2, 2, 2))
+        self.assertTrue(_longest_happy_string_match("ccaccbcc", 1, 1, 7))
+        self.assertFalse(_longest_happy_string_match("ccaccbcca", 1, 1, 7))
+        self.assertFalse(_longest_happy_string_match("ccc", 0, 0, 3))
+        self.assertFalse(_longest_happy_string_match("aabd", 2, 1, 1))
+        self.assertFalse(_longest_happy_string_match(123, 1, 1, 1))
+
     def test_three_equal_parts_validator_accepts_alternate_zero_splits(self) -> None:
         bits = [0, 0, 0, 0, 0]
         case = ValidatedCase(
@@ -967,6 +1065,32 @@ def solve(barcodes):
         self.assertTrue(_validated_case_matches(case, "abcab", case.expected))
         self.assertFalse(_validated_case_matches(case, "aabbc", case.expected))
 
+    def test_reformatted_string_validator_accepts_any_valid_alternation(self) -> None:
+        case = ValidatedCase(
+            id="reformat",
+            name="reformat",
+            kind="trial",
+            input={"s": "a0b1c2"},
+            expected="0a1b2c",
+            validator={"kind": "reformatted_string"},
+        )
+
+        self.assertTrue(_validated_case_matches(case, "a0b1c2", case.expected))
+        self.assertTrue(_validated_case_matches(case, "2c1b0a", case.expected))
+        self.assertFalse(_validated_case_matches(case, "0a1bc2", case.expected))
+        self.assertFalse(_validated_case_matches(case, "0a1b2d", case.expected))
+
+        impossible = ValidatedCase(
+            id="impossible",
+            name="impossible",
+            kind="trial",
+            input={"s": "abcd1"},
+            expected="",
+            validator={"kind": "reformatted_string"},
+        )
+        self.assertTrue(_validated_case_matches(impossible, "", impossible.expected))
+        self.assertFalse(_validated_case_matches(impossible, "a1bcd", impossible.expected))
+
 
     def test_group_people_validator_accepts_alternate_group_order(self) -> None:
         source = '''
@@ -1002,6 +1126,24 @@ def solve(n):
         response = self.client.post(
             "/api/challenges/lc_1304/run",
             json={"source": source, "case_ids": ["sample-1"]},
+        )
+        self.assertEqual(response.status_code, 200, response.text)
+        body = response.json()
+        self.assertTrue(body["passed"], body)
+
+    def test_no_zero_sum_validator_accepts_an_alternate_pair(self) -> None:
+        source = '''
+def solve(n):
+    if n == 11:
+        return [8, 3]
+    for first in range(1, n):
+        second = n - first
+        if "0" not in str(first) and "0" not in str(second):
+            return [first, second]
+'''
+        response = self.client.post(
+            "/api/challenges/lc_1317/run",
+            json={"source": source, "case_ids": ["sample-2"]},
         )
         self.assertEqual(response.status_code, 200, response.text)
         body = response.json()

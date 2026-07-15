@@ -1,104 +1,12 @@
 {
   "challenge_id": "lc_1409",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: repeated front move",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "queries": [
-          3,
-          1,
-          2,
-          1
-        ],
-        "m": 5
-      },
-      "expected": [
-        2,
-        1,
-        2,
-        1
-      ],
-      "tags": [
-        "sample",
-        "fenwick"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: repeated same value",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "queries": [
-          4,
-          1,
-          2,
-          2
-        ],
-        "m": 4
-      },
-      "expected": [
-        3,
-        1,
-        2,
-        0
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: larger permutation",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "queries": [
-          7,
-          5,
-          5,
-          8,
-          3
-        ],
-        "m": 8
-      },
-      "expected": [
-        6,
-        5,
-        0,
-        7,
-        5
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-alternating-front",
-      "name": "hidden: alternating values already near front",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "queries": [
-          1,
-          2,
-          1,
-          2
-        ],
-        "m": 3
-      },
-      "expected": [
-        0,
-        1,
-        1,
-        1
-      ],
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-mixed", "name": "sample: repeated values after several moves", "kind": "sample", "visible": true, "input": {"queries": [3, 1, 2, 1], "m": 5}, "expected": [2, 1, 2, 1], "tags": ["sample", "moves"]},
+    {"id": "sample-consecutive-repeat", "name": "sample: repeated query becomes front", "kind": "sample", "visible": true, "input": {"queries": [4, 1, 2, 2], "m": 4}, "expected": [3, 1, 2, 0], "tags": ["sample", "repeat"]},
+    {"id": "sample-larger", "name": "sample: larger permutation", "kind": "sample", "visible": true, "input": {"queries": [7, 5, 5, 8, 3], "m": 8}, "expected": [6, 5, 0, 7, 5], "tags": ["sample", "moves"]},
+    {"id": "trial-one", "name": "single-value permutation", "kind": "trial", "visible": true, "input": {"queries": [1, 1, 1], "m": 1}, "expected": [0, 0, 0], "tags": ["trial", "boundary"]},
+    {"id": "trial-descending", "name": "each requested value starts at the end", "kind": "trial", "visible": true, "input": {"queries": [5, 4, 3, 2, 1], "m": 5}, "expected": [4, 4, 4, 4, 4], "tags": ["trial", "descending"]},
+    {"id": "real-current-front", "name": "hidden: querying current front preserves index zero", "kind": "real", "visible": false, "input": {"queries": [2, 2, 2, 3], "m": 3}, "expected": [1, 0, 0, 2], "tags": ["hidden", "front"]},
+    {"id": "real-alternating", "name": "hidden: alternate two moved values", "kind": "real", "visible": false, "input": {"queries": [2, 4, 2, 4], "m": 4}, "expected": [1, 3, 1, 1], "tags": ["hidden", "alternating"]}
   ]
 }

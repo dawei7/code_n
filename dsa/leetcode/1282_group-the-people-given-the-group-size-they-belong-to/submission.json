@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1407",
+  "frontend_id": "1282",
+  "title_slug": "group-the-people-given-the-group-size-they-belong-to",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.groupThePeople",
+  "verified_submission_id": "2068318505",
+  "verified_at": "2026-07-15T07:59:47.745495+00:00"
+}

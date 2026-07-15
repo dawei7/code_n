@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_405",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "A signed 32-bit input produces at most eight hexadecimal digits, so the complete source domain imposes a constant upper bound too small for a reliable scaling regression.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 8,
+    "unit": "hexadecimal digits",
+    "source_constraint": "num is a signed 32-bit integer"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "A 32-bit two's-complement representation contains at most eight four-bit digits."},
+    {"kind": "boundary_property_cases", "evidence": "Authored cases cover zero, positive values, negative values, and both signed 32-bit boundaries."}
+  ]
+}

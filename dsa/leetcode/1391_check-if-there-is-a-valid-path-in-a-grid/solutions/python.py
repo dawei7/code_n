@@ -1,30 +1,40 @@
-"""Optimal solution for LeetCode 1391: Check if There is a Valid Path in a Grid."""
+"""Optimal app-local solution for LeetCode 1391."""
 
 from collections import deque
 
 
+OPENINGS = (
+    (),
+    ((0, -1), (0, 1)),
+    ((-1, 0), (1, 0)),
+    ((0, -1), (1, 0)),
+    ((0, 1), (1, 0)),
+    ((0, -1), (-1, 0)),
+    ((0, 1), (-1, 0)),
+)
+
+
 def solve(grid: list[list[int]]) -> bool:
-    openings = {
-        1: [(0, -1), (0, 1)],
-        2: [(-1, 0), (1, 0)],
-        3: [(0, -1), (1, 0)],
-        4: [(0, 1), (1, 0)],
-        5: [(0, -1), (-1, 0)],
-        6: [(0, 1), (-1, 0)],
-    }
-    rows, cols = len(grid), len(grid[0])
-    queue: deque[tuple[int, int]] = deque([(0, 0)])
+    rows, columns = len(grid), len(grid[0])
+    queue = deque([(0, 0)])
     seen = {(0, 0)}
 
     while queue:
-        r, c = queue.popleft()
-        if r == rows - 1 and c == cols - 1:
+        row, column = queue.popleft()
+        if row == rows - 1 and column == columns - 1:
             return True
-        for dr, dc in openings[grid[r][c]]:
-            nr, nc = r + dr, c + dc
-            if not (0 <= nr < rows and 0 <= nc < cols) or (nr, nc) in seen:
+
+        for delta_row, delta_column in OPENINGS[grid[row][column]]:
+            next_row = row + delta_row
+            next_column = column + delta_column
+            neighbor = (next_row, next_column)
+            if not (0 <= next_row < rows and 0 <= next_column < columns):
                 continue
-            if (-dr, -dc) in openings[grid[nr][nc]]:
-                seen.add((nr, nc))
-                queue.append((nr, nc))
+            if neighbor in seen:
+                continue
+            if (-delta_row, -delta_column) not in OPENINGS[grid[next_row][next_column]]:
+                continue
+            seen.add(neighbor)
+            queue.append(neighbor)
+
     return False

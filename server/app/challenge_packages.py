@@ -10,6 +10,7 @@ frontend-ID order:
     ``doc_de.md`` (optional)
     ``cases.json``
     ``benchmark.json``
+    ``complexity_certificate.json``
     ``solutions/<language>.<ext>``
 
 These packages are the sole source for challenge metadata and artifacts.
@@ -23,6 +24,10 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
+from engine.complexity_certificates import (
+    ComplexityCertificateStatus,
+    validate_complexity_certificate,
+)
 from engine.languages import language_extension, normalize_language
 from server.app.config import LEETCODE_ROOT
 
@@ -169,6 +174,34 @@ def leetcode_cases_path(challenge_id: str) -> Path | None:
 def leetcode_benchmark_path(challenge_id: str) -> Path | None:
     package_dir = leetcode_package_dir(challenge_id)
     return None if package_dir is None else package_dir / "benchmark.json"
+
+
+def leetcode_complexity_certificate_path(challenge_id: str) -> Path | None:
+    package_dir = leetcode_package_dir(challenge_id)
+    return None if package_dir is None else package_dir / "complexity_certificate.json"
+
+
+def leetcode_complexity_certificate(challenge_id: str) -> dict[str, Any]:
+    path = leetcode_complexity_certificate_path(challenge_id)
+    if path is None or not path.is_file():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    status = validate_complexity_certificate(payload, expected_challenge_id=challenge_id)
+    return payload if status.complete and isinstance(payload, dict) else {}
+
+
+def leetcode_complexity_certificate_status(challenge_id: str) -> ComplexityCertificateStatus:
+    path = leetcode_complexity_certificate_path(challenge_id)
+    if path is None or not path.is_file():
+        return ComplexityCertificateStatus(complete=False, errors=("certificate is missing",))
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return ComplexityCertificateStatus(complete=False, errors=(f"invalid JSON: {exc}",))
+    return validate_complexity_certificate(payload, expected_challenge_id=challenge_id)
 
 
 def leetcode_submission_manifest_path(challenge_id: str) -> Path | None:

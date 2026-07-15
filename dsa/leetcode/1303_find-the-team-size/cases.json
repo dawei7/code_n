@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1303",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three differently sized teams",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "employee_id": 1,
+              "team_id": 8
+            },
+            {
+              "employee_id": 2,
+              "team_id": 8
+            },
+            {
+              "employee_id": 3,
+              "team_id": 8
+            },
+            {
+              "employee_id": 4,
+              "team_id": 7
+            },
+            {
+              "employee_id": 5,
+              "team_id": 9
+            },
+            {
+              "employee_id": 6,
+              "team_id": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "team_size"
+        ],
+        "rows": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "window-function"
+      ]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "trial: one employee",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "employee_id": 10,
+              "team_id": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "team_size"
+        ],
+        "rows": [
+          [
+            10,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-equal-teams",
+      "name": "trial: two teams of equal size",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "employee_id": 1,
+              "team_id": 5
+            },
+            {
+              "employee_id": 2,
+              "team_id": 6
+            },
+            {
+              "employee_id": 3,
+              "team_id": 5
+            },
+            {
+              "employee_id": 4,
+              "team_id": 6
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "team_size"
+        ],
+        "rows": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "partitions"
+      ]
+    },
+    {
+      "id": "trial-noncontiguous",
+      "name": "trial: noncontiguous employee and team identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "employee_id": 100,
+              "team_id": 20
+            },
+            {
+              "employee_id": 3,
+              "team_id": 20
+            },
+            {
+              "employee_id": 77,
+              "team_id": 99
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "team_size"
+        ],
+        "rows": [
+          [
+            3,
+            2
+          ],
+          [
+            77,
+            1
+          ],
+          [
+            100,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "identifiers"
+      ]
+    },
+    {
+      "id": "hidden-one-team",
+      "name": "hidden: every employee belongs to one team",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "employee_id": 8,
+              "team_id": 2
+            },
+            {
+              "employee_id": 2,
+              "team_id": 2
+            },
+            {
+              "employee_id": 5,
+              "team_id": 2
+            },
+            {
+              "employee_id": 1,
+              "team_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "team_size"
+        ],
+        "rows": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            8,
+            4
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "single-team"
+      ]
+    },
+    {
+      "id": "hidden-all-singletons",
+      "name": "hidden: every team is a singleton",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "employee_id": 4,
+              "team_id": 40
+            },
+            {
+              "employee_id": 1,
+              "team_id": 10
+            },
+            {
+              "employee_id": 9,
+              "team_id": 90
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "team_size"
+        ],
+        "rows": [
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "singletons"
+      ]
+    },
+    {
+      "id": "hidden-mixed",
+      "name": "hidden: interleaved teams with different sizes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employee": [
+            {
+              "employee_id": 11,
+              "team_id": 3
+            },
+            {
+              "employee_id": 12,
+              "team_id": 4
+            },
+            {
+              "employee_id": 13,
+              "team_id": 3
+            },
+            {
+              "employee_id": 14,
+              "team_id": 5
+            },
+            {
+              "employee_id": 15,
+              "team_id": 3
+            },
+            {
+              "employee_id": 16,
+              "team_id": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "team_size"
+        ],
+        "rows": [
+          [
+            11,
+            3
+          ],
+          [
+            12,
+            1
+          ],
+          [
+            13,
+            3
+          ],
+          [
+            14,
+            2
+          ],
+          [
+            15,
+            3
+          ],
+          [
+            16,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
+  ]
+}

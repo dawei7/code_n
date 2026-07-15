@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1486",
+  "frontend_id": "1385",
+  "title_slug": "find-the-distance-value-between-two-arrays",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findTheDistanceValue",
+  "verified_submission_id": "2068812262",
+  "verified_at": "2026-07-15T15:50:51.967440+00:00"
+}

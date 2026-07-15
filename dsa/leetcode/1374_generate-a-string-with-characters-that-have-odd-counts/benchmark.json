@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1374",
+  "measurement_note": "Size is the required output length n. The 125/250/500 tiers span the complete legal scaling range. The reference creates the output with string repetition in O(n) time. A correct slower implementation prepends one character at a time, repeatedly copying the immutable prefix in O(n^2) total time; all tiers complete normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: construct 125 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 125,
+      "input": {
+        "n": 125
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "construction"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: construct 250 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 250,
+      "input": {
+        "n": 250
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "construction"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: construct 500 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 500,
+      "input": {
+        "n": 500
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "construction"
+      ]
+    }
+  ]
+}

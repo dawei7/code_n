@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1327",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: official product and order history",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "Leetcode Solutions",
+              "product_category": "Book"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Jewels of Stringology",
+              "product_category": "Book"
+            },
+            {
+              "product_id": 3,
+              "product_name": "HP",
+              "product_category": "Laptop"
+            },
+            {
+              "product_id": 4,
+              "product_name": "Lenovo",
+              "product_category": "Laptop"
+            },
+            {
+              "product_id": 5,
+              "product_name": "Leetcode Kit",
+              "product_category": "T-shirt"
+            }
+          ],
+          "Orders": [
+            {
+              "product_id": 1,
+              "order_date": "2020-02-05",
+              "unit": 60
+            },
+            {
+              "product_id": 1,
+              "order_date": "2020-02-10",
+              "unit": 70
+            },
+            {
+              "product_id": 2,
+              "order_date": "2020-01-18",
+              "unit": 30
+            },
+            {
+              "product_id": 2,
+              "order_date": "2020-02-11",
+              "unit": 80
+            },
+            {
+              "product_id": 3,
+              "order_date": "2020-02-17",
+              "unit": 2
+            },
+            {
+              "product_id": 3,
+              "order_date": "2020-02-24",
+              "unit": 3
+            },
+            {
+              "product_id": 4,
+              "order_date": "2020-03-01",
+              "unit": 20
+            },
+            {
+              "product_id": 4,
+              "order_date": "2020-03-04",
+              "unit": 30
+            },
+            {
+              "product_id": 4,
+              "order_date": "2020-03-04",
+              "unit": 60
+            },
+            {
+              "product_id": 5,
+              "order_date": "2020-02-25",
+              "unit": 50
+            },
+            {
+              "product_id": 5,
+              "order_date": "2020-02-27",
+              "unit": 50
+            },
+            {
+              "product_id": 5,
+              "order_date": "2020-03-01",
+              "unit": 50
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_name",
+          "unit"
+        ],
+        "rows": [
+          [
+            "Leetcode Kit",
+            100
+          ],
+          [
+            "Leetcode Solutions",
+            130
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-exact-threshold",
+      "name": "trial: exactly one hundred units",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "Exact",
+              "product_category": "X"
+            }
+          ],
+          "Orders": [
+            {
+              "product_id": 1,
+              "order_date": "2020-02-14",
+              "unit": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_name",
+          "unit"
+        ],
+        "rows": [
+          [
+            "Exact",
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "threshold"
+      ]
+    },
+    {
+      "id": "trial-outside-period",
+      "name": "trial: other months do not count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "Outside",
+              "product_category": "X"
+            }
+          ],
+          "Orders": [
+            {
+              "product_id": 1,
+              "order_date": "2020-01-31",
+              "unit": 100
+            },
+            {
+              "product_id": 1,
+              "order_date": "2020-03-01",
+              "unit": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_name",
+          "unit"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "date-boundary"
+      ]
+    },
+    {
+      "id": "trial-leap-day",
+      "name": "trial: leap day is included",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 2,
+              "product_name": "Leap",
+              "product_category": "X"
+            }
+          ],
+          "Orders": [
+            {
+              "product_id": 2,
+              "order_date": "2020-02-29",
+              "unit": 101
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_name",
+          "unit"
+        ],
+        "rows": [
+          [
+            "Leap",
+            101
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "leap-day"
+      ]
+    },
+    {
+      "id": "hidden-duplicates",
+      "name": "hidden: duplicate rows both contribute",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 3,
+              "product_name": "Duplicate",
+              "product_category": "X"
+            }
+          ],
+          "Orders": [
+            {
+              "product_id": 3,
+              "order_date": "2020-02-10",
+              "unit": 50
+            },
+            {
+              "product_id": 3,
+              "order_date": "2020-02-10",
+              "unit": 50
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_name",
+          "unit"
+        ],
+        "rows": [
+          [
+            "Duplicate",
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-below-threshold",
+      "name": "hidden: February total remains below threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 4,
+              "product_name": "Small",
+              "product_category": "X"
+            }
+          ],
+          "Orders": [
+            {
+              "product_id": 4,
+              "order_date": "2020-02-01",
+              "unit": 99
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_name",
+          "unit"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "below-threshold"
+      ]
+    },
+    {
+      "id": "hidden-multiple-products",
+      "name": "hidden: several groups with deterministic names",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "Zulu",
+              "product_category": "X"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Alpha",
+              "product_category": "Y"
+            },
+            {
+              "product_id": 3,
+              "product_name": "Middle",
+              "product_category": "Z"
+            }
+          ],
+          "Orders": [
+            {
+              "product_id": 1,
+              "order_date": "2020-02-01",
+              "unit": 120
+            },
+            {
+              "product_id": 2,
+              "order_date": "2020-02-02",
+              "unit": 100
+            },
+            {
+              "product_id": 3,
+              "order_date": "2020-02-03",
+              "unit": 90
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_name",
+          "unit"
+        ],
+        "rows": [
+          [
+            "Alpha",
+            100
+          ],
+          [
+            "Zulu",
+            120
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "multiple-groups"
+      ]
+    }
+  ]
+}

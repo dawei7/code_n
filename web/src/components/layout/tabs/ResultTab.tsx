@@ -261,7 +261,9 @@ function VerdictCard({
           {styles.icon}
         </span>
         <span className="text-xs font-mono text-coden-muted">
-          {`target ${result.required_complexity} | runtime <= 1.5x reference`}
+          {result.complexity_check
+            ? `target ${result.required_complexity} | ${formatCertificateMethod(result.complexity_method)}`
+            : `target ${result.required_complexity} | runtime benchmark`}
         </span>
       </div>
       <div className="text-sm text-coden-text">{styles.title}</div>
@@ -277,6 +279,20 @@ function ComplexityCard({
   result: NonNullable<ReturnType<typeof useAppStore.getState>['runResult']>;
   requiredComplexity: string;
 }) {
+  if (result.complexity_check) {
+    return (
+      <div className="mt-4 rounded-lg border border-emerald-500/30 bg-emerald-500/[0.08] p-5 shadow-md">
+        <div className="text-xs font-semibold uppercase text-emerald-300">Complexity certificate</div>
+        <div className="mt-2 text-sm font-bold text-coden-text">{formatCertificateMethod(result.complexity_method)}</div>
+        <div className="mt-1 text-xs leading-relaxed text-coden-muted">
+          {result.complexity_message || 'Complexity is verified by machine-validated package evidence; runtime scaling is not applicable.'}
+        </div>
+        <div className="mt-3 text-xs text-coden-muted">
+          Required: <span className="font-semibold text-coden-text">{requiredComplexity}</span> · Runtime tiers: <span className="font-semibold text-coden-text">not applicable</span>
+        </div>
+      </div>
+    );
+  }
   const userMs = result.runtime_user_ms ?? null;
   const refMs = result.runtime_reference_ms ?? null;
   const limitMs = result.runtime_limit_ms ?? null;
@@ -1027,6 +1043,12 @@ function InputsCard({
       </div>
     </div>
   );
+}
+
+
+function formatCertificateMethod(method: string): string {
+  if (!method) return 'Verified certificate';
+  return method.split('_').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
 

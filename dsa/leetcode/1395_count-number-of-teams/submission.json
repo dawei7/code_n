@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1511",
+  "frontend_id": "1395",
+  "title_slug": "count-number-of-teams",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numTeams",
+  "verified_submission_id": "2068858629",
+  "verified_at": "2026-07-15T16:26:38.271660+00:00"
+}

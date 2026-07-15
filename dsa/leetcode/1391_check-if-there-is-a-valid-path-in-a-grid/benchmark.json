@@ -1,27 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1391",
+  "measurement_note": "Size is mn, the number of cells. Each tier is a one-row compatible street that makes traversal visit every cell. The 20/80/281-cell tiers span more than 14x within the legal column bound. The reference visits each cell once in O(mn); a correct slower traversal redundantly rescans the whole grid after every visited cell, taking O((mn)^2), and completes normally.",
   "cases": [
-    {
-      "id": "benchmark-corner-turn",
-      "name": "benchmark: corner turn",
-      "kind": "benchmark",
-      "visible": false,
-      "input": {
-        "grid": [
-          [
-            4,
-            1
-          ],
-          [
-            6,
-            1
-          ]
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "benchmark"
-      ]
-    }
+    {"id": "benchmark-scale-1", "name": "benchmark: 20-cell street", "kind": "benchmark", "visible": false, "size": 20, "input": {"grid": [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]}, "expected": true, "tags": ["benchmark", "scale-small", "corridor"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 80-cell street", "kind": "benchmark", "visible": false, "size": 80, "input": {"grid": [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]}, "expected": true, "tags": ["benchmark", "scale-medium", "corridor"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 281-cell street", "kind": "benchmark", "visible": false, "size": 281, "input": {"grid": [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]}, "expected": true, "tags": ["benchmark", "scale-large", "corridor"]}
   ]
 }

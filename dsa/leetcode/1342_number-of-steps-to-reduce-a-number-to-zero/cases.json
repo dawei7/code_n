@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1342",
+  "cases": [
+    {"id":"sample-1","name":"sample: mixed parity sequence","kind":"sample","visible":true,"input":{"num":14},"expected":6,"tags":["sample","simulation"]},
+    {"id":"sample-2","name":"sample: power of two","kind":"sample","visible":true,"input":{"num":8},"expected":4,"tags":["sample","power-of-two"]},
+    {"id":"sample-3","name":"sample: several set bits","kind":"sample","visible":true,"input":{"num":123},"expected":12,"tags":["sample","mixed-bits"]},
+    {"id":"trial-zero","name":"trial: already zero","kind":"trial","visible":true,"input":{"num":0},"expected":0,"tags":["trial","boundary"]},
+    {"id":"trial-one","name":"trial: one subtraction","kind":"trial","visible":true,"input":{"num":1},"expected":1,"tags":["trial","boundary"]},
+    {"id":"hidden-alternating-bits","name":"hidden: alternating binary bits","kind":"real","visible":false,"input":{"num":42},"expected":8,"tags":["hidden","bit-pattern"]},
+    {"id":"hidden-dense-bits","name":"hidden: ten set bits","kind":"real","visible":false,"input":{"num":1023},"expected":19,"tags":["hidden","dense-bits"]}
+  ]
+}

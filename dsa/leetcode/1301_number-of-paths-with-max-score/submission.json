@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1234",
+  "frontend_id": "1301",
+  "title_slug": "number-of-paths-with-max-score",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.pathsWithMaxScore",
+  "verified_submission_id": "2068416253",
+  "verified_at": "2026-07-15T09:31:58.126598+00:00"
+}

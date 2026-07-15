@@ -3,10 +3,13 @@ from collections import defaultdict
 
 def solve(group_sizes):
     buckets = defaultdict(list)
-    answer = []
-    for i, size in enumerate(group_sizes):
-        buckets[size].append(i)
-        if len(buckets[size]) == size:
-            answer.append(buckets[size])
+    groups = []
+
+    for person, size in enumerate(group_sizes):
+        bucket = buckets[size]
+        bucket.append(person)
+        if len(bucket) == size:
+            groups.append(bucket)
             buckets[size] = []
-    return answer
+
+    return groups

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1464",
+  "frontend_id": "1338",
+  "title_slug": "reduce-array-size-to-the-half",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minSetSize",
+  "verified_submission_id": "2068617518",
+  "verified_at": "2026-07-15T12:56:52.716218+00:00"
+}

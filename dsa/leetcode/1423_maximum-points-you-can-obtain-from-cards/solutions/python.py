@@ -1,12 +1,15 @@
-def solve(card_points, k):
-    n = len(card_points)
-    k = max(0, min(int(k), n))
-    if k == n:
-        return sum(card_points)
-    window = n - k
-    current = sum(card_points[:window])
-    best_middle = current
-    for right in range(window, n):
-        current += card_points[right] - card_points[right - window]
-        best_middle = min(best_middle, current)
-    return sum(card_points) - best_middle
+"""Optimal app-local solution for LeetCode 1423."""
+
+
+def solve(card_points: list[int], k: int) -> int:
+    total = sum(card_points)
+    remaining_length = len(card_points) - k
+    if remaining_length == 0:
+        return total
+
+    remaining_sum = sum(card_points[:remaining_length])
+    minimum_remaining = remaining_sum
+    for right in range(remaining_length, len(card_points)):
+        remaining_sum += card_points[right] - card_points[right - remaining_length]
+        minimum_remaining = min(minimum_remaining, remaining_sum)
+    return total - minimum_remaining

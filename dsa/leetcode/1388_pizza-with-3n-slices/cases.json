@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1388",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: increasing slices",
+      "id": "sample-increasing",
+      "name": "sample: increasing sizes",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,12 +20,12 @@
       "expected": 10,
       "tags": [
         "sample",
-        "dynamic-programming"
+        "circular"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: repeated high edge slices",
+      "id": "sample-large-ends",
+      "name": "sample: competing large values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -39,45 +40,113 @@
       },
       "expected": 16,
       "tags": [
-        "sample"
+        "sample",
+        "boundary"
       ]
     },
     {
-      "id": "trial-one-choice",
-      "name": "three slices choose one",
-      "kind": "trial",
+      "id": "sample-mixed",
+      "name": "sample: mixed values",
+      "kind": "sample",
       "visible": true,
       "input": {
         "slices": [
           4,
           1,
-          2
+          2,
+          5,
+          8,
+          3
         ]
       },
-      "expected": 4,
+      "expected": 12,
       "tags": [
-        "trial",
-        "edge"
+        "sample",
+        "mixed"
       ]
     },
     {
-      "id": "real-middle-values",
-      "name": "hidden: middle values matter",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three",
+      "name": "trial: one choice among three slices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "slices": [
           3,
           1,
-          2,
-          5,
-          4,
-          6
+          2
         ]
       },
-      "expected": 11,
+      "expected": 3,
       "tags": [
-        "hidden"
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-opposite-large",
+      "name": "trial: two nonadjacent large slices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "slices": [
+          10,
+          1,
+          1,
+          10,
+          1,
+          1
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "trial",
+        "nonadjacent"
+      ]
+    },
+    {
+      "id": "hidden-end-conflict",
+      "name": "hidden: first and last cannot both be selected",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "slices": [
+          9,
+          1,
+          1,
+          1,
+          1,
+          8
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "circular-boundary"
+      ]
+    },
+    {
+      "id": "hidden-equal",
+      "name": "hidden: all slices equal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "slices": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "equal"
       ]
     }
   ]

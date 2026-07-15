@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1415",
+  "frontend_id": "1280",
+  "title_slug": "students-and-examinations",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2068311399",
+  "verified_at": "2026-07-15T07:51:56.472620+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1485",
+  "frontend_id": "1368",
+  "title_slug": "minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minCost",
+  "verified_submission_id": "2068741550",
+  "verified_at": "2026-07-15T14:49:33.328881+00:00"
+}

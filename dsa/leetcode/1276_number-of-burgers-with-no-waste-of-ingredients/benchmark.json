@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1276",
+  "measurement_note": "Size is the total burger count on an all-jumbo instance. Direct algebra is constant-time, while enumerating candidate jumbo counts performs work proportional to size before finding the answer.",
+  "cases": [
+    {"id": "benchmark-scale-200", "name": "benchmark: 200 all-jumbo burgers", "kind": "benchmark", "visible": false, "input": {"tomato_slices": 800, "cheese_slices": 200}, "expected": [200, 0], "tags": ["benchmark", "scale-small"], "size": 200, "timeout_ms": 8000},
+    {"id": "benchmark-scale-400", "name": "benchmark: 400 all-jumbo burgers", "kind": "benchmark", "visible": false, "input": {"tomato_slices": 1600, "cheese_slices": 400}, "expected": [400, 0], "tags": ["benchmark", "scale-medium"], "size": 400, "timeout_ms": 8000},
+    {"id": "benchmark-scale-800", "name": "benchmark: 800 all-jumbo burgers", "kind": "benchmark", "visible": false, "input": {"tomato_slices": 3200, "cheese_slices": 800}, "expected": [800, 0], "tags": ["benchmark", "scale-large"], "size": 800, "timeout_ms": 8000}
+  ]
+}

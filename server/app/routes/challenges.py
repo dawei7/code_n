@@ -122,7 +122,7 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
         )
     reference_metadata = getattr(spec, "reference_metadata", {}) or {}
     lc_slug = str(reference_metadata.get("slug") or "")
-    external_subsets = external_subset_memberships_for(spec.id) if lc_slug else []
+    external_subsets = external_subset_memberships_for(spec.id)
     leetcode_title = spec.name
     leetcode_slug = lc_slug
     leetcode_url = str(spec.source_url or "")
@@ -323,7 +323,6 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
     starter_sources = _custom_starter_sources(reference_metadata)
     if runnable_in_coden:
         starter_sources = {
-            **starter_sources,
             **{
             language: _solution_template(
                 spec.id,
@@ -334,6 +333,7 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
             for language in FUNCTION_LANGUAGES
             if not supported_languages or language in supported_languages
             },
+            **starter_sources,
         }
     complexity_notes = getattr(spec, "complexity_notes", {}) or {}
 

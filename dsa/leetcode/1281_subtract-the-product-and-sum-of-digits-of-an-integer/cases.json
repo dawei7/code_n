@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1281",
+  "cases": [
+    {"id":"sample-234","name":"sample: three distinct digits","kind":"sample","visible":true,"input":{"n":234},"expected":15,"tags":["sample"]},
+    {"id":"sample-4421","name":"sample: repeated leading digit","kind":"sample","visible":true,"input":{"n":4421},"expected":21,"tags":["sample"]},
+    {"id":"trial-single-digit","name":"trial: one digit","kind":"trial","visible":true,"input":{"n":1},"expected":0,"tags":["trial","boundary"]},
+    {"id":"trial-zero-digit","name":"trial: product becomes zero","kind":"trial","visible":true,"input":{"n":10},"expected":-1,"tags":["trial","zero"]},
+    {"id":"trial-five-digits","name":"trial: increasing digits","kind":"trial","visible":true,"input":{"n":12345},"expected":105,"tags":["trial"]},
+    {"id":"hidden-repeated-nines","name":"hidden: large positive difference","kind":"real","visible":false,"input":{"n":99999},"expected":59004,"tags":["hidden","repeated-digits"]},
+    {"id":"hidden-upper-bound","name":"hidden: six-digit upper boundary","kind":"real","visible":false,"input":{"n":100000},"expected":-1,"tags":["hidden","boundary","zero"]}
+  ]
+}

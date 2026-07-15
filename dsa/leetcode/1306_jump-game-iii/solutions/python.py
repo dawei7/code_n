@@ -1,15 +1,22 @@
+"""Optimal app-local solution for LeetCode 1306."""
+
 from collections import deque
 
 
 def solve(arr, start):
     queue = deque([start])
-    seen = {start}
+    seen = bytearray(len(arr))
+    seen[start] = 1
+
     while queue:
-        i = queue.popleft()
-        if arr[i] == 0:
+        index = queue.popleft()
+        if arr[index] == 0:
             return True
-        for nxt in (i + arr[i], i - arr[i]):
-            if 0 <= nxt < len(arr) and nxt not in seen:
-                seen.add(nxt)
-                queue.append(nxt)
+
+        jump = arr[index]
+        for destination in (index - jump, index + jump):
+            if 0 <= destination < len(arr) and not seen[destination]:
+                seen[destination] = 1
+                queue.append(destination)
+
     return False

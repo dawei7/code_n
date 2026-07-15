@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1410",
+  "frontend_id": "1279",
+  "title_slug": "traffic-light-controlled-intersection",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "TrafficLight",
+  "verified_submission_id": "2068306159",
+  "verified_at": "2026-07-15T07:46:08.155405+00:00"
+}

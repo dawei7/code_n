@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1317",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: smallest target",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2},
+      "expected": [1, 1],
+      "validator": {"kind": "no_zero_sum"},
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: multiple valid pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 11},
+      "expected": [2, 9],
+      "validator": {"kind": "no_zero_sum"},
+      "tags": ["sample", "multiple-answers"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: target contains zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 10000},
+      "expected": [1, 9999],
+      "validator": {"kind": "no_zero_sum"},
+      "tags": ["sample", "upper-boundary"]
+    },
+    {
+      "id": "trial-two-digit",
+      "name": "trial: ordinary two-digit target",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 69},
+      "expected": [1, 68],
+      "validator": {"kind": "no_zero_sum"},
+      "tags": ["trial", "two-digit"]
+    },
+    {
+      "id": "trial-internal-zero",
+      "name": "trial: internal zero in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 101},
+      "expected": [2, 99],
+      "validator": {"kind": "no_zero_sum"},
+      "tags": ["trial", "zero-digit"]
+    },
+    {
+      "id": "hidden-thousand",
+      "name": "hidden: power of ten",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000},
+      "expected": [1, 999],
+      "validator": {"kind": "no_zero_sum"},
+      "tags": ["hidden", "power-of-ten"]
+    },
+    {
+      "id": "hidden-delayed-first-pair",
+      "name": "hidden: several early candidates contain zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 211},
+      "expected": [12, 199],
+      "validator": {"kind": "no_zero_sum"},
+      "tags": ["hidden", "search"]
+    }
+  ]
+}

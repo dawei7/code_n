@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1284",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: one set bit",
+      "id": "sample-one-corner",
+      "name": "sample: one set corner in two by two",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -25,7 +26,7 @@
       ]
     },
     {
-      "id": "sample-2",
+      "id": "sample-zero",
       "name": "sample: already zero",
       "kind": "sample",
       "visible": true,
@@ -39,14 +40,99 @@
       "expected": 0,
       "tags": [
         "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-unreachable",
+      "name": "sample: unreachable two by three matrix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "unreachable"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one cell needs one flip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "trial: one-row neighbor effects",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
         "edge"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: three by three",
-      "kind": "sample",
-      "visible": true,
+      "id": "hidden-all-ones-two",
+      "name": "hidden: all-one two by two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden"
+      ]
+    },
+    {
+      "id": "hidden-three-by-three",
+      "name": "hidden: maximum dimensions",
+      "kind": "real",
+      "visible": false,
       "input": {
         "mat": [
           [
@@ -68,24 +154,8 @@
       },
       "expected": 6,
       "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-single-one",
-      "name": "hidden: single one",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "mat": [
-          [
-            1
-          ]
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "hidden"
+        "hidden",
+        "boundary"
       ]
     }
   ]

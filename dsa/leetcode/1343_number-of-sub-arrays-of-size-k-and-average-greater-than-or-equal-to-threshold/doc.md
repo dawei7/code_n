@@ -5,27 +5,25 @@
 | Source | LeetCode |
 | Frontend ID | 1343 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Sliding Window |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold](https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/).
-
 ### Goal
-Count contiguous subarrays of length `k` whose average is at least `threshold`.
+Given an integer array `arr`, examine every contiguous subarray containing exactly `k` elements. A window qualifies when the arithmetic average of its elements is greater than or equal to `threshold`.
+
+Return the number of qualifying windows. Overlapping subarrays are counted separately, the comparison is inclusive, and a non-integer average must be compared at its actual value rather than after rounding or integer division.
 
 ### Function Contract
 **Inputs**
 
-- `arr`: integer array.
-- `k`: fixed window size.
-- `threshold`: minimum required average.
+- `arr`: a positive-integer array of length $n$, where $1\le n\le10^5$ and $1\le\texttt{arr[i]}\le10^4$.
+- `k`: the exact window length, where $1\le k\le n$.
+- `threshold`: the minimum permitted average, where $0\le\texttt{threshold}\le10^4$.
 
 **Return value**
 
-The number of qualifying windows.
+The number of length-`k` contiguous subarrays whose average is at least `threshold`.
 
 ### Examples
 **Example 1**
@@ -37,35 +35,43 @@ The number of qualifying windows.
 
 - Input: `arr = [11,13,17,23,29,31,7,5,2,3]`, `k = 3`, `threshold = 5`
 - Output: `6`
+- Explanation: Averages need not be integers.
 
 **Example 3**
 
 - Input: `arr = [1,1,1,1]`, `k = 2`, `threshold = 2`
 - Output: `0`
 
----
+### Required Complexity
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-## Solution
-### Approach
-Sliding window sum.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(arr, k, threshold):
-    target = k * threshold
-    window = sum(arr[:k])
-    answer = int(window >= target)
-    for i in range(k, len(arr)):
-        window += arr[i] - arr[i - k]
-        if window >= target:
-            answer += 1
-    return answer
-```
+#### General
+
+**Compare sums instead of dividing**
+
+A length-`k` window has average at least `threshold` exactly when its sum is at least `k * threshold`. This equivalent integer comparison avoids both floating-point representation and accidental truncation.
+
+Compute the sum of the first `k` elements and test it. Then move the window one position at a time: add the newly entering element and subtract the element that just left. Test the updated sum after every move and increment the answer when it reaches the target.
+
+The initial sum is exact for the first window. Each update removes precisely the old left endpoint and adds precisely the new right endpoint, so by induction it remains the exact sum of the current window. Every possible length-`k` start is visited once, proving the final count.
+
+#### Complexity detail
+
+The initial window and all subsequent updates together read $O(n)$ elements and take $O(n)$ time. The rolling sum, target, and counter use $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Prefix sums:** A prefix array answers every window sum in constant time after $O(n)$ preprocessing, but uses $O(n)$ extra space.
+- **Rescan every window:** Explicitly summing each length-`k` subarray takes $O(nk)$ time and can become quadratic.
+- **Window length one:** Compare each individual value with the threshold.
+- **Whole array window:** When $k=n$, exactly one subarray is tested.
+- **Exact threshold:** Equality qualifies.
+- **Fractional average:** Compare sums rather than applying integer division.
+- **Zero threshold:** Every legal positive-value window qualifies.
+- **Overlapping windows:** Count each qualifying start independently.
+
 </details>

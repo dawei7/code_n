@@ -1,0 +1,2764 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1270",
+  "measurement_note": "Size is the number n of Employees rows. Indexed fixed-depth self-joins perform a constant number of lookups per employee; an unconstrained Cartesian-product formulation is correct but grows cubically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-16",
+      "name": "benchmark: 16 employees in three-level branches",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Boss",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "E2",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "E3",
+              "manager_id": 2
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "E4",
+              "manager_id": 3
+            },
+            {
+              "employee_id": 5,
+              "employee_name": "E5",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 6,
+              "employee_name": "E6",
+              "manager_id": 5
+            },
+            {
+              "employee_id": 7,
+              "employee_name": "E7",
+              "manager_id": 6
+            },
+            {
+              "employee_id": 8,
+              "employee_name": "E8",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 9,
+              "employee_name": "E9",
+              "manager_id": 8
+            },
+            {
+              "employee_id": 10,
+              "employee_name": "E10",
+              "manager_id": 9
+            },
+            {
+              "employee_id": 11,
+              "employee_name": "E11",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 12,
+              "employee_name": "E12",
+              "manager_id": 11
+            },
+            {
+              "employee_id": 13,
+              "employee_name": "E13",
+              "manager_id": 12
+            },
+            {
+              "employee_id": 14,
+              "employee_name": "E14",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 15,
+              "employee_name": "E15",
+              "manager_id": 14
+            },
+            {
+              "employee_id": 16,
+              "employee_name": "E16",
+              "manager_id": 15
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id"
+        ],
+        "rows": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            15
+          ],
+          [
+            16
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "three-level-branches"
+      ],
+      "size": 16,
+      "timeout_ms": 8000
+    },
+    {
+      "id": "benchmark-scale-64",
+      "name": "benchmark: 64 employees in three-level branches",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Boss",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "E2",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "E3",
+              "manager_id": 2
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "E4",
+              "manager_id": 3
+            },
+            {
+              "employee_id": 5,
+              "employee_name": "E5",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 6,
+              "employee_name": "E6",
+              "manager_id": 5
+            },
+            {
+              "employee_id": 7,
+              "employee_name": "E7",
+              "manager_id": 6
+            },
+            {
+              "employee_id": 8,
+              "employee_name": "E8",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 9,
+              "employee_name": "E9",
+              "manager_id": 8
+            },
+            {
+              "employee_id": 10,
+              "employee_name": "E10",
+              "manager_id": 9
+            },
+            {
+              "employee_id": 11,
+              "employee_name": "E11",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 12,
+              "employee_name": "E12",
+              "manager_id": 11
+            },
+            {
+              "employee_id": 13,
+              "employee_name": "E13",
+              "manager_id": 12
+            },
+            {
+              "employee_id": 14,
+              "employee_name": "E14",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 15,
+              "employee_name": "E15",
+              "manager_id": 14
+            },
+            {
+              "employee_id": 16,
+              "employee_name": "E16",
+              "manager_id": 15
+            },
+            {
+              "employee_id": 17,
+              "employee_name": "E17",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 18,
+              "employee_name": "E18",
+              "manager_id": 17
+            },
+            {
+              "employee_id": 19,
+              "employee_name": "E19",
+              "manager_id": 18
+            },
+            {
+              "employee_id": 20,
+              "employee_name": "E20",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 21,
+              "employee_name": "E21",
+              "manager_id": 20
+            },
+            {
+              "employee_id": 22,
+              "employee_name": "E22",
+              "manager_id": 21
+            },
+            {
+              "employee_id": 23,
+              "employee_name": "E23",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 24,
+              "employee_name": "E24",
+              "manager_id": 23
+            },
+            {
+              "employee_id": 25,
+              "employee_name": "E25",
+              "manager_id": 24
+            },
+            {
+              "employee_id": 26,
+              "employee_name": "E26",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 27,
+              "employee_name": "E27",
+              "manager_id": 26
+            },
+            {
+              "employee_id": 28,
+              "employee_name": "E28",
+              "manager_id": 27
+            },
+            {
+              "employee_id": 29,
+              "employee_name": "E29",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 30,
+              "employee_name": "E30",
+              "manager_id": 29
+            },
+            {
+              "employee_id": 31,
+              "employee_name": "E31",
+              "manager_id": 30
+            },
+            {
+              "employee_id": 32,
+              "employee_name": "E32",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 33,
+              "employee_name": "E33",
+              "manager_id": 32
+            },
+            {
+              "employee_id": 34,
+              "employee_name": "E34",
+              "manager_id": 33
+            },
+            {
+              "employee_id": 35,
+              "employee_name": "E35",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 36,
+              "employee_name": "E36",
+              "manager_id": 35
+            },
+            {
+              "employee_id": 37,
+              "employee_name": "E37",
+              "manager_id": 36
+            },
+            {
+              "employee_id": 38,
+              "employee_name": "E38",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 39,
+              "employee_name": "E39",
+              "manager_id": 38
+            },
+            {
+              "employee_id": 40,
+              "employee_name": "E40",
+              "manager_id": 39
+            },
+            {
+              "employee_id": 41,
+              "employee_name": "E41",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 42,
+              "employee_name": "E42",
+              "manager_id": 41
+            },
+            {
+              "employee_id": 43,
+              "employee_name": "E43",
+              "manager_id": 42
+            },
+            {
+              "employee_id": 44,
+              "employee_name": "E44",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 45,
+              "employee_name": "E45",
+              "manager_id": 44
+            },
+            {
+              "employee_id": 46,
+              "employee_name": "E46",
+              "manager_id": 45
+            },
+            {
+              "employee_id": 47,
+              "employee_name": "E47",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 48,
+              "employee_name": "E48",
+              "manager_id": 47
+            },
+            {
+              "employee_id": 49,
+              "employee_name": "E49",
+              "manager_id": 48
+            },
+            {
+              "employee_id": 50,
+              "employee_name": "E50",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 51,
+              "employee_name": "E51",
+              "manager_id": 50
+            },
+            {
+              "employee_id": 52,
+              "employee_name": "E52",
+              "manager_id": 51
+            },
+            {
+              "employee_id": 53,
+              "employee_name": "E53",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 54,
+              "employee_name": "E54",
+              "manager_id": 53
+            },
+            {
+              "employee_id": 55,
+              "employee_name": "E55",
+              "manager_id": 54
+            },
+            {
+              "employee_id": 56,
+              "employee_name": "E56",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 57,
+              "employee_name": "E57",
+              "manager_id": 56
+            },
+            {
+              "employee_id": 58,
+              "employee_name": "E58",
+              "manager_id": 57
+            },
+            {
+              "employee_id": 59,
+              "employee_name": "E59",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 60,
+              "employee_name": "E60",
+              "manager_id": 59
+            },
+            {
+              "employee_id": 61,
+              "employee_name": "E61",
+              "manager_id": 60
+            },
+            {
+              "employee_id": 62,
+              "employee_name": "E62",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 63,
+              "employee_name": "E63",
+              "manager_id": 62
+            },
+            {
+              "employee_id": 64,
+              "employee_name": "E64",
+              "manager_id": 63
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id"
+        ],
+        "rows": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            15
+          ],
+          [
+            16
+          ],
+          [
+            17
+          ],
+          [
+            18
+          ],
+          [
+            19
+          ],
+          [
+            20
+          ],
+          [
+            21
+          ],
+          [
+            22
+          ],
+          [
+            23
+          ],
+          [
+            24
+          ],
+          [
+            25
+          ],
+          [
+            26
+          ],
+          [
+            27
+          ],
+          [
+            28
+          ],
+          [
+            29
+          ],
+          [
+            30
+          ],
+          [
+            31
+          ],
+          [
+            32
+          ],
+          [
+            33
+          ],
+          [
+            34
+          ],
+          [
+            35
+          ],
+          [
+            36
+          ],
+          [
+            37
+          ],
+          [
+            38
+          ],
+          [
+            39
+          ],
+          [
+            40
+          ],
+          [
+            41
+          ],
+          [
+            42
+          ],
+          [
+            43
+          ],
+          [
+            44
+          ],
+          [
+            45
+          ],
+          [
+            46
+          ],
+          [
+            47
+          ],
+          [
+            48
+          ],
+          [
+            49
+          ],
+          [
+            50
+          ],
+          [
+            51
+          ],
+          [
+            52
+          ],
+          [
+            53
+          ],
+          [
+            54
+          ],
+          [
+            55
+          ],
+          [
+            56
+          ],
+          [
+            57
+          ],
+          [
+            58
+          ],
+          [
+            59
+          ],
+          [
+            60
+          ],
+          [
+            61
+          ],
+          [
+            62
+          ],
+          [
+            63
+          ],
+          [
+            64
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "three-level-branches"
+      ],
+      "size": 64,
+      "timeout_ms": 8000
+    },
+    {
+      "id": "benchmark-scale-256",
+      "name": "benchmark: 256 employees in three-level branches",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Boss",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "E2",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "E3",
+              "manager_id": 2
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "E4",
+              "manager_id": 3
+            },
+            {
+              "employee_id": 5,
+              "employee_name": "E5",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 6,
+              "employee_name": "E6",
+              "manager_id": 5
+            },
+            {
+              "employee_id": 7,
+              "employee_name": "E7",
+              "manager_id": 6
+            },
+            {
+              "employee_id": 8,
+              "employee_name": "E8",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 9,
+              "employee_name": "E9",
+              "manager_id": 8
+            },
+            {
+              "employee_id": 10,
+              "employee_name": "E10",
+              "manager_id": 9
+            },
+            {
+              "employee_id": 11,
+              "employee_name": "E11",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 12,
+              "employee_name": "E12",
+              "manager_id": 11
+            },
+            {
+              "employee_id": 13,
+              "employee_name": "E13",
+              "manager_id": 12
+            },
+            {
+              "employee_id": 14,
+              "employee_name": "E14",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 15,
+              "employee_name": "E15",
+              "manager_id": 14
+            },
+            {
+              "employee_id": 16,
+              "employee_name": "E16",
+              "manager_id": 15
+            },
+            {
+              "employee_id": 17,
+              "employee_name": "E17",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 18,
+              "employee_name": "E18",
+              "manager_id": 17
+            },
+            {
+              "employee_id": 19,
+              "employee_name": "E19",
+              "manager_id": 18
+            },
+            {
+              "employee_id": 20,
+              "employee_name": "E20",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 21,
+              "employee_name": "E21",
+              "manager_id": 20
+            },
+            {
+              "employee_id": 22,
+              "employee_name": "E22",
+              "manager_id": 21
+            },
+            {
+              "employee_id": 23,
+              "employee_name": "E23",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 24,
+              "employee_name": "E24",
+              "manager_id": 23
+            },
+            {
+              "employee_id": 25,
+              "employee_name": "E25",
+              "manager_id": 24
+            },
+            {
+              "employee_id": 26,
+              "employee_name": "E26",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 27,
+              "employee_name": "E27",
+              "manager_id": 26
+            },
+            {
+              "employee_id": 28,
+              "employee_name": "E28",
+              "manager_id": 27
+            },
+            {
+              "employee_id": 29,
+              "employee_name": "E29",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 30,
+              "employee_name": "E30",
+              "manager_id": 29
+            },
+            {
+              "employee_id": 31,
+              "employee_name": "E31",
+              "manager_id": 30
+            },
+            {
+              "employee_id": 32,
+              "employee_name": "E32",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 33,
+              "employee_name": "E33",
+              "manager_id": 32
+            },
+            {
+              "employee_id": 34,
+              "employee_name": "E34",
+              "manager_id": 33
+            },
+            {
+              "employee_id": 35,
+              "employee_name": "E35",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 36,
+              "employee_name": "E36",
+              "manager_id": 35
+            },
+            {
+              "employee_id": 37,
+              "employee_name": "E37",
+              "manager_id": 36
+            },
+            {
+              "employee_id": 38,
+              "employee_name": "E38",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 39,
+              "employee_name": "E39",
+              "manager_id": 38
+            },
+            {
+              "employee_id": 40,
+              "employee_name": "E40",
+              "manager_id": 39
+            },
+            {
+              "employee_id": 41,
+              "employee_name": "E41",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 42,
+              "employee_name": "E42",
+              "manager_id": 41
+            },
+            {
+              "employee_id": 43,
+              "employee_name": "E43",
+              "manager_id": 42
+            },
+            {
+              "employee_id": 44,
+              "employee_name": "E44",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 45,
+              "employee_name": "E45",
+              "manager_id": 44
+            },
+            {
+              "employee_id": 46,
+              "employee_name": "E46",
+              "manager_id": 45
+            },
+            {
+              "employee_id": 47,
+              "employee_name": "E47",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 48,
+              "employee_name": "E48",
+              "manager_id": 47
+            },
+            {
+              "employee_id": 49,
+              "employee_name": "E49",
+              "manager_id": 48
+            },
+            {
+              "employee_id": 50,
+              "employee_name": "E50",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 51,
+              "employee_name": "E51",
+              "manager_id": 50
+            },
+            {
+              "employee_id": 52,
+              "employee_name": "E52",
+              "manager_id": 51
+            },
+            {
+              "employee_id": 53,
+              "employee_name": "E53",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 54,
+              "employee_name": "E54",
+              "manager_id": 53
+            },
+            {
+              "employee_id": 55,
+              "employee_name": "E55",
+              "manager_id": 54
+            },
+            {
+              "employee_id": 56,
+              "employee_name": "E56",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 57,
+              "employee_name": "E57",
+              "manager_id": 56
+            },
+            {
+              "employee_id": 58,
+              "employee_name": "E58",
+              "manager_id": 57
+            },
+            {
+              "employee_id": 59,
+              "employee_name": "E59",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 60,
+              "employee_name": "E60",
+              "manager_id": 59
+            },
+            {
+              "employee_id": 61,
+              "employee_name": "E61",
+              "manager_id": 60
+            },
+            {
+              "employee_id": 62,
+              "employee_name": "E62",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 63,
+              "employee_name": "E63",
+              "manager_id": 62
+            },
+            {
+              "employee_id": 64,
+              "employee_name": "E64",
+              "manager_id": 63
+            },
+            {
+              "employee_id": 65,
+              "employee_name": "E65",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 66,
+              "employee_name": "E66",
+              "manager_id": 65
+            },
+            {
+              "employee_id": 67,
+              "employee_name": "E67",
+              "manager_id": 66
+            },
+            {
+              "employee_id": 68,
+              "employee_name": "E68",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 69,
+              "employee_name": "E69",
+              "manager_id": 68
+            },
+            {
+              "employee_id": 70,
+              "employee_name": "E70",
+              "manager_id": 69
+            },
+            {
+              "employee_id": 71,
+              "employee_name": "E71",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 72,
+              "employee_name": "E72",
+              "manager_id": 71
+            },
+            {
+              "employee_id": 73,
+              "employee_name": "E73",
+              "manager_id": 72
+            },
+            {
+              "employee_id": 74,
+              "employee_name": "E74",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 75,
+              "employee_name": "E75",
+              "manager_id": 74
+            },
+            {
+              "employee_id": 76,
+              "employee_name": "E76",
+              "manager_id": 75
+            },
+            {
+              "employee_id": 77,
+              "employee_name": "E77",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 78,
+              "employee_name": "E78",
+              "manager_id": 77
+            },
+            {
+              "employee_id": 79,
+              "employee_name": "E79",
+              "manager_id": 78
+            },
+            {
+              "employee_id": 80,
+              "employee_name": "E80",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 81,
+              "employee_name": "E81",
+              "manager_id": 80
+            },
+            {
+              "employee_id": 82,
+              "employee_name": "E82",
+              "manager_id": 81
+            },
+            {
+              "employee_id": 83,
+              "employee_name": "E83",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 84,
+              "employee_name": "E84",
+              "manager_id": 83
+            },
+            {
+              "employee_id": 85,
+              "employee_name": "E85",
+              "manager_id": 84
+            },
+            {
+              "employee_id": 86,
+              "employee_name": "E86",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 87,
+              "employee_name": "E87",
+              "manager_id": 86
+            },
+            {
+              "employee_id": 88,
+              "employee_name": "E88",
+              "manager_id": 87
+            },
+            {
+              "employee_id": 89,
+              "employee_name": "E89",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 90,
+              "employee_name": "E90",
+              "manager_id": 89
+            },
+            {
+              "employee_id": 91,
+              "employee_name": "E91",
+              "manager_id": 90
+            },
+            {
+              "employee_id": 92,
+              "employee_name": "E92",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 93,
+              "employee_name": "E93",
+              "manager_id": 92
+            },
+            {
+              "employee_id": 94,
+              "employee_name": "E94",
+              "manager_id": 93
+            },
+            {
+              "employee_id": 95,
+              "employee_name": "E95",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 96,
+              "employee_name": "E96",
+              "manager_id": 95
+            },
+            {
+              "employee_id": 97,
+              "employee_name": "E97",
+              "manager_id": 96
+            },
+            {
+              "employee_id": 98,
+              "employee_name": "E98",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 99,
+              "employee_name": "E99",
+              "manager_id": 98
+            },
+            {
+              "employee_id": 100,
+              "employee_name": "E100",
+              "manager_id": 99
+            },
+            {
+              "employee_id": 101,
+              "employee_name": "E101",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 102,
+              "employee_name": "E102",
+              "manager_id": 101
+            },
+            {
+              "employee_id": 103,
+              "employee_name": "E103",
+              "manager_id": 102
+            },
+            {
+              "employee_id": 104,
+              "employee_name": "E104",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 105,
+              "employee_name": "E105",
+              "manager_id": 104
+            },
+            {
+              "employee_id": 106,
+              "employee_name": "E106",
+              "manager_id": 105
+            },
+            {
+              "employee_id": 107,
+              "employee_name": "E107",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 108,
+              "employee_name": "E108",
+              "manager_id": 107
+            },
+            {
+              "employee_id": 109,
+              "employee_name": "E109",
+              "manager_id": 108
+            },
+            {
+              "employee_id": 110,
+              "employee_name": "E110",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 111,
+              "employee_name": "E111",
+              "manager_id": 110
+            },
+            {
+              "employee_id": 112,
+              "employee_name": "E112",
+              "manager_id": 111
+            },
+            {
+              "employee_id": 113,
+              "employee_name": "E113",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 114,
+              "employee_name": "E114",
+              "manager_id": 113
+            },
+            {
+              "employee_id": 115,
+              "employee_name": "E115",
+              "manager_id": 114
+            },
+            {
+              "employee_id": 116,
+              "employee_name": "E116",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 117,
+              "employee_name": "E117",
+              "manager_id": 116
+            },
+            {
+              "employee_id": 118,
+              "employee_name": "E118",
+              "manager_id": 117
+            },
+            {
+              "employee_id": 119,
+              "employee_name": "E119",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 120,
+              "employee_name": "E120",
+              "manager_id": 119
+            },
+            {
+              "employee_id": 121,
+              "employee_name": "E121",
+              "manager_id": 120
+            },
+            {
+              "employee_id": 122,
+              "employee_name": "E122",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 123,
+              "employee_name": "E123",
+              "manager_id": 122
+            },
+            {
+              "employee_id": 124,
+              "employee_name": "E124",
+              "manager_id": 123
+            },
+            {
+              "employee_id": 125,
+              "employee_name": "E125",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 126,
+              "employee_name": "E126",
+              "manager_id": 125
+            },
+            {
+              "employee_id": 127,
+              "employee_name": "E127",
+              "manager_id": 126
+            },
+            {
+              "employee_id": 128,
+              "employee_name": "E128",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 129,
+              "employee_name": "E129",
+              "manager_id": 128
+            },
+            {
+              "employee_id": 130,
+              "employee_name": "E130",
+              "manager_id": 129
+            },
+            {
+              "employee_id": 131,
+              "employee_name": "E131",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 132,
+              "employee_name": "E132",
+              "manager_id": 131
+            },
+            {
+              "employee_id": 133,
+              "employee_name": "E133",
+              "manager_id": 132
+            },
+            {
+              "employee_id": 134,
+              "employee_name": "E134",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 135,
+              "employee_name": "E135",
+              "manager_id": 134
+            },
+            {
+              "employee_id": 136,
+              "employee_name": "E136",
+              "manager_id": 135
+            },
+            {
+              "employee_id": 137,
+              "employee_name": "E137",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 138,
+              "employee_name": "E138",
+              "manager_id": 137
+            },
+            {
+              "employee_id": 139,
+              "employee_name": "E139",
+              "manager_id": 138
+            },
+            {
+              "employee_id": 140,
+              "employee_name": "E140",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 141,
+              "employee_name": "E141",
+              "manager_id": 140
+            },
+            {
+              "employee_id": 142,
+              "employee_name": "E142",
+              "manager_id": 141
+            },
+            {
+              "employee_id": 143,
+              "employee_name": "E143",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 144,
+              "employee_name": "E144",
+              "manager_id": 143
+            },
+            {
+              "employee_id": 145,
+              "employee_name": "E145",
+              "manager_id": 144
+            },
+            {
+              "employee_id": 146,
+              "employee_name": "E146",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 147,
+              "employee_name": "E147",
+              "manager_id": 146
+            },
+            {
+              "employee_id": 148,
+              "employee_name": "E148",
+              "manager_id": 147
+            },
+            {
+              "employee_id": 149,
+              "employee_name": "E149",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 150,
+              "employee_name": "E150",
+              "manager_id": 149
+            },
+            {
+              "employee_id": 151,
+              "employee_name": "E151",
+              "manager_id": 150
+            },
+            {
+              "employee_id": 152,
+              "employee_name": "E152",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 153,
+              "employee_name": "E153",
+              "manager_id": 152
+            },
+            {
+              "employee_id": 154,
+              "employee_name": "E154",
+              "manager_id": 153
+            },
+            {
+              "employee_id": 155,
+              "employee_name": "E155",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 156,
+              "employee_name": "E156",
+              "manager_id": 155
+            },
+            {
+              "employee_id": 157,
+              "employee_name": "E157",
+              "manager_id": 156
+            },
+            {
+              "employee_id": 158,
+              "employee_name": "E158",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 159,
+              "employee_name": "E159",
+              "manager_id": 158
+            },
+            {
+              "employee_id": 160,
+              "employee_name": "E160",
+              "manager_id": 159
+            },
+            {
+              "employee_id": 161,
+              "employee_name": "E161",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 162,
+              "employee_name": "E162",
+              "manager_id": 161
+            },
+            {
+              "employee_id": 163,
+              "employee_name": "E163",
+              "manager_id": 162
+            },
+            {
+              "employee_id": 164,
+              "employee_name": "E164",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 165,
+              "employee_name": "E165",
+              "manager_id": 164
+            },
+            {
+              "employee_id": 166,
+              "employee_name": "E166",
+              "manager_id": 165
+            },
+            {
+              "employee_id": 167,
+              "employee_name": "E167",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 168,
+              "employee_name": "E168",
+              "manager_id": 167
+            },
+            {
+              "employee_id": 169,
+              "employee_name": "E169",
+              "manager_id": 168
+            },
+            {
+              "employee_id": 170,
+              "employee_name": "E170",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 171,
+              "employee_name": "E171",
+              "manager_id": 170
+            },
+            {
+              "employee_id": 172,
+              "employee_name": "E172",
+              "manager_id": 171
+            },
+            {
+              "employee_id": 173,
+              "employee_name": "E173",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 174,
+              "employee_name": "E174",
+              "manager_id": 173
+            },
+            {
+              "employee_id": 175,
+              "employee_name": "E175",
+              "manager_id": 174
+            },
+            {
+              "employee_id": 176,
+              "employee_name": "E176",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 177,
+              "employee_name": "E177",
+              "manager_id": 176
+            },
+            {
+              "employee_id": 178,
+              "employee_name": "E178",
+              "manager_id": 177
+            },
+            {
+              "employee_id": 179,
+              "employee_name": "E179",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 180,
+              "employee_name": "E180",
+              "manager_id": 179
+            },
+            {
+              "employee_id": 181,
+              "employee_name": "E181",
+              "manager_id": 180
+            },
+            {
+              "employee_id": 182,
+              "employee_name": "E182",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 183,
+              "employee_name": "E183",
+              "manager_id": 182
+            },
+            {
+              "employee_id": 184,
+              "employee_name": "E184",
+              "manager_id": 183
+            },
+            {
+              "employee_id": 185,
+              "employee_name": "E185",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 186,
+              "employee_name": "E186",
+              "manager_id": 185
+            },
+            {
+              "employee_id": 187,
+              "employee_name": "E187",
+              "manager_id": 186
+            },
+            {
+              "employee_id": 188,
+              "employee_name": "E188",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 189,
+              "employee_name": "E189",
+              "manager_id": 188
+            },
+            {
+              "employee_id": 190,
+              "employee_name": "E190",
+              "manager_id": 189
+            },
+            {
+              "employee_id": 191,
+              "employee_name": "E191",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 192,
+              "employee_name": "E192",
+              "manager_id": 191
+            },
+            {
+              "employee_id": 193,
+              "employee_name": "E193",
+              "manager_id": 192
+            },
+            {
+              "employee_id": 194,
+              "employee_name": "E194",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 195,
+              "employee_name": "E195",
+              "manager_id": 194
+            },
+            {
+              "employee_id": 196,
+              "employee_name": "E196",
+              "manager_id": 195
+            },
+            {
+              "employee_id": 197,
+              "employee_name": "E197",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 198,
+              "employee_name": "E198",
+              "manager_id": 197
+            },
+            {
+              "employee_id": 199,
+              "employee_name": "E199",
+              "manager_id": 198
+            },
+            {
+              "employee_id": 200,
+              "employee_name": "E200",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 201,
+              "employee_name": "E201",
+              "manager_id": 200
+            },
+            {
+              "employee_id": 202,
+              "employee_name": "E202",
+              "manager_id": 201
+            },
+            {
+              "employee_id": 203,
+              "employee_name": "E203",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 204,
+              "employee_name": "E204",
+              "manager_id": 203
+            },
+            {
+              "employee_id": 205,
+              "employee_name": "E205",
+              "manager_id": 204
+            },
+            {
+              "employee_id": 206,
+              "employee_name": "E206",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 207,
+              "employee_name": "E207",
+              "manager_id": 206
+            },
+            {
+              "employee_id": 208,
+              "employee_name": "E208",
+              "manager_id": 207
+            },
+            {
+              "employee_id": 209,
+              "employee_name": "E209",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 210,
+              "employee_name": "E210",
+              "manager_id": 209
+            },
+            {
+              "employee_id": 211,
+              "employee_name": "E211",
+              "manager_id": 210
+            },
+            {
+              "employee_id": 212,
+              "employee_name": "E212",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 213,
+              "employee_name": "E213",
+              "manager_id": 212
+            },
+            {
+              "employee_id": 214,
+              "employee_name": "E214",
+              "manager_id": 213
+            },
+            {
+              "employee_id": 215,
+              "employee_name": "E215",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 216,
+              "employee_name": "E216",
+              "manager_id": 215
+            },
+            {
+              "employee_id": 217,
+              "employee_name": "E217",
+              "manager_id": 216
+            },
+            {
+              "employee_id": 218,
+              "employee_name": "E218",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 219,
+              "employee_name": "E219",
+              "manager_id": 218
+            },
+            {
+              "employee_id": 220,
+              "employee_name": "E220",
+              "manager_id": 219
+            },
+            {
+              "employee_id": 221,
+              "employee_name": "E221",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 222,
+              "employee_name": "E222",
+              "manager_id": 221
+            },
+            {
+              "employee_id": 223,
+              "employee_name": "E223",
+              "manager_id": 222
+            },
+            {
+              "employee_id": 224,
+              "employee_name": "E224",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 225,
+              "employee_name": "E225",
+              "manager_id": 224
+            },
+            {
+              "employee_id": 226,
+              "employee_name": "E226",
+              "manager_id": 225
+            },
+            {
+              "employee_id": 227,
+              "employee_name": "E227",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 228,
+              "employee_name": "E228",
+              "manager_id": 227
+            },
+            {
+              "employee_id": 229,
+              "employee_name": "E229",
+              "manager_id": 228
+            },
+            {
+              "employee_id": 230,
+              "employee_name": "E230",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 231,
+              "employee_name": "E231",
+              "manager_id": 230
+            },
+            {
+              "employee_id": 232,
+              "employee_name": "E232",
+              "manager_id": 231
+            },
+            {
+              "employee_id": 233,
+              "employee_name": "E233",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 234,
+              "employee_name": "E234",
+              "manager_id": 233
+            },
+            {
+              "employee_id": 235,
+              "employee_name": "E235",
+              "manager_id": 234
+            },
+            {
+              "employee_id": 236,
+              "employee_name": "E236",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 237,
+              "employee_name": "E237",
+              "manager_id": 236
+            },
+            {
+              "employee_id": 238,
+              "employee_name": "E238",
+              "manager_id": 237
+            },
+            {
+              "employee_id": 239,
+              "employee_name": "E239",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 240,
+              "employee_name": "E240",
+              "manager_id": 239
+            },
+            {
+              "employee_id": 241,
+              "employee_name": "E241",
+              "manager_id": 240
+            },
+            {
+              "employee_id": 242,
+              "employee_name": "E242",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 243,
+              "employee_name": "E243",
+              "manager_id": 242
+            },
+            {
+              "employee_id": 244,
+              "employee_name": "E244",
+              "manager_id": 243
+            },
+            {
+              "employee_id": 245,
+              "employee_name": "E245",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 246,
+              "employee_name": "E246",
+              "manager_id": 245
+            },
+            {
+              "employee_id": 247,
+              "employee_name": "E247",
+              "manager_id": 246
+            },
+            {
+              "employee_id": 248,
+              "employee_name": "E248",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 249,
+              "employee_name": "E249",
+              "manager_id": 248
+            },
+            {
+              "employee_id": 250,
+              "employee_name": "E250",
+              "manager_id": 249
+            },
+            {
+              "employee_id": 251,
+              "employee_name": "E251",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 252,
+              "employee_name": "E252",
+              "manager_id": 251
+            },
+            {
+              "employee_id": 253,
+              "employee_name": "E253",
+              "manager_id": 252
+            },
+            {
+              "employee_id": 254,
+              "employee_name": "E254",
+              "manager_id": 1
+            },
+            {
+              "employee_id": 255,
+              "employee_name": "E255",
+              "manager_id": 254
+            },
+            {
+              "employee_id": 256,
+              "employee_name": "E256",
+              "manager_id": 255
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id"
+        ],
+        "rows": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            15
+          ],
+          [
+            16
+          ],
+          [
+            17
+          ],
+          [
+            18
+          ],
+          [
+            19
+          ],
+          [
+            20
+          ],
+          [
+            21
+          ],
+          [
+            22
+          ],
+          [
+            23
+          ],
+          [
+            24
+          ],
+          [
+            25
+          ],
+          [
+            26
+          ],
+          [
+            27
+          ],
+          [
+            28
+          ],
+          [
+            29
+          ],
+          [
+            30
+          ],
+          [
+            31
+          ],
+          [
+            32
+          ],
+          [
+            33
+          ],
+          [
+            34
+          ],
+          [
+            35
+          ],
+          [
+            36
+          ],
+          [
+            37
+          ],
+          [
+            38
+          ],
+          [
+            39
+          ],
+          [
+            40
+          ],
+          [
+            41
+          ],
+          [
+            42
+          ],
+          [
+            43
+          ],
+          [
+            44
+          ],
+          [
+            45
+          ],
+          [
+            46
+          ],
+          [
+            47
+          ],
+          [
+            48
+          ],
+          [
+            49
+          ],
+          [
+            50
+          ],
+          [
+            51
+          ],
+          [
+            52
+          ],
+          [
+            53
+          ],
+          [
+            54
+          ],
+          [
+            55
+          ],
+          [
+            56
+          ],
+          [
+            57
+          ],
+          [
+            58
+          ],
+          [
+            59
+          ],
+          [
+            60
+          ],
+          [
+            61
+          ],
+          [
+            62
+          ],
+          [
+            63
+          ],
+          [
+            64
+          ],
+          [
+            65
+          ],
+          [
+            66
+          ],
+          [
+            67
+          ],
+          [
+            68
+          ],
+          [
+            69
+          ],
+          [
+            70
+          ],
+          [
+            71
+          ],
+          [
+            72
+          ],
+          [
+            73
+          ],
+          [
+            74
+          ],
+          [
+            75
+          ],
+          [
+            76
+          ],
+          [
+            77
+          ],
+          [
+            78
+          ],
+          [
+            79
+          ],
+          [
+            80
+          ],
+          [
+            81
+          ],
+          [
+            82
+          ],
+          [
+            83
+          ],
+          [
+            84
+          ],
+          [
+            85
+          ],
+          [
+            86
+          ],
+          [
+            87
+          ],
+          [
+            88
+          ],
+          [
+            89
+          ],
+          [
+            90
+          ],
+          [
+            91
+          ],
+          [
+            92
+          ],
+          [
+            93
+          ],
+          [
+            94
+          ],
+          [
+            95
+          ],
+          [
+            96
+          ],
+          [
+            97
+          ],
+          [
+            98
+          ],
+          [
+            99
+          ],
+          [
+            100
+          ],
+          [
+            101
+          ],
+          [
+            102
+          ],
+          [
+            103
+          ],
+          [
+            104
+          ],
+          [
+            105
+          ],
+          [
+            106
+          ],
+          [
+            107
+          ],
+          [
+            108
+          ],
+          [
+            109
+          ],
+          [
+            110
+          ],
+          [
+            111
+          ],
+          [
+            112
+          ],
+          [
+            113
+          ],
+          [
+            114
+          ],
+          [
+            115
+          ],
+          [
+            116
+          ],
+          [
+            117
+          ],
+          [
+            118
+          ],
+          [
+            119
+          ],
+          [
+            120
+          ],
+          [
+            121
+          ],
+          [
+            122
+          ],
+          [
+            123
+          ],
+          [
+            124
+          ],
+          [
+            125
+          ],
+          [
+            126
+          ],
+          [
+            127
+          ],
+          [
+            128
+          ],
+          [
+            129
+          ],
+          [
+            130
+          ],
+          [
+            131
+          ],
+          [
+            132
+          ],
+          [
+            133
+          ],
+          [
+            134
+          ],
+          [
+            135
+          ],
+          [
+            136
+          ],
+          [
+            137
+          ],
+          [
+            138
+          ],
+          [
+            139
+          ],
+          [
+            140
+          ],
+          [
+            141
+          ],
+          [
+            142
+          ],
+          [
+            143
+          ],
+          [
+            144
+          ],
+          [
+            145
+          ],
+          [
+            146
+          ],
+          [
+            147
+          ],
+          [
+            148
+          ],
+          [
+            149
+          ],
+          [
+            150
+          ],
+          [
+            151
+          ],
+          [
+            152
+          ],
+          [
+            153
+          ],
+          [
+            154
+          ],
+          [
+            155
+          ],
+          [
+            156
+          ],
+          [
+            157
+          ],
+          [
+            158
+          ],
+          [
+            159
+          ],
+          [
+            160
+          ],
+          [
+            161
+          ],
+          [
+            162
+          ],
+          [
+            163
+          ],
+          [
+            164
+          ],
+          [
+            165
+          ],
+          [
+            166
+          ],
+          [
+            167
+          ],
+          [
+            168
+          ],
+          [
+            169
+          ],
+          [
+            170
+          ],
+          [
+            171
+          ],
+          [
+            172
+          ],
+          [
+            173
+          ],
+          [
+            174
+          ],
+          [
+            175
+          ],
+          [
+            176
+          ],
+          [
+            177
+          ],
+          [
+            178
+          ],
+          [
+            179
+          ],
+          [
+            180
+          ],
+          [
+            181
+          ],
+          [
+            182
+          ],
+          [
+            183
+          ],
+          [
+            184
+          ],
+          [
+            185
+          ],
+          [
+            186
+          ],
+          [
+            187
+          ],
+          [
+            188
+          ],
+          [
+            189
+          ],
+          [
+            190
+          ],
+          [
+            191
+          ],
+          [
+            192
+          ],
+          [
+            193
+          ],
+          [
+            194
+          ],
+          [
+            195
+          ],
+          [
+            196
+          ],
+          [
+            197
+          ],
+          [
+            198
+          ],
+          [
+            199
+          ],
+          [
+            200
+          ],
+          [
+            201
+          ],
+          [
+            202
+          ],
+          [
+            203
+          ],
+          [
+            204
+          ],
+          [
+            205
+          ],
+          [
+            206
+          ],
+          [
+            207
+          ],
+          [
+            208
+          ],
+          [
+            209
+          ],
+          [
+            210
+          ],
+          [
+            211
+          ],
+          [
+            212
+          ],
+          [
+            213
+          ],
+          [
+            214
+          ],
+          [
+            215
+          ],
+          [
+            216
+          ],
+          [
+            217
+          ],
+          [
+            218
+          ],
+          [
+            219
+          ],
+          [
+            220
+          ],
+          [
+            221
+          ],
+          [
+            222
+          ],
+          [
+            223
+          ],
+          [
+            224
+          ],
+          [
+            225
+          ],
+          [
+            226
+          ],
+          [
+            227
+          ],
+          [
+            228
+          ],
+          [
+            229
+          ],
+          [
+            230
+          ],
+          [
+            231
+          ],
+          [
+            232
+          ],
+          [
+            233
+          ],
+          [
+            234
+          ],
+          [
+            235
+          ],
+          [
+            236
+          ],
+          [
+            237
+          ],
+          [
+            238
+          ],
+          [
+            239
+          ],
+          [
+            240
+          ],
+          [
+            241
+          ],
+          [
+            242
+          ],
+          [
+            243
+          ],
+          [
+            244
+          ],
+          [
+            245
+          ],
+          [
+            246
+          ],
+          [
+            247
+          ],
+          [
+            248
+          ],
+          [
+            249
+          ],
+          [
+            250
+          ],
+          [
+            251
+          ],
+          [
+            252
+          ],
+          [
+            253
+          ],
+          [
+            254
+          ],
+          [
+            255
+          ],
+          [
+            256
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "three-level-branches"
+      ],
+      "size": 256,
+      "timeout_ms": 8000
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1340",
   "cases": [
     {
@@ -45,13 +46,14 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "equal-barrier"
       ]
     },
     {
-      "id": "trial-descending",
-      "name": "descending one-step chain",
-      "kind": "trial",
+      "id": "sample-3",
+      "name": "sample: descending one-step chain",
+      "kind": "sample",
       "visible": true,
       "input": {
         "arr": [
@@ -67,29 +69,84 @@
       },
       "expected": 7,
       "tags": [
-        "trial",
-        "edge"
+        "sample",
+        "chain"
       ]
     },
     {
-      "id": "real-blocked-by-equal-heights",
-      "name": "hidden: equal heights block jumps",
+      "id": "trial-single",
+      "name": "trial: one starting position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          42
+        ],
+        "d": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-jump-over-lower",
+      "name": "trial: lower intermediate permits longer jump",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          10,
+          1,
+          2
+        ],
+        "d": 2
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "intermediate"
+      ]
+    },
+    {
+      "id": "hidden-higher-barrier",
+      "name": "hidden: higher intermediate blocks destination",
       "kind": "real",
       "visible": false,
       "input": {
         "arr": [
-          7,
-          1,
-          7,
-          1,
-          7,
+          5,
+          6,
           1
         ],
         "d": 2
       },
       "expected": 2,
       "tags": [
-        "hidden"
+        "hidden",
+        "barrier"
+      ]
+    },
+    {
+      "id": "hidden-both-directions",
+      "name": "hidden: best path changes direction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          1,
+          4,
+          2,
+          3
+        ],
+        "d": 2
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "both-directions"
       ]
     }
   ]
